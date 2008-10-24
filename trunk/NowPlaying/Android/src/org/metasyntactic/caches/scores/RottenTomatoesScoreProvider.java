@@ -14,6 +14,7 @@
 
 package org.metasyntactic.caches.scores;
 
+import org.metasyntactic.Application;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.children;
@@ -37,7 +38,7 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
 
   @Override
   protected String lookupServerHash() {
-    String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
+    String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
@@ -45,7 +46,8 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
   @Override
   protected Map<String, Score> lookupServerRatings() {
     Element resultElement =
-        NetworkUtilities.downloadXml("http://metaboxoffice2.appspot.com/LookupMovieRatings?q=rottentomates&format=xml",
+        NetworkUtilities.downloadXml(
+            "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml",
             true);
 
     if (resultElement != null) {

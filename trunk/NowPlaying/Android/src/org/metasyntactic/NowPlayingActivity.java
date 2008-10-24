@@ -15,18 +15,11 @@
 package org.metasyntactic;
 
 import android.app.TabActivity;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.graphics.Color;
+import android.content.*;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.TabHost;
-
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.views.AllTheatersView;
 import org.metasyntactic.views.UpcomingMoviesView;
@@ -35,16 +28,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NowPlayingActivity extends TabActivity {
-	public static NowPlayingActivity instance;
-	
+  public static NowPlayingActivity instance;
+
   private NowPlayingControllerWrapper controller;
   //private AllMoviesView allMoviesView;
   private AllTheatersView allTheatersView;
   private UpcomingMoviesView upcomingMoviesView;
   private List<Movie> movies = new ArrayList<Movie>();
 
+
   public List<Movie> getMovies() {
-      return movies;
+    return movies;
   }
 
 
@@ -54,7 +48,7 @@ public class NowPlayingActivity extends TabActivity {
         public void onReceive(Context context, Intent intent) {
           refresh();
         }
-  };
+      };
 
 
   private final ServiceConnection serviceConnection =
@@ -82,15 +76,15 @@ public class NowPlayingActivity extends TabActivity {
     refresh();
   }
 
-
- /* private TabHost getTabHost() {
+  /* private TabHost getTabHost() {
     return getTabHost();
   }*/
 
-  
+
   public NowPlayingActivity() {
-  	instance = this;
+    instance = this;
   }
+
 
   /** Called when the activity is first created. */
   @Override
@@ -109,15 +103,15 @@ public class NowPlayingActivity extends TabActivity {
     }
 
     final TabHost tabs = getTabHost();
-  
+
     allTheatersView = new AllTheatersView(this);
     upcomingMoviesView = new UpcomingMoviesView(this);
-    
+
     // (todo : mjoshi) move all strings to strings.xml
     tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator("Movies").setContent(
-                    new Intent(this, AllMoviesActivity.class)));
-    
-   
+        new Intent(this, AllMoviesActivity.class)));
+
+
     tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator("Theaters").setContent(
         new TabHost.TabContentFactory() {
           public View createTabContent(String s) {
@@ -148,6 +142,7 @@ public class NowPlayingActivity extends TabActivity {
     super.onDestroy();
   }
 
+
   @Override
   protected void onResume() {
     super.onResume();
@@ -163,7 +158,7 @@ public class NowPlayingActivity extends TabActivity {
 
 
   private void refresh() {
-      movies = controller.getMovies();
-      AllMoviesActivity.refresh();
+    movies = controller.getMovies();
+    AllMoviesActivity.refresh();
   }
 }

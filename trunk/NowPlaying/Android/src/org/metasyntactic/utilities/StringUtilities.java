@@ -14,8 +14,8 @@
 
 package org.metasyntactic.utilities;
 
-import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class StringUtilities {
@@ -40,7 +40,7 @@ public class StringUtilities {
 
   public static String urlEncode(String string) {
     try {
-      return URLEncoder.encode(string.replace('Õ', '\''), "UTF-8");
+      return URLEncoder.encode(string.replace('Õ', '\''), "ISO-8859-1");
     } catch (UnsupportedEncodingException e) {
       throw new RuntimeException(e);
     }

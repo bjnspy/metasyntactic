@@ -103,7 +103,7 @@ public class TrailerCache {
 
     List<List<Movie>> orderedMovies = getOrderedMovies(movies);
 
-    String url = "http://metaboxoffice2.appspot.com/LookupTrailerListings?q=index";
+    String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?q=index";
     String indexText = NetworkUtilities.downloadString(url, false);
     if (indexText == null) {
       return;
@@ -129,7 +129,7 @@ public class TrailerCache {
     String studio = studioAndLocation.get(0);
     String location = studioAndLocation.get(1);
 
-    String url = "http://metaboxoffice2.appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
+    String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
     String trailersString = NetworkUtilities.downloadString(url, false);
 
     if (trailersString == null) {

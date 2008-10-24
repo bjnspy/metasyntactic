@@ -1,5 +1,6 @@
 package org.metasyntactic.caches.posters;
 
+import org.metasyntactic.Application;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -35,7 +36,8 @@ public class ApplePosterDownloader {
       return;
     }
 
-    String index = NetworkUtilities.downloadString("http://metaboxoffice2.appspot.com/LookupPosterListings", false);
+    String index = NetworkUtilities.downloadString("http://" + Application.host + ".appspot.com/LookupPosterListings",
+        false);
     if (StringUtilities.isNullOrEmpty(index)) {
       return;
     }

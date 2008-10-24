@@ -14,15 +14,8 @@
 
 package org.metasyntactic.caches.scores;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
+import com.google.protobuf.InvalidProtocolBufferException;
+import org.metasyntactic.Application;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.protobuf.NowPlaying;
@@ -30,8 +23,14 @@ import org.metasyntactic.time.Days;
 import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import com.google.protobuf.InvalidProtocolBufferException;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class GoogleScoreProvider extends AbstractScoreProvider {
@@ -61,7 +60,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     //Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 
-    String address = "http://metaboxoffice2.appspot.com/LookupTheaterListings2?country=" + country + "&language="
+    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language="
         + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude="
         + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
 

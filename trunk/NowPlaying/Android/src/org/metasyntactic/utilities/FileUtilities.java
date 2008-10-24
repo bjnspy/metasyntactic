@@ -426,7 +426,7 @@ public class FileUtilities {
       PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
       int size = in.readInt();
 
-      Map<String,List<T>> result = new HashMap<String, List<T>>(size);
+      Map<String, List<T>> result = new HashMap<String, List<T>>(size);
       for (int i = 0; i < size; i++) {
         String key = in.readString();
         List<T> value = reader.readList(in);

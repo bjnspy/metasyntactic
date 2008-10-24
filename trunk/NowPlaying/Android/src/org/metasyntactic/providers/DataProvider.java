@@ -14,9 +14,6 @@
 
 package org.metasyntactic.providers;
 
-import android.os.Debug;
-import android.util.Log;
-
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
 import org.metasyntactic.Application;
@@ -26,10 +23,7 @@ import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.time.Hours;
-import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.ExceptionUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.*;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
@@ -68,9 +62,7 @@ public class DataProvider {
 
   private boolean isUpToDate() {
     Date lastLookupDate = getLastLookupDate();
-    // Debug.startMethodTracing("isUpToDateDaysBetween", 1 << 24);
     int days = Days.daysBetween(lastLookupDate, new Date());
-    // Debug.stopMethodTracing();
     if (days != 0) {
       return false;
     }
@@ -89,14 +81,23 @@ public class DataProvider {
     if (isUpToDate()) {
       return;
     }
+
+    long start = System.currentTimeMillis();
     final Location location = model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         model.getUserLocation());
+    LogUtilities.logTime(DataProvider.class, "Get User Location", start);
+
     if (location == null) {
       return;
     }
 
+    start = System.currentTimeMillis();
     LookupResult result = lookupLocation(location, null);
+    LogUtilities.logTime(DataProvider.class, "Lookup Theaters", start);
+
+    start = System.currentTimeMillis();
     lookupMissingFavorites(result);
+    LogUtilities.logTime(DataProvider.class, "Lookup Missing Theaters", start);
 
     if (result.movies.size() > 0 || result.theaters.size() > 0) {
       reportResult(result);
@@ -136,7 +137,7 @@ public class DataProvider {
 
     days = min(max(days, 0), 7);
 
-    String address = "http://metaboxoffice2.appspot.com/LookupTheaterListings2?country=" + country + "&language="
+    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language="
         + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude="
         + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
 
@@ -406,11 +407,20 @@ public class DataProvider {
   }
 
 
-  private void saveResult(LookupResult result) {    
-    FileUtilities.writePersistableCollection(result.movies, getMoviesFile());;
-    FileUtilities.writePersistableCollection(result.theaters, getTheatersFile());;
+  private void saveResult(LookupResult result) {
+    long start = System.currentTimeMillis();
+    FileUtilities.writePersistableCollection(result.movies, getMoviesFile());
+    LogUtilities.logTime(DataProvider.class, "Saving Movies", start);
+
+    start = System.currentTimeMillis();
+    FileUtilities.writePersistableCollection(result.theaters, getTheatersFile());
+    LogUtilities.logTime(DataProvider.class, "Saving Theaters", start);
+
+    start = System.currentTimeMillis();
     FileUtilities.writeStringToDateMap(result.synchronizationData, getSynchronizationFile());
-    
+    LogUtilities.logTime(DataProvider.class, "Saving Theaters", start);
+
+    start = System.currentTimeMillis();
     File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
     tempFolder.mkdirs();
 
@@ -421,6 +431,9 @@ public class DataProvider {
 
     Application.deleteDirectory(Application.performancesDirectory);
     tempFolder.renameTo(Application.performancesDirectory);
+    LogUtilities.logTime(DataProvider.class, "Saving Performances", start);
+
+    // this has to happen last.
     setLastLookupDate();
   }
 
