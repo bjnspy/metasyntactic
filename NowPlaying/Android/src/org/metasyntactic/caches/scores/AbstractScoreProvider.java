@@ -195,6 +195,10 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       }
     }
 
+    if (result.isEmpty()) {
+      return;
+    }
+
     //FileUtilities.writeObject(result, movieMapFile());
 
     Runnable runnable = new Runnable() {
@@ -209,7 +213,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
   private void reportMovieMap(Map<String, String> result) {
     movieMap = result;
-    Application.refresh(true);
+    Application.refresh();
   }
 
 
