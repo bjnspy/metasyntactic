@@ -107,6 +107,15 @@ public class Location implements Parcelable, Persistable {
   }
 
 
+  public static String country(Location location) {
+    if (location == null) {
+      return null;
+    }
+
+    return location.getCountry();
+  }
+
+
   public static final double UNKNOWN_DISTANCE = Float.MAX_VALUE;
   private final static double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
   private final static double GREAT_CIRCLE_RADIUS_MILES = 3438.461;

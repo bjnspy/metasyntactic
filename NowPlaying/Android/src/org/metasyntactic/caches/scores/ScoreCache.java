@@ -14,22 +14,14 @@
 
 package org.metasyntactic.caches.scores;
 
-import android.util.Log;
-
-import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.LogUtilities;
 
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ScoreCache {
-  private final Object lock = new Object();
-
   private final ScoreProvider rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(this);
   private final ScoreProvider metacriticScoreProvider = new MetacriticScoreProvider(this);
   private final ScoreProvider googleScoreProvider = new GoogleScoreProvider(this);
@@ -39,6 +31,13 @@ public class ScoreCache {
 
   public ScoreCache(NowPlayingModel model) {
     this.model = model;
+  }
+
+
+  public void createDirectories() {
+    rottenTomatoesScoreProvider.createDirectory();
+    metacriticScoreProvider.createDirectory();
+    googleScoreProvider.createDirectory();
   }
 
 
@@ -56,29 +55,12 @@ public class ScoreCache {
 
 
   public Score getScore(List<Movie> movies, Movie movie) {
-    //  Log.i("\n\n\nTESTESTESTSCORE",getCurrentScoreProvider().getScore(movies, movie).toString());
-      
     return getCurrentScoreProvider().getScore(movies, movie);
   }
 
 
   public void update() {
-    Runnable runnable = new Runnable() {
-      public void run() {
-        updateBackgroundEntryPoint();
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, lock, true/*visible*/,
-        Thread.MIN_PRIORITY + 1);
-  }
-
-
-  private void updateBackgroundEntryPoint() {
-  	long start = System.currentTimeMillis();
     getCurrentScoreProvider().update();
-    LogUtilities.logTime(ScoreCache.class, "Update", start);
-
-    Application.refresh(true);
   }
 
 
