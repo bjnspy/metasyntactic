@@ -32,9 +32,12 @@ public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
 
   public final static String host =
-      //"metaboxoffice6";
-  "metaboxoffice2";
-
+  //*
+  	"metaboxoffice6";
+  /*/
+  	"metaboxoffice2";
+  //*/
+  
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
   public static final File dataDirectory = new File(applicationDirectory, "Data");
@@ -42,7 +45,8 @@ public class Application {
   public static final File trailersDirectory = new File(applicationDirectory, "Trailers");
   public static final File userLocationsDirectory = new File(applicationDirectory, "UserLocations");
   public static final File tempDirectory = new File(applicationDirectory, "Temp");
-  public static final File ratingsDirectory = new File(applicationDirectory, "Ratings");
+  public static final File scoresDirectory = new File(applicationDirectory, "Scores");
+  public static final File reviewsDirectory = new File(applicationDirectory, "Reviews");
   public static final File imdbDirectory = new File(applicationDirectory, "IMDb");
   public static final File postersDirectory = new File(applicationDirectory, "Posters");
 

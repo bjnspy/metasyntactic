@@ -29,4 +29,7 @@ public interface ScoreProvider {
 
 
   Score getScore(List<Movie> movies, Movie movie);
+
+
+  void createDirectory();
 }
