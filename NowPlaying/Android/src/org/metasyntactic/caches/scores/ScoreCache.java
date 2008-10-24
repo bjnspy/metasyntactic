@@ -16,9 +16,11 @@ package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.LogUtilities;
 
 import java.util.List;
 
@@ -68,9 +70,11 @@ public class ScoreCache {
 
 
   private void updateBackgroundEntryPoint() {
+  	long start = System.currentTimeMillis();
     getCurrentScoreProvider().update();
+    LogUtilities.logTime(ScoreCache.class, "Update", start);
 
-    Application.refresh();
+    Application.refresh(true);
   }
 
 
