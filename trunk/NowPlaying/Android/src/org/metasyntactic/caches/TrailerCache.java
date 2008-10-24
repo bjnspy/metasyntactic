@@ -94,7 +94,7 @@ public class TrailerCache {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, false/*visible*/);
+    ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, lock, false/*visible*/);
   }
 
 

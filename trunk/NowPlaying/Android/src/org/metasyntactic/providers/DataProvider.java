@@ -15,6 +15,7 @@
 package org.metasyntactic.providers;
 
 import android.os.Debug;
+import android.util.Log;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
@@ -61,7 +62,7 @@ public class DataProvider {
         updateBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true/* visible */);
+    ThreadingUtilities.performOnBackgroundThread("Update Provider", runnable, lock, true/* visible */);
   }
 
 
@@ -88,7 +89,6 @@ public class DataProvider {
     if (isUpToDate()) {
       return;
     }
-
     final Location location = model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         model.getUserLocation());
     if (location == null) {
@@ -406,8 +406,7 @@ public class DataProvider {
   }
 
 
-  private void saveResult(LookupResult result) {
-  	Debug.startMethodTracing("WritingData", 1 << 25);
+  private void saveResult(LookupResult result) {    
     FileUtilities.writePersistableCollection(result.movies, getMoviesFile());;
     FileUtilities.writePersistableCollection(result.theaters, getTheatersFile());;
     FileUtilities.writeStringToDateMap(result.synchronizationData, getSynchronizationFile());
@@ -420,7 +419,6 @@ public class DataProvider {
       FileUtilities.writeStringToListOfPersistables(value, getPerformancesFile(tempFolder, theaterName));
     }
 
-    Debug.stopMethodTracing();
     Application.deleteDirectory(Application.performancesDirectory);
     tempFolder.renameTo(Application.performancesDirectory);
     setLastLookupDate();

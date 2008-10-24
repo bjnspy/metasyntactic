@@ -46,7 +46,7 @@ public class IMDbCache {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, false);
+    ThreadingUtilities.performOnBackgroundThread("Upate IMDb", runnable, lock, false);
   }
 
 

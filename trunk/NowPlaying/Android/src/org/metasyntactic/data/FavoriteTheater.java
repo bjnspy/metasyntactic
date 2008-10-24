@@ -31,14 +31,14 @@ public class FavoriteTheater implements Parcelable, Persistable {
 
 
   public void persistTo(PersistableOutputStream out) throws IOException {
-    out.writeUTF(name);
+    out.writeString(name);
     out.writePersistable(originatingLocation);
   }
 
 
   public static final Reader<FavoriteTheater> reader = new AbstractPersistable.AbstractReader<FavoriteTheater>() {
     public FavoriteTheater read(PersistableInputStream in) throws IOException {
-      String name = in.readUTF();
+      String name = in.readString();
       Location originatingLocation = in.readPersistable(Location.reader);
       return new FavoriteTheater(name, originatingLocation);
     }

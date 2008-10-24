@@ -38,11 +38,11 @@ public class Location implements Parcelable, Persistable {
   public void persistTo(PersistableOutputStream out) throws IOException {
     out.writeDouble(latitude);
     out.writeDouble(longitude);
-    out.writeUTF(address);
-    out.writeUTF(city);
-    out.writeUTF(state);
-    out.writeUTF(postalCode);
-    out.writeUTF(country);
+    out.writeString(address);
+    out.writeString(city);
+    out.writeString(state);
+    out.writeString(postalCode);
+    out.writeString(country);
   }
 
 
@@ -50,11 +50,11 @@ public class Location implements Parcelable, Persistable {
     public Location read(PersistableInputStream in) throws IOException {
       double latitude = in.readDouble();
       double longitude = in.readDouble();
-      String address = in.readUTF();
-      String city = in.readUTF();
-      String state = in.readUTF();
-      String postalCode = in.readUTF();
-      String country = in.readUTF();
+      String address = in.readString();
+      String city = in.readString();
+      String state = in.readString();
+      String postalCode = in.readString();
+      String country = in.readString();
       return new Location(latitude, longitude, address, city, state, postalCode, country);
     }
   };

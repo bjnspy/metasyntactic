@@ -36,7 +36,7 @@ public class PosterCache {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, false);
+    ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, lock, false);
   }
 
 
