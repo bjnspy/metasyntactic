@@ -15,7 +15,10 @@
 package org.metasyntactic;
 
 import android.os.RemoteException;
+
+import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 
 import java.util.List;
@@ -157,5 +160,21 @@ public class NowPlayingControllerWrapper {
     } catch (RemoteException e) {
       throw new RuntimeException(e);
     }
+  }
+  
+  public ScoreType getScoreType() {
+      try {
+          return controller.getScoreType();
+      } catch (RemoteException e) {
+          throw new RuntimeException(e);
+      }
+  }
+
+  public Score getScore(Movie movie) {
+      try {
+          return controller.getScore(movie);
+      } catch (RemoteException e) {
+          throw new RuntimeException(e);
+      }
   }
 }
