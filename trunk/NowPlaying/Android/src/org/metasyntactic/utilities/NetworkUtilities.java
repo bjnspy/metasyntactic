@@ -143,5 +143,6 @@ public class NetworkUtilities {
       ExceptionUtilities.log(NetworkUtilities.class, "downloadWorker", e);
       return null;
     }
+  
   }
 }

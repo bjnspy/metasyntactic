@@ -258,8 +258,8 @@ public class NowPlayingModel {
 
   public List<Movie> getMovies() {
     return dataProvider.getMovies();
-  }
-
+  }  
+  
 
   public List<Theater> getTheaters() {
     return dataProvider.getTheaters();

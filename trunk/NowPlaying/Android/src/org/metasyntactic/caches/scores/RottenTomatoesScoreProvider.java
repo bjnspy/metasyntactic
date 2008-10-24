@@ -14,6 +14,7 @@
 
 package org.metasyntactic.caches.scores;
 
+
 import org.metasyntactic.Application;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.NetworkUtilities;
@@ -49,7 +50,6 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
         NetworkUtilities.downloadXml(
             "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml",
             true);
-
     if (resultElement != null) {
       Map<String, Score> ratings = new HashMap<String, Score>();
 
@@ -58,7 +58,6 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
         String link = movieElement.getAttribute("link");
         String synopsis = movieElement.getAttribute("synopsis");
         String value = movieElement.getAttribute("score");
-
         Score score = new Score(title, synopsis, value, "rottentomatoes", link);
 
         ratings.put(score.getCanonicalTitle(), score);

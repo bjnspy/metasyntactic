@@ -17,6 +17,7 @@ package org.metasyntactic;
 import android.os.Handler;
 import android.util.Log;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -66,8 +67,11 @@ public class Pulser {
 
   public void forcePulse() {
     this.lastPulseTime = new Date();
+    
     Log.i(Pulser.class.getName(), "Forced pulse at: " + lastPulseTime);
+        
     runnable.run();
+   
   }
 
 

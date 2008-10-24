@@ -14,8 +14,11 @@
 
 package org.metasyntactic.caches.scores;
 
+import android.util.Log;
+
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.Pulser;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
@@ -25,7 +28,12 @@ import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.utilities.difference.EditDistance;
 
 import java.io.File;
-import java.util.*;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public abstract class AbstractScoreProvider implements ScoreProvider {
@@ -163,10 +171,12 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     if (movieMap.isEmpty() || movies != this.movies) {
       this.movies = movies;
       final Map<String, Score> scores = getScores();
-
+     
       Runnable runnable = new Runnable() {
         public void run() {
           regenerateMovieMap(movies, scores);
+          
+          
         }
       };
       ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, movieMapLock, false);

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="rated">"Rated "</string>
-    <string name="unrated">Unrated.</string>
+    <string name="unrated">"Unrated."</string>
     <string name="app_name">Now Playing</string>
+    <string name="ratingslengthstr_separator">"."</string>
+    <string name="onehour">"1 hour"</string>
+    <string name="hours">"hours"</string>
+    <string name="oneminute">"1 minute"</string>
+    <string name="minutes">"minutes"</string>
 </resources>

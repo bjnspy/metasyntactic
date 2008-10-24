@@ -14,6 +14,8 @@
 
 package org.metasyntactic.caches.scores;
 
+import android.util.Log;
+
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.UpcomingCache;
@@ -54,6 +56,8 @@ public class ScoreCache {
 
 
   public Score getScore(List<Movie> movies, Movie movie) {
+    //  Log.i("\n\n\nTESTESTESTSCORE",getCurrentScoreProvider().getScore(movies, movie).toString());
+      
     return getCurrentScoreProvider().getScore(movies, movie);
   }
 
