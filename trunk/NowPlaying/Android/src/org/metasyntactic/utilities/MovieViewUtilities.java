@@ -94,29 +94,7 @@ public class MovieViewUtilities {
         } else if (score > 60 && score <= 100) {
             scoreDrawable = res.getDrawable(R.drawable.rating_green);
         }
-
         return scoreDrawable;
     }
-
-    /*
-     * - (void) setBasicSquareScore:(Movie) movie { int score = [model
-     * scoreForMovie:movie];
-     * 
-     * if (score >= 0 && score <= 100) { CGRect frame = CGRectMake(10, 7, 30,
-     * 30); if (score == 100) { scoreLabel.font = [UIFont
-     * boldSystemFontOfSize:15]; } else { scoreLabel.font = [FontCache
-     * boldSystem19]; }
-     * 
-     * if (style == UITableViewStyleGrouped) { frame.origin.x += 10; }
-     * 
-     * scoreLabel.textColor = [ColorCache darkDarkGray]; scoreLabel.frame =
-     * frame; scoreLabel.text = [NSString stringWithFormat:@"%d", score]; }
-     * 
-     * if (score >= 0 && score <= 40) { self.image = [ImageCache
-     * redRatingImage]; } else if (score > 40 && score <= 60) { self.image =
-     * [ImageCache yellowRatingImage]; } else if (score > 60 && score <= 100) {
-     * self.image = [ImageCache greenRatingImage]; } else { self.scoreLabel.text
-     * = nil; self.image = [ImageCache unknownRatingImage]; } }
-     */
 
 }
