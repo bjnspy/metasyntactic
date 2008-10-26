@@ -233,12 +233,12 @@
 }
 
 
-- (void) setRatingsProviderIndex:(NSInteger) index {
-    if (index == self.model.ratingsProviderIndex) {
+- (void) setScoreProviderIndex:(NSInteger) index {
+    if (index == self.model.scoreProviderIndex) {
         return;
     }
 
-    [self.model setRatingsProviderIndex:index];
+    [self.model setScoreProviderIndex:index];
     [self spawnRatingsLookupThread];
 }
 

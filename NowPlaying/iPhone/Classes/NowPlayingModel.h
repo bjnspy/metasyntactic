@@ -58,8 +58,8 @@ enum ViewControllerType {
 
 + (NSString*) version;
 
-- (NSInteger) ratingsProviderIndex;
-- (void) setRatingsProviderIndex:(NSInteger) index;
+- (NSInteger) scoreProviderIndex;
+- (void) setScoreProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesScores;
 - (BOOL) metacriticScores;
 - (BOOL) googleScores;

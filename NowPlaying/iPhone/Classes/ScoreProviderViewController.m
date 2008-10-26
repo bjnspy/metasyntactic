@@ -68,7 +68,7 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
     // Configure the cell
-    if (indexPath.row == self.model.ratingsProviderIndex) {
+    if (indexPath.row == self.model.scoreProviderIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -92,7 +92,7 @@
         }
     }
 
-    [self.controller setRatingsProviderIndex:selectPath.row];
+    [self.controller setScoreProviderIndex:selectPath.row];
     [navigationController.tabBarController popNavigationControllersToRoot];
     [navigationController popViewControllerAnimated:YES];
 }
