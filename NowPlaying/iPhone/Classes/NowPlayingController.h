@@ -17,14 +17,14 @@
 
     NSLock* determineLocationLock;
     NSLock* dataProviderLock;
-    NSLock* ratingsLookupLock;
+    NSLock* scoresLookupLock;
     NSLock* upcomingMoviesLookupLock;
 }
 
 @property (assign) NowPlayingAppDelegate* appDelegate;
 @property (retain) NSLock* determineLocationLock;
 @property (retain) NSLock* dataProviderLock;
-@property (retain) NSLock* ratingsLookupLock;
+@property (retain) NSLock* scoresLookupLock;
 @property (retain) NSLock* upcomingMoviesLookupLock;
 
 - (NowPlayingModel*) model;

@@ -564,13 +564,13 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) onRatingsUpdated {
+- (void) onScoresUpdated {
     [self regenerateMovieMap];
     [self updateReviewCache];
 }
 
 
-- (void) onProviderUpdated {
+- (void) onDataProviderUpdated {
     [self regenerateMovieMap];
     [self updateIMDbCache];
     [self updatePosterCache];
