@@ -376,7 +376,7 @@ static NSString* starString = nil;
 #ifndef TARGET_IPHONE_SIMULATOR
     return @"metaboxoffice2";
 #endif
-    //*
+    /*
     return @"metaboxoffice6";
     /*/
      return @"metaboxoffice2";
