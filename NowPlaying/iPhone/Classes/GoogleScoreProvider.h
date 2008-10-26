@@ -12,13 +12,13 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface GoogleRatingsDownloader : NSObject {
+@interface GoogleScoreProvider : NSObject {
     NowPlayingModel* model;
 }
 
 @property (retain) NowPlayingModel* model;
 
-+ (GoogleRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model;
++ (GoogleScoreProvider*) downloaderWithModel:(NowPlayingModel*) model;
 
 + (NSString*) lookupServerHash:(NowPlayingModel*) model;
 - (NSDictionary*) lookupMovieListings;

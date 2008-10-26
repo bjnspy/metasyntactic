@@ -12,13 +12,13 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface MetacriticRatingsDownloader : NSObject {
+@interface MetacriticScoreProvider : NSObject {
     NowPlayingModel* model;
 }
 
 @property (retain) NowPlayingModel* model;
 
-+ (MetacriticRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model;
++ (MetacriticScoreProvider*) downloaderWithModel:(NowPlayingModel*) model;
 
 + (NSString*) lookupServerHash;
 - (NSDictionary*) lookupMovieListings;

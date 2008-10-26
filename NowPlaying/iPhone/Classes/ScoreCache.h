@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface RatingsCache : NSObject {
+@interface ScoreCache : NSObject {
     NowPlayingModel* model;
     NSDictionary* ratingsAndHash;
 }
@@ -20,7 +20,7 @@
 @property (retain) NowPlayingModel* model;
 @property (retain) NSDictionary* ratingsAndHash;
 
-+ (RatingsCache*) cacheWithModel:(NowPlayingModel*) model;
++ (ScoreCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (NSDictionary*) update;
 - (NSDictionary*) ratings;

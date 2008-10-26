@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "MetacriticRatingsDownloader.h"
+#import "MetacriticScoreProvider.h"
 
 #import "Application.h"
 #import "MovieRating.h"
@@ -20,7 +20,7 @@
 #import "NowPlayingModel.h"
 #import "XmlElement.h"
 
-@implementation MetacriticRatingsDownloader
+@implementation MetacriticScoreProvider
 
 @synthesize model;
 
@@ -39,8 +39,8 @@
 }
 
 
-+ (MetacriticRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model {
-    return [[[MetacriticRatingsDownloader alloc] initWithModel:model] autorelease];
++ (MetacriticScoreProvider*) downloaderWithModel:(NowPlayingModel*) model {
+    return [[[MetacriticScoreProvider alloc] initWithModel:model] autorelease];
 }
 
 

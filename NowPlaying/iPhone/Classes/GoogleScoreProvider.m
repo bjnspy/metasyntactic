@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "GoogleRatingsDownloader.h"
+#import "GoogleScoreProvider.h"
 
 #import "NowPlaying.pb.h"
 
@@ -26,7 +26,7 @@
 #import "Utilities.h"
 #import "XmlElement.h"
 
-@implementation GoogleRatingsDownloader
+@implementation GoogleScoreProvider
 
 @synthesize model;
 
@@ -45,8 +45,8 @@
 }
 
 
-+ (GoogleRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model {
-    return [[[GoogleRatingsDownloader alloc] initWithModel:model] autorelease];
++ (GoogleScoreProvider*) downloaderWithModel:(NowPlayingModel*) model {
+    return [[[GoogleScoreProvider alloc] initWithModel:model] autorelease];
 }
 
 
@@ -92,7 +92,7 @@
 
 
 - (NSDictionary*) lookupMovieListings {
-    NSString* address = [GoogleRatingsDownloader serverUrl:self.model];
+    NSString* address = [GoogleScoreProvider serverUrl:self.model];
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address
                                                      important:YES];
     if (data != nil) {
