@@ -32,7 +32,7 @@
 #import "NowPlayingAppDelegate.h"
 #import "NumbersCache.h"
 #import "PosterCache.h"
-#import "RatingsCache.h"
+#import "ScoreCache.h"
 #import "ReviewCache.h"
 #import "ReviewsViewController.h"
 #import "Theater.h"
@@ -96,7 +96,7 @@ static NSString** KEYS[] = {
 @synthesize imdbCache;
 @synthesize numbersCache;
 @synthesize posterCache;
-@synthesize ratingsCache;
+@synthesize scoreCache;
 @synthesize reviewCache;
 @synthesize trailerCache;
 @synthesize upcomingCache;
@@ -111,7 +111,7 @@ static NSString** KEYS[] = {
     self.imdbCache = nil;
     self.numbersCache = nil;
     self.posterCache = nil;
-    self.ratingsCache = nil;
+    self.scoreCache = nil;
     self.reviewCache = nil;
     self.trailerCache = nil;
     self.upcomingCache = nil;
@@ -147,7 +147,7 @@ static NSString** KEYS[] = {
 
 
 - (NSDictionary*) ratings {
-    return ratingsCache.ratings;
+    return scoreCache.ratings;
 }
 
 
@@ -306,7 +306,7 @@ static NSString** KEYS[] = {
         self.numbersCache = [NumbersCache cache];
         self.posterCache = [PosterCache cacheWithModel:self];
         self.reviewCache = [ReviewCache cacheWithModel:self];
-        self.ratingsCache = [RatingsCache cacheWithModel:self];
+        self.scoreCache = [ScoreCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cache];
         self.upcomingCache = [UpcomingCache cache];
         self.movieMapLock = [[[NSLock alloc] init] autorelease];
@@ -361,7 +361,7 @@ static NSString** KEYS[] = {
 
 - (void) setRatingsProviderIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
-    [ratingsCache onRatingsProviderChanged];
+    [scoreCache onRatingsProviderChanged];
     [self regenerateMovieMap];
     [self updateReviewCache];
 

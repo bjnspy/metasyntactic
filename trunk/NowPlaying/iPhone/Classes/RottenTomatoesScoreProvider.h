@@ -12,13 +12,13 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface RottenTomatoesRatingsDownloader : NSObject {
+@interface RottenTomatoesScoreProvider : NSObject {
     NowPlayingModel* model;
 }
 
 @property (retain) NowPlayingModel* model;
 
-+ (RottenTomatoesRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model;
++ (RottenTomatoesScoreProvider*) downloaderWithModel:(NowPlayingModel*) model;
 
 + (NSString*) lookupServerHash;
 - (NSDictionary*) lookupMovieListings;

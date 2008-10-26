@@ -12,17 +12,17 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "RatingsCache.h"
+#import "ScoreCache.h"
 
 #import "Application.h"
 #import "FileUtilities.h"
-#import "GoogleRatingsDownloader.h"
-#import "MetacriticRatingsDownloader.h"
+#import "GoogleScoreProvider.h"
+#import "MetacriticScoreProvider.h"
 #import "MovieRating.h"
 #import "NowPlayingModel.h"
-#import "RottenTomatoesRatingsDownloader.h"
+#import "RottenTomatoesScoreProvider.h"
 
-@implementation RatingsCache
+@implementation ScoreCache
 
 static NSString* ratings_key = @"Ratings";
 static NSString* hash_key = @"Hash";
@@ -80,8 +80,8 @@ static NSString* hash_key = @"Hash";
 }
 
 
-+ (RatingsCache*) cacheWithModel:(NowPlayingModel*) model {
-    return [[[RatingsCache alloc] initWithModel:model] autorelease];
++ (ScoreCache*) cacheWithModel:(NowPlayingModel*) model {
+    return [[[ScoreCache alloc] initWithModel:model] autorelease];
 }
 
 
@@ -116,11 +116,11 @@ static NSString* hash_key = @"Hash";
 
 - (NSString*) lookupServerHash {
     if (self.model.rottenTomatoesRatings) {
-        return [RottenTomatoesRatingsDownloader lookupServerHash];
+        return [RottenTomatoesScoreProvider lookupServerHash];
     } else if (self.model.metacriticRatings) {
-        return [MetacriticRatingsDownloader lookupServerHash];
+        return [MetacriticScoreProvider lookupServerHash];
     } else if (self.model.googleRatings) {
-        return [GoogleRatingsDownloader lookupServerHash:model];
+        return [GoogleScoreProvider lookupServerHash:model];
     }
 
     return nil;
@@ -146,11 +146,11 @@ static NSString* hash_key = @"Hash";
 
     NSDictionary* ratings = nil;
     if (self.model.rottenTomatoesRatings) {
-        ratings = [[RottenTomatoesRatingsDownloader downloaderWithModel:self.model] lookupMovieListings];
+        ratings = [[RottenTomatoesScoreProvider downloaderWithModel:self.model] lookupMovieListings];
     } else if (self.model.metacriticRatings) {
-        ratings = [[MetacriticRatingsDownloader downloaderWithModel:self.model] lookupMovieListings];
+        ratings = [[MetacriticScoreProvider downloaderWithModel:self.model] lookupMovieListings];
     } else if (self.model.googleRatings) {
-        ratings = [[GoogleRatingsDownloader downloaderWithModel:self.model] lookupMovieListings];
+        ratings = [[GoogleScoreProvider downloaderWithModel:self.model] lookupMovieListings];
     }
 
     if (ratings.count > 0) {

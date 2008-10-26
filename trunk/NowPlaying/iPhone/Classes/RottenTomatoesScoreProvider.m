@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "RottenTomatoesRatingsDownloader.h"
+#import "RottenTomatoesScoreProvider.h"
 
 #import "Application.h"
 #import "MovieRating.h"
@@ -20,7 +20,7 @@
 #import "NowPlayingModel.h"
 #import "XmlElement.h"
 
-@implementation RottenTomatoesRatingsDownloader
+@implementation RottenTomatoesScoreProvider
 
 @synthesize model;
 
@@ -39,8 +39,8 @@
 }
 
 
-+ (RottenTomatoesRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model {
-    return [[[RottenTomatoesRatingsDownloader alloc] initWithModel:model] autorelease];
++ (RottenTomatoesScoreProvider*) downloaderWithModel:(NowPlayingModel*) model {
+    return [[[RottenTomatoesScoreProvider alloc] initWithModel:model] autorelease];
 }
 
 

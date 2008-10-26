@@ -20,7 +20,7 @@
 #import "DateUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
-#import "RatingsCache.h"
+#import "ScoreCache.h"
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
@@ -160,7 +160,7 @@
 
 
 - (NSDictionary*) ratingsLookup {
-    return [self.model.ratingsCache update];
+    return [self.model.scoreCache update];
 }
 
 

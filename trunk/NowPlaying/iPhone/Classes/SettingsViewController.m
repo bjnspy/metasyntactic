@@ -24,7 +24,7 @@
 #import "LocationUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
-#import "RatingsProviderViewController.h"
+#import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SettingCell.h"
 #import "SettingsNavigationController.h"
@@ -365,8 +365,8 @@
         } else if (row == 2) {
             [self pushSearchDatePicker];
         } else if (row == 3) {
-            RatingsProviderViewController* controller =
-            [[[RatingsProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
+            ScoreProviderViewController* controller =
+            [[[ScoreProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
             [navigationController pushViewController:controller animated:YES];
         }
     } else if (section == 1) {

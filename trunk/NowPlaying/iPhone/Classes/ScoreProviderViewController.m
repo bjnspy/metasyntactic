@@ -12,13 +12,13 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "RatingsProviderViewController.h"
+#import "ScoreProviderViewController.h"
 
 #import "ApplicationTabBarController.h"
 #import "NowPlayingModel.h"
 #import "SettingsNavigationController.h"
 
-@implementation RatingsProviderViewController
+@implementation ScoreProviderViewController
 
 @synthesize navigationController;
 

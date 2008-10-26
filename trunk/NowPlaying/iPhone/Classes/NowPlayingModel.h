@@ -25,7 +25,7 @@ enum ViewControllerType {
     NumbersCache* numbersCache;
     PosterCache* posterCache;
     ReviewCache* reviewCache;
-    RatingsCache* ratingsCache;
+    ScoreCache* scoreCache;
     TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
 
@@ -44,7 +44,7 @@ enum ViewControllerType {
 @property (retain) NumbersCache* numbersCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) ReviewCache* reviewCache;
-@property (retain) RatingsCache* ratingsCache;
+@property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
 
