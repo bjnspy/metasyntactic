@@ -156,7 +156,7 @@
     [super layoutSubviews];
 
     CGRect frame;
-    if (model.noRatings) {
+    if (model.noScores) {
         frame = CGRectMake(10, 25, 0, 14);
     } else {
         frame = CGRectMake(50, 25, 0, 14);
@@ -173,13 +173,13 @@
 
 
 - (void) setScore:(Movie*) movie {
-    if (model.rottenTomatoesRatings) {
+    if (model.rottenTomatoesScores) {
         [self setRottenTomatoesScore:movie];
-    } else if (model.metacriticRatings) {
+    } else if (model.metacriticScores) {
         [self setBasicSquareScore:movie];
-    } else if (model.googleRatings) {
+    } else if (model.googleScores) {
         [self setBasicSquareScore:movie];
-    } else if (model.noRatings) {
+    } else if (model.noScores) {
         self.image = nil;
         scoreLabel.text = nil;
     }

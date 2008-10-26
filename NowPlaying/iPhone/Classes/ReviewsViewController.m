@@ -112,11 +112,11 @@
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (self.model.rottenTomatoesRatings) {
+        if (self.model.rottenTomatoesScores) {
             cell.text = @"RottenTomatoes.com";
-        } else if (self.model.metacriticRatings) {
+        } else if (self.model.metacriticScores) {
             cell.text = @"Metacritic.com";
-        } else if (self.model.googleRatings) {
+        } else if (self.model.googleScores) {
             cell.text = @"Google.com";
         }
         return cell;
@@ -142,11 +142,11 @@
             [Application openBrowser:review.link];
         }
     } else {
-        if (self.model.rottenTomatoesRatings) {
+        if (self.model.rottenTomatoesScores) {
             [Application openBrowser:@"http://www.rottentomatoes.com"];
-        } else if (self.model.metacriticRatings) {
+        } else if (self.model.metacriticScores) {
             [Application openBrowser:@"http://www.metacritic.com"];
-        } else if (self.model.googleRatings) {
+        } else if (self.model.googleScores) {
             [Application openBrowser:@"http://www.google.com/movies"];
         }
     }

@@ -60,12 +60,12 @@ enum ViewControllerType {
 
 - (NSInteger) ratingsProviderIndex;
 - (void) setRatingsProviderIndex:(NSInteger) index;
-- (BOOL) rottenTomatoesRatings;
-- (BOOL) metacriticRatings;
-- (BOOL) googleRatings;
-- (BOOL) noRatings;
-- (NSString*) currentRatingsProvider;
-- (NSArray*) ratingsProviders;
+- (BOOL) rottenTomatoesScores;
+- (BOOL) metacriticScores;
+- (BOOL) googleScores;
+- (BOOL) noScores;
+- (NSString*) currentScoreProvider;
+- (NSArray*) scoreProvider;
 
 - (NSInteger) selectedTabBarViewControllerIndex;
 - (void) setSelectedTabBarViewControllerIndex:(NSInteger) index;
