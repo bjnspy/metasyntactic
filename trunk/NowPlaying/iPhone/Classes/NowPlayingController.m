@@ -30,14 +30,14 @@
 @synthesize appDelegate;
 @synthesize determineLocationLock;
 @synthesize dataProviderLock;
-@synthesize ratingsLookupLock;
+@synthesize scoresLookupLock;
 @synthesize upcomingMoviesLookupLock;
 
 - (void) dealloc {
     self.appDelegate = nil;
     self.determineLocationLock = nil;
     self.dataProviderLock = nil;
-    self.ratingsLookupLock = nil;
+    self.scoresLookupLock = nil;
     self.upcomingMoviesLookupLock = nil;
 
     [super dealloc];
@@ -102,7 +102,7 @@
     [ThreadingUtilities performSelector:@selector(ratingsLookupBackgroundThreadEntryPoint)
                                onTarget:self
                inBackgroundWithArgument:nil
-                                   gate:ratingsLookupLock
+                                   gate:scoresLookupLock
                                 visible:YES];
 }
 
@@ -144,7 +144,7 @@
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
         self.dataProviderLock = [[[NSLock alloc] init] autorelease];
-        self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
+        self.scoresLookupLock = [[[NSLock alloc] init] autorelease];
         self.upcomingMoviesLookupLock = [[[NSLock alloc] init] autorelease];
 
         [self spawnDetermineLocationThread];
@@ -172,7 +172,7 @@
 
 - (void) setRatings:(NSDictionary*) ratings {
     if (ratings.count > 0) {
-        [self.model onRatingsUpdated];
+        [self.model onScoresUpdated];
         [NowPlayingAppDelegate refresh];
     }
 }

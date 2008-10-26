@@ -349,7 +349,7 @@
         self.theatersData = result.theaters;
         self.synchronizationInformationData = result.synchronizationData;
         self.performancesData = [NSMutableDictionary dictionary];
-        [self.model onProviderUpdated];
+        [self.model onDataProviderUpdated];
         [NowPlayingAppDelegate refresh:YES];
     }
 }
