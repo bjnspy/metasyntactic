@@ -39,7 +39,7 @@ static NSString* hash_key = @"Hash";
 
 
 - (NSString*) ratingsFile {
-    return [Application ratingsFile:self.model.currentRatingsProvider];
+    return [Application ratingsFile:self.model.currentScoreProvider];
 }
 
 
@@ -104,7 +104,7 @@ static NSString* hash_key = @"Hash";
     [result setObject:encodedRatings forKey:ratings_key];
     [result setObject:hash forKey:hash_key];
 
-    //[Application ratingsFile:[self currentRatingsProvider]]
+    //[Application ratingsFile:[self currentScoreProvider]]
     [FileUtilities writeObject:result toFile:self.ratingsFile];
 }
 
@@ -115,11 +115,11 @@ static NSString* hash_key = @"Hash";
 
 
 - (NSString*) lookupServerHash {
-    if (self.model.rottenTomatoesRatings) {
+    if (self.model.rottenTomatoesScores) {
         return [RottenTomatoesScoreProvider lookupServerHash];
-    } else if (self.model.metacriticRatings) {
+    } else if (self.model.metacriticScores) {
         return [MetacriticScoreProvider lookupServerHash];
-    } else if (self.model.googleRatings) {
+    } else if (self.model.googleScores) {
         return [GoogleScoreProvider lookupServerHash:model];
     }
 
@@ -145,11 +145,11 @@ static NSString* hash_key = @"Hash";
     }
 
     NSDictionary* ratings = nil;
-    if (self.model.rottenTomatoesRatings) {
+    if (self.model.rottenTomatoesScores) {
         ratings = [[RottenTomatoesScoreProvider downloaderWithModel:self.model] lookupMovieListings];
-    } else if (self.model.metacriticRatings) {
+    } else if (self.model.metacriticScores) {
         ratings = [[MetacriticScoreProvider downloaderWithModel:self.model] lookupMovieListings];
-    } else if (self.model.googleRatings) {
+    } else if (self.model.googleScores) {
         ratings = [[GoogleScoreProvider downloaderWithModel:self.model] lookupMovieListings];
     }
 

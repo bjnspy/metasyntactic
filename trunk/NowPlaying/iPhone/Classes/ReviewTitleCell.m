@@ -112,11 +112,11 @@
 - (void) setReviewImage:(Review*) review {
     int score = review.score;
 
-    if (model.rottenTomatoesRatings) {
+    if (model.rottenTomatoesScores) {
         [self setRottenTomatoesImage:score];
-    } else if (model.metacriticRatings) {
+    } else if (model.metacriticScores) {
         [self setBasicSquareImage:score];
-    } else if (model.googleRatings) {
+    } else if (model.googleScores) {
         [self setBasicSquareImage:score];
     }
 }

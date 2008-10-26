@@ -365,33 +365,33 @@ static NSString** KEYS[] = {
     [self regenerateMovieMap];
     [self updateReviewCache];
 
-    if (self.noRatings && self.allMoviesSortingByScore) {
+    if (self.noScores && self.allMoviesSortingByScore) {
         [self setAllMoviesSelectedSegmentIndex:0];
     }
 }
 
 
-- (BOOL) rottenTomatoesRatings {
+- (BOOL) rottenTomatoesScores {
     return self.ratingsProviderIndex == 0;
 }
 
 
-- (BOOL) metacriticRatings {
+- (BOOL) metacriticScores {
     return self.ratingsProviderIndex == 1;
 }
 
 
-- (BOOL) googleRatings {
+- (BOOL) googleScores {
     return self.ratingsProviderIndex == 2;
 }
 
 
-- (BOOL) noRatings {
+- (BOOL) noScores {
     return self.ratingsProviderIndex == 3;
 }
 
 
-- (NSArray*) ratingsProviders {
+- (NSArray*) scoreProvider {
     return [NSArray arrayWithObjects:
             @"RottenTomatoes",
             @"Metacritic",
@@ -400,8 +400,8 @@ static NSString** KEYS[] = {
 }
 
 
-- (NSString*) currentRatingsProvider {
-    return [self.ratingsProviders objectAtIndex:self.ratingsProviderIndex];
+- (NSString*) currentScoreProvider {
+    return [self.scoreProvider objectAtIndex:self.ratingsProviderIndex];
 }
 
 

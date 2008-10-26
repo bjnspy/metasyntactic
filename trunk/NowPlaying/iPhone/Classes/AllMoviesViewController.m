@@ -89,10 +89,10 @@
 
 
 - (void) refresh {
-    if (self.model.noRatings && segmentedControl.numberOfSegments == 3) {
+    if (self.model.noScores && segmentedControl.numberOfSegments == 3) {
         segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
         [segmentedControl removeSegmentAtIndex:2 animated:NO];
-    } else if (!self.model.noRatings && segmentedControl.numberOfSegments == 2) {
+    } else if (!self.model.noScores && segmentedControl.numberOfSegments == 2) {
         [segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
 

@@ -87,7 +87,7 @@
 
 
 - (NSString*) ratingsFile {
-    return [Application ratingsFile:[self.model.ratingsProviders objectAtIndex:1]];
+    return [Application ratingsFile:[self.model.scoreProvider objectAtIndex:1]];
 }
 
 

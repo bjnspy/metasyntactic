@@ -123,7 +123,7 @@
 - (void) initializeData {
     self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:movie]];
 
-    if (!self.model.noRatings) {
+    if (!self.model.noScores) {
         self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
     }
 

@@ -230,7 +230,7 @@
                 }
             } else if (indexPath.row == 3) {
                 key = NSLocalizedString(@"Reviews", nil);
-                value = self.model.currentRatingsProvider;
+                value = self.model.currentScoreProvider;
             }
 
             [cell setKey:key value:value];
