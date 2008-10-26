@@ -59,7 +59,7 @@ static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
 static NSString* NUMBERS_SELECTED_SEGMENT_INDEX         = @"numbersSelectedSegmentIndex";
-static NSString* RATINGS_PROVIDER_INDEX                 = @"ratingsProviderIndex";
+static NSString* RATINGS_PROVIDER_INDEX                 = @"scoreProviderIndex";
 static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
@@ -152,7 +152,7 @@ static NSString** KEYS[] = {
 
 
 - (void) updateReviewCache {
-    [reviewCache update:self.ratings ratingsProvider:self.ratingsProviderIndex];
+    [reviewCache update:self.ratings ratingsProvider:self.scoreProviderIndex];
 }
 
 
@@ -354,12 +354,12 @@ static NSString** KEYS[] = {
 }
 
 
-- (NSInteger) ratingsProviderIndex {
+- (NSInteger) scoreProviderIndex {
     return [[NSUserDefaults standardUserDefaults] integerForKey:RATINGS_PROVIDER_INDEX];
 }
 
 
-- (void) setRatingsProviderIndex:(NSInteger) index {
+- (void) setScoreProviderIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
     [scoreCache onRatingsProviderChanged];
     [self regenerateMovieMap];
@@ -372,22 +372,22 @@ static NSString** KEYS[] = {
 
 
 - (BOOL) rottenTomatoesScores {
-    return self.ratingsProviderIndex == 0;
+    return self.scoreProviderIndex == 0;
 }
 
 
 - (BOOL) metacriticScores {
-    return self.ratingsProviderIndex == 1;
+    return self.scoreProviderIndex == 1;
 }
 
 
 - (BOOL) googleScores {
-    return self.ratingsProviderIndex == 2;
+    return self.scoreProviderIndex == 2;
 }
 
 
 - (BOOL) noScores {
-    return self.ratingsProviderIndex == 3;
+    return self.scoreProviderIndex == 3;
 }
 
 
@@ -401,7 +401,7 @@ static NSString** KEYS[] = {
 
 
 - (NSString*) currentScoreProvider {
-    return [self.scoreProvider objectAtIndex:self.ratingsProviderIndex];
+    return [self.scoreProvider objectAtIndex:self.scoreProviderIndex];
 }
 
 

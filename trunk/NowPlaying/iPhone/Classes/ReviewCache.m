@@ -169,7 +169,7 @@ static NSString* hash_key = @"Hash";
 
 
 - (NSArray*) reviewsForMovie:(NSString*) movieTitle {
-    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:self.model.ratingsProviderIndex];
+    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:self.model.scoreProviderIndex];
     if (dictionary == nil) {
         return [NSArray array];
     }
@@ -179,7 +179,7 @@ static NSString* hash_key = @"Hash";
 
 
 - (NSString*) reviewsHashForMovie:(NSString*) movieTitle {
-    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:self.model.ratingsProviderIndex];
+    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:self.model.scoreProviderIndex];
     return [dictionary objectForKey:hash_key];
 }
 
@@ -226,7 +226,7 @@ static NSString* hash_key = @"Hash";
 - (void) downloadReviews:(NSDictionary*) supplementaryInformation
          ratingsProvider:(NSInteger) ratingsProvider {
     for (NSString* movieTitle in supplementaryInformation) {
-        if (self.model.ratingsProviderIndex != ratingsProvider) {
+        if (self.model.scoreProviderIndex != ratingsProvider) {
             break;
         }
 
