@@ -13,7 +13,6 @@
 //limitations under the License.
 
 @protocol DataProvider
-- (void) invalidateDiskCache;
 - (void) lookup;
 
 - (void) setStale;

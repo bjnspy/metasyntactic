@@ -22,36 +22,43 @@
 #import "MovieRating.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
+#import "ScoreCache.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation GoogleScoreProvider
 
-@synthesize model;
-
 - (void) dealloc {
-    self.model = nil;
     [super dealloc];
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
-    if (self = [super init]) {
-        self.model = model_;
+- (id) initWithCache:(ScoreCache*) cache_ {
+    if (self = [super initWithCache:cache_]) {
     }
 
     return self;
 }
 
 
-+ (GoogleScoreProvider*) downloaderWithModel:(NowPlayingModel*) model {
-    return [[[GoogleScoreProvider alloc] initWithModel:model] autorelease];
++ (GoogleScoreProvider*) providerWithCache:(ScoreCache*) cache {
+    return [[[GoogleScoreProvider alloc] initWithCache:cache] autorelease];
 }
 
 
-+ (NSString*) serverUrl:(NowPlayingModel*) model {
-    Location* location = [model.userLocationCache locationForUserAddress:model.userAddress];
+- (NSString*) providerName {
+    return @"Google";
+}
+
+
+- (NowPlayingModel*) model {
+    return parentCache.model;
+}
+
+
+- (NSString*) serverUrl {
+    Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
     
     if (location.postalCode == nil) {
         return nil;
@@ -63,7 +70,7 @@
     
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                    fromDate:[DateUtilities today]
-                                                                     toDate:model.searchDate
+                                                                     toDate:self.model.searchDate
                                                                     options:0];
     NSInteger day = components.day;
     day = MIN(MAX(day, 0), 7);
@@ -82,8 +89,8 @@
 }
 
 
-+ (NSString*) lookupServerHash:(NowPlayingModel*) model {
-    NSString* baseAddress = [self serverUrl:model];
+- (NSString*) lookupServerHash {
+    NSString* baseAddress = [self serverUrl];
     NSString* address = [baseAddress stringByAppendingString:@"&hash=true"];
     NSString* value = [NetworkUtilities stringWithContentsOfAddress:address
                                                           important:YES];
@@ -91,8 +98,8 @@
 }
 
 
-- (NSDictionary*) lookupMovieListings {
-    NSString* address = [GoogleScoreProvider serverUrl:self.model];
+- (NSDictionary*) lookupServerScores {
+    NSString* address = [self serverUrl];
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address
                                                      important:YES];
     if (data != nil) {
@@ -125,11 +132,6 @@
     }
 
     return nil;
-}
-
-
-- (NSString*) ratingsFile {
-    return [Application ratingsFile:[self.model.scoreProvider objectAtIndex:2]];
 }
 
 @end

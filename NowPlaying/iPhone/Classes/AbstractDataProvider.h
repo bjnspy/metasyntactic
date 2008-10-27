@@ -29,9 +29,6 @@
 
 - (id) initWithModel:(NowPlayingModel*) model;
 
-- (NSString*) providerFolder;
-- (void) invalidateDiskCache;
-
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;

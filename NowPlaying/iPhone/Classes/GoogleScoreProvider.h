@@ -12,15 +12,11 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface GoogleScoreProvider : NSObject {
-    NowPlayingModel* model;
+#import "AbstractScoreProvider.h"
+
+@interface GoogleScoreProvider : AbstractScoreProvider {
 }
 
-@property (retain) NowPlayingModel* model;
-
-+ (GoogleScoreProvider*) downloaderWithModel:(NowPlayingModel*) model;
-
-+ (NSString*) lookupServerHash:(NowPlayingModel*) model;
-- (NSDictionary*) lookupMovieListings;
++ (GoogleScoreProvider*) providerWithCache:(ScoreCache*) cache;
 
 @end

@@ -12,11 +12,10 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "AbstractScoreProvider.h"
-
-@interface MetacriticScoreProvider : AbstractScoreProvider {
-}
-
-+ (MetacriticScoreProvider*) providerWithCache:(ScoreCache*) cache;
-
+@protocol ScoreProvider
+- (NSDictionary*) scores;
+- (MovieRating*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
+- (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies;
+- (void) update;
+- (void) createDirectory;
 @end

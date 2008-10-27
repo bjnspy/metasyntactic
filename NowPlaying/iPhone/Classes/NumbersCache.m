@@ -12,6 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+#if 0
 #import "NumbersCache.h"
 
 #import "Application.h"
@@ -321,6 +322,7 @@
     return [self currentChangeValue:[dictionary objectForKey:@"Weekend"]];
 }
 
+
 - (double) totalChange:(MovieNumbers*) movie {
     NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
 
@@ -332,6 +334,7 @@
     return result;
 }
 
+
 - (NSInteger) budgetForMovie:(MovieNumbers*) movie {
     NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
     if (dictionary == nil) {
@@ -341,5 +344,6 @@
     return [[dictionary objectForKey:@"Budget"] intValue];
 }
 
-
 @end
+
+#endif

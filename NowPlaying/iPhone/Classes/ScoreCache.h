@@ -14,17 +14,23 @@
 
 @interface ScoreCache : NSObject {
     NowPlayingModel* model;
-    NSDictionary* ratingsAndHash;
+    id<ScoreProvider> rottenTomatoesScoreProvider;
+    id<ScoreProvider> metacriticScoreProvider;
+    id<ScoreProvider> googleScoreProvider;
+    id<ScoreProvider> noneScoreProvider;
 }
 
-@property (retain) NowPlayingModel* model;
-@property (retain) NSDictionary* ratingsAndHash;
+@property (assign) NowPlayingModel* model;
+@property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;
+@property (retain) id<ScoreProvider> metacriticScoreProvider;
+@property (retain) id<ScoreProvider> googleScoreProvider;
+@property (retain) id<ScoreProvider> noneScoreProvider;
 
 + (ScoreCache*) cacheWithModel:(NowPlayingModel*) model;
 
-- (NSDictionary*) update;
-- (NSDictionary*) ratings;
+- (void) update;
+- (MovieRating*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
+- (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies;
 
-- (void) onRatingsProviderChanged;
 
 @end

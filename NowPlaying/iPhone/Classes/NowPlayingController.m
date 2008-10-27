@@ -92,18 +92,8 @@
 }
 
 
-- (void) spawnRatingsLookupThread {
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application ratingsFile:self.model.currentScoreProvider]
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
-    if ([self tooSoon:lastLookupDate]) {
-        return;
-    }
-
-    [ThreadingUtilities performSelector:@selector(ratingsLookupBackgroundThreadEntryPoint)
-                               onTarget:self
-               inBackgroundWithArgument:nil
-                                   gate:scoresLookupLock
-                                visible:YES];
+- (void) spawnScoresLookupThread {
+    [self.model.scoreCache update];
 }
 
 
@@ -134,7 +124,7 @@
 
 
 - (void) spawnBackgroundThreads {
-    [self spawnRatingsLookupThread];
+    [self spawnScoresLookupThread];
     [self spawnDataProviderLookupThread];
     [self spawnUpcomingMoviesLookupThread];
 }
@@ -156,25 +146,6 @@
 
 + (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate {
     return [[[NowPlayingController alloc] initWithAppDelegate:appDelegate] autorelease];
-}
-
-
-- (NSDictionary*) ratingsLookup {
-    return [self.model.scoreCache update];
-}
-
-
-- (void) ratingsLookupBackgroundThreadEntryPoint {
-    NSDictionary* ratings = [self ratingsLookup];
-    [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
-}
-
-
-- (void) setRatings:(NSDictionary*) ratings {
-    if (ratings.count > 0) {
-        [self.model onScoresUpdated];
-        [NowPlayingAppDelegate refresh];
-    }
 }
 
 
@@ -239,7 +210,7 @@
     }
 
     [self.model setScoreProviderIndex:index];
-    [self spawnRatingsLookupThread];
+    [self spawnScoresLookupThread];
 }
 
 

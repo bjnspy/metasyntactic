@@ -12,31 +12,40 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#if 0
-#define RETRIEVING NAN
-#define NOT_ENOUGH_DATA INFINITY
-#define IS_RETRIEVING isnan
-#define IS_NOT_ENOUGH_DATA isinf
+#import "NoneScoreProvider.h"
 
-@interface NumbersCache : NSObject {
-    NSLock* gate;
-    NSDictionary* indexData;
+@implementation NoneScoreProvider
+
+- (void) dealloc {
+    [super dealloc];
 }
 
-@property (retain) NSLock* gate;
-@property (retain) NSDictionary* indexData;
 
-+ (NumbersCache*) cache;
+- (id) initWithCache:(ScoreCache*) cache_ {
+    if (self = [super initWithCache:cache_]) {
+    }
+    
+    return self;
+}
 
-- (void) updateIndex;
 
-- (NSArray*) weekendNumbers;
-- (NSArray*) dailyNumbers;
++ (NoneScoreProvider*) providerWithCache:(ScoreCache*) cache {
+    return [[[NoneScoreProvider alloc] initWithCache:cache] autorelease];
+}
 
-- (double) dailyChange:(MovieNumbers*) movie;
-- (double) weekendChange:(MovieNumbers*) movie;
-- (double) totalChange:(MovieNumbers*) movie;
-- (NSInteger) budgetForMovie:(MovieNumbers*) movie;
+
+- (NSString*) providerName {
+    return @"None";
+}
+
+
+- (NSString*) lookupServerHash {
+    return @"0";
+}
+
+
+- (NSDictionary*) lookupServerScores {
+    return [NSDictionary dictionary];
+}
 
 @end
-#endif

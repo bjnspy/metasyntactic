@@ -19,63 +19,39 @@
 #import "GoogleScoreProvider.h"
 #import "MetacriticScoreProvider.h"
 #import "MovieRating.h"
+#import "NoneScoreProvider.h"
 #import "NowPlayingModel.h"
 #import "RottenTomatoesScoreProvider.h"
 
 @implementation ScoreCache
 
-static NSString* ratings_key = @"Ratings";
-static NSString* hash_key = @"Hash";
-
 @synthesize model;
-@synthesize ratingsAndHash;
+@synthesize rottenTomatoesScoreProvider;
+@synthesize metacriticScoreProvider;
+@synthesize googleScoreProvider;
+@synthesize noneScoreProvider;
 
 - (void) dealloc {
     self.model = nil;
-    self.ratingsAndHash = nil;
+    self.rottenTomatoesScoreProvider = nil;
+    self.metacriticScoreProvider = nil;
+    self.googleScoreProvider = nil;
+    self.noneScoreProvider = nil;
 
     [super dealloc];
-}
-
-
-- (NSString*) ratingsFile {
-    return [Application ratingsFile:self.model.currentScoreProvider];
-}
-
-
-- (NSDictionary*) loadRatingsProvider {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self ratingsFile]];
-    if (dictionary == nil) {
-        return [NSDictionary dictionary];
-    }
-
-    NSDictionary* encodedRatings = [dictionary objectForKey:ratings_key];
-    NSString* hash = [dictionary objectForKey:hash_key];
-
-    NSMutableDictionary* decodedRatings = [NSMutableDictionary dictionary];
-    for (NSString* key in encodedRatings) {
-        [decodedRatings setObject:[MovieRating ratingWithDictionary:[encodedRatings objectForKey:key]] forKey:key];
-    }
-
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:decodedRatings forKey:ratings_key];
-    [result setObject:hash forKey:hash_key];
-
-    return result;
-}
-
-
-- (void) onRatingsProviderChanged {
-    self.ratingsAndHash = [self loadRatingsProvider];
 }
 
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
-        [self onRatingsProviderChanged];
+        
+        self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider providerWithCache:self];
+        self.metacriticScoreProvider = [MetacriticScoreProvider providerWithCache:self];
+        self.googleScoreProvider = [GoogleScoreProvider providerWithCache:self];
+        self.noneScoreProvider = [NoneScoreProvider providerWithCache:self];
     }
-
+    
     return self;
 }
 
@@ -85,104 +61,33 @@ static NSString* hash_key = @"Hash";
 }
 
 
-- (void) saveRatingsInBackground:(NSDictionary*) dictionary {
-    if (dictionary.count == 0) {
-        return;
-    }
-
-    [self performSelectorOnMainThread:@selector(saveRatingsInForeground:) withObject:dictionary waitUntilDone:NO];
-
-    NSMutableDictionary* encodedRatings = [NSMutableDictionary dictionary];
-    NSDictionary* ratings = [dictionary objectForKey:ratings_key];
-    NSString* hash = [dictionary objectForKey:hash_key];
-
-    for (NSString* key in ratings) {
-        [encodedRatings setObject:[[ratings objectForKey:key] dictionary] forKey:key];
-    }
-
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:encodedRatings forKey:ratings_key];
-    [result setObject:hash forKey:hash_key];
-
-    //[Application ratingsFile:[self currentScoreProvider]]
-    [FileUtilities writeObject:result toFile:self.ratingsFile];
-}
-
-
-- (void) saveRatingsInForeground:(NSDictionary*) dictionary {
-    self.ratingsAndHash = dictionary;
-}
-
-
-- (NSString*) lookupServerHash {
-    if (self.model.rottenTomatoesScores) {
-        return [RottenTomatoesScoreProvider lookupServerHash];
-    } else if (self.model.metacriticScores) {
-        return [MetacriticScoreProvider lookupServerHash];
-    } else if (self.model.googleScores) {
-        return [GoogleScoreProvider lookupServerHash:model];
-    }
-
-    return nil;
-}
-
-
-- (NSDictionary*) updateWorker {
-    NSString* localHash = [ratingsAndHash objectForKey:hash_key];
-    NSString* serverHash = [self lookupServerHash];
-
-    if (serverHash.length == 0) {
-        serverHash = @"0";
-    }
-
-    if ([@"0" isEqual:serverHash]) {
+- (id<ScoreProvider>) currentScoreProvider {
+    if (model.rottenTomatoesScores) {
+        return rottenTomatoesScoreProvider;
+    } else if (model.metacriticScores) {
+        return metacriticScoreProvider;
+    } else if (model.googleScores) {
+        return googleScoreProvider;
+    } else if (model.noScores) {
+        return noneScoreProvider;
+    } else {
         return nil;
     }
-
-    if (localHash != nil &&
-        [localHash isEqual:serverHash]) {
-        return nil;
-    }
-
-    NSDictionary* ratings = nil;
-    if (self.model.rottenTomatoesScores) {
-        ratings = [[RottenTomatoesScoreProvider downloaderWithModel:self.model] lookupMovieListings];
-    } else if (self.model.metacriticScores) {
-        ratings = [[MetacriticScoreProvider downloaderWithModel:self.model] lookupMovieListings];
-    } else if (self.model.googleScores) {
-        ratings = [[GoogleScoreProvider downloaderWithModel:self.model] lookupMovieListings];
-    }
-
-    if (ratings.count > 0) {
-        NSMutableDictionary* result = [NSMutableDictionary dictionary];
-        [result setObject:ratings forKey:ratings_key];
-        [result setObject:serverHash forKey:hash_key];
-
-        return result;
-    }
-
-    return nil;
 }
 
 
-- (NSDictionary*) update {
-    NSAssert(![NSThread isMainThread], @"");
-    NSDictionary* result = [self updateWorker];
-
-    [self saveRatingsInBackground:result];
-
-    return [result objectForKey:ratings_key];
+- (MovieRating*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
+    return [self.currentScoreProvider scoreForMovie:movie inMovies:movies];
 }
 
 
-- (NSDictionary*) ratings {
-    NSDictionary* result = [ratingsAndHash objectForKey:ratings_key];
-    if (result == nil) {
-        return [NSDictionary dictionary];
-    }
-
-    return result;
+- (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies {
+    return [self.currentScoreProvider reviewsForMovie:movie inMovies:movies];
 }
-
+ 
+ 
+- (void) update {
+    [self.currentScoreProvider update];
+}
 
 @end

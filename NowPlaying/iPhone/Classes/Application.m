@@ -22,25 +22,29 @@
 
 static NSLock* gate = nil;
 
-static NSString* dataFolder = nil;
+// Special directories
 static NSString* documentsFolder = nil;
+static NSString* supportFolder = nil;
 static NSString* tempFolder = nil;
+
+// Application storage directories
+static NSString* dataFolder = nil;
 static NSString* imdbFolder = nil;
-static NSString* locationsFolder = nil;
 static NSString* userLocationsFolder = nil;
-static NSString* ratingsFolder = nil;
+static NSString* scoresFolder = nil;
 static NSString* reviewsFolder = nil;
 static NSString* trailersFolder = nil;
 static NSString* postersFolder = nil;
-static NSString* supportFolder = nil;
 
 static NSString* dvdFolder = nil;
 static NSString* dvdPostersFolder = nil;
 
+/*
 static NSString* numbersFolder = nil;
 static NSString* numbersBudgetsFolder = nil;
 static NSString* numbersDailyFolder = nil;
 static NSString* numbersWeekendFolder = nil;
+*/
 
 static NSString* upcomingFolder = nil;
 static NSString* upcomingCastFolder = nil;
@@ -49,67 +53,33 @@ static NSString* upcomingPostersFolder = nil;
 static NSString* upcomingSynopsesFolder = nil;
 static NSString* upcomingTrailersFolder = nil;
 
-static NSMutableDictionary* providerReviewsFolder = nil;
+static NSString** folders[] = {
+    &dataFolder,
+    &imdbFolder,
+    &userLocationsFolder,
+    &dvdFolder,
+    &dvdPostersFolder,
+/*
+    &numbersFolder,
+    &numbersBudgetsFolder,
+    &numbersDailyFolder,
+    &numbersWeekendFolder,
+ */
+    &scoresFolder,
+    &reviewsFolder,
+    &trailersFolder,
+    &postersFolder,
+    &upcomingFolder,
+    &upcomingCastFolder,
+    &upcomingIMDbFolder,
+    &upcomingPostersFolder,
+    &upcomingSynopsesFolder,
+    &upcomingTrailersFolder
+};
+
 
 static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
-
-+ (void) initialize {
-    if (self == [Application class]) {
-        gate = [[NSRecursiveLock alloc] init];
-
-        differenceEngine = [[DifferenceEngine engine] retain];
-
-        providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
-    }
-}
-
-
-+ (void) deleteFolders {
-    [gate lock];
-    {
-        NSString** folders[] = {
-            &dataFolder,
-            &documentsFolder,
-            &tempFolder,
-            &imdbFolder,
-            &locationsFolder,
-            &userLocationsFolder,
-            &dvdFolder,
-            &dvdPostersFolder,
-            &numbersFolder,
-            &numbersBudgetsFolder,
-            &numbersDailyFolder,
-            &numbersWeekendFolder,
-            &ratingsFolder,
-            &reviewsFolder,
-            &trailersFolder,
-            &postersFolder,
-            &supportFolder,
-            &upcomingFolder,
-            &upcomingCastFolder,
-            &upcomingIMDbFolder,
-            &upcomingPostersFolder,
-            &upcomingSynopsesFolder,
-            &upcomingTrailersFolder
-        };
-
-        for (int i = 0; i < ArrayLength(folders); i++) {
-            NSString** folderReference = folders[i];
-            NSString* folder = *folderReference;
-
-            if (folder != nil) {
-                [[NSFileManager defaultManager] removeItemAtPath:folder error:NULL];
-                [folder release];
-                *folderReference = nil;
-            }
-        }
-
-        [providerReviewsFolder release];
-        providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
-    }
-    [gate unlock];
-}
 
 
 + (NSString*) documentsFolder {
@@ -118,14 +88,14 @@ static NSString* starString = nil;
         if (documentsFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             NSString* folder = [paths objectAtIndex:0];
-
+            
             [FileUtilities createDirectory:folder];
-
+            
             documentsFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return documentsFolder;
 }
 
@@ -135,17 +105,17 @@ static NSString* starString = nil;
     {
         if (supportFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-
+            
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
             NSString* folder = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-
+            
             [FileUtilities createDirectory:folder];
-
+            
             supportFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return supportFolder;
 }
 
@@ -158,132 +128,178 @@ static NSString* starString = nil;
         }
     }
     [gate unlock];
-
+    
     return tempFolder;
 }
 
-+ (NSString*) findOrCreateFolder:(NSString**) folder parent:(NSString*) parent name:(NSString*) child {
+
++ (void) createFolder:(NSString**) folder parent:(NSString*) parent name:(NSString*) child {
     [gate lock];
     {
-        if (*folder == nil) {
-            NSString* result = [parent stringByAppendingPathComponent:child];
-            [FileUtilities createDirectory:result];
-            *folder = [result retain];
+        NSString* result = [parent stringByAppendingPathComponent:child];
+        [FileUtilities createDirectory:result];
+        
+        *folder = result;
+        [result retain];
+    }
+    [gate unlock];
+}
+
+
++ (void) deleteFolders {
+    [gate lock];
+    {
+        for (int i = 0; i < ArrayLength(folders); i++) {
+            NSString** folderReference = folders[i];
+            NSString* folder = *folderReference;
+            
+            if (folder != nil) {
+                [[NSFileManager defaultManager] removeItemAtPath:folder error:NULL];
+            }
         }
     }
     [gate unlock];
+}
 
-    return *folder;
+
++ (void) createFolders {
+    [gate lock];
+    {
+        for (int i = 0; i < ArrayLength(folders); i++) {
+            NSString** folderReference = folders[i];
+            NSString* folder = *folderReference;
+            
+            [FileUtilities createDirectory:folder];
+        }
+    }
+    [gate unlock];
+}
+
+
++ (void) initialize {
+    if (self == [Application class]) {
+        gate = [[NSRecursiveLock alloc] init];
+
+        differenceEngine = [[DifferenceEngine engine] retain];
+
+        {
+            dataFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Data"] retain];
+            imdbFolder = [[[self supportFolder] stringByAppendingPathComponent:@"IMDb"] retain];
+            userLocationsFolder = [[[self supportFolder] stringByAppendingPathComponent:@"UserLocations"] retain];
+            scoresFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Scores"] retain];
+            reviewsFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Reviews"] retain];
+            trailersFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Trailers"] retain];
+            postersFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Posters"] retain];
+            
+            dvdFolder = [[[self supportFolder] stringByAppendingPathComponent:@"DVD"] retain];
+            dvdPostersFolder = [[[self dvdFolder] stringByAppendingPathComponent:@"Posters"] retain];
+            
+            upcomingFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Upcoming"] retain];
+            upcomingCastFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"Cast"] retain];
+            upcomingIMDbFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"IMDb"] retain];
+            upcomingPostersFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"Posters"] retain];
+            upcomingSynopsesFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"Synopses"] retain];
+            upcomingTrailersFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"Trailers"] retain];
+
+            [self createFolders];
+//            static NSString* numbersFolder = nil;
+//            static NSString* numbersBudgetsFolder = nil;
+//            static NSString* numbersDailyFolder = nil;
+//            static NSString* numbersWeekendFolder = nil;
+        }
+    }
+}
+
+
++ (void) resetFolders {
+    [self deleteFolders];
+    [self createFolders];
 }
 
 
 + (NSString*) dataFolder {
-    return [self findOrCreateFolder:&dataFolder parent:[Application supportFolder] name:@"Data"];
+    return dataFolder;
 }
 
 
 + (NSString*) imdbFolder {
-    return [self findOrCreateFolder:&imdbFolder parent:[Application supportFolder] name:@"IMDb"];
-}
-
-
-+ (NSString*) locationsFolder {
-    return [self findOrCreateFolder:&locationsFolder parent:[Application supportFolder] name:@"Locations"];
+    return imdbFolder;
 }
 
 
 + (NSString*) userLocationsFolder {
-    return [self findOrCreateFolder:&userLocationsFolder parent:[Application supportFolder] name:@"UserLocations"];
+    return userLocationsFolder;
 }
 
-
+/*
 + (NSString*) numbersFolder {
-    return [self findOrCreateFolder:&numbersFolder parent:[Application supportFolder] name:@"Numbers"];
+    return [self createFolder:&numbersFolder parent:[Application supportFolder] name:@"Numbers"];
 }
 
 
 + (NSString*) numbersDetailsFolder {
-    return [self findOrCreateFolder:&numbersWeekendFolder parent:[Application numbersFolder] name:@"Details"];
+    return [self createFolder:&numbersWeekendFolder parent:[Application numbersFolder] name:@"Details"];
 }
+ */
 
 
 + (NSString*) postersFolder {
-    return [self findOrCreateFolder:&postersFolder parent:[Application supportFolder] name:@"Posters"];
+    return postersFolder;
 }
 
 
-+ (NSString*) ratingsFolder {
-    return [self findOrCreateFolder:&ratingsFolder parent:[Application supportFolder] name:@"Ratings"];
++ (NSString*) scoresFolder {
+    return scoresFolder;
 }
 
 
 + (NSString*) reviewsFolder {
-    return [self findOrCreateFolder:&reviewsFolder parent:[Application supportFolder] name:@"Reviews"];
+    return reviewsFolder;
 }
 
 
 + (NSString*) trailersFolder {
-    return [self findOrCreateFolder:&trailersFolder parent:[Application supportFolder] name:@"Trailers"];
+    return trailersFolder;
 }
 
 
 + (NSString*) dvdFolder {
-    return [self findOrCreateFolder:&dvdFolder parent:[Application supportFolder] name:@"DVD"];
+    return dvdFolder;
 }
 
 
 + (NSString*) dvdPostersFolder {
-    return [self findOrCreateFolder:&dvdPostersFolder parent:[Application dvdFolder] name:@"Posters"];
+    return dvdPostersFolder;
 }
 
 
 + (NSString*) upcomingFolder {
-    return [self findOrCreateFolder:&upcomingFolder parent:[Application supportFolder] name:@"Upcoming"];
+    return upcomingFolder;
 }
 
 
 + (NSString*) upcomingCastFolder {
-    return [self findOrCreateFolder:&upcomingCastFolder parent:[Application upcomingFolder] name:@"Cast"];
+    return upcomingCastFolder;
 }
 
 
 + (NSString*) upcomingIMDbFolder {
-    return [self findOrCreateFolder:&upcomingIMDbFolder parent:[Application upcomingFolder] name:@"IMDb"];
+    return upcomingIMDbFolder;
 }
 
 
 + (NSString*) upcomingPostersFolder {
-    return [self findOrCreateFolder:&upcomingPostersFolder parent:[Application upcomingFolder] name:@"Posters"];
+    return upcomingPostersFolder;
 }
 
 
 + (NSString*) upcomingSynopsesFolder {
-    return [self findOrCreateFolder:&upcomingSynopsesFolder parent:[Application upcomingFolder] name:@"Synopses"];
+    return upcomingSynopsesFolder;
 }
 
 
 + (NSString*) upcomingTrailersFolder {
-    return [self findOrCreateFolder:&upcomingTrailersFolder parent:[Application upcomingFolder] name:@"Trailers"];
-}
-
-
-+ (NSString*) providerReviewsFolder:(NSString*) ratingsProvider {
-    NSString* folder = nil;
-
-    [gate lock];
-    {
-        folder = [providerReviewsFolder objectForKey:ratingsProvider];
-        if (folder == nil) {
-            folder = [[Application reviewsFolder] stringByAppendingPathComponent:ratingsProvider];
-
-            [FileUtilities createDirectory:folder];
-
-            [providerReviewsFolder setObject:folder forKey:ratingsProvider];
-        }
-    }
-    [gate unlock];
-
-    return folder;
+    return upcomingTrailersFolder;
 }
 
 
@@ -324,11 +340,6 @@ static NSString* starString = nil;
 
 + (NSString*) upcomingMoviesIndexFile {
     return [[Application upcomingFolder] stringByAppendingPathComponent:@"Index.plist"];
-}
-
-
-+ (NSString*) ratingsFile:(NSString*) provider {
-    return [[[Application ratingsFolder] stringByAppendingPathComponent:provider] stringByAppendingPathExtension:@"plist"];
 }
 
 

@@ -15,20 +15,23 @@
 @interface Application : NSObject {
 }
 
-+ (NSString*) dataFolder;
-+ (NSString*) documentsFolder;
-+ (NSString*) imdbFolder;
-+ (NSString*) locationsFolder;
-+ (NSString*) userLocationsFolder;
-+ (NSString*) postersFolder;
-+ (NSString*) ratingsFolder;
-+ (NSString*) reviewsFolder;
 + (NSString*) supportFolder;
 + (NSString*) tempFolder;
++ (NSString*) documentsFolder;
+
+
++ (NSString*) dataFolder;
++ (NSString*) imdbFolder;
++ (NSString*) userLocationsFolder;
++ (NSString*) postersFolder;
++ (NSString*) scoresFolder;
++ (NSString*) reviewsFolder;
 + (NSString*) trailersFolder;
 
+/*
 + (NSString*) numbersFolder;
 + (NSString*) numbersDetailsFolder;
+*/
 
 + (NSString*) dvdFolder;
 + (NSString*) dvdPostersFolder;
@@ -40,13 +43,10 @@
 + (NSString*) upcomingSynopsesFolder;
 + (NSString*) upcomingTrailersFolder;
 
-+ (NSString*) providerReviewsFolder:(NSString*) provider;
-
 + (NSString*) movieMapFile;
 + (NSString*) upcomingMoviesIndexFile;
-+ (NSString*) ratingsFile:(NSString*) ratingsProvider;
 
-+ (void) deleteFolders;
++ (void) resetFolders;
 
 + (NSString*) uniqueTemporaryFolder;
 

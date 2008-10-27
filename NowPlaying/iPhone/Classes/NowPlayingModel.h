@@ -22,17 +22,12 @@ enum ViewControllerType {
 @interface NowPlayingModel : NSObject {
     UserLocationCache* userLocationCache;
     IMDbCache* imdbCache;
-    NumbersCache* numbersCache;
     PosterCache* posterCache;
-    ReviewCache* reviewCache;
     ScoreCache* scoreCache;
     TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
 
     NSInteger searchRadius;
-
-    NSLock* movieMapLock;
-    NSDictionary* movieMap;
 
     NSMutableArray* favoriteTheatersData;
 
@@ -41,15 +36,10 @@ enum ViewControllerType {
 
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) IMDbCache* imdbCache;
-@property (retain) NumbersCache* numbersCache;
 @property (retain) PosterCache* posterCache;
-@property (retain) ReviewCache* reviewCache;
 @property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
-
-@property (retain) NSLock* movieMapLock;
-@property (retain) NSDictionary* movieMap;
 
 @property (retain) NSMutableArray* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
@@ -113,7 +103,6 @@ enum ViewControllerType {
 - (NSArray*) theaters;
 
 - (void) onDataProviderUpdated;
-- (void) onScoresUpdated;
 
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
@@ -142,7 +131,8 @@ NSInteger compareTheatersByName(id t1, id t2, void *context);
 NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 - (NSString*) synopsisForMovie:(Movie*) movie;
-- (NSInteger) scoreForMovie:(Movie*) movie;
+- (MovieRating*) scoreForMovie:(Movie*) movie;
+- (NSInteger) scoreValueForMovie:(Movie*) movie;
 
 - (NSArray*) trailersForMovie:(Movie*) movie;
 - (NSArray*) reviewsForMovie:(Movie*) movie;
