@@ -322,6 +322,10 @@ static NSString* titles_key = @"Titles";
         return;
     }
     
+    if ([result rangeOfString:@"403 Over Quota"].length > 0) {
+        return;
+    }
+    
     NSArray* components = [result componentsSeparatedByString:@"\n"];
     if (components.count == 0) {
         return;
