@@ -127,9 +127,9 @@ public class Score implements Parcelable, Persistable {
       };
 
 
-public int compareTo(Score score) {
+  public int compareTo(Score score) {
     // TODO Auto-generated method stub
     return this.value.compareTo(score.value);
-}
+  }
 
 }

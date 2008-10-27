@@ -34,7 +34,6 @@ public final class R {
         public static final int upcoming=0x7f02000c;
     }
     public static final class id {
-        public static final int address=0x7f060004;
         public static final int length=0x7f060003;
         public static final int rating=0x7f060002;
         public static final int score=0x7f060000;
@@ -43,7 +42,6 @@ public final class R {
     public static final class layout {
         public static final int movieview=0x7f030000;
         public static final int tabs=0x7f030001;
-        public static final int theaterview=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f05000b;

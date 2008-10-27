@@ -17,8 +17,8 @@
 package com.google.protobuf;
 
 /**
- * Interface for an RPC callback, normally called when an RPC completes.
- * {@code ParameterType} is normally the method's response message type.
+ * Interface for an RPC callback, normally called when an RPC completes. {@code ParameterType} is normally the method's
+ * response message type.
  *
  * @author kenton@google.com Kenton Varda
  */

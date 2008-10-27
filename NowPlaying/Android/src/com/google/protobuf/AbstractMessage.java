@@ -18,15 +18,15 @@ package com.google.protobuf;
 
 import com.google.protobuf.Descriptors.FieldDescriptor;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
 /**
- * A partial implementation of the {@link Message} interface which implements
- * as many methods of that interface as possible in terms of other methods.
+ * A partial implementation of the {@link Message} interface which implements as many methods of that interface as
+ * possible in terms of other methods.
  *
  * @author kenton@google.com Kenton Varda
  */
@@ -63,9 +63,11 @@ public abstract class AbstractMessage implements Message {
     return true;
   }
 
+
   public final String toString() {
     return TextFormat.printToString(this);
   }
+
 
   public void writeTo(CodedOutputStream output) throws IOException {
     for (Map.Entry<FieldDescriptor, Object> entry : getAllFields().entrySet()) {
@@ -87,18 +89,20 @@ public abstract class AbstractMessage implements Message {
     }
   }
 
+
   public ByteString toByteString() {
     try {
       ByteString.CodedBuilder out =
-        ByteString.newCodedBuilder(getSerializedSize());
+          ByteString.newCodedBuilder(getSerializedSize());
       writeTo(out.getCodedOutput());
       return out.build();
     } catch (IOException e) {
       throw new RuntimeException(
-        "Serializing to a ByteString threw an IOException (should " +
-        "never happen).", e);
+          "Serializing to a ByteString threw an IOException (should " +
+              "never happen).", e);
     }
   }
+
 
   public byte[] toByteArray() {
     try {
@@ -109,10 +113,11 @@ public abstract class AbstractMessage implements Message {
       return result;
     } catch (IOException e) {
       throw new RuntimeException(
-        "Serializing to a byte array threw an IOException " +
-        "(should never happen).", e);
+          "Serializing to a byte array threw an IOException " +
+              "(should never happen).", e);
     }
   }
+
 
   public void writeTo(OutputStream output) throws IOException {
     CodedOutputStream codedOutput = CodedOutputStream.newInstance(output);
@@ -120,11 +125,15 @@ public abstract class AbstractMessage implements Message {
     codedOutput.flush();
   }
 
+
   private int memoizedSize = -1;
+
 
   public int getSerializedSize() {
     int size = memoizedSize;
-    if (size != -1) return size;
+    if (size != -1) {
+      return size;
+    }
 
     size = 0;
     for (Map.Entry<FieldDescriptor, Object> entry : getAllFields().entrySet()) {
@@ -132,11 +141,11 @@ public abstract class AbstractMessage implements Message {
       if (field.isRepeated()) {
         for (Object element : (List) entry.getValue()) {
           size += CodedOutputStream.computeFieldSize(
-            field.getType(), field.getNumber(), element);
+              field.getType(), field.getNumber(), element);
         }
       } else {
         size += CodedOutputStream.computeFieldSize(
-          field.getType(), field.getNumber(), entry.getValue());
+            field.getType(), field.getNumber(), entry.getValue());
       }
     }
 
@@ -150,7 +159,8 @@ public abstract class AbstractMessage implements Message {
     memoizedSize = size;
     return size;
   }
-  
+
+
   @Override
   public boolean equals(Object other) {
     if (other == this) {
@@ -165,7 +175,8 @@ public abstract class AbstractMessage implements Message {
     }
     return getAllFields().equals(otherMessage.getAllFields());
   }
-  
+
+
   @Override
   public int hashCode() {
     int hash = 41;
@@ -177,9 +188,8 @@ public abstract class AbstractMessage implements Message {
   // =================================================================
 
   /**
-   * A partial implementation of the {@link Message.Builder} interface which
-   * implements as many methods of that interface as possible in terms of
-   * other methods.
+   * A partial implementation of the {@link Message.Builder} interface which implements as many methods of that
+   * interface as possible in terms of other methods.
    */
   @SuppressWarnings("unchecked")
   public static abstract class Builder<BuilderType extends Builder>
@@ -187,18 +197,20 @@ public abstract class AbstractMessage implements Message {
     // The compiler produces an error if this is not declared explicitly.
     public abstract BuilderType clone();
 
+
     public BuilderType clear() {
       for (Map.Entry<FieldDescriptor, Object> entry :
-           getAllFields().entrySet()) {
+          getAllFields().entrySet()) {
         clearField(entry.getKey());
       }
       return (BuilderType) this;
     }
 
+
     public BuilderType mergeFrom(Message other) {
       if (other.getDescriptorForType() != getDescriptorForType()) {
         throw new IllegalArgumentException(
-          "mergeFrom(Message) can only merge messages of the same type.");
+            "mergeFrom(Message) can only merge messages of the same type.");
       }
 
       // Note:  We don't attempt to verify that other's fields have valid
@@ -211,22 +223,22 @@ public abstract class AbstractMessage implements Message {
       //   which allows people to make secure deep copies of messages.
 
       for (Map.Entry<FieldDescriptor, Object> entry :
-           other.getAllFields().entrySet()) {
+          other.getAllFields().entrySet()) {
         FieldDescriptor field = entry.getKey();
         if (field.isRepeated()) {
-          for (Object element : (List)entry.getValue()) {
+          for (Object element : (List) entry.getValue()) {
             addRepeatedField(field, element);
           }
         } else if (field.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
-          Message existingValue = (Message)getField(field);
+          Message existingValue = (Message) getField(field);
           if (existingValue == existingValue.getDefaultInstanceForType()) {
             setField(field, entry.getValue());
           } else {
             setField(field,
-              existingValue.newBuilderForType()
-                .mergeFrom(existingValue)
-                .mergeFrom((Message)entry.getValue())
-                .build());
+                existingValue.newBuilderForType()
+                    .mergeFrom(existingValue)
+                    .mergeFrom((Message) entry.getValue())
+                    .build());
           }
         } else {
           setField(field, entry.getValue());
@@ -236,27 +248,31 @@ public abstract class AbstractMessage implements Message {
       return (BuilderType) this;
     }
 
+
     public BuilderType mergeFrom(CodedInputStream input) throws IOException {
       return mergeFrom(input, ExtensionRegistry.getEmptyRegistry());
     }
 
+
     public BuilderType mergeFrom(CodedInputStream input,
                                  ExtensionRegistry extensionRegistry)
-                                 throws IOException {
+        throws IOException {
       UnknownFieldSet.Builder unknownFields =
-        UnknownFieldSet.newBuilder(getUnknownFields());
+          UnknownFieldSet.newBuilder(getUnknownFields());
       FieldSet.mergeFrom(input, unknownFields, extensionRegistry, this);
       setUnknownFields(unknownFields.build());
       return (BuilderType) this;
     }
 
+
     public BuilderType mergeUnknownFields(UnknownFieldSet unknownFields) {
       setUnknownFields(
-        UnknownFieldSet.newBuilder(getUnknownFields())
-                       .mergeFrom(unknownFields)
-                       .build());
+          UnknownFieldSet.newBuilder(getUnknownFields())
+              .mergeFrom(unknownFields)
+              .build());
       return (BuilderType) this;
     }
+
 
     public BuilderType mergeFrom(ByteString data)
         throws InvalidProtocolBufferException {
@@ -269,14 +285,15 @@ public abstract class AbstractMessage implements Message {
         throw e;
       } catch (IOException e) {
         throw new RuntimeException(
-          "Reading from a ByteString threw an IOException (should " +
-          "never happen).", e);
+            "Reading from a ByteString threw an IOException (should " +
+                "never happen).", e);
       }
     }
 
+
     public BuilderType mergeFrom(ByteString data,
                                  ExtensionRegistry extensionRegistry)
-                                 throws InvalidProtocolBufferException {
+        throws InvalidProtocolBufferException {
       try {
         CodedInputStream input = data.newCodedInput();
         mergeFrom(input, extensionRegistry);
@@ -286,10 +303,11 @@ public abstract class AbstractMessage implements Message {
         throw e;
       } catch (IOException e) {
         throw new RuntimeException(
-          "Reading from a ByteString threw an IOException (should " +
-          "never happen).", e);
+            "Reading from a ByteString threw an IOException (should " +
+                "never happen).", e);
       }
     }
+
 
     public BuilderType mergeFrom(byte[] data)
         throws InvalidProtocolBufferException {
@@ -302,10 +320,11 @@ public abstract class AbstractMessage implements Message {
         throw e;
       } catch (IOException e) {
         throw new RuntimeException(
-          "Reading from a byte array threw an IOException (should " +
-          "never happen).", e);
+            "Reading from a byte array threw an IOException (should " +
+                "never happen).", e);
       }
     }
+
 
     public BuilderType mergeFrom(
         byte[] data, ExtensionRegistry extensionRegistry)
@@ -319,10 +338,11 @@ public abstract class AbstractMessage implements Message {
         throw e;
       } catch (IOException e) {
         throw new RuntimeException(
-          "Reading from a byte array threw an IOException (should " +
-          "never happen).", e);
+            "Reading from a byte array threw an IOException (should " +
+                "never happen).", e);
       }
     }
+
 
     public BuilderType mergeFrom(InputStream input) throws IOException {
       CodedInputStream codedInput = CodedInputStream.newInstance(input);
@@ -331,9 +351,10 @@ public abstract class AbstractMessage implements Message {
       return (BuilderType) this;
     }
 
+
     public BuilderType mergeFrom(InputStream input,
                                  ExtensionRegistry extensionRegistry)
-                                 throws IOException {
+        throws IOException {
       CodedInputStream codedInput = CodedInputStream.newInstance(input);
       mergeFrom(codedInput, extensionRegistry);
       codedInput.checkLastTagWas(0);

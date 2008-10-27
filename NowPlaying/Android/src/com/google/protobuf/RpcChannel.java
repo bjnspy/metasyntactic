@@ -17,12 +17,11 @@
 package com.google.protobuf;
 
 /**
- * <p>Abstract interface for an RPC channel.  An {@code RpcChannel} represents a
- * communication line to a {@link Service} which can be used to call that
- * {@link Service}'s methods.  The {@link Service} may be running on another
- * machine.  Normally, you should not call an {@code RpcChannel} directly, but
- * instead construct a stub {@link Service} wrapping it.  Example:
- *
+ * <p>Abstract interface for an RPC channel.  An {@code RpcChannel} represents a communication line to a {@link Service}
+ * which can be used to call that {@link Service}'s methods.  The {@link Service} may be running on another machine.
+ * Normally, you should not call an {@code RpcChannel} directly, but instead construct a stub {@link Service} wrapping
+ * it.  Example:
+ * <p/>
  * <pre>
  *   RpcChannel channel = rpcImpl.newChannel("remotehost.example.com:1234");
  *   RpcController controller = rpcImpl.newController();
@@ -34,14 +33,11 @@ package com.google.protobuf;
  */
 public interface RpcChannel {
   /**
-   * Call the given method of the remote service.  This method is similar to
-   * {@code Service.callMethod()} with one important difference:  the caller
-   * decides the types of the {@code Message} objects, not the callee.  The
-   * request may be of any type as long as
-   * {@code request.getDescriptor() == method.getInputType()}.
-   * The response passed to the callback will be of the same type as
-   * {@code responsePrototype} (which must have
-   * {@code getDescriptor() == method.getOutputType()}).
+   * Call the given method of the remote service.  This method is similar to {@code Service.callMethod()} with one
+   * important difference:  the caller decides the types of the {@code Message} objects, not the callee.  The request
+   * may be of any type as long as {@code request.getDescriptor() == method.getInputType()}. The response passed to the
+   * callback will be of the same type as {@code responsePrototype} (which must have {@code getDescriptor() ==
+   * method.getOutputType()}).
    */
   void callMethod(Descriptors.MethodDescriptor method,
                   RpcController controller,
