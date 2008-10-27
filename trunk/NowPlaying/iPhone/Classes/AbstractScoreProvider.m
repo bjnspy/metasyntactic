@@ -32,6 +32,7 @@
 @synthesize movieMapLock;
 @synthesize movies;
 @synthesize movieMapData;
+@synthesize providerDirectory;
 @synthesize reviewsDirectory;
 
 - (void) dealloc {
@@ -42,6 +43,7 @@
     self.movieMapLock = nil;
     self.movies = nil;
     self.movieMapData = nil;
+    self.providerDirectory = nil;
     self.reviewsDirectory = nil;
     
     [super dealloc];
@@ -69,16 +71,14 @@
 - (id) initWithCache:(ScoreCache*) parentCache_ {
     if (self = [super init]) {
         self.parentCache = parentCache_;
-        self.reviewsDirectory = [[Application reviewsFolder] stringByAppendingPathComponent:[self providerName]];
-        [self createDirectory];
+        self.providerDirectory = [[Application scoresFolder] stringByAppendingPathComponent:self.providerName];
+        self.reviewsDirectory = [[Application reviewsFolder] stringByAppendingPathComponent:self.providerName];
+        
+        [FileUtilities createDirectory:providerDirectory];
+        [FileUtilities createDirectory:reviewsDirectory];
     }
     
     return self;
-}
-
-
-- (void) createDirectory {
-    [FileUtilities createDirectory:reviewsDirectory];
 }
 
 
@@ -88,20 +88,17 @@
 
 
 - (NSString*) scoresFile {
-    return [[[Application scoresFolder] stringByAppendingPathComponent:self.providerName]
-            stringByAppendingPathExtension:@"plist"];
+    return [providerDirectory stringByAppendingPathComponent:@"Scores.plist"];
 }
 
 
 - (NSString*) hashFile {
-    return [[[Application scoresFolder] stringByAppendingPathComponent:[self.providerName stringByAppendingString:@"-Hash"]]
-            stringByAppendingPathExtension:@"plist"];
+    return [providerDirectory stringByAppendingPathComponent:@"Hash.plist"];
 }
 
 
 - (NSString*) movieMapFile {
-    return [[[Application scoresFolder] stringByAppendingPathComponent:[self.providerName stringByAppendingString:@"-MovieMap"]]
-            stringByAppendingPathExtension:@"plist"];
+    return [providerDirectory stringByAppendingPathComponent:@"Map.plist"];
 }
 
 
@@ -244,7 +241,7 @@
     self.hashData = hash;
     self.movieMapData = [NSDictionary dictionary];
     self.movies = nil;
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate refresh:YES];
     
     [self updateReviews];
 }
@@ -311,7 +308,7 @@
     self.movieMapData = map;
     self.movies = movies_;
     
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate refresh:YES];
 }
 
 
@@ -324,14 +321,13 @@
 
 
 - (NSString*) reviewsFile:(NSString*) title {
-    return [[self.reviewsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:title]]
+    return [[reviewsDirectory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:title]]
             stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) reviewsHashFile:(NSString*) title {
-    return [[self.reviewsDirectory stringByAppendingPathComponent:[[FileUtilities sanitizeFileName:title] stringByAppendingString:@"-Hash"]]
-            stringByAppendingPathExtension:@"plist"];
+    return [reviewsDirectory stringByAppendingPathComponent:[[FileUtilities sanitizeFileName:title] stringByAppendingString:@"-Hash.plist"]];
 }
 
 
