@@ -324,11 +324,6 @@ static NSString* starString = nil;
 }
 
 
-+ (NSString*) movieMapFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"MovieMap.plist"];
-}
-
-
 + (void) openBrowser:(NSString*) address {
     if (address.length == 0) {
         return;
