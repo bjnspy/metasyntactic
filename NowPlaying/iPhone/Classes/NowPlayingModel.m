@@ -137,7 +137,7 @@ static NSString** KEYS[] = {
 
 
 - (void) updateUpcomingCache {
-    [upcomingCache updateMovieDetails];
+    [upcomingCache update];
 }
 
 

@@ -60,6 +60,11 @@ static NSString* titles_key = @"Titles";
 }
 
 
+- (NSString*) indexFile {
+    return [[Application upcomingFolder] stringByAppendingPathComponent:@"Index.plist"];
+}
+
+
 - (void) writeData:(NSDictionary*) data {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:[data objectForKey:hash_key]       forKey:hash_key];
@@ -73,7 +78,7 @@ static NSString* titles_key = @"Titles";
 
     [result setObject:encodedMovies forKey:movies_key];
 
-    [FileUtilities writeObject:result toFile:[Application upcomingMoviesIndexFile]];
+    [FileUtilities writeObject:result toFile:self.indexFile];
 }
 
 
@@ -139,76 +144,86 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (NSDictionary*) updateMoviesListWorker {
-    NSString* localHash = [index objectForKey:hash_key];
+- (void) updateIndex {
+    [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint)
+                               onTarget:self
+               inBackgroundWithArgument:nil
+                                   gate:gate
+                                visible:YES];
+}
 
+
+- (void) updateIndexBackgroundEntryPoint {
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.indexFile
+                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    
+    if (lastLookupDate != nil) {
+        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
+            return;
+        }
+    }
+    
+    
+    NSString* localHash = [index objectForKey:hash_key];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
-                                                        important:NO];
+                                                               important:NO];
     if (serverHash == nil) {
         serverHash = @"0";
     }
-
+    
     if (localHash != nil &&
         [localHash isEqual:serverHash]) {
-        return [NSDictionary dictionary];
+        return;
     }
-
+    
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]
-                                                          important:NO];
-
+                                                                 important:NO];
+    
     NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
     NSArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
     if (movies.count == 0) {
-        return [NSDictionary dictionary];
+        return;
     }
-
+    
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:serverHash forKey:hash_key];
     [result setObject:movies forKey:movies_key];
     [result setObject:studioKeys forKey:studios_key];
     [result setObject:titleKeys forKey:titles_key];
-
+    
     [self writeData:result];
-
-    return result;
+    [self performSelectorOnMainThread:@selector(reportIndex:) withObject:result waitUntilDone:NO];
 }
 
 
-- (void) updateMoviesList {
-    NSAssert(![NSThread isMainThread], @"");
-
-    NSDictionary* index_ = [self updateMoviesListWorker];
-
-    if (index_.count > 0) {
-        [self performSelectorOnMainThread:@selector(saveIndex:) withObject:index_ waitUntilDone:NO];
-    }
+- (void) updateDetails {
+    NSAssert([NSThread isMainThread], @"");
+    [ThreadingUtilities performSelector:@selector(updateDetailsInBackgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:self.index
+                                   gate:gate
+                                visible:NO];
 }
 
 
-- (void) saveIndex:(NSDictionary*) index_ {
-    self.index = index_;
+- (void) update {
+    [self updateIndex];
+    [self updateDetails];
+}
+
+
+- (void) reportIndex:(NSDictionary*) result {
+    self.index = result;
     self.recentMovies = nil;
     self.movieMap = nil;
 
-    [self updateMovieDetails];
+    [self updateDetails];
 }
 
 
 - (void) deleteObsoleteData {
 
-}
-
-
-- (void) updateMovieDetails {
-    NSAssert([NSThread isMainThread], @"");
-    [self deleteObsoleteData];
-
-    [ThreadingUtilities performSelector:@selector(updateMovieDetailsInBackgroundEntryPoint:)
-                               onTarget:self
-               inBackgroundWithArgument:self.index
-                                   gate:gate
-                                visible:NO];
 }
 
 
@@ -345,7 +360,9 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (void) updateMovieDetailsInBackgroundEntryPoint:(NSDictionary*) index_ {
+- (void) updateDetailsInBackgroundEntryPoint:(NSDictionary*) index_ {
+    [self deleteObsoleteData];
+    
     NSArray* movies = [index_ objectForKey:movies_key];
     NSDictionary* studios = [index_ objectForKey:studios_key];
     NSDictionary* titles = [index_ objectForKey:titles_key];
@@ -363,7 +380,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (NSDictionary*) loadIndex {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[Application upcomingMoviesIndexFile]];
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:self.indexFile];
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }

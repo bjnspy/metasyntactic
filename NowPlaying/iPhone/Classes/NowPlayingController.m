@@ -22,6 +22,7 @@
 #import "NowPlayingModel.h"
 #import "ScoreCache.h"
 #import "ThreadingUtilities.h"
+#import "UpcomingCache.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
@@ -98,20 +99,7 @@
 
 
 - (void) spawnUpcomingMoviesLookupThread {
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application upcomingMoviesIndexFile]
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
-
-    if (lastLookupDate != nil) {
-        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
-            return;
-        }
-    }
-
-    [ThreadingUtilities performSelector:@selector(updateMoviesList)
-                               onTarget:self.model.upcomingCache
-               inBackgroundWithArgument:nil
-                                   gate:upcomingMoviesLookupLock
-                                visible:YES];
+    [self.model.upcomingCache update];
 }
 
 - (void) spawnDetermineLocationThread {

@@ -338,11 +338,6 @@ static NSString* starString = nil;
 }
 
 
-+ (NSString*) upcomingMoviesIndexFile {
-    return [[Application upcomingFolder] stringByAppendingPathComponent:@"Index.plist"];
-}
-
-
 + (void) openBrowser:(NSString*) address {
     if (address.length == 0) {
         return;
