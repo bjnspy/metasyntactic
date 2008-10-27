@@ -256,16 +256,31 @@ static NSString* titles_key = @"Titles";
 
 - (void) updateIMDb:(Movie*) movie {
     NSString* imdbFile = [self imdbFile:movie];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:imdbFile]) {
-        return;
+    
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:imdbFile
+                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    if (lastLookupDate != nil) {
+        NSString* value = [FileUtilities readObject:imdbFile];
+        if (value.length > 0) {
+            // we have a real imdb value for this movie
+            return;
+        }
+        
+        // we have a sentinel.  only update if it's been long enough
+        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
+            return;
+        }
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-
-    if (imdbAddress.length != 0) {
-        [FileUtilities writeObject:imdbAddress toFile:imdbFile];
+    if (imdbAddress == nil) {
+        return;
     }
+
+    // write down the response (even if it is empty).  An empty value will
+    // ensure that we don't update this entry too often.
+    [FileUtilities writeObject:imdbAddress toFile:imdbFile];
 }
 
 
