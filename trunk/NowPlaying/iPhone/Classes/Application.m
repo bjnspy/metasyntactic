@@ -379,7 +379,7 @@ static NSString* starString = nil;
 
 
 + (NSString*) host {
-#ifndef TARGET_IPHONE_SIMULATOR
+#if !TARGET_IPHONE_SIMULATOR
     return @"metaboxoffice2";
 #endif
     /*
