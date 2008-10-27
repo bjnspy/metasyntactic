@@ -45,13 +45,7 @@ public class NowPlayingActivity extends TabActivity {
     private static NowPlayingControllerWrapper controller;
     private AllTheatersView allTheatersView;
     private UpcomingMoviesView upcomingMoviesView;
-    private List<Movie> movies = new ArrayList<Movie>();
     private TabHost mTabHost;
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
 
     private final BroadcastReceiver broadcastReceiver =
         new BroadcastReceiver() {
@@ -90,7 +84,7 @@ public class NowPlayingActivity extends TabActivity {
         int selectedTab = controller.getSelectedTabIndex();
         getTabHost().setCurrentTab(selectedTab);
         refresh();
-    }
+     }
 
     
     public NowPlayingActivity() {
@@ -111,7 +105,7 @@ public class NowPlayingActivity extends TabActivity {
             throw new RuntimeException("Failed to bind to service!");
         }
         setContentView(R.layout.tabs);
-         mTabHost = getTabHost();
+        mTabHost = getTabHost();
         allTheatersView = new AllTheatersView(this);
         upcomingMoviesView = new UpcomingMoviesView(this);
 
@@ -142,11 +136,7 @@ public class NowPlayingActivity extends TabActivity {
         tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator(
             getResources().getString(R.string.theatersIconLabel),
             getResources().getDrawable(R.drawable.theatres)).setContent(
-            new TabHost.TabContentFactory() {
-                public View createTabContent(String s) {
-                    return allTheatersView;
-                }
-            }));
+                new Intent(this, AllTheatersActivity.class)));
     }
 
     private void setUpMoviesTab(final TabHost tabs) {
@@ -188,14 +178,10 @@ public class NowPlayingActivity extends TabActivity {
 
     /** Updates display of the list of movies. */
     public void refresh() {
-        movies = controller.getMovies();
-       
+        List<Movie> movies = controller.getMovies();       
         Comparator comparator = MOVIE_ORDER[controller.getAllMoviesSelectedSortIndex()];
-        Toast.makeText(NowPlayingActivity.this, String.valueOf(controller.getAllMoviesSelectedSortIndex()),
-            Toast.LENGTH_SHORT).show();
         Collections.sort(movies,comparator);
-        AllMoviesActivity.refresh();
-        
+        AllMoviesActivity.refresh(movies);    
      
     }
     

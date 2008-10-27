@@ -120,7 +120,7 @@ public class NowPlayingControllerWrapper {
 
   public void setAllTheatersSelectedSortIndex(int index) {
     try {
-      controller.setAllMoviesSelectedSortIndex(index);
+      controller.setAllTheatersSelectedSortIndex(index);
     } catch (RemoteException e) {
       throw new RuntimeException(e);
     }
