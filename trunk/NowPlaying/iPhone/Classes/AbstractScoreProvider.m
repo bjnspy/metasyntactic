@@ -13,7 +13,7 @@
 #import "FileUtilities.h"
 #import "Location.h"
 #import "Movie.h"
-#import "MovieRating.h"
+#import "Score.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
@@ -113,7 +113,7 @@
     
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (NSString* title in encodedScores) {
-        MovieRating* rating = [MovieRating ratingWithDictionary:[encodedScores objectForKey:title]];
+        Score* rating = [Score scoreWithDictionary:[encodedScores objectForKey:title]];
         [result setObject:rating forKey:title];
     }
     
@@ -315,7 +315,7 @@
 }
 
 
-- (MovieRating*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
+- (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
     [self ensureMovieMap:movies_];
     
     NSString* title = [self.movieMap objectForKey:movie.canonicalTitle];
@@ -355,7 +355,7 @@
 
 
 - (NSString*) serverReviewsAddress:(Location*) location
-                             score:(MovieRating*) score {
+                             score:(Score*) score {
     NSString* country = location.country.length == 0 ?
     [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode] :
     location.country;
@@ -400,7 +400,7 @@
 }
 
 
-- (NSArray*) downloadReviewContents:(MovieRating*) score location:(Location*) location {
+- (NSArray*) downloadReviewContents:(Score*) score location:(Location*) location {
     NSString* address = [self serverReviewsAddress:location score:score];
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address important:NO];
     if (element == nil) {
@@ -424,7 +424,7 @@
 }
 
 
-- (void) downloadReviews:(MovieRating*) score
+- (void) downloadReviews:(Score*) score
                 location:(Location*) location {
     NSString* address = [[self serverReviewsAddress:location score:score] stringByAppendingString:@"&hash=true"];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address important:NO];
@@ -469,7 +469,7 @@
         return;
     }
     
-    for (MovieRating* score in scores) {
+    for (Score* score in scores) {
         [self downloadReviews:score location:location];
     }
 }
@@ -479,7 +479,7 @@
     NSMutableArray* scoresWithoutReviews = [NSMutableArray array];
     NSMutableArray* scoresWithReviews = [NSMutableArray array];
     
-    for (MovieRating* score in scores.allValues) {
+    for (Score* score in scores.allValues) {
         NSString* file = [self reviewsFile:score.canonicalTitle];
         
         NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:file

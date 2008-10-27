@@ -15,7 +15,7 @@
 #import "RottenTomatoesScoreProvider.h"
 
 #import "Application.h"
-#import "MovieRating.h"
+#import "Score.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "XmlElement.h"
@@ -65,7 +65,7 @@
             NSString* synopsis = [movieElement attributeValue:@"synopsis"];
             NSString* score =    [movieElement attributeValue:@"score"];
             
-            MovieRating* extraInfo = [MovieRating ratingWithTitle:title
+            Score* extraInfo = [Score scoreWithTitle:title
                                                          synopsis:synopsis
                                                             score:score
                                                          provider:@"rottentomatoes"

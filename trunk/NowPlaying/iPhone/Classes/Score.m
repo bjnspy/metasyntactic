@@ -12,12 +12,12 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "MovieRating.h"
+#import "Score.h"
 
 #import "Movie.h"
 #import "Utilities.h"
 
-@implementation MovieRating
+@implementation Score
 
 property_definition(canonicalTitle);
 property_definition(synopsis);
@@ -31,7 +31,7 @@ property_definition(identifier);
     self.score = nil;
     self.provider = nil;
     self.identifier = nil;
-
+    
     [super dealloc];
 }
 
@@ -48,30 +48,30 @@ property_definition(identifier);
         self.provider = provider_;
         self.identifier = [Utilities nonNilString:identifier_];
     }
-
+    
     return self;
 }
 
 
-+ (MovieRating*) ratingWithTitle:(NSString*) title
-                                synopsis:(NSString*) synopsis
-                                   score:(NSString*) score
-                                provider:(NSString*) provider
-                              identifier:(NSString*) identifier {
-    return [[[MovieRating alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
-                                                         synopsis:[Utilities stripHtmlCodes:synopsis]
-                                                            score:score
-                                                         provider:provider
-                                                       identifier:identifier] autorelease];
++ (Score*) scoreWithTitle:(NSString*) title
+                        synopsis:(NSString*) synopsis
+                           score:(NSString*) score
+                        provider:(NSString*) provider
+                      identifier:(NSString*) identifier {
+    return [[[Score alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
+                                               synopsis:[Utilities stripHtmlCodes:synopsis]
+                                                  score:score
+                                               provider:provider
+                                             identifier:identifier] autorelease];
 }
 
 
-+ (MovieRating*) ratingWithDictionary:(NSDictionary*) dictionary {
-    return [[[MovieRating alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
-                                                         synopsis:[dictionary objectForKey:synopsis_key]
-                                                            score:[dictionary objectForKey:score_key]
-                                                         provider:[dictionary objectForKey:provider_key]
-                                                       identifier:[dictionary objectForKey:identifier_key]] autorelease];
++ (Score*) scoreWithDictionary:(NSDictionary*) dictionary {
+    return [[[Score alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
+                                               synopsis:[dictionary objectForKey:synopsis_key]
+                                                  score:[dictionary objectForKey:score_key]
+                                               provider:[dictionary objectForKey:provider_key]
+                                             identifier:[dictionary objectForKey:identifier_key]] autorelease];
 }
 
 
@@ -91,7 +91,7 @@ property_definition(identifier);
     if (value >= 0 && value <= 100) {
         return value;
     }
-
+    
     return -1;
 }
 
