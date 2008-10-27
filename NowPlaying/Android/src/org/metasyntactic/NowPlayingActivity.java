@@ -43,7 +43,6 @@ public class NowPlayingActivity extends TabActivity {
     public static NowPlayingActivity instance;
 
     private static NowPlayingControllerWrapper controller;
-    // private AllMoviesView allMoviesView;
     private AllTheatersView allTheatersView;
     private UpcomingMoviesView upcomingMoviesView;
     private List<Movie> movies = new ArrayList<Movie>();
@@ -102,8 +101,6 @@ public class NowPlayingActivity extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // setContentView(R.layout.tabs);
 
         boolean bindResult =
             bindService(new Intent(getBaseContext(),
@@ -192,7 +189,10 @@ public class NowPlayingActivity extends TabActivity {
     /** Updates display of the list of movies. */
     public void refresh() {
         movies = controller.getMovies();
+       
         Comparator comparator = MOVIE_ORDER[controller.getAllMoviesSelectedSortIndex()];
+        Toast.makeText(NowPlayingActivity.this, String.valueOf(controller.getAllMoviesSelectedSortIndex()),
+            Toast.LENGTH_SHORT).show();
         Collections.sort(movies,comparator);
         AllMoviesActivity.refresh();
         
@@ -215,13 +215,13 @@ public class NowPlayingActivity extends TabActivity {
                       return 0;
                       }
                   if (m1.getReleaseDate()!= null && m2.getReleaseDate()!=null) {
-                 return m1.getReleaseDate().compareTo(m2.getReleaseDate());
+                 return m2.getReleaseDate().compareTo(m1.getReleaseDate());
                  }
                  // if m2 is null then m1 is greater
                  if (m1.getReleaseDate()!=null) {
-                   return 1;
+                   return -1;
                  }                 
-                 return -1;
+                 return 1;
               }
     };
     
@@ -232,15 +232,15 @@ public class NowPlayingActivity extends TabActivity {
                       return 0;
                     }
                   if (controller.getScore(m1)!= null && controller.getScore(m2)!=null) {
-                    return controller.getScore(m1).compareTo(controller.getScore(m2));
+                    return controller.getScore(m2).compareTo(controller.getScore(m1));
                   }
                   
                  // if m2 is null then m1 is greater
                   if (controller.getScore(m1) !=null) {
-                    return 1;
+                    return -1;
                   }                 
                   
-                  return -1;
+                  return 1;
               }
     };
     
