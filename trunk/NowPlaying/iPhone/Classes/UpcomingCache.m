@@ -359,6 +359,7 @@ static NSString* titles_key = @"Titles";
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (trailersString == nil) {
+        NSLog(@"", nil);
         return;
     }
     
