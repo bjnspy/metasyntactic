@@ -15,10 +15,11 @@
 @interface Application : NSObject {
 }
 
+/*
 + (NSString*) supportFolder;
 + (NSString*) tempFolder;
 + (NSString*) documentsFolder;
-
+*/
 
 + (NSString*) dataFolder;
 + (NSString*) imdbFolder;

@@ -23,7 +23,7 @@
 static NSLock* gate = nil;
 
 // Special directories
-static NSString* documentsFolder = nil;
+static NSString* cacheFolder = nil;
 static NSString* supportFolder = nil;
 static NSString* tempFolder = nil;
 
@@ -82,21 +82,23 @@ static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
 
 
-+ (NSString*) documentsFolder {
++ (NSString*) cacheFolder {
     [gate lock];
     {
-        if (documentsFolder == nil) {
-            NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-            NSString* folder = [paths objectAtIndex:0];
+        if (cacheFolder == nil) {
+            NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
+            
+            NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
+            NSString* folder = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
             
             [FileUtilities createDirectory:folder];
             
-            documentsFolder = [folder retain];
+            cacheFolder = [folder retain];
         }
     }
     [gate unlock];
     
-    return documentsFolder;
+    return cacheFolder;
 }
 
 
@@ -130,19 +132,6 @@ static NSString* starString = nil;
     [gate unlock];
     
     return tempFolder;
-}
-
-
-+ (void) createFolder:(NSString**) folder parent:(NSString*) parent name:(NSString*) child {
-    [gate lock];
-    {
-        NSString* result = [parent stringByAppendingPathComponent:child];
-        [FileUtilities createDirectory:result];
-        
-        *folder = result;
-        [result retain];
-    }
-    [gate unlock];
 }
 
 
@@ -182,19 +171,21 @@ static NSString* starString = nil;
 
         differenceEngine = [[DifferenceEngine engine] retain];
 
+        [[NSFileManager defaultManager] removeItemAtPath:[self supportFolder] error:NULL];
+        
         {
-            dataFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Data"] retain];
-            imdbFolder = [[[self supportFolder] stringByAppendingPathComponent:@"IMDb"] retain];
-            userLocationsFolder = [[[self supportFolder] stringByAppendingPathComponent:@"UserLocations"] retain];
-            scoresFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Scores"] retain];
-            reviewsFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Reviews"] retain];
-            trailersFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Trailers"] retain];
-            postersFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Posters"] retain];
+            dataFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Data"] retain];
+            imdbFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"IMDb"] retain];
+            userLocationsFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"UserLocations"] retain];
+            scoresFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Scores"] retain];
+            reviewsFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Reviews"] retain];
+            trailersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Trailers"] retain];
+            postersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Posters"] retain];
             
-            dvdFolder = [[[self supportFolder] stringByAppendingPathComponent:@"DVD"] retain];
+            dvdFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"DVD"] retain];
             dvdPostersFolder = [[[self dvdFolder] stringByAppendingPathComponent:@"Posters"] retain];
             
-            upcomingFolder = [[[self supportFolder] stringByAppendingPathComponent:@"Upcoming"] retain];
+            upcomingFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"Cast"] retain];
             upcomingIMDbFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"IMDb"] retain];
             upcomingPostersFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"Posters"] retain];
@@ -233,7 +224,7 @@ static NSString* starString = nil;
 
 /*
 + (NSString*) numbersFolder {
-    return [self createFolder:&numbersFolder parent:[Application supportFolder] name:@"Numbers"];
+    return [self createFolder:&numbersFolder parent:[Application cacheFolder] name:@"Numbers"];
 }
 
 
