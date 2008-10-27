@@ -101,6 +101,7 @@ static NSDictionary* movieNameToPosterMap = nil;
     }
 }
 
+
 + (NSData*) download:(Movie*) movie
         postalCode:(NSString*) postalCode {
     [self createMovieMap:postalCode];
