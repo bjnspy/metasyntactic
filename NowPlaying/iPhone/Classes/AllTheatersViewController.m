@@ -123,7 +123,7 @@
                             NSLocalizedString(@"miles", nil));
 
     int distances[] = {
-        1, 2, 5, 10, 15, 25, 50
+        1, 2, 5, 10, 15, 20, 30, 40, 50
     };
 
     NSMutableArray* distancesArray = [NSMutableArray array];
