@@ -16,8 +16,6 @@ package org.metasyntactic;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 
@@ -32,12 +30,12 @@ public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
 
   public final static String host =
-  //*
-  	"metaboxoffice6";
+      //*
+      "metaboxoffice6";
   /*/
   	"metaboxoffice2";
   //*/
-  
+
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
   public static final File dataDirectory = new File(applicationDirectory, "Data");
@@ -67,7 +65,7 @@ public class Application {
     Runnable runnable = new Runnable() {
       public void run() {
         if (context != null) {
-          context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));           
+          context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
         }
       }
     };

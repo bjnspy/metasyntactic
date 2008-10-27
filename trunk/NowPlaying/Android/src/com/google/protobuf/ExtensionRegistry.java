@@ -24,55 +24,47 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A table of known extensions, searchable by name or field number.  When
- * parsing a protocol message that might have extensions, you must provide
- * an {@code ExtensionRegistry} in which you have registered any extensions
- * that you want to be able to parse.  Otherwise, those extensions will just
- * be treated like unknown fields.
- *
+ * A table of known extensions, searchable by name or field number.  When parsing a protocol message that might have
+ * extensions, you must provide an {@code ExtensionRegistry} in which you have registered any extensions that you want
+ * to be able to parse.  Otherwise, those extensions will just be treated like unknown fields.
+ * <p/>
  * <p>For example, if you had the {@code .proto} file:
- *
+ * <p/>
  * <pre>
  * option java_class = "MyProto";
- *
+ * <p/>
  * message Foo {
  *   extensions 1000 to max;
  * }
- *
+ * <p/>
  * extend Foo {
  *   optional int32 bar;
  * }
  * </pre>
- *
+ * <p/>
  * Then you might write code like:
- *
+ * <p/>
  * <pre>
  * ExtensionRegistry registry = ExtensionRegistry.newInstance();
  * registry.add(MyProto.bar);
  * MyProto.Foo message = MyProto.Foo.parseFrom(input, registry);
  * </pre>
- *
+ * <p/>
  * <p>Background:
- *
- * <p>You might wonder why this is necessary.  Two alternatives might come to
- * mind.  First, you might imagine a system where generated extensions are
- * automatically registered when their containing classes are loaded.  This
- * is a popular technique, but is bad design; among other things, it creates a
- * situation where behavior can change depending on what classes happen to be
- * loaded.  It also introduces a security vulnerability, because an
- * unprivileged class could cause its code to be called unexpectedly from a
- * privileged class by registering itself as an extension of the right type.
- *
- * <p>Another option you might consider is lazy parsing: do not parse an
- * extension until it is first requested, at which point the caller must
- * provide a type to use.  This introduces a different set of problems.  First,
- * it would require a mutex lock any time an extension was accessed, which
- * would be slow.  Second, corrupt data would not be detected until first
- * access, at which point it would be much harder to deal with it.  Third, it
- * could violate the expectation that message objects are immutable, since the
- * type provided could be any arbitrary message class.  An unpriviledged user
- * could take advantage of this to inject a mutable object into a message
- * belonging to priviledged code and create mischief.
+ * <p/>
+ * <p>You might wonder why this is necessary.  Two alternatives might come to mind.  First, you might imagine a system
+ * where generated extensions are automatically registered when their containing classes are loaded.  This is a popular
+ * technique, but is bad design; among other things, it creates a situation where behavior can change depending on what
+ * classes happen to be loaded.  It also introduces a security vulnerability, because an unprivileged class could cause
+ * its code to be called unexpectedly from a privileged class by registering itself as an extension of the right type.
+ * <p/>
+ * <p>Another option you might consider is lazy parsing: do not parse an extension until it is first requested, at which
+ * point the caller must provide a type to use.  This introduces a different set of problems.  First, it would require a
+ * mutex lock any time an extension was accessed, which would be slow.  Second, corrupt data would not be detected until
+ * first access, at which point it would be much harder to deal with it.  Third, it could violate the expectation that
+ * message objects are immutable, since the type provided could be any arbitrary message class.  An unpriviledged user
+ * could take advantage of this to inject a mutable object into a message belonging to priviledged code and create
+ * mischief.
  *
  * @author kenton@google.com Kenton Varda
  */
@@ -80,100 +72,106 @@ public final class ExtensionRegistry {
   /** Construct a new, empty instance. */
   public static ExtensionRegistry newInstance() {
     return new ExtensionRegistry(
-      new HashMap<String, ExtensionInfo>(),
-      new HashMap<DescriptorIntPair, ExtensionInfo>());
+        new HashMap<String, ExtensionInfo>(),
+        new HashMap<DescriptorIntPair, ExtensionInfo>());
   }
+
 
   /** Get the unmodifiable singleton empty instance. */
   public static ExtensionRegistry getEmptyRegistry() {
     return EMPTY;
   }
 
+
   /** Returns an unmodifiable view of the registry. */
   public ExtensionRegistry getUnmodifiable() {
     return new ExtensionRegistry(
-      Collections.unmodifiableMap(extensionsByName),
-      Collections.unmodifiableMap(extensionsByNumber));
+        Collections.unmodifiableMap(extensionsByName),
+        Collections.unmodifiableMap(extensionsByNumber));
   }
+
 
   /** A (Descriptor, Message) pair, returned by lookup methods. */
   public static final class ExtensionInfo {
     /** The extension's descriptor. */
     public final FieldDescriptor descriptor;
 
-    /**
-     * A default instance of the extension's type, if it has a message type.
-     * Otherwise, {@code null}.
-     */
+    /** A default instance of the extension's type, if it has a message type. Otherwise, {@code null}. */
     public final Message defaultInstance;
+
 
     private ExtensionInfo(FieldDescriptor descriptor) {
       this.descriptor = descriptor;
       this.defaultInstance = null;
     }
+
+
     private ExtensionInfo(FieldDescriptor descriptor, Message defaultInstance) {
       this.descriptor = descriptor;
       this.defaultInstance = defaultInstance;
     }
   }
 
+
   /**
-   * Find an extension by fully-qualified field name, in the proto namespace.
-   * I.e. {@code result.descriptor.fullName()} will match {@code fullName} if
-   * a match is found.
+   * Find an extension by fully-qualified field name, in the proto namespace. I.e. {@code result.descriptor.fullName()}
+   * will match {@code fullName} if a match is found.
    *
-   * @return Information about the extension if found, or {@code null}
-   *         otherwise.
+   * @return Information about the extension if found, or {@code null} otherwise.
    */
   public ExtensionInfo findExtensionByName(String fullName) {
     return extensionsByName.get(fullName);
   }
 
+
   /**
    * Find an extension by containing type and field number.
    *
-   * @return Information about the extension if found, or {@code null}
-   *         otherwise.
+   * @return Information about the extension if found, or {@code null} otherwise.
    */
   public ExtensionInfo findExtensionByNumber(Descriptor containingType,
                                              int fieldNumber) {
     return extensionsByNumber.get(
-      new DescriptorIntPair(containingType, fieldNumber));
+        new DescriptorIntPair(containingType, fieldNumber));
   }
+
 
   /** Add an extension from a generated file to the registry. */
   public void add(GeneratedMessage.GeneratedExtension<?, ?> extension) {
     if (extension.getDescriptor().getJavaType() ==
         FieldDescriptor.JavaType.MESSAGE) {
       add(new ExtensionInfo(extension.getDescriptor(),
-                            extension.getMessageDefaultInstance()));
+          extension.getMessageDefaultInstance()));
     } else {
       add(new ExtensionInfo(extension.getDescriptor(), null));
     }
   }
 
+
   /** Add a non-message-type extension to the registry by descriptor. */
   public void add(FieldDescriptor type) {
     if (type.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
       throw new IllegalArgumentException(
-        "ExtensionRegistry.add() must be provided a default instance when " +
-        "adding an embedded message extension.");
+          "ExtensionRegistry.add() must be provided a default instance when " +
+              "adding an embedded message extension.");
     }
     add(new ExtensionInfo(type, null));
   }
+
 
   /** Add a message-type extension to the registry by descriptor. */
   public void add(FieldDescriptor type, Message defaultInstance) {
     if (type.getJavaType() != FieldDescriptor.JavaType.MESSAGE) {
       throw new IllegalArgumentException(
-        "ExtensionRegistry.add() provided a default instance for a " +
-        "non-message extension.");
+          "ExtensionRegistry.add() provided a default instance for a " +
+              "non-message extension.");
     }
     add(new ExtensionInfo(type, defaultInstance));
   }
 
   // =================================================================
   // Private stuff.
+
 
   private ExtensionRegistry(
       Map<String, ExtensionInfo> extensionsByName,
@@ -182,26 +180,28 @@ public final class ExtensionRegistry {
     this.extensionsByNumber = extensionsByNumber;
   }
 
+
   private final Map<String, ExtensionInfo> extensionsByName;
   private final Map<DescriptorIntPair, ExtensionInfo> extensionsByNumber;
 
   private static final ExtensionRegistry EMPTY =
-    new ExtensionRegistry(
-      Collections.<String, ExtensionInfo>emptyMap(),
-      Collections.<DescriptorIntPair, ExtensionInfo>emptyMap());
+      new ExtensionRegistry(
+          Collections.<String, ExtensionInfo>emptyMap(),
+          Collections.<DescriptorIntPair, ExtensionInfo>emptyMap());
+
 
   private void add(ExtensionInfo extension) {
     if (!extension.descriptor.isExtension()) {
       throw new IllegalArgumentException(
-        "ExtensionRegistry.add() was given a FieldDescriptor for a regular " +
-        "(non-extension) field.");
+          "ExtensionRegistry.add() was given a FieldDescriptor for a regular " +
+              "(non-extension) field.");
     }
 
     extensionsByName.put(extension.descriptor.getFullName(), extension);
     extensionsByNumber.put(
-      new DescriptorIntPair(extension.descriptor.getContainingType(),
-                            extension.descriptor.getNumber()),
-      extension);
+        new DescriptorIntPair(extension.descriptor.getContainingType(),
+            extension.descriptor.getNumber()),
+        extension);
 
     FieldDescriptor field = extension.descriptor;
     if (field.getContainingType().getOptions().getMessageSetWireFormat() &&
@@ -215,22 +215,29 @@ public final class ExtensionRegistry {
     }
   }
 
+
   /** A (GenericDescriptor, int) pair, used as a map key. */
   private static final class DescriptorIntPair {
     final Descriptor descriptor;
     final int number;
+
 
     DescriptorIntPair(Descriptor descriptor, int number) {
       this.descriptor = descriptor;
       this.number = number;
     }
 
+
     public int hashCode() {
       return descriptor.hashCode() * ((1 << 16) - 1) + number;
     }
+
+
     public boolean equals(Object obj) {
-      if (!(obj instanceof DescriptorIntPair)) return false;
-      DescriptorIntPair other = (DescriptorIntPair)obj;
+      if (!(obj instanceof DescriptorIntPair)) {
+        return false;
+      }
+      DescriptorIntPair other = (DescriptorIntPair) obj;
       return descriptor == other.descriptor && number == other.number;
     }
   }
