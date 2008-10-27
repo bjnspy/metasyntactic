@@ -22,29 +22,30 @@
 
 @implementation MetacriticScoreProvider
 
-@synthesize model;
-
 - (void) dealloc {
-    self.model = nil;
     [super dealloc];
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
-    if (self = [super init]) {
-        self.model = model_;
+- (id) initWithCache:(ScoreCache*) cache_ {
+    if (self = [super initWithCache:cache_]) {
     }
-
+    
     return self;
 }
 
 
-+ (MetacriticScoreProvider*) downloaderWithModel:(NowPlayingModel*) model {
-    return [[[MetacriticScoreProvider alloc] initWithModel:model] autorelease];
++ (MetacriticScoreProvider*) providerWithCache:(ScoreCache*) cache {
+    return [[[MetacriticScoreProvider alloc] initWithCache:cache] autorelease];
 }
 
 
-+ (NSString*) lookupServerHash {
+- (NSString*) providerName {
+    return @"Metacritic";
+}
+
+
+- (NSString*) lookupServerHash {
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true", [Application host]];
     NSString* value = [NetworkUtilities stringWithContentsOfAddress:address
                                                           important:YES];
@@ -52,42 +53,37 @@
 }
 
 
-- (NSDictionary*) lookupMovieListings {
+- (NSDictionary*) lookupServerScores {
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml", [Application host]];
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address
                                                                  important:YES];
-
+    
     if (resultElement != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-
+        
         for (XmlElement* movieElement in resultElement.children) {
             NSString* title =    [movieElement attributeValue:@"title"];
             NSString* link =     [movieElement attributeValue:@"link"];
             NSString* synopsis = [movieElement attributeValue:@"synopsis"];
             NSString* score =    [movieElement attributeValue:@"score"];
-
+            
             if ([score isEqual:@"xx"]) {
                 score = @"-1";
             }
-
+            
             MovieRating* extraInfo = [MovieRating ratingWithTitle:title
-                                                                           synopsis:synopsis
-                                                                              score:score
-                                                                           provider:@"metacritic"
-                                                                         identifier:link];
-
+                                                         synopsis:synopsis
+                                                            score:score
+                                                         provider:@"metacritic"
+                                                       identifier:link];
+            
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-
+        
         return ratings;
     }
-
+    
     return nil;
-}
-
-
-- (NSString*) ratingsFile {
-    return [Application ratingsFile:[self.model.scoreProvider objectAtIndex:1]];
 }
 
 

@@ -49,7 +49,6 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
-        [FileUtilities createDirectory:[self providerFolder]];
         self.performancesData = [NSMutableDictionary dictionary];
     }
 
@@ -58,27 +57,27 @@
 
 
 - (NSString*) performancesFolder {
-    return [[self providerFolder] stringByAppendingPathComponent:@"Performances"];
+    return [[Application dataFolder] stringByAppendingPathComponent:@"Performances"];
 }
 
 
 - (NSString*) moviesFile {
-    return [[self providerFolder] stringByAppendingPathComponent:@"Movies.plist"];
+    return [[Application dataFolder] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
 
 - (NSString*) theatersFile {
-    return [[self providerFolder] stringByAppendingPathComponent:@"Theaters.plist"];
+    return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
 }
 
 
 - (NSString*) synchronizationFile {
-    return [[self providerFolder] stringByAppendingPathComponent:@"Synchronization.plist"];
+    return [[Application dataFolder] stringByAppendingPathComponent:@"Synchronization.plist"];
 }
 
 
 - (NSString*) lastLookupDateFile {
-    return [[self providerFolder] stringByAppendingPathComponent:@"lastLookupDate"];
+    return [[Application dataFolder] stringByAppendingPathComponent:@"lastLookupDate"];
 }
 
 
@@ -241,18 +240,6 @@
     }
 
     return theatersData;
-}
-
-
-- (NSString*) providerFolder {
-    NSAssert(false, @"Someone improperly subclassed!");
-    return nil;
-}
-
-
-- (void) invalidateDiskCache {
-    [[NSFileManager defaultManager] removeItemAtPath:self.providerFolder error:NULL];
-    [FileUtilities createDirectory:self.providerFolder];
 }
 
 

@@ -76,7 +76,7 @@
 
 
 - (void) setRottenTomatoesScore:(Movie*) movie {
-    int score = [model scoreForMovie:movie];
+    int score = [model scoreValueForMovie:movie];
 
     if (score >= 0 && score <= 100) {
         if (score >= 60) {
@@ -120,7 +120,7 @@
 
 
 - (void) setBasicSquareScore:(Movie*) movie {
-    int score = [model scoreForMovie:movie];
+    int score = [model scoreValueForMovie:movie];
 
     if (score >= 0 && score <= 100) {
         CGRect frame = CGRectMake(10, 7, 30, 30);

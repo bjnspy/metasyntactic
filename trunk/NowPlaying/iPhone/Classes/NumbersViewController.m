@@ -12,6 +12,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+#if 0
+
 #import "NumbersViewController.h"
 
 #import "ColorCache.h"
@@ -362,5 +364,6 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
     return [NSString stringWithFormat:@"#%d", section + 1];
 }
 
-
 @end
+
+#endif

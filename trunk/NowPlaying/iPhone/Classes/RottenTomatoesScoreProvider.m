@@ -22,67 +22,63 @@
 
 @implementation RottenTomatoesScoreProvider
 
-@synthesize model;
-
 - (void) dealloc {
-    self.model = nil;
     [super dealloc];
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
-    if (self = [super init]) {
-        self.model = model_;
+- (id) initWithCache:(ScoreCache*) cache_ {
+    if (self = [super initWithCache:cache_]) {
     }
-
+    
     return self;
 }
 
 
-+ (RottenTomatoesScoreProvider*) downloaderWithModel:(NowPlayingModel*) model {
-    return [[[RottenTomatoesScoreProvider alloc] initWithModel:model] autorelease];
++ (RottenTomatoesScoreProvider*) providerWithCache:(ScoreCache*) cache {
+    return [[[RottenTomatoesScoreProvider alloc] initWithCache:cache] autorelease];
 }
 
 
-+ (NSString*) lookupServerHash {
+- (NSString*) providerName {
+    return @"RottenTomatoes";
+}
+
+
+- (NSString*) lookupServerHash {
     NSString* value = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true", [Application host]]
                                                           important:YES];
     return value;
 }
 
 
-- (NSDictionary*) lookupMovieListings {
+- (NSDictionary*) lookupServerScores {
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=rottentomates&format=xml", [Application host]]
                                                                  important:YES];
-
+    
     if (resultElement != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-
+        
         for (XmlElement* movieElement in resultElement.children) {
             NSString* title =    [movieElement attributeValue:@"title"];
             NSString* link =     [movieElement attributeValue:@"link"];
             NSString* synopsis = [movieElement attributeValue:@"synopsis"];
             NSString* score =    [movieElement attributeValue:@"score"];
-
+            
             MovieRating* extraInfo = [MovieRating ratingWithTitle:title
-                                                                           synopsis:synopsis
-                                                                              score:score
-                                                                           provider:@"rottentomatoes"
-                                                                         identifier:link];
-
-
+                                                         synopsis:synopsis
+                                                            score:score
+                                                         provider:@"rottentomatoes"
+                                                       identifier:link];
+            
+            
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-
+        
         return ratings;
     }
-
+    
     return nil;
-}
-
-
-- (NSString*) ratingsFile {
-    return [Application ratingsFile:[self.model.scoreProvider objectAtIndex:0]];
 }
 
 

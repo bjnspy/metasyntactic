@@ -12,18 +12,11 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface ReviewCache : NSObject {
-    NowPlayingModel* model;
-    NSLock* gate;
+#import "AbstractScoreProvider.h"
+
+@interface NoneScoreProvider : AbstractScoreProvider {
 }
 
-@property (assign) NowPlayingModel* model;
-@property (retain) NSLock* gate;
-
-+ (ReviewCache*) cacheWithModel:(NowPlayingModel*) model;
-
-- (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider;
-
-- (NSArray*) reviewsForMovie:(NSString*) movieTitle;
++ (NoneScoreProvider*) providerWithCache:(ScoreCache*) cache;
 
 @end

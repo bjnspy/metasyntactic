@@ -40,11 +40,6 @@
 }
 
 
-- (NSString*) providerFolder {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Google"];
-}
-
-
 - (NSDictionary*) processMovies:(NSArray*) movies {
     NSMutableDictionary* movieIdToMovieMap = [NSMutableDictionary dictionary];
 

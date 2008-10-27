@@ -12,15 +12,11 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface RottenTomatoesScoreProvider : NSObject {
-    NowPlayingModel* model;
+#import "AbstractScoreProvider.h"
+
+@interface RottenTomatoesScoreProvider : AbstractScoreProvider {
 }
 
-@property (retain) NowPlayingModel* model;
-
-+ (RottenTomatoesScoreProvider*) downloaderWithModel:(NowPlayingModel*) model;
-
-+ (NSString*) lookupServerHash;
-- (NSDictionary*) lookupMovieListings;
++ (RottenTomatoesScoreProvider*) providerWithCache:(ScoreCache*) cache;
 
 @end
