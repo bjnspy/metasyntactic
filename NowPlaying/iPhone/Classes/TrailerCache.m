@@ -93,7 +93,7 @@
             [moviesWithoutTrailers addObject:movie];
         } else {
             NSTimeInterval span = downloadDate.timeIntervalSinceNow;
-            if (ABS(span) > (2 * ONE_DAY)) {
+            if (ABS(span) > (3 * ONE_DAY)) {
                 [moviesWithTrailers addObject:movie];
             }
         }
@@ -141,6 +141,7 @@
                                                                    important:NO];
     if (trailersString == nil) {
         // didn't get any data.  ignore this for now.
+        NSLog(@"", nil);
         return;
     }
 
