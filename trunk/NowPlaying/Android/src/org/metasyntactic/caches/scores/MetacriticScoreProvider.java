@@ -44,7 +44,7 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
 
 
   @Override
-  protected Map<String, Score> lookupServerRatings() {
+  protected Map<String, Score> lookupServerScores() {
 
     String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml";
     Element resultElement = NetworkUtilities.downloadXml(address, true);

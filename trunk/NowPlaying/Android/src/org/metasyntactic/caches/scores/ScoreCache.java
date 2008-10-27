@@ -25,6 +25,7 @@ public class ScoreCache {
   private final ScoreProvider rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(this);
   private final ScoreProvider metacriticScoreProvider = new MetacriticScoreProvider(this);
   private final ScoreProvider googleScoreProvider = new GoogleScoreProvider(this);
+  private final ScoreProvider noneScoreProvider = new NoneScoreProvider(this);
 
   private final NowPlayingModel model;
 
@@ -38,6 +39,7 @@ public class ScoreCache {
     rottenTomatoesScoreProvider.createDirectory();
     metacriticScoreProvider.createDirectory();
     googleScoreProvider.createDirectory();
+    noneScoreProvider.createDirectory();
   }
 
 
@@ -48,6 +50,8 @@ public class ScoreCache {
       return metacriticScoreProvider;
     } else if (model.getScoreType() == ScoreType.RottenTomatoes) {
       return rottenTomatoesScoreProvider;
+    } else if (model.getScoreType() == ScoreType.None) {
+      return noneScoreProvider;
     } else {
       throw new RuntimeException();
     }

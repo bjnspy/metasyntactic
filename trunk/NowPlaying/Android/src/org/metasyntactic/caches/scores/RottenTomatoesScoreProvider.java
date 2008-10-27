@@ -45,7 +45,7 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
 
 
   @Override
-  protected Map<String, Score> lookupServerRatings() {
+  protected Map<String, Score> lookupServerScores() {
     Element resultElement =
         NetworkUtilities.downloadXml(
             "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml",
