@@ -33,17 +33,19 @@ import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public abstract class AbstractScoreProvider implements ScoreProvider {
-  private final ScoreCache parentCache;
   private final Object lock = new Object();
 
-  private Map<String, Score> scores = Collections.emptyMap();
-  private String hash = "";
+  private final ScoreCache parentCache;
+
+  private Map<String, Score> scores;
+  private String hash;
 
 
   private final Object movieMapLock = new Object();
-  private List<Movie> movies = Collections.emptyList();
+  private List<Movie> movies;
   private Map<String, String> movieMap;
 
+  private final File providerDirectory = new File(Application.scoresDirectory, getProviderName());
   private final File reviewsDirectory = new File(Application.reviewsDirectory, getProviderName());
 
 
@@ -55,6 +57,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
 
   public void createDirectory() {
+    providerDirectory.mkdirs();
     reviewsDirectory.mkdirs();
   }
 
@@ -68,17 +71,17 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
 
   private File scoresFile() {
-    return new File(Application.scoresDirectory, getProviderName());
+    return new File(providerDirectory, "Scores");
   }
 
 
   private File hashFile() {
-    return new File(Application.scoresDirectory, getProviderName() + "-Hash");
+    return new File(providerDirectory, "Hash");
   }
 
 
   private File movieMapFile() {
-    return new File(Application.scoresDirectory, getProviderName() + "-MovieMap");
+    return new File(providerDirectory, "MovieMap");
   }
 
 
@@ -101,8 +104,8 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
 
-  private Map<String,String> loadMovieMap() {
-    Map<String,String> result = FileUtilities.readStringToStringMap(movieMapFile());
+  private Map<String, String> loadMovieMap() {
+    Map<String, String> result = FileUtilities.readStringToStringMap(movieMapFile());
     if (result == null) {
       return Collections.emptyMap();
     }
@@ -126,7 +129,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
 
-  private Map<String,String> getMovieMap() {
+  private Map<String, String> getMovieMap() {
     if (movieMap == null) {
       movieMap = loadMovieMap();
     }
@@ -179,8 +182,11 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
 
   private void updateScoresBackgroundEntryPointWorker() {
-    if (FileUtilities.tooSoon(hashFile())) {
-      return;
+    File hashFile = hashFile();
+    if (hashFile.exists()) {
+      if (Math.abs(hashFile.lastModified() - new Date().getTime()) < Constants.ONE_DAY) {
+        return;
+      }
     }
 
     String localHash = getHash();
@@ -230,10 +236,10 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   private void reportResultOnMainThread(String hash, Map<String, Score> scores) {
     this.hash = hash;
     this.scores = scores;
-    movieMap = Collections.emptyMap();
+    movieMap = null;
     movies = null;
 
-    Application.refresh();
+    Application.refresh(true);
 
     updateReviews();
   }

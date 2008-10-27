@@ -343,11 +343,12 @@ static NSString* titles_key = @"Titles";
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-    NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
-
-    if (trailers.count) {
-        [FileUtilities writeObject:trailers toFile:trailersFile];
+    if (trailersString == nil) {
+        return;
     }
+    
+    NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
+    [FileUtilities writeObject:trailers toFile:trailersFile];
 }
 
 
