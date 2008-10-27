@@ -44,8 +44,6 @@
 + (NSString*) upcomingSynopsesFolder;
 + (NSString*) upcomingTrailersFolder;
 
-+ (NSString*) movieMapFile;
-
 + (void) resetFolders;
 
 + (NSString*) uniqueTemporaryFolder;
