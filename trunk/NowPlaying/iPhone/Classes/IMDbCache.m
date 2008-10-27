@@ -73,24 +73,44 @@
 }
 
 
-- (void) backgroundEntryPoint:(NSArray*) movies {
-    for (Movie* movie in movies) {
-        if (movie.imdbAddress.length > 0) {
-            continue;
+- (void) downloadAddress:(Movie*) movie {
+    if (movie.imdbAddress.length > 0) {
+        // don't even bother if the movie has an imdb address in it
+        return;
+    }
+    
+    NSString* path = [self movieFilePath:movie];
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path
+                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    if (lastLookupDate != nil) {
+        NSString* value = [FileUtilities readObject:path];
+        if (value.length > 0) {
+            // we have a real imdb value for this movie
+            return;
         }
         
-        NSString* path = [self movieFilePath:movie];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            continue;
+        // we have a sentinel.  only update if it's been long enough
+        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
+            return;
         }
+    }
+    
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+    NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    if (imdbAddress == nil) {
+        return;
+    }
 
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-        NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    // write down the response (even if it is empty).  An empty value will
+    // ensure that we don't update this entry too often.
+    [FileUtilities writeObject:imdbAddress toFile:path];
+    [NowPlayingAppDelegate refresh];
+}
 
-        if (imdbAddress.length > 0) {
-            [FileUtilities writeObject:imdbAddress toFile:path];
-            [NowPlayingAppDelegate refresh];
-        }
+
+- (void) backgroundEntryPoint:(NSArray*) movies {
+    for (Movie* movie in movies) {
+        [self downloadAddress:movie];
     }
 }
 
@@ -98,6 +118,5 @@
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
     return [FileUtilities readObject:[self movieFilePath:movie]];
 }
-
 
 @end
