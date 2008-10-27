@@ -28,6 +28,7 @@
     // Mapping from google movie title to score provider title
     NSDictionary* movieMapData;
     
+    NSString* providerDirectory;
     NSString* reviewsDirectory;
 }
 
@@ -40,6 +41,7 @@
 @property (retain) NSArray* movies;
 @property (retain) NSDictionary* movieMapData;
 
+@property (retain) NSString* providerDirectory;
 @property (retain) NSString* reviewsDirectory;
 
 - (id) initWithCache:(ScoreCache*) cache;
