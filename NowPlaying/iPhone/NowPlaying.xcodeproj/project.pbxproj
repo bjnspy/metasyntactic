@@ -15,7 +15,6 @@
 		740224550E53F323006C58A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		740244300E77926C00ECE1B4 /* DownDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442E0E77926C00ECE1B4 /* DownDisclosureTriangle.png */; };
 		740244310E77926C00ECE1B4 /* RightDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */; };
-		740244B70E783D4F00ECE1B4 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740244B60E783D4F00ECE1B4 /* IMDbCache.m */; };
 		740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
 		740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246610E785A9000ECE1B4 /* BackgroundInvocation.m */; };
 		740246790E785B0000ECE1B4 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246780E785B0000ECE1B4 /* Invocation.m */; };
@@ -77,6 +76,7 @@
 		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
+		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
 		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
 		748F1D390EB513D300DEB5BB /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */; };
 		748F1D3A0EB513D300DEB5BB /* MetacriticScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D340EB513D300DEB5BB /* MetacriticScoreProvider.m */; };
@@ -223,8 +223,6 @@
 		7402245B0E53F35A006C58A2 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7402442E0E77926C00ECE1B4 /* DownDisclosureTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DownDisclosureTriangle.png; path = Resources/DownDisclosureTriangle.png; sourceTree = "<group>"; };
 		7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightDisclosureTriangle.png; path = Resources/RightDisclosureTriangle.png; sourceTree = "<group>"; };
-		740244B50E783D4F00ECE1B4 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
-		740244B60E783D4F00ECE1B4 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
 		740245670E7848BF00ECE1B4 /* ActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsView.h; sourceTree = "<group>"; };
 		740245680E7848BF00ECE1B4 /* ActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsView.m; sourceTree = "<group>"; };
 		740246600E785A9000ECE1B4 /* BackgroundInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation.h; sourceTree = "<group>"; };
@@ -361,6 +359,8 @@
 		747CA1C00E8594C300A09E89 /* LocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCache.m; sourceTree = "<group>"; };
 		748379C90DD0169E00DC3B80 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		748379CA0DD0169E00DC3B80 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		748AB0300EB61C2C004918A6 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
+		748AB0310EB61C2C004918A6 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		748F1D310EB513D300DEB5BB /* GoogleScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleScoreProvider.h; sourceTree = "<group>"; };
 		748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleScoreProvider.m; sourceTree = "<group>"; };
@@ -940,6 +940,8 @@
 		7474FE910E6359BC00BAA43D /* Caches */ = {
 			isa = PBXGroup;
 			children = (
+				748AB0300EB61C2C004918A6 /* IMDbCache.h */,
+				748AB0310EB61C2C004918A6 /* IMDbCache.m */,
 				749A52D20E88522500C05A34 /* AddressLocationCache.h */,
 				749A52D30E88522500C05A34 /* AddressLocationCache.m */,
 				747CA1BF0E8594C300A09E89 /* LocationCache.h */,
@@ -958,8 +960,6 @@
 				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
-				740244B50E783D4F00ECE1B4 /* IMDbCache.h */,
-				740244B60E783D4F00ECE1B4 /* IMDbCache.m */,
 				74AD66330E92D49500A01FD5 /* DVDCache.h */,
 				74AD66340E92D49500A01FD5 /* DVDCache.m */,
 			);
@@ -1402,7 +1402,6 @@
 				749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */,
 				749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */,
 				749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */,
-				740244B70E783D4F00ECE1B4 /* IMDbCache.m in Sources */,
 				740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */,
 				740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */,
 				740246790E785B0000ECE1B4 /* Invocation.m in Sources */,
@@ -1473,6 +1472,7 @@
 				748F1D3F0EB513E100DEB5BB /* ScoreProviderViewController.m in Sources */,
 				748F1E5A0EB5267D00DEB5BB /* AbstractScoreProvider.m in Sources */,
 				748F1FAC0EB5418D00DEB5BB /* NoneScoreProvider.m in Sources */,
+				748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

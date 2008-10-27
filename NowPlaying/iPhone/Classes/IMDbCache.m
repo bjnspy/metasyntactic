@@ -75,6 +75,10 @@
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
     for (Movie* movie in movies) {
+        if (movie.imdbAddress.length > 0) {
+            continue;
+        }
+        
         NSString* path = [self movieFilePath:movie];
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
             continue;
