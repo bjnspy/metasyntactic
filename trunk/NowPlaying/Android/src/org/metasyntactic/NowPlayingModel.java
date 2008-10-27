@@ -48,9 +48,11 @@ public class NowPlayingModel {
   private final static String UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY = "upcomingMoviesSelectedSortIndex";
   private final static String SCORE_TYPE_KEY = "scoreType";
 
+  // SharedPreferences is not threadsafe.  so we need to lock when using it
+  private final Object preferencesLock = new Object();
+  private final SharedPreferences preferences;
 
   private final Context context;
-  private final SharedPreferences preferences;
 
   private final DataProvider dataProvider = new DataProvider(this);
   private final ScoreCache scoreCache = new ScoreCache(this);
@@ -123,145 +125,177 @@ public class NowPlayingModel {
     updateTrailerCache();
     updatePosterCache();
     scoreCache.update();
-    
+
   }
 
 
   public String getUserLocation() {
-    return preferences.getString(USER_LOCATION_KEY, "");
+    synchronized (preferencesLock) {
+      return preferences.getString(USER_LOCATION_KEY, "");
+    }
   }
 
 
   public void setUserLocation(String userLocation) {
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putString(USER_LOCATION_KEY, userLocation);
-    editor.commit();
+    synchronized (preferencesLock) {
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putString(USER_LOCATION_KEY, userLocation);
+      editor.commit();
+    }
   }
 
 
   public int getSearchDistance() {
-    return preferences.getInt(SEARCH_DISTANCE_KEY, 5);
+    synchronized (preferencesLock) {
+      return preferences.getInt(SEARCH_DISTANCE_KEY, 5);
+    }
   }
 
 
   public void setSearchDistance(int searchDistance) {
-    searchDistance = Math.min(Math.max(searchDistance, 1), 50);
+    synchronized (preferencesLock) {
+      searchDistance = Math.min(Math.max(searchDistance, 1), 50);
 
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putInt(SEARCH_DISTANCE_KEY, searchDistance);
-    editor.commit();
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putInt(SEARCH_DISTANCE_KEY, searchDistance);
+      editor.commit();
+    }
   }
 
 
   public Date getSearchDate() {
-    String value = preferences.getString(SEARCH_DATE_KEY, "");
-    if ("".equals(value)) {
-      return DateUtilities.getToday();
-    }
+    synchronized (preferencesLock) {
+      String value = preferences.getString(SEARCH_DATE_KEY, "");
+      if ("".equals(value)) {
+        return DateUtilities.getToday();
+      }
 
-    SimpleDateFormat format = new SimpleDateFormat();
-    Date result = null;
-    try {
-      result = format.parse(value);
-    } catch (ParseException e) {
-      throw new RuntimeException(e);
-    }
-    if (result.before(new Date())) {
-      result = DateUtilities.getToday();
-      setSearchDate(result);
-    }
+      SimpleDateFormat format = new SimpleDateFormat();
+      Date result = null;
+      try {
+        result = format.parse(value);
+      } catch (ParseException e) {
+        throw new RuntimeException(e);
+      }
+      if (result.before(new Date())) {
+        result = DateUtilities.getToday();
+        setSearchDate(result);
+      }
 
-    return result;
+      return result;
+    }
   }
 
 
   public void setSearchDate(Date searchDate) {
-    SimpleDateFormat format = new SimpleDateFormat();
-    String result = format.format(searchDate);
+    synchronized (preferencesLock) {
+      SimpleDateFormat format = new SimpleDateFormat();
+      String result = format.format(searchDate);
 
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putString(SEARCH_DATE_KEY, result);
-    editor.commit();
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putString(SEARCH_DATE_KEY, result);
+      editor.commit();
+    }
   }
 
 
   public int getSelectedTabIndex() {
-    return preferences.getInt(SELECTED_TAB_INDEX_KEY, 0);
+    synchronized (preferencesLock) {
+      return preferences.getInt(SELECTED_TAB_INDEX_KEY, 0);
+    }
   }
 
 
   public void setSelectedTabIndex(int index) {
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putInt(SELECTED_TAB_INDEX_KEY, index);
-    editor.commit();
+    synchronized (preferencesLock) {
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putInt(SELECTED_TAB_INDEX_KEY, index);
+      editor.commit();
+    }
 
     Application.refresh();
   }
 
 
   public int getAllMoviesSelecetedSortIndex() {
-    return preferences.getInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
+    synchronized (preferencesLock) {
+      return preferences.getInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
+    }
   }
 
 
   public void setAllMoviesSelectedSortIndex(int index) {
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, index);
-    editor.commit();
+    synchronized (preferencesLock) {
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, index);
+      editor.commit();
+    }
 
     Application.refresh();
   }
 
 
   public int getAllTheatersSelectedSortIndex() {
-    return preferences.getInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, 0);
+    synchronized (preferencesLock) {
+      return preferences.getInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, 0);
+    }
   }
 
 
   public void setAllTheatersSelectedSortIndex(int index) {
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, index);
-    editor.commit();
+    synchronized (preferencesLock) {
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, index);
+      editor.commit();
+    }
 
     Application.refresh();
   }
 
 
   public int getUpcomingMoviesSelectedSortIndex() {
-    return preferences.getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
+    synchronized (preferencesLock) {
+      return preferences.getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
+    }
   }
 
 
   public void setUpcomingMoviesSelectedSortIndex(int index) {
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
-    editor.commit();
+    synchronized (preferencesLock) {
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
+      editor.commit();
+    }
 
     Application.refresh();
   }
 
 
   public ScoreType getScoreType() {
-    String value = preferences.getString(SCORE_TYPE_KEY, null);
-    if (value == null) {
-      return ScoreType.RottenTomatoes;
-    }
+    synchronized (preferencesLock) {
+      String value = preferences.getString(SCORE_TYPE_KEY, null);
+      if (value == null) {
+        return ScoreType.RottenTomatoes;
+      }
 
-    return ScoreType.valueOf(value);
+      return ScoreType.valueOf(value);
+    }
   }
 
 
   public void setScoreType(ScoreType scoreType) {
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putString(SCORE_TYPE_KEY, scoreType.toString());
-    editor.commit();
+    synchronized (preferencesLock) {
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.putString(SCORE_TYPE_KEY, scoreType.toString());
+      editor.commit();
+    }
   }
 
 
   public List<Movie> getMovies() {
     return dataProvider.getMovies();
-  }  
-  
+  }
+
 
   public List<Theater> getTheaters() {
     return dataProvider.getTheaters();
