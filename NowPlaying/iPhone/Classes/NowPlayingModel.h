@@ -131,7 +131,7 @@ NSInteger compareTheatersByName(id t1, id t2, void *context);
 NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 - (NSString*) synopsisForMovie:(Movie*) movie;
-- (MovieRating*) scoreForMovie:(Movie*) movie;
+- (Score*) scoreForMovie:(Movie*) movie;
 - (NSInteger) scoreValueForMovie:(Movie*) movie;
 
 - (NSArray*) trailersForMovie:(Movie*) movie;

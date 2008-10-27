@@ -14,7 +14,7 @@
 
 @protocol ScoreProvider
 - (NSDictionary*) scores;
-- (MovieRating*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
+- (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies;
 - (void) update;
 - (void) createDirectory;

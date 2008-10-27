@@ -19,7 +19,7 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "Location.h"
-#import "MovieRating.h"
+#import "Score.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "ScoreCache.h"
@@ -117,7 +117,7 @@
                     score = movieProto.score;
                 }
 
-                MovieRating* info = [MovieRating ratingWithTitle:title
+                Score* info = [Score scoreWithTitle:title
                                                         synopsis:@""
                                                            score:[NSString stringWithFormat:@"%d", score]
                                                         provider:@"google"

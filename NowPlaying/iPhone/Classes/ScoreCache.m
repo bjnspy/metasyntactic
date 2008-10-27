@@ -18,7 +18,7 @@
 #import "FileUtilities.h"
 #import "GoogleScoreProvider.h"
 #import "MetacriticScoreProvider.h"
-#import "MovieRating.h"
+#import "Score.h"
 #import "NoneScoreProvider.h"
 #import "NowPlayingModel.h"
 #import "RottenTomatoesScoreProvider.h"
@@ -76,7 +76,7 @@
 }
 
 
-- (MovieRating*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
+- (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
     return [self.currentScoreProvider scoreForMovie:movie inMovies:movies];
 }
 

@@ -49,7 +49,7 @@
 @class MovieDetailsViewController;
 @class MovieNumbers;
 @class MovieOverviewCell;
-@class MovieRating;
+@class Score;
 @class MovieShowtimesCell;
 @class MoviesNavigationController;
 @class MovieTitleCell;

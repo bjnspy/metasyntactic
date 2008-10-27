@@ -28,7 +28,7 @@
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-#import "MovieRating.h"
+#import "Score.h"
 #import "NowPlayingAppDelegate.h"
 #import "NumbersCache.h"
 #import "PosterCache.h"
@@ -805,13 +805,13 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 
-- (MovieRating*) scoreForMovie:(Movie*) movie {
+- (Score*) scoreForMovie:(Movie*) movie {
     return [scoreCache scoreForMovie:movie inMovies:self.movies];
 }
 
 
 - (NSInteger) scoreValueForMovie:(Movie*) movie {
-    MovieRating* score = [self scoreForMovie:movie];
+    Score* score = [self scoreForMovie:movie];
     if (score == nil) {
         return -1;
     }

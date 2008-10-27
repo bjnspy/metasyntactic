@@ -33,7 +33,7 @@
 		740E7F070DCFEC440066FCE5 /* ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */; };
 		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
 		741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
-		7413718A0E88E79C00CF4900 /* MovieRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 741371890E88E79C00CF4900 /* MovieRating.m */; };
+		7413718A0E88E79C00CF4900 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 741371890E88E79C00CF4900 /* Score.m */; };
 		741373F30E89CF1B00CF4900 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 741373F20E89CF1B00CF4900 /* Search.png */; };
 		741377B10E64765000404519 /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741377B00E64765000404519 /* TheaterNameCell.m */; };
 		742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
@@ -258,8 +258,8 @@
 		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		741111520DFCF61900B94FB5 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
 		741111530DFCF61900B94FB5 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
-		741371880E88E79C00CF4900 /* MovieRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieRating.h; sourceTree = "<group>"; };
-		741371890E88E79C00CF4900 /* MovieRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieRating.m; sourceTree = "<group>"; };
+		741371880E88E79C00CF4900 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		741371890E88E79C00CF4900 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		741373F20E89CF1B00CF4900 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Search.png; path = Resources/Search.png; sourceTree = "<group>"; };
 		741377AF0E64765000404519 /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
 		741377B00E64765000404519 /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
@@ -639,8 +639,8 @@
 				746A01420DC819270079D89B /* Movie.m */,
 				746A02030DC819430079D89B /* Theater.h */,
 				746A02040DC819430079D89B /* Theater.m */,
-				741371880E88E79C00CF4900 /* MovieRating.h */,
-				741371890E88E79C00CF4900 /* MovieRating.m */,
+				741371880E88E79C00CF4900 /* Score.h */,
+				741371890E88E79C00CF4900 /* Score.m */,
 				743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */,
 				743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */,
 				74EC04F30DD2B704006953A4 /* Location.h */,
@@ -1413,7 +1413,7 @@
 				747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */,
 				747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */,
 				749A52D40E88522500C05A34 /* AddressLocationCache.m in Sources */,
-				7413718A0E88E79C00CF4900 /* MovieRating.m in Sources */,
+				7413718A0E88E79C00CF4900 /* Score.m in Sources */,
 				744245B90E89DA0500ACDBCF /* SearchViewController.m in Sources */,
 				744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */,
 				744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */,

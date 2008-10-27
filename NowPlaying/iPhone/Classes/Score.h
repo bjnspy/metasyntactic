@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface MovieRating : NSObject {
+@interface Score : NSObject {
     NSString* canonicalTitle;
     NSString* synopsis;
     NSString* score;
@@ -26,12 +26,12 @@
 @property (copy) NSString* provider;
 @property (copy) NSString* identifier;
 
-+ (MovieRating*) ratingWithDictionary:(NSDictionary*) dictionary;
-+ (MovieRating*) ratingWithTitle:(NSString*) title
-                                synopsis:(NSString*) synopsis
-                                   score:(NSString*) score
-                                provider:(NSString*) provider
-                              identifier:(NSString*) identifier;
++ (Score*) scoreWithDictionary:(NSDictionary*) dictionary;
++ (Score*) scoreWithTitle:(NSString*) title
+                 synopsis:(NSString*) synopsis
+                    score:(NSString*) score
+                 provider:(NSString*) provider
+               identifier:(NSString*) identifier;
 
 - (NSDictionary*) dictionary;
 

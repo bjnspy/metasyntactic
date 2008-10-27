@@ -15,7 +15,7 @@
 #import "MetacriticScoreProvider.h"
 
 #import "Application.h"
-#import "MovieRating.h"
+#import "Score.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "XmlElement.h"
@@ -71,7 +71,7 @@
                 score = @"-1";
             }
             
-            MovieRating* extraInfo = [MovieRating ratingWithTitle:title
+            Score* extraInfo = [Score scoreWithTitle:title
                                                          synopsis:synopsis
                                                             score:score
                                                          provider:@"metacritic"
