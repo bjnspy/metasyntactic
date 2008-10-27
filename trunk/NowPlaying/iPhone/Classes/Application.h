@@ -44,7 +44,6 @@
 + (NSString*) upcomingTrailersFolder;
 
 + (NSString*) movieMapFile;
-+ (NSString*) upcomingMoviesIndexFile;
 
 + (void) resetFolders;
 

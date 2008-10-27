@@ -27,8 +27,7 @@
 
 + (UpcomingCache*) cache;
 
-- (void) updateMoviesList;
-- (void) updateMovieDetails;
+- (void) update;
 
 - (NSArray*) upcomingMovies;
 
