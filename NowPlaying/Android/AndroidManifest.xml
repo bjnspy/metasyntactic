@@ -19,9 +19,16 @@
         
         <activity android:label="@string/app_name"
             android:name="AllMoviesActivity"
-            >
-            
+            >            
         </activity>
+        
+      
+        
+        <activity android:label="@string/app_name"
+            android:name="SettingsActivity"
+            >            
+        </activity>
+        
         <service
             android:label="@string/app_name"
             android:name="NowPlayingControllerService"/>

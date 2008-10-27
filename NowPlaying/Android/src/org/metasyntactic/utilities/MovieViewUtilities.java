@@ -5,6 +5,9 @@ import android.graphics.drawable.Drawable;
 
 import org.metasyntactic.R;
 import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Movie;
+
+import java.util.Comparator;
 
 public class MovieViewUtilities {
 
@@ -96,5 +99,7 @@ public class MovieViewUtilities {
         }
         return scoreDrawable;
     }
+    
+    
 
 }

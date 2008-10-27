@@ -15,30 +15,39 @@
 package org.metasyntactic;
 
 import android.app.TabActivity;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
+import android.util.Log;
 import android.view.View;
 import android.widget.TabHost;
-import org.metasyntactic.caches.scores.ScoreType;
+import android.widget.Toast;
+
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
 import org.metasyntactic.views.AllTheatersView;
 import org.metasyntactic.views.UpcomingMoviesView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class NowPlayingActivity extends TabActivity {
+    
+    // This global instance is used in NowPlayingModel only.
     public static NowPlayingActivity instance;
 
-    private NowPlayingControllerWrapper controller;
+    private static NowPlayingControllerWrapper controller;
     // private AllMoviesView allMoviesView;
     private AllTheatersView allTheatersView;
     private UpcomingMoviesView upcomingMoviesView;
     private List<Movie> movies = new ArrayList<Movie>();
-
+    private TabHost mTabHost;
 
     public List<Movie> getMovies() {
         return movies;
@@ -49,7 +58,9 @@ public class NowPlayingActivity extends TabActivity {
         new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                   
                 refresh();
+       
             }
         };
 
@@ -82,15 +93,10 @@ public class NowPlayingActivity extends TabActivity {
         refresh();
     }
 
-    /*
-     * private TabHost getTabHost() { return getTabHost(); }
-     */
-
-
+    
     public NowPlayingActivity() {
         instance = this;
     }
-
 
     /** Called when the activity is first created. */
     @Override
@@ -107,32 +113,16 @@ public class NowPlayingActivity extends TabActivity {
         if (!bindResult) {
             throw new RuntimeException("Failed to bind to service!");
         }
-
-        final TabHost tabs = getTabHost();
-
+        setContentView(R.layout.tabs);
+         mTabHost = getTabHost();
         allTheatersView = new AllTheatersView(this);
         upcomingMoviesView = new UpcomingMoviesView(this);
 
-        // (todo : mjoshi) move all strings to strings.xml
-        tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator("Movies")
-            .setContent(new Intent(this, AllMoviesActivity.class)));
-
-
-        tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator("Theaters")
-            .setContent(new TabHost.TabContentFactory() {
-                public View createTabContent(String s) {
-                    return allTheatersView;
-                }
-            }));
-
-        tabs.addTab(tabs.newTabSpec("upcoming_tab").setIndicator("Upcoming")
-            .setContent(new TabHost.TabContentFactory() {
-                public View createTabContent(String s) {
-                    return upcomingMoviesView;
-                }
-            }));
-
-        tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+        setUpMoviesTab(mTabHost);
+        setUpTheatersTab(mTabHost);
+        setUpUpcomingTab(mTabHost);
+      
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             public void onTabChanged(String s) {
                 int currentTab = getTabHost().getCurrentTab();
                 controller.setSelectedTabIndex(currentTab);
@@ -140,12 +130,41 @@ public class NowPlayingActivity extends TabActivity {
         });
     }
 
-    public ScoreType getScoreType() {
-        return controller.getScoreType();
+    private void setUpUpcomingTab(final TabHost tabs) {
+        tabs.addTab(tabs.newTabSpec("upcoming_tab").setIndicator(
+            getResources().getString(R.string.upcomingIconLabel),
+            getResources().getDrawable(R.drawable.upcoming)).setContent(
+            new TabHost.TabContentFactory() {
+                public View createTabContent(String s) {
+                    return upcomingMoviesView;
+                }
+            }));
     }
 
-    public Score getScore(Movie movie) {
-        return controller.getScore(movie);
+    private void setUpTheatersTab(final TabHost tabs) {
+        tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator(
+            getResources().getString(R.string.theatersIconLabel),
+            getResources().getDrawable(R.drawable.theatres)).setContent(
+            new TabHost.TabContentFactory() {
+                public View createTabContent(String s) {
+                    return allTheatersView;
+                }
+            }));
+    }
+
+    private void setUpMoviesTab(final TabHost tabs) {
+        tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator(
+            getResources().getString(R.string.moviesIconLabel),
+            getResources().getDrawable(R.drawable.movies)).setContent(
+            new Intent(this, AllMoviesActivity.class)));
+    }
+
+    /** Returns an instance of NowPlayingControllerWrapper 
+     *  associated with this Activity.
+     * @return controller instance of NowPlayingControllerWrapper
+     */
+    public NowPlayingControllerWrapper getController() {
+        return controller;
     }
 
 
@@ -170,13 +189,67 @@ public class NowPlayingActivity extends TabActivity {
         super.onPause();
     }
 
-
-    private void refresh() {
-
-        // if (movies.hashCode() != controller.getMovies().hashCode()) {
+    /** Updates display of the list of movies. */
+    public void refresh() {
         movies = controller.getMovies();
+        Comparator comparator = MOVIE_ORDER[controller.getAllMoviesSelectedSortIndex()];
+        Collections.sort(movies,comparator);
         AllMoviesActivity.refresh();
-        // }
-
+        
+     
     }
+    
+   
+    // Define comparators for movie listings sort.
+    private static final Comparator<Movie> TITLE_ORDER =
+        new Comparator<Movie>() {
+              public int compare(Movie m1, Movie m2) {
+                 return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
+              }
+    };
+    
+    private static final Comparator<Movie> RELEASE_ORDER =
+        new Comparator<Movie>() {
+              public int compare(Movie m1, Movie m2) {
+                  if (m1.getReleaseDate()== null && m2.getReleaseDate()==null) {
+                      return 0;
+                      }
+                  if (m1.getReleaseDate()!= null && m2.getReleaseDate()!=null) {
+                 return m1.getReleaseDate().compareTo(m2.getReleaseDate());
+                 }
+                 // if m2 is null then m1 is greater
+                 if (m1.getReleaseDate()!=null) {
+                   return 1;
+                 }                 
+                 return -1;
+              }
+    };
+    
+    private static final Comparator<Movie> SCORE_ORDER =
+        new Comparator<Movie>() {
+              public int compare(Movie m1, Movie m2) {
+                  if (controller.getScore(m1) ==null  && controller.getScore(m2)==null) {
+                      return 0;
+                    }
+                  if (controller.getScore(m1)!= null && controller.getScore(m2)!=null) {
+                    return controller.getScore(m1).compareTo(controller.getScore(m2));
+                  }
+                  
+                 // if m2 is null then m1 is greater
+                  if (controller.getScore(m1) !=null) {
+                    return 1;
+                  }                 
+                  
+                  return -1;
+              }
+    };
+    
+    // The order of items in this array should match the 
+    // entries_movie_sort_preference array in res/values/arrays.xml
+    private static final Comparator[] MOVIE_ORDER = {
+        TITLE_ORDER,
+        RELEASE_ORDER,
+        SCORE_ORDER
+    };
+    
 }
