@@ -460,11 +460,7 @@
 
 - (void) downloadReviews:(NSArray*) scores {
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
-    
-    if (location == nil) {
-        return;
-    }
-    
+
     for (Score* score in scores) {
         [self downloadReviews:score location:location];
     }
