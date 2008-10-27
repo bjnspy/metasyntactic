@@ -268,7 +268,7 @@
 }
 
 
-- (void) lookupMissingFavorites:(LookupResult*) lookupResult {
+- (void) updateMissingFavorites:(LookupResult*) lookupResult {
     if (lookupResult == nil) {
         return;
     }
@@ -367,7 +367,7 @@
     
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     LookupResult* result = [self lookupLocation:location theaterNames:nil];
-    [self lookupMissingFavorites:result];
+    [self updateMissingFavorites:result];
 
     [self saveResult:result];
 
