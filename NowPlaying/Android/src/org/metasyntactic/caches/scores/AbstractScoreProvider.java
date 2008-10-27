@@ -42,7 +42,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
   private final Object movieMapLock = new Object();
   private List<Movie> movies = Collections.emptyList();
-  private Map<String, String> movieMap = Collections.emptyMap();
+  private Map<String, String> movieMap;
 
   private final File reviewsDirectory = new File(Application.reviewsDirectory, getProviderName());
 
@@ -67,7 +67,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
 
-  private File ratingsFile() {
+  private File scoresFile() {
     return new File(Application.scoresDirectory, getProviderName());
   }
 
@@ -77,9 +77,14 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
 
+  private File movieMapFile() {
+    return new File(Application.scoresDirectory, getProviderName() + "-MovieMap");
+  }
+
+
   private Map<String, Score> loadScores() {
     Map<String, Score> result =
-        FileUtilities.readStringToPersistableMap(Score.reader, ratingsFile());
+        FileUtilities.readStringToPersistableMap(Score.reader, scoresFile());
     if (result == null) {
       result = Collections.emptyMap();
     }
@@ -96,6 +101,15 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
 
+  private Map<String,String> loadMovieMap() {
+    Map<String,String> result = FileUtilities.readStringToStringMap(movieMapFile());
+    if (result == null) {
+      return Collections.emptyMap();
+    }
+    return result;
+  }
+
+
   public Map<String, Score> getScores() {
     if (scores == null) {
       scores = loadScores();
@@ -109,6 +123,14 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       hash = loadHash();
     }
     return hash;
+  }
+
+
+  private Map<String,String> getMovieMap() {
+    if (movieMap == null) {
+      movieMap = loadMovieMap();
+    }
+    return movieMap;
   }
 
 
@@ -146,8 +168,6 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     long start = System.currentTimeMillis();
     updateScoresBackgroundEntryPointWorker();
     LogUtilities.logTime(getClass(), "Update Scores", start);
-
-    Application.refresh(true);
   }
 
 
@@ -178,19 +198,19 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       return;
     }
 
-    final Map<String, Score> result = lookupServerRatings();
+    final Map<String, Score> result = lookupServerScores();
 
     if (CollectionUtilities.isEmpty(result)) {
       return;
     }
 
-    reportResult(serverHash, result);
     saveResult(serverHash, result);
+    reportResult(serverHash, result);
   }
 
 
   private void saveResult(String serverHash, Map<String, Score> result) {
-    FileUtilities.writeStringToPersistableMap(result, ratingsFile());
+    FileUtilities.writeStringToPersistableMap(result, scoresFile());
 
     // write this file last, to indicate that we are done.
     FileUtilities.writeString(serverHash, hashFile());
@@ -211,13 +231,16 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     this.hash = hash;
     this.scores = scores;
     movieMap = Collections.emptyMap();
+    movies = null;
+
+    Application.refresh();
 
     updateReviews();
   }
 
 
   public Score getScore(final List<Movie> movies, Movie movie) {
-    if (movieMap.isEmpty() || movies != this.movies) {
+    if (movies != this.movies) {
       this.movies = movies;
       final Map<String, Score> scores = getScores();
 
@@ -229,11 +252,11 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, movieMapLock, false);
     }
 
-    return scores.get(movieMap.get(movie.getCanonicalTitle()));
+    return getScores().get(getMovieMap().get(movie.getCanonicalTitle()));
   }
 
 
-  private void regenerateMovieMap(List<Movie> movies, Map<String, Score> scores) {
+  private void regenerateMovieMap(final List<Movie> movies, Map<String, Score> scores) {
     final Map<String, String> result = new HashMap<String, String>();
 
     List<String> titles = new ArrayList<String>(scores.keySet());
@@ -256,11 +279,11 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       return;
     }
 
-    //FileUtilities.writeObject(result, movieMapFile());
+    FileUtilities.writeStringToStringMap(result, movieMapFile());
 
     Runnable runnable = new Runnable() {
       public void run() {
-        reportMovieMap(result);
+        reportMovieMap(result, movies);
       }
     };
 
@@ -268,8 +291,9 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
 
-  private void reportMovieMap(Map<String, String> result) {
-    movieMap = result;
+  private void reportMovieMap(Map<String, String> result, List<Movie> movies) {
+    this.movieMap = result;
+    this.movies = movies;
     Application.refresh();
   }
 
@@ -277,7 +301,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   protected abstract String lookupServerHash();
 
 
-  protected abstract Map<String, Score> lookupServerRatings();
+  protected abstract Map<String, Score> lookupServerScores();
 
 
   private File reviewsFile(String title) {

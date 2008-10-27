@@ -13,6 +13,7 @@
 //limitations under the License.
 
 @protocol DataProvider;
+@protocol ScoreProvider;
 
 @class AbstractDataProvider;
 @class AbstractNavigationController;
@@ -27,17 +28,13 @@
 @class AttributeCell;
 @class AutoResizingCell;
 @class BackgroundInvocation;
-@class NowPlayingAppDelegate;
-@class NowPlayingController;
-@class NowPlayingModel;
-@class ColorCache;
 @class CollapsedMovieDetailsCell;
+@class ColorCache;
 @class CreditsViewController;
 @class DateUtilities;
 @class DifferenceEngine;
 @class EditorViewController;
 @class ExpandedMovieDetailsCell;
-@class MovieRating;
 @class FavoriteTheater;
 @class FontCache;
 @class ImageCache;
@@ -47,16 +44,21 @@
 @class Location;
 @class LocationUtilities;
 @class LookupResult;
-@class MetacriticRatingsDownloader;
+@class MetacriticScoreProvider;
 @class Movie;
 @class MovieDetailsViewController;
-@class MovieOverviewCell;
-@class MovieShowtimesCell;
 @class MovieNumbers;
-@class MovieTitleCell;
+@class MovieOverviewCell;
+@class MovieRating;
+@class MovieShowtimesCell;
 @class MoviesNavigationController;
+@class MovieTitleCell;
 @class MultiDictionary;
 @class NetworkUtilities;
+@class NoneScoreProvider;
+@class NowPlayingAppDelegate;
+@class NowPlayingController;
+@class NowPlayingModel;
 @class NumbersCache;
 @class NumbersNavigationController;
 @class NumbersViewController;
@@ -66,14 +68,13 @@
 @class PosterDownloader;
 @class PriorityMutex;
 @class Pulser;
-@class RatingsCache;
-@class RatingsProviderViewController;
 @class Review;
 @class ReviewBodyCell;
-@class ReviewCache;
-@class ReviewTitleCell;
 @class ReviewsViewController;
-@class RottenTomatoesRatingsDownloader;
+@class ReviewTitleCell;
+@class RottenTomatoesScoreProvider;
+@class ScoreCache;
+@class ScoreProviderViewController;
 @class SearchDatePickerViewController;
 @class SearchEngine;
 @class SearchEngineDelegate;

@@ -22,10 +22,10 @@ import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public interface ScoreProvider {
-  Map<String, Score> getScores();
-
-
   void update();
+
+
+  Map<String, Score> getScores();
 
 
   Score getScore(List<Movie> movies, Movie movie);

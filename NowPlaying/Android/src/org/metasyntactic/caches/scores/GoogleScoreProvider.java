@@ -77,7 +77,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
 
 
   @Override
-  protected Map<String, Score> lookupServerRatings() {
+  protected Map<String, Score> lookupServerScores() {
     String address = getUrl();
     byte[] data = NetworkUtilities.download(address, true);
 

@@ -123,4 +123,7 @@ public abstract class ScoreType implements Parcelable {
 
   public static final ScoreType Google = new ScoreType() {
   };
+
+  public static final ScoreType None = new ScoreType() {
+  };
 }
