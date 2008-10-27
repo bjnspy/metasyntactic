@@ -18,8 +18,6 @@ import org.metasyntactic.Application;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
-import org.metasyntactic.time.Days;
-import org.metasyntactic.time.Hours;
 
 import java.io.*;
 import java.util.*;
@@ -47,35 +45,6 @@ public class FileUtilities {
     }
     return result.toString();
   }
-
-/*
-  private static Object readObject(File file) {
-    try {
-      byte[] bytes = readBytes(file);
-      ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
-      return in.readObject();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (ClassNotFoundException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-
-  private static void writeObject(Object o, File file) {
-    try {
-      ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
-      ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
-      out.writeObject(o);
-      out.flush();
-      out.close();
-
-      writeBytes(byteOut.toByteArray(), file);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-  */
 
 
   public static Map<String, Date> readStringToDateMap(File file) {
@@ -172,6 +141,10 @@ public class FileUtilities {
 
   public static <T extends Persistable> Map<String, T> readStringToPersistableMap(Persistable.Reader<T> reader,
                                                                                   File file) {
+    if (!file.exists()) {
+      return null;
+    }
+
     try {
       PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
       int size = in.readInt();
@@ -346,11 +319,11 @@ public class FileUtilities {
 
 
   public static byte[] readBytes(File file) {
-    try {
-      if (!file.exists()) {
-        return null;
-      }
+    if (!file.exists()) {
+      return null;
+    }
 
+    try {
       int length = (int) file.length();
 
       byte[] bytes = new byte[length];
@@ -393,30 +366,6 @@ public class FileUtilities {
       ExceptionUtilities.log(FileUtilities.class, "writeBytes", e);
       throw new RuntimeException(e);
     }
-  }
-
-
-  public static boolean tooSoon(File file) {
-    if (!file.exists()) {
-      return false;
-    }
-
-    Date now = new Date();
-    Date lastDate = new Date(file.lastModified());
-
-    int days = Days.daysBetween(now, lastDate);
-    //Debug.stopMethodTracing();
-
-    if (days > 0) {
-      return false;
-    }
-
-    long hours = Hours.hoursBetween(now, lastDate);
-    if (hours > 12) {
-      return false;
-    }
-
-    return true;
   }
 
 

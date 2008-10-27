@@ -239,7 +239,7 @@
     
     self.scoresData = result;
     self.hashData = hash;
-    self.movieMapData = [NSDictionary dictionary];
+    self.movieMapData = nil;
     self.movies = nil;
     [NowPlayingAppDelegate refresh:YES];
     
