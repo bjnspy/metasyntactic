@@ -2,43 +2,83 @@ package org.metasyntactic;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
+/** @author mjoshi@google.com (Megha Joshi) */
 public class AllMoviesActivity extends ListActivity {
     private NowPlayingActivity activity;
     private List<Movie> movies = new ArrayList<Movie>();
     private static MoviesAdapter mAdapter;
     private static Context mContext;
-
+    
+    public static final int MENU_SORT = 1;
+    public static final int MENU_SETTINGS = 2;
+   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        activity = (NowPlayingActivity) getParent();
+        activity =  (NowPlayingActivity)getParent();
         mContext = this;
 
         // Set up Movies adapter
         mAdapter = new MoviesAdapter(this);
         setListAdapter(mAdapter);
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+     
+        menu.add(0, MENU_SORT, 0, R.string.menu_sort)
+                .setIcon(android.R.drawable.star_on);
+                
+                menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
+                .setIcon(android.R.drawable.ic_menu_preferences)
+                .setIntent(new Intent(this, SettingsActivity.class))
+                .setAlphabeticShortcut('s');
+       
+        return super.onCreateOptionsMenu(menu);
+    }
 
 
+    public NowPlayingActivity getNowPlayingActivityContext(){
+        return activity;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == MENU_SORT) {
+            NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this)
+                
+                .setTitle(R.string.movies_select_sort_title)
+                .setKey("movies_sort")
+                .setEntries(R.array.entries_movies_sort_preference)
+                .show();              
+          
+            return true;
+        }
+        return false;
+    }
     class MoviesAdapter extends BaseAdapter {
         private Context mContext;
 
@@ -92,12 +132,16 @@ public class AllMoviesActivity extends ListActivity {
                 .getLength(), res));
 
             // Get and set scores text and background image
-            Score score = activity.getScore(movie);
+            Score score = ((NowPlayingActivity)activity).getController().getScore(movie);
             int scoreValue = -1;
             if (score != null) {
                 scoreValue = Integer.parseInt(score.getValue());
+             
+            } else
+            {
+              
             }
-            ScoreType scoreType = activity.getScoreType();
+            ScoreType scoreType = ((NowPlayingActivity)activity).getController().getScoreType();
 
             holder.score.setBackgroundDrawable(MovieViewUtilities
                 .formatScoreDrawable(scoreValue, scoreType, res));
@@ -126,7 +170,7 @@ public class AllMoviesActivity extends ListActivity {
 
 
         public void refreshMovies() {
-            movies = activity.getMovies();
+            movies = ((NowPlayingActivity)activity).getMovies();
             notifyDataSetChanged();
         }
     }
