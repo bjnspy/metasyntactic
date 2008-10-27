@@ -17,18 +17,15 @@
 @interface BackgroundInvocation : Invocation {
     NSLock* gate;
     BOOL visible;
-    BOOL lowPriority;
 }
 
 @property (retain) NSLock* gate;
 @property BOOL visible;
-@property BOOL lowPriority;
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
                                       argument:(id) argument
                                           gate:(NSLock*) gate
-                                       visible:(BOOL) visible
-                                   lowPriority:(BOOL) lowPriority;
+                                       visible:(BOOL) visible;
 
 @end

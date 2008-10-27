@@ -15,6 +15,7 @@
 #import "AbstractDataProvider.h"
 
 #import "Application.h"
+#import "DateUtilities.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "Location.h"
@@ -25,10 +26,12 @@
 #import "NowPlayingModel.h"
 #import "Performance.h"
 #import "Theater.h"
+#import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 
 @implementation AbstractDataProvider
 
+@synthesize gate;
 @synthesize model;
 @synthesize moviesData;
 @synthesize theatersData;
@@ -36,6 +39,7 @@
 @synthesize synchronizationInformationData;
 
 - (void) dealloc {
+    self.gate = nil;
     self.model = nil;
     self.moviesData = nil;
     self.theatersData = nil;
@@ -48,6 +52,7 @@
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
+        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.model = model_;
         self.performancesData = [NSMutableDictionary dictionary];
     }
@@ -317,7 +322,49 @@
 }
 
 
-- (void) lookup {
+- (BOOL) tooSoon:(NSDate*) lastDate {
+    if (lastDate == nil) {
+        return NO;
+    }
+    
+    NSDate* now = [NSDate date];
+    
+    if (![DateUtilities isSameDay:now date:lastDate]) {
+        // different days. we definitely need to refresh
+        return NO;
+    }
+    
+    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
+    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
+    
+    // same day, check if they're at least 8 hours apart.
+    if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
+        return NO;
+    }
+    
+    // it's been less than 8 hours. it's too soon to refresh
+    return YES;
+}
+
+
+- (void) update {
+    [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint)
+                               onTarget:self
+               inBackgroundWithArgument:nil
+                                   gate:gate
+                                visible:YES];
+}
+
+
+- (void) updateBackgroundEntryPoint {
+    if (model.userAddress.length == 0) {
+        return;
+    }
+    
+    if ([self tooSoon:self.lastLookupDate]) {
+        return;
+    }
+    
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     LookupResult* result = [self lookupLocation:location theaterNames:nil];
     [self lookupMissingFavorites:result];
