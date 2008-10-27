@@ -24,22 +24,11 @@
       inBackgroundWithArgument:(id) argument
                           gate:(NSLock*) gate
                        visible:(BOOL) visible {
-    [self performSelector:selector onTarget:target inBackgroundWithArgument:argument gate:gate visible:visible lowPriority:YES];
-}
-
-
-+ (void)       performSelector:(SEL) selector
-                      onTarget:(id) target
-      inBackgroundWithArgument:(id) argument
-                          gate:(NSLock*) gate
-                       visible:(BOOL) visible
-                   lowPriority:(BOOL) lowPriority {
     BackgroundInvocation* invocation = [BackgroundInvocation invocationWithTarget:target
                                                                          selector:selector
                                                                          argument:argument
                                                                              gate:gate
-                                                                          visible:visible
-                                                                      lowPriority:lowPriority];
+                                                                          visible:visible];
     [invocation performSelectorInBackground:@selector(run) withObject:nil];
 }
 

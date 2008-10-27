@@ -20,12 +20,10 @@
 
 @synthesize gate;
 @synthesize visible;
-@synthesize lowPriority;
 
 - (void) dealloc {
     self.gate = nil;
     self.visible = NO;
-    self.lowPriority = NO;
 
     [super dealloc];
 }
@@ -35,12 +33,10 @@
              selector:(SEL) selector_
              argument:(id) argument_
                  gate:(NSLock*) gate_
-              visible:(BOOL) visible_
-          lowPriority:(BOOL) lowPriority_ {
+              visible:(BOOL) visible_ {
     if (self = [super initWithTarget:target_ selector:selector_ argument:argument_]) {
         self.gate = gate_;
         self.visible = visible_;
-        self.lowPriority = lowPriority_;
     }
 
     return self;
@@ -51,21 +47,21 @@
                                       selector:(SEL) selector
                                       argument:(id) argument
                                           gate:(NSLock*) gate
-                                       visible:(BOOL) visible
-                                   lowPriority:(BOOL) lowPriority {
+                                       visible:(BOOL) visible {
     return [[[BackgroundInvocation alloc] initWithTarget:target
                                                 selector:selector
                                                 argument:argument
                                                     gate:gate
-                                                 visible:visible
-                                             lowPriority:lowPriority] autorelease];
+                                                 visible:visible] autorelease];
 }
 
 
 - (void) run {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
-        if (lowPriority) {
+        if (visible) {
+            [NSThread setThreadPriority:0.25];
+        } else {
             [NSThread setThreadPriority:0.0];
         }
 

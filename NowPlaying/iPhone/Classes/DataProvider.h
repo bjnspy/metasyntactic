@@ -13,7 +13,7 @@
 //limitations under the License.
 
 @protocol DataProvider
-- (void) lookup;
+- (void) update;
 
 - (void) setStale;
 - (NSDate*) lastLookupDate;

@@ -30,16 +30,10 @@
 
 @synthesize appDelegate;
 @synthesize determineLocationLock;
-@synthesize dataProviderLock;
-@synthesize scoresLookupLock;
-@synthesize upcomingMoviesLookupLock;
 
 - (void) dealloc {
     self.appDelegate = nil;
     self.determineLocationLock = nil;
-    self.dataProviderLock = nil;
-    self.scoresLookupLock = nil;
-    self.upcomingMoviesLookupLock = nil;
 
     [super dealloc];
 }
@@ -50,46 +44,8 @@
 }
 
 
-- (BOOL) tooSoon:(NSDate*) lastDate {
-    if (lastDate == nil) {
-        return NO;
-    }
-
-    NSDate* now = [NSDate date];
-
-    if (![DateUtilities isSameDay:now date:lastDate]) {
-        // different days. we definitely need to refresh
-        return NO;
-    }
-
-    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
-    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-
-    // same day, check if they're at least 8 hours apart.
-    if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
-        return NO;
-    }
-
-    // it's been less than 8 hours. it's too soon to refresh
-    return YES;
-}
-
-
 - (void) spawnDataProviderLookupThread {
-    if (self.model.userAddress.length == 0) {
-        return;
-    }
-
-    if ([self tooSoon:[self.model.dataProvider lastLookupDate]]) {
-        return;
-    }
-
-    [ThreadingUtilities performSelector:@selector(lookup)
-                               onTarget:self.model.dataProvider
-               inBackgroundWithArgument:nil
-                                   gate:dataProviderLock
-                                visible:YES
-                            lowPriority:NO];
+    [self.model.dataProvider update];
 }
 
 
@@ -121,9 +77,6 @@
 - (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
-        self.dataProviderLock = [[[NSLock alloc] init] autorelease];
-        self.scoresLookupLock = [[[NSLock alloc] init] autorelease];
-        self.upcomingMoviesLookupLock = [[[NSLock alloc] init] autorelease];
 
         [self spawnDetermineLocationThread];
     }

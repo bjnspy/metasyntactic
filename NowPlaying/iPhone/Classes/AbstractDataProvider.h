@@ -13,6 +13,8 @@
 //limitations under the License.
 
 @interface AbstractDataProvider : NSObject {
+    NSLock* gate;
+    
     NowPlayingModel* model;
     NSArray* moviesData;
     NSArray* theatersData;
@@ -21,6 +23,7 @@
     NSMutableDictionary* performancesData;
 }
 
+@property (retain) NSLock* gate;
 @property (retain) NowPlayingModel* model;
 @property (retain) NSArray* moviesData;
 @property (retain) NSArray* theatersData;
@@ -37,7 +40,7 @@
 - (void) setStale;
 - (NSDate*) lastLookupDate;
 
-- (void) lookup;
+- (void) update;
 
 /* @protected */
 - (NSString*) performancesFile:(NSString*) theaterName;

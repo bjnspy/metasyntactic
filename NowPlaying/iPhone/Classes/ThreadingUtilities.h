@@ -22,11 +22,4 @@ inBackgroundWithArgument:(id) argument
                     gate:(NSLock*) gate
                  visible:(BOOL) visible;
 
-+ (void) performSelector:(SEL) selector
-                onTarget:(id) target
-inBackgroundWithArgument:(id) argument
-                    gate:(NSLock*) gate
-                 visible:(BOOL) visible
-             lowPriority:(BOOL) lowPriority;
-
 @end
