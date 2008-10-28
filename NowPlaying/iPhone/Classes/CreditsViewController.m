@@ -56,6 +56,7 @@
         [dictionary setObject:@"Santiago Navonne"   forKey:@"it"];
         [dictionary setObject:@"Leo Yamamoto"       forKey:@"ja"];
         [dictionary setObject:@"André van Haren"    forKey:@"nl"];
+        [dictionary setObject:@"Eivind Samseth"     forKey:@"no"];
         [dictionary setObject:@"Pedro Pinhão"       forKey:@"pt"];
         [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
         self.localizers = dictionary;
