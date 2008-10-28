@@ -158,7 +158,7 @@
     }
     
     if (movies.count > 0) {
-        movie = [movies lastObject];
+        movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
@@ -239,7 +239,7 @@
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* trailers = [NSArray arrayWithContentsOfFile:[self trailerFilePath:movie.canonicalTitle]];
+    NSArray* trailers = [FileUtilities readObject:[self trailerFilePath:movie.canonicalTitle]];
     if (trailers == nil) {
         return [NSArray array];
     }

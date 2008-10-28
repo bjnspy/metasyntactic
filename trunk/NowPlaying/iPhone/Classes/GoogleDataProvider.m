@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
+#import "FileUtilities.h"
 #import "Location.h"
 #import "LookupResult.h"
 #import "Movie.h"
@@ -158,7 +159,7 @@
         // stored (but warn the user).
 
         NSString* performancesFile = [self performancesFile:name];
-        NSDictionary* oldPerformances = [NSDictionary dictionaryWithContentsOfFile:performancesFile];
+        NSDictionary* oldPerformances = [FileUtilities readObject:performancesFile];
 
         if (oldPerformances.count > 0) {
             movieToShowtimesMap = [NSMutableDictionary dictionaryWithDictionary:oldPerformances];

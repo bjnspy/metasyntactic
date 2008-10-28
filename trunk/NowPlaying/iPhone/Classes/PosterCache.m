@@ -112,7 +112,7 @@
 
     NSData* data = [PosterDownloader download:movie postalCode:postalCode];
     if (data != nil) {
-        [data writeToFile:path atomically:YES];
+        [FileUtilities writeObject:data toFile:path];
         [NowPlayingAppDelegate refresh];
     }
 }
@@ -126,7 +126,7 @@
     }
     
     if (movies.count > 0) {
-        movie = [movies lastObject];
+        movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
@@ -186,7 +186,7 @@
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
-    NSData* data = [NSData dataWithContentsOfFile:path];
+    NSData* data = [FileUtilities readObject:path];
     return [UIImage imageWithData:data];
 }
 
