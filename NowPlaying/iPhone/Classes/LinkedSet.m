@@ -54,23 +54,40 @@
 }
 
 
+- (void) removeNode:(LinkedNode*) node {
+    [[node retain] autorelease];
+    
+    if (node.value != nil) {
+        [valueToNode removeObjectForKey:node.value];
+    }
+    
+    node.next.previous = node.previous;
+    node.previous.next = node.next;
+    
+    if (node == firstNode) {
+        self.firstNode = firstNode.next;
+        firstNode.previous = nil;
+    }
+    
+    if (node == lastNode) {
+        self.lastNode = lastNode.previous;
+        lastNode.next = nil;
+    }
+}
+
+
 - (id) removeLastObjectAdded {
     id object;
     
     [gate lock];
     {
         object = [[lastNode.value retain] autorelease];
-        if (object != nil) {
-            [valueToNode removeObjectForKey:object];
-        }
-        
+        [self removeNode:lastNode];
+                
         if (valueToNode.count == 0) {
-            self.firstNode = nil;
-            self.lastNode = nil;
+            NSAssert(firstNode == nil, @"");
+            NSAssert(lastNode == nil, @"");
         } else {
-            self.lastNode = lastNode.previous;
-            self.lastNode.next = nil;
-            
             NSAssert(firstNode != nil, @"");
             NSAssert(lastNode != nil, @"");
             NSAssert(firstNode.previous == nil, @"");
@@ -89,9 +106,7 @@
     }
     
     while (valueToNode.count > countLimit) {
-        [valueToNode removeObjectForKey:firstNode.value];
-        self.firstNode = firstNode.next;
-        firstNode.previous = nil;
+        [self removeNode:firstNode];
     }
 }
 
@@ -100,8 +115,7 @@
     [gate lock];
     {
         LinkedNode* node = [valueToNode objectForKey:object];
-        node.next.previous = node.previous;
-        node.previous.next = node.next;
+        [self removeNode:node];
         
         self.lastNode = [LinkedNode nodeWithValue:object previous:lastNode next:nil];
         [valueToNode setObject:lastNode forKey:object];
