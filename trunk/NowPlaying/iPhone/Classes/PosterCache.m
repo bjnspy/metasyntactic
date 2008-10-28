@@ -75,7 +75,7 @@
 - (void) deleteObsoletePosters:(NSArray*) movies {
     NSMutableSet* set = [NSMutableSet set];
 
-    NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application postersFolder]];
+    NSArray* contents = [FileUtilities directoryContents:[Application postersFolder]];
     for (NSString* fileName in contents) {
         NSString* filePath = [[Application postersFolder] stringByAppendingPathComponent:fileName];
         [set addObject:filePath];
@@ -86,12 +86,12 @@
     }
 
     for (NSString* filePath in set) {
-        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:NULL] objectForKey:NSFileModificationDate];
+        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
 
         if (downloadDate != nil) {
             NSTimeInterval span = downloadDate.timeIntervalSinceNow;
             if (ABS(span) > (ONE_HOUR * 1000)) {
-                [[NSFileManager defaultManager] removeItemAtPath:filePath error:NULL];
+                [FileUtilities removeItem:filePath];
             }
         }
     }
@@ -106,7 +106,7 @@
 
     NSString* path = [self posterFilePath:movie];
 
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    if ([FileUtilities fileExists:path]) {
         return;
     }
 
@@ -120,17 +120,17 @@
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie = [prioritizedMovies removeLastObjectAdded];
-    
+
     if (movie != nil) {
         return movie;
     }
-    
+
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
-    
+
     return nil;
 }
 

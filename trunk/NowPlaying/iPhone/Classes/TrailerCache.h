@@ -14,7 +14,7 @@
 
 @interface TrailerCache : NSObject {
     NSLock* updateGate;
-    
+
     LinkedSet* prioritizedMovies;
 }
 

@@ -31,7 +31,7 @@ property_definition(identifier);
     self.score = nil;
     self.provider = nil;
     self.identifier = nil;
-    
+
     [super dealloc];
 }
 
@@ -48,7 +48,7 @@ property_definition(identifier);
         self.provider = provider_;
         self.identifier = [Utilities nonNilString:identifier_];
     }
-    
+
     return self;
 }
 
@@ -91,7 +91,7 @@ property_definition(identifier);
     if (value >= 0 && value <= 100) {
         return value;
     }
-    
+
     return -1;
 }
 

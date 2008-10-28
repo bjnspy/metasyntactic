@@ -30,7 +30,7 @@
 - (id) initWithCache:(ScoreCache*) cache_ {
     if (self = [super initWithCache:cache_]) {
     }
-    
+
     return self;
 }
 
@@ -57,32 +57,32 @@
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml", [Application host]];
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address
                                                                  important:YES];
-    
+
     if (resultElement != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-        
+
         for (XmlElement* movieElement in resultElement.children) {
             NSString* title =    [movieElement attributeValue:@"title"];
             NSString* link =     [movieElement attributeValue:@"link"];
             NSString* synopsis = [movieElement attributeValue:@"synopsis"];
             NSString* score =    [movieElement attributeValue:@"score"];
-            
+
             if ([score isEqual:@"xx"]) {
                 score = @"-1";
             }
-            
+
             Score* extraInfo = [Score scoreWithTitle:title
                                                          synopsis:synopsis
                                                             score:score
                                                          provider:@"metacritic"
                                                        identifier:link];
-            
+
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-        
+
         return ratings;
     }
-    
+
     return nil;
 }
 

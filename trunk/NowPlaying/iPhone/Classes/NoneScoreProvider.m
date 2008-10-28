@@ -24,7 +24,7 @@
 - (id) initWithCache:(ScoreCache*) cache_ {
     if (self = [super initWithCache:cache_]) {
     }
-    
+
     return self;
 }
 

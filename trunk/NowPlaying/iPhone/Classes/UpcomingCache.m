@@ -158,44 +158,43 @@ static NSString* titles_key = @"Titles";
 
 
 - (void) updateIndexBackgroundEntryPoint {
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.indexFile
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
-    
+    NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
+
     if (lastLookupDate != nil) {
         if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
             return;
         }
     }
-    
-    
+
+
     NSString* localHash = [index objectForKey:hash_key];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
                                                                important:NO];
     if (serverHash == nil) {
         serverHash = @"0";
     }
-    
+
     if (localHash != nil &&
         [localHash isEqual:serverHash]) {
         return;
     }
-    
+
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]
                                                                  important:NO];
-    
+
     NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
     NSArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
     if (movies.count == 0) {
         return;
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:serverHash forKey:hash_key];
     [result setObject:movies forKey:movies_key];
     [result setObject:studioKeys forKey:studios_key];
     [result setObject:titleKeys forKey:titles_key];
-    
+
     [self writeData:result];
     [self performSelectorOnMainThread:@selector(reportIndex:) withObject:result waitUntilDone:NO];
 }
@@ -260,16 +259,15 @@ static NSString* titles_key = @"Titles";
 
 - (void) updateIMDb:(Movie*) movie {
     NSString* imdbFile = [self imdbFile:movie];
-    
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:imdbFile
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
+
+    NSDate* lastLookupDate = [FileUtilities modificationDate:imdbFile];
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:imdbFile];
         if (value.length > 0) {
             // we have a real imdb value for this movie
             return;
         }
-        
+
         // we have a sentinel.  only update if it's been long enough
         if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
             return;
@@ -295,7 +293,7 @@ static NSString* titles_key = @"Titles";
     }
 
     NSString* posterFile = [self posterFile:movie];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:posterFile]) {
+    if ([FileUtilities fileExists:posterFile]) {
         return;
     }
 
@@ -311,8 +309,7 @@ static NSString* titles_key = @"Titles";
                  studio:(NSString*) studio
                   title:(NSString*) title {
     NSString* synopsisFile = [self synopsisFile:movie];
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:synopsisFile
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    NSDate* lastLookupDate = [FileUtilities modificationDate:synopsisFile];
 
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_WEEK) {
@@ -326,29 +323,29 @@ static NSString* titles_key = @"Titles";
     if (result.length == 0) {
         return;
     }
-    
+
     if ([result rangeOfString:@"403 Over Quota"].length > 0) {
         return;
     }
-    
+
     NSArray* components = [result componentsSeparatedByString:@"\n"];
     if (components.count == 0) {
         return;
     }
-    
+
     NSString* synopsis = [components objectAtIndex:0];
     NSMutableArray* cast = [NSMutableArray arrayWithArray:components];
     [cast removeObjectAtIndex:0];
-    
+
     if (synopsis.length != 0 &&
         ![synopsis hasPrefix:@"No synopsis"]) {
         [FileUtilities writeObject:synopsis toFile:synopsisFile];
     }
-    
+
     if (cast.count > 0) {
         [FileUtilities writeObject:cast toFile:[self castFile:movie]];
     }
-    
+
     [NowPlayingAppDelegate refresh];
 }
 
@@ -357,9 +354,7 @@ static NSString* titles_key = @"Titles";
                  studio:(NSString*) studio
                   title:(NSString*) title {
     NSString* trailersFile = [self trailersFile:movie];
-
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:trailersFile
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    NSDate* lastLookupDate = [FileUtilities modificationDate:trailersFile];
 
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
@@ -373,7 +368,7 @@ static NSString* titles_key = @"Titles";
         NSLog(@"", nil);
         return;
     }
-    
+
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
     [FileUtilities writeObject:trailers toFile:trailersFile];
     [NowPlayingAppDelegate refresh];
@@ -390,29 +385,29 @@ static NSString* titles_key = @"Titles";
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie = [prioritizedMovies removeLastObjectAdded];
-    
+
     if (movie != nil) {
         return movie;
     }
-    
+
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
-    
+
     return nil;
 }
 
 
 - (void) updateDetailsInBackgroundEntryPoint:(NSDictionary*) index_ {
     [self deleteObsoleteData];
-    
+
     NSArray* movies = [index_ objectForKey:movies_key];
     if (movies == nil) {
         return;
     }
-    
+
     NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
     NSDictionary* studios = [index_ objectForKey:studios_key];
     NSDictionary* titles = [index_ objectForKey:titles_key];
@@ -425,7 +420,7 @@ static NSString* titles_key = @"Titles";
             if (movie != nil) {
                 [self updateDetails:movie
                              studio:[studios objectForKey:movie.canonicalTitle]
-                              title:[titles objectForKey:movie.canonicalTitle]];   
+                              title:[titles objectForKey:movie.canonicalTitle]];
             }
         }
         [autoreleasePool release];
@@ -518,12 +513,12 @@ static NSString* titles_key = @"Titles";
     if (result.count > 0) {
         return result;
     }
-    
+
     result = [FileUtilities readObject:[self castFile:movie]];
     if (result.count > 0) {
         return result;
     }
-    
+
     return [NSArray array];
 }
 

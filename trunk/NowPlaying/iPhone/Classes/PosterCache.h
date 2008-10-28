@@ -15,7 +15,7 @@
 @interface PosterCache : NSObject {
     NSLock* updateGate;
     NowPlayingModel* model;
-    
+
     LinkedSet* prioritizedMovies;
 }
 

@@ -87,17 +87,17 @@ static NSString* starString = nil;
     {
         if (cacheFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-            
+
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
             NSString* folder = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-            
+
             [FileUtilities createDirectory:folder];
-            
+
             cacheFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return cacheFolder;
 }
 
@@ -107,17 +107,17 @@ static NSString* starString = nil;
     {
         if (supportFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-            
+
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
             NSString* folder = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-            
+
             [FileUtilities createDirectory:folder];
-            
+
             supportFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return supportFolder;
 }
 
@@ -130,7 +130,7 @@ static NSString* starString = nil;
         }
     }
     [gate unlock];
-    
+
     return tempFolder;
 }
 
@@ -141,9 +141,9 @@ static NSString* starString = nil;
         for (int i = 0; i < ArrayLength(folders); i++) {
             NSString** folderReference = folders[i];
             NSString* folder = *folderReference;
-            
+
             if (folder != nil) {
-                [[NSFileManager defaultManager] removeItemAtPath:folder error:NULL];
+                [FileUtilities removeItem:folder];
             }
         }
     }
@@ -157,7 +157,7 @@ static NSString* starString = nil;
         for (int i = 0; i < ArrayLength(folders); i++) {
             NSString** folderReference = folders[i];
             NSString* folder = *folderReference;
-            
+
             [FileUtilities createDirectory:folder];
         }
     }
@@ -171,8 +171,8 @@ static NSString* starString = nil;
 
         differenceEngine = [[DifferenceEngine engine] retain];
 
-        [[NSFileManager defaultManager] removeItemAtPath:[self supportFolder] error:NULL];
-        
+        [FileUtilities removeItem:[self supportFolder]];
+
         {
             dataFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Data"] retain];
             imdbFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"IMDb"] retain];
@@ -181,10 +181,10 @@ static NSString* starString = nil;
             reviewsFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Reviews"] retain];
             trailersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Trailers"] retain];
             postersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Posters"] retain];
-            
+
             dvdFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"DVD"] retain];
             dvdPostersFolder = [[[self dvdFolder] stringByAppendingPathComponent:@"Posters"] retain];
-            
+
             upcomingFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"Cast"] retain];
             upcomingIMDbFolder = [[[self upcomingFolder] stringByAppendingPathComponent:@"IMDb"] retain];

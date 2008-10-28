@@ -87,9 +87,7 @@
 
 
 - (NSDate*) lastLookupDate {
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self lastLookupDateFile]
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
-
+    NSDate* lastLookupDate = [FileUtilities modificationDate:[self lastLookupDateFile]];
     return lastLookupDate;
 }
 
@@ -100,7 +98,7 @@
 
 
 - (void) setStale {
-    [[NSFileManager defaultManager] removeItemAtPath:[self lastLookupDateFile] error:NULL];
+    [FileUtilities removeItem:[self lastLookupDateFile]];
 }
 
 
@@ -181,8 +179,8 @@
             [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentFolder:tempFolder]];
         }
 
-        [[NSFileManager defaultManager] removeItemAtPath:self.performancesFolder error:NULL];
-        [[NSFileManager defaultManager] moveItemAtPath:tempFolder toPath:self.performancesFolder error:NULL];
+        [FileUtilities removeItem:self.performancesFolder];
+        [FileUtilities moveItem:tempFolder to:self.performancesFolder];
 
         [self setLastLookupDate];
     }
@@ -326,22 +324,22 @@
     if (lastDate == nil) {
         return NO;
     }
-    
+
     NSDate* now = [NSDate date];
-    
+
     if (![DateUtilities isSameDay:now date:lastDate]) {
         // different days. we definitely need to refresh
         return NO;
     }
-    
+
     NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
     NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-    
+
     // same day, check if they're at least 8 hours apart.
     if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
         return NO;
     }
-    
+
     // it's been less than 8 hours. it's too soon to refresh
     return YES;
 }
@@ -360,11 +358,11 @@
     if (model.userAddress.length == 0) {
         return;
     }
-    
+
     if ([self tooSoon:self.lastLookupDate]) {
         return;
     }
-    
+
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     LookupResult* result = [self lookupLocation:location theaterNames:nil];
     [self updateMissingFavorites:result];

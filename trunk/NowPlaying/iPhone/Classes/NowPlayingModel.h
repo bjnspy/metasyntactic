@@ -130,6 +130,8 @@ NSInteger compareMoviesByTitle(id t1, id t2, void *context);
 NSInteger compareTheatersByName(id t1, id t2, void *context);
 NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
+- (void) prioritizeMovie:(Movie*) movie;
+
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (Score*) scoreForMovie:(Movie*) movie;
 - (NSInteger) scoreValueForMovie:(Movie*) movie;
