@@ -18,7 +18,7 @@
 
     NSArray* recentMovies;
     NSDictionary* movieMap;
-    
+
     LinkedSet* prioritizedMovies;
 }
 

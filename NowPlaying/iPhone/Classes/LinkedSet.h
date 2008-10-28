@@ -14,11 +14,11 @@
 
 @interface LinkedSet : NSObject {
     NSLock* gate;
-    
+
     LinkedNode* firstNode;
     LinkedNode* lastNode;
     NSMutableDictionary* valueToNode;
-    
+
     NSInteger countLimit;
 }
 

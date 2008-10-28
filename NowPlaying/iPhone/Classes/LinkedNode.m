@@ -24,23 +24,23 @@
     self.value = nil;
     self.previous = nil;
     self.next = nil;
-    
+
     [super dealloc];
 }
 
 
-- (id) initWithValue:(id) value_ 
+- (id) initWithValue:(id) value_
             previous:(LinkedNode*) previous_
                 next:(LinkedNode*) next_ {
     if (self = [super init]) {
         self.value = value_;
         self.previous = previous_;
         self.next = next_;
-        
+
         previous.next = self;
         next.previous = self;
     }
-    
+
     return self;
 }
 

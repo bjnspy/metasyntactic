@@ -176,8 +176,7 @@
 
 
 - (void) updateIndexBackgroundWorker {
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.indexFile
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
 
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
@@ -226,8 +225,7 @@
 
 - (void) downloadDetails:(MovieNumbers*) numbers {
     NSString* file = [self movieDetailsFile:numbers];
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:file
-                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    NSDate* lastLookupDate = [FileUtilities modificationDate:file];
 
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {

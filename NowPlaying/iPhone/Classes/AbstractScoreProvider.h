@@ -17,20 +17,20 @@
 @interface AbstractScoreProvider : NSObject<ScoreProvider> {
     ScoreCache* parentCache;
     NSLock* lock;
-    
+
     // Mapping from score title to score.
     NSDictionary* scoresData;
     NSString* hashData;
-    
+
     NSLock* movieMapLock;
     NSArray* movies;
-    
+
     // Mapping from google movie title to score provider title
     NSDictionary* movieMapData;
-    
+
     NSString* providerDirectory;
     NSString* reviewsDirectory;
-    
+
     LinkedSet* prioritizedMovies;
 }
 

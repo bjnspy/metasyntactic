@@ -163,6 +163,8 @@
 
         self.title = movie.displayTitle;
         self.navigationItem.titleView = label;
+        
+        [self.model prioritizeMovie:movie];
     }
 
     return self;

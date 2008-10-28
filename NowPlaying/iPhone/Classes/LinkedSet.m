@@ -28,7 +28,7 @@
     self.firstNode = nil;
     self.lastNode = nil;
     self.valueToNode = nil;
-    
+
     [super dealloc];
 }
 
@@ -39,7 +39,7 @@
         self.valueToNode = [NSMutableDictionary dictionary];
         countLimit = countLimit_;
     }
-    
+
     return self;
 }
 
@@ -56,19 +56,19 @@
 
 - (void) removeNode:(LinkedNode*) node {
     [[node retain] autorelease];
-    
+
     if (node.value != nil) {
         [valueToNode removeObjectForKey:node.value];
     }
-    
+
     node.next.previous = node.previous;
     node.previous.next = node.next;
-    
+
     if (node == firstNode) {
         self.firstNode = firstNode.next;
         firstNode.previous = nil;
     }
-    
+
     if (node == lastNode) {
         self.lastNode = lastNode.previous;
         lastNode.next = nil;
@@ -78,12 +78,12 @@
 
 - (id) removeLastObjectAdded {
     id object;
-    
+
     [gate lock];
     {
         object = [[lastNode.value retain] autorelease];
         [self removeNode:lastNode];
-                
+
         if (valueToNode.count == 0) {
             NSAssert(firstNode == nil, @"");
             NSAssert(lastNode == nil, @"");
@@ -95,7 +95,7 @@
         }
     }
     [gate unlock];
-    
+
     return object;
 }
 
@@ -104,7 +104,7 @@
     if (countLimit <= 0) {
         return;
     }
-    
+
     while (valueToNode.count > countLimit) {
         [self removeNode:firstNode];
     }
@@ -116,16 +116,16 @@
     {
         LinkedNode* node = [valueToNode objectForKey:object];
         [self removeNode:node];
-        
+
         self.lastNode = [LinkedNode nodeWithValue:object previous:lastNode next:nil];
         [valueToNode setObject:lastNode forKey:object];
-        
+
         if (firstNode == nil) {
             self.firstNode = lastNode;
         }
-        
+
         [self enforceLimit];
-        
+
         NSAssert(firstNode != nil, @"");
         NSAssert(lastNode != nil, @"");
         NSAssert(firstNode.previous == nil, @"");

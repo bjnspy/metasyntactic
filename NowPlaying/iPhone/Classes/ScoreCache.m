@@ -45,13 +45,13 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
-        
+
         self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider providerWithCache:self];
         self.metacriticScoreProvider = [MetacriticScoreProvider providerWithCache:self];
         self.googleScoreProvider = [GoogleScoreProvider providerWithCache:self];
         self.noneScoreProvider = [NoneScoreProvider providerWithCache:self];
     }
-    
+
     return self;
 }
 
@@ -84,8 +84,8 @@
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies {
     return [self.currentScoreProvider reviewsForMovie:movie inMovies:movies];
 }
- 
- 
+
+
 - (void) update {
     [self.currentScoreProvider update];
 }

@@ -14,14 +14,80 @@
 
 #import "FileUtilities.h"
 
+#import "MainThreadGate.h"
 
 @implementation FileUtilities
 
+static MainThreadGate* gate;
+
++ (void) initialize {
+    if (self == [FileUtilities class]) {
+        gate = [[MainThreadGate gate] retain];
+    }
+}
+
+
 
 + (void) createDirectory:(NSString*) folder {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:NULL];
+    [gate lock];
+    {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:NULL];
+        }
     }
+    [gate unlock];
+}
+
+
++ (NSDate*) modificationDate:(NSString*) file {
+    NSDate* result;
+    [gate lock];
+    {
+        result = [[[NSFileManager defaultManager] attributesOfItemAtPath:file
+                                                                   error:NULL] objectForKey:NSFileModificationDate];
+    }
+    [gate unlock];
+    return result;
+}
+
+
++ (NSArray*) directoryContents:(NSString*) directory {
+    NSArray* result;
+    [gate lock];
+    {
+        result = [[NSFileManager defaultManager] directoryContentsAtPath:directory];
+    }
+    [gate unlock];
+    return result;
+}
+
+
++ (void) removeItem:(NSString*) path {
+    [gate lock];
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+    }
+    [gate unlock];
+}
+
+
++ (BOOL) fileExists:(NSString*) path {
+    BOOL result;
+    [gate lock];
+    {
+        result = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    }
+    [gate unlock];
+    return result;
+}
+
+
++ (void) moveItem:(NSString*) from to:(NSString*) to {
+    [gate lock];
+    {
+        [[NSFileManager defaultManager] moveItemAtPath:from toPath:to error:NULL];
+    }
+    [gate unlock];
 }
 
 
@@ -32,25 +98,33 @@
 
 
 + (void) writeObject:(id) object toFile:(NSString*) file {
-    NSData* plistData = [NSPropertyListSerialization dataFromPropertyList:object
-                                                                   format:NSPropertyListBinaryFormat_v1_0
-                                                         errorDescription:NULL];
-    if(plistData) {
-        [plistData writeToFile:file atomically:YES];
+    [gate lock];
+    {
+        NSData* plistData = [NSPropertyListSerialization dataFromPropertyList:object
+                                                                       format:NSPropertyListBinaryFormat_v1_0
+                                                             errorDescription:NULL];
+        if(plistData) {
+            [plistData writeToFile:file atomically:YES];
+        }
     }
+    [gate unlock];
 }
 
 
 + (id) readObject:(NSString*) file {
-    NSData* data = [NSData dataWithContentsOfFile:file];
-    if (data == nil) {
-        return nil;
+    id result = nil;
+    [gate lock];
+    {
+        NSData* data = [NSData dataWithContentsOfFile:file];
+        if (data != nil) {
+            result = [NSPropertyListSerialization propertyListFromData:data
+                                                      mutabilityOption:NSPropertyListImmutable
+                                                                format:NULL
+                                                      errorDescription:NULL];
+        }
     }
-
-    return [NSPropertyListSerialization propertyListFromData:data
-                                            mutabilityOption:NSPropertyListImmutable
-                                                      format:NULL
-                                            errorDescription:NULL];
+    [gate unlock];
+    return result;
 }
 
 @end

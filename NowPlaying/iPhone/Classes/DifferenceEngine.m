@@ -196,7 +196,7 @@
             return index;
         }
     }
-    
+
     {
         if (string.length > 4) {
             for (int i = 0; i < array.count; i++) {
@@ -205,13 +205,13 @@
                     if (([string rangeOfString:other options:NSCaseInsensitiveSearch].length > 0) ||
                         ([other rangeOfString:string options:NSCaseInsensitiveSearch].length > 0)) {
                         return i;
-                    } 
+                    }
                 }
             }
         }
     }
-    
-    
+
+
     NSInteger bestDistance = INT_MAX;
     NSInteger bestIndex = -1;
 

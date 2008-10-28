@@ -62,7 +62,7 @@
 
 
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
-    NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application trailersFolder]];
+    NSArray* contents = [FileUtilities directoryContents:[Application trailersFolder]];
     NSMutableSet* set = [NSMutableSet setWithArray:contents];
 
     for (Movie* movie in movies) {
@@ -72,13 +72,12 @@
 
     for (NSString* filePath in set) {
         NSString* fullPath = [[Application trailersFolder] stringByAppendingPathComponent:filePath];
-
-        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:NULL] objectForKey:NSFileModificationDate];
+        NSDate* downloadDate = [FileUtilities modificationDate:fullPath];
 
         if (downloadDate != nil) {
             NSTimeInterval span = downloadDate.timeIntervalSinceNow;
             if (ABS(span) > (ONE_HOUR * 1000)) {
-                [[NSFileManager defaultManager] removeItemAtPath:fullPath error:NULL];
+                [FileUtilities removeItem:fullPath];
             }
         }
     }
@@ -90,8 +89,7 @@
     NSMutableArray* moviesWithTrailers = [NSMutableArray array];
 
     for (Movie* movie in movies) {
-        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self trailerFilePath:movie.canonicalTitle]
-                                                                                 error:NULL] objectForKey:NSFileModificationDate];
+        NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFilePath:movie.canonicalTitle]];
 
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
@@ -123,7 +121,7 @@
     if (movie == nil) {
         return;
     }
-    
+
     NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
@@ -152,17 +150,17 @@
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie = [prioritizedMovies removeLastObjectAdded];
-    
+
     if (movie != nil) {
         return movie;
     }
-    
+
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
-    
+
     return nil;
 }
 
@@ -216,14 +214,14 @@
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
     [self deleteObsoleteTrailers:movies];
-    
+
     NSArray* orderedMovies = [self getOrderedMovies:movies];
     NSMutableArray* moviesWithoutTrailers = [orderedMovies objectAtIndex:0];
     NSMutableArray* moviesWithTrailers = [orderedMovies objectAtIndex:1];
     if (moviesWithoutTrailers.count == 0 && moviesWithTrailers.count == 0) {
         return;
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
     NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (indexText == nil) {

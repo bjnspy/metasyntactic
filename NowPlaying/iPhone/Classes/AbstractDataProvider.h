@@ -14,7 +14,7 @@
 
 @interface AbstractDataProvider : NSObject {
     NSLock* gate;
-    
+
     NowPlayingModel* model;
     NSArray* moviesData;
     NSArray* theatersData;

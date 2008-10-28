@@ -289,10 +289,8 @@
         cell = [self createCell:reuseIdentifier];
     }
 
-    [self.model.posterCache prioritizeMovie:movie];
-    [self.model.scoreCache prioritizeMovie:movie];
-    [self.model.trailerCache prioritizeMovie:movie];
-    
+    [self.model prioritizeMovie:movie];
+
     [cell setMovie:movie owner:self];
     return cell;
 }
