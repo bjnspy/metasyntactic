@@ -30,6 +30,8 @@
     
     NSString* providerDirectory;
     NSString* reviewsDirectory;
+    
+    LinkedSet* prioritizedMovies;
 }
 
 @property (assign) ScoreCache* parentCache;
@@ -43,6 +45,8 @@
 
 @property (retain) NSString* providerDirectory;
 @property (retain) NSString* reviewsDirectory;
+
+@property (retain) LinkedSet* prioritizedMovies;
 
 - (id) initWithCache:(ScoreCache*) cache;
 

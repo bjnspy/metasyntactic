@@ -290,6 +290,7 @@
     }
 
     [self.model.posterCache prioritizeMovie:movie];
+    [self.model.scoreCache prioritizeMovie:movie];
     [self.model.trailerCache prioritizeMovie:movie];
     
     [cell setMovie:movie owner:self];

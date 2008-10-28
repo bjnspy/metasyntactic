@@ -17,4 +17,5 @@
 - (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies;
 - (void) update;
+- (void) prioritizeMovie:(Movie*) movie;
 @end

@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
+#import "LinkedSet.h"
 #import "Location.h"
 #import "Movie.h"
 #import "Score.h"
@@ -40,6 +41,7 @@
 @synthesize movieMapData;
 @synthesize providerDirectory;
 @synthesize reviewsDirectory;
+@synthesize prioritizedMovies;
 
 - (void) dealloc {
     self.parentCache = nil;
@@ -51,6 +53,7 @@
     self.movieMapData = nil;
     self.providerDirectory = nil;
     self.reviewsDirectory = nil;
+    self.prioritizedMovies = nil;
     
     [super dealloc];
 }
@@ -79,6 +82,7 @@
         self.parentCache = parentCache_;
         self.providerDirectory = [[Application scoresFolder] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsFolder] stringByAppendingPathComponent:self.providerName];
+        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         
         [FileUtilities createDirectory:providerDirectory];
         [FileUtilities createDirectory:reviewsDirectory];
@@ -428,6 +432,10 @@
 
 - (void) downloadReviews:(Score*) score
                 location:(Location*) location {
+    if (score == nil) {
+        return;
+    }
+
     NSString* address = [[self serverReviewsAddress:location score:score] stringByAppendingString:@"&hash=true"];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address important:NO];
     
@@ -464,16 +472,39 @@
 }
 
 
-- (void) downloadReviews:(NSArray*) scores {
+- (Score*) getNextScore:(NSMutableArray*) scores {
+    Movie* movie = [prioritizedMovies removeLastObjectAdded];
+    Score* score = [self.scores objectForKey:[self.movieMap objectForKey:movie.canonicalTitle]];
+    if (score != nil) {
+        return score;
+    }
+    
+    if (scores.count > 0) {
+        score = [scores lastObject];
+        [scores removeLastObject];
+        return score;
+    }
+    
+    return nil;
+}
+
+
+- (void) downloadReviews:(NSMutableArray*) scores {
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     
     if (location == nil) {
         return;
     }
     
-    for (Score* score in scores) {
-        [self downloadReviews:score location:location];
-    }
+    Score* score;
+    do {
+        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+        {
+            score = [self getNextScore:scores];
+            [self downloadReviews:score location:location];
+        }
+        [autoreleasePool release];
+    } while (score != nil);
 }
 
 
@@ -498,6 +529,11 @@
     
     [self downloadReviews:scoresWithoutReviews];
     [self downloadReviews:scoresWithReviews];
+}
+
+
+- (void) prioritizeMovie:(Movie*) movie {
+    [prioritizedMovies addObject:movie];
 }
 
 @end

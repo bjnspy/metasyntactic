@@ -90,4 +90,9 @@
     [self.currentScoreProvider update];
 }
 
+
+- (void) prioritizeMovie:(Movie*) movie {
+    [self.currentScoreProvider prioritizeMovie:movie];
+}
+
 @end
