@@ -36,6 +36,9 @@
         self.value = value_;
         self.previous = previous_;
         self.next = next_;
+        
+        previous.next = self;
+        next.previous = self;
     }
     
     return self;

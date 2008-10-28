@@ -207,6 +207,11 @@ static NSString* articles[] = {
 }
 
 
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
+}
+
+
 - (BOOL) isUnrated {
     return rating.length == 0 || [rating isEqual:@"NR"];
 }

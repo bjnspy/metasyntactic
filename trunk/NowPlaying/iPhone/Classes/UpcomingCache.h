@@ -13,17 +13,22 @@
 // limitations under the License.
 
 @interface UpcomingCache : NSObject {
-    NSLock* gate;
+    NSLock* updateGate;
     NSDictionary* index;
 
     NSArray* recentMovies;
     NSDictionary* movieMap;
+    
+    NSLock* prioritizedMoviesGate;
+    LinkedSet* prioritizedMovies;
 }
 
-@property (retain) NSLock* gate;
+@property (retain) NSLock* updateGate;
 @property (retain) NSDictionary* index;
 @property (retain) NSArray* recentMovies;
 @property (retain) NSDictionary* movieMap;
+@property (retain) NSLock* prioritizedMoviesGate;
+@property (retain) LinkedSet* prioritizedMovies;
 
 + (UpcomingCache*) cache;
 
@@ -39,5 +44,7 @@
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
+
+- (void) prioritizeMovie:(Movie*) movie;
 
 @end

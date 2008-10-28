@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "FileUtilities.h"
+#import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
@@ -31,16 +32,20 @@ static NSString* hash_key = @"Hash";
 static NSString* studios_key = @"Studios";
 static NSString* titles_key = @"Titles";
 
-@synthesize gate;
+@synthesize updateGate;
 @synthesize index;
 @synthesize recentMovies;
 @synthesize movieMap;
+@synthesize prioritizedMovies;
+@synthesize prioritizedMoviesGate;
 
 - (void) dealloc {
-    self.gate = nil;
+    self.updateGate = nil;
     self.index = nil;
     self.recentMovies = nil;
     self.movieMap = nil;
+    self.prioritizedMovies = nil;
+    self.prioritizedMoviesGate = nil;
 
     [super dealloc];
 }
@@ -48,7 +53,9 @@ static NSString* titles_key = @"Titles";
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
+        self.updateGate = [[[NSLock alloc] init] autorelease];
+        self.prioritizedMoviesGate = [[[NSLock alloc] init] autorelease];
+        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
     return self;
@@ -148,7 +155,7 @@ static NSString* titles_key = @"Titles";
     [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint)
                                onTarget:self
                inBackgroundWithArgument:nil
-                                   gate:gate
+                                   gate:updateGate
                                 visible:YES];
 }
 
@@ -202,7 +209,7 @@ static NSString* titles_key = @"Titles";
     [ThreadingUtilities performSelector:@selector(updateDetailsInBackgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:self.index
-                                   gate:gate
+                                   gate:updateGate
                                 visible:NO];
 }
 
@@ -281,6 +288,7 @@ static NSString* titles_key = @"Titles";
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:imdbFile];
+    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -343,6 +351,8 @@ static NSString* titles_key = @"Titles";
     if (cast.count > 0) {
         [FileUtilities writeObject:cast toFile:[self castFile:movie]];
     }
+    
+    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -369,6 +379,7 @@ static NSString* titles_key = @"Titles";
     
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
     [FileUtilities writeObject:trailers toFile:trailersFile];
+    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -377,7 +388,33 @@ static NSString* titles_key = @"Titles";
     [self updatePoster:movie];
     [self updateSynopsisAndCast:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
-    [NowPlayingAppDelegate refresh];
+}
+
+
+- (BOOL) updateDetails:(NSMutableArray*) movies
+               studios:(NSDictionary*) studios
+                titles:(NSDictionary*) titles {
+    Movie* movie;
+    [prioritizedMoviesGate lock];
+    {
+        movie = [prioritizedMovies removeLastObjectAdded];
+    }
+    [prioritizedMoviesGate unlock];
+    
+    if (movie == nil) {
+        if (movies.count == 0) {
+            return NO;
+        }
+        
+        movie = [movies lastObject];
+        [movies removeLastObject];
+    }
+    
+    [self updateDetails:movie
+                 studio:[studios objectForKey:movie.canonicalTitle]
+                  title:[titles objectForKey:movie.canonicalTitle]];
+    
+    return YES;
 }
 
 
@@ -385,18 +422,31 @@ static NSString* titles_key = @"Titles";
     [self deleteObsoleteData];
     
     NSArray* movies = [index_ objectForKey:movies_key];
+    if (movies == nil) {
+        return;
+    }
+    
+    NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
     NSDictionary* studios = [index_ objectForKey:studios_key];
     NSDictionary* titles = [index_ objectForKey:titles_key];
 
-    for (Movie* movie in movies) {
+    BOOL run = YES;
+    while (run) {
         NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
         {
-            [self updateDetails:movie
-                         studio:[studios objectForKey:movie.canonicalTitle]
-                          title:[titles objectForKey:movie.canonicalTitle]];
+            run = [self updateDetails:mutableMovies studios:studios titles:titles];
         }
         [autoreleasePool release];
     }
+}
+
+
+- (void) prioritizeMovie:(Movie*) movie {
+    [prioritizedMoviesGate lock];
+    {
+        [prioritizedMovies addObject:movie];
+    }
+    [prioritizedMoviesGate unlock];
 }
 
 
