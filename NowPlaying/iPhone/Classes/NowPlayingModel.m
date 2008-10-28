@@ -15,7 +15,6 @@
 #import "NowPlayingModel.h"
 
 #import "AbstractNavigationController.h"
-#import "AddressLocationCache.h"
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
 #import "Application.h"
@@ -686,10 +685,31 @@ static NSString** KEYS[] = {
 }
 
 
+- (NSDictionary*) theaterDistanceMap:(Location*) location
+                             theaters:(NSArray*) theaters {
+    NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
+    
+    for (Theater* theater in theaters) {
+        double d;
+        if (location != nil) {
+            d = [location distanceTo:theater.location];
+        } else {
+            d = UNKNOWN_DISTANCE;
+        }
+        
+        NSNumber* value = [NSNumber numberWithDouble:d];
+        NSString* key = theater.name;
+        [theaterDistanceMap setObject:value forKey:key];
+    }
+    
+    return theaterDistanceMap;
+}
+
+
 - (NSDictionary*) theaterDistanceMap {
     Location* location = [userLocationCache locationForUserAddress:self.userAddress];
-    return [AddressLocationCache theaterDistanceMap:location
-                                           theaters:self.theaters];
+    return [self theaterDistanceMap:location
+                           theaters:self.theaters];
 }
 
 
