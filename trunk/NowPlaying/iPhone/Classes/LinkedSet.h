@@ -13,6 +13,8 @@
 // limitations under the License.
 
 @interface LinkedSet : NSObject {
+    NSLock* gate;
+    
     LinkedNode* firstNode;
     LinkedNode* lastNode;
     NSMutableDictionary* valueToNode;
@@ -20,6 +22,7 @@
     NSInteger countLimit;
 }
 
+@property (retain) NSLock* gate;
 @property (retain) LinkedNode* firstNode;
 @property (retain) LinkedNode* lastNode;
 @property (retain) NSMutableDictionary* valueToNode;

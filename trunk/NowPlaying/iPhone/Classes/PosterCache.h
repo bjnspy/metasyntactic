@@ -13,17 +13,22 @@
 // limitations under the License.
 
 @interface PosterCache : NSObject {
-    NSLock* gate;
+    NSLock* updateGate;
     NowPlayingModel* model;
+    
+    LinkedSet* prioritizedMovies;
 }
 
-@property (retain) NSLock* gate;
+@property (retain) NSLock* updateGate;
 @property (retain) NowPlayingModel* model;
+@property (retain) LinkedSet* prioritizedMovies;
 
 + (PosterCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update:(NSArray*) movies;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
+
+- (void) prioritizeMovie:(Movie*) movie;
 
 @end

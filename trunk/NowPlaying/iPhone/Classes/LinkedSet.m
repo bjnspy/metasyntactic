@@ -18,11 +18,13 @@
 
 @implementation LinkedSet
 
+@synthesize gate;
 @synthesize firstNode;
 @synthesize lastNode;
 @synthesize valueToNode;
 
 - (void) dealloc {
+    self.gate = nil;
     self.firstNode = nil;
     self.lastNode = nil;
     self.valueToNode = nil;
@@ -33,8 +35,9 @@
 
 - (id) initWithCountLimit:(NSInteger) countLimit_ {
     if (self = [super init]) {
-        countLimit = countLimit_;
+        self.gate = [[[NSLock alloc] init] autorelease];
         self.valueToNode = [NSMutableDictionary dictionary];
+        countLimit = countLimit_;
     }
     
     return self;
@@ -52,18 +55,29 @@
 
 
 - (id) removeLastObjectAdded {
-    id object = [[lastNode.value retain] autorelease];
-    if (object != nil) {
-        [valueToNode removeObjectForKey:object];
-    }
+    id object;
     
-    if (lastNode == firstNode) {
-        self.firstNode = nil;
-        self.lastNode = nil;
-    } else {
-        self.lastNode = lastNode.previous;
-        self.lastNode.next = nil;
+    [gate lock];
+    {
+        object = [[lastNode.value retain] autorelease];
+        if (object != nil) {
+            [valueToNode removeObjectForKey:object];
+        }
+        
+        if (valueToNode.count == 0) {
+            self.firstNode = nil;
+            self.lastNode = nil;
+        } else {
+            self.lastNode = lastNode.previous;
+            self.lastNode.next = nil;
+            
+            NSAssert(firstNode != nil, @"");
+            NSAssert(lastNode != nil, @"");
+            NSAssert(firstNode.previous == nil, @"");
+            NSAssert(lastNode.next == nil, @"");
+        }
     }
+    [gate unlock];
     
     return object;
 }
@@ -83,18 +97,27 @@
 
 
 - (void) addObject:(id) object {
-    LinkedNode* node = [valueToNode objectForKey:object];
-    node.next.previous = node.previous;
-    node.previous.next = node.next;
-    
-    self.lastNode = [LinkedNode nodeWithValue:object previous:lastNode next:nil];
-    [valueToNode setObject:lastNode forKey:object];
-    
-    if (firstNode == nil) {
-        self.firstNode = lastNode;
+    [gate lock];
+    {
+        LinkedNode* node = [valueToNode objectForKey:object];
+        node.next.previous = node.previous;
+        node.previous.next = node.next;
+        
+        self.lastNode = [LinkedNode nodeWithValue:object previous:lastNode next:nil];
+        [valueToNode setObject:lastNode forKey:object];
+        
+        if (firstNode == nil) {
+            self.firstNode = lastNode;
+        }
+        
+        [self enforceLimit];
+        
+        NSAssert(firstNode != nil, @"");
+        NSAssert(lastNode != nil, @"");
+        NSAssert(firstNode.previous == nil, @"");
+        NSAssert(lastNode.next == nil, @"");
     }
-    
-    [self enforceLimit];
+    [gate unlock];
 }
 
 @end

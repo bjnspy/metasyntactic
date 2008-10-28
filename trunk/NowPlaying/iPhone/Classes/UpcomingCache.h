@@ -19,7 +19,6 @@
     NSArray* recentMovies;
     NSDictionary* movieMap;
     
-    NSLock* prioritizedMoviesGate;
     LinkedSet* prioritizedMovies;
 }
 
@@ -27,7 +26,6 @@
 @property (retain) NSDictionary* index;
 @property (retain) NSArray* recentMovies;
 @property (retain) NSDictionary* movieMap;
-@property (retain) NSLock* prioritizedMoviesGate;
 @property (retain) LinkedSet* prioritizedMovies;
 
 + (UpcomingCache*) cache;
