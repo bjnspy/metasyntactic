@@ -93,7 +93,6 @@
 		749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */; };
 		749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
 		7495695B0E2D6248007BFF21 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695A0E2D6248007BFF21 /* Review.m */; };
-		749A52D40E88522500C05A34 /* AddressLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749A52D30E88522500C05A34 /* AddressLocationCache.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
 		74A3F0500E686A7D007ED6DC /* MovieNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A3F04F0E686A7D007ED6DC /* MovieNumbers.m */; };
@@ -395,8 +394,6 @@
 		749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
 		749569590E2D6248007BFF21 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		7495695A0E2D6248007BFF21 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
-		749A52D20E88522500C05A34 /* AddressLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLocationCache.h; sourceTree = "<group>"; };
-		749A52D30E88522500C05A34 /* AddressLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressLocationCache.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		74A3F04E0E686A7D007ED6DC /* MovieNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieNumbers.h; sourceTree = "<group>"; };
@@ -947,8 +944,6 @@
 			children = (
 				748AB0300EB61C2C004918A6 /* IMDbCache.h */,
 				748AB0310EB61C2C004918A6 /* IMDbCache.m */,
-				749A52D20E88522500C05A34 /* AddressLocationCache.h */,
-				749A52D30E88522500C05A34 /* AddressLocationCache.m */,
 				747CA1BF0E8594C300A09E89 /* LocationCache.h */,
 				747CA1C00E8594C300A09E89 /* LocationCache.m */,
 				747CA1390E8591B600A09E89 /* UserLocationCache.h */,
@@ -1429,7 +1424,6 @@
 				74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */,
 				747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */,
 				747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */,
-				749A52D40E88522500C05A34 /* AddressLocationCache.m in Sources */,
 				7413718A0E88E79C00CF4900 /* Score.m in Sources */,
 				744245B90E89DA0500ACDBCF /* SearchViewController.m in Sources */,
 				744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */,
