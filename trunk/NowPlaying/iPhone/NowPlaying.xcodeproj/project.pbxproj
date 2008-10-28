@@ -77,6 +77,8 @@
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
+		748AB37E0EB6C59A004918A6 /* LinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB37D0EB6C59A004918A6 /* LinkedNode.m */; };
+		748AB3810EB6C5A5004918A6 /* LinkedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB3800EB6C5A5004918A6 /* LinkedSet.m */; };
 		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
 		748F1D390EB513D300DEB5BB /* GoogleScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */; };
 		748F1D3A0EB513D300DEB5BB /* MetacriticScoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 748F1D340EB513D300DEB5BB /* MetacriticScoreProvider.m */; };
@@ -361,6 +363,10 @@
 		748379CA0DD0169E00DC3B80 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
 		748AB0300EB61C2C004918A6 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
 		748AB0310EB61C2C004918A6 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
+		748AB37C0EB6C59A004918A6 /* LinkedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedNode.h; sourceTree = "<group>"; };
+		748AB37D0EB6C59A004918A6 /* LinkedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedNode.m; sourceTree = "<group>"; };
+		748AB37F0EB6C5A5004918A6 /* LinkedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedSet.h; sourceTree = "<group>"; };
+		748AB3800EB6C5A5004918A6 /* LinkedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedSet.m; sourceTree = "<group>"; };
 		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		748F1D310EB513D300DEB5BB /* GoogleScoreProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleScoreProvider.h; sourceTree = "<group>"; };
 		748F1D320EB513D300DEB5BB /* GoogleScoreProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleScoreProvider.m; sourceTree = "<group>"; };
@@ -625,6 +631,7 @@
 				7491444F0E764D0E00CC42A8 /* Scores */,
 				744246FE0E89F79000ACDBCF /* Search */,
 				74E6F0190E723FA200A4C2BE /* Threading */,
+				748AB37B0EB6C57C004918A6 /* Collections */,
 				740DE12F0DCC3D5400B4E69A /* Utilities */,
 				74D6F2B40DCC14420097A984 /* Xml */,
 				746A02140DC81A1A0079D89B /* Application.h */,
@@ -777,8 +784,6 @@
 				74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */,
 				74EC069E0DD2D69B006953A4 /* Utilities.h */,
 				74EC069F0DD2D69B006953A4 /* Utilities.m */,
-				74EC08710DD3EEBB006953A4 /* MultiDictionary.h */,
-				74EC08720DD3EEBB006953A4 /* MultiDictionary.m */,
 				747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */,
 				747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */,
 				74F94A9E0E6B9ECB00075068 /* NetworkUtilities.h */,
@@ -964,6 +969,19 @@
 				74AD66340E92D49500A01FD5 /* DVDCache.m */,
 			);
 			name = Caches;
+			sourceTree = "<group>";
+		};
+		748AB37B0EB6C57C004918A6 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				74EC08710DD3EEBB006953A4 /* MultiDictionary.h */,
+				74EC08720DD3EEBB006953A4 /* MultiDictionary.m */,
+				748AB37C0EB6C59A004918A6 /* LinkedNode.h */,
+				748AB37D0EB6C59A004918A6 /* LinkedNode.m */,
+				748AB37F0EB6C5A5004918A6 /* LinkedSet.h */,
+				748AB3800EB6C5A5004918A6 /* LinkedSet.m */,
+			);
+			name = Collections;
 			sourceTree = "<group>";
 		};
 		7491444F0E764D0E00CC42A8 /* Scores */ = {
@@ -1473,6 +1491,8 @@
 				748F1E5A0EB5267D00DEB5BB /* AbstractScoreProvider.m in Sources */,
 				748F1FAC0EB5418D00DEB5BB /* NoneScoreProvider.m in Sources */,
 				748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */,
+				748AB37E0EB6C59A004918A6 /* LinkedNode.m in Sources */,
+				748AB3810EB6C5A5004918A6 /* LinkedSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
