@@ -18,6 +18,7 @@
 #import "ImageCache.h"
 #import "Movie.h"
 #import "NowPlayingModel.h"
+#import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 
 @implementation UpcomingMovieCell
@@ -193,6 +194,7 @@
 
     UIImage* image = [model posterForMovie:movie];
     if (image == nil) {
+        [model.upcomingCache prioritizeMovie:movie];
         imageView.image = [ImageCache imageNotAvailable];
     } else {
         imageView.image = image;
