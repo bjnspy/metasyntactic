@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
+#import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
@@ -24,10 +25,12 @@
 
 @implementation TrailerCache
 
-@synthesize gate;
+@synthesize updateGate;
+@synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.gate = nil;
+    self.updateGate = nil;
+    self.prioritizedMovies = nil;
 
     [super dealloc];
 }
@@ -35,7 +38,8 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSLock alloc] init] autorelease];
+        self.updateGate = [[[NSLock alloc] init] autorelease];
+        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
     return self;
@@ -104,19 +108,10 @@
 
 
 - (void) update:(NSArray*) movies {
-    [self deleteObsoleteTrailers:movies];
-
-    NSArray* orderedMovies = [self getOrderedMovies:movies];
-    NSArray* moviesWithoutTrailers = [orderedMovies objectAtIndex:0];
-    NSArray* moviesWithTrailers = [orderedMovies objectAtIndex:1];
-    if (moviesWithoutTrailers.count == 0 && moviesWithTrailers.count == 0) {
-        return;
-    }
-
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
-               inBackgroundWithArgument:orderedMovies
-                                   gate:gate
+               inBackgroundWithArgument:movies
+                                   gate:updateGate
                                 visible:NO];
 }
 
@@ -125,6 +120,10 @@
                         index:(NSDictionary*) index
                     indexKeys:(NSArray*) indexKeys
                        engine:(DifferenceEngine*) engine {
+    if (movie == nil) {
+        return;
+    }
+    
     NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
@@ -151,21 +150,45 @@
 }
 
 
-- (void) downloadTrailers:(NSArray*) movies
+- (Movie*) getNextMovie:(NSMutableArray*) movies {
+    Movie* movie = [prioritizedMovies removeLastObjectAdded];
+    
+    if (movie != nil) {
+        return movie;
+    }
+    
+    if (movies.count > 0) {
+        movie = [movies lastObject];
+        [movies removeLastObject];
+        return movie;
+    }
+    
+    return nil;
+}
+
+
+- (void) downloadTrailers:(NSMutableArray*) movies
                     index:(NSDictionary*) index
                 indexKeys:(NSArray*) indexKeys {
     DifferenceEngine* engine = [DifferenceEngine engine];
 
-    for (Movie* movie in movies) {
+    Movie* movie;
+    do {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
+            movie = [self getNextMovie:movies];
             [self downloadMovieTrailer:movie
                                  index:index
                              indexKeys:indexKeys
                                 engine:engine];
         }
         [autoreleasePool release];
-    }
+    } while (movie != nil);
+}
+
+
+- (void) prioritizeMovie:(Movie*) movie {
+    [prioritizedMovies addObject:movie];
 }
 
 
@@ -191,7 +214,16 @@
 }
 
 
-- (void) backgroundEntryPoint:(NSArray*) arguments {
+- (void) backgroundEntryPoint:(NSArray*) movies {
+    [self deleteObsoleteTrailers:movies];
+    
+    NSArray* orderedMovies = [self getOrderedMovies:movies];
+    NSMutableArray* moviesWithoutTrailers = [orderedMovies objectAtIndex:0];
+    NSMutableArray* moviesWithTrailers = [orderedMovies objectAtIndex:1];
+    if (moviesWithoutTrailers.count == 0 && moviesWithTrailers.count == 0) {
+        return;
+    }
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
     NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (indexText == nil) {
@@ -201,9 +233,8 @@
     NSDictionary* index = [self generateIndex:indexText];
     NSArray* indexKeys = index.allKeys;
 
-    for (NSArray* movies in arguments) {
-        [self downloadTrailers:movies index:index indexKeys:indexKeys];
-    }
+    [self downloadTrailers:moviesWithoutTrailers index:index indexKeys:indexKeys];
+    [self downloadTrailers:moviesWithTrailers index:index indexKeys:indexKeys];
 }
 
 

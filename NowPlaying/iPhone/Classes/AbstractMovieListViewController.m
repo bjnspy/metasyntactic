@@ -22,6 +22,8 @@
 #import "MoviesNavigationController.h"
 #import "MultiDictionary.h"
 #import "NowPlayingModel.h"
+#import "PosterCache.h"
+#import "TrailerCache.h"
 #import "Utilities.h"
 
 @implementation AbstractMovieListViewController
@@ -287,6 +289,9 @@
         cell = [self createCell:reuseIdentifier];
     }
 
+    [self.model.posterCache prioritizeMovie:movie];
+    [self.model.trailerCache prioritizeMovie:movie];
+    
     [cell setMovie:movie owner:self];
     return cell;
 }

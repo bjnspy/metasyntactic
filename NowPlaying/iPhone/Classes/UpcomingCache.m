@@ -37,7 +37,6 @@ static NSString* titles_key = @"Titles";
 @synthesize recentMovies;
 @synthesize movieMap;
 @synthesize prioritizedMovies;
-@synthesize prioritizedMoviesGate;
 
 - (void) dealloc {
     self.updateGate = nil;
@@ -45,7 +44,6 @@ static NSString* titles_key = @"Titles";
     self.recentMovies = nil;
     self.movieMap = nil;
     self.prioritizedMovies = nil;
-    self.prioritizedMoviesGate = nil;
 
     [super dealloc];
 }
@@ -54,7 +52,6 @@ static NSString* titles_key = @"Titles";
 - (id) init {
     if (self = [super init]) {
         self.updateGate = [[[NSLock alloc] init] autorelease];
-        self.prioritizedMoviesGate = [[[NSLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
@@ -391,30 +388,20 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (BOOL) updateDetails:(NSMutableArray*) movies
-               studios:(NSDictionary*) studios
-                titles:(NSDictionary*) titles {
-    Movie* movie;
-    [prioritizedMoviesGate lock];
-    {
-        movie = [prioritizedMovies removeLastObjectAdded];
-    }
-    [prioritizedMoviesGate unlock];
+- (Movie*) getNextMovie:(NSMutableArray*) movies {
+    Movie* movie = [prioritizedMovies removeLastObjectAdded];
     
-    if (movie == nil) {
-        if (movies.count == 0) {
-            return NO;
-        }
-        
+    if (movie != nil) {
+        return movie;
+    }
+    
+    if (movies.count > 0) {
         movie = [movies lastObject];
         [movies removeLastObject];
+        return movie;
     }
     
-    [self updateDetails:movie
-                 studio:[studios objectForKey:movie.canonicalTitle]
-                  title:[titles objectForKey:movie.canonicalTitle]];
-    
-    return YES;
+    return nil;
 }
 
 
@@ -430,23 +417,24 @@ static NSString* titles_key = @"Titles";
     NSDictionary* studios = [index_ objectForKey:studios_key];
     NSDictionary* titles = [index_ objectForKey:titles_key];
 
-    BOOL run = YES;
-    while (run) {
+    Movie* movie;
+    do {
         NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
         {
-            run = [self updateDetails:mutableMovies studios:studios titles:titles];
+            movie = [self getNextMovie:mutableMovies];
+            if (movie != nil) {
+                [self updateDetails:movie
+                             studio:[studios objectForKey:movie.canonicalTitle]
+                              title:[titles objectForKey:movie.canonicalTitle]];   
+            }
         }
         [autoreleasePool release];
-    }
+    } while (movie != nil);
 }
 
 
 - (void) prioritizeMovie:(Movie*) movie {
-    [prioritizedMoviesGate lock];
-    {
-        [prioritizedMovies addObject:movie];
-    }
-    [prioritizedMoviesGate unlock];
+    [prioritizedMovies addObject:movie];
 }
 
 

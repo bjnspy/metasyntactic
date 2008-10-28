@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "FileUtilities.h"
+#import "LinkedSet.h"
 #import "Location.h"
 #import "Movie.h"
 #import "NowPlayingAppDelegate.h"
@@ -27,12 +28,14 @@
 
 @implementation PosterCache
 
-@synthesize gate;
+@synthesize updateGate;
 @synthesize model;
+@synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.gate = nil;
+    self.updateGate = nil;
     self.model = nil;
+    self.prioritizedMovies = nil;
 
     [super dealloc];
 }
@@ -40,8 +43,9 @@
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
-        self.gate = [[[NSLock alloc] init] autorelease];
+        self.updateGate = [[[NSLock alloc] init] autorelease];
         self.model = model_;
+        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
     return self;
@@ -57,7 +61,7 @@
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:[NSArray arrayWithArray:movies]
-                                   gate:gate
+                                   gate:updateGate
                                 visible:NO];
 }
 
@@ -96,6 +100,10 @@
 
 - (void) downloadPoster:(Movie*) movie
              postalCode:(NSString*) postalCode {
+    if (movie == nil) {
+        return;
+    }
+
     NSString* path = [self posterFilePath:movie];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
@@ -107,6 +115,37 @@
         [data writeToFile:path atomically:YES];
         [NowPlayingAppDelegate refresh];
     }
+}
+
+
+- (Movie*) getNextMovie:(NSMutableArray*) movies {
+    Movie* movie = [prioritizedMovies removeLastObjectAdded];
+    
+    if (movie != nil) {
+        return movie;
+    }
+    
+    if (movies.count > 0) {
+        movie = [movies lastObject];
+        [movies removeLastObject];
+        return movie;
+    }
+    
+    return nil;
+}
+
+
+- (void) downloadPosters:(NSMutableArray*) movies
+              postalCode:(NSString*) postalCode {
+    Movie* movie;
+    do {
+        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+        {
+            movie = [self getNextMovie:movies];
+            [self downloadPoster:movie postalCode:postalCode];
+        }
+        [autoreleasePool release];
+    } while (movie != nil);
 }
 
 
@@ -129,16 +168,13 @@
         postalCode = @"10009";
     }
 
-    NSArray* arguments = [NSArray arrayWithObjects:moviesWithPosterLinks, moviesWithoutPosterLinks, nil];
-    for (NSArray* list in arguments) {
-        for (Movie* movie in list) {
-            NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-            {
-                [self downloadPoster:movie postalCode:postalCode];
-            }
-            [autoreleasePool release];
-        }
-    }
+    [self downloadPosters:moviesWithPosterLinks postalCode:postalCode];
+    [self downloadPosters:moviesWithoutPosterLinks postalCode:postalCode];
+}
+
+
+- (void) prioritizeMovie:(Movie*) movie {
+    [prioritizedMovies addObject:movie];
 }
 
 
