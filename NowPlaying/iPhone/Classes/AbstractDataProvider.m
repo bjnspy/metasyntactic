@@ -105,7 +105,7 @@
 
 
 - (NSArray*) loadMovies {
-    NSArray* array = [NSArray arrayWithContentsOfFile:self.moviesFile];
+    NSArray* array = [FileUtilities readObject:self.moviesFile];
     if (array == nil) {
         return [NSArray array];
     }
@@ -193,7 +193,7 @@
     NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.name];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
-                               [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.name]]];
+                               [FileUtilities readObject:[self performancesFile:theater.name]]];
         [self.performancesData setObject:theaterPerformances forKey:theater.name];
     }
     return theaterPerformances;
@@ -224,7 +224,7 @@
 
 
 - (NSArray*) loadTheaters {
-    NSArray* array = [NSArray arrayWithContentsOfFile:self.theatersFile];
+    NSArray* array = [FileUtilities readObject:self.theatersFile];
     if (array == nil) {
         return [NSArray array];
     }

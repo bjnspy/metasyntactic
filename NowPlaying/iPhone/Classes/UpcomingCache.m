@@ -302,7 +302,7 @@ static NSString* titles_key = @"Titles";
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster
                                               important:NO];
     if (data != nil) {
-        [data writeToFile:posterFile atomically:YES];
+        [FileUtilities writeObject:data toFile:posterFile];
     }
 }
 
@@ -396,7 +396,7 @@ static NSString* titles_key = @"Titles";
     }
     
     if (movies.count > 0) {
-        movie = [movies lastObject];
+        movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
@@ -439,7 +439,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (NSDictionary*) loadIndex {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:self.indexFile];
+    NSDictionary* dictionary = [FileUtilities readObject:self.indexFile];
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
@@ -519,7 +519,7 @@ static NSString* titles_key = @"Titles";
         return result;
     }
     
-    result = [NSArray arrayWithContentsOfFile:[self castFile:movie]];
+    result = [FileUtilities readObject:[self castFile:movie]];
     if (result.count > 0) {
         return result;
     }
@@ -540,7 +540,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (UIImage*) posterForMovie:(Movie*) movie {
-    NSData* data = [NSData dataWithContentsOfFile:[self posterFile:movie]];
+    NSData* data = [FileUtilities readObject:[self posterFile:movie]];
     if (data == nil) {
         return nil;
     }
@@ -555,7 +555,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* array = [NSArray arrayWithContentsOfFile:[self trailersFile:movie]];
+    NSArray* array = [FileUtilities readObject:[self trailersFile:movie]];
     if (array == nil) {
         return [NSArray array];
     }

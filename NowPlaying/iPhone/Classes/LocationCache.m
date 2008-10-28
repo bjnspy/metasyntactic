@@ -118,7 +118,7 @@
 
 - (Location*) loadLocation:(NSString*) address {
     if (address.length != 0) {
-        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:address]];
+        NSDictionary* dict = [FileUtilities readObject:[self locationFile:address]];
         if (dict != nil) {
             return [Location locationWithDictionary:dict];
         }

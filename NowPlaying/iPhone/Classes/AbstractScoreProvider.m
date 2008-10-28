@@ -480,7 +480,7 @@
     }
     
     if (scores.count > 0) {
-        score = [scores lastObject];
+        score = [[[scores lastObject] retain] autorelease];
         [scores removeLastObject];
         return score;
     }

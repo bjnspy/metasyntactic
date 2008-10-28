@@ -65,7 +65,7 @@
 
 
 - (NSDictionary*) loadIndex {
-    NSDictionary* encoded = [NSDictionary dictionaryWithContentsOfFile:self.indexFile];
+    NSDictionary* encoded = [FileUtilities readObject:self.indexFile];
     if (encoded == nil) {
         return [NSDictionary dictionary];
     }
@@ -310,21 +310,21 @@
 
 
 - (double) dailyChange:(MovieNumbers*) movie {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
+    NSDictionary* dictionary = [FileUtilities readObject:[self movieDetailsFile:movie]];
 
     return [self currentChangeValue:[dictionary objectForKey:@"Daily"]];
 }
 
 
 - (double) weekendChange:(MovieNumbers*) movie {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
+    NSDictionary* dictionary = [FileUtilities readObject:[self movieDetailsFile:movie]];
 
     return [self currentChangeValue:[dictionary objectForKey:@"Weekend"]];
 }
 
 
 - (double) totalChange:(MovieNumbers*) movie {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
+    NSDictionary* dictionary = [FileUtilities readObject:[self movieDetailsFile:movie]];
 
     double result = [self totalChangeValue:[dictionary objectForKey:@"Weekend"]];
     if (IS_NOT_ENOUGH_DATA(result) || IS_RETRIEVING(result)) {
@@ -336,7 +336,7 @@
 
 
 - (NSInteger) budgetForMovie:(MovieNumbers*) movie {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
+    NSDictionary* dictionary = [FileUtilities readObject:[self movieDetailsFile:movie]];
     if (dictionary == nil) {
         return -1;
     }
