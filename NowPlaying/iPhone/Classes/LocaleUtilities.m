@@ -60,4 +60,9 @@
     return [[self englishLocale] displayNameForKey:NSLocaleLanguageCode value:isoLanguage];
 }
 
+
++ (BOOL) isEnglish {
+    return [@"en" isEqual:[self isoLanguage]];
+}
+
 @end
