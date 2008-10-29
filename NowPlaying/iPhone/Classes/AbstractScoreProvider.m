@@ -18,6 +18,7 @@
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "LinkedSet.h"
+#import "LocaleUtilities.h"
 #import "Location.h"
 #import "Movie.h"
 #import "Score.h"
@@ -361,15 +362,14 @@
 
 - (NSString*) serverReviewsAddress:(Location*) location
                              score:(Score*) score {
-    NSString* country = location.country.length == 0 ?
-    [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode] :
+    NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry] :
     location.country;
 
     NSString* url =
     [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews2?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
      [Application host],
      country,
-     [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
+     [LocaleUtilities isoLanguage],
      score.identifier,
      score.provider,
      (int)(location.latitude * 1000000),

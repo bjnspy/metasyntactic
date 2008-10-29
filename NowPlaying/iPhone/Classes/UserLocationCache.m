@@ -15,6 +15,7 @@
 #import "UserLocationCache.h"
 
 #import "Application.h"
+#import "LocaleUtilities.h"
 #import "Location.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
@@ -65,20 +66,13 @@
 }
 
 
-- (NSString*) userCountryISO {
-    return [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
-}
-
-
 - (NSString*) massageAddress:(NSString*) userAddress {
     userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (userAddress.length <= 7 &&
         [self containsNumber:userAddress]) {
         // possibly a postal code.  append the country to help make it unique
 
-        NSString* isoCode = [self userCountryISO];
-        NSLocale* englishLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en"] autorelease];
-        NSString* country = [englishLocale displayNameForKey:NSLocaleCountryCode value:isoCode];
+        NSString* country = [LocaleUtilities englishCountry];
         if (country != nil) {
             return [NSString stringWithFormat:@"%@. %@", userAddress, country];
         }
@@ -123,7 +117,7 @@
 
     if (location == nil) {
         location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
-        if (![location.country isEqual:[self userCountryISO]]) {
+        if (![location.country isEqual:[LocaleUtilities isoCountry]]) {
             location = [self downloadAddressLocationFromWebService:userAddress];
         }
 

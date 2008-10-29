@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
+#import "LocaleUtilities.h"
 #import "Location.h"
 #import "Score.h"
 #import "NetworkUtilities.h"
@@ -64,7 +65,7 @@
         return nil;
     }
 
-    NSString* country = location.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
+    NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry] 
     : location.country;
 
 
@@ -79,7 +80,7 @@
                          @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=pb&latitude=%d&longitude=%d",
                          [Application host],
                          country,
-                         [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
+                         [LocaleUtilities isoLanguage],
                          [Utilities stringByAddingPercentEscapes:location.postalCode],
                          day,
                          (int)(location.latitude * 1000000),

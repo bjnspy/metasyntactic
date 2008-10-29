@@ -161,6 +161,7 @@
 		74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC069F0DD2D69B006953A4 /* Utilities.m */; };
 		74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC08720DD3EEBB006953A4 /* MultiDictionary.m */; };
 		74EC36400E67BC7D0084F7E0 /* NumbersCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC363F0E67BC7D0084F7E0 /* NumbersCache.m */; };
+		74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */; };
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
@@ -540,6 +541,8 @@
 		74EC08720DD3EEBB006953A4 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
 		74EC363B0E67BA710084F7E0 /* NumbersCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumbersCache.h; sourceTree = "<group>"; };
 		74EC363F0E67BC7D0084F7E0 /* NumbersCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumbersCache.m; sourceTree = "<group>"; };
+		74EF2F920EB8D93C0053B3CC /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
+		74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
 		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
@@ -793,6 +796,8 @@
 				74F94C8C0E6BB34800075068 /* LocationUtilities.m */,
 				74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */,
 				74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */,
+				74EF2F920EB8D93C0053B3CC /* LocaleUtilities.h */,
+				74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1495,6 +1500,7 @@
 				748AB37E0EB6C59A004918A6 /* LinkedNode.m in Sources */,
 				748AB3810EB6C5A5004918A6 /* LinkedSet.m in Sources */,
 				74BD51CA0EB786FC0098C2DF /* MainThreadGate.m in Sources */,
+				74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
