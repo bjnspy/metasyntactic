@@ -2912,4 +2912,3 @@
 - (BarResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (BarResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
-

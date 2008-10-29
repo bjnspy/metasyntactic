@@ -197,7 +197,7 @@ int32_t computeEnumSize(int32_t fieldNumber, int32_t value);
  *               type which would be returned by
  *               {@link Message#getField(Descriptors.FieldDescriptor)} for
  *               this field.
- */ 
+ */
 - (void) writeField:(PBFieldDescriptorType) type
              number:(int32_t) number
               value:(id) value;

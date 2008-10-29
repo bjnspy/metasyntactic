@@ -316,4 +316,3 @@ static ImportMessage* defaultImportMessageInstance = nil;
   return self;
 }
 @end
-

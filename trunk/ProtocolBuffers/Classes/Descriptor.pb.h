@@ -1292,4 +1292,3 @@
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
-

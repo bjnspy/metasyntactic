@@ -150,4 +150,3 @@
 - (TestEmbedOptimizedForSize_Builder*) addAllRepeatedMessage:(NSArray*) values;
 - (TestEmbedOptimizedForSize_Builder*) clearRepeatedMessageList;
 @end
-
