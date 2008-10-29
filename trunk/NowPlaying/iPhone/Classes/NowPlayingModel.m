@@ -46,7 +46,7 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"2.1.0";
+static NSString* currentVersion = @"2.2.0";
 static NSString* persistenceVersion = @"6";
 
 static NSString* VERSION = @"version";
@@ -275,7 +275,20 @@ static NSString** KEYS[] = {
 
 
 - (NSInteger) scoreProviderIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:RATINGS_PROVIDER_INDEX];
+    NSNumber* result = [[NSUserDefaults standardUserDefaults] objectForKey:RATINGS_PROVIDER_INDEX];
+    if (result != nil) {
+        return [result intValue];
+    }
+    
+    // by default, chose 'rottentomatoes' if they're an english speaking
+    // country.  otherwise, choose 'google'.
+    if ([LocaleUtilities isEnglish]) {
+        [self setScoreProviderIndex:0];
+    } else {
+        [self setScoreProviderIndex:2];
+    }
+    
+    return [self scoreProviderIndex];
 }
 
 
@@ -848,8 +861,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         [options addObject:synopsis];
     }
 
-    NSString* language = [LocaleUtilities isoLanguage];
-    if (options.count == 0 || [language isEqual:@"en"] || [language hasPrefix:@"en_"]) {
+    if (options.count == 0 || [LocaleUtilities isEnglish]) {
         synopsis = [self scoreForMovie:movie].synopsis;
         if (synopsis.length > 0) {
             [options addObject:synopsis];
