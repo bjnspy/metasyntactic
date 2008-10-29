@@ -51,6 +51,7 @@
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:@"Allan Lund Jensen"  forKey:@"da"];
+        [dictionary setObject:@"Patrick Boch"       forKey:@"de"];
         [dictionary setObject:@"Jorge Herskovic"    forKey:@"es"];
         [dictionary setObject:@"J-P. Helisten"      forKey:@"fi"];
         [dictionary setObject:@"Jonathan Grenier"   forKey:@"fr"];
