@@ -148,4 +148,3 @@
 - (TestOptimizedForSize_Builder*) mergeMsg:(ForeignMessage*) value;
 - (TestOptimizedForSize_Builder*) clearMsg;
 @end
-

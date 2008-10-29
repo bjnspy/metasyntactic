@@ -1429,4 +1429,3 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return self;
 }
 @end
-

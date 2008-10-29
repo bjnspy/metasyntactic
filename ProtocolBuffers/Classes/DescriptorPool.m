@@ -83,7 +83,7 @@
     return mutableFieldsByNumber;
 }
 
-    
+
 - (NSDictionary*) enumValuesByNumber {
     return mutableEnumValuesByNumber;
 }

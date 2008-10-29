@@ -103,7 +103,7 @@ BOOL isHex(unichar c) {
 
 /**
  * Parse a 32-bit signed integer from the text.  This function recognizes
- * the prefixes "0x" and "0" to signify hexidecimal and octal numbers, 
+ * the prefixes "0x" and "0" to signify hexidecimal and octal numbers,
  * respectively.
  */
 + (int32_t) parseInt32:(NSString*) text {
@@ -113,7 +113,7 @@ BOOL isHex(unichar c) {
 
 /**
  * Parse a 32-bit unsigned integer from the text.  This function recognizes
- * the prefixes "0x" and "0" to signify hexidecimal and octal numbers, 
+ * the prefixes "0x" and "0" to signify hexidecimal and octal numbers,
  * respectively.  The result is coerced to a (signed) {@code int} when returned.
  */
 + (int32_t) parseUInt32:(NSString*) text {

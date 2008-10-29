@@ -90,4 +90,3 @@
 - (ImportMessage_Builder*) setD:(int32_t) value;
 - (ImportMessage_Builder*) clearD;
 @end
-

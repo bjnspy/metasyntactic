@@ -343,4 +343,3 @@
 - (RawMessageSet_Builder*) addAllItem:(NSArray*) values;
 - (RawMessageSet_Builder*) clearItemList;
 @end
-
