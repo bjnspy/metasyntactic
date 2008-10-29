@@ -24,6 +24,7 @@
 #import "FileUtilities.h"
 #import "GoogleDataProvider.h"
 #import "IMDbCache.h"
+#import "LocaleUtilities.h"
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
@@ -847,8 +848,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         [options addObject:synopsis];
     }
 
-    NSString* language = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
-
+    NSString* language = [LocaleUtilities isoLanguage];
     if (options.count == 0 || [language isEqual:@"en"] || [language hasPrefix:@"en_"]) {
         synopsis = [self scoreForMovie:movie].synopsis;
         if (synopsis.length > 0) {

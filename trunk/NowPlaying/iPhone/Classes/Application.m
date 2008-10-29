@@ -16,6 +16,7 @@
 
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
+#import "LocaleUtilities.h"
 #import "Utilities.h"
 
 @implementation Application
@@ -395,8 +396,8 @@ static NSString* starString = nil;
     // yeah... so the UK supposedly uses metric...
     // except they don't. so we special case them to stick with 'miles' in the UI.
     BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
-    BOOL isUK = [@"GB" isEqual:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
-
+    BOOL isUK = [@"GB" isEqual:[LocaleUtilities isoCountry]];
+    
     return isMetric && !isUK;
 }
 

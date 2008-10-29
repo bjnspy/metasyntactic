@@ -15,6 +15,7 @@
 #import "CreditsViewController.h"
 
 #import "Application.h"
+#import "LocaleUtilities.h"
 #import "SettingCell.h"
 
 @implementation CreditsViewController
@@ -145,8 +146,8 @@
 
 
 NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
-    NSString* language1 = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code1];
-    NSString* language2 = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code2];
+    NSString* language1 = [LocaleUtilities displayLanguage:code1];
+    NSString* language2 = [LocaleUtilities displayLanguage:code2];
 
     return [language1 compare:language2];
 }
@@ -158,7 +159,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
     NSString* code = [[localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL] objectAtIndex:row];
     NSString* person = [localizers objectForKey:code];
-    NSString* language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code];
+    NSString* language = [LocaleUtilities displayLanguage:code];
 
     [cell setKey:language value:person];
     return cell;
