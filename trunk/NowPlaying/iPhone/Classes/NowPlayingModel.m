@@ -21,6 +21,7 @@
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "DVDCache.h"
+#import "DVDViewController.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "GoogleDataProvider.h"
@@ -64,6 +65,7 @@ static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
 static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX = @"upcomingMoviesSelectedSegmentIndex";
+static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
 static NSString* USER_ADDRESS                           = @"userLocation";
 static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
 
@@ -385,6 +387,16 @@ static NSString** KEYS[] = {
 }
 
 
+- (NSInteger) dvdMoviesSelectedSegmentIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:DVD_MOVIES_SELECTED_SEGMENT_INDEX];
+}
+
+
+- (void) setDvdMoviesSelectedSegmentIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:DVD_MOVIES_SELECTED_SEGMENT_INDEX];
+}
+
+
 - (NSInteger) numbersSelectedSegmentIndex {
     return [[NSUserDefaults standardUserDefaults] integerForKey:NUMBERS_SELECTED_SEGMENT_INDEX];
 }
@@ -417,6 +429,16 @@ static NSString** KEYS[] = {
 
 - (BOOL) upcomingMoviesSortingByReleaseDate {
     return self.upcomingMoviesSelectedSegmentIndex == 1;
+}
+
+
+- (BOOL) dvdMoviesSortingByTitle {
+    return self.dvdMoviesSelectedSegmentIndex == 0;
+}
+
+
+- (BOOL) dvdMoviesSortingByReleaseDate {
+    return self.dvdMoviesSelectedSegmentIndex == 1;
 }
 
 
@@ -609,16 +631,22 @@ static NSString** KEYS[] = {
 
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
-    if (movie.imdbAddress.length > 0) {
-        return movie.imdbAddress;
-    }
-
-    NSString* result = [imdbCache imdbAddressForMovie:movie];
+    NSString* result = movie.imdbAddress;
     if (result.length > 0) {
         return result;
     }
 
-    return [upcomingCache imdbAddressForMovie:movie];
+    result = [imdbCache imdbAddressForMovie:movie];
+    if (result.length > 0) {
+        return result;
+    }
+
+    result = [upcomingCache imdbAddressForMovie:movie];
+    if (result.length > 0) {
+        return result;
+    }
+    
+    return [dvdCache imdbAddressForMovie:movie];
 }
 
 
@@ -628,7 +656,12 @@ static NSString** KEYS[] = {
         return image;
     }
 
-    return [upcomingCache posterForMovie:movie];
+    image = [upcomingCache posterForMovie:movie];
+    if (image != nil) {
+        return image;
+    }
+    
+    return [dvdCache posterForMovie:movie];
 }
 
 
@@ -957,6 +990,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         } else if ([viewController isKindOfClass:[AllTheatersViewController class]]) {
             continue;
         } else if ([viewController isKindOfClass:[UpcomingMoviesViewController class]]) {
+            continue;
+        } else if ([viewController isKindOfClass:[DVDViewController class]]) {
             continue;
         } else {
             NSAssert(false, @"");

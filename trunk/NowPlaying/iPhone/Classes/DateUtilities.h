@@ -22,6 +22,7 @@
 + (NSDate*) tomorrow;
 
 + (NSDate*) dateWithNaturalLanguageString:(NSString*) string;
++ (NSDate*) parseIS08601Date:(NSString*) string;
 
 + (BOOL) isSameDay:(NSDate*) d1
               date:(NSDate*) d2;

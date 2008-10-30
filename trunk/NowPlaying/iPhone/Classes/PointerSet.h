@@ -12,23 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FileUtilities : NSObject {
-
+@interface PointerSet : NSObject {
+    NSMutableSet* set;
 }
 
-+ (void) writeObject:(id) object toFile:(NSString*) file;
-+ (id) readObject:(NSString*) file;
+@property (retain) NSMutableSet* set;
 
-+ (void) writeData:(NSData*) data toFile:(NSString*) file;
-+ (NSData*) readData:(NSString*) file;
++ (PointerSet*) set;
++ (PointerSet*) setWithArray:(NSArray*) values;
 
-+ (void) createDirectory:(NSString*) path;
-+ (NSString*) sanitizeFileName:(NSString*) name;
-
-+ (NSDate*) modificationDate:(NSString*) file;
-+ (NSArray*) directoryContents:(NSString*) directory;
-+ (void) removeItem:(NSString*) path;
-+ (BOOL) fileExists:(NSString*) path;
-+ (void) moveItem:(NSString*) from to:(NSString*) to;
+- (void) addObject:(id) value;
+- (void) addObjectsFromArray:(NSArray*) values;
+- (BOOL) containsObject:(id) value;
 
 @end

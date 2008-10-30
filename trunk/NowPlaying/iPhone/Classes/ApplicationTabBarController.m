@@ -14,6 +14,7 @@
 
 #import "ApplicationTabBarController.h"
 
+#import "DVDNavigationController.h"
 #import "MoviesNavigationController.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
@@ -29,6 +30,7 @@
 @synthesize theatersNavigationController;
 @synthesize upcomingMoviesNavigationController;
 @synthesize numbersNavigationController;
+@synthesize dvdNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
 @synthesize lastRefreshDate;
@@ -38,6 +40,7 @@
     self.theatersNavigationController = nil;
     self.upcomingMoviesNavigationController = nil;
     self.numbersNavigationController = nil;
+    self.dvdNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
     self.lastRefreshDate = nil;
@@ -54,6 +57,7 @@
         self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.dvdNavigationController = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
         //self.numbersNavigationController   = [[[NumbersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
 
@@ -63,6 +67,7 @@
          theatersNavigationController,
          upcomingMoviesNavigationController,
          //numbersNavigationController,
+         dvdNavigationController,
          settingsNavigationController, nil];
 
         if (self.model.userAddress.length == 0) {

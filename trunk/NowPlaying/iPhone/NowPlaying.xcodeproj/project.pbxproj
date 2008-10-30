@@ -70,6 +70,11 @@
 		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
 		7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */; };
 		747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */; };
+		747AB7A70EB956B2002438D0 /* DVD.png in Resources */ = {isa = PBXBuildFile; fileRef = 747AB7A60EB956B2002438D0 /* DVD.png */; };
+		747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AA0EB956DC002438D0 /* DVDViewController.m */; };
+		747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
+		747AB8610EB963AE002438D0 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
+		747AB9270EB97822002438D0 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB9260EB97822002438D0 /* PointerSet.m */; };
 		747C56970E67583600BD69DA /* NowPlayingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */; };
 		747C56980E67583600BD69DA /* NowPlayingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56940E67583600BD69DA /* NowPlayingController.m */; };
 		747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56960E67583600BD69DA /* NowPlayingModel.m */; };
@@ -350,6 +355,15 @@
 		7479D8350E65255F00D91649 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
 		747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
 		747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
+		747AB7A60EB956B2002438D0 /* DVD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVD.png; path = Resources/DVD.png; sourceTree = "<group>"; };
+		747AB7A90EB956DC002438D0 /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
+		747AB7AA0EB956DC002438D0 /* DVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDViewController.m; sourceTree = "<group>"; };
+		747AB7AC0EB95750002438D0 /* DVDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDNavigationController.h; sourceTree = "<group>"; };
+		747AB7AD0EB95750002438D0 /* DVDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDNavigationController.m; sourceTree = "<group>"; };
+		747AB85F0EB963AE002438D0 /* DVDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCell.h; sourceTree = "<group>"; };
+		747AB8600EB963AE002438D0 /* DVDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDCell.m; sourceTree = "<group>"; };
+		747AB9250EB97822002438D0 /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerSet.h; sourceTree = "<group>"; };
+		747AB9260EB97822002438D0 /* PointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerSet.m; sourceTree = "<group>"; };
 		747C56910E67583600BD69DA /* NowPlayingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingAppDelegate.h; sourceTree = "<group>"; };
 		747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingAppDelegate.m; sourceTree = "<group>"; };
 		747C56930E67583600BD69DA /* NowPlayingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingController.h; sourceTree = "<group>"; };
@@ -705,6 +719,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				747AB7A60EB956B2002438D0 /* DVD.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
@@ -865,6 +880,8 @@
 				740AFF350E54E87F004EC5EE /* NumbersNavigationController.m */,
 				7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */,
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
+				747AB7AC0EB95750002438D0 /* DVDNavigationController.h */,
+				747AB7AD0EB95750002438D0 /* DVDNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -876,6 +893,7 @@
 				74A863EF0E64F243003A2249 /* Theaters */,
 				74A863F00E64F247003A2249 /* Upcoming */,
 				74A863F10E64F24E003A2249 /* Numbers */,
+				747AB7A80EB956C2002438D0 /* DVD */,
 				744245BA0E89DA0F00ACDBCF /* Search */,
 				74A863F20E64F255003A2249 /* Settings */,
 				74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */,
@@ -917,6 +935,8 @@
 				749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */,
 				749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */,
 				749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */,
+				747AB85F0EB963AE002438D0 /* DVDCell.h */,
+				747AB8600EB963AE002438D0 /* DVDCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -975,6 +995,15 @@
 			name = Caches;
 			sourceTree = "<group>";
 		};
+		747AB7A80EB956C2002438D0 /* DVD */ = {
+			isa = PBXGroup;
+			children = (
+				747AB7A90EB956DC002438D0 /* DVDViewController.h */,
+				747AB7AA0EB956DC002438D0 /* DVDViewController.m */,
+			);
+			name = DVD;
+			sourceTree = "<group>";
+		};
 		748AB37B0EB6C57C004918A6 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
@@ -984,6 +1013,8 @@
 				748AB37D0EB6C59A004918A6 /* LinkedNode.m */,
 				748AB37F0EB6C5A5004918A6 /* LinkedSet.h */,
 				748AB3800EB6C5A5004918A6 /* LinkedSet.m */,
+				747AB9250EB97822002438D0 /* PointerSet.h */,
+				747AB9260EB97822002438D0 /* PointerSet.m */,
 			);
 			name = Collections;
 			sourceTree = "<group>";
@@ -1342,6 +1373,7 @@
 				740244310E77926C00ECE1B4 /* RightDisclosureTriangle.png in Resources */,
 				748B23580E843AFE00322E25 /* Entitlements.plist in Resources */,
 				741373F30E89CF1B00CF4900 /* Search.png in Resources */,
+				747AB7A70EB956B2002438D0 /* DVD.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1501,6 +1533,10 @@
 				748AB3810EB6C5A5004918A6 /* LinkedSet.m in Sources */,
 				74BD51CA0EB786FC0098C2DF /* MainThreadGate.m in Sources */,
 				74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */,
+				747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */,
+				747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */,
+				747AB8610EB963AE002438D0 /* DVDCell.m in Sources */,
+				747AB9270EB97822002438D0 /* PointerSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

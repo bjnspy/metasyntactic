@@ -300,7 +300,7 @@ static NSString* titles_key = @"Titles";
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster
                                               important:NO];
     if (data != nil) {
-        [FileUtilities writeObject:data toFile:posterFile];
+        [FileUtilities writeData:data toFile:posterFile];
     }
 }
 
@@ -535,7 +535,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (UIImage*) posterForMovie:(Movie*) movie {
-    NSData* data = [FileUtilities readObject:[self posterFile:movie]];
+    NSData* data = [FileUtilities readData:[self posterFile:movie]];
     if (data == nil) {
         return nil;
     }

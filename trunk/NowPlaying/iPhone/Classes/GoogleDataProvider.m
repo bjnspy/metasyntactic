@@ -56,15 +56,7 @@
         NSArray* directors = movieProto.directorList;
         NSArray* cast = movieProto.castList;
         NSString* releaseDateString = movieProto.releaseDate;
-        NSDate* releaseDate = nil;
-        if (releaseDateString.length == 10) {
-            NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
-            components.year = [[releaseDateString substringWithRange:NSMakeRange(0, 4)] intValue];
-            components.month = [[releaseDateString substringWithRange:NSMakeRange(5, 2)] intValue];
-            components.day = [[releaseDateString substringWithRange:NSMakeRange(8, 2)] intValue];
-
-            releaseDate = [[NSCalendar currentCalendar] dateFromComponents:components];
-        }
+        NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
 
         NSString* imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
 

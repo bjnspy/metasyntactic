@@ -12,23 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FileUtilities : NSObject {
+#import "AbstractNavigationController.h"
 
+@interface DVDNavigationController : AbstractNavigationController {
+    DVDViewController* dvdViewController;
 }
 
-+ (void) writeObject:(id) object toFile:(NSString*) file;
-+ (id) readObject:(NSString*) file;
+@property (retain) DVDViewController* dvdViewController;
 
-+ (void) writeData:(NSData*) data toFile:(NSString*) file;
-+ (NSData*) readData:(NSString*) file;
-
-+ (void) createDirectory:(NSString*) path;
-+ (NSString*) sanitizeFileName:(NSString*) name;
-
-+ (NSDate*) modificationDate:(NSString*) file;
-+ (NSArray*) directoryContents:(NSString*) directory;
-+ (void) removeItem:(NSString*) path;
-+ (BOOL) fileExists:(NSString*) path;
-+ (void) moveItem:(NSString*) from to:(NSString*) to;
+- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
 @end
