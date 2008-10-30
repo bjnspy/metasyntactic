@@ -61,7 +61,7 @@
 - (void) setupSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
-                               NSLocalizedString(@"Title", @"This is on a button that allows the user to sort movies based on their title."),
+                               NSLocalizedString(@"Title", nil),
                                NSLocalizedString(@"Release", nil), nil]] autorelease];
     
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
