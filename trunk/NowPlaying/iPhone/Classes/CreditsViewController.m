@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "LocaleUtilities.h"
+#import "NowPlayingModel.h"
 #import "SettingCell.h"
 
 @implementation CreditsViewController
@@ -33,18 +34,20 @@ typedef enum {
     LastSection = LicenseSection
 } CreditsSection;
 
-
+@synthesize model;
 @synthesize localizers;
 
 - (void) dealloc {
+    self.model = nil;
     self.localizers = nil;
 
     [super dealloc];
 }
 
 
-- (id) init {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        self.model = model_;
         self.title = NSLocalizedString(@"About", nil);
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -302,7 +305,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSString* url = nil;
     if (section == WrittenBySection) {
         if (row == 0) {
-            url = @"mailto:cyrus.najmabadi@gmail.com?subject=Now%20Playing";
+            url = [self.model feedbackUrl];
         } else {
             url = @"http://metasyntactic.googlecode.com";
         }

@@ -112,7 +112,7 @@
 
 
 - (void) refresh {
-    self.tableView.rowHeight = 42;
+    self.tableView.rowHeight = 41;
     [self.tableView reloadData];
 }
 
@@ -171,6 +171,7 @@
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            return UITableViewCellAccessoryDetailDisclosureButton;
         } else {
             return UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -319,14 +320,26 @@
 }
 
 
+- (void)                            tableView:(UITableView*) tableView
+     accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            [Application openBrowser:self.model.feedbackUrl];
+        }
+    }
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
     if (section == 0) {
-        if (indexPath.row == 1) {
-            CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
+        if (indexPath.row == 0) {
+            [Application openBrowser:self.model.feedbackUrl];
+        } else if (indexPath.row == 1) {
+            CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
             [navigationController pushViewController:controller animated:YES];
         }
     } else if (section == 1) {

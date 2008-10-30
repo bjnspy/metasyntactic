@@ -13,9 +13,13 @@
 // limitations under the License.
 
 @interface CreditsViewController : UITableViewController {
+    NowPlayingModel* model;
     NSDictionary* localizers;
 }
 
+@property (retain) NowPlayingModel* model;
 @property (retain) NSDictionary* localizers;
+
+- (id) initWithModel:(NowPlayingModel*) model;
 
 @end
