@@ -56,7 +56,7 @@
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Title", @"This is on a button that allows the user to sort movies based on their title."),
                                NSLocalizedString(@"Release", @"This is on a button that allows the user to sort movies based on how recently they were released."),
-                               NSLocalizedString(@"Score", nil), nil]] autorelease];
+                               NSLocalizedString(@"Score", @"This is on a button that allows users to sort movies by how well they were rated."), nil]] autorelease];
 
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
@@ -93,7 +93,7 @@
         segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
         [segmentedControl removeSegmentAtIndex:2 animated:NO];
     } else if (!self.model.noScores && segmentedControl.numberOfSegments == 2) {
-        [segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", @"This is on a button that allows users to sort movies by how well they were rated.") atIndex:2 animated:NO];
+        [segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
 
     [super refresh];
