@@ -21,6 +21,7 @@
 @synthesize movies;
 @synthesize theaters;
 @synthesize upcomingMovies;
+@synthesize dvds;
 
 - (void) dealloc {
     self.requestId = 0;
@@ -28,6 +29,7 @@
     self.movies = nil;
     self.theaters = nil;
     self.upcomingMovies = nil;
+    self.dvds = nil;
 
     [super dealloc];
 }
@@ -37,13 +39,15 @@
             value:(NSString*) value_
            movies:(NSArray*) movies_
          theaters:(NSArray*) theaters_
-   upcomingMovies:(NSArray*) upcomingMovies_ {
+   upcomingMovies:(NSArray*) upcomingMovies_
+             dvds:(NSArray*) dvds_ {
     if (self = [super init]) {
         self.requestId = requestId_;
         self.value = value_;
         self.movies = movies_;
         self.theaters = theaters_;
         self.upcomingMovies = upcomingMovies_;
+        self.dvds = dvds_;
     }
 
     return self;
@@ -54,12 +58,14 @@
                          value:(NSString*) value
                         movies:(NSArray*) movies
                       theaters:(NSArray*) theaters
-                upcomingMovies:(NSArray*) upcomingMovies {
+                upcomingMovies:(NSArray*) upcomingMovies 
+                          dvds:(NSArray*) dvds {
     return [[[SearchResult alloc] initWithId:requestId
                                        value:value
                                       movies:movies
                                     theaters:theaters
-                              upcomingMovies:upcomingMovies] autorelease];
+                              upcomingMovies:upcomingMovies
+                                        dvds:dvds] autorelease];
 }
 
 

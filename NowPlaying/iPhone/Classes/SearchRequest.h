@@ -20,6 +20,7 @@
     NSArray* movies;
     NSArray* theaters;
     NSArray* upcomingMovies;
+    NSArray* dvds;
 }
 
 @property NSInteger requestId;
@@ -28,6 +29,7 @@
 @property (retain) NSArray* movies;
 @property (retain) NSArray* theaters;
 @property (retain) NSArray* upcomingMovies;
+@property (retain) NSArray* dvds;
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
                            value:(NSString*) value

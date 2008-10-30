@@ -19,6 +19,8 @@
 #import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
+#import "DVD.h"
+#import "DVDCache.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
@@ -35,6 +37,7 @@
 
 @synthesize navigationController;
 @synthesize movie;
+@synthesize dvd;
 @synthesize theatersArray;
 @synthesize showtimesArray;
 @synthesize trailersArray;
@@ -46,6 +49,7 @@
 - (void) dealloc {
     self.navigationController = nil;
     self.movie = nil;
+    self.dvd = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
     self.trailersArray = nil;
@@ -156,6 +160,8 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
         self.movie = movie_;
+        self.dvd = [self.model.dvdCache dvdDetailsForMovie:movie];
+        
         filterTheatersByDistance = YES;
 
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
@@ -220,7 +226,11 @@
 
 
 - (NSInteger) numberOfRowsInHeaderSection {
-    return 2;
+    if (dvd == nil) {
+        return 2;
+    } else {
+        return 3;
+    }
 }
 
 
@@ -250,19 +260,47 @@
 }
 
 
+- (UITableViewCell*) createDvdDetailsCell {
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    label.font = [UIFont boldSystemFontOfSize:14];
+    label.adjustsFontSizeToFitWidth = YES;
+    label.textAlignment = UITextAlignmentCenter;
+    if ([@"1" isEqual:dvd.discs]) {
+        label.text = [NSString stringWithFormat:@"$%@. %@ - 1 disc.", dvd.price, dvd.format];
+    } else {
+        label.text = [NSString stringWithFormat:@"$%@. %@ - %@ discs.", dvd.price, dvd.format, dvd.discs];
+    }
+    [label sizeToFit];
+    CGRect frame = label.frame;
+    frame.size.height = self.tableView.rowHeight - 16;
+    frame.size.width = 300;
+    label.frame = frame;
+    
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.contentView addSubview:label];
+
+    return cell;
+}
+
+
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
+    }
+    
+    if (row == 1 && dvd != nil) {
+        return [self createDvdDetailsCell];
+    }
+    
+    if (expandedDetails) {
+        return [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                                          model:self.model
+                                                          movie:movie] autorelease];
     } else {
-        if (expandedDetails) {
-            return [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                              model:self.model
-                                                              movie:movie] autorelease];
-        } else {
-            return [[[CollapsedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                              model:self.model
-                                                              movie:movie] autorelease];
-        }
+        return [[[CollapsedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                                           model:self.model
+                                                           movie:movie] autorelease];
     }
 }
 
@@ -270,10 +308,14 @@
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell heightForMovie:movie model:self.model];
-    } else {
-        AbstractMovieDetailsCell* cell = (AbstractMovieDetailsCell*)[self cellForHeaderRow:row];
-        return [cell height:self.tableView];
     }
+    
+    if (row == 1 && dvd != nil) {
+        return self.tableView.rowHeight - 14;
+    }
+    
+    AbstractMovieDetailsCell* cell = (AbstractMovieDetailsCell*)[self cellForHeaderRow:row];
+    return [cell height:self.tableView];
 }
 
 
@@ -532,10 +574,17 @@
 
 - (void)       tableView:(UITableView*) tableView
       didSelectHeaderRow:(NSInteger) row {
-    if (row == 1) {
+    int expandableRow;
+    if (dvd == nil) {
+        expandableRow = 1;
+    } else {
+        expandableRow = 2;
+    }
+    
+    if (row == expandableRow) {
         expandedDetails = !expandedDetails;
 
-        NSIndexPath* path = [NSIndexPath indexPathForRow:1 inSection:0];
+        NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
         [tableView beginUpdates];
         {
             NSArray* paths = [NSArray arrayWithObject:path];

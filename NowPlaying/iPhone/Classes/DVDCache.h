@@ -37,6 +37,7 @@
 
 - (NSArray*) dvdMovies;
 - (NSArray*) blurayMovies;
+- (NSArray*) allMovies;
 
 - (DVD*) dvdDetailsForMovie:(Movie*) movie;
 - (UIImage*) posterForMovie:(Movie*) movie;
