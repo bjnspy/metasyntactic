@@ -20,13 +20,18 @@
 
 @implementation CreditsViewController
 
-const int WRITTEN_BY_SECTION = 0;
-const int GRAPHICS_BY_SECTION = 1;
-const int MOVIE_REVIEWS_BY_SECTION = 2;
-const int TICKET_SALES_BY_SECTION = 3;
-const int MOVIE_DETAILS_BY_SECTION = 4;
-const int GEOLOCATION_SERVICES_BY_SECTION = 5;
-const int DVD_DETAILS_BY_SECTION = 6;
+typedef enum {
+    WrittenBySection,
+    GraphicsBySection,
+    ReviewsBySection,
+    TicketSalesBySection,
+    MovieDetailsBySection,
+    GeolocationServicesBySection,
+    DVDDetailsBySection,
+    LocalizedBySection,
+    LicenseSection,
+    LastSection = LicenseSection
+} CreditsSection;
 
 
 @synthesize localizers;
@@ -73,33 +78,33 @@ const int DVD_DETAILS_BY_SECTION = 6;
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 9;
+    return LastSection + 1;
 }
 
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
-    if (section == 0) {
+    if (section == WrittenBySection) {
         return 2;
-    } else if (section == 1) {
+    } else if (section == GraphicsBySection) {
         return 2;
-    } else if (section == 2) {
+    } else if (section == ReviewsBySection) {
         return 2;
-    } else if (section == 3) {
+    } else if (section == TicketSalesBySection) {
         return 1;
-    } else if (section == 4) {
+    } else if (section == MovieDetailsBySection) {
         return 1;
-    } else if (section == 5) {
+    } else if (section == GeolocationServicesBySection) {
         return 3;
-    } else if (section == 6) {
+    } else if (section == DVDDetailsBySection) {
         return 1;
-    } else if (section == 7) {
+    } else if (section == LocalizedBySection) {
         return localizers.count;
-    } else if (section == 8) {
+    } else if (section == LicenseSection) {
         return 1;
     }
 
-    return 1;
+    return 0;
 }
 
 
@@ -107,21 +112,21 @@ const int DVD_DETAILS_BY_SECTION = 6;
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     
-    if (section == 2) {
+    if (section == ReviewsBySection) {
         if (row == 0) {
             return [UIImage imageNamed:@"RottenTomatoesLogo.png"];
         } else if (row == 1) {
             return [UIImage imageNamed:@"MetacriticLogo.png"];
         }
-    } else if (section == 3) {
+    } else if (section == TicketSalesBySection) {
         return [UIImage imageNamed:@"FandangoLogo.png"];
-    } else if (section == 4) {
+    } else if (section == MovieDetailsBySection) {
         return [UIImage imageNamed:@"TryntLogo.png"];
-    } else if (section == 5) {
+    } else if (section == GeolocationServicesBySection) {
         if (row == 0) {
             return [UIImage imageNamed:@"YahooLogo.png"];
         }
-    } else if (section == 7) {
+    } else if (section == DVDDetailsBySection) {
         return [UIImage imageNamed:@"VideoETALogo.png"];
     }
 
@@ -170,7 +175,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
-    if (section == 7) {
+    if (section == LocalizedBySection) {
         return [self localizationCellForRow:row];
     }
 
@@ -188,25 +193,25 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
 
         [cell.contentView addSubview:imageView];
-    } else if (section == 0) {
+    } else if (section == WrittenBySection) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"E-mail", @"This is a very.  it means 'send email to developer'");
+            cell.text = NSLocalizedString(@"E-mail", @"This is a verb.  it means 'send email to developer'");
         } else {
             cell.text = NSLocalizedString(@"Project website", nil);
         }
-    } else if (section == 1) {
+    } else if (section == GraphicsBySection) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"E-mail", @"This is a very.  it means 'send email to developer'");
+            cell.text = NSLocalizedString(@"E-mail", @"This is a verb.  it means 'send email to developer'");
         } else {
             cell.text = NSLocalizedString(@"Website", nil);
         }
-    } else if (section == 5) {
+    } else if (section == GeolocationServicesBySection) {
         if (row == 1) {
             cell.text = @"GeoNames";
         } else if (row == 2) {
             cell.text = @"GeoCoder.ca";
         }
-    } else if (section == 8) {
+    } else if (section == LicenseSection) {
         cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -217,21 +222,21 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == 0) {
+    if (section == WrittenBySection) {
         return NSLocalizedString(@"Written by Cyrus Najmabadi", nil);
-    } else if (section == 1) {
+    } else if (section == GraphicsBySection) {
         return NSLocalizedString(@"Graphics by Jeffrey Nee", nil);
-    } else if (section == 2) {
+    } else if (section == ReviewsBySection) {
         return NSLocalizedString(@"Movie reviews provided by:", nil);
-    } else if (section == 3) {
+    } else if (section == TicketSalesBySection) {
         return NSLocalizedString(@"Ticket sales provided by:", nil);
-    } else if (section == 4) {
+    } else if (section == MovieDetailsBySection) {
         return NSLocalizedString(@"Movie details provided by:", nil);
-    } else if (section == 5) {
+    } else if (section == GeolocationServicesBySection) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
-    } else if (section == 6) {
+    } else if (section == DVDDetailsBySection) {
         return NSLocalizedString(@"DVD/Blu-ray details provided by:", nil);
-    } else if (section == 7) {
+    } else if (section == LocalizedBySection) {
         return NSLocalizedString(@"Localized by:", nil);
     }
 
@@ -241,7 +246,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    if (section == 8) {
+    if (section == LastSection) {
         return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes. Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
     }
 
@@ -251,9 +256,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section >= 0 && indexPath.section <= 6) {
+    if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsBySection) {
         return UITableViewCellAccessoryDetailDisclosureButton;
-    } else if (indexPath.section == 7) {
+    } else if (indexPath.section == LocalizedBySection) {
         return UITableViewCellAccessoryNone;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
@@ -281,9 +286,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 7) {
+    if (indexPath.section == LocalizedBySection) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    } else if (indexPath.section == 8) {
+    } else if (indexPath.section == LicenseSection) {
         [self licenseCellTapped];
     }
 }
@@ -295,29 +300,29 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSInteger row = indexPath.row;
 
     NSString* url = nil;
-    if (section == 0) {
+    if (section == WrittenBySection) {
         if (row == 0) {
             url = @"mailto:cyrus.najmabadi@gmail.com?subject=Now%20Playing";
         } else {
             url = @"http://metasyntactic.googlecode.com";
         }
-    } else if (section == 1) {
+    } else if (section == GraphicsBySection) {
         if (row == 0) {
             url = @"mailto:jeff@jeffnee.com";
         } else {
             url = @"http://www.jeffnee.com";
         }
-    } else if (section == 2) {
+    } else if (section == ReviewsBySection) {
         if (row == 0) {
             url = @"http://www.rottentomatoes.com";
         } else {
             url = @"http://www.metacritic.com";
         }
-    } else if (section == 3) {
+    } else if (section == TicketSalesBySection) {
         url = @"http://www.fandango.com";
-    } else if (section == 4) {
+    } else if (section == MovieDetailsBySection) {
         url = @"http://www.trynt.com";
-    } else if (section == 5) {
+    } else if (section == GeolocationServicesBySection) {
         if (row == 0) {
             url = @"http://www.yahoo.com";
         } else if (row == 1) {
@@ -325,11 +330,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         } else {
             url = @"http://geocoder.ca";
         }
-    } else if (section == 6) {
+    } else if (section == DVDDetailsBySection) {
         url = @"http://www.videoeta.com";
-    } else if (section == 7) {
+    } else if (section == LocalizedBySection) {
         return;
-    } else if (section == 8) {
+    } else if (section == LicenseSection) {
         return;
     }
 
@@ -340,6 +345,5 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [self refresh];
 }
-
 
 @end

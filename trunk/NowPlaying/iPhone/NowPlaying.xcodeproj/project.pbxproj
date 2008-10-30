@@ -75,7 +75,7 @@
 		747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
 		747AB8610EB963AE002438D0 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
 		747AB9270EB97822002438D0 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB9260EB97822002438D0 /* PointerSet.m */; };
-		747ABB780EBA4228002438D0 /* VideoETA.png in Resources */ = {isa = PBXBuildFile; fileRef = 747ABB770EBA4228002438D0 /* VideoETA.png */; };
+		747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 747ABB770EBA4228002438D0 /* VideoETALogo.png */; };
 		747C56970E67583600BD69DA /* NowPlayingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */; };
 		747C56980E67583600BD69DA /* NowPlayingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56940E67583600BD69DA /* NowPlayingController.m */; };
 		747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56960E67583600BD69DA /* NowPlayingModel.m */; };
@@ -365,7 +365,7 @@
 		747AB9250EB97822002438D0 /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerSet.h; sourceTree = "<group>"; };
 		747AB9260EB97822002438D0 /* PointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerSet.m; sourceTree = "<group>"; };
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		747ABB770EBA4228002438D0 /* VideoETA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VideoETA.png; path = Resources/VideoETA.png; sourceTree = "<group>"; };
+		747ABB770EBA4228002438D0 /* VideoETALogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VideoETALogo.png; path = Resources/VideoETALogo.png; sourceTree = "<group>"; };
 		747C56910E67583600BD69DA /* NowPlayingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingAppDelegate.h; sourceTree = "<group>"; };
 		747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingAppDelegate.m; sourceTree = "<group>"; };
 		747C56930E67583600BD69DA /* NowPlayingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingController.h; sourceTree = "<group>"; };
@@ -765,7 +765,7 @@
 				74F94FC50E6BC98800075068 /* TryntLogo.png */,
 				74F94FC60E6BC98800075068 /* UpArrow.png */,
 				74F94FC70E6BC98800075068 /* Upcoming.png */,
-				747ABB770EBA4228002438D0 /* VideoETA.png */,
+				747ABB770EBA4228002438D0 /* VideoETALogo.png */,
 				74F94FC80E6BC98800075068 /* Warning-16x16.png */,
 				744592060E6CA06C002D05C3 /* Warning-32x32.png */,
 				74F94FC90E6BC98800075068 /* YahooLogo.png */,
@@ -1378,7 +1378,7 @@
 				748B23580E843AFE00322E25 /* Entitlements.plist in Resources */,
 				741373F30E89CF1B00CF4900 /* Search.png in Resources */,
 				747AB7A70EB956B2002438D0 /* DVD.png in Resources */,
-				747ABB780EBA4228002438D0 /* VideoETA.png in Resources */,
+				747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
