@@ -55,7 +55,7 @@
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Title", @"This is on a button that allows the user to sort movies based on their title."),
-                               NSLocalizedString(@"Release", @"This is on a button that allows the user to sort movies based on how recently they were released"), nil]] autorelease];
+                               NSLocalizedString(@"Release", nil), nil]] autorelease];
 
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
