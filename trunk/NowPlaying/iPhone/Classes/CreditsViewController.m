@@ -194,13 +194,13 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [cell.contentView addSubview:imageView];
     } else if (section == 0) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"E-mail", nil);
+            cell.text = NSLocalizedString(@"E-mail", @"This is a very.  it means 'send email to developer'");
         } else {
             cell.text = NSLocalizedString(@"Project website", nil);
         }
     } else if (section == 1) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"E-mail", nil);
+            cell.text = NSLocalizedString(@"E-mail", @"This is a very.  it means 'send email to developer'");
         } else {
             cell.text = NSLocalizedString(@"Website", nil);
         }

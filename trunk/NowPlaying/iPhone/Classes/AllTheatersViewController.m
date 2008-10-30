@@ -130,9 +130,9 @@
     for (int i = 0; i < ArrayLength(distances); i++) {
         int distance = distances[i];
         if (distance == 1) {
-            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than 1 %@ away", @"singular"), singularUnit]];
+            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than 1 %@ away", @"singular. refers to a distance like 'Less than 1 mile away'"), singularUnit]];
         } else {
-            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than %d %@ away", @"plural"), distance, pluralUnit]];
+            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than %d %@ away", @"plural. refers to a distance like 'Less than 2 miles away'"), distance, pluralUnit]];
         }
     }
 
@@ -220,7 +220,9 @@
 
 - (void) initializeSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                              [NSArray arrayWithObjects:NSLocalizedString(@"Name", nil), NSLocalizedString(@"Distance", nil), nil]] autorelease];
+                              [NSArray arrayWithObjects:
+                               NSLocalizedString(@"Name", @"This is on a button that allows users to sort theaters by their name"),
+                               NSLocalizedString(@"Distance", @"This is on a button that allows users to sort theaters by distance"), nil]] autorelease];
 
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;

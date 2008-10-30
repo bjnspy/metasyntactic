@@ -170,8 +170,8 @@
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                 reuseIdentifier:nil] autorelease];
 
-    NSString* mapString = NSLocalizedString(@"Map", nil);
-    NSString* callString = NSLocalizedString(@"Call", nil);
+    NSString* mapString = NSLocalizedString(@"Map", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'open a map to the currently listed address'");
+    NSString* callString = NSLocalizedString(@"Call", @"This string should try to be short.  So abbreviations are acceptable. It's a verb that means 'to make a phonecall'");
     CGSize size1 = [mapString sizeWithFont:[AttributeCell keyFont]];
     CGSize size2 = [callString sizeWithFont:[AttributeCell keyFont]];
 
