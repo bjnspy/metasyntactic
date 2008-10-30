@@ -20,6 +20,7 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
+#import "DVDCache.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "GoogleDataProvider.h"
@@ -90,6 +91,7 @@ static NSString** KEYS[] = {
 @synthesize favoriteTheatersData;
 
 @synthesize userLocationCache;
+@synthesize dvdCache;
 @synthesize imdbCache;
 @synthesize posterCache;
 @synthesize scoreCache;
@@ -101,6 +103,7 @@ static NSString** KEYS[] = {
     self.favoriteTheatersData = nil;
 
     self.userLocationCache = nil;
+    self.dvdCache = nil;
     self.imdbCache = nil;
     self.posterCache = nil;
     self.scoreCache = nil;
@@ -118,6 +121,11 @@ static NSString** KEYS[] = {
 
 - (void) updateScoreCache {
     [scoreCache update];
+}
+
+
+- (void) updateDVDCache {
+    [dvdCache update];
 }
 
 
@@ -229,6 +237,7 @@ static NSString** KEYS[] = {
         [self loadData];
 
         self.userLocationCache = [UserLocationCache cache];
+        self.dvdCache = [DVDCache cache];
         self.imdbCache = [IMDbCache cache];
         self.posterCache = [PosterCache cacheWithModel:self];
         self.scoreCache = [ScoreCache cacheWithModel:self];
@@ -251,8 +260,9 @@ static NSString** KEYS[] = {
         @selector(updateScoreCache),
         @selector(updatePosterCache),
         @selector(updateTrailerCache),
+        @selector(updateIMDbCache),
         @selector(updateUpcomingCache),
-        @selector(updateIMDbCache)
+        @selector(updateDVDCache),
     };
 
     if (value >= ArrayLength(selectors)) {

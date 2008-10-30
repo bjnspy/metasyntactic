@@ -14,14 +14,136 @@
 
 #import "DVDCache.h"
 
+#import "Application.h"
+#import "FileUtilities.h"
+#import "Movie.h"
+#import "ThreadingUtilities.h"
 
 @implementation DVDCache
 
 @synthesize gate;
+@synthesize dvdData;
+@synthesize blurayData;
 
 - (void) dealloc {
     self.gate = nil;
+    self.dvdData = nil;
+    self.blurayData = nil;
+    
     [super dealloc];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+    }
+    
+    return self;
+}
+
+
++ (DVDCache*) cache {
+    return [[[DVDCache alloc] init] autorelease];
+}
+
+
+- (NSString*) dvdFile {
+    return [[Application dvdFolder] stringByAppendingPathComponent:@"DVD.plist"];
+}
+
+
+- (NSString*) blurayFile {
+    return [[Application dvdFolder] stringByAppendingPathComponent:@"Blu-ray.plist"];
+}
+
+
+- (NSArray*) decodeArray:(NSArray*) array {
+    if (array == nil) {
+        return [NSArray array];
+    }
+    
+    NSMutableArray* result = [NSMutableArray array];
+    for (NSDictionary* dictionary in array) {
+        [result addObject:[Movie movieWithDictionary:dictionary]];
+    }
+    
+    return result;
+}
+
+
+- (NSArray*) loadDvd {
+    NSArray* encodedMovies = [FileUtilities readObject:[self dvdFile]];
+    return [self decodeArray:encodedMovies];
+}
+
+
+- (NSArray*) loadBluray {
+    NSArray* encodedMovies = [FileUtilities readObject:[self blurayFile]];
+    return [self decodeArray:encodedMovies];
+}
+
+
+- (NSArray*) dvdMovies {
+    if (dvdData == nil) {
+        self.dvdData = [self loadDvd];
+    }
+    
+    return dvdData;
+}
+
+
+- (NSArray*) blurayMovies {
+    if (blurayData == nil) {
+        self.blurayData = [self loadBluray];
+    }
+    
+    return blurayData;
+}
+
+
+- (void) updateMovies {
+    [ThreadingUtilities performSelector:@selector(updateMoviesBackgroundEntryPoint)
+                               onTarget:self
+               inBackgroundWithArgument:nil
+                                   gate:gate 
+                                visible:YES];
+}
+
+
+- (void) updateDetails {    
+    NSArray* arguments = [NSArray arrayWithObjects:self.dvdMovies, self.blurayMovies, nil];
+    [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:arguments
+                                   gate:gate 
+                                visible:YES];
+}
+
+
+- (void) update {
+    [self updateMovies];
+    [self updateDetails];
+}
+
+
+- (void) updateMoviesBackgroundEntryPoint {
+    
+}
+
+
+- (void) updateDetailsBackgroundEntryPoint:(NSArray*) movies {
+    
+}
+
+
+- (NSString*) posterFile:(Movie*) movie {
+    return [[[Application dvdPostersFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+            stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (UIImage*) posterForMovie:(Movie*) movie {
+    return [UIImage imageWithData:[FileUtilities readObject:[self posterFile:movie]]];
 }
 
 @end

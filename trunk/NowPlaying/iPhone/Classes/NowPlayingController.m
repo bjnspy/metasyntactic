@@ -54,10 +54,6 @@
 }
 
 
-- (void) spawnUpcomingMoviesLookupThread {
-    [self.model.upcomingCache update];
-}
-
 - (void) spawnDetermineLocationThread {
     [ThreadingUtilities performSelector:@selector(determineLocation)
                                onTarget:self
@@ -70,7 +66,6 @@
 - (void) spawnBackgroundThreads {
     [self spawnScoresLookupThread];
     [self spawnDataProviderLookupThread];
-    [self spawnUpcomingMoviesLookupThread];
 }
 
 

@@ -33,6 +33,7 @@
 @class CreditsViewController;
 @class DateUtilities;
 @class DifferenceEngine;
+@class DVDCache;
 @class EditorViewController;
 @class ExpandedMovieDetailsCell;
 @class FavoriteTheater;
