@@ -213,7 +213,7 @@ static NSString* articles[] = {
 
 
 - (BOOL) isUnrated {
-    return rating.length == 0 || [rating isEqual:@"NR"];
+    return rating.length == 0 || [rating isEqual:@"NR"] || [rating isEqual:@"Not Rated"];
 }
 
 

@@ -128,6 +128,11 @@
 }
 
 
+- (NSArray*) allMovies {
+    return [self.dvdMovies arrayByAddingObjectsFromArray:self.blurayMovies];
+}
+
+
 - (void) updateMovies {
     [ThreadingUtilities performSelector:@selector(updateMoviesBackgroundEntryPoint)
                                onTarget:self

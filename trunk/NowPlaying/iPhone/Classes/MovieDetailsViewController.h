@@ -16,6 +16,8 @@
     AbstractNavigationController* navigationController;
 
     Movie* movie;
+    DVD* dvd;
+    
     NSMutableArray* theatersArray;
     NSMutableArray* showtimesArray;
     NSArray* trailersArray;
@@ -32,6 +34,7 @@
 
 @property (assign) AbstractNavigationController* navigationController;
 @property (retain) Movie* movie;
+@property (retain) DVD* dvd;
 @property (retain) NSMutableArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
 @property (retain) NSArray* trailersArray;

@@ -14,6 +14,7 @@
 
 #import "SearchRequest.h"
 
+#import "DVDCache.h"
 #import "NowPlayingModel.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
@@ -26,6 +27,7 @@
 @synthesize movies;
 @synthesize theaters;
 @synthesize upcomingMovies;
+@synthesize dvds;
 
 - (void) dealloc {
     self.requestId = 0;
@@ -34,6 +36,7 @@
     self.movies = nil;
     self.theaters = nil;
     self.upcomingMovies = nil;
+    self.dvds = nil;
 
     [super dealloc];
 }
@@ -48,6 +51,7 @@
         self.movies = model.movies;
         self.theaters = model.theaters;
         self.upcomingMovies = model.upcomingCache.upcomingMovies;
+        self.dvds = model.dvdCache.allMovies;
 
         self.lowercaseValue = [[Utilities asciiString:value] lowercaseString];
     }

@@ -141,6 +141,18 @@
 }
 
 
+- (NSArray*) findDVDs {
+    NSMutableArray* result = [NSMutableArray array];
+    for (Movie* movie in currentlyExecutingRequest.dvds) {
+        if ([self movieMatches:movie]) {
+            [result addObject:movie];
+        }
+    }
+    [result sortUsingFunction:compareMoviesByTitle context:nil];
+    return result;
+}
+
+
 - (BOOL) abortEarly {
     BOOL result;
 
@@ -163,13 +175,17 @@
 
     NSArray* upcomingMovies = [self findUpcomingMovies];
     if ([self abortEarly]) { return; }
+    
+    NSArray* dvds = [self findDVDs];
+    if ([self abortEarly]) { return; }
     //...
 
     SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                                 value:currentlyExecutingRequest.value
                                                movies:movies
                                              theaters:theaters
-                                       upcomingMovies:upcomingMovies];
+                                       upcomingMovies:upcomingMovies
+                                                 dvds:dvds];
     [self performSelectorOnMainThread:@selector(reportResult:) withObject:result waitUntilDone:NO];
 }
 
