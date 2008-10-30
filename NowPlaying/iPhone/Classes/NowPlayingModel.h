@@ -153,6 +153,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (void) removeFavoriteTheater:(Theater*) theater;
 
 - (NSString*) noLocationInformationFound;
+- (NSString*) feedbackUrl;
 
 - (BOOL) useSmallFonts;
 - (void) setUseSmallFonts:(BOOL) useSmallFonts;
