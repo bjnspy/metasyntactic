@@ -127,4 +127,24 @@ static MainThreadGate* gate;
     return result;
 }
 
+
++ (void) writeData:(NSData*) data toFile:(NSString*) file {
+    [gate lock];
+    {
+        [data writeToFile:file atomically:YES];
+    }
+    [gate unlock];
+}
+
+
++ (NSData*) readData:(NSString*) file {
+    NSData* result = nil;
+    [gate lock];
+    {
+        result = [NSData dataWithContentsOfFile:file];
+    }
+    [gate unlock];
+    return result;
+}
+
 @end

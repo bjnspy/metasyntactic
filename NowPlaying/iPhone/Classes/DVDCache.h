@@ -14,20 +14,32 @@
 
 @interface DVDCache : NSObject {
     NSLock* gate;
+    
+    PointerSet* dvdSet;
+    PointerSet* bluraySet;
     NSArray* dvdData;
     NSArray* blurayData;
+    
+    LinkedSet* prioritizedMovies;
 }
 
 @property (retain) NSLock* gate;
+@property (retain) PointerSet* dvdSet;
+@property (retain) PointerSet* bluraySet;
 @property (retain) NSArray* dvdData;
 @property (retain) NSArray* blurayData;
+@property (retain) LinkedSet* prioritizedMovies;
 
 + (DVDCache*) cache;
 
 - (void) update;
+- (void) prioritizeMovie:(Movie*) movie;
 
 - (NSArray*) dvdMovies;
 - (NSArray*) blurayMovies;
+
+- (DVD*) dvdDetailsForMovie:(Movie*) movie;
 - (UIImage*) posterForMovie:(Movie*) movie;
+- (NSString*) imdbAddressForMovie:(Movie*) movie;
 
 @end

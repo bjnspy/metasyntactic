@@ -18,6 +18,7 @@
     TheatersNavigationController* theatersNavigationController;
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
     NumbersNavigationController* numbersNavigationController;
+    DVDNavigationController* dvdNavigationController;
     SettingsNavigationController* settingsNavigationController;
 
     NSDate* lastRefreshDate;
@@ -28,6 +29,7 @@
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
 @property (retain) NumbersNavigationController* numbersNavigationController;
+@property (retain) DVDNavigationController* dvdNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
 @property (retain) NSDate* lastRefreshDate;
 

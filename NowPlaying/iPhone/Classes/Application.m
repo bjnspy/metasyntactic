@@ -38,6 +38,7 @@ static NSString* trailersFolder = nil;
 static NSString* postersFolder = nil;
 
 static NSString* dvdFolder = nil;
+static NSString* dvdDetailsFolder = nil;
 static NSString* dvdIMDbFolder = nil;
 static NSString* dvdPostersFolder = nil;
 
@@ -60,6 +61,7 @@ static NSString** folders[] = {
     &imdbFolder,
     &userLocationsFolder,
     &dvdFolder,
+    &dvdDetailsFolder,
     &dvdIMDbFolder,
     &dvdPostersFolder,
 /*
@@ -186,6 +188,7 @@ static NSString* starString = nil;
             postersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Posters"] retain];
 
             dvdFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"DVD"] retain];
+            dvdDetailsFolder = [[[self dvdFolder] stringByAppendingPathComponent:@"Details"] retain];
             dvdIMDbFolder = [[[self dvdFolder] stringByAppendingPathComponent:@"IMDb"] retain];
             dvdPostersFolder = [[[self dvdFolder] stringByAppendingPathComponent:@"Posters"] retain];
 
@@ -260,6 +263,11 @@ static NSString* starString = nil;
 
 + (NSString*) dvdFolder {
     return dvdFolder;
+}
+
+
++ (NSString*) dvdDetailsFolder {
+    return dvdDetailsFolder;
 }
 
 
@@ -377,7 +385,7 @@ static NSString* starString = nil;
 #if !TARGET_IPHONE_SIMULATOR
     return @"metaboxoffice2";
 #endif
-    /*
+    //*
     return @"metaboxoffice6";
     /*/
      return @"metaboxoffice2";

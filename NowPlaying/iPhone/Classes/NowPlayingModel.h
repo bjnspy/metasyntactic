@@ -71,6 +71,9 @@ enum ViewControllerType {
 - (NSInteger) upcomingMoviesSelectedSegmentIndex;
 - (void) setUpcomingMoviesSelectedSegmentIndex:(NSInteger) index;
 
+- (NSInteger) dvdMoviesSelectedSegmentIndex;
+- (void) setDvdMoviesSelectedSegmentIndex:(NSInteger) index;
+
 - (NSInteger) numbersSelectedSegmentIndex;
 - (void) setNumbersSelectedSegmentIndex:(NSInteger) index;
 
@@ -80,6 +83,9 @@ enum ViewControllerType {
 
 - (BOOL) upcomingMoviesSortingByTitle;
 - (BOOL) upcomingMoviesSortingByReleaseDate;
+
+- (BOOL) dvdMoviesSortingByTitle;
+- (BOOL) dvdMoviesSortingByReleaseDate;
 
 - (BOOL) numbersSortingByDailyGross;
 - (BOOL) numbersSortingByWeekendGross;

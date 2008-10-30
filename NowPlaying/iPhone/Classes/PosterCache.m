@@ -112,7 +112,7 @@
 
     NSData* data = [PosterDownloader download:movie postalCode:postalCode];
     if (data != nil) {
-        [FileUtilities writeObject:data toFile:path];
+        [FileUtilities writeData:data toFile:path];
         [NowPlayingAppDelegate refresh];
     }
 }
@@ -186,7 +186,7 @@
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
-    NSData* data = [FileUtilities readObject:path];
+    NSData* data = [FileUtilities readData:path];
     return [UIImage imageWithData:data];
 }
 

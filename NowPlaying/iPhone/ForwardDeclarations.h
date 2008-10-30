@@ -33,7 +33,10 @@
 @class CreditsViewController;
 @class DateUtilities;
 @class DifferenceEngine;
+@class DVD;
 @class DVDCache;
+@class DVDNavigationController;
+@class DVDViewController;
 @class EditorViewController;
 @class ExpandedMovieDetailsCell;
 @class FavoriteTheater;
@@ -67,6 +70,7 @@
 @class NumbersViewController;
 @class Performance;
 @class PickerEditorViewController;
+@class PointerSet;
 @class PosterCache;
 @class PosterDownloader;
 @class PriorityMutex;

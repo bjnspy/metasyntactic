@@ -79,7 +79,7 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 8;
+    return 9;
 }
 
 
@@ -98,8 +98,10 @@
     } else if (section == 5) {
         return 3;
     } else if (section == 6) {
-        return localizers.count;
+        return 1;
     } else if (section == 7) {
+        return localizers.count;
+    } else if (section == 8) {
         return 1;
     }
 
@@ -172,7 +174,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
-    if (section == 6) {
+    if (section == 7) {
         return [self localizationCellForRow:row];
     }
 
@@ -208,7 +210,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         } else if (row == 2) {
             cell.text = @"GeoCoder.ca";
         }
-    } else if (section == 7) {
+    } else if (section == 6) {
+        cell.text = @"VideoETA.com";
+    } else if (section == 8) {
         cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -232,6 +236,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == 5) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
     } else if (section == 6) {
+        return NSLocalizedString(@"DVD/Blu-ray details provided by:", nil);
+    } else if (section == 7) {
         return NSLocalizedString(@"Localized by:", nil);
     }
 
@@ -241,7 +247,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    if (section == 7) {
+    if (section == 8) {
         return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes. Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
     }
 
@@ -251,9 +257,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section >= 0 && indexPath.section <= 5) {
+    if (indexPath.section >= 0 && indexPath.section <= 6) {
         return UITableViewCellAccessoryDetailDisclosureButton;
-    } else if (indexPath.section == 6) {
+    } else if (indexPath.section == 7) {
         return UITableViewCellAccessoryNone;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
@@ -281,9 +287,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 6) {
+    if (indexPath.section == 7) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    } else if (indexPath.section == 7) {
+    } else if (indexPath.section == 8) {
         [self licenseCellTapped];
     }
 }
@@ -326,8 +332,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             url = @"http://geocoder.ca";
         }
     } else if (section == 6) {
-        return;
+        url = @"http://www.videoeta.com";
     } else if (section == 7) {
+        return;
+    } else if (section == 8) {
         return;
     }
 
