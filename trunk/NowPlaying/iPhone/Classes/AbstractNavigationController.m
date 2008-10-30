@@ -77,6 +77,28 @@
 }
 
 
+- (Movie*) movieForTitle:(NSString*) canonicalTitle {
+    for (Movie* movie in self.model.movies) {
+        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+            return movie;
+        }
+    }
+    
+    return nil;
+}
+
+
+- (Theater*) theaterForName:(NSString*) name {
+    for (Theater* theater in self.model.theaters) {
+        if ([theater.name isEqual:name]) {
+            return theater;
+        }
+    }
+    
+    return nil;
+}
+
+
 - (void) navigateToLastViewedPage {
     NSArray* types = self.model.navigationStackTypes;
     NSArray* values = self.model.navigationStackValues;
@@ -86,17 +108,17 @@
         id value = [values objectAtIndex:i];
 
         if (type == MovieDetails) {
-            Movie* movie = [Movie movieWithDictionary:value];
+            Movie* movie = [self movieForTitle:value];
             [self pushMovieDetails:movie animated:NO];
         } else if (type == TheaterDetails) {
-            Theater* theater = [Theater theaterWithDictionary:value];
+            Theater* theater = [self theaterForName:value];
             [self pushTheaterDetails:theater animated:NO];
         } else if (type == Reviews) {
-            Movie* movie = [Movie movieWithDictionary:value];
+            Movie* movie = [self movieForTitle:value];
             [self pushReviewsView:movie animated:NO];
         } else if (type == Tickets) {
-            Movie* movie = [Movie movieWithDictionary:[value objectAtIndex:0]];
-            Theater* theater = [Theater theaterWithDictionary:[value objectAtIndex:1]];
+            Movie* movie = [self movieForTitle:[value objectAtIndex:0]];
+            Theater* theater = [self theaterForName:[value objectAtIndex:1]];
             NSString* title = [value objectAtIndex:2];
 
             [self pushTicketsView:movie theater:theater title:title animated:NO];
@@ -115,7 +137,10 @@
 
 - (void) pushMovieDetails:(Movie*) movie
                  animated:(BOOL) animated {
-    [self hideSearchView];
+    if (movie == nil) {
+        return;
+    }
+    
     UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self
                                                                                                    movie:movie] autorelease];
 
@@ -124,7 +149,10 @@
 
 
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
-    [self hideSearchView];
+    if (theater == nil) {
+        return;
+    }
+    
     UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self
                                                                                                    theater:theater] autorelease];
 
@@ -136,6 +164,10 @@
                  theater:(Theater*) theater
                    title:(NSString*) title
                 animated:(BOOL) animated {
+    if (movie == nil || theater == nil) {
+        return;
+    }
+    
     UIViewController* viewController = [[[TicketsViewController alloc] initWithController:self
                                                                                   theater:theater
                                                                                     movie:movie

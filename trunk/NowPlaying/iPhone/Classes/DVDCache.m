@@ -30,16 +30,16 @@
 @implementation DVDCache
 
 @synthesize gate;
-@synthesize dvdSet;
-@synthesize bluraySet;
+@synthesize dvdSetData;
+@synthesize bluraySetData;
 @synthesize dvdData;
 @synthesize blurayData;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
     self.gate = nil;
-    self.dvdSet = nil;
-    self.bluraySet = nil;
+    self.dvdSetData = nil;
+    self.bluraySetData = nil;
     self.dvdData = nil;
     self.blurayData = nil;
     self.prioritizedMovies = nil;
@@ -100,13 +100,13 @@
 
 - (void) setDvd:(NSArray*) array {
     self.dvdData = array;
-    self.dvdSet = [PointerSet setWithArray:array];
+    self.dvdSetData = [PointerSet setWithArray:array];
 }
 
 
 - (void) setBluray:(NSArray*) array {
     self.blurayData = array;
-    self.bluraySet = [PointerSet setWithArray:array];
+    self.bluraySetData = [PointerSet setWithArray:array];
 }
 
 
@@ -125,6 +125,18 @@
     }
     
     return blurayData;
+}
+
+
+- (PointerSet*) dvdSet {
+    [self dvdMovies];
+    return dvdSetData;
+}
+
+
+- (PointerSet*) bluraySet {
+    [self blurayMovies];
+    return bluraySetData;
 }
 
 
@@ -222,7 +234,8 @@
     NSString* poster = [videoElement attributeValue:@"image"];
     NSString* synopsis = [videoElement attributeValue:@"synopsis"];
     NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
- 
+    NSString* url = [videoElement attributeValue:@"url"];
+    
     synopsis = [self massage:synopsis];
  
     NSRange range = [synopsis rangeOfString:@"€"];
@@ -236,7 +249,11 @@
               [synopsis characterAtIndex:range.location + 1]);
     }
     
-    DVD* dvd = [DVD dvdWithTitle:title price:price format:format discs:discs];
+    DVD* dvd = [DVD dvdWithTitle:title
+                           price:price
+                          format:format
+                           discs:discs
+                             url:url];
     
     Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", dvd]
                                         title:title
@@ -292,28 +309,38 @@
 
 
 - (NSString*) detailsFile:(Movie*) movie {
-    return [self detailsFile:movie isBluray:[bluraySet containsObject:movie]];
-}
-
-
-- (NSString*) imdbFile:(Movie*) movie {
-    if ([dvdSet containsObject:movie]) {
-        return [[[Application dvdIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-                stringByAppendingString:@"-DVD.plist"];
+    if ([self.dvdSet containsObject:movie]) {
+        return [self detailsFile:movie isBluray:NO];
+    } else if ([self.bluraySet containsObject:movie]) {
+        return [self detailsFile:movie isBluray:YES];
     } else {
-        return [[[Application dvdIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-                stringByAppendingString:@"-Bluray.plist"];
+        return nil;
     }
 }
 
 
+- (NSString*) imdbFile:(Movie*) movie {
+    if ([self.dvdSet containsObject:movie]) {
+        return [[[Application dvdIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+                stringByAppendingString:@"-DVD.plist"];
+    } else if ([self.bluraySet containsObject:movie]) {
+        return [[[Application dvdIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+                stringByAppendingString:@"-Bluray.plist"];
+    }
+    
+    return nil;
+}
+
+
 - (NSString*) posterFile:(Movie*) movie {
-    if ([dvdSet containsObject:movie]) {
+    if ([self.dvdSet containsObject:movie]) {
         return [[[Application dvdPostersFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-DVD.jpg"];
-    } else {
+    } else if ([self.bluraySet containsObject:movie]) {
         return [[[Application dvdPostersFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-Bluray.jpg"];
+    } else {
+        return nil;
     }
 }
 

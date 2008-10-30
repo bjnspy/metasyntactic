@@ -14,6 +14,9 @@
 
 #import "UpcomingMoviesNavigationController.h"
 
+#import "Movie.h"
+#import "NowPlayingModel.h"
+#import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 
 @implementation UpcomingMoviesNavigationController
@@ -44,7 +47,14 @@
 }
 
 
-- (void) navigateToLastViewedPage {
+- (Movie*) movieForTitle:(NSString*) canonicalTitle {
+    for (Movie* movie in self.model.upcomingCache.upcomingMovies) {
+        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+            return movie;
+        }
+    }
+    
+    return [super movieForTitle:canonicalTitle];
 }
 
 @end

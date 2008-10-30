@@ -43,4 +43,7 @@
 - (void) showSearchView;
 - (void) hideSearchView;
 
+// @protected
+- (Movie*) movieForTitle:(NSString*) canonicalTitle;
+
 @end

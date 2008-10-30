@@ -48,8 +48,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"2.2.0";
-static NSString* persistenceVersion = @"8";
+static NSString* currentVersion = @"2.3.0";
+static NSString* persistenceVersion = @"11";
 
 static NSString* VERSION = @"version";
 
@@ -975,23 +975,20 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         id value;
         if ([viewController isKindOfClass:[MovieDetailsViewController class]]) {
             type = MovieDetails;
-            value = [[viewController movie] dictionary];
+            value = [[viewController movie] canonicalTitle];
         } else if ([viewController isKindOfClass:[TheaterDetailsViewController class]]) {
             type = TheaterDetails;
-            value = [[viewController theater] dictionary];
+            value = [[viewController theater] name];
         } else if ([viewController isKindOfClass:[ReviewsViewController class]]) {
             type = Reviews;
-            value = [[viewController movie] dictionary];
+            value = [[viewController movie] canonicalTitle];
         } else if ([viewController isKindOfClass:[TicketsViewController class]]) {
             type = Tickets;
-            value = [NSArray arrayWithObjects:[[viewController movie] dictionary], [[viewController theater] dictionary], [viewController title], nil];
-        } else if ([viewController isKindOfClass:[AllMoviesViewController class]]) {
-            continue;
-        } else if ([viewController isKindOfClass:[AllTheatersViewController class]]) {
-            continue;
-        } else if ([viewController isKindOfClass:[UpcomingMoviesViewController class]]) {
-            continue;
-        } else if ([viewController isKindOfClass:[DVDViewController class]]) {
+            value = [NSArray arrayWithObjects:[[viewController movie] canonicalTitle], [[viewController theater] name], [viewController title], nil];
+        } else if ([viewController isKindOfClass:[AllMoviesViewController class]] ||
+                   [viewController isKindOfClass:[AllTheatersViewController class]] ||
+                   [viewController isKindOfClass:[UpcomingMoviesViewController class]] ||
+                   [viewController isKindOfClass:[DVDViewController class]]) {
             continue;
         } else {
             NSAssert(false, @"");

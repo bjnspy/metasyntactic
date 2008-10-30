@@ -118,6 +118,11 @@
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
         [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
     }
+    
+    if (dvd != nil) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
+        [titles addObject:NSLocalizedString(@"Website", nil)];
+    }
 
     self.actionsView = [ActionsView viewWithTarget:self selectors:selectors titles:titles];
     [actionsView sizeToFit];
@@ -158,6 +163,7 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) controller
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        //[NSThread sleepForTimeInterval:5];
         self.navigationController = controller;
         self.movie = movie_;
         self.dvd = [self.model.dvdCache dvdDetailsForMovie:movie];
@@ -266,9 +272,9 @@
     label.adjustsFontSizeToFitWidth = YES;
     label.textAlignment = UITextAlignmentCenter;
     if ([@"1" isEqual:dvd.discs]) {
-        label.text = [NSString stringWithFormat:@"$%@. %@ - 1 disc.", dvd.price, dvd.format];
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"$%@. %@ - 1 disc.", @"$19.99.  Widescreen DVD - 1 disc."), dvd.price, dvd.format];
     } else {
-        label.text = [NSString stringWithFormat:@"$%@. %@ - %@ discs.", dvd.price, dvd.format, dvd.discs];
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"$%@. %@ - %@ discs.", @"$19.99.  Widescreen DVD - 2 discs."), dvd.price, dvd.format, dvd.discs];
     }
     [label sizeToFit];
     CGRect frame = label.frame;
@@ -524,6 +530,11 @@
 
 - (void) visitIMDb {
     [Application openBrowser:imdbAddress];
+}
+
+
+- (void) visitWebsite {
+    [Application openBrowser:dvd.url];
 }
 
 

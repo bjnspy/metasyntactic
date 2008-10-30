@@ -23,12 +23,14 @@ property_definition(canonicalTitle);
 property_definition(price);
 property_definition(format);
 property_definition(discs);
+property_definition(url);
 
 - (void) dealloc {
     self.canonicalTitle = nil;
     self.price = nil;
     self.format = nil;
     self.discs = nil;
+    self.url = nil;
 
     [super dealloc];
 }
@@ -37,12 +39,14 @@ property_definition(discs);
 - (id) initWithCanonicalTitle:(NSString*) canonicalTitle_
                         price:(NSString*) price_
                        format:(NSString*) format_
-                        discs:(NSString*) discs_ {
+                        discs:(NSString*) discs_ 
+                          url:(NSString*) url_ {
     if (self = [super init]) {
         self.canonicalTitle = [Utilities nonNilString:canonicalTitle_];
         self.price = [Utilities nonNilString:price_];
         self.format = [Utilities nonNilString:format_];
         self.discs = [Utilities nonNilString:discs_];
+        self.url = [Utilities nonNilString:url_];
     }
 
     return self;
@@ -50,24 +54,28 @@ property_definition(discs);
 
 
 + (DVD*) dvdWithCanonicalTitle:(NSString*) canonicalTitle
-                price:(NSString*) price
-               format:(NSString*) format
-                         discs:(NSString*) discs {
+                         price:(NSString*) price
+                        format:(NSString*) format
+                         discs:(NSString*) discs 
+                           url:(NSString*) url {
     return [[[DVD alloc] initWithCanonicalTitle:canonicalTitle
                                           price:price
                                          format:format
-                                          discs:discs] autorelease];
+                                          discs:discs
+                                            url:url] autorelease];
 }
 
 
 + (DVD*) dvdWithTitle:(NSString*) title
                 price:(NSString*) price
                format:(NSString*) format
-                discs:(NSString*) discs {
+                discs:(NSString*) discs
+                  url:(NSString*) url {
     return [DVD dvdWithCanonicalTitle:[Movie makeCanonical:title]
                                 price:price
                                format:format
-                                discs:discs];
+                                discs:discs
+                                  url:url];
 }
 
 
@@ -75,7 +83,8 @@ property_definition(discs);
     return [DVD dvdWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                 price:[dictionary objectForKey:price_key]
                                format:[dictionary objectForKey:format_key]
-                                discs:[dictionary objectForKey:discs_key]];
+                                discs:[dictionary objectForKey:discs_key]
+                                  url:[dictionary objectForKey:url_key]];
 }
 
 
@@ -85,6 +94,7 @@ property_definition(discs);
     [result setObject:price             forKey:price_key];
     [result setObject:format            forKey:format_key];
     [result setObject:discs             forKey:discs_key];
+    [result setObject:url               forKey:url_key];
     return result;
 }
 

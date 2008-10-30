@@ -15,8 +15,8 @@
 @interface DVDCache : NSObject {
     NSLock* gate;
     
-    PointerSet* dvdSet;
-    PointerSet* bluraySet;
+    PointerSet* dvdSetData;
+    PointerSet* bluraySetData;
     NSArray* dvdData;
     NSArray* blurayData;
     
@@ -24,8 +24,8 @@
 }
 
 @property (retain) NSLock* gate;
-@property (retain) PointerSet* dvdSet;
-@property (retain) PointerSet* bluraySet;
+@property (retain) PointerSet* dvdSetData;
+@property (retain) PointerSet* bluraySetData;
 @property (retain) NSArray* dvdData;
 @property (retain) NSArray* blurayData;
 @property (retain) LinkedSet* prioritizedMovies;
