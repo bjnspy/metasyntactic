@@ -20,19 +20,18 @@
 
 @implementation CreditsViewController
 
-@synthesize fandangoImage;
-@synthesize metacriticImage;
-@synthesize rottenTomatoesImage;
-@synthesize tryntImage;
-@synthesize yahooImage;
+const int WRITTEN_BY_SECTION = 0;
+const int GRAPHICS_BY_SECTION = 1;
+const int MOVIE_REVIEWS_BY_SECTION = 2;
+const int TICKET_SALES_BY_SECTION = 3;
+const int MOVIE_DETAILS_BY_SECTION = 4;
+const int GEOLOCATION_SERVICES_BY_SECTION = 5;
+const int DVD_DETAILS_BY_SECTION = 6;
+
+
 @synthesize localizers;
 
 - (void) dealloc {
-    self.fandangoImage = nil;
-    self.metacriticImage = nil;
-    self.rottenTomatoesImage = nil;
-    self.tryntImage = nil;
-    self.yahooImage = nil;
     self.localizers = nil;
 
     [super dealloc];
@@ -41,12 +40,6 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.fandangoImage = [UIImage imageNamed:@"FandangoLogo.png"];
-        self.metacriticImage = [UIImage imageNamed:@"MetacriticLogo.png"];
-        self.rottenTomatoesImage = [UIImage imageNamed:@"RottenTomatoesLogo.png"];
-        self.tryntImage = [UIImage imageNamed:@"TryntLogo.png"];
-        self.yahooImage = [UIImage imageNamed:@"YahooLogo.png"];
-
         self.title = NSLocalizedString(@"About", nil);
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -59,6 +52,7 @@
         [dictionary setObject:@"Leo Yamamoto"       forKey:@"ja"];
         [dictionary setObject:@"André van Haren"    forKey:@"nl"];
         [dictionary setObject:@"Eivind Samseth"     forKey:@"no"];
+        [dictionary setObject:@"Marek Wieczorek"    forKey:@"pl"];
         [dictionary setObject:@"Pedro Pinhão"       forKey:@"pt"];
         [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
         self.localizers = dictionary;
@@ -112,21 +106,23 @@
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     if (section == 2) {
         if (row == 0) {
-            return rottenTomatoesImage;
+            return [UIImage imageNamed:@"RottenTomatoesLogo.png"];
         } else if (row == 1) {
-            return metacriticImage;
+            return [UIImage imageNamed:@"MetacriticLogo.png"];
         }
     } else if (section == 3) {
-        return fandangoImage;
+        return [UIImage imageNamed:@"FandangoLogo.png"];
     } else if (section == 4) {
-        return tryntImage;
+        return [UIImage imageNamed:@"TryntLogo.png"];
     } else if (section == 5) {
         if (row == 0) {
-            return yahooImage;
+            return [UIImage imageNamed:@"YahooLogo.png"];
         }
+    } else if (section == 7) {
+        return [UIImage imageNamed:@"VideoETALogo.png"];
     }
 
     return nil;
@@ -210,8 +206,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         } else if (row == 2) {
             cell.text = @"GeoCoder.ca";
         }
-    } else if (section == 6) {
-        cell.text = @"VideoETA.com";
     } else if (section == 8) {
         cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
