@@ -220,7 +220,7 @@
                              ([Application useKilometers] ? NSLocalizedString(@"kilometers", nil) : NSLocalizedString(@"miles", nil))];
                 }
             } else if (indexPath.row == 2) {
-                key = NSLocalizedString(@"Search Date", nil);
+                key = NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
 
                 NSDate* date = self.model.searchDate;
                 if ([DateUtilities isToday:date]) {
@@ -246,7 +246,7 @@
             NSString* text = @"";
             BOOL on = NO;
             if (indexPath.row == 4) {
-                text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it");
+                text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
                 on = self.model.autoUpdateLocation;
                 [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
             } else if (indexPath.row == 5) {
@@ -262,7 +262,7 @@
         }
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        cell.text = NSLocalizedString(@"About", nil);
+        cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
         return cell;
     }
 

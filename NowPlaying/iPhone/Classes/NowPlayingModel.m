@@ -49,7 +49,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"2.2.0";
-static NSString* persistenceVersion = @"6";
+static NSString* persistenceVersion = @"8";
 
 static NSString* VERSION = @"version";
 
@@ -339,7 +339,7 @@ static NSString** KEYS[] = {
             @"RottenTomatoes",
             @"Metacritic",
             @"Google",
-            NSLocalizedString(@"None", nil), nil];
+            NSLocalizedString(@"None", @"This is what a user picks when they don't want any reviews."), nil];
 }
 
 

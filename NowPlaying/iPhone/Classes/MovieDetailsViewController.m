@@ -425,9 +425,10 @@
     cell.textAlignment = UITextAlignmentCenter;
 
     if (self.hiddenTheaterCount == 1) {
-        cell.text = NSLocalizedString(@"Show 1 hidden theater", nil);
+        cell.text = NSLocalizedString(@"Show 1 hidden theater", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about.");
     } else {
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", nil), self.hiddenTheaterCount];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about."),
+                     self.hiddenTheaterCount];
     }
 
     cell.textColor = [ColorCache commandColor];

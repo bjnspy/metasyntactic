@@ -30,7 +30,7 @@
                          withValues:(NSArray*) values_
                        defaultValue:(NSString*) defaultValue_ {
     if (self = [super initWithController:navigationController_
-                                   title:NSLocalizedString(@"Search Date", nil)
+                                   title:NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.")
                                     text:NSLocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil)
                                   object:self
                                 selector:@selector(onSearchDateChanged:)

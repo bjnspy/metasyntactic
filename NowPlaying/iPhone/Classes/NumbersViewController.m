@@ -44,7 +44,7 @@
 - (id) initWithNavigationController:(NumbersNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
-        self.title = NSLocalizedString(@"Numbers", nil);
+        self.title = NSLocalizedString(@"Numbers", @"Usually translated as 'Statistics'.  This shows the user data about how well the movie is doing in the boxoffice.");
 
         self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                                   [NSArray arrayWithObjects:
