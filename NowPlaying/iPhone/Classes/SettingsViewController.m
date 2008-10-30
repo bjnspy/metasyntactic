@@ -112,6 +112,7 @@
 
 
 - (void) refresh {
+    self.tableView.rowHeight = 42;
     [self.tableView reloadData];
 }
 
@@ -169,12 +170,15 @@
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        return UITableViewCellAccessoryNone;
+        if (indexPath.row == 0) {
+        } else {
+            return UITableViewCellAccessoryDisclosureIndicator;
+        }
     } else if (indexPath.section == 1) {
-        return UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        return UITableViewCellAccessoryDisclosureIndicator;
+        return UITableViewCellAccessoryNone;
     }
+    
+    return UITableViewCellAccessoryNone;
 }
 
 
@@ -186,9 +190,9 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 6;
+        return 2;
     } else {
-        return 1;
+        return 6;
     }
 }
 
@@ -196,6 +200,16 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
+        if (indexPath.row == 0) { 
+            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+            cell.text = NSLocalizedString(@"Send feedback", nil);
+            return cell;
+        } else {
+            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+            cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
+            return cell;
+        }
+    } else {
         if (indexPath.row >= 0 && indexPath.row <= 3) {
             SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
@@ -260,10 +274,6 @@
 
             return cell;
         }
-    } else {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
-        return cell;
     }
 
     return nil;
@@ -315,6 +325,11 @@
     NSInteger row = indexPath.row;
 
     if (section == 0) {
+        if (indexPath.row == 1) {
+            CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
+            [navigationController pushViewController:controller animated:YES];
+        }
+    } else if (section == 1) {
         if (row == 0) {
             NSString* message;
 
@@ -369,9 +384,6 @@
             [[[ScoreProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
             [navigationController pushViewController:controller animated:YES];
         }
-    } else if (section == 1) {
-        CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
-        [navigationController pushViewController:controller animated:YES];
     }
 }
 
