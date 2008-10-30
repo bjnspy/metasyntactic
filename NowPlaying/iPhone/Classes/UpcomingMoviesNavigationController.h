@@ -22,6 +22,4 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
-- (void) navigateToLastViewedPage;
-
 @end

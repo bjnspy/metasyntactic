@@ -112,6 +112,10 @@ static MainThreadGate* gate;
 
 
 + (id) readObject:(NSString*) file {
+    if (file == nil) {
+        return nil;
+    }
+    
     id result = nil;
     [gate lock];
     {
@@ -138,6 +142,10 @@ static MainThreadGate* gate;
 
 
 + (NSData*) readData:(NSString*) file {
+    if (file == nil) {
+        return nil;
+    }
+    
     NSData* result = nil;
     [gate lock];
     {

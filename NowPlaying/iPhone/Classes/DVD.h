@@ -17,18 +17,21 @@
     NSString* price;
     NSString* format;
     NSString* discs;
+    NSString* url;
 }
 
 @property (copy) NSString* canonicalTitle;
 @property (copy) NSString* price;
 @property (copy) NSString* format;
 @property (copy) NSString* discs;
+@property (copy) NSString* url;
 
 + (DVD*) dvdWithDictionary:(NSDictionary*) dictionary;
 + (DVD*) dvdWithTitle:(NSString*) title
                 price:(NSString*) price
                format:(NSString*) format
-                discs:(NSString*) discs;
+                discs:(NSString*) discs
+                  url:(NSString*) url;
 
 - (NSDictionary*) dictionary;
 

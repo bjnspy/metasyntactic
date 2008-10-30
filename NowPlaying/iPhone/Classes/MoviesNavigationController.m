@@ -15,6 +15,8 @@
 #import "MoviesNavigationController.h"
 
 #import "AllMoviesViewController.h"
+#import "Movie.h"
+#import "NowPlayingModel.h"
 
 @implementation MoviesNavigationController
 
@@ -41,6 +43,17 @@
     [super loadView];
     self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
     [self pushViewController:allMoviesViewController animated:NO];
+}
+
+
+- (Movie*) movieForTitle:(NSString*) canonicalTitle {
+    for (Movie* movie in self.model.movies) {
+        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+            return movie;
+        }
+    }
+    
+    return nil;
 }
 
 

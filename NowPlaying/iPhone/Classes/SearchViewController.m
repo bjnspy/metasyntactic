@@ -15,6 +15,7 @@
 #import "SearchViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "ApplicationTabBarController.h"
 #import "DVDCell.h"
 #import "MovieTitleCell.h"
 #import "SearchEngine.h"
@@ -256,31 +257,40 @@
 }
 
 
+- (ApplicationTabBarController*) tabBarController {
+    return navigationController.tabBarController;
+}
+
+
 - (void) didSelectMovieRow:(NSInteger) row {
+    [self.tabBarController switchToMovies]; 
     Movie* movie = [searchResult.movies objectAtIndex:row];
 
-    [navigationController pushMovieDetails:movie animated:YES];
+    [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectTheaterRow:(NSInteger) row {
+    [self.tabBarController switchToTheaters];
     Theater* theater = [searchResult.theaters objectAtIndex:row];
 
-    [navigationController pushTheaterDetails:theater animated:YES];
+    [self.tabBarController.selectedNavigationController pushTheaterDetails:theater animated:YES];
 }
 
 
 - (void) didSelectUpcomingMovieRow:(NSInteger) row {
+    [self.tabBarController switchToUpcoming];
     Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
 
-    [navigationController pushMovieDetails:movie animated:YES];
+    [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (void) didSelectDvdRow:(NSInteger) row {
+    [self.tabBarController switchToDVD];
     Movie* movie = [searchResult.dvds objectAtIndex:row];
     
-    [navigationController pushMovieDetails:movie animated:YES];
+    [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -288,6 +298,7 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    [navigationController hideSearchView];
     if (indexPath.section == 0) {
         return [self didSelectMovieRow:indexPath.row];
     } else if (indexPath.section == 1) {

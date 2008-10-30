@@ -42,4 +42,11 @@
 
 - (void) popNavigationControllersToRoot;
 
+- (void) switchToMovies;
+- (void) switchToTheaters;
+- (void) switchToUpcoming;
+- (void) switchToDVD;
+
+- (AbstractNavigationController*) selectedNavigationController;
+
 @end

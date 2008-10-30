@@ -8,7 +8,10 @@
 
 #import "DVDNavigationController.h"
 
+#import "Movie.h"
+#import "DVDCache.h"
 #import "DVDViewController.h"
+#import "NowPlayingModel.h"
 
 @implementation DVDNavigationController
 
@@ -35,6 +38,17 @@
     [super loadView];
     self.dvdViewController = [[[DVDViewController alloc] initWithNavigationController:self] autorelease];
     [self pushViewController:dvdViewController animated:NO];
+}
+
+
+- (Movie*) movieForTitle:(NSString*) canonicalTitle {
+    for (Movie* movie in self.model.dvdCache.allMovies) {
+        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+            return movie;
+        }
+    }
+    
+    return [super movieForTitle:canonicalTitle];
 }
 
 @end
