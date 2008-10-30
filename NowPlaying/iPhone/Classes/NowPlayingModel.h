@@ -21,6 +21,7 @@ enum ViewControllerType {
 
 @interface NowPlayingModel : NSObject {
     UserLocationCache* userLocationCache;
+    DVDCache* dvdCache;
     IMDbCache* imdbCache;
     PosterCache* posterCache;
     ScoreCache* scoreCache;
@@ -35,6 +36,7 @@ enum ViewControllerType {
 }
 
 @property (retain) UserLocationCache* userLocationCache;
+@property (retain) DVDCache* dvdCache;
 @property (retain) IMDbCache* imdbCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) ScoreCache* scoreCache;

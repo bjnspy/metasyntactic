@@ -35,6 +35,7 @@
 */
 
 + (NSString*) dvdFolder;
++ (NSString*) dvdIMDbFolder;
 + (NSString*) dvdPostersFolder;
 
 + (NSString*) upcomingFolder;
