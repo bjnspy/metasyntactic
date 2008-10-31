@@ -62,6 +62,7 @@ typedef enum {
         [dictionary setObject:@"Eivind Samseth"     forKey:@"no"];
         [dictionary setObject:@"Marek Wieczorek"    forKey:@"pl"];
         [dictionary setObject:@"Pedro Pinhão"       forKey:@"pt"];
+        [dictionary setObject:@"Marius Andrei"      forKey:@"ro"];
         [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
         self.localizers = dictionary;
     }
