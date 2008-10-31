@@ -17,7 +17,7 @@
 
     Movie* movie;
     DVD* dvd;
-    
+
     NSMutableArray* theatersArray;
     NSMutableArray* showtimesArray;
     NSArray* trailersArray;

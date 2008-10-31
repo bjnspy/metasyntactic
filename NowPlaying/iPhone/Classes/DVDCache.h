@@ -14,12 +14,12 @@
 
 @interface DVDCache : NSObject {
     NSLock* gate;
-    
+
     PointerSet* dvdSetData;
     PointerSet* bluraySetData;
     NSArray* dvdData;
     NSArray* blurayData;
-    
+
     LinkedSet* prioritizedMovies;
 }
 

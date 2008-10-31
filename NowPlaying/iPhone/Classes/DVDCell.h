@@ -20,15 +20,15 @@
     UILabel* genreTitleLabel;
     UILabel* ratedTitleLabel;
     UILabel* formatTitleLabel;
-    
+
     UILabel* directorLabel;
     UILabel* castLabel;
     UILabel* genreLabel;
     UILabel* ratedLabel;
     UILabel* formatLabel;
-    
+
     UIImageView* imageView;
-    
+
     CGFloat titleWidth;
 }
 

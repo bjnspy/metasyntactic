@@ -175,7 +175,7 @@
 
     NSArray* upcomingMovies = [self findUpcomingMovies];
     if ([self abortEarly]) { return; }
-    
+
     NSArray* dvds = [self findDVDs];
     if ([self abortEarly]) { return; }
     //...

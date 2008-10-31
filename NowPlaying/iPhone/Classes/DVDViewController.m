@@ -63,18 +63,18 @@
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Title", nil),
                                NSLocalizedString(@"Release", nil), nil]] autorelease];
-    
+
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
-    
+
     [segmentedControl addTarget:self
                          action:@selector(onSortOrderChanged:)
                forControlEvents:UIControlEventValueChanged];
-    
+
     CGRect rect = segmentedControl.frame;
     rect.size.width = 240;
     segmentedControl.frame = rect;
-    
+
     self.navigationItem.titleView = segmentedControl;
 }
 
@@ -90,7 +90,7 @@
         self.title = NSLocalizedString(@"DVD", nil);
         self.tableView.rowHeight = 100;
     }
-    
+
     return self;
 }
 

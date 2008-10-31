@@ -115,7 +115,7 @@ typedef enum {
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == ReviewsBySection) {
         if (row == 0) {
             return [UIImage imageNamed:@"RottenTomatoesLogo.png"];

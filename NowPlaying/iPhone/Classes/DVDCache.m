@@ -43,7 +43,7 @@
     self.dvdData = nil;
     self.blurayData = nil;
     self.prioritizedMovies = nil;
-    
+
     [super dealloc];
 }
 
@@ -52,7 +52,7 @@
     if (self = [super init]) {
         self.prioritizedMovies = [LinkedSet set];
     }
-    
+
     return self;
 }
 
@@ -76,12 +76,12 @@
     if (array == nil) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dictionary in array) {
         [result addObject:[Movie movieWithDictionary:dictionary]];
     }
-    
+
     return result;
 }
 
@@ -114,7 +114,7 @@
     if (dvdData == nil) {
         [self setDvd:[self loadDvd]];
     }
-    
+
     return dvdData;
 }
 
@@ -123,7 +123,7 @@
     if (blurayData == nil) {
         [self setBluray:[self loadBluray]];
     }
-    
+
     return blurayData;
 }
 
@@ -149,17 +149,17 @@
     [ThreadingUtilities performSelector:@selector(updateMoviesBackgroundEntryPoint)
                                onTarget:self
                inBackgroundWithArgument:nil
-                                   gate:gate 
+                                   gate:gate
                                 visible:YES];
 }
 
 
-- (void) updateDetails {    
+- (void) updateDetails {
     NSArray* arguments = [NSArray arrayWithObjects:self.dvdMovies, self.blurayMovies, nil];
     [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:arguments
-                                   gate:gate 
+                                   gate:gate
                                 visible:NO];
 }
 
@@ -174,7 +174,7 @@
     if (value.length == 0) {
         return [NSArray array];
     }
-    
+
     return [value componentsSeparatedByString:@"/"];
 }
 
@@ -183,39 +183,39 @@
     unichar a1[] = { 0xE2, 0x20AC, 0x201C };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a1 length:ArrayLength(a1)]
                                            withString:@"-"];
-    
+
     unichar a2[] = { 0xEF, 0xBF, 0xBD };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a2 length:ArrayLength(a2)]
                                            withString:@"'"];
-    
+
     unichar a3[] = { 0xE2, 0x20AC, 0x153 };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a3 length:ArrayLength(a3)]
                                            withString:@"\""];
-    
+
     unichar a4[] = { 0xE2, 0x20AC, 0x9D };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a4 length:ArrayLength(a4)]
                                            withString:@"\""];
-    
+
     unichar a5[] = { 0xE2, 0x20AC, 0x2122 };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a5 length:ArrayLength(a5)]
                                            withString:@"'"];
-    
+
     unichar a6[] = { 0xC2, 0xA0 };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a6 length:ArrayLength(a6)]
                                            withString:@" "];
-    
+
     unichar a7[] = { 0xE2, 0x20AC, 0x201D };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a7 length:ArrayLength(a7)]
                                            withString:@"-"];
-    
+
     unichar a8[] = { 0xC2, 0xAE };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a8 length:ArrayLength(a8)]
                                            withString:@"®"];
-    
+
     unichar a9[] = { 0xE2, 0x20AC, 0xA2 };
     text = [text stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:a9 length:ArrayLength(a9)]
                                            withString:@"•"];
-    
+
     return text;
 }
 
@@ -237,26 +237,26 @@
     NSString* url = [videoElement attributeValue:@"url"];
     NSString* length = [videoElement attributeValue:@"length"];
     NSString* studio = [videoElement attributeValue:@"studio"];
-    
+
     synopsis = [self massage:synopsis];
- 
+
     NSRange range = [synopsis rangeOfString:@"€"];
     if (range.length > 0) {
         NSLog(@"%c%c%c %d %d %d",
-              [synopsis characterAtIndex:range.location - 1], 
+              [synopsis characterAtIndex:range.location - 1],
               [synopsis characterAtIndex:range.location],
               [synopsis characterAtIndex:range.location + 1],
-              [synopsis characterAtIndex:range.location - 1], 
+              [synopsis characterAtIndex:range.location - 1],
               [synopsis characterAtIndex:range.location],
               [synopsis characterAtIndex:range.location + 1]);
     }
-    
+
     DVD* dvd = [DVD dvdWithTitle:title
                            price:price
                           format:format
                            discs:discs
                              url:url];
-    
+
     Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", dvd]
                                         title:title
                                        rating:rating
@@ -269,7 +269,7 @@
                                     directors:directors
                                          cast:cast
                                        genres:genres];
-    
+
     [result setObject:dvd forKey:movie];
 }
 
@@ -288,13 +288,13 @@
     // cast="Denzel Washington/Derek Luke/Joy Bryant/Salli Richardson"
     // director="Denzel Washington"
     // synopsis="Story of a young sailor who's past is full of tragedy and child abuse.  Fisher turns to his girlfriend and a Navy psychiatrist to help come to terms with his demons and confront his past."/>
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    
+
     for (XmlElement* child in element.children) {
         [self processVideoElement:child result:result];
     }
-    
+
     return result;
 }
 
@@ -329,7 +329,7 @@
         return [[[Application dvdIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-Bluray.plist"];
     }
-    
+
     return nil;
 }
 
@@ -350,13 +350,13 @@
 - (void) saveData:(NSDictionary*) dictionary file:(NSString*) file isBluray:(BOOL) isBluray {
     NSArray* videos = dictionary.allKeys;
     NSMutableArray* encodedVideos = [NSMutableArray array];
-    
+
     for (Movie* movie in videos) {
         [encodedVideos addObject:movie.dictionary];
     }
-    
+
     [FileUtilities writeObject:encodedVideos toFile:file];
-    
+
     for (Movie* movie in dictionary) {
         DVD* dvd = [dictionary objectForKey:movie];
         [FileUtilities writeObject:dvd.dictionary toFile:[self detailsFile:movie isBluray:isBluray]];
@@ -371,28 +371,28 @@
             return;
         }
     }
-    
+
     XmlElement* dvdElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings?q=dvd", [Application host]]
                                                               important:YES];
     XmlElement* blurayElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings?q=bluray", [Application host]]
                                                                  important:YES];
-    
+
     if (dvdElement == nil && blurayElement == nil) {
         return;
     }
-    
+
     NSDictionary* dvdMap = [self processElement:dvdElement];
     //NSDictionary* blurayMap = [self processElement:blurayElement];
     NSDictionary* blurayMap = [NSDictionary dictionary];
-    
-    
+
+
     if (dvdMap.count == 0 && blurayMap.count == 0) {
         return;
     }
-    
+
     [self saveData:dvdMap file:[self dvdFile] isBluray:NO];
     [self saveData:blurayMap file:[self blurayFile] isBluray:YES];
-    
+
     NSArray* results = [NSArray arrayWithObjects:dvdMap.allKeys, blurayMap.allKeys, nil];
     [self performSelectorOnMainThread:@selector(reportResults:) withObject:results waitUntilDone:NO];
 }
@@ -401,11 +401,11 @@
 - (void) reportResults:(NSArray*) arguments {
     NSArray* dvds = [arguments objectAtIndex:0];
     NSArray* blurays = [arguments objectAtIndex:1];
-    
+
     if (dvds.count > 0 || blurays.count > 0) {
         [self setDvd:dvds];
         [self setBluray:blurays];
-        
+
         [self updateDetails];
         [NowPlayingAppDelegate refresh];
     }
@@ -416,19 +416,19 @@
     if (movie == nil) {
         return;
     }
-    
+
     NSString* file = [self posterFile:movie];
     if ([FileUtilities fileExists:file]) {
         return;
     }
-    
+
     if (movie.poster.length == 0) {
         return;
     }
-    
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@", 
+
+    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
                          [Application host], [Utilities stringByAddingPercentEscapes:movie.poster]];
-    
+
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
     if (data != nil) {
         [FileUtilities writeData:data toFile:file];
@@ -441,9 +441,9 @@
     if (movie == nil) {
         return;
     }
-    
+
     NSString* imdbFile = [self imdbFile:movie];
-    
+
     NSDate* lastLookupDate = [FileUtilities modificationDate:imdbFile];
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:imdbFile];
@@ -451,19 +451,19 @@
             // we have a real imdb value for this movie
             return;
         }
-        
+
         // we have a sentinel.  only update if it's been long enough
         if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
             return;
         }
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (imdbAddress == nil) {
         return;
     }
-    
+
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:imdbFile];
@@ -473,17 +473,17 @@
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie = [prioritizedMovies removeLastObjectAdded];
-    
+
     if (movie != nil) {
         return movie;
     }
-    
+
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
-    
+
     return nil;
 }
 
@@ -506,7 +506,7 @@
 - (void) updateDetailsBackgroundEntryPoint:(NSArray*) arguments {
     NSMutableArray* dvds = [NSMutableArray arrayWithArray:[arguments objectAtIndex:0]];
     NSMutableArray* blurays = [NSMutableArray arrayWithArray:[arguments objectAtIndex:1]];
-    
+
     [self updateVideoDetails:dvds];
     [self updateVideoDetails:blurays];
 }
@@ -527,7 +527,7 @@
     if (dictionary == nil) {
         return nil;
     }
-    
+
     return [DVD dvdWithDictionary:dictionary];
 }
 

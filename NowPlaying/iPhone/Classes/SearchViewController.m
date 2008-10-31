@@ -139,7 +139,7 @@
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (searchResult == nil) { 
+    if (searchResult == nil) {
         return 0;
     }
 
@@ -217,16 +217,16 @@
 
 - (UITableViewCell*) dvdCellForRow:(NSInteger) row {
     Movie* movie = [searchResult.dvds objectAtIndex:row];
-    
+
     static NSString* reuseIdentifier = @"DvdCellReuseIdentifier";
-    
+
     UpcomingMovieCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                reuseIdentifier:reuseIdentifier
                                          model:self.model] autorelease];
     }
-    
+
     [cell setMovie:movie owner:self];
     return cell;
 }
@@ -263,7 +263,7 @@
 
 
 - (void) didSelectMovieRow:(NSInteger) row {
-    [self.tabBarController switchToMovies]; 
+    [self.tabBarController switchToMovies];
     Movie* movie = [searchResult.movies objectAtIndex:row];
 
     [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
@@ -289,7 +289,7 @@
 - (void) didSelectDvdRow:(NSInteger) row {
     [self.tabBarController switchToDVD];
     Movie* movie = [searchResult.dvds objectAtIndex:row];
-    
+
     [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 

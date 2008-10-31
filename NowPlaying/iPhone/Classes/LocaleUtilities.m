@@ -34,7 +34,7 @@
 
 
 + (NSString*) displayLanguage:(NSString*) isoLanguage {
-    return [[NSLocale currentLocale] displayNameForKey:NSLocaleLanguageCode value:isoLanguage];    
+    return [[NSLocale currentLocale] displayNameForKey:NSLocaleLanguageCode value:isoLanguage];
 }
 
 

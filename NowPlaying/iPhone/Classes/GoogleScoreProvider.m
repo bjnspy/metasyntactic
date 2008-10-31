@@ -65,7 +65,7 @@
         return nil;
     }
 
-    NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry] 
+    NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry]
     : location.country;
 
 

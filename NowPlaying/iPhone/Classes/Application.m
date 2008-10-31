@@ -413,7 +413,7 @@ static NSString* starString = nil;
     // except they don't. so we special case them to stick with 'miles' in the UI.
     BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
     BOOL isUK = [@"GB" isEqual:[LocaleUtilities isoCountry]];
-    
+
     return isMetric && !isUK;
 }
 
