@@ -118,7 +118,7 @@
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
         [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
     }
-    
+
     if (dvd != nil) {
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
         [titles addObject:NSLocalizedString(@"Website", nil)];
@@ -167,7 +167,7 @@
         self.navigationController = controller;
         self.movie = movie_;
         self.dvd = [self.model.dvdCache dvdDetailsForMovie:movie];
-        
+
         filterTheatersByDistance = YES;
 
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
@@ -175,7 +175,7 @@
 
         self.title = movie.displayTitle;
         self.navigationItem.titleView = label;
-        
+
         [self.model prioritizeMovie:movie];
     }
 
@@ -281,7 +281,7 @@
     frame.size.height = self.tableView.rowHeight - 16;
     frame.size.width = 300;
     label.frame = frame;
-    
+
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:label];
@@ -294,11 +294,11 @@
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
     }
-    
+
     if (row == 1 && dvd != nil) {
         return [self createDvdDetailsCell];
     }
-    
+
     if (expandedDetails) {
         return [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                           model:self.model
@@ -315,11 +315,11 @@
     if (row == 0) {
         return [MovieOverviewCell heightForMovie:movie model:self.model];
     }
-    
+
     if (row == 1 && dvd != nil) {
         return self.tableView.rowHeight - 14;
     }
-    
+
     AbstractMovieDetailsCell* cell = (AbstractMovieDetailsCell*)[self cellForHeaderRow:row];
     return [cell height:self.tableView];
 }
@@ -592,7 +592,7 @@
     } else {
         expandableRow = 2;
     }
-    
+
     if (row == expandableRow) {
         expandedDetails = !expandedDetails;
 

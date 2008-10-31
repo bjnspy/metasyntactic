@@ -30,7 +30,7 @@
     if (self = [super init]) {
         self.set = [NSMutableSet set];
     }
-    
+
     return self;
 }
 

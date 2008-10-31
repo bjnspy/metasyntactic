@@ -58,7 +58,7 @@
                          value:(NSString*) value
                         movies:(NSArray*) movies
                       theaters:(NSArray*) theaters
-                upcomingMovies:(NSArray*) upcomingMovies 
+                upcomingMovies:(NSArray*) upcomingMovies
                           dvds:(NSArray*) dvds {
     return [[[SearchResult alloc] initWithId:requestId
                                        value:value

@@ -115,7 +115,7 @@ static MainThreadGate* gate;
     if (file == nil) {
         return nil;
     }
-    
+
     id result = nil;
     [gate lock];
     {
@@ -145,7 +145,7 @@ static MainThreadGate* gate;
     if (file == nil) {
         return nil;
     }
-    
+
     NSData* result = nil;
     [gate lock];
     {

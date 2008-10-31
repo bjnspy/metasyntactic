@@ -170,15 +170,9 @@
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            return UITableViewCellAccessoryDetailDisclosureButton;
-        } else {
-            return UITableViewCellAccessoryDisclosureIndicator;
-        }
-    } else if (indexPath.section == 1) {
-        return UITableViewCellAccessoryNone;
+        return UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     return UITableViewCellAccessoryNone;
 }
 
@@ -201,7 +195,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) { 
+        if (indexPath.row == 0) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.text = NSLocalizedString(@"Send feedback", nil);
             return cell;

@@ -83,7 +83,7 @@
             return movie;
         }
     }
-    
+
     return nil;
 }
 
@@ -94,7 +94,7 @@
             return theater;
         }
     }
-    
+
     return nil;
 }
 
@@ -140,7 +140,7 @@
     if (movie == nil) {
         return;
     }
-    
+
     UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self
                                                                                                    movie:movie] autorelease];
 
@@ -152,7 +152,7 @@
     if (theater == nil) {
         return;
     }
-    
+
     UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self
                                                                                                    theater:theater] autorelease];
 
@@ -167,7 +167,7 @@
     if (movie == nil || theater == nil) {
         return;
     }
-    
+
     UIViewController* viewController = [[[TicketsViewController alloc] initWithController:self
                                                                                   theater:theater
                                                                                     movie:movie

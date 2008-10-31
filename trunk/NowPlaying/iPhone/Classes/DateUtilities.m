@@ -266,10 +266,10 @@ static BOOL use24HourTime;
         components.year = [[string substringWithRange:NSMakeRange(0, 4)] intValue];
         components.month = [[string substringWithRange:NSMakeRange(5, 2)] intValue];
         components.day = [[string substringWithRange:NSMakeRange(8, 2)] intValue];
-        
+
         return [[NSCalendar currentCalendar] dateFromComponents:components];
     }
-    
+
     return nil;
 }
 

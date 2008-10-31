@@ -39,7 +39,7 @@ property_definition(url);
 - (id) initWithCanonicalTitle:(NSString*) canonicalTitle_
                         price:(NSString*) price_
                        format:(NSString*) format_
-                        discs:(NSString*) discs_ 
+                        discs:(NSString*) discs_
                           url:(NSString*) url_ {
     if (self = [super init]) {
         self.canonicalTitle = [Utilities nonNilString:canonicalTitle_];
@@ -56,7 +56,7 @@ property_definition(url);
 + (DVD*) dvdWithCanonicalTitle:(NSString*) canonicalTitle
                          price:(NSString*) price
                         format:(NSString*) format
-                         discs:(NSString*) discs 
+                         discs:(NSString*) discs
                            url:(NSString*) url {
     return [[[DVD alloc] initWithCanonicalTitle:canonicalTitle
                                           price:price

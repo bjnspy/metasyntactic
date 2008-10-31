@@ -19,7 +19,7 @@
 
 - (void) dealloc {
     self.dvdViewController = nil;
-    
+
     [super dealloc];
 }
 
@@ -29,7 +29,7 @@
         self.title = NSLocalizedString(@"DVD", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"DVD.png"];
     }
-    
+
     return self;
 }
 
@@ -47,7 +47,7 @@
             return movie;
         }
     }
-    
+
     return [super movieForTitle:canonicalTitle];
 }
 
