@@ -235,6 +235,8 @@
     NSString* synopsis = [videoElement attributeValue:@"synopsis"];
     NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
     NSString* url = [videoElement attributeValue:@"url"];
+    NSString* length = [videoElement attributeValue:@"length"];
+    NSString* studio = [videoElement attributeValue:@"studio"];
     
     synopsis = [self massage:synopsis];
  
@@ -258,12 +260,12 @@
     Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", dvd]
                                         title:title
                                        rating:rating
-                                       length:0
+                                       length:[length intValue]
                                   releaseDate:releaseDate
                                   imdbAddress:@""
                                        poster:poster
                                      synopsis:synopsis
-                                       studio:@""
+                                       studio:studio
                                     directors:directors
                                          cast:cast
                                        genres:genres];
