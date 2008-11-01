@@ -81,7 +81,7 @@
 }
 
 
-- (id) createCell:(NSString*) reuseIdentifier {
+- (UITableViewCell*) createCell:(Movie*) movie {
     NSAssert(false, @"Someone subclassed incorrectly");
     return nil;
 }
@@ -283,15 +283,9 @@
         movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     }
 
-    static NSString* reuseIdentifier = @"AbstractMovieListCellIdentifier";
-    id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [self createCell:reuseIdentifier];
-    }
-
     [self.model prioritizeMovie:movie];
-
-    [cell setMovie:movie owner:self];
+    
+    UITableViewCell* cell = [self createCell:movie];
     return cell;
 }
 

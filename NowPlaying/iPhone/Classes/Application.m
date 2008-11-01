@@ -364,15 +364,11 @@ static NSString* starString = nil;
 
 
 + (void) makeCall:(NSString*) phoneNumber {
-    NSLog(@"%@", [[UIDevice currentDevice] model]);
-    if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
-        // can't make a phonecall if you're not an iPhone.
-        return;
+    if ([[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
+        NSString* urlString = [NSString stringWithFormat:@"tel:%@", [Utilities stringByAddingPercentEscapes:phoneNumber]];
+        
+        [self openBrowser:urlString];
     }
-
-    NSString* urlString = [NSString stringWithFormat:@"tel:%@", [Utilities stringByAddingPercentEscapes:phoneNumber]];
-
-    [self openBrowser:urlString];
 }
 
 
