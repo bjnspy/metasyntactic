@@ -100,11 +100,30 @@
 }
 
 
-- (MovieTitleCell*) createCell:(NSString*) reuseIdentifier {
-    return [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                  reuseIdentifier:reuseIdentifier
-                                            model:self.model
-                                            style:UITableViewStylePlain] autorelease];
+- (UITableViewCell*) createCell:(Movie*) movie {
+    /*
+    if (self.model.rottenTomatoesScores) {
+        return [self createRottenTomatoesCell:movie];
+    } else if (self.model.metacriticScores ||
+               self.model.googleScores) {
+        return [self createNumericCell:movie];
+    } else {
+        //if (self.model.noScores) {
+        return [self createBasicCell:movie];
+    }
+     */
+    
+    static NSString* reuseIdentifier = @"MovieCellIdentifier";
+    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                      reuseIdentifier:reuseIdentifier
+                                                model:self.model
+                                                style:UITableViewStylePlain] autorelease];
+    }
+    
+    [cell setMovie:movie owner:self];
+    return cell;
 }
 
 @end

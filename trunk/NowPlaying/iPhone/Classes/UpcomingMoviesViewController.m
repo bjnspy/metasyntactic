@@ -88,10 +88,17 @@
 }
 
 
-- (id) createCell:(NSString*) reuseIdentifier {
-    return [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                     reuseIdentifier:reuseIdentifier
-                                               model:self.model] autorelease];
+- (UITableViewCell*) createCell:(Movie*) movie {
+    static NSString* reuseIdentifier = @"UpcomingCellIdentifier";
+    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                         reuseIdentifier:reuseIdentifier
+                                                   model:self.model] autorelease];
+    }
+    
+    [cell setMovie:movie owner:self];
+    return cell;
 }
 
 

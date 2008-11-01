@@ -95,10 +95,17 @@
 }
 
 
-- (id) createCell:(NSString*) reuseIdentifier {
-    return [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                     reuseIdentifier:reuseIdentifier
-                                               model:self.model] autorelease];
+- (UITableViewCell*) createCell:(Movie*) movie {
+    static NSString* reuseIdentifier = @"DVDCellIdentifier";
+    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                               reuseIdentifier:reuseIdentifier
+                                         model:self.model] autorelease];
+    }
+
+    [cell setMovie:movie owner:self];
+    return cell;
 }
 
 
