@@ -23,4 +23,6 @@
 + (NSData*) dataWithContentsOfAddress:(NSString*) address       important:(BOOL) important;
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url                  important:(BOOL) important;
 
++ (BOOL) isNetworkAvailable;
+
 @end

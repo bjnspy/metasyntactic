@@ -14,6 +14,8 @@
 
 #import "NetworkUtilities.h"
 
+#import <netinet/in.h>
+
 #import "PriorityMutex.h"
 #import "XmlParser.h"
 
@@ -155,6 +157,48 @@ static PriorityMutex* mutex = nil;
     } else {
         return [self lowPriorityDataWithContentsOfUrl:url];
     }
+}
+
+
++ (BOOL) isReachableWithoutRequiringConnection:(SCNetworkReachabilityFlags) flags
+{
+    // kSCNetworkReachabilityFlagsReachable indicates that the specified nodename or address can
+    // be reached using the current network configuration.
+    BOOL isReachable = flags & kSCNetworkReachabilityFlagsReachable;
+    
+    // This flag indicates that the specified nodename or address can
+    // be reached using the current network configuration, but a
+    // connection must first be established.
+    //
+    // If the flag is false, we don't have a connection. But because CFNetwork
+    // automatically attempts to bring up a WWAN connection, if the WWAN reachability
+    // flag is present, a connection is not required.
+    BOOL noConnectionRequired = !(flags & kSCNetworkReachabilityFlagsConnectionRequired);
+    if ((flags & kSCNetworkReachabilityFlagsIsWWAN)) {
+        noConnectionRequired = YES;
+    }
+    
+    return (isReachable && noConnectionRequired) ? YES : NO;
+}
+
+
++ (BOOL) isNetworkAvailable {
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+
+    SCNetworkReachabilityRef networkReachability =
+        SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr*)&zeroAddress);
+            
+    SCNetworkReachabilityFlags flags;
+    BOOL gotFlags = SCNetworkReachabilityGetFlags(networkReachability, &flags);
+    if (!gotFlags) {
+        return NO;
+    }
+    
+    return [self isReachableWithoutRequiringConnection:flags];
 }
 
 
