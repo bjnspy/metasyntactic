@@ -54,8 +54,8 @@
 - (void) setupSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
-                               NSLocalizedString(@"Title", nil),
-                               NSLocalizedString(@"Release", nil), nil]] autorelease];
+                               NSLocalizedString(@"Release", nil),
+                               NSLocalizedString(@"Title", nil), nil]] autorelease];
 
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
