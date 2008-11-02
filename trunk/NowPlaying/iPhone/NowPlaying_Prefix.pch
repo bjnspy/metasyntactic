@@ -16,6 +16,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
+#import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
 #import "ForwardDeclarations.h"
 #import "Macros.h"
