@@ -409,12 +409,12 @@ static NSString** KEYS[] = {
 }
 
 
-- (BOOL) allMoviesSortingByTitle {
+- (BOOL) allMoviesSortingByReleaseDate {
     return self.allMoviesSelectedSegmentIndex == 0;
 }
 
 
-- (BOOL) allMoviesSortingByReleaseDate {
+- (BOOL) allMoviesSortingByTitle {
     return self.allMoviesSelectedSegmentIndex == 1;
 }
 
@@ -424,22 +424,22 @@ static NSString** KEYS[] = {
 }
 
 
-- (BOOL) upcomingMoviesSortingByTitle {
+- (BOOL) upcomingMoviesSortingByReleaseDate {
     return self.upcomingMoviesSelectedSegmentIndex == 0;
 }
 
 
-- (BOOL) upcomingMoviesSortingByReleaseDate {
+- (BOOL) upcomingMoviesSortingByTitle {
     return self.upcomingMoviesSelectedSegmentIndex == 1;
 }
 
 
-- (BOOL) dvdMoviesSortingByTitle {
+- (BOOL) dvdMoviesSortingByReleaseDate {
     return self.dvdMoviesSelectedSegmentIndex == 0;
 }
 
 
-- (BOOL) dvdMoviesSortingByReleaseDate {
+- (BOOL) dvdMoviesSortingByTitle {
     return self.dvdMoviesSelectedSegmentIndex == 1;
 }
 
@@ -955,7 +955,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     } else if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
         return NSLocalizedString(@"Downloading data", nil);
     } else if (![NetworkUtilities isNetworkAvailable]) {
-        return NSLocalizedString(@"Network unavailable. Please try again later.", nil);
+        return NSLocalizedString(@"Network unavailable", nil);
     } else {
         return NSLocalizedString(@"No information found", nil);
     }

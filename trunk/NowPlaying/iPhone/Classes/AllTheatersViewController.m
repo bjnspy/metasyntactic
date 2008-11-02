@@ -46,7 +46,7 @@
 
 
 - (BOOL) sortingByName {
-    return segmentedControl.selectedSegmentIndex == 0;
+    return segmentedControl.selectedSegmentIndex == 1;
 }
 
 
@@ -221,8 +221,8 @@
 - (void) initializeSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
-                               NSLocalizedString(@"Name", @"This is on a button that allows users to sort theaters by their name"),
-                               NSLocalizedString(@"Distance", @"This is on a button that allows users to sort theaters by distance"), nil]] autorelease];
+                               NSLocalizedString(@"Distance", @"This is on a button that allows users to sort theaters by distance"),
+                               NSLocalizedString(@"Name", @"This is on a button that allows users to sort theaters by their name"), nil]] autorelease];
 
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
