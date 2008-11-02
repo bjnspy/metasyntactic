@@ -352,23 +352,25 @@ static NSString* starString = nil;
 
 
 + (void) openMap:(NSString*) address {
-    /*
-    NSString* urlString =
-    [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
-     [Utilities stringByAddingPercentEscapes:address]];
-     [self openBrowser:urlString];
-*/
-
     [self openBrowser:address];
 }
 
 
 + (void) makeCall:(NSString*) phoneNumber {
-    if ([[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
-        NSString* urlString = [NSString stringWithFormat:@"tel:%@", [Utilities stringByAddingPercentEscapes:phoneNumber]];
-        
-        [self openBrowser:urlString];
+    if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
+        return;
     }
+    
+    NSRange xRange = [phoneNumber rangeOfString:@"x"];
+    if (xRange.length > 0 && xRange.location >= 12) {
+        // 222-222-2222 x222
+        // remove extension
+        phoneNumber = [phoneNumber substringToIndex:xRange.location];
+    }
+    
+    NSString* urlString = [NSString stringWithFormat:@"tel:%@", [Utilities stringByAddingPercentEscapes:phoneNumber]];
+    
+    [self openBrowser:urlString];
 }
 
 
