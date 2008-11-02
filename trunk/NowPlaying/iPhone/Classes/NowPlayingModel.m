@@ -24,6 +24,7 @@
 #import "DVDViewController.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
+#import "GlobalActivityIndicator.h"
 #import "GoogleDataProvider.h"
 #import "IMDbCache.h"
 #import "LocaleUtilities.h"
@@ -31,6 +32,7 @@
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "Score.h"
+#import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NumbersCache.h"
 #import "PosterCache.h"
@@ -950,6 +952,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 - (NSString*) noLocationInformationFound {
     if (self.userAddress.length == 0) {
         return NSLocalizedString(@"Please enter your location", nil);
+    } else if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
+        return NSLocalizedString(@"Downloading data", nil);
+    } else if (![NetworkUtilities isNetworkAvailable]) {
+        return NSLocalizedString(@"Network not available. Please try again later.", nil);
     } else {
         return NSLocalizedString(@"No information found", nil);
     }
