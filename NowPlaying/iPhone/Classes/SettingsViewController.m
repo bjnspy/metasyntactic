@@ -353,21 +353,13 @@
                         country = location.country;
                     }
 
-#if TARGET_IPHONE_SIMULATOR
-                    message = [NSString stringWithFormat:@"%@, %@ %@\n%@\n%f %f",
+                    message = [NSString stringWithFormat:@"%@, %@ %@\n%@\nLatitude: %f\nLongitude: %f",
                                location.city,
                                location.state,
                                location.postalCode,
                                country,
                                location.latitude,
                                location.longitude];
-#else
-                    message = [NSString stringWithFormat:@"%@, %@ %@\n%@",
-                               location.city,
-                               location.state,
-                               location.postalCode,
-                               country];
-#endif
                 }
             }
 

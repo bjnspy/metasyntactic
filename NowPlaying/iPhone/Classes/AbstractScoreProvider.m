@@ -30,6 +30,7 @@
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 #import "XmlElement.h"
+#import "XmlParser.h"
 
 @implementation AbstractScoreProvider
 
@@ -80,6 +81,7 @@
 
 - (id) initWithCache:(ScoreCache*) parentCache_ {
     if (self = [super init]) {
+        self.lock = [[[NSLock alloc] init] autorelease];
         self.parentCache = parentCache_;
         self.providerDirectory = [[Application scoresFolder] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsFolder] stringByAppendingPathComponent:self.providerName];
@@ -407,9 +409,17 @@
 
 - (NSArray*) downloadReviewContents:(Score*) score location:(Location*) location {
     NSString* address = [self serverReviewsAddress:location score:score];
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address important:NO];
-    if (element == nil) {
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
+    if (data == nil) {
+        // We couldn't even connect.  Just abort what we're doing.
         return nil;
+    }
+    
+    XmlElement* element = [XmlParser parse:data];
+    if (element == nil) {
+        // we got an empty string back.  record this so we don't try
+        // downloading for another two days.
+        return [NSArray array];
     }
 
     return [self extractReviews:element];
@@ -425,7 +435,6 @@
     [FileUtilities writeObject:encodedReviews toFile:[self reviewsFile:title]];
     // do this last.  it marks us being complete.
     [FileUtilities writeObject:hash toFile:[self reviewsHashFile:title]];
-
 }
 
 
