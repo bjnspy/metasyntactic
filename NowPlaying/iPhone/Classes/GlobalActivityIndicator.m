@@ -110,4 +110,9 @@ static NSInteger visibleBackgroundTaskCount = 0;
     [gate unlock];
 }
 
+
++ (BOOL) hasVisibleBackgroundTasks {
+    return visibleBackgroundTaskCount > 0;
+}
+
 @end

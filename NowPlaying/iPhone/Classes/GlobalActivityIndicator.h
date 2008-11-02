@@ -21,4 +21,6 @@
 + (void) addBackgroundTask:(BOOL) isVisible;
 + (void) removeBackgroundTask:(BOOL) isVisible;
 
++ (BOOL) hasVisibleBackgroundTasks;
+
 @end
