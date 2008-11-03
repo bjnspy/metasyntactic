@@ -16,6 +16,7 @@ package org.metasyntactic;
 
 import org.metasyntactic.data.ByteArray;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -42,12 +43,12 @@ interface INowPlayingController {
   List<Movie> getMovies();
   List<Theater> getTheaters();
 
-  List<String> getTrailers(in Movie movie);
-
   ScoreType getScoreType();
   void setScoreType(in ScoreType scoreType);
 
   Score getScore(in Movie movie);
   ByteArray getPoster(in Movie movie);
   String getSynopsis(in Movie movie);
+  List<String> getTrailers(in Movie movie);
+  List<Review> getReviews(in Movie movie);
 }

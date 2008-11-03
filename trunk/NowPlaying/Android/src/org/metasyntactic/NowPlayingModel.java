@@ -22,10 +22,7 @@ import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.posters.PosterCache;
 import org.metasyntactic.caches.scores.ScoreCache;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.FavoriteTheater;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.data.Theater;
+import org.metasyntactic.data.*;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
@@ -320,6 +317,11 @@ public class NowPlayingModel {
 
   public Score getScore(Movie movie) {
     return scoreCache.getScore(getMovies(), movie);
+  }
+
+
+  public List<Review> getReviews(Movie movie) {
+    return scoreCache.getReviews(getMovies(), movie);
   }
 
 

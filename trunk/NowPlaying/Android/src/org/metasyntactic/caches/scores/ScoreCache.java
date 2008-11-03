@@ -17,6 +17,7 @@ package org.metasyntactic.caches.scores;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Review;
 
 import java.util.List;
 
@@ -70,5 +71,10 @@ public class ScoreCache {
 
   NowPlayingModel getModel() {
     return model;
+  }
+
+
+  public List<Review> getReviews(List<Movie> movies, Movie movie) {
+    return getCurrentScoreProvider().getReviews(movies, movie);
   }
 }

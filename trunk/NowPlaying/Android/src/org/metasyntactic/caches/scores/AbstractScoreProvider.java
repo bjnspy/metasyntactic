@@ -246,6 +246,13 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
 
   public Score getScore(final List<Movie> movies, Movie movie) {
+    ensureMovieMap(movies);
+
+    return getScores().get(getMovieMap().get(movie.getCanonicalTitle()));
+  }
+
+
+  private void ensureMovieMap(final List<Movie> movies) {
     if (movies != this.movies) {
       this.movies = movies;
       final Map<String, Score> scores = getScores();
@@ -255,10 +262,8 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
           regenerateMovieMap(movies, scores);
         }
       };
-      ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, movieMapLock, false);
+      ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, movieMapLock, true);
     }
-
-    return getScores().get(getMovieMap().get(movie.getCanonicalTitle()));
   }
 
 
@@ -450,5 +455,12 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
     // do this last.  it marks us being complete.
     FileUtilities.writeString(serverHash, reviewsHashFile(title));
+  }
+
+
+  public List<Review> getReviews(List<Movie> movies, Movie movie) {
+    ensureMovieMap(movies);
+    String title = movieMap.get(movie.getCanonicalTitle());
+    return FileUtilities.readPersistableList(Review.reader, reviewsFile(title));
   }
 }
