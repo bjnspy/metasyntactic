@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -88,6 +89,8 @@ public class PersistableOutputStream {
 
 
   public <T extends Persistable> void writePersistableCollection(Collection<T> collection) throws IOException {
+    collection = collection == null ? Collections.EMPTY_SET : collection;
+
     writeInt(collection.size());
     for (T t : collection) {
       writePersistable(t);
@@ -96,6 +99,8 @@ public class PersistableOutputStream {
 
 
   public void writeStringCollection(Collection<String> collection) throws IOException {
+    collection = collection == null ? Collections.EMPTY_SET : collection;
+        
     writeInt(collection.size());
     for (String string : collection) {
       writeString(string);
