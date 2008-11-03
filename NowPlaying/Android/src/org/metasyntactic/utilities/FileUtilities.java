@@ -282,7 +282,7 @@ public class FileUtilities {
 
   public static <T extends Persistable> List<T> readPersistableList(Persistable.Reader<T> reader, File file) {
     if (!file.exists()) {
-      return null;
+      return Collections.emptyList();
     }
 
     try {
