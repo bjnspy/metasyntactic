@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.ByteArray;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
@@ -152,5 +153,16 @@ public class NowPlayingControllerService extends Service {
     public Score getScore(Movie movie) throws RemoteException {
       return model.getScore(movie);
     }
+
+
+		@Override
+		public ByteArray getPoster(Movie movie) throws RemoteException {
+			byte[] bytes = model.getPoster(movie);
+			if (bytes == null) {
+				return null;
+			}
+
+			return new ByteArray(bytes);
+		}
   };
 }

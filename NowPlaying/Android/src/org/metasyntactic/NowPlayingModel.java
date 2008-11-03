@@ -322,4 +322,19 @@ public class NowPlayingModel {
   public Score getScore(Movie movie) {
     return scoreCache.getScore(getMovies(), movie);
   }
+
+
+	public byte[] getPoster(Movie movie) {
+		byte[] bytes = posterCache.getPoster(movie);
+    if (bytes != null) {
+      return bytes;
+    }
+
+    bytes = upcomingCache.getPoster(movie);
+    if (bytes != null) {
+      return bytes;
+    }
+
+    return null;
+  }
 }

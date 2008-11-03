@@ -415,4 +415,9 @@ public class UpcomingCache {
 
     Application.refresh();
   }
+
+
+  public byte[] getPoster(Movie movie) {
+    return FileUtilities.readBytes(getPosterFile(movie));
+  }
 }

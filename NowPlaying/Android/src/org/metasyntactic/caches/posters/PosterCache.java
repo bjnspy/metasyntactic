@@ -136,4 +136,9 @@ public class PosterCache {
   private void deleteObsoletePosters(List<Movie> movies) {
 
   }
+
+
+  public byte[] getPoster(Movie movie) {
+    return FileUtilities.readBytes(posterFile(movie));
+  }
 }
