@@ -15,6 +15,8 @@
 package org.metasyntactic.utilities;
 
 import org.metasyntactic.Application;
+import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
+import static org.metasyntactic.utilities.CollectionUtilities.nonNullCollection;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
@@ -49,7 +51,7 @@ public class FileUtilities {
 
   public static Map<String, Date> readStringToDateMap(File file) {
     if (!file.exists()) {
-      return null;
+      return Collections.emptyMap();
     }
 
     try {
@@ -74,6 +76,7 @@ public class FileUtilities {
 
   public static void writeStringToDateMap(Map<String, Date> map, File file) {
     try {
+      map = nonNullMap(map);
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
       PersistableOutputStream out = new PersistableOutputStream(byteOut);
 
@@ -95,7 +98,7 @@ public class FileUtilities {
 
   public static Map<String, String> readStringToStringMap(File file) {
     if (!file.exists()) {
-      return null;
+      return Collections.emptyMap();
     }
 
     try {
@@ -120,6 +123,7 @@ public class FileUtilities {
 
   public static void writeStringToStringMap(Map<String, String> map, File file) {
     try {
+      map = nonNullMap(map);
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
       PersistableOutputStream out = new PersistableOutputStream(byteOut);
 
@@ -142,7 +146,7 @@ public class FileUtilities {
   public static <T extends Persistable> Map<String, T> readStringToPersistableMap(Persistable.Reader<T> reader,
                                                                                   File file) {
     if (!file.exists()) {
-      return null;
+      return Collections.emptyMap();
     }
 
     try {
@@ -168,6 +172,7 @@ public class FileUtilities {
 
   public static <T extends Persistable> void writeStringToPersistableMap(Map<String, T> map, File file) {
     try {
+      map = nonNullMap(map);
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
       PersistableOutputStream out = new PersistableOutputStream(byteOut);
 
@@ -189,7 +194,7 @@ public class FileUtilities {
 
   public static List<String> readStringList(File file) {
     if (!file.exists()) {
-      return null;
+      return Collections.emptyList();
     }
 
     try {
@@ -207,6 +212,7 @@ public class FileUtilities {
 
   public static void writeStringCollection(Collection<String> collection, File file) {
     try {
+      collection = nonNullCollection(collection);
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
       PersistableOutputStream out = new PersistableOutputStream(byteOut);
       out.writeStringCollection(collection);
@@ -300,6 +306,7 @@ public class FileUtilities {
 
   public static <T extends Persistable> void writePersistableCollection(Collection<T> collection, File file) {
     try {
+      collection = nonNullCollection(collection);
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
       PersistableOutputStream out = new PersistableOutputStream(byteOut);
       out.writeInt(collection.size());
@@ -320,7 +327,7 @@ public class FileUtilities {
 
   public static byte[] readBytes(File file) {
     if (!file.exists()) {
-      return null;
+      return new byte[0];
     }
 
     try {
@@ -371,6 +378,10 @@ public class FileUtilities {
 
   public static <T extends Persistable> Map<String, List<T>> readStringToListOfPersistables(
       Persistable.Reader<T> reader, File file) {
+    if (!file.exists()) {
+      return Collections.emptyMap();
+    }
+
     try {
       PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
       int size = in.readInt();
@@ -393,6 +404,7 @@ public class FileUtilities {
   public static <T extends Persistable> void writeStringToListOfPersistables(
       Map<String, List<T>> map, File file) {
     try {
+      map = nonNullMap(map);
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
       PersistableOutputStream out = new PersistableOutputStream(byteOut);
 
