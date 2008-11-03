@@ -28,12 +28,11 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.DateUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
@@ -336,5 +335,33 @@ public class NowPlayingModel {
     }
 
     return null;
+  }
+
+
+  public String getSynopsis(Movie movie) {
+    List<String> options = new ArrayList<String>();
+    if (!isNullOrEmpty(movie.getSynopsis())) {
+      options.add(movie.getSynopsis());
+    }
+
+    if (options.isEmpty() || Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage())) {
+      Score score = getScore(movie);
+      if (score != null && !isNullOrEmpty(score.getSynopsis())) {
+        options.add(score.getSynopsis());
+      }
+
+      String synopsis = upcomingCache.getSynopsis(movie);
+      if (!isNullOrEmpty(synopsis)) {
+        options.add(synopsis);
+      }
+    }
+
+    String bestOption = "";
+    for (String s : options) {
+      if (s.length() > bestOption.length()) {
+        bestOption = s;
+      }
+    }
+    return bestOption;
   }
 }

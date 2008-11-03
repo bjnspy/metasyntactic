@@ -164,5 +164,10 @@ public class NowPlayingControllerService extends Service {
 
 			return new ByteArray(bytes);
 		}
+
+
+    public String getSynopsis(Movie movie) throws RemoteException {
+      return model.getSynopsis(movie);
+    }
   };
 }
