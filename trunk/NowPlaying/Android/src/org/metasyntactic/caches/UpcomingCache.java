@@ -420,4 +420,9 @@ public class UpcomingCache {
   public byte[] getPoster(Movie movie) {
     return FileUtilities.readBytes(getPosterFile(movie));
   }
+
+
+  public String getSynopsis(Movie movie) {
+    return FileUtilities.readString(getSynopsisFile(movie));
+  }
 }

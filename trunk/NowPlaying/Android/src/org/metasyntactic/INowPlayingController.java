@@ -258,6 +258,21 @@ reply.writeInt(0);
 }
 return true;
 }
+case TRANSACTION_getSynopsis:
+{
+data.enforceInterface(DESCRIPTOR);
+org.metasyntactic.data.Movie _arg0;
+if ((0!=data.readInt())) {
+_arg0 = org.metasyntactic.data.Movie.CREATOR.createFromParcel(data);
+}
+else {
+_arg0 = null;
+}
+java.lang.String _result = this.getSynopsis(_arg0);
+reply.writeNoException();
+reply.writeString(_result);
+return true;
+}
 }
 return super.onTransact(code, data, reply, flags);
 }
@@ -627,6 +642,30 @@ _data.recycle();
 }
 return _result;
 }
+public java.lang.String getSynopsis(org.metasyntactic.data.Movie movie) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+java.lang.String _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+if ((movie!=null)) {
+_data.writeInt(1);
+movie.writeToParcel(_data, 0);
+}
+else {
+_data.writeInt(0);
+}
+mRemote.transact(Stub.TRANSACTION_getSynopsis, _data, _reply, 0);
+_reply.readException();
+_result = _reply.readString();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
 }
 static final int TRANSACTION_getUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 0);
 static final int TRANSACTION_setUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 1);
@@ -647,6 +686,7 @@ static final int TRANSACTION_getScoreType = (IBinder.FIRST_CALL_TRANSACTION + 15
 static final int TRANSACTION_setScoreType = (IBinder.FIRST_CALL_TRANSACTION + 16);
 static final int TRANSACTION_getScore = (IBinder.FIRST_CALL_TRANSACTION + 17);
 static final int TRANSACTION_getPoster = (IBinder.FIRST_CALL_TRANSACTION + 18);
+static final int TRANSACTION_getSynopsis = (IBinder.FIRST_CALL_TRANSACTION + 19);
 }
 public java.lang.String getUserLocation() throws android.os.RemoteException;
 public void setUserLocation(java.lang.String userLocation) throws android.os.RemoteException;
@@ -667,4 +707,5 @@ public org.metasyntactic.caches.scores.ScoreType getScoreType() throws android.o
 public void setScoreType(org.metasyntactic.caches.scores.ScoreType scoreType) throws android.os.RemoteException;
 public org.metasyntactic.data.Score getScore(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 public org.metasyntactic.data.ByteArray getPoster(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
+public java.lang.String getSynopsis(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 }

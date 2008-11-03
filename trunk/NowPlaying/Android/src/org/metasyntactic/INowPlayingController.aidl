@@ -49,4 +49,5 @@ interface INowPlayingController {
 
   Score getScore(in Movie movie);
   ByteArray getPoster(in Movie movie);
+  String getSynopsis(in Movie movie);
 }
