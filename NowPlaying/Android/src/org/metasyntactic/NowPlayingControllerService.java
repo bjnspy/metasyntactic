@@ -19,10 +19,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.ByteArray;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.data.Theater;
+import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 
 import java.util.List;
@@ -136,6 +133,11 @@ public class NowPlayingControllerService extends Service {
 
     public List<String> getTrailers(Movie movie) throws RemoteException {
       return model.getTrailers(movie);
+    }
+
+
+    public List<Review> getReviews(Movie movie) throws RemoteException {
+      return model.getReviews(movie);
     }
 
 
