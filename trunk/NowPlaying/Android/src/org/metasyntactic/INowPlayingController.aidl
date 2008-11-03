@@ -14,6 +14,7 @@
 
 package org.metasyntactic;
 
+import org.metasyntactic.data.ByteArray;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
@@ -47,4 +48,5 @@ interface INowPlayingController {
   void setScoreType(in ScoreType scoreType);
 
   Score getScore(in Movie movie);
+  ByteArray getPoster(in Movie movie);
 }
