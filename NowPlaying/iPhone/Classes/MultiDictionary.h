@@ -31,4 +31,6 @@
 
 - (NSArray*) allKeys;
 
+- (void) removeObjectsForKey:(id) key;
+
 @end

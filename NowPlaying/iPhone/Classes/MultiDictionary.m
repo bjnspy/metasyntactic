@@ -79,4 +79,9 @@
 }
 
 
+- (void) removeObjectsForKey:(id) key {
+    [dictionary removeObjectForKey:key];
+}
+
+
 @end

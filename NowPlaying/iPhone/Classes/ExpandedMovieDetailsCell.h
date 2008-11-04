@@ -15,35 +15,13 @@
 #import "AbstractMovieDetailsCell.h"
 
 @interface ExpandedMovieDetailsCell : AbstractMovieDetailsCell {
-    UILabel* ratedTitleLabel;
-    UILabel* runningTimeTitleLabel;
-    UILabel* releaseDateTitleLabel;
-    UILabel* genreTitleLabel;
-    UILabel* directorTitleLabel;
-    UILabel* castTitleLabel;
-
-    UILabel* ratedLabel;
-    UILabel* runningTimeLabel;
-    UILabel* releaseDateLabel;
-    UILabel* genreLabel;
-    UILabel* directorLabel;
-    NSArray* castLabels;
-
-    CGFloat titleWidth;
+    NSMutableArray* titles;
+    NSMutableDictionary* titleToLabel;
+    MultiDictionary* titleToValueLabels;
 }
 
-@property (retain) UILabel* ratedTitleLabel;
-@property (retain) UILabel* runningTimeTitleLabel;
-@property (retain) UILabel* releaseDateTitleLabel;
-@property (retain) UILabel* genreTitleLabel;
-@property (retain) UILabel* directorTitleLabel;
-@property (retain) UILabel* castTitleLabel;
-
-@property (retain) UILabel* ratedLabel;
-@property (retain) UILabel* runningTimeLabel;
-@property (retain) UILabel* releaseDateLabel;
-@property (retain) UILabel* genreLabel;
-@property (retain) UILabel* directorLabel;
-@property (retain) NSArray* castLabels;
+@property (retain) NSMutableArray* titles;
+@property (retain) NSMutableDictionary* titleToLabel;
+@property (retain) MultiDictionary* titleToValueLabels;
 
 @end
