@@ -16,44 +16,26 @@
 
 #import "DateUtilities.h"
 #import "Movie.h"
+#import "MultiDictionary.h"
 #import "NowPlayingModel.h"
 
 @implementation ExpandedMovieDetailsCell
 
-@synthesize ratedTitleLabel;
-@synthesize runningTimeTitleLabel;
-@synthesize releaseDateTitleLabel;
-@synthesize genreTitleLabel;
-@synthesize directorTitleLabel;
-@synthesize castTitleLabel;
-@synthesize ratedLabel;
-@synthesize runningTimeLabel;
-@synthesize releaseDateLabel;
-@synthesize genreLabel;
-@synthesize directorLabel;
-@synthesize castLabels;
+@synthesize titles;
+@synthesize titleToLabel;
+@synthesize titleToValueLabels;
 
 - (void) dealloc {
-    self.ratedTitleLabel = nil;
-    self.runningTimeTitleLabel = nil;
-    self.releaseDateTitleLabel = nil;
-    self.genreTitleLabel = nil;
-    self.directorTitleLabel = nil;
-    self.castTitleLabel = nil;
-    self.ratedLabel = nil;
-    self.runningTimeLabel = nil;
-    self.releaseDateLabel = nil;
-    self.genreLabel = nil;
-    self.directorLabel = nil;
-    self.castLabels = nil;
+    self.titles = nil;
+    self.titleToLabel = nil;
+    self.titleToValueLabels = nil;
 
     [super dealloc];
 }
 
 
-- (UILabel*) createTitleLabel:(NSString*) title
-                    yPosition:(NSInteger) yPosition {
-    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, 0)] autorelease];
+- (UILabel*) createTitleLabel:(NSString*) title {
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
     label.font = [UIFont systemFontOfSize:14];
     label.textColor = [UIColor darkGrayColor];
@@ -66,8 +48,8 @@
 }
 
 
-- (UILabel*) createValueLabel:(NSInteger) yPosition {
-    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, 0)] autorelease];
+- (UILabel*) createValueLabel {
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.font = [UIFont systemFontOfSize:14];
     label.backgroundColor = [UIColor clearColor];
     return label;
@@ -85,85 +67,181 @@
 }
 
 
-- (id) initWithFrame:(CGRect) frame
-               model:(NowPlayingModel*) model_
-               movie:(Movie*) movie_ {
-    if (self = [super initWithFrame:frame model:model_ movie:movie_]) {
-        self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:5];
-        self.ratedLabel = [self createValueLabel:ratedTitleLabel.frame.origin.y];
-        if (movie.isUnrated) {
-            ratedLabel.text = NSLocalizedString(@"Unrated", nil);
-        } else {
-            ratedLabel.text = movie.rating;
-        }
-        CGFloat titleFontSize = ratedTitleLabel.font.pointSize;
-        CGFloat buffer = titleFontSize + 10;
+- (void) addTitle:(NSString*) title andValues:(NSArray*) values {
+    UILabel* titleLabel = [self createTitleLabel:title];
+    [titleLabel sizeToFit];
+    [self.contentView addSubview:titleLabel];
+    
+    for (NSString* value in values) {
+        UILabel* valueLabel = [self createValueLabel];
+        valueLabel.text = value;
 
-        self.runningTimeTitleLabel = [self createTitleLabel:NSLocalizedString(@"Running time:", nil)
-                                                  yPosition:ratedTitleLabel.frame.origin.y + buffer];
-        self.runningTimeLabel = [self createValueLabel:runningTimeTitleLabel.frame.origin.y];
-        runningTimeLabel.text = movie.runtimeString;
+        [titleToValueLabels addObject:valueLabel forKey:title];
+        
+        [valueLabel sizeToFit];
+        [self.contentView addSubview:valueLabel];
+    }
+    
+    [titles addObject:title];
+    [titleToLabel setObject:titleLabel forKey:title];
+}
 
-        self.releaseDateTitleLabel = [self createTitleLabel:NSLocalizedString(@"Release date:", nil)
-                                                  yPosition:runningTimeTitleLabel.frame.origin.y + buffer];
-        self.releaseDateLabel = [self createValueLabel:releaseDateTitleLabel.frame.origin.y];
-        releaseDateLabel.text = [DateUtilities formatMediumDate:movie.releaseDate];
 
-        self.genreTitleLabel = [self createTitleLabel:NSLocalizedString(@"Genre:", nil)
-                                            yPosition:releaseDateTitleLabel.frame.origin.y + buffer];
-        self.genreLabel = [self createValueLabel:genreTitleLabel.frame.origin.y];
-        genreLabel.text = [[model genresForMovie:movie] componentsJoinedByString:@", "];
+- (void) addTitle:(NSString*) title andValue:(NSString*) value {
+    [self addTitle:title andValues:[NSArray arrayWithObject:value]];
+}
 
-        self.directorTitleLabel = [self createTitleLabel:NSLocalizedString(@"Directors:", nil)
-                                               yPosition:genreTitleLabel.frame.origin.y + buffer];
-        self.directorLabel = [self createValueLabel:directorTitleLabel.frame.origin.y];
-        directorLabel.text = [[model directorsForMovie:movie] componentsJoinedByString:@", "];
-        if ([model directorsForMovie:movie].count == 1) {
-            self.directorTitleLabel.text = NSLocalizedString(@"Director:", nil);
-        }
 
-        self.castTitleLabel = [self createTitleLabel:NSLocalizedString(@"Cast:", nil)
-                                           yPosition:directorLabel.frame.origin.y + buffer];
+- (void) addRating {
+    NSString* title = NSLocalizedString(@"Rated:", nil);
+    NSString* value;
+    if (movie.isUnrated) {
+        value = NSLocalizedString(@"Unrated", nil);
+    } else {
+        value = movie.rating;
+    }
+    
+    [self addTitle:title andValue:value];
+}
 
-        CGFloat yPosition = castTitleLabel.frame.origin.y;
-        NSMutableArray* array = [NSMutableArray array];
-        for (NSString* castMember in [model castForMovie:movie]) {
-            UILabel* castLabel = [self createValueLabel:yPosition];
-            castLabel.text = castMember;
-            yPosition = castLabel.frame.origin.y + buffer;
 
-            [array addObject:castLabel];
-        }
-        self.castLabels = array;
+- (void) addRunningTime {
+    if (movie.length <= 0) {
+        return;
+    }
 
-        NSArray* titleLabels = [NSArray arrayWithObjects:
-                                ratedTitleLabel, runningTimeTitleLabel, releaseDateTitleLabel,
-                                genreTitleLabel, directorTitleLabel, castTitleLabel, nil];
-        NSArray* valueLabels = [[NSArray arrayWithObjects:
-                                ratedLabel, runningTimeLabel, releaseDateLabel,
-                                genreLabel, directorLabel, nil] arrayByAddingObjectsFromArray:castLabels];
+    NSString* title = NSLocalizedString(@"Running time:", nil);
+    NSString* value = movie.runtimeString;
+    
+    [self addTitle:title andValue:value];
+}
 
-        titleWidth = 0;
-        for (UILabel* label in titleLabels) {
-            titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
-        }
-        titleWidth += 20;
 
-        for (UILabel* label in titleLabels) {
-            CGRect frame = label.frame;
-            frame.size.width = titleWidth;
-            label.frame = frame;
-        }
-        for (UILabel* label in valueLabels) {
-            [label sizeToFit];
+- (void) addReleaseDate {
+    if (movie.releaseDate == nil) {
+        return;
+    }
+
+    NSString* title = NSLocalizedString(@"Release date:", nil);
+    NSString* value = [DateUtilities formatMediumDate:movie.releaseDate];
+    
+    [self addTitle:title andValue:value];
+}
+
+
+- (void) addGenres {
+    NSArray* genres = [model genresForMovie:movie];
+    if (genres.count == 0) {
+        return;
+    }
+    
+    NSString* title = NSLocalizedString(@"Genre:", nil);
+    NSString* value = [genres componentsJoinedByString:@", "];
+
+    [self addTitle:title andValue:value];
+}
+
+
+- (void) addStudio {
+    if (movie.studio.length == 0) {
+        return;
+    }
+    
+    NSString* title = NSLocalizedString(@"Studio:", nil);
+    NSString* value = movie.studio;
+    
+    [self addTitle:title andValue:value];
+}
+
+
+- (void) addDirectors {
+    NSArray* directors = [model directorsForMovie:movie];
+    if (directors.count == 0) {
+        return;
+    }
+    
+    NSString* title;
+    if (directors.count == 1) {
+        title = NSLocalizedString(@"Director:", nil);
+    } else {
+        title = NSLocalizedString(@"Directors:", nil);
+    }
+
+    [self addTitle:title andValues:directors];
+}
+
+
+- (void) addCast {
+    NSArray* cast = [model castForMovie:movie];
+    if (cast.count == 0) {
+        return;
+    }
+    
+    NSString* title = NSLocalizedString(@"Cast:", nil);    
+    [self addTitle:title andValues:cast]; 
+}
+
+
+- (void) setLabelWidths {
+    CGFloat titleWidth = 0;
+    for (UILabel* label in titleToLabel.allValues) {
+        titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
+    }
+    titleWidth += 20;
+    
+    for (UILabel* label in titleToLabel.allValues) {
+        CGRect frame = label.frame;
+        frame.size.width = titleWidth;
+        label.frame = frame;
+    }
+    for (NSArray* labels in titleToValueLabels.dictionary.allValues) {
+        for (UILabel* label in labels) {
             CGRect frame = label.frame;
             frame.origin.x = titleWidth + 7;
             label.frame = frame;
         }
+    }
+}
 
-        for (UILabel* label in [titleLabels arrayByAddingObjectsFromArray:valueLabels]) {
-            [self.contentView addSubview:label];
+
+- (void) setLabelPositions {
+    NSInteger yPosition = 5;
+    for (NSString* title in titles) {
+        UILabel* titleLabel = [titleToLabel objectForKey:title];
+        CGRect titleFrame = titleLabel.frame;
+        
+        titleFrame.origin.y = yPosition;
+        titleLabel.frame = titleFrame;
+        
+        for (UILabel* valueLabel in [titleToValueLabels objectsForKey:title]) {
+            CGRect valueFrame = valueLabel.frame;
+            valueFrame.origin.y = yPosition;
+            
+            yPosition += valueLabel.font.pointSize + 10;
+            valueLabel.frame = valueFrame;
         }
+    }
+}
+
+
+- (id) initWithFrame:(CGRect) frame
+               model:(NowPlayingModel*) model_
+               movie:(Movie*) movie_ {
+    if (self = [super initWithFrame:frame model:model_ movie:movie_]) {
+        self.titles = [NSMutableArray array];
+        self.titleToLabel = [NSMutableDictionary dictionary];
+        self.titleToValueLabels = [MultiDictionary dictionary];
+        
+        [self addRating];
+        [self addRunningTime];
+        [self addReleaseDate];
+        [self addGenres];
+        [self addStudio];
+        [self addDirectors];
+        [self addCast];
+        
+        [self setLabelPositions];
+        [self setLabelWidths];
 
         [self addDisclosureTriangle];
     }
@@ -174,27 +252,22 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
-    NSArray* valueLabels = [[NSArray arrayWithObjects:
-                             ratedLabel, runningTimeLabel, releaseDateLabel,
-                             genreLabel, directorLabel, nil] arrayByAddingObjectsFromArray:castLabels];
-
-    for (UILabel* label in valueLabels) {
-        CGRect frame = label.frame;
-        frame.size.width = MIN(frame.size.width, self.contentView.frame.size.width - frame.origin.x);
-        label.frame = frame;
+    
+    for (NSArray* labels in titleToValueLabels.dictionary.allValues) {
+        for (UILabel* label in labels) {
+            CGRect frame = label.frame;
+            frame.size.width = MIN(frame.size.width, self.contentView.frame.size.width - frame.origin.x);
+            label.frame = frame;
+        }
     }
 }
 
 
 - (CGFloat) height:(UITableView*) tableView {
-    UILabel* lastLabel;
-    if (castLabels.count == 0) {
-        lastLabel = castTitleLabel;
-    } else {
-        lastLabel = castLabels.lastObject;
-    }
-
+    NSString* lastTitle = titles.lastObject;
+    NSArray* labels = [titleToValueLabels objectsForKey:lastTitle];
+    UILabel* lastLabel = labels.lastObject;
+    
     return lastLabel.frame.origin.y + lastLabel.frame.size.height + 7;
 }
 
