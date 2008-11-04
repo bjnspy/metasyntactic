@@ -135,6 +135,11 @@ public class Movie implements Parcelable, Persistable {
   }
 
 
+  public String getImdbAddress() {
+    return imdbAddress;
+  }
+
+
   public Date getReleaseDate() {
     return releaseDate;
   }
