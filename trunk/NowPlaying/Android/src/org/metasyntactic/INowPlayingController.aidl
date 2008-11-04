@@ -51,4 +51,5 @@ interface INowPlayingController {
   String getSynopsis(in Movie movie);
   List<String> getTrailers(in Movie movie);
   List<Review> getReviews(in Movie movie);
+  String getImdbAddress(in Movie movie);
 }

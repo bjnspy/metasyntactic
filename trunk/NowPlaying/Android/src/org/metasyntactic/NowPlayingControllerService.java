@@ -141,6 +141,11 @@ public class NowPlayingControllerService extends Service {
     }
 
 
+    public String getImdbAddress(Movie movie) throws RemoteException {
+      return model.getImdbAddress(movie);
+    }
+
+
     public ScoreType getScoreType() throws RemoteException {
       return model.getScoreType();
     }

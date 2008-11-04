@@ -366,4 +366,9 @@ public class NowPlayingModel {
     }
     return bestOption;
   }
+
+
+  public String getImdbAddress(Movie movie) {
+    return movie.getImdbAddress();
+  }
 }
