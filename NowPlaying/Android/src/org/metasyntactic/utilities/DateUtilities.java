@@ -40,9 +40,8 @@ public class DateUtilities {
 
 
   public static Date getToday() {
-    return today;
-  }
-
+      return today;
+    }
 
   public static boolean use24HourTime() {
     return false;

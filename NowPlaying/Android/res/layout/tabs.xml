@@ -16,6 +16,7 @@
                android:paddingRight="1dip"
                android:gravity="center"
                android:paddingTop="4dip"
+              
         />
 
     <FrameLayout android:id="@android:id/tabcontent"

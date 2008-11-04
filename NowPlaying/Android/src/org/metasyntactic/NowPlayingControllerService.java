@@ -162,7 +162,6 @@ public class NowPlayingControllerService extends Service {
     }
 
 
-		@Override
 		public ByteArray getPoster(Movie movie) throws RemoteException {
 			byte[] bytes = model.getPoster(movie);
 			if (bytes == null) {
