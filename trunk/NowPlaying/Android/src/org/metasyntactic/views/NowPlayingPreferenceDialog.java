@@ -1,11 +1,13 @@
 package org.metasyntactic.views;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
 import android.widget.AdapterView.OnItemSelectedListener;
-import org.metasyntactic.NowPlayingActivity;
+
+import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.R;
 
@@ -17,21 +19,22 @@ public class NowPlayingPreferenceDialog {
 
   private int preference_value;
 
-  private NowPlayingActivity mNowPlayingActivityContext;
+  private  INowPlaying mNowPlaying;
 
   private NowPlayingControllerWrapper mController;
 
 
-  public NowPlayingPreferenceDialog(NowPlayingActivity context) {
+  public NowPlayingPreferenceDialog(INowPlaying nowPlaying) {
 
-    this.mNowPlayingActivityContext = context;
-    mController = context.getController();
+    this.mNowPlaying = nowPlaying;
+    Context context = nowPlaying.getContext();
+    mController = nowPlaying.getController();
     builder = new AlertDialog.Builder(context);
     DialogInterface.OnClickListener listener =
         new DialogInterface.OnClickListener() {
           public void onClick(DialogInterface dialog, int whichButton) {
             setPreferenceValue();
-            mNowPlayingActivityContext.refresh();
+            mNowPlaying.refresh();
           }
 
 

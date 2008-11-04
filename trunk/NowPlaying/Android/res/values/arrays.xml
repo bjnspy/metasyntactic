@@ -10,7 +10,7 @@
     
     <!-- Used in theaters sort preferences -->
      <string-array name="entries_theaters_sort_preference">
-        <item>Title</item>
+        <item>Name</item>
         <item>Distance</item>          
     </string-array>
  

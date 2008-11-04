@@ -371,4 +371,5 @@ public class NowPlayingModel {
   public String getImdbAddress(Movie movie) {
     return movie.getImdbAddress();
   }
+
 }
