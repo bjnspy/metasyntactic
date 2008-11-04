@@ -109,6 +109,7 @@
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
 		74AD65F90E92CCFC00A01FD5 /* DVD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD65F80E92CCFC00A01FD5 /* DVD.m */; };
 		74AD66350E92D49500A01FD5 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
+		74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
 		74BD51CA0EB786FC0098C2DF /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BD51C90EB786FC0098C2DF /* MainThreadGate.m */; };
 		74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */; };
@@ -432,6 +433,9 @@
 		74AD65F80E92CCFC00A01FD5 /* DVD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVD.m; sourceTree = "<group>"; };
 		74AD66330E92D49500A01FD5 /* DVDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDCache.h; sourceTree = "<group>"; };
 		74AD66340E92D49500A01FD5 /* DVDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDCache.m; sourceTree = "<group>"; };
+		74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageView.h; sourceTree = "<group>"; };
+		74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableImageView.m; sourceTree = "<group>"; };
+		74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageViewDelegate.h; sourceTree = "<group>"; };
 		74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
 		74BD51C80EB786FC0098C2DF /* MainThreadGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainThreadGate.h; sourceTree = "<group>"; };
@@ -799,6 +803,9 @@
 				744592030E6CA017002D05C3 /* WarningView.m */,
 				740245670E7848BF00ECE1B4 /* ActionsView.h */,
 				740245680E7848BF00ECE1B4 /* ActionsView.m */,
+				74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */,
+				74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */,
+				74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1546,6 +1553,7 @@
 				747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */,
 				747AB8610EB963AE002438D0 /* DVDCell.m in Sources */,
 				747AB9270EB97822002438D0 /* PointerSet.m in Sources */,
+				74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
