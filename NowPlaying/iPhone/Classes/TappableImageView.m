@@ -22,6 +22,7 @@
 
 - (void) dealloc {
     self.delegate = nil;
+    self.userInteractionEnabled = NO;
     
     [super dealloc];
 }

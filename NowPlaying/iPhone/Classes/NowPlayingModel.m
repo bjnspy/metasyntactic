@@ -653,7 +653,7 @@ static NSString** KEYS[] = {
 
 
 - (UIImage*) posterForMovie:(Movie*) movie {
-    UIImage* image = [posterCache posterForMovie:movie];
+    UIImage* image = [posterCache smallPosterForMovie:movie];
     if (image != nil) {
         return image;
     }
@@ -663,7 +663,12 @@ static NSString** KEYS[] = {
         return image;
     }
 
-    return [dvdCache posterForMovie:movie];
+    image = [dvdCache posterForMovie:movie];
+    if (image != nil) {
+        return image;
+    }
+
+    return [posterCache largePosterForMovie:movie];
 }
 
 

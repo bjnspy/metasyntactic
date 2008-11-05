@@ -14,11 +14,9 @@
 
 #import "TappableImageViewDelegate.h"
 
-@interface MovieOverviewCell : UITableViewCell<TappableImageViewDelegate> {
+@interface MovieOverviewCell : UITableViewCell {
     NowPlayingModel* model;
     Movie* movie;
-
-    UIImage* posterImage;
 
     NSString* synopsis;
     NSInteger synopsisSplit;
@@ -26,18 +24,25 @@
 
     UILabel* synopsisChunk1Label;
     UILabel* synopsisChunk2Label;
+    
+    UIImage* posterImage;
 }
 
 @property (retain) NowPlayingModel* model;
 @property (retain) Movie* movie;
-@property (retain) UIImage* posterImage;
 @property (copy) NSString* synopsis;
 @property NSInteger synopsisSplit;
 @property NSInteger synopsisMax;
 @property (retain) UILabel* synopsisChunk1Label;
 @property (retain) UILabel* synopsisChunk2Label;
+@property (retain) UIImage* posterImage;
 
-+ (MovieOverviewCell*) cellWithMovie:(Movie*) movie model:(NowPlayingModel*) model frame:(CGRect) frame activityView:(UIActivityIndicatorView*) activityView;
++ (MovieOverviewCell*) cellWithMovie:(Movie*) movie
+                               model:(NowPlayingModel*) model
+                               frame:(CGRect) frame
+                         posterImage:(UIImage*) posterImage
+                     posterImageView:(TappableImageView*) posterImageView
+                        activityView:(UIActivityIndicatorView*) activityView;
 + (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model;
 
 @end

@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface MovieDetailsViewController : UITableViewController {
+#import "TappableImageViewDelegate.h"
+
+@interface MovieDetailsViewController : UITableViewController<TappableImageViewDelegate> {
     AbstractNavigationController* navigationController;
 
     Movie* movie;
@@ -31,9 +33,11 @@
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
     
-    
     BOOL shutdown;
     NSLock* posterDownloadLock;
+
+    UIImage* posterImage;
+    TappableImageView* posterImageView;
     UIActivityIndicatorView* posterActivityView;
 }
 
@@ -48,6 +52,9 @@
 @property (retain) UIView* actionsView;
 @property NSInteger hiddenTheaterCount;
 @property (retain) NSLock* posterDownloadLock;
+
+@property (retain) UIImage* posterImage;
+@property (retain) TappableImageView* posterImageView;
 @property (retain) UIActivityIndicatorView* posterActivityView;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
@@ -55,5 +62,7 @@
 
 - (void) refresh;
 - (NowPlayingModel*) model;
+
++ (UIImage*) posterForMovie:(Movie*) movie model:(NowPlayingModel*) model;
 
 @end

@@ -18,6 +18,7 @@
 #import "ApplicationTabBarController.h"
 #import "DVDCell.h"
 #import "MovieTitleCell.h"
+#import "NowPlayingAppDelegate.h"
 #import "SearchEngine.h"
 #import "SearchResult.h"
 #import "TheaterNameCell.h"
@@ -102,7 +103,7 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+    return [NowPlayingAppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 

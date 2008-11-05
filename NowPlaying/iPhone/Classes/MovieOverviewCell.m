@@ -16,6 +16,7 @@
 
 #import "FontCache.h"
 #import "ImageCache.h"
+#import "MovieDetailsViewController.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
@@ -54,7 +55,7 @@
         actualSize.width = 140;
     }
 
-    CGFloat adjustedHeight = 18 * (MIN(127, (int)actualSize.height) / 18);
+    CGFloat adjustedHeight = 18 * (MIN(145, (int)actualSize.height) / 18);
     CGFloat ratio = adjustedHeight / actualSize.height;
 
     return CGSizeMake(actualSize.width * ratio, adjustedHeight);
@@ -64,29 +65,14 @@
 - (id) initWithMovie:(Movie*) movie_
                model:(NowPlayingModel*) model_
                frame:(CGRect) frame 
+         posterImage:(UIImage*) posterImage_
+     posterImageView:(TappableImageView*) posterImageView
         activityView:(UIActivityIndicatorView*) activityView {
     if (self = [super initWithFrame:frame reuseIdentifier:nil]) {
         self.movie = movie_;
         self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        UIImage* image = [model posterForMovie:movie];
-        if (image == nil) {
-            image = [ImageCache imageNotAvailable];
-        }
-        self.posterImage = image;
-        TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
-        imageView.delegate = self;
-        imageView.frame = CGRectMake(5, 5, self.posterSize.width, self.posterSize.height);
-
-        if (activityView != nil) {
-            [activityView sizeToFit];
-            CGRect imageFrame = imageView.frame;
-            CGRect activityFrame = activityView.frame;
-            activityFrame.origin.x = imageFrame.origin.x + 2;
-            activityFrame.origin.y = imageFrame.origin.y + imageFrame.size.height - activityFrame.size.height - 2;
-            activityView.frame = activityFrame;
-        }
+        self.posterImage = posterImage_;
         
         self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -99,7 +85,17 @@
         synopsisChunk2Label.lineBreakMode = UILineBreakModeWordWrap;
         synopsisChunk2Label.numberOfLines = 0;
 
-        [self.contentView addSubview:imageView];
+        {
+            posterImageView.frame = CGRectMake(5, 5, self.posterSize.width, self.posterSize.height);
+            
+            CGRect imageFrame = posterImageView.frame;
+            CGRect activityFrame = activityView.frame;
+            activityFrame.origin.x = imageFrame.origin.x + 2;
+            activityFrame.origin.y = imageFrame.origin.y + imageFrame.size.height - activityFrame.size.height - 2;
+            activityView.frame = activityFrame;   
+        }
+        
+        [self.contentView addSubview:posterImageView];
         [self.contentView addSubview:activityView];
         [self.contentView addSubview:synopsisChunk1Label];
         [self.contentView addSubview:synopsisChunk2Label];
@@ -221,10 +217,14 @@
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
                                model:(NowPlayingModel*) model
                                frame:(CGRect) frame
+                         posterImage:(UIImage*) posterImage
+                     posterImageView:(TappableImageView*) posterImageView
                         activityView:(UIActivityIndicatorView*) activityView {
     return [[[MovieOverviewCell alloc] initWithMovie:movie
                                                model:model
                                                frame:frame
+                                         posterImage:posterImage
+                                     posterImageView:posterImageView
                                         activityView:activityView] autorelease];
 }
 
@@ -258,25 +258,20 @@
 
 
 + (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model {
-    MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie model:model frame:[UIScreen mainScreen].applicationFrame activityView:nil];
+    UIImage* posterImage = [MovieDetailsViewController posterForMovie:movie model:model];
+    TappableImageView* posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
+    
+    MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie model:model
+                                                         frame:[UIScreen mainScreen].applicationFrame
+                                                   posterImage:posterImage
+                                               posterImageView:posterImageView
+                                                  activityView:nil];
     return cell.height;
 }
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [self setNeedsLayout];
-}
-
-
-- (void) imageView:(TappableImageView*) imageView
-         wasTapped:(NSInteger) tapCount {
-    UIImage* largeCover = [self.model.posterCache largePosterForMovie:movie];
-    if (largeCover == nil) {
-        return;
-    }
-
-    [[NowPlayingAppDelegate appDelegate] zoomInImage:largeCover
-                                        fromLocation:imageView];
 }
 
 
