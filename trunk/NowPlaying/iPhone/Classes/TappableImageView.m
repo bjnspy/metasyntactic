@@ -18,10 +18,10 @@
 
 @implementation TappableImageView
 
-@synthesize tapDelegate;
+@synthesize delegate;
 
 - (void) dealloc {
-    self.tapDelegate = nil;
+    self.delegate = nil;
     
     [super dealloc];
 }
@@ -37,10 +37,10 @@
 
 
 - (void) touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event {
-    if (tapDelegate != nil) {
+    if (delegate != nil) {
         UITouch* touch = touches.anyObject;
         if (touch.tapCount > 0) {
-            [tapDelegate imageView:self wasTapped:touch.tapCount];
+            [delegate imageView:self wasTapped:touch.tapCount];
         }
     }
 }

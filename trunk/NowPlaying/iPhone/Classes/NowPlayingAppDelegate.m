@@ -18,6 +18,7 @@
 #import "NowPlayingController.h"
 #import "NowPlayingModel.h"
 #import "Pulser.h"
+#import "TappableImageView.h"
 
 @implementation NowPlayingAppDelegate
 
@@ -26,19 +27,28 @@ static NowPlayingAppDelegate* appDelegate = nil;
 
 
 @synthesize window;
+@synthesize tabBarController;
+@synthesize fullScreenPosterImageView;
+@synthesize originalLocation;
 @synthesize controller;
 @synthesize model;
-@synthesize tabBarController;
 @synthesize pulser;
 
 - (void) dealloc {
     self.window = nil;
+    self.tabBarController = nil;
+    self.fullScreenPosterImageView = nil;
+    self.originalLocation = nil;
     self.controller = nil;
     self.model = nil;
-    self.tabBarController = nil;
     self.pulser = nil;
 
     [super dealloc];
+}
+
+
++ (NowPlayingAppDelegate*) appDelegate {
+    return appDelegate;
 }
 
 
@@ -84,5 +94,61 @@ static NowPlayingAppDelegate* appDelegate = nil;
     [self refresh:NO];
 }
 
+
+- (void) zoomInImage:(UIImage*) image
+        fromLocation:(UIImageView*) originalLocation_ {
+    self.originalLocation = originalLocation_;
+    
+    CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
+    
+    if (fullScreenPosterImageView == nil) {
+        self.fullScreenPosterImageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
+        [window addSubview:fullScreenPosterImageView];
+        fullScreenPosterImageView.contentMode = UIViewContentModeScaleAspectFill;
+        fullScreenPosterImageView.delegate = self;
+    }
+    
+    CGRect smallCoverFrame = [window convertRect:originalLocation.frame fromView:originalLocation];
+    fullScreenPosterImageView.image = image;
+    fullScreenPosterImageView.frame = smallCoverFrame;
+    fullScreenPosterImageView.alpha = 0;
+    
+    [window bringSubviewToFront:fullScreenPosterImageView];
+    
+    [UIView beginAnimations:nil context:NULL];
+    {
+        fullScreenPosterImageView.frame = screenFrame;
+        fullScreenPosterImageView.alpha = 1;
+    }
+    [UIView commitAnimations];
+}
+
+
+- (void) zoomOutImage {
+    CGRect smallCoverFrame = [window convertRect:originalLocation.frame fromView:originalLocation];
+    
+    // first animate the shrink, then disconnect the large image
+    [UIView beginAnimations:nil context:NULL];
+    {
+        [UIView setAnimationDidStopSelector:@selector(onAfterZoomOut:finished:context:)];
+        fullScreenPosterImageView.frame = smallCoverFrame;
+        fullScreenPosterImageView.alpha = 0;
+    }
+    [UIView commitAnimations];
+}
+
+
+- (void) onAfterZoomOut:(NSString*) animationId
+               finished:(BOOL) finished
+                context:(void*) context {
+    // disconnect the large image
+    [window sendSubviewToBack:fullScreenPosterImageView];
+}
+
+
+- (void) imageView:(TappableImageView*) imageView_
+         wasTapped:(NSInteger) tapCount {
+    [self zoomOutImage];
+}
 
 @end
