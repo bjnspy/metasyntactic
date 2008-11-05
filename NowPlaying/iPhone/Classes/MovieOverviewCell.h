@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface MovieOverviewCell : UITableViewCell {
+#import "TappableImageViewDelegate.h"
+
+@interface MovieOverviewCell : UITableViewCell<TappableImageViewDelegate> {
     NowPlayingModel* model;
     Movie* movie;
 
@@ -35,7 +37,7 @@
 @property (retain) UILabel* synopsisChunk1Label;
 @property (retain) UILabel* synopsisChunk2Label;
 
-+ (MovieOverviewCell*) cellWithMovie:(Movie*) movie model:(NowPlayingModel*) model frame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier;
++ (MovieOverviewCell*) cellWithMovie:(Movie*) movie model:(NowPlayingModel*) model frame:(CGRect) frame activityView:(UIActivityIndicatorView*) activityView;
 + (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model;
 
 @end

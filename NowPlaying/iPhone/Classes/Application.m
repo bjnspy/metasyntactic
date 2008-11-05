@@ -36,6 +36,7 @@ static NSString* scoresFolder = nil;
 static NSString* reviewsFolder = nil;
 static NSString* trailersFolder = nil;
 static NSString* postersFolder = nil;
+static NSString* postersLargeFolder = nil;
 
 static NSString* dvdFolder = nil;
 static NSString* dvdDetailsFolder = nil;
@@ -74,6 +75,7 @@ static NSString** folders[] = {
     &reviewsFolder,
     &trailersFolder,
     &postersFolder,
+    &postersLargeFolder,
     &upcomingFolder,
     &upcomingCastFolder,
     &upcomingIMDbFolder,
@@ -185,7 +187,9 @@ static NSString* starString = nil;
             scoresFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Scores"] retain];
             reviewsFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Reviews"] retain];
             trailersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Trailers"] retain];
+            
             postersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Posters"] retain];
+            postersLargeFolder = [[[self postersFolder] stringByAppendingPathComponent:@"Large"] retain];
 
             dvdFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"DVD"] retain];
             dvdDetailsFolder = [[[self dvdFolder] stringByAppendingPathComponent:@"Details"] retain];
@@ -243,6 +247,11 @@ static NSString* starString = nil;
 
 + (NSString*) postersFolder {
     return postersFolder;
+}
+
+
++ (NSString*) postersLargeFolder {
+    return postersLargeFolder;
 }
 
 

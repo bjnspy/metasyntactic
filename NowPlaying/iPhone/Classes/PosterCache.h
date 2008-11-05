@@ -17,18 +17,25 @@
     NowPlayingModel* model;
 
     LinkedSet* prioritizedMovies;
+    
+    NSDictionary* largePosterIndexData;
+    NSLock* largePosterGate;
 }
 
 @property (retain) NSLock* updateGate;
 @property (retain) NowPlayingModel* model;
 @property (retain) LinkedSet* prioritizedMovies;
+@property (retain) NSDictionary* largePosterIndexData;
+@property (retain) NSLock* largePosterGate;
 
 + (PosterCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update:(NSArray*) movies;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
+- (UIImage*) largePosterForMovie:(Movie*) movie;
 
 - (void) prioritizeMovie:(Movie*) movie;
+- (void) downloadLargePosterForMovie:(Movie*) movie;
 
 @end

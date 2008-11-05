@@ -12,22 +12,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NowPlayingAppDelegate : NSObject <UIApplicationDelegate> {
+#import "TappableImageViewDelegate.h"
+
+@interface NowPlayingAppDelegate : NSObject<UIApplicationDelegate, TappableImageViewDelegate> {
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
-
+    TappableImageView* fullScreenPosterImageView;
+    UIImageView* originalLocation;
+    
     NowPlayingModel* model;
     NowPlayingController* controller;
     Pulser* pulser;
 }
 
 @property (nonatomic, retain) UIWindow* window;
+@property (retain) ApplicationTabBarController* tabBarController;
+@property (retain) TappableImageView* fullScreenPosterImageView;
+@property (retain) UIImageView* originalLocation;
 @property (retain) NowPlayingController* controller;
 @property (retain) NowPlayingModel* model;
-@property (retain) ApplicationTabBarController* tabBarController;
 @property (retain) Pulser* pulser;
+
++ (NowPlayingAppDelegate*) appDelegate;
 
 + (void) refresh;
 + (void) refresh:(BOOL) force;
+
+- (void) zoomInImage:(UIImage*) image fromLocation:(UIImageView*) originalLocation;
 
 @end

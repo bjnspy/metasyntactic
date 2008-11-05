@@ -13,10 +13,10 @@
 // limitations under the License.
 
 @interface TappableImageView : UIImageView {
-    id<TappableImageViewDelegate> tapDelegate;
+    id<TappableImageViewDelegate> delegate;
 }
 
-@property (assign) id<TappableImageViewDelegate> tapDelegate;
+@property (assign) id<TappableImageViewDelegate> delegate;
 
 - (id) initWithImage:(UIImage*) image;
 

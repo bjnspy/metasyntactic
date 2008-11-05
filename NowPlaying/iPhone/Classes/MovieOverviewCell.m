@@ -16,7 +16,10 @@
 
 #import "FontCache.h"
 #import "ImageCache.h"
+#import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
+#import "PosterCache.h"
+#import "TappableImageView.h"
 
 @implementation MovieOverviewCell
 
@@ -58,20 +61,33 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie_ model:(NowPlayingModel*) model_ frame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+- (id) initWithMovie:(Movie*) movie_
+               model:(NowPlayingModel*) model_
+               frame:(CGRect) frame 
+        activityView:(UIActivityIndicatorView*) activityView {
+    if (self = [super initWithFrame:frame reuseIdentifier:nil]) {
         self.movie = movie_;
         self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        self.posterImage = [model posterForMovie:movie];
-        if (posterImage == nil) {
-            self.posterImage = [ImageCache imageNotAvailable];
+        UIImage* image = [model posterForMovie:movie];
+        if (image == nil) {
+            image = [ImageCache imageNotAvailable];
         }
-
-        UIImageView* imageView = [[[UIImageView alloc] initWithImage:posterImage] autorelease];
+        self.posterImage = image;
+        TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
+        imageView.delegate = self;
         imageView.frame = CGRectMake(5, 5, self.posterSize.width, self.posterSize.height);
 
+        if (activityView != nil) {
+            [activityView sizeToFit];
+            CGRect imageFrame = imageView.frame;
+            CGRect activityFrame = activityView.frame;
+            activityFrame.origin.x = imageFrame.origin.x + 2;
+            activityFrame.origin.y = imageFrame.origin.y + imageFrame.size.height - activityFrame.size.height - 2;
+            activityView.frame = activityFrame;
+        }
+        
         self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
@@ -84,6 +100,7 @@
         synopsisChunk2Label.numberOfLines = 0;
 
         [self.contentView addSubview:imageView];
+        [self.contentView addSubview:activityView];
         [self.contentView addSubview:synopsisChunk1Label];
         [self.contentView addSubview:synopsisChunk2Label];
     }
@@ -204,8 +221,11 @@
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
                                model:(NowPlayingModel*) model
                                frame:(CGRect) frame
-                     reuseIdentifier:(NSString*) reuseIdentifier {
-    return [[[MovieOverviewCell alloc] initWithMovie:movie model:model frame:frame reuseIdentifier:reuseIdentifier] autorelease];
+                        activityView:(UIActivityIndicatorView*) activityView {
+    return [[[MovieOverviewCell alloc] initWithMovie:movie
+                                               model:model
+                                               frame:frame
+                                        activityView:activityView] autorelease];
 }
 
 
@@ -238,13 +258,25 @@
 
 
 + (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model {
-    MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie model:model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
+    MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie model:model frame:[UIScreen mainScreen].applicationFrame activityView:nil];
     return cell.height;
 }
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [self setNeedsLayout];
+}
+
+
+- (void) imageView:(TappableImageView*) imageView
+         wasTapped:(NSInteger) tapCount {
+    UIImage* largeCover = [self.model.posterCache largePosterForMovie:movie];
+    if (largeCover == nil) {
+        return;
+    }
+
+    [[NowPlayingAppDelegate appDelegate] zoomInImage:largeCover
+                                        fromLocation:imageView];
 }
 
 

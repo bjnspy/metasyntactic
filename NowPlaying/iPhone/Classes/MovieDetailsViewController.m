@@ -28,8 +28,10 @@
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
 #import "NowPlayingModel.h"
+#import "PosterCache.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
@@ -45,6 +47,8 @@
 @synthesize imdbAddress;
 @synthesize actionsView;
 @synthesize hiddenTheaterCount;
+@synthesize posterActivityView;
+@synthesize posterDownloadLock;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -57,6 +61,8 @@
     self.imdbAddress = nil;
     self.actionsView = nil;
     self.hiddenTheaterCount = 0;
+    self.posterActivityView = nil;
+    self.posterDownloadLock = nil;
 
     [super dealloc];
 }
@@ -176,10 +182,37 @@
         self.title = movie.displayTitle;
         self.navigationItem.titleView = label;
 
+        self.posterDownloadLock = [[[NSLock alloc] init] autorelease];
+        self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        posterActivityView.hidesWhenStopped = YES;
+        
         [self.model prioritizeMovie:movie];
     }
 
     return self;
+}
+
+
+- (void) downloadPoster {
+    [self.model.posterCache downloadLargePosterForMovie:movie];
+    [self performSelectorOnMainThread:@selector(reportPoster) withObject:nil waitUntilDone:NO];
+}
+
+
+- (void) reportPoster {
+    if (shutdown) { return; }
+    [posterActivityView stopAnimating];
+}
+
+
+- (void) startup {
+    shutdown = NO;
+    [posterActivityView startAnimating];
+        
+    [ThreadingUtilities performSelector:@selector(downloadPoster)
+                               onTarget:self
+               inBackgroundWithArgument:posterDownloadLock
+                                   gate:nil visible:NO];
 }
 
 
@@ -188,6 +221,7 @@
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
+    [self startup];
     [self refresh];
 }
 
@@ -199,7 +233,14 @@
 }
 
 
+- (void) shutdown {
+    shutdown = YES;
+    [posterActivityView stopAnimating];
+}
+
+
 - (void) viewWillDisappear:(BOOL) animated {
+    [self shutdown];
     [self removeNotifications];
 }
 
@@ -292,7 +333,10 @@
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
-        return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
+        return [MovieOverviewCell cellWithMovie:movie
+                                          model:self.model
+                                          frame:[UIScreen mainScreen].applicationFrame
+                                   activityView:posterActivityView];
     }
 
     if (row == 1 && dvd != nil) {

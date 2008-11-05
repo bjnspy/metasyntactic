@@ -30,6 +30,11 @@
 
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
+    
+    
+    BOOL shutdown;
+    NSLock* posterDownloadLock;
+    UIActivityIndicatorView* posterActivityView;
 }
 
 @property (assign) AbstractNavigationController* navigationController;
@@ -42,6 +47,8 @@
 @property (retain) NSString* imdbAddress;
 @property (retain) UIView* actionsView;
 @property NSInteger hiddenTheaterCount;
+@property (retain) NSLock* posterDownloadLock;
+@property (retain) UIActivityIndicatorView* posterActivityView;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                               movie:(Movie*) movie;
