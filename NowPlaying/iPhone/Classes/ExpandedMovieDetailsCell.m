@@ -71,17 +71,17 @@
     UILabel* titleLabel = [self createTitleLabel:title];
     [titleLabel sizeToFit];
     [self.contentView addSubview:titleLabel];
-    
+
     for (NSString* value in values) {
         UILabel* valueLabel = [self createValueLabel];
         valueLabel.text = value;
 
         [titleToValueLabels addObject:valueLabel forKey:title];
-        
+
         [valueLabel sizeToFit];
         [self.contentView addSubview:valueLabel];
     }
-    
+
     [titles addObject:title];
     [titleToLabel setObject:titleLabel forKey:title];
 }
@@ -100,7 +100,7 @@
     } else {
         value = movie.rating;
     }
-    
+
     [self addTitle:title andValue:value];
 }
 
@@ -112,7 +112,7 @@
 
     NSString* title = NSLocalizedString(@"Running time:", nil);
     NSString* value = movie.runtimeString;
-    
+
     [self addTitle:title andValue:value];
 }
 
@@ -124,7 +124,7 @@
 
     NSString* title = NSLocalizedString(@"Release date:", nil);
     NSString* value = [DateUtilities formatMediumDate:movie.releaseDate];
-    
+
     [self addTitle:title andValue:value];
 }
 
@@ -134,7 +134,7 @@
     if (genres.count == 0) {
         return;
     }
-    
+
     NSString* title = NSLocalizedString(@"Genre:", nil);
     NSString* value = [genres componentsJoinedByString:@", "];
 
@@ -146,10 +146,10 @@
     if (movie.studio.length == 0) {
         return;
     }
-    
+
     NSString* title = NSLocalizedString(@"Studio:", nil);
     NSString* value = movie.studio;
-    
+
     [self addTitle:title andValue:value];
 }
 
@@ -159,7 +159,7 @@
     if (directors.count == 0) {
         return;
     }
-    
+
     NSString* title;
     if (directors.count == 1) {
         title = NSLocalizedString(@"Director:", nil);
@@ -176,9 +176,9 @@
     if (cast.count == 0) {
         return;
     }
-    
-    NSString* title = NSLocalizedString(@"Cast:", nil);    
-    [self addTitle:title andValues:cast]; 
+
+    NSString* title = NSLocalizedString(@"Cast:", nil);
+    [self addTitle:title andValues:cast];
 }
 
 
@@ -188,7 +188,7 @@
         titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
     }
     titleWidth += 20;
-    
+
     for (UILabel* label in titleToLabel.allValues) {
         CGRect frame = label.frame;
         frame.size.width = titleWidth;
@@ -209,14 +209,14 @@
     for (NSString* title in titles) {
         UILabel* titleLabel = [titleToLabel objectForKey:title];
         CGRect titleFrame = titleLabel.frame;
-        
+
         titleFrame.origin.y = yPosition;
         titleLabel.frame = titleFrame;
-        
+
         for (UILabel* valueLabel in [titleToValueLabels objectsForKey:title]) {
             CGRect valueFrame = valueLabel.frame;
             valueFrame.origin.y = yPosition;
-            
+
             yPosition += valueLabel.font.pointSize + 10;
             valueLabel.frame = valueFrame;
         }
@@ -231,7 +231,7 @@
         self.titles = [NSMutableArray array];
         self.titleToLabel = [NSMutableDictionary dictionary];
         self.titleToValueLabels = [MultiDictionary dictionary];
-        
+
         [self addRating];
         [self addRunningTime];
         [self addReleaseDate];
@@ -239,7 +239,7 @@
         [self addStudio];
         [self addDirectors];
         [self addCast];
-        
+
         [self setLabelPositions];
         [self setLabelWidths];
 
@@ -252,7 +252,7 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     for (NSArray* labels in titleToValueLabels.dictionary.allValues) {
         for (UILabel* label in labels) {
             CGRect frame = label.frame;
@@ -267,7 +267,7 @@
     NSString* lastTitle = titles.lastObject;
     NSArray* labels = [titleToValueLabels objectsForKey:lastTitle];
     UILabel* lastLabel = labels.lastObject;
-    
+
     return lastLabel.frame.origin.y + lastLabel.frame.size.height + 7;
 }
 

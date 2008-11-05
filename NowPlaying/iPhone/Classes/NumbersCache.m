@@ -31,7 +31,7 @@
 - (void) dealloc {
     self.gate = nil;
     self.indexData = nil;
-    
+
     [super dealloc];
 }
 
@@ -40,7 +40,7 @@
     if (self = [super init]) {
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
@@ -69,10 +69,10 @@
     if (encoded == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSArray* weekend = [self decodeNumbers:[encoded objectForKey:@"Weekend"]];
     NSArray* daily = [self decodeNumbers:[encoded objectForKey:@"Daily"]];
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:weekend forKey:@"Weekend"];
     [result setObject:daily forKey:@"Daily"];
@@ -84,7 +84,7 @@
     if (indexData == nil) {
         self.indexData = [self loadIndex];
     }
-    
+
     return indexData;
 }
 
@@ -142,12 +142,12 @@
             budget:(NSString*) budget{
     NSArray* encodedWeekend = [self encodeArray:weekend];
     NSArray* encodedDaily = [self encodeArray:daily];
-    
+
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:encodedWeekend forKey:@"Weekend"];
     [dictionary setObject:encodedDaily forKey:@"Daily"];
     [dictionary setObject:budget forKey:@"Budget"];
-    
+
     [FileUtilities writeObject:dictionary toFile:file];
 }
 
@@ -162,7 +162,7 @@
                                     totalGross:[[movieElement attributeValue:@"total_revenue"] intValue]
                                       theaters:[[movieElement attributeValue:@"theaters"] intValue]
                                           days:[[movieElement attributeValue:@"days"] intValue]];
-    
+
 }
 
 
@@ -177,30 +177,30 @@
 
 - (void) updateIndexBackgroundWorker {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
-    
+
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
             return;
         }
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?q=index", [Application host]];
     XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
-    
+
     if (result == nil) {
         return;
     }
-    
+
     NSArray* weekendNumbers = [self processNumbers:[result element:@"weekend"]];
     NSArray* dailyNumbers = [self processNumbers:[result element:@"daily"]];
-    
+
     if (weekendNumbers.count && dailyNumbers.count) {
         [self writeFile:self.indexFile weekend:weekendNumbers daily:dailyNumbers budget:@""];
-        
+
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:weekendNumbers forKey:@"Weekend"];
         [dictionary setObject:dailyNumbers forKey:@"Daily"];
-        
+
         [self performSelectorOnMainThread:@selector(reportResults:) withObject:dictionary waitUntilDone:NO];
     }
 }
@@ -226,29 +226,29 @@
 - (void) downloadDetails:(MovieNumbers*) numbers {
     NSString* file = [self movieDetailsFile:numbers];
     NSDate* lastLookupDate = [FileUtilities modificationDate:file];
-    
+
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
             return;
         }
     }
-    
+
     if (numbers.identifier.length == 0 ||
         [@"0" isEqual:numbers.identifier]) {
         return;
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?id=%@", [Application host], numbers.identifier];
     XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
-    
+
     if (result == nil) {
         return;
     }
-    
+
     NSString* budget = [result attributeValue:@"budget"];
     NSArray* weekendNumbers = [self processNumbers:[result element:@"weekend"]];
     NSArray* dailyNumbers = [self processNumbers:[result element:@"daily"]];
-    
+
     if (weekendNumbers.count || dailyNumbers.count) {
         [self writeFile:file weekend:weekendNumbers daily:dailyNumbers budget:budget];
     }
@@ -270,7 +270,7 @@
     if (previous == 0) {
         return NOT_ENOUGH_DATA;
     }
-    
+
     return ((double)current / (double)previous) - 1;
 }
 
@@ -279,14 +279,14 @@
     if (values == nil) {
         return RETRIEVING;
     }
-    
+
     if (values.count != 2) {
         return NOT_ENOUGH_DATA;
     }
-    
+
     MovieNumbers* previous = [MovieNumbers numbersWithDictionary:[values objectAtIndex:0]];
     MovieNumbers* current = [MovieNumbers numbersWithDictionary:[values objectAtIndex:1]];
-    
+
     return [self change:current.totalGross previous:previous.totalGross];
 }
 
@@ -295,40 +295,40 @@
     if (values == nil) {
         return RETRIEVING;
     }
-    
+
     if (values.count != 2) {
         return NOT_ENOUGH_DATA;
     }
-    
+
     MovieNumbers* previous = [MovieNumbers numbersWithDictionary:[values objectAtIndex:0]];
     MovieNumbers* current = [MovieNumbers numbersWithDictionary:[values objectAtIndex:1]];
-    
+
     return [self change:current.currentGross previous:previous.currentGross];
 }
 
 
 - (double) dailyChange:(MovieNumbers*) movie {
     NSDictionary* dictionary = [FileUtilities readObject:[self movieDetailsFile:movie]];
-    
+
     return [self currentChangeValue:[dictionary objectForKey:@"Daily"]];
 }
 
 
 - (double) weekendChange:(MovieNumbers*) movie {
     NSDictionary* dictionary = [FileUtilities readObject:[self movieDetailsFile:movie]];
-    
+
     return [self currentChangeValue:[dictionary objectForKey:@"Weekend"]];
 }
 
 
 - (double) totalChange:(MovieNumbers*) movie {
     NSDictionary* dictionary = [FileUtilities readObject:[self movieDetailsFile:movie]];
-    
+
     double result = [self totalChangeValue:[dictionary objectForKey:@"Weekend"]];
     if (IS_NOT_ENOUGH_DATA(result) || IS_RETRIEVING(result)) {
         result = [self totalChangeValue:[dictionary objectForKey:@"Daily"]];
     }
-    
+
     return result;
 }
 
@@ -338,7 +338,7 @@
     if (dictionary == nil) {
         return -1;
     }
-    
+
     return [[dictionary objectForKey:@"Budget"] intValue];
 }
 

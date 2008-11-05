@@ -414,7 +414,7 @@
         // We couldn't even connect.  Just abort what we're doing.
         return nil;
     }
-    
+
     XmlElement* element = [XmlParser parse:data];
     if (element == nil) {
         // we got an empty string back.  record this so we don't try

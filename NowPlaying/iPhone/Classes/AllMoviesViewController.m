@@ -112,7 +112,7 @@
         return [self createBasicCell:movie];
     }
      */
-    
+
     static NSString* reuseIdentifier = @"MovieCellIdentifier";
     id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
@@ -121,7 +121,7 @@
                                                 model:self.model
                                                 style:UITableViewStylePlain] autorelease];
     }
-    
+
     [cell setMovie:movie owner:self];
     return cell;
 }

@@ -32,7 +32,7 @@
 
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
-    
+
     BOOL shutdown;
     NSLock* posterDownloadLock;
 

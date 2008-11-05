@@ -99,23 +99,23 @@ static NowPlayingAppDelegate* appDelegate = nil;
         fromLocation:(UIImageView*) originalLocation_ {
     zoomedIn = YES;
     self.originalLocation = originalLocation_;
-    
+
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
-    
+
     if (fullScreenPosterImageView == nil) {
         self.fullScreenPosterImageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
         [window addSubview:fullScreenPosterImageView];
         fullScreenPosterImageView.contentMode = UIViewContentModeScaleAspectFill;
         fullScreenPosterImageView.delegate = self;
     }
-    
+
     CGRect smallCoverFrame = [window convertRect:originalLocation.frame fromView:originalLocation];
     fullScreenPosterImageView.image = image;
     fullScreenPosterImageView.frame = smallCoverFrame;
     fullScreenPosterImageView.alpha = 0;
-    
+
     [window bringSubviewToFront:fullScreenPosterImageView];
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         fullScreenPosterImageView.frame = screenFrame;
@@ -133,7 +133,7 @@ static NowPlayingAppDelegate* appDelegate = nil;
 - (void) zoomOutImage {
     zoomedIn = NO;
     CGRect smallCoverFrame = [window convertRect:originalLocation.frame fromView:originalLocation];
-    
+
     // first animate the shrink, then disconnect the large image
     [UIView beginAnimations:nil context:NULL];
     {

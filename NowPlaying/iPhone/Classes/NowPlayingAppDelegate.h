@@ -21,7 +21,7 @@
     BOOL zoomedIn;
     TappableImageView* fullScreenPosterImageView;
     UIImageView* originalLocation;
-    
+
     NowPlayingModel* model;
     NowPlayingController* controller;
     Pulser* pulser;
