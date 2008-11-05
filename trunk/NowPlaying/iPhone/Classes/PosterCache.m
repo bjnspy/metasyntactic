@@ -197,7 +197,7 @@
 }
 
 
-- (UIImage*) posterForMovie:(Movie*) movie {
+- (UIImage*) smallPosterForMovie:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
     NSData* data = [FileUtilities readData:path];
     return [UIImage imageWithData:data];
@@ -246,7 +246,7 @@
     
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings?provider=imp", [Application host]];
     NSString* result = [NetworkUtilities stringWithContentsOfAddress:address
-                                                           important:YES];
+                                                           important:NO];
     if (result.length == 0) {
         return;
     }
@@ -281,11 +281,11 @@
     }
     
     NSString* url = [largePosterIndex objectForKey:title];
-    
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:url
-                                                     important:YES];
+                                                     important:NO];
     if (data != nil) {
         [FileUtilities writeData:data toFile:[self largePosterFilePath:movie]];
+        [NowPlayingAppDelegate refresh];
     }
 }
 

@@ -97,6 +97,7 @@ static NowPlayingAppDelegate* appDelegate = nil;
 
 - (void) zoomInImage:(UIImage*) image
         fromLocation:(UIImageView*) originalLocation_ {
+    zoomedIn = YES;
     self.originalLocation = originalLocation_;
     
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
@@ -123,8 +124,14 @@ static NowPlayingAppDelegate* appDelegate = nil;
     [UIView commitAnimations];
 }
 
++ (void) zoomInImage:(UIImage*) image
+        fromLocation:(UIImageView*) originalLocation_ {
+    [appDelegate zoomInImage:image fromLocation:originalLocation_];
+}
+
 
 - (void) zoomOutImage {
+    zoomedIn = NO;
     CGRect smallCoverFrame = [window convertRect:originalLocation.frame fromView:originalLocation];
     
     // first animate the shrink, then disconnect the large image
@@ -141,7 +148,6 @@ static NowPlayingAppDelegate* appDelegate = nil;
 - (void) onAfterZoomOut:(NSString*) animationId
                finished:(BOOL) finished
                 context:(void*) context {
-    // disconnect the large image
     [window sendSubviewToBack:fullScreenPosterImageView];
 }
 
@@ -149,6 +155,16 @@ static NowPlayingAppDelegate* appDelegate = nil;
 - (void) imageView:(TappableImageView*) imageView_
          wasTapped:(NSInteger) tapCount {
     [self zoomOutImage];
+}
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+    return !zoomedIn;
+}
+
+
++ (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+    return [appDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 @end

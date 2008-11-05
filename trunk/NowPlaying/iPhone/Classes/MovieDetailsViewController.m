@@ -23,12 +23,15 @@
 #import "DVDCache.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "GlobalActivityIndicator.h"
+#import "ImageCache.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
+#import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
+#import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "ThreadingUtilities.h"
@@ -49,6 +52,8 @@
 @synthesize hiddenTheaterCount;
 @synthesize posterActivityView;
 @synthesize posterDownloadLock;
+@synthesize posterImage;
+@synthesize posterImageView;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -63,6 +68,8 @@
     self.hiddenTheaterCount = 0;
     self.posterActivityView = nil;
     self.posterDownloadLock = nil;
+    self.posterImage = nil;
+    self.posterImageView = nil;
 
     [super dealloc];
 }
@@ -135,6 +142,15 @@
 }
 
 
++ (UIImage*) posterForMovie:(Movie*) movie model:(NowPlayingModel*) model {
+    UIImage* image = [model posterForMovie:movie];
+    if (image == nil) {
+        image = [ImageCache imageNotAvailable];
+    }
+    return image;
+}
+
+
 - (void) initializeData {
     self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:movie]];
 
@@ -161,8 +177,23 @@
     }
 
     self.imdbAddress = [self.model imdbAddressForMovie:movie];
+    
+    self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
+    self.posterImageView.image = posterImage;
 
     [self setupActionsView];
+}
+
+
+- (void) setupPosterView {
+    self.posterDownloadLock = [[[NSLock alloc] init] autorelease];
+    self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    posterActivityView.hidesWhenStopped = YES;
+    [posterActivityView sizeToFit];
+    
+    self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
+    self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
+    posterImageView.delegate = self;
 }
 
 
@@ -181,11 +212,8 @@
 
         self.title = movie.displayTitle;
         self.navigationItem.titleView = label;
-
-        self.posterDownloadLock = [[[NSLock alloc] init] autorelease];
-        self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-        posterActivityView.hidesWhenStopped = YES;
         
+        [self setupPosterView];
         [self.model prioritizeMovie:movie];
     }
 
@@ -336,6 +364,8 @@
         return [MovieOverviewCell cellWithMovie:movie
                                           model:self.model
                                           frame:[UIScreen mainScreen].applicationFrame
+                                    posterImage:posterImage
+                                posterImageView:posterImageView
                                    activityView:posterActivityView];
     }
 
@@ -704,5 +734,16 @@
     [self refresh];
 }
 
+
+- (void) imageView:(TappableImageView*) imageView
+         wasTapped:(NSInteger) tapCount {
+    UIImage* largeCover = [self.model.posterCache largePosterForMovie:movie];
+    if (largeCover == nil) {
+        return;
+    }
+    
+    [NowPlayingAppDelegate zoomInImage:largeCover
+                          fromLocation:imageView];
+}
 
 @end

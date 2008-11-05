@@ -32,7 +32,7 @@
 
 - (void) update:(NSArray*) movies;
 
-- (UIImage*) posterForMovie:(Movie*) movie;
+- (UIImage*) smallPosterForMovie:(Movie*) movie;
 - (UIImage*) largePosterForMovie:(Movie*) movie;
 
 - (void) prioritizeMovie:(Movie*) movie;
