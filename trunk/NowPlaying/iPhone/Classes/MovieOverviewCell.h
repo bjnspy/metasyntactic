@@ -24,7 +24,7 @@
 
     UILabel* synopsisChunk1Label;
     UILabel* synopsisChunk2Label;
-    
+
     UIImage* posterImage;
 }
 

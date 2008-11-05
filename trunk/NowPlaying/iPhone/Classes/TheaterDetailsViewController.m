@@ -337,7 +337,7 @@
             [Application openMap:theater.mapUrl];
         } else {
             [Application makeCall:theater.phoneNumber];
-            // no call will be made if this is an iPod touch. 
+            // no call will be made if this is an iPod touch.
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     } else if (section == 1) {

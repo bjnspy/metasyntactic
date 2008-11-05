@@ -284,7 +284,7 @@
     }
 
     [self.model prioritizeMovie:movie];
-    
+
     UITableViewCell* cell = [self createCell:movie];
     return cell;
 }

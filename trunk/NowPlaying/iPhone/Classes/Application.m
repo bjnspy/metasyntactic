@@ -187,7 +187,7 @@ static NSString* starString = nil;
             scoresFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Scores"] retain];
             reviewsFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Reviews"] retain];
             trailersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Trailers"] retain];
-            
+
             postersFolder = [[[self cacheFolder] stringByAppendingPathComponent:@"Posters"] retain];
             postersLargeFolder = [[[self postersFolder] stringByAppendingPathComponent:@"Large"] retain];
 
@@ -369,16 +369,16 @@ static NSString* starString = nil;
     if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
         return;
     }
-    
+
     NSRange xRange = [phoneNumber rangeOfString:@"x"];
     if (xRange.length > 0 && xRange.location >= 12) {
         // 222-222-2222 x222
         // remove extension
         phoneNumber = [phoneNumber substringToIndex:xRange.location];
     }
-    
+
     NSString* urlString = [NSString stringWithFormat:@"tel:%@", [Utilities stringByAddingPercentEscapes:phoneNumber]];
-    
+
     [self openBrowser:urlString];
 }
 

@@ -23,7 +23,7 @@
 - (void) dealloc {
     self.delegate = nil;
     self.userInteractionEnabled = NO;
-    
+
     [super dealloc];
 }
 
@@ -32,7 +32,7 @@
     if (self = [super initWithImage:image]) {
         self.userInteractionEnabled = YES;
     }
-    
+
     return self;
 }
 

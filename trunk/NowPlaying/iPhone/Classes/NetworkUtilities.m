@@ -165,7 +165,7 @@ static PriorityMutex* mutex = nil;
     // kSCNetworkReachabilityFlagsReachable indicates that the specified nodename or address can
     // be reached using the current network configuration.
     BOOL isReachable = flags & kSCNetworkReachabilityFlagsReachable;
-    
+
     // This flag indicates that the specified nodename or address can
     // be reached using the current network configuration, but a
     // connection must first be established.
@@ -177,7 +177,7 @@ static PriorityMutex* mutex = nil;
     if ((flags & kSCNetworkReachabilityFlagsIsWWAN)) {
         noConnectionRequired = YES;
     }
-    
+
     return (isReachable && noConnectionRequired) ? YES : NO;
 }
 
@@ -191,13 +191,13 @@ static PriorityMutex* mutex = nil;
 
     SCNetworkReachabilityRef networkReachability =
         SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr*)&zeroAddress);
-            
+
     SCNetworkReachabilityFlags flags;
     BOOL gotFlags = SCNetworkReachabilityGetFlags(networkReachability, &flags);
     if (!gotFlags) {
         return NO;
     }
-    
+
     return [self isReachableWithoutRequiringConnection:flags];
 }
 

@@ -17,7 +17,7 @@
     NowPlayingModel* model;
 
     LinkedSet* prioritizedMovies;
-    
+
     NSDictionary* largePosterIndexData;
     NSLock* largePosterGate;
 }

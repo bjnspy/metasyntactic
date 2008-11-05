@@ -221,7 +221,7 @@
     if (result == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     return result;
 }
 
@@ -230,7 +230,7 @@
     if (largePosterIndexData == nil) {
         self.largePosterIndexData = [self loadLargePosterIndex];
     }
-    
+
     return largePosterIndexData;
 }
 
@@ -243,22 +243,22 @@
             return;
         }
     }
-    
+
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings?provider=imp", [Application host]];
     NSString* result = [NetworkUtilities stringWithContentsOfAddress:address
                                                            important:NO];
     if (result.length == 0) {
         return;
     }
-    
+
     NSMutableDictionary* index = [NSMutableDictionary dictionary];
     for (NSString* row in [result componentsSeparatedByString:@"\n"]) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
-        
+
         if (columns.count != 2) {
             continue;
         }
-        
+
         [index setObject:[columns objectAtIndex:1] forKey:[columns objectAtIndex:0]];
     }
     if (index.count > 0) {
@@ -270,16 +270,16 @@
 
 - (void) downloadLargePosterForMovieWorker:(Movie*) movie {
     [self ensureIndex];
-    
+
     NSDictionary* largePosterIndex = self.largePosterIndex;
-    
+
     DifferenceEngine* engine = [DifferenceEngine engine];
     NSString* title = [engine findClosestMatch:movie.canonicalTitle inArray:largePosterIndex.allKeys];
-    
+
     if (title.length == 0) {
         return;
     }
-    
+
     NSString* url = [largePosterIndex objectForKey:title];
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:url
                                                      important:NO];

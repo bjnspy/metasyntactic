@@ -50,7 +50,6 @@ static NSLock* gate = nil;
 
     if ([parser parse] == NO) {
         self.elementsStack = nil;
-        NSLog(@"%@", [parser parserError]);
     }
 }
 

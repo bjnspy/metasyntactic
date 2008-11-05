@@ -96,7 +96,7 @@
                                          reuseIdentifier:reuseIdentifier
                                                    model:self.model] autorelease];
     }
-    
+
     [cell setMovie:movie owner:self];
     return cell;
 }

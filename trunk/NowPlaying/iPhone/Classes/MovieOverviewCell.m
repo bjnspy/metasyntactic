@@ -64,7 +64,7 @@
 
 - (id) initWithMovie:(Movie*) movie_
                model:(NowPlayingModel*) model_
-               frame:(CGRect) frame 
+               frame:(CGRect) frame
          posterImage:(UIImage*) posterImage_
      posterImageView:(TappableImageView*) posterImageView
         activityView:(UIActivityIndicatorView*) activityView {
@@ -73,7 +73,7 @@
         self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.posterImage = posterImage_;
-        
+
         self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
@@ -87,14 +87,14 @@
 
         {
             posterImageView.frame = CGRectMake(5, 5, self.posterSize.width, self.posterSize.height);
-            
+
             CGRect imageFrame = posterImageView.frame;
             CGRect activityFrame = activityView.frame;
             activityFrame.origin.x = imageFrame.origin.x + 2;
             activityFrame.origin.y = imageFrame.origin.y + imageFrame.size.height - activityFrame.size.height - 2;
-            activityView.frame = activityFrame;   
+            activityView.frame = activityFrame;
         }
-        
+
         [self.contentView addSubview:posterImageView];
         [self.contentView addSubview:activityView];
         [self.contentView addSubview:synopsisChunk1Label];
@@ -260,7 +260,7 @@
 + (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model {
     UIImage* posterImage = [MovieDetailsViewController posterForMovie:movie model:model];
     TappableImageView* posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
-    
+
     MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie model:model
                                                          frame:[UIScreen mainScreen].applicationFrame
                                                    posterImage:posterImage

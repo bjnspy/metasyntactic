@@ -177,7 +177,7 @@
     }
 
     self.imdbAddress = [self.model imdbAddressForMovie:movie];
-    
+
     self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
     self.posterImageView.image = posterImage;
 
@@ -190,7 +190,7 @@
     self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     posterActivityView.hidesWhenStopped = YES;
     [posterActivityView sizeToFit];
-    
+
     self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
     self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
     posterImageView.delegate = self;
@@ -212,7 +212,7 @@
 
         self.title = movie.displayTitle;
         self.navigationItem.titleView = label;
-        
+
         [self setupPosterView];
         [self.model prioritizeMovie:movie];
     }
@@ -236,7 +236,7 @@
 - (void) startup {
     shutdown = NO;
     [posterActivityView startAnimating];
-        
+
     [ThreadingUtilities performSelector:@selector(downloadPoster)
                                onTarget:self
                inBackgroundWithArgument:posterDownloadLock
@@ -741,7 +741,7 @@
     if (largeCover == nil) {
         return;
     }
-    
+
     [NowPlayingAppDelegate zoomInImage:largeCover
                           fromLocation:imageView];
 }
