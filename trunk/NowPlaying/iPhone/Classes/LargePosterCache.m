@@ -30,7 +30,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSLock alloc] init] autorelease];
+        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
     
     return self;
@@ -42,16 +42,23 @@
 }
 
 
-- (NSString*) posterFilePath:(Movie*) movie {
+- (NSString*) posterFilePath:(Movie*) movie index:(NSInteger) index {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+    sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d", index];
     return [[[Application postersLargeFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
-- (UIImage*) posterForMovie:(Movie*) movie {
-    NSString* path = [self posterFilePath:movie];
+- (UIImage*) posterForMovie:(Movie*) movie
+                      index:(NSInteger) index {
+    NSString* path = [self posterFilePath:movie index:index];
     NSData* data = [FileUtilities readData:path];
     return [UIImage imageWithData:data];
+}
+
+
+- (UIImage*) firstPosterForMovie:(Movie*) movie {
+    return [self posterForMovie:movie index:0];
 }
 
 
@@ -99,11 +106,12 @@
     for (NSString* row in [result componentsSeparatedByString:@"\n"]) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
         
-        if (columns.count != 2) {
+        if (columns.count < 2) {
             continue;
         }
         
-        [index setObject:[columns objectAtIndex:1] forKey:[columns objectAtIndex:0]];
+        NSArray* posters = [columns subarrayWithRange:NSMakeRange(1, columns.count - 1)];
+        [index setObject:posters forKey:[columns objectAtIndex:0]];
     }
 
     if (index.count > 0) {
@@ -113,7 +121,7 @@
 }
 
 
-- (void) downloadPosterForMovieWorker:(Movie*) movie {
+- (NSArray*) posterUrlsWorker:(Movie*) movie {
     [self ensureIndex];
     
     NSDictionary* index = self.index;
@@ -122,44 +130,83 @@
     NSString* title = [engine findClosestMatch:movie.canonicalTitle inArray:index.allKeys];
     
     if (title.length == 0) {
-        return;
+        return [NSArray array];
     }
     
-    NSString* url = [index objectForKey:title];
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:url
+    NSArray* urls = [index objectForKey:title];
+    return urls;
+}
+
+
+- (NSArray*) posterUrls:(Movie*) movie {
+    NSAssert(![NSThread isMainThread], @"");
+    
+    NSArray* array;
+    [gate lock];
+    {
+        array = [self posterUrlsWorker:movie];
+    }
+    [gate unlock];
+    return array;
+}
+
+
+- (void) downloadPosterForMovieWorker:(Movie*) movie
+                                 urls:(NSArray*) urls
+                                index:(NSInteger) index {
+    NSAssert(![NSThread isMainThread], @"");
+    
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]
                                                      important:NO];
     if (data != nil) {
-        [FileUtilities writeData:data toFile:[self posterFilePath:movie]];
+        [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
         [NowPlayingAppDelegate refresh];
     }
 }
 
 
-- (void) downloadPosterForMovie:(Movie*) movie {
+- (void) downloadPosterForMovie:(Movie*) movie
+                           urls:(NSArray*) urls
+                          index:(NSInteger) index {
+    NSAssert(![NSThread isMainThread], @"");
     [gate lock];
     {
-        NSData* data = [FileUtilities readData:[self posterFilePath:movie]];
+        NSData* data = [FileUtilities readData:[self posterFilePath:movie index:index]];
         if (data == nil) {
-            [self downloadPosterForMovieWorker:movie];
+            [self downloadPosterForMovieWorker:movie urls:urls index:index];
         }
     }
-    [gate unlock];
+    [gate unlock];    
 }
 
 
-- (NSInteger) posterCountWorker:(Movie*) movie {
-    return 0;
+- (void) downloadFirstPosterForMovie:(Movie*) movie {
+    NSArray* urls = [self posterUrls:movie];
+    [self downloadPosterForMovie:movie urls:urls index:0];
 }
 
 
-- (NSInteger) posterCount:(Movie*) movie {
+- (void) downloadAllPostersForMovie:(Movie*) movie {
+    NSAssert(![NSThread isMainThread], @"");
+    NSArray* urls = [self posterUrls:movie];
+    
+    for (int i = 0; i < urls.count; i++) {
+        [self downloadPosterForMovie:movie urls:urls index:i];
+    }
+}
+
+
+- (NSInteger) posterCountForMovie:(Movie*) movie {
+    NSAssert(![NSThread isMainThread], @"");
     NSInteger count;
     [gate lock];
     {
-        count = [self posterCountWorker:movie];
+        NSArray* urls = [self posterUrls:movie];
+        count = urls.count;
     }
     [gate unlock];
     return count;
 }
+
 
 @end

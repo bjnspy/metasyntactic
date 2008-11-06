@@ -223,7 +223,7 @@
 
 
 - (void) downloadPoster {
-    [self.model.largePosterCache downloadPosterForMovie:movie];
+    [self.model.largePosterCache downloadFirstPosterForMovie:movie];
     [self performSelectorOnMainThread:@selector(reportPoster) withObject:nil waitUntilDone:NO];
 }
 
@@ -738,7 +738,7 @@
 
 - (void) imageView:(TappableImageView*) imageView
          wasTapped:(NSInteger) tapCount {
-    UIImage* largeCover = [self.model.largePosterCache posterForMovie:movie];
+    UIImage* largeCover = [self.model.largePosterCache firstPosterForMovie:movie];
     if (largeCover == nil) {
         return;
     }
