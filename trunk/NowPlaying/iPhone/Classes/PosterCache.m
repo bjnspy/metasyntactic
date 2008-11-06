@@ -14,16 +14,19 @@
 
 #import "PosterCache.h"
 
+#import "ApplePosterDownloader.h"
 #import "Application.h"
 #import "DifferenceEngine.h"
+#import "FandangoPosterDownloader.h"
 #import "FileUtilities.h"
+#import "ImdbPosterDownloader.h"
+#import "LargePosterCache.h"
 #import "LinkedSet.h"
 #import "Location.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
-#import "PosterDownloader.h"
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
@@ -100,6 +103,35 @@
 }
 
 
+- (NSData*) downloadPosterWorker:(Movie*) movie
+             postalCode:(NSString*) postalCode {
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
+    if (data != nil) {
+        return data;
+    }
+    
+    data = [ApplePosterDownloader download:movie];
+    if (data != nil) {
+        return data;
+    }
+    
+    data = [FandangoPosterDownloader download:movie postalCode:postalCode];
+    if (data != nil) {
+        return data;
+    }
+    
+    data = [ImdbPosterDownloader download:movie];
+    if (data != nil) {
+        return data;
+    }
+    
+    [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+    
+    return nil;
+    
+}
+
+
 - (void) downloadPoster:(Movie*) movie
              postalCode:(NSString*) postalCode {
     if (movie == nil) {
@@ -112,7 +144,8 @@
         return;
     }
 
-    NSData* data = [PosterDownloader download:movie postalCode:postalCode];
+    NSData* data = [self downloadPosterWorker:movie postalCode:postalCode];
+
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
         [NowPlayingAppDelegate refresh];

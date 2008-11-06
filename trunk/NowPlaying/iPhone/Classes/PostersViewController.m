@@ -326,26 +326,9 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) onRightTapped:(id) argument {
-    CGRect rect = [UIScreen mainScreen].bounds;
-    rect.origin.x = (currentPage + 1) * rect.size.width;
-    [scrollView scrollRectToVisible:rect animated:YES];
-    [self setPage:currentPage + 1];
-}
-
-
-- (void) onLeftTapped:(id) argument {
-    CGRect rect = [UIScreen mainScreen].bounds;
-    rect.origin.x = (currentPage - 1) * rect.size.width;
-    [scrollView scrollRectToVisible:rect animated:YES];
-    [self setPage:currentPage - 1];
-}
-
-
 - (void) hideToolBar {
     [UIView beginAnimations:nil context:NULL];
     {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
         topBar.alpha = 0;
     }
     [UIView commitAnimations];
@@ -357,12 +340,29 @@ const double LOAD_DELAY = 1;
         
     [UIView beginAnimations:nil context:NULL];
     {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
         topBar.alpha = TRANSLUCENCY_LEVEL;
         
         [self performSelector:@selector(hideToolBar) withObject:nil afterDelay:5];
     }
     [UIView commitAnimations];
+}
+
+
+- (void) onRightTapped:(id) argument {
+    CGRect rect = [UIScreen mainScreen].bounds;
+    rect.origin.x = (currentPage + 1) * rect.size.width;
+    [scrollView scrollRectToVisible:rect animated:YES];
+    [self setPage:currentPage + 1];
+    [self showToolBar];
+}
+
+
+- (void) onLeftTapped:(id) argument {
+    CGRect rect = [UIScreen mainScreen].bounds;
+    rect.origin.x = (currentPage - 1) * rect.size.width;
+    [scrollView scrollRectToVisible:rect animated:YES];
+    [self setPage:currentPage - 1];
+    [self showToolBar];
 }
 
 
@@ -381,11 +381,6 @@ const double LOAD_DELAY = 1;
         topBar.barStyle = UIBarStyleBlackTranslucent;
         [self setupTopBar];
         [topBar sizeToFit];
-        
-        CGRect frame = topBar.frame;
-        frame.origin.y = [UIApplication sharedApplication].statusBarFrame.size.height;
-        topBar.frame = frame;
-        
         [self showToolBar];
     }
 
@@ -403,6 +398,7 @@ const double LOAD_DELAY = 1;
 - (void) dismiss {
     shutdown = YES;
     [navigationController hidePostersView];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideToolBar) object:nil];
 }
 
 
