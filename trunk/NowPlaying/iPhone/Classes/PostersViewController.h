@@ -25,7 +25,6 @@
     NSMutableDictionary* pageNumberToView;
 
     UIToolbar* topBar;
-    BOOL toolBarsHidden;
 
     BOOL shutdown;
 }
