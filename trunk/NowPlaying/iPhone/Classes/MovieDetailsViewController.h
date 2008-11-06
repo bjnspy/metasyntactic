@@ -39,6 +39,7 @@
     UIImage* posterImage;
     TappableImageView* posterImageView;
     UIActivityIndicatorView* posterActivityView;
+    NSInteger posterCount;
 }
 
 @property (assign) AbstractNavigationController* navigationController;

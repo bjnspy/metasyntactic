@@ -19,5 +19,6 @@
 + (UIColor*) commandColor;
 + (UIColor*) darkDarkGray;
 + (UIColor*) footerColor;
++ (UIColor*) tintColor;
 
 @end

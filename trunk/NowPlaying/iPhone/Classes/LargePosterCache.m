@@ -166,13 +166,13 @@
 
 
 - (void) downloadPosterForMovie:(Movie*) movie
-                           urls:(NSArray*) urls
                           index:(NSInteger) index {
     NSAssert(![NSThread isMainThread], @"");
     [gate lock];
     {
         NSData* data = [FileUtilities readData:[self posterFilePath:movie index:index]];
         if (data == nil) {
+            NSArray* urls = [self posterUrls:movie];
             [self downloadPosterForMovieWorker:movie urls:urls index:index];
         }
     }
@@ -181,18 +181,7 @@
 
 
 - (void) downloadFirstPosterForMovie:(Movie*) movie {
-    NSArray* urls = [self posterUrls:movie];
-    [self downloadPosterForMovie:movie urls:urls index:0];
-}
-
-
-- (void) downloadAllPostersForMovie:(Movie*) movie {
-    NSAssert(![NSThread isMainThread], @"");
-    NSArray* urls = [self posterUrls:movie];
-    
-    for (int i = 0; i < urls.count; i++) {
-        [self downloadPosterForMovie:movie urls:urls index:i];
-    }
+    [self downloadPosterForMovie:movie index:0];
 }
 
 

@@ -32,6 +32,7 @@
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
+#import "PostersViewController.h"
 #import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
@@ -224,12 +225,17 @@
 
 - (void) downloadPoster {
     [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-    [self performSelectorOnMainThread:@selector(reportPoster) withObject:nil waitUntilDone:NO];
+    NSInteger posterCount_ = [self.model.largePosterCache posterCountForMovie:movie];
+
+    [self performSelectorOnMainThread:@selector(reportPoster:)
+                           withObject:[NSNumber numberWithInt:posterCount_]
+                        waitUntilDone:NO];
 }
 
 
-- (void) reportPoster {
+- (void) reportPoster:(NSNumber*) posterCount_ {
     if (shutdown) { return; }
+    posterCount = [posterCount_ intValue];
     [posterActivityView stopAnimating];
 }
 
@@ -738,13 +744,47 @@
 
 - (void) imageView:(TappableImageView*) imageView
          wasTapped:(NSInteger) tapCount {
+    if (!UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+        return;
+    }
+    
     UIImage* largeCover = [self.model.largePosterCache firstPosterForMovie:movie];
     if (largeCover == nil) {
         return;
     }
+    
+    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+    CGRect smallPosterFrame = [window convertRect:imageView.frame fromView:imageView];
+    
+    PostersViewController* viewController =
+    [[PostersViewController alloc] initWithNavigationController:self.navigationController
+                                                           movie:movie
+                                                     posterCount:posterCount
+                                               smallPosterFrame:smallPosterFrame];
+    
+    UIView* view = viewController.view;
+    view.alpha = 0;
+    view.frame = smallPosterFrame;
 
-    [NowPlayingAppDelegate zoomInImage:largeCover
-                          fromLocation:imageView];
+    [window addSubview:view];
+    [window bringSubviewToFront:view];
+    
+    [UIView beginAnimations:nil context:viewController];
+    {
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(onAfterImageTapped:finished:context:)];
+        
+        view.alpha = 1;
+        view.frame = [UIScreen mainScreen].applicationFrame;
+    }
+    [UIView commitAnimations];
+}
+
+
+- (void) onAfterImageTapped:(NSString*) animationId
+                  finished:(BOOL) finished
+                   context:(PostersViewController*) viewController {
+    [viewController hideToolBar:NO];
 }
 
 @end

@@ -19,6 +19,7 @@
 static UIColor* commandColor = nil;
 static UIColor* darkDarkGray = nil;
 static UIColor* footerColor = nil;
+static UIColor* tintColor = nil;
 
 + (void) initialize {
     if (self == [ColorCache class]) {
@@ -26,6 +27,7 @@ static UIColor* footerColor = nil;
         commandColor = [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
         darkDarkGray = [[UIColor colorWithWhite:0.1666666666666 alpha:1] retain];
         footerColor  = [[UIColor colorWithRed:76.0 / 255.0 green:86.0 / 255.0 blue:107.0 / 255.0 alpha:1] retain];
+        tintColor    = [[UIColor colorWithRed:27.0/255.0 green:55.0/255.0 blue:89.0/255.0 alpha:1] retain];
     }
 }
 
@@ -42,6 +44,11 @@ static UIColor* footerColor = nil;
 
 + (UIColor*) footerColor {
     return footerColor;
+}
+
+
++ (UIColor*) tintColor {
+    return tintColor;
 }
 
 
