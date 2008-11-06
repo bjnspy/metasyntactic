@@ -217,7 +217,7 @@
     
     [UIView beginAnimations:nil context:NULL];
     {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
         view.alpha = 1;
     }
     [UIView commitAnimations];
@@ -230,7 +230,7 @@
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(onAfterHidePostersView:finished:context:)];
         
-        [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         postersViewController.view.alpha = 0;
     }
     [UIView commitAnimations];
