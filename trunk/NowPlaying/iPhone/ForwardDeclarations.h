@@ -77,6 +77,7 @@
 @class PointerSet;
 @class PosterCache;
 @class PosterDownloader;
+@class PostersViewController;
 @class PriorityMutex;
 @class Pulser;
 @class Review;

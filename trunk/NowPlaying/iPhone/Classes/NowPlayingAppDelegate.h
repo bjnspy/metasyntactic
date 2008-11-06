@@ -14,13 +14,9 @@
 
 #import "TappableImageViewDelegate.h"
 
-@interface NowPlayingAppDelegate : NSObject<UIApplicationDelegate, TappableImageViewDelegate> {
+@interface NowPlayingAppDelegate : NSObject<UIApplicationDelegate> {
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
-
-    BOOL zoomedIn;
-    TappableImageView* fullScreenPosterImageView;
-    UIImageView* originalLocation;
 
     NowPlayingModel* model;
     NowPlayingController* controller;
@@ -29,17 +25,11 @@
 
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) TappableImageView* fullScreenPosterImageView;
-@property (retain) UIImageView* originalLocation;
 @property (retain) NowPlayingController* controller;
 @property (retain) NowPlayingModel* model;
 @property (retain) Pulser* pulser;
 
 + (void) refresh;
 + (void) refresh:(BOOL) force;
-
-+ (void) zoomInImage:(UIImage*) image fromLocation:(UIImageView*) originalLocation;
-
-+ (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation;
 
 @end

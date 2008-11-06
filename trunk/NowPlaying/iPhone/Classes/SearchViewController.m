@@ -103,7 +103,7 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return [NowPlayingAppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    return YES;
 }
 
 

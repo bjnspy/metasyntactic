@@ -10,19 +10,17 @@
 
 @interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate> {
     AbstractNavigationController* navigationController;
-    
+
     NSLock* downloadCoverGate;
     Movie* movie;
-    
+
     NSInteger posterCount;
     NSMutableArray* pageViews;
     NSInteger currentPage;
 
     UINavigationBar* toolBar;
     BOOL toolBarHidden;
-    BOOL shutdown;
-    
-    CGRect smallPosterFrame;
+    BOOL shutdown;;
 }
 
 @property (assign) AbstractNavigationController* navigationController;
@@ -34,9 +32,6 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                               movie:(Movie*) movie
-                        posterCount:(NSInteger) posterCount
-                   smallPosterFrame:(CGRect) smallPosterFrame;
-
-- (void) hideToolBar:(BOOL) hidden;
+                        posterCount:(NSInteger) posterCount;
 
 @end

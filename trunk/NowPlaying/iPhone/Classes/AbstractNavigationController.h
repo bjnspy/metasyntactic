@@ -15,12 +15,14 @@
 @interface AbstractNavigationController : UINavigationController {
     ApplicationTabBarController* tabBarController;
     SearchViewController* searchViewController;
+    PostersViewController* postersViewController;
     BOOL viewLoaded;
     BOOL showingSearch;
 }
 
 @property (assign) ApplicationTabBarController* tabBarController;
 @property (retain) SearchViewController* searchViewController;
+@property (retain) PostersViewController* postersViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
@@ -42,6 +44,9 @@
 
 - (void) showSearchView;
 - (void) hideSearchView;
+
+- (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount;
+- (void) hidePostersView;
 
 // @protected
 - (Movie*) movieForTitle:(NSString*) canonicalTitle;

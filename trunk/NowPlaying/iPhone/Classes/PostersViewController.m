@@ -40,16 +40,14 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                              movie:(Movie*) movie_ 
-                        posterCount:(NSInteger) posterCount_
-                   smallPosterFrame:(CGRect) smallPosterFrame_ {
+                              movie:(Movie*) movie_
+                        posterCount:(NSInteger) posterCount_ {
     if (self = [super init]) {
         self.navigationController = navigationController_;
         self.movie = movie_;
         posterCount = posterCount_;
-        smallPosterFrame = smallPosterFrame_;
     }
-    
+
     return self;
 }
 
@@ -68,7 +66,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     NSString* title =
     [NSString stringWithFormat:
      NSLocalizedString(@"%d of %d", nil), (currentPage + 1), posterCount];
-    
+
     [[toolBar.items objectAtIndex:0] setTitle:title];
 }
 
@@ -81,13 +79,13 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     downloadingLabel.font = [UIFont boldSystemFontOfSize:24];
     downloadingLabel.textColor = [UIColor whiteColor];
     [downloadingLabel sizeToFit];
-    
+
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     CGRect labelFrame = downloadingLabel.frame;
     labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
     labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0);
     downloadingLabel.frame = labelFrame;
-    
+
     return downloadingLabel;
 }
 
@@ -96,16 +94,16 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     activityIndicator.tag = ACTIVITY_INDICATOR_TAG;
     [activityIndicator sizeToFit];
-    
+
     CGRect labelFrame = label.frame;
     CGRect activityFrame = activityIndicator.frame;
-    
+
     activityFrame.origin.x = (int)(labelFrame.origin.x - activityFrame.size.width) - 5;
     activityFrame.origin.y = (int)(labelFrame.origin.y + (labelFrame.size.height / 2) - (activityFrame.size.height / 2));
     activityIndicator.frame = activityFrame;
-    
+
     [activityIndicator startAnimating];
-    
+
     return activityIndicator;
 }
 
@@ -113,16 +111,16 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 - (void) createDownloadViews:(UIView*) pageView {
     UILabel* downloadingLabel = [self createDownloadingLabel];
     UIActivityIndicatorView* activityIndicator = [self createActivityIndicator:downloadingLabel];
-    
+
     CGRect frame = activityIndicator.frame;
     double width = frame.size.width;
     frame.origin.x = (int)(frame.origin.x + width / 2);
     activityIndicator.frame = frame;
-    
+
     frame = downloadingLabel.frame;
     frame.origin.x = (int)(frame.origin.x + width / 2);
     downloadingLabel.frame = frame;
-    
+
     [pageView addSubview:activityIndicator];
     [pageView addSubview:downloadingLabel];
 }
@@ -137,7 +135,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
     imageView.frame = frame;
-    
+
     return imageView;
 }
 
@@ -145,10 +143,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 - (TappableScrollView*) createScrollView {
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
-    
-//    frame.origin.y = -self.navigationController.navigationBar.frame.size.height;
-//    frame.size.height = [UIScreen mainScreen].applicationFrame.size.height;
-    
+
     TappableScrollView* scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
     scrollView.delegate = self;
     scrollView.tapDelegate = self;
@@ -160,10 +155,10 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     scrollView.directionalLockEnabled = YES;
     scrollView.autoresizingMask = 0;
     scrollView.backgroundColor = [UIColor blackColor];
-    
+
     frame.size.width *= posterCount;
     scrollView.contentSize = frame.size;
-    
+
     return scrollView;
 }
 
@@ -172,7 +167,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
     frame.origin.x = page * frame.size.width;
-    
+
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
     pageView.backgroundColor = [UIColor blackColor];
     pageView.tag = page;
@@ -183,13 +178,13 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     if (page == 0) {
         image = [self.model.largePosterCache firstPosterForMovie:movie];
     }
-    
+
     if (image != nil) {
         UIImageView* imageView = [self createImageView:image];
         [pageView addSubview:imageView];
-    } else {    
+    } else {
         [self createDownloadViews:pageView];
-        
+
         NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
         [ThreadingUtilities performSelector:@selector(loadPoster:)
                                    onTarget:self
@@ -197,7 +192,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
                                        gate:downloadCoverGate
                                     visible:NO];
     }
-    
+
     return pageView;
 }
 
@@ -205,7 +200,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 - (void) loadPoster:(NSArray*) indexAndPageView {
     NSNumber* index = [indexAndPageView objectAtIndex:0];
     UIView* pageView = [indexAndPageView objectAtIndex:1];
-    
+
     UIImage* image = nil;
     while (!shutdown) {
         // try again in a second
@@ -215,12 +210,12 @@ const int ACTIVITY_INDICATOR_TAG = -1;
         if (image != nil) {
             break;
         }
-        
+
         [downloadCoverGate unlock];
         [NSThread sleepForTimeInterval:1];
         [downloadCoverGate lock];
     }
-    
+
     NSArray* imageAndView = [NSArray arrayWithObjects:image, pageView, nil];
     [self performSelectorOnMainThread:@selector(addImageToView:) withObject:imageAndView waitUntilDone:NO];
 }
@@ -237,17 +232,17 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     if (shutdown) {
         return;
     }
-    
+
     UIImage* image = [imageAndView objectAtIndex:0];
     UIView* pageView = [imageAndView objectAtIndex:1];
-    
+
     [self disableActivityIndicator:pageView];
-    
+
     UIImageView* imageView = [self createImageView:image];
-    
+
     [pageView addSubview:imageView];
     imageView.alpha = 0;
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         imageView.alpha = 1;
@@ -264,19 +259,17 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     TappableScrollView* scrollView = [self createScrollView];
     scrollView.autoresizesSubviews = YES;
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
+
     for (int i = 0; i < posterCount; i++) {
         UIView* pageView = [self loadPage:i];
         [scrollView addSubview:pageView];
     }
-    
+
     self.toolBar = [[[UINavigationBar alloc] initWithFrame:CGRectZero] autorelease];
     UINavigationItem* item = [[[UINavigationItem alloc] init] autorelease];
     item.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                              target:self
                                                                              action:@selector(onDoneTapped:)] autorelease];
-    toolBar.alpha = 0;
-    toolBarHidden = YES;
     toolBar.items = [NSArray arrayWithObject:item];
     toolBar.barStyle = UIBarStyleBlackTranslucent;
     [toolBar sizeToFit];
@@ -284,37 +277,24 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 
     [view addSubview:scrollView];
     [view addSubview:toolBar];
-    
+
     self.view = view;
 }
 
 
-- (void) onDoneTapped:(id) argument {
-    toolBar.alpha = 0;
-
-    [UIView beginAnimations:nil context:NULL];
-    {   
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(onAfterDoneTapped:finished:context:)];
-        
-        self.view.frame = smallPosterFrame;
-        self.view.alpha = 0;
-    }
-    [UIView commitAnimations];
+- (void) dismiss {
+    [navigationController hidePostersView];
 }
 
 
-- (void) onAfterDoneTapped:(NSString*) animationId
-               finished:(BOOL) finished
-                context:(void*) context {
-    [self.view removeFromSuperview];
-    [self autorelease];
+- (void) onDoneTapped:(id) argument {
+    [self dismiss];
 }
 
 
 - (void) hideToolBar:(BOOL) hidden {
     toolBarHidden = hidden;
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         if (hidden) {
@@ -330,7 +310,12 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 - (void) scrollView:(TappableScrollView*) scrollView
           wasTapped:(NSInteger) tapCount
             atPoint:(CGPoint) point {
-    [self hideToolBar:!toolBarHidden];
+    if (posterCount == 1) {
+        // just dismiss us
+        [self dismiss];
+    } else {
+        [self hideToolBar:!toolBarHidden];
+    }
 }
 
 
@@ -342,11 +327,16 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat pageWidth = scrollView.frame.size.width;
     NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
- 
+
     if (page != currentPage) {
         currentPage = page;
         [self setupTitle];
     }
+}
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+    return NO;
 }
 
 @end
