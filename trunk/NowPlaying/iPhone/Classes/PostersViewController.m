@@ -80,11 +80,11 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (UILabel*) createDownloadingLabel {
+- (UILabel*) createDownloadingLabel:(NSString*) text; {
     UILabel* downloadingLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     downloadingLabel.backgroundColor = [UIColor clearColor];
     downloadingLabel.opaque = NO;
-    downloadingLabel.text = NSLocalizedString(@"Downloading data", nil);
+    downloadingLabel.text = text;
     downloadingLabel.font = [UIFont boldSystemFontOfSize:24];
     downloadingLabel.textColor = [UIColor whiteColor];
     [downloadingLabel sizeToFit];
@@ -118,8 +118,14 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) createDownloadViews:(UIView*) pageView {
-    UILabel* downloadingLabel = [self createDownloadingLabel];
+- (void) createDownloadViews:(UIView*) pageView page:(NSInteger) page {
+    NSString* text;
+    if ([self.model.largePosterCache posterExistsForMovie:movie index:page]) {
+        text = NSLocalizedString(@"Loading poster", nil);
+    } else {
+        text = NSLocalizedString(@"Downloading poster", nil);
+    }
+    UILabel* downloadingLabel = [self createDownloadingLabel:text];
     UIActivityIndicatorView* activityIndicator = [self createActivityIndicator:downloadingLabel];
 
     CGRect frame = activityIndicator.frame;
@@ -195,7 +201,7 @@ const double LOAD_DELAY = 1;
     pageView.autoresizesSubviews = YES;
     pageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
-    [self createDownloadViews:pageView];
+    [self createDownloadViews:pageView page:page];
     NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
     [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:delay];
 
