@@ -33,7 +33,6 @@ const double LOAD_DELAY = 1;
 @synthesize pageNumberToView;
 @synthesize movie;
 @synthesize topBar;
-@synthesize bottomBar;
 @synthesize scrollView;
 
 - (void) dealloc {
@@ -41,7 +40,6 @@ const double LOAD_DELAY = 1;
     self.pageNumberToView = nil;
     self.movie = nil;
     self.topBar = nil;
-    self.bottomBar = nil;
     self.scrollView = nil;
 
     [super dealloc];
@@ -70,15 +68,6 @@ const double LOAD_DELAY = 1;
 
 - (NowPlayingModel*) model {
     return navigationController.model;
-}
-
-
-- (void) setupTitle {
-    NSString* title =
-    [NSString stringWithFormat:
-     NSLocalizedString(@"%d of %d", nil), (currentPage + 1), posterCount];
-
-    [[topBar.items objectAtIndex:0] setTitle:title];
 }
 
 
@@ -253,8 +242,126 @@ const double LOAD_DELAY = 1;
 }
 
 
+- (void) setupTopBar {
+    NSString* title =
+    [NSString stringWithFormat:
+     NSLocalizedString(@"%d of %d", nil), (currentPage + 1), posterCount];
+    
+    UILabel* label = [[[UILabel alloc] init] autorelease];
+    label.text = title;
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.opaque = NO;
+    label.shadowColor = [UIColor darkGrayColor];
+    [label sizeToFit];
+    
+    NSMutableArray* items = [NSMutableArray array];
+
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+    
+    UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"LeftArrow.png"]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(onLeftTapped:)] autorelease];
+    [items addObject:leftArrow];
+
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+    
+    UIBarItem* titleItem = [[[UIBarButtonItem alloc] initWithCustomView:label] autorelease];
+    [items addObject:titleItem];
+
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+
+    UIBarButtonItem* rightArrow = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"RightArrow.png"]
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(onRightTapped:)] autorelease];
+    [items addObject:rightArrow];
+
+    
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+    
+    UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
+    [items addObject:doneItem];
+    
+    [topBar setItems:items animated:YES];
+    
+    if (currentPage <= 0) {
+        leftArrow.enabled = NO;
+    }
+    
+    if (currentPage >= (posterCount - 1)) {
+        rightArrow.enabled = NO;
+    }
+}
+
+
+- (void) clearAndLoadPages {
+    for (NSNumber* pageNumber in pageNumberToView.allKeys) {
+        if (pageNumber.intValue < (currentPage - 1) || pageNumber.intValue > (currentPage + 1)) {
+            UIView* pageView = [pageNumberToView objectForKey:pageNumber];
+            [self disableActivityIndicator:pageView];
+            
+            [pageView removeFromSuperview];
+            [pageNumberToView removeObjectForKey:pageNumber];
+        }
+    }
+    
+    [self loadPage:currentPage - 1 delay:LOAD_DELAY];
+    [self loadPage:currentPage     delay:LOAD_DELAY];
+    [self loadPage:currentPage + 1 delay:LOAD_DELAY];
+}
+
+
+- (void) setPage:(NSInteger) page {
+    if (page != currentPage) {
+        currentPage = page;
+        
+        [self setupTopBar];
+        [self clearAndLoadPages];
+    }
+}
+
+
+- (void) onRightTapped:(id) argument {
+    CGRect rect = [UIScreen mainScreen].bounds;
+    rect.origin.x = (currentPage + 1) * rect.size.width;
+    [scrollView scrollRectToVisible:rect animated:YES];
+    [self setPage:currentPage + 1];
+}
+
+
+- (void) onLeftTapped:(id) argument {
+    CGRect rect = [UIScreen mainScreen].bounds;
+    rect.origin.x = (currentPage - 1) * rect.size.width;
+    [scrollView scrollRectToVisible:rect animated:YES];
+    [self setPage:currentPage - 1];
+}
+
+
+- (void) hideToolBars:(BOOL) hidden {
+    toolBarsHidden = hidden;
+    
+    [UIView beginAnimations:nil context:NULL];
+    {
+        if (hidden) {
+            [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+            topBar.alpha = 0;
+        } else {
+            [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+            topBar.alpha = TRANSLUCENCY_LEVEL;
+        }
+    }
+    [UIView commitAnimations];
+}
+
+
 - (void) loadView {
-    NonClippingView* view = [[[NonClippingView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    CGRect bounds = [UIScreen mainScreen].bounds;
+    NonClippingView* view = [[[NonClippingView alloc] initWithFrame:bounds] autorelease];
     view.autoresizesSubviews = YES;
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
@@ -262,15 +369,16 @@ const double LOAD_DELAY = 1;
     scrollView.autoresizesSubviews = YES;
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
-    self.topBar = [[[UINavigationBar alloc] initWithFrame:CGRectZero] autorelease];
-    UINavigationItem* item = [[[UINavigationItem alloc] init] autorelease];
-    item.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                             target:self
-                                                                             action:@selector(onDoneTapped:)] autorelease];
-    topBar.items = [NSArray arrayWithObject:item];
-    topBar.barStyle = UIBarStyleBlackTranslucent;
-    [topBar sizeToFit];
-    [self setupTitle];
+    {
+        self.topBar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
+        topBar.barStyle = UIBarStyleBlackTranslucent;
+        [self setupTopBar];
+        [topBar sizeToFit];
+        
+        CGRect frame = topBar.frame;
+        frame.origin.y = [UIApplication sharedApplication].statusBarFrame.size.height;
+        topBar.frame = frame;
+    }
 
     // load the first two pages.  Try to load the first one immediately.
     [self loadPage:0 delay:0];
@@ -294,23 +402,6 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) hideToolBars:(BOOL) hidden {
-    toolBarsHidden = hidden;
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        if (hidden) {
-            topBar.alpha = 0;
-            bottomBar.alpha = 0;
-        } else {
-            topBar.alpha = TRANSLUCENCY_LEVEL;
-            bottomBar.alpha = TRANSLUCENCY_LEVEL;
-        }
-    }
-    [UIView commitAnimations];
-}
-
-
 - (void) scrollView:(TappableScrollView*) scrollView
           wasTapped:(NSInteger) tapCount
             atPoint:(CGPoint) point {
@@ -328,33 +419,11 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) clearAndLoadPages {
-    for (NSNumber* pageNumber in pageNumberToView.allKeys) {
-        if (pageNumber.intValue < (currentPage - 1) || pageNumber.intValue > (currentPage + 1)) {
-            UIView* pageView = [pageNumberToView objectForKey:pageNumber];
-            [self disableActivityIndicator:pageView];
-
-            [pageView removeFromSuperview];
-            [pageNumberToView removeObjectForKey:pageNumber];
-        }
-    }
-    
-    [self loadPage:currentPage - 1 delay:LOAD_DELAY];
-    [self loadPage:currentPage     delay:LOAD_DELAY];
-    [self loadPage:currentPage + 1 delay:LOAD_DELAY];
-}
-
-
 - (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
     CGFloat pageWidth = scrollView.frame.size.width;
     NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
 
-    if (page != currentPage) {
-        currentPage = page;
-        [self setupTitle];
-        
-        [self clearAndLoadPages];
-    }
+    [self setPage:page];
 }
 
 

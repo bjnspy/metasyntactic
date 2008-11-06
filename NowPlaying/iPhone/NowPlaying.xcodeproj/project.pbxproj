@@ -105,6 +105,8 @@
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
 		74A3F0500E686A7D007ED6DC /* MovieNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A3F04F0E686A7D007ED6DC /* MovieNumbers.m */; };
 		74A41ACF0E9E172B007CF82C /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A41ACE0E9E172B007CF82C /* Pulser.m */; };
+		74A70AD20EC391A0008C661D /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A70AD00EC391A0008C661D /* LeftArrow.png */; };
+		74A70AD30EC391A0008C661D /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A70AD10EC391A0008C661D /* RightArrow.png */; };
 		74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */; };
 		74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
@@ -429,6 +431,8 @@
 		74A3F11D0E687D26007ED6DC /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		74A41ACD0E9E172B007CF82C /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
 		74A41ACE0E9E172B007CF82C /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulser.m; sourceTree = "<group>"; };
+		74A70AD00EC391A0008C661D /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LeftArrow.png; path = Resources/LeftArrow.png; sourceTree = "<group>"; };
+		74A70AD10EC391A0008C661D /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Resources/RightArrow.png; sourceTree = "<group>"; };
 		74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieListViewController.h; sourceTree = "<group>"; };
 		74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieListViewController.m; sourceTree = "<group>"; };
 		74A865420E64FCAD003A2249 /* UpcomingMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesViewController.h; sourceTree = "<group>"; };
@@ -741,6 +745,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74A70AD00EC391A0008C661D /* LeftArrow.png */,
+				74A70AD10EC391A0008C661D /* RightArrow.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
@@ -1412,6 +1418,8 @@
 				741373F30E89CF1B00CF4900 /* Search.png in Resources */,
 				747AB7A70EB956B2002438D0 /* DVD.png in Resources */,
 				747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */,
+				74A70AD20EC391A0008C661D /* LeftArrow.png in Resources */,
+				74A70AD30EC391A0008C661D /* RightArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
