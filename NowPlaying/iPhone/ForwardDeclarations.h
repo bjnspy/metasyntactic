@@ -46,6 +46,7 @@
 @class IMDbCache;
 @class ImdbPosterDownloader;
 @class Invocation;
+@class LargePosterCache;
 @class LinkedNode;
 @class LinkedSet;
 @class Location;

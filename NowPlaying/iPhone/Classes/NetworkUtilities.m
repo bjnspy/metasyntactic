@@ -14,8 +14,6 @@
 
 #import "NetworkUtilities.h"
 
-#import <netinet/in.h>
-
 #import "PriorityMutex.h"
 #import "XmlParser.h"
 

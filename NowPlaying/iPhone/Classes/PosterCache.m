@@ -33,15 +33,11 @@
 @synthesize updateGate;
 @synthesize model;
 @synthesize prioritizedMovies;
-@synthesize largePosterGate;
-@synthesize largePosterIndexData;
 
 - (void) dealloc {
     self.updateGate = nil;
-    self.largePosterGate = nil;
     self.model = nil;
     self.prioritizedMovies = nil;
-    self.largePosterIndexData = nil;
 
     [super dealloc];
 }
@@ -50,7 +46,6 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.updateGate = [[[NSLock alloc] init] autorelease];
-        self.largePosterGate = [[[NSLock alloc] init] autorelease];
         self.model = model_;
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
@@ -76,12 +71,6 @@
 - (NSString*) posterFilePath:(Movie*) movie {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
-}
-
-
-- (NSString*) largePosterFilePath:(Movie*) movie {
-    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    return [[[Application postersLargeFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
@@ -201,104 +190,6 @@
     NSString* path = [self posterFilePath:movie];
     NSData* data = [FileUtilities readData:path];
     return [UIImage imageWithData:data];
-}
-
-
-- (UIImage*) largePosterForMovie:(Movie*) movie {
-    NSString* path = [self largePosterFilePath:movie];
-    NSData* data = [FileUtilities readData:path];
-    return [UIImage imageWithData:data];
-}
-
-
-- (NSString*) largePosterIndexFile {
-    return [[Application postersLargeFolder] stringByAppendingPathComponent:@"Index.plist"];
-}
-
-
-- (NSDictionary*) loadLargePosterIndex {
-    NSDictionary* result = [FileUtilities readObject:self.largePosterIndexFile];
-    if (result == nil) {
-        return [NSDictionary dictionary];
-    }
-
-    return result;
-}
-
-
-- (NSDictionary*) largePosterIndex {
-    if (largePosterIndexData == nil) {
-        self.largePosterIndexData = [self loadLargePosterIndex];
-    }
-
-    return largePosterIndexData;
-}
-
-
-- (void) ensureIndex {
-    NSString* file = self.largePosterIndexFile;
-    NSDate* modificationDate = [FileUtilities modificationDate:file];
-    if (modificationDate != nil) {
-        if (ABS([modificationDate timeIntervalSinceNow]) < ONE_WEEK) {
-            return;
-        }
-    }
-
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings?provider=imp", [Application host]];
-    NSString* result = [NetworkUtilities stringWithContentsOfAddress:address
-                                                           important:NO];
-    if (result.length == 0) {
-        return;
-    }
-
-    NSMutableDictionary* index = [NSMutableDictionary dictionary];
-    for (NSString* row in [result componentsSeparatedByString:@"\n"]) {
-        NSArray* columns = [row componentsSeparatedByString:@"\t"];
-
-        if (columns.count != 2) {
-            continue;
-        }
-
-        [index setObject:[columns objectAtIndex:1] forKey:[columns objectAtIndex:0]];
-    }
-    if (index.count > 0) {
-        [FileUtilities writeObject:index toFile:file];
-        self.largePosterIndexData = index;
-    }
-}
-
-
-- (void) downloadLargePosterForMovieWorker:(Movie*) movie {
-    [self ensureIndex];
-
-    NSDictionary* largePosterIndex = self.largePosterIndex;
-
-    DifferenceEngine* engine = [DifferenceEngine engine];
-    NSString* title = [engine findClosestMatch:movie.canonicalTitle inArray:largePosterIndex.allKeys];
-
-    if (title.length == 0) {
-        return;
-    }
-
-    NSString* url = [largePosterIndex objectForKey:title];
-    NSData* data = [NetworkUtilities dataWithContentsOfAddress:url
-                                                     important:NO];
-    if (data != nil) {
-        [FileUtilities writeData:data toFile:[self largePosterFilePath:movie]];
-        [NowPlayingAppDelegate refresh];
-    }
-}
-
-
-- (void) downloadLargePosterForMovie:(Movie*) movie {
-    [largePosterGate lock];
-    {
-        NSData* data = [FileUtilities readData:[self largePosterFilePath:movie]];
-        if (data == nil) {
-            [self downloadLargePosterForMovieWorker:movie];
-        }
-    }
-    [largePosterGate unlock];
 }
 
 

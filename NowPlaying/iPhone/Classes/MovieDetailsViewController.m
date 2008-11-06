@@ -24,6 +24,7 @@
 #import "ExpandedMovieDetailsCell.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
+#import "LargePosterCache.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
@@ -222,7 +223,7 @@
 
 
 - (void) downloadPoster {
-    [self.model.posterCache downloadLargePosterForMovie:movie];
+    [self.model.largePosterCache downloadPosterForMovie:movie];
     [self performSelectorOnMainThread:@selector(reportPoster) withObject:nil waitUntilDone:NO];
 }
 
@@ -737,7 +738,7 @@
 
 - (void) imageView:(TappableImageView*) imageView
          wasTapped:(NSInteger) tapCount {
-    UIImage* largeCover = [self.model.posterCache largePosterForMovie:movie];
+    UIImage* largeCover = [self.model.largePosterCache posterForMovie:movie];
     if (largeCover == nil) {
         return;
     }
