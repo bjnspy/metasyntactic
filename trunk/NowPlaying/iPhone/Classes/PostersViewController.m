@@ -136,8 +136,6 @@ const double LOAD_DELAY = 1;
 - (UIImageView*) createImageView:(UIImage*) image {
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.autoresizesSubviews = YES;
-    imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
     CGRect frame = [UIScreen mainScreen].bounds;
     frame.origin.x = 5;
@@ -170,6 +168,27 @@ const double LOAD_DELAY = 1;
 }
 
 
+- (void) disableActivityIndicator:(UIView*) pageView {
+    id view = [pageView viewWithTag:ACTIVITY_INDICATOR_TAG];
+    [view stopAnimating];
+}
+
+
+- (void) addImage:(UIImage*) image toView:(UIView*) pageView {
+    [self disableActivityIndicator:pageView];
+    
+    UIImageView* imageView = [self createImageView:image];
+    [pageView addSubview:imageView];
+    imageView.alpha = 0;
+    
+    [UIView beginAnimations:nil context:NULL];
+    {
+        imageView.alpha = 1;
+    }
+    [UIView commitAnimations];
+}
+
+
 - (void) loadPage:(NSInteger) page delay:(double) delay {
     if (page < 0 || page >= posterCount) {
         return;
@@ -186,37 +205,24 @@ const double LOAD_DELAY = 1;
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
     pageView.backgroundColor = [UIColor blackColor];
     pageView.tag = page;
-    pageView.autoresizesSubviews = YES;
-    pageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
-    [self createDownloadViews:pageView page:page];
-    NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
-    [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:delay];
+    UIImage* image = nil;
+    if (delay == 0) {
+        image = [self.model.largePosterCache posterForMovie:movie index:page];
+    }
+    
+    if (image != nil) {
+        [self addImage:image toView:pageView];
+    } else {
+        [self createDownloadViews:pageView page:page];
+        NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
+        [self performSelector:@selector(loadPoster:) withObject:indexAndPageView
+                   afterDelay:delay];
+    }
 
     [scrollView addSubview:pageView];
 
     [pageNumberToView setObject:pageView forKey:pageNumber];
-}
-
-
-- (void) disableActivityIndicator:(UIView*) pageView {
-    id view = [pageView viewWithTag:ACTIVITY_INDICATOR_TAG];
-    [view stopAnimating];
-}
-
-
-- (void) addImage:(UIImage*) image toView:(UIView*) pageView {
-    [self disableActivityIndicator:pageView];
-
-    UIImageView* imageView = [self createImageView:image];
-    [pageView addSubview:imageView];
-    imageView.alpha = 0;
-    
-    [UIView beginAnimations:nil context:NULL];
-    {
-        imageView.alpha = 1;
-    }
-    [UIView commitAnimations];
 }
 
 
@@ -369,12 +375,8 @@ const double LOAD_DELAY = 1;
 - (void) loadView {
     CGRect bounds = [UIScreen mainScreen].bounds;
     NonClippingView* view = [[[NonClippingView alloc] initWithFrame:bounds] autorelease];
-    view.autoresizesSubviews = YES;
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
     [self createScrollView];
-    scrollView.autoresizesSubviews = YES;
-    scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
     {
         self.topBar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
