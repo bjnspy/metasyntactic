@@ -27,6 +27,7 @@
 #import "GlobalActivityIndicator.h"
 #import "GoogleDataProvider.h"
 #import "IMDbCache.h"
+#import "LargePosterCache.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "Movie.h"
@@ -98,6 +99,7 @@ static NSString** KEYS[] = {
 @synthesize dvdCache;
 @synthesize imdbCache;
 @synthesize posterCache;
+@synthesize largePosterCache;
 @synthesize scoreCache;
 @synthesize trailerCache;
 @synthesize upcomingCache;
@@ -110,6 +112,7 @@ static NSString** KEYS[] = {
     self.dvdCache = nil;
     self.imdbCache = nil;
     self.posterCache = nil;
+    self.largePosterCache = nil;
     self.scoreCache = nil;
     self.trailerCache = nil;
     self.upcomingCache = nil;
@@ -244,6 +247,7 @@ static NSString** KEYS[] = {
         self.dvdCache = [DVDCache cache];
         self.imdbCache = [IMDbCache cache];
         self.posterCache = [PosterCache cacheWithModel:self];
+        self.largePosterCache = [LargePosterCache cache];
         self.scoreCache = [ScoreCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cache];
         self.upcomingCache = [UpcomingCache cache];
@@ -668,7 +672,7 @@ static NSString** KEYS[] = {
         return image;
     }
 
-    return [posterCache largePosterForMovie:movie];
+    return [largePosterCache posterForMovie:movie];
 }
 
 
