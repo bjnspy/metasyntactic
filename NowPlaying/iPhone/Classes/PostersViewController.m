@@ -342,18 +342,25 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) hideToolBars:(BOOL) hidden {
-    toolBarsHidden = hidden;
-    
+- (void) hideToolBar {
     [UIView beginAnimations:nil context:NULL];
     {
-        if (hidden) {
-            [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
-            topBar.alpha = 0;
-        } else {
-            [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
-            topBar.alpha = TRANSLUCENCY_LEVEL;
-        }
+        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+        topBar.alpha = 0;
+    }
+    [UIView commitAnimations];
+}
+
+
+- (void) showToolBar {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideToolBar) object:nil];
+        
+    [UIView beginAnimations:nil context:NULL];
+    {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+        topBar.alpha = TRANSLUCENCY_LEVEL;
+        
+        [self performSelector:@selector(hideToolBar) withObject:nil afterDelay:5];
     }
     [UIView commitAnimations];
 }
@@ -378,6 +385,8 @@ const double LOAD_DELAY = 1;
         CGRect frame = topBar.frame;
         frame.origin.y = [UIApplication sharedApplication].statusBarFrame.size.height;
         topBar.frame = frame;
+        
+        [self showToolBar];
     }
 
     // load the first two pages.  Try to load the first one immediately.
@@ -409,13 +418,17 @@ const double LOAD_DELAY = 1;
         // just dismiss us
         [self dismiss];
     } else {
-        [self hideToolBars:!toolBarsHidden];
+        if (topBar.alpha == 0) {
+            [self showToolBar];
+        } else {
+            [self hideToolBar];
+        }
     }
 }
 
 
 - (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
-    [self hideToolBars:YES];
+    [self hideToolBar];
 }
 
 
