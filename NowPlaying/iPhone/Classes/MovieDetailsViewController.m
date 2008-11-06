@@ -747,44 +747,13 @@
     if (!UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return;
     }
-    
+
     UIImage* largeCover = [self.model.largePosterCache firstPosterForMovie:movie];
     if (largeCover == nil) {
         return;
     }
     
-    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
-    CGRect smallPosterFrame = [window convertRect:imageView.frame fromView:imageView];
-    
-    PostersViewController* viewController =
-    [[PostersViewController alloc] initWithNavigationController:self.navigationController
-                                                           movie:movie
-                                                     posterCount:posterCount
-                                               smallPosterFrame:smallPosterFrame];
-    
-    UIView* view = viewController.view;
-    view.alpha = 0;
-    view.frame = smallPosterFrame;
-
-    [window addSubview:view];
-    [window bringSubviewToFront:view];
-    
-    [UIView beginAnimations:nil context:viewController];
-    {
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(onAfterImageTapped:finished:context:)];
-        
-        view.alpha = 1;
-        view.frame = [UIScreen mainScreen].applicationFrame;
-    }
-    [UIView commitAnimations];
-}
-
-
-- (void) onAfterImageTapped:(NSString*) animationId
-                  finished:(BOOL) finished
-                   context:(PostersViewController*) viewController {
-    [viewController hideToolBar:NO];
+    [navigationController showPostersView:movie posterCount:posterCount];
 }
 
 @end

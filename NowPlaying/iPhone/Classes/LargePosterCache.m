@@ -32,7 +32,7 @@
     if (self = [super init]) {
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
@@ -72,7 +72,7 @@
     if (result == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     return result;
 }
 
@@ -81,7 +81,7 @@
     if (indexData == nil) {
         self.indexData = [self loadIndex];
     }
-    
+
     return indexData;
 }
 
@@ -94,22 +94,22 @@
             return;
         }
     }
-    
+
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings?provider=imp", [Application host]];
     NSString* result = [NetworkUtilities stringWithContentsOfAddress:address
                                                            important:NO];
     if (result.length == 0) {
         return;
     }
-    
+
     NSMutableDictionary* index = [NSMutableDictionary dictionary];
     for (NSString* row in [result componentsSeparatedByString:@"\n"]) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
-        
+
         if (columns.count < 2) {
             continue;
         }
-        
+
         NSArray* posters = [columns subarrayWithRange:NSMakeRange(1, columns.count - 1)];
         [index setObject:posters forKey:[columns objectAtIndex:0]];
     }
@@ -123,16 +123,16 @@
 
 - (NSArray*) posterUrlsWorker:(Movie*) movie {
     [self ensureIndex];
-    
+
     NSDictionary* index = self.index;
-    
+
     DifferenceEngine* engine = [DifferenceEngine engine];
     NSString* title = [engine findClosestMatch:movie.canonicalTitle inArray:index.allKeys];
-    
+
     if (title.length == 0) {
         return [NSArray array];
     }
-    
+
     NSArray* urls = [index objectForKey:title];
     return urls;
 }
@@ -140,7 +140,7 @@
 
 - (NSArray*) posterUrls:(Movie*) movie {
     NSAssert(![NSThread isMainThread], @"");
-    
+
     NSArray* array;
     [gate lock];
     {
@@ -155,7 +155,10 @@
                                  urls:(NSArray*) urls
                                 index:(NSInteger) index {
     NSAssert(![NSThread isMainThread], @"");
-    
+    if (index < 0 || index >= urls.count) {
+        return;
+    }
+
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]
                                                      important:NO];
     if (data != nil) {
@@ -176,7 +179,7 @@
             [self downloadPosterForMovieWorker:movie urls:urls index:index];
         }
     }
-    [gate unlock];    
+    [gate unlock];
 }
 
 

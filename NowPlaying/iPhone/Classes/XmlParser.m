@@ -122,13 +122,13 @@ static NSLock* gate = nil;
     [elementsStack removeLastObject];
     [stringBufferStack removeLastObject];
     [attributesStack removeLastObject];
-    
+
 
     XmlElement* element = [XmlElement elementWithName:elementName
                                            attributes:attributes
                                              children:children
                                                  text:text];
-    
+
 [elementsStack.lastObject addObject:element];
 }
 

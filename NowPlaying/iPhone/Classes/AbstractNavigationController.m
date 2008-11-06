@@ -19,6 +19,7 @@
 #import "MovieDetailsViewController.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
+#import "PostersViewController.h"
 #import "ReviewsViewController.h"
 #import "SearchViewController.h"
 #import "Theater.h"
@@ -29,10 +30,12 @@
 
 @synthesize tabBarController;
 @synthesize searchViewController;
+@synthesize postersViewController;
 
 - (void) dealloc {
     self.tabBarController = nil;
     self.searchViewController = nil;
+    self.postersViewController = nil;
 
     [super dealloc];
 }
@@ -179,7 +182,7 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return [NowPlayingAppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    return postersViewController == nil;
 }
 
 
@@ -196,6 +199,47 @@
 - (void) hideSearchView {
     [searchViewController onHide];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+
+- (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount {
+    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+    
+    self.postersViewController = 
+    [[[PostersViewController alloc] initWithNavigationController:self
+                                                          movie:movie
+                                                    posterCount:posterCount] autorelease];
+    
+    UIView* view = postersViewController.view;
+    view.alpha = 0;
+    
+    [window addSubview:view];
+    
+    [UIView beginAnimations:nil context:NULL];
+    {
+        view.alpha = 1;
+    }
+    [UIView commitAnimations];
+}
+
+
+- (void) hidePostersView {
+    [UIView beginAnimations:nil context:NULL];
+    {
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(onAfterHidePostersView:finished:context:)];
+        
+        postersViewController.view.alpha = 0;
+    }
+    [UIView commitAnimations];
+}
+
+
+- (void) onAfterHidePostersView:(NSString*) animationId
+                  finished:(BOOL) finished
+                   context:(void*) context {
+    [postersViewController.view removeFromSuperview];
+    self.postersViewController = nil;
 }
 
 
