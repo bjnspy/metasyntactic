@@ -16,23 +16,24 @@
 
 @interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate> {
     AbstractNavigationController* navigationController;
-
-    NSLock* downloadCoverGate;
     Movie* movie;
 
-    NSInteger posterCount;
-    NSMutableArray* pageViews;
+    TappableScrollView* scrollView;
+
     NSInteger currentPage;
+    NSInteger posterCount;
+    NSMutableDictionary* pageNumberToView;
 
     UINavigationBar* toolBar;
     BOOL toolBarHidden;
-    BOOL shutdown;;
+
+    BOOL shutdown;
 }
 
 @property (assign) AbstractNavigationController* navigationController;
-@property (retain) NSLock* downloadCoverGate;
 @property (retain) Movie* movie;
-@property (retain) NSMutableArray* pageViews;
+@property (retain) NSMutableDictionary* pageNumberToView;
+@property (retain) TappableScrollView* scrollView;
 @property (retain) UINavigationBar* toolBar;
 
 

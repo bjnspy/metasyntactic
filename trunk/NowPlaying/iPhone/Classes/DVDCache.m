@@ -491,9 +491,13 @@
 - (void) updateVideoDetails:(NSMutableArray*) videos {
     Movie* movie;
     do {
-        movie = [self getNextMovie:videos];
-        [self updateVideoPoster:movie];
-        [self updateVideoImdbAddress:movie];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            movie = [self getNextMovie:videos];
+            [self updateVideoPoster:movie];
+            [self updateVideoImdbAddress:movie];
+        }
+        [pool release];
     } while (movie != nil);
 }
 

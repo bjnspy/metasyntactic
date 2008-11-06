@@ -27,19 +27,20 @@
 
 const double TRANSLUCENCY_LEVEL = 0.9;
 const int ACTIVITY_INDICATOR_TAG = -1;
+const double LOAD_DELAY = 1;
 
 @synthesize navigationController;
-@synthesize downloadCoverGate;
-@synthesize pageViews;
+@synthesize pageNumberToView;
 @synthesize movie;
 @synthesize toolBar;
+@synthesize scrollView;
 
 - (void) dealloc {
     self.navigationController = nil;
-    self.downloadCoverGate = nil;
-    self.pageViews = nil;
+    self.pageNumberToView = nil;
     self.movie = nil;
     self.toolBar = nil;
+    self.scrollView = nil;
 
     [super dealloc];
 }
@@ -52,6 +53,8 @@ const int ACTIVITY_INDICATOR_TAG = -1;
         self.navigationController = navigationController_;
         self.movie = movie_;
         posterCount = posterCount_;
+        
+        self.pageNumberToView = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -99,6 +102,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 - (UIActivityIndicatorView*) createActivityIndicator:(UILabel*) label {
     UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     activityIndicator.tag = ACTIVITY_INDICATOR_TAG;
+    activityIndicator.hidesWhenStopped = YES;
     [activityIndicator sizeToFit];
 
     CGRect labelFrame = label.frame;
@@ -140,6 +144,8 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
+    frame.origin.x = 5;
+    frame.size.width -= 10;
     imageView.frame = frame;
 
     return imageView;
@@ -150,7 +156,7 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
 
-    TappableScrollView* scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
+    self.scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
     scrollView.delegate = self;
     scrollView.tapDelegate = self;
     scrollView.pagingEnabled = YES;
@@ -169,7 +175,16 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 }
 
 
-- (UIView*) loadPage:(NSInteger) page {
+- (void) loadPage:(NSInteger) page delay:(double) delay {
+    if (page < 0 || page >= posterCount) {
+        return;
+    }
+    
+    NSNumber* pageNumber = [NSNumber numberWithInt:page];
+    if ([pageNumberToView objectForKey:pageNumber] != nil) {
+        return;
+    }
+         
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
     frame.origin.x = page * frame.size.width;
@@ -179,76 +194,30 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     pageView.tag = page;
     pageView.autoresizesSubviews = YES;
     pageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    [self createDownloadViews:pageView];
+    NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
+    [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:delay];
 
-    UIImage* image = nil;
-    if (page == 0) {
-        image = [self.model.largePosterCache firstPosterForMovie:movie];
-    }
+    [scrollView addSubview:pageView];
 
-    if (image != nil) {
-        UIImageView* imageView = [self createImageView:image];
-        [pageView addSubview:imageView];
-    } else {
-        [self createDownloadViews:pageView];
-
-        NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
-        [ThreadingUtilities performSelector:@selector(loadPoster:)
-                                   onTarget:self
-                   inBackgroundWithArgument:indexAndPageView
-                                       gate:downloadCoverGate
-                                    visible:NO];
-    }
-
-    return pageView;
-}
-
-
-- (void) loadPoster:(NSArray*) indexAndPageView {
-    NSNumber* index = [indexAndPageView objectAtIndex:0];
-    UIView* pageView = [indexAndPageView objectAtIndex:1];
-
-    UIImage* image = nil;
-    while (!shutdown) {
-        // try again in a second
-        [self.model.largePosterCache downloadPosterForMovie:movie index:index.intValue];
-        image = [self.model.largePosterCache posterForMovie:movie index:index.intValue];
-
-        if (image != nil) {
-            break;
-        }
-
-        [downloadCoverGate unlock];
-        [NSThread sleepForTimeInterval:1];
-        [downloadCoverGate lock];
-    }
-
-    NSArray* imageAndView = [NSArray arrayWithObjects:image, pageView, nil];
-    [self performSelectorOnMainThread:@selector(addImageToView:) withObject:imageAndView waitUntilDone:NO];
+    [pageNumberToView setObject:pageView forKey:pageNumber];
 }
 
 
 - (void) disableActivityIndicator:(UIView*) pageView {
     id view = [pageView viewWithTag:ACTIVITY_INDICATOR_TAG];
     [view stopAnimating];
-    [view removeFromSuperview];
 }
 
 
-- (void) addImageToView:(NSArray*) imageAndView {
-    if (shutdown) {
-        return;
-    }
-
-    UIImage* image = [imageAndView objectAtIndex:0];
-    UIView* pageView = [imageAndView objectAtIndex:1];
-
+- (void) addImage:(UIImage*) image toView:(UIView*) pageView {
     [self disableActivityIndicator:pageView];
 
     UIImageView* imageView = [self createImageView:image];
-
     [pageView addSubview:imageView];
     imageView.alpha = 0;
-
+    
     [UIView beginAnimations:nil context:NULL];
     {
         imageView.alpha = 1;
@@ -257,19 +226,36 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 }
 
 
+- (void) loadPoster:(NSArray*) indexAndPageView {
+    if (shutdown) {
+        return;
+    }
+    
+    NSNumber* index = [indexAndPageView objectAtIndex:0];
+    UIView* pageView = [indexAndPageView objectAtIndex:1];
+
+    if (index.intValue < (currentPage - 1) ||
+        index.intValue > (currentPage + 1)) {
+        return;
+    }
+    
+    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index.intValue];
+    if (image == nil) {
+        [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:LOAD_DELAY];
+    } else {
+        [self addImage:image toView:pageView];
+    }
+}
+
+
 - (void) loadView {
     NonClippingView* view = [[[NonClippingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     view.autoresizesSubviews = YES;
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
-    TappableScrollView* scrollView = [self createScrollView];
+    [self createScrollView];
     scrollView.autoresizesSubviews = YES;
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
-    for (int i = 0; i < posterCount; i++) {
-        UIView* pageView = [self loadPage:i];
-        [scrollView addSubview:pageView];
-    }
 
     self.toolBar = [[[UINavigationBar alloc] initWithFrame:CGRectZero] autorelease];
     UINavigationItem* item = [[[UINavigationItem alloc] init] autorelease];
@@ -281,14 +267,19 @@ const int ACTIVITY_INDICATOR_TAG = -1;
     [toolBar sizeToFit];
     [self setupTitle];
 
+    // load the first two pages.  Try to load the first one immediately.
+    [self loadPage:0 delay:0];
+    [self loadPage:1 delay:LOAD_DELAY];
+    
     [view addSubview:scrollView];
     [view addSubview:toolBar];
-
+    
     self.view = view;
 }
 
 
 - (void) dismiss {
+    shutdown = YES;
     [navigationController hidePostersView];
 }
 
@@ -330,13 +321,32 @@ const int ACTIVITY_INDICATOR_TAG = -1;
 }
 
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void) clearAndLoadPages {
+    for (NSNumber* pageNumber in pageNumberToView.allKeys) {
+        if (pageNumber.intValue < (currentPage - 1) || pageNumber.intValue > (currentPage + 1)) {
+            UIView* pageView = [pageNumberToView objectForKey:pageNumber];
+            [self disableActivityIndicator:pageView];
+
+            [pageView removeFromSuperview];
+            [pageNumberToView removeObjectForKey:pageNumber];
+        }
+    }
+    
+    [self loadPage:currentPage - 1 delay:LOAD_DELAY];
+    [self loadPage:currentPage     delay:LOAD_DELAY];
+    [self loadPage:currentPage + 1 delay:LOAD_DELAY];
+}
+
+
+- (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
     CGFloat pageWidth = scrollView.frame.size.width;
     NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
 
     if (page != currentPage) {
         currentPage = page;
         [self setupTitle];
+        
+        [self clearAndLoadPages];
     }
 }
 

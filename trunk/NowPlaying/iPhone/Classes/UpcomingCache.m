@@ -138,10 +138,14 @@ static NSString* titles_key = @"Titles";
     NSMutableArray* result = [NSMutableArray array];
 
     for (XmlElement* movieElement in resultElement.children) {
-        Movie* movie = [self processMovieElement:movieElement studioKeys:studioKeys titleKeys:titleKeys];
-        if (movie != nil) {
-            [result addObject:movie];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            Movie* movie = [self processMovieElement:movieElement studioKeys:studioKeys titleKeys:titleKeys];
+            if (movie != nil) {
+                [result addObject:movie];
+            }
         }
+        [pool release];
     }
 
     return result;
