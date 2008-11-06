@@ -20,7 +20,7 @@
 - (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index;
 
 - (void) downloadFirstPosterForMovie:(Movie*) movie;
-- (void) downloadAllPostersForMovie:(Movie*) movie;
+- (void) downloadPosterForMovie:(Movie*) movie index:(NSInteger) index;
 - (NSInteger) posterCountForMovie:(Movie*) movie;
 
 @end

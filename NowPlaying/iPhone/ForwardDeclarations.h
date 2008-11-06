@@ -15,6 +15,7 @@
 @protocol DataProvider;
 @protocol ScoreProvider;
 @protocol TappableImageViewDelegate;
+@protocol TappableScrollViewDelegate;
 
 @class AbstractDataProvider;
 @class AbstractNavigationController;
@@ -63,6 +64,7 @@
 @class MovieTitleCell;
 @class MultiDictionary;
 @class NetworkUtilities;
+@class NonClippingView;
 @class NoneScoreProvider;
 @class NowPlayingAppDelegate;
 @class NowPlayingController;
@@ -94,6 +96,7 @@
 @class SettingsNavigationController;
 @class SettingsViewController;
 @class TappableImageView;
+@class TappableScrollView;
 @class TextFieldEditorViewController;
 @class Theater;
 @class TheaterDetailsViewController;
