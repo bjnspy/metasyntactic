@@ -22,9 +22,8 @@ public class WebViewActivity extends Activity {
         super.onCreate(icicle);
         mWebView = new WebView(this);
         setContentView(mWebView);
-        path = getIntent().getExtras().getString("imdb_url");
-        mWebView.loadUrl(path);
-      
+        path = getIntent().getExtras().getString("url");
+        mWebView.loadUrl(path);   
 
         }
     }

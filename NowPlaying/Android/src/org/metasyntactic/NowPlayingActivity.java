@@ -132,7 +132,7 @@ public class NowPlayingActivity extends TabActivity implements INowPlaying {
         tabs.addTab(tabs.newTabSpec("upcoming_tab").setIndicator(
             getResources().getString(R.string.upcomingIconLabel),
             getResources().getDrawable(R.drawable.upcoming)).setContent(
-                new Intent(this, MovieDetailsActivity.class)));
+                new Intent(this, AllTheatersActivity.class)));
     }
    
 

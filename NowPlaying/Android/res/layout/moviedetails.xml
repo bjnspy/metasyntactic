@@ -28,21 +28,14 @@
           android:textColor = "?android:attr/textColorPrimary"
       />
       
-    <ImageView android:id="@+id/divider1"
-            android:layout_width="fill_parent"
-            android:layout_height="1px"     
-             android:background="@drawable/divider_horizontal_bright"
-             android:layout_below="@id/header"
-              android:layout_marginBottom="5dip"
-          
-      />
+    
    
     <ImageView android:id="@+id/poster"
             android:layout_width="86px"
             android:layout_height="127px"     
              android:src="@drawable/image_not_available"
              android:padding="2dip"
-             android:layout_below = "@id/divider1"
+             android:layout_below = "@id/header"
             android:layout_marginLeft="2dip"
             android:layout_marginRight="10dip"
             android:layout_marginBottom="10dip"
@@ -55,7 +48,7 @@
             android:gravity="left"
             android:text = "No synopsis available."
            android:layout_toRightOf="@id/poster"
-            android:layout_below = "@id/divider1"
+            android:layout_below = "@id/header"
             android:paddingTop="2dip"
             android:paddingRight="2dip"
             android:textAppearance="?android:attr/textAppearanceSmall"

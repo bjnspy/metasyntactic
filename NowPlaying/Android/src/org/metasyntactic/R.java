@@ -41,33 +41,37 @@ public final class R {
         public static final int upcoming=0x7f020010;
     }
     public static final class id {
-        public static final int address=0x7f060012;
-        public static final int desc1=0x7f060003;
-        public static final int desc2=0x7f060004;
-        public static final int divider=0x7f060005;
-        public static final int divider1=0x7f060001;
-        public static final int divider3=0x7f060008;
-        public static final int emailbtn=0x7f06000c;
+        public static final int address=0x7f060015;
+        public static final int author=0x7f060012;
+        public static final int desc=0x7f060014;
+        public static final int desc1=0x7f060002;
+        public static final int desc2=0x7f060003;
+        public static final int divider=0x7f060004;
+        public static final int divider1=0x7f06000d;
+        public static final int divider3=0x7f060007;
+        public static final int emailbtn=0x7f06000b;
         public static final int header=0x7f060000;
-        public static final int imdbbtn=0x7f06000b;
+        public static final int imdbbtn=0x7f06000a;
         public static final int length=0x7f060011;
-        public static final int movielist=0x7f06000d;
-        public static final int poster=0x7f060002;
-        public static final int rated_length=0x7f060007;
+        public static final int movielist=0x7f06000c;
+        public static final int poster=0x7f060001;
+        public static final int rated_length=0x7f060006;
         public static final int rating=0x7f060010;
-        public static final int reviewsbtn=0x7f06000a;
+        public static final int reviewsbtn=0x7f060009;
         public static final int score=0x7f06000e;
-        public static final int surface_view=0x7f060013;
+        public static final int source=0x7f060013;
+        public static final int surface_view=0x7f060016;
         public static final int title=0x7f06000f;
-        public static final int togglebtn=0x7f060006;
-        public static final int trailerbtn=0x7f060009;
+        public static final int togglebtn=0x7f060005;
+        public static final int trailerbtn=0x7f060008;
     }
     public static final class layout {
         public static final int moviedetails=0x7f030000;
         public static final int movieview=0x7f030001;
-        public static final int tabs=0x7f030002;
-        public static final int theaterview=0x7f030003;
-        public static final int videoview=0x7f030004;
+        public static final int reviewview=0x7f030002;
+        public static final int tabs=0x7f030003;
+        public static final int theaterview=0x7f030004;
+        public static final int videoview=0x7f030005;
     }
     public static final class string {
         public static final int app_name=0x7f05000b;
