@@ -63,6 +63,13 @@
 }
 
 
+- (BOOL) posterExistsForMovie:(Movie*) movie
+                        index:(NSInteger) index {
+    NSString* path = [self posterFilePath:movie index:index];
+    return [FileUtilities fileExists:path];
+}
+
+
 - (UIImage*) firstPosterForMovie:(Movie*) movie {
     NSAssert([NSThread isMainThread], @"");
     return [self posterForMovie:movie index:0];
