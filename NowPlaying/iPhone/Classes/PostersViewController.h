@@ -24,8 +24,9 @@
     NSInteger posterCount;
     NSMutableDictionary* pageNumberToView;
 
-    UINavigationBar* toolBar;
-    BOOL toolBarHidden;
+    UINavigationBar* topBar;
+    UIToolbar* bottomBar;
+    BOOL toolBarsHidden;
 
     BOOL shutdown;
 }
@@ -34,7 +35,8 @@
 @property (retain) Movie* movie;
 @property (retain) NSMutableDictionary* pageNumberToView;
 @property (retain) TappableScrollView* scrollView;
-@property (retain) UINavigationBar* toolBar;
+@property (retain) UINavigationBar* topBar;
+@property (retain) UIToolbar* bottomBar;
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

@@ -32,14 +32,16 @@ const double LOAD_DELAY = 1;
 @synthesize navigationController;
 @synthesize pageNumberToView;
 @synthesize movie;
-@synthesize toolBar;
+@synthesize topBar;
+@synthesize bottomBar;
 @synthesize scrollView;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.pageNumberToView = nil;
     self.movie = nil;
-    self.toolBar = nil;
+    self.topBar = nil;
+    self.bottomBar = nil;
     self.scrollView = nil;
 
     [super dealloc];
@@ -76,7 +78,7 @@ const double LOAD_DELAY = 1;
     [NSString stringWithFormat:
      NSLocalizedString(@"%d of %d", nil), (currentPage + 1), posterCount];
 
-    [[toolBar.items objectAtIndex:0] setTitle:title];
+    [[topBar.items objectAtIndex:0] setTitle:title];
 }
 
 
@@ -89,7 +91,7 @@ const double LOAD_DELAY = 1;
     downloadingLabel.textColor = [UIColor whiteColor];
     [downloadingLabel sizeToFit];
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    CGRect frame = [UIScreen mainScreen].bounds;
     CGRect labelFrame = downloadingLabel.frame;
     labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
     labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0);
@@ -148,8 +150,7 @@ const double LOAD_DELAY = 1;
     imageView.autoresizesSubviews = YES;
     imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
     frame.origin.x = 5;
     frame.size.width -= 10;
     imageView.frame = frame;
@@ -159,8 +160,7 @@ const double LOAD_DELAY = 1;
 
 
 - (TappableScrollView*) createScrollView {
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
 
     self.scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
     scrollView.delegate = self;
@@ -191,8 +191,7 @@ const double LOAD_DELAY = 1;
         return;
     }
          
-    CGRect frame = [UIScreen mainScreen].applicationFrame;
-    frame.origin.y = 0;
+    CGRect frame = [UIScreen mainScreen].bounds;
     frame.origin.x = page * frame.size.width;
 
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
@@ -255,7 +254,7 @@ const double LOAD_DELAY = 1;
 
 
 - (void) loadView {
-    NonClippingView* view = [[[NonClippingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    NonClippingView* view = [[[NonClippingView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
     view.autoresizesSubviews = YES;
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
@@ -263,14 +262,14 @@ const double LOAD_DELAY = 1;
     scrollView.autoresizesSubviews = YES;
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
-    self.toolBar = [[[UINavigationBar alloc] initWithFrame:CGRectZero] autorelease];
+    self.topBar = [[[UINavigationBar alloc] initWithFrame:CGRectZero] autorelease];
     UINavigationItem* item = [[[UINavigationItem alloc] init] autorelease];
     item.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                              target:self
                                                                              action:@selector(onDoneTapped:)] autorelease];
-    toolBar.items = [NSArray arrayWithObject:item];
-    toolBar.barStyle = UIBarStyleBlackTranslucent;
-    [toolBar sizeToFit];
+    topBar.items = [NSArray arrayWithObject:item];
+    topBar.barStyle = UIBarStyleBlackTranslucent;
+    [topBar sizeToFit];
     [self setupTitle];
 
     // load the first two pages.  Try to load the first one immediately.
@@ -278,7 +277,7 @@ const double LOAD_DELAY = 1;
     [self loadPage:1 delay:LOAD_DELAY];
     
     [view addSubview:scrollView];
-    [view addSubview:toolBar];
+    [view addSubview:topBar];
     
     self.view = view;
 }
@@ -295,15 +294,17 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) hideToolBar:(BOOL) hidden {
-    toolBarHidden = hidden;
+- (void) hideToolBars:(BOOL) hidden {
+    toolBarsHidden = hidden;
 
     [UIView beginAnimations:nil context:NULL];
     {
         if (hidden) {
-            toolBar.alpha = 0;
+            topBar.alpha = 0;
+            bottomBar.alpha = 0;
         } else {
-            toolBar.alpha = TRANSLUCENCY_LEVEL;
+            topBar.alpha = TRANSLUCENCY_LEVEL;
+            bottomBar.alpha = TRANSLUCENCY_LEVEL;
         }
     }
     [UIView commitAnimations];
@@ -317,13 +318,13 @@ const double LOAD_DELAY = 1;
         // just dismiss us
         [self dismiss];
     } else {
-        [self hideToolBar:!toolBarHidden];
+        [self hideToolBars:!toolBarsHidden];
     }
 }
 
 
 - (void) scrollViewWillBeginDragging:(UIScrollView*) scrollView {
-    [self hideToolBar:YES];
+    [self hideToolBars:YES];
 }
 
 
