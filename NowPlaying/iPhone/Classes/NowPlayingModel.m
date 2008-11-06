@@ -672,7 +672,7 @@ static NSString** KEYS[] = {
         return image;
     }
 
-    return [largePosterCache posterForMovie:movie];
+    return [largePosterCache firstPosterForMovie:movie];
 }
 
 

@@ -16,8 +16,11 @@
 
 + (LargePosterCache*) cache;
 
-- (UIImage*) posterForMovie:(Movie*) movie;
-- (NSInteger) posterCount:(Movie*) movie;
-- (void) downloadPosterForMovie:(Movie*) movie;
+- (UIImage*) firstPosterForMovie:(Movie*) movie;
+- (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index;
+
+- (void) downloadFirstPosterForMovie:(Movie*) movie;
+- (void) downloadAllPostersForMovie:(Movie*) movie;
+- (NSInteger) posterCountForMovie:(Movie*) movie;
 
 @end
