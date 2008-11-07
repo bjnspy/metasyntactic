@@ -14,6 +14,8 @@
 
 @interface UpcomingCache : NSObject {
     NSLock* updateGate;
+    NowPlayingModel* model;
+    
     NSDictionary* index;
 
     NSArray* recentMovies;
@@ -23,12 +25,13 @@
 }
 
 @property (retain) NSLock* updateGate;
+@property (retain) NowPlayingModel* model;
 @property (retain) NSDictionary* index;
 @property (retain) NSArray* recentMovies;
 @property (retain) NSDictionary* movieMap;
 @property (retain) LinkedSet* prioritizedMovies;
 
-+ (UpcomingCache*) cache;
++ (UpcomingCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update;
 

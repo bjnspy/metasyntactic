@@ -244,13 +244,13 @@ static NSString** KEYS[] = {
         [self loadData];
 
         self.userLocationCache = [UserLocationCache cache];
-        self.dvdCache = [DVDCache cache];
         self.imdbCache = [IMDbCache cache];
-        self.posterCache = [PosterCache cacheWithModel:self];
         self.largePosterCache = [LargePosterCache cache];
-        self.scoreCache = [ScoreCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cache];
-        self.upcomingCache = [UpcomingCache cache];
+        self.dvdCache = [DVDCache cacheWithModel:self];
+        self.posterCache = [PosterCache cacheWithModel:self];
+        self.scoreCache = [ScoreCache cacheWithModel:self];
+        self.upcomingCache = [UpcomingCache cacheWithModel:self];
 
         searchRadius = -1;
 

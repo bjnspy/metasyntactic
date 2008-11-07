@@ -748,8 +748,7 @@
         return;
     }
 
-    UIImage* largeCover = [self.model.largePosterCache firstPosterForMovie:movie];
-    if (largeCover == nil) {
+    if (posterCount == 0) {
         return;
     }
     

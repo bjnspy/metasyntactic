@@ -27,6 +27,7 @@
 
 const double TRANSLUCENCY_LEVEL = 0.9;
 const int ACTIVITY_INDICATOR_TAG = -1;
+const int LABEL_TAG = -2;
 const double LOAD_DELAY = 1;
 
 @synthesize navigationController;
@@ -73,6 +74,7 @@ const double LOAD_DELAY = 1;
 
 - (UILabel*) createDownloadingLabel:(NSString*) text; {
     UILabel* downloadingLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    downloadingLabel.tag = LABEL_TAG;
     downloadingLabel.backgroundColor = [UIColor clearColor];
     downloadingLabel.opaque = NO;
     downloadingLabel.text = text;
@@ -137,10 +139,18 @@ const double LOAD_DELAY = 1;
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
 
-    CGRect frame = [UIScreen mainScreen].bounds;
-    frame.origin.x = 5;
-    frame.size.width -= 10;
-    imageView.frame = frame;
+    CGRect bounds = [UIScreen mainScreen].bounds;
+
+    if (image.size.width > image.size.height) {
+        int offset = (int)((bounds.size.height - bounds.size.width) / 2.0);
+        CGRect frame = CGRectMake(-offset, offset + 5, bounds.size.height, bounds.size.width - 10);
+
+        imageView.frame = frame;
+        imageView.transform = CGAffineTransformMakeRotation(M_PI / 2);
+    } else {
+        CGRect frame = CGRectMake(5, 0, bounds.size.width - 10, bounds.size.height);
+        imageView.frame = frame;
+    }
 
     return imageView;
 }
@@ -171,6 +181,10 @@ const double LOAD_DELAY = 1;
 - (void) disableActivityIndicator:(UIView*) pageView {
     id view = [pageView viewWithTag:ACTIVITY_INDICATOR_TAG];
     [view stopAnimating];
+    [view removeFromSuperview];
+    
+    view = [pageView viewWithTag:LABEL_TAG];
+    [view removeFromSuperview];
 }
 
 
@@ -186,6 +200,16 @@ const double LOAD_DELAY = 1;
         imageView.alpha = 1;
     }
     [UIView commitAnimations];
+}
+
+
+- (void) addImageToView:(NSArray*) arguments {
+    if (scrollView.dragging || scrollView.decelerating) {
+        [self performSelector:@selector(addImageToView:) withObject:arguments afterDelay:1];
+        return;
+    }
+    
+    [self addImage:[arguments objectAtIndex:0] toView:[arguments objectAtIndex:1]];
 }
 
 
@@ -232,10 +256,14 @@ const double LOAD_DELAY = 1;
     }
     
     NSNumber* index = [indexAndPageView objectAtIndex:0];
-    UIView* pageView = [indexAndPageView objectAtIndex:1];
 
     if (index.intValue < (currentPage - 1) ||
         index.intValue > (currentPage + 1)) {
+        return;
+    }
+    
+    if (scrollView.dragging || scrollView.decelerating) {
+        [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:1];
         return;
     }
     
@@ -243,7 +271,9 @@ const double LOAD_DELAY = 1;
     if (image == nil) {
         [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:LOAD_DELAY];
     } else {
-        [self addImage:image toView:pageView];
+        UIView* pageView = [indexAndPageView objectAtIndex:1];
+        NSArray* arguments = [NSArray arrayWithObjects:image, pageView, nil];
+        [self addImageToView:arguments];
     }
 }
 
@@ -348,7 +378,7 @@ const double LOAD_DELAY = 1;
     {
         topBar.alpha = TRANSLUCENCY_LEVEL;
         
-        [self performSelector:@selector(hideToolBar) withObject:nil afterDelay:5];
+        [self performSelector:@selector(hideToolBar) withObject:nil afterDelay:4];
     }
     [UIView commitAnimations];
 }
@@ -383,6 +413,11 @@ const double LOAD_DELAY = 1;
         topBar.barStyle = UIBarStyleBlackTranslucent;
         [self setupTopBar];
         [topBar sizeToFit];
+        
+        CGRect frame = topBar.frame;
+        frame.origin.y = bounds.size.height - frame.size.height;
+        topBar.frame = frame;
+        
         [self showToolBar];
     }
 

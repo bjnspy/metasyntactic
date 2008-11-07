@@ -203,6 +203,10 @@
 
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount {
+    if (postersViewController != nil) {
+        return;
+    }
+    
     UIWindow* window = [[UIApplication sharedApplication] keyWindow];
     
     self.postersViewController = 
@@ -214,13 +218,22 @@
     view.alpha = 0;
     
     [window addSubview:view];
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(onAfterShowPostersView:finished:context:)];
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
         view.alpha = 1;
     }
     [UIView commitAnimations];
+}
+
+
+- (void) onAfterShowPostersView:(NSString*) animationId
+                       finished:(BOOL) finished
+                        context:(void*) context {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
 }
 
 
@@ -229,17 +242,19 @@
     {
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(onAfterHidePostersView:finished:context:)];
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
         
-        [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
         postersViewController.view.alpha = 0;
     }
     [UIView commitAnimations];
+
+    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 }
 
 
 - (void) onAfterHidePostersView:(NSString*) animationId
                   finished:(BOOL) finished
-                   context:(void*) context {
+                        context:(void*) context {
     [postersViewController.view removeFromSuperview];
     self.postersViewController = nil;
 }
