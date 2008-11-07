@@ -157,15 +157,6 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (void) updateIndex {
-    [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint)
-                               onTarget:self
-               inBackgroundWithArgument:nil
-                                   gate:gate
-                                visible:YES];
-}
-
-
 - (NSDictionary*) loadIndex {
     NSDictionary* dictionary = [FileUtilities readObject:self.indexFile];
     if (dictionary == nil) {
@@ -196,7 +187,33 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (void) updateIndexBackgroundEntryPoint {
+- (void) updateIndex {
+    [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:[self.index objectForKey:movies_key]
+                                   gate:gate
+                                visible:YES];
+}
+
+
+- (void) deleteObsoleteData:(NSArray*) movies {
+    if (movies.count == 0) {
+        return;
+    }
+
+    /*
+    [self deleteObsoleteCastData:movies];
+    [self deleteObsoleteIMDbData:movies];
+    [self deleteObsoletePostersData:movies];
+    [self deleteObsoleteSynopsesData:movies];
+    [self deleteObsoleteTrailersData:movies];
+     */
+}
+
+
+- (void) updateIndexBackgroundEntryPoint:(NSArray*) oldMovies {
+    [self deleteObsoleteData:oldMovies];
+    
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
 
     if (lastLookupDate != nil) {
