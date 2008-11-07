@@ -54,7 +54,7 @@
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
-        self.gate = [[[NSLock alloc] init] autorelease];
+        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet set];
         self.model = model_;
     }

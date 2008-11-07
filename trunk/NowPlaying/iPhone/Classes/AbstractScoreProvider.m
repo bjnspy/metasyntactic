@@ -81,7 +81,7 @@
 
 - (id) initWithCache:(ScoreCache*) parentCache_ {
     if (self = [super init]) {
-        self.lock = [[[NSLock alloc] init] autorelease];
+        self.lock = [[[NSRecursiveLock alloc] init] autorelease];
         self.parentCache = parentCache_;
         self.providerDirectory = [[Application scoresFolder] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsFolder] stringByAppendingPathComponent:self.providerName];

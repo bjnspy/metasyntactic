@@ -22,7 +22,7 @@ static NSLock* gate = nil;
 
 + (void) initialize {
     if (self == [XmlParser class]) {
-        gate = [[NSLock alloc] init];
+        gate = [[NSRecursiveLock alloc] init];
     }
 }
 
