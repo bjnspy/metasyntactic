@@ -42,7 +42,7 @@
                                frame:(CGRect) frame
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
-                        activityView:(UIActivityIndicatorView*) activityView;
+                        activityView:(ActivityIndicatorViewWithBackground*) activityView;
 + (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model;
 
 @end

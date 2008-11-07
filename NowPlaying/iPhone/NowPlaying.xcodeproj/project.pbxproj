@@ -60,6 +60,8 @@
 		744592040E6CA017002D05C3 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744592030E6CA017002D05C3 /* WarningView.m */; };
 		744592070E6CA06C002D05C3 /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 744592060E6CA06C002D05C3 /* Warning-32x32.png */; };
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
+		744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 744AF54C0EC42A40008B5B35 /* BlackCircle.png */; };
+		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
 		745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
@@ -328,6 +330,9 @@
 		744815060E8610A1004AFB83 /* en_AU */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_AU; path = Resources/en_AU.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
 		74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
+		744AF54C0EC42A40008B5B35 /* BlackCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackCircle.png; path = Resources/BlackCircle.png; sourceTree = "<group>"; };
+		744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
+		744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
 		745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
@@ -742,6 +747,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				744AF54C0EC42A40008B5B35 /* BlackCircle.png */,
 				74A70AD00EC391A0008C661D /* LeftArrow.png */,
 				74A70AD10EC391A0008C661D /* RightArrow.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -827,6 +833,8 @@
 				74AF0F860EC2D42200A8F639 /* TappableScrollView.h */,
 				74AF0F870EC2D42200A8F639 /* TappableScrollView.m */,
 				74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */,
+				744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */,
+				744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1415,6 +1423,7 @@
 				747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */,
 				74A70AD20EC391A0008C661D /* LeftArrow.png in Resources */,
 				74A70AD30EC391A0008C661D /* RightArrow.png in Resources */,
+				744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1582,6 +1591,7 @@
 				74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */,
 				74AF0F850EC2D38D00A8F639 /* NonClippingView.m in Sources */,
 				74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */,
+				744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

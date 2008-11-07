@@ -15,6 +15,7 @@
 #import "MovieDetailsViewController.h"
 
 #import "ActionsView.h"
+#import "ActivityIndicatorViewWithBackground.h"
 #import "Application.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
@@ -189,8 +190,11 @@
 
 - (void) setupPosterView {
     self.posterDownloadLock = [[[NSLock alloc] init] autorelease];
-    self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-    posterActivityView.hidesWhenStopped = YES;
+    //self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
+    
+    
+    posterActivityView.activityIndicator.hidesWhenStopped = YES;
     [posterActivityView sizeToFit];
 
     self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
@@ -242,7 +246,7 @@
 
 - (void) startup {
     shutdown = NO;
-    [posterActivityView startAnimating];
+    [posterActivityView.activityIndicator startAnimating];
 
     [ThreadingUtilities performSelector:@selector(downloadPoster)
                                onTarget:self

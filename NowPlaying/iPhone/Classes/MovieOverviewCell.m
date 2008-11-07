@@ -14,6 +14,7 @@
 
 #import "MovieOverviewCell.h"
 
+#import "ActivityIndicatorViewWithBackground.h"
 #import "FontCache.h"
 #import "ImageCache.h"
 #import "MovieDetailsViewController.h"
@@ -67,7 +68,7 @@
                frame:(CGRect) frame
          posterImage:(UIImage*) posterImage_
      posterImageView:(TappableImageView*) posterImageView
-        activityView:(UIActivityIndicatorView*) activityView {
+        activityView:(ActivityIndicatorViewWithBackground*) activityView {
     if (self = [super initWithFrame:frame reuseIdentifier:nil]) {
         self.movie = movie_;
         self.model = model_;
@@ -91,7 +92,7 @@
             CGRect imageFrame = posterImageView.frame;
             CGRect activityFrame = activityView.frame;
             activityFrame.origin.x = imageFrame.origin.x + 2;
-            activityFrame.origin.y = imageFrame.origin.y + imageFrame.size.height - activityFrame.size.height - 2;
+            activityFrame.origin.y = imageFrame.origin.y + imageFrame.size.height - activityFrame.size.height - 1;
             activityView.frame = activityFrame;
         }
 
@@ -219,7 +220,7 @@
                                frame:(CGRect) frame
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
-                        activityView:(UIActivityIndicatorView*) activityView {
+                        activityView:(ActivityIndicatorViewWithBackground*) activityView {
     return [[[MovieOverviewCell alloc] initWithMovie:movie
                                                model:model
                                                frame:frame

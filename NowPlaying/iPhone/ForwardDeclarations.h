@@ -21,7 +21,7 @@
 @class AbstractNavigationController;
 @class ActionsView;
 @class ActivityIndicator;
-@class AddressLocationCache;
+@class ActivityIndicatorViewWithBackground;
 @class AllMoviesViewController;
 @class AllTheatersViewController;
 @class ApplePosterDownloader;
@@ -76,7 +76,6 @@
 @class PickerEditorViewController;
 @class PointerSet;
 @class PosterCache;
-@class PosterDownloader;
 @class PostersViewController;
 @class PriorityMutex;
 @class Pulser;
