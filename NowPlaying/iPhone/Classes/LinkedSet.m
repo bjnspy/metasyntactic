@@ -35,7 +35,7 @@
 
 - (id) initWithCountLimit:(NSInteger) countLimit_ {
     if (self = [super init]) {
-        self.gate = [[[NSLock alloc] init] autorelease];
+        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.valueToNode = [NSMutableDictionary dictionary];
         countLimit = countLimit_;
     }
