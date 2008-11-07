@@ -31,19 +31,19 @@
         CGRect frame = activityIndicator.frame;
         frame.origin.x = frame.origin.y = 4;
         activityIndicator.frame = frame;
-        
+
         [self addSubview:imageView];
         [self addSubview:activityIndicator];
 
         [self sendSubviewToBack:imageView];
     }
-    
+
     return self;
 }
 
 - (void) stopAnimating {
     [activityIndicator stopAnimating];
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         imageView.alpha = 0;
