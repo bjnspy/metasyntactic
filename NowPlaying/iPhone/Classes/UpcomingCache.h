@@ -15,7 +15,7 @@
 @interface UpcomingCache : NSObject {
     NSLock* updateGate;
     NowPlayingModel* model;
-    
+
     NSDictionary* index;
 
     NSArray* recentMovies;

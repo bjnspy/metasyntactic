@@ -54,7 +54,7 @@ const double LOAD_DELAY = 1;
         self.navigationController = navigationController_;
         self.movie = movie_;
         posterCount = posterCount_;
-        
+
         self.pageNumberToView = [NSMutableDictionary dictionary];
     }
 
@@ -182,7 +182,7 @@ const double LOAD_DELAY = 1;
     id view = [pageView viewWithTag:ACTIVITY_INDICATOR_TAG];
     [view stopAnimating];
     [view removeFromSuperview];
-    
+
     view = [pageView viewWithTag:LABEL_TAG];
     [view removeFromSuperview];
 }
@@ -190,11 +190,11 @@ const double LOAD_DELAY = 1;
 
 - (void) addImage:(UIImage*) image toView:(UIView*) pageView {
     [self disableActivityIndicator:pageView];
-    
+
     UIImageView* imageView = [self createImageView:image];
     [pageView addSubview:imageView];
     imageView.alpha = 0;
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         imageView.alpha = 1;
@@ -208,7 +208,7 @@ const double LOAD_DELAY = 1;
         [self performSelector:@selector(addImageToView:) withObject:arguments afterDelay:1];
         return;
     }
-    
+
     [self addImage:[arguments objectAtIndex:0] toView:[arguments objectAtIndex:1]];
 }
 
@@ -217,24 +217,24 @@ const double LOAD_DELAY = 1;
     if (page < 0 || page >= posterCount) {
         return;
     }
-    
+
     NSNumber* pageNumber = [NSNumber numberWithInt:page];
     if ([pageNumberToView objectForKey:pageNumber] != nil) {
         return;
     }
-         
+
     CGRect frame = [UIScreen mainScreen].bounds;
     frame.origin.x = page * frame.size.width;
 
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
     pageView.backgroundColor = [UIColor blackColor];
     pageView.tag = page;
-    
+
     UIImage* image = nil;
     if (delay == 0) {
         image = [self.model.largePosterCache posterForMovie:movie index:page];
     }
-    
+
     if (image != nil) {
         [self addImage:image toView:pageView];
     } else {
@@ -254,19 +254,19 @@ const double LOAD_DELAY = 1;
     if (shutdown) {
         return;
     }
-    
+
     NSNumber* index = [indexAndPageView objectAtIndex:0];
 
     if (index.intValue < (currentPage - 1) ||
         index.intValue > (currentPage + 1)) {
         return;
     }
-    
+
     if (scrollView.dragging || scrollView.decelerating) {
         [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:1];
         return;
     }
-    
+
     UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index.intValue];
     if (image == nil) {
         [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:LOAD_DELAY];
@@ -282,7 +282,7 @@ const double LOAD_DELAY = 1;
     NSString* title =
     [NSString stringWithFormat:
      NSLocalizedString(@"%d of %d", nil), (currentPage + 1), posterCount];
-    
+
     UILabel* label = [[[UILabel alloc] init] autorelease];
     label.text = title;
     label.font = [UIFont boldSystemFontOfSize:20];
@@ -291,13 +291,13 @@ const double LOAD_DELAY = 1;
     label.opaque = NO;
     label.shadowColor = [UIColor darkGrayColor];
     [label sizeToFit];
-    
+
     NSMutableArray* items = [NSMutableArray array];
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-    
+
     UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"LeftArrow.png"]
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
@@ -305,7 +305,7 @@ const double LOAD_DELAY = 1;
     [items addObject:leftArrow];
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-    
+
     UIBarItem* titleItem = [[[UIBarButtonItem alloc] initWithCustomView:label] autorelease];
     [items addObject:titleItem];
 
@@ -317,18 +317,18 @@ const double LOAD_DELAY = 1;
                                                                    action:@selector(onRightTapped:)] autorelease];
     [items addObject:rightArrow];
 
-    
+
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-    
+
     UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
     [items addObject:doneItem];
-    
+
     [topBar setItems:items animated:YES];
-    
+
     if (currentPage <= 0) {
         leftArrow.enabled = NO;
     }
-    
+
     if (currentPage >= (posterCount - 1)) {
         rightArrow.enabled = NO;
     }
@@ -340,12 +340,12 @@ const double LOAD_DELAY = 1;
         if (pageNumber.intValue < (currentPage - 1) || pageNumber.intValue > (currentPage + 1)) {
             UIView* pageView = [pageNumberToView objectForKey:pageNumber];
             [self disableActivityIndicator:pageView];
-            
+
             [pageView removeFromSuperview];
             [pageNumberToView removeObjectForKey:pageNumber];
         }
     }
-    
+
     [self loadPage:currentPage - 1 delay:LOAD_DELAY];
     [self loadPage:currentPage     delay:LOAD_DELAY];
     [self loadPage:currentPage + 1 delay:LOAD_DELAY];
@@ -355,7 +355,7 @@ const double LOAD_DELAY = 1;
 - (void) setPage:(NSInteger) page {
     if (page != currentPage) {
         currentPage = page;
-        
+
         [self setupTopBar];
         [self clearAndLoadPages];
     }
@@ -373,11 +373,11 @@ const double LOAD_DELAY = 1;
 
 - (void) showToolBar {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideToolBar) object:nil];
-        
+
     [UIView beginAnimations:nil context:NULL];
     {
         topBar.alpha = TRANSLUCENCY_LEVEL;
-        
+
         [self performSelector:@selector(hideToolBar) withObject:nil afterDelay:4];
     }
     [UIView commitAnimations];
@@ -413,21 +413,21 @@ const double LOAD_DELAY = 1;
         topBar.barStyle = UIBarStyleBlackTranslucent;
         [self setupTopBar];
         [topBar sizeToFit];
-        
+
         CGRect frame = topBar.frame;
         frame.origin.y = bounds.size.height - frame.size.height;
         topBar.frame = frame;
-        
+
         [self showToolBar];
     }
 
     // load the first two pages.  Try to load the first one immediately.
     [self loadPage:0 delay:0];
     [self loadPage:1 delay:LOAD_DELAY];
-    
+
     [view addSubview:scrollView];
     [view addSubview:topBar];
-    
+
     self.view = view;
 }
 
