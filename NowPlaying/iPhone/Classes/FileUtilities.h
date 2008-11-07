@@ -26,9 +26,11 @@
 + (NSString*) sanitizeFileName:(NSString*) name;
 
 + (NSDate*) modificationDate:(NSString*) file;
-+ (NSArray*) directoryContents:(NSString*) directory;
 + (void) removeItem:(NSString*) path;
 + (BOOL) fileExists:(NSString*) path;
 + (void) moveItem:(NSString*) from to:(NSString*) to;
+
++ (NSArray*) directoryContentsNames:(NSString*) directory;
++ (NSArray*) directoryContentsPaths:(NSString*) directory;
 
 @end

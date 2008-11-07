@@ -51,11 +51,25 @@ static MainThreadGate* gate;
 }
 
 
-+ (NSArray*) directoryContents:(NSString*) directory {
++ (NSArray*) directoryContentsNames:(NSString*) directory {
     NSArray* result;
     [gate lock];
     {
         result = [[NSFileManager defaultManager] directoryContentsAtPath:directory];
+    }
+    [gate unlock];
+    return result;
+}
+
+
++ (NSArray*) directoryContentsPaths:(NSString*) directory {
+    NSMutableArray* result = [NSMutableArray array];
+    [gate lock];
+    {
+        NSArray* names = [[NSFileManager defaultManager] directoryContentsAtPath:directory];
+        for (NSString* name in names) {
+            [result addObject:[directory stringByAppendingPathComponent:name]];
+        }
     }
     [gate unlock];
     return result;
