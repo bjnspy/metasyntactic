@@ -206,17 +206,17 @@
     if (postersViewController != nil) {
         return;
     }
-    
+
     UIWindow* window = [[UIApplication sharedApplication] keyWindow];
-    
-    self.postersViewController = 
+
+    self.postersViewController =
     [[[PostersViewController alloc] initWithNavigationController:self
                                                           movie:movie
                                                     posterCount:posterCount] autorelease];
-    
+
     UIView* view = postersViewController.view;
     view.alpha = 0;
-    
+
     [window addSubview:view];
 
     [UIView beginAnimations:nil context:NULL];
@@ -243,7 +243,7 @@
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(onAfterHidePostersView:finished:context:)];
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        
+
         postersViewController.view.alpha = 0;
     }
     [UIView commitAnimations];

@@ -751,13 +751,13 @@
     if (posterCount == 0) {
         return;
     }
-    
+
     [ThreadingUtilities performSelector:@selector(downloadAllPostersForMovie:)
                                onTarget:self.model.largePosterCache
                inBackgroundWithArgument:movie
                                    gate:posterDownloadLock
                                 visible:NO];
-    
+
     [navigationController showPostersView:movie posterCount:posterCount];
 }
 

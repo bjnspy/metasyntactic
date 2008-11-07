@@ -109,24 +109,24 @@
     if (data != nil) {
         return data;
     }
-    
+
     data = [ApplePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     data = [FandangoPosterDownloader download:movie postalCode:postalCode];
     if (data != nil) {
         return data;
     }
-    
+
     data = [ImdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-    
+
     return nil;
 }
 
