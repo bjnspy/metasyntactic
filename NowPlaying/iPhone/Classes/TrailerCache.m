@@ -51,13 +51,13 @@
 }
 
 
-- (NSString*) trailerFileName:(NSString*) title {
-    return [[FileUtilities sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
+- (NSString*) trailerFileName:(Movie*) movie {
+    return [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
 }
 
 
-- (NSString*) trailerFilePath:(NSString*) title {
-    return [[Application trailersFolder] stringByAppendingPathComponent:[self trailerFileName:title]];
+- (NSString*) trailerFilePath:(Movie*) movie {
+    return [[Application trailersFolder] stringByAppendingPathComponent:[self trailerFileName:movie]];
 }
 
 
@@ -66,7 +66,7 @@
     NSMutableSet* set = [NSMutableSet setWithArray:paths];
 
     for (Movie* movie in movies) {
-        NSString* filePath = [self trailerFilePath:movie.canonicalTitle];
+        NSString* filePath = [self trailerFilePath:movie];
         [set removeObject:filePath];
     }
 
@@ -87,7 +87,7 @@
     NSMutableArray* moviesWithTrailers = [NSMutableArray array];
 
     for (Movie* movie in movies) {
-        NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFilePath:movie.canonicalTitle]];
+        NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFilePath:movie]];
 
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
@@ -123,7 +123,7 @@
     NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
-        [FileUtilities writeObject:[NSArray array] toFile:[self trailerFilePath:movie.canonicalTitle]];
+        [FileUtilities writeObject:[NSArray array] toFile:[self trailerFilePath:movie]];
         return;
     }
 
@@ -141,7 +141,7 @@
     }
 
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
-    [FileUtilities writeObject:trailers toFile:[self trailerFilePath:movie.canonicalTitle]];
+    [FileUtilities writeObject:trailers toFile:[self trailerFilePath:movie]];
     [NowPlayingAppDelegate refresh];
 }
 
@@ -235,7 +235,7 @@
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* trailers = [FileUtilities readObject:[self trailerFilePath:movie.canonicalTitle]];
+    NSArray* trailers = [FileUtilities readObject:[self trailerFilePath:movie]];
     if (trailers == nil) {
         return [NSArray array];
     }
