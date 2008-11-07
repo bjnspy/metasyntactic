@@ -51,7 +51,7 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"2.2.0";
+static NSString* currentVersion = @"2.3.0";
 static NSString* persistenceVersion = @"11";
 
 static NSString* VERSION = @"version";

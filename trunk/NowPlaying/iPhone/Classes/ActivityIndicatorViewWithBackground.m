@@ -25,6 +25,7 @@
         UIImage* image = [UIImage imageNamed:@"BlackCircle.png"];
         self.imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
         self.frame = imageView.frame;
+        imageView.alpha = 0.75;
 
         self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = activityIndicator.frame;
