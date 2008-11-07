@@ -128,7 +128,6 @@
     [self.model.largePosterCache downloadFirstPosterForMovie:movie];
     
     return nil;
-    
 }
 
 

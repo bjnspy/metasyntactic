@@ -17,10 +17,12 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "FileUtilities.h"
+#import "LargePosterCache.h"
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
+#import "NowPlayingModel.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -33,6 +35,7 @@ static NSString* studios_key = @"Studios";
 static NSString* titles_key = @"Titles";
 
 @synthesize updateGate;
+@synthesize model;
 @synthesize index;
 @synthesize recentMovies;
 @synthesize movieMap;
@@ -40,6 +43,7 @@ static NSString* titles_key = @"Titles";
 
 - (void) dealloc {
     self.updateGate = nil;
+    self.model = nil;
     self.index = nil;
     self.recentMovies = nil;
     self.movieMap = nil;
@@ -49,18 +53,19 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (id) init {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.updateGate = [[[NSLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
+        self.model = model_;
     }
 
     return self;
 }
 
 
-+ (UpcomingCache*) cache {
-    return [[[UpcomingCache alloc] init] autorelease];
++ (UpcomingCache*) cacheWithModel:(NowPlayingModel*) model {
+    return [[[UpcomingCache alloc] initWithModel:model] autorelease];
 }
 
 
@@ -293,6 +298,7 @@ static NSString* titles_key = @"Titles";
 
 - (void) updatePoster:(Movie*) movie {
     if (movie.poster.length == 0) {
+        [self.model.largePosterCache downloadFirstPosterForMovie:movie];
         return;
     }
 

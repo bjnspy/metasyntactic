@@ -18,10 +18,12 @@
 #import "DateUtilities.h"
 #import "DVD.h"
 #import "FileUtilities.h"
+#import "LargePosterCache.h"
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
+#import "NowPlayingModel.h"
 #import "PointerSet.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
@@ -30,6 +32,7 @@
 @implementation DVDCache
 
 @synthesize gate;
+@synthesize model;
 @synthesize dvdSetData;
 @synthesize bluraySetData;
 @synthesize dvdData;
@@ -38,6 +41,7 @@
 
 - (void) dealloc {
     self.gate = nil;
+    self.model = nil;
     self.dvdSetData = nil;
     self.bluraySetData = nil;
     self.dvdData = nil;
@@ -48,17 +52,19 @@
 }
 
 
-- (id) init {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
+        self.gate = [[[NSLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet set];
+        self.model = model_;
     }
 
     return self;
 }
 
 
-+ (DVDCache*) cache {
-    return [[[DVDCache alloc] init] autorelease];
++ (DVDCache*) cacheWithModel:(NowPlayingModel*) model {
+    return [[[DVDCache alloc] initWithModel:model] autorelease];
 }
 
 
@@ -423,6 +429,7 @@
     }
 
     if (movie.poster.length == 0) {
+        [self.model.largePosterCache downloadFirstPosterForMovie:movie];
         return;
     }
 
