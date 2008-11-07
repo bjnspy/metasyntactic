@@ -33,12 +33,12 @@
 
 @implementation PosterCache
 
-@synthesize updateGate;
+@synthesize gate;
 @synthesize model;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.updateGate = nil;
+    self.gate = nil;
     self.model = nil;
     self.prioritizedMovies = nil;
 
@@ -48,7 +48,7 @@
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
-        self.updateGate = [[[NSLock alloc] init] autorelease];
+        self.gate = [[[NSLock alloc] init] autorelease];
         self.model = model_;
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
@@ -66,7 +66,7 @@
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:[NSArray arrayWithArray:movies]
-                                   gate:updateGate
+                                   gate:gate
                                 visible:NO];
 }
 
