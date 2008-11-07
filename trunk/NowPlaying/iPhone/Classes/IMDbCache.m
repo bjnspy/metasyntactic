@@ -47,13 +47,9 @@
 }
 
 
-- (NSString*) movieFileName:(NSString*) title {
-    return [[FileUtilities sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (NSString*) movieFilePath:(Movie*) movie {
-    return [[Application imdbFolder] stringByAppendingPathComponent:[self movieFileName:movie.canonicalTitle]];
+- (NSString*) imdbFile:(Movie*) movie {
+    NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
+    return [[Application imdbFolder] stringByAppendingPathComponent:name];
 }
 
 
@@ -72,7 +68,7 @@
         return;
     }
 
-    NSString* path = [self movieFilePath:movie];
+    NSString* path = [self imdbFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
 
     if (lastLookupDate != nil) {
@@ -106,7 +102,7 @@
     NSMutableSet* set = [NSMutableSet setWithArray:paths];
     
     for (Movie* movie in movies) {
-        NSString* filePath = [self movieFilePath:movie];
+        NSString* filePath = [self imdbFile:movie];
         [set removeObject:filePath];
     }
     
@@ -132,7 +128,7 @@
 
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
-    return [FileUtilities readObject:[self movieFilePath:movie]];
+    return [FileUtilities readObject:[self imdbFile:movie]];
 }
 
 @end
