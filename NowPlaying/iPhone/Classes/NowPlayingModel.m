@@ -545,9 +545,9 @@ static NSString** KEYS[] = {
 
 
 - (void) onDataProviderUpdated {
-    [self updateIMDbCache];
     [self updatePosterCache];
     [self updateTrailerCache];
+    [self updateIMDbCache];
 }
 
 
