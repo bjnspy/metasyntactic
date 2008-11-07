@@ -202,11 +202,18 @@
 }
 
 
+- (void) disconnectPostersView {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+    [postersViewController.view removeFromSuperview];
+    self.postersViewController = nil;    
+}
+
+
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount {
     if (postersViewController != nil) {
-        return;
+        [self disconnectPostersView];
     }
-
+    
     UIWindow* window = [[UIApplication sharedApplication] keyWindow];
 
     self.postersViewController =
@@ -253,10 +260,9 @@
 
 
 - (void) onAfterHidePostersView:(NSString*) animationId
-                  finished:(BOOL) finished
+                       finished:(BOOL) finished
                         context:(void*) context {
-    [postersViewController.view removeFromSuperview];
-    self.postersViewController = nil;
+    [self disconnectPostersView];
 }
 
 
