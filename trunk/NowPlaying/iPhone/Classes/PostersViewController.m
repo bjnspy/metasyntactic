@@ -137,7 +137,7 @@ const double LOAD_DELAY = 1;
 
 - (UIImageView*) createImageView:(UIImage*) image {
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
 
     CGRect bounds = [UIScreen mainScreen].bounds;
 
@@ -150,6 +150,7 @@ const double LOAD_DELAY = 1;
     } else {
         CGRect frame = CGRectMake(5, 0, bounds.size.width - 10, bounds.size.height);
         imageView.frame = frame;
+        imageView.clipsToBounds = YES;
     }
 
     return imageView;
@@ -229,6 +230,7 @@ const double LOAD_DELAY = 1;
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
     pageView.backgroundColor = [UIColor blackColor];
     pageView.tag = page;
+    pageView.clipsToBounds = YES;
 
     UIImage* image = nil;
     if (delay == 0) {
