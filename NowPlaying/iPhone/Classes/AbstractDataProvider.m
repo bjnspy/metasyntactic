@@ -61,28 +61,28 @@
 }
 
 
-- (NSString*) performancesFolder {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Performances"];
+- (NSString*) performancesDirectory {
+    return [[Application dataDirectory] stringByAppendingPathComponent:@"Performances"];
 }
 
 
 - (NSString*) moviesFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Movies.plist"];
+    return [[Application dataDirectory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
 
 - (NSString*) theatersFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
+    return [[Application dataDirectory] stringByAppendingPathComponent:@"Theaters.plist"];
 }
 
 
 - (NSString*) synchronizationFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Synchronization.plist"];
+    return [[Application dataDirectory] stringByAppendingPathComponent:@"Synchronization.plist"];
 }
 
 
 - (NSString*) lastLookupDateFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"lastLookupDate"];
+    return [[Application dataDirectory] stringByAppendingPathComponent:@"lastLookupDate"];
 }
 
 
@@ -156,13 +156,13 @@
 }
 
 
-- (NSString*) performancesFile:(NSString*) theaterName parentFolder:(NSString*) folder {
-    return [[folder stringByAppendingPathComponent:[FileUtilities sanitizeFileName:theaterName]] stringByAppendingPathExtension:@"plist"];
+- (NSString*) performancesFile:(NSString*) theaterName parentDirectory:(NSString*) directory {
+    return [[directory stringByAppendingPathComponent:[FileUtilities sanitizeFileName:theaterName]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) performancesFile:(NSString*) theaterName {
-    return [self performancesFile:theaterName parentFolder:self.performancesFolder];
+    return [self performancesFile:theaterName parentDirectory:self.performancesDirectory];
 }
 
 
@@ -172,15 +172,15 @@
         [self saveArray:result.theaters to:self.theatersFile];
         [FileUtilities writeObject:result.synchronizationData toFile:self.synchronizationFile];
 
-        NSString* tempFolder = [Application uniqueTemporaryFolder];
+        NSString* tempDirectory = [Application uniqueTemporaryDirectory];
         for (NSString* theaterName in result.performances) {
             NSMutableDictionary* value = [result.performances objectForKey:theaterName];
 
-            [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentFolder:tempFolder]];
+            [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentDirectory:tempDirectory]];
         }
 
-        [FileUtilities removeItem:self.performancesFolder];
-        [FileUtilities moveItem:tempFolder to:self.performancesFolder];
+        [FileUtilities removeItem:self.performancesDirectory];
+        [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
 
         [self setLastLookupDate];
     }

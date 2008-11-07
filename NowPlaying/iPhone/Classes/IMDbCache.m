@@ -49,7 +49,7 @@
 
 - (NSString*) imdbFile:(Movie*) movie {
     NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-    return [[Application imdbFolder] stringByAppendingPathComponent:name];
+    return [[Application imdbDirectory] stringByAppendingPathComponent:name];
 }
 
 
@@ -98,7 +98,7 @@
 
 
 - (void) deleteObsoleteAddresses:(NSArray*) movies {
-    NSArray* paths = [FileUtilities directoryContentsPaths:[Application imdbFolder]];
+    NSArray* paths = [FileUtilities directoryContentsPaths:[Application imdbDirectory]];
     NSMutableSet* set = [NSMutableSet setWithArray:paths];
     
     for (Movie* movie in movies) {

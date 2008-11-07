@@ -82,8 +82,8 @@
 }
 
 
-- (NSString*) locationFolder {
-    return [Application userLocationsFolder];
+- (NSString*) locationDirectory {
+    return [Application userLocationsDirectory];
 }
 
 

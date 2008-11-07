@@ -60,7 +60,7 @@
 
 
 - (NSString*) indexFile {
-    return [[Application numbersFolder] stringByAppendingPathComponent:@"Index.plist"];
+    return [[Application numbersDirectory] stringByAppendingPathComponent:@"Index.plist"];
 }
 
 
@@ -219,7 +219,7 @@
 
 - (NSString*) movieDetailsFile:(MovieNumbers*) numbers {
     NSString* name = [[FileUtilities sanitizeFileName:numbers.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-    return [[Application numbersDetailsFolder] stringByAppendingPathComponent:name];
+    return [[Application numbersDetailsDirectory] stringByAppendingPathComponent:name];
 }
 
 

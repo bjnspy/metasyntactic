@@ -230,7 +230,7 @@ static NSString** KEYS[] = {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
         }
 
-        [Application resetFolders];
+        [Application resetDirectories];
 
 
         [self restorePreviousUserAddress:previousUserAddress

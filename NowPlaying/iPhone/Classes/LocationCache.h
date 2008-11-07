@@ -18,7 +18,7 @@
 // @protected
 - (Location*) downloadAddressLocationFromWebService:(NSString*) address;
 
-- (NSString*) locationFolder;
+- (NSString*) locationDirectory;
 - (NSString*) locationFile:(NSString*) address;
 - (Location*) loadLocation:(NSString*) address;
 - (void) saveLocation:(Location*) location forAddress:(NSString*) address;

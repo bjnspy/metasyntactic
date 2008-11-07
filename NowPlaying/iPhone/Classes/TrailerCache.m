@@ -53,12 +53,12 @@
 
 - (NSString*) trailerFile:(Movie*) movie {
     NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-    return [[Application trailersFolder] stringByAppendingPathComponent:name];
+    return [[Application trailersDirectory] stringByAppendingPathComponent:name];
 }
 
 
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
-    NSArray* paths = [FileUtilities directoryContentsPaths:[Application trailersFolder]];
+    NSArray* paths = [FileUtilities directoryContentsPaths:[Application trailersDirectory]];
     NSMutableSet* set = [NSMutableSet setWithArray:paths];
 
     for (Movie* movie in movies) {

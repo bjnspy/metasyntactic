@@ -16,40 +16,40 @@
 }
 
 /*
-+ (NSString*) supportFolder;
-+ (NSString*) tempFolder;
-+ (NSString*) documentsFolder;
++ (NSString*) supportDirectory;
++ (NSString*) tempDirectory;
++ (NSString*) documentsDirectory;
 */
 
-+ (NSString*) dataFolder;
-+ (NSString*) imdbFolder;
-+ (NSString*) userLocationsFolder;
-+ (NSString*) postersFolder;
-+ (NSString*) postersLargeFolder;
-+ (NSString*) scoresFolder;
-+ (NSString*) reviewsFolder;
-+ (NSString*) trailersFolder;
++ (NSString*) dataDirectory;
++ (NSString*) imdbDirectory;
++ (NSString*) userLocationsDirectory;
++ (NSString*) postersDirectory;
++ (NSString*) postersLargeDirectory;
++ (NSString*) scoresDirectory;
++ (NSString*) reviewsDirectory;
++ (NSString*) trailersDirectory;
 
 /*
-+ (NSString*) numbersFolder;
-+ (NSString*) numbersDetailsFolder;
++ (NSString*) numbersDirectory;
++ (NSString*) numbersDetailsDirectory;
 */
 
-+ (NSString*) dvdFolder;
-+ (NSString*) dvdDetailsFolder;
-+ (NSString*) dvdIMDbFolder;
-+ (NSString*) dvdPostersFolder;
++ (NSString*) dvdDirectory;
++ (NSString*) dvdDetailsDirectory;
++ (NSString*) dvdIMDbDirectory;
++ (NSString*) dvdPostersDirectory;
 
-+ (NSString*) upcomingFolder;
-+ (NSString*) upcomingCastFolder;
-+ (NSString*) upcomingIMDbFolder;
-+ (NSString*) upcomingPostersFolder;
-+ (NSString*) upcomingSynopsesFolder;
-+ (NSString*) upcomingTrailersFolder;
++ (NSString*) upcomingDirectory;
++ (NSString*) upcomingCastDirectory;
++ (NSString*) upcomingIMDbDirectory;
++ (NSString*) upcomingPostersDirectory;
++ (NSString*) upcomingSynopsesDirectory;
++ (NSString*) upcomingTrailersDirectory;
 
-+ (void) resetFolders;
++ (void) resetDirectories;
 
-+ (NSString*) uniqueTemporaryFolder;
++ (NSString*) uniqueTemporaryDirectory;
 
 + (void) openBrowser:(NSString*) address;
 + (void) openMap:(NSString*) address;
