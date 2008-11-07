@@ -24,17 +24,20 @@
 
 @implementation IMDbCache
 
+@synthesize model;
 @synthesize gate;
 
 - (void) dealloc {
+    self.model = nil;
     self.gate = nil;
 
     [super dealloc];
 }
 
 
-- (id) init {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
+        self.model = model_;
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
@@ -42,8 +45,8 @@
 }
 
 
-+ (IMDbCache*) cache {
-    return [[[IMDbCache alloc] init] autorelease];
++ (IMDbCache*) cacheWithModel:(NowPlayingModel*) model {
+    return [[[IMDbCache alloc] initWithModel:model] autorelease];
 }
 
 

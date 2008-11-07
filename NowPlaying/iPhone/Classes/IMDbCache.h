@@ -13,12 +13,15 @@
 // limitations under the License.
 
 @interface IMDbCache : NSObject {
+    NowPlayingModel* model;
+
     NSLock* gate;
 }
 
+@property (assign) NowPlayingModel* model;
 @property (retain) NSLock* gate;
 
-+ (IMDbCache*) cache;
++ (IMDbCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update:(NSArray*) movies;
 

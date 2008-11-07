@@ -25,10 +25,12 @@
 
 @implementation TrailerCache
 
+@synthesize model;
 @synthesize gate;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
+    self.model = nil;
     self.gate = nil;
     self.prioritizedMovies = nil;
 
@@ -36,8 +38,9 @@
 }
 
 
-- (id) init {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
+        self.model = model_;
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
@@ -46,8 +49,8 @@
 }
 
 
-+ (TrailerCache*) cache {
-    return [[[TrailerCache alloc] init] autorelease];
++ (TrailerCache*) cacheWithModel:(NowPlayingModel*) model {
+    return [[[TrailerCache alloc] initWithModel:model] autorelease];
 }
 
 
