@@ -156,6 +156,11 @@ static NSString** KEYS[] = {
 }
 
 
+- (void) updateLargePosterCache {
+    [largePosterCache update];
+}
+
+
 + (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
     NSMutableArray* result = [NSMutableArray array];
     for (FavoriteTheater* theater in favoriteTheaters) {
@@ -271,6 +276,7 @@ static NSString** KEYS[] = {
         @selector(updateIMDbCache),
         @selector(updateUpcomingCache),
         @selector(updateDVDCache),
+        @selector(updateLargePosterCache),
     };
 
     if (value >= ArrayLength(selectors)) {
