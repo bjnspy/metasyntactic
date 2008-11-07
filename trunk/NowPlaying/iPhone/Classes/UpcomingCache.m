@@ -36,7 +36,7 @@ static NSString* titles_key = @"Titles";
 
 @synthesize updateGate;
 @synthesize model;
-@synthesize index;
+@synthesize indexData;
 @synthesize recentMovies;
 @synthesize movieMap;
 @synthesize prioritizedMovies;
@@ -44,7 +44,7 @@ static NSString* titles_key = @"Titles";
 - (void) dealloc {
     self.updateGate = nil;
     self.model = nil;
-    self.index = nil;
+    self.indexData = nil;
     self.recentMovies = nil;
     self.movieMap = nil;
     self.prioritizedMovies = nil;
@@ -166,6 +166,36 @@ static NSString* titles_key = @"Titles";
 }
 
 
+- (NSDictionary*) loadIndex {
+    NSDictionary* dictionary = [FileUtilities readObject:self.indexFile];
+    if (dictionary == nil) {
+        return [NSDictionary dictionary];
+    }
+    
+    NSMutableArray* decodedMovies = [NSMutableArray array];
+    for (NSDictionary* encodedMovie in [dictionary objectForKey:movies_key]) {
+        [decodedMovies addObject:[Movie movieWithDictionary:encodedMovie]];
+    }
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    [result setObject:decodedMovies forKey:movies_key];
+    [result setObject:[dictionary objectForKey:hash_key] forKey:hash_key];
+    [result setObject:[dictionary objectForKey:studios_key] forKey:studios_key];
+    [result setObject:[dictionary objectForKey:titles_key] forKey:titles_key];
+    
+    return result;
+}
+
+
+- (NSDictionary*) index {
+    if (indexData == nil) {
+        self.indexData = [self loadIndex];
+    }
+    
+    return indexData;
+}
+
+
 - (void) updateIndexBackgroundEntryPoint {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
 
@@ -176,7 +206,7 @@ static NSString* titles_key = @"Titles";
     }
 
 
-    NSString* localHash = [index objectForKey:hash_key];
+    NSString* localHash = [self.index objectForKey:hash_key];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
                                                                important:NO];
     if (serverHash == nil) {
@@ -226,7 +256,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (void) reportIndex:(NSDictionary*) result {
-    self.index = result;
+    self.indexData = result;
     self.recentMovies = nil;
     self.movieMap = nil;
 
@@ -443,37 +473,12 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (NSDictionary*) loadIndex {
-    NSDictionary* dictionary = [FileUtilities readObject:self.indexFile];
-    if (dictionary == nil) {
-        return [NSDictionary dictionary];
-    }
-
-    NSMutableArray* decodedMovies = [NSMutableArray array];
-    for (NSDictionary* encodedMovie in [dictionary objectForKey:movies_key]) {
-        [decodedMovies addObject:[Movie movieWithDictionary:encodedMovie]];
-    }
-
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:decodedMovies forKey:movies_key];
-    [result setObject:[dictionary objectForKey:hash_key] forKey:hash_key];
-    [result setObject:[dictionary objectForKey:studios_key] forKey:studios_key];
-    [result setObject:[dictionary objectForKey:titles_key] forKey:titles_key];
-
-    return result;
-}
-
-
 - (NSArray*) upcomingMovies {
-    if (index == nil) {
-        self.index = [self loadIndex];
-    }
-
     if (recentMovies == nil) {
         NSMutableArray* result = [NSMutableArray array];
         NSDate* now = [NSDate date];
 
-        for (Movie* movie in [index objectForKey:movies_key]) {
+        for (Movie* movie in [self.index objectForKey:movies_key]) {
             if ([now compare:movie.releaseDate] == NSOrderedDescending) {
                 continue;
             }
@@ -498,7 +503,7 @@ static NSString* titles_key = @"Titles";
     }
 
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    for (Movie* movie in [index objectForKey:movies_key]) {
+    for (Movie* movie in [self.index objectForKey:movies_key]) {
         [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
     self.movieMap = dictionary;

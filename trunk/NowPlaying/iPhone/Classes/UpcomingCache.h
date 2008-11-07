@@ -16,7 +16,7 @@
     NSLock* updateGate;
     NowPlayingModel* model;
 
-    NSDictionary* index;
+    NSDictionary* indexData;
 
     NSArray* recentMovies;
     NSDictionary* movieMap;
@@ -26,7 +26,7 @@
 
 @property (retain) NSLock* updateGate;
 @property (retain) NowPlayingModel* model;
-@property (retain) NSDictionary* index;
+@property (retain) NSDictionary* indexData;
 @property (retain) NSArray* recentMovies;
 @property (retain) NSDictionary* movieMap;
 @property (retain) LinkedSet* prioritizedMovies;
