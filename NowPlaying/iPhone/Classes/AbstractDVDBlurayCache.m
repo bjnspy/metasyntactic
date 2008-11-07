@@ -347,8 +347,34 @@
 }
 
 
-- (void) deleteObsoleteData:(NSArray*) oldMovies {
+- (void) deleteObsoleteData:(NSArray*) movies
+                  directory:(NSString*) directory
+               fileSelector:(SEL) fileSelector {
+    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
+    NSMutableSet* set = [NSMutableSet setWithArray:paths];
     
+    for (Movie* movie in movies) {
+        IMP imp = [self methodForSelector:fileSelector];
+        NSString* filePath = imp(self, fileSelector, movie, nil);
+        [set removeObject:filePath];
+    }
+    
+    for (NSString* filePath in set) {
+        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
+        
+        if (downloadDate != nil) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
+                [FileUtilities removeItem:filePath];
+            }
+        }
+    }
+}
+
+
+- (void) deleteObsoleteData:(NSArray*) movies {
+    [self deleteObsoleteData:movies directory:[self detailsDirectory] fileSelector:@selector(detailsFile:set:)];
+    [self deleteObsoleteData:movies directory:[self imdbDirectory]    fileSelector:@selector(imdbFile:set:)];
+    [self deleteObsoleteData:movies directory:[self postersDirectory] fileSelector:@selector(posterFile:set:)];
 }
 
 

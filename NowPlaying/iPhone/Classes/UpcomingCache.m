@@ -220,10 +220,6 @@ static NSString* titles_key = @"Titles";
 
 
 - (void) deleteObsoleteData:(NSArray*) movies {
-    if (movies.count == 0) {
-        return;
-    }
-
     [self deleteObsoleteData:movies directory:[Application upcomingCastDirectory] fileSelector:@selector(castFile:)];
     [self deleteObsoleteData:movies directory:[Application upcomingIMDbDirectory] fileSelector:@selector(imdbFile:)];
     [self deleteObsoleteData:movies directory:[Application upcomingPostersDirectory] fileSelector:@selector(posterFile:)];
