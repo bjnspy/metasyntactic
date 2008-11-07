@@ -30,4 +30,6 @@
              selector:(SEL) selector
              argument:(id) argument;
 
+- (void) run;
+
 @end

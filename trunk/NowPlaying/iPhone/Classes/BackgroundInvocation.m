@@ -15,11 +15,17 @@
 #import "BackgroundInvocation.h"
 
 #import "GlobalActivityIndicator.h"
+#import "PriorityMutex.h"
 
 @implementation BackgroundInvocation
 
 @synthesize gate;
 @synthesize visible;
+
++ (void) initialize {
+    if (self == [BackgroundInvocation class]) {
+    }
+}
 
 - (void) dealloc {
     self.gate = nil;
@@ -56,22 +62,27 @@
 }
 
 
+- (void) runWorker {
+    if (visible) {
+        [NSThread setThreadPriority:0.25];
+    } else {
+        [NSThread setThreadPriority:0.0];
+    }
+    
+    [gate lock];
+    [GlobalActivityIndicator addBackgroundTask:visible];
+    {
+        [target performSelector:selector withObject:argument];
+    }
+    [GlobalActivityIndicator removeBackgroundTask:visible];
+    [gate unlock];
+}
+
+
 - (void) run {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
-        if (visible) {
-            [NSThread setThreadPriority:0.25];
-        } else {
-            [NSThread setThreadPriority:0.0];
-        }
-
-        [gate lock];
-        [GlobalActivityIndicator addBackgroundTask:visible];
-        {
-            [target performSelector:selector withObject:argument];
-        }
-        [GlobalActivityIndicator removeBackgroundTask:visible];
-        [gate unlock];
+        [self runWorker];
     }
     [autoreleasePool release];
 }
