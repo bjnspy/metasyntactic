@@ -20,6 +20,7 @@
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "Movie.h"
+#import "ThreadingUtilities.h"
 
 @implementation LargePosterCache
 
@@ -45,6 +46,34 @@
 
 + (LargePosterCache*) cache {
     return [[[LargePosterCache alloc] init] autorelease];
+}
+
+
+- (void) update {
+    [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint) onTarget:self inBackgroundWithArgument:nil gate:gate visible:NO];
+}
+
+
+- (void) deleteObsoletePosters {
+    for (NSString* name in [FileUtilities directoryContents:[Application postersLargeFolder]]) {
+        if (![name hasSuffix:@"jpg"]) {
+            continue;
+        }
+        
+        NSString* path = [[Application postersLargeFolder] stringByAppendingPathComponent:name];
+        NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
+            
+        if (lastModifiedDate != nil) {
+            if (ABS([lastModifiedDate timeIntervalSinceNow]) > ONE_MONTH) {
+                [FileUtilities removeItem:path];
+            }
+        }
+    }
+}
+
+
+- (void) updateBackgroundEntryPoint {
+    [self deleteObsoletePosters];
 }
 
 
