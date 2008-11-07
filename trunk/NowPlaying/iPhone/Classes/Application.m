@@ -36,7 +36,7 @@ static NSString* scoresDirectory = nil;
 static NSString* reviewsDirectory = nil;
 static NSString* trailersDirectory = nil;
 static NSString* postersDirectory = nil;
-static NSString* postersLargeDirectory = nil;
+static NSString* largePostersDirectory = nil;
 
 static NSString* dvdDirectory = nil;
 static NSString* dvdDetailsDirectory = nil;
@@ -84,7 +84,7 @@ static NSString** directories[] = {
     &reviewsDirectory,
     &trailersDirectory,
     &postersDirectory,
-    &postersLargeDirectory,
+    &largePostersDirectory,
     &upcomingDirectory,
     &upcomingCastDirectory,
     &upcomingIMDbDirectory,
@@ -198,7 +198,7 @@ static NSString* starString = nil;
             trailersDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Trailers"] retain];
 
             postersDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-            postersLargeDirectory = [[[self postersDirectory] stringByAppendingPathComponent:@"Large"] retain];
+            largePostersDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"LargePosters"] retain];
 
             dvdDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"DVD"] retain];
             dvdDetailsDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Details"] retain];
@@ -260,8 +260,8 @@ static NSString* starString = nil;
 }
 
 
-+ (NSString*) postersLargeDirectory {
-    return postersLargeDirectory;
++ (NSString*) largePostersDirectory {
+    return largePostersDirectory;
 }
 
 

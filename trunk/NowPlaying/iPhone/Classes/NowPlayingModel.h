@@ -52,6 +52,8 @@ enum ViewControllerType {
 
 + (NSString*) version;
 
+- (void) update;
+
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesScores;

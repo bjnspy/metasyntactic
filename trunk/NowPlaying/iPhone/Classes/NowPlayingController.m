@@ -103,10 +103,10 @@
                                                otherButtonTitles:nil] autorelease];
 
         [alert show];
-        return;
+    } else {
+        [self spawnBackgroundThreads];
+        [self.model performSelector:@selector(update) withObject:nil afterDelay:1];
     }
-
-    [self spawnBackgroundThreads];
 }
 
 

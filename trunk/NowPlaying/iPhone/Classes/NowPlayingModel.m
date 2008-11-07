@@ -259,7 +259,7 @@ static NSString** KEYS[] = {
 
         searchRadius = -1;
 
-        [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:0] afterDelay:2];
+        [self performSelector:@selector(update) withObject:nil afterDelay:2];
     }
 
     return self;
@@ -285,6 +285,11 @@ static NSString** KEYS[] = {
 
     [self performSelector:selectors[value]];
     [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:value + 1] afterDelay:1];
+}
+
+
+- (void) update {
+    [self updateCaches:[NSNumber numberWithInt:0]];
 }
 
 

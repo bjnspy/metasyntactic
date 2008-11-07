@@ -19,6 +19,7 @@
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
+#import "NowPlayingModel.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -57,6 +58,10 @@
 
 
 - (void) update:(NSArray*) movies {
+    if (model.userAddress.length == 0) {
+        return;
+    }
+    
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:movies

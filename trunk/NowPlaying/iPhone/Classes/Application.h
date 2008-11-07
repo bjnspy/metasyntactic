@@ -25,7 +25,7 @@
 + (NSString*) imdbDirectory;
 + (NSString*) userLocationsDirectory;
 + (NSString*) postersDirectory;
-+ (NSString*) postersLargeDirectory;
++ (NSString*) largePostersDirectory;
 + (NSString*) scoresDirectory;
 + (NSString*) reviewsDirectory;
 + (NSString*) trailersDirectory;

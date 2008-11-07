@@ -284,6 +284,10 @@ static NSString* titles_key = @"Titles";
 
 
 - (void) update {
+    if (model.userAddress.length == 0) {
+        return;
+    }
+
     [self updateIndex];
     [self updateDetails];
 }
