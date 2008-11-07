@@ -25,11 +25,11 @@
 
 @implementation TrailerCache
 
-@synthesize updateGate;
+@synthesize gate;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.updateGate = nil;
+    self.gate = nil;
     self.prioritizedMovies = nil;
 
     [super dealloc];
@@ -38,7 +38,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.updateGate = [[[NSLock alloc] init] autorelease];
+        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
@@ -62,8 +62,8 @@
 
 
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
-    NSArray* contents = [FileUtilities directoryContentsPaths:[Application trailersFolder]];
-    NSMutableSet* set = [NSMutableSet setWithArray:contents];
+    NSArray* paths = [FileUtilities directoryContentsPaths:[Application trailersFolder]];
+    NSMutableSet* set = [NSMutableSet setWithArray:paths];
 
     for (Movie* movie in movies) {
         NSString* filePath = [self trailerFilePath:movie.canonicalTitle];
@@ -74,8 +74,7 @@
         NSDate* downloadDate = [FileUtilities modificationDate:filePath];
 
         if (downloadDate != nil) {
-            NSTimeInterval span = downloadDate.timeIntervalSinceNow;
-            if (ABS(span) > ONE_MONTH) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
                 [FileUtilities removeItem:filePath];
             }
         }
@@ -108,7 +107,7 @@
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:movies
-                                   gate:updateGate
+                                   gate:gate
                                 visible:NO];
 }
 
