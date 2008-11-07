@@ -34,7 +34,7 @@ static NSString* hash_key = @"Hash";
 static NSString* studios_key = @"Studios";
 static NSString* titles_key = @"Titles";
 
-@synthesize updateGate;
+@synthesize gate;
 @synthesize model;
 @synthesize indexData;
 @synthesize recentMovies;
@@ -42,7 +42,7 @@ static NSString* titles_key = @"Titles";
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.updateGate = nil;
+    self.gate = nil;
     self.model = nil;
     self.indexData = nil;
     self.recentMovies = nil;
@@ -55,7 +55,7 @@ static NSString* titles_key = @"Titles";
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
-        self.updateGate = [[[NSLock alloc] init] autorelease];
+        self.gate = [[[NSLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.model = model_;
     }
@@ -161,7 +161,7 @@ static NSString* titles_key = @"Titles";
     [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint)
                                onTarget:self
                inBackgroundWithArgument:nil
-                                   gate:updateGate
+                                   gate:gate
                                 visible:YES];
 }
 
@@ -244,7 +244,7 @@ static NSString* titles_key = @"Titles";
     [ThreadingUtilities performSelector:@selector(updateDetailsInBackgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:self.index
-                                   gate:updateGate
+                                   gate:gate
                                 visible:NO];
 }
 
