@@ -89,8 +89,7 @@
         NSDate* downloadDate = [FileUtilities modificationDate:filePath];
 
         if (downloadDate != nil) {
-            NSTimeInterval span = downloadDate.timeIntervalSinceNow;
-            if (ABS(span) > (ONE_HOUR * 1000)) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
                 [FileUtilities removeItem:filePath];
             }
         }

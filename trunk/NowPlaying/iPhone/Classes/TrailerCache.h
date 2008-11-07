@@ -13,12 +13,12 @@
 // limitations under the License.
 
 @interface TrailerCache : NSObject {
-    NSLock* updateGate;
+    NSLock* gate;
 
     LinkedSet* prioritizedMovies;
 }
 
-@property (retain) NSLock* updateGate;
+@property (retain) NSLock* gate;
 @property (retain) LinkedSet* prioritizedMovies;
 
 + (TrailerCache*) cache;
