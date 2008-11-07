@@ -196,18 +196,39 @@ static NSString* titles_key = @"Titles";
 }
 
 
+- (void) deleteObsoleteData:(NSArray*) movies
+                     folder:(NSString*) folder
+               fileSelector:(SEL) fileSelector {
+    NSArray* paths = [FileUtilities directoryContentsPaths:folder];
+    NSMutableSet* set = [NSMutableSet setWithArray:paths];
+    
+    for (Movie* movie in movies) {
+        NSString* filePath = [self performSelector:fileSelector withObject:movie];
+        [set removeObject:filePath];
+    }
+    
+    for (NSString* filePath in set) {
+        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
+        
+        if (downloadDate != nil) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
+                [FileUtilities removeItem:filePath];
+            }
+        }
+    }
+}
+
+
 - (void) deleteObsoleteData:(NSArray*) movies {
     if (movies.count == 0) {
         return;
     }
 
-    /*
-    [self deleteObsoleteCastData:movies];
-    [self deleteObsoleteIMDbData:movies];
-    [self deleteObsoletePostersData:movies];
-    [self deleteObsoleteSynopsesData:movies];
-    [self deleteObsoleteTrailersData:movies];
-     */
+    [self deleteObsoleteData:movies folder:[Application upcomingCastFolder] fileSelector:@selector(castFile:)];
+    [self deleteObsoleteData:movies folder:[Application upcomingIMDbFolder] fileSelector:@selector(imdbFile:)];
+    [self deleteObsoleteData:movies folder:[Application upcomingPostersFolder] fileSelector:@selector(posterFile:)];
+    [self deleteObsoleteData:movies folder:[Application upcomingSynopsesFolder] fileSelector:@selector(synopsisFile:)];
+    [self deleteObsoleteData:movies folder:[Application upcomingTrailersFolder] fileSelector:@selector(trailersFile:)];
 }
 
 
