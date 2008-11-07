@@ -62,22 +62,21 @@
 
 
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
-    NSArray* contents = [FileUtilities directoryContents:[Application trailersFolder]];
+    NSArray* contents = [FileUtilities directoryContentsPaths:[Application trailersFolder]];
     NSMutableSet* set = [NSMutableSet setWithArray:contents];
 
     for (Movie* movie in movies) {
-        NSString* filePath = [self trailerFileName:movie.canonicalTitle];
+        NSString* filePath = [self trailerFilePath:movie.canonicalTitle];
         [set removeObject:filePath];
     }
 
     for (NSString* filePath in set) {
-        NSString* fullPath = [[Application trailersFolder] stringByAppendingPathComponent:filePath];
-        NSDate* downloadDate = [FileUtilities modificationDate:fullPath];
+        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
 
         if (downloadDate != nil) {
             NSTimeInterval span = downloadDate.timeIntervalSinceNow;
-            if (ABS(span) > (ONE_HOUR * 1000)) {
-                [FileUtilities removeItem:fullPath];
+            if (ABS(span) > ONE_MONTH) {
+                [FileUtilities removeItem:filePath];
             }
         }
     }

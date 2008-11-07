@@ -79,12 +79,7 @@
 
 - (void) deleteObsoletePosters:(NSArray*) movies {
     NSMutableSet* set = [NSMutableSet set];
-
-    NSArray* contents = [FileUtilities directoryContents:[Application postersFolder]];
-    for (NSString* fileName in contents) {
-        NSString* filePath = [[Application postersFolder] stringByAppendingPathComponent:fileName];
-        [set addObject:filePath];
-    }
+    [set addObjectsFromArray:[FileUtilities directoryContentsPaths:[Application postersFolder]]];
 
     for (Movie* movie in movies) {
         [set removeObject:[self posterFilePath:movie]];

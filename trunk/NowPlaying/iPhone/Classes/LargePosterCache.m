@@ -55,12 +55,11 @@
 
 
 - (void) deleteObsoletePosters {
-    for (NSString* name in [FileUtilities directoryContents:[Application postersLargeFolder]]) {
-        if (![name hasSuffix:@"jpg"]) {
+    for (NSString* path in [FileUtilities directoryContentsPaths:[Application postersLargeFolder]]) {
+        if (![path hasSuffix:@"jpg"]) {
             continue;
         }
         
-        NSString* path = [[Application postersLargeFolder] stringByAppendingPathComponent:name];
         NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
             
         if (lastModifiedDate != nil) {
