@@ -38,7 +38,7 @@
 
     UIImage* posterImage;
     TappableImageView* posterImageView;
-    UIActivityIndicatorView* posterActivityView;
+    ActivityIndicatorViewWithBackground* posterActivityView;
     NSInteger posterCount;
 }
 
@@ -56,7 +56,7 @@
 
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
-@property (retain) UIActivityIndicatorView* posterActivityView;
+@property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                               movie:(Movie*) movie;
