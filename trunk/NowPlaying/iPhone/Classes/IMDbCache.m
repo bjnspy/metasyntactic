@@ -57,14 +57,7 @@
 }
 
 
-- (void) deleteObsoleteAddresses:(NSArray*) movies {
-
-}
-
-
 - (void) update:(NSArray*) movies {
-    [self deleteObsoleteAddresses:movies];
-
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:movies
@@ -108,7 +101,30 @@
 }
 
 
+- (void) deleteObsoleteAddresses:(NSArray*) movies {
+    NSArray* paths = [FileUtilities directoryContentsPaths:[Application imdbFolder]];
+    NSMutableSet* set = [NSMutableSet setWithArray:paths];
+    
+    for (Movie* movie in movies) {
+        NSString* filePath = [self movieFilePath:movie];
+        [set removeObject:filePath];
+    }
+    
+    for (NSString* filePath in set) {
+        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
+        
+        if (downloadDate != nil) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
+                [FileUtilities removeItem:filePath];
+            }
+        }
+    }
+}
+
+
 - (void) backgroundEntryPoint:(NSArray*) movies {
+    [self deleteObsoleteAddresses:movies];
+    
     for (Movie* movie in movies) {
         [self downloadAddress:movie];
     }
