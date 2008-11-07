@@ -1,6 +1,5 @@
 package org.metasyntactic;
 
-
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class WebViewActivity extends Activity {
-
     /**
      * TODO: Set the path variable to a streaming video URL or a local media
      * file path.
@@ -23,8 +21,6 @@ public class WebViewActivity extends Activity {
         mWebView = new WebView(this);
         setContentView(mWebView);
         path = getIntent().getExtras().getString("url");
-        mWebView.loadUrl(path);   
-
-        }
+        mWebView.loadUrl(path);
     }
-
+}

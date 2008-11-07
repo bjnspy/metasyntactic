@@ -1,6 +1,5 @@
 package org.metasyntactic;
 
-
 import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.net.Uri;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 public class VideoViewActivity extends Activity {
-
     /**
      * TODO: Set the path variable to a streaming video URL or a local media
      * file path.
@@ -25,15 +23,10 @@ public class VideoViewActivity extends Activity {
         setContentView(R.layout.videoview);
         path = getIntent().getExtras().getString("trailer_url");
         mVideoView = (VideoView) findViewById(R.id.surface_view);
-         
-             
-              mVideoView.setVideoURI(Uri.parse(path));
-            
-          //  mVideoView.setVideoPath(path);
-            mVideoView.setMediaController(new MediaController(this));
-            mVideoView.requestFocus();
-           mVideoView.start();
-
-        }
+        mVideoView.setVideoURI(Uri.parse(path));
+        //  mVideoView.setVideoPath(path);
+        mVideoView.setMediaController(new MediaController(this));
+        mVideoView.requestFocus();
+        mVideoView.start();
     }
-
+}
