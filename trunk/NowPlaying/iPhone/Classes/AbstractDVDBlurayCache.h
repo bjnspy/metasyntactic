@@ -7,8 +7,9 @@
 //
 
 @interface AbstractDVDBlurayCache : NSObject {
-    NSLock* gate;
     NowPlayingModel* model;
+    
+    NSLock* gate;
     
     PointerSet* moviesSetData;
     NSArray* moviesData;
@@ -16,8 +17,9 @@
     LinkedSet* prioritizedMovies;
 }
 
+@property (assign) NowPlayingModel* model;
+
 @property (retain) NSLock* gate;
-@property (retain) NowPlayingModel* model;
 @property (retain) PointerSet* moviesSetData;
 @property (retain) NSArray* moviesData;
 @property (retain) LinkedSet* prioritizedMovies;
