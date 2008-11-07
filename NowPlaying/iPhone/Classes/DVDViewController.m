@@ -32,8 +32,7 @@
 
 - (NSArray*) movies {
     NSMutableArray* result = [NSMutableArray array];
-    [result addObjectsFromArray:self.model.dvdCache.dvdMovies];
-    [result addObjectsFromArray:self.model.dvdCache.blurayMovies];
+    [result addObjectsFromArray:self.model.dvdCache.movies];
     return result;
 }
 

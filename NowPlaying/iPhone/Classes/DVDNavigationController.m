@@ -48,7 +48,7 @@
 
 
 - (Movie*) movieForTitle:(NSString*) canonicalTitle {
-    for (Movie* movie in self.model.dvdCache.allMovies) {
+    for (Movie* movie in self.model.dvdCache.movies) {
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
             return movie;
         }

@@ -40,6 +40,11 @@
 + (NSString*) dvdIMDbDirectory;
 + (NSString*) dvdPostersDirectory;
 
++ (NSString*) blurayDirectory;
++ (NSString*) blurayDetailsDirectory;
++ (NSString*) blurayIMDbDirectory;
++ (NSString*) blurayPostersDirectory;
+
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;
 + (NSString*) upcomingIMDbDirectory;

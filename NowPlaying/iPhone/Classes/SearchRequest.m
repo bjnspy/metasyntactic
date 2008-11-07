@@ -51,7 +51,7 @@
         self.movies = model.movies;
         self.theaters = model.theaters;
         self.upcomingMovies = model.upcomingCache.upcomingMovies;
-        self.dvds = model.dvdCache.allMovies;
+        self.dvds = model.dvdCache.movies;
 
         self.lowercaseValue = [[Utilities asciiString:value] lowercaseString];
     }

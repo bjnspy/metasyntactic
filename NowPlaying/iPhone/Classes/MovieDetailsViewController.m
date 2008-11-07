@@ -209,7 +209,7 @@
         //[NSThread sleepForTimeInterval:5];
         self.navigationController = controller;
         self.movie = movie_;
-        self.dvd = [self.model.dvdCache dvdDetailsForMovie:movie];
+        self.dvd = [self.model.dvdCache detailsForMovie:movie];
 
         filterTheatersByDistance = YES;
 

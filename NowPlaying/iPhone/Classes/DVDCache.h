@@ -12,37 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface DVDCache : NSObject {
-    NSLock* gate;
-    NowPlayingModel* model;
+#import "AbstractDVDBlurayCache.h"
 
-    PointerSet* dvdSetData;
-    PointerSet* bluraySetData;
-    NSArray* dvdData;
-    NSArray* blurayData;
-
-    LinkedSet* prioritizedMovies;
+@interface DVDCache : AbstractDVDBlurayCache {
 }
 
-@property (retain) NSLock* gate;
-@property (retain) NowPlayingModel* model;
-@property (retain) PointerSet* dvdSetData;
-@property (retain) PointerSet* bluraySetData;
-@property (retain) NSArray* dvdData;
-@property (retain) NSArray* blurayData;
-@property (retain) LinkedSet* prioritizedMovies;
-
 + (DVDCache*) cacheWithModel:(NowPlayingModel*) model;
-
-- (void) update;
-- (void) prioritizeMovie:(Movie*) movie;
-
-- (NSArray*) dvdMovies;
-- (NSArray*) blurayMovies;
-- (NSArray*) allMovies;
-
-- (DVD*) dvdDetailsForMovie:(Movie*) movie;
-- (UIImage*) posterForMovie:(Movie*) movie;
-- (NSString*) imdbAddressForMovie:(Movie*) movie;
 
 @end
