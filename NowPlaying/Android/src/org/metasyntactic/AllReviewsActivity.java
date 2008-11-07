@@ -28,70 +28,59 @@ import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import java.util.List;
 
 /** @author mjoshi@google.com (Megha Joshi) */
-public class AllReviewsActivity extends ListActivity {   
-    private List<Review> reviews;    
+public class AllReviewsActivity extends ListActivity {
+    private List<Review> reviews;
     private static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-        super.onCreate(savedInstanceState);        
+        super.onCreate(savedInstanceState);
         mContext = this;
-
         reviews = getIntent().getParcelableArrayListExtra("reviews");
-        
         this.setListAdapter(new ReviewsAdapter(this));
     }
 
     class ReviewsAdapter extends BaseAdapter {
         private Context mContext;
-
         private LayoutInflater mInflater;
-
 
         public ReviewsAdapter(Context context) {
             mContext = context;
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            mInflater = LayoutInflater.from(context);           
-
+            mInflater = LayoutInflater.from(context);
         }
-
 
         public Object getItem(int i) {
             return i;
         }
 
-
         public long getItemId(int i) {
             return i;
         }
 
-
         public View getView(int position, View convertView, ViewGroup viewGroup) {
-            
             MovieViewHolder holder;
             convertView = mInflater.inflate(R.layout.reviewview, null);
             holder = new MovieViewHolder();
-            holder.toggleButton = (Button) convertView.findViewById(R.id.togglebtn);          
-            holder.score = (Button) convertView.findViewById(R.id.score);            
+            holder.toggleButton = (Button) convertView
+                    .findViewById(R.id.togglebtn);
+            holder.score = (Button) convertView.findViewById(R.id.score);
             holder.author = (TextView) convertView.findViewById(R.id.author);
             holder.source = (TextView) convertView.findViewById(R.id.source);
             holder.desc = (TextView) convertView.findViewById(R.id.desc);
             convertView.setTag(holder);
-        
             Resources res = mContext.getResources();
             final Review review = reviews.get(position);
             holder.author.setText(review.getAuthor());
             holder.source.setText(review.getSource());
             holder.desc.setText(review.getText());
             holder.score.setText(String.valueOf(review.getScore()));
-            
             holder.toggleButton.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     String review_url = null;
                     review_url = review.getLink();
                     if (review_url != null) {
-                        
                         Intent intent = new Intent();
                         intent.putExtra("url", review_url);
                         intent.setClass(AllReviewsActivity.this,
@@ -107,25 +96,17 @@ public class AllReviewsActivity extends ListActivity {
             return convertView;
         }
 
-
         class MovieViewHolder {
-         
             Button score;
             TextView author;
             TextView source;
             TextView desc;
-           Button toggleButton;
+            Button toggleButton;
             ImageView divider;
         }
-
 
         public int getCount() {
             return reviews.size();
         }
-
-
     }
-
-
-   
 }

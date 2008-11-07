@@ -17,7 +17,7 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 
 import java.util.ArrayList;
 
-public class MovieDetailsActivity extends Activity {
+public class TheaterDetailsActivity extends Activity {
     /** Called when the activity is first created. */
     NowPlayingControllerWrapper controller;
 
@@ -69,11 +69,11 @@ public class MovieDetailsActivity extends Activity {
                 if (trailer_url != null) {
                     Intent intent = new Intent();
                     intent.putExtra("trailer_url", trailer_url);
-                    intent.setClass(MovieDetailsActivity.this,
+                    intent.setClass(TheaterDetailsActivity.this,
                             VideoViewActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(MovieDetailsActivity.this,
+                    Toast.makeText(TheaterDetailsActivity.this,
                             "This movie's trailer is not available.",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -86,11 +86,11 @@ public class MovieDetailsActivity extends Activity {
                 if (imdb_url != null) {
                     Intent intent = new Intent();
                     intent.putExtra("imdb_url", imdb_url);
-                    intent.setClass(MovieDetailsActivity.this,
+                    intent.setClass(TheaterDetailsActivity.this,
                             WebViewActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(MovieDetailsActivity.this,
+                    Toast.makeText(TheaterDetailsActivity.this,
                             "This movie's IMDB information is not available.",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -103,11 +103,11 @@ public class MovieDetailsActivity extends Activity {
                 if (reviews != null && reviews.size() > 0) {
                     Intent intent = new Intent();
                     intent.putParcelableArrayListExtra("reviews", reviews);
-                    intent.setClass(MovieDetailsActivity.this,
+                    intent.setClass(TheaterDetailsActivity.this,
                             AllReviewsActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(MovieDetailsActivity.this,
+                    Toast.makeText(TheaterDetailsActivity.this,
                             "This movie's reviews are not yet available.",
                             Toast.LENGTH_SHORT).show();
                 }
