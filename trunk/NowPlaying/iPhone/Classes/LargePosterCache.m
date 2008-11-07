@@ -55,7 +55,7 @@
 
 
 - (void) deleteObsoletePosters {
-    for (NSString* path in [FileUtilities directoryContentsPaths:[Application postersLargeFolder]]) {
+    for (NSString* path in [FileUtilities directoryContentsPaths:[Application postersLargeDirectory]]) {
         if (![path hasSuffix:@"jpg"]) {
             continue;
         }
@@ -79,7 +79,7 @@
 - (NSString*) posterFilePath:(Movie*) movie index:(NSInteger) index {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d", index];
-    return [[[Application postersLargeFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
+    return [[[Application postersLargeDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
@@ -105,7 +105,7 @@
 
 
 - (NSString*) indexFile {
-    return [[Application postersLargeFolder] stringByAppendingPathComponent:@"Index.plist"];
+    return [[Application postersLargeDirectory] stringByAppendingPathComponent:@"Index.plist"];
 }
 
 

@@ -73,13 +73,13 @@
 
 - (NSString*) posterFilePath:(Movie*) movie {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
+    return [[[Application postersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
 - (void) deleteObsoletePosters:(NSArray*) movies {
     NSMutableSet* set = [NSMutableSet set];
-    [set addObjectsFromArray:[FileUtilities directoryContentsPaths:[Application postersFolder]]];
+    [set addObjectsFromArray:[FileUtilities directoryContentsPaths:[Application postersDirectory]]];
 
     for (Movie* movie in movies) {
         [set removeObject:[self posterFilePath:movie]];

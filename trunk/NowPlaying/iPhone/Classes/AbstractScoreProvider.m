@@ -83,8 +83,8 @@
     if (self = [super init]) {
         self.lock = [[[NSRecursiveLock alloc] init] autorelease];
         self.parentCache = parentCache_;
-        self.providerDirectory = [[Application scoresFolder] stringByAppendingPathComponent:self.providerName];
-        self.reviewsDirectory = [[Application reviewsFolder] stringByAppendingPathComponent:self.providerName];
+        self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
+        self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
 
         [FileUtilities createDirectory:providerDirectory];

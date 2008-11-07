@@ -28,11 +28,11 @@ static MainThreadGate* gate;
 
 
 
-+ (void) createDirectory:(NSString*) folder {
++ (void) createDirectory:(NSString*) directory {
     [gate lock];
     {
-        if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
-            [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:NULL];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:directory]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:NULL];
         }
     }
     [gate unlock];

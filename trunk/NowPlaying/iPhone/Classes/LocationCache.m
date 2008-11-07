@@ -104,14 +104,14 @@
 }
 
 
-- (NSString*) locationFolder {
+- (NSString*) locationDirectory {
     NSAssert(false, @"Someone subclassed incorrectly");
     return nil;
 }
 
 
 - (NSString*) locationFile:(NSString*) address {
-    return [[[self locationFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
+    return [[[self locationDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
             stringByAppendingPathExtension:@"plist"];
 }
 

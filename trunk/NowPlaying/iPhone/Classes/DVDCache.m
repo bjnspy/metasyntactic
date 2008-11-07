@@ -69,12 +69,12 @@
 
 
 - (NSString*) dvdFile {
-    return [[Application dvdFolder] stringByAppendingPathComponent:@"DVD.plist"];
+    return [[Application dvdDirectory] stringByAppendingPathComponent:@"DVD.plist"];
 }
 
 
 - (NSString*) blurayFile {
-    return [[Application dvdFolder] stringByAppendingPathComponent:@"Blu-ray.plist"];
+    return [[Application dvdDirectory] stringByAppendingPathComponent:@"Blu-ray.plist"];
 }
 
 
@@ -307,10 +307,10 @@
 
 - (NSString*) detailsFile:(Movie*) movie isBluray:(BOOL) isBluray {
     if (!isBluray) {
-        return [[[Application dvdDetailsFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+        return [[[Application dvdDetailsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-DVD.plist"];
     } else {
-        return [[[Application dvdDetailsFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+        return [[[Application dvdDetailsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-Bluray.plist"];
     }
 }
@@ -329,10 +329,10 @@
 
 - (NSString*) imdbFile:(Movie*) movie {
     if ([self.dvdSet containsObject:movie]) {
-        return [[[Application dvdIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+        return [[[Application dvdIMDbDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-DVD.plist"];
     } else if ([self.bluraySet containsObject:movie]) {
-        return [[[Application dvdIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+        return [[[Application dvdIMDbDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-Bluray.plist"];
     }
 
@@ -342,10 +342,10 @@
 
 - (NSString*) posterFile:(Movie*) movie {
     if ([self.dvdSet containsObject:movie]) {
-        return [[[Application dvdPostersFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+        return [[[Application dvdPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-DVD.jpg"];
     } else if ([self.bluraySet containsObject:movie]) {
-        return [[[Application dvdPostersFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+        return [[[Application dvdPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-Bluray.jpg"];
     } else {
         return nil;

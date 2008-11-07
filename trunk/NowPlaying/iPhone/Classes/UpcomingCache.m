@@ -70,7 +70,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (NSString*) indexFile {
-    return [[Application upcomingFolder] stringByAppendingPathComponent:@"Index.plist"];
+    return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Index.plist"];
 }
 
 
@@ -197,9 +197,9 @@ static NSString* titles_key = @"Titles";
 
 
 - (void) deleteObsoleteData:(NSArray*) movies
-                     folder:(NSString*) folder
+                     directory:(NSString*) directory
                fileSelector:(SEL) fileSelector {
-    NSArray* paths = [FileUtilities directoryContentsPaths:folder];
+    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
     NSMutableSet* set = [NSMutableSet setWithArray:paths];
     
     for (Movie* movie in movies) {
@@ -224,11 +224,11 @@ static NSString* titles_key = @"Titles";
         return;
     }
 
-    [self deleteObsoleteData:movies folder:[Application upcomingCastFolder] fileSelector:@selector(castFile:)];
-    [self deleteObsoleteData:movies folder:[Application upcomingIMDbFolder] fileSelector:@selector(imdbFile:)];
-    [self deleteObsoleteData:movies folder:[Application upcomingPostersFolder] fileSelector:@selector(posterFile:)];
-    [self deleteObsoleteData:movies folder:[Application upcomingSynopsesFolder] fileSelector:@selector(synopsisFile:)];
-    [self deleteObsoleteData:movies folder:[Application upcomingTrailersFolder] fileSelector:@selector(trailersFile:)];
+    [self deleteObsoleteData:movies directory:[Application upcomingCastDirectory] fileSelector:@selector(castFile:)];
+    [self deleteObsoleteData:movies directory:[Application upcomingIMDbDirectory] fileSelector:@selector(imdbFile:)];
+    [self deleteObsoleteData:movies directory:[Application upcomingPostersDirectory] fileSelector:@selector(posterFile:)];
+    [self deleteObsoleteData:movies directory:[Application upcomingSynopsesDirectory] fileSelector:@selector(synopsisFile:)];
+    [self deleteObsoleteData:movies directory:[Application upcomingTrailersDirectory] fileSelector:@selector(trailersFile:)];
 }
 
 
@@ -308,29 +308,29 @@ static NSString* titles_key = @"Titles";
 
 
 - (NSString*) castFile:(Movie*) movie {
-    return [[[Application upcomingCastFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+    return [[[Application upcomingCastDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) imdbFile:(Movie*) movie {
-    return [[[Application upcomingIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+    return [[[Application upcomingIMDbDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) posterFile:(Movie*) movie {
     NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     fileName = [fileName stringByAppendingPathExtension:@"jpg"];
-    return [[Application upcomingPostersFolder] stringByAppendingPathComponent:fileName];
+    return [[Application upcomingPostersDirectory] stringByAppendingPathComponent:fileName];
 }
 
 
 - (NSString*) synopsisFile:(Movie*) movie {
-    return [[[Application upcomingSynopsesFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+    return [[[Application upcomingSynopsesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) trailersFile:(Movie*) movie {
-    return [[[Application upcomingTrailersFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+    return [[[Application upcomingTrailersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
