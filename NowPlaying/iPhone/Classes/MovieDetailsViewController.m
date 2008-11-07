@@ -192,8 +192,8 @@
     self.posterDownloadLock = [[[NSLock alloc] init] autorelease];
     //self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
-    
-    
+
+
     posterActivityView.activityIndicator.hidesWhenStopped = YES;
     [posterActivityView sizeToFit];
 
