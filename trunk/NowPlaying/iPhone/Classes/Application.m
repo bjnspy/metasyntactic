@@ -43,6 +43,11 @@ static NSString* dvdDetailsDirectory = nil;
 static NSString* dvdIMDbDirectory = nil;
 static NSString* dvdPostersDirectory = nil;
 
+static NSString* blurayDirectory = nil;
+static NSString* blurayDetailsDirectory = nil;
+static NSString* blurayIMDbDirectory = nil;
+static NSString* blurayPostersDirectory = nil;
+
 /*
 static NSString* numbersDirectory = nil;
 static NSString* numbersBudgetsDirectory = nil;
@@ -65,6 +70,10 @@ static NSString** directories[] = {
     &dvdDetailsDirectory,
     &dvdIMDbDirectory,
     &dvdPostersDirectory,
+    &blurayDirectory,
+    &blurayDetailsDirectory,
+    &blurayIMDbDirectory,
+    &blurayPostersDirectory,
 /*
     &numbersDirectory,
     &numbersBudgetsDirectory,
@@ -196,6 +205,11 @@ static NSString* starString = nil;
             dvdIMDbDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
             dvdPostersDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Posters"] retain];
 
+            blurayDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Bluray"] retain];
+            blurayDetailsDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Details"] retain];
+            blurayIMDbDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
+            blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];            
+            
             upcomingDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
             upcomingIMDbDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
@@ -204,10 +218,6 @@ static NSString* starString = nil;
             upcomingTrailersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Trailers"] retain];
 
             [self createDirectories];
-//            static NSString* numbersDirectory = nil;
-//            static NSString* numbersBudgetsDirectory = nil;
-//            static NSString* numbersDailyDirectory = nil;
-//            static NSString* numbersWeekendDirectory = nil;
         }
     }
 }
@@ -287,6 +297,26 @@ static NSString* starString = nil;
 
 + (NSString*) dvdPostersDirectory {
     return dvdPostersDirectory;
+}
+
+
++ (NSString*) blurayDirectory {
+    return blurayDirectory;
+}
+
+
++ (NSString*) blurayDetailsDirectory {
+    return blurayDetailsDirectory;
+}
+
+
++ (NSString*) blurayIMDbDirectory {
+    return blurayIMDbDirectory;
+}
+
+
++ (NSString*) blurayPostersDirectory {
+    return blurayPostersDirectory;
 }
 
 

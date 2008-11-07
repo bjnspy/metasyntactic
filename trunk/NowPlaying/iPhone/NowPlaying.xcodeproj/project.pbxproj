@@ -62,6 +62,8 @@
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 744AF54C0EC42A40008B5B35 /* BlackCircle.png */; };
 		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
+		744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
+		744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
@@ -333,6 +335,10 @@
 		744AF54C0EC42A40008B5B35 /* BlackCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackCircle.png; path = Resources/BlackCircle.png; sourceTree = "<group>"; };
 		744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
+		744AF7F90EC4DC1F008B5B35 /* BlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurayCache.h; sourceTree = "<group>"; };
+		744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurayCache.m; sourceTree = "<group>"; };
+		744AF8410EC4DF12008B5B35 /* AbstractDVDBlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDVDBlurayCache.h; sourceTree = "<group>"; };
+		744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDVDBlurayCache.m; sourceTree = "<group>"; };
 		745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
 		745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
@@ -1036,6 +1042,10 @@
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
 				74AD66330E92D49500A01FD5 /* DVDCache.h */,
 				74AD66340E92D49500A01FD5 /* DVDCache.m */,
+				744AF7F90EC4DC1F008B5B35 /* BlurayCache.h */,
+				744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */,
+				744AF8410EC4DF12008B5B35 /* AbstractDVDBlurayCache.h */,
+				744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -1592,6 +1602,8 @@
 				74AF0F850EC2D38D00A8F639 /* NonClippingView.m in Sources */,
 				74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */,
 				744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */,
+				744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */,
+				744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

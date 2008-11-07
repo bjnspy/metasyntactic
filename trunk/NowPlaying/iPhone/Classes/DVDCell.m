@@ -193,7 +193,7 @@
 
 
 - (void) setMovie:(Movie*) movie owner:(id) owner {
-    DVD* dvd = [model.dvdCache dvdDetailsForMovie:movie];
+    DVD* dvd = [model.dvdCache detailsForMovie:movie];
 
     titleLabel.text = movie.displayTitle;
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];

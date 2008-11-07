@@ -30,6 +30,7 @@
 @class AttributeCell;
 @class AutoResizingCell;
 @class BackgroundInvocation;
+@class BlurayCache;
 @class CollapsedMovieDetailsCell;
 @class ColorCache;
 @class CreditsViewController;
