@@ -35,94 +35,80 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllMoviesActivity_old extends ListActivity {
-  private NowPlayingActivity activity;
-  private List<Movie> movies = new ArrayList<Movie>();
-  private static MoviesAdapter mAdapter;
-  private static Context mContext;
-
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
 
+  private static MoviesAdapter adapter;
+  private static Context context;
+
+  private NowPlayingActivity activity;
+  private List<Movie> movies = new ArrayList<Movie>();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
     activity = (NowPlayingActivity) getParent();
-    mContext = this;
+    context = this;
 
     // Set up Movies adapter
-    mAdapter = new MoviesAdapter(this);
-    setListAdapter(mAdapter);
+    adapter = new MoviesAdapter(this);
+    setListAdapter(adapter);
   }
-
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
 
-    menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
-        android.R.drawable.star_on);
+    menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
 
-    menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
+    menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
         new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
 
     return super.onCreateOptionsMenu(menu);
   }
 
-
   public INowPlaying getNowPlayingActivityContext() {
     return activity;
   }
 
-
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
-      NowPlayingPreferenceDialog builder =
-          new NowPlayingPreferenceDialog(this.activity)
+      NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this.activity)
 
-              .setTitle(R.string.movies_select_sort_title).setKey(
-              NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
-              .setEntries(R.array.entries_movies_sort_preference).show();
+          .setTitle(R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
+          .setEntries(R.array.entries_movies_sort_preference).show();
 
       return true;
     }
     return false;
   }
 
-
   class MoviesAdapter extends BaseAdapter {
-    private final Context mContext;
-
-    private final LayoutInflater mInflater;
-
+    private final Context context;
+    private final LayoutInflater inflater;
 
     public MoviesAdapter(Context context) {
-      mContext = context;
+      this.context = context;
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      mInflater = LayoutInflater.from(context);
-
+      inflater = LayoutInflater.from(context);
     }
-
 
     public Object getItem(int i) {
       return i;
     }
 
-
     public long getItemId(int i) {
       return i;
     }
 
-
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-      NowPlayingControllerWrapper mController = activity.getController();
+      NowPlayingControllerWrapper controller = activity.getController();
 
       MovieViewHolder holder;
 
-      convertView = mInflater.inflate(R.layout.movieview, null);
+      convertView = inflater.inflate(R.layout.movieview, null);
 
       holder = new MovieViewHolder();
       holder.toggleButton = (Button) convertView.findViewById(R.id.togglebtn);
@@ -135,12 +121,11 @@ public class AllMoviesActivity_old extends ListActivity {
       holder.header = (TextView) convertView.findViewById(R.id.header);
       convertView.setTag(holder);
 
-      Resources res = mContext.getResources();
+      Resources res = context.getResources();
       final Movie movie = movies.get(position);
 
-      String headerText =
-          MovieViewUtilities.getHeader(movies, position, mController
-              .getAllMoviesSelectedSortIndex());
+      String headerText = MovieViewUtilities.getHeader(movies, position, controller
+          .getAllMoviesSelectedSortIndex());
       if (headerText != null) {
         holder.header.setVisibility(1);
         holder.header.setText(headerText);
@@ -159,7 +144,7 @@ public class AllMoviesActivity_old extends ListActivity {
       holder.toggleButton.setOnClickListener(new Button.OnClickListener() {
         public void onClick(View v) {
           Intent intent = new Intent();
-          intent.setClass(mContext, MovieDetailsActivity.class);
+          intent.setClass(context, MovieDetailsActivity.class);
           intent.putExtra("movie", (Parcelable) movie);
 
           startActivity(intent);
@@ -167,15 +152,14 @@ public class AllMoviesActivity_old extends ListActivity {
       });
 
       // Get and set scores text and background image
-      Score score = mController.getScore(movie);
+      Score score = controller.getScore(movie);
       int scoreValue = -1;
       if (score != null && !score.getValue().equals("")) {
         scoreValue = Integer.parseInt(score.getValue());
-
       } else {
 
       }
-      ScoreType scoreType = mController.getScoreType();
+      ScoreType scoreType = controller.getScoreType();
 
       holder.score.setBackgroundDrawable(MovieViewUtilities
           .formatScoreDrawable(scoreValue, scoreType, res));
@@ -185,8 +169,7 @@ public class AllMoviesActivity_old extends ListActivity {
       return convertView;
     }
 
-
-    class MovieViewHolder {
+    private class MovieViewHolder {
       TextView header;
       Button score;
       TextView title;
@@ -196,11 +179,9 @@ public class AllMoviesActivity_old extends ListActivity {
       ImageView divider;
     }
 
-
     public int getCount() {
       return movies.size();
     }
-
 
     public void refreshMovies(List<Movie> new_movies) {
       movies = new_movies;
@@ -208,9 +189,8 @@ public class AllMoviesActivity_old extends ListActivity {
     }
   }
 
-
   public static void refresh(List<Movie> movies) {
 
-    mAdapter.refreshMovies(movies);
+    adapter.refreshMovies(movies);
   }
 }

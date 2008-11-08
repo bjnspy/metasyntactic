@@ -57,7 +57,6 @@ public class Application {
   private static Pulser pulser;
   private static Context context;
 
-
   static {
     createDirectories();
 
@@ -71,19 +70,16 @@ public class Application {
     pulser = new Pulser(runnable, 5);
   }
 
-
   private Application() {
 
   }
-
 
   private static List<File> directories() {
     try {
       List<File> directories = new ArrayList<File>();
 
       for (Field field : Application.class.getFields()) {
-        if (field.getType() != File.class ||
-            field.get(null) == root) {
+        if (field.getType() != File.class || field.get(null) == root) {
           continue;
         }
 
@@ -96,12 +92,10 @@ public class Application {
     }
   }
 
-
   public static void reset() {
     deleteDirectories();
     createDirectories();
   }
-
 
   private static void createDirectories() {
     long start = System.currentTimeMillis();
@@ -111,18 +105,15 @@ public class Application {
     LogUtilities.logTime(Application.class, "Create Directories", start);
   }
 
-
   private static void deleteDirectories() {
     long start = System.currentTimeMillis();
     deleteDirectory(applicationDirectory);
     LogUtilities.logTime(Application.class, "Delete Directories", start);
   }
 
-
   public static void deleteDirectory(File directory) {
     deleteItem(directory);
   }
-
 
   private static void deleteItem(File item) {
     if (!item.exists()) {
@@ -138,16 +129,13 @@ public class Application {
     item.delete();
   }
 
-
   public static boolean useKilometers() {
     return false;
   }
 
-
   public static void refresh() {
     refresh(false);
   }
-
 
   public static void refresh(final boolean force) {
     if (ThreadingUtilities.isBackgroundThread()) {
@@ -165,11 +153,9 @@ public class Application {
     }
   }
 
-
   public static void setContext(Context context) {
     Application.context = context;
   }
-
 
   public static File createTempFile() {
     try {

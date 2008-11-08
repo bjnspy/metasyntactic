@@ -34,7 +34,6 @@ public class MovieDetailsActivity extends Activity {
   /** Called when the activity is first created. */
   NowPlayingControllerWrapper controller;
 
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -59,10 +58,8 @@ public class MovieDetailsActivity extends Activity {
     if (synopsis.length() > 0) {
       // hack to display text on left and bottom or poster
       if (synopsis.length() > 240) {
-        String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(
-            " ", 250));
-        String desc2_text = synopsis.substring(synopsis.lastIndexOf(
-            " ", 250));
+        String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(" ", 250));
+        String desc2_text = synopsis.substring(synopsis.lastIndexOf(" ", 250));
         desc1.setText(desc1_text);
         desc2.setText(desc2_text);
       } else {
@@ -71,8 +68,8 @@ public class MovieDetailsActivity extends Activity {
     }
     CharSequence rating = MovieViewUtilities.formatRatings(movie
         .getRating(), NowPlayingActivity.instance.getResources());
-    CharSequence length = MovieViewUtilities.formatLength(
-        movie.getLength(), NowPlayingActivity.instance.getResources());
+    CharSequence length = MovieViewUtilities.formatLength(movie.getLength(),
+                                                          NowPlayingActivity.instance.getResources());
     rating_length.setText(rating.toString() + " " + length.toString());
     trailerbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
@@ -83,13 +80,11 @@ public class MovieDetailsActivity extends Activity {
         if (trailer_url != null) {
           Intent intent = new Intent();
           intent.putExtra("trailer_url", trailer_url);
-          intent.setClass(MovieDetailsActivity.this,
-              VideoViewActivity.class);
+          intent.setClass(MovieDetailsActivity.this, VideoViewActivity.class);
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this,
-              "This movie's trailer is not available.",
-              Toast.LENGTH_SHORT).show();
+          Toast.makeText(MovieDetailsActivity.this, "This movie's trailer is not available.",
+                         Toast.LENGTH_SHORT).show();
         }
       }
     });
@@ -100,13 +95,11 @@ public class MovieDetailsActivity extends Activity {
         if (imdb_url != null) {
           Intent intent = new Intent();
           intent.putExtra("imdb_url", imdb_url);
-          intent.setClass(MovieDetailsActivity.this,
-              WebViewActivity.class);
+          intent.setClass(MovieDetailsActivity.this, WebViewActivity.class);
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this,
-              "This movie's IMDB information is not available.",
-              Toast.LENGTH_SHORT).show();
+          Toast.makeText(MovieDetailsActivity.this, "This movie's IMDB information is not available.",
+                         Toast.LENGTH_SHORT).show();
         }
       }
     });
@@ -117,18 +110,15 @@ public class MovieDetailsActivity extends Activity {
         if (reviews != null && reviews.size() > 0) {
           Intent intent = new Intent();
           intent.putParcelableArrayListExtra("reviews", reviews);
-          intent.setClass(MovieDetailsActivity.this,
-              AllReviewsActivity.class);
+          intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this,
-              "This movie's reviews are not yet available.",
-              Toast.LENGTH_SHORT).show();
+          Toast.makeText(MovieDetailsActivity.this, "This movie's reviews are not yet available.",
+                         Toast.LENGTH_SHORT).show();
         }
       }
     });
   }
-
 
   @Override
   protected void onResume() {

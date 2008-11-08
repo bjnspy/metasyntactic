@@ -32,14 +32,12 @@ import java.util.*;
 final class FieldSet {
   private Map<FieldDescriptor, Object> fields;
 
-
   /** Construct a new FieldSet. */
   private FieldSet() {
     // Use a TreeMap because fields need to be in canonical order when
     // serializing.
     this.fields = new TreeMap<FieldDescriptor, Object>();
   }
-
 
   /**
    * Construct a new FieldSet with the given map.  This is only used by DEFAULT_INSTANCE, to pass in an immutable empty
@@ -49,22 +47,17 @@ final class FieldSet {
     this.fields = fields;
   }
 
-
   /** Construct a new FieldSet. */
   public static FieldSet newFieldSet() {
     return new FieldSet();
   }
-
 
   /** Get an immutable empty FieldSet. */
   public static FieldSet emptySet() {
     return DEFAULT_INSTANCE;
   }
 
-
-  private static final FieldSet DEFAULT_INSTANCE =
-      new FieldSet(Collections.<FieldDescriptor, Object>emptyMap());
-
+  private static final FieldSet DEFAULT_INSTANCE = new FieldSet(Collections.<FieldDescriptor, Object>emptyMap());
 
   /** Make this FieldSet immutable from this point forward. */
   @SuppressWarnings("unchecked")
@@ -80,18 +73,15 @@ final class FieldSet {
 
   // =================================================================
 
-
   /** See {@link Message.Builder#clear()}. */
   public void clear() {
     fields.clear();
   }
 
-
   /** See {@link Message#getAllFields()}. */
   public Map<Descriptors.FieldDescriptor, Object> getAllFields() {
     return Collections.unmodifiableMap(fields);
   }
-
 
   /**
    * Get an interator to the field map.  This iterator should not be leaked out of the protobuf library as it is not
@@ -101,17 +91,14 @@ final class FieldSet {
     return fields.entrySet().iterator();
   }
 
-
   /** See {@link Message#hasField(Descriptors.FieldDescriptor)}. */
   public boolean hasField(Descriptors.FieldDescriptor field) {
     if (field.isRepeated()) {
-      throw new IllegalArgumentException(
-          "hasField() can only be called on non-repeated fields.");
+      throw new IllegalArgumentException("hasField() can only be called on non-repeated fields.");
     }
 
     return fields.containsKey(field);
   }
-
 
   /**
    * See {@link Message#getField(Descriptors.FieldDescriptor)}.  This method returns {@code null} if the field is a
@@ -134,14 +121,12 @@ final class FieldSet {
     }
   }
 
-
   /** See {@link Message.Builder#setField(Descriptors.FieldDescriptor,Object)}. */
   @SuppressWarnings("unchecked")
   public void setField(Descriptors.FieldDescriptor field, Object value) {
     if (field.isRepeated()) {
       if (!(value instanceof List)) {
-        throw new IllegalArgumentException(
-            "Wrong object type used with protocol message reflection.");
+        throw new IllegalArgumentException("Wrong object type used with protocol message reflection.");
       }
 
       // Wrap the contents in a new list so that the caller cannot change
@@ -159,42 +144,34 @@ final class FieldSet {
     fields.put(field, value);
   }
 
-
   /** See {@link Message.Builder#clearField(Descriptors.FieldDescriptor)}. */
   public void clearField(Descriptors.FieldDescriptor field) {
     fields.remove(field);
   }
 
-
   /** See {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)}. */
   public int getRepeatedFieldCount(Descriptors.FieldDescriptor field) {
     if (!field.isRepeated()) {
-      throw new IllegalArgumentException(
-          "getRepeatedFieldCount() can only be called on repeated fields.");
+      throw new IllegalArgumentException("getRepeatedFieldCount() can only be called on repeated fields.");
     }
 
     return ((List) getField(field)).size();
   }
 
-
   /** See {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)}. */
   public Object getRepeatedField(Descriptors.FieldDescriptor field, int index) {
     if (!field.isRepeated()) {
-      throw new IllegalArgumentException(
-          "getRepeatedField() can only be called on repeated fields.");
+      throw new IllegalArgumentException("getRepeatedField() can only be called on repeated fields.");
     }
 
     return ((List) getField(field)).get(index);
   }
 
-
   /** See {@link Message.Builder#setRepeatedField(Descriptors.FieldDescriptor,int,Object)}. */
   @SuppressWarnings("unchecked")
-  public void setRepeatedField(Descriptors.FieldDescriptor field, int index,
-                               Object value) {
+  public void setRepeatedField(Descriptors.FieldDescriptor field, int index, Object value) {
     if (!field.isRepeated()) {
-      throw new IllegalArgumentException(
-          "setRepeatedField() can only be called on repeated fields.");
+      throw new IllegalArgumentException("setRepeatedField() can only be called on repeated fields.");
     }
 
     verifyType(field, value);
@@ -207,14 +184,11 @@ final class FieldSet {
     list.set(index, value);
   }
 
-
   /** See {@link Message.Builder#addRepeatedField(Descriptors.FieldDescriptor,Object)}. */
   @SuppressWarnings("unchecked")
-  public void addRepeatedField(Descriptors.FieldDescriptor field,
-                               Object value) {
+  public void addRepeatedField(Descriptors.FieldDescriptor field, Object value) {
     if (!field.isRepeated()) {
-      throw new IllegalArgumentException(
-          "setRepeatedField() can only be called on repeated fields.");
+      throw new IllegalArgumentException("setRepeatedField() can only be called on repeated fields.");
     }
 
     verifyType(field, value);
@@ -227,7 +201,6 @@ final class FieldSet {
 
     list.add(value);
   }
-
 
   /**
    * Verifies that the given object is of the correct type to be a valid value for the given field.  (For repeated
@@ -260,12 +233,10 @@ final class FieldSet {
         isValid = value instanceof ByteString;
         break;
       case ENUM:
-        isValid = value instanceof EnumValueDescriptor &&
-            ((EnumValueDescriptor) value).getType() == field.getEnumType();
+        isValid = value instanceof EnumValueDescriptor && ((EnumValueDescriptor) value).getType() == field.getEnumType();
         break;
       case MESSAGE:
-        isValid = value instanceof Message &&
-            ((Message) value).getDescriptorForType() == field.getMessageType();
+        isValid = value instanceof Message && ((Message) value).getDescriptorForType() == field.getMessageType();
         break;
     }
 
@@ -275,17 +246,12 @@ final class FieldSet {
       // considered one line of code.  So, let's make sure to include the
       // field name and other useful info in the exception.
       throw new IllegalArgumentException(
-          "Wrong object type used with protocol message reflection.  " +
-              "Message type \"" + field.getContainingType().getFullName() +
-              "\", field \"" +
-              (field.isExtension() ? field.getFullName() : field.getName()) +
-              "\", value was type \"" + value.getClass().getName() + "\".");
+          "Wrong object type used with protocol message reflection.  " + "Message type \"" + field.getContainingType().getFullName() + "\", field \"" + (field.isExtension() ? field.getFullName() : field.getName()) + "\", value was type \"" + value.getClass().getName() + "\".");
     }
   }
 
   // =================================================================
   // Parsing and serialization
-
 
   /**
    * See {@link Message#isInitialized()}.  Note:  Since {@code FieldSet} itself does not have any way of knowing about
@@ -314,7 +280,6 @@ final class FieldSet {
     return true;
   }
 
-
   /** Like {@link #isInitialized()}, but also checks for the presence of all required fields in the given type. */
   @SuppressWarnings("unchecked")
   public boolean isInitialized(Descriptor type) {
@@ -331,7 +296,6 @@ final class FieldSet {
     return isInitialized();
   }
 
-
   /** See {@link Message.Builder#mergeFrom(Message)}. */
   @SuppressWarnings("unchecked")
   public void mergeFrom(Message other) {
@@ -344,8 +308,7 @@ final class FieldSet {
     // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
     //   which allows people to make secure deep copies of messages.
 
-    for (Map.Entry<FieldDescriptor, Object> entry :
-        other.getAllFields().entrySet()) {
+    for (Map.Entry<FieldDescriptor, Object> entry : other.getAllFields().entrySet()) {
       FieldDescriptor field = entry.getKey();
       if (field.isRepeated()) {
         List existingValue = (List) fields.get(field);
@@ -359,18 +322,16 @@ final class FieldSet {
         if (existingValue == null) {
           setField(field, entry.getValue());
         } else {
-          setField(field,
-              existingValue.newBuilderForType()
-                  .mergeFrom(existingValue)
-                  .mergeFrom((Message) entry.getValue())
-                  .build());
+          setField(field, existingValue.newBuilderForType()
+              .mergeFrom(existingValue)
+              .mergeFrom((Message) entry.getValue())
+              .build());
         }
       } else {
         setField(field, entry.getValue());
       }
     }
   }
-
 
   /** Like {@link #mergeFrom(Message)}, but merges from another {@link FieldSet}. */
   @SuppressWarnings("unchecked")
@@ -391,11 +352,10 @@ final class FieldSet {
         if (existingValue == null) {
           setField(field, value);
         } else {
-          setField(field,
-              existingValue.newBuilderForType()
-                  .mergeFrom(existingValue)
-                  .mergeFrom((Message) value)
-                  .build());
+          setField(field, existingValue.newBuilderForType()
+              .mergeFrom(existingValue)
+              .mergeFrom((Message) value)
+              .build());
         }
       } else {
         setField(field, value);
@@ -406,31 +366,26 @@ final class FieldSet {
   // TODO(kenton):  Move parsing code into AbstractMessage, since it no longer
   //   uses any special knowledge from FieldSet.
 
-
   /**
    * See {@link Message.Builder#mergeFrom(CodedInputStream)}.
    *
    * @param builder The {@code Builder} for the target message.
    */
-  public static void mergeFrom(CodedInputStream input,
-                               UnknownFieldSet.Builder unknownFields,
+  public static void mergeFrom(CodedInputStream input, UnknownFieldSet.Builder unknownFields,
                                ExtensionRegistry extensionRegistry,
-                               Message.Builder builder)
-      throws java.io.IOException {
+                               Message.Builder builder) throws java.io.IOException {
     while (true) {
       int tag = input.readTag();
       if (tag == 0) {
         break;
       }
 
-      if (!mergeFieldFrom(input, unknownFields, extensionRegistry,
-          builder, tag)) {
+      if (!mergeFieldFrom(input, unknownFields, extensionRegistry, builder, tag)) {
         // end group tag
         break;
       }
     }
   }
-
 
   /**
    * Like {@link #mergeFrom(CodedInputStream, UnknownFieldSet.Builder, ExtensionRegistry, Message.Builder)}, but parses
@@ -440,18 +395,13 @@ final class FieldSet {
    *
    * @return {@code true} unless the tag is an end-group tag.
    */
-  public static boolean mergeFieldFrom(
-      CodedInputStream input,
-      UnknownFieldSet.Builder unknownFields,
-      ExtensionRegistry extensionRegistry,
-      Message.Builder builder,
-      int tag) throws java.io.IOException {
+  public static boolean mergeFieldFrom(CodedInputStream input, UnknownFieldSet.Builder unknownFields,
+                                       ExtensionRegistry extensionRegistry, Message.Builder builder,
+                                       int tag) throws java.io.IOException {
     Descriptor type = builder.getDescriptorForType();
 
-    if (type.getOptions().getMessageSetWireFormat() &&
-        tag == WireFormat.MESSAGE_SET_ITEM_TAG) {
-      mergeMessageSetExtensionFromCodedStream(
-          input, unknownFields, extensionRegistry, builder);
+    if (type.getOptions().getMessageSetWireFormat() && tag == WireFormat.MESSAGE_SET_ITEM_TAG) {
+      mergeMessageSetExtensionFromCodedStream(input, unknownFields, extensionRegistry, builder);
       return true;
     }
 
@@ -462,8 +412,7 @@ final class FieldSet {
     Message defaultInstance = null;
 
     if (type.isExtensionNumber(fieldNumber)) {
-      ExtensionRegistry.ExtensionInfo extension =
-          extensionRegistry.findExtensionByNumber(type, fieldNumber);
+      ExtensionRegistry.ExtensionInfo extension = extensionRegistry.findExtensionByNumber(type, fieldNumber);
       if (extension == null) {
         field = null;
       } else {
@@ -474,8 +423,7 @@ final class FieldSet {
       field = type.findFieldByNumber(fieldNumber);
     }
 
-    if (field == null ||
-        wireType != WireFormat.getWireFormatForFieldType(field.getType())) {
+    if (field == null || wireType != WireFormat.getWireFormatForFieldType(field.getType())) {
       // Unknown field or wrong wire type.  Skip.
       return unknownFields.mergeFieldFrom(tag, input);
     } else {
@@ -535,13 +483,11 @@ final class FieldSet {
     return true;
   }
 
-
   /** Called by {@code #mergeFieldFrom()} to parse a MessageSet extension. */
-  private static void mergeMessageSetExtensionFromCodedStream(
-      CodedInputStream input,
-      UnknownFieldSet.Builder unknownFields,
-      ExtensionRegistry extensionRegistry,
-      Message.Builder builder) throws java.io.IOException {
+  private static void mergeMessageSetExtensionFromCodedStream(CodedInputStream input,
+                                                              UnknownFieldSet.Builder unknownFields,
+                                                              ExtensionRegistry extensionRegistry,
+                                                              Message.Builder builder) throws java.io.IOException {
     Descriptor type = builder.getDescriptorForType();
 
     // The wire format for MessageSet is:
@@ -575,8 +521,7 @@ final class FieldSet {
         typeId = input.readUInt32();
         // Zero is not a valid type ID.
         if (typeId != 0) {
-          ExtensionRegistry.ExtensionInfo extension =
-              extensionRegistry.findExtensionByNumber(type, typeId);
+          ExtensionRegistry.ExtensionInfo extension = extensionRegistry.findExtensionByNumber(type, typeId);
           if (extension != null) {
             field = extension.descriptor;
             subBuilder = extension.defaultInstance.newBuilderForType();
@@ -586,18 +531,16 @@ final class FieldSet {
             }
             if (rawBytes != null) {
               // We already encountered the message.  Parse it now.
-              subBuilder.mergeFrom(
-                  CodedInputStream.newInstance(rawBytes.newInput()));
+              subBuilder.mergeFrom(CodedInputStream.newInstance(rawBytes.newInput()));
               rawBytes = null;
             }
           } else {
             // Unknown extension number.  If we already saw data, put it
             // in rawBytes.
             if (rawBytes != null) {
-              unknownFields.mergeField(typeId,
-                  UnknownFieldSet.Field.newBuilder()
-                      .addLengthDelimited(rawBytes)
-                      .build());
+              unknownFields.mergeField(typeId, UnknownFieldSet.Field.newBuilder()
+                  .addLengthDelimited(rawBytes)
+                  .build());
               rawBytes = null;
             }
           }
@@ -609,10 +552,9 @@ final class FieldSet {
           rawBytes = input.readBytes();
         } else if (subBuilder == null) {
           // We don't know how to parse this.  Ignore it.
-          unknownFields.mergeField(typeId,
-              UnknownFieldSet.Field.newBuilder()
-                  .addLengthDelimited(input.readBytes())
-                  .build());
+          unknownFields.mergeField(typeId, UnknownFieldSet.Field.newBuilder()
+              .addLengthDelimited(input.readBytes())
+              .build());
         } else {
           // We already know the type, so we can parse directly from the input
           // with no copying.  Hooray!
@@ -633,21 +575,16 @@ final class FieldSet {
     }
   }
 
-
   /** See {@link Message#writeTo(CodedOutputStream)}. */
-  public void writeTo(CodedOutputStream output)
-      throws java.io.IOException {
+  public void writeTo(CodedOutputStream output) throws java.io.IOException {
     for (Map.Entry<FieldDescriptor, Object> entry : fields.entrySet()) {
       writeField(entry.getKey(), entry.getValue(), output);
     }
   }
 
-
   /** Write a single field. */
-  public void writeField(FieldDescriptor field, Object value,
-                         CodedOutputStream output) throws java.io.IOException {
-    if (field.isExtension() &&
-        field.getContainingType().getOptions().getMessageSetWireFormat()) {
+  public void writeField(FieldDescriptor field, Object value, CodedOutputStream output) throws java.io.IOException {
+    if (field.isExtension() && field.getContainingType().getOptions().getMessageSetWireFormat()) {
       output.writeMessageSetExtension(field.getNumber(), (Message) value);
     } else {
       if (field.isRepeated()) {
@@ -660,7 +597,6 @@ final class FieldSet {
     }
   }
 
-
   /** See {@link Message#getSerializedSize()}.  It's up to the caller to cache the resulting size if desired. */
   public int getSerializedSize() {
     int size = 0;
@@ -668,19 +604,15 @@ final class FieldSet {
       FieldDescriptor field = entry.getKey();
       Object value = entry.getValue();
 
-      if (field.isExtension() &&
-          field.getContainingType().getOptions().getMessageSetWireFormat()) {
-        size += CodedOutputStream.computeMessageSetExtensionSize(
-            field.getNumber(), (Message) value);
+      if (field.isExtension() && field.getContainingType().getOptions().getMessageSetWireFormat()) {
+        size += CodedOutputStream.computeMessageSetExtensionSize(field.getNumber(), (Message) value);
       } else {
         if (field.isRepeated()) {
           for (Object element : (List) value) {
-            size += CodedOutputStream.computeFieldSize(
-                field.getType(), field.getNumber(), element);
+            size += CodedOutputStream.computeFieldSize(field.getType(), field.getNumber(), element);
           }
         } else {
-          size += CodedOutputStream.computeFieldSize(
-              field.getType(), field.getNumber(), value);
+          size += CodedOutputStream.computeFieldSize(field.getType(), field.getNumber(), value);
         }
       }
     }

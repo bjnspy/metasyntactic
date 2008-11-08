@@ -23,17 +23,14 @@ import java.util.*;
 public class PersistableInputStream {
   private final InputStream in;
 
-
   public PersistableInputStream(InputStream in) {
     this.in = in;
     initializeBuffers(1 << 11);
   }
 
-
   public void close() throws IOException {
     in.close();
   }
-
 
   private void readEntireArray(byte[] bytes) throws IOException {
     int position = 0;
@@ -48,37 +45,31 @@ public class PersistableInputStream {
     }
   }
 
-
   private final byte[] bytes4 = new byte[4];
   private final byte[] bytes8 = new byte[8];
   private final ByteBuffer buffer4 = ByteBuffer.wrap(bytes4);
   private final ByteBuffer buffer8 = ByteBuffer.wrap(bytes8);
-
 
   public int readInt() throws IOException {
     readEntireArray(bytes4);
     return buffer4.getInt(0);
   }
 
-
   public long readLong() throws IOException {
     readEntireArray(bytes8);
     return buffer8.getLong(0);
   }
-
 
   public double readDouble() throws IOException {
     readEntireArray(bytes8);
     return buffer8.getDouble(0);
   }
 
-
   private char[] chars;
   private byte[] bytes;
 
   private ByteBuffer byteBuffer;
   private CharBuffer charBuffer;
-
 
   private void initializeBuffers(int byteCount) {
     bytes = new byte[byteCount];
@@ -87,7 +78,6 @@ public class PersistableInputStream {
     byteBuffer = ByteBuffer.wrap(bytes);
     charBuffer = byteBuffer.asCharBuffer();
   }
-
 
   public String readString() throws IOException {
     int charCount = readInt();
@@ -107,11 +97,9 @@ public class PersistableInputStream {
     return new String(chars, 0, charCount);
   }
 
-
   public <T extends Persistable> T readPersistable(Persistable.Reader<T> reader) throws IOException {
     return reader.read(this);
   }
-
 
   public List<String> readStringList() throws IOException {
     int size = readInt();
@@ -122,7 +110,6 @@ public class PersistableInputStream {
     return result;
   }
 
-
   public Set<String> readStringSet() throws IOException {
     int size = readInt();
     Set<String> result = new HashSet<String>(size);
@@ -131,7 +118,6 @@ public class PersistableInputStream {
     }
     return result;
   }
-
 
   public Date readDate() throws IOException {
     long millis = readLong();

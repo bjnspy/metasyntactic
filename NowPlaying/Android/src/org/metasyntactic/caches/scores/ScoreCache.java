@@ -29,11 +29,9 @@ public class ScoreCache {
 
   private final NowPlayingModel model;
 
-
   public ScoreCache(NowPlayingModel model) {
     this.model = model;
   }
-
 
   public void createDirectories() {
     rottenTomatoesScoreProvider.createDirectory();
@@ -41,7 +39,6 @@ public class ScoreCache {
     googleScoreProvider.createDirectory();
     noneScoreProvider.createDirectory();
   }
-
 
   private ScoreProvider getCurrentScoreProvider() {
     if (model.getScoreType() == ScoreType.Google) {
@@ -57,21 +54,17 @@ public class ScoreCache {
     }
   }
 
-
   public Score getScore(List<Movie> movies, Movie movie) {
     return getCurrentScoreProvider().getScore(movies, movie);
   }
-
 
   public void update() {
     getCurrentScoreProvider().update();
   }
 
-
   NowPlayingModel getModel() {
     return model;
   }
-
 
   public List<Review> getReviews(List<Movie> movies, Movie movie) {
     return getCurrentScoreProvider().getReviews(movies, movie);

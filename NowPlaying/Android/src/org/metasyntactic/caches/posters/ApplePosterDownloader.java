@@ -26,7 +26,6 @@ import java.util.Map;
 public class ApplePosterDownloader {
   private static Map<String, String> movieNameToPosterMap;
 
-
   public static byte[] download(Movie movie) {
     createMap();
 
@@ -43,14 +42,13 @@ public class ApplePosterDownloader {
     return NetworkUtilities.download(address, false);
   }
 
-
   private static void createMap() {
     if (movieNameToPosterMap != null) {
       return;
     }
 
     String index = NetworkUtilities.downloadString("http://" + Application.host + ".appspot.com/LookupPosterListings",
-        false);
+                                                   false);
     if (StringUtilities.isNullOrEmpty(index)) {
       return;
     }

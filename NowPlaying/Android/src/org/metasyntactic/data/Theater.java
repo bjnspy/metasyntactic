@@ -36,7 +36,6 @@ public class Theater implements Parcelable, Persistable {
   private Location originatingLocation;
   private Set<String> movieTitles;
 
-
   public void persistTo(PersistableOutputStream out) throws IOException {
     out.writeString(identifier);
     out.writeString(name);
@@ -46,7 +45,6 @@ public class Theater implements Parcelable, Persistable {
     out.writePersistable(originatingLocation);
     out.writeStringCollection(movieTitles);
   }
-
 
   public static final Reader<Theater> reader = new AbstractPersistable.AbstractReader<Theater>() {
     public Theater read(PersistableInputStream in) throws IOException {
@@ -62,7 +60,6 @@ public class Theater implements Parcelable, Persistable {
     }
   };
 
-
   public Theater(String identifier, String name, String address, String phoneNumber, Location location,
                  Location originatingLocation, Set<String> movieTitles) {
     this.identifier = identifier;
@@ -73,7 +70,6 @@ public class Theater implements Parcelable, Persistable {
     this.originatingLocation = originatingLocation;
     this.movieTitles = movieTitles;
   }
-
 
   public boolean equals(Object o) {
     if (this == o) {
@@ -92,51 +88,41 @@ public class Theater implements Parcelable, Persistable {
     return true;
   }
 
-
   public int hashCode() {
     return (identifier != null ? identifier.hashCode() : 0);
   }
-
 
   public String getIdentifier() {
     return identifier;
   }
 
-
   public String getName() {
     return name;
   }
-
 
   public String getAddress() {
     return address;
   }
 
-
   public String getPhoneNumber() {
     return phoneNumber;
   }
-
 
   public Location getLocation() {
     return location;
   }
 
-
   public Location getOriginatingLocation() {
     return originatingLocation;
   }
-
 
   public Set<String> getMovieTitles() {
     return Collections.unmodifiableSet(movieTitles);
   }
 
-
   public int describeContents() {
     return 0;
   }
-
 
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(identifier);
@@ -148,30 +134,26 @@ public class Theater implements Parcelable, Persistable {
     dest.writeStringList(new ArrayList<String>(movieTitles));
   }
 
+  public static final Parcelable.Creator<Theater> CREATOR = new Parcelable.Creator<Theater>() {
+    public Theater createFromParcel(Parcel source) {
+      String identifier = source.readString();
+      String name = source.readString();
+      String address = source.readString();
+      String phoneNumber = source.readString();
 
-  public static final Parcelable.Creator<Theater> CREATOR =
-      new Parcelable.Creator<Theater>() {
-        public Theater createFromParcel(Parcel source) {
-          String identifier = source.readString();
-          String name = source.readString();
-          String address = source.readString();
-          String phoneNumber = source.readString();
+      Location location = source.readParcelable(null);
+      Location originatingLocation = source.readParcelable(null);
+      List<String> movieTitles = new ArrayList<String>();
+      source.readStringList(movieTitles);
 
-          Location location = source.readParcelable(null);
-          Location originatingLocation = source.readParcelable(null);
-          List<String> movieTitles = new ArrayList<String>();
-          source.readStringList(movieTitles);
+      return new Theater(identifier, name, address, phoneNumber, location, originatingLocation,
+                         new LinkedHashSet<String>(movieTitles));
+    }
 
-          return new Theater(identifier, name, address, phoneNumber, location, originatingLocation,
-              new LinkedHashSet<String>(movieTitles));
-        }
-
-
-        public Theater[] newArray(int size) {
-          return new Theater[size];
-        }
-      };
-
+    public Theater[] newArray(int size) {
+      return new Theater[size];
+    }
+  };
 
   public static String processShowtime(String showtime) {
     if (DateUtilities.use24HourTime()) {

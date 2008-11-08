@@ -13,6 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package org.metasyntactic;
 
 import android.app.Activity;
@@ -37,12 +38,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllMoviesActivity extends Activity {
-  private NowPlayingActivity activity;
-  private List<Movie> movies = new ArrayList<Movie>();
-  private static Context mContext;
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
 
+  private static Context context;
+  private static DetailAdapter setailAdapter;
+  private static ThumbnailAdapter thumbnailAdapter;
+
+  private NowPlayingActivity activity;
+  private List<Movie> movies = new ArrayList<Movie>();
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -51,132 +55,106 @@ public class AllMoviesActivity extends Activity {
     setContentView(R.layout.movieview);
     super.onCreate(savedInstanceState);
     activity = (NowPlayingActivity) getParent();
-    mContext = this;
-    mDetailAdapter = new DetailAdapter(this);
-    mThumbnailAdapter = new ThumbnailAdapter(this);
+    context = this;
+    setailAdapter = new DetailAdapter(this);
+    thumbnailAdapter = new ThumbnailAdapter(this);
     final CustomGallery detail = (CustomGallery) findViewById(R.id.detail);
-    detail.setAdapter(mDetailAdapter);
+    detail.setAdapter(setailAdapter);
     //   detail.setSelection(0);
     final Gallery thumbnail = (Gallery) findViewById(R.id.thumbnails);
-    thumbnail.setAdapter(mThumbnailAdapter);
+    thumbnail.setAdapter(thumbnailAdapter);
     thumbnail.setSoundEffectsEnabled(true);
     //  thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
     OnItemSelectedListener listener = new OnItemSelectedListener() {
 
       @Override
-      public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                 int position, long id) {
+      public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
         // TODO Auto-generated method stub
         if (position == 0) {
           thumbnail.setSelection(position + 1);
         }
-
       }
-
 
       @Override
       public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
 
       }
-
     };
     detail.setOnItemSelectedListener(listener);
 
     OnItemSelectedListener thumblistener = new OnItemSelectedListener() {
 
       @Override
-      public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                 int position, long id) {
+      public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
         // TODO Auto-generated method stub
         if (position != 0) {
           detail.setSelection(position - 1);
         }
-
       }
-
 
       @Override
       public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
 
       }
-
     };
     thumbnail.setOnItemSelectedListener(thumblistener);
   }
 
-
-  private static DetailAdapter mDetailAdapter;
-  private static ThumbnailAdapter mThumbnailAdapter;
-
-
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
-        android.R.drawable.star_on);
-    menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
+    menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
+    menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
         new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
-
   public INowPlaying getNowPlayingActivityContext() {
     return activity;
   }
 
-
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
-      NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
-          this.activity)
+      NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this.activity)
           .setTitle(R.string.movies_select_sort_title)
-          .setKey(
-              NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
+          .setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
           .setEntries(R.array.entries_movies_sort_preference).show();
       return true;
     }
     return false;
   }
 
-
-  class DetailAdapter extends BaseAdapter {
-    private final Context mContext;
-    private final LayoutInflater mInflater;
-    int mGalleryItemBackground;
-
+  private class DetailAdapter extends BaseAdapter {
+    private final Context context;
+    private final LayoutInflater inflater;
+    private final int galleryItemBackground;
 
     public DetailAdapter(Context context) {
-      mContext = context;
+      this.context = context;
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      mInflater = LayoutInflater.from(context);
+      inflater = LayoutInflater.from(context);
       TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-      mGalleryItemBackground = a.getResourceId(
-          android.R.styleable.Theme_galleryItemBackground, 0);
+      galleryItemBackground = a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
     }
-
 
     public Object getItem(int i) {
       return i;
     }
 
-
     public long getItemId(int i) {
       return i;
     }
 
-
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-      NowPlayingControllerWrapper mController = activity.getController();
-      MovieViewHolder holder;
-      convertView = mInflater.inflate(R.layout.moviesummary, null);
-      holder = new MovieViewHolder();
-      holder.toggleButton = (Button) convertView
-          .findViewById(R.id.togglebtn);
+      NowPlayingControllerWrapper controller = activity.getController();
+      convertView = inflater.inflate(R.layout.moviesummary, null);
+
+      MovieViewHolder holder = new MovieViewHolder();
+      holder.toggleButton = (Button) convertView.findViewById(R.id.togglebtn);
       holder.score = (Button) convertView.findViewById(R.id.score);
 
       holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -187,10 +165,9 @@ public class AllMoviesActivity extends Activity {
 
       //    holder.header = (TextView) convertView.findViewById(R.id.header);
       convertView.setTag(holder);
-      Resources res = mContext.getResources();
+      Resources res = context.getResources();
       final Movie movie = movies.get(position);
-      String headerText = MovieViewUtilities.getHeader(movies, position,
-          mController.getAllMoviesSelectedSortIndex());
+      String headerText = MovieViewUtilities.getHeader(movies, position, controller.getAllMoviesSelectedSortIndex());
       /*   if (headerText != null) {
           holder.header.setVisibility(1);
           holder.header.setText(headerText);
@@ -200,16 +177,16 @@ public class AllMoviesActivity extends Activity {
           holder.divider.setVisibility(-1);
           holder.divider.setMaxHeight(0);
       }*/
-      if (mController.getPoster(movie).getBytes().length > 0) {
-        holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(mController
-            .getPoster(movie).getBytes(), 0, mController
+      if (controller.getPoster(movie).getBytes().length > 0) {
+        holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(controller
+            .getPoster(movie).getBytes(), 0, controller
             .getPoster(movie).getBytes().length));
       }
       holder.title.setText(movie.getDisplayTitle());
       CharSequence rating = MovieViewUtilities.formatRatings(movie
           .getRating(), NowPlayingActivity.instance.getResources());
-      CharSequence length = MovieViewUtilities.formatLength(
-          movie.getLength(), NowPlayingActivity.instance.getResources());
+      CharSequence length = MovieViewUtilities.formatLength(movie.getLength(),
+                                                            NowPlayingActivity.instance.getResources());
       holder.rating.setText(rating.toString());
       holder.length.setText(length.toString());
       String genres = movie.getGenres().toString();
@@ -218,20 +195,19 @@ public class AllMoviesActivity extends Activity {
           .setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
               Intent intent = new Intent();
-              intent.setClass(mContext,
-                  MovieDetailsActivity.class);
+              intent.setClass(context, MovieDetailsActivity.class);
               intent.putExtra("movie", (Parcelable) movie);
               startActivity(intent);
             }
           });
       // Get and set scores text and background image
-      Score score = mController.getScore(movie);
+      Score score = controller.getScore(movie);
       int scoreValue = -1;
       if (score != null && !score.getValue().equals("")) {
         scoreValue = Integer.parseInt(score.getValue());
       } else {
       }
-      ScoreType scoreType = mController.getScoreType();
+      ScoreType scoreType = controller.getScoreType();
       holder.score.setBackgroundDrawable(MovieViewUtilities
           .formatScoreDrawable(scoreValue, scoreType, res));
       if (scoreValue != -1) {
@@ -240,7 +216,6 @@ public class AllMoviesActivity extends Activity {
       //  convertView.setBackgroundResource(mGalleryItemBackground);
       return convertView;
     }
-
 
     class MovieViewHolder {
       TextView header;
@@ -254,11 +229,9 @@ public class AllMoviesActivity extends Activity {
       ImageView poster;
     }
 
-
     public int getCount() {
       return movies.size();
     }
-
 
     public void refreshMovies(List<Movie> new_movies) {
       movies = new_movies;
@@ -266,47 +239,42 @@ public class AllMoviesActivity extends Activity {
     }
   }
 
-  class ThumbnailAdapter extends BaseAdapter {
-    private final Context mContext;
-    private final LayoutInflater mInflater;
-    int mGalleryItemBackground;
-
+  private class ThumbnailAdapter extends BaseAdapter {
+    private final Context context;
+    private final LayoutInflater inflater;
+    private final int galleryItemBackground;
 
     public ThumbnailAdapter(Context context) {
-      mContext = context;
+      this.context = context;
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      mInflater = LayoutInflater.from(context);
+      inflater = LayoutInflater.from(context);
 
       TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-      mGalleryItemBackground = a.getResourceId(
-          android.R.styleable.Theme_galleryItemBackground, 0);
+      galleryItemBackground = a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
     }
-
 
     public Object getItem(int i) {
       return i;
     }
 
-
     public long getItemId(int i) {
       return i;
     }
 
-
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-      NowPlayingControllerWrapper mController = activity.getController();
+      NowPlayingControllerWrapper controller = activity.getController();
 
-      ImageView poster = new ImageView(mContext);
+      ImageView poster = new ImageView(context);
       poster.setLayoutParams(new Gallery.LayoutParams(100, 130));
       // The preferred Gallery item background
-      poster.setBackgroundResource(mGalleryItemBackground);
+      poster.setBackgroundResource(galleryItemBackground);
 
-      Resources res = mContext.getResources();
+      Resources res = context.getResources();
       final Movie movie = movies.get(position);
-      if (mController.getPoster(movie).getBytes().length > 0) {
-        poster.setImageBitmap(BitmapFactory.decodeByteArray(mController
-            .getPoster(movie).getBytes(), 0, mController
+      if (controller.getPoster(movie).getBytes().length > 0) {
+        poster.setImageBitmap(BitmapFactory.decodeByteArray(controller
+            .getPoster(movie).getBytes(), 0, controller
             .getPoster(movie).getBytes().length));
       } else {
         poster.setImageResource(R.drawable.image_not_available);
@@ -315,11 +283,9 @@ public class AllMoviesActivity extends Activity {
       return poster;
     }
 
-
     public int getCount() {
       return movies.size();
     }
-
 
     public void refreshMovies(List<Movie> new_movies) {
 
@@ -327,9 +293,8 @@ public class AllMoviesActivity extends Activity {
     }
   }
 
-
   public static void refresh(List<Movie> movies) {
-    mDetailAdapter.refreshMovies(movies);
-    mThumbnailAdapter.refreshMovies(movies);
+    setailAdapter.refreshMovies(movies);
+    thumbnailAdapter.refreshMovies(movies);
   }
 }

@@ -29,54 +29,45 @@ public class PersistableOutputStream {
   private ByteBuffer byteBuffer;
   private CharBuffer charBuffer;
 
-
   private void initializeBuffers(int byteCount) {
     bytes = new byte[byteCount];
     byteBuffer = ByteBuffer.wrap(bytes);
     charBuffer = byteBuffer.asCharBuffer();
   }
 
-
   public PersistableOutputStream(OutputStream out) {
     this.out = out;
     initializeBuffers(1 << 11);
   }
-
 
   public void close() throws IOException {
     flush();
     out.close();
   }
 
-
   public void flush() throws IOException {
     out.flush();
   }
-
 
   private final byte[] bytes4 = new byte[4];
   private final byte[] bytes8 = new byte[8];
   private final ByteBuffer buffer4 = ByteBuffer.wrap(bytes4);
   private final ByteBuffer buffer8 = ByteBuffer.wrap(bytes8);
 
-
   public void writeInt(int i) throws IOException {
     buffer4.putInt(0, i);
     out.write(bytes4);
   }
-
 
   public void writeLong(long v) throws IOException {
     buffer8.putLong(0, v);
     out.write(bytes8);
   }
 
-
   public void writeDouble(double d) throws IOException {
     buffer8.putDouble(0, d);
     out.write(bytes8);
   }
-
 
   public void writeString(String s) throws IOException {
     int charCount = s.length();
@@ -95,11 +86,9 @@ public class PersistableOutputStream {
     out.write(bytes, 0, byteCount);
   }
 
-
   public void writePersistable(Persistable persistable) throws IOException {
     persistable.persistTo(this);
   }
-
 
   public <T extends Persistable> void writePersistableCollection(Collection<T> collection) throws IOException {
     collection = collection == null ? Collections.EMPTY_SET : collection;
@@ -110,7 +99,6 @@ public class PersistableOutputStream {
     }
   }
 
-
   public void writeStringCollection(Collection<String> collection) throws IOException {
     collection = collection == null ? Collections.EMPTY_SET : collection;
 
@@ -119,7 +107,6 @@ public class PersistableOutputStream {
       writeString(string);
     }
   }
-
 
   public void writeDate(Date date) throws IOException {
     if (date == null) {

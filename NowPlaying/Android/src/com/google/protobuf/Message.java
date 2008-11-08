@@ -37,7 +37,6 @@ public interface Message {
    */
   Descriptors.Descriptor getDescriptorForType();
 
-
   /**
    * Get an instance of the type with all fields set to their default values. This may or may not be a singleton.  This
    * differs from the {@code getDefaultInstance()} method of generated message classes in that this method is an
@@ -45,7 +44,6 @@ public interface Message {
    * specific class.  They return the same thing.
    */
   Message getDefaultInstanceForType();
-
 
   /**
    * Returns a collection of all the fields in this message which are set and their corresponding values.  A singular
@@ -56,7 +54,6 @@ public interface Message {
    */
   Map<Descriptors.FieldDescriptor, Object> getAllFields();
 
-
   /**
    * Returns true if the given field is set.  This is exactly equivalent to calling the generated "has" accessor method
    * corresponding to the field.
@@ -66,14 +63,12 @@ public interface Message {
    */
   boolean hasField(Descriptors.FieldDescriptor field);
 
-
   /**
    * Obtains the value of the given field, or the default value if it is not set.  For primitive fields, the boxed
    * primitive value is returned. For enum fields, the EnumValueDescriptor for the value is returend. For embedded
    * message fields, the sub-message is returned.  For repeated fields, a java.util.List is returned.
    */
   Object getField(Descriptors.FieldDescriptor field);
-
 
   /**
    * Gets the number of elements of a repeated field.  This is exactly equivalent to calling the generated "Count"
@@ -83,7 +78,6 @@ public interface Message {
    *                                  getDescriptorForType()}.
    */
   int getRepeatedFieldCount(Descriptors.FieldDescriptor field);
-
 
   /**
    * Gets an element of a repeated field.  For primitive fields, the boxed primitive value is returned.  For enum
@@ -95,18 +89,14 @@ public interface Message {
    */
   Object getRepeatedField(Descriptors.FieldDescriptor field, int index);
 
-
   /** Get the {@link UnknownFieldSet} for this message. */
   UnknownFieldSet getUnknownFields();
-
 
   /** Returns true if all required fields in the message and all embedded messages are set, false otherwise. */
   boolean isInitialized();
 
-
   /** Serializes the message and writes it to {@code output}.  This does not flush or close the stream. */
   void writeTo(CodedOutputStream output) throws IOException;
-
 
   /**
    * Get the number of bytes required to encode this message.  The result is only computed on the first call and
@@ -116,7 +106,6 @@ public interface Message {
 
   // -----------------------------------------------------------------
   // Comparison and hashing
-
 
   /**
    * Compares the specified object with this message for equality.  Returns <tt>true</tt> if the given object is a
@@ -128,7 +117,6 @@ public interface Message {
    * @return <tt>true</tt> if the specified object is equal to this message
    */
   boolean equals(Object other);
-
 
   /**
    * Returns the hash code value for this message.  The hash code of a message is defined to be
@@ -144,13 +132,11 @@ public interface Message {
   // -----------------------------------------------------------------
   // Convenience methods.
 
-
   /**
    * Converts the message to a string in protocol buffer text format. This is just a trivial wrapper around {@link
    * TextFormat#printToString(Message)}.
    */
   String toString();
-
 
   /**
    * Serializes the message to a {@code ByteString} and returns it. This is just a trivial wrapper around {@link
@@ -158,13 +144,11 @@ public interface Message {
    */
   ByteString toByteString();
 
-
   /**
    * Serializes the message to a {@code byte} array and returns it.  This is just a trivial wrapper around {@link
    * #writeTo(CodedOutputStream)}.
    */
   byte[] toByteArray();
-
 
   /**
    * Serializes the message and writes it to {@code output}.  This is just a trivial wrapper around {@link
@@ -175,16 +159,13 @@ public interface Message {
   // =================================================================
   // Builders
 
-
   /** Constructs a new builder for a message of the same type as this message. */
   Builder newBuilderForType();
-
 
   /** Abstract interface implemented by Protocol Message builders. */
   public static interface Builder extends Cloneable {
     /** Resets all fields to their default values. */
     Builder clear();
-
 
     /**
      * Merge {@code other} into the message being built.  {@code other} must have the exact same type as {@code this}
@@ -200,7 +181,6 @@ public interface Message {
      */
     Builder mergeFrom(Message other);
 
-
     /**
      * Construct the final message.  Once this is called, the Builder is no longer valid, and calling any other method
      * may throw a NullPointerException.  If you need to continue working with the builder after calling {@code
@@ -212,13 +192,11 @@ public interface Message {
      */
     Message build();
 
-
     /**
      * Like {@link #build()}, but does not throw an exception if the message is missing required fields.  Instead, a
      * partial message is returned.
      */
     Message buildPartial();
-
 
     /**
      * Clones the Builder.
@@ -227,10 +205,8 @@ public interface Message {
      */
     Builder clone();
 
-
     /** Returns true if all required fields in the message and all embedded messages are set, false otherwise. */
     boolean isInitialized();
-
 
     /**
      * Parses a message of this type from the input and merges it with this message, as if using {@link
@@ -250,24 +226,18 @@ public interface Message {
      */
     Builder mergeFrom(CodedInputStream input) throws IOException;
 
-
     /**
      * Like {@link Builder#mergeFrom(CodedInputStream)}, but also parses extensions.  The extensions that you want to be
      * able to parse must be registered in {@code extensionRegistry}.  Extensions not in the registry will be treated as
      * unknown fields.
      */
-    Builder mergeFrom(CodedInputStream input,
-                      ExtensionRegistry extensionRegistry)
-        throws IOException;
-
+    Builder mergeFrom(CodedInputStream input, ExtensionRegistry extensionRegistry) throws IOException;
 
     /** Get the message's type's descriptor. See {@link Message#getDescriptorForType()}. */
     Descriptors.Descriptor getDescriptorForType();
 
-
     /** Get the message's type's default instance. See {@link Message#getDefaultInstanceForType()}. */
     Message getDefaultInstanceForType();
-
 
     /**
      * Like {@link Message#getAllFields()}.  The returned map may or may not reflect future changes to the builder.
@@ -275,21 +245,17 @@ public interface Message {
      */
     Map<Descriptors.FieldDescriptor, Object> getAllFields();
 
-
     /**
      * Create a Builder for messages of the appropriate type for the given field.  Messages built with this can then be
      * passed to setField(), setRepeatedField(), or addRepeatedField().
      */
     Builder newBuilderForField(Descriptors.FieldDescriptor field);
 
-
     /** Like {@link Message#hasField(Descriptors.FieldDescriptor)} */
     boolean hasField(Descriptors.FieldDescriptor field);
 
-
     /** Like {@link Message#getField(Descriptors.FieldDescriptor)} */
     Object getField(Descriptors.FieldDescriptor field);
-
 
     /**
      * Sets a field to the given value.  The value must be of the correct type for this field, i.e. the same type that
@@ -297,21 +263,17 @@ public interface Message {
      */
     Builder setField(Descriptors.FieldDescriptor field, Object value);
 
-
     /**
      * Clears the field.  This is exactly equivalent to calling the generated "clear" accessor method corresponding to
      * the field.
      */
     Builder clearField(Descriptors.FieldDescriptor field);
 
-
     /** Like {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)} */
     int getRepeatedFieldCount(Descriptors.FieldDescriptor field);
 
-
     /** Like {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)} */
     Object getRepeatedField(Descriptors.FieldDescriptor field, int index);
-
 
     /**
      * Sets an element of a repeated field to the given value.  The value must be of the correct type for this field,
@@ -320,9 +282,7 @@ public interface Message {
      * @throws IllegalArgumentException The field is not a repeated field, or {@code field.getContainingType() !=
      *                                  getDescriptorForType()}.
      */
-    Builder setRepeatedField(Descriptors.FieldDescriptor field,
-                             int index, Object value);
-
+    Builder setRepeatedField(Descriptors.FieldDescriptor field, int index, Object value);
 
     /**
      * Like {@code setRepeatedField}, but appends the value as a new element.
@@ -332,14 +292,11 @@ public interface Message {
      */
     Builder addRepeatedField(Descriptors.FieldDescriptor field, Object value);
 
-
     /** Get the {@link UnknownFieldSet} for this message. */
     UnknownFieldSet getUnknownFields();
 
-
     /** Set the {@link UnknownFieldSet} for this message. */
     Builder setUnknownFields(UnknownFieldSet unknownFields);
-
 
     /** Merge some unknown fields into the {@link UnknownFieldSet} for this message. */
     Builder mergeUnknownFields(UnknownFieldSet unknownFields);
@@ -347,22 +304,17 @@ public interface Message {
     // ---------------------------------------------------------------
     // Convenience methods.
 
-
     /**
      * Parse {@code data} as a message of this type and merge it with the message being built.  This is just a small
      * wrapper around {@link #mergeFrom(CodedInputStream)}.
      */
     Builder mergeFrom(ByteString data) throws InvalidProtocolBufferException;
 
-
     /**
      * Parse {@code data} as a message of this type and merge it with the message being built.  This is just a small
      * wrapper around {@link #mergeFrom(CodedInputStream,ExtensionRegistry)}.
      */
-    Builder mergeFrom(ByteString data,
-                      ExtensionRegistry extensionRegistry)
-        throws InvalidProtocolBufferException;
-
+    Builder mergeFrom(ByteString data, ExtensionRegistry extensionRegistry) throws InvalidProtocolBufferException;
 
     /**
      * Parse {@code data} as a message of this type and merge it with the message being built.  This is just a small
@@ -370,15 +322,11 @@ public interface Message {
      */
     public Builder mergeFrom(byte[] data) throws InvalidProtocolBufferException;
 
-
     /**
      * Parse {@code data} as a message of this type and merge it with the message being built.  This is just a small
      * wrapper around {@link #mergeFrom(CodedInputStream,ExtensionRegistry)}.
      */
-    Builder mergeFrom(byte[] data,
-                      ExtensionRegistry extensionRegistry)
-        throws InvalidProtocolBufferException;
-
+    Builder mergeFrom(byte[] data, ExtensionRegistry extensionRegistry) throws InvalidProtocolBufferException;
 
     /**
      * Parse a message of this type from {@code input} and merge it with the message being built.  This is just a small
@@ -388,13 +336,10 @@ public interface Message {
      */
     Builder mergeFrom(InputStream input) throws IOException;
 
-
     /**
      * Parse a message of this type from {@code input} and merge it with the message being built.  This is just a small
      * wrapper around {@link #mergeFrom(CodedInputStream,ExtensionRegistry)}.
      */
-    Builder mergeFrom(InputStream input,
-                      ExtensionRegistry extensionRegistry)
-        throws IOException;
+    Builder mergeFrom(InputStream input, ExtensionRegistry extensionRegistry) throws IOException;
   }
 }

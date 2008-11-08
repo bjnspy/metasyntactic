@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.metasyntactic.views;
 
 import android.content.Context;
@@ -28,31 +29,23 @@ public class CustomGallery extends Gallery {
     // TODO Auto-generated constructor stub
   }
 
-
   public CustomGallery(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     // TODO Auto-generated constructor stub
   }
-
 
   public CustomGallery(Context context, AttributeSet attrs) {
     super(context, attrs);
     // TODO Auto-generated constructor stub
   }
 
-
   @Override
-  public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-                         float velocityY) {
+  public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
     if (velocityX > 0) {
-      super.onKeyDown(KeyEvent.KEYCODE_DPAD_LEFT, new KeyEvent(
-          KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
-
+      super.onKeyDown(KeyEvent.KEYCODE_DPAD_LEFT, new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
     }
     if (velocityX < 0) {
-      super.onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, new KeyEvent(
-          KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
-
+      super.onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
     }
     return true;
   }

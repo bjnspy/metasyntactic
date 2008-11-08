@@ -24,15 +24,11 @@ import java.util.Map;
 public interface ScoreProvider {
   void update();
 
-
   Map<String, Score> getScores();
-
 
   Score getScore(List<Movie> movies, Movie movie);
 
-
   List<Review> getReviews(List<Movie> movies, Movie movie);
-
 
   void createDirectory();
 }

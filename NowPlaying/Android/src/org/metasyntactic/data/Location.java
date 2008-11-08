@@ -34,7 +34,6 @@ public class Location implements Parcelable, Persistable {
   private final String postalCode;
   private final String country;
 
-
   public void persistTo(PersistableOutputStream out) throws IOException {
     out.writeDouble(latitude);
     out.writeDouble(longitude);
@@ -44,7 +43,6 @@ public class Location implements Parcelable, Persistable {
     out.writeString(postalCode);
     out.writeString(country);
   }
-
 
   public static final Reader<Location> reader = new AbstractPersistable.AbstractReader<Location>() {
     public Location read(PersistableInputStream in) throws IOException {
@@ -59,9 +57,8 @@ public class Location implements Parcelable, Persistable {
     }
   };
 
-
-  public Location(double latitude, double longitude, String address,
-                  String city, String state, String postalCode, String country) {
+  public Location(double latitude, double longitude, String address, String city, String state, String postalCode,
+                  String country) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.address = address;
@@ -71,41 +68,33 @@ public class Location implements Parcelable, Persistable {
     this.country = country;
   }
 
-
   public double getLatitude() {
     return latitude;
   }
-
 
   public double getLongitude() {
     return longitude;
   }
 
-
   public String getAddress() {
     return address;
   }
-
 
   public String getCity() {
     return city;
   }
 
-
   public String getState() {
     return state;
   }
-
 
   public String getPostalCode() {
     return postalCode;
   }
 
-
   public String getCountry() {
     return country;
   }
-
 
   public static String country(Location location) {
     if (location == null) {
@@ -115,11 +104,9 @@ public class Location implements Parcelable, Persistable {
     return location.getCountry();
   }
 
-
   public static final double UNKNOWN_DISTANCE = Float.MAX_VALUE;
   private final static double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
   private final static double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
-
 
   public double distanceTo(Location to) {
 
@@ -141,9 +128,7 @@ public class Location implements Parcelable, Persistable {
       diff = 2 * Math.PI;
     }
 
-    double distance =
-        acos(sin(lat2) * sin(lat1) +
-            cos(lat2) * cos(lat1) * cos(diff));
+    double distance = acos(sin(lat2) * sin(lat1) + cos(lat2) * cos(lat1) * cos(diff));
 
     if (Application.useKilometers()) {
       distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
@@ -158,11 +143,9 @@ public class Location implements Parcelable, Persistable {
     return distance;
   }
 
-
   public int describeContents() {
     return 0;
   }
-
 
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeDouble(latitude);
@@ -174,24 +157,20 @@ public class Location implements Parcelable, Persistable {
     dest.writeString(country);
   }
 
+  public static final Parcelable.Creator<Location> CREATOR = new Parcelable.Creator<Location>() {
+    public Location createFromParcel(Parcel source) {
+      double latitude = source.readDouble();
+      double longitude = source.readDouble();
+      String address = source.readString();
+      String city = source.readString();
+      String state = source.readString();
+      String postalCode = source.readString();
+      String country = source.readString();
+      return new Location(latitude, longitude, address, city, state, postalCode, country);
+    }
 
-  public static final Parcelable.Creator<Location> CREATOR =
-      new Parcelable.Creator<Location>() {
-        public Location createFromParcel(Parcel source) {
-          double latitude = source.readDouble();
-          double longitude = source.readDouble();
-          String address = source.readString();
-          String city = source.readString();
-          String state = source.readString();
-          String postalCode = source.readString();
-          String country = source.readString();
-          return new Location(latitude, longitude, address, city, state, postalCode, country);
-        }
-
-
-        public Location[] newArray(int size) {
-          return new Location[size];
-        }
-      };
-
+    public Location[] newArray(int size) {
+      return new Location[size];
+    }
+  };
 }

@@ -28,16 +28,13 @@ import java.util.*;
 public class IMDbCache {
   private final Object lock = new Object();
 
-
   private String movieFileName(Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }
 
-
   private File movieFilePath(Movie movie) {
     return new File(Application.imdbDirectory, movieFileName(movie));
   }
-
 
   public void update(final List<Movie> movies) {
     Runnable runnable = new Runnable() {
@@ -48,12 +45,10 @@ public class IMDbCache {
     ThreadingUtilities.performOnBackgroundThread("Upate IMDb", runnable, lock, false);
   }
 
-
   private void updateBackgroundEntryPoint(List<Movie> movies) {
     deleteObsoleteAddresses(movies);
     downloadImdbAddresses(movies);
   }
-
 
   private void deleteObsoleteAddresses(List<Movie> movies) {
     File imdbDir = Application.imdbDirectory;
@@ -78,7 +73,6 @@ public class IMDbCache {
     }
   }
 
-
   private void downloadImdbAddresses(List<Movie> movies) {
     for (Movie movie : movies) {
       File path = movieFilePath(movie);
@@ -86,8 +80,8 @@ public class IMDbCache {
         continue;
       }
 
-      String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" +
-          StringUtilities.urlEncode(movie.getCanonicalTitle());
+      String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
+          movie.getCanonicalTitle());
 
       String imdbAddress = NetworkUtilities.downloadString(url, false);
 
@@ -97,7 +91,6 @@ public class IMDbCache {
       }
     }
   }
-
 
   public String imdbAddressForMovie(Movie movie) {
     return FileUtilities.readString(movieFilePath(movie));

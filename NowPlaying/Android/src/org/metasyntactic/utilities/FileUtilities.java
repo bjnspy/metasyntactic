@@ -29,14 +29,10 @@ public class FileUtilities {
 
   }
 
-
   public static String sanitizeFileName(String name) {
     StringBuilder result = new StringBuilder();
     for (char c : name.toCharArray()) {
-      if ((c >= 'a' && c <= 'z') ||
-          (c >= 'A' && c <= 'Z') ||
-          (c >= '0' && c <= '9') ||
-          c == ' ' || c == '-' || c == '.') {
+      if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == ' ' || c == '-' || c == '.') {
         result.append(c);
       } else {
         result.append('-');
@@ -46,7 +42,6 @@ public class FileUtilities {
     }
     return result.toString();
   }
-
 
   public static Map<String, Date> readStringToDateMap(File file) {
     if (!file.exists()) {
@@ -72,7 +67,6 @@ public class FileUtilities {
     }
   }
 
-
   public static void writeStringToDateMap(Map<String, Date> map, File file) {
     try {
       map = nonNullMap(map);
@@ -93,7 +87,6 @@ public class FileUtilities {
       throw new RuntimeException(e);
     }
   }
-
 
   public static Map<String, String> readStringToStringMap(File file) {
     if (!file.exists()) {
@@ -119,7 +112,6 @@ public class FileUtilities {
     }
   }
 
-
   public static void writeStringToStringMap(Map<String, String> map, File file) {
     try {
       map = nonNullMap(map);
@@ -140,7 +132,6 @@ public class FileUtilities {
       throw new RuntimeException(e);
     }
   }
-
 
   public static <T extends Persistable> Map<String, T> readStringToPersistableMap(Persistable.Reader<T> reader,
                                                                                   File file) {
@@ -168,7 +159,6 @@ public class FileUtilities {
     }
   }
 
-
   public static <T extends Persistable> void writeStringToPersistableMap(Map<String, T> map, File file) {
     try {
       map = nonNullMap(map);
@@ -190,7 +180,6 @@ public class FileUtilities {
     }
   }
 
-
   public static List<String> readStringList(File file) {
     if (!file.exists()) {
       return Collections.emptyList();
@@ -207,7 +196,6 @@ public class FileUtilities {
       throw new RuntimeException(e);
     }
   }
-
 
   public static void writeStringCollection(Collection<String> collection, File file) {
     try {
@@ -226,7 +214,6 @@ public class FileUtilities {
     }
   }
 
-
   public static String readString(File file) {
     if (!file.exists()) {
       return null;
@@ -239,7 +226,6 @@ public class FileUtilities {
     }
   }
 
-
   public static void writeString(String s, File file) {
     try {
       writeBytes(s.getBytes("UTF-8"), file);
@@ -248,7 +234,6 @@ public class FileUtilities {
       throw new RuntimeException(e);
     }
   }
-
 
   public static <T extends Persistable> T readPersistable(Persistable.Reader<T> reader, File file) {
     if (!file.exists()) {
@@ -267,7 +252,6 @@ public class FileUtilities {
     }
   }
 
-
   public static void writePersistable(Persistable p, File file) {
     try {
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
@@ -283,7 +267,6 @@ public class FileUtilities {
       throw new RuntimeException(e);
     }
   }
-
 
   public static <T extends Persistable> List<T> readPersistableList(Persistable.Reader<T> reader, File file) {
     if (!file.exists()) {
@@ -301,7 +284,6 @@ public class FileUtilities {
       throw new RuntimeException(e);
     }
   }
-
 
   public static <T extends Persistable> void writePersistableCollection(Collection<T> collection, File file) {
     try {
@@ -322,7 +304,6 @@ public class FileUtilities {
       throw new RuntimeException(e);
     }
   }
-
 
   public static byte[] readBytes(File file) {
     if (!file.exists()) {
@@ -353,7 +334,6 @@ public class FileUtilities {
     }
   }
 
-
   public static void writeBytes(byte[] data, File file) {
     try {
       if (data == null) {
@@ -373,7 +353,6 @@ public class FileUtilities {
       throw new RuntimeException(e);
     }
   }
-
 
   public static <T extends Persistable> Map<String, List<T>> readStringToListOfPersistables(
       Persistable.Reader<T> reader, File file) {
@@ -399,9 +378,7 @@ public class FileUtilities {
     }
   }
 
-
-  public static <T extends Persistable> void writeStringToListOfPersistables(
-      Map<String, List<T>> map, File file) {
+  public static <T extends Persistable> void writeStringToListOfPersistables(Map<String, List<T>> map, File file) {
     try {
       map = nonNullMap(map);
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);

@@ -24,16 +24,13 @@ public class NoneScoreProvider extends AbstractScoreProvider {
     super(scoreCache);
   }
 
-
   protected String getProviderName() {
     return "None";
   }
 
-
   protected String lookupServerHash() {
     return "0";
   }
-
 
   protected Map<String, Score> lookupServerScores() {
     return Collections.emptyMap();

@@ -31,7 +31,6 @@ public abstract class AbstractPersistable implements Persistable {
       return list;
     }
 
-
     public Set<T> readSet(PersistableInputStream in) throws IOException {
       int count = in.readInt();
       Set<T> set = new HashSet<T>(count);

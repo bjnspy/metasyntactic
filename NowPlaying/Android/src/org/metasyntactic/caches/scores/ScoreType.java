@@ -24,7 +24,6 @@ public abstract class ScoreType implements Parcelable {
 
   }
 
-
   private Field findField() {
     for (Field field : ScoreType.class.getFields()) {
       try {
@@ -39,22 +38,18 @@ public abstract class ScoreType implements Parcelable {
     throw new RuntimeException();
   }
 
-
   public int describeContents() {
     return 0;
   }
-
 
   public void writeToParcel(Parcel parcel, int i) {
     parcel.writeInt(getIndex());
   }
 
-
   @Override
   public String toString() {
     return findField().getName();
   }
-
 
   public static ScoreType valueOf(String name) {
     for (Field field : ScoreType.class.getFields()) {
@@ -70,32 +65,28 @@ public abstract class ScoreType implements Parcelable {
     throw new RuntimeException();
   }
 
+  public static final Parcelable.Creator<ScoreType> CREATOR = new Parcelable.Creator<ScoreType>() {
+    public ScoreType createFromParcel(Parcel source) {
+      int index = source.readInt();
 
-  public static final Parcelable.Creator<ScoreType> CREATOR =
-      new Parcelable.Creator<ScoreType>() {
-        public ScoreType createFromParcel(Parcel source) {
-          int index = source.readInt();
-
-          for (Field field : ScoreType.class.getFields()) {
-            try {
-              ScoreType scoreType = (ScoreType) field.get(null);
-              if (scoreType.getIndex() == index) {
-                return scoreType;
-              }
-            } catch (IllegalAccessException e) {
-              throw new RuntimeException(e);
-            }
+      for (Field field : ScoreType.class.getFields()) {
+        try {
+          ScoreType scoreType = (ScoreType) field.get(null);
+          if (scoreType.getIndex() == index) {
+            return scoreType;
           }
-
-          throw new RuntimeException();
+        } catch (IllegalAccessException e) {
+          throw new RuntimeException(e);
         }
+      }
 
+      throw new RuntimeException();
+    }
 
-        public ScoreType[] newArray(int size) {
-          return new ScoreType[size];
-        }
-      };
-
+    public ScoreType[] newArray(int size) {
+      return new ScoreType[size];
+    }
+  };
 
   private int getIndex() {
     Field[] fields = ScoreType.class.getFields();
@@ -111,7 +102,6 @@ public abstract class ScoreType implements Parcelable {
 
     throw new RuntimeException();
   }
-
 
   public static final ScoreType RottenTomatoes = new ScoreType() {
   };

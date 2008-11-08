@@ -22,11 +22,9 @@ public class EditDistance {
   private EditDistance() {
   }
 
-
   public static int getEditDistance(String source, String target) {
     return getEditDistance(source, target, -1);
   }
-
 
   public static int getEditDistance(String source, String target, int costThreshold) {
     int sourceLength = StringUtilities.isNullOrEmpty(source) ? 0 : source.length();
@@ -96,7 +94,6 @@ public class EditDistance {
     return matrix[sourceLength][targetLength];
   }
 
-
   public static boolean areSimilar(String s1, String s2) {
     if (s1 == null || s2 == null) {
       return false;
@@ -113,11 +110,9 @@ public class EditDistance {
     return (diff <= threshold);
   }
 
-
   static int threshold(String string) {
     return Math.max(string.length() / 4, 1);
   }
-
 
   public static int findClosestMatchIndex(String string, List<String> list) {
     int bestDistance = Integer.MAX_VALUE;
@@ -154,7 +149,6 @@ public class EditDistance {
     return -1;
   }
 
-
   public static String findClosestMatch(String string, List<String> list) {
     int index = findClosestMatchIndex(string, list);
     if (index == -1) {
@@ -163,7 +157,6 @@ public class EditDistance {
 
     return list.get(index);
   }
-
 
   public static String findClosestMatch(String string, java.util.Collection<String> set) {
     if (set.contains(string)) {

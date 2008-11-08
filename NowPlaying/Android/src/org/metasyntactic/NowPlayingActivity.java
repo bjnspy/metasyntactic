@@ -23,57 +23,44 @@ import org.metasyntactic.data.Movie;
 
 import java.util.*;
 
-
 public class NowPlayingActivity extends TabActivity implements INowPlaying {
 
   // This global instance is used in NowPlayingModel, MovieDetailsActivity.
   public static NowPlayingActivity instance;
+  private TabHost tabHost;
 
-  private TabHost mTabHost;
   NowPlayingControllerWrapper controller;
-  private final BroadcastReceiver broadcastReceiver =
-      new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-          refresh();
-
-        }
-      };
-
+  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      refresh();
+    }
+  };
 
   /** Updates display of the list of movies. */
   public void refresh() {
     List<Movie> movies = controller.getMovies();
-    Comparator comparator =
-        MOVIE_ORDER[controller.getAllMoviesSelectedSortIndex()];
+    Comparator<Movie> comparator = MOVIE_ORDER.get(controller.getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     AllMoviesActivity.refresh(movies);
-
   }
 
+  private final ServiceConnection serviceConnection = new ServiceConnection() {
+    public void onServiceConnected(ComponentName className, IBinder service) {
+      // This is called when the connection with the service has been
+      // established, giving us the service object we can use to
+      // interact with the service. We are communicating with our
+      // service through an IDL interface, so get a client-side
+      // representation of that from the raw service object.
+      controller = new NowPlayingControllerWrapper(INowPlayingController.Stub
+          .asInterface(service));
+      onControllerConnected();
+    }
 
-  private final ServiceConnection serviceConnection =
-      new ServiceConnection() {
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-          // This is called when the connection with the service has been
-          // established, giving us the service object we can use to
-          // interact with the service. We are communicating with our
-          // service through an IDL interface, so get a client-side
-          // representation of that from the raw service object.
-          controller =
-              new NowPlayingControllerWrapper(INowPlayingController.Stub
-                  .asInterface(service));
-          onControllerConnected();
-        }
-
-
-        public void onServiceDisconnected(ComponentName className) {
-          controller = null;
-        }
-      };
-
+    public void onServiceDisconnected(ComponentName className) {
+      controller = null;
+    }
+  };
 
   private void onControllerConnected() {
     int selectedTab = controller.getSelectedTabIndex();
@@ -81,38 +68,33 @@ public class NowPlayingActivity extends TabActivity implements INowPlaying {
     refresh();
   }
 
-
   public NowPlayingActivity() {
     instance = this;
   }
 
-
   public Context getContext() {
     return this;
   }
-
 
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    boolean bindResult =
-        bindService(new Intent(getBaseContext(),
-            NowPlayingControllerService.class), serviceConnection,
-            Context.BIND_AUTO_CREATE);
+    boolean bindResult = bindService(new Intent(getBaseContext(), NowPlayingControllerService.class), serviceConnection,
+                                     Context.BIND_AUTO_CREATE);
 
     if (!bindResult) {
       throw new RuntimeException("Failed to bind to service!");
     }
     setContentView(R.layout.tabs);
-    mTabHost = getTabHost();
+    tabHost = getTabHost();
 
-    setUpMoviesTab(mTabHost);
-    setUpTheatersTab(mTabHost);
-    setUpUpcomingTab(mTabHost);
+    setUpMoviesTab(tabHost);
+    setUpTheatersTab(tabHost);
+    setUpUpcomingTab(tabHost);
 
-    mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+    tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
       public void onTabChanged(String s) {
         int currentTab = getTabHost().getCurrentTab();
         controller.setSelectedTabIndex(currentTab);
@@ -120,30 +102,25 @@ public class NowPlayingActivity extends TabActivity implements INowPlaying {
     });
   }
 
-
   private void setUpUpcomingTab(final TabHost tabs) {
-    tabs.addTab(tabs.newTabSpec("upcoming_tab").setIndicator(
-        getResources().getString(R.string.upcoming),
-        getResources().getDrawable(R.drawable.upcoming)).setContent(
+    tabs.addTab(tabs.newTabSpec("upcoming_tab").setIndicator(getResources().getString(R.string.upcoming),
+                                                             getResources().getDrawable(
+                                                                 R.drawable.upcoming)).setContent(
         new Intent(this, AllTheatersActivity.class)));
   }
-
 
   private void setUpTheatersTab(final TabHost tabs) {
-    tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator(
-        getResources().getString(R.string.theaters),
-        getResources().getDrawable(R.drawable.theatres)).setContent(
+    tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator(getResources().getString(R.string.theaters),
+                                                             getResources().getDrawable(
+                                                                 R.drawable.theatres)).setContent(
         new Intent(this, AllTheatersActivity.class)));
   }
 
-
   private void setUpMoviesTab(final TabHost tabs) {
-    tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator(
-        getResources().getString(R.string.moviesIconLabel),
-        getResources().getDrawable(R.drawable.movies)).setContent(
+    tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator(getResources().getString(R.string.moviesIconLabel),
+                                                           getResources().getDrawable(R.drawable.movies)).setContent(
         new Intent(this, AllMoviesActivity.class)));
   }
-
 
   /**
    * Returns an instance of NowPlayingControllerWrapper associated with this Activity.
@@ -154,28 +131,23 @@ public class NowPlayingActivity extends TabActivity implements INowPlaying {
     return controller;
   }
 
-
   @Override
   protected void onDestroy() {
     unbindService(serviceConnection);
     super.onDestroy();
   }
 
-
   @Override
   protected void onResume() {
     super.onResume();
-    registerReceiver(broadcastReceiver, new IntentFilter(
-        Application.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
-
 
   @Override
   protected void onPause() {
     unregisterReceiver(broadcastReceiver);
     super.onPause();
   }
-
 
   final Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
     public int compare(Movie m1, Movie m2) {
@@ -203,20 +175,16 @@ public class NowPlayingActivity extends TabActivity implements INowPlaying {
         d2 = m2.getReleaseDate();
       }
       return d2.compareTo(d1);
-
-
     }
   };
+
   final Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
     public int compare(Movie m1, Movie m2) {
-      if (controller.getScore(m1) == null
-          && controller.getScore(m2) == null) {
+      if (controller.getScore(m1) == null && controller.getScore(m2) == null) {
         return 0;
       }
-      if (controller.getScore(m1) != null
-          && controller.getScore(m2) != null) {
-        return controller.getScore(m2).compareTo(
-            controller.getScore(m1));
+      if (controller.getScore(m1) != null && controller.getScore(m2) != null) {
+        return controller.getScore(m2).compareTo(controller.getScore(m1));
       }
 
       // if m2 is null then m1 is greater
@@ -227,7 +195,6 @@ public class NowPlayingActivity extends TabActivity implements INowPlaying {
       return 1;
     }
   };
-  final Comparator[] MOVIE_ORDER = {TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER};
 
-
+  private final List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
 }

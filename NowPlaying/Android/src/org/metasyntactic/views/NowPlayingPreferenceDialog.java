@@ -32,39 +32,30 @@ public class NowPlayingPreferenceDialog {
 
   private int preference_value;
 
-  private INowPlaying mNowPlaying;
+  private INowPlaying nowPlaying;
 
-  private NowPlayingControllerWrapper mController;
+  private NowPlayingControllerWrapper controller;
 
-
-  public NowPlayingPreferenceDialog(INowPlaying nowPlaying) {
-
-    this.mNowPlaying = nowPlaying;
+  public NowPlayingPreferenceDialog(final INowPlaying nowPlaying) {
+    this.nowPlaying = nowPlaying;
     Context context = nowPlaying.getContext();
-    mController = nowPlaying.getController();
+    controller = nowPlaying.getController();
     builder = new AlertDialog.Builder(context);
-    DialogInterface.OnClickListener listener =
-        new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int whichButton) {
-            setPreferenceValue();
-            mNowPlaying.refresh();
-          }
-
-
-        };
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        setPreferenceValue();
+        nowPlaying.refresh();
+      }
+    };
     builder.setPositiveButton(android.R.string.ok, listener)
         .setNegativeButton(android.R.string.cancel, null)
-        .setSingleChoiceItems(R.array.entries_movies_sort_preference, 0,
-            null);
-
+        .setSingleChoiceItems(R.array.entries_movies_sort_preference, 0, null);
   }
-
 
   public NowPlayingPreferenceDialog create() {
     builder.create();
     return this;
   }
-
 
   public NowPlayingPreferenceDialog setIcon(Drawable icon) {
     // TODO Auto-generated method stub
@@ -72,33 +63,25 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-
-  public NowPlayingPreferenceDialog setInverseBackgroundForced(
-      boolean useInverseBackground) {
+  public NowPlayingPreferenceDialog setInverseBackgroundForced(boolean useInverseBackground) {
 
     builder.setInverseBackgroundForced(useInverseBackground);
     return this;
   }
 
-
-  public NowPlayingPreferenceDialog setNegativeButton(int textId,
-                                                      OnClickListener listener) {
+  public NowPlayingPreferenceDialog setNegativeButton(int textId, OnClickListener listener) {
     // TODO Auto-generated method stub
     builder.setNegativeButton(textId, listener);
     return this;
   }
 
-
-  public NowPlayingPreferenceDialog setOnItemSelectedListener(
-      OnItemSelectedListener listener) {
+  public NowPlayingPreferenceDialog setOnItemSelectedListener(OnItemSelectedListener listener) {
     // TODO Auto-generated method stub
     builder.setOnItemSelectedListener(listener);
     return this;
   }
 
-
-  private NowPlayingPreferenceDialog setPositiveButton(int textId,
-                                                       OnClickListener listener) {
+  private NowPlayingPreferenceDialog setPositiveButton(int textId, OnClickListener listener) {
     // TODO Auto-generated method stub
 
 
@@ -106,30 +89,24 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-
   public NowPlayingPreferenceDialog setEntries(int items) {
     // TODO Auto-generated method stub
-    DialogInterface.OnClickListener mListener =
-        new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
-            // TODO Auto-generated method stub
-            preference_value = which;
-          }
-
-        };
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        // TODO Auto-generated method stub
+        preference_value = which;
+      }
+    };
     preference_value = getPreferenceValue();
-    setSingleChoiceItems(items, preference_value, mListener);
+    setSingleChoiceItems(items, preference_value, listener);
     return this;
   }
 
-
-  private NowPlayingPreferenceDialog setSingleChoiceItems(int items,
-                                                          int checkedItem, OnClickListener listener) {
+  private NowPlayingPreferenceDialog setSingleChoiceItems(int items, int checkedItem, OnClickListener listener) {
     // TODO Auto-generated method stub
     builder.setSingleChoiceItems(items, checkedItem, listener);
     return this;
   }
-
 
   public NowPlayingPreferenceDialog setTitle(int title) {
     // TODO Auto-generated method stub
@@ -137,13 +114,11 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-
   public NowPlayingPreferenceDialog setKey(Preference_keys key) {
     // TODO Auto-generated method stub
     this.preference_key = key;
     return this;
   }
-
 
   public NowPlayingPreferenceDialog show() {
     // TODO Auto-generated method stub
@@ -151,42 +126,33 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-
   private int getPreferenceValue() {
 
     // TODO Auto-generated method stub
     switch (preference_key) {
       case MOVIES_SORT:
 
-        return mController.getAllMoviesSelectedSortIndex();
+        return controller.getAllMoviesSelectedSortIndex();
       case THEATERS_SORT:
 
-        return mController.getAllTheatersSelectedSortIndex();
-
+        return controller.getAllTheatersSelectedSortIndex();
     }
     return 0;
-
   }
-
 
   private void setPreferenceValue() {
 
     switch (preference_key) {
 
       case MOVIES_SORT:
-        mController.setAllMoviesSelectedSortIndex(preference_value);
+        controller.setAllMoviesSelectedSortIndex(preference_value);
         break;
       case THEATERS_SORT:
-        mController.setAllTheatersSelectedSortIndex(preference_value);
-
+        controller.setAllTheatersSelectedSortIndex(preference_value);
     }
-
   }
-
 
   public enum Preference_keys {
     MOVIES_SORT, THEATERS_SORT
   }
-
-
 }

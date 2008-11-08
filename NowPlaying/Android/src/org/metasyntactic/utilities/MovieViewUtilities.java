@@ -38,9 +38,7 @@ public class MovieViewUtilities {
   private final static int TheaterName = 0;
   private final static int Distance = 1;
 
-
   private static String currentHeader;
-
 
   /**
    * Formats the movie rating for display. For example if a movie is rated PG 13, the ratings string is "Rated PG-13.".
@@ -50,13 +48,12 @@ public class MovieViewUtilities {
    * @param res    Context resources handle.
    */
   public static CharSequence formatRatings(String rating, Resources res) {
-  	if (rating.equals("")) {
-  		return res.getString(R.string.unrated);
-  	} else {
-  		return res.getString(R.string.rated_string, rating);
-  	}
+    if (rating.equals("")) {
+      return res.getString(R.string.unrated);
+    } else {
+      return res.getString(R.string.rated_string, rating);
+    }
   }
-
 
   /**
    * Formats the movie length for display. The movie length is displayed as "x hours y minutes".
@@ -88,9 +85,7 @@ public class MovieViewUtilities {
     return res.getString(R.string.string_string, hoursString, minutesString);
   }
 
-
-  public static Drawable formatScoreDrawable(int score, ScoreType scoreType,
-                                             Resources res) {
+  public static Drawable formatScoreDrawable(int score, ScoreType scoreType, Resources res) {
 
     if (scoreType == ScoreType.RottenTomatoes) {
       return formatRottenTomatoesDrawable(score, res);
@@ -98,9 +93,7 @@ public class MovieViewUtilities {
     return formatBasicSquareDrawable(score, res);
   }
 
-
-  private static Drawable formatRottenTomatoesDrawable(int score,
-                                                       Resources res) {
+  private static Drawable formatRottenTomatoesDrawable(int score, Resources res) {
     Drawable scoreDrawable = null;
     scoreDrawable = res.getDrawable(R.drawable.rating_unknown);
     if (score >= 0 && score <= 100) {
@@ -114,7 +107,6 @@ public class MovieViewUtilities {
     return scoreDrawable;
   }
 
-
   private static Drawable formatBasicSquareDrawable(int score, Resources res) {
     Drawable scoreDrawable = null;
     scoreDrawable = res.getDrawable(R.drawable.rating_unknown);
@@ -127,7 +119,6 @@ public class MovieViewUtilities {
     }
     return scoreDrawable;
   }
-
 
   public static String getHeader(List<Movie> movies, int position, int sortIndex) {
     // TODO Auto-generated method stub
@@ -161,14 +152,11 @@ public class MovieViewUtilities {
           return dateStr;
         }
         return null;
-
     }
     return null;
   }
 
-
-  public static String getTheaterHeader(List<Theater> theaters, int position,
-                                        int sortIndex, Address address) {
+  public static String getTheaterHeader(List<Theater> theaters, int position, int sortIndex, Address address) {
 
     // TODO Auto-generated method stub
     switch (sortIndex) {
@@ -184,9 +172,8 @@ public class MovieViewUtilities {
 
         //todo (mjoshi) fix this ...incorrect headers are returned, and its slow.
 
-        Location userLocation =
-            new Location(address.getLatitude(), address.getLongitude(),
-                null, null, null, null, null);
+        Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null,
+                                             null);
 
         double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
         // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
@@ -218,10 +205,7 @@ public class MovieViewUtilities {
         if (position == 0) {
           return currentHeader;
         }
-
     }
     return null;
   }
-
-
 }

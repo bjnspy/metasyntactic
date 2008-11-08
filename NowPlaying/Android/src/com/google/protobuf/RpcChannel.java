@@ -39,9 +39,6 @@ public interface RpcChannel {
    * callback will be of the same type as {@code responsePrototype} (which must have {@code getDescriptor() ==
    * method.getOutputType()}).
    */
-  void callMethod(Descriptors.MethodDescriptor method,
-                  RpcController controller,
-                  Message request,
-                  Message responsePrototype,
-                  RpcCallback<Message> done);
+  void callMethod(Descriptors.MethodDescriptor method, RpcController controller, Message request,
+                  Message responsePrototype, RpcCallback<Message> done);
 }

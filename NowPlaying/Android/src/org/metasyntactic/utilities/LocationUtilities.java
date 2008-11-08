@@ -24,7 +24,6 @@ public class LocationUtilities {
 
   }
 
-
   private static Location findLocationWithGeonames(double latitude, double longitude) {
     String url = "http://ws.geonames.org/findNearbyPostalCodes?lat=" + latitude + "&lng=" + longitude + "&maxRows=1";
 
@@ -48,7 +47,6 @@ public class LocationUtilities {
     return new Location(latitude, longitude, "", city, state, postalCode, country);
   }
 
-
   private static Location findLocationWithGeocoder(double latitude, double longitude) {
     String url = "http://geocoder.ca/?latt=" + latitude + "&longt=" + longitude + "&geoit=xml&reverse=Reverse+GeoCode+it";
 
@@ -64,7 +62,6 @@ public class LocationUtilities {
 
     return new Location(latitude, longitude, "", city, state, postalCode, "CA");
   }
-
 
   public static Location findLocation(double latitude, double longitude) {
     Location result = findLocationWithGeonames(latitude, longitude);

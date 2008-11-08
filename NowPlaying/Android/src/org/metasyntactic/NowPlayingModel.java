@@ -56,7 +56,6 @@ public class NowPlayingModel {
   private final UpcomingCache upcomingCache = new UpcomingCache();
   private final PosterCache posterCache = new PosterCache(this);
 
-
   public NowPlayingModel(Context context) {
     this.context = context;
     this.preferences = NowPlayingActivity.instance.getSharedPreferences(NowPlayingModel.class.getName(), 0);
@@ -65,7 +64,6 @@ public class NowPlayingModel {
 
     initializeTestValues();
   }
-
 
   private void loadData() {
     String lastVersion = preferences.getString(VERSION_KEY, "");
@@ -80,7 +78,6 @@ public class NowPlayingModel {
     }
   }
 
-
   private void initializeTestValues() {
     if (true) {
       //return;
@@ -89,30 +86,24 @@ public class NowPlayingModel {
     this.setUserLocation("10009");
   }
 
-
   public UserLocationCache getUserLocationCache() {
     return userLocationCache;
   }
-
 
   public Context getContext() {
     return context;
   }
 
-
   private void updateTrailerCache() {
     trailerCache.update(getMovies());
   }
-
 
   private void updatePosterCache() {
     posterCache.update(getMovies());
   }
 
-
   private void updateIMDbCache() {
   }
-
 
   public void update() {
     dataProvider.update();
@@ -120,16 +111,13 @@ public class NowPlayingModel {
     updateTrailerCache();
     updatePosterCache();
     scoreCache.update();
-
   }
-
 
   public String getUserLocation() {
     synchronized (preferencesLock) {
       return preferences.getString(USER_LOCATION_KEY, "");
     }
   }
-
 
   public void setUserLocation(String userLocation) {
     synchronized (preferencesLock) {
@@ -139,13 +127,11 @@ public class NowPlayingModel {
     }
   }
 
-
   public int getSearchDistance() {
     synchronized (preferencesLock) {
       return preferences.getInt(SEARCH_DISTANCE_KEY, 5);
     }
   }
-
 
   public void setSearchDistance(int searchDistance) {
     synchronized (preferencesLock) {
@@ -156,7 +142,6 @@ public class NowPlayingModel {
       editor.commit();
     }
   }
-
 
   public Date getSearchDate() {
     synchronized (preferencesLock) {
@@ -181,7 +166,6 @@ public class NowPlayingModel {
     }
   }
 
-
   public void setSearchDate(Date searchDate) {
     synchronized (preferencesLock) {
       SimpleDateFormat format = new SimpleDateFormat();
@@ -193,13 +177,11 @@ public class NowPlayingModel {
     }
   }
 
-
   public int getSelectedTabIndex() {
     synchronized (preferencesLock) {
       return preferences.getInt(SELECTED_TAB_INDEX_KEY, 0);
     }
   }
-
 
   public void setSelectedTabIndex(int index) {
     synchronized (preferencesLock) {
@@ -211,13 +193,11 @@ public class NowPlayingModel {
     Application.refresh();
   }
 
-
   public int getAllMoviesSelecetedSortIndex() {
     synchronized (preferencesLock) {
       return preferences.getInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
     }
   }
-
 
   public void setAllMoviesSelectedSortIndex(int index) {
     synchronized (preferencesLock) {
@@ -229,13 +209,11 @@ public class NowPlayingModel {
     Application.refresh();
   }
 
-
   public int getAllTheatersSelectedSortIndex() {
     synchronized (preferencesLock) {
       return preferences.getInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, 0);
     }
   }
-
 
   public void setAllTheatersSelectedSortIndex(int index) {
     synchronized (preferencesLock) {
@@ -247,13 +225,11 @@ public class NowPlayingModel {
     Application.refresh();
   }
 
-
   public int getUpcomingMoviesSelectedSortIndex() {
     synchronized (preferencesLock) {
       return preferences.getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
     }
   }
-
 
   public void setUpcomingMoviesSelectedSortIndex(int index) {
     synchronized (preferencesLock) {
@@ -264,7 +240,6 @@ public class NowPlayingModel {
 
     Application.refresh();
   }
-
 
   public ScoreType getScoreType() {
     synchronized (preferencesLock) {
@@ -277,7 +252,6 @@ public class NowPlayingModel {
     }
   }
 
-
   public void setScoreType(ScoreType scoreType) {
     synchronized (preferencesLock) {
       SharedPreferences.Editor editor = preferences.edit();
@@ -286,21 +260,17 @@ public class NowPlayingModel {
     }
   }
 
-
   public List<Movie> getMovies() {
     return dataProvider.getMovies();
   }
-
 
   public List<Theater> getTheaters() {
     return dataProvider.getTheaters();
   }
 
-
   public List<FavoriteTheater> getFavoriteTheaters() {
     return Collections.emptyList();
   }
-
 
   public void onDataProvidedUpdated() {
     updateIMDbCache();
@@ -308,21 +278,17 @@ public class NowPlayingModel {
     updateTrailerCache();
   }
 
-
   public List<String> getTrailers(Movie movie) {
     return trailerCache.getTrailers(movie);
   }
-
 
   public Score getScore(Movie movie) {
     return scoreCache.getScore(getMovies(), movie);
   }
 
-
   public List<Review> getReviews(Movie movie) {
     return scoreCache.getReviews(getMovies(), movie);
   }
-
 
   public byte[] getPoster(Movie movie) {
     byte[] bytes = posterCache.getPoster(movie);
@@ -337,7 +303,6 @@ public class NowPlayingModel {
 
     return null;
   }
-
 
   public String getSynopsis(Movie movie) {
     List<String> options = new ArrayList<String>();
@@ -366,9 +331,7 @@ public class NowPlayingModel {
     return bestOption;
   }
 
-
   public String getImdbAddress(Movie movie) {
     return movie.getImdbAddress();
   }
-
 }

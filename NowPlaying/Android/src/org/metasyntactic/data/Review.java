@@ -30,7 +30,6 @@ public class Review implements Parcelable, Persistable {
   private String author;
   private String source;
 
-
   public void persistTo(PersistableOutputStream out) throws IOException {
     out.writeString(text);
     out.writeInt(score);
@@ -38,7 +37,6 @@ public class Review implements Parcelable, Persistable {
     out.writeString(author);
     out.writeString(source);
   }
-
 
   public static final Reader<Review> reader = new AbstractPersistable.AbstractReader<Review>() {
     public Review read(PersistableInputStream in) throws IOException {
@@ -52,7 +50,6 @@ public class Review implements Parcelable, Persistable {
     }
   };
 
-
   public Review(String text, int score, String link, String author, String source) {
     this.text = text;
     this.score = score;
@@ -61,11 +58,9 @@ public class Review implements Parcelable, Persistable {
     this.source = source;
   }
 
-
   public int describeContents() {
     return 0;
   }
-
 
   public void writeToParcel(Parcel parcel, int i) {
     parcel.writeString(text);
@@ -75,45 +70,37 @@ public class Review implements Parcelable, Persistable {
     parcel.writeString(source);
   }
 
+  public static final Parcelable.Creator<Review> CREATOR = new Parcelable.Creator<Review>() {
+    public Review createFromParcel(Parcel parcel) {
+      String text = parcel.readString();
+      int score = parcel.readInt();
+      String link = parcel.readString();
+      String author = parcel.readString();
+      String source = parcel.readString();
 
-  public static final Parcelable.Creator<Review> CREATOR =
-      new Parcelable.Creator<Review>() {
-        public Review createFromParcel(Parcel parcel) {
-          String text = parcel.readString();
-          int score = parcel.readInt();
-          String link = parcel.readString();
-          String author = parcel.readString();
-          String source = parcel.readString();
+      return new Review(text, score, link, author, source);
+    }
 
-          return new Review(text, score, link, author, source);
-        }
-
-
-        public Review[] newArray(int size) {
-          return new Review[size];
-        }
-      };
-
+    public Review[] newArray(int size) {
+      return new Review[size];
+    }
+  };
 
   public String getText() {
     return text;
   }
 
-
   public int getScore() {
     return score;
   }
-
 
   public String getLink() {
     return link;
   }
 
-
   public String getAuthor() {
     return author;
   }
-
 
   public String getSource() {
     return source;

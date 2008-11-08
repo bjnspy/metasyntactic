@@ -24,13 +24,11 @@ public class Pulser {
   private Date lastPulseTime;
   private final int pulseIntervalSeconds;
 
-
   public Pulser(Runnable runnable, int pulseIntervalSeconds) {
     this.lastPulseTime = new Date(0);
     this.runnable = runnable;
     this.pulseIntervalSeconds = pulseIntervalSeconds;
   }
-
 
   private void tryPulse(final Date date) {
     if (date.before(lastPulseTime)) {
@@ -62,16 +60,13 @@ public class Pulser {
     runnable.run();
   }
 
-
   public void forcePulse() {
     this.lastPulseTime = new Date();
 
     Log.i(Pulser.class.getName(), "Forced pulse at: " + lastPulseTime);
 
     runnable.run();
-
   }
-
 
   public void tryPulse() {
     tryPulse(new Date());
