@@ -72,7 +72,6 @@
 - (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
-
         [self spawnDetermineLocationThread];
     }
 

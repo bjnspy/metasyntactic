@@ -87,6 +87,10 @@
 
 
 - (void) update {
+    if (model.userAddress.length == 0) {
+        return;
+    }
+
     [self.currentScoreProvider update];
 }
 
