@@ -202,68 +202,25 @@
 }
 
 
-- (void) disconnectPostersView {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
-    [postersViewController.view removeFromSuperview];
-    self.postersViewController = nil;    
+- (void) hidePostersView {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [self dismissModalViewControllerAnimated:YES];
+    self.postersViewController = nil;
 }
 
 
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount {
     if (postersViewController != nil) {
-        [self disconnectPostersView];
+        [self hidePostersView];
     }
-    
-    UIWindow* window = [[UIApplication sharedApplication] keyWindow];
 
     self.postersViewController =
     [[[PostersViewController alloc] initWithNavigationController:self
                                                           movie:movie
                                                     posterCount:posterCount] autorelease];
-
-    UIView* view = postersViewController.view;
-    view.alpha = 0;
-
-    [window addSubview:view];
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(onAfterShowPostersView:finished:context:)];
-        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        view.alpha = 1;
-    }
-    [UIView commitAnimations];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+    [self presentModalViewController:postersViewController animated:YES];
 }
-
-
-- (void) onAfterShowPostersView:(NSString*) animationId
-                       finished:(BOOL) finished
-                        context:(void*) context {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
-}
-
-
-- (void) hidePostersView {
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(onAfterHidePostersView:finished:context:)];
-        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-
-        postersViewController.view.alpha = 0;
-    }
-    [UIView commitAnimations];
-
-    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
-}
-
-
-- (void) onAfterHidePostersView:(NSString*) animationId
-                       finished:(BOOL) finished
-                        context:(void*) context {
-    [self disconnectPostersView];
-}
-
 
 @end
