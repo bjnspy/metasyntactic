@@ -23,7 +23,7 @@
 
 @synthesize navigationController;
 
-- (void)dealloc {
+- (void) dealloc {
     self.navigationController = nil;
 
     [super dealloc];
