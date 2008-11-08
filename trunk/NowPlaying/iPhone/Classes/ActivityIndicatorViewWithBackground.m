@@ -40,7 +40,7 @@
 
         self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         activityIndicator.hidesWhenStopped = YES;
-        
+
         CGRect frame = activityIndicator.frame;
         frame.origin.x = frame.origin.y = 4;
         activityIndicator.frame = frame;
@@ -67,7 +67,7 @@
 
 - (void) startAnimating {
     [activityIndicator startAnimating];
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         imageView.alpha = 1;

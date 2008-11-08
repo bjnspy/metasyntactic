@@ -31,15 +31,15 @@ static NSMutableArray* lowPriorityOperations;
         condition = [[NSCondition alloc] init];
         highPriorityOperations = [[NSMutableArray alloc] init];
         lowPriorityOperations = [[NSMutableArray alloc] init];
-        
+
         NSThread* highPriorityThread = [[NSThread alloc] initWithTarget:[ThreadingUtilities class]
                                                                selector:@selector(run:)
                                                                  object:highPriorityOperations];
-        
+
         NSThread* lowPriorityThread = [[NSThread alloc] initWithTarget:[ThreadingUtilities class]
                                                                selector:@selector(run:)
                                                                  object:lowPriorityOperations];
-        
+
         [highPriorityThread start];
         [lowPriorityThread start];
     }
@@ -48,18 +48,18 @@ static NSMutableArray* lowPriorityOperations;
 
 + (BackgroundInvocation*) extractNextOperation:(NSMutableArray*) operations {
     BackgroundInvocation* invocation = nil;
-    
+
     [condition lock];
     {
         while (operations.count == 0) {
             [condition wait];
         }
-        
+
         invocation = [[[operations objectAtIndex:0] retain] autorelease];
         [operations removeObjectAtIndex:0];
     }
     [condition unlock];
-    
+
     return invocation;
 }
 
@@ -69,7 +69,7 @@ static NSMutableArray* lowPriorityOperations;
         [mutex lockHigh];
     } else {
         [mutex lockLow];
-    }    
+    }
 }
 
 
@@ -78,7 +78,7 @@ static NSMutableArray* lowPriorityOperations;
         [mutex unlockHigh];
     } else {
         [mutex unlockLow];
-    }    
+    }
 }
 
 
@@ -87,7 +87,7 @@ static NSMutableArray* lowPriorityOperations;
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             BackgroundInvocation* invocation = [self extractNextOperation:operations];
-            
+
             [self lock:operations];
             {
                 [invocation run];
@@ -124,7 +124,7 @@ static NSMutableArray* lowPriorityOperations;
         } else {
             [lowPriorityOperations addObject:invocation];
         }
-        
+
         [condition broadcast];
     }
     [condition unlock];

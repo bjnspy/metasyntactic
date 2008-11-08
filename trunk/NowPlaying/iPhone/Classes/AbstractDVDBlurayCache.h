@@ -14,12 +14,12 @@
 
 @interface AbstractDVDBlurayCache : NSObject {
     NowPlayingModel* model;
-    
+
     NSLock* gate;
-    
+
     PointerSet* moviesSetData;
     NSArray* moviesData;
-    
+
     LinkedSet* prioritizedMovies;
 }
 

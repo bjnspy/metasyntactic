@@ -208,8 +208,8 @@ static NSString* starString = nil;
             blurayDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Bluray"] retain];
             blurayDetailsDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Details"] retain];
             blurayIMDbDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
-            blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];            
-            
+            blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+
             upcomingDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
             upcomingIMDbDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"IMDb"] retain];

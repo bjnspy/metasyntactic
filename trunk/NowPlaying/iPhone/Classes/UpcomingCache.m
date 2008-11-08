@@ -168,18 +168,18 @@ static NSString* titles_key = @"Titles";
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSMutableArray* decodedMovies = [NSMutableArray array];
     for (NSDictionary* encodedMovie in [dictionary objectForKey:movies_key]) {
         [decodedMovies addObject:[Movie movieWithDictionary:encodedMovie]];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:decodedMovies forKey:movies_key];
     [result setObject:[dictionary objectForKey:hash_key] forKey:hash_key];
     [result setObject:[dictionary objectForKey:studios_key] forKey:studios_key];
     [result setObject:[dictionary objectForKey:titles_key] forKey:titles_key];
-    
+
     return result;
 }
 
@@ -188,7 +188,7 @@ static NSString* titles_key = @"Titles";
     if (indexData == nil) {
         self.indexData = [self loadIndex];
     }
-    
+
     return indexData;
 }
 
@@ -207,15 +207,15 @@ static NSString* titles_key = @"Titles";
                fileSelector:(SEL) fileSelector {
     NSArray* paths = [FileUtilities directoryContentsPaths:directory];
     NSMutableSet* set = [NSMutableSet setWithArray:paths];
-    
+
     for (Movie* movie in movies) {
         NSString* filePath = [self performSelector:fileSelector withObject:movie];
         [set removeObject:filePath];
     }
-    
+
     for (NSString* filePath in set) {
         NSDate* downloadDate = [FileUtilities modificationDate:filePath];
-        
+
         if (downloadDate != nil) {
             if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
                 [FileUtilities removeItem:filePath];
@@ -236,7 +236,7 @@ static NSString* titles_key = @"Titles";
 
 - (void) updateIndexBackgroundEntryPoint:(NSArray*) oldMovies {
     [self deleteObsoleteData:oldMovies];
-    
+
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
 
     if (lastLookupDate != nil) {

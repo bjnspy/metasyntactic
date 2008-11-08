@@ -61,7 +61,7 @@
     if (model.userAddress.length == 0) {
         return;
     }
-    
+
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:movies
@@ -108,15 +108,15 @@
 - (void) deleteObsoleteAddresses:(NSArray*) movies {
     NSArray* paths = [FileUtilities directoryContentsPaths:[Application imdbDirectory]];
     NSMutableSet* set = [NSMutableSet setWithArray:paths];
-    
+
     for (Movie* movie in movies) {
         NSString* filePath = [self imdbFile:movie];
         [set removeObject:filePath];
     }
-    
+
     for (NSString* filePath in set) {
         NSDate* downloadDate = [FileUtilities modificationDate:filePath];
-        
+
         if (downloadDate != nil) {
             if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
                 [FileUtilities removeItem:filePath];
@@ -128,7 +128,7 @@
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
     [self deleteObsoleteAddresses:movies];
-    
+
     for (Movie* movie in movies) {
         [self downloadAddress:movie];
     }
