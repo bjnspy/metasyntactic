@@ -14,7 +14,6 @@
 
 package org.metasyntactic;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Constants {
   public final static long ONE_SECOND = 1000;
   public final static long ONE_MINUTE = 60 * ONE_SECOND;

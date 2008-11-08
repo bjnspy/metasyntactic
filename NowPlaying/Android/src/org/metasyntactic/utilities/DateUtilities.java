@@ -17,7 +17,6 @@ package org.metasyntactic.utilities;
 import java.util.Calendar;
 import java.util.Date;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class DateUtilities {
   private static Date today;
 

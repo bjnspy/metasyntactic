@@ -31,7 +31,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
   private final static String version = "3";
   private final static String VERSION_KEY = "version";

@@ -21,7 +21,6 @@ import org.metasyntactic.data.Score;
 
 import java.util.List;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ScoreCache {
   private final ScoreProvider rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(this);
   private final ScoreProvider metacriticScoreProvider = new MetacriticScoreProvider(this);

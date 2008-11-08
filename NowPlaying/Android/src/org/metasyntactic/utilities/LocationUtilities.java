@@ -19,7 +19,6 @@ import static org.metasyntactic.utilities.XmlUtilities.element;
 import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.w3c.dom.Element;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class LocationUtilities {
   private LocationUtilities() {
 

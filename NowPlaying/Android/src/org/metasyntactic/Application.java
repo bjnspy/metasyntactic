@@ -25,7 +25,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
 

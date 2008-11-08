@@ -17,7 +17,6 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ByteArray implements Parcelable {
   private final byte[] bytes;
 

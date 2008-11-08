@@ -26,7 +26,6 @@ import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 import java.io.IOException;
 import java.util.*;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Theater implements Parcelable, Persistable {
   private String identifier;
   private String name;

@@ -18,8 +18,6 @@ import org.metasyntactic.utilities.StringUtilities;
 
 import java.util.List;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
-
 public class EditDistance {
   private EditDistance() {
   }

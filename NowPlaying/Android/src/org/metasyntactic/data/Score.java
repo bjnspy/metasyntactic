@@ -23,7 +23,6 @@ import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Score implements Parcelable, Persistable {
   private String canonicalTitle;
   private String synopsis;

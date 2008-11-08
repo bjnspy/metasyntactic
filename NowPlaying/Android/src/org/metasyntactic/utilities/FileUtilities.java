@@ -24,7 +24,6 @@ import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
 import java.io.*;
 import java.util.*;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FileUtilities {
   private FileUtilities() {
 

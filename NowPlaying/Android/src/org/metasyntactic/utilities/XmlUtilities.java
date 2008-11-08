@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class XmlUtilities {
   private XmlUtilities() {
 

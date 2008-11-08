@@ -32,7 +32,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class GoogleScoreProvider extends AbstractScoreProvider {
   public GoogleScoreProvider(ScoreCache scoreCache) {
     super(scoreCache);

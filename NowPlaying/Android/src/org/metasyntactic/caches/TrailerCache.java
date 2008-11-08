@@ -25,7 +25,6 @@ import org.metasyntactic.utilities.difference.EditDistance;
 import java.io.File;
 import java.util.*;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class TrailerCache {
   private final Object lock = new Object();
 
