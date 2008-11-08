@@ -157,7 +157,6 @@ public class AllMoviesActivity_old extends ListActivity {
       holder.length.setText(MovieViewUtilities.formatLength(movie
           .getLength(), res));
       holder.toggleButton.setOnClickListener(new Button.OnClickListener() {
-
         public void onClick(View v) {
           Intent intent = new Intent();
           intent.setClass(mContext, MovieDetailsActivity.class);
@@ -165,7 +164,6 @@ public class AllMoviesActivity_old extends ListActivity {
 
           startActivity(intent);
         }
-
       });
 
       // Get and set scores text and background image

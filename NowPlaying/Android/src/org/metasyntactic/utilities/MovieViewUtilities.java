@@ -49,13 +49,12 @@ public class MovieViewUtilities {
    * @param rating Movie rating.
    * @param res    Context resources handle.
    */
-
   public static CharSequence formatRatings(String rating, Resources res) {
-    CharSequence ratingStr =
-        (rating.equals("")) ? res.getText(R.string.unrated) : (res
-            .getText(R.string.rated)
-            + rating + res.getText(R.string.ratingslengthstr_separator));
-    return ratingStr;
+  	if (rating.equals("")) {
+  		return res.getString(R.string.unrated);
+  	} else {
+  		return res.getString(R.string.rated_string, rating);
+  	}
   }
 
 

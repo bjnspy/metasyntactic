@@ -8,8 +8,6 @@
     <string name="movies_select_sort_title">Sort Movies by</string>
     <string name="theaters_select_sort_title">Sort Theaters by</string>
      
-    <string name="rated">"Rated "</string>
-    <string name="unrated">"Unrated."</string>
     <string name="app_name">Now Playing</string>
-    <string name="ratingslengthstr_separator">"."</string>
+   <!--  <string name="ratingslengthstr_separator">"."</string>  -->
 </resources>
