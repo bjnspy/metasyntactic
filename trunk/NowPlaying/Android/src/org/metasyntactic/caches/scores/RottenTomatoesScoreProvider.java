@@ -24,7 +24,6 @@ import org.w3c.dom.Element;
 import java.util.HashMap;
 import java.util.Map;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
   public RottenTomatoesScoreProvider(ScoreCache scoreCache) {
     super(scoreCache);

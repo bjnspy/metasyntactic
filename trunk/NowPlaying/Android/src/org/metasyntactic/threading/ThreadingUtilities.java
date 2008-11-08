@@ -19,7 +19,6 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ThreadingUtilities {
   public static boolean isMainThread() {
     return Looper.getMainLooper() == Looper.myLooper();

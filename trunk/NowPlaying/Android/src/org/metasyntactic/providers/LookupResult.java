@@ -23,7 +23,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class LookupResult {
   public List<Movie> movies;
   public List<Theater> theaters;

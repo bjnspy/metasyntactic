@@ -23,7 +23,6 @@ import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Review implements Parcelable, Persistable {
   private String text;
   private int score;

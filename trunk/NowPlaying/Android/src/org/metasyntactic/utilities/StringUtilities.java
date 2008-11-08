@@ -17,7 +17,6 @@ package org.metasyntactic.utilities;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class StringUtilities {
   private StringUtilities() {
 

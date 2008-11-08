@@ -24,7 +24,6 @@ import org.metasyntactic.utilities.StringUtilities;
 
 import java.io.IOException;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FavoriteTheater implements Parcelable, Persistable {
   private String name;
   private Location originatingLocation;

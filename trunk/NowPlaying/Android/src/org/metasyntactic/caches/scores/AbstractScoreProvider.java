@@ -31,7 +31,6 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.util.*;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public abstract class AbstractScoreProvider implements ScoreProvider {
   private final Object lock = new Object();
 

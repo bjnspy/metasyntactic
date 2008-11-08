@@ -18,7 +18,6 @@ import org.metasyntactic.Application;
 import static org.metasyntactic.threading.ThreadingUtilities.isBackgroundThread;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnMainThread;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class GlobalActivityIndicator {
   private static Object lock = new Object();
   private static int totalBackgroundTaskCount;

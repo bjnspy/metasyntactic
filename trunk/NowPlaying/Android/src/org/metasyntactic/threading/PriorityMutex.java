@@ -14,7 +14,6 @@
 
 package org.metasyntactic.threading;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class PriorityMutex {
   private final Object lock = new Object();
 

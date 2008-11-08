@@ -33,7 +33,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class DataProvider {
   private final Object lock = new Object();
   private final NowPlayingModel model;

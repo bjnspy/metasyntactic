@@ -19,8 +19,6 @@ import android.os.Parcelable;
 
 import java.lang.reflect.Field;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
-
 public abstract class ScoreType implements Parcelable {
   private ScoreType() {
 

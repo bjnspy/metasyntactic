@@ -25,7 +25,6 @@ import org.metasyntactic.utilities.StringUtilities;
 import java.io.File;
 import java.util.*;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class IMDbCache {
   private final Object lock = new Object();
 

@@ -21,7 +21,6 @@ import org.metasyntactic.data.Score;
 import java.util.List;
 import java.util.Map;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public interface ScoreProvider {
   void update();
 

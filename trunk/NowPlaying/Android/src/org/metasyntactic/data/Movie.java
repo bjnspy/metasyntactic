@@ -27,7 +27,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Movie implements Parcelable, Persistable {
   private String identifier;
   private String canonicalTitle;

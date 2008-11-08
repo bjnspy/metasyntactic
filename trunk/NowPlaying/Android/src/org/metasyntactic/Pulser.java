@@ -19,7 +19,6 @@ import android.util.Log;
 
 import java.util.Date;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Pulser {
   private final Runnable runnable;
   private Date lastPulseTime;

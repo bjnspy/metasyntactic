@@ -14,7 +14,6 @@
 
 package org.metasyntactic.utilities;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ExceptionUtilities {
   private ExceptionUtilities() {
 
