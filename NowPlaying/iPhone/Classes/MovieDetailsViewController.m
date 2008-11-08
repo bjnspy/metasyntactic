@@ -193,8 +193,6 @@
     //self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
 
-
-    posterActivityView.activityIndicator.hidesWhenStopped = YES;
     [posterActivityView sizeToFit];
 
     self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
@@ -246,7 +244,7 @@
 
 - (void) startup {
     shutdown = NO;
-    [posterActivityView.activityIndicator startAnimating];
+    [posterActivityView startAnimating];
 
     [ThreadingUtilities performSelector:@selector(downloadPoster)
                                onTarget:self

@@ -13,13 +13,12 @@
 // limitations under the License.
 
 @interface ActivityIndicatorViewWithBackground : UIView {
+  @private
     UIImageView* imageView;
     UIActivityIndicatorView* activityIndicator;
 }
 
-@property (retain) UIImageView* imageView;
-@property (retain) UIActivityIndicatorView* activityIndicator;
-
 - (void) stopAnimating;
+- (void) startAnimating;
 
 @end
