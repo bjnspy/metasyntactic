@@ -138,7 +138,7 @@ public class NowPlayingActivity extends TabActivity implements INowPlaying {
 
     private void setUpTheatersTab(final TabHost tabs) {
         tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator(
-            getResources().getString(R.string.theatersIconLabel),
+            getResources().getString(R.string.theaters),
             getResources().getDrawable(R.drawable.theatres)).setContent(
             new Intent(this, AllTheatersActivity.class)));
     }
