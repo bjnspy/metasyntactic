@@ -34,118 +34,127 @@ static NSLock* gate = nil;
     self.elementsStack = nil;
     self.stringBufferStack = nil;
     self.attributesStack = nil;
-
+    
     [super dealloc];
 }
 
 
-- (void) run:(NSXMLParser*) parser {
-    parser.delegate = self;
-
-    self.elementsStack = [NSMutableArray array];
-    self.stringBufferStack = [NSMutableArray array];
-    self.attributesStack = [NSMutableArray array];
-
-    [elementsStack addObject:[NSMutableArray array]];
-
-    if ([parser parse] == NO) {
-        self.elementsStack = nil;
-    }
-}
-
-
-- (id) initWithData:(NSData*) data {
+- (id) init {
     if (self = [super init]) {
-        NSXMLParser* parser = [[NSXMLParser alloc] initWithData:data];
-        [self run:parser];
-        [parser release];
     }
-
+    
     return self;
 }
 
 
-+ (XmlElement*) collect:(XmlParser*) parser {
-    if (parser.elementsStack == nil) {
-        return nil;
-    }
-
-    return [parser.elementsStack.lastObject lastObject];
++ (XmlParser*) parser {
+    return [[[XmlParser alloc] init] autorelease];
 }
 
 
-+ (XmlElement*) parseWorker:(NSData*) data {
-    if (data == nil) {
+NSString* makeString(const XML_Char* string) {
+    return [[[NSString alloc] initWithBytes:string length:strlen(string) encoding:NSUTF8StringEncoding] autorelease];
+}
+
+
+void startElementHandler(void* userData, 
+                         const XML_Char* name,
+                         const XML_Char** atts) {
+    XmlParser* parser = userData;
+    
+    [parser.elementsStack addObject:[NSMutableArray array]];
+    [parser.stringBufferStack addObject:[NSMutableString string]];
+    
+    NSMutableDictionary* attributes = [NSMutableDictionary dictionary];
+    for (int i = 0; atts[i] != NULL; i += 2) {
+        NSString* key = makeString(atts[i]);
+        NSString* value = makeString(atts[i + 1]);
+        [attributes setObject:value forKey:key];
+    }
+    
+    [parser.attributesStack addObject:attributes];
+}
+
+
+void endElementHandler(void* userData, 
+                       const XML_Char* name) {
+    XmlParser* parser = userData;
+    
+    NSArray* children = parser.elementsStack.lastObject;
+    NSString* text = parser.stringBufferStack.lastObject;
+    NSDictionary* attributes = parser.attributesStack.lastObject;
+    
+    [parser.elementsStack removeLastObject];
+    [parser.stringBufferStack removeLastObject];
+    [parser.attributesStack removeLastObject];
+    
+    NSString* elementName = makeString(name);
+    XmlElement* element = [XmlElement elementWithName:elementName
+                                           attributes:attributes
+                                             children:children
+                                                 text:text];
+    
+    [parser.elementsStack.lastObject addObject:element];
+}
+
+
+void characterDataHandler(void *userData,
+                          const XML_Char *s,
+                          int len) {
+    XmlParser* parser = userData;
+    if (s != NULL) {
+        NSString* string = [[[NSString alloc] initWithBytes:s length:len encoding:NSUTF8StringEncoding] autorelease];
+        
+        [parser.stringBufferStack.lastObject appendString:string];
+    }
+}
+
+
+- (XmlElement*) run:(NSData*) data {
+    self.elementsStack = [NSMutableArray array];
+    self.stringBufferStack = [NSMutableArray array];
+    self.attributesStack = [NSMutableArray array];
+    
+    [elementsStack addObject:[NSMutableArray array]];
+    
+
+    XML_Parser parser = XML_ParserCreate(NULL);
+    XML_SetElementHandler(parser, startElementHandler, endElementHandler);
+    XML_SetCharacterDataHandler(parser, characterDataHandler);
+    XML_SetUserData(parser, self);
+    
+    int result = XML_Parse(parser, data.bytes, data.length, 1 /*isFinal*/);
+    XML_ParserFree(parser);
+    
+    if (result == 0) {
         return nil;
     }
-
-    XmlParser* xmlParser = [[XmlParser alloc] initWithData:data];
-    XmlElement* result = [XmlParser collect:xmlParser];
-    [xmlParser release];
-
-    return result;
+        
+    if (elementsStack.count == 0) {
+        return nil;
+    }
+    
+    NSArray* array = elementsStack.lastObject;
+    if (array.count == 0) {
+        return nil;
+    }
+    
+    return array.lastObject;
 }
 
 
 + (XmlElement*) parse:(NSData*) data {
     XmlElement* result = nil;
-
+    
     [gate lock];
     {
-        result = [self parseWorker:data];
+        XmlParser* parser = [[XmlParser alloc] init];
+        result = [parser run:data];
+        [parser release];
     }
     [gate unlock];
-
+    
     return result;
-}
-
-
-- (void)       parser:(NSXMLParser*) parser
-      didStartElement:(NSString*) elementName
-         namespaceURI:(NSString*) namespaceURI
-        qualifiedName:(NSString*) qName
-           attributes:(NSDictionary*) attributeDict {
-    [elementsStack addObject:[NSMutableArray array]];
-    [stringBufferStack addObject:[NSMutableString string]];
-    [attributesStack addObject:[NSDictionary dictionaryWithDictionary:attributeDict]];
-}
-
-
-- (void)     parser:(NSXMLParser*) parser
-      didEndElement:(NSString*) elementName
-       namespaceURI:(NSString*) namespaceURI
-      qualifiedName:(NSString*) qName {
-    NSArray* children = elementsStack.lastObject;
-    NSString* text = stringBufferStack.lastObject;
-    NSDictionary* attributes = attributesStack.lastObject;
-
-    [elementsStack removeLastObject];
-    [stringBufferStack removeLastObject];
-    [attributesStack removeLastObject];
-
-
-    XmlElement* element = [XmlElement elementWithName:elementName
-                                           attributes:attributes
-                                             children:children
-                                                 text:text];
-
-[elementsStack.lastObject addObject:element];
-}
-
-
-- (void)       parser:(NSXMLParser*) parser
-      foundCharacters:(NSString*) string {
-    if (string == nil) {
-        return;
-    }
-
-    [stringBufferStack.lastObject appendString:string];
-}
-
-
-- (void)          parser:(NSXMLParser*) parser
-      parseErrorOccurred:(NSError*) parseError {
-    NSLog(@"%@", parseError);
 }
 
 @end
