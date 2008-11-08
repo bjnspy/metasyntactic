@@ -30,7 +30,6 @@ public class Score implements Parcelable, Persistable {
   private String provider;
   private String identifier;
 
-
   public void persistTo(PersistableOutputStream out) throws IOException {
     out.writeString(canonicalTitle);
     out.writeString(synopsis);
@@ -38,7 +37,6 @@ public class Score implements Parcelable, Persistable {
     out.writeString(provider);
     out.writeString(identifier);
   }
-
 
   public static final Reader<Score> reader = new AbstractPersistable.AbstractReader<Score>() {
     public Score read(PersistableInputStream in) throws IOException {
@@ -52,7 +50,6 @@ public class Score implements Parcelable, Persistable {
     }
   };
 
-
   private Score(String canonicalTitle, String synopsis, String value, String provider, String identifier,
                 boolean dummy) {
     this.canonicalTitle = canonicalTitle;
@@ -62,41 +59,33 @@ public class Score implements Parcelable, Persistable {
     this.identifier = identifier;
   }
 
-
   public Score(String title, String synopsis, String value, String provider, String identifier) {
     this(Movie.makeCanonical(title), synopsis, value, provider, identifier, true);
   }
-
 
   public String getCanonicalTitle() {
     return canonicalTitle;
   }
 
-
   public String getSynopsis() {
     return synopsis;
   }
-
 
   public String getValue() {
     return value;
   }
 
-
   public String getProvider() {
     return provider;
   }
-
 
   public String getIdentifier() {
     return identifier;
   }
 
-
   public int describeContents() {
     return 0;
   }
-
 
   public void writeToParcel(Parcel parcel, int i) {
     parcel.writeString(canonicalTitle);
@@ -106,29 +95,24 @@ public class Score implements Parcelable, Persistable {
     parcel.writeString(identifier);
   }
 
+  public static final Parcelable.Creator<Score> CREATOR = new Parcelable.Creator<Score>() {
+    public Score createFromParcel(Parcel source) {
+      String canonicalTitle = source.readString();
+      String synopsis = source.readString();
+      String score = source.readString();
+      String provider = source.readString();
+      String identifier = source.readString();
 
-  public static final Parcelable.Creator<Score> CREATOR =
-      new Parcelable.Creator<Score>() {
-        public Score createFromParcel(Parcel source) {
-          String canonicalTitle = source.readString();
-          String synopsis = source.readString();
-          String score = source.readString();
-          String provider = source.readString();
-          String identifier = source.readString();
+      return new Score(canonicalTitle, synopsis, score, provider, identifier);
+    }
 
-          return new Score(canonicalTitle, synopsis, score, provider, identifier);
-        }
-
-
-        public Score[] newArray(int size) {
-          return new Score[size];
-        }
-      };
-
+    public Score[] newArray(int size) {
+      return new Score[size];
+    }
+  };
 
   public int compareTo(Score score) {
     // TODO Auto-generated method stub
     return this.value.compareTo(score.value);
   }
-
 }

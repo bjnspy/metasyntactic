@@ -28,12 +28,10 @@ public class FavoriteTheater implements Parcelable, Persistable {
   private String name;
   private Location originatingLocation;
 
-
   public void persistTo(PersistableOutputStream out) throws IOException {
     out.writeString(name);
     out.writePersistable(originatingLocation);
   }
-
 
   public static final Reader<FavoriteTheater> reader = new AbstractPersistable.AbstractReader<FavoriteTheater>() {
     public FavoriteTheater read(PersistableInputStream in) throws IOException {
@@ -43,46 +41,38 @@ public class FavoriteTheater implements Parcelable, Persistable {
     }
   };
 
-
   public FavoriteTheater(String name, Location originatingLocation) {
     this.name = StringUtilities.nonNullString(name);
     this.originatingLocation = originatingLocation;
   }
 
-
   public String getName() {
     return name;
   }
-
 
   public Location getOriginatingLocation() {
     return originatingLocation;
   }
 
-
   public int describeContents() {
     return 0;
   }
-
 
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(name);
     dest.writeParcelable(originatingLocation, 0);
   }
 
+  public static final Parcelable.Creator<FavoriteTheater> CREATOR = new Parcelable.Creator<FavoriteTheater>() {
+    public FavoriteTheater createFromParcel(Parcel source) {
+      String name = source.readString();
+      Location originatingLocation = source.readParcelable(null);
 
-  public static final Parcelable.Creator<FavoriteTheater> CREATOR =
-      new Parcelable.Creator<FavoriteTheater>() {
-        public FavoriteTheater createFromParcel(Parcel source) {
-          String name = source.readString();
-          Location originatingLocation = source.readParcelable(null);
+      return new FavoriteTheater(name, originatingLocation);
+    }
 
-          return new FavoriteTheater(name, originatingLocation);
-        }
-
-
-        public FavoriteTheater[] newArray(int size) {
-          return new FavoriteTheater[size];
-        }
-      };
+    public FavoriteTheater[] newArray(int size) {
+      return new FavoriteTheater[size];
+    }
+  };
 }

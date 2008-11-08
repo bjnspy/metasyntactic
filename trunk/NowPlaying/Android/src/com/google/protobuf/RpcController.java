@@ -31,13 +31,11 @@ public interface RpcController {
   // These calls may be made from the client side only.  Their results
   // are undefined on the server side (may throw RuntimeExceptions).
 
-
   /**
    * Resets the RpcController to its initial state so that it may be reused in a new call.  This can be called from the
    * client side only.  It must not be called while an RPC is in progress.
    */
   void reset();
-
 
   /**
    * After a call has finished, returns true if the call failed.  The possible reasons for failure depend on the RPC
@@ -46,10 +44,8 @@ public interface RpcController {
    */
   boolean failed();
 
-
   /** If {@code failed()} is {@code true}, returns a human-readable description of the error. */
   String errorText();
-
 
   /**
    * Advises the RPC system that the caller desires that the RPC call be canceled.  The RPC system may cancel it
@@ -62,7 +58,6 @@ public interface RpcController {
   // These calls may be made from the server side only.  Their results
   // are undefined on the client side (may throw RuntimeExceptions).
 
-
   /**
    * Causes {@code failed()} to return true on the client side.  {@code reason} will be incorporated into the message
    * returned by {@code errorText()}. If you find you need to return machine-readable information about failures, you
@@ -70,13 +65,11 @@ public interface RpcController {
    */
   void setFailed(String reason);
 
-
   /**
    * If {@code true}, indicates that the client canceled the RPC, so the server may as well give up on replying to it.
    * This method must be called on the server side only.  The server should still call the final "done" callback.
    */
   boolean isCanceled();
-
 
   /**
    * Asks that the given callback be called when the RPC is canceled.  The parameter passed to the callback will always

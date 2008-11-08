@@ -29,11 +29,9 @@ import java.nio.charset.CharsetDecoder;
 public class NetworkUtilities {
   private static PriorityMutex mutex = new PriorityMutex();
 
-
   private NetworkUtilities() {
 
   }
-
 
   public static String downloadString(String url, boolean important) {
     try {
@@ -43,12 +41,7 @@ public class NetworkUtilities {
     }
   }
 
-
-  private final static String[] charsets = new String[]{
-      "UTF-8",
-      "ISO-8859-1",
-  };
-
+  private final static String[] charsets = new String[]{"UTF-8", "ISO-8859-1",};
 
   public static String downloadString(URL url, boolean important) {
     byte[] bytes = download(url, important);
@@ -62,7 +55,6 @@ public class NetworkUtilities {
 
     return null;
   }
-
 
   private static String decode(byte[] bytes, String charset) {
     if (bytes == null) {
@@ -78,7 +70,6 @@ public class NetworkUtilities {
     }
   }
 
-
   public static Element downloadXml(String url, boolean important) {
     try {
       return downloadXml(new URL(url), important);
@@ -87,7 +78,6 @@ public class NetworkUtilities {
     }
   }
 
-
   private static Element downloadXml(URL url, boolean important) {
     byte[] data = download(url, important);
     if (data == null || data.length == 0) {
@@ -95,7 +85,6 @@ public class NetworkUtilities {
     }
     return XmlUtilities.parseInputStream(new ByteArrayInputStream(data));
   }
-
 
   public static byte[] download(String url, boolean important) {
     if (StringUtilities.isNullOrEmpty(url)) {
@@ -110,7 +99,6 @@ public class NetworkUtilities {
     }
   }
 
-
   public static byte[] download(URL url, boolean important) {
     try {
       mutex.lock(important);
@@ -119,7 +107,6 @@ public class NetworkUtilities {
       mutex.unlock(important);
     }
   }
-
 
   private static byte[] downloadWorker(URL url) {
     try {
@@ -143,6 +130,5 @@ public class NetworkUtilities {
       ExceptionUtilities.log(NetworkUtilities.class, "downloadWorker", e);
       return null;
     }
-
   }
 }

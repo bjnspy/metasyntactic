@@ -38,15 +38,12 @@ public class UninitializedMessageException extends RuntimeException {
     this(findMissingFields(message));
   }
 
-
   private UninitializedMessageException(List<String> missingFields) {
     super(buildDescription(missingFields));
     this.missingFields = missingFields;
   }
 
-
   private final List<String> missingFields;
-
 
   /**
    * Get a list of human-readable names of required fields missing from this message.  Each name is a full path to a
@@ -56,7 +53,6 @@ public class UninitializedMessageException extends RuntimeException {
     return Collections.unmodifiableList(missingFields);
   }
 
-
   /**
    * Converts this exception to an {@link InvalidProtocolBufferException}. When a parsed message is missing required
    * fields, this should be thrown instead of {@code UninitializedMessageException}.
@@ -65,11 +61,9 @@ public class UninitializedMessageException extends RuntimeException {
     return new InvalidProtocolBufferException(getMessage());
   }
 
-
   /** Construct the description string for this exception. */
   private static String buildDescription(List<String> missingFields) {
-    StringBuilder description =
-        new StringBuilder("Message missing required fields: ");
+    StringBuilder description = new StringBuilder("Message missing required fields: ");
     boolean first = true;
     for (String field : missingFields) {
       if (first) {
@@ -82,7 +76,6 @@ public class UninitializedMessageException extends RuntimeException {
     return description.toString();
   }
 
-
   /** Populates {@code this.missingFields} with the full "path" of each missing required field in the given message. */
   private static List<String> findMissingFields(Message message) {
     List<String> results = new ArrayList<String>();
@@ -90,18 +83,15 @@ public class UninitializedMessageException extends RuntimeException {
     return results;
   }
 
-
   /** Recursive helper implementing {@link #findMissingFields(Message)}. */
-  private static void findMissingFields(Message message, String prefix,
-                                        List<String> results) {
+  private static void findMissingFields(Message message, String prefix, List<String> results) {
     for (FieldDescriptor field : message.getDescriptorForType().getFields()) {
       if (field.isRequired() && !message.hasField(field)) {
         results.add(prefix + field.getName());
       }
     }
 
-    for (Map.Entry<FieldDescriptor, Object> entry :
-        message.getAllFields().entrySet()) {
+    for (Map.Entry<FieldDescriptor, Object> entry : message.getAllFields().entrySet()) {
       FieldDescriptor field = entry.getKey();
       Object value = entry.getValue();
 
@@ -109,25 +99,18 @@ public class UninitializedMessageException extends RuntimeException {
         if (field.isRepeated()) {
           int i = 0;
           for (Object element : (List) value) {
-            findMissingFields((Message) element,
-                subMessagePrefix(prefix, field, i++),
-                results);
+            findMissingFields((Message) element, subMessagePrefix(prefix, field, i++), results);
           }
         } else {
           if (message.hasField(field)) {
-            findMissingFields((Message) value,
-                subMessagePrefix(prefix, field, -1),
-                results);
+            findMissingFields((Message) value, subMessagePrefix(prefix, field, -1), results);
           }
         }
       }
     }
   }
 
-
-  private static String subMessagePrefix(String prefix,
-                                         FieldDescriptor field,
-                                         int index) {
+  private static String subMessagePrefix(String prefix, FieldDescriptor field, int index) {
     StringBuilder result = new StringBuilder(prefix);
     if (field.isExtension()) {
       result.append('(')

@@ -23,10 +23,8 @@ public class GlobalActivityIndicator {
   private static int totalBackgroundTaskCount;
   private static int visibleBackgroundTaskCount;
 
-
   public GlobalActivityIndicator() {
   }
-
 
   private static void startIndicator() {
     if (isBackgroundThread()) {
@@ -42,7 +40,6 @@ public class GlobalActivityIndicator {
     // Do work here
   }
 
-
   private static void stopIndicator() {
     if (isBackgroundThread()) {
       performOnMainThread(new Runnable() {
@@ -56,7 +53,6 @@ public class GlobalActivityIndicator {
 
     // Do work here
   }
-
 
   private static void startNetworkIndicator() {
     if (isBackgroundThread()) {
@@ -72,7 +68,6 @@ public class GlobalActivityIndicator {
     // Do work here
   }
 
-
   private static void stopNetworkIndicator() {
     if (isBackgroundThread()) {
       performOnMainThread(new Runnable() {
@@ -86,7 +81,6 @@ public class GlobalActivityIndicator {
 
     // Do work here
   }
-
 
   public static void addBackgroundTask(boolean visible) {
     synchronized (lock) {
@@ -105,7 +99,6 @@ public class GlobalActivityIndicator {
       }
     }
   }
-
 
   public static void removeBackgroundTask(boolean visible) {
     synchronized (lock) {

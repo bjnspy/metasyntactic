@@ -29,7 +29,6 @@ public final class WireFormat {
   // Do not allow instantiation.
   private WireFormat() {}
 
-
   static final int WIRETYPE_VARINT = 0;
   static final int WIRETYPE_FIXED64 = 1;
   static final int WIRETYPE_LENGTH_DELIMITED = 2;
@@ -40,24 +39,20 @@ public final class WireFormat {
   static final int TAG_TYPE_BITS = 3;
   static final int TAG_TYPE_MASK = (1 << TAG_TYPE_BITS) - 1;
 
-
   /** Given a tag value, determines the wire type (the lower 3 bits). */
   static int getTagWireType(int tag) {
     return tag & TAG_TYPE_MASK;
   }
-
 
   /** Given a tag value, determines the field number (the upper 29 bits). */
   public static int getTagFieldNumber(int tag) {
     return tag >>> TAG_TYPE_BITS;
   }
 
-
   /** Makes a tag value given a field number and wire type. */
   static int makeTag(int fieldNumber, int wireType) {
     return (fieldNumber << TAG_TYPE_BITS) | wireType;
   }
-
 
   static int getWireFormatForFieldType(Descriptors.FieldDescriptor.Type type) {
     switch (type) {
@@ -99,10 +94,8 @@ public final class WireFormat {
         return WIRETYPE_VARINT;
     }
 
-    throw new RuntimeException(
-        "There is no way to get here, but the compiler thinks otherwise.");
+    throw new RuntimeException("There is no way to get here, but the compiler thinks otherwise.");
   }
-
 
   // Field numbers for feilds in MessageSet wire format.
   static final int MESSAGE_SET_ITEM = 1;
@@ -110,12 +103,8 @@ public final class WireFormat {
   static final int MESSAGE_SET_MESSAGE = 3;
 
   // Tag numbers.
-  static final int MESSAGE_SET_ITEM_TAG =
-      makeTag(MESSAGE_SET_ITEM, WIRETYPE_START_GROUP);
-  static final int MESSAGE_SET_ITEM_END_TAG =
-      makeTag(MESSAGE_SET_ITEM, WIRETYPE_END_GROUP);
-  static final int MESSAGE_SET_TYPE_ID_TAG =
-      makeTag(MESSAGE_SET_TYPE_ID, WIRETYPE_VARINT);
-  static final int MESSAGE_SET_MESSAGE_TAG =
-      makeTag(MESSAGE_SET_MESSAGE, WIRETYPE_LENGTH_DELIMITED);
+  static final int MESSAGE_SET_ITEM_TAG = makeTag(MESSAGE_SET_ITEM, WIRETYPE_START_GROUP);
+  static final int MESSAGE_SET_ITEM_END_TAG = makeTag(MESSAGE_SET_ITEM, WIRETYPE_END_GROUP);
+  static final int MESSAGE_SET_TYPE_ID_TAG = makeTag(MESSAGE_SET_TYPE_ID, WIRETYPE_VARINT);
+  static final int MESSAGE_SET_MESSAGE_TAG = makeTag(MESSAGE_SET_MESSAGE, WIRETYPE_LENGTH_DELIMITED);
 }

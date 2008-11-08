@@ -28,7 +28,6 @@ public interface Service {
   /** Get the {@code ServiceDescriptor} describing this service and its methods. */
   Descriptors.ServiceDescriptor getDescriptorForType();
 
-
   /**
    * <p>Call a method of the service specified by MethodDescriptor.  This is normally implemented as a simple {@code
    * switch()} that calls the standard definitions of the service's methods.
@@ -45,11 +44,8 @@ public interface Service {
    * failed, the parameter to {@code done} will be {@code null}.  Further details about the failure can be found by
    * querying {@code controller}. </ul>
    */
-  void callMethod(Descriptors.MethodDescriptor method,
-                  RpcController controller,
-                  Message request,
+  void callMethod(Descriptors.MethodDescriptor method, RpcController controller, Message request,
                   RpcCallback<Message> done);
-
 
   /**
    * <p>{@code callMethod()} requires that the request passed in is of a particular subclass of {@code Message}.  {@code
@@ -68,7 +64,6 @@ public interface Service {
    * </pre>
    */
   Message getRequestPrototype(Descriptors.MethodDescriptor method);
-
 
   /**
    * Like {@code getRequestPrototype()}, but gets a prototype of the response message.  {@code getResponsePrototype()}

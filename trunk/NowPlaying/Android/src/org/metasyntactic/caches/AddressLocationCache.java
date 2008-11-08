@@ -27,7 +27,6 @@ public class AddressLocationCache {
 
   }
 
-
   public static Map<Theater, Double> getTheaterDistanceMap(Location location, List<Theater> theaters) {
     Map<Theater, Double> map = new HashMap<Theater, Double>();
 

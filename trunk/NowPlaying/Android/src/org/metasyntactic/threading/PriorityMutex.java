@@ -19,13 +19,11 @@ public class PriorityMutex {
 
   private int highTaskRunningCount;
 
-
   public void lockHigh() {
     synchronized (lock) {
       highTaskRunningCount++;
     }
   }
-
 
   public void unlockHigh() {
     synchronized (lock) {
@@ -36,7 +34,6 @@ public class PriorityMutex {
       }
     }
   }
-
 
   public void lockLow() {
     synchronized (lock) {
@@ -50,10 +47,8 @@ public class PriorityMutex {
     }
   }
 
-
   public void unlockLow() {
   }
-
 
   public void lock(boolean high) {
     if (high) {
@@ -62,7 +57,6 @@ public class PriorityMutex {
       lockLow();
     }
   }
-
 
   public void unlock(boolean high) {
     if (high) {

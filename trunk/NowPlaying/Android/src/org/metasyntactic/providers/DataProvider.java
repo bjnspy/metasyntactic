@@ -42,12 +42,10 @@ public class DataProvider {
   private Map<String, Date> synchronizationData;
   private Map<String, Map<String, List<Performance>>> performances;
 
-
   public DataProvider(NowPlayingModel model) {
     this.model = model;
     performances = new HashMap<String, Map<String, List<Performance>>>();
   }
-
 
   public void update() {
     Runnable runnable = new Runnable() {
@@ -57,7 +55,6 @@ public class DataProvider {
     };
     ThreadingUtilities.performOnBackgroundThread("Update Provider", runnable, lock, true/* visible */);
   }
-
 
   private boolean isUpToDate() {
     Date lastLookupDate = getLastLookupDate();
@@ -74,7 +71,6 @@ public class DataProvider {
 
     return true;
   }
-
 
   private void updateBackgroundEntryPoint() {
     if (isUpToDate()) {
@@ -104,7 +100,6 @@ public class DataProvider {
     }
   }
 
-
   private void reportResult(final LookupResult result) {
     Runnable runnable = new Runnable() {
       public void run() {
@@ -113,7 +108,6 @@ public class DataProvider {
     };
     ThreadingUtilities.performOnMainThread(runnable);
   }
-
 
   private void reportResultOnMainThread(LookupResult result) {
     movies = result.movies;
@@ -125,7 +119,6 @@ public class DataProvider {
     Application.refresh(true);
   }
 
-
   private LookupResult lookupLocation(Location location, Collection<String> theaterNames) {
     if (isNullOrEmpty(location.getPostalCode())) {
       return null;
@@ -136,9 +129,7 @@ public class DataProvider {
 
     days = min(max(days, 0), 7);
 
-    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language="
-        + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude="
-        + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
 
     byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
@@ -156,9 +147,7 @@ public class DataProvider {
     return processTheaterListings(theaterListings, location, theaterNames);
   }
 
-
   private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
 
   private Map<String, Movie> processMovies(List<NowPlaying.MovieProto> movies) {
     Map<String, Movie> movieIdToMovieMap = new HashMap<String, Movie>();
@@ -189,13 +178,12 @@ public class DataProvider {
       }
 
       Movie movie = new Movie(identifier, title, rating, length, imdbAddress, releaseDate, poster, synopsis, "",
-          directors, cast, genres);
+                              directors, cast, genres);
       movieIdToMovieMap.put(identifier, movie);
     }
 
     return movieIdToMovieMap;
   }
-
 
   private Map<String, List<Performance>> processMovieAndShowtimesList(
       List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList,
@@ -228,7 +216,6 @@ public class DataProvider {
     return result;
   }
 
-
   private void processTheaterAndMovieShowtimes(
       NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto theaterAndMovieShowtimes, List<Theater> theaters,
       Map<String, Map<String, List<Performance>>> performances, Map<String, Date> synchronizationData,
@@ -257,7 +244,7 @@ public class DataProvider {
         .getMovieAndShowtimesList();
 
     Map<String, List<Performance>> movieToShowtimesMap = processMovieAndShowtimesList(movieAndShowtimesList,
-        movieIdToMovieMap);
+                                                                                      movieIdToMovieMap);
 
     synchronizationData.put(name, DateUtilities.getToday());
 
@@ -267,7 +254,7 @@ public class DataProvider {
 
       File performancesFile = getPerformancesFile(name);
       Map<String, List<Performance>> oldPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
-          performancesFile);
+                                                                                                    performancesFile);
 
       if (!oldPerformances.isEmpty()) {
         movieToShowtimesMap = oldPerformances;
@@ -278,10 +265,9 @@ public class DataProvider {
     Location location = new Location(latitude, longitude, address, city, state, postalCode, country);
 
     performances.put(name, movieToShowtimesMap);
-    theaters.add(new Theater(identifier, name, address, phone, location, originatingLocation, new HashSet<String>(
-        movieToShowtimesMap.keySet())));
+    theaters.add(new Theater(identifier, name, address, phone, location, originatingLocation,
+                             new HashSet<String>(movieToShowtimesMap.keySet())));
   }
-
 
   private Object[] processTheaterAndMovieShowtimes(
       List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes,
@@ -295,12 +281,11 @@ public class DataProvider {
 
     for (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto proto : theaterAndMovieShowtimes) {
       processTheaterAndMovieShowtimes(proto, theaters, performances, synchronizationData, originatingLocation,
-          theaterNames, movieIdToMovieMap);
+                                      theaterNames, movieIdToMovieMap);
     }
 
     return new Object[]{theaters, performances, synchronizationData,};
   }
-
 
   private LookupResult processTheaterListings(NowPlaying.TheaterListingsProto element, Location originatingLocation,
                                               Collection<String> theaterNames) {
@@ -310,7 +295,7 @@ public class DataProvider {
     Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);
 
     Object[] theatersAndPerformances = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes, originatingLocation,
-        theaterNames, movieIdToMovieMap);
+                                                                       theaterNames, movieIdToMovieMap);
 
     List<Movie> movies = new ArrayList<Movie>(movieIdToMovieMap.values());
     List<Theater> theaters = (List<Theater>) theatersAndPerformances[0];
@@ -320,26 +305,21 @@ public class DataProvider {
     return new LookupResult(movies, theaters, performances, synchronizationData);
   }
 
-
   private File getMoviesFile() {
     return new File(Application.dataDirectory, "Movies");
   }
-
 
   private File getTheatersFile() {
     return new File(Application.dataDirectory, "Theaters");
   }
 
-
   private File getSynchronizationFile() {
     return new File(Application.dataDirectory, "Synchronization");
   }
 
-
   private File getLastLookupDateFile() {
     return new File(Application.dataDirectory, "lastLookupDate");
   }
-
 
   private Date getLastLookupDate() {
     File file = getLastLookupDateFile();
@@ -350,16 +330,13 @@ public class DataProvider {
     return new Date(file.lastModified());
   }
 
-
   private void setLastLookupDate() {
     FileUtilities.writeString("", getLastLookupDateFile());
   }
 
-
   private void setStale() {
     getLastLookupDateFile().delete();
   }
-
 
   private List<Movie> loadMovies() {
     List<Movie> result = FileUtilities.readPersistableList(Movie.reader, getMoviesFile());
@@ -369,7 +346,6 @@ public class DataProvider {
     return result;
   }
 
-
   public List<Movie> getMovies() {
     if (movies == null) {
       movies = loadMovies();
@@ -377,7 +353,6 @@ public class DataProvider {
 
     return movies;
   }
-
 
   private Map<String, Date> loadSynchronizationData() {
     Map<String, Date> result = FileUtilities.readStringToDateMap(getSynchronizationFile());
@@ -387,7 +362,6 @@ public class DataProvider {
     return result;
   }
 
-
   private Map<String, Date> getSynchronizationData() {
     if (synchronizationData == null) {
       synchronizationData = loadSynchronizationData();
@@ -395,16 +369,13 @@ public class DataProvider {
     return synchronizationData;
   }
 
-
   private File getPerformancesFile(File parentFolder, String theaterName) {
     return new File(parentFolder, FileUtilities.sanitizeFileName(theaterName));
   }
 
-
   private File getPerformancesFile(String theaterName) {
     return getPerformancesFile(Application.performancesDirectory, theaterName);
   }
-
 
   private void saveResult(LookupResult result) {
     long start = System.currentTimeMillis();
@@ -436,17 +407,15 @@ public class DataProvider {
     setLastLookupDate();
   }
 
-
   Map<String, List<Performance>> lookupTheaterPerformances(Theater theater) {
     Map<String, List<Performance>> theaterPerformances = performances.get(theater.getName());
     if (theaterPerformances == null) {
       theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
-          getPerformancesFile(theater.getName()));
+                                                                         getPerformancesFile(theater.getName()));
       performances.put(theater.getName(), theaterPerformances);
     }
     return theaterPerformances;
   }
-
 
   private List<Performance> getPerformances(Theater theater, Movie movie) {
     Map<String, List<Performance>> theaterPerformances = lookupTheaterPerformances(theater);
@@ -459,7 +428,6 @@ public class DataProvider {
     return Collections.emptyList();
   }
 
-
   private List<Theater> loadTheaters() {
     List<Theater> result = FileUtilities.readPersistableList(Theater.reader, getTheatersFile());
     if (result == null) {
@@ -468,14 +436,12 @@ public class DataProvider {
     return result;
   }
 
-
   public List<Theater> getTheaters() {
     if (theaters == null) {
       theaters = loadTheaters();
     }
     return theaters;
   }
-
 
   private void lookupMissingFavorites(LookupResult lookupResult) {
     if (lookupResult == null) {
@@ -526,7 +492,6 @@ public class DataProvider {
       }
     }
   }
-
 
   public Date synchronizationDateForTheater(String theaterName) {
     return getSynchronizationData().get(theaterName);

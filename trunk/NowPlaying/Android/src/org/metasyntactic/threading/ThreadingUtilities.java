@@ -24,11 +24,9 @@ public class ThreadingUtilities {
     return Looper.getMainLooper() == Looper.myLooper();
   }
 
-
   public static boolean isBackgroundThread() {
     return !isMainThread();
   }
-
 
   public static void performOnMainThread(Runnable runnable) {
     if (isMainThread()) {
@@ -38,18 +36,15 @@ public class ThreadingUtilities {
     }
   }
 
-
   public static void performOnBackgroundThread(String name, Runnable runnable, Object lock, boolean visible) {
     int priority = visible ? Thread.NORM_PRIORITY : Thread.MIN_PRIORITY;
     performOnBackgroundThread(name, runnable, lock, visible, priority);
   }
 
-
   public static void performOnBackgroundThread(String name, Runnable runnable, Object lock, boolean visible,
                                                int priority) {
     performOnBackgroundThreadWorker(name, runnable, lock == null ? new Object() : lock, visible, priority);
   }
-
 
   private static void performOnBackgroundThreadWorker(String name, final Runnable runnable, final Object lock,
                                                       final boolean visible, int priority) {

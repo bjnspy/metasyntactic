@@ -19,7 +19,6 @@ public class ExceptionUtilities {
 
   }
 
-
   public static void log(Class<?> clazz, String method, Exception e) {
     // todo (mjoshi) uncomment before submitting.
     //  Log.e(clazz.getName(), method, e);

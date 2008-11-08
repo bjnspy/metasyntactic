@@ -22,7 +22,6 @@ public class Hours {
 
   }
 
-
   public static int hoursBetween(Date d1, Date d2) {
     Calendar c1 = Calendar.getInstance();
     Calendar c2 = Calendar.getInstance();

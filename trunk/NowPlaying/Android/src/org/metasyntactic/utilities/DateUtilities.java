@@ -20,7 +20,6 @@ import java.util.Date;
 public class DateUtilities {
   private static Date today;
 
-
   static {
     Date dt = new Date();
     Calendar c1 = Calendar.getInstance();
@@ -37,11 +36,9 @@ public class DateUtilities {
     today = c2.getTime();
   }
 
-
   public static Date getToday() {
     return today;
   }
-
 
   public static boolean use24HourTime() {
     return false;

@@ -34,16 +34,13 @@ public class PosterCache {
   private final Object lock = new Object();
   private final NowPlayingModel model;
 
-
   public PosterCache(NowPlayingModel model) {
     this.model = model;
   }
 
-
   private File posterFile(Movie movie) {
     return new File(Application.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
-
 
   public void update(final List<Movie> movies) {
     Runnable runnable = new Runnable() {
@@ -54,12 +51,10 @@ public class PosterCache {
     ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, lock, false);
   }
 
-
   private void updateBackgroundEntryPoint(List<Movie> movies) {
     deleteObsoletePosters(movies);
     downloadPosters(movies);
   }
-
 
   private void downloadPosters(List<Movie> movies) {
     Set<Movie> moviesSet = new HashSet<Movie>();
@@ -86,7 +81,6 @@ public class PosterCache {
     LogUtilities.logTime(PosterCache.class, "Download Posters - IMDb", start);
   }
 
-
   private void checkData(Iterator<Movie> i, Movie movie, byte[] data) {
     if (data != null) {
       i.remove();
@@ -94,7 +88,6 @@ public class PosterCache {
       Application.refresh();
     }
   }
-
 
   private void downloadPostersWithLinks(Set<Movie> moviesSet) {
     for (Iterator<Movie> i = moviesSet.iterator(); i.hasNext();) {
@@ -105,7 +98,6 @@ public class PosterCache {
     }
   }
 
-
   private void downloadApplePosters(Set<Movie> moviesSet) {
     for (Iterator<Movie> i = moviesSet.iterator(); i.hasNext();) {
       Movie movie = i.next();
@@ -114,7 +106,6 @@ public class PosterCache {
       checkData(i, movie, data);
     }
   }
-
 
   private void downloadFandangoPosters(Set<Movie> moviesSet) {
     Location location = model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
@@ -135,7 +126,6 @@ public class PosterCache {
     }
   }
 
-
   private void downloadImdbPosters(Set<Movie> moviesSet) {
     for (Iterator<Movie> i = moviesSet.iterator(); i.hasNext();) {
       Movie movie = i.next();
@@ -145,11 +135,9 @@ public class PosterCache {
     }
   }
 
-
   private void deleteObsoletePosters(List<Movie> movies) {
 
   }
-
 
   public byte[] getPoster(Movie movie) {
     return FileUtilities.readBytes(posterFile(movie));

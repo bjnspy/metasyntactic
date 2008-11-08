@@ -28,16 +28,13 @@ import java.util.*;
 public class TrailerCache {
   private final Object lock = new Object();
 
-
   private String trailerFileName(Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }
 
-
   private File trailerFilePath(Movie movie) {
     return new File(Application.trailersDirectory, trailerFileName(movie));
   }
-
 
   private void deleteObsoleteTrailers(List<Movie> movies) {
     File trailersDir = Application.trailersDirectory;
@@ -62,7 +59,6 @@ public class TrailerCache {
     }
   }
 
-
   private List<List<Movie>> getOrderedMovies(List<Movie> movies) {
     List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
     List<Movie> moviesWithTrailers = new ArrayList<Movie>();
@@ -86,7 +82,6 @@ public class TrailerCache {
     return Arrays.asList(moviesWithoutTrailers, moviesWithTrailers);
   }
 
-
   public void update(final List<Movie> movies) {
     Runnable runnable = new Runnable() {
       public void run() {
@@ -95,7 +90,6 @@ public class TrailerCache {
     };
     ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, lock, false/*visible*/);
   }
-
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
     deleteObsoleteTrailers(movies);
@@ -114,7 +108,6 @@ public class TrailerCache {
       downloadTrailers(values, index);
     }
   }
-
 
   private void downloadMovieTrailer(Movie movie, Map<String, List<String>> index) {
     String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
@@ -141,13 +134,11 @@ public class TrailerCache {
     Application.refresh();
   }
 
-
   private void downloadTrailers(List<Movie> movies, Map<String, List<String>> index) {
     for (Movie movie : movies) {
       downloadMovieTrailer(movie, index);
     }
   }
-
 
   private Map<String, List<String>> generateIndex(String indexText) {
     Map<String, List<String>> index = new HashMap<String, List<String>>();
@@ -167,7 +158,6 @@ public class TrailerCache {
 
     return index;
   }
-
 
   public List<String> getTrailers(Movie movie) {
     List<String> trailers = FileUtilities.readStringList(trailerFilePath(movie));

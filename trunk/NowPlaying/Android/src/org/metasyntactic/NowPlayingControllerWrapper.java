@@ -28,11 +28,9 @@ import java.util.List;
 public class NowPlayingControllerWrapper {
   private final INowPlayingController controller;
 
-
   public NowPlayingControllerWrapper(INowPlayingController controller) {
     this.controller = controller;
   }
-
 
   public String getUserLocation() {
     try {
@@ -42,7 +40,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public void setUserLocation(String userLocation) {
     try {
       controller.setUserLocation(userLocation);
@@ -50,7 +47,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public int getSearchDistance() {
     try {
@@ -60,7 +56,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public void setSearchDistance(int searchDistance) {
     try {
       controller.setSearchDistance(searchDistance);
@@ -68,7 +63,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public int getSelectedTabIndex() {
     try {
@@ -78,7 +72,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public void setSelectedTabIndex(int index) {
     try {
       controller.setSelectedTabIndex(index);
@@ -86,7 +79,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public int getAllMoviesSelectedSortIndex() {
     try {
@@ -96,7 +88,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public void setAllMoviesSelectedSortIndex(int index) {
     try {
       controller.setAllMoviesSelectedSortIndex(index);
@@ -104,7 +95,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public int getAllTheatersSelectedSortIndex() {
     try {
@@ -114,7 +104,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public void setAllTheatersSelectedSortIndex(int index) {
     try {
       controller.setAllTheatersSelectedSortIndex(index);
@@ -122,7 +111,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public int getUpcomingMoviesSelectedSortIndex() {
     try {
@@ -132,7 +120,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public void setUpcomingMoviesSelectedSortIndex(int index) {
     try {
       controller.setUpcomingMoviesSelectedSortIndex(index);
@@ -140,7 +127,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public List<Movie> getMovies() {
     try {
@@ -150,7 +136,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public List<Theater> getTheaters() {
     try {
       return controller.getTheaters();
@@ -158,7 +143,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public List<String> getTrailers(Movie movie) {
     try {
@@ -168,7 +152,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public List<Review> getReviews(Movie movie) {
     try {
       return controller.getReviews(movie);
@@ -176,7 +159,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public ScoreType getScoreType() {
     try {
@@ -186,7 +168,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public Score getScore(Movie movie) {
     try {
       return controller.getScore(movie);
@@ -194,7 +175,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public ByteArray getPoster(Movie movie) {
     try {
@@ -204,7 +184,6 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public String getSynopsis(Movie movie) {
     try {
       return controller.getSynopsis(movie);
@@ -212,7 +191,6 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-
 
   public String getImdbAddress(Movie movie) {
     try {

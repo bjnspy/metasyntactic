@@ -31,7 +31,6 @@ public class XmlUtilities {
 
   }
 
-
   public static Element parseInputStream(InputStream in) {
     try {
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -53,7 +52,6 @@ public class XmlUtilities {
     }
   }
 
-
   public static Element element(Element element, String name) {
     if (element == null) {
       return null;
@@ -73,7 +71,6 @@ public class XmlUtilities {
     return null;
   }
 
-
   public static String text(Element element) {
     if (element == null) {
       return null;
@@ -91,7 +88,6 @@ public class XmlUtilities {
     Text textNode = (Text) child;
     return textNode.getData();
   }
-
 
   public static List<Element> children(Element element) {
     if (element != null) {

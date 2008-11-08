@@ -28,19 +28,16 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
     super(scoreCache);
   }
 
-
   @Override
   protected String getProviderName() {
     return "Metacritic";
   }
-
 
   @Override
   protected String lookupServerHash() {
     String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
-
 
   @Override
   protected Map<String, Score> lookupServerScores() {

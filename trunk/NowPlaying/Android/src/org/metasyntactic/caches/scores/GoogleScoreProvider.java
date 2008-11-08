@@ -37,12 +37,10 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     super(scoreCache);
   }
 
-
   @Override
   protected String getProviderName() {
     return "Google";
   }
-
 
   private String getUrl() {
     Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
@@ -59,13 +57,10 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     //Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 
-    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language="
-        + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude="
-        + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
 
     return address;
   }
-
 
   @Override
   protected String lookupServerHash() {
@@ -73,7 +68,6 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     address += "&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
-
 
   @Override
   protected Map<String, Score> lookupServerScores() {
