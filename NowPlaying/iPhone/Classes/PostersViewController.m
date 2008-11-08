@@ -19,8 +19,8 @@
 #import "LargePosterCache.h"
 #import "NonClippingView.h"
 #import "NowPlayingModel.h"
-#import "TappableScrollViewDelegate.h"
 #import "TappableScrollView.h"
+#import "TappableScrollViewDelegate.h"
 #import "ThreadingUtilities.h"
 
 @implementation PostersViewController
