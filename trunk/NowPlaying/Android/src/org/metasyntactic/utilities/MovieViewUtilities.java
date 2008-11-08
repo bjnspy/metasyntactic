@@ -63,24 +63,19 @@ public class MovieViewUtilities {
       int minutes = length % 60;
 
       if (hours == 1) {
-        hoursString =
-            String.format(res.getString(R.string.onehour), null);
+        hoursString = res.getString(R.string.one_hour);
       } else if (hours > 1) {
-        hoursString =
-            String.format("%d " + res.getString(R.string.hours), hours);
+        hoursString = res.getString(R.string.number_hours, hours);
       }
 
       if (minutes == 1) {
-        minutesString =
-            String.format(res.getString(R.string.oneminute), null);
+        minutesString = res.getString(R.string.one_minute);
       } else if (minutes > 1) {
-        minutesString =
-            String.format("%d " + res.getString(R.string.minutes),
-                minutes);
+        minutesString = res.getString(R.string.number_minutes, minutes);
       }
     }
 
-    return String.format("%s %s", hoursString, minutesString);
+    return res.getString(R.string.string_string, hoursString, minutesString);
   }
 
 
