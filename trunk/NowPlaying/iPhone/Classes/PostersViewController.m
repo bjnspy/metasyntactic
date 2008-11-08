@@ -82,7 +82,7 @@ const double LOAD_DELAY = 1;
     downloadingLabel.textColor = [UIColor whiteColor];
     [downloadingLabel sizeToFit];
 
-    CGRect frame = [UIScreen mainScreen].bounds;
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
     CGRect labelFrame = downloadingLabel.frame;
     labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
     labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0);
@@ -139,17 +139,18 @@ const double LOAD_DELAY = 1;
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
 
-    CGRect bounds = [UIScreen mainScreen].bounds;
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    frame.origin.y = 0;
 
     if (image.size.width > image.size.height) {
-        int offset = (int)((bounds.size.height - bounds.size.width) / 2.0);
-        CGRect frame = CGRectMake(-offset, offset + 5, bounds.size.height, bounds.size.width - 10);
+        int offset = (int)((frame.size.height - frame.size.width) / 2.0);
+        CGRect imageFrame = CGRectMake(-offset, offset + 5, frame.size.height, frame.size.width - 10);
 
-        imageView.frame = frame;
+        imageView.frame = imageFrame;
         imageView.transform = CGAffineTransformMakeRotation(M_PI / 2);
     } else {
-        CGRect frame = CGRectMake(5, 0, bounds.size.width - 10, bounds.size.height);
-        imageView.frame = frame;
+        CGRect imageFrame = CGRectMake(5, 0, frame.size.width - 10, frame.size.height);
+        imageView.frame = imageFrame;
         imageView.clipsToBounds = YES;
     }
 
@@ -158,7 +159,8 @@ const double LOAD_DELAY = 1;
 
 
 - (TappableScrollView*) createScrollView {
-    CGRect frame = [UIScreen mainScreen].bounds;
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    frame.origin.y = 0;
 
     self.scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
     scrollView.delegate = self;
@@ -224,7 +226,8 @@ const double LOAD_DELAY = 1;
         return;
     }
 
-    CGRect frame = [UIScreen mainScreen].bounds;
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    frame.origin.y = 0;
     frame.origin.x = page * frame.size.width;
 
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
@@ -387,7 +390,8 @@ const double LOAD_DELAY = 1;
 
 
 - (void) onRightTapped:(id) argument {
-    CGRect rect = [UIScreen mainScreen].bounds;
+    CGRect rect = [UIScreen mainScreen].applicationFrame;
+    rect.origin.y = 0;
     rect.origin.x = (currentPage + 1) * rect.size.width;
     [scrollView scrollRectToVisible:rect animated:YES];
     [self setPage:currentPage + 1];
@@ -396,7 +400,8 @@ const double LOAD_DELAY = 1;
 
 
 - (void) onLeftTapped:(id) argument {
-    CGRect rect = [UIScreen mainScreen].bounds;
+    CGRect rect = [UIScreen mainScreen].applicationFrame;
+    rect.origin.y = 0;
     rect.origin.x = (currentPage - 1) * rect.size.width;
     [scrollView scrollRectToVisible:rect animated:YES];
     [self setPage:currentPage - 1];
@@ -405,8 +410,9 @@ const double LOAD_DELAY = 1;
 
 
 - (void) loadView {
-    CGRect bounds = [UIScreen mainScreen].bounds;
-    NonClippingView* view = [[[NonClippingView alloc] initWithFrame:bounds] autorelease];
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    frame.origin.y = 0;
+    NonClippingView* view = [[[NonClippingView alloc] initWithFrame:frame] autorelease];
 
     [self createScrollView];
 
@@ -416,9 +422,9 @@ const double LOAD_DELAY = 1;
         [self setupTopBar];
         [topBar sizeToFit];
 
-        CGRect frame = topBar.frame;
-        frame.origin.y = bounds.size.height - frame.size.height;
-        topBar.frame = frame;
+        CGRect topBarFrame = topBar.frame;
+        topBarFrame.origin.y = frame.size.height - topBarFrame.size.height;
+        topBar.frame = topBarFrame;
 
         [self showToolBar];
     }
