@@ -51,7 +51,7 @@ public class CollectionUtilities {
   }
 
 
-  public static <K,V> Map<K,V> nonNullMap(Map<K,V> map) {
+  public static <K, V> Map<K, V> nonNullMap(Map<K, V> map) {
     return map == null ? Collections.EMPTY_MAP : map;
   }
 }

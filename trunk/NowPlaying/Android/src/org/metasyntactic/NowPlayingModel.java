@@ -325,8 +325,8 @@ public class NowPlayingModel {
   }
 
 
-	public byte[] getPoster(Movie movie) {
-		byte[] bytes = posterCache.getPoster(movie);
+  public byte[] getPoster(Movie movie) {
+    byte[] bytes = posterCache.getPoster(movie);
     if (bytes != null) {
       return bytes;
     }
