@@ -13,12 +13,14 @@
 //limitations under the License.
 
 #ifdef __OBJC__
+#import <CoreFoundation/CoreFoundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
 #import <netinet/in.h>
+#import "expat.h"
 #import "ForwardDeclarations.h"
 #import "Macros.h"
 #import "ProtocolBuffers.h"
