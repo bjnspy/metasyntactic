@@ -15,8 +15,8 @@
 package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
 
 import java.util.List;
 import java.util.Map;
@@ -25,10 +25,15 @@ import java.util.Map;
 public interface ScoreProvider {
   void update();
 
+
   Map<String, Score> getScores();
 
+
   Score getScore(List<Movie> movies, Movie movie);
+
+
   List<Review> getReviews(List<Movie> movies, Movie movie);
+
 
   void createDirectory();
 }

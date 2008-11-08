@@ -100,7 +100,7 @@ public class PersistableOutputStream {
 
   public void writeStringCollection(Collection<String> collection) throws IOException {
     collection = collection == null ? Collections.EMPTY_SET : collection;
-        
+
     writeInt(collection.size());
     for (String string : collection) {
       writeString(string);

@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
 import android.widget.AdapterView.OnItemSelectedListener;
-
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.R;
@@ -19,7 +18,7 @@ public class NowPlayingPreferenceDialog {
 
   private int preference_value;
 
-  private  INowPlaying mNowPlaying;
+  private INowPlaying mNowPlaying;
 
   private NowPlayingControllerWrapper mController;
 

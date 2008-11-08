@@ -16,20 +16,14 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.Persistable;
-import org.metasyntactic.io.PersistableInputStream;
-import org.metasyntactic.io.PersistableOutputStream;
-import org.metasyntactic.utilities.StringUtilities;
-
-import java.io.IOException;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ByteArray implements Parcelable {
   private final byte[] bytes;
 
+
   public ByteArray(byte[] bytes) {
-  	this.bytes = bytes;
+    this.bytes = bytes;
   }
 
 
@@ -44,18 +38,18 @@ public class ByteArray implements Parcelable {
 
 
   public void writeToParcel(Parcel dest, int flags) {
-  	dest.writeInt(bytes.length);
-  	dest.writeByteArray(bytes);
+    dest.writeInt(bytes.length);
+    dest.writeByteArray(bytes);
   }
 
 
   public static final Parcelable.Creator<ByteArray> CREATOR =
       new Parcelable.Creator<ByteArray>() {
         public ByteArray createFromParcel(Parcel source) {
-        	int length = source.readInt();
-        	byte[] bytes = new byte[length];
-        	source.readByteArray(bytes);
-        	
+          int length = source.readInt();
+          byte[] bytes = new byte[length];
+          source.readByteArray(bytes);
+
           return new ByteArray(bytes);
         }
 

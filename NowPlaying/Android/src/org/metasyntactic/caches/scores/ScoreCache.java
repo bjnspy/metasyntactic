@@ -16,8 +16,8 @@ package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
 
 import java.util.List;
 

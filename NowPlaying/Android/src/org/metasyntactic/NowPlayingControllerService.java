@@ -162,14 +162,14 @@ public class NowPlayingControllerService extends Service {
     }
 
 
-		public ByteArray getPoster(Movie movie) throws RemoteException {
-			byte[] bytes = model.getPoster(movie);
-			if (bytes == null) {
-				return null;
-			}
+    public ByteArray getPoster(Movie movie) throws RemoteException {
+      byte[] bytes = model.getPoster(movie);
+      if (bytes == null) {
+        return null;
+      }
 
-			return new ByteArray(bytes);
-		}
+      return new ByteArray(bytes);
+    }
 
 
     public String getSynopsis(Movie movie) throws RemoteException {

@@ -95,24 +95,28 @@ public class Review implements Parcelable, Persistable {
         }
       };
 
-	  public String getText()
-	  {
-		  return text;
-	  }
-	  public int getScore()
-	  {
-		  return score;
-	  }
-	  public String getLink()
-	  {
-		  return link;
-	  }
-	  public String getAuthor()
-	  {
-		  return author;
-	  }
-	  public String getSource()
-	  {
-		  return source;
-	  }
+
+  public String getText() {
+    return text;
+  }
+
+
+  public int getScore() {
+    return score;
+  }
+
+
+  public String getLink() {
+    return link;
+  }
+
+
+  public String getAuthor() {
+    return author;
+  }
+
+
+  public String getSource() {
+    return source;
+  }
 }

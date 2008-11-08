@@ -15,13 +15,8 @@
 package org.metasyntactic;
 
 import android.os.RemoteException;
-
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.ByteArray;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.data.Theater;
+import org.metasyntactic.data.*;
 
 import java.util.List;
 
@@ -47,7 +42,7 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  
+
   public void setUserLocation(String userLocation) {
     try {
       controller.setUserLocation(userLocation);
@@ -163,21 +158,25 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
+
+
   public List<String> getTrailers(Movie movie) {
-      try {
-        return controller.getTrailers(movie);
-      } catch (RemoteException e) {
-        throw new RuntimeException(e);
-      }
+    try {
+      return controller.getTrailers(movie);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
     }
-  
+  }
+
+
   public List<Review> getReviews(Movie movie) {
-      try {
-        return controller.getReviews(movie);
-      } catch (RemoteException e) {
-        throw new RuntimeException(e);
-      }
+    try {
+      return controller.getReviews(movie);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
     }
+  }
+
 
   public ScoreType getScoreType() {
     try {
@@ -195,30 +194,31 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-  
+
 
   public ByteArray getPoster(Movie movie) {
-      try {
-          return controller.getPoster(movie);
-        } catch (RemoteException e) {
-          throw new RuntimeException(e);
-        }
+    try {
+      return controller.getPoster(movie);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
   }
 
 
-public String getSynopsis(Movie movie) {
+  public String getSynopsis(Movie movie) {
     try {
-        return controller.getSynopsis(movie);
-      } catch (RemoteException e) {
-        throw new RuntimeException(e);
-      }
-}
+      return controller.getSynopsis(movie);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
-public String getImdbAddress(Movie movie) {
+
+  public String getImdbAddress(Movie movie) {
     try {
-        return controller.getImdbAddress(movie);
-      } catch (RemoteException e) {
-        throw new RuntimeException(e);
-      }
-}
+      return controller.getImdbAddress(movie);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }
