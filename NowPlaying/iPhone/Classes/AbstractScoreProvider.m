@@ -470,7 +470,8 @@
         NSArray* existingReviews = [FileUtilities readObject:[self reviewsFile:score.canonicalTitle]];
         if (existingReviews.count > 0) {
             // we have reviews already.  don't wipe it out.
-            return;
+            // rewrite the reviews so the mod date is correct.
+            reviews = existingReviews;
         }
     }
 
@@ -528,7 +529,7 @@
         if (lastLookupDate == nil) {
             [scoresWithoutReviews addObject:score];
         } else {
-            if (ABS([lastLookupDate timeIntervalSinceNow]) > (2 * ONE_DAY)) {
+            if (ABS(lastLookupDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
                 [scoresWithReviews addObject:score];
             }
         }
