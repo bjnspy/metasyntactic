@@ -15,9 +15,9 @@
 #import "RottenTomatoesScoreProvider.h"
 
 #import "Application.h"
-#import "Score.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
+#import "Score.h"
 #import "XmlElement.h"
 
 @implementation RottenTomatoesScoreProvider

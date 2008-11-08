@@ -14,10 +14,10 @@
 
 #import "DVDCell.h"
 
-#import "DateUtilities.h"
 #import "DVD.h"
 #import "DVDCache.h"
 #import "DVDViewController.h"
+#import "DateUtilities.h"
 #import "ImageCache.h"
 #import "Movie.h"
 #import "NowPlayingModel.h"

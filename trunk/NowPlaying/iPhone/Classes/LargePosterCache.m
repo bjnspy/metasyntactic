@@ -17,9 +17,9 @@
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
+#import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
-#import "Movie.h"
 #import "ThreadingUtilities.h"
 
 @implementation LargePosterCache

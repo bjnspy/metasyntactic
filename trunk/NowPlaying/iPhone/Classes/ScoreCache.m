@@ -18,10 +18,10 @@
 #import "FileUtilities.h"
 #import "GoogleScoreProvider.h"
 #import "MetacriticScoreProvider.h"
-#import "Score.h"
 #import "NoneScoreProvider.h"
 #import "NowPlayingModel.h"
 #import "RottenTomatoesScoreProvider.h"
+#import "Score.h"
 
 @implementation ScoreCache
 

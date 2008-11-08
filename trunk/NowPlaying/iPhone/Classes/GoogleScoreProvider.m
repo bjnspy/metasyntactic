@@ -14,19 +14,19 @@
 
 #import "GoogleScoreProvider.h"
 
-#import "NowPlaying.pb.h"
-
 #import "Application.h"
 #import "DateUtilities.h"
 #import "LocaleUtilities.h"
 #import "Location.h"
-#import "Score.h"
 #import "NetworkUtilities.h"
+#import "NowPlaying.pb.h"
 #import "NowPlayingModel.h"
+#import "Score.h"
 #import "ScoreCache.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 #import "XmlElement.h"
+
 
 @implementation GoogleScoreProvider
 

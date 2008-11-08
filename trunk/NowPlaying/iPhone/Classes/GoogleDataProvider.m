@@ -14,8 +14,6 @@
 
 #import "GoogleDataProvider.h"
 
-#import "NowPlaying.pb.h"
-
 #import "Application.h"
 #import "DateUtilities.h"
 #import "FileUtilities.h"
@@ -24,11 +22,13 @@
 #import "LookupResult.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "NowPlaying.pb.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"
 #import "Theater.h"
 #import "Utilities.h"
 #import "XmlElement.h"
+
 
 @implementation GoogleDataProvider
 
