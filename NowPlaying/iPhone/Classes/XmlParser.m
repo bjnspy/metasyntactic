@@ -34,7 +34,7 @@ static NSLock* gate = nil;
     self.elementsStack = nil;
     self.stringBufferStack = nil;
     self.attributesStack = nil;
-    
+
     [super dealloc];
 }
 
@@ -42,7 +42,7 @@ static NSLock* gate = nil;
 - (id) init {
     if (self = [super init]) {
     }
-    
+
     return self;
 }
 
@@ -57,43 +57,43 @@ NSString* makeString(const XML_Char* string) {
 }
 
 
-void startElementHandler(void* userData, 
+void startElementHandler(void* userData,
                          const XML_Char* name,
                          const XML_Char** atts) {
     XmlParser* parser = userData;
-    
+
     [parser.elementsStack addObject:[NSMutableArray array]];
     [parser.stringBufferStack addObject:[NSMutableString string]];
-    
+
     NSMutableDictionary* attributes = [NSMutableDictionary dictionary];
     for (int i = 0; atts[i] != NULL; i += 2) {
         NSString* key = makeString(atts[i]);
         NSString* value = makeString(atts[i + 1]);
         [attributes setObject:value forKey:key];
     }
-    
+
     [parser.attributesStack addObject:attributes];
 }
 
 
-void endElementHandler(void* userData, 
+void endElementHandler(void* userData,
                        const XML_Char* name) {
     XmlParser* parser = userData;
-    
+
     NSArray* children = parser.elementsStack.lastObject;
     NSString* text = parser.stringBufferStack.lastObject;
     NSDictionary* attributes = parser.attributesStack.lastObject;
-    
+
     [parser.elementsStack removeLastObject];
     [parser.stringBufferStack removeLastObject];
     [parser.attributesStack removeLastObject];
-    
+
     NSString* elementName = makeString(name);
     XmlElement* element = [XmlElement elementWithName:elementName
                                            attributes:attributes
                                              children:children
                                                  text:text];
-    
+
     [parser.elementsStack.lastObject addObject:element];
 }
 
@@ -104,7 +104,7 @@ void characterDataHandler(void *userData,
     XmlParser* parser = userData;
     if (s != NULL) {
         NSString* string = [[[NSString alloc] initWithBytes:s length:len encoding:NSUTF8StringEncoding] autorelease];
-        
+
         [parser.stringBufferStack.lastObject appendString:string];
     }
 }
@@ -114,38 +114,38 @@ void characterDataHandler(void *userData,
     self.elementsStack = [NSMutableArray array];
     self.stringBufferStack = [NSMutableArray array];
     self.attributesStack = [NSMutableArray array];
-    
+
     [elementsStack addObject:[NSMutableArray array]];
-    
+
 
     XML_Parser parser = XML_ParserCreate(NULL);
     XML_SetElementHandler(parser, startElementHandler, endElementHandler);
     XML_SetCharacterDataHandler(parser, characterDataHandler);
     XML_SetUserData(parser, self);
-    
+
     int result = XML_Parse(parser, data.bytes, data.length, 1 /*isFinal*/);
     XML_ParserFree(parser);
-    
+
     if (result == 0) {
         return nil;
     }
-        
+
     if (elementsStack.count == 0) {
         return nil;
     }
-    
+
     NSArray* array = elementsStack.lastObject;
     if (array.count == 0) {
         return nil;
     }
-    
+
     return array.lastObject;
 }
 
 
 + (XmlElement*) parse:(NSData*) data {
     XmlElement* result = nil;
-    
+
     [gate lock];
     {
         XmlParser* parser = [[XmlParser alloc] init];
@@ -153,7 +153,7 @@ void characterDataHandler(void *userData,
         [parser release];
     }
     [gate unlock];
-    
+
     return result;
 }
 

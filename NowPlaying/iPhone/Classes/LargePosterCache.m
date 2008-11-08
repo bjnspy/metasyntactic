@@ -59,9 +59,9 @@
         if (![path hasSuffix:@"jpg"]) {
             continue;
         }
-        
+
         NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
-            
+
         if (lastModifiedDate != nil) {
             if (ABS([lastModifiedDate timeIntervalSinceNow]) > ONE_MONTH) {
                 [FileUtilities removeItem:path];

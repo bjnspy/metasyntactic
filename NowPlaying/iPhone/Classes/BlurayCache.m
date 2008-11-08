@@ -39,7 +39,7 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
     }
-    
+
     return self;
 }
 

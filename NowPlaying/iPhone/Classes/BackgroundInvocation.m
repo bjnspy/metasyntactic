@@ -68,7 +68,7 @@
     } else {
         [NSThread setThreadPriority:0.0];
     }
-    
+
     [gate lock];
     [GlobalActivityIndicator addBackgroundTask:visible];
     {

@@ -218,7 +218,7 @@
     [[[PostersViewController alloc] initWithNavigationController:self
                                                           movie:movie
                                                     posterCount:posterCount] autorelease];
-    
+
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
     [self presentModalViewController:postersViewController animated:YES];
 }

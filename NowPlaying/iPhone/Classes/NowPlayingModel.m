@@ -1066,7 +1066,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
     NSString* result = [@"mailto:cyrus.najmabadi@gmail.com?subject=Now%20Playing%20Feedback&body=" stringByAppendingString:encodedBody];
-
     return result;
 }
 

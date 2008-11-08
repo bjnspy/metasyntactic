@@ -14,7 +14,7 @@
 
 @interface UpcomingCache : NSObject {
     NowPlayingModel* model;
-    
+
     NSLock* gate;
 
     NSDictionary* indexData;
