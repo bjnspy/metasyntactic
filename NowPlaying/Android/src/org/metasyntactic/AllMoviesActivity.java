@@ -119,7 +119,7 @@ public class AllMoviesActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
                 android.R.drawable.star_on);
-        menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+        menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(
                 android.R.drawable.ic_menu_preferences).setIntent(
                 new Intent(this, SettingsActivity.class))
                 .setAlphabeticShortcut('s');
@@ -145,8 +145,8 @@ public class AllMoviesActivity extends Activity {
     }
 
     class DetailAdapter extends BaseAdapter {
-        private Context mContext;
-        private LayoutInflater mInflater;
+        private final Context mContext;
+        private final LayoutInflater mInflater;
         int  mGalleryItemBackground;
         public DetailAdapter(Context context) {
             mContext = context;
@@ -260,8 +260,8 @@ public class AllMoviesActivity extends Activity {
     }
     
     class ThumbnailAdapter extends BaseAdapter {
-        private Context mContext;
-        private LayoutInflater mInflater;
+        private final Context mContext;
+        private final LayoutInflater mInflater;
         int mGalleryItemBackground;
         
         public ThumbnailAdapter(Context context) {
