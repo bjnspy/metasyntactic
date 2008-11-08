@@ -102,6 +102,11 @@ static NSString* titles_key = @"Titles";
 }
 
 
+- (NSString*) massageTitle:(NSString*) title {
+    return [title stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+}
+
+
 - (Movie*) processMovieElement:(XmlElement*) movieElement
                     studioKeys:(NSMutableDictionary*) studioKeys
                      titleKeys:(NSMutableDictionary*) titleKeys  {
@@ -110,6 +115,7 @@ static NSString* titles_key = @"Titles";
     NSString* rating = [movieElement attributeValue:@"rating"];
     NSString* studio = [movieElement attributeValue:@"studio"];
     NSString* title = [movieElement attributeValue:@"title"];
+    title = [self massageTitle:title];
     NSArray* directors = [self processArray:[movieElement element:@"directors"]];
     NSArray* cast = [self processArray:[movieElement element:@"actors"]];
     NSArray* genres = [self processArray:[movieElement element:@"genres"]];
