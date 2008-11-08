@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="moviesIconLabel">Now Playing</string>
-    <string name="upcomingIconLabel">Coming Soon</string>
     
     <string name="menu_movie_sort">Sort Movies</string>
     <string name="menu_theater_sort">Sort Theaters</string>
