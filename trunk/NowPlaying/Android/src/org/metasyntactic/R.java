@@ -84,9 +84,6 @@ public final class R {
         public static final int videoview=0x7f030008;
     }
     public static final class string {
-        public static final int $string_dot_string_number_discs_dot=0x7f05008c;
-        public static final int $string_dot_string_one_disc_dot=0x7f050076;
-        public static final int $string_dot_string_string_discs_dot=0x7f050075;
         public static final int about=0x7f050021;
         public static final int app_name=0x7f05000b;
         public static final int autoupdate_location=0x7f050022;
@@ -99,11 +96,14 @@ public final class R {
         public static final int daily=0x7f05007f;
         public static final int daily_change=0x7f050080;
         public static final int daily_gross=0x7f050081;
-        public static final int data_for_future_dates_may_be_incomplete_dot_reset_the_search_date_to_the_current_date_to_see_full_listings_dot=0x7f050028;
+        public static final int data_for_future_dates_may_be_incomplete_dot_reset=0x7f050028;
         public static final int days_in_theater=0x7f050082;
         public static final int director=0x7f050029;
         public static final int directors=0x7f05002a;
         public static final int distance=0x7f05002b;
+        public static final int dollarstring_dot_string_number_discs_dot=0x7f05008c;
+        public static final int dollarstring_dot_string_one_disc_dot=0x7f050076;
+        public static final int dollarstring_dot_string_string_discs_dot=0x7f050075;
         public static final int downloading_data=0x7f050073;
         public static final int dvd=0x7f050077;
         public static final int dvdbluray_details_provided_by=0x7f050078;
@@ -199,12 +199,12 @@ public final class R {
         public static final int string_no_online_ticketing=0x7f050012;
         public static final int string_string=0x7f050011;
         public static final int studio=0x7f05007d;
-        public static final int theater_last_reported_show_times_onnstring_dot=0x7f05005e;
-        public static final int theater_providers_often_limit_the_maximum_search_distance_they_will_provide_data_for_dot_as_a_result_some_theaters_may_not_show_up_for_you_even_if_your_search_distance_is_set_high_dot=0x7f05005f;
+        public static final int theater_last_reported_show_times_on_string_dot=0x7f05005e;
+        public static final int theater_providers_often_limit_the_maximum_search=0x7f05005f;
         public static final int theaters=0x7f050060;
         public static final int theatersIconLabel=0x7f050001;
         public static final int theaters_select_sort_title=0x7f050008;
-        public static final int this_theater_has_not_yet_reported_its_show_times_dot_when_they_become_available_string_will_retrieve_them_automatically_dot=0x7f050061;
+        public static final int this_theater_has_not_yet_reported_its_show_times=0x7f050061;
         public static final int ticket_sales_provided_by=0x7f050062;
         public static final int title=0x7f050063;
         public static final int today=0x7f050064;
