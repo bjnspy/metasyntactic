@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface LocationUtilities : NSObject {
-
 }
 
 + (Location*) findLocation:(CLLocation*) location;

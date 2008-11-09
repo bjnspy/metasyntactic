@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface DateUtilities : NSObject {
-
 }
 
 + (NSString*) timeSinceNow:(NSDate*) date;

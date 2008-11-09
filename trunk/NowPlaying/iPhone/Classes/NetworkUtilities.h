@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface NetworkUtilities : NSObject {
-
 }
 
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address    important:(BOOL) important;
