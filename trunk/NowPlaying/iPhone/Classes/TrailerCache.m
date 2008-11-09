@@ -23,6 +23,13 @@
 #import "NowPlayingAppDelegate.h"
 #import "ThreadingUtilities.h"
 
+@interface TrailerCache()
+@property (assign) NowPlayingModel* model;
+@property (retain) NSLock* gate;
+@property (retain) LinkedSet* prioritizedMovies;
+@end
+
+
 @implementation TrailerCache
 
 @synthesize model;
