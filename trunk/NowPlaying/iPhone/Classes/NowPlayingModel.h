@@ -53,6 +53,8 @@ enum ViewControllerType {
 
 - (void) update;
 
+- (BOOL) delayLoadCells;
+
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesScores;

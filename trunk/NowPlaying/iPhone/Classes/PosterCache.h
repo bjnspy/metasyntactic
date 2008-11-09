@@ -24,7 +24,7 @@
 
 - (void) update:(NSArray*) movies;
 
-- (UIImage*) smallPosterForMovie:(Movie*) movie;
+- (UIImage*) posterForMovie:(Movie*) movie;
 
 - (void) prioritizeMovie:(Movie*) movie;
 

@@ -165,7 +165,10 @@
 
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
-        [NowPlayingAppDelegate refresh];
+        
+        if (data.length > 0) {
+            [NowPlayingAppDelegate refresh];
+        }
     }
 }
 
@@ -241,7 +244,7 @@
 }
 
 
-- (UIImage*) smallPosterForMovie:(Movie*) movie {
+- (UIImage*) posterForMovie:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
     NSData* data = [FileUtilities readData:path];
     return [UIImage imageWithData:data];

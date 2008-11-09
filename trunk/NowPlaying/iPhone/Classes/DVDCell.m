@@ -24,6 +24,7 @@
 
 @interface DVDCell()
 @property (retain) NowPlayingModel* model;
+@property (retain) Movie* movie;
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* directorTitleLabel;
 @property (retain) UILabel* castTitleLabel;
@@ -36,12 +37,15 @@
 @property (retain) UILabel* ratedLabel;
 @property (retain) UILabel* formatLabel;
 @property (retain) UIImageView* imageView;
+@property (retain) UIActivityIndicatorView* activityView;
 @end
 
 
 @implementation DVDCell
 
 @synthesize model;
+@synthesize movie;
+
 @synthesize titleLabel;
 
 @synthesize directorTitleLabel;
@@ -57,9 +61,11 @@
 @synthesize formatLabel;
 
 @synthesize imageView;
+@synthesize activityView;
 
 - (void) dealloc {
     self.model = nil;
+    self.movie = nil;
     self.titleLabel = nil;
 
     self.directorTitleLabel = nil;
@@ -75,6 +81,7 @@
     self.formatLabel = nil;
 
     self.imageView = nil;
+    self.activityView = nil;
 
     [super dealloc];
 }
@@ -97,7 +104,8 @@
 
 
 - (UILabel*) createValueLabel:(NSInteger) yPosition {
-    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, 0)] autorelease];
+    CGFloat height = directorTitleLabel.frame.size.height;
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, height)] autorelease];
     label.font = [UIFont systemFontOfSize:12];
     label.textColor = [UIColor darkGrayColor];
     return label;
@@ -167,12 +175,22 @@
 
         self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache imageNotAvailable]] autorelease];
 
-        for (UILabel* label in self.allLabels) {
-            [self.contentView addSubview:label];
+        if (model.delayLoadCells) {
+            self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+            activityView.hidesWhenStopped = YES;
+            CGRect frame = activityView.frame;
+            frame.origin.x = 27;
+            frame.origin.y = 40;
+            activityView.frame = frame;
+        } else {
+            for (UILabel* label in self.allLabels) {
+                [self.contentView addSubview:label];
+            }
         }
-
+        
         [self.contentView addSubview:titleLabel];
         [self.contentView addSubview:imageView];
+        [self.contentView addSubview:activityView];
     }
 
     return self;
@@ -209,34 +227,9 @@
 }
 
 
-- (void) setMovie:(Movie*) movie owner:(id) owner {
-    DVD* dvd = [model.dvdCache detailsForMovie:movie];
-
-    titleLabel.text = movie.displayTitle;
-    directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
-    castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
-    genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
-    formatLabel.text    = dvd.format;
-
-    NSString* rating;
-    if (movie.isUnrated) {		
-        rating = NSLocalizedString(@"Not yet rated", nil);		
-    } else {		
-        rating = movie.rating;		
-    }
-
-    if ([owner sortingByTitle]) {
-        NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
-
-        if (!movie.isUnrated) {
-            releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", nil), releaseDate];
-        }
-
-        ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
-    } else {
-        ratedLabel.text = rating;
-    }
-
+- (void) loadMovie:(id) owner {
+    [activityView stopAnimating];
+    
     UIImage* image = [model posterForMovie:movie];
     if (image == nil) {
         [model.dvdCache prioritizeMovie:movie];
@@ -244,18 +237,69 @@
     } else {
         imageView.image = image;
     }
-
-    if (movie.directors.count == 1) {
+    
+    DVD* dvd = [model.dvdCache detailsForMovie:movie];
+    
+    directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
+    castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
+    genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
+    formatLabel.text    = dvd.format;
+    
+    NSString* rating;
+    if (movie.isUnrated) {		
+        rating = NSLocalizedString(@"Not yet rated", nil);		
+    } else {		
+        rating = movie.rating;		
+    }
+    
+    if ([owner sortingByTitle]) {
+        NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
+        
+        if (!movie.isUnrated) {
+            releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", nil), releaseDate];
+        }
+        
+        ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
+    } else {
+        ratedLabel.text = rating;
+    }
+    
+    if (movie.directors.count <= 1) {
         directorTitleLabel.text = NSLocalizedString(@"Director:", nil);
     } else {
         directorTitleLabel.text = NSLocalizedString(@"Directors:", nil);
+    } 
+
+    for (UILabel* label in self.allLabels) {
+        [self.contentView addSubview:label];
+    }
+}
+
+
+- (void) setMovie:(Movie*) movie_ owner:(id) owner {
+    if (movie_ == self.movie) {
+        return;
+    }
+    
+    self.movie = movie_;
+    
+    if (model.delayLoadCells) {
+        [activityView startAnimating];
+        
+        for (UILabel* label in self.allLabels) {
+            [label removeFromSuperview];
+        }
+        
+        imageView.image = nil;
+        [NSThread cancelPreviousPerformRequestsWithTarget:self];
+        [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
+    } else {
+        [self loadMovie:owner];
     }
 
-    [ratedLabel sizeToFit];
-    [directorLabel sizeToFit];
-    [genreLabel sizeToFit];
-    [formatLabel sizeToFit];
-    [castLabel sizeToFit];
+    titleLabel.text = movie.displayTitle;
+    
+
 }
 
 
