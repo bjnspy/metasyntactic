@@ -15,10 +15,9 @@
 #import "AbstractNavigationController.h"
 
 @interface DVDNavigationController : AbstractNavigationController {
+@private
     DVDViewController* dvdViewController;
 }
-
-@property (retain) DVDViewController* dvdViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
