@@ -511,6 +511,7 @@
         {
             score = [self getNextScore:scores];
             [self downloadReviews:score location:location];
+            [NSThread sleepForTimeInterval:0.5];
         }
         [autoreleasePool release];
     } while (score != nil);

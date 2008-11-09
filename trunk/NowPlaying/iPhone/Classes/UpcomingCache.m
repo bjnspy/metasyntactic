@@ -505,6 +505,7 @@ static NSString* titles_key = @"Titles";
                 [self updateDetails:movie
                              studio:[studios objectForKey:movie.canonicalTitle]
                               title:[titles objectForKey:movie.canonicalTitle]];
+                [NSThread sleepForTimeInterval:0.5];
             }
         }
         [autoreleasePool release];

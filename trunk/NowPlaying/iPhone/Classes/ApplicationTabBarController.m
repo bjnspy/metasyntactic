@@ -22,7 +22,7 @@
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
-#import "Utilities.h"
+//#import "Utilities.h"
 
 @implementation ApplicationTabBarController
 

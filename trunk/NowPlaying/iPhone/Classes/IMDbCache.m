@@ -102,6 +102,7 @@
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:path];
     [NowPlayingAppDelegate refresh];
+    [NSThread sleepForTimeInterval:0.5];
 }
 
 

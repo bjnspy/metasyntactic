@@ -17,7 +17,7 @@
 #import "ApplicationTabBarController.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-#import "NowPlayingAppDelegate.h"
+//#import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "PostersViewController.h"
 #import "ReviewsViewController.h"
