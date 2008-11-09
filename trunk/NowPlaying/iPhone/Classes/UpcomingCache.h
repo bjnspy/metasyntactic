@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface UpcomingCache : NSObject {
+@private
     NowPlayingModel* model;
 
     NSLock* gate;
@@ -24,14 +25,6 @@
 
     LinkedSet* prioritizedMovies;
 }
-
-@property (assign) NowPlayingModel* model;
-
-@property (retain) NSLock* gate;
-@property (retain) NSDictionary* indexData;
-@property (retain) NSArray* recentMovies;
-@property (retain) NSDictionary* movieMap;
-@property (retain) LinkedSet* prioritizedMovies;
 
 + (UpcomingCache*) cacheWithModel:(NowPlayingModel*) model;
 
