@@ -28,6 +28,16 @@
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 
+@interface AbstractDataProvider()
+@property (retain) NSLock* gate;
+@property (retain) NowPlayingModel* model;
+@property (retain) NSArray* moviesData;
+@property (retain) NSArray* theatersData;
+@property (retain) NSDictionary* synchronizationInformationData;
+@property (retain) NSMutableDictionary* performancesData;
+@end
+
+
 @implementation AbstractDataProvider
 
 @synthesize gate;

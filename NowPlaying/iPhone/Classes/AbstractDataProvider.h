@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface AbstractDataProvider : NSObject {
+@private
     NSLock* gate;
 
     NowPlayingModel* model;
@@ -23,12 +24,7 @@
     NSMutableDictionary* performancesData;
 }
 
-@property (retain) NSLock* gate;
-@property (retain) NowPlayingModel* model;
-@property (retain) NSArray* moviesData;
-@property (retain) NSArray* theatersData;
-@property (retain) NSDictionary* synchronizationInformationData;
-@property (retain) NSMutableDictionary* performancesData;
+@property (retain, readonly) NowPlayingModel* model;
 
 - (id) initWithModel:(NowPlayingModel*) model;
 
