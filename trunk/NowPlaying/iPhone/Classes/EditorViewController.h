@@ -13,13 +13,11 @@
 // limitations under the License.
 
 @interface EditorViewController : UIViewController {
+@protected
     AbstractNavigationController* navigationController;
     id object;
     SEL selector;
 }
-
-@property (assign) AbstractNavigationController* navigationController;
-@property (assign) id object;
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
                withObject:(id) object

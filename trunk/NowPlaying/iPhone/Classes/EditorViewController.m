@@ -14,6 +14,12 @@
 
 #import "EditorViewController.h"
 
+@interface EditorViewController()
+@property (assign) AbstractNavigationController* navigationController;
+@property (assign) id object;
+@end
+
+
 @implementation EditorViewController
 
 @synthesize navigationController;
