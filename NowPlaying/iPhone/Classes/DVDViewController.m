@@ -82,11 +82,26 @@
 
 - (id) initWithNavigationController:(DVDNavigationController*) controller {
     if (self = [super initWithNavigationController:controller]) {
-        self.title = NSLocalizedString(@"DVD", nil);
-        self.tableView.rowHeight = 100;
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    
+    self.title = NSLocalizedString(@"DVD", nil);
+    self.tableView.rowHeight = 100;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (/*navigationController.visible ||*/ visible) {
+        return;
+    }
+    
+    [super didReceiveMemoryWarning];
 }
 
 

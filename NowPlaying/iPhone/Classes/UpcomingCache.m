@@ -315,6 +315,7 @@ static NSString* titles_key = @"Titles";
     self.movieMap = nil;
 
     [self updateDetails];
+    [NowPlayingAppDelegate refresh:YES];
 }
 
 

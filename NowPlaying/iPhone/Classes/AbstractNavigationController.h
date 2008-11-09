@@ -18,9 +18,13 @@
     SearchViewController* searchViewController;
     PostersViewController* postersViewController;
     BOOL viewLoaded;
+
+@protected
+    BOOL visible;
 }
 
 @property (readonly, assign) ApplicationTabBarController* tabBarController;
+@property (readonly) BOOL visible;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 

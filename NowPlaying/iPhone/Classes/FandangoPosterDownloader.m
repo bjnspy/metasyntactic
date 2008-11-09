@@ -70,15 +70,7 @@ static NSDictionary* movieNameToPosterMap = nil;
 }
 
 
-+ (void) createMovieMap:(NSString*) postalCode {
-    if (postalCode.length == 0) {
-        return;
-    }
-
-    if([postalCode isEqual:lastPostalCode]) {
-        return;
-    }
-
++ (void) createMovieMapWorker:(NSString*) postalCode {
     NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                    fromDate:[DateUtilities today]];
 
@@ -99,6 +91,23 @@ static NSDictionary* movieNameToPosterMap = nil;
         [lastPostalCode release];
         lastPostalCode = [[NSString stringWithString:postalCode] retain];
     }
+}
+
+
++ (void) createMovieMap:(NSString*) postalCode {
+    if (postalCode.length == 0) {
+        return;
+    }
+
+    if([postalCode isEqual:lastPostalCode]) {
+        return;
+    }
+
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    {
+        [self createMovieMapWorker:postalCode];
+    }
+    [pool release];
 }
 
 

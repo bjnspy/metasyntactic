@@ -22,6 +22,8 @@
     MultiDictionary* sectionTitleToContentsMap;
 
     NSArray* alphabeticSectionTitles;
+    
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

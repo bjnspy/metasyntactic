@@ -419,6 +419,8 @@ const double LOAD_DELAY = 1;
 
 
 - (void) loadView {
+    [super loadView];
+    
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
     NonClippingView* view = [[[NonClippingView alloc] initWithFrame:frame] autorelease];

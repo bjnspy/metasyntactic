@@ -207,7 +207,6 @@
 
 
 - (void) setupPosterView {
-    self.posterDownloadLock = [[[NSRecursiveLock alloc] init] autorelease];
     //self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
 
@@ -224,21 +223,60 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
         self.movie = movie_;
-        self.dvd = [self.model.dvdCache detailsForMovie:movie];
-
-        filterTheatersByDistance = YES;
-
-        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = movie.displayTitle;
-
-        self.title = movie.displayTitle;
-        self.navigationItem.titleView = label;
-
-        [self setupPosterView];
-        [self.model prioritizeMovie:movie];
+        self.posterDownloadLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+
+    self.dvd = [self.model.dvdCache detailsForMovie:movie];
+    
+    filterTheatersByDistance = YES;
+    
+    UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+    label.text = movie.displayTitle;
+    
+    self.title = movie.displayTitle;
+    self.navigationItem.titleView = label;
+    
+    [self setupPosterView];
+    [self.model prioritizeMovie:movie];
+}
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    visible = YES;
+    [self.model saveNavigationStack:self.navigationController];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (/*navigationController.visible ||*/ visible) {
+        return;
+    }
+    
+    self.dvd = nil;
+    self.theatersArray = nil;
+    self.showtimesArray = nil;
+    self.trailersArray = nil;
+    self.reviewsArray = nil;
+    self.imdbAddress = nil;
+    self.hiddenTheaterCount = 0;
+    self.actionsView = nil;
+    self.posterImage = nil;
+    self.posterImageView = nil;
+    self.posterActivityView = nil;
+    
+    [super didReceiveMemoryWarning];
 }
 
 
@@ -296,11 +334,6 @@
 - (void) viewWillDisappear:(BOOL) animated {
     [self shutdown];
     [self removeNotifications];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:navigationController];
 }
 
 

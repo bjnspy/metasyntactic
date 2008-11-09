@@ -98,8 +98,7 @@
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
-            NSTimeInterval span = downloadDate.timeIntervalSinceNow;
-            if (ABS(span) > (3 * ONE_DAY)) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > (3 * ONE_DAY)) {
                 [moviesWithTrailers addObject:movie];
             }
         }

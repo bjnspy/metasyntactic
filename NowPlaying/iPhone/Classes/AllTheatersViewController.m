@@ -249,27 +249,58 @@
 - (id) initWithNavigationController:(TheatersNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
-        self.sortedTheaters = [NSArray array];
-
-        [self initializeSegmentedControl];
-        [self initializeSearchButton];
-
-        self.navigationItem.titleView = segmentedControl;
-
-        {
-            self.alphabeticSectionTitles =
-            [NSArray arrayWithObjects:
-             [Application starString],
-             @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
-             @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
-             @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
-        }
-
-        self.title = NSLocalizedString(@"Theaters", nil);
-
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    
+    self.sortedTheaters = [NSArray array];
+    
+    [self initializeSegmentedControl];
+    [self initializeSearchButton];
+    
+    self.navigationItem.titleView = segmentedControl;
+    
+    {
+        self.alphabeticSectionTitles =
+        [NSArray arrayWithObjects:
+         [Application starString],
+         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
+         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
+         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+    }
+    
+    self.title = NSLocalizedString(@"Theaters", nil);
+}
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    visible = YES;
+    [self.model saveNavigationStack:self.navigationController];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (/*navigationController.visible ||*/ visible) {
+        return;
+    }
+    
+    self.segmentedControl = nil;
+    self.sortedTheaters = nil;
+    self.sectionTitles = nil;
+    self.sectionTitleToContentsMap = nil;
+    self.alphabeticSectionTitles = nil;
+    
+    [super didReceiveMemoryWarning];
 }
 
 
@@ -381,11 +412,6 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self refresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:self.navigationController];
 }
 
 

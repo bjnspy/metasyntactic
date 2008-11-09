@@ -92,15 +92,42 @@
         self.navigationController = navigationController_;
         self.theater = theater_;
         self.movie = movie_;
-
-        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = title_;
-
         self.title = title_;
-        self.navigationItem.titleView = label;
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    
+    UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+    label.text = self.title;
+    
+    self.navigationItem.titleView = label;    
+}
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    visible = YES;
+    [self.model saveNavigationStack:navigationController];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (/*navigationController.visible ||*/ visible) {
+        return;
+    }
+    
+    self.performances = nil;
+    
+    [super didReceiveMemoryWarning];
 }
 
 
@@ -110,11 +137,6 @@
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self refresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:navigationController];
 }
 
 

@@ -81,10 +81,25 @@
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller {
     if (self = [super initWithNavigationController:controller]) {
-        self.title = NSLocalizedString(@"Movies", nil);
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+
+    self.title = NSLocalizedString(@"Movies", nil);
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (/*navigationController.visible ||*/ visible) {
+        return;
+    }
+    
+    [super didReceiveMemoryWarning];
 }
 
 

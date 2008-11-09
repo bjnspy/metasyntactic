@@ -106,29 +106,59 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) controller
                             theater:(Theater*) theater_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.theater = theater_;
         self.navigationController = controller;
-
-        self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
-                                                                             context:self.model];
-
-        self.movieShowtimes = [NSMutableArray array];
-        for (Movie* movie in movies) {
-            NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
-
-            [movieShowtimes addObject:showtimes];
-        }
-
-        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = theater.name;
-
-        self.title = theater.name;
-        self.navigationItem.titleView = label;
-
-        [self initializeFavoriteButton];
+        self.theater = theater_;
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+
+    self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
+                                                                         context:self.model];
+    
+    self.movieShowtimes = [NSMutableArray array];
+    for (Movie* movie in movies) {
+        NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
+        
+        [movieShowtimes addObject:showtimes];
+    }
+    
+    UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+    label.text = theater.name;
+    
+    self.title = theater.name;
+    self.navigationItem.titleView = label;
+    
+    [self initializeFavoriteButton];
+}
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    visible = YES;
+    [self.model saveNavigationStack:navigationController];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (/*navigationController.visible ||*/ visible) {
+        return;
+    }
+
+    self.segmentedControl = nil;
+    self.favoriteButton = nil;
+    self.movies = nil;
+    self.movieShowtimes = nil;
+    
+    [super didReceiveMemoryWarning];
 }
 
 
@@ -136,11 +166,6 @@
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self refresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:navigationController];
 }
 
 
