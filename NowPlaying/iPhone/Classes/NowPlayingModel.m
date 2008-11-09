@@ -681,7 +681,7 @@ static NSString** KEYS[] = {
 
 
 - (UIImage*) posterForMovie:(Movie*) movie {
-    UIImage* image = [posterCache smallPosterForMovie:movie];
+    UIImage* image = [posterCache posterForMovie:movie];
     if (image != nil) {
         return image;
     }
@@ -1080,6 +1080,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
     NSString* result = [@"mailto:cyrus.najmabadi@gmail.com?subject=Now%20Playing%20Feedback&body=" stringByAppendingString:encodedBody];
     return result;
+}
+
+
+- (BOOL) delayLoadCells {
+    return NO;
 }
 
 @end

@@ -15,6 +15,8 @@
 @interface DVDCell : UITableViewCell {
 @private
     NowPlayingModel* model;
+    Movie* movie;
+    
     UILabel* titleLabel;
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
@@ -29,6 +31,7 @@
     UILabel* formatLabel;
 
     UIImageView* imageView;
+    UIActivityIndicatorView* activityView;
 
     CGFloat titleWidth;
 }
