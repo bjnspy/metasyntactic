@@ -26,6 +26,7 @@
             android:name="AllMoviesActivity"
             >            
         </activity>
+      
         
          <activity android:label="@string/app_name"
             android:name="AllTheatersActivity"

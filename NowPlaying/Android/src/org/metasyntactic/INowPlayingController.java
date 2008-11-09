@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /Projects/metasyntactic/trunk/NowPlaying/Android/src/org/metasyntactic/INowPlayingController.aidl
+ * Original file: /usr/local/google/mjoshi/downloads/downloads/metasyntactic/NowPlaying/Android/src/org/metasyntactic/INowPlayingController.aidl
  */
 package org.metasyntactic;
 import java.lang.String;

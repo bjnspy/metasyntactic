@@ -25,14 +25,16 @@ import java.util.Comparator;
 import java.util.List;
 
 /** @author mjoshi@google.com (Megha Joshi) */
+
 public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
 
+
   private static NowPlayingControllerWrapper controller;
   private static Pulser pulser;
   private static TheatersAdapter adapter;
-  private static Context context;
+  private static Context mContext;
 
   private NowPlayingActivity activity;
 
@@ -48,28 +50,35 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
 
-    activity = (NowPlayingActivity) getParent();
-    context = this;
-    controller = activity.getController();
-    theaters = controller.getTheaters();
-    String userPostalCode = controller.getUserLocation();
-    Address address = null;
-    try {
-      address = new Geocoder(context).getFromLocationName(userPostalCode, 1).get(0);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+
+        activity = (NowPlayingActivity) getParent();
+        mContext = this;
+        controller = activity.getController();
+        theaters = controller.getTheaters();
+        String userPostalCode = controller.getUserLocation();
+        Address address = null;
+        try {
+            address =
+                new Geocoder(mContext).getFromLocationName(
+                    userPostalCode, 1).get(0);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        userLocation = new Location(address.getLatitude(), address.getLongitude(),
+            null, null, null, null, null);
+   
+        Collections.sort(theaters, THEATER_ORDER[controller
+            .getAllTheatersSelectedSortIndex()]);
+        
+             
+        // Set up Movies adapter
+        mAdapter = new TheatersAdapter(this);
+        setListAdapter(mAdapter);
+
     }
 
-    userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null, null);
-
-    Collections.sort(theaters, THEATER_ORDER[controller
-        .getAllTheatersSelectedSortIndex()]);
-
-    // Set up Movies adapter
-    adapter = new TheatersAdapter(this);
-    setListAdapter(adapter);
-  }
 
   @Override
   protected void onPause() {

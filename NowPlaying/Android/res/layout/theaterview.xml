@@ -49,8 +49,8 @@
 				       android:layout_marginLeft="6dip"
 				       android:layout_marginTop="2dip"  
 				       android:layout_marginBottom="2px"               
-				      android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor = "?android:attr/textColorSecondary"
+				       android:textAppearance="?android:attr/textAppearanceSmall"
+               android:textColor = "?android:attr/textColorSecondary"
 				      /> 
 	
 	
