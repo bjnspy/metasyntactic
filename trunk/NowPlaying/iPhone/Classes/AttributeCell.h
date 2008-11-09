@@ -13,12 +13,10 @@
 // limitations under the License.
 
 @interface AttributeCell : UITableViewCell {
+@private
     UILabel* keyLabel;
     UILabel* valueLabel;
 }
-
-@property (retain) UILabel* keyLabel;
-@property (retain) UILabel* valueLabel;
 
 + (UIFont*) keyFont;
 
