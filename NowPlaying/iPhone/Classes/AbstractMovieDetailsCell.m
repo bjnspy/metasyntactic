@@ -14,6 +14,12 @@
 
 #import "AbstractMovieDetailsCell.h"
 
+@interface AbstractMovieDetailsCell()
+@property (retain) NowPlayingModel* model;
+@property (retain) Movie* movie;
+@end
+
+
 @implementation AbstractMovieDetailsCell
 
 @synthesize model;

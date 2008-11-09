@@ -13,12 +13,10 @@
 // limitations under the License.
 
 @interface AbstractMovieDetailsCell : UITableViewCell {
+@protected
     NowPlayingModel* model;
     Movie* movie;
 }
-
-@property (retain) NowPlayingModel* model;
-@property (retain) Movie* movie;
 
 - (id) initWithFrame:(CGRect) frame
                model:(NowPlayingModel*) model
