@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface TappableImageView : UIImageView {
+@private
     id<TappableImageViewDelegate> delegate;
 }
 
