@@ -54,7 +54,7 @@
 
 
 - (NowPlayingModel*) model {
-    return parentCache.model;
+    return self.parentCache.model;
 }
 
 
