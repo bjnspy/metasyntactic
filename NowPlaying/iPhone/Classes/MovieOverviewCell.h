@@ -15,6 +15,7 @@
 #import "TappableImageViewDelegate.h"
 
 @interface MovieOverviewCell : UITableViewCell {
+@private
     NowPlayingModel* model;
     Movie* movie;
 
@@ -27,15 +28,6 @@
 
     UIImage* posterImage;
 }
-
-@property (retain) NowPlayingModel* model;
-@property (retain) Movie* movie;
-@property (copy) NSString* synopsis;
-@property NSInteger synopsisSplit;
-@property NSInteger synopsisMax;
-@property (retain) UILabel* synopsisChunk1Label;
-@property (retain) UILabel* synopsisChunk2Label;
-@property (retain) UIImage* posterImage;
 
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
                                model:(NowPlayingModel*) model
