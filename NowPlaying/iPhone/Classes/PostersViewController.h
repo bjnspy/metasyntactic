@@ -15,6 +15,7 @@
 #import "TappableScrollViewDelegate.h"
 
 @interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate> {
+@private
     AbstractNavigationController* navigationController;
     Movie* movie;
 
@@ -28,13 +29,6 @@
 
     BOOL shutdown;
 }
-
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) Movie* movie;
-@property (retain) NSMutableDictionary* pageNumberToView;
-@property (retain) TappableScrollView* scrollView;
-@property (retain) UIToolbar* topBar;
-
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                               movie:(Movie*) movie

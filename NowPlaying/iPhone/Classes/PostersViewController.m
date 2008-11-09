@@ -23,6 +23,15 @@
 #import "TappableScrollViewDelegate.h"
 #import "ThreadingUtilities.h"
 
+@interface PostersViewController()
+@property (assign) AbstractNavigationController* navigationController;
+@property (retain) Movie* movie;
+@property (retain) NSMutableDictionary* pageNumberToView;
+@property (retain) TappableScrollView* scrollView;
+@property (retain) UIToolbar* topBar;
+@end
+
+
 @implementation PostersViewController
 
 const double TRANSLUCENCY_LEVEL = 0.9;
