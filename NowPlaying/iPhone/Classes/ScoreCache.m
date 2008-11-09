@@ -23,6 +23,14 @@
 #import "RottenTomatoesScoreProvider.h"
 #import "Score.h"
 
+@interface ScoreCache()
+@property (assign) NowPlayingModel* model;
+@property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;
+@property (retain) id<ScoreProvider> metacriticScoreProvider;
+@property (retain) id<ScoreProvider> googleScoreProvider;
+@property (retain) id<ScoreProvider> noneScoreProvider;
+@end
+
 @implementation ScoreCache
 
 @synthesize model;

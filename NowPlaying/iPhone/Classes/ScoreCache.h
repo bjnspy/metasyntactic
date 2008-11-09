@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface ScoreCache : NSObject {
+@private
     NowPlayingModel* model;
     id<ScoreProvider> rottenTomatoesScoreProvider;
     id<ScoreProvider> metacriticScoreProvider;
@@ -20,11 +21,7 @@
     id<ScoreProvider> noneScoreProvider;
 }
 
-@property (assign) NowPlayingModel* model;
-@property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;
-@property (retain) id<ScoreProvider> metacriticScoreProvider;
-@property (retain) id<ScoreProvider> googleScoreProvider;
-@property (retain) id<ScoreProvider> noneScoreProvider;
+@property (readonly, assign) NowPlayingModel* model;
 
 + (ScoreCache*) cacheWithModel:(NowPlayingModel*) model;
 
