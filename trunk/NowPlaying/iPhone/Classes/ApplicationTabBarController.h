@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
+@private
     NowPlayingAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
@@ -20,18 +21,9 @@
     NumbersNavigationController* numbersNavigationController;
     DVDNavigationController* dvdNavigationController;
     SettingsNavigationController* settingsNavigationController;
-
+    
     NSDate* lastRefreshDate;
 }
-
-@property (assign) NowPlayingAppDelegate* appDelegate;
-@property (retain) MoviesNavigationController* moviesNavigationController;
-@property (retain) TheatersNavigationController* theatersNavigationController;
-@property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-@property (retain) NumbersNavigationController* numbersNavigationController;
-@property (retain) DVDNavigationController* dvdNavigationController;
-@property (retain) SettingsNavigationController* settingsNavigationController;
-@property (retain) NSDate* lastRefreshDate;
 
 + (ApplicationTabBarController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
 
