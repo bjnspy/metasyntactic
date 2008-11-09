@@ -25,6 +25,13 @@
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
 
+@interface AbstractNavigationController()
+@property (assign) ApplicationTabBarController* tabBarController;
+@property (retain) SearchViewController* searchViewController;
+@property (retain) PostersViewController* postersViewController;
+@end
+
+
 @implementation AbstractNavigationController
 
 @synthesize tabBarController;

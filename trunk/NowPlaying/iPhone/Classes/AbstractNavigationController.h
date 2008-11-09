@@ -20,9 +20,7 @@
     BOOL viewLoaded;
 }
 
-@property (assign) ApplicationTabBarController* tabBarController;
-@property (retain) SearchViewController* searchViewController;
-@property (retain) PostersViewController* postersViewController;
+@property (readonly, assign) ApplicationTabBarController* tabBarController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
