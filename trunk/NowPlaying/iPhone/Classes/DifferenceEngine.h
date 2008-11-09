@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface DifferenceEngine : NSObject {
+@private
     NSInteger addCost;
     NSInteger deleteCost;
     NSInteger switchCost;
