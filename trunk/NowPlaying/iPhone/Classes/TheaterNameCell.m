@@ -18,6 +18,13 @@
 #import "NowPlayingModel.h"
 #import "Theater.h"
 
+@interface TheaterNameCell()
+@property (retain) NowPlayingModel* model;
+@property (retain) UILabel* nameLabel;
+@property (retain) UILabel* addressLabel;
+@end
+
+
 @implementation TheaterNameCell
 
 @synthesize model;
