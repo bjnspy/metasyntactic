@@ -16,6 +16,11 @@
 
 #import "AllTheatersViewController.h"
 
+@interface TheatersNavigationController()
+@property (retain) AllTheatersViewController* allTheatersViewController;
+@end
+
+
 @implementation TheatersNavigationController
 
 @synthesize allTheatersViewController;
