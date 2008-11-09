@@ -51,25 +51,25 @@
 }
 
 
-- (void) setupSegmentedControl {
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+- (UISegmentedControl*) setupSegmentedControl {
+    UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Release", @"This is on a button that allows the user to sort movies based on how recently they were released."),
                                NSLocalizedString(@"Title", @"This is on a button that allows the user to sort movies based on their title."),
                                NSLocalizedString(@"Score", @"This is on a button that allows users to sort movies by how well they were rated."), nil]] autorelease];
 
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
+    control.segmentedControlStyle = UISegmentedControlStyleBar;
+    control.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
 
-    [segmentedControl addTarget:self
+    [control addTarget:self
                          action:@selector(onSortOrderChanged:)
                forControlEvents:UIControlEventValueChanged];
 
-    CGRect rect = segmentedControl.frame;
+    CGRect rect = control.frame;
     rect.size.width = 240;
-    segmentedControl.frame = rect;
-
-    self.navigationItem.titleView = segmentedControl;
+    control.frame = rect;
+    
+    return control;
 }
 
 
