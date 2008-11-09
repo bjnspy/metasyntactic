@@ -14,6 +14,16 @@
 
 #import "SearchResult.h"
 
+@interface SearchResult()
+@property NSInteger requestId;
+@property (copy) NSString* value;
+@property (retain) NSArray* movies;
+@property (retain) NSArray* theaters;
+@property (retain) NSArray* upcomingMovies;
+@property (retain) NSArray* dvds;
+@end
+
+
 @implementation SearchResult
 
 @synthesize requestId;
