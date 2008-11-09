@@ -22,7 +22,7 @@
     MultiDictionary* sectionTitleToContentsMap;
 
     NSArray* alphabeticSectionTitles;
-    
+
     BOOL visible;
 }
 

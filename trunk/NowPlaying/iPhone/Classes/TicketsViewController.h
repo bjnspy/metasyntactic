@@ -19,7 +19,7 @@
     Theater* theater;
 
     NSMutableArray* performances;
-    
+
     BOOL visible;
 }
 

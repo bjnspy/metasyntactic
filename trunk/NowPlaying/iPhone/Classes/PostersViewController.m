@@ -386,13 +386,9 @@ const double LOAD_DELAY = 1;
 
 
 - (void) showToolBar {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideToolBar) object:nil];
-
     [UIView beginAnimations:nil context:NULL];
     {
         topBar.alpha = TRANSLUCENCY_LEVEL;
-
-        [self performSelector:@selector(hideToolBar) withObject:nil afterDelay:4];
     }
     [UIView commitAnimations];
 }
@@ -420,7 +416,7 @@ const double LOAD_DELAY = 1;
 
 - (void) loadView {
     [super loadView];
-    
+
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
     NonClippingView* view = [[[NonClippingView alloc] initWithFrame:frame] autorelease];
@@ -454,7 +450,6 @@ const double LOAD_DELAY = 1;
 - (void) dismiss {
     shutdown = YES;
     [navigationController hidePostersView];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideToolBar) object:nil];
 }
 
 

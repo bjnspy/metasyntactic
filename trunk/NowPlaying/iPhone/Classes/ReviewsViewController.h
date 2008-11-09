@@ -18,7 +18,7 @@
 
     Movie* movie;
     NSArray* reviews;
-    
+
     BOOL visible;
 }
 

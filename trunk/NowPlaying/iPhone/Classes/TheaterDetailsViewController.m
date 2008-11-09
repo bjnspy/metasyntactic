@@ -119,20 +119,20 @@
 
     self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
                                                                          context:self.model];
-    
+
     self.movieShowtimes = [NSMutableArray array];
     for (Movie* movie in movies) {
         NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
-        
+
         [movieShowtimes addObject:showtimes];
     }
-    
+
     UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
     label.text = theater.name;
-    
+
     self.title = theater.name;
     self.navigationItem.titleView = label;
-    
+
     [self initializeFavoriteButton];
 }
 
@@ -157,7 +157,7 @@
     self.favoriteButton = nil;
     self.movies = nil;
     self.movieShowtimes = nil;
-    
+
     [super didReceiveMemoryWarning];
 }
 

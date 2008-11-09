@@ -98,7 +98,7 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     [super didReceiveMemoryWarning];
 }
 
