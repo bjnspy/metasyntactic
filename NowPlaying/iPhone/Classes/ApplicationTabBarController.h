@@ -21,7 +21,7 @@
     NumbersNavigationController* numbersNavigationController;
     DVDNavigationController* dvdNavigationController;
     SettingsNavigationController* settingsNavigationController;
-    
+
     NSDate* lastRefreshDate;
 }
 
