@@ -18,6 +18,12 @@
 #import "FontCache.h"
 #import "ImageCache.h"
 
+@interface WarningView()
+@property (retain) UIImageView* imageView;
+@property (retain) UILabel* label;
+@end
+
+
 @implementation WarningView
 
 @synthesize imageView;
