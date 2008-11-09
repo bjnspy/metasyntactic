@@ -15,10 +15,9 @@
 #import "AbstractNavigationController.h"
 
 @interface MoviesNavigationController : AbstractNavigationController {
+@private
     AllMoviesViewController* allMoviesViewController;
 }
-
-@property (retain) AllMoviesViewController* allMoviesViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 

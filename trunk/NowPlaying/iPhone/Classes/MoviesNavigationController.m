@@ -18,6 +18,11 @@
 #import "Movie.h"
 #import "NowPlayingModel.h"
 
+@interface MoviesNavigationController()
+@property (retain) AllMoviesViewController* allMoviesViewController;
+@end
+
+
 @implementation MoviesNavigationController
 
 @synthesize allMoviesViewController;
