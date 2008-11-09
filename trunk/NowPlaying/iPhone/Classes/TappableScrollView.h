@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface TappableScrollView : UIScrollView {
+@private
     id<TappableScrollViewDelegate> tapDelegate;
 }
 
