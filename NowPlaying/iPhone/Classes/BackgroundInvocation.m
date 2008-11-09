@@ -16,6 +16,12 @@
 
 #import "GlobalActivityIndicator.h"
 
+@interface BackgroundInvocation()
+@property (retain) NSLock* gate;
+@property BOOL visible;
+@end
+
+
 @implementation BackgroundInvocation
 
 @synthesize gate;

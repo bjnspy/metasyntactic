@@ -15,12 +15,10 @@
 #import "Invocation.h"
 
 @interface BackgroundInvocation : Invocation {
+@private
     NSLock* gate;
     BOOL visible;
 }
-
-@property (retain) NSLock* gate;
-@property BOOL visible;
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
