@@ -15,6 +15,7 @@
 #import "SearchEngineDelegate.h"
 
 @interface SearchEngine : NSObject {
+@private
     // only accessed from the main thread.  needs no lock.
     NowPlayingModel* model;
     id<SearchEngineDelegate> delegate;
@@ -28,13 +29,6 @@
 
     NSCondition* gate;
 }
-
-@property (assign) id<SearchEngineDelegate> delegate;
-@property NSInteger currentRequestId;
-@property (retain) NowPlayingModel* model;
-@property (retain) SearchRequest* currentlyExecutingRequest;
-@property (retain) SearchRequest* nextSearchRequest;
-@property (retain) NSCondition* gate;
 
 + (SearchEngine*) engineWithModel:(NowPlayingModel*) model delegate:(id<SearchEngineDelegate>) delegate;
 
