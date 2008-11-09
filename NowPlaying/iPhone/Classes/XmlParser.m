@@ -16,6 +16,13 @@
 
 #import "XmlElement.h"
 
+@interface XmlParser()
+@property (retain) NSMutableArray* elementsStack;
+@property (retain) NSMutableArray* stringBufferStack;
+@property (retain) NSMutableArray* attributesStack;
+@end
+
+
 @implementation XmlParser
 
 static NSLock* gate = nil;
