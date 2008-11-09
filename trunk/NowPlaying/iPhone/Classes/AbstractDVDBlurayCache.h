@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface AbstractDVDBlurayCache : NSObject {
+@private
     NowPlayingModel* model;
 
     NSLock* gate;
@@ -22,13 +23,6 @@
 
     LinkedSet* prioritizedMovies;
 }
-
-@property (assign) NowPlayingModel* model;
-
-@property (retain) NSLock* gate;
-@property (retain) PointerSet* moviesSetData;
-@property (retain) NSArray* moviesData;
-@property (retain) LinkedSet* prioritizedMovies;
 
 - (id) initWithModel:(NowPlayingModel*) model;
 

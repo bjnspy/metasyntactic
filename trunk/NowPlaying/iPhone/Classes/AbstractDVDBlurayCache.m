@@ -29,6 +29,15 @@
 #import "Utilities.h"
 #import "XmlElement.h"
 
+@interface AbstractDVDBlurayCache()
+@property (assign) NowPlayingModel* model;
+@property (retain) NSLock* gate;
+@property (retain) PointerSet* moviesSetData;
+@property (retain) NSArray* moviesData;
+@property (retain) LinkedSet* prioritizedMovies;
+@end
+
+
 @implementation AbstractDVDBlurayCache
 
 @synthesize gate;
