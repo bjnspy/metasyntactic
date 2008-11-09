@@ -13,10 +13,9 @@
 // limitations under the License.
 
 @interface ScoreProviderViewController : UITableViewController {
+@private
     SettingsNavigationController* navigationController;
 }
-
-@property (assign) SettingsNavigationController* navigationController;
 
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
 

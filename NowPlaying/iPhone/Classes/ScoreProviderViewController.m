@@ -18,6 +18,11 @@
 #import "NowPlayingModel.h"
 #import "SettingsNavigationController.h"
 
+@interface ScoreProviderViewController()
+@property (assign) SettingsNavigationController* navigationController;
+@end
+
+
 @implementation ScoreProviderViewController
 
 @synthesize navigationController;
