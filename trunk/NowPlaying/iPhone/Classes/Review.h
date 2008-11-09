@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface Review : NSObject {
+@private
     NSInteger score;
     NSString* link;
     NSString* text;
@@ -20,11 +21,11 @@
     NSString* source;
 }
 
-@property NSInteger score;
-@property (copy) NSString* link;
-@property (copy) NSString* text;
-@property (copy) NSString* author;
-@property (copy) NSString* source;
+@property (readonly) NSInteger score;
+@property (readonly, copy) NSString* link;
+@property (readonly, copy) NSString* text;
+@property (readonly, copy) NSString* author;
+@property (readonly, copy) NSString* source;
 
 + (Review*) reviewWithText:(NSString*) text
                      score:(NSInteger) score

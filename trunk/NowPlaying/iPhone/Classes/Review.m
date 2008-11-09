@@ -14,6 +14,15 @@
 
 #import "Review.h"
 
+@interface Review()
+@property NSInteger score;
+@property (copy) NSString* link;
+@property (copy) NSString* text;
+@property (copy) NSString* author;
+@property (copy) NSString* source;
+@end
+
+
 @implementation Review
 
 property_definition(score);
