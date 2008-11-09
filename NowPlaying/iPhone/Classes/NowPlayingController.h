@@ -13,13 +13,11 @@
 // limitations under the License.
 
 @interface NowPlayingController : NSObject {
+@private
     NowPlayingAppDelegate* appDelegate;
 
     NSLock* determineLocationLock;
 }
-
-@property (assign) NowPlayingAppDelegate* appDelegate;
-@property (retain) NSLock* determineLocationLock;
 
 - (NowPlayingModel*) model;
 

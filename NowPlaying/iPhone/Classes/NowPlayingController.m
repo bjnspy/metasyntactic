@@ -26,6 +26,12 @@
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
+@interface NowPlayingController()
+@property (assign) NowPlayingAppDelegate* appDelegate;
+@property (retain) NSLock* determineLocationLock;
+@end
+
+
 @implementation NowPlayingController
 
 @synthesize appDelegate;
