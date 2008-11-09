@@ -24,6 +24,15 @@
 #import "TheaterNameCell.h"
 #import "UpcomingMovieCell.h"
 
+@interface SearchViewController()
+@property (assign)  AbstractNavigationController* navigationController;
+@property (retain) SearchEngine* searchEngine;
+@property (retain) SearchResult* searchResult;
+@property (retain) UISearchBar* searchBar;
+@property (retain) UITableView* tableView;
+@end
+
+
 @implementation SearchViewController
 
 @synthesize navigationController;

@@ -15,6 +15,7 @@
 #import "SearchEngineDelegate.h"
 
 @interface SearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,SearchEngineDelegate,UISearchBarDelegate> {
+@private
     AbstractNavigationController* navigationController;
 
     SearchEngine* searchEngine;
@@ -23,14 +24,6 @@
     UISearchBar* searchBar;
     UITableView* tableView;
 }
-
-@property (assign)  AbstractNavigationController* navigationController;
-
-@property (retain) SearchEngine* searchEngine;
-@property (retain) SearchResult* searchResult;
-@property (retain) UISearchBar* searchBar;
-@property (retain) UITableView* tableView;
-
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
