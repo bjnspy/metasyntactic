@@ -41,6 +41,24 @@
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
+@interface MovieDetailsViewController()
+@property (assign) AbstractNavigationController* navigationController;
+@property (retain) Movie* movie;
+@property (retain) DVD* dvd;
+@property (retain) NSMutableArray* theatersArray;
+@property (retain) NSMutableArray* showtimesArray;
+@property (retain) NSArray* trailersArray;
+@property (retain) NSArray* reviewsArray;
+@property (retain) NSString* imdbAddress;
+@property (retain) UIView* actionsView;
+@property NSInteger hiddenTheaterCount;
+@property (retain) NSLock* posterDownloadLock;
+@property (retain) UIImage* posterImage;
+@property (retain) TappableImageView* posterImageView;
+@property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
+@end
+
+
 @implementation MovieDetailsViewController
 
 @synthesize navigationController;

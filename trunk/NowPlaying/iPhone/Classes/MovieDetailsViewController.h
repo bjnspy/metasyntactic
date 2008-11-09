@@ -15,6 +15,7 @@
 #import "TappableImageViewDelegate.h"
 
 @interface MovieDetailsViewController : UITableViewController<TappableImageViewDelegate> {
+@private
     AbstractNavigationController* navigationController;
 
     Movie* movie;
@@ -41,22 +42,6 @@
     ActivityIndicatorViewWithBackground* posterActivityView;
     NSInteger posterCount;
 }
-
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) Movie* movie;
-@property (retain) DVD* dvd;
-@property (retain) NSMutableArray* theatersArray;
-@property (retain) NSMutableArray* showtimesArray;
-@property (retain) NSArray* trailersArray;
-@property (retain) NSArray* reviewsArray;
-@property (retain) NSString* imdbAddress;
-@property (retain) UIView* actionsView;
-@property NSInteger hiddenTheaterCount;
-@property (retain) NSLock* posterDownloadLock;
-
-@property (retain) UIImage* posterImage;
-@property (retain) TappableImageView* posterImageView;
-@property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                               movie:(Movie*) movie;
