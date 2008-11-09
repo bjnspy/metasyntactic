@@ -31,6 +31,13 @@
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
+@interface PosterCache()
+@property (retain) NSLock* gate;
+@property (retain) NowPlayingModel* model;
+@property (retain) LinkedSet* prioritizedMovies;
+@end
+
+
 @implementation PosterCache
 
 @synthesize gate;
