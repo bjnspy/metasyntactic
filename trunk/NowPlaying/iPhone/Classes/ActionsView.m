@@ -14,6 +14,13 @@
 
 #import "ActionsView.h"
 
+@interface ActionsView()
+@property (assign) id target;
+@property (retain) NSArray* selectors;
+@property (retain) NSArray* titles;
+@property (retain) NSArray* buttons;
+@end
+
 
 @implementation ActionsView
 
