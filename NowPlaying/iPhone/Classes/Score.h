@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface Score : NSObject {
+@private
     NSString* canonicalTitle;
     NSString* synopsis;
     NSString* score;
@@ -20,11 +21,11 @@
     NSString* identifier;
 }
 
-@property (copy) NSString* canonicalTitle;
-@property (copy) NSString* synopsis;
-@property (copy) NSString* score;
-@property (copy) NSString* provider;
-@property (copy) NSString* identifier;
+@property (readonly, copy) NSString* canonicalTitle;
+@property (readonly, copy) NSString* synopsis;
+@property (readonly, copy) NSString* score;
+@property (readonly, copy) NSString* provider;
+@property (readonly, copy) NSString* identifier;
 
 + (Score*) scoreWithDictionary:(NSDictionary*) dictionary;
 + (Score*) scoreWithTitle:(NSString*) title
