@@ -17,6 +17,17 @@
 #import "Application.h"
 #import "Utilities.h"
 
+@interface Location()
+@property double latitude;
+@property double longitude;
+@property (copy) NSString* address;
+@property (copy) NSString* city;
+@property (copy) NSString* state;
+@property (copy) NSString* postalCode;
+@property (copy) NSString* country;
+@end
+
+
 @implementation Location
 
 property_definition(latitude);

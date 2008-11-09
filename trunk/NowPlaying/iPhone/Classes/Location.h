@@ -15,6 +15,7 @@
 #define UNKNOWN_DISTANCE FLT_MAX
 
 @interface Location : NSObject<NSCopying> {
+@private
     double latitude;
     double longitude;
     NSString* address;
@@ -24,14 +25,13 @@
     NSString* country;
 }
 
-@property double latitude;
-@property double longitude;
-@property (copy) NSString* address;
-@property (copy) NSString* city;
-@property (copy) NSString* state;
-@property (copy) NSString* postalCode;
-@property (copy) NSString* country;
-
+@property (readonly) double latitude;
+@property (readonly) double longitude;
+@property (readonly, copy) NSString* address;
+@property (readonly, copy) NSString* city;
+@property (readonly, copy) NSString* state;
+@property (readonly, copy) NSString* postalCode;
+@property (readonly, copy) NSString* country;
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary;
 + (Location*) locationWithLatitude:(double) latitude
