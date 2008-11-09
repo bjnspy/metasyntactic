@@ -14,6 +14,11 @@
 
 #import "MainThreadGate.h"
 
+@interface MainThreadGate()
+@property (retain) NSCondition* condition;
+@end
+
+
 @implementation MainThreadGate
 
 @synthesize condition;
