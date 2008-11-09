@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface GlobalActivityIndicator : NSObject {
-
 }
 
 + (UIView*) activityView;
