@@ -22,6 +22,16 @@
 #import "Theater.h"
 #import "Utilities.h"
 
+@interface SearchEngine()
+@property (assign) id<SearchEngineDelegate> delegate;
+@property NSInteger currentRequestId;
+@property (retain) NowPlayingModel* model;
+@property (retain) SearchRequest* currentlyExecutingRequest;
+@property (retain) SearchRequest* nextSearchRequest;
+@property (retain) NSCondition* gate;
+@end
+
+
 @implementation SearchEngine
 
 @synthesize delegate;
