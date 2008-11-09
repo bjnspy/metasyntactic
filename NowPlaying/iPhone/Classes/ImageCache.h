@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface ImageCache : NSObject {
-
 }
 
 + (UIImage*) freshImage;

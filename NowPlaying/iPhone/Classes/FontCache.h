@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface FontCache : NSObject {
-
 }
 
 + (UIFont*) helvetica14;
