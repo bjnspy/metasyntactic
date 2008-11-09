@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface Movie : NSObject<NSCopying> {
+@private
     NSString* identifier;
     NSString* canonicalTitle;
     NSString* rating;
@@ -29,19 +30,19 @@
     NSString* displayTitle;
 }
 
-@property (copy) NSString* identifier;
-@property (copy) NSString* canonicalTitle;
-@property (copy) NSString* displayTitle;
-@property (copy) NSString* rating;
-@property NSInteger length;
-@property (copy) NSString* imdbAddress;
-@property (copy) NSString* poster;
-@property (copy) NSString* synopsis;
-@property (copy) NSString* studio;
-@property (retain) NSDate* releaseDate;
-@property (retain) NSArray* directors;
-@property (retain) NSArray* cast;
-@property (retain) NSArray* genres;
+@property (readonly, copy) NSString* identifier;
+@property (readonly, copy) NSString* canonicalTitle;
+@property (readonly, copy) NSString* displayTitle;
+@property (readonly, copy) NSString* rating;
+@property (readonly) NSInteger length;
+@property (readonly, copy) NSString* imdbAddress;
+@property (readonly, copy) NSString* poster;
+@property (readonly, copy) NSString* synopsis;
+@property (readonly, copy) NSString* studio;
+@property (readonly, retain) NSDate* releaseDate;
+@property (readonly, retain) NSArray* directors;
+@property (readonly, retain) NSArray* cast;
+@property (readonly, retain) NSArray* genres;
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithIdentifier:(NSString*) identifier
