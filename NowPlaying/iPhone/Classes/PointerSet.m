@@ -14,6 +14,10 @@
 
 #import "PointerSet.h"
 
+@interface PointerSet()
+@property (retain) NSMutableSet* set;
+@end
+
 
 @implementation PointerSet
 
