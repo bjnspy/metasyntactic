@@ -30,6 +30,14 @@
 #import "ViewControllerUtilities.h"
 #import "WarningView.h"
 
+@interface TicketsViewController()
+@property (retain) AbstractNavigationController* navigationController;
+@property (retain) Movie* movie;
+@property (retain) Theater* theater;
+@property (retain) NSMutableArray* performances;
+@end
+
+
 @implementation TicketsViewController
 
 @synthesize navigationController;

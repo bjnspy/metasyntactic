@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface TicketsViewController : UITableViewController {
+@private
     AbstractNavigationController* navigationController;
     Movie* movie;
     Theater* theater;
@@ -20,10 +21,8 @@
     NSMutableArray* performances;
 }
 
-@property (retain) AbstractNavigationController* navigationController;
-@property (retain) Movie* movie;
-@property (retain) Theater* theater;
-@property (retain) NSMutableArray* performances;
+@property (readonly, retain) Movie* movie;
+@property (readonly, retain) Theater* theater;
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
                   theater:(Theater*) theater
