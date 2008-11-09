@@ -13,12 +13,11 @@
 // limitations under the License.
 
 @interface MainThreadGate : NSObject<NSLocking> {
+@private
     NSCondition* condition;
     BOOL mainThreadRunning;
     BOOL backgroundThreadRunning;
 }
-
-@property (retain) NSCondition* condition;
 
 + (MainThreadGate*) gate;
 
