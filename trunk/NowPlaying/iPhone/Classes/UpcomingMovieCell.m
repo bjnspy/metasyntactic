@@ -21,6 +21,21 @@
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 
+@interface UpcomingMovieCell()
+@property (retain) NowPlayingModel* model;
+@property (retain) UILabel* titleLabel;
+@property (retain) UILabel* directorTitleLabel;
+@property (retain) UILabel* castTitleLabel;
+@property (retain) UILabel* ratedTitleLabel;
+@property (retain) UILabel* genreTitleLabel;
+@property (retain) UILabel* directorLabel;
+@property (retain) UILabel* castLabel;
+@property (retain) UILabel* genreLabel;
+@property (retain) UILabel* ratedLabel;
+@property (retain) UIImageView* imageView;
+@end
+
+
 @implementation UpcomingMovieCell
 
 @synthesize model;
