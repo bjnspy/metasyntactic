@@ -14,6 +14,11 @@
 
 #import "AutoResizingCell.h"
 
+@interface AutoResizingCell()
+@property (retain) UILabel* label;
+@end
+
+
 @implementation AutoResizingCell
 
 @synthesize label;
