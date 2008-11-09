@@ -13,10 +13,9 @@
 // limitations under the License.
 
 @interface PointerSet : NSObject {
+@private
     NSMutableSet* set;
 }
-
-@property (retain) NSMutableSet* set;
 
 + (PointerSet*) set;
 + (PointerSet*) setWithArray:(NSArray*) values;
