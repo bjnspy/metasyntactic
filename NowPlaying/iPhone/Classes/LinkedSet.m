@@ -16,6 +16,14 @@
 
 #import "LinkedNode.h"
 
+@interface LinkedSet()
+@property (retain) NSLock* gate;
+@property (retain) LinkedNode* firstNode;
+@property (retain) LinkedNode* lastNode;
+@property (retain) NSMutableDictionary* valueToNode;
+@end
+
+
 @implementation LinkedSet
 
 @synthesize gate;
