@@ -13,14 +13,11 @@
 // limitations under the License.
 
 @interface XmlParser : NSObject {
+@private
     NSMutableArray/*<NSMutableArray>*/* elementsStack;
     NSMutableArray/*<NSMutableString>*/* stringBufferStack;
     NSMutableArray/*<NSDictionary>*/* attributesStack;
 }
-
-@property (retain) NSMutableArray* elementsStack;
-@property (retain) NSMutableArray* stringBufferStack;
-@property (retain) NSMutableArray* attributesStack;
 
 + (XmlElement*) parse:(NSData*) data;
 
