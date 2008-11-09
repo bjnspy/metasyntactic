@@ -13,9 +13,8 @@
 // limitations under the License.
 
 @interface AutoResizingCell : UITableViewCell {
+@private
     UILabel* label;
 }
-
-@property (retain) UILabel* label;
 
 @end
