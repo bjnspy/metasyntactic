@@ -24,7 +24,7 @@
     NSMutableDictionary* performancesData;
 }
 
-@property (retain, readonly) NowPlayingModel* model;
+@property (readonly, retain) NowPlayingModel* model;
 
 - (id) initWithModel:(NowPlayingModel*) model;
 
