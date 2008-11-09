@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface SettingsViewController : UITableViewController<CLLocationManagerDelegate> {
+@private
     SettingsNavigationController* navigationController;
     CLLocationManager* locationManager;
 
@@ -21,11 +22,6 @@
     // a non-null value means we are actively searching.
     ActivityIndicator* activityIndicator;
 }
-
-@property (assign) SettingsNavigationController* navigationController;
-@property (retain) ActivityIndicator* activityIndicator;
-@property (retain) CLLocationManager* locationManager;
-@property (retain) NSLock* gate;
 
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
 

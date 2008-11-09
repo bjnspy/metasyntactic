@@ -33,6 +33,14 @@
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
+@interface SettingsViewController()
+@property (assign) SettingsNavigationController* navigationController;
+@property (retain) ActivityIndicator* activityIndicator;
+@property (retain) CLLocationManager* locationManager;
+@property (retain) NSLock* gate;
+@end
+
+
 @implementation SettingsViewController
 
 @synthesize navigationController;
