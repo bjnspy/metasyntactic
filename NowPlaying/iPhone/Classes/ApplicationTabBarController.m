@@ -22,6 +22,18 @@
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
 
+@interface ApplicationTabBarController()
+@property (assign) NowPlayingAppDelegate* appDelegate;
+@property (retain) MoviesNavigationController* moviesNavigationController;
+@property (retain) TheatersNavigationController* theatersNavigationController;
+@property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
+@property (retain) NumbersNavigationController* numbersNavigationController;
+@property (retain) DVDNavigationController* dvdNavigationController;
+@property (retain) SettingsNavigationController* settingsNavigationController;
+@property (retain) NSDate* lastRefreshDate;
+@end
+
+
 @implementation ApplicationTabBarController
 
 @synthesize moviesNavigationController;
