@@ -15,13 +15,10 @@
 #import "AbstractMovieDetailsCell.h"
 
 @interface ExpandedMovieDetailsCell : AbstractMovieDetailsCell {
+@private
     NSMutableArray* titles;
     NSMutableDictionary* titleToLabel;
     MultiDictionary* titleToValueLabels;
 }
-
-@property (retain) NSMutableArray* titles;
-@property (retain) NSMutableDictionary* titleToLabel;
-@property (retain) MultiDictionary* titleToValueLabels;
 
 @end
