@@ -16,6 +16,12 @@
 
 #import "ColorCache.h"
 
+@interface SettingCell()
+@property (retain) UILabel* valueLabel;
+@property (retain) UIColor* valueColor;
+@end
+
+
 @implementation SettingCell
 
 @synthesize valueLabel;
