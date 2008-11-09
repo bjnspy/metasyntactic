@@ -17,6 +17,11 @@
 #import "LocaleUtilities.h"
 #import "Movie.h"
 
+@interface CollapsedMovieDetailsCell()
+@property (retain) UILabel* ratingAndRuntimeLabel;
+@end
+
+
 @implementation CollapsedMovieDetailsCell
 
 @synthesize ratingAndRuntimeLabel;

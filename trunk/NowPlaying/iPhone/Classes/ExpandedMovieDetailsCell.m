@@ -19,6 +19,13 @@
 #import "MultiDictionary.h"
 #import "NowPlayingModel.h"
 
+@interface ExpandedMovieDetailsCell()
+@property (retain) NSMutableArray* titles;
+@property (retain) NSMutableDictionary* titleToLabel;
+@property (retain) MultiDictionary* titleToValueLabels;
+@end
+
+
 @implementation ExpandedMovieDetailsCell
 
 @synthesize titles;

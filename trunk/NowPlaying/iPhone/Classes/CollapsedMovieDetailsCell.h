@@ -15,9 +15,8 @@
 #import "AbstractMovieDetailsCell.h"
 
 @interface CollapsedMovieDetailsCell : AbstractMovieDetailsCell {
+@private
     UILabel* ratingAndRuntimeLabel;
 }
-
-@property (retain) UILabel* ratingAndRuntimeLabel;
 
 @end
