@@ -204,7 +204,6 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) controller
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        //[NSThread sleepForTimeInterval:5];
         self.navigationController = controller;
         self.movie = movie_;
         self.dvd = [self.model.dvdCache detailsForMovie:movie];

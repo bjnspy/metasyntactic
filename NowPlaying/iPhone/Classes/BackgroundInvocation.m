@@ -15,7 +15,6 @@
 #import "BackgroundInvocation.h"
 
 #import "GlobalActivityIndicator.h"
-//#import "PriorityMutex.h"
 
 @implementation BackgroundInvocation
 
