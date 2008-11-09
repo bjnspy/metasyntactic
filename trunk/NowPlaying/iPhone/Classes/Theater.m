@@ -18,6 +18,16 @@
 #import "Location.h"
 #import "Utilities.h"
 
+@interface Theater()
+@property (copy) NSString* identifier;
+@property (copy) NSString* name;
+@property (copy) NSString* phoneNumber;
+@property (retain) Location* location;
+@property (retain) Location* originatingLocation;
+@property (retain) NSArray* movieTitles;
+@end
+
+
 @implementation Theater
 
 property_definition(identifier);
