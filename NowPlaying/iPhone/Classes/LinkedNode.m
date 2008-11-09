@@ -14,6 +14,11 @@
 
 #import "LinkedNode.h"
 
+@interface LinkedNode()
+@property (retain) id value;
+@end
+
+
 @implementation LinkedNode
 
 @synthesize value;
