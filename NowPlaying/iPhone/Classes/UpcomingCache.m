@@ -27,6 +27,16 @@
 #import "Utilities.h"
 #import "XmlElement.h"
 
+@interface UpcomingCache()
+@property (assign) NowPlayingModel* model;
+@property (retain) NSLock* gate;
+@property (retain) NSDictionary* indexData;
+@property (retain) NSArray* recentMovies;
+@property (retain) NSDictionary* movieMap;
+@property (retain) LinkedSet* prioritizedMovies;
+@end
+
+
 @implementation UpcomingCache
 
 static NSString* movies_key = @"Movies";
