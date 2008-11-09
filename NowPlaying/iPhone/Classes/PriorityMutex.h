@@ -13,12 +13,11 @@
 // limitations under the License.
 
 @interface PriorityMutex : NSObject {
+@private
     NSCondition* gate;
 
     NSInteger highTaskRunningCount;
 }
-
-@property (retain) NSCondition* gate;
 
 + (PriorityMutex*) mutex;
 

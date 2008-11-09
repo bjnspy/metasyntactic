@@ -14,6 +14,9 @@
 
 #import "PriorityMutex.h"
 
+@interface PriorityMutex()
+@property (retain) NSCondition* gate;
+@end
 
 @implementation PriorityMutex
 

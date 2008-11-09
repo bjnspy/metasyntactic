@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface ThreadingUtilities : NSObject {
-
 }
 
 + (void) performSelector:(SEL) selector
