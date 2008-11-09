@@ -15,12 +15,15 @@
 @interface TheaterDetailsViewController : UITableViewController {
 @private
     AbstractNavigationController* navigationController;
+    Theater* theater;
+
     UISegmentedControl* segmentedControl;
     UIButton* favoriteButton;
-    Theater* theater;
 
     NSArray* movies;
     NSMutableArray* movieShowtimes;
+    
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

@@ -47,8 +47,19 @@
 
 - (void) loadView {
     [super loadView];
+    
     self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] initWithNavigationController:self] autorelease];
     [self pushViewController:upcomingMoviesViewController animated:NO];
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (visible) {
+        return;
+    }
+    
+    self.upcomingMoviesViewController = nil;
+    [super didReceiveMemoryWarning];
 }
 
 

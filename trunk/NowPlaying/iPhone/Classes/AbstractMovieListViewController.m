@@ -243,22 +243,53 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
-
-        self.sortedMovies = [NSArray array];
-
-        self.segmentedControl = [self setupSegmentedControl];
-        self.navigationItem.titleView = segmentedControl;
-
-        [self initializeSearchButton];
-
-        self.alphabeticSectionTitles =
-        [NSArray arrayWithObjects:
-         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
-         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
-         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+
+    self.sortedMovies = [NSArray array];
+    
+    self.segmentedControl = [self setupSegmentedControl];
+    self.navigationItem.titleView = segmentedControl;
+    
+    [self initializeSearchButton];
+    
+    self.alphabeticSectionTitles =
+    [NSArray arrayWithObjects:
+     @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
+     @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
+     @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (/*navigationController.visible ||*/ visible) {
+        return;
+    }
+    
+    self.segmentedControl = nil;
+    self.sortedMovies = nil;
+    self.sectionTitles = nil;
+    self.sectionTitleToContentsMap = nil;
+    self.alphabeticSectionTitles = nil;
+    
+    [super didReceiveMemoryWarning];
+}
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    visible = YES;
+    [self.model saveNavigationStack:navigationController];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
 }
 
 
@@ -268,11 +299,6 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self refresh];
-}
-
-
-- (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:navigationController];
 }
 
 

@@ -18,6 +18,8 @@
 
     Movie* movie;
     NSArray* reviews;
+    
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) controller

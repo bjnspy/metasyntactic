@@ -29,6 +29,7 @@
 @property (assign) ApplicationTabBarController* tabBarController;
 @property (retain) SearchViewController* searchViewController;
 @property (retain) PostersViewController* postersViewController;
+@property BOOL visible;
 @end
 
 
@@ -37,6 +38,7 @@
 @synthesize tabBarController;
 @synthesize searchViewController;
 @synthesize postersViewController;
+@synthesize visible;
 
 - (void) dealloc {
     self.tabBarController = nil;
@@ -58,6 +60,7 @@
 
 - (void) loadView {
     [super loadView];
+    
     viewLoaded = YES;
     self.view.autoresizesSubviews = YES;
 }
@@ -73,6 +76,26 @@
             [controller refresh];
         }
     }
+}
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    visible = YES;
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (visible) {
+        return;
+    }
+    
+    viewLoaded = NO;
+    [super didReceiveMemoryWarning];
 }
 
 

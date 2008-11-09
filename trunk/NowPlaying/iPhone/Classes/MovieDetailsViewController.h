@@ -41,6 +41,8 @@
     TappableImageView* posterImageView;
     ActivityIndicatorViewWithBackground* posterActivityView;
     NSInteger posterCount;
+    
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

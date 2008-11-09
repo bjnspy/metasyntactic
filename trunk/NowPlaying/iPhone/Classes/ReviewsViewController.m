@@ -60,23 +60,45 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
         self.movie = movie_;
-
-        self.title = NSLocalizedString(@"Reviews", nil);
-
-        self.reviews = [self.model reviewsForMovie:movie];
     }
 
     return self;
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+- (void) loadView {
+    [super loadView];
+
+    self.title = NSLocalizedString(@"Reviews", nil);
+    
+    self.reviews = [self.model reviewsForMovie:movie];
 }
 
 
-- (void) viewDidAppear:(BOOL) animated {
+- (void) viewDidAppear:(BOOL)animated {
+    visible = YES;
     [self.model saveNavigationStack:self.navigationController];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
+- (void) didReceiveMemoryWarning {
+    if (/*navigationController.visible ||*/ visible) {
+        return;
+    }
+    
+    self.reviews = nil;
+
+    [super didReceiveMemoryWarning];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 }
 
 

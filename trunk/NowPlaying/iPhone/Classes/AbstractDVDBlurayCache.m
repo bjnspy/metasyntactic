@@ -427,12 +427,11 @@
 
 
 - (void) reportResults:(NSArray*) movies {
-
     if (movies.count > 0) {
         [self setMovies:movies];
 
         [self updateDetails];
-        [NowPlayingAppDelegate refresh];
+        [NowPlayingAppDelegate refresh:YES];
     }
 }
 

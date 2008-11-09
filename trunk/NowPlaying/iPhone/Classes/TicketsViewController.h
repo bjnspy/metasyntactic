@@ -19,6 +19,8 @@
     Theater* theater;
 
     NSMutableArray* performances;
+    
+    BOOL visible;
 }
 
 @property (readonly, retain) Movie* movie;
