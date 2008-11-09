@@ -415,7 +415,7 @@ static NSString* titles_key = @"Titles";
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@&format=2", [Application host], studio, title];
     NSString* result = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
-    if (result.length == 0) {
+    if (result == nil) {
         return;
     }
 
@@ -423,23 +423,18 @@ static NSString* titles_key = @"Titles";
         return;
     }
 
+    NSString* synopsis = @"";
+    NSMutableArray* cast = [NSMutableArray array];
+    
     NSArray* components = [result componentsSeparatedByString:@"\n"];
-    if (components.count == 0) {
-        return;
+    if (components.count > 0) {
+        synopsis = [components objectAtIndex:0];
+        cast = [NSMutableArray arrayWithArray:components];
+        [cast removeObjectAtIndex:0];
     }
 
-    NSString* synopsis = [components objectAtIndex:0];
-    NSMutableArray* cast = [NSMutableArray arrayWithArray:components];
-    [cast removeObjectAtIndex:0];
-
-    if (synopsis.length != 0 &&
-        ![synopsis hasPrefix:@"No synopsis"]) {
-        [FileUtilities writeObject:synopsis toFile:synopsisFile];
-    }
-
-    if (cast.count > 0) {
-        [FileUtilities writeObject:cast toFile:[self castFile:movie]];
-    }
+    [FileUtilities writeObject:synopsis toFile:synopsisFile];
+    [FileUtilities writeObject:cast toFile:[self castFile:movie]];
 
     [NowPlayingAppDelegate refresh];
 }

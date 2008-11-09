@@ -202,7 +202,7 @@
     if (postalCode == nil || ![@"US" isEqual:location.country]) {
         postalCode = @"10009";
     }
-
+    
     [self downloadPosters:moviesWithPosterLinks postalCode:postalCode];
     [self downloadPosters:moviesWithoutPosterLinks postalCode:postalCode];
 }
