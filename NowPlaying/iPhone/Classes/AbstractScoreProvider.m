@@ -440,15 +440,20 @@
 }
 
 
+- (void) saveEncodedReviews:(NSArray*) encodedReviews hash:(NSString*) hash title:(NSString*) title {
+    [FileUtilities writeObject:encodedReviews toFile:[self reviewsFile:title]];
+    // do this last.  it marks us being complete.
+    [FileUtilities writeObject:hash toFile:[self reviewsHashFile:title]];    
+}
+
+
 - (void) saveReviews:(NSArray*) reviews hash:(NSString*) hash title:(NSString*) title {
     NSMutableArray* encodedReviews = [NSMutableArray array];
     for (Review* review in reviews) {
         [encodedReviews addObject:review.dictionary];
     }
-
-    [FileUtilities writeObject:encodedReviews toFile:[self reviewsFile:title]];
-    // do this last.  it marks us being complete.
-    [FileUtilities writeObject:hash toFile:[self reviewsHashFile:title]];
+    
+    [self saveEncodedReviews:encodedReviews hash:hash title:title];
 }
 
 
@@ -485,7 +490,8 @@
         if (existingReviews.count > 0) {
             // we have reviews already.  don't wipe it out.
             // rewrite the reviews so the mod date is correct.
-            reviews = existingReviews;
+            [self saveEncodedReviews:existingReviews hash:serverHash title:score.canonicalTitle];
+            return;
         }
     }
 

@@ -31,12 +31,12 @@
     [super dealloc];
 }
 
+
 - (id) init {
     if (self = [super init]) {
         UIImage* image = [UIImage imageNamed:@"BlackCircle.png"];
         self.imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
         self.frame = imageView.frame;
-        imageView.alpha = 0.75;
 
         self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         activityIndicator.hidesWhenStopped = YES;
@@ -54,23 +54,37 @@
     return self;
 }
 
-- (void) stopAnimating {
-    [activityIndicator stopAnimating];
 
+- (void) stopAnimating {
     [UIView beginAnimations:nil context:NULL];
     {
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(onStopAnimatingCompleted:finished:context:)];
+         
+        activityIndicator.alpha = 0;
         imageView.alpha = 0;
     }
     [UIView commitAnimations];
 }
 
 
+- (void) onStopAnimatingCompleted:(NSString*) animationId
+                         finished:(BOOL) finished
+                          context:(void*) context {
+    [activityIndicator stopAnimating];
+}
+
+
 - (void) startAnimating {
+    imageView.alpha = 0;
+    activityIndicator.alpha = 0;
+
     [activityIndicator startAnimating];
 
     [UIView beginAnimations:nil context:NULL];
     {
-        imageView.alpha = 1;
+        imageView.alpha = 0.75;
+        activityIndicator.alpha = 1;
     }
     [UIView commitAnimations];
 }
