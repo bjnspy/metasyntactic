@@ -15,6 +15,7 @@
 #import "ScoreProvider.h"
 
 @interface AbstractScoreProvider : NSObject<ScoreProvider> {
+@private
     ScoreCache* parentCache;
     NSLock* lock;
 
@@ -34,19 +35,7 @@
     LinkedSet* prioritizedMovies;
 }
 
-@property (assign) ScoreCache* parentCache;
-@property (retain) NSLock* lock;
-@property (retain) NSDictionary* scoresData;
-@property (retain) NSString* hashData;
-
-@property (retain) NSLock* movieMapLock;
-@property (retain) NSArray* movies;
-@property (retain) NSDictionary* movieMapData;
-
-@property (retain) NSString* providerDirectory;
-@property (retain) NSString* reviewsDirectory;
-
-@property (retain) LinkedSet* prioritizedMovies;
+@property (readonly, assign) ScoreCache* parentCache;
 
 - (id) initWithCache:(ScoreCache*) cache;
 

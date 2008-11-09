@@ -32,6 +32,20 @@
 #import "XmlElement.h"
 #import "XmlParser.h"
 
+@interface AbstractScoreProvider()
+@property (assign) ScoreCache* parentCache;
+@property (retain) NSLock* lock;
+@property (retain) NSDictionary* scoresData;
+@property (retain) NSString* hashData;
+@property (retain) NSLock* movieMapLock;
+@property (retain) NSArray* movies;
+@property (retain) NSDictionary* movieMapData;
+@property (retain) NSString* providerDirectory;
+@property (retain) NSString* reviewsDirectory;
+@property (retain) LinkedSet* prioritizedMovies;
+@end
+
+
 @implementation AbstractScoreProvider
 
 @synthesize parentCache;
