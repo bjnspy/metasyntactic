@@ -14,6 +14,14 @@
 
 #import "Pulser.h"
 
+@interface Pulser()
+@property (retain) id target;
+@property SEL action;
+@property NSTimeInterval pulseInterval;
+@property (retain) NSDate* lastPulseTime;
+@end
+
+
 @implementation Pulser
 
 @synthesize target;

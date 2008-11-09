@@ -13,17 +13,13 @@
 // limitations under the License.
 
 @interface Pulser : NSObject {
+@private
     id target;
     SEL action;
     NSTimeInterval pulseInterval;
 
     NSDate* lastPulseTime;
 }
-
-@property (retain) id target;
-@property SEL action;
-@property NSTimeInterval pulseInterval;
-@property (retain) NSDate* lastPulseTime;
 
 + (Pulser*) pulserWithTarget:(id) target
                       action:(SEL) action
