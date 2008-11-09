@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface ActivityIndicatorViewWithBackground : UIView {
-  @private
+@private
     UIImageView* imageView;
     UIActivityIndicatorView* activityIndicator;
 }

@@ -14,6 +14,12 @@
 
 #import "ActivityIndicator.h"
 
+@interface ActivityIndicator()
+@property (retain) UINavigationItem* navigationItem;
+@property (retain) UIBarButtonItem* originalButton;
+@end
+
+
 @implementation ActivityIndicator
 
 @synthesize navigationItem;

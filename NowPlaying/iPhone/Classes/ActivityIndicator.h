@@ -13,14 +13,12 @@
 // limitations under the License.
 
 @interface ActivityIndicator : NSObject {
+@private
     UINavigationItem* navigationItem;
     UIBarButtonItem* originalButton;
 
     BOOL running;
 }
-
-@property (retain) UINavigationItem* navigationItem;
-@property (retain) UIBarButtonItem* originalButton;
 
 - (id) initWithNavigationItem:(UINavigationItem*) navigationItem;
 
