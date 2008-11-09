@@ -20,6 +20,7 @@ enum ViewControllerType {
 };
 
 @interface NowPlayingModel : NSObject {
+@private
     UserLocationCache* userLocationCache;
     DVDCache* dvdCache;
     IMDbCache* imdbCache;
@@ -36,17 +37,15 @@ enum ViewControllerType {
     id<DataProvider> dataProvider;
 }
 
-@property (retain) UserLocationCache* userLocationCache;
-@property (retain) DVDCache* dvdCache;
-@property (retain) IMDbCache* imdbCache;
-@property (retain) PosterCache* posterCache;
-@property (retain) LargePosterCache* largePosterCache;
-@property (retain) ScoreCache* scoreCache;
-@property (retain) TrailerCache* trailerCache;
-@property (retain) UpcomingCache* upcomingCache;
-
-@property (retain) NSMutableArray* favoriteTheatersData;
-@property (retain) id<DataProvider> dataProvider;
+@property (readonly, retain) UserLocationCache* userLocationCache;
+@property (readonly, retain) DVDCache* dvdCache;
+@property (readonly, retain) IMDbCache* imdbCache;
+@property (readonly, retain) PosterCache* posterCache;
+@property (readonly, retain) LargePosterCache* largePosterCache;
+@property (readonly, retain) ScoreCache* scoreCache;
+@property (readonly, retain) TrailerCache* trailerCache;
+@property (readonly, retain) UpcomingCache* upcomingCache;
+@property (readonly, retain) id<DataProvider> dataProvider;
 
 + (NowPlayingModel*) model;
 
