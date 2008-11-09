@@ -19,6 +19,12 @@
 #import "NowPlayingModel.h"
 #import "SettingCell.h"
 
+@interface CreditsViewController()
+@property (retain) NowPlayingModel* model;
+@property (retain) NSDictionary* localizers;
+@end
+
+
 @implementation CreditsViewController
 
 typedef enum {
