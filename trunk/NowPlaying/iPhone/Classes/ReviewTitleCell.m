@@ -20,6 +20,13 @@
 #import "NowPlayingModel.h"
 #import "Review.h"
 
+@interface ReviewTitleCell()
+@property (retain) NowPlayingModel* model;
+@property (retain) UILabel* scoreLabel;
+@property (retain) UILabel* authorLabel;
+@property (retain) UILabel* sourceLabel;
+@end
+
 @implementation ReviewTitleCell
 
 @synthesize model;

@@ -13,16 +13,12 @@
 // limitations under the License.
 
 @interface ReviewTitleCell : UITableViewCell {
+@private
     NowPlayingModel* model;
     UILabel* scoreLabel;
     UILabel* authorLabel;
     UILabel* sourceLabel;
 }
-
-@property (retain) NowPlayingModel* model;
-@property (retain) UILabel* scoreLabel;
-@property (retain) UILabel* authorLabel;
-@property (retain) UILabel* sourceLabel;
 
 - (id) initWithModel:(NowPlayingModel*) model
                frame:(CGRect) frame
