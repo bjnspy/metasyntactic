@@ -17,6 +17,15 @@
 #import "Movie.h";
 #import "Utilities.h"
 
+@interface DVD()
+@property (copy) NSString* canonicalTitle;
+@property (copy) NSString* price;
+@property (copy) NSString* format;
+@property (copy) NSString* discs;
+@property (copy) NSString* url;
+@end
+
+
 @implementation DVD
 
 property_definition(canonicalTitle);
