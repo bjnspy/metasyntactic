@@ -15,10 +15,9 @@
 #import "AbstractNavigationController.h"
 
 @interface TheatersNavigationController : AbstractNavigationController {
+@private
     AllTheatersViewController* allTheatersViewController;
 }
-
-@property (retain) AllTheatersViewController* allTheatersViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
