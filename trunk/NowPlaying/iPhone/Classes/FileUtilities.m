@@ -51,11 +51,13 @@ static MainThreadGate* gate;
 }
 
 
-+ (NSArray*) directoryContentsNames:(NSString*) directory {
-    NSArray* result;
++ (unsigned long long) size:(NSString*) file {
+    unsigned long long result;
     [gate lock];
     {
-        result = [[NSFileManager defaultManager] directoryContentsAtPath:directory];
+        NSNumber* number = [[[NSFileManager defaultManager] attributesOfItemAtPath:file
+                                                                             error:NULL] objectForKey:NSFileSize];
+        result = [number unsignedLongLongValue];
     }
     [gate unlock];
     return result;
