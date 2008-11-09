@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface MovieNumbers : NSObject {
+@private
     NSString* identifier;
     NSString* canonicalTitle;
     NSInteger currentRank;
@@ -23,14 +24,14 @@
     NSInteger days;
 }
 
-@property (copy) NSString* identifier;
-@property (copy) NSString* canonicalTitle;
-@property NSInteger currentRank;
-@property NSInteger previousRank;
-@property NSInteger currentGross;
-@property NSInteger totalGross;
-@property NSInteger theaters;
-@property NSInteger days;
+@property (readonly, copy) NSString* identifier;
+@property (readonly, copy) NSString* canonicalTitle;
+@property (readonly) NSInteger currentRank;
+@property (readonly) NSInteger previousRank;
+@property (readonly) NSInteger currentGross;
+@property (readonly) NSInteger totalGross;
+@property (readonly) NSInteger theaters;
+@property (readonly) NSInteger days;
 
 + (MovieNumbers*) numbersWithDictionary:(NSDictionary*) dictionary;
 + (MovieNumbers*) numbersWithIdentifier:(NSString*) identifier
