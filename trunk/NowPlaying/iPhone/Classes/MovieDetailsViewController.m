@@ -207,11 +207,6 @@
 
 
 - (void) setupPosterView {
-    //self.posterActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-    self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
-
-    [posterActivityView sizeToFit];
-
     self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
     self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
     posterImageView.delegate = self;
@@ -224,6 +219,11 @@
         self.navigationController = controller;
         self.movie = movie_;
         self.posterDownloadLock = [[[NSRecursiveLock alloc] init] autorelease];
+
+        // Only want to do this once.
+        self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
+        [posterActivityView startAnimating];
+        [posterActivityView sizeToFit];        
     }
 
     return self;
@@ -299,7 +299,6 @@
 
 - (void) startup {
     shutdown = NO;
-    [posterActivityView startAnimating];
 
     [ThreadingUtilities performSelector:@selector(downloadPoster)
                                onTarget:self
