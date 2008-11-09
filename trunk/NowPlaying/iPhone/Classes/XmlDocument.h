@@ -13,14 +13,15 @@
 // limitations under the License.
 
 @interface XmlDocument : NSObject {
+@private
     XmlElement* root;
     NSString* version;
     NSString* encoding;
 }
 
-@property (retain) XmlElement* root;
-@property (copy) NSString* version;
-@property (copy) NSString* encoding;
+@property (readonly, retain) XmlElement* root;
+@property (readonly, copy) NSString* version;
+@property (readonly, copy) NSString* encoding;
 
 + (XmlDocument*) documentWithRoot:(XmlElement*) root;
 

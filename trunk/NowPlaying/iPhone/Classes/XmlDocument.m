@@ -14,6 +14,13 @@
 
 #import "XmlDocument.h"
 
+@interface XmlDocument()
+@property (retain) XmlElement* root;
+@property (copy) NSString* version;
+@property (copy) NSString* encoding;
+@end
+
+
 @implementation XmlDocument
 
 @synthesize root;
