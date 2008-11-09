@@ -20,6 +20,14 @@
 #import "Movie.h"
 #import "NowPlayingModel.h"
 
+@interface MovieTitleCell()
+@property (retain) NowPlayingModel* model;
+@property (retain) UILabel* scoreLabel;
+@property (retain) UILabel* titleLabel;
+@property (retain) UILabel* ratingLabel;
+@end
+
+
 @implementation MovieTitleCell
 
 @synthesize scoreLabel;
