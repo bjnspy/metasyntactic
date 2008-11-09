@@ -54,8 +54,8 @@
 }
 - (BOOL) hasTime;
 - (BOOL) hasUrl;
-@property (retain, readonly) NSString* time;
-@property (retain, readonly) NSString* url;
+@property (readonly, retain) NSString* time;
+@property (readonly, retain) NSString* url;
 - (NSArray*) dubbedList;
 - (NSString*) dubbedAtIndex:(int32_t) index;
 - (NSArray*) subtitledList;
@@ -134,8 +134,8 @@
 }
 - (BOOL) hasVendor;
 - (BOOL) hasCaptioning;
-@property (retain, readonly) NSString* vendor;
-@property (retain, readonly) NSString* captioning;
+@property (readonly, retain) NSString* vendor;
+@property (readonly, retain) NSString* captioning;
 - (NSArray*) showtimesList;
 - (ShowtimeProto*) showtimesAtIndex:(int32_t) index;
 
@@ -232,16 +232,16 @@
 - (BOOL) hasScore;
 - (BOOL) hasIMDbUrl;
 - (BOOL) hasReleaseDate;
-@property (retain, readonly) NSString* identifier;
-@property (retain, readonly) NSString* title;
+@property (readonly, retain) NSString* identifier;
+@property (readonly, retain) NSString* title;
 @property (readonly) int32_t length;
-@property (retain, readonly) NSString* language;
-@property (retain, readonly) NSString* genre;
-@property (retain, readonly) NSString* description;
-@property (retain, readonly) NSString* rawRating;
+@property (readonly, retain) NSString* language;
+@property (readonly, retain) NSString* genre;
+@property (readonly, retain) NSString* description;
+@property (readonly, retain) NSString* rawRating;
 @property (readonly) int32_t score;
-@property (retain, readonly) NSString* iMDbUrl;
-@property (retain, readonly) NSString* releaseDate;
+@property (readonly, retain) NSString* iMDbUrl;
+@property (readonly, retain) NSString* releaseDate;
 - (NSArray*) directorList;
 - (NSString*) directorAtIndex:(int32_t) index;
 - (NSArray*) castList;
@@ -401,14 +401,14 @@
 - (BOOL) hasPhone;
 - (BOOL) hasLatitude;
 - (BOOL) hasLongitude;
-@property (retain, readonly) NSString* identifier;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) NSString* streetAddress;
-@property (retain, readonly) NSString* city;
-@property (retain, readonly) NSString* state;
-@property (retain, readonly) NSString* postalCode;
-@property (retain, readonly) NSString* country;
-@property (retain, readonly) NSString* phone;
+@property (readonly, retain) NSString* identifier;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* streetAddress;
+@property (readonly, retain) NSString* city;
+@property (readonly, retain) NSString* state;
+@property (readonly, retain) NSString* postalCode;
+@property (readonly, retain) NSString* country;
+@property (readonly, retain) NSString* phone;
 @property (readonly) Float64 latitude;
 @property (readonly) Float64 longitude;
 
@@ -537,7 +537,7 @@
   NSMutableArray* mutableMovieAndShowtimesList;
 }
 - (BOOL) hasTheater;
-@property (retain, readonly) TheaterProto* theater;
+@property (readonly, retain) TheaterProto* theater;
 - (NSArray*) movieAndShowtimesList;
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) movieAndShowtimesAtIndex:(int32_t) index;
 
@@ -569,8 +569,8 @@
 }
 - (BOOL) hasMovieIdentifier;
 - (BOOL) hasShowtimes;
-@property (retain, readonly) NSString* movieIdentifier;
-@property (retain, readonly) AllShowtimesProto* showtimes;
+@property (readonly, retain) NSString* movieIdentifier;
+@property (readonly, retain) AllShowtimesProto* showtimes;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -718,14 +718,14 @@
 - (BOOL) hasPublisher;
 - (BOOL) hasAuthor;
 - (BOOL) hasDate;
-@property (retain, readonly) NSString* title;
-@property (retain, readonly) NSString* url;
+@property (readonly, retain) NSString* title;
+@property (readonly, retain) NSString* url;
 @property (readonly) Float32 rating;
-@property (retain, readonly) NSString* snippet;
-@property (retain, readonly) NSString* content;
-@property (retain, readonly) NSString* publisher;
-@property (retain, readonly) NSString* author;
-@property (retain, readonly) NSString* date;
+@property (readonly, retain) NSString* snippet;
+@property (readonly, retain) NSString* content;
+@property (readonly, retain) NSString* publisher;
+@property (readonly, retain) NSString* author;
+@property (readonly, retain) NSString* date;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;

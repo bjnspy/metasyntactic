@@ -24,10 +24,10 @@
     NSMutableDictionary* synchronizationData;
 }
 
-@property (retain, readonly) NSMutableArray* movies;
-@property (retain, readonly) NSMutableArray* theaters;
-@property (retain, readonly) NSMutableDictionary* performances;
-@property (retain, readonly) NSMutableDictionary* synchronizationData;
+@property (readonly, retain) NSMutableArray* movies;
+@property (readonly, retain) NSMutableArray* theaters;
+@property (readonly, retain) NSMutableDictionary* performances;
+@property (readonly, retain) NSMutableDictionary* synchronizationData;
 
 + (LookupResult*) resultWithMovies:(NSMutableArray*) movies
                           theaters:(NSMutableArray*) theaters
