@@ -23,6 +23,12 @@
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
+@interface IMDbCache()
+@property (assign) NowPlayingModel* model;
+@property (retain) NSLock* gate;
+@end
+
+
 @implementation IMDbCache
 
 @synthesize model;
