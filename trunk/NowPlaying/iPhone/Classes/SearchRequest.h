@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface SearchRequest : NSObject {
+@private
     NSInteger requestId;
     NSString* value;
     NSString* lowercaseValue;
@@ -23,13 +24,13 @@
     NSArray* dvds;
 }
 
-@property NSInteger requestId;
-@property (copy) NSString* value;
-@property (copy) NSString* lowercaseValue;
-@property (retain) NSArray* movies;
-@property (retain) NSArray* theaters;
-@property (retain) NSArray* upcomingMovies;
-@property (retain) NSArray* dvds;
+@property (readonly) NSInteger requestId;
+@property (readonly, copy) NSString* value;
+@property (readonly, copy) NSString* lowercaseValue;
+@property (readonly, retain) NSArray* movies;
+@property (readonly, retain) NSArray* theaters;
+@property (readonly, retain) NSArray* upcomingMovies;
+@property (readonly, retain) NSArray* dvds;
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
                            value:(NSString*) value

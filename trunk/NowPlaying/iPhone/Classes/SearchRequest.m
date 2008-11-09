@@ -19,6 +19,17 @@
 #import "UpcomingCache.h"
 #import "Utilities.h"
 
+@interface SearchRequest()
+@property NSInteger requestId;
+@property (copy) NSString* value;
+@property (copy) NSString* lowercaseValue;
+@property (retain) NSArray* movies;
+@property (retain) NSArray* theaters;
+@property (retain) NSArray* upcomingMovies;
+@property (retain) NSArray* dvds;
+@end
+
+
 @implementation SearchRequest
 
 @synthesize requestId;
