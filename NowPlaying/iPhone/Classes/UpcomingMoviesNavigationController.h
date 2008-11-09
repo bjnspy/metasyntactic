@@ -15,10 +15,9 @@
 #import "AbstractNavigationController.h"
 
 @interface UpcomingMoviesNavigationController : AbstractNavigationController {
+@private
     UpcomingMoviesViewController* upcomingMoviesViewController;
 }
-
-@property (retain) UpcomingMoviesViewController* upcomingMoviesViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 

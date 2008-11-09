@@ -19,6 +19,11 @@
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 
+@interface UpcomingMoviesNavigationController()
+@property (retain) UpcomingMoviesViewController* upcomingMoviesViewController;
+@end
+
+
 @implementation UpcomingMoviesNavigationController
 
 @synthesize upcomingMoviesViewController;
