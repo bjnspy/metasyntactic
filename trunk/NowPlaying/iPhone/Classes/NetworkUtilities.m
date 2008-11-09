@@ -114,6 +114,8 @@ static PriorityMutex* mutex = nil;
                                          returningResponse:&response
                                                      error:&error];
 
+    // pause a bit so we don't saturate the network.
+    [NSThread sleepForTimeInterval:0.25];
     if (error != nil) {
         return nil;
     }

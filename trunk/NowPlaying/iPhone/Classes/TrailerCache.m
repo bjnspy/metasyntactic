@@ -176,7 +176,6 @@
                                  index:index
                              indexKeys:indexKeys
                                 engine:engine];
-            [NSThread sleepForTimeInterval:0.5];
         }
         [autoreleasePool release];
     } while (movie != nil);
