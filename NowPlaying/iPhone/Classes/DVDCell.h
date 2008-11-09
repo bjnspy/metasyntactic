@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface DVDCell : UITableViewCell {
+@private
     NowPlayingModel* model;
     UILabel* titleLabel;
     UILabel* directorTitleLabel;
@@ -31,22 +32,6 @@
 
     CGFloat titleWidth;
 }
-
-@property (retain) NowPlayingModel* model;
-@property (retain) UILabel* titleLabel;
-@property (retain) UILabel* directorTitleLabel;
-@property (retain) UILabel* castTitleLabel;
-@property (retain) UILabel* ratedTitleLabel;
-@property (retain) UILabel* genreTitleLabel;
-@property (retain) UILabel* formatTitleLabel;
-
-@property (retain) UILabel* directorLabel;
-@property (retain) UILabel* castLabel;
-@property (retain) UILabel* genreLabel;
-@property (retain) UILabel* ratedLabel;
-@property (retain) UILabel* formatLabel;
-
-@property (retain) UIImageView* imageView;
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier
