@@ -13,14 +13,11 @@
 // limitations under the License.
 
 @interface TheaterNameCell : UITableViewCell {
+@private
     NowPlayingModel* model;
     UILabel* nameLabel;
     UILabel* addressLabel;
 }
-
-@property (retain) NowPlayingModel* model;
-@property (retain) UILabel* nameLabel;
-@property (retain) UILabel* addressLabel;
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier
