@@ -14,6 +14,13 @@
 
 #import "PickerEditorViewController.h"
 
+@interface PickerEditorViewController()
+@property (retain) UIPickerView* picker;
+@property (retain) NSArray* values;
+@property (retain) UILabel* label;
+@end
+
+
 @implementation PickerEditorViewController
 
 @synthesize picker;

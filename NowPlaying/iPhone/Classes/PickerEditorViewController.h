@@ -15,14 +15,11 @@
 #import "EditorViewController.h"
 
 @interface PickerEditorViewController : EditorViewController<UIPickerViewDelegate> {
+@private
     UIPickerView* picker;
     NSArray* values;
     UILabel* label;
 }
-
-@property (retain) UIPickerView* picker;
-@property (retain) NSArray* values;
-@property (retain) UILabel* label;
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
                     title:(NSString*) title
