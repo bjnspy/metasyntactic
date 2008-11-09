@@ -18,6 +18,13 @@
 #import "ImageCache.h"
 #import "Performance.h"
 
+@interface MovieShowtimesCell()
+@property (retain) UILabel* showtimesLabel;
+@property (retain) NSArray* showtimes;
+@property BOOL useSmallFonts;
+@end
+
+
 @implementation MovieShowtimesCell
 
 @synthesize showtimesLabel;
