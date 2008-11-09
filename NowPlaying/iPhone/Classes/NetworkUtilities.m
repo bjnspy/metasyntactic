@@ -30,7 +30,7 @@ static PriorityMutex* mutex = nil;
 
 + (NSString*) stringWithContentsOfAddress:(NSString*) address
                                 important:(BOOL) important {
-    if (address == nil) {
+    if (address.length == 0) {
         return nil;
     }
 
@@ -63,7 +63,7 @@ static PriorityMutex* mutex = nil;
 
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address
                                important:(BOOL) important {
-    if (address == nil) {
+    if (address.length == 0) {
         return nil;
     }
 
@@ -86,7 +86,7 @@ static PriorityMutex* mutex = nil;
 
 + (NSData*) dataWithContentsOfAddress:(NSString*) address
                             important:(BOOL) important {
-    if (address == nil) {
+    if (address.length == 0) {
         return nil;
     }
 

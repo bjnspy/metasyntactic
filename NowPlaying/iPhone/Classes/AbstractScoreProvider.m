@@ -499,7 +499,13 @@
     Movie* movie = [prioritizedMovies removeLastObjectAdded];
     Score* score = [self.scores objectForKey:[self.movieMap objectForKey:movie.canonicalTitle]];
     if (score != nil) {
-        return score;
+        NSString* file = [self reviewsFile:score.canonicalTitle];
+        NSDate* lastLookupDate = [FileUtilities modificationDate:file];
+     
+        // only process this movie if we've got no data for it.
+        if (lastLookupDate == nil) {
+            return score;
+        }
     }
 
     if (scores.count > 0) {
