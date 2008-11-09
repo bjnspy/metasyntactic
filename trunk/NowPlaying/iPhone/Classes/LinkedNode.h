@@ -19,7 +19,7 @@
     LinkedNode* next;
 }
 
-@property (retain) id value;
+@property (readonly, retain) id value;
 @property (retain) LinkedNode* previous;
 @property (retain) LinkedNode* next;
 
