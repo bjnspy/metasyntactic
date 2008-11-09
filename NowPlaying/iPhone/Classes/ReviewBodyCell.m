@@ -18,6 +18,12 @@
 #import "Review.h"
 #import "Utilities.h"
 
+@interface ReviewBodyCell()
+@property (retain) Review* review;
+@property (retain) UILabel* label;
+@end
+
+
 @implementation ReviewBodyCell
 
 @synthesize review;
