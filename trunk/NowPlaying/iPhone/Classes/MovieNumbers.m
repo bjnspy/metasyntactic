@@ -16,6 +16,18 @@
 
 #import "Movie.h"
 
+@interface MovieNumbers()
+@property (copy) NSString* identifier;
+@property (copy) NSString* canonicalTitle;
+@property NSInteger currentRank;
+@property NSInteger previousRank;
+@property NSInteger currentGross;
+@property NSInteger totalGross;
+@property NSInteger theaters;
+@property NSInteger days;
+@end
+
+
 @implementation MovieNumbers
 
 @synthesize identifier;
