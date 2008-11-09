@@ -16,6 +16,12 @@
 
 #import "ColorCache.h"
 
+@interface AttributeCell()
+@property (retain) UILabel* keyLabel;
+@property (retain) UILabel* valueLabel;
+@end
+
+
 @implementation AttributeCell
 
 @synthesize keyLabel;
