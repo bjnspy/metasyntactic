@@ -194,7 +194,7 @@
         frame.size.width = titleWidth;
         label.frame = frame;
     }
-    for (NSArray* labels in titleToValueLabels.dictionary.allValues) {
+    for (NSArray* labels in titleToValueLabels.allValues) {
         for (UILabel* label in labels) {
             CGRect frame = label.frame;
             frame.origin.x = titleWidth + 7;
@@ -253,7 +253,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    for (NSArray* labels in titleToValueLabels.dictionary.allValues) {
+    for (NSArray* labels in titleToValueLabels.allValues) {
         for (UILabel* label in labels) {
             CGRect frame = label.frame;
             frame.size.width = MIN(frame.size.width, self.contentView.frame.size.width - frame.origin.x);

@@ -14,6 +14,10 @@
 
 #import "MultiDictionary.h"
 
+@interface MultiDictionary()
+@property (retain) NSMutableDictionary* dictionary;
+@end
+
 @implementation MultiDictionary
 
 @synthesize dictionary;
@@ -76,6 +80,11 @@
 
 - (NSArray*) allKeys {
     return [dictionary allKeys];
+}
+
+
+- (NSArray*) allValues {
+    return [dictionary allValues];
 }
 
 

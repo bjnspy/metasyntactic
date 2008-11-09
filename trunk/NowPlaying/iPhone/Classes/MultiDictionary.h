@@ -13,10 +13,9 @@
 // limitations under the License.
 
 @interface MultiDictionary : NSObject {
+@private
     NSMutableDictionary* dictionary;
 }
-
-@property (retain) NSMutableDictionary* dictionary;
 
 + (MultiDictionary*) dictionary;
 
@@ -30,6 +29,9 @@
 - (NSMutableArray*) mutableObjectsForKey:(id) key;
 
 - (NSArray*) allKeys;
+
+// returns an array of arrays;
+- (NSArray*) allValues;
 
 - (void) removeObjectsForKey:(id) key;
 
