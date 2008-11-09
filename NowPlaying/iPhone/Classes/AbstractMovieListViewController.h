@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface AbstractMovieListViewController : UITableViewController {
+@protected
     AbstractNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
 
@@ -22,13 +23,6 @@
 
     NSArray* alphabeticSectionTitles;
 }
-
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) NSArray* sortedMovies;
-@property (retain) UISegmentedControl* segmentedControl;
-@property (retain) NSMutableArray* sectionTitles;
-@property (retain) MultiDictionary* sectionTitleToContentsMap;
-@property (retain) NSArray* alphabeticSectionTitles;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 

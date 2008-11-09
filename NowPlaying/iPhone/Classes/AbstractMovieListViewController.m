@@ -23,6 +23,16 @@
 #import "NowPlayingModel.h"
 #import "Utilities.h"
 
+@interface AbstractMovieListViewController()
+@property (assign) AbstractNavigationController* navigationController;
+@property (retain) NSArray* sortedMovies;
+@property (retain) UISegmentedControl* segmentedControl;
+@property (retain) NSMutableArray* sectionTitles;
+@property (retain) MultiDictionary* sectionTitleToContentsMap;
+@property (retain) NSArray* alphabeticSectionTitles;
+@end
+
+
 @implementation AbstractMovieListViewController
 
 @synthesize navigationController;
@@ -68,8 +78,9 @@
 }
 
 
-- (void) setupSegmentedControl {
+- (UISegmentedControl*) setupSegmentedControl {
     NSAssert(false, @"Someone subclassed incorrectly");
+    return nil;
 }
 
 
@@ -235,7 +246,9 @@
 
         self.sortedMovies = [NSArray array];
 
-        [self setupSegmentedControl];
+        self.segmentedControl = [self setupSegmentedControl];
+        self.navigationItem.titleView = segmentedControl;
+
         [self initializeSearchButton];
 
         self.alphabeticSectionTitles =

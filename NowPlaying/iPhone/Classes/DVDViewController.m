@@ -21,11 +21,7 @@
 
 @implementation DVDViewController
 
-@synthesize navigationController;
-
 - (void) dealloc {
-    self.navigationController = nil;
-
     [super dealloc];
 }
 
@@ -57,24 +53,24 @@
 }
 
 
-- (void) setupSegmentedControl {
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+- (UISegmentedControl*) setupSegmentedControl {
+    UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Release", nil),
                                NSLocalizedString(@"Title", nil), nil]] autorelease];
 
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    segmentedControl.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
+    control.segmentedControlStyle = UISegmentedControlStyleBar;
+    control.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
 
-    [segmentedControl addTarget:self
+    [control addTarget:self
                          action:@selector(onSortOrderChanged:)
                forControlEvents:UIControlEventValueChanged];
 
-    CGRect rect = segmentedControl.frame;
+    CGRect rect = control.frame;
     rect.size.width = 240;
-    segmentedControl.frame = rect;
-
-    self.navigationItem.titleView = segmentedControl;
+    control.frame = rect;
+    
+    return control;
 }
 
 
