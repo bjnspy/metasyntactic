@@ -13,12 +13,10 @@
 // limitations under the License.
 
 @interface WarningView : UIView {
+@private
     UIImageView* imageView;
     UILabel* label;
 }
-
-@property (retain) UIImageView* imageView;
-@property (retain) UILabel* label;
 
 + (WarningView*) view:(NSString*) text;
 
