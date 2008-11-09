@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface LookupResult : NSObject {
+@private
     NSMutableArray* movies;
     NSMutableArray* theaters;
 
@@ -23,10 +24,10 @@
     NSMutableDictionary* synchronizationData;
 }
 
-@property (retain) NSMutableArray* movies;
-@property (retain) NSMutableArray* theaters;
-@property (retain) NSMutableDictionary* performances;
-@property (retain) NSMutableDictionary* synchronizationData;
+@property (retain, readonly) NSMutableArray* movies;
+@property (retain, readonly) NSMutableArray* theaters;
+@property (retain, readonly) NSMutableDictionary* performances;
+@property (retain, readonly) NSMutableDictionary* synchronizationData;
 
 + (LookupResult*) resultWithMovies:(NSMutableArray*) movies
                           theaters:(NSMutableArray*) theaters

@@ -14,6 +14,13 @@
 
 #import "LookupResult.h"
 
+@interface LookupResult()
+@property (retain) NSMutableArray* movies;
+@property (retain) NSMutableArray* theaters;
+@property (retain) NSMutableDictionary* performances;
+@property (retain) NSMutableDictionary* synchronizationData;
+@end
+
 @implementation LookupResult
 
 @synthesize movies;
