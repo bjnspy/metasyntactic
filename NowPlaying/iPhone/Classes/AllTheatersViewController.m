@@ -24,6 +24,16 @@
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
 
+@interface AllTheatersViewController()
+@property (assign) TheatersNavigationController* navigationController;
+@property (retain) UISegmentedControl* segmentedControl;
+@property (retain) NSArray* sortedTheaters;
+@property (retain) NSMutableArray* sectionTitles;
+@property (retain) MultiDictionary* sectionTitleToContentsMap;
+@property (retain) NSArray* alphabeticSectionTitles;
+@end
+
+
 @implementation AllTheatersViewController
 
 @synthesize navigationController;
