@@ -13,15 +13,12 @@
 // limitations under the License.
 
 @interface MovieShowtimesCell : UITableViewCell {
+@private
     UILabel* showtimesLabel;
 
     NSArray* showtimes;
     BOOL useSmallFonts;
 }
-
-@property (retain) UILabel* showtimesLabel;
-@property (retain) NSArray* showtimes;
-@property BOOL useSmallFonts;
 
 - (void) setStale:(BOOL) stale;
 - (void) setShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts;
