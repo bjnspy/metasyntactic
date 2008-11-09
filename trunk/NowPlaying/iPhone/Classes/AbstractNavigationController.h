@@ -13,11 +13,11 @@
 // limitations under the License.
 
 @interface AbstractNavigationController : UINavigationController {
+@private
     ApplicationTabBarController* tabBarController;
     SearchViewController* searchViewController;
     PostersViewController* postersViewController;
     BOOL viewLoaded;
-    BOOL showingSearch;
 }
 
 @property (assign) ApplicationTabBarController* tabBarController;

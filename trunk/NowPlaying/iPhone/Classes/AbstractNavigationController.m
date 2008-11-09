@@ -43,7 +43,6 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super init]) {
         self.tabBarController = controller;
-        showingSearch = NO;
     }
 
     return self;
