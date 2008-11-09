@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface ActionsView : UIView {
+@private
     id target;
     NSArray* selectors;
     NSArray* titles;
@@ -21,11 +22,6 @@
 
     CGFloat height;
 }
-
-@property (assign) id target;
-@property (retain) NSArray* selectors;
-@property (retain) NSArray* titles;
-@property (retain) NSArray* buttons;
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
