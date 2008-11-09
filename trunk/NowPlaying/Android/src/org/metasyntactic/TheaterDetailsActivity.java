@@ -34,26 +34,26 @@ public class TheaterDetailsActivity extends Activity {
   /** Called when the activity is first created. */
   NowPlayingControllerWrapper controller;
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.moviedetails);
-    final Movie movie = this.getIntent().getExtras().getParcelable("movie");
-    controller = NowPlayingActivity.instance.getController();
-    TextView title = (TextView) findViewById(R.id.header);
-    ImageView poster = (ImageView) findViewById(R.id.poster);
-    TextView desc1 = (TextView) findViewById(R.id.desc1);
-    TextView desc2 = (TextView) findViewById(R.id.desc2);
-    TextView rating_length = (TextView) findViewById(R.id.rated_length);
-    Button trailerbtn = (Button) findViewById(R.id.trailerbtn);
-    Button imdbbtn = (Button) findViewById(R.id.imdbbtn);
-    Button reviewsbtn = (Button) findViewById(R.id.reviewsbtn);
-    title.setText(movie.getDisplayTitle());
-    if (controller.getPoster(movie).getBytes().length > 0) {
-      poster.setImageBitmap(BitmapFactory.decodeByteArray(controller
-          .getPoster(movie).getBytes(), 0, controller
-          .getPoster(movie).getBytes().length));
-    }
+   @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.moviedetails);
+        final Movie movie = this.getIntent().getExtras().getParcelable("movie");
+        controller = NowPlayingActivity_old.instance.getController();
+        TextView title = (TextView) findViewById(R.id.header);
+        ImageView poster = (ImageView) findViewById(R.id.poster);
+        TextView desc1 = (TextView) findViewById(R.id.desc1);
+        TextView desc2 = (TextView) findViewById(R.id.desc2);
+        TextView rating_length = (TextView) findViewById(R.id.rated_length);
+        Button trailerbtn = (Button) findViewById(R.id.trailerbtn);
+        Button imdbbtn = (Button) findViewById(R.id.imdbbtn);
+        Button reviewsbtn = (Button) findViewById(R.id.reviewsbtn);
+        title.setText(movie.getDisplayTitle());
+        if (controller.getPoster(movie).getBytes().length > 0) {
+            poster.setImageBitmap(BitmapFactory.decodeByteArray(controller
+                    .getPoster(movie).getBytes(), 0, controller
+                    .getPoster(movie).getBytes().length));
+
     String synopsis = controller.getSynopsis(movie);
     if (synopsis.length() > 0) {
       // hack to display text on left and bottom or poster
@@ -66,28 +66,67 @@ public class TheaterDetailsActivity extends Activity {
         desc1.setText(synopsis);
       }
     }
-    CharSequence rating = MovieViewUtilities.formatRatings(movie
-        .getRating(), NowPlayingActivity.instance.getResources());
-    CharSequence length = MovieViewUtilities.formatLength(movie.getLength(),
-                                                          NowPlayingActivity.instance.getResources());
-    rating_length.setText(rating.toString() + " " + length.toString());
-    trailerbtn.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        String trailer_url = null;
-        if (controller.getTrailers(movie).size() > 0) {
-          trailer_url = controller.getTrailers(movie).get(0);
-        }
-        if (trailer_url != null) {
-          Intent intent = new Intent();
-          intent.putExtra("trailer_url", trailer_url);
-          intent.setClass(TheaterDetailsActivity.this, VideoViewActivity.class);
-          startActivity(intent);
-        } else {
-          Toast.makeText(TheaterDetailsActivity.this, "This movie's trailer is not available.",
-                         Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
+  
+        CharSequence rating = MovieViewUtilities.formatRatings(movie
+                .getRating(), NowPlayingActivity_old.instance.getResources());
+        CharSequence length = MovieViewUtilities.formatLength(
+                movie.getLength(), NowPlayingActivity_old.instance.getResources());
+        rating_length.setText(rating.toString() + " " + length.toString());
+        trailerbtn.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                String trailer_url = null;
+                if (controller.getTrailers(movie).size() > 0) {
+                    trailer_url = controller.getTrailers(movie).get(0);
+                }
+                if (trailer_url != null) {
+                    Intent intent = new Intent();
+                    intent.putExtra("trailer_url", trailer_url);
+                    intent.setClass(TheaterDetailsActivity.this,
+                            VideoViewActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(TheaterDetailsActivity.this,
+                            "This movie's trailer is not available.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        imdbbtn.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                String imdb_url = null;
+                imdb_url = controller.getImdbAddress(movie);
+                if (imdb_url != null) {
+                    Intent intent = new Intent();
+                    intent.putExtra("imdb_url", imdb_url);
+                    intent.setClass(TheaterDetailsActivity.this,
+                            WebViewActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(TheaterDetailsActivity.this,
+                            "This movie's IMDB information is not available.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        reviewsbtn.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                ArrayList<Review> reviews = (ArrayList) controller
+                        .getReviews(movie);
+                if (reviews != null && reviews.size() > 0) {
+                    Intent intent = new Intent();
+                    intent.putParcelableArrayListExtra("reviews", reviews);
+                    intent.setClass(TheaterDetailsActivity.this,
+                            AllReviewsActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(TheaterDetailsActivity.this,
+                            "This movie's reviews are not yet available.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     imdbbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
         String imdb_url = null;

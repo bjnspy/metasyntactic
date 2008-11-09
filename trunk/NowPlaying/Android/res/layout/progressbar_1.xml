@@ -15,11 +15,19 @@
  * limitations under the License.
  -->
 
-<resources>
-   
-	<drawable name="screen_background_orange">#8b431b00</drawable>
-    <drawable name="alternate_background">#000000bb</drawable>
-    <drawable name="transparent_background">#00000000</drawable>
-    
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <ProgressBar android:id="@+id/progress_horizontal"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+       
+         />
+
   
-</resources>
+
+</LinearLayout>

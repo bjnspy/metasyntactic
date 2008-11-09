@@ -35,22 +35,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllMoviesActivity_old extends ListActivity {
+
+    private NowPlayingActivity_old activity;
+    private List<Movie> movies = new ArrayList<Movie>();
+    private static MoviesAdapter mAdapter;
+    private static Context mContext;
+
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
+
 
   private static MoviesAdapter adapter;
   private static Context context;
 
-  private NowPlayingActivity activity;
-  private List<Movie> movies = new ArrayList<Movie>();
 
+ 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
-    activity = (NowPlayingActivity) getParent();
+    activity = (NowPlayingActivity_old) getParent();
     context = this;
-
     // Set up Movies adapter
     adapter = new MoviesAdapter(this);
     setListAdapter(adapter);
