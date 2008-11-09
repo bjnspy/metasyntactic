@@ -13,12 +13,10 @@
 // limitations under the License.
 
 @interface ReviewBodyCell : UITableViewCell {
+@private
     Review* review;
     UILabel* label;
 }
-
-@property (retain) Review* review;
-@property (retain) UILabel* label;
 
 - (void) setReview:(Review*) review;
 
