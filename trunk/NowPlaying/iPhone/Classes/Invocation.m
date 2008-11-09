@@ -14,6 +14,12 @@
 
 #import "Invocation.h"
 
+@interface Invocation()
+@property (retain) id target;
+@property SEL selector;
+@property (retain) id argument;
+@end
+
 
 @implementation Invocation
 

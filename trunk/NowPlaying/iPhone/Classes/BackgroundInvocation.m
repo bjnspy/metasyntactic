@@ -77,7 +77,7 @@
     [gate lock];
     [GlobalActivityIndicator addBackgroundTask:visible];
     {
-        [target performSelector:selector withObject:argument];
+        [self.target performSelector:self.selector withObject:self.argument];
     }
     [GlobalActivityIndicator removeBackgroundTask:visible];
     [gate unlock];

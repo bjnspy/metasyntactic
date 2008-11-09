@@ -13,14 +13,15 @@
 // limitations under the License.
 
 @interface Invocation : NSObject {
+@private
     id target;
     SEL selector;
     id argument;
 }
 
-@property (retain) id target;
-@property SEL selector;
-@property (retain) id argument;
+@property (readonly, retain) id target;
+@property (readonly) SEL selector;
+@property (readonly, retain) id argument;
 
 + (Invocation*) invocationWithTarget:(id) target
                             selector:(SEL) selector
