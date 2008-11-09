@@ -15,12 +15,10 @@
 #import "EditorViewController.h"
 
 @interface TextFieldEditorViewController : EditorViewController<UITextFieldDelegate> {
+@private
     UITextField* textField;
     UILabel* messageLabel;
 }
-
-@property (retain) UITextField* textField;
-@property (retain) UILabel* messageLabel;
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
                     title:(NSString*) title

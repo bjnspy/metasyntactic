@@ -14,6 +14,11 @@
 
 #import "TextFieldEditorViewController.h"
 
+@interface TextFieldEditorViewController()
+@property (retain) UITextField* textField;
+@property (retain) UILabel* messageLabel;
+@end
+
 @implementation TextFieldEditorViewController
 
 @synthesize textField;
