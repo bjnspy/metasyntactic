@@ -19,6 +19,11 @@
 #import "Movie.h"
 #import "NowPlayingModel.h"
 
+@interface DVDNavigationController()
+@property (retain) DVDViewController* dvdViewController;
+@end
+
+
 @implementation DVDNavigationController
 
 @synthesize dvdViewController;
