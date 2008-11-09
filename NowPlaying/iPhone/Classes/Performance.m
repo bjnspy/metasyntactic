@@ -16,6 +16,11 @@
 
 #import "Utilities.h"
 
+@interface Performance()
+@property (copy) NSString* time;
+@property (copy) NSString* url;
+@end
+
 @implementation Performance
 
 property_definition(time);
