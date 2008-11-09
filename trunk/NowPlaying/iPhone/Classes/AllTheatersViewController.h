@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface AllTheatersViewController : UITableViewController {
+@private
     TheatersNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
 
@@ -22,13 +23,6 @@
 
     NSArray* alphabeticSectionTitles;
 }
-
-@property (assign) TheatersNavigationController* navigationController;
-@property (retain) UISegmentedControl* segmentedControl;
-@property (retain) NSArray* sortedTheaters;
-@property (retain) NSMutableArray* sectionTitles;
-@property (retain) MultiDictionary* sectionTitleToContentsMap;
-@property (retain) NSArray* alphabeticSectionTitles;
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
 
