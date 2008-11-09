@@ -15,10 +15,9 @@
 #import "LocationCache.h"
 
 @interface UserLocationCache : LocationCache {
+@private
     NSLock* gate;
 }
-
-@property (retain) NSLock* gate;
 
 + (UserLocationCache*) cache;
 

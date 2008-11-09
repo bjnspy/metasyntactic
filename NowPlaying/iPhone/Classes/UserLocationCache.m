@@ -20,6 +20,11 @@
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
+@interface UserLocationCache()
+@property (retain) NSLock* gate;
+@end
+
+
 @implementation UserLocationCache
 
 @synthesize gate;
