@@ -15,10 +15,9 @@
 #import "AbstractNavigationController.h"
 
 @interface SettingsNavigationController : AbstractNavigationController {
+@private
     SettingsViewController* viewController;
 }
-
-@property (retain) SettingsViewController* viewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 

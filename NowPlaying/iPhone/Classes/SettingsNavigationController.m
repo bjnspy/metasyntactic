@@ -16,6 +16,11 @@
 
 #import "SettingsViewController.h"
 
+@interface SettingsNavigationController()
+@property (retain) SettingsViewController* viewController;
+@end
+
+
 @implementation SettingsNavigationController
 
 @synthesize viewController;
