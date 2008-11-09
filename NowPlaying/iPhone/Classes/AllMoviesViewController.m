@@ -68,7 +68,7 @@
     CGRect rect = control.frame;
     rect.size.width = 240;
     control.frame = rect;
-    
+
     return control;
 }
 
