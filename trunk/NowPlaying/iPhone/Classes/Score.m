@@ -17,6 +17,15 @@
 #import "Movie.h"
 #import "Utilities.h"
 
+@interface Score()
+@property (copy) NSString* canonicalTitle;
+@property (copy) NSString* synopsis;
+@property (copy) NSString* score;
+@property (copy) NSString* provider;
+@property (copy) NSString* identifier;
+@end
+
+
 @implementation Score
 
 property_definition(canonicalTitle);
