@@ -13,12 +13,13 @@
 // limitations under the License.
 
 @interface Performance : NSObject {
+@private
     NSString* time;
     NSString* url;
 }
 
-@property (copy) NSString* time;
-@property (copy) NSString* url;
+@property (readonly, copy) NSString* time;
+@property (readonly, copy) NSString* url;
 
 + (Performance*) performanceWithDictionary:(NSDictionary*) dictionary;
 + (Performance*) performanceWithTime:(NSString*) time
