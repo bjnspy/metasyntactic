@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface Theater : NSObject {
+@private
     NSString* identifier;
     NSString* name;
     NSString* phoneNumber;
@@ -23,12 +24,12 @@
     NSArray* movieTitles;
 }
 
-@property (copy) NSString* identifier;
-@property (copy) NSString* name;
-@property (copy) NSString* phoneNumber;
-@property (retain) Location* location;
-@property (retain) Location* originatingLocation;
-@property (retain) NSArray* movieTitles;
+@property (readonly, copy) NSString* identifier;
+@property (readonly, copy) NSString* name;
+@property (readonly, copy) NSString* phoneNumber;
+@property (readonly, retain) Location* location;
+@property (readonly, retain) Location* originatingLocation;
+@property (readonly, retain) NSArray* movieTitles;
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
