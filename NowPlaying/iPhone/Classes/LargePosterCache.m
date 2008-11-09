@@ -22,6 +22,11 @@
 #import "NowPlayingAppDelegate.h"
 #import "ThreadingUtilities.h"
 
+@interface LargePosterCache()
+@property (retain) NSLock* gate;
+@property (retain) NSDictionary* indexData;
+@end
+
 @implementation LargePosterCache
 
 @synthesize gate;

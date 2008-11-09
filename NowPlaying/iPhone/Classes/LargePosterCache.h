@@ -13,12 +13,10 @@
 // limitations under the License.
 
 @interface LargePosterCache : NSObject {
+@private
     NSLock* gate;
     NSDictionary* indexData;
 }
-
-@property (retain) NSLock* gate;
-@property (retain) NSDictionary* indexData;
 
 + (LargePosterCache*) cache;
 
