@@ -13,17 +13,13 @@
 // limitations under the License.
 
 @interface MovieTitleCell : UITableViewCell {
+@private
     NowPlayingModel* model;
     UITableViewStyle style;
     UILabel* scoreLabel;
     UILabel* titleLabel;
     UILabel* ratingLabel;
 }
-
-@property (retain) NowPlayingModel* model;
-@property (retain) UILabel* scoreLabel;
-@property (retain) UILabel* titleLabel;
-@property (retain) UILabel* ratingLabel;
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier
