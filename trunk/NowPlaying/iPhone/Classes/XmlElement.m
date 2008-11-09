@@ -14,6 +14,14 @@
 
 #import "XmlElement.h"
 
+@interface XmlElement()
+@property (copy) NSString* name;
+@property (retain) NSDictionary* attributes;
+@property (retain) NSArray* children;
+@property (copy) NSString* text;
+@end
+
+
 @implementation XmlElement
 
 property_definition(name);
