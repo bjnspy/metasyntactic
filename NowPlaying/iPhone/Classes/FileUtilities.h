@@ -25,11 +25,12 @@
 + (NSString*) sanitizeFileName:(NSString*) name;
 
 + (NSDate*) modificationDate:(NSString*) file;
++ (unsigned long long) size:(NSString*) file;
+
 + (void) removeItem:(NSString*) path;
 + (BOOL) fileExists:(NSString*) path;
 + (void) moveItem:(NSString*) from to:(NSString*) to;
 
-+ (NSArray*) directoryContentsNames:(NSString*) directory;
 + (NSArray*) directoryContentsPaths:(NSString*) directory;
 
 @end

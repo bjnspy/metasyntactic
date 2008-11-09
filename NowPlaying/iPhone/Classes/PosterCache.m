@@ -127,7 +127,13 @@
     }
 
     [self.model.largePosterCache downloadFirstPosterForMovie:movie];
-
+    
+    // if we had a network connection, then it means we don't know of any
+    // posters for this movie.  record that fact and try again another time
+    if ([NetworkUtilities isNetworkAvailable]) {
+        return [NSData data];
+    }
+    
     return nil;
 }
 
@@ -141,7 +147,18 @@
     NSString* path = [self posterFilePath:movie];
 
     if ([FileUtilities fileExists:path]) {
-        return;
+        if ([FileUtilities size:path] > 0) {
+            // already have a real poster.
+            return;
+        }
+        
+        if ([FileUtilities size:path] == 0) {
+            // sentinel value.  only update if it's been long enough.
+            NSDate* modificationDate = [FileUtilities modificationDate:path];
+            if (ABS(modificationDate.timeIntervalSinceNow) < 3 * ONE_DAY) {
+                return;
+            }
+        }
     }
 
     NSData* data = [self downloadPosterWorker:movie postalCode:postalCode];

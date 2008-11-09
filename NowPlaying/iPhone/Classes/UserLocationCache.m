@@ -55,7 +55,7 @@
                                onTarget:self
                inBackgroundWithArgument:userAddress
                                    gate:gate
-                                visible:NO];
+                                visible:YES];
 }
 
 
