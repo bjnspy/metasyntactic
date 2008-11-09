@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface XmlElement : NSObject {
+@private
     NSString* name;
     NSDictionary* attributes;
     NSArray* children;
@@ -20,10 +21,10 @@
     NSString* text;
 }
 
-@property (copy) NSString* name;
-@property (retain) NSDictionary* attributes;
-@property (retain) NSArray* children;
-@property (copy) NSString* text;
+@property (readonly, copy) NSString* name;
+@property (readonly, retain) NSDictionary* attributes;
+@property (readonly, retain) NSArray* children;
+@property (readonly, copy) NSString* text;
 
 + (id) elementWithName:(NSString*) name;
 
