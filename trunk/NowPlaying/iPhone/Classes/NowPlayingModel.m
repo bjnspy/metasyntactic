@@ -49,6 +49,19 @@
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
+@interface NowPlayingModel()
+@property (retain) UserLocationCache* userLocationCache;
+@property (retain) DVDCache* dvdCache;
+@property (retain) IMDbCache* imdbCache;
+@property (retain) PosterCache* posterCache;
+@property (retain) LargePosterCache* largePosterCache;
+@property (retain) ScoreCache* scoreCache;
+@property (retain) TrailerCache* trailerCache;
+@property (retain) UpcomingCache* upcomingCache;
+@property (retain) NSMutableArray* favoriteTheatersData;
+@property (retain) id<DataProvider> dataProvider;
+@end
+
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"2.3.0";
