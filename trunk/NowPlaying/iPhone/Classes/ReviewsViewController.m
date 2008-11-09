@@ -23,6 +23,13 @@
 #import "ReviewTitleCell.h"
 #import "Utilities.h"
 
+@interface ReviewsViewController()
+@property (assign) AbstractNavigationController* navigationController;
+@property (retain) Movie* movie;
+@property (retain) NSArray* reviews;
+@end
+
+
 @implementation ReviewsViewController
 
 @synthesize navigationController;

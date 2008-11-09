@@ -13,15 +13,12 @@
 // limitations under the License.
 
 @interface ReviewsViewController :  UITableViewController {
+@private
     AbstractNavigationController* navigationController;
 
     Movie* movie;
     NSArray* reviews;
 }
-
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) Movie* movie;
-@property (retain) NSArray* reviews;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) controller
                               movie:(Movie*) movie;
