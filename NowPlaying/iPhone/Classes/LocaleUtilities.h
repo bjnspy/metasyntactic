@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface LocaleUtilities : NSObject {
-
 }
 
 + (NSString*) isoCountry;

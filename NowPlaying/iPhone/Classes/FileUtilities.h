@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface FileUtilities : NSObject {
-
 }
 
 + (void) writeObject:(id) object toFile:(NSString*) file;

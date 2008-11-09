@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @interface Utilities : NSObject {
-
 }
 
 + (id) findSmallestElementInArray:(NSArray*) array
