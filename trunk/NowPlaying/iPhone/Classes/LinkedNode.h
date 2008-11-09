@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface LinkedNode : NSObject {
+@private
     id value;
     LinkedNode* previous;
     LinkedNode* next;
