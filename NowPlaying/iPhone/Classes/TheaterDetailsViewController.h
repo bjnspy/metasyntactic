@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @interface TheaterDetailsViewController : UITableViewController {
+@private
     AbstractNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
     UIButton* favoriteButton;
@@ -21,13 +22,6 @@
     NSArray* movies;
     NSMutableArray* movieShowtimes;
 }
-
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) UISegmentedControl* segmentedControl;
-@property (retain) UIButton* favoriteButton;
-@property (retain) Theater* theater;
-@property (retain) NSArray* movies;
-@property (retain) NSMutableArray* movieShowtimes;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                             theater:(Theater*) theater;
