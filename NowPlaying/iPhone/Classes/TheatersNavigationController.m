@@ -44,7 +44,7 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
     [self pushViewController:allTheatersViewController animated:NO];
 }
@@ -54,7 +54,7 @@
     if (visible) {
         return;
     }
-    
+
     self.allTheatersViewController = nil;
     [super didReceiveMemoryWarning];
 }

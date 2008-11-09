@@ -41,7 +41,7 @@
     TappableImageView* posterImageView;
     ActivityIndicatorViewWithBackground* posterActivityView;
     NSInteger posterCount;
-    
+
     BOOL visible;
 }
 

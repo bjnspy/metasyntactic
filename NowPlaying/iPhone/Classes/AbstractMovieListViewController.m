@@ -253,12 +253,12 @@
     [super loadView];
 
     self.sortedMovies = [NSArray array];
-    
+
     self.segmentedControl = [self setupSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
-    
+
     [self initializeSearchButton];
-    
+
     self.alphabeticSectionTitles =
     [NSArray arrayWithObjects:
      @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
@@ -271,13 +271,13 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     self.segmentedControl = nil;
     self.sortedMovies = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.alphabeticSectionTitles = nil;
-    
+
     [super didReceiveMemoryWarning];
 }
 

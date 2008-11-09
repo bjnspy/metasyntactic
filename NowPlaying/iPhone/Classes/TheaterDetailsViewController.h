@@ -22,7 +22,7 @@
 
     NSArray* movies;
     NSMutableArray* movieShowtimes;
-    
+
     BOOL visible;
 }
 

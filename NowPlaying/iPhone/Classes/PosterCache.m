@@ -202,13 +202,18 @@
     if (postalCode == nil || ![@"US" isEqual:location.country]) {
         postalCode = @"10009";
     }
-    
+
     [self downloadPosters:moviesWithPosterLinks postalCode:postalCode];
     [self downloadPosters:moviesWithoutPosterLinks postalCode:postalCode];
 }
 
 
 - (void) prioritizeMovie:(Movie*) movie {
+    // Only prioritize this movie if we don't have a poster
+    if ([FileUtilities fileExists:[self posterFilePath:movie]]) {
+        return;
+    }
+
     [prioritizedMovies addObject:movie];
 }
 

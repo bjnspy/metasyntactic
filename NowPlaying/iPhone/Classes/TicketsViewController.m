@@ -101,11 +101,11 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
     label.text = self.title;
-    
-    self.navigationItem.titleView = label;    
+
+    self.navigationItem.titleView = label;
 }
 
 
@@ -124,9 +124,9 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     self.performances = nil;
-    
+
     [super didReceiveMemoryWarning];
 }
 

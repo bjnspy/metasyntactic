@@ -425,7 +425,7 @@ static NSString* titles_key = @"Titles";
 
     NSString* synopsis = @"";
     NSMutableArray* cast = [NSMutableArray array];
-    
+
     NSArray* components = [result componentsSeparatedByString:@"\n"];
     if (components.count > 0) {
         synopsis = [components objectAtIndex:0];

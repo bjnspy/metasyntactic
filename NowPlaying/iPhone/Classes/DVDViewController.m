@@ -90,7 +90,7 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     self.title = NSLocalizedString(@"DVD", nil);
     self.tableView.rowHeight = 100;
 }
@@ -100,7 +100,7 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     [super didReceiveMemoryWarning];
 }
 

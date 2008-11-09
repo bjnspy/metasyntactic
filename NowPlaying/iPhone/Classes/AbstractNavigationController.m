@@ -60,7 +60,7 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     viewLoaded = YES;
     self.view.autoresizesSubviews = YES;
 }
@@ -93,7 +93,7 @@
     if (visible) {
         return;
     }
-    
+
     viewLoaded = NO;
     [super didReceiveMemoryWarning];
 }

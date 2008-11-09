@@ -189,6 +189,12 @@
 
 
 - (void) prioritizeMovie:(Movie*) movie {
+    // only prioritize this movie if we don't already have a
+    // trailer for it.
+    if ([FileUtilities fileExists:[self trailerFile:movie]]) {
+        return;
+    }
+
     [prioritizedMovies addObject:movie];
 }
 

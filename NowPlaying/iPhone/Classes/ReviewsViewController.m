@@ -70,7 +70,7 @@
     [super loadView];
 
     self.title = NSLocalizedString(@"Reviews", nil);
-    
+
     self.reviews = [self.model reviewsForMovie:movie];
 }
 
@@ -90,7 +90,7 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     self.reviews = nil;
 
     [super didReceiveMemoryWarning];

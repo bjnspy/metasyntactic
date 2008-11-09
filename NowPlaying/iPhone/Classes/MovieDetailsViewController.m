@@ -234,15 +234,15 @@
     [super loadView];
 
     self.dvd = [self.model.dvdCache detailsForMovie:movie];
-    
+
     filterTheatersByDistance = YES;
-    
+
     UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
     label.text = movie.displayTitle;
-    
+
     self.title = movie.displayTitle;
     self.navigationItem.titleView = label;
-    
+
     [self setupPosterView];
     [self.model prioritizeMovie:movie];
 }
@@ -263,7 +263,7 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     self.dvd = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
@@ -275,7 +275,7 @@
     self.posterImage = nil;
     self.posterImageView = nil;
     self.posterActivityView = nil;
-    
+
     [super didReceiveMemoryWarning];
 }
 
