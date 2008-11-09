@@ -13,12 +13,13 @@
 // limitations under the License.
 
 @interface FavoriteTheater : NSObject {
+@private
     NSString* name;
     Location* originatingLocation;
 }
 
-@property (copy) NSString* name;
-@property (retain) Location* originatingLocation;
+@property (readonly, copy) NSString* name;
+@property (readonly, retain) Location* originatingLocation;
 
 + (FavoriteTheater*) theaterWithDictionary:(NSDictionary*) dictionary;
 + (FavoriteTheater*) theaterWithName:(NSString*) name
