@@ -616,18 +616,18 @@ static NSString* titles_key = @"Titles";
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     NSString* smallPosterPath = [self smallPosterFile:movie];
     NSData* smallPosterData;
-    
+
     if ([FileUtilities size:smallPosterPath] == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFile:movie]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                                 toHeight:SMALL_POSTER_HEIGHT];
-        
+
         [FileUtilities writeData:smallPosterData
                           toFile:smallPosterPath];
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-    
+
     return [UIImage imageWithData:smallPosterData];
 }
 

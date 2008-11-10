@@ -322,7 +322,7 @@ static NSString** KEYS[] = {
     if (result != nil) {
         return [result intValue];
     }
-    
+
     // by default, chose 'rottentomatoes' if they're an english speaking
     // country.  otherwise, choose 'google'.
     if ([LocaleUtilities isEnglish]) {
@@ -330,7 +330,7 @@ static NSString** KEYS[] = {
     } else {
         [self setScoreProviderIndex:2];
     }
-    
+
     return [self scoreProviderIndex];
 }
 
@@ -339,7 +339,7 @@ static NSString** KEYS[] = {
     if (cachedScoreProviderIndex == -1) {
         cachedScoreProviderIndex = [self scoreProviderIndexWorker];
     }
-    
+
     return cachedScoreProviderIndex;
 }
 
@@ -700,7 +700,7 @@ static NSString** KEYS[] = {
             return image;
         }
     }
-    
+
     return nil;
 }
 

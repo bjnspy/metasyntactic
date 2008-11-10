@@ -153,7 +153,7 @@
         for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
         }
-        
+
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
             frame.origin.x = (int)(imageView.frame.size.width + 7);
@@ -172,7 +172,7 @@
     [super layoutSubviews];
 
     CGRect imageFrame = imageView.frame;
-    
+
     CGRect titleFrame = titleLabel.frame;
     titleFrame.origin.x = (int)(imageFrame.size.width + 7);
     titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
@@ -189,38 +189,38 @@
 
 - (void) loadMovie:(id) owner {
     [self loadImage];
-    
+
     DVD* dvd = [model.dvdCache detailsForMovie:movie];
-    
+
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
     formatLabel.text    = dvd.format;
-    
+
     NSString* rating;
     if (movie.isUnrated) {		
         rating = NSLocalizedString(@"Not yet rated", nil);		
     } else {		
         rating = movie.rating;		
     }
-    
+
     if ([owner sortingByTitle]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
-        
+
         if (!movie.isUnrated) {
             releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", nil), releaseDate];
         }
-        
+
         ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
     } else {
         ratedLabel.text = rating;
     }
-    
+
     if (movie.directors.count <= 1) {
         directorTitleLabel.text = NSLocalizedString(@"Director:", nil);
     } else {
         directorTitleLabel.text = NSLocalizedString(@"Directors:", nil);
-    } 
+    }
 
     for (UILabel* label in self.allLabels) {
         [self.contentView addSubview:label];
@@ -239,13 +239,13 @@
         // switching to a new movie.  update everything.
         self.movie = movie_;
         titleLabel.text = movie.displayTitle;
-        
+
         for (UILabel* label in self.allLabels) {
             [label removeFromSuperview];
         }
-        
+
         [self clearImage];
-        
+
         [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
         [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
     }

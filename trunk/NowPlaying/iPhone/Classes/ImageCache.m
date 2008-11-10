@@ -53,7 +53,7 @@ static UIImage* warning32x32 = nil;
         yellowRatingImage   = [[UIImage imageNamed:@"Rating-Yellow.png"] retain];
         greenRatingImage    = [[UIImage imageNamed:@"Rating-Green.png"] retain];
         unknownRatingImage  = [[UIImage imageNamed:@"Rating-Unknown.png"] retain];
-        
+
         imageLoading        = [[UIImage imageNamed:@"ImageLoading.png"] retain];
         imageNotAvailable   = [[UIImage imageNamed:@"ImageNotAvailable.png"] retain];
 

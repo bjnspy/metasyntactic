@@ -35,7 +35,7 @@ enum ViewControllerType {
     NSMutableArray* favoriteTheatersData;
 
     id<DataProvider> dataProvider;
-    
+
     NSInteger cachedScoreProviderIndex;
 }
 

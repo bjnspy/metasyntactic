@@ -29,9 +29,9 @@
     if (image == nil) {
         return nil;
     }
-        
+
     CGSize imageSize = image.size;
-    
+
     CGFloat width = imageSize.width * (height / imageSize.height);
     CGSize resultSize = CGSizeMake(width, height);
     return [self scaleImage:image toSize:resultSize];
@@ -42,12 +42,12 @@
     if (data.length == 0) {
         return nil;
     }
-    
+
     UIImage* source = [UIImage imageWithData:data];
     if (source == nil) {
         return nil;
     }
-    
+
     UIImage* result = [self scaleImage:source toHeight:height];
     if (result == nil) {
         return nil;

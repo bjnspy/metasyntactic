@@ -134,7 +134,7 @@
 
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:82];
         self.ratedLabel = [self createValueLabel:82];
-        
+
         titleWidth = 0;
         for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
@@ -146,7 +146,7 @@
             frame.origin.x = (int)(imageView.frame.size.width + 7);
             label.frame = frame;
         }
-        
+
         [self.contentView addSubview:titleLabel];
     }
 
@@ -158,7 +158,7 @@
     [super layoutSubviews];
 
     CGRect imageFrame = imageView.frame;
-    
+
     CGRect titleFrame = titleLabel.frame;
     titleFrame.origin.x = (int)(imageFrame.size.width + 7);
     titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
@@ -184,36 +184,36 @@
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
-    
+
     NSString* rating;
     if (movie.isUnrated) {		
         rating = NSLocalizedString(@"Not yet rated", nil);		
     } else {		
         rating = movie.rating;		
     }
-    
+
     if ([owner sortingByTitle]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
-        
+
         if (!movie.isUnrated) {
             releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", @"This is a shorter form of 'Release date:'. Used when there's less onscreen space."), releaseDate];
         }
-        
+
         ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
     } else {
         ratedLabel.text = rating;
     }
-    
+
     if (movie.directors.count <= 1) {
         directorTitleLabel.text = NSLocalizedString(@"Director:", nil);
     } else {
         directorTitleLabel.text = NSLocalizedString(@"Directors:", nil);
     }
-    
+
     for (UILabel* label in self.allLabels) {
         [self.contentView addSubview:label];
     }
-    
+
     [self setNeedsLayout];
 }
 
@@ -225,9 +225,9 @@
     } else {
         self.movie = movie_;
         titleLabel.text = movie.displayTitle;
-        
+
         [self clearImage];
-        
+
         for (UILabel* label in self.allLabels) {
             [label removeFromSuperview];
         }
@@ -244,13 +244,13 @@
 
     if (selected) {
         titleLabel.textColor = [UIColor whiteColor];
-        
+
         for (UILabel* label in self.allLabels) {
             label.textColor = [UIColor whiteColor];
         }
     } else {
         titleLabel.textColor = [UIColor blackColor];
-        
+
         for (UILabel* label in self.allLabels) {
             label.textColor = [UIColor darkGrayColor];
         }
