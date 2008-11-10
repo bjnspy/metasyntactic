@@ -139,7 +139,7 @@
         for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
         }
-        
+
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
             frame.size.width = titleWidth;
@@ -220,7 +220,8 @@
 
 - (void) setMovie:(Movie*) movie_ owner:(id) owner {
     if (movie == movie_) {
-        [self loadImage];
+        [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
+        [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
     } else {
         self.movie = movie_;
         titleLabel.text = movie.displayTitle;
@@ -231,7 +232,7 @@
             [label removeFromSuperview];
         }
 
-        [NSThread cancelPreviousPerformRequestsWithTarget:self];
+        [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
         [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
     }
 }

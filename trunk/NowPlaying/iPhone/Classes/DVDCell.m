@@ -233,7 +233,8 @@
     if (movie == movie_) {
         // refreshing with the same movie.
         // update our image if necessary.
-        [self loadImage];
+        [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
+        [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
     } else {
         // switching to a new movie.  update everything.
         self.movie = movie_;
@@ -245,7 +246,7 @@
         
         [self clearImage];
         
-        [NSThread cancelPreviousPerformRequestsWithTarget:self];
+        [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
         [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
     }
 }
