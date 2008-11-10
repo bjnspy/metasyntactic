@@ -211,7 +211,7 @@
     }
 
     if (sectionTitles.count == 0) {
-        self.sectionTitles = [NSArray arrayWithObject:self.model.noLocationInformationFound];
+        self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
     }
 }
 

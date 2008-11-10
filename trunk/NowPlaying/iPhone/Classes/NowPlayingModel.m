@@ -1001,7 +1001,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 
-- (NSString*) noLocationInformationFound {
+- (NSString*) noInformationFound {
     if (self.userAddress.length == 0) {
         return NSLocalizedString(@"Please enter your location", nil);
     } else if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
