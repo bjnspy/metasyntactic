@@ -271,6 +271,7 @@ static NSString** KEYS[] = {
         self.upcomingCache = [UpcomingCache cacheWithModel:self];
 
         searchRadius = -1;
+        cachedScoreProviderIndex = -1;
 
         [self performSelector:@selector(update) withObject:nil afterDelay:2];
     }
@@ -316,12 +317,12 @@ static NSString** KEYS[] = {
 }
 
 
-- (NSInteger) scoreProviderIndex {
+- (NSInteger) scoreProviderIndexWorker {
     NSNumber* result = [[NSUserDefaults standardUserDefaults] objectForKey:RATINGS_PROVIDER_INDEX];
     if (result != nil) {
         return [result intValue];
     }
-
+    
     // by default, chose 'rottentomatoes' if they're an english speaking
     // country.  otherwise, choose 'google'.
     if ([LocaleUtilities isEnglish]) {
@@ -329,12 +330,22 @@ static NSString** KEYS[] = {
     } else {
         [self setScoreProviderIndex:2];
     }
-
+    
     return [self scoreProviderIndex];
 }
 
 
+- (NSInteger) scoreProviderIndex {
+    if (cachedScoreProviderIndex == -1) {
+        cachedScoreProviderIndex = [self scoreProviderIndexWorker];
+    }
+    
+    return cachedScoreProviderIndex;
+}
+
+
 - (void) setScoreProviderIndex:(NSInteger) index {
+    cachedScoreProviderIndex = index;
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
     [self updateScoreCache];
 

@@ -35,6 +35,8 @@ enum ViewControllerType {
     NSMutableArray* favoriteTheatersData;
 
     id<DataProvider> dataProvider;
+    
+    NSInteger cachedScoreProviderIndex;
 }
 
 @property (readonly, retain) UserLocationCache* userLocationCache;
