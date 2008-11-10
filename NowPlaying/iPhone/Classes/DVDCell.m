@@ -18,13 +18,12 @@
 #import "DVDCache.h"
 #import "DVDViewController.h"
 #import "DateUtilities.h"
+#import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "Movie.h"
 #import "NowPlayingModel.h"
 
 @interface DVDCell()
-@property (retain) NowPlayingModel* model;
-@property (retain) Movie* movie;
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* directorTitleLabel;
 @property (retain) UILabel* castTitleLabel;
@@ -36,16 +35,10 @@
 @property (retain) UILabel* genreLabel;
 @property (retain) UILabel* ratedLabel;
 @property (retain) UILabel* formatLabel;
-@property (retain) UIImageView* imageLoadingView;
-@property (retain) UIImageView* imageView;
-@property (retain) UIActivityIndicatorView* activityView;
 @end
 
 
 @implementation DVDCell
-
-@synthesize model;
-@synthesize movie;
 
 @synthesize titleLabel;
 
@@ -61,13 +54,7 @@
 @synthesize genreLabel;
 @synthesize formatLabel;
 
-@synthesize imageLoadingView;
-@synthesize imageView;
-@synthesize activityView;
-
 - (void) dealloc {
-    self.model = nil;
-    self.movie = nil;
     self.titleLabel = nil;
 
     self.directorTitleLabel = nil;
@@ -81,10 +68,6 @@
     self.ratedLabel = nil;
     self.genreLabel = nil;
     self.formatLabel = nil;
-    
-    self.imageLoadingView = nil;
-    self.imageView = nil;
-    self.activityView = nil;
 
     [super dealloc];
 }
@@ -143,9 +126,9 @@
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(NowPlayingModel*) model_ {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.model = model_;
-
+    if (self = [super initWithFrame:frame
+                    reuseIdentifier:reuseIdentifier
+                              model:model_]) {
         self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -171,36 +154,14 @@
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
         }
         
-        self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoading]] autorelease];
-        imageLoadingView.contentMode = UIViewContentModeScaleAspectFit;
-
-        self.imageView = [[[UIImageView alloc] init] autorelease];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        imageView.alpha = 0;
-
-        CGRect imageFrame = imageLoadingView.frame;
-        imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
-        imageFrame.size.height = (int)SMALL_POSTER_HEIGHT;
-        imageView.frame = imageLoadingView.frame = imageFrame;
-        
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
-            frame.origin.x = (int)(imageFrame.size.width + 7);
+            frame.origin.x = (int)(imageView.frame.size.width + 7);
             frame.size.width = titleWidth;
             label.frame = frame;
         }
-        
-        self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-        activityView.hidesWhenStopped = YES;
-        CGRect frame = activityView.frame;
-        frame.origin.x = 25;
-        frame.origin.y = 40;
-        activityView.frame = frame;
-        
+
         [self.contentView addSubview:titleLabel];
-        [self.contentView addSubview:imageLoadingView];
-        [self.contentView addSubview:imageView];
-        [self.contentView addSubview:activityView];
     }
 
     return self;
@@ -227,21 +188,7 @@
 
 
 - (void) loadMovie:(id) owner {
-    [activityView stopAnimating];
-    
-    UIImage* image = [model smallPosterForMovie:movie];
-    if (image == nil) {
-        [model.dvdCache prioritizeMovie:movie];
-        imageView.image = [ImageCache imageNotAvailable];
-    } else {
-        imageView.image = image;
-    }
-    
-    [UIView beginAnimations:nil context:NULL];
-    {
-        imageView.alpha = 1;
-    }
-    [UIView commitAnimations];
+    [self loadImage];
     
     DVD* dvd = [model.dvdCache detailsForMovie:movie];
     
@@ -284,23 +231,23 @@
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
     if (movie == movie_) {
-        return;
+        // refreshing with the same movie.
+        // update our image if necessary.
+        [self loadImage];
+    } else {
+        // switching to a new movie.  update everything.
+        self.movie = movie_;
+        titleLabel.text = movie.displayTitle;
+        
+        for (UILabel* label in self.allLabels) {
+            [label removeFromSuperview];
+        }
+        
+        [self clearImage];
+        
+        [NSThread cancelPreviousPerformRequestsWithTarget:self];
+        [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
     }
-
-    self.movie = movie_;
-    titleLabel.text = movie.displayTitle;
-    
-    [activityView startAnimating];
-    
-    for (UILabel* label in self.allLabels) {
-        [label removeFromSuperview];
-    }
-    
-    imageView.image = nil;
-    imageView.alpha = 0;
-
-    [NSThread cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
 }
 
 

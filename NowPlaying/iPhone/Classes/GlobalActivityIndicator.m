@@ -115,4 +115,9 @@ static NSInteger visibleBackgroundTaskCount = 0;
     return visibleBackgroundTaskCount > 0;
 }
 
+
++ (BOOL) hasBackgroundTasks {
+    return totalBackgroundTaskCount > 0;
+}
+
 @end

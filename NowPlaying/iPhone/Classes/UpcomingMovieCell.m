@@ -22,8 +22,6 @@
 #import "UpcomingMoviesViewController.h"
 
 @interface UpcomingMovieCell()
-@property (retain) NowPlayingModel* model;
-@property (retain) Movie* movie;
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* directorTitleLabel;
 @property (retain) UILabel* castTitleLabel;
@@ -33,15 +31,11 @@
 @property (retain) UILabel* castLabel;
 @property (retain) UILabel* genreLabel;
 @property (retain) UILabel* ratedLabel;
-@property (retain) UIImageView* imageView;
-@property (retain) UIActivityIndicatorView* activityView;
 @end
 
 
 @implementation UpcomingMovieCell
 
-@synthesize model;
-@synthesize movie;
 @synthesize titleLabel;
 @synthesize directorTitleLabel;
 @synthesize castTitleLabel;
@@ -53,12 +47,7 @@
 @synthesize ratedLabel;
 @synthesize genreLabel;
 
-@synthesize imageView;
-@synthesize activityView;
-
 - (void) dealloc {
-    self.model = nil;
-    self.movie = nil;
     self.titleLabel = nil;
     self.directorTitleLabel = nil;
     self.castTitleLabel = nil;
@@ -69,9 +58,6 @@
     self.castLabel = nil;
     self.ratedLabel = nil;
     self.genreLabel = nil;
-
-    self.imageView = nil;
-    self.activityView = nil;
 
     [super dealloc];
 }
@@ -128,9 +114,9 @@
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(NowPlayingModel*) model_ {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.model = model_;
-
+    if (self = [super initWithFrame:frame
+                    reuseIdentifier:reuseIdentifier
+                              model:model_]) {
         self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -148,13 +134,6 @@
 
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:82];
         self.ratedLabel = [self createValueLabel:82];
-
-        self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache imageNotAvailable]] autorelease];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        CGRect imageFrame = imageView.frame;
-        imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
-        imageFrame.size.height = SMALL_POSTER_HEIGHT;
-        imageView.frame = imageFrame;
         
         titleWidth = 0;
         for (UILabel* label in self.titleLabels) {
@@ -164,20 +143,11 @@
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
             frame.size.width = titleWidth;
-            frame.origin.x = (int)(imageFrame.size.width + 7);
+            frame.origin.x = (int)(imageView.frame.size.width + 7);
             label.frame = frame;
         }
         
-        self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-        activityView.hidesWhenStopped = YES;
-        CGRect frame = activityView.frame;
-        frame.origin.x = 25;
-        frame.origin.y = 42;
-        activityView.frame = frame;
-        
         [self.contentView addSubview:titleLabel];
-        [self.contentView addSubview:imageView];
-        [self.contentView addSubview:activityView];
     }
 
     return self;
@@ -209,19 +179,11 @@
 
 
 - (void) loadMovie:(id) owner {
-    [activityView stopAnimating];
+    [self loadImage];
 
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
-    
-    UIImage* image = [model smallPosterForMovie:movie];
-    if (image == nil) {
-        [model.upcomingCache prioritizeMovie:movie];
-        imageView.image = [ImageCache imageNotAvailable];
-    } else {
-        imageView.image = image;
-    }
     
     NSString* rating;
     if (movie.isUnrated) {		
@@ -258,21 +220,20 @@
 
 - (void) setMovie:(Movie*) movie_ owner:(id) owner {
     if (movie == movie_) {
-        return;
-    }
-    
-    self.movie = movie_;
-    titleLabel.text = movie.displayTitle;
+        [self loadImage];
+    } else {
+        self.movie = movie_;
+        titleLabel.text = movie.displayTitle;
+        
+        [self clearImage];
+        
+        for (UILabel* label in self.allLabels) {
+            [label removeFromSuperview];
+        }
 
-    [activityView startAnimating];
-    
-    for (UILabel* label in self.allLabels) {
-        [label removeFromSuperview];
+        [NSThread cancelPreviousPerformRequestsWithTarget:self];
+        [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
     }
-    
-    imageView.image = [ImageCache imageLoading];
-    [NSThread cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
 }
 
 

@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface DVDCell : UITableViewCell {
+#import "AbstractPosterCell.h"
+
+@interface DVDCell : AbstractPosterCell {
 @private
-    NowPlayingModel* model;
-    Movie* movie;
-    
     UILabel* titleLabel;
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
@@ -30,16 +29,12 @@
     UILabel* ratedLabel;
     UILabel* formatLabel;
 
-    UIImageView* imageLoadingView;
-    UIImageView* imageView;
-    UIActivityIndicatorView* activityView;
-
     CGFloat titleWidth;
 }
 
-- (id)      initWithFrame:(CGRect) frame
-          reuseIdentifier:(NSString*) reuseIdentifier
-                    model:(NowPlayingModel*) model;
+- (id) initWithFrame:(CGRect) frame
+     reuseIdentifier:(NSString*) reuseIdentifier
+               model:(NowPlayingModel*) model;
 
 - (void) setMovie:(Movie*) movie owner:(id) owner;
 
