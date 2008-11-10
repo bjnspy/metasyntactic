@@ -223,7 +223,7 @@
         // Only want to do this once.
         self.posterActivityView = [[[ActivityIndicatorViewWithBackground alloc] init] autorelease];
         [posterActivityView startAnimating];
-        [posterActivityView sizeToFit];        
+        [posterActivityView sizeToFit];
     }
 
     return self;

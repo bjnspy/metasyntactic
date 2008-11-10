@@ -443,7 +443,7 @@
 - (void) saveEncodedReviews:(NSArray*) encodedReviews hash:(NSString*) hash title:(NSString*) title {
     [FileUtilities writeObject:encodedReviews toFile:[self reviewsFile:title]];
     // do this last.  it marks us being complete.
-    [FileUtilities writeObject:hash toFile:[self reviewsHashFile:title]];    
+    [FileUtilities writeObject:hash toFile:[self reviewsHashFile:title]];
 }
 
 
@@ -452,7 +452,7 @@
     for (Review* review in reviews) {
         [encodedReviews addObject:review.dictionary];
     }
-    
+
     [self saveEncodedReviews:encodedReviews hash:hash title:title];
 }
 

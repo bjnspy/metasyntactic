@@ -17,7 +17,7 @@
 @interface UpcomingMovieCell : AbstractPosterCell {
 @private
     UILabel* titleLabel;
-    
+
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
     UILabel* genreTitleLabel;

@@ -60,7 +60,7 @@
     {
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(onStopAnimatingCompleted:finished:context:)];
-         
+
         activityIndicator.alpha = 0;
         imageView.alpha = 0;
     }

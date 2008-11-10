@@ -348,7 +348,7 @@
         return [[[self postersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingString:@"-small.png"];
     }
-    
+
     return nil;
 }
 
@@ -362,7 +362,7 @@
 
 - (NSString*) smallPosterFile:(Movie*) movie {
     NSAssert([NSThread isMainThread], @"");
-    
+
     return [self smallPosterFile:movie set:self.moviesSet];
 }
 
@@ -565,18 +565,18 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     NSString* smallPosterPath = [self smallPosterFile:movie];
     NSData* smallPosterData;
-    
+
     if ([FileUtilities size:smallPosterPath] == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFile:movie]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                                 toHeight:SMALL_POSTER_HEIGHT];
-        
+
         [FileUtilities writeData:smallPosterData
                           toFile:smallPosterPath];
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-    
+
     return [UIImage imageWithData:smallPosterData];
 }
 

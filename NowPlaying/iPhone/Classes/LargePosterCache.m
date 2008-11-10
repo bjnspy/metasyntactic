@@ -107,9 +107,9 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie
                       index:(NSInteger) index {
     NSData* smallPosterData;
-    NSString* smallPosterPath = [self smallPosterFilePath:movie 
+    NSString* smallPosterPath = [self smallPosterFilePath:movie
                                                     index:index];
-        
+
     if ([FileUtilities size:smallPosterPath] == 0 && index == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie index:index]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
@@ -119,7 +119,7 @@
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-    
+
     return [UIImage imageWithData:smallPosterData];
 }
 
