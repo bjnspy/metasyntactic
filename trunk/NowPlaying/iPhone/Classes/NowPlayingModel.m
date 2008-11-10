@@ -850,6 +850,10 @@ static NSString** KEYS[] = {
 
 
 NSInteger compareMoviesByScore(id t1, id t2, void *context) {
+    if (t1 == t2) {
+        return NSOrderedSame;
+    }
+    
     Movie* movie1 = t1;
     Movie* movie2 = t2;
     NowPlayingModel* model = context;
@@ -868,6 +872,10 @@ NSInteger compareMoviesByScore(id t1, id t2, void *context) {
 
 
 NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void *context) {
+    if (t1 == t2) {
+        return NSOrderedSame;
+    }
+    
     NowPlayingModel* model = context;
     Movie* movie1 = t1;
     Movie* movie2 = t2;
@@ -895,6 +903,10 @@ NSInteger compareMoviesByReleaseDateAscending(id t1, id t2, void *context) {
 
 
 NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
+    if (t1 == t2) {
+        return NSOrderedSame;
+    }
+    
     Movie* movie1 = t1;
     Movie* movie2 = t2;
 
@@ -903,6 +915,10 @@ NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
 
 
 NSInteger compareTheatersByName(id t1, id t2, void *context) {
+    if (t1 == t2) {
+        return NSOrderedSame;
+    }
+    
     Theater* theater1 = t1;
     Theater* theater2 = t2;
 
@@ -911,6 +927,10 @@ NSInteger compareTheatersByName(id t1, id t2, void *context) {
 
 
 NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
+    if (t1 == t2) {
+        return NSOrderedSame;
+    }
+    
     NSDictionary* theaterDistanceMap = context;
 
     Theater* theater1 = t1;
