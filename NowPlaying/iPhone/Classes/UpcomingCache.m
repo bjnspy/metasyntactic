@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "FileUtilities.h"
+#import "ImageUtilities.h"
 #import "LargePosterCache.h"
 #import "LinkedSet.h"
 #import "Movie.h"
@@ -341,6 +342,13 @@ static NSString* titles_key = @"Titles";
 }
 
 
+- (NSString*) smallPosterFile:(Movie*) movie {
+    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+    fileName = [fileName stringByAppendingString:@"-small.png"];
+    return [[Application upcomingPostersDirectory] stringByAppendingPathComponent:fileName];
+}
+
+
 - (NSString*) synopsisFile:(Movie*) movie {
     return [[[Application upcomingSynopsesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
@@ -601,11 +609,26 @@ static NSString* titles_key = @"Titles";
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     NSData* data = [FileUtilities readData:[self posterFile:movie]];
-    if (data == nil) {
-        return nil;
-    }
-
     return [UIImage imageWithData:data];
+}
+
+
+- (UIImage*) smallPosterForMovie:(Movie*) movie {
+    NSString* smallPosterPath = [self smallPosterFile:movie];
+    NSData* smallPosterData;
+    
+    if ([FileUtilities size:smallPosterPath] == 0) {
+        NSData* normalPosterData = [FileUtilities readData:[self posterFile:movie]];
+        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
+                                                toHeight:SMALL_POSTER_HEIGHT];
+        
+        [FileUtilities writeData:smallPosterData
+                          toFile:smallPosterPath];
+    } else {
+        smallPosterData = [FileUtilities readData:smallPosterPath];
+    }
+    
+    return [UIImage imageWithData:smallPosterData];
 }
 
 

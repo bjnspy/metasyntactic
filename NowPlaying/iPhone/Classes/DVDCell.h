@@ -30,6 +30,7 @@
     UILabel* ratedLabel;
     UILabel* formatLabel;
 
+    UIImageView* imageLoadingView;
     UIImageView* imageView;
     UIActivityIndicatorView* activityView;
 

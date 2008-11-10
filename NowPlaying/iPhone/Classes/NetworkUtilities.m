@@ -101,10 +101,6 @@ static PriorityMutex* mutex = nil;
     if (url == nil) {
         return nil;
     }
-
-    if ([url.host rangeOfString:@"metaboxoffice"].length > 0) {
-        NSLog(@"%@", url);
-    }
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.timeoutInterval = 120;

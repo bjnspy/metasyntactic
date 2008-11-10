@@ -19,6 +19,7 @@
 #import "DifferenceEngine.h"
 #import "FandangoPosterDownloader.h"
 #import "FileUtilities.h"
+#import "ImageUtilities.h"
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
 #import "LinkedSet.h"
@@ -81,6 +82,12 @@
 - (NSString*) posterFilePath:(Movie*) movie {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     return [[[Application postersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
+}
+
+
+- (NSString*) smallPosterFilePath:(Movie*) movie {
+    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+    return [[[Application postersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
 }
 
 
@@ -248,6 +255,24 @@
     NSString* path = [self posterFilePath:movie];
     NSData* data = [FileUtilities readData:path];
     return [UIImage imageWithData:data];
+}
+
+
+- (UIImage*) smallPosterForMovie:(Movie*) movie {
+    NSString* smallPosterPath = [self smallPosterFilePath:movie];
+    NSData* smallPosterData;
+    
+    if ([FileUtilities size:smallPosterPath] == 0) {
+        NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
+        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
+                                                toHeight:SMALL_POSTER_HEIGHT];
+        
+        [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
+    } else {
+        smallPosterData = [FileUtilities readData:smallPosterPath];
+    }
+    
+    return [UIImage imageWithData:smallPosterData];
 }
 
 

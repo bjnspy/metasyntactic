@@ -36,6 +36,7 @@
 @property (retain) UILabel* genreLabel;
 @property (retain) UILabel* ratedLabel;
 @property (retain) UILabel* formatLabel;
+@property (retain) UIImageView* imageLoadingView;
 @property (retain) UIImageView* imageView;
 @property (retain) UIActivityIndicatorView* activityView;
 @end
@@ -60,6 +61,7 @@
 @synthesize genreLabel;
 @synthesize formatLabel;
 
+@synthesize imageLoadingView;
 @synthesize imageView;
 @synthesize activityView;
 
@@ -79,7 +81,8 @@
     self.ratedLabel = nil;
     self.genreLabel = nil;
     self.formatLabel = nil;
-
+    
+    self.imageLoadingView = nil;
     self.imageView = nil;
     self.activityView = nil;
 
@@ -122,7 +125,7 @@
 }
 
 
-- (NSArray*) labels {
+- (NSArray*) valueLabels {
     return [NSArray arrayWithObjects:
             directorLabel,
             castLabel,
@@ -133,7 +136,7 @@
 
 
 - (NSArray*) allLabels {
-    return [self.titleLabels arrayByAddingObjectsFromArray:self.labels];
+    return [self.titleLabels arrayByAddingObjectsFromArray:self.valueLabels];
 }
 
 
@@ -167,28 +170,35 @@
         for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
         }
+        
+        self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoading]] autorelease];
+        imageLoadingView.contentMode = UIViewContentModeScaleAspectFit;
+
+        self.imageView = [[[UIImageView alloc] init] autorelease];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.alpha = 0;
+
+        CGRect imageFrame = imageLoadingView.frame;
+        imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
+        imageFrame.size.height = (int)SMALL_POSTER_HEIGHT;
+        imageView.frame = imageLoadingView.frame = imageFrame;
+        
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
+            frame.origin.x = (int)(imageFrame.size.width + 7);
             frame.size.width = titleWidth;
             label.frame = frame;
         }
-
-        self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache imageNotAvailable]] autorelease];
-
-        if (model.delayLoadCells) {
-            self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-            activityView.hidesWhenStopped = YES;
-            CGRect frame = activityView.frame;
-            frame.origin.x = 27;
-            frame.origin.y = 40;
-            activityView.frame = frame;
-        } else {
-            for (UILabel* label in self.allLabels) {
-                [self.contentView addSubview:label];
-            }
-        }
+        
+        self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+        activityView.hidesWhenStopped = YES;
+        CGRect frame = activityView.frame;
+        frame.origin.x = 25;
+        frame.origin.y = 40;
+        activityView.frame = frame;
         
         [self.contentView addSubview:titleLabel];
+        [self.contentView addSubview:imageLoadingView];
         [self.contentView addSubview:imageView];
         [self.contentView addSubview:activityView];
     }
@@ -201,24 +211,13 @@
     [super layoutSubviews];
 
     CGRect imageFrame = imageView.frame;
-    if (imageFrame.size.height >= 100) {
-        imageFrame.size.width *= 99.0 / imageFrame.size.height;
-        imageFrame.size.height = 99.0;
-    }
-    imageView.frame = imageFrame;
-
-    for (UILabel* label in self.titleLabels) {
-        CGRect frame = label.frame;
-        frame.origin.x = (int)(imageFrame.size.width + 7);
-        label.frame = frame;
-    }
-
+    
     CGRect titleFrame = titleLabel.frame;
     titleFrame.origin.x = (int)(imageFrame.size.width + 7);
     titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
     titleLabel.frame = titleFrame;
 
-    for (UILabel* label in self.labels) {
+    for (UILabel* label in self.valueLabels) {
         CGRect frame = label.frame;
         frame.origin.x = (int)(imageFrame.size.width + 7 + titleWidth + 5);
         frame.size.width = self.contentView.frame.size.width - frame.origin.x;
@@ -230,13 +229,19 @@
 - (void) loadMovie:(id) owner {
     [activityView stopAnimating];
     
-    UIImage* image = [model posterForMovie:movie];
+    UIImage* image = [model smallPosterForMovie:movie];
     if (image == nil) {
         [model.dvdCache prioritizeMovie:movie];
         imageView.image = [ImageCache imageNotAvailable];
     } else {
         imageView.image = image;
     }
+    
+    [UIView beginAnimations:nil context:NULL];
+    {
+        imageView.alpha = 1;
+    }
+    [UIView commitAnimations];
     
     DVD* dvd = [model.dvdCache detailsForMovie:movie];
     
@@ -276,30 +281,26 @@
 }
 
 
-- (void) setMovie:(Movie*) movie_ owner:(id) owner {
-    if (movie_ == self.movie) {
+- (void) setMovie:(Movie*) movie_
+            owner:(id) owner {
+    if (movie == movie_) {
         return;
     }
-    
-    self.movie = movie_;
-    
-    if (model.delayLoadCells) {
-        [activityView startAnimating];
-        
-        for (UILabel* label in self.allLabels) {
-            [label removeFromSuperview];
-        }
-        
-        imageView.image = nil;
-        [NSThread cancelPreviousPerformRequestsWithTarget:self];
-        [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
-    } else {
-        [self loadMovie:owner];
-    }
 
+    self.movie = movie_;
     titleLabel.text = movie.displayTitle;
     
+    [activityView startAnimating];
+    
+    for (UILabel* label in self.allLabels) {
+        [label removeFromSuperview];
+    }
+    
+    imageView.image = nil;
+    imageView.alpha = 0;
 
+    [NSThread cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
 }
 
 

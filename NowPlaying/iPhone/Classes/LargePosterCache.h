@@ -22,7 +22,9 @@
 
 - (void) update;
 
-- (UIImage*) firstPosterForMovie:(Movie*) movie;
+- (UIImage*) posterForMovie:(Movie*) movie;
+- (UIImage*) smallPosterForMovie:(Movie*) movie;
+
 - (UIImage*) posterForMovie:(Movie*) movie index:(NSInteger) index;
 - (BOOL) posterExistsForMovie:(Movie*) movie index:(NSInteger) index;
 

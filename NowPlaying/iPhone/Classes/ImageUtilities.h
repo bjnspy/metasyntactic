@@ -11,4 +11,6 @@
 + (UIImage*) scaleImage:(UIImage*) image toSize:(CGSize) size;
 + (UIImage*) scaleImage:(UIImage*) image toHeight:(CGFloat) height;
 
++ (NSData*) scaleImageData:(NSData*) image toHeight:(CGFloat) height;
+
 @end
