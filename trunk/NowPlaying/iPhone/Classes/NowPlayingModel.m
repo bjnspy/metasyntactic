@@ -680,23 +680,31 @@ static NSString** KEYS[] = {
 }
 
 
+- (UIImage*) posterForMovie:(Movie*) movie
+                    sources:(NSArray*) sources
+                   selector:(SEL) selector {
+    for (id source in sources) {
+        UIImage* image = [source performSelector:selector withObject:movie];
+        if (image != nil) {
+            return image;
+        }
+    }
+    
+    return nil;
+}
+
+
 - (UIImage*) posterForMovie:(Movie*) movie {
-    UIImage* image = [posterCache posterForMovie:movie];
-    if (image != nil) {
-        return image;
-    }
+    return [self posterForMovie:movie
+                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, largePosterCache, nil]
+                       selector:@selector(posterForMovie:)];
+}
 
-    image = [upcomingCache posterForMovie:movie];
-    if (image != nil) {
-        return image;
-    }
 
-    image = [dvdCache posterForMovie:movie];
-    if (image != nil) {
-        return image;
-    }
-
-    return [largePosterCache firstPosterForMovie:movie];
+- (UIImage*) smallPosterForMovie:(Movie*) movie {
+    return [self posterForMovie:movie
+                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, largePosterCache, nil]
+                       selector:@selector(smallPosterForMovie:)];
 }
 
 
@@ -1080,11 +1088,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
     NSString* result = [@"mailto:cyrus.najmabadi@gmail.com?subject=Now%20Playing%20Feedback&body=" stringByAppendingString:encodedBody];
     return result;
-}
-
-
-- (BOOL) delayLoadCells {
-    return NO;
 }
 
 @end

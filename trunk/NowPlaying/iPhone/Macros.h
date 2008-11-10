@@ -22,3 +22,5 @@
 #define ONE_YEAR   (365.0 * ONE_DAY)
 
 #define property_definition(x) static NSString* x ## _key = @#x; @synthesize x
+
+#define SMALL_POSTER_HEIGHT 99.0

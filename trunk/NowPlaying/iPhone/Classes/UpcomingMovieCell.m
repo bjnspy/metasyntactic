@@ -23,6 +23,7 @@
 
 @interface UpcomingMovieCell()
 @property (retain) NowPlayingModel* model;
+@property (retain) Movie* movie;
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* directorTitleLabel;
 @property (retain) UILabel* castTitleLabel;
@@ -33,12 +34,14 @@
 @property (retain) UILabel* genreLabel;
 @property (retain) UILabel* ratedLabel;
 @property (retain) UIImageView* imageView;
+@property (retain) UIActivityIndicatorView* activityView;
 @end
 
 
 @implementation UpcomingMovieCell
 
 @synthesize model;
+@synthesize movie;
 @synthesize titleLabel;
 @synthesize directorTitleLabel;
 @synthesize castTitleLabel;
@@ -51,9 +54,11 @@
 @synthesize genreLabel;
 
 @synthesize imageView;
+@synthesize activityView;
 
 - (void) dealloc {
     self.model = nil;
+    self.movie = nil;
     self.titleLabel = nil;
     self.directorTitleLabel = nil;
     self.castTitleLabel = nil;
@@ -66,6 +71,7 @@
     self.genreLabel = nil;
 
     self.imageView = nil;
+    self.activityView = nil;
 
     [super dealloc];
 }
@@ -88,10 +94,34 @@
 
 
 - (UILabel*) createValueLabel:(NSInteger) yPosition {
-    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, 0)] autorelease];
+    CGFloat height = directorTitleLabel.frame.size.height;
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, height)] autorelease];
     label.font = [UIFont systemFontOfSize:12];
     label.textColor = [UIColor darkGrayColor];
     return label;
+}
+
+
+- (NSArray*) titleLabels {
+    return [NSArray arrayWithObjects:
+            directorTitleLabel,
+            castTitleLabel,
+            genreTitleLabel,
+            ratedTitleLabel, nil];
+}
+
+
+- (NSArray*) valueLabels {
+    return [NSArray arrayWithObjects:
+            directorLabel,
+            castLabel,
+            genreLabel,
+            ratedLabel, nil];
+}
+
+
+- (NSArray*) allLabels {
+    return [self.titleLabels arrayByAddingObjectsFromArray:self.valueLabels];
 }
 
 
@@ -119,28 +149,35 @@
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:82];
         self.ratedLabel = [self createValueLabel:82];
 
+        self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache imageNotAvailable]] autorelease];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        CGRect imageFrame = imageView.frame;
+        imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
+        imageFrame.size.height = SMALL_POSTER_HEIGHT;
+        imageView.frame = imageFrame;
+        
         titleWidth = 0;
-        for (UILabel* label in [NSArray arrayWithObjects:directorTitleLabel, castTitleLabel, genreTitleLabel, ratedTitleLabel, nil]) {
+        for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
         }
-        for (UILabel* label in [NSArray arrayWithObjects:directorTitleLabel, castTitleLabel, genreTitleLabel, ratedTitleLabel, nil]) {
+        
+        for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
             frame.size.width = titleWidth;
+            frame.origin.x = (int)(imageFrame.size.width + 7);
             label.frame = frame;
         }
-
-        self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache imageNotAvailable]] autorelease];
-
+        
+        self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+        activityView.hidesWhenStopped = YES;
+        CGRect frame = activityView.frame;
+        frame.origin.x = 25;
+        frame.origin.y = 42;
+        activityView.frame = frame;
+        
         [self.contentView addSubview:titleLabel];
-        [self.contentView addSubview:directorTitleLabel];
-        [self.contentView addSubview:castTitleLabel];
-        [self.contentView addSubview:ratedTitleLabel];
-        [self.contentView addSubview:genreTitleLabel];
-        [self.contentView addSubview:directorLabel];
-        [self.contentView addSubview:castLabel];
-        [self.contentView addSubview:ratedLabel];
-        [self.contentView addSubview:genreLabel];
         [self.contentView addSubview:imageView];
+        [self.contentView addSubview:activityView];
     }
 
     return self;
@@ -151,24 +188,13 @@
     [super layoutSubviews];
 
     CGRect imageFrame = imageView.frame;
-    if (imageFrame.size.height >= 100) {
-        imageFrame.size.width *= 99.0 / imageFrame.size.height;
-        imageFrame.size.height = 99.0;
-    }
-    imageView.frame = imageFrame;
-
-    for (UILabel* label in [NSArray arrayWithObjects:directorTitleLabel, castTitleLabel, genreTitleLabel, ratedTitleLabel, nil]) {
-        CGRect frame = label.frame;
-        frame.origin.x = (int)(imageFrame.size.width + 7);
-        label.frame = frame;
-    }
-
+    
     CGRect titleFrame = titleLabel.frame;
     titleFrame.origin.x = (int)(imageFrame.size.width + 7);
     titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
     titleLabel.frame = titleFrame;
 
-    for (UILabel* label in [NSArray arrayWithObjects:directorLabel, castLabel, genreLabel, ratedLabel, nil]) {
+    for (UILabel* label in self.valueLabels) {
         CGRect frame = label.frame;
         frame.origin.x = (int)(imageFrame.size.width + 7 + titleWidth + 5);
         frame.size.width = self.contentView.frame.size.width - frame.origin.x;
@@ -182,48 +208,71 @@
 }
 
 
-- (void) setMovie:(Movie*) movie owner:(id) owner {
-    titleLabel.text = movie.displayTitle;
+- (void) loadMovie:(id) owner {
+    [activityView stopAnimating];
+
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
-
-    NSString* rating;
-    if (movie.isUnrated) {		
-        rating = NSLocalizedString(@"Not yet rated", nil);		
-    } else {		
-        rating = movie.rating;		
-    }
-
-    if ([owner sortingByTitle]) {
-        NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
-
-        if (!movie.isUnrated) {
-            releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", @"This is a shorter form of 'Release date:'. Used when there's less onscreen space."), releaseDate];
-        }
-
-        ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
-    } else {
-        ratedLabel.text = rating;
-    }
-
-    UIImage* image = [model posterForMovie:movie];
+    
+    UIImage* image = [model smallPosterForMovie:movie];
     if (image == nil) {
         [model.upcomingCache prioritizeMovie:movie];
         imageView.image = [ImageCache imageNotAvailable];
     } else {
         imageView.image = image;
     }
-
-    if (movie.directors.count == 1) {
+    
+    NSString* rating;
+    if (movie.isUnrated) {		
+        rating = NSLocalizedString(@"Not yet rated", nil);		
+    } else {		
+        rating = movie.rating;		
+    }
+    
+    if ([owner sortingByTitle]) {
+        NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
+        
+        if (!movie.isUnrated) {
+            releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", @"This is a shorter form of 'Release date:'. Used when there's less onscreen space."), releaseDate];
+        }
+        
+        ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
+    } else {
+        ratedLabel.text = rating;
+    }
+    
+    if (movie.directors.count <= 1) {
         directorTitleLabel.text = NSLocalizedString(@"Director:", nil);
     } else {
         directorTitleLabel.text = NSLocalizedString(@"Directors:", nil);
     }
+    
+    for (UILabel* label in self.allLabels) {
+        [self.contentView addSubview:label];
+    }
+    
+    [self setNeedsLayout];
+}
 
-    [ratedLabel sizeToFit];
-    [directorLabel sizeToFit];
-    [genreLabel sizeToFit];
+
+- (void) setMovie:(Movie*) movie_ owner:(id) owner {
+    if (movie == movie_) {
+        return;
+    }
+    
+    self.movie = movie_;
+    titleLabel.text = movie.displayTitle;
+
+    [activityView startAnimating];
+    
+    for (UILabel* label in self.allLabels) {
+        [label removeFromSuperview];
+    }
+    
+    imageView.image = [ImageCache imageLoading];
+    [NSThread cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
 }
 
 
@@ -233,27 +282,17 @@
 
     if (selected) {
         titleLabel.textColor = [UIColor whiteColor];
-        directorTitleLabel.textColor = [UIColor whiteColor];
-        castTitleLabel.textColor = [UIColor whiteColor];
-        ratedTitleLabel.textColor = [UIColor whiteColor];
-        genreTitleLabel.textColor = [UIColor whiteColor];
-
-        directorLabel.textColor = [UIColor whiteColor];
-        castLabel.textColor = [UIColor whiteColor];
-        ratedLabel.textColor = [UIColor whiteColor];
-        genreLabel.textColor = [UIColor whiteColor];
+        
+        for (UILabel* label in self.allLabels) {
+            label.textColor = [UIColor whiteColor];
+        }
     } else {
         titleLabel.textColor = [UIColor blackColor];
-        directorTitleLabel.textColor = [UIColor darkGrayColor];
-        castTitleLabel.textColor = [UIColor darkGrayColor];
-        ratedTitleLabel.textColor = [UIColor darkGrayColor];
-        genreTitleLabel.textColor = [UIColor darkGrayColor];
-        directorLabel.textColor = [UIColor darkGrayColor];
-        castLabel.textColor = [UIColor darkGrayColor];
-        ratedLabel.textColor = [UIColor darkGrayColor];
-        genreLabel.textColor = [UIColor darkGrayColor];
+        
+        for (UILabel* label in self.allLabels) {
+            label.textColor = [UIColor darkGrayColor];
+        }
     }
 }
-
 
 @end

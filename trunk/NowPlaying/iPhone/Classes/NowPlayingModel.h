@@ -53,8 +53,6 @@ enum ViewControllerType {
 
 - (void) update;
 
-- (BOOL) delayLoadCells;
-
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesScores;
@@ -121,8 +119,10 @@ enum ViewControllerType {
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
-- (UIImage*) posterForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
+
+- (UIImage*) posterForMovie:(Movie*) movie;
+- (UIImage*) smallPosterForMovie:(Movie*) movie;
 
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie;
 - (NSArray*) moviesAtTheater:(Theater*) theater;

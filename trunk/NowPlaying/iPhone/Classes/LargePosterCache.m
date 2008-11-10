@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
+#import "ImageUtilities.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
@@ -88,11 +89,38 @@
 }
 
 
+- (NSString*) smallPosterFilePath:(Movie*) movie index:(NSInteger) index {
+    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+    sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d-small", index];
+    return [[[Application largePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"png"];
+}
+
+
 - (UIImage*) posterForMovie:(Movie*) movie
                       index:(NSInteger) index {
     NSString* path = [self posterFilePath:movie index:index];
     NSData* data = [FileUtilities readData:path];
     return [UIImage imageWithData:data];
+}
+
+
+- (UIImage*) smallPosterForMovie:(Movie*) movie
+                      index:(NSInteger) index {
+    NSData* smallPosterData;
+    NSString* smallPosterPath = [self smallPosterFilePath:movie 
+                                                    index:index];
+        
+    if ([FileUtilities size:smallPosterPath] == 0 && index == 0) {
+        NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie index:index]];
+        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
+                                                toHeight:SMALL_POSTER_HEIGHT];
+        [FileUtilities writeData:smallPosterData
+                          toFile:smallPosterPath];
+    } else {
+        smallPosterData = [FileUtilities readData:smallPosterPath];
+    }
+    
+    return [UIImage imageWithData:smallPosterData];
 }
 
 
@@ -103,9 +131,15 @@
 }
 
 
-- (UIImage*) firstPosterForMovie:(Movie*) movie {
+- (UIImage*) posterForMovie:(Movie*) movie {
     NSAssert([NSThread isMainThread], @"");
     return [self posterForMovie:movie index:0];
+}
+
+
+- (UIImage*) smallPosterForMovie:(Movie*) movie {
+    NSAssert([NSThread isMainThread], @"");
+    return [self smallPosterForMovie:movie index:0];
 }
 
 
@@ -254,6 +288,5 @@
     [gate unlock];
     return count;
 }
-
 
 @end

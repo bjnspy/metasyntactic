@@ -78,6 +78,7 @@
 		747406290EC6468F00625001 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 747406230EC6468F00625001 /* xmltok_impl.c */; };
 		7474062A0EC6468F00625001 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 747406250EC6468F00625001 /* xmltok_ns.c */; };
 		747411250EC79EA200625001 /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747411240EC79EA200625001 /* ImageUtilities.m */; };
+		747412910EC7C0B500625001 /* ImageLoading.png in Resources */ = {isa = PBXBuildFile; fileRef = 747412900EC7C0B500625001 /* ImageLoading.png */; };
 		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
 		7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */; };
 		747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */; };
@@ -396,6 +397,7 @@
 		747406250EC6468F00625001 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
 		747411230EC79EA200625001 /* ImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtilities.h; sourceTree = "<group>"; };
 		747411240EC79EA200625001 /* ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtilities.m; sourceTree = "<group>"; };
+		747412900EC7C0B500625001 /* ImageLoading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageLoading.png; path = Resources/ImageLoading.png; sourceTree = "<group>"; };
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
 		7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
 		7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
@@ -781,6 +783,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				747412900EC7C0B500625001 /* ImageLoading.png */,
 				744AF54C0EC42A40008B5B35 /* BlackCircle.png */,
 				74A70AD00EC391A0008C661D /* LeftArrow.png */,
 				74A70AD10EC391A0008C661D /* RightArrow.png */,
@@ -1492,6 +1495,7 @@
 				74A70AD20EC391A0008C661D /* LeftArrow.png in Resources */,
 				74A70AD30EC391A0008C661D /* RightArrow.png in Resources */,
 				744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */,
+				747412910EC7C0B500625001 /* ImageLoading.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

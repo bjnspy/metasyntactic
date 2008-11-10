@@ -32,7 +32,10 @@
 - (NSArray*) movies;
 
 - (DVD*) detailsForMovie:(Movie*) movie;
-- (UIImage*) posterForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
+
+
+- (UIImage*) posterForMovie:(Movie*) movie;
+- (UIImage*) smallPosterForMovie:(Movie*) movie;
 
 @end

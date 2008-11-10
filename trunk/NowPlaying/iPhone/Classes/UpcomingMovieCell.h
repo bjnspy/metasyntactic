@@ -15,7 +15,10 @@
 @interface UpcomingMovieCell : UITableViewCell {
 @private
     NowPlayingModel* model;
+    Movie* movie;
+    
     UILabel* titleLabel;
+    
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
     UILabel* genreTitleLabel;
@@ -27,6 +30,7 @@
     UILabel* ratedLabel;
 
     UIImageView* imageView;
+    UIActivityIndicatorView* activityView;
 
     CGFloat titleWidth;
 }

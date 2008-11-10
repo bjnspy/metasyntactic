@@ -33,6 +33,8 @@
 - (NSArray*) upcomingMovies;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
+- (UIImage*) smallPosterForMovie:(Movie*) movie;
+
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSArray*) trailersForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
