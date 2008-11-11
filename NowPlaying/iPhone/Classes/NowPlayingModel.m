@@ -18,6 +18,7 @@
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
 #import "Application.h"
+#import "BlurayCache.h"
 #import "DVDCache.h"
 #import "DVDViewController.h"
 #import "DateUtilities.h"
@@ -51,6 +52,7 @@
 
 @interface NowPlayingModel()
 @property (retain) UserLocationCache* userLocationCache;
+@property (retain) BlurayCache* blurayCache;
 @property (retain) DVDCache* dvdCache;
 @property (retain) IMDbCache* imdbCache;
 @property (retain) PosterCache* posterCache;
@@ -111,6 +113,7 @@ static NSString** KEYS[] = {
 @synthesize favoriteTheatersData;
 
 @synthesize userLocationCache;
+@synthesize blurayCache;
 @synthesize dvdCache;
 @synthesize imdbCache;
 @synthesize posterCache;
@@ -124,6 +127,7 @@ static NSString** KEYS[] = {
     self.favoriteTheatersData = nil;
 
     self.userLocationCache = nil;
+    self.blurayCache = nil;
     self.dvdCache = nil;
     self.imdbCache = nil;
     self.posterCache = nil;
@@ -148,6 +152,7 @@ static NSString** KEYS[] = {
 
 - (void) updateDVDCache {
     [dvdCache update];
+    [blurayCache update];
 }
 
 
@@ -267,6 +272,7 @@ static NSString** KEYS[] = {
         self.largePosterCache = [LargePosterCache cache];
         self.imdbCache = [IMDbCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cacheWithModel:self];
+        self.blurayCache = [BlurayCache cacheWithModel:self];
         self.dvdCache = [DVDCache cacheWithModel:self];
         self.posterCache = [PosterCache cacheWithModel:self];
         self.scoreCache = [ScoreCache cacheWithModel:self];
