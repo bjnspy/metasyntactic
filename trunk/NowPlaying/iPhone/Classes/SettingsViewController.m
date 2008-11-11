@@ -113,7 +113,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     if (row == 0) {
-        cell.text = NSLocalizedString(@"Send feedback", nil);
+        cell.text = NSLocalizedString(@"Send Feedback", nil);
     } else {
         cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
     }  
