@@ -14,6 +14,7 @@
 
 #import "DVDViewController.h"
 
+#import "BlurayCache.h"
 #import "DVDCache.h"
 #import "DVDCell.h"
 #import "DVDNavigationController.h"
@@ -44,7 +45,15 @@
 
 - (NSArray*) movies {
     NSMutableArray* result = [NSMutableArray array];
-    [result addObjectsFromArray:self.model.dvdCache.movies];
+    
+    if (self.model.dvdMoviesShowDVDs) {
+        [result addObjectsFromArray:self.model.dvdCache.movies];
+    }
+    
+    if (self.model.dvdMoviesShowBluray) {
+        [result addObjectsFromArray:self.model.blurayCache.movies];
+    }
+
     return result;
 }
 
