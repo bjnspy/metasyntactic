@@ -1163,13 +1163,16 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     [posterCache prioritizeMovie:movie];
     [scoreCache prioritizeMovie:movie];
     [trailerCache prioritizeMovie:movie];
+    [imdbCache prioritizeMovie:movie];
+    [upcomingCache prioritizeMovie:movie];
     [dvdCache prioritizeMovie:movie];
     [blurayCache prioritizeMovie:movie];
 }
 
 
 - (NSString*) feedbackUrl {
-    NSString* body = [NSString stringWithFormat:@"\n\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nCountry: %@\nLanguage: %@",
+    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nCountry: %@\nLanguage: %@",
+                      currentVersion,
                       self.userAddress,
                       self.searchRadius,
                       [DateUtilities formatShortDate:self.searchDate],

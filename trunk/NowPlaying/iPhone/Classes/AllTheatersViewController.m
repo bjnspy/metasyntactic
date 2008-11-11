@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
+#import "LocaleUtilities.h"
 #import "Location.h"
 #import "MultiDictionary.h"
 #import "NowPlayingModel.h"
@@ -28,9 +29,11 @@
 @property (assign) TheatersNavigationController* navigationController;
 @property (retain) UISegmentedControl* segmentedControl;
 @property (retain) NSArray* sortedTheaters;
+
 @property (retain) NSMutableArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
-@property (retain) NSArray* alphabeticSectionTitles;
+
+@property (retain) NSArray* indexTitles;
 @end
 
 
@@ -41,7 +44,7 @@
 @synthesize sortedTheaters;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
-@synthesize alphabeticSectionTitles;
+@synthesize indexTitles;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -49,7 +52,7 @@
     self.sortedTheaters = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
-    self.alphabeticSectionTitles = nil;
+    self.indexTitles = nil;
 
     [super dealloc];
 }
@@ -93,9 +96,7 @@
 
 - (void) sortTheatersByName {
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
-
-    self.sectionTitles = [NSMutableArray arrayWithArray:alphabeticSectionTitles];
-
+    
     for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
@@ -104,15 +105,31 @@
 
         unichar firstChar = [theater.name characterAtIndex:0];
         firstChar = toupper(firstChar);
-
-        if (firstChar >= 'A' && firstChar <= 'Z') {
-            NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
-            [sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
+        
+        if ([LocaleUtilities isJapanese]) {
+            if (CFCharacterSetIsCharacterMember(CFCharacterSetGetPredefined(kCFCharacterSetLetter), firstChar)) {
+                NSString* sectionTitle = [[[NSString alloc] initWithCharacters:&firstChar length:1] autorelease];
+                [sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
+            } else {
+                [sectionTitleToContentsMap addObject:theater forKey:@"#"];
+            }
         } else {
-            [sectionTitleToContentsMap addObject:theater forKey:@"#"];
+            if (firstChar >= 'A' && firstChar <= 'Z') {
+                NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
+                [sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
+            } else {
+                [sectionTitleToContentsMap addObject:theater forKey:@"#"];
+            }
         }
     }
-
+    
+    if ([LocaleUtilities isJapanese]) {
+        self.sectionTitles = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys]; 
+        [sectionTitles sortUsingSelector:@selector(compare:)];
+    } else {
+        self.sectionTitles = [NSMutableArray arrayWithArray:indexTitles];
+    }
+    
     [self removeUnusedSectionTitles];
 }
 
@@ -255,6 +272,20 @@
 }
 
 
+- (void) setupIndexTitles {
+    if ([LocaleUtilities isJapanese]) {
+        self.indexTitles = nil;
+    } else {
+        self.indexTitles =
+        [NSArray arrayWithObjects:
+         [Application starString],
+         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
+         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
+         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+    }
+}
+
+
 - (void) loadView {
     [super loadView];
 
@@ -265,14 +296,7 @@
 
     self.navigationItem.titleView = segmentedControl;
 
-    {
-        self.alphabeticSectionTitles =
-        [NSArray arrayWithObjects:
-         [Application starString],
-         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
-         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
-         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
-    }
+    [self setupIndexTitles];
 
     self.title = NSLocalizedString(@"Theaters", nil);
 }
@@ -298,7 +322,7 @@
     self.sortedTheaters = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
-    self.alphabeticSectionTitles = nil;
+    self.indexTitles = nil;
 
     [super didReceiveMemoryWarning];
 }
@@ -353,12 +377,12 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    NSString* indexTitle = [sectionTitles objectAtIndex:section];
-    if (indexTitle == [Application starString]) {
+    NSString* sectionTitle = [sectionTitles objectAtIndex:section];
+    if (sectionTitle == [Application starString]) {
         return NSLocalizedString(@"Favorites", nil);
     }
 
-    return [sectionTitles objectAtIndex:section];
+    return sectionTitle;
 }
 
 
@@ -366,7 +390,7 @@
     if ([self sortingByName] &&
         sortedTheaters.count > 0 &&
         UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        return alphabeticSectionTitles;
+        return indexTitles;
     }
 
     return nil;
@@ -424,6 +448,5 @@
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [self refresh];
 }
-
 
 @end

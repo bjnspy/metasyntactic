@@ -21,7 +21,7 @@
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;
 
-    NSArray* alphabeticSectionTitles;
+    NSArray* indexTitles;
 
     BOOL visible;
 }

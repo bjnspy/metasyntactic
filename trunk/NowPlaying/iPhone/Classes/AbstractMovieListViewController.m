@@ -17,6 +17,7 @@
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
+#import "LocaleUtilities.h"
 #import "Movie.h"
 #import "MoviesNavigationController.h"
 #import "MultiDictionary.h"
@@ -28,7 +29,7 @@
 @property (retain) NSArray* sortedMovies;
 @property (retain) NSMutableArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
-@property (retain) NSArray* alphabeticSectionTitles;
+@property (retain) NSArray* indexTitles;
 @end
 
 
@@ -38,14 +39,14 @@
 @synthesize sortedMovies;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
-@synthesize alphabeticSectionTitles;
+@synthesize indexTitles;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.sortedMovies = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
-    self.alphabeticSectionTitles = nil;
+    self.indexTitles = nil;
 
     [super dealloc];
 }
@@ -131,20 +132,34 @@
 - (void) sortMoviesByTitle {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
 
-    self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
-
     for (Movie* movie in sortedMovies) {
         NSString* title = movie.displayTitle;
         unichar firstChar = [self firstCharacter:title];
 
-        if (firstChar >= 'A' && firstChar <= 'Z') {
-            NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
-            [sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
+        if ([LocaleUtilities isJapanese]) {
+            if (CFCharacterSetIsCharacterMember(CFCharacterSetGetPredefined(kCFCharacterSetLetter), firstChar)) {
+                NSString* sectionTitle = [[[NSString alloc] initWithCharacters:&firstChar length:1] autorelease];
+                [sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
+            } else {
+                [sectionTitleToContentsMap addObject:movie forKey:@"#"];
+            }
         } else {
-            [sectionTitleToContentsMap addObject:movie forKey:@"#"];
+            if (firstChar >= 'A' && firstChar <= 'Z') {
+                NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
+                [sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
+            } else {
+                [sectionTitleToContentsMap addObject:movie forKey:@"#"];
+            }
         }
     }
 
+    if ([LocaleUtilities isJapanese]) {
+        self.sectionTitles = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys];
+        [sectionTitles sortUsingSelector:@selector(compare:)];
+    } else {
+        self.sectionTitles = [NSMutableArray arrayWithArray:self.indexTitles];
+    } 
+    
     [self removeUnusedSectionTitles];
 }
 
@@ -240,18 +255,26 @@
 }
 
 
+- (void) setupIndexTitles {
+    if ([LocaleUtilities isJapanese]) {
+        self.indexTitles = nil;
+    } else {
+        self.indexTitles =
+        [NSArray arrayWithObjects:
+         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
+         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
+         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+    }
+}
+
+
 - (void) loadView {
     [super loadView];
 
     self.sortedMovies = [NSArray array];
 
     [self initializeSearchButton];
-
-    self.alphabeticSectionTitles =
-    [NSArray arrayWithObjects:
-     @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
-     @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
-     @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+    [self setupIndexTitles];
 }
 
 
@@ -263,7 +286,7 @@
     self.sortedMovies = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
-    self.alphabeticSectionTitles = nil;
+    self.indexTitles = nil;
 
     [super didReceiveMemoryWarning];
 }
@@ -379,7 +402,7 @@
     if (self.sortingByTitle &&
         self.sortedMovies.count > 0 &&
         UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        return alphabeticSectionTitles;
+        return indexTitles;
     }
 
     return nil;

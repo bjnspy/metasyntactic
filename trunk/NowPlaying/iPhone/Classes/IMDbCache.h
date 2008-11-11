@@ -16,11 +16,13 @@
 @private
     NowPlayingModel* model;
     NSLock* gate;
+    LinkedSet* prioritizedMovies;
 }
 
 + (IMDbCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update:(NSArray*) movies;
+- (void) prioritizeMovie:(Movie*) movie;
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 
