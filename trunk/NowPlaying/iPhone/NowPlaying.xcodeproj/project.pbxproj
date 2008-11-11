@@ -236,6 +236,7 @@
 		74F94FED0E6BC98800075068 /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC70E6BC98800075068 /* Upcoming.png */; };
 		74F94FEE0E6BC98800075068 /* Warning-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC80E6BC98800075068 /* Warning-16x16.png */; };
 		74F94FEF0E6BC98800075068 /* YahooLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC90E6BC98800075068 /* YahooLogo.png */; };
+		74FF70BB0EC9710600B0D534 /* DVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -686,6 +687,8 @@
 		74F94FC80E6BC98800075068 /* Warning-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-16x16.png"; path = "Resources/Warning-16x16.png"; sourceTree = "<group>"; };
 		74F94FC90E6BC98800075068 /* YahooLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = YahooLogo.png; path = Resources/YahooLogo.png; sourceTree = "<group>"; };
 		74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieOverviewCell.h; sourceTree = "<group>"; };
+		74FF70B90EC9710600B0D534 /* DVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDFilterViewController.h; sourceTree = "<group>"; };
+		74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDFilterViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1211,8 +1214,6 @@
 		74A863F20E64F255003A2249 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */,
-				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
 				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
 				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
@@ -1225,6 +1226,10 @@
 				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
 				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
 				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
+				74FF70B90EC9710600B0D534 /* DVDFilterViewController.h */,
+				74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */,
+				748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */,
+				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1686,6 +1691,7 @@
 				747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */,
 				741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */,
 				74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */,
+				74FF70BB0EC9710600B0D534 /* DVDFilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
