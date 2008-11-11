@@ -57,11 +57,13 @@ typedef enum {
         self.title = NSLocalizedString(@"About", nil);
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+        [dictionary setObject:@"Michal Štoppl"      forKey:@"cs"];
         [dictionary setObject:@"Allan Lund Jensen"  forKey:@"da"];
         [dictionary setObject:@"Patrick Boch"       forKey:@"de"];
         [dictionary setObject:@"Jorge Herskovic"    forKey:@"es"];
         [dictionary setObject:@"J-P. Helisten"      forKey:@"fi"];
         [dictionary setObject:@"Jonathan Grenier"   forKey:@"fr"];
+        [dictionary setObject:@"Dani Valevski"      forKey:@"he"];
         [dictionary setObject:@"Santiago Navonne"   forKey:@"it"];
         [dictionary setObject:@"Leo Yamamoto"       forKey:@"ja"];
         [dictionary setObject:@"André van Haren"    forKey:@"nl"];
