@@ -200,7 +200,7 @@
 
     NSArray* dvds = [self findDVDs];
     if ([self abortEarly]) { return; }
-    
+
     NSArray* bluray = [self findBluray];
     if ([self abortEarly]) { return; }
     //...

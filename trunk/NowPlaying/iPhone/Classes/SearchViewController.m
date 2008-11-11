@@ -246,16 +246,16 @@
 
 - (UITableViewCell*) blurayCellForRow:(NSInteger) row {
     Movie* movie = [searchResult.bluray objectAtIndex:row];
-    
+
     static NSString* reuseIdentifier = @"BlurayCellReuseIdentifier";
-    
+
     DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[DVDCell alloc] initWithFrame:CGRectZero
                                reuseIdentifier:reuseIdentifier
                                          model:self.model] autorelease];
     }
-    
+
     [cell setMovie:movie owner:self];
     return cell;
 }
@@ -328,7 +328,7 @@
 - (void) didSelectBlurayRow:(NSInteger) row {
     [self.tabBarController switchToDVD];
     Movie* movie = [searchResult.bluray objectAtIndex:row];
-    
+
     [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
 }
 

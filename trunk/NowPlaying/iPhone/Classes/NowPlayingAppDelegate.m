@@ -61,13 +61,13 @@ static NowPlayingAppDelegate* appDelegate = nil;
 
     self.model = [NowPlayingModel model];
     self.controller = [NowPlayingController controllerWithAppDelegate:self];
-    
+
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
     self.pulser = [Pulser pulserWithTarget:tabBarController action:@selector(refresh) pulseInterval:5];
-    
+
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
-    
+
     [controller start];
 }
 

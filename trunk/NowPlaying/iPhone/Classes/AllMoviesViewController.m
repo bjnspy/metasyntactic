@@ -99,7 +99,7 @@
 
     self.segmentedControl = [self setupSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
-    
+
     self.title = NSLocalizedString(@"Movies", nil);
 }
 
@@ -108,7 +108,7 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     self.segmentedControl = nil;
 
     [super didReceiveMemoryWarning];
