@@ -45,7 +45,7 @@
     self.gate = nil;
     self.navigationItem = nil;
     self.buttonItem = nil;
-    
+
     [super dealloc];
 }
 
@@ -54,20 +54,20 @@
     if (self = [super init]) {
         self.controller = controller_;
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
-        
+
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         locationManager.distanceFilter = kCLDistanceFilterNone;
-        
+
         self.buttonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                             style:UIBarButtonItemStylePlain
                                                            target:self
-                                                           action:@selector(onButtonTapped:)] autorelease];        
-        
+                                                           action:@selector(onButtonTapped:)] autorelease];
+
         [self autoUpdateLocation];
     }
-    
+
     return self;
 }
 
@@ -87,11 +87,11 @@
     if (running == NO) {
         return;
     }
-    
+
     NSInteger i = number.intValue;
     buttonItem.image =
     [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
-    
+
     [self performSelector:@selector(updateSpinnerImage:)
                withObject:[NSNumber numberWithInt:((i + 1) % 10)]
                afterDelay:0.1];
@@ -147,7 +147,7 @@
 - (void) locationManager:(CLLocationManager*) manager
         didFailWithError:(NSError*) error {
     [self stopAll];
-    
+
     // intermittent failures are not uncommon. retry in a minute.
     [self enqueueUpdateRequest:ONE_MINUTE];
 }
@@ -159,7 +159,7 @@
     if (newLocation != nil) {
         if (ABS(newLocation.timestamp.timeIntervalSinceNow) < 10) {
             [locationManager stopUpdatingLocation];
-            
+
             [ThreadingUtilities performSelector:@selector(findLocationBackgroundEntryPoint:)
                                        onTarget:self
                        inBackgroundWithArgument:newLocation
@@ -172,24 +172,24 @@
 
 - (void) findLocationBackgroundEntryPoint:(CLLocation*) location {
     Location* userLocation = [LocationUtilities findLocation:location];
-    
+
     [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:userLocation waitUntilDone:NO];
 }
 
 
 - (void) reportFoundUserLocation:(Location*) userLocation {
     [self stopAll];
-    
+
     if (userLocation == nil) {
         [self enqueueUpdateRequest:ONE_MINUTE];
     } else {
         [self enqueueUpdateRequest:5 * ONE_MINUTE];
     }
-    
+
     if (userLocation == nil) {
         return;
     }
-    
+
     NSString* displayString = userLocation.fullDisplayString;
     displayString = [displayString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 

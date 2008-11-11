@@ -96,7 +96,7 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     self.segmentedControl = [self setupSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
 
@@ -109,9 +109,9 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     self.segmentedControl = nil;
-    
+
     [super didReceiveMemoryWarning];
 }
 

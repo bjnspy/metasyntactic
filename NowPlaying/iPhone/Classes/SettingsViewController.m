@@ -116,15 +116,15 @@
         cell.text = NSLocalizedString(@"Send Feedback", nil);
     } else {
         cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
-    }  
-    return cell;  
+    }
+    return cell;
 }
 
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
     if (row >= 0 && row <= 4) {
         SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        
+
         NSString* key = @"";
         NSString* value = @"";
         if (row == 0) {
@@ -137,7 +137,7 @@
             }
         } else if (row == 1) {
             key = NSLocalizedString(@"Search Distance", nil);
-            
+
             if (self.model.searchRadius == 1) {
                 value = ([Application useKilometers] ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
             } else {
@@ -147,7 +147,7 @@
             }
         } else if (row == 2) {
             key = NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
-            
+
             NSDate* date = self.model.searchDate;
             if ([DateUtilities isToday:date]) {
                 value = NSLocalizedString(@"Today", nil);
@@ -167,17 +167,17 @@
                 value = NSLocalizedString(@"Bluray", nil);
             }
         }
-        
+
         [cell setKey:key value:value];
-        
+
         return cell;
     } else if (row >= 5 && row <= 6) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.accessoryView = picker;
-        
+
         NSString* text = @"";
         BOOL on = NO;
         if (row == 5) {
@@ -189,13 +189,13 @@
             on = self.model.useSmallFonts;
             [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
         }
-        
+
         picker.on = on;
         cell.text = text;
-        
+
         return cell;
     }
-    
+
     return nil;
 }
 
@@ -254,14 +254,14 @@
     } else if (row == 1) {
         CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
         [navigationController pushViewController:controller animated:YES];
-    }    
+    }
 }
 
 
 - (void) didSelectSettingsRow:(NSInteger) row {
     if (row == 0) {
         NSString* message;
-        
+
         if (self.model.userAddress.length == 0) {
             message = @"";
         } else {
@@ -274,7 +274,7 @@
                 if (country == nil) {
                     country = location.country;
                 }
-                
+
                 message = [NSString stringWithFormat:@"%@, %@ %@\n%@\nLatitude: %f\nLongitude: %f",
                            location.city,
                            location.state,
@@ -284,7 +284,7 @@
                            location.longitude];
             }
         }
-        
+
         TextFieldEditorViewController* controller =
         [[[TextFieldEditorViewController alloc] initWithController:navigationController
                                                              title:NSLocalizedString(@"Location", nil)
@@ -294,7 +294,7 @@
                                                            message:message
                                                        placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
                                                               type:UIKeyboardTypeDefault] autorelease];
-        
+
         [navigationController pushViewController:controller animated:YES];
     } else if (row == 1) {
         [self pushFilterDistancePicker];

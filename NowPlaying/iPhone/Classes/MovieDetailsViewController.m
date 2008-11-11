@@ -157,7 +157,7 @@
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
         [titles addObject:NSLocalizedString(@"Website", nil)];
     }
-    
+
     if (selectors.count == 0) {
         return;
     }

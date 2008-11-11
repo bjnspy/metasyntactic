@@ -734,7 +734,7 @@ static NSString** KEYS[] = {
     if (result.length > 0) {
         return result;
     }
-    
+
     return [blurayCache imdbAddressForMovie:movie];
 }
 
@@ -744,10 +744,10 @@ static NSString** KEYS[] = {
     if (dvd != nil) {
         return dvd;
     }
-    
+
     return [blurayCache detailsForMovie:movie];
 }
-    
+
 
 - (UIImage*) posterForMovie:(Movie*) movie
                     sources:(NSArray*) sources
@@ -911,7 +911,7 @@ NSInteger compareMoviesByScore(id t1, id t2, void *context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
-    
+
     Movie* movie1 = t1;
     Movie* movie2 = t2;
     NowPlayingModel* model = context;
@@ -933,7 +933,7 @@ NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void *context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
-    
+
     NowPlayingModel* model = context;
     Movie* movie1 = t1;
     Movie* movie2 = t2;
@@ -964,7 +964,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
-    
+
     Movie* movie1 = t1;
     Movie* movie2 = t2;
 
@@ -976,7 +976,7 @@ NSInteger compareTheatersByName(id t1, id t2, void *context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
-    
+
     Theater* theater1 = t1;
     Theater* theater2 = t2;
 
@@ -988,7 +988,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
-    
+
     NSDictionary* theaterDistanceMap = context;
 
     Theater* theater1 = t1;

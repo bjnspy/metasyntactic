@@ -45,11 +45,11 @@
 
 - (NSArray*) movies {
     NSMutableArray* result = [NSMutableArray array];
-    
+
     if (self.model.dvdMoviesShowDVDs) {
         [result addObjectsFromArray:self.model.dvdCache.movies];
     }
-    
+
     if (self.model.dvdMoviesShowBluray) {
         [result addObjectsFromArray:self.model.blurayCache.movies];
     }
@@ -97,28 +97,28 @@
                                     [NSArray arrayWithObjects:
                                      NSLocalizedString(@"Release", nil),
                                      NSLocalizedString(@"Title", nil), nil]] autorelease];
-    
+
     control.segmentedControlStyle = UISegmentedControlStyleBar;
     control.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
-    
+
     [control addTarget:self
                 action:@selector(onSortOrderChanged:)
       forControlEvents:UIControlEventValueChanged];
-    
+
     CGRect rect = control.frame;
     rect.size.width = 240;
     control.frame = rect;
-    
+
     return control;
 }
 
 
 - (void) loadView {
     [super loadView];
-      
+
     self.segmentedControl = [self createSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
-        
+
     self.title = NSLocalizedString(@"DVD/Bluray", nil);
     self.tableView.rowHeight = 100;
 }
@@ -128,11 +128,11 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-    
+
     self.titleView = nil;
     self.toolbar = nil;
     self.segmentedControl = nil;
-    
+
     [super didReceiveMemoryWarning];
 }
 
