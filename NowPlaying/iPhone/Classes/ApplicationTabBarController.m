@@ -27,7 +27,6 @@
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-@property (retain) NumbersNavigationController* numbersNavigationController;
 @property (retain) DVDNavigationController* dvdNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
 @property (retain) NSDate* lastRefreshDate;
@@ -38,9 +37,7 @@
 
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
-@synthesize upcomingMoviesNavigationController;
-@synthesize numbersNavigationController;
-@synthesize dvdNavigationController;
+@synthesize upcomingMoviesNavigationController;@synthesize dvdNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
 @synthesize lastRefreshDate;
@@ -49,7 +46,6 @@
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
     self.upcomingMoviesNavigationController = nil;
-    self.numbersNavigationController = nil;
     self.dvdNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
@@ -132,7 +128,6 @@
 - (void) popNavigationControllersToRoot {
     [moviesNavigationController popToRootViewControllerAnimated:YES];
     [theatersNavigationController popToRootViewControllerAnimated:YES];
-    [numbersNavigationController popToRootViewControllerAnimated:YES];
 }
 
 

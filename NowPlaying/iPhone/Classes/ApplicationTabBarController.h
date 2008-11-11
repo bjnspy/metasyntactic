@@ -17,9 +17,7 @@
     NowPlayingAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
-    UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-    NumbersNavigationController* numbersNavigationController;
-    DVDNavigationController* dvdNavigationController;
+    UpcomingMoviesNavigationController* upcomingMoviesNavigationController;    DVDNavigationController* dvdNavigationController;
     SettingsNavigationController* settingsNavigationController;
 
     NSDate* lastRefreshDate;
