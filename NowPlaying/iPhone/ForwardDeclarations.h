@@ -21,7 +21,6 @@
 @class AbstractDataProvider;
 @class AbstractNavigationController;
 @class ActionsView;
-@class ActivityIndicator;
 @class ActivityIndicatorViewWithBackground;
 @class AllMoviesViewController;
 @class AllTheatersViewController;
@@ -59,7 +58,6 @@
 @class MetacriticScoreProvider;
 @class Movie;
 @class MovieDetailsViewController;
-@class MovieNumbers;
 @class MovieOverviewCell;
 @class Score;
 @class MovieShowtimesCell;
@@ -72,9 +70,6 @@
 @class NowPlayingAppDelegate;
 @class NowPlayingController;
 @class NowPlayingModel;
-@class NumbersCache;
-@class NumbersNavigationController;
-@class NumbersViewController;
 @class Performance;
 @class PickerEditorViewController;
 @class PointerSet;
