@@ -1169,12 +1169,14 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSString*) feedbackUrl {
-    NSString* body = [NSString stringWithFormat:@"\n\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@",
+    NSString* body = [NSString stringWithFormat:@"\n\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nCountry: %@\nLanguage: %@",
                       self.userAddress,
                       self.searchRadius,
                       [DateUtilities formatShortDate:self.searchDate],
                       self.currentScoreProvider,
-                      (self.autoUpdateLocation ? @"yes" : @"no")];
+                      (self.autoUpdateLocation ? @"yes" : @"no"),
+                      [LocaleUtilities englishCountry],
+                      [LocaleUtilities englishLanguage]];
 
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
     NSString* result = [@"mailto:cyrus.najmabadi@gmail.com?subject=Now%20Playing%20Feedback&body=" stringByAppendingString:encodedBody];
