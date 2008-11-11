@@ -92,11 +92,6 @@
 }
 
 
-- (BOOL) spaceForActivityIndicator {
-    return YES;
-}
-
-
 - (NowPlayingModel*) model {
     return navigationController.model;
 }
@@ -288,9 +283,7 @@
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
-    if (self.spaceForActivityIndicator) {
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-    }
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     
     [self refresh];
 }

@@ -445,13 +445,13 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) setDvdMoviesShowDVDs:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_MOVIES_HIDE_DVDS];
+- (BOOL) dvdMoviesShowBluray {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_MOVIES_HIDE_BLURAY];
 }
 
 
-- (BOOL) dvdMoviesShowBluray {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_MOVIES_HIDE_BLURAY];
+- (void) setDvdMoviesShowDVDs:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_MOVIES_HIDE_DVDS];
 }
 
 

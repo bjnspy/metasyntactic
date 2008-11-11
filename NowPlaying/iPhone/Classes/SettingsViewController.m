@@ -120,7 +120,6 @@
 
 
 - (void) refresh {
-    self.tableView.rowHeight = 41;
     [self.tableView reloadData];
 }
 
@@ -175,10 +174,31 @@
 }
 
 
+- (UITableViewCellAccessoryType) accessoryTypeForDVDRow:(NSInteger) row {
+    if (row == 0) {
+        if (self.model.dvdMoviesShowDVDs && self.model.dvdMoviesShowBluray) {
+            return UITableViewCellAccessoryCheckmark;
+        }
+    } else if (row == 1) {
+        if (self.model.dvdMoviesShowDVDs && !self.model.dvdMoviesShowBluray) {
+            return UITableViewCellAccessoryCheckmark;
+        }
+    } else {
+        if (!self.model.dvdMoviesShowDVDs && self.model.dvdMoviesShowBluray) {
+            return UITableViewCellAccessoryCheckmark;
+        }
+    }
+        
+    return UITableViewCellAccessoryNone;
+}
+
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return UITableViewCellAccessoryDisclosureIndicator;
+    } else if(indexPath.section == 2) {
+        return [self accessoryTypeForDVDRow:indexPath.row];
     }
 
     return UITableViewCellAccessoryNone;
@@ -186,7 +206,7 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 2;
+    return 3;
 }
 
 
@@ -194,89 +214,121 @@
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return 2;
-    } else {
+    } else if (section == 1) {
         return 6;
+    } else {
+        return 3;
     }
+}
+
+
+- (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
+    if (row == 0) {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        cell.text = NSLocalizedString(@"Send feedback", nil);
+        return cell;
+    } else {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
+        return cell;
+    }    
+}
+
+
+- (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
+    if (row >= 0 && row <= 3) {
+        SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        
+        NSString* key;
+        NSString* value;
+        if (row == 0) {
+            key = NSLocalizedString(@"Location", nil);
+            Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
+            if (location.postalCode == nil) {
+                value = self.model.userAddress;
+            } else {
+                value = location.postalCode;
+            }
+        } else if (row == 1) {
+            key = NSLocalizedString(@"Search Distance", nil);
+            
+            if (self.model.searchRadius == 1) {
+                value = ([Application useKilometers] ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
+            } else {
+                value = [NSString stringWithFormat:NSLocalizedString(@"%d %@", @"5 kilometers or 5 miles"),
+                         self.model.searchRadius,
+                         ([Application useKilometers] ? NSLocalizedString(@"kilometers", nil) : NSLocalizedString(@"miles", nil))];
+            }
+        } else if (row == 2) {
+            key = NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
+            
+            NSDate* date = self.model.searchDate;
+            if ([DateUtilities isToday:date]) {
+                value = NSLocalizedString(@"Today", nil);
+            } else {
+                value = [DateUtilities formatLongDate:date];
+            }
+        } else if (row == 3) {
+            key = NSLocalizedString(@"Reviews", nil);
+            value = self.model.currentScoreProvider;
+        }
+        
+        [cell setKey:key value:value];
+        
+        return cell;
+    } else if (row >= 4 && row <= 5) {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        cell.accessoryView = picker;
+        
+        NSString* text = @"";
+        BOOL on = NO;
+        if (row == 4) {
+            text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
+            on = self.model.autoUpdateLocation;
+            [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
+        } else if (row == 5) {
+            text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
+            on = self.model.useSmallFonts;
+            [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
+        }
+        
+        picker.on = on;
+        cell.text = text;
+        
+        return cell;
+    }
+    
+    return nil;
+}
+
+
+- (UITableViewCell*) cellForDVDRow:(NSInteger) row {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    if (row == 0) {
+        cell.text = NSLocalizedString(@"Both", @"Option for when the user wants both DVD and bluray");
+    } else if (row == 1) {
+        cell.text = @"DVD";
+    } else {
+        cell.text = @"Bluray";
+    }
+    
+    return cell;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            cell.text = NSLocalizedString(@"Send feedback", nil);
-            return cell;
-        } else {
-            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
-            return cell;
-        }
-    } else {
-        if (indexPath.row >= 0 && indexPath.row <= 3) {
-            SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
-            NSString* key;
-            NSString* value;
-            if (indexPath.row == 0) {
-                key = NSLocalizedString(@"Location", nil);
-                Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
-                if (location.postalCode == nil) {
-                    value = self.model.userAddress;
-                } else {
-                    value = location.postalCode;
-                }
-            } else if (indexPath.row == 1) {
-                key = NSLocalizedString(@"Search Distance", nil);
-
-                if (self.model.searchRadius == 1) {
-                    value = ([Application useKilometers] ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
-                } else {
-                    value = [NSString stringWithFormat:NSLocalizedString(@"%d %@", @"5 kilometers or 5 miles"),
-                             self.model.searchRadius,
-                             ([Application useKilometers] ? NSLocalizedString(@"kilometers", nil) : NSLocalizedString(@"miles", nil))];
-                }
-            } else if (indexPath.row == 2) {
-                key = NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.");
-
-                NSDate* date = self.model.searchDate;
-                if ([DateUtilities isToday:date]) {
-                    value = NSLocalizedString(@"Today", nil);
-                } else {
-                    value = [DateUtilities formatLongDate:date];
-                }
-            } else if (indexPath.row == 3) {
-                key = NSLocalizedString(@"Reviews", nil);
-                value = self.model.currentScoreProvider;
-            }
-
-            [cell setKey:key value:value];
-
-            return cell;
-        } else if (indexPath.row >= 4 && indexPath.row <= 5) {
-            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            cell.accessoryView = picker;
-
-            NSString* text = @"";
-            BOOL on = NO;
-            if (indexPath.row == 4) {
-                text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
-                on = self.model.autoUpdateLocation;
-                [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
-            } else if (indexPath.row == 5) {
-                text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
-                on = self.model.useSmallFonts;
-                [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
-            }
-
-            picker.on = on;
-            cell.text = text;
-
-            return cell;
-        }
+        return [self cellForHeaderRow:indexPath.row];
+    } else if (indexPath.section == 1) {
+        return [self cellForSettingsRow:indexPath.row];
+    } else if (indexPath.section == 2) {
+        return [self cellForDVDRow:indexPath.row];
     }
 
     return nil;
@@ -332,65 +384,100 @@
 }
 
 
+- (NSString*) tableView:(UITableView*) tableView
+titleForHeaderInSection:(NSInteger) section {
+    if (section == 2) {
+        return @"DVD/Bluray";
+    }
+    
+    return nil;
+}
+
+
+- (void) didSelectHeaderRow:(NSInteger) row {
+    if (row == 0) {
+        [Application openBrowser:self.model.feedbackUrl];
+    } else if (row == 1) {
+        CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
+        [navigationController pushViewController:controller animated:YES];
+    }    
+}
+
+
+- (void) didSelectSettingsRow:(NSInteger) row {
+    if (row == 0) {
+        NSString* message;
+        
+        if (self.model.userAddress.length == 0) {
+            message = @"";
+        } else {
+            Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
+            if (location.postalCode == nil) {
+                message = NSLocalizedString(@"Could not find location.", nil);
+            } else {
+                NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode
+                                                                          value:location.country];
+                if (country == nil) {
+                    country = location.country;
+                }
+                
+                message = [NSString stringWithFormat:@"%@, %@ %@\n%@\nLatitude: %f\nLongitude: %f",
+                           location.city,
+                           location.state,
+                           location.postalCode,
+                           country,
+                           location.latitude,
+                           location.longitude];
+            }
+        }
+        
+        TextFieldEditorViewController* controller =
+        [[[TextFieldEditorViewController alloc] initWithController:navigationController
+                                                             title:NSLocalizedString(@"Location", nil)
+                                                            object:self
+                                                          selector:@selector(onUserAddressChanged:)
+                                                              text:self.model.userAddress
+                                                           message:message
+                                                       placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
+                                                              type:UIKeyboardTypeDefault] autorelease];
+        
+        [navigationController pushViewController:controller animated:YES];
+    } else if (row == 1) {
+        [self pushFilterDistancePicker];
+    } else if (row == 2) {
+        [self pushSearchDatePicker];
+    } else if (row == 3) {
+        ScoreProviderViewController* controller =
+        [[[ScoreProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
+        [navigationController pushViewController:controller animated:YES];
+    }   
+}
+
+
+- (void) didSelectDVDRow:(NSInteger) row {
+    if (row == 0) {
+        [self.model setDvdMoviesShowDVDs:YES];
+        [self.model setDvdMoviesShowBluray:YES];
+    } else if (row == 1) {
+        [self.model setDvdMoviesShowDVDs:YES];
+        [self.model setDvdMoviesShowBluray:NO];
+    } else {
+        [self.model setDvdMoviesShowDVDs:NO];
+        [self.model setDvdMoviesShowBluray:YES];
+    }
+    
+    [self refresh];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
-
-    if (section == 0) {
-        if (indexPath.row == 0) {
-            [Application openBrowser:self.model.feedbackUrl];
-        } else if (indexPath.row == 1) {
-            CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
-            [navigationController pushViewController:controller animated:YES];
-        }
-    } else if (section == 1) {
-        if (row == 0) {
-            NSString* message;
-
-            if (self.model.userAddress.length == 0) {
-                message = @"";
-            } else {
-                Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
-                if (location.postalCode == nil) {
-                    message = NSLocalizedString(@"Could not find location.", nil);
-                } else {
-                    NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode
-                                                                              value:location.country];
-                    if (country == nil) {
-                        country = location.country;
-                    }
-
-                    message = [NSString stringWithFormat:@"%@, %@ %@\n%@\nLatitude: %f\nLongitude: %f",
-                               location.city,
-                               location.state,
-                               location.postalCode,
-                               country,
-                               location.latitude,
-                               location.longitude];
-                }
-            }
-
-            TextFieldEditorViewController* controller =
-            [[[TextFieldEditorViewController alloc] initWithController:navigationController
-                                                                 title:NSLocalizedString(@"Location", nil)
-                                                                object:self
-                                                              selector:@selector(onUserAddressChanged:)
-                                                                  text:self.model.userAddress
-                                                               message:message
-                                                           placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
-                                                                  type:UIKeyboardTypeDefault] autorelease];
-
-            [navigationController pushViewController:controller animated:YES];
-        } else if (row == 1) {
-            [self pushFilterDistancePicker];
-        } else if (row == 2) {
-            [self pushSearchDatePicker];
-        } else if (row == 3) {
-            ScoreProviderViewController* controller =
-            [[[ScoreProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
-            [navigationController pushViewController:controller animated:YES];
-        }
+    if (indexPath.section == 0) {
+        [self didSelectHeaderRow:indexPath.row];
+    } else if (indexPath.section == 1) {
+        [self didSelectSettingsRow:indexPath.row];
+    } else {
+        [self didSelectDVDRow:indexPath.row];
     }
 }
 

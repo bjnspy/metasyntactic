@@ -17,7 +17,6 @@
 #import "DVDCache.h"
 #import "DVDCell.h"
 #import "DVDNavigationController.h"
-#import "DVDTypeViewController.h"
 #import "NowPlayingModel.h"
 #import "TappableLabel.h"
 
@@ -65,11 +64,6 @@
 }
 
 
-- (BOOL) spaceForActivityIndicator {
-    return NO;
-}
-
-
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
     return compareMoviesByReleaseDateAscending;
 }
@@ -88,83 +82,7 @@
     return self;
 }
 
-/*
-- (UISegmentedControl*) createSegmentedControl {
-    UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
-                                    [NSArray arrayWithObjects:
-                                     NSLocalizedString(@"Release", nil),
-                                     NSLocalizedString(@"Title", nil), nil]] autorelease];
-    
-    control.segmentedControlStyle = UISegmentedControlStyleBar;
-    control.selectedSegmentIndex = self.model.dvdMoviesSelectedSegmentIndex;
-    
-    [control addTarget:self
-                action:@selector(onSortOrderChanged:)
-      forControlEvents:UIControlEventValueChanged];
-    
-    [control sizeToFit];
-    
-    CGRect controlFrame = control.frame;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        controlFrame.origin.y = 4;
-    } else {
-        controlFrame.origin.y = 7;
-    }
-    control.frame = controlFrame;
-    
-    return control;
-}
 
-
-- (UIToolbar*) createToolbar {
-    UIBarButtonItem* dvdButton = [[[UIBarButtonItem alloc] initWithTitle:@"DVD" style:UIBarButtonItemStyleDone target:nil action:nil] autorelease];
-    UIBarButtonItem* widthItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
-    widthItem.width = -8;
-    UIBarButtonItem* blurayButton = [[[UIBarButtonItem alloc] initWithTitle:@"Bluray" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
-    
-    UIToolbar* bar = [[[UIToolbar alloc] init] autorelease];
-    bar.items = [NSArray arrayWithObjects:dvdButton, widthItem, blurayButton, nil];
-    
-    [bar sizeToFit];
-    
-    CGRect barFrame = bar.frame;
-    barFrame.origin.y = -1;
-    barFrame.origin.x = segmentedControl.frame.size.width;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        barFrame.size.height--;
-    }
-    
-    bar.frame = barFrame;
-    
-    return bar;
-}
-*/
-
-/*
-- (void) setupTitleView { 
-    self.segmentedControl = [self createSegmentedControl];
-    self.toolbar = [self createToolbar];
-
-    CGRect barFrame = toolbar.frame;
-    CGRect controlFrame = segmentedControl.frame;  
-    
-    CGFloat height;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        height = 32;
-    } else {
-        height = 44;
-    }
-    
-    CGRect frame = CGRectMake(0, 0, barFrame.size.width + controlFrame.size.width, height);
-    
-    self.titleView = [[[UIView alloc] initWithFrame:frame] autorelease];
-    
-    self.navigationItem.titleView = titleView;
-
-    [titleView addSubview:segmentedControl];
-    [titleView addSubview:toolbar];
-}
- */
 - (UISegmentedControl*) createSegmentedControl {
     UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                                     [NSArray arrayWithObjects:
@@ -223,129 +141,11 @@
     return cell;
 }
 
-/*
-- (void) setupFrames {
-    CGRect titleFrame = titleView.frame;
-    CGRect toolbarFrame = toolbar.frame;
-    CGRect controlFrame = segmentedControl.frame;
-    
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        titleFrame.size.height = 32;
-        toolbarFrame.size.height = 32;
-        controlFrame.size.height = 24;
-        toolbarFrame.origin.y = 4;
-        controlFrame.origin.y = 9;
-    } else {
-        titleFrame.size.height = 44;
-        toolbarFrame.size.height = 44;
-        controlFrame.size.height = 30;
-        toolbarFrame.origin.y = -1;
-        controlFrame.origin.y = 7;
-    }
-    
-    titleView.frame = titleFrame;
-    toolbar.frame = toolbarFrame;
-    segmentedControl.frame = controlFrame;
-}
- */
-
-
-- (UILabel*) createLabel:(NSString*) text {
-    TappableLabel* label = [[[TappableLabel alloc] init] autorelease];
-    label.delegate = self;
-    label.text = text;
-    label.textAlignment = UITextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:12];
-    label.textColor = [UIColor whiteColor];
-    label.shadowColor = [UIColor darkGrayColor];
-    [label sizeToFit];
-    
-    return label;
-}
-
-
-
-- (void) label:(TappableLabel*) label 
-     wasTapped:(NSInteger) tapCount {
-    DVDTypeViewController* controller = [[[DVDTypeViewController alloc] initWithDVDViewController:self] autorelease];
-    [navigationController pushViewController:controller animated:YES];
-}
-
-- (void) setupButtons {
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        self.navigationItem.rightBarButtonItem = nil;
-        return;
-    }        
-
-    /*
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
-    [button setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
-    //[favoriteButton addTarget:self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
-    
-    CGRect frame = favoriteButton.frame;
-    frame.size = [ImageCache emptyStarImage].size;
-    frame.size.width += 10;
-    frame.size.height += 10;
-    favoriteButton.frame = frame;
-    */
-    /*
-    UIImageView* imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Disc.png"]] autorelease];
-    UIBarButtonItem* discButton = [[[UIBarButtonItem alloc] initWithCustomView:imageView] autorelease];
-
-    self.navigationItem.rightBarButtonItem = discButton;
-*/
-    
-    UILabel* dvdLabel = [self createLabel:@"DVD"];
-    UILabel* plusLabel = [self createLabel:@"+"];
-    UILabel* blurayLabel = [self createLabel:@"Bluray"];
-    [blurayLabel sizeToFit];
-
-    CGRect frame = blurayLabel.frame;
-    dvdLabel.frame = frame;
-    
-    frame.origin.y = 10;
-    plusLabel.frame = frame;
-    
-    frame.origin.y = 20;
-    blurayLabel.frame = frame;
-    
-    frame.size.height = frame.origin.y + frame.size.height;
-    
-    UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
-    
-    [view addSubview:dvdLabel];
-    [view addSubview:plusLabel];
-    [view addSubview:blurayLabel];
-        
-    UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:view] autorelease];
-    self.navigationItem.rightBarButtonItem = item;
-    //    UIButton* dvdButton = [[[UIButton alloc] initWithFrame:<#(CGRect)frame#>
-    //  UIView* buttonView = [
-    // [[[UIBarButtonItem alloc] initWithCustomView:<#(UIView *)customView#>];
-    
-    //[self setupTitleView];
-}
-
 
 - (void) refresh {
     self.tableView.rowHeight = 100;
-    [self setupButtons];
     [super refresh];
 }
 
-
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation{
-    //self.navigationItem.rightBarButtonItem = nil;
-}
-
-/*
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self setupFrames];
-    
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-}
- */
 
 @end
