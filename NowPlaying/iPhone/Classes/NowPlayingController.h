@@ -15,9 +15,14 @@
 @interface NowPlayingController : NSObject {
 @private
     NowPlayingAppDelegate* appDelegate;
+    LocationManager* locationManager;
 
     NSLock* determineLocationLock;
 }
+
+@property (readonly, retain) LocationManager* locationManager;
+
+- (void) start;
 
 - (NowPlayingModel*) model;
 
@@ -25,6 +30,7 @@
 - (void) setUserAddress:(NSString*) userAddress;
 - (void) setSearchRadius:(NSInteger) radius;
 - (void) setScoreProviderIndex:(NSInteger) index;
+- (void) setAutoUpdateLocation:(BOOL) value;
 
 + (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
 

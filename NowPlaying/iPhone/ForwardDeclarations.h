@@ -53,6 +53,7 @@
 @class LinkedNode;
 @class LinkedSet;
 @class Location;
+@class LocationManager;
 @class LocationUtilities;
 @class LookupResult;
 @class MetacriticScoreProvider;

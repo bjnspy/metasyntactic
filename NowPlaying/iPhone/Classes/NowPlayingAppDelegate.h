@@ -23,11 +23,11 @@
     Pulser* pulser;
 }
 
-@property (nonatomic, retain) UIWindow* window;
-@property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) NowPlayingController* controller;
-@property (retain) NowPlayingModel* model;
-@property (retain) Pulser* pulser;
+@property (readonly, nonatomic, retain) UIWindow* window;
+@property (readonly, retain) ApplicationTabBarController* tabBarController;
+@property (readonly, retain) NowPlayingController* controller;
+@property (readonly, retain) NowPlayingModel* model;
+@property (readonly, retain) Pulser* pulser;
 
 + (void) refresh;
 + (void) refresh:(BOOL) force;

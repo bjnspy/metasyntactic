@@ -21,8 +21,10 @@
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Location.h"
+#import "LocationManager.h"
 #import "LocationUtilities.h"
 #import "NowPlayingAppDelegate.h"
+#import "NowPlayingController.h"
 #import "NowPlayingModel.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
@@ -35,55 +37,33 @@
 
 @interface SettingsViewController()
 @property (assign) SettingsNavigationController* navigationController;
-@property (retain) ActivityIndicator* activityIndicator;
-@property (retain) CLLocationManager* locationManager;
-@property (retain) NSLock* gate;
 @end
 
 
 @implementation SettingsViewController
 
 @synthesize navigationController;
-@synthesize activityIndicator;
-@synthesize locationManager;
-@synthesize gate;
 
 - (void) dealloc {
     self.navigationController = nil;
-    self.activityIndicator = nil;
-    self.locationManager = nil;
-    self.gate = nil;
 
     [super dealloc];
 }
 
 
-- (void) onCurrentLocationClicked:(id) sender {
-    self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
-    [activityIndicator start];
-    [locationManager startUpdatingLocation];
+- (NowPlayingModel*) model {
+    return navigationController.model;
 }
 
 
-- (void) autoUpdateLocation:(id) sender {
-    // only actually auto-update if:
-    //   a) the user wants it
-    //   b) we're not currently searching
-    if (self.model.autoUpdateLocation && activityIndicator == nil) {
-        [self onCurrentLocationClicked:nil];
-    }
-}
-
-
-- (void) enqueueUpdateRequest:(NSInteger) delay {
-    [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:delay];
+- (NowPlayingController*) controller {
+    return navigationController.controller;
 }
 
 
 - (id) initWithNavigationController:(SettingsNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
 
         NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
         NSString* appVersion = [NowPlayingModel version];
@@ -91,19 +71,7 @@
 
         self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
 
-        UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                 action:@selector(onCurrentLocationClicked:)] autorelease];
-
-        self.navigationItem.leftBarButtonItem = item;
-
-        self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        locationManager.distanceFilter = kCLDistanceFilterNone;
-
-        [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:2];
+        [self.controller.locationManager addLocationSpinner:self.navigationItem];
     }
 
     return self;
@@ -121,56 +89,6 @@
 
 - (void) refresh {
     [self.tableView reloadData];
-}
-
-
-- (void) stopActivityIndicator {
-    [activityIndicator stop];
-    self.activityIndicator = nil;
-}
-
-
-- (void) locationManager:(CLLocationManager*) manager
-     didUpdateToLocation:(CLLocation*) newLocation
-            fromLocation:(CLLocation*) oldLocation {
-    if (newLocation != nil) {
-        if (ABS(newLocation.timestamp.timeIntervalSinceNow) < 10) {
-            [locationManager stopUpdatingLocation];
-
-            [ThreadingUtilities performSelector:@selector(findLocationBackgroundEntryPoint:)
-                                       onTarget:self
-                       inBackgroundWithArgument:newLocation
-                                           gate:gate
-                                        visible:YES];
-        }
-    }
-}
-
-
-- (void) findLocationBackgroundEntryPoint:(CLLocation*) location {
-    Location* userLocation = [LocationUtilities findLocation:location];
-
-    [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:userLocation waitUntilDone:NO];
-}
-
-
-- (void)locationManager:(CLLocationManager*) manager
-       didFailWithError:(NSError*) error {
-    [locationManager stopUpdatingLocation];
-    [self stopActivityIndicator];
-
-    // intermittent failures are not uncommon. retry in a minute.
-    [self enqueueUpdateRequest:ONE_MINUTE];
-}
-
-
-- (NowPlayingModel*) model {
-    return navigationController.model;
-}
-
-
-- (NowPlayingController*) controller {
-    return navigationController.controller;
 }
 
 
@@ -336,8 +254,7 @@
 
 
 - (void) onAutoUpdateChanged:(id) sender {
-    [self.model setAutoUpdateLocation:!self.model.autoUpdateLocation];
-    [self autoUpdateLocation:nil];
+    [self.controller setAutoUpdateLocation:!self.model.autoUpdateLocation];
 }
 
 
@@ -487,21 +404,6 @@ titleForHeaderInSection:(NSInteger) section {
 
     [self.controller setUserAddress:userAddress];
     [self.tableView reloadData];
-}
-
-
-- (void) reportFoundUserLocation:(Location*) userLocation {
-    [self stopActivityIndicator];
-
-    if (userLocation == nil) {
-        [self enqueueUpdateRequest:ONE_MINUTE];
-    } else {
-        [self enqueueUpdateRequest:5 * ONE_MINUTE];
-    }
-
-    NSString* displayString = userLocation.fullDisplayString;
-    [self.model.userLocationCache setLocation:userLocation forUserAddress:displayString];
-    [self onUserAddressChanged:displayString];
 }
 
 

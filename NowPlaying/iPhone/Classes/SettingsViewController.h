@@ -12,15 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface SettingsViewController : UITableViewController<CLLocationManagerDelegate> {
+@interface SettingsViewController : UITableViewController {
 @private
     SettingsNavigationController* navigationController;
-    CLLocationManager* locationManager;
-
-    NSLock* gate;
-
-    // a non-null value means we are actively searching.
-    ActivityIndicator* activityIndicator;
 }
 
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
@@ -28,12 +22,5 @@
 - (void) refresh;
 - (NowPlayingModel*) model;
 - (NowPlayingController*) controller;
-
-- (void) locationManager:(CLLocationManager*) manager
-     didUpdateToLocation:(CLLocation*) newLocation
-            fromLocation:(CLLocation*) oldLocation;
-
-- (void)locationManager:(CLLocationManager*) manager
-       didFailWithError:(NSError*) error;
 
 @end

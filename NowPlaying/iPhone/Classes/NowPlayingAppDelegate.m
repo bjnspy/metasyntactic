@@ -15,16 +15,24 @@
 #import "NowPlayingAppDelegate.h"
 
 #import "ApplicationTabBarController.h"
+#import "LocationManager.h"
 #import "NowPlayingController.h"
 #import "NowPlayingModel.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
 
+@interface NowPlayingAppDelegate()
+@property (nonatomic, retain) UIWindow* window;
+@property (retain) ApplicationTabBarController* tabBarController;
+@property (retain) NowPlayingController* controller;
+@property (retain) NowPlayingModel* model;
+@property (retain) Pulser* pulser;
+@end
+
+
 @implementation NowPlayingAppDelegate
 
-
 static NowPlayingAppDelegate* appDelegate = nil;
-
 
 @synthesize window;
 @synthesize tabBarController;
@@ -52,13 +60,15 @@ static NowPlayingAppDelegate* appDelegate = nil;
     appDelegate = self;
 
     self.model = [NowPlayingModel model];
+    self.controller = [NowPlayingController controllerWithAppDelegate:self];
+    
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
     self.pulser = [Pulser pulserWithTarget:tabBarController action:@selector(refresh) pulseInterval:5];
-
+    
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
-
-    self.controller = [NowPlayingController controllerWithAppDelegate:self];
+    
+    [controller start];
 }
 
 
