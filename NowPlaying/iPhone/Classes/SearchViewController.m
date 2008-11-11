@@ -476,7 +476,7 @@
         }
     } else if (section == 4) {
         if (searchResult.bluray.count != 0) {
-            return NSLocalizedString(@"Bluray", nil);
+            return NSLocalizedString(@"Blu-ray", nil);
         }
     }
 
