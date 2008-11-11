@@ -243,17 +243,6 @@ static NSString* starString = nil;
     return userLocationsDirectory;
 }
 
-/*
-+ (NSString*) numbersDirectory {
-    return [self createDirectory:&numbersDirectory parent:[Application cacheDirectory] name:@"Numbers"];
-}
-
-
-+ (NSString*) numbersDetailsDirectory {
-    return [self createDirectory:&numbersWeekendDirectory parent:[Application numbersDirectory] name:@"Details"];
-}
- */
-
 
 + (NSString*) postersDirectory {
     return postersDirectory;
