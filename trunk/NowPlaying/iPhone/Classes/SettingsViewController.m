@@ -158,13 +158,13 @@
             key = NSLocalizedString(@"Reviews", nil);
             value = self.model.currentScoreProvider;
         } else if (row == 4) {
-            key = NSLocalizedString(@"DVD/Bluray", nil);
+            key = NSLocalizedString(@"DVD/Blu-ray", nil);
             if (self.model.dvdMoviesShowBoth) {
                 value = NSLocalizedString(@"Both", nil);
             } else if (self.model.dvdMoviesShowOnlyDVDs) {
                 value = NSLocalizedString(@"DVD", nil);
             } else if (self.model.dvdMoviesShowOnlyBluray) {
-                value = NSLocalizedString(@"Bluray", nil);
+                value = NSLocalizedString(@"Blu-ray", nil);
             }
         }
 
