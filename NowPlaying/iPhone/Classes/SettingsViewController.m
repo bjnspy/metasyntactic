@@ -18,6 +18,7 @@
 #import "ColorCache.h"
 #import "CreditsViewController.h"
 #import "DateUtilities.h"
+#import "DVDFilterViewController.h"
 #import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "LocationManager.h"
@@ -87,43 +88,13 @@
 
 
 - (void) refresh {
+    self.tableView.rowHeight = 38;
     [self.tableView reloadData];
 }
 
 
-- (UITableViewCellAccessoryType) accessoryTypeForDVDRow:(NSInteger) row {
-    if (row == 0) {
-        if (self.model.dvdMoviesShowDVDs && self.model.dvdMoviesShowBluray) {
-            return UITableViewCellAccessoryCheckmark;
-        }
-    } else if (row == 1) {
-        if (self.model.dvdMoviesShowDVDs && !self.model.dvdMoviesShowBluray) {
-            return UITableViewCellAccessoryCheckmark;
-        }
-    } else {
-        if (!self.model.dvdMoviesShowDVDs && self.model.dvdMoviesShowBluray) {
-            return UITableViewCellAccessoryCheckmark;
-        }
-    }
-        
-    return UITableViewCellAccessoryNone;
-}
-
-
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 0) {
-        return UITableViewCellAccessoryDisclosureIndicator;
-    } else if(indexPath.section == 2) {
-        return [self accessoryTypeForDVDRow:indexPath.row];
-    }
-
-    return UITableViewCellAccessoryNone;
-}
-
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 3;
+    return 2;
 }
 
 
@@ -131,33 +102,31 @@
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return 2;
-    } else if (section == 1) {
-        return 6;
     } else {
-        return 3;
+        return 7;
     }
 }
 
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     if (row == 0) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.text = NSLocalizedString(@"Send feedback", nil);
-        return cell;
     } else {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
-        return cell;
-    }    
+    }  
+    return cell;  
 }
 
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
-    if (row >= 0 && row <= 3) {
+    if (row >= 0 && row <= 4) {
         SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         
-        NSString* key;
-        NSString* value;
+        NSString* key = @"";
+        NSString* value = @"";
         if (row == 0) {
             key = NSLocalizedString(@"Location", nil);
             Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
@@ -188,12 +157,21 @@
         } else if (row == 3) {
             key = NSLocalizedString(@"Reviews", nil);
             value = self.model.currentScoreProvider;
+        } else if (row == 4) {
+            key = NSLocalizedString(@"DVD/Bluray", nil);
+            if (self.model.dvdMoviesShowBoth) {
+                value = NSLocalizedString(@"Both", nil);
+            } else if (self.model.dvdMoviesShowOnlyDVDs) {
+                value = NSLocalizedString(@"DVD", nil);
+            } else if (self.model.dvdMoviesShowOnlyBluray) {
+                value = NSLocalizedString(@"Bluray", nil);
+            }
         }
         
         [cell setKey:key value:value];
         
         return cell;
-    } else if (row >= 4 && row <= 5) {
+    } else if (row >= 5 && row <= 6) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -202,11 +180,11 @@
         
         NSString* text = @"";
         BOOL on = NO;
-        if (row == 4) {
+        if (row == 5) {
             text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
             on = self.model.autoUpdateLocation;
             [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
-        } else if (row == 5) {
+        } else if (row == 6) {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
@@ -222,33 +200,13 @@
 }
 
 
-- (UITableViewCell*) cellForDVDRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    if (row == 0) {
-        cell.text = NSLocalizedString(@"Both", @"Option for when the user wants both DVD and bluray");
-    } else if (row == 1) {
-        cell.text = NSLocalizedString(@"DVD", nil);
-    } else {
-        cell.text = NSLocalizedString(@"Bluray", nil);
-    }
-    
-    return cell;
-}
-
-
 - (UITableViewCell*) tableView:(UITableView*) tableView
-         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [self cellForHeaderRow:indexPath.row];
-    } else if (indexPath.section == 1) {
+    } else {
         return [self cellForSettingsRow:indexPath.row];
-    } else if (indexPath.section == 2) {
-        return [self cellForDVDRow:indexPath.row];
     }
-
-    return nil;
 }
 
 
@@ -287,26 +245,6 @@
                                                defaultValue:defaultValue] autorelease];
 
     [navigationController pushViewController:controller animated:YES];
-}
-
-
-- (void)                            tableView:(UITableView*) tableView
-     accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            [Application openBrowser:self.model.feedbackUrl];
-        }
-    }
-}
-
-
-- (NSString*) tableView:(UITableView*) tableView
-titleForHeaderInSection:(NSInteger) section {
-    if (section == 2) {
-        return @"DVD/Bluray";
-    }
-    
-    return nil;
 }
 
 
@@ -366,23 +304,11 @@ titleForHeaderInSection:(NSInteger) section {
         ScoreProviderViewController* controller =
         [[[ScoreProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
         [navigationController pushViewController:controller animated:YES];
-    }   
-}
-
-
-- (void) didSelectDVDRow:(NSInteger) row {
-    if (row == 0) {
-        [self.model setDvdMoviesShowDVDs:YES];
-        [self.model setDvdMoviesShowBluray:YES];
-    } else if (row == 1) {
-        [self.model setDvdMoviesShowDVDs:YES];
-        [self.model setDvdMoviesShowBluray:NO];
-    } else {
-        [self.model setDvdMoviesShowDVDs:NO];
-        [self.model setDvdMoviesShowBluray:YES];
+    } else if (row == 4) {
+        DVDFilterViewController* controller =
+        [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
+        [navigationController pushViewController:controller animated:YES];
     }
-    
-    [self refresh];
 }
 
 
@@ -392,8 +318,6 @@ titleForHeaderInSection:(NSInteger) section {
         [self didSelectHeaderRow:indexPath.row];
     } else if (indexPath.section == 1) {
         [self didSelectSettingsRow:indexPath.row];
-    } else {
-        [self didSelectDVDRow:indexPath.row];
     }
 }
 
@@ -411,5 +335,16 @@ titleForHeaderInSection:(NSInteger) section {
     [self.tableView reloadData];
 }
 
+
+- (UIView*)        tableView:(UITableView*) tableView
+      viewForFooterInSection:(NSInteger) section {
+    return [[[UIView alloc] init] autorelease];
+}
+
+
+- (CGFloat)          tableView:(UITableView*) tableView
+      heightForFooterInSection:(NSInteger) section {
+    return -5;
+}
 
 @end

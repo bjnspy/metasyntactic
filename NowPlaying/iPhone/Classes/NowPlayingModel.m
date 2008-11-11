@@ -446,6 +446,21 @@ static NSString** KEYS[] = {
 }
 
 
+- (BOOL) dvdMoviesShowBoth {
+    return self.dvdMoviesShowDVDs && self.dvdMoviesShowBluray;
+}
+
+
+- (BOOL) dvdMoviesShowOnlyDVDs {
+    return self.dvdMoviesShowDVDs && !self.dvdMoviesShowBluray;
+}
+
+
+- (BOOL) dvdMoviesShowOnlyBluray {
+    return !self.dvdMoviesShowDVDs && self.dvdMoviesShowBluray;
+}
+
+
 - (BOOL) dvdMoviesShowDVDs {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_MOVIES_HIDE_DVDS];
 }
