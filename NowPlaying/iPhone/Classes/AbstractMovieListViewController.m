@@ -26,7 +26,6 @@
 @interface AbstractMovieListViewController()
 @property (assign) AbstractNavigationController* navigationController;
 @property (retain) NSArray* sortedMovies;
-@property (retain) UISegmentedControl* segmentedControl;
 @property (retain) NSMutableArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
 @property (retain) NSArray* alphabeticSectionTitles;
@@ -37,7 +36,6 @@
 
 @synthesize navigationController;
 @synthesize sortedMovies;
-@synthesize segmentedControl;
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
 @synthesize alphabeticSectionTitles;
@@ -45,7 +43,6 @@
 - (void) dealloc {
     self.navigationController = nil;
     self.sortedMovies = nil;
-    self.segmentedControl = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.alphabeticSectionTitles = nil;
@@ -78,12 +75,6 @@
 }
 
 
-- (UISegmentedControl*) setupSegmentedControl {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return nil;
-}
-
-
 - (void) onSortOrderChanged:(id) sender {
     NSAssert(false, @"Someone subclassed incorrectly");
 }
@@ -98,6 +89,11 @@
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
     NSAssert(false, @"Someone subclassed incorrectly");
     return NULL;
+}
+
+
+- (BOOL) spaceForActivityIndicator {
+    return YES;
 }
 
 
@@ -254,9 +250,6 @@
 
     self.sortedMovies = [NSArray array];
 
-    self.segmentedControl = [self setupSegmentedControl];
-    self.navigationItem.titleView = segmentedControl;
-
     [self initializeSearchButton];
 
     self.alphabeticSectionTitles =
@@ -272,7 +265,6 @@
         return;
     }
 
-    self.segmentedControl = nil;
     self.sortedMovies = nil;
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
@@ -296,8 +288,10 @@
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-
+    if (self.spaceForActivityIndicator) {
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    }
+    
     [self refresh];
 }
 

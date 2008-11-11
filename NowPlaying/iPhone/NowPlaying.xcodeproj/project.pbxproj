@@ -35,6 +35,9 @@
 		7413718A0E88E79C00CF4900 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 741371890E88E79C00CF4900 /* Score.m */; };
 		741373F30E89CF1B00CF4900 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 741373F20E89CF1B00CF4900 /* Search.png */; };
 		741377B10E64765000404519 /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741377B00E64765000404519 /* TheaterNameCell.m */; };
+		741668BA0EC8F69D00FFD29A /* Disc.png in Resources */ = {isa = PBXBuildFile; fileRef = 741668B90EC8F69D00FFD29A /* Disc.png */; };
+		741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
+		741669B00EC9316C00FFD29A /* DVDTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669AF0EC9316C00FFD29A /* DVDTypeViewController.m */; };
 		742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
@@ -289,6 +292,12 @@
 		741373F20E89CF1B00CF4900 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Search.png; path = Resources/Search.png; sourceTree = "<group>"; };
 		741377AF0E64765000404519 /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
 		741377B00E64765000404519 /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
+		741668B90EC8F69D00FFD29A /* Disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Disc.png; path = Resources/Disc.png; sourceTree = "<group>"; };
+		741669320EC92C3B00FFD29A /* TappableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabel.h; sourceTree = "<group>"; };
+		741669330EC92C3B00FFD29A /* TappableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableLabel.m; sourceTree = "<group>"; };
+		741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabelDelegate.h; sourceTree = "<group>"; };
+		741669AE0EC9316C00FFD29A /* DVDTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDTypeViewController.h; sourceTree = "<group>"; };
+		741669AF0EC9316C00FFD29A /* DVDTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDTypeViewController.m; sourceTree = "<group>"; };
 		742445A50E2D2F9800C98F84 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
 		742445A60E2D2F9800C98F84 /* AttributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeCell.m; sourceTree = "<group>"; };
 		74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
@@ -786,6 +795,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				741668B90EC8F69D00FFD29A /* Disc.png */,
 				747412900EC7C0B500625001 /* ImageLoading.png */,
 				744AF54C0EC42A40008B5B35 /* BlackCircle.png */,
 				74A70AD00EC391A0008C661D /* LeftArrow.png */,
@@ -875,6 +885,9 @@
 				74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */,
 				744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */,
 				744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */,
+				741669320EC92C3B00FFD29A /* TappableLabel.h */,
+				741669330EC92C3B00FFD29A /* TappableLabel.m */,
+				741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1120,6 +1133,8 @@
 			children = (
 				747AB7A90EB956DC002438D0 /* DVDViewController.h */,
 				747AB7AA0EB956DC002438D0 /* DVDViewController.m */,
+				741669AE0EC9316C00FFD29A /* DVDTypeViewController.h */,
+				741669AF0EC9316C00FFD29A /* DVDTypeViewController.m */,
 			);
 			name = DVD;
 			sourceTree = "<group>";
@@ -1501,6 +1516,7 @@
 				74A70AD30EC391A0008C661D /* RightArrow.png in Resources */,
 				744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */,
 				747412910EC7C0B500625001 /* ImageLoading.png in Resources */,
+				741668BA0EC8F69D00FFD29A /* Disc.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1678,6 +1694,8 @@
 				7474062A0EC6468F00625001 /* xmltok_ns.c in Sources */,
 				747411250EC79EA200625001 /* ImageUtilities.m in Sources */,
 				747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */,
+				741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */,
+				741669B00EC9316C00FFD29A /* DVDTypeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

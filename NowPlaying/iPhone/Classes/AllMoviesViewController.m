@@ -18,10 +18,17 @@
 #import "MoviesNavigationController.h"
 #import "NowPlayingModel.h"
 
+@interface AllMoviesViewController()
+@property (retain) UISegmentedControl* segmentedControl;
+@end
+
+
 @implementation AllMoviesViewController
 
+@synthesize segmentedControl;
 
 - (void) dealloc {
+    self.segmentedControl = nil;
     [super dealloc];
 }
 
@@ -62,8 +69,8 @@
     control.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
 
     [control addTarget:self
-                         action:@selector(onSortOrderChanged:)
-               forControlEvents:UIControlEventValueChanged];
+                action:@selector(onSortOrderChanged:)
+      forControlEvents:UIControlEventValueChanged];
 
     CGRect rect = control.frame;
     rect.size.width = 240;
@@ -90,6 +97,9 @@
 - (void) loadView {
     [super loadView];
 
+    self.segmentedControl = [self setupSegmentedControl];
+    self.navigationItem.titleView = segmentedControl;
+    
     self.title = NSLocalizedString(@"Movies", nil);
 }
 
@@ -98,6 +108,8 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
+    
+    self.segmentedControl = nil;
 
     [super didReceiveMemoryWarning];
 }

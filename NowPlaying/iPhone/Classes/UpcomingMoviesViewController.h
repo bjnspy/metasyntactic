@@ -15,6 +15,8 @@
 #import "AbstractMovieListViewController.h"
 
 @interface UpcomingMoviesViewController : AbstractMovieListViewController {
+@private
+    UISegmentedControl* segmentedControl;
 }
 
 - (id) initWithNavigationController:(UpcomingMoviesNavigationController*) navigationController;
