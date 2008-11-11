@@ -14,7 +14,6 @@
 
 #import "SettingsViewController.h"
 
-#import "ActivityIndicator.h"
 #import "Application.h"
 #import "ColorCache.h"
 #import "CreditsViewController.h"

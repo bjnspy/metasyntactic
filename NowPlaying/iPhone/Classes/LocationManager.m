@@ -8,7 +8,6 @@
 
 #import "LocationManager.h"
 
-#import "ActivityIndicator.h"
 #import "Location.h"
 #import "LocationUtilities.h"
 #import "NowPlayingController.h"
@@ -100,6 +99,7 @@
 
 
 - (void) stopUpdatingSpinner {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     buttonItem.style = UIBarButtonItemStylePlain;
     buttonItem.image = [UIImage imageNamed:@"CurrentPosition.png"];
 }
