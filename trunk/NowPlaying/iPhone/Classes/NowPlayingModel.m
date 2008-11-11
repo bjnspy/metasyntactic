@@ -82,6 +82,8 @@ static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
 static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX = @"upcomingMoviesSelectedSegmentIndex";
 static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
+static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
+static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray";
 static NSString* USER_ADDRESS                           = @"userLocation";
 static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
 
@@ -435,6 +437,26 @@ static NSString** KEYS[] = {
 
 - (void) setDvdMoviesSelectedSegmentIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:DVD_MOVIES_SELECTED_SEGMENT_INDEX];
+}
+
+
+- (BOOL) dvdMoviesShowDVDs {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_MOVIES_HIDE_DVDS];
+}
+
+
+- (void) setDvdMoviesShowDVDs:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_MOVIES_HIDE_DVDS];
+}
+
+
+- (BOOL) dvdMoviesShowBluray {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_MOVIES_HIDE_BLURAY];
+}
+
+
+- (void) setDvdMoviesShowBluray:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_MOVIES_HIDE_BLURAY];
 }
 
 

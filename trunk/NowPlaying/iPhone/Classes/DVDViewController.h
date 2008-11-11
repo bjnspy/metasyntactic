@@ -14,7 +14,13 @@
 
 #import "AbstractMovieListViewController.h"
 
-@interface DVDViewController : AbstractMovieListViewController {
+#import "TappableLabelDelegate.h"
+
+@interface DVDViewController : AbstractMovieListViewController<TappableLabelDelegate> {
+@private
+    UIView* titleView;
+    UIToolbar* toolbar;
+    UISegmentedControl* segmentedControl;
 }
 
 - (id) initWithNavigationController:(DVDNavigationController*) navigationController;

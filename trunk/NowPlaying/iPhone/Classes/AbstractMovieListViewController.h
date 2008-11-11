@@ -15,7 +15,6 @@
 @interface AbstractMovieListViewController : UITableViewController {
 @protected
     AbstractNavigationController* navigationController;
-    UISegmentedControl* segmentedControl;
 
     NSArray* sortedMovies;
     NSMutableArray* sectionTitles;

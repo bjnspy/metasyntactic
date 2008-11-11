@@ -19,9 +19,17 @@
 #import "UpcomingMovieCell.h"
 #import "UpcomingMoviesNavigationController.h"
 
+@interface UpcomingMoviesViewController()
+@property (retain) UISegmentedControl* segmentedControl;
+@end
+
+
 @implementation UpcomingMoviesViewController
 
+@synthesize segmentedControl;
+
 - (void) dealloc {
+    self.segmentedControl = nil;
     [super dealloc];
 }
 
@@ -88,6 +96,9 @@
 
 - (void) loadView {
     [super loadView];
+    
+    self.segmentedControl = [self setupSegmentedControl];
+    self.navigationItem.titleView = segmentedControl;
 
     self.title = NSLocalizedString(@"Upcoming", nil);
     self.tableView.rowHeight = 100;
@@ -98,7 +109,9 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
-
+    
+    self.segmentedControl = nil;
+    
     [super didReceiveMemoryWarning];
 }
 

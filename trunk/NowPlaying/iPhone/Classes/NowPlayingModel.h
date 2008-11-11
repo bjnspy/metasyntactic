@@ -91,6 +91,10 @@ enum ViewControllerType {
 
 - (BOOL) dvdMoviesSortingByTitle;
 - (BOOL) dvdMoviesSortingByReleaseDate;
+- (BOOL) dvdMoviesShowDVDs;
+- (BOOL) dvdMoviesShowBluray;
+- (void) setDvdMoviesShowDVDs:(BOOL) value;
+- (void) setDvdMoviesShowBluray:(BOOL) value;
 
 - (BOOL) numbersSortingByDailyGross;
 - (BOOL) numbersSortingByWeekendGross;

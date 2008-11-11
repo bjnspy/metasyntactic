@@ -15,6 +15,7 @@
 @protocol DataProvider;
 @protocol ScoreProvider;
 @protocol TappableImageViewDelegate;
+@protocol TappableLabelDelegate;
 @protocol TappableScrollViewDelegate;
 
 @class AbstractDataProvider;
@@ -97,6 +98,7 @@
 @class SettingsNavigationController;
 @class SettingsViewController;
 @class TappableImageView;
+@class TappableLabel;
 @class TappableScrollView;
 @class TextFieldEditorViewController;
 @class Theater;
