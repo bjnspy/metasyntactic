@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "FileUtilities.h"
+#import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
@@ -26,6 +27,7 @@
 @interface IMDbCache()
 @property (assign) NowPlayingModel* model;
 @property (retain) NSLock* gate;
+@property (retain) LinkedSet* prioritizedMovies;
 @end
 
 
@@ -33,10 +35,12 @@
 
 @synthesize model;
 @synthesize gate;
+@synthesize prioritizedMovies;
 
 - (void) dealloc {
     self.model = nil;
     self.gate = nil;
+    self.prioritizedMovies = nil;
 
     [super dealloc];
 }
@@ -46,6 +50,7 @@
     if (self = [super init]) {
         self.model = model_;
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
+        self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
     return self;
@@ -132,12 +137,41 @@
 }
 
 
+- (Movie*) getNextMovie:(NSMutableArray*) movies {
+    Movie* movie = [prioritizedMovies removeLastObjectAdded];
+    
+    if (movie != nil) {
+        return movie;
+    }
+    
+    if (movies.count > 0) {
+        movie = [[[movies lastObject] retain] autorelease];
+        [movies removeLastObject];
+        return movie;
+    }
+    
+    return nil;
+}
+
+
 - (void) backgroundEntryPoint:(NSArray*) movies {
     [self deleteObsoleteAddresses:movies];
 
-    for (Movie* movie in movies) {
+    NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
+    Movie* movie = nil;
+    do {
+        movie = [self getNextMovie:mutableMovies];
         [self downloadAddress:movie];
+    } while (movie != nil);
+}
+
+
+- (void) prioritizeMovie:(Movie*) movie {
+    if ([FileUtilities fileExists:[self imdbFile:movie]]) {
+        return;
     }
+
+    [prioritizedMovies addObject:movie];
 }
 
 

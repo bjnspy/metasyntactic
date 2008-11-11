@@ -23,6 +23,8 @@
 + (NSString*) englishLanguage;
 
 + (NSString*) displayLanguage:(NSString*) isoLanguage;
+
 + (BOOL) isEnglish;
++ (BOOL) isJapanese;
 
 @end

@@ -65,4 +65,9 @@
     return [@"en" isEqual:[self isoLanguage]];
 }
 
+
++ (BOOL) isJapanese {
+    return [@"ja" isEqual:[self isoLanguage]];
+}
+
 @end
