@@ -312,9 +312,9 @@
     if (row == 0) {
         cell.text = NSLocalizedString(@"Both", @"Option for when the user wants both DVD and bluray");
     } else if (row == 1) {
-        cell.text = @"DVD";
+        cell.text = NSLocalizedString(@"DVD", nil);
     } else {
-        cell.text = @"Bluray";
+        cell.text = NSLocalizedString(@"Bluray", nil);
     }
     
     return cell;

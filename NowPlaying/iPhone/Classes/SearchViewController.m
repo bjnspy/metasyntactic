@@ -121,7 +121,8 @@
     searchResult.movies.count == 0 &&
     searchResult.theaters.count == 0 &&
     searchResult.upcomingMovies.count == 0 &&
-    searchResult.dvds.count == 0;
+    searchResult.dvds.count == 0 &&
+    searchResult.bluray.count == 0;
 }
 
 
@@ -142,7 +143,7 @@
         return 1;
     }
 
-    return 4;
+    return 5;
 }
 
 
@@ -162,8 +163,10 @@
         return searchResult.theaters.count;
     } else if (section == 2) {
         return searchResult.upcomingMovies.count;
-    } else {
+    } else if (section == 3) {
         return searchResult.dvds.count;
+    } else {
+        return searchResult.bluray.count;
     }
 }
 
@@ -229,13 +232,30 @@
 
     static NSString* reuseIdentifier = @"DvdCellReuseIdentifier";
 
-    UpcomingMovieCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                reuseIdentifier:reuseIdentifier
                                          model:self.model] autorelease];
     }
 
+    [cell setMovie:movie owner:self];
+    return cell;
+}
+
+
+- (UITableViewCell*) blurayCellForRow:(NSInteger) row {
+    Movie* movie = [searchResult.bluray objectAtIndex:row];
+    
+    static NSString* reuseIdentifier = @"BlurayCellReuseIdentifier";
+    
+    DVDCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[DVDCell alloc] initWithFrame:CGRectZero
+                               reuseIdentifier:reuseIdentifier
+                                         model:self.model] autorelease];
+    }
+    
     [cell setMovie:movie owner:self];
     return cell;
 }
@@ -260,8 +280,10 @@
         return [self theaterCellForRow:indexPath.row];
     } else if (indexPath.section == 2) {
         return [self upcomingMovieCellForRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == 3) {
         return [self dvdCellForRow:indexPath.row];
+    } else {
+        return [self blurayCellForRow:indexPath.row];
     }
 }
 
@@ -303,6 +325,14 @@
 }
 
 
+- (void) didSelectBlurayRow:(NSInteger) row {
+    [self.tabBarController switchToDVD];
+    Movie* movie = [searchResult.bluray objectAtIndex:row];
+    
+    [self.tabBarController.selectedNavigationController pushMovieDetails:movie animated:YES];
+}
+
+
 - (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -316,6 +346,8 @@
         return [self didSelectUpcomingMovieRow:indexPath.row];
     } else if (indexPath.section == 3) {
         return [self didSelectDvdRow:indexPath.row];
+    } else if (indexPath.section == 4) {
+        return [self didSelectBlurayRow:indexPath.row];
     }
 }
 
@@ -405,7 +437,9 @@
 - (CGFloat)         tableView:(UITableView*) tableView_
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (searchResult != nil) {
-        if (indexPath.section == 2 || indexPath.section == 3) {
+        if (indexPath.section == 2 ||
+            indexPath.section == 3 ||
+            indexPath.section == 4) {
             return 100;
         }
     }
@@ -438,7 +472,11 @@
         }
     } else if (section == 3) {
         if (searchResult.dvds.count != 0) {
-            return NSLocalizedString(@"DVDs", nil);
+            return NSLocalizedString(@"DVD", nil);
+        }
+    } else if (section == 4) {
+        if (searchResult.bluray.count != 0) {
+            return NSLocalizedString(@"Bluray", nil);
         }
     }
 

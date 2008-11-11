@@ -34,7 +34,6 @@
 - (DVD*) detailsForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 
-
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
 

@@ -14,6 +14,7 @@
 
 #import "SearchRequest.h"
 
+#import "BlurayCache.h"
 #import "DVDCache.h"
 #import "NowPlayingModel.h"
 #import "UpcomingCache.h"
@@ -27,6 +28,7 @@
 @property (retain) NSArray* theaters;
 @property (retain) NSArray* upcomingMovies;
 @property (retain) NSArray* dvds;
+@property (retain) NSArray* bluray;
 @end
 
 
@@ -39,6 +41,7 @@
 @synthesize theaters;
 @synthesize upcomingMovies;
 @synthesize dvds;
+@synthesize bluray;
 
 - (void) dealloc {
     self.requestId = 0;
@@ -48,6 +51,7 @@
     self.theaters = nil;
     self.upcomingMovies = nil;
     self.dvds = nil;
+    self.bluray = nil;
 
     [super dealloc];
 }
@@ -63,6 +67,7 @@
         self.theaters = model.theaters;
         self.upcomingMovies = model.upcomingCache.upcomingMovies;
         self.dvds = model.dvdCache.movies;
+        self.bluray = model.blurayCache.movies;
 
         self.lowercaseValue = [[Utilities asciiString:value] lowercaseString];
     }

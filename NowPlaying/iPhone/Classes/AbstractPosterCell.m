@@ -117,6 +117,7 @@
 
     [UIView beginAnimations:nil context:NULL];
     {
+        imageLoadingView.alpha = 0;
         imageView.alpha = 1;
     }
     [UIView commitAnimations];
@@ -129,6 +130,7 @@
     state = Loading;
     imageView.image = nil;
     imageView.alpha = 0;
+    imageLoadingView.alpha = 1;
 }
 
 

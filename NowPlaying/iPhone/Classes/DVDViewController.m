@@ -110,7 +110,7 @@
     self.segmentedControl = [self createSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
         
-    self.title = NSLocalizedString(@"DVD", nil);
+    self.title = NSLocalizedString(@"DVD/Bluray", nil);
     self.tableView.rowHeight = 100;
 }
 
