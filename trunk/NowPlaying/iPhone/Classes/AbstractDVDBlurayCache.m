@@ -532,6 +532,10 @@
 
 
 - (void) prioritizeMovie:(Movie*) movie {
+    if (![self.moviesSet containsObject:movie]) {
+        return;
+    }
+
     [prioritizedMovies addObject:movie];
 }
 

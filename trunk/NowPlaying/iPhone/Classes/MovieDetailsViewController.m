@@ -233,7 +233,7 @@
 - (void) loadView {
     [super loadView];
 
-    self.dvd = [self.model.dvdCache detailsForMovie:movie];
+    self.dvd = [self.model dvdDetailsForMovie:movie];
 
     filterTheatersByDistance = YES;
 

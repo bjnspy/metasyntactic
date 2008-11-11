@@ -190,7 +190,7 @@
 - (void) loadMovie:(id) owner {
     [self loadImage];
 
-    DVD* dvd = [model.dvdCache detailsForMovie:movie];
+    DVD* dvd = [model dvdDetailsForMovie:movie];
 
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];

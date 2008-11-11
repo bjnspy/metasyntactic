@@ -715,9 +715,24 @@ static NSString** KEYS[] = {
         return result;
     }
 
-    return [dvdCache imdbAddressForMovie:movie];
+    result = [dvdCache imdbAddressForMovie:movie];
+    if (result.length > 0) {
+        return result;
+    }
+    
+    return [blurayCache imdbAddressForMovie:movie];
 }
 
+
+- (DVD*) dvdDetailsForMovie:(Movie*) movie {
+    DVD* dvd = [dvdCache detailsForMovie:movie];
+    if (dvd != nil) {
+        return dvd;
+    }
+    
+    return [blurayCache detailsForMovie:movie];
+}
+    
 
 - (UIImage*) posterForMovie:(Movie*) movie
                     sources:(NSArray*) sources
@@ -735,14 +750,14 @@ static NSString** KEYS[] = {
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, blurayCache, largePosterCache, nil]
                        selector:@selector(posterForMovie:)];
 }
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, blurayCache, largePosterCache, nil]
                        selector:@selector(smallPosterForMovie:)];
 }
 
@@ -1133,6 +1148,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     [posterCache prioritizeMovie:movie];
     [scoreCache prioritizeMovie:movie];
     [trailerCache prioritizeMovie:movie];
+    [dvdCache prioritizeMovie:movie];
+    [blurayCache prioritizeMovie:movie];
 }
 
 
