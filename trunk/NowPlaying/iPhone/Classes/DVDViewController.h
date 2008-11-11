@@ -16,7 +16,7 @@
 
 #import "TappableLabelDelegate.h"
 
-@interface DVDViewController : AbstractMovieListViewController<TappableLabelDelegate> {
+@interface DVDViewController : AbstractMovieListViewController {
 @private
     UIView* titleView;
     UIToolbar* toolbar;
