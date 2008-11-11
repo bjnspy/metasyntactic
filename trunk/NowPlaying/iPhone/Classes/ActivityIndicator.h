@@ -15,14 +15,17 @@
 @interface ActivityIndicator : NSObject {
 @private
     UINavigationItem* navigationItem;
-    UIBarButtonItem* originalButton;
+    UIBarButtonItem* buttonItem;
+    //UIBarButtonItem* originalButton;
 
     BOOL running;
 }
 
-- (id) initWithNavigationItem:(UINavigationItem*) navigationItem;
+//- (id) initWithNavigationItem:(UINavigationItem*) navigationItem;
 
 - (void) start;
 - (void) stop;
+
+- (void) setNavigationItem:(UINavigationItem*) navigationItem;
 
 @end

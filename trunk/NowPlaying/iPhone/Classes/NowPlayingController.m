@@ -18,6 +18,7 @@
 #import "ApplicationTabBarController.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
+#import "LocationManager.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "ScoreCache.h"
@@ -29,6 +30,7 @@
 @interface NowPlayingController()
 @property (assign) NowPlayingAppDelegate* appDelegate;
 @property (retain) NSLock* determineLocationLock;
+@property (retain) LocationManager* locationManager;
 @end
 
 
@@ -36,10 +38,12 @@
 
 @synthesize appDelegate;
 @synthesize determineLocationLock;
+@synthesize locationManager;
 
 - (void) dealloc {
     self.appDelegate = nil;
     self.determineLocationLock = nil;
+    self.locationManager = nil;
 
     [super dealloc];
 }
@@ -78,7 +82,7 @@
 - (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
-        [self spawnDetermineLocationThread];
+        self.locationManager = [LocationManager managerWithController:self];
     }
 
     return self;
@@ -87,6 +91,11 @@
 
 + (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate {
     return [[[NowPlayingController alloc] initWithAppDelegate:appDelegate] autorelease];
+}
+
+
+- (void) start {
+    [self spawnDetermineLocationThread];
 }
 
 
@@ -151,5 +160,10 @@
     [self spawnScoresLookupThread];
 }
 
+
+- (void) setAutoUpdateLocation:(BOOL) value {
+    [self.model setAutoUpdateLocation:value];
+    [locationManager autoUpdateLocation];
+}
 
 @end

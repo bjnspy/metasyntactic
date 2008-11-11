@@ -16,12 +16,79 @@
 
 @interface ActivityIndicator()
 @property (retain) UINavigationItem* navigationItem;
-@property (retain) UIBarButtonItem* originalButton;
+//@property (retain) UIBarButtonItem* originalButton;
+@property (retain) UIBarButtonItem* buttonItem;
 @end
 
 
 @implementation ActivityIndicator
 
+@synthesize navigationItem;
+@synthesize buttonItem;
+
+- (void) dealloc {
+    self.navigationItem = nil;
+    self.buttonItem = nil;
+    
+    [super dealloc];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+        self.buttonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
+                                                            style:UIBarButtonItemStyleDone
+                                                           target:self
+                                                           action:@selector(onButtonTapped:)] autorelease];
+    }
+    
+    return self;
+}
+
+
+- (void) updateImage:(NSNumber*) number {
+    if (running == NO) {
+        return;
+    }
+    
+    NSInteger i = number.intValue;
+    buttonItem.image =
+        [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
+    
+    [self performSelector:@selector(updateImage:)
+               withObject:[NSNumber numberWithInt:((i + 1) % 10)]
+               afterDelay:0.1];
+}
+
+
+- (void) start {
+    running = YES;
+    [self updateImage:[NSNumber numberWithInt:1]];
+}
+
+
+- (void) stop {
+    running = NO;
+    buttonItem.image = [UIImage imageNamed:@"CurrentPosition.png"];
+    [navigationItem setLeftBarButtonItem:buttonItem animated:YES];
+}
+
+
+- (void) onButtonTapped:(id) sender {
+    if (running) {
+        [self stop];
+    } else {
+        [self start];
+    }
+}
+
+
+- (void) setNavigationItem:(UINavigationItem*) navigationItem_ {
+    self.navigationItem = navigationItem_;
+    navigationItem.leftBarButtonItem = buttonItem;
+}
+
+/*
 @synthesize navigationItem;
 @synthesize originalButton;
 
@@ -61,7 +128,9 @@
     self.navigationItem.leftBarButtonItem.image =
     [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
 
-    [self performSelector:@selector(updateImage:) withObject:[NSNumber numberWithInt:((i + 1) % 10)] afterDelay:0.1];
+    [self performSelector:@selector(updateImage:)
+               withObject:[NSNumber numberWithInt:((i + 1) % 10)]
+               afterDelay:0.1];
 }
 
 
@@ -86,6 +155,6 @@
 - (void) onButtonTapped:(id) sender {
     [self stop];
 }
-
+*/
 
 @end

@@ -157,6 +157,10 @@
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
         [titles addObject:NSLocalizedString(@"Website", nil)];
     }
+    
+    if (selectors.count == 0) {
+        return;
+    }
 
     self.actionsView = [ActionsView viewWithTarget:self selectors:selectors titles:titles];
     [actionsView sizeToFit];
