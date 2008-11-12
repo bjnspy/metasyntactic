@@ -117,7 +117,7 @@
 - (void) processTheaterAndMovieShowtimes:(TheaterListingsProto_TheaterAndMovieShowtimesProto*) theaterAndMovieShowtimes
                                 theaters:(NSMutableArray*) theaters
                             performances:(NSMutableDictionary*) performances
-                     synchronizationData:(NSMutableDictionary*) synchronizationData
+              synchronizationInformation:(NSMutableDictionary*) synchronizationInformation
                      originatingLocation:(Location*) originatingLocation
                             theaterNames:(NSArray*) theaterNames
                        movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
@@ -146,7 +146,7 @@
     NSMutableDictionary* movieToShowtimesMap = [self processMovieAndShowtimesList:movieAndShowtimesList
                                                                 movieIdToMovieMap:movieIdToMovieMap];
 
-    [synchronizationData setObject:[DateUtilities today] forKey:name];
+    [synchronizationInformation setObject:[DateUtilities today] forKey:name];
     if (movieToShowtimesMap.count == 0) {
         // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
@@ -156,7 +156,7 @@
 
         if (oldPerformances.count > 0) {
             movieToShowtimesMap = [NSMutableDictionary dictionaryWithDictionary:oldPerformances];
-            [synchronizationData setObject:[self synchronizationDateForTheater:name] forKey:name];
+            [synchronizationInformation setObject:[self synchronizationDateForTheater:name] forKey:name];
         }
     }
 
@@ -184,19 +184,19 @@
                            movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
-    NSMutableDictionary* synchronizationData = [NSMutableDictionary dictionary];
+    NSMutableDictionary* synchronizationInformation = [NSMutableDictionary dictionary];
 
     for (TheaterListingsProto_TheaterAndMovieShowtimesProto* proto in theaterAndMovieShowtimes) {
         [self processTheaterAndMovieShowtimes:proto
                                      theaters:theaters
                                  performances:performances
-                          synchronizationData:synchronizationData
+                   synchronizationInformation:synchronizationInformation
                           originatingLocation:originatingLocation
                                  theaterNames:theaterNames
                             movieIdToMovieMap:movieIdToMovieMap];
     }
 
-    return [NSArray arrayWithObjects:theaters, performances, synchronizationData, nil];
+    return [NSArray arrayWithObjects:theaters, performances, synchronizationInformation, nil];
 }
 
 
@@ -205,7 +205,6 @@
                             theaterNames:(NSArray*) theaterNames {
     NSArray* movieProtos = element.moviesList;
     NSArray* theaterAndMovieShowtimes = element.theaterAndMovieShowtimesList;
-//    NSArray* theaterElements = [element elements:@"Theater"];
 
     NSDictionary* movieIdToMovieMap = [self processMovies:movieProtos];
 
@@ -217,12 +216,13 @@
     NSMutableArray* movies = [NSMutableArray arrayWithArray:movieIdToMovieMap.allValues];
     NSMutableArray* theaters = [theatersAndPerformances objectAtIndex:0];
     NSMutableDictionary* performances = [theatersAndPerformances objectAtIndex:1];
-    NSMutableDictionary* synchronizationData = [theatersAndPerformances objectAtIndex:2];
+    NSMutableDictionary* synchronizationInformation = [theatersAndPerformances objectAtIndex:2];
 
-    return [LookupResult resultWithMovies:movies
-                                 theaters:theaters
-                             performances:performances
-                      synchronizationData:synchronizationData];
+    return [LookupResult resultWithLocation:originatingLocation
+                                     movies:movies
+                                   theaters:theaters
+                               performances:performances
+                 synchronizationInformation:synchronizationInformation];
 }
 
 

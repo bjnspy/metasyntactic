@@ -14,6 +14,8 @@
 
 @interface LookupResult : NSObject {
 @private
+    Location* location;
+    
     NSMutableArray* movies;
     NSMutableArray* theaters;
 
@@ -21,17 +23,19 @@
     NSMutableDictionary* performances;
 
     // theater name -> date
-    NSMutableDictionary* synchronizationData;
+    NSMutableDictionary* synchronizationInformation;
 }
 
+@property (readonly, retain) Location* location;
 @property (readonly, retain) NSMutableArray* movies;
 @property (readonly, retain) NSMutableArray* theaters;
 @property (readonly, retain) NSMutableDictionary* performances;
-@property (readonly, retain) NSMutableDictionary* synchronizationData;
+@property (readonly, retain) NSMutableDictionary* synchronizationInformation;
 
-+ (LookupResult*) resultWithMovies:(NSMutableArray*) movies
-                          theaters:(NSMutableArray*) theaters
-                      performances:(NSMutableDictionary*) performances
-              synchronizationData:(NSMutableDictionary*) synchronizationData;
++ (LookupResult*) resultWithLocation:(Location*) location
+                              movies:(NSMutableArray*) movies
+                            theaters:(NSMutableArray*) theaters
+                        performances:(NSMutableDictionary*) performances
+          synchronizationInformation:(NSMutableDictionary*) synchronizationInformation;
 
 @end
