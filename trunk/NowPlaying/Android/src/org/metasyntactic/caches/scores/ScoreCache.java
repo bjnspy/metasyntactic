@@ -70,7 +70,7 @@ public class ScoreCache {
     return getCurrentScoreProvider().getReviews(movies, movie);
   }
 
-  public void prioritizeMovie(Movie movie) {
-    getCurrentScoreProvider().prioritizeMovie(movie);
+  public void prioritizeMovie(List<Movie> movies, Movie movie) {
+    getCurrentScoreProvider().prioritizeMovie(movies, movie);
   }
 }
