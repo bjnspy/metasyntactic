@@ -149,5 +149,9 @@ public class NowPlayingControllerService extends Service {
     public String getSynopsis(Movie movie) throws RemoteException {
       return model.getSynopsis(movie);
     }
+
+		public void prioritizeMovie(Movie movie) throws RemoteException {
+			model.prioritizeMovie(movie);
+		}
   };
 }

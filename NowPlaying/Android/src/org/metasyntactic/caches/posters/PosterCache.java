@@ -16,23 +16,24 @@ package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 
 import java.io.File;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class PosterCache {
   private final Object lock = new Object();
   private final NowPlayingModel model;
+  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(8);
 
   public PosterCache(NowPlayingModel model) {
     this.model = model;
@@ -57,57 +58,71 @@ public class PosterCache {
   }
 
   private void downloadPosters(List<Movie> movies) {
-    Set<Movie> moviesSet = new HashSet<Movie>();
-    for (Movie movie : movies) {
-      if (!posterFile(movie).exists()) {
-        moviesSet.add(movie);
-      }
-    }
+    Set<Movie> moviesSet = new TreeSet<Movie>(movies);
 
-    long start = System.currentTimeMillis();
-    downloadPostersWithLinks(moviesSet);
-    LogUtilities.logTime(PosterCache.class, "Download Posters - Links", start);
-
-    start = System.currentTimeMillis();
-    downloadApplePosters(moviesSet);
-    LogUtilities.logTime(PosterCache.class, "Download Posters - Apple", start);
-
-    start = System.currentTimeMillis();
-    downloadFandangoPosters(moviesSet);
-    LogUtilities.logTime(PosterCache.class, "Download Posters - Fandango", start);
-
-    start = System.currentTimeMillis();
-    downloadImdbPosters(moviesSet);
-    LogUtilities.logTime(PosterCache.class, "Download Posters - IMDb", start);
+    Movie movie;
+    do {
+      movie = getNextMovie(moviesSet);
+      downloadPoster(movie);
+    } while (movie != null);
   }
 
-  private void checkData(Iterator<Movie> i, Movie movie, byte[] data) {
+  private void downloadPoster(Movie movie) {
+    if (movie == null) {
+      return;
+    }
+
+    if (posterFile(movie).exists()) {
+      return;
+    }
+
+    byte[] data = downloadPosterWorker(movie);
     if (data != null) {
-      i.remove();
       FileUtilities.writeBytes(data, posterFile(movie));
       Application.refresh();
     }
   }
 
-  private void downloadPostersWithLinks(Set<Movie> moviesSet) {
-    for (Iterator<Movie> i = moviesSet.iterator(); i.hasNext();) {
-      Movie movie = i.next();
-
-      byte[] data = NetworkUtilities.download(movie.getPoster(), false);
-      checkData(i, movie, data);
+  private byte[] downloadPosterWorker(Movie movie) {
+    byte[] data = NetworkUtilities.download(movie.getPoster(), false);
+    if (data != null) {
+      return data;
     }
+
+    data = ApplePosterDownloader.download(movie);
+    if (data != null) {
+      return data;
+    }
+
+    data = downloadPosterFromFandango(movie);
+    if (data != null) {
+      return data;
+    }
+
+    data = IMDbPosterDownloader.download(movie);
+    if (data != null) {
+      return data;
+    }
+
+    return null;
   }
 
-  private void downloadApplePosters(Set<Movie> moviesSet) {
-    for (Iterator<Movie> i = moviesSet.iterator(); i.hasNext();) {
-      Movie movie = i.next();
-
-      byte[] data = ApplePosterDownloader.download(movie);
-      checkData(i, movie, data);
+  private Movie getNextMovie(Set<Movie> movies) {
+    Movie movie = prioritizedMovies.removeAny();
+    if (movie != null) {
+      return movie;
     }
+
+    if (!movies.isEmpty()) {
+      Iterator<Movie> i = movies.iterator();
+      movie = i.next();
+      i.remove();
+    }
+
+    return movie;
   }
 
-  private void downloadFandangoPosters(Set<Movie> moviesSet) {
+  private byte[] downloadPosterFromFandango(Movie movie) {
     Location location = model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         model.getUserLocation());
 
@@ -118,21 +133,7 @@ public class PosterCache {
       postalCode = "10009";
     }
 
-    for (Iterator<Movie> i = moviesSet.iterator(); i.hasNext();) {
-      Movie movie = i.next();
-
-      byte[] data = FandangoPosterDownloader.download(movie, postalCode);
-      checkData(i, movie, data);
-    }
-  }
-
-  private void downloadImdbPosters(Set<Movie> moviesSet) {
-    for (Iterator<Movie> i = moviesSet.iterator(); i.hasNext();) {
-      Movie movie = i.next();
-
-      byte[] data = ImdbPosterDownloader.download(movie);
-      checkData(i, movie, data);
-    }
+    return FandangoPosterDownloader.download(movie, postalCode);
   }
 
   private void deleteObsoletePosters(List<Movie> movies) {
@@ -141,5 +142,13 @@ public class PosterCache {
 
   public byte[] getPoster(Movie movie) {
     return FileUtilities.readBytes(posterFile(movie));
+  }
+
+  public void prioritizeMovie(Movie movie) {
+    if (posterFile(movie).exists()) {
+      return;
+    }
+
+    prioritizedMovies.add(movie);
   }
 }

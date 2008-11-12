@@ -16,6 +16,7 @@ package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
+import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
@@ -33,6 +34,7 @@ public class UpcomingCache {
   private static int identifier;
 
   private final SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(8);
 
   private String hash;
   private List<Movie> movies;
@@ -262,9 +264,29 @@ public class UpcomingCache {
       return;
     }
 
-    for (Movie movie : movies) {
-      updateDetails(movie, studioKeys.get(movie.getCanonicalTitle()), titleKeys.get(movie.getCanonicalTitle()));
+    Set<Movie> moviesSet = new TreeSet<Movie>(movies);
+    Movie movie;
+    do {
+      movie = getNextMovie(moviesSet);
+      if (movie != null) {
+        updateDetails(movie, studioKeys.get(movie.getCanonicalTitle()), titleKeys.get(movie.getCanonicalTitle()));
+      }
+    } while (movie != null);
+  }
+
+  private Movie getNextMovie(Set<Movie> movies) {
+    Movie movie = prioritizedMovies.removeAny();
+    if (movie != null) {
+      return movie;
     }
+
+    if (!movies.isEmpty()) {
+      Iterator<Movie> i = movies.iterator();
+      movie = i.next();
+      i.remove();
+    }
+
+    return movie;
   }
 
   private void updateDetails(Movie movie, String studioKey, String titleKey) {
@@ -402,5 +424,9 @@ public class UpcomingCache {
 
   public String getSynopsis(Movie movie) {
     return FileUtilities.readString(getSynopsisFile(movie));
+  }
+
+  public void prioritizeMovie(Movie movie) {
+    prioritizedMovies.add(movie);
   }
 }
