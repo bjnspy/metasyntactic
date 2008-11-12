@@ -337,7 +337,7 @@ public class NowPlayingModel {
 
   public void prioritizeMovie(Movie movie) {
     posterCache.prioritizeMovie(movie);
-    scoreCache.prioritizeMovie(movie);
+    scoreCache.prioritizeMovie(getMovies(),movie);
     trailerCache.prioritizeMovie(movie);
     upcomingCache.prioritizeMovie(movie);
   }

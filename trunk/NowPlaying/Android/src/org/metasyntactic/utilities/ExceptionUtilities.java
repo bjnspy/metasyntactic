@@ -14,13 +14,14 @@
 
 package org.metasyntactic.utilities;
 
+import android.util.Log;
+
 public class ExceptionUtilities {
   private ExceptionUtilities() {
 
   }
 
-  public static void log(Class<?> clazz, String method, Exception e) {
-    // todo (mjoshi) uncomment before submitting.
-    //  Log.e(clazz.getName(), method, e);
+  public static void log(Class<?> clazz, String method, Exception e) {    
+   // Log.e(clazz.getName(), method, e);
   }
 }

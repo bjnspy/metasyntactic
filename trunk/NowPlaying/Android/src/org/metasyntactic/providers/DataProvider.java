@@ -94,7 +94,8 @@ public class DataProvider {
     lookupMissingFavorites(result);
     LogUtilities.logTime(DataProvider.class, "Lookup Missing Theaters", start);
 
-    if (result.movies.size() > 0 || result.theaters.size() > 0) {
+    if (result!= null &&((result.movies != null && result.movies.size() > 0) ||
+            (result.theaters != null && result.theaters.size() > 0))) {
       reportResult(result);
       saveResult(result);
     }

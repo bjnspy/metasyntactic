@@ -1,83 +1,71 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">   
-    <RelativeLayout
-    android:layout_width="fill_parent"     
-     android:layout_marginTop="0dip"
-     android:layout_gravity="top"     
-     android:layout_height="wrap_content" 
-     android:layout_marginBottom="0dip"  
-    >
-    
-      <TextView android:id="@+id/header"
-            android:layout_width="wrap_content"                        
-            android:textStyle="bold"            
-            android:gravity="center"
-            android:layout_height="40px"
-            android:layout_centerHorizontal ="true"
-              android:layout_gravity="top"
-           android:layout_marginTop="10dip"
-            android:layout_marginBottom="10dip"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-          android:textColor = "?android:attr/textColorPrimary"
-      />
-    
-   
-    <TextView android:id="@+id/maplabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"                
-                android:textSize="14px"
-                android:text = "Map"
-                android:layout_below="@id/header"
-                android:layout_alignParentLeft="true"
-            android:textColor = "?android:attr/textColorPrimary"
-          />
-
-      <TextView android:id="@+id/maptxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"                
-                android:textSize="14px"
-                
-                android:layout_alignParentRight="true"
-                android:textColor = "?android:attr/textColorSecondary"
-          />
-        <TextView android:id="@+id/calllabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"                
-                android:textSize="14px"
-                android:text = "Map"
-                android:layout_below="@id/maplabel"
-                android:layout_alignParentLeft="true"
-            android:textColor = "?android:attr/textColorPrimary"
-          />
-
-      <TextView android:id="@+id/maptxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"                
-                android:textSize="14px"
-                
-                android:layout_alignParentRight="true"
-                android:textColor = "?android:attr/textColorSecondary"
-          />
-       
-      
-      <ImageView android:id="@+id/divider"
-            android:layout_width="fill_parent"
-            android:layout_height="1px"     
-             android:background="@drawable/divider_horizontal_bright"
-          
-              android:layout_marginBottom="2dip"
-              android:layout_below="@id/maplabel"
-           android:layout_marginTop="2dip"
-      />
-    
-        <Button android:id="@+id/emailbtn"
-            android:layout_width="150px"
-            android:layout_height="wrap_content"     
-            android:text = "E-mail Listings"            
-            android:layout_below="@id/reviewsbtn"             
-           android:layout_alignParentRight="true"          
-      />
-      
-    </RelativeLayout>   
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	<RelativeLayout
+		android:layout_width="fill_parent"
+		android:layout_marginTop="0dip"
+		android:layout_gravity="top"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="0dip">
+		<TextView
+			android:id="@+id/header"
+			android:layout_width="wrap_content"
+			android:textStyle="bold"
+			android:gravity="center"
+			android:layout_height="40px"
+			android:layout_centerHorizontal="true"
+			android:layout_gravity="top"
+			android:layout_marginTop="10dip"
+			android:layout_marginBottom="10dip"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:textColor="?android:attr/textColorPrimary" />
+		<TextView
+			android:id="@+id/maplabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="14px"
+			android:text="Map"
+			android:layout_below="@id/header"
+			android:layout_alignParentLeft="true"
+			android:textColor="?android:attr/textColorPrimary" />
+		<TextView
+			android:id="@+id/maptxt"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="14px"
+			android:layout_alignParentRight="true"
+			android:textColor="?android:attr/textColorSecondary" />
+		<TextView
+			android:id="@+id/calllabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="14px"
+			android:text="Map"
+			android:layout_below="@id/maplabel"
+			android:layout_alignParentLeft="true"
+			android:textColor="?android:attr/textColorPrimary" />
+		<TextView
+			android:id="@+id/maptxt"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="14px"
+			android:layout_alignParentRight="true"
+			android:textColor="?android:attr/textColorSecondary" />
+		<ImageView
+			android:id="@+id/divider"
+			android:layout_width="fill_parent"
+			android:layout_height="1px"
+			android:background="@drawable/divider_horizontal_bright"
+			android:layout_marginBottom="2dip"
+			android:layout_below="@id/maplabel"
+			android:layout_marginTop="2dip" />
+		<Button
+			android:id="@+id/emailbtn"
+			android:layout_width="150px"
+			android:layout_height="wrap_content"
+			android:text="E-mail Listings"
+			android:layout_below="@id/divider"
+			android:layout_alignParentRight="true" />
+	</RelativeLayout>
 </ScrollView>
