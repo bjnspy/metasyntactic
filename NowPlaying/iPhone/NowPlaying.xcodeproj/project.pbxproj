@@ -355,7 +355,6 @@
 		745E213C0E5962D100105751 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E213D0E5962DE00105751 /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E213E0E59630200105751 /* he */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = he; path = Resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
-		745E213F0E59631600105751 /* hu */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = hu; path = Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21400E59632400105751 /* it */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = it; path = Resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21410E59633500105751 /* nl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = nl; path = Resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21420E59634900105751 /* ro */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ro; path = Resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1686,7 +1685,6 @@
 				743398430E62615300D285F0 /* fi */,
 				740224590E53F351006C58A2 /* fr */,
 				745E213E0E59630200105751 /* he */,
-				745E213F0E59631600105751 /* hu */,
 				745E21400E59632400105751 /* it */,
 				740224570E53F342006C58A2 /* ja */,
 				745E21410E59633500105751 /* nl */,
