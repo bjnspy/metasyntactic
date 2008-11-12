@@ -85,7 +85,7 @@
 }
 
 
-- (NSString*) synchronizationFile {
+- (NSString*) synchronizationInformationFile {
     return [[Application dataDirectory] stringByAppendingPathComponent:@"Synchronization.plist"];
 }
 
@@ -137,8 +137,8 @@
 }
 
 
-- (NSDictionary*) loadSynchronizationData {
-    NSDictionary* result = [FileUtilities readObject:self.synchronizationFile];
+- (NSDictionary*) loadSynchronizationInformation {
+    NSDictionary* result = [FileUtilities readObject:self.synchronizationInformationFile];
     if (result.count == 0) {
         return [NSDictionary dictionary];
     }
@@ -146,9 +146,9 @@
 }
 
 
-- (NSDictionary*) synchronizationData {
+- (NSDictionary*) synchronizationInformation {
     if (synchronizationInformationData == nil) {
-        self.synchronizationInformationData = [self loadSynchronizationData];
+        self.synchronizationInformationData = [self loadSynchronizationInformation];
     }
     return synchronizationInformationData;
 }
@@ -179,7 +179,7 @@
     if (result.movies.count > 0 || result.theaters.count > 0) {
         [self saveArray:result.movies to:self.moviesFile];
         [self saveArray:result.theaters to:self.theatersFile];
-        [FileUtilities writeObject:result.synchronizationData toFile:self.synchronizationFile];
+        [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
 
         NSString* tempDirectory = [Application uniqueTemporaryDirectory];
         for (NSString* theaterName in result.performances) {
@@ -388,7 +388,7 @@
     if (result.movies.count > 0 || result.theaters.count > 0) {
         self.moviesData = result.movies;
         self.theatersData = result.theaters;
-        self.synchronizationInformationData = result.synchronizationData;
+        self.synchronizationInformationData = result.synchronizationInformation;
         self.performancesData = [NSMutableDictionary dictionary];
         [self.model onDataProviderUpdated];
         [NowPlayingAppDelegate refresh:YES];
@@ -397,8 +397,7 @@
 
 
 - (NSDate*) synchronizationDateForTheater:(NSString*) theaterName {
-    return [self.synchronizationData objectForKey:theaterName];
+    return [self.synchronizationInformation objectForKey:theaterName];
 }
-
 
 @end
