@@ -150,8 +150,8 @@ public class NowPlayingControllerService extends Service {
       return model.getSynopsis(movie);
     }
 
-		public void prioritizeMovie(Movie movie) throws RemoteException {
-			model.prioritizeMovie(movie);
-		}
+    public void prioritizeMovie(Movie movie) throws RemoteException {
+      model.prioritizeMovie(movie);
+    }
   };
 }

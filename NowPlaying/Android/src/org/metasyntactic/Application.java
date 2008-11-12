@@ -33,7 +33,7 @@ public class Application {
       /*
       "metaboxoffice6";
   /*/
-  	"metaboxoffice2";
+      "metaboxoffice2";
   //*/
 
   public static final File root = new File("/sdcard");
@@ -57,7 +57,7 @@ public class Application {
 
   private static Pulser pulser;
   private static Context context;
-  
+
   static {
     createDirectories();
 
@@ -65,7 +65,6 @@ public class Application {
       public void run() {
         if (context != null) {
           context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
-          
         }
       }
     };

@@ -199,12 +199,12 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-  
+
   public void prioritizeMovie(Movie movie) {
-      try {
-           controller.prioritizeMovie(movie);
-        } catch (RemoteException e) {
-          throw new RuntimeException(e);
-        }
+    try {
+      controller.prioritizeMovie(movie);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

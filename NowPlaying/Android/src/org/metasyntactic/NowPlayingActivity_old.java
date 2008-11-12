@@ -50,7 +50,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
 
             }
         };
-    
+
         *//** Updates display of the list of movies. *//*
         public void refresh() {
             List<Movie> movies = controller.getMovies();
@@ -58,7 +58,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
                 MOVIE_ORDER[controller.getAllMoviesSelectedSortIndex()];
             Collections.sort(movies, comparator);
             AllMoviesActivity.refresh(movies);
-        
+
         }
 
     private final ServiceConnection serviceConnection =
@@ -93,7 +93,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
     public NowPlayingActivity_old() {
         instance = this;
     }
-   
+
     public Context getContext() {
         return this;
     }
@@ -114,7 +114,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
         }
         setContentView(R.layout.tabs);
         mTabHost = getTabHost();
-        
+
           setUpMoviesTab(mTabHost);
         setUpTheatersTab(mTabHost);
         setUpUpcomingTab(mTabHost);
@@ -134,7 +134,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
             getResources().getDrawable(R.drawable.upcoming)).setContent(
                 new Intent(this, AllTheatersActivity.class)));
     }
-   
+
 
     private void setUpTheatersTab(final TabHost tabs) {
         tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator(
@@ -153,11 +153,11 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
 
 
     *//**
-     * Returns an instance of NowPlayingControllerWrapper associated with this
-     * Activity.
-     * 
-     * @return controller instance of NowPlayingControllerWrapper
-     *//*
+ * Returns an instance of NowPlayingControllerWrapper associated with this
+ * Activity.
+ *
+ * @return controller instance of NowPlayingControllerWrapper
+ *//*
     public NowPlayingControllerWrapper getController() {
         return controller;
     }
@@ -183,14 +183,14 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
         unregisterReceiver(broadcastReceiver);
         super.onPause();
     }
-    
+
 
     final Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
                 public int compare(Movie m1, Movie m2) {
                     return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
                 }
             };
-            
+
             final Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
                 public int compare(Movie m1, Movie m2) {
                     Date d1;
@@ -201,7 +201,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
                         d1 = c1.getTime();
                     } else
                         d1 = m1.getReleaseDate();
-    
+
                     if (m2.getReleaseDate() == null) {
                         Calendar c2 = Calendar.getInstance();
                         c2.set(1900, 11, 11);
@@ -209,9 +209,9 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
                     } else
                         d2 = m2.getReleaseDate();
                     return d2.compareTo(d1);
-    
-    
-    
+
+
+
                 }
             };
     final Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
@@ -225,18 +225,18 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
                         return controller.getScore(m2).compareTo(
                             controller.getScore(m1));
                     }
-    
+
                     // if m2 is null then m1 is greater
                     if (controller.getScore(m1) != null) {
                         return -1;
                     }
-    
+
                     return 1;
                 }
             };
     final Comparator[] MOVIE_ORDER = {TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER};
 
-   
+
 
 }
 */
