@@ -94,6 +94,7 @@
         return;
     }
 
+    [self popToRootViewControllerAnimated:NO];
     [super didReceiveMemoryWarning];
 }
 
