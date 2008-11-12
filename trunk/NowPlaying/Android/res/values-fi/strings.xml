@@ -24,7 +24,7 @@
   <string name="number_hours">%d hours</string>
   <string name="number_minutes">%d minuuttia</string>
   <string name="number_months_ago">%d kuukautta sitten</string>
-  <string name="number_of_number">% / %d</string>
+  <string name="number_of_number">%d / %d</string>
   <string name="number_weeks_ago">%d viikkoa sitten</string>
   <string name="number_years_ago">%d vuotta sitten</string>
   <string name="one_hour">1 tunti</string>
