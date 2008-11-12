@@ -15,11 +15,11 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s disk.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 disk.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Online Bilet Satışı Yok)</string>
   <string name="string_dot_string">%s. %s</string>
-  <string name="string_dot_string_dot_number_discs_dot">%s. %s. %d disk.</string>
-  <string name="string_dot_string_dot_one_disc_dot">%s. %s. 1 disk.</string>
   <string name="number_string">%d %s</string>
   <string name="number_hours">%d saat</string>
   <string name="number_minutes">%d dakika</string>
@@ -74,7 +74,6 @@
   <string name="no_synopsis_available_dot">Film özeti yok.</string>
   <string name="none">Hiç biri</string>
   <string name="not_yet_rated">Henüz derecelendirilmemiş</string>
-  <string name="numbers">Sayılar</string>
   <string name="ok">Tamam</string>
   <string name="order_tickets_for_string">%s için bilet al</string>
   <string name="play_trailer">Fragmanı göster</string>

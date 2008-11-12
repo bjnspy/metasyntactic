@@ -33,7 +33,6 @@
   <string name="one_year_ago">לפני שנה</string>
   <string name="about">אודות</string>
   <string name="autoupdate_location">עדכן מיקום אוטומטית</string>
-  <string name="budget">תקציב</string>
   <string name="call">צלצל</string>
   <string name="cast">:שחקנים</string>
   <string name="change_date">שנה תאריך</string>
@@ -41,12 +40,7 @@
   <string name="could_not_find_location_dot">מיקום לא נמצא.</string>
   <string name="dvd">DVD</string>
   <string name="dvdbluray_details_provided_by">:סופקו על ידי DVD/Blu-ray פרטי</string>
-  <string name="dvds">ים-DVD</string>
-  <string name="daily">יומי</string>
-  <string name="daily_change">שינוי יומי</string>
-  <string name="daily_gross">נתח יומי</string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">מידע לתאריכים עתידיים עלול להיות לא שלם. אפס את תאריך החיפוש לתאריך הנוכחי כדי לראות רשומות מלאות.</string>
-  <string name="days_in_theater">ימים בתאטרון</string>
   <string name="director">:במאי</string>
   <string name="directors">:במאים</string>
   <string name="distance">מרחק</string>
@@ -79,9 +73,7 @@
   <string name="no_results_found_for_string">'%s' לא נמצאו תוצאות עבור</string>
   <string name="no_synopsis_available_dot">.אין תקציר זמין</string>
   <string name="none">ללא</string>
-  <string name="not_enough_data">אין מספיק מידע</string>
   <string name="not_yet_rated">עדיין לא דורג</string>
-  <string name="numbers">סטטיסטיקה</string>
   <string name="ok">אישור</string>
   <string name="order_tickets_for_string">%s הזמן כרטיסים עבור</string>
   <string name="play_trailer">נגן טריילר</string>
@@ -95,7 +87,6 @@
   <string name="release">יציאה</string>
   <string name="release_date">:תאריך יציאה</string>
   <string name="release_string">%s :יציאה</string>
-  <string name="retrieving_data_dot_dot_dot">...משיג מידע</string>
   <string name="reviews">ביקורות</string>
   <string name="running_time">:משך הסרט</string>
   <string name="score">ניקוד</string>
@@ -112,10 +103,6 @@
   <string name="ticket_sales_provided_by">:ספקית מכירות כרטיסים</string>
   <string name="title">כותרת</string>
   <string name="today">היום</string>
-  <string name="total">סך הכל</string>
-  <string name="total_change">שינוי כולל</string>
-  <string name="total_gross">נתח כולל</string>
-  <string name="unknown">לא ידוע</string>
   <string name="unknown_distance">מרחק לא ידוע</string>
   <string name="unknown_release_date">תאריך יציאה לא ידוע</string>
   <string name="unrated">לא מדורג</string>
@@ -123,9 +110,6 @@
   <string name="use_small_fonts">השתמש בגופנים קטנים</string>
   <string name="visit_imdb">IMDb בקר את</string>
   <string name="website">אתר</string>
-  <string name="weekend">סוף שבוע</string>
-  <string name="weekend_change">שינוי בסוף השבוע</string>
-  <string name="weekend_gross">נתח בסוף השבוע</string>
   <string name="written_by_cyrus_najmabadi">נכתב על ידי סיירוס נג'אמבדי</string>
   <string name="yesterday">אתמול</string>
   <string name="kilometer">קילומטר</string>

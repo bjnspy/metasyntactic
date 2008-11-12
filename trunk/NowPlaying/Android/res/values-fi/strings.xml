@@ -15,11 +15,11 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %d levyä.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 levy.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Ei lippujen verkkokauppaa)</string>
   <string name="string_dot_string">%s. %s</string>
-  <string name="string_dot_string_dot_number_discs_dot">%s. %s. %d levyä.</string>
-  <string name="string_dot_string_dot_one_disc_dot">%s. %s. 1 levy.</string>
   <string name="number_string">%d %s</string>
   <string name="number_hours">%d hours</string>
   <string name="number_minutes">%d minuuttia</string>
@@ -74,7 +74,6 @@
   <string name="no_synopsis_available_dot">Ei tiivistelmää saatavilla.</string>
   <string name="none">Ei mitään</string>
   <string name="not_yet_rated">Ei vielä ikärajaa</string>
-  <string name="numbers">Numerot</string>
   <string name="ok">OK</string>
   <string name="order_tickets_for_string">Tilaa liput %s</string>
   <string name="play_trailer">Toista näyte</string>

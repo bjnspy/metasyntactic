@@ -15,11 +15,11 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s. %s disques.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 disque.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Achat de billets non supporté)</string>
   <string name="string_dot_string">%s. %s</string>
-  <string name="string_dot_string_dot_number_discs_dot">%s. %s. %d disques.</string>
-  <string name="string_dot_string_dot_one_disc_dot">%s. %s. 1 disque.</string>
   <string name="number_string">%d %s</string>
   <string name="number_hours">%d heures</string>
   <string name="number_minutes">%d minutes</string>
@@ -72,7 +72,6 @@
   <string name="no_synopsis_available_dot">Aucun résumé disponible.</string>
   <string name="none">Aucun</string>
   <string name="not_yet_rated">En attente de classement</string>
-  <string name="numbers">Statistiques</string>
   <string name="ok">Ok</string>
   <string name="order_tickets_for_string">Commander un billet pour %s</string>
   <string name="play_trailer">Bande annonce</string>

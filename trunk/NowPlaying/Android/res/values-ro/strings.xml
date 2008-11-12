@@ -15,6 +15,8 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s discuri.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - %s disc.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Nu sunt bilete online)</string>
   <string name="string_dot_string">%s. %s</string>
@@ -22,6 +24,7 @@
   <string name="number_hours">%d ore</string>
   <string name="number_minutes">%d minute</string>
   <string name="number_months_ago">acum %d luni</string>
+  <string name="number_of_number">%d din %d</string>
   <string name="number_weeks_ago">acum %d săptămâni</string>
   <string name="number_years_ago">acum %d ani</string>
   <string name="one_hour">o oră</string>
@@ -33,18 +36,26 @@
   <string name="one_year_ago">acum un an</string>
   <string name="about">Despre</string>
   <string name="autoupdate_location">Auto-Actualizează Locaţia</string>
+  <string name="bluray">Blu-ray</string>
+  <string name="both">Amândouă</string>
   <string name="call">Sună</string>
   <string name="cast">Actori:</string>
   <string name="change_date">Schimbă data</string>
   <string name="citystate_or_postal_code">Oraş sau Cod Poştal</string>
   <string name="could_not_find_location_dot">Nu am putut găsi locaţia.</string>
+  <string name="dvd">DVD</string>
+  <string name="dvdbluray">DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by">Detalii DVD/Blu-ray oferite de:</string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informaţia pentru zilele următoare poate fi incompletă. Folosiţi data curentă pentru a vedea toate intrările.</string>
   <string name="director">Regizor:</string>
   <string name="directors">Regizori:</string>
   <string name="distance">Distanţa</string>
+  <string name="downloading_data">Downloadez datele</string>
+  <string name="downloading_poster">Downloadez posterul</string>
   <string name="email">Email</string>
   <string name="email_listings">Trimite pe email</string>
   <string name="favorites">Favorite</string>
+  <string name="format">Format:</string>
   <string name="genre">Tip:</string>
   <string name="geolocation_services_provided_by">Servicii de geolocalizare oferite de:</string>
   <string name="graphics_by_jeffrey_nee">Grafica Jeffrey Nee</string>
@@ -58,6 +69,7 @@
   <string name="less_than_number_string_away">La mai puţin de %d %s</string>
   <string name="less_than_one_string_away"> La mai puţin de 1 %s away</string>
   <string name="license">Liceţă</string>
+  <string name="loading_poster">Încarc posterul</string>
   <string name="localized_by">Localizat de:</string>
   <string name="location">Locaţie</string>
   <string name="map">Hartă</string>
@@ -65,12 +77,13 @@
   <string name="movie_reviews_provided_by">Critcile filmului furnizate de:</string>
   <string name="movies">Filme</string>
   <string name="name">Nume</string>
+  <string name="network_unavailable">Rețea indisponibilă</string>
   <string name="no_information_found">Nu a fost găsită nici o informaţie</string>
   <string name="no_more_show_times_available_today_dot">Nu mai sunt ore disponibile azi.</string>
+  <string name="no_results_found_for_string">Nu sunt rezultate pentru '%s'</string>
   <string name="no_synopsis_available_dot">Nu exista rezumat.</string>
   <string name="none">Nici unul</string>
   <string name="not_yet_rated">Necatalogat</string>
-  <string name="numbers">Statistici</string>
   <string name="ok">OK</string>
   <string name="order_tickets_for_string">Comandă bilete pentru %s</string>
   <string name="play_trailer">Vezi rezumat</string>
@@ -89,10 +102,12 @@
   <string name="score">Scor</string>
   <string name="search_date">Caută pe data</string>
   <string name="search_distance">Caută pe distanţa</string>
+  <string name="send_feedback">Trimite părerea</string>
   <string name="settings">Setări</string>
   <string name="show_number_hidden_theaters">Arată %d cinematografe ascunse</string>
   <string name="show_one_hidden_theater">Arată un cinematograf ascuns</string>
   <string name="show_times_retrieved_on_string_dot">Arată orele găsite pe %s.</string>
+  <string name="studio">Studio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Cinematograful a raportat orele de rulare ultima oară pe\n%s.</string>
   <string name="theater_providers_often_limit_the_maximum_search">Furnizorii de date pentru cinematografe deseori pun o limită maximă pentru distanţa de căutare. Din această cauză unele cinematografe nu vor apărea chit că distanţa de căutare este maximă.</string>
   <string name="theaters">Cinematografe</string>
