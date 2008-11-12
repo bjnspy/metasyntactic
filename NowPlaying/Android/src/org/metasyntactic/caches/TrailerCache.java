@@ -28,7 +28,7 @@ import java.util.*;
 
 public class TrailerCache {
   private final Object lock = new Object();
-  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(8);
+  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
 
   private String trailerFileName(Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());

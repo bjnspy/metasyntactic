@@ -51,7 +51,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   private String hash;
 
   private final Object movieMapLock = new Object();
-  private final BoundedPrioritySet<MovieAndMap> prioritizedMovies = new BoundedPrioritySet<MovieAndMap>(8);
+  private final BoundedPrioritySet<MovieAndMap> prioritizedMovies = new BoundedPrioritySet<MovieAndMap>(9);
 
   private List<Movie> movies;
   private Map<String, String> movieMap_doNotAccessDirectly;

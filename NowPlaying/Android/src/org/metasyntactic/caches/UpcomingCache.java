@@ -34,7 +34,7 @@ public class UpcomingCache {
   private static int identifier;
 
   private final SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
-  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(8);
+  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
 
   private String hash;
   private List<Movie> movies;
