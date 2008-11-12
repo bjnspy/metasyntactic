@@ -287,6 +287,25 @@
 }
 
 
+- (void) addMissingMoviesFromPerformances:(NSDictionary*) performances
+                                 toResult:(LookupResult*) lookupResult
+              skippingExistingMovieTitles:(NSMutableSet*) existingMovieTitles
+                               withMovies:(NSArray*) currentMovies {
+    for (NSString* movieTitle in performances.allKeys) {
+        if (![existingMovieTitles containsObject:movieTitle]) {
+            [existingMovieTitles addObject:movieTitle];
+            
+            for (Movie* movie in currentMovies) {
+                if ([movie.canonicalTitle isEqual:movieTitle]) {
+                    [lookupResult.movies addObject:movie];
+                    break;
+                }
+            }
+        }
+    }
+}
+
+
 - (void) updateMissingFavorites:(LookupResult*) lookupResult {
     if (lookupResult == nil) {
         return;
@@ -305,9 +324,9 @@
         }
     }
 
-    NSMutableSet* movieTitles = [NSMutableSet set];
+    NSMutableSet* existingMovieTitles = [NSMutableSet set];
     for (Movie* movie in lookupResult.movies) {
-        [movieTitles addObject:movie.canonicalTitle];
+        [existingMovieTitles addObject:movie.canonicalTitle];
     }
 
     for (Location* location in locationToMissingTheaterNames.allKeys) {
@@ -324,18 +343,11 @@
 
         // the theater may refer to movies that we don't know about.
         for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
-            for (NSString* movieTitle in [[favoritesLookupResult.performances objectForKey:theaterName] allKeys]) {
-                if (![movieTitles containsObject:movieTitle]) {
-                    [movieTitles addObject:movieTitle];
-
-                    for (Movie* movie in favoritesLookupResult.movies) {
-                        if ([movie.canonicalTitle isEqual:movieTitle]) {
-                            [lookupResult.movies addObject:movie];
-                            break;
-                        }
-                    }
-                }
-            }
+            // the theater may refer to movies that we don't know about.
+            [self addMissingMoviesFromPerformances:[favoritesLookupResult.performances objectForKey:theaterName]
+                                          toResult:lookupResult
+                       skippingExistingMovieTitles:existingMovieTitles
+                                        withMovies:favoritesLookupResult.movies];
         }
     }
 }
@@ -426,18 +438,10 @@
         [lookupResult.theaters addObject:theater];
         
         // the theater may refer to movies that we don't know about.
-        for (NSString* movieTitle in oldPerformances.allKeys) {
-            if (![existingMovieTitles containsObject:movieTitle]) {
-                [existingMovieTitles addObject:movieTitle];
-                
-                for (Movie* movie in currentMovies) {
-                    if ([movie.canonicalTitle isEqual:movieTitle]) {
-                        [lookupResult.movies addObject:movie];
-                        break;
-                    }
-                }
-            }
-        }
+        [self addMissingMoviesFromPerformances:oldPerformances
+                                      toResult:lookupResult
+                   skippingExistingMovieTitles:existingMovieTitles
+                                    withMovies:currentMovies];
     }
 }
 
