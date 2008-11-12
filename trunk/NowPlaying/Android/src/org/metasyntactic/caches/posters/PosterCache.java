@@ -107,8 +107,8 @@ public class PosterCache {
   }
 
   private byte[] downloadPosterFromFandango(Movie movie) {
-    Location location = model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
-        model.getUserLocation());
+    Location location = model.getUserLocationCache()
+        .downloadUserAddressLocationBackgroundEntryPoint(model.getUserLocation());
 
     String country = location == null ? "" : location.getCountry();
     String postalCode = location == null ? "10009" : location.getPostalCode();

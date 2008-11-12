@@ -84,7 +84,6 @@ public class NowPlayingPreferenceDialog {
   private NowPlayingPreferenceDialog setPositiveButton(int textId, OnClickListener listener) {
     // TODO Auto-generated method stub
 
-
     builder.setPositiveButton(textId, listener);
     return this;
   }

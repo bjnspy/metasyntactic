@@ -167,8 +167,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
-    menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class))
+    menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
+        .setIcon(android.R.drawable.ic_menu_preferences)
+        .setIntent(new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
@@ -225,8 +226,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       final Movie movie = movies.get(position);
       String headerText = MovieViewUtilities.getHeader(movies, position, mController.getAllMoviesSelectedSortIndex());
       if (mController.getPoster(movie).getBytes().length > 0) {
-        holder.poster.setImageBitmap(
-            BitmapFactory.decodeByteArray(mController.getPoster(movie).getBytes(), 0, mController
+        holder.poster
+            .setImageBitmap(BitmapFactory.decodeByteArray(mController.getPoster(movie).getBytes(), 0, mController
                 .getPoster(movie).getBytes().length));
         holder.poster.setBackgroundResource(R.drawable.image_frame);
       }

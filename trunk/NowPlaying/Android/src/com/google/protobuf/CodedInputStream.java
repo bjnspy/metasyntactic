@@ -176,8 +176,8 @@ public final class CodedInputStream {
   }
 
   /** Read a {@code group} field value from the stream. */
-  public void readGroup(int fieldNumber, Message.Builder builder,
-                        ExtensionRegistry extensionRegistry) throws IOException {
+  public void readGroup(int fieldNumber, Message.Builder builder, ExtensionRegistry extensionRegistry)
+      throws IOException {
     if (recursionDepth >= recursionLimit) {
       throw InvalidProtocolBufferException.recursionLimitExceeded();
     }

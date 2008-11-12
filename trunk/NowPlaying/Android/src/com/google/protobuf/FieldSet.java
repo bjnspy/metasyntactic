@@ -246,7 +246,11 @@ final class FieldSet {
       // considered one line of code.  So, let's make sure to include the
       // field name and other useful info in the exception.
       throw new IllegalArgumentException(
-          "Wrong object type used with protocol message reflection.  " + "Message type \"" + field.getContainingType().getFullName() + "\", field \"" + (field.isExtension() ? field.getFullName() : field.getName()) + "\", value was type \"" + value.getClass().getName() + "\".");
+          "Wrong object type used with protocol message reflection.  " + "Message type \"" + field.getContainingType()
+              .getFullName() + "\", field \"" + (field.isExtension()
+                                                 ? field.getFullName()
+                                                 : field.getName()) + "\", value was type \"" + value.getClass()
+              .getName() + "\".");
     }
   }
 
@@ -372,8 +376,8 @@ final class FieldSet {
    * @param builder The {@code Builder} for the target message.
    */
   public static void mergeFrom(CodedInputStream input, UnknownFieldSet.Builder unknownFields,
-                               ExtensionRegistry extensionRegistry,
-                               Message.Builder builder) throws java.io.IOException {
+                               ExtensionRegistry extensionRegistry, Message.Builder builder)
+      throws java.io.IOException {
     while (true) {
       int tag = input.readTag();
       if (tag == 0) {
@@ -396,8 +400,8 @@ final class FieldSet {
    * @return {@code true} unless the tag is an end-group tag.
    */
   public static boolean mergeFieldFrom(CodedInputStream input, UnknownFieldSet.Builder unknownFields,
-                                       ExtensionRegistry extensionRegistry, Message.Builder builder,
-                                       int tag) throws java.io.IOException {
+                                       ExtensionRegistry extensionRegistry, Message.Builder builder, int tag)
+      throws java.io.IOException {
     Descriptor type = builder.getDescriptorForType();
 
     if (type.getOptions().getMessageSetWireFormat() && tag == WireFormat.MESSAGE_SET_ITEM_TAG) {

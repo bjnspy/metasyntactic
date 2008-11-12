@@ -68,8 +68,8 @@ public class FandangoPosterDownloader {
     calendar.setTime(new Date());
 
     String url = "http://" + Application.host + ".appspot.com/LookupTheaterListings?q=" + trimPostalCode(
-        postalCode) + "&date=" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(
-        Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
+        postalCode) + "&date=" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar
+        .get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
 
     Element element = NetworkUtilities.downloadXml(url, false);
     processFandangoElement(element);
