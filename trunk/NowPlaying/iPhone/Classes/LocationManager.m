@@ -133,7 +133,7 @@
 
 
 - (void) enqueueUpdateRequest:(NSInteger) delay {
-    [self performSelector:@selector(updateLocation) withObject:nil afterDelay:delay];
+    [self performSelector:@selector(autoUpdateLocation) withObject:nil afterDelay:delay];
 }
 
 
