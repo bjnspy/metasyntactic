@@ -143,6 +143,9 @@
     [self.model setUserAddress:userAddress];
     [appDelegate.tabBarController popNavigationControllersToRoot];
     [self spawnDetermineLocationThread];
+    
+    // Force a refresh so the UI displays this new address.
+    [NowPlayingAppDelegate refresh:YES];
 }
 
 

@@ -95,7 +95,6 @@ static NSString** directories[] = {
 
 
 static DifferenceEngine* differenceEngine = nil;
-static NSString* starString = nil;
 
 
 + (NSString*) cacheDirectory {
@@ -426,12 +425,8 @@ static NSString* starString = nil;
 
 
 + (NSString*) starString {
-    if (starString == nil) {
-        unichar c = [Application starCharacter];
-        starString = [NSString stringWithCharacters:&c length:1];
-    }
-
-    return starString;
+    unichar c = [Application starCharacter];
+    return [NSString stringWithCharacters:&c length:1];
 }
 
 
