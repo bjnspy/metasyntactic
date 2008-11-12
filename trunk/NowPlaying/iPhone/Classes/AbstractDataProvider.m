@@ -340,6 +340,7 @@
 
         [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
         [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
+        [lookupResult.synchronizationInformation addEntriesFromDictionary:favoritesLookupResult.synchronizationInformation];
 
         // the theater may refer to movies that we don't know about.
         for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
@@ -461,17 +462,22 @@
         return;
     }
     
+    // Do the primary search.
     LookupResult* result = [self lookupLocation:location filterTheaters:nil];
 
+    // Try to restore any theaters that went missing
     [self addMissingData:result
           searchLocation:location
            currentMovies:[arguments objectAtIndex:0]
          currentTheaters:[arguments objectAtIndex:1]];
 
+    // Lookup data for the users' favorites.
     [self updateMissingFavorites:result];
 
+    // Save the results.
     [self saveResult:result];
 
+    // Let the rest of the app know about the results.
     [self performSelectorOnMainThread:@selector(reportResult:)
                            withObject:result
                         waitUntilDone:NO];

@@ -240,17 +240,6 @@
 
     synopsis = [self massage:synopsis];
 
-    NSRange range = [synopsis rangeOfString:@"€"];
-    if (range.length > 0) {
-        NSLog(@"%c%c%c %d %d %d",
-              [synopsis characterAtIndex:range.location - 1],
-              [synopsis characterAtIndex:range.location],
-              [synopsis characterAtIndex:range.location + 1],
-              [synopsis characterAtIndex:range.location - 1],
-              [synopsis characterAtIndex:range.location],
-              [synopsis characterAtIndex:range.location + 1]);
-    }
-
     DVD* dvd = [DVD dvdWithTitle:title
                            price:price
                           format:format

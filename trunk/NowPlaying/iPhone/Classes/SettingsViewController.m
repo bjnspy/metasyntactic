@@ -326,7 +326,6 @@
     userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     [self.controller setUserAddress:userAddress];
-    [self.tableView reloadData];
 }
 
 
