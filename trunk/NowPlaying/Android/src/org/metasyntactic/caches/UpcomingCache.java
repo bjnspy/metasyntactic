@@ -267,26 +267,11 @@ public class UpcomingCache {
     Set<Movie> moviesSet = new TreeSet<Movie>(movies);
     Movie movie;
     do {
-      movie = getNextMovie(moviesSet);
+      movie = prioritizedMovies.removeAny(moviesSet);
       if (movie != null) {
         updateDetails(movie, studioKeys.get(movie.getCanonicalTitle()), titleKeys.get(movie.getCanonicalTitle()));
       }
     } while (movie != null);
-  }
-
-  private Movie getNextMovie(Set<Movie> movies) {
-    Movie movie = prioritizedMovies.removeAny();
-    if (movie != null) {
-      return movie;
-    }
-
-    if (!movies.isEmpty()) {
-      Iterator<Movie> i = movies.iterator();
-      movie = i.next();
-      i.remove();
-    }
-
-    return movie;
   }
 
   private void updateDetails(Movie movie, String studioKey, String titleKey) {

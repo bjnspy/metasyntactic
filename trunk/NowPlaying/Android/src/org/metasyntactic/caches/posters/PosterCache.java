@@ -25,7 +25,6 @@ import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 
 import java.io.File;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -62,7 +61,7 @@ public class PosterCache {
 
     Movie movie;
     do {
-      movie = getNextMovie(moviesSet);
+      movie = prioritizedMovies.removeAny(moviesSet);
       downloadPoster(movie);
     } while (movie != null);
   }
@@ -105,21 +104,6 @@ public class PosterCache {
     }
 
     return null;
-  }
-
-  private Movie getNextMovie(Set<Movie> movies) {
-    Movie movie = prioritizedMovies.removeAny();
-    if (movie != null) {
-      return movie;
-    }
-
-    if (!movies.isEmpty()) {
-      Iterator<Movie> i = movies.iterator();
-      movie = i.next();
-      i.remove();
-    }
-
-    return movie;
   }
 
   private byte[] downloadPosterFromFandango(Movie movie) {

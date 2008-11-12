@@ -16,6 +16,7 @@ package org.metasyntactic.collections;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class BoundedPrioritySet<T> {
   private final Object lock = new Object();
@@ -46,6 +47,24 @@ public class BoundedPrioritySet<T> {
       Iterator<T> i = set.iterator();
       T value = i.next();
       i.remove();
+
+      return value;
+    }
+  }
+
+
+  public T removeAny(Set<T> lowPriorityValues) {
+    synchronized (lock) {
+      T value = removeAny();
+      if (value != null) {
+        return value;
+      }
+
+      if (!lowPriorityValues.isEmpty()) {
+        Iterator<T> i = lowPriorityValues.iterator();
+        value = i.next();
+        i.remove();
+      }
 
       return value;
     }
