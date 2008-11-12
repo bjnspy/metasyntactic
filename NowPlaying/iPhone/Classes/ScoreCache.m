@@ -103,8 +103,9 @@
 }
 
 
-- (void) prioritizeMovie:(Movie*) movie {
-    [self.currentScoreProvider prioritizeMovie:movie];
+- (void) prioritizeMovie:(Movie*) movie
+                inMovies:(NSArray*) movies {
+    [self.currentScoreProvider prioritizeMovie:movie inMovies:movies];
 }
 
 @end

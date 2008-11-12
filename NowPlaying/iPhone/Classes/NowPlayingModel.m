@@ -1160,7 +1160,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (void) prioritizeMovie:(Movie*) movie {
     [posterCache prioritizeMovie:movie];
-    [scoreCache prioritizeMovie:movie];
+    [scoreCache prioritizeMovie:movie inMovies:self.movies];
     [trailerCache prioritizeMovie:movie];
     [imdbCache prioritizeMovie:movie];
     [upcomingCache prioritizeMovie:movie];
