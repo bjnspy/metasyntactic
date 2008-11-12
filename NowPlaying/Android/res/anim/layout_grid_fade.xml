@@ -18,4 +18,4 @@
 <gridLayoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
         android:columnDelay="90%"
         android:directionPriority="row"
-        android:animation="@anim/fade" />
+        android:animation="@anim/wave_scale" />

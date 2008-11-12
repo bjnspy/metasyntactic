@@ -98,7 +98,7 @@ public class PosterCache {
       return data;
     }
 
-    data = IMDbPosterDownloader.download(movie);
+    data = ImdbPosterDownloader.download(movie);
     if (data != null) {
       return data;
     }

@@ -1,4 +1,4 @@
-// Copyright 2008 Cyrus Najmabadi
+/*// Copyright 2008 Cyrus Najmabadi
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
             }
         };
     
-        /** Updates display of the list of movies. */
+        *//** Updates display of the list of movies. *//*
         public void refresh() {
             List<Movie> movies = controller.getMovies();
             Comparator comparator =
@@ -99,7 +99,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
     }
 
 
-    /** Called when the activity is first created. */
+    *//** Called when the activity is first created. *//*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,12 +152,12 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
     }
 
 
-    /**
+    *//**
      * Returns an instance of NowPlayingControllerWrapper associated with this
      * Activity.
      * 
      * @return controller instance of NowPlayingControllerWrapper
-     */
+     *//*
     public NowPlayingControllerWrapper getController() {
         return controller;
     }
@@ -239,3 +239,4 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
    
 
 }
+*/

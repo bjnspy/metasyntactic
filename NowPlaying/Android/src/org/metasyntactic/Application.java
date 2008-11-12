@@ -27,6 +27,7 @@ import java.util.List;
 
 public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
+  public final static String NOW_PLAYING_POSTERS_READY = "NowPlayingPostersReady";
 
   public final static String host =
       /*
@@ -56,7 +57,7 @@ public class Application {
 
   private static Pulser pulser;
   private static Context context;
-
+  
   static {
     createDirectories();
 
@@ -64,6 +65,7 @@ public class Application {
       public void run() {
         if (context != null) {
           context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
+          
         }
       }
     };

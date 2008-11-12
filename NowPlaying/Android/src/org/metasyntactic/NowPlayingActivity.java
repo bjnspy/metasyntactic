@@ -25,23 +25,24 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
-import android.view.Gravity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.Calendar;
 import java.util.Collections;
@@ -54,55 +55,78 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     private static Context mContext;
     public static final int MENU_SORT = 1;
     public static final int MENU_SETTINGS = 2;
-    GridView grid;
+    private GridView grid;
     private Intent intent;
     private Animation animation;
-    NowPlayingControllerWrapper controller;
-    private final BroadcastReceiver broadcastReceiver =
-        new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                refresh();
-            }
-        };
+    private int selection;
+    private PostersAdapter postersAdapter;
+    static NowPlayingControllerWrapper controller;
+    private static boolean isPosterReady;
+    private boolean gridAnimationEnded;
+    private boolean isPrioritized;
+    private boolean isGridSetup;
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refresh();
+        }
+    };
 
     /** Updates display of the list of movies. */
     public void refresh() {
         movies = controller.getMovies();
-        Comparator comparator =
-            MOVIE_ORDER[controller.getAllMoviesSelectedSortIndex()];
+        //sort movies according to the default sort preference.
+        Comparator comparator = MOVIE_ORDER[controller
+                .getAllMoviesSelectedSortIndex()];
         Collections.sort(movies, comparator);
-        AllMoviesActivity.refresh(movies);
+        //show the intial posters view after atleast 6 posters are loaded.
+        int posterCount = 0;
+        if (!isPrioritized) {
+            Log.i("test", "movies prioritized");
+            for (int i = 0; i < movies.size(); i++) {
+                controller.prioritizeMovie(movies.get(i));
+            }
+            isPrioritized = true;
+        }
+        for (int i = 0; i < movies.size(); i++) {
+            if (controller.getPoster(movies.get(i)) != null
+                    && controller.getPoster(movies.get(i)).getBytes().length > 0) {
+                posterCount++;
+            }
+        }
+        if (posterCount > Math.min(6, movies.size() / 8) && !isGridSetup) {
+            Log.i("test", "setup called");
+            setup();
+            isGridSetup = true;
+        }
+        if (postersAdapter != null) {
+            postersAdapter.refreshMovies();
+        }
     }
 
     public List<Movie> getMovies() {
         return movies;
     }
 
-    private final ServiceConnection serviceConnection =
-        new ServiceConnection() {
-            public void onServiceConnected(ComponentName className,
-                            IBinder service) {
-                // This is called when the connection with the service has been
-                // established, giving us the service object we can use to
-                // interact with the service. We are communicating with our
-                // service through an IDL interface, so get a client-side
-                // representation of that from the raw service object.
-                controller =
-                    new NowPlayingControllerWrapper(INowPlayingController.Stub
-                        .asInterface(service));
-                onControllerConnected();
-            }
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            // This is called when the connection with the service has been
+            // established, giving us the service object we can use to
+            // interact with the service. We are communicating with our
+            // service through an IDL interface, so get a client-side
+            // representation of that from the raw service object.
+            controller = new NowPlayingControllerWrapper(
+                    INowPlayingController.Stub.asInterface(service));
+            onControllerConnected();
+        }
 
-            public void onServiceDisconnected(ComponentName className) {
-                controller = null;
-            }
-        };
+        public void onServiceDisconnected(ComponentName className) {
+            controller = null;
+        }
+    };
 
     private void onControllerConnected() {
-        int selectedTab = controller.getSelectedTabIndex();
         refresh();
-        setup();
     }
 
     public NowPlayingActivity() {
@@ -119,12 +143,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.progressbar_1);
-        final ProgressBar progressHorizontal =
-            (ProgressBar) findViewById(R.id.progress_horizontal);
-        progressHorizontal.setIndeterminate(true);
-        progressHorizontal.bringToFront();
-        progressHorizontal.requestFocus();
-        progressHorizontal.forceLayout();
     }
 
     /**
@@ -146,38 +164,57 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     @Override
     protected void onResume() {
         super.onResume();
-        boolean bindResult =
-            bindService(new Intent(getBaseContext(),
+        boolean bindResult = bindService(new Intent(getBaseContext(),
                 NowPlayingControllerService.class), serviceConnection,
                 Context.BIND_AUTO_CREATE);
         if (!bindResult) {
             throw new RuntimeException("Failed to bind to service!");
         }
         registerReceiver(broadcastReceiver, new IntentFilter(
-            Application.NOW_PLAYING_CHANGED_INTENT));
-        setup();
+                Application.NOW_PLAYING_CHANGED_INTENT));
     }
 
     private void setup() {
+        if (ThreadingUtilities.isBackgroundThread()) {
+            Runnable runnable = new Runnable() {
+                public void run() {
+                    setup();
+                }
+            };
+            ThreadingUtilities.performOnMainThread(runnable);
+            return;
+        }
         setContentView(R.layout.moviegrid_anim);
         grid = (GridView) findViewById(R.id.grid);
-        grid.setAdapter(new PostersAdapter());
-        grid.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                            long arg3) {
+        //  Animation gridAnimation = AnimationUtils.loadAnimation(mContext, R.anim.layout_grid_fade);
+        // grid.setAnimation(gridAnimation);
+        //grid.setLayoutAnimation(new LayoutAnimationController(gridAnimation));
+        grid.setLayoutAnimationListener(new AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
-                for (int i = 0; i < grid.getChildCount(); i++) {
-                    grid.getChildAt(i).setAnimation(animation);
-                    
-                }
+                gridAnimationEnded = true;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onAnimationStart(Animation arg0) {
+                // TODO Auto-generated method stub
             }
         });
+        postersAdapter = new PostersAdapter();
+        grid.setAdapter(postersAdapter);
         intent = new Intent();
         intent.setClass(mContext, AllMoviesActivity.class);
         animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_reverse);
         animation.setAnimationListener(new AnimationListener() {
             public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
+                intent.putExtra("selection", selection);
                 startActivity(intent);
                 setContentView(R.layout.main);
             }
@@ -198,12 +235,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         super.onPause();
     }
 
-    final Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
+    final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
         public int compare(Movie m1, Movie m2) {
             return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
         }
     };
-    final Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
+    final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
         public int compare(Movie m1, Movie m2) {
             Date d1;
             Date d2;
@@ -222,16 +259,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             return d2.compareTo(d1);
         }
     };
-    final Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
+    final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
         public int compare(Movie m1, Movie m2) {
             if (controller.getScore(m1) == null
-                && controller.getScore(m2) == null) {
+                    && controller.getScore(m2) == null) {
                 return 0;
             }
             if (controller.getScore(m1) != null
-                && controller.getScore(m2) != null) {
+                    && controller.getScore(m2) != null) {
                 return controller.getScore(m2).compareTo(
-                    controller.getScore(m1));
+                        controller.getScore(m1));
             }
             // if m2 is null then m1 is greater
             if (controller.getScore(m1) != null) {
@@ -240,11 +277,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             return 1;
         }
     };
-    final Comparator[] MOVIE_ORDER = {TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER};
+    final static Comparator[] MOVIE_ORDER = { TITLE_ORDER, RELEASE_ORDER,
+            SCORE_ORDER };
     private List<Movie> movies;
 
     public class PostersAdapter extends BaseAdapter {
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView,
+                ViewGroup parent) {
             LinearLayout linearLayout = new LinearLayout(mContext);
             linearLayout.setOrientation(LinearLayout.VERTICAL);
             ImageView i = new ImageView(mContext);
@@ -254,40 +293,41 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             a.recycle();
             i.setBackgroundResource(mGalleryItemBackground);
             final Movie movie = movies.get(position % movies.size());
+            controller.prioritizeMovie(movie);
             TextView title = new TextView(mContext);
             title.setText(movie.getDisplayTitle());
-            title.setTextSize(10);
+            title.setTextSize(12);
             title
-                .setTextAppearance(mContext, android.R.attr.textColorSecondary);
+                    .setTextAppearance(mContext,
+                            android.R.attr.textColorSecondary);
             title.setGravity(0x01);
             title.setEllipsize(TextUtils.TruncateAt.END);
             if (movie != null
-                && controller.getPoster(movie).getBytes().length > 0) {
+                    && controller.getPoster(movie).getBytes().length > 0) {
                 i.setImageBitmap(BitmapFactory.decodeByteArray(controller
-                    .getPoster(movie).getBytes(), 0, controller
-                    .getPoster(movie).getBytes().length));
-             
+                        .getPoster(movie).getBytes(), 0, controller.getPoster(
+                        movie).getBytes().length));
             } else {
-               i.setImageDrawable(mContext.getResources().getDrawable(R.drawable.movies));
+                i.setImageDrawable(mContext.getResources().getDrawable(
+                        R.drawable.movies));
             }
             i.setScaleType(ImageView.ScaleType.FIT_XY);
-            linearLayout.addView(i, new LinearLayout.LayoutParams(100, 130));
+            linearLayout.addView(i, new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.FILL_PARENT, 135));
             linearLayout.addView(title, new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.FILL_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
+                    LinearLayout.LayoutParams.FILL_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
             i.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
+                    selection = position;
                     v.setBackgroundResource(R.drawable.image_not_available);
                     for (int i = 0; i < grid.getChildCount(); i++) {
                         grid.getChildAt(i).setAnimation(animation);
-                        
                     }
                 }
             });
-            linearLayout.setLayoutParams(new GridView.LayoutParams(100, 160));
-         //   linearLayout
-         //       .setBackgroundResource(android.R.drawable.gallery_thumb);
+            linearLayout.setLayoutParams(new GridView.LayoutParams(100, 162));
             return linearLayout;
         }
 
@@ -305,5 +345,34 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         public final long getItemId(int position) {
             return position;
         }
+
+        public void refreshMovies() {
+            // if(gridAnimationEnded)
+            notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
+                android.R.drawable.star_on);
+        menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+                android.R.drawable.ic_menu_preferences).setIntent(
+                new Intent(this, SettingsActivity.class))
+                .setAlphabeticShortcut('s');
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == MENU_SORT) {
+            NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
+                    (NowPlayingActivity) mContext).setTitle(
+                    R.string.movies_select_sort_title).setKey(
+                    NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
+                    .setEntries(R.array.entries_movies_sort_preference).show();
+            return true;
+        }
+        return false;
     }
 }

@@ -1,4 +1,4 @@
-// Copyright 2008 Cyrus Najmabadi
+/*// Copyright 2008 Cyrus Najmabadi
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 import java.util.ArrayList;
 
 public class TheaterDetailsActivity extends Activity {
-  /** Called when the activity is first created. */
+  *//** Called when the activity is first created. *//*
   NowPlayingControllerWrapper controller;
 
    @Override
@@ -165,3 +165,4 @@ public class TheaterDetailsActivity extends Activity {
     super.onResume();
   }
 }
+*/

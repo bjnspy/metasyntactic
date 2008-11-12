@@ -21,7 +21,7 @@ import static org.metasyntactic.utilities.XmlUtilities.element;
 import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.w3c.dom.Element;
 
-public class IMDbPosterDownloader {
+public class ImdbPosterDownloader {
 
   public static byte[] download(Movie movie) {
     return NetworkUtilities.download(getImageUrl(getImdbId(movie)), false);

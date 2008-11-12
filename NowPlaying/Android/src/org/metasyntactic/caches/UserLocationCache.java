@@ -51,7 +51,7 @@ public class UserLocationCache {
 
     if (location == null) {
       location = downloadAddressLocationFromWebService(massageAddress(userAddress));
-      if (!location.getCountry().equals(userCountryISO())) {
+      if (location!=null && !location.getCountry().equals(userCountryISO())) {
         location = downloadAddressLocationFromWebService(userAddress);
       }
 

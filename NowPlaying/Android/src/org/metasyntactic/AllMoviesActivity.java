@@ -16,27 +16,35 @@
 package org.metasyntactic;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Parcelable;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import org.metasyntactic.caches.scores.ScoreType;
@@ -47,75 +55,130 @@ import org.metasyntactic.views.CustomGallery;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class AllMoviesActivity extends Activity {
-    private NowPlayingActivity activity;
-    private List<Movie> movies = new ArrayList<Movie>();
-    
-
-   
-
+public class AllMoviesActivity extends Activity implements INowPlaying {
+    private static List<Movie> movies = new ArrayList<Movie>();
     private static Context mContext;
     public static final int MENU_SORT = 1;
     public static final int MENU_SETTINGS = 2;
+    private int selection;
     NowPlayingControllerWrapper mController;
-    
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refresh();
+        }
+    };
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            // This is called when the connection with the service has been
+            // established, giving us the service object we can use to
+            // interact with the service. We are communicating with our
+            // service through an IDL interface, so get a client-side
+            // representation of that from the raw service object.
+            mController = new NowPlayingControllerWrapper(
+                    INowPlayingController.Stub.asInterface(service));
+            onControllerConnected();
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            mController = null;
+        }
+    };
+
+    private void onControllerConnected() {
+        refresh();
+        setupView();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movieview);
-        activity = NowPlayingActivity.instance;
-       mController = activity.getController();
-        movies = activity.getMovies();
         mContext = this;
         mDetailAdapter = new DetailAdapter(this);
         mThumbnailAdapter = new ThumbnailAdapter(this);
+    }
+
+    private void setupView() {
         final CustomGallery detail = (CustomGallery) findViewById(R.id.detail);
         detail.setAdapter(mDetailAdapter);
-     //   detail.setSelection(0);
-        final Gallery thumbnail = (Gallery) findViewById(R.id.thumbnails);
+        //   detail.setSelection(0);
+        final CustomGallery thumbnail = (CustomGallery) findViewById(R.id.thumbnails);
         thumbnail.setAdapter(mThumbnailAdapter);
         thumbnail.setSoundEffectsEnabled(true);
-      //  thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
-        OnItemSelectedListener listener = new OnItemSelectedListener(){
-
+        //  thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
+        OnItemSelectedListener listener = new OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                     int position, long id) {
                 // TODO Auto-generated method stub
-                if (position ==0)
-                  thumbnail.setSelection(position + 1);
-                
+                if (thumbnail.getSelectedItemPosition() != position)
+                    thumbnail.setSelection(position);
+                selection = position;
+                Animation animation = AnimationUtils.loadAnimation(mContext,
+                        R.anim.slide_left);
+                arg1.setAnimation(animation);
             }
 
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-                
             }
-            
         };
-        detail.setOnItemSelectedListener(listener );
-        
-        OnItemSelectedListener thumblistener = new OnItemSelectedListener(){
-
-            
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
+        detail.setOnItemSelectedListener(listener);
+        OnItemClickListener thumblistener = new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1,
                     int position, long id) {
                 // TODO Auto-generated method stub
-                if (position !=0)
-                detail.setSelection(position-1);
-                
+                if (detail.getSelectedItemPosition() != position)
+                    detail.setSelection(position);
+                Animation animation = AnimationUtils.loadAnimation(mContext,
+                        R.anim.fade_gallery_item);
+                arg1.setAnimation(animation);
             }
 
-          
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-                
             }
-            
         };
-        thumbnail.setOnItemSelectedListener(thumblistener );
+        thumbnail.setOnItemClickListener(thumblistener);
+        selection = getIntent().getExtras().getInt("selection");
+        detail.setSelection(selection, true);
+        thumbnail.setSelection(selection, true);
+        Button details = (Button) findViewById(R.id.details);
+        details.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                Movie movie = movies.get(selection);
+                Intent intent = new Intent();
+                intent.setClass(mContext, MovieDetailsActivity.class);
+                intent.putExtra("movie", (Parcelable) movie);
+                startActivity(intent);
+            }
+        });
+        Button showtimes = (Button) findViewById(R.id.showtimes);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean bindResult = bindService(new Intent(getBaseContext(),
+                NowPlayingControllerService.class), serviceConnection,
+                Context.BIND_AUTO_CREATE);
+        if (!bindResult) {
+            throw new RuntimeException("Failed to bind to service!");
+        }
+        registerReceiver(broadcastReceiver, new IntentFilter(
+                Application.NOW_PLAYING_CHANGED_INTENT));
+    }
+
+    @Override
+    protected void onDestroy() {
+        unbindService(serviceConnection);
+        super.onDestroy();
     }
 
     private static DetailAdapter mDetailAdapter;
@@ -132,18 +195,13 @@ public class AllMoviesActivity extends Activity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public INowPlaying getNowPlayingActivityContext() {
-        return activity;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == MENU_SORT) {
             NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
-                    this.activity)
-                    .setTitle(R.string.movies_select_sort_title)
-                    .setKey(
-                            NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
+                    (AllMoviesActivity) mContext).setTitle(
+                    R.string.movies_select_sort_title).setKey(
+                    NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
                     .setEntries(R.array.entries_movies_sort_preference).show();
             return true;
         }
@@ -153,7 +211,8 @@ public class AllMoviesActivity extends Activity {
     class DetailAdapter extends BaseAdapter {
         private Context mContext;
         private LayoutInflater mInflater;
-        int  mGalleryItemBackground;
+        int mGalleryItemBackground;
+
         public DetailAdapter(Context context) {
             mContext = context;
             // Cache the LayoutInflate to avoid asking for a new one each time.
@@ -176,55 +235,57 @@ public class AllMoviesActivity extends Activity {
             MovieViewHolder holder;
             convertView = mInflater.inflate(R.layout.moviesummary, null);
             holder = new MovieViewHolder();
-            holder.toggleButton = (Button) convertView
-                    .findViewById(R.id.togglebtn);
             holder.score = (Button) convertView.findViewById(R.id.score);
-            
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.poster = (ImageView) convertView.findViewById(R.id.poster);
             holder.rating = (TextView) convertView.findViewById(R.id.rating);
             holder.length = (TextView) convertView.findViewById(R.id.length);
             holder.genre = (TextView) convertView.findViewById(R.id.genre);
-            
-        //    holder.header = (TextView) convertView.findViewById(R.id.header);
+            holder.cast = (TextView) convertView.findViewById(R.id.cast);
+            holder.scoreLbl = (TextView) convertView
+                    .findViewById(R.id.scorelbl);
+            holder.title.setEllipsize(TextUtils.TruncateAt.END);
             convertView.setTag(holder);
             Resources res = mContext.getResources();
             final Movie movie = movies.get(position);
             String headerText = MovieViewUtilities.getHeader(movies, position,
                     mController.getAllMoviesSelectedSortIndex());
-         /*   if (headerText != null) {
-                holder.header.setVisibility(1);
-                holder.header.setText(headerText);
-            } else {
-                holder.header.setVisibility(-1);
-                holder.header.setHeight(0);
-                holder.divider.setVisibility(-1);
-                holder.divider.setMaxHeight(0);
-            }*/
             if (mController.getPoster(movie).getBytes().length > 0) {
-                holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(mController
-                        .getPoster(movie).getBytes(), 0, mController
-                        .getPoster(movie).getBytes().length));
+                holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(
+                        mController.getPoster(movie).getBytes(), 0, mController
+                                .getPoster(movie).getBytes().length));
+                holder.poster.setBackgroundResource(R.drawable.image_frame);
             }
             holder.title.setText(movie.getDisplayTitle());
             CharSequence rating = MovieViewUtilities.formatRatings(movie
                     .getRating(), mContext.getResources());
-            CharSequence length = MovieViewUtilities.formatLength(
-                    movie.getLength(), mContext.getResources());
+            CharSequence length = MovieViewUtilities.formatLength(movie
+                    .getLength(), mContext.getResources());
             holder.rating.setText(rating.toString());
             holder.length.setText(length.toString());
-            String genres = movie.getGenres().toString();
-            holder.genre.setText("Genre: " + genres.substring(1, genres.length()-1));
-            holder.toggleButton
-                    .setOnClickListener(new Button.OnClickListener() {
-                        public void onClick(View v) {
-                            Intent intent = new Intent();
-                            intent.setClass(mContext,
-                                    MovieDetailsActivity.class);
-                            intent.putExtra("movie", (Parcelable) movie);
-                            startActivity(intent);
-                        }
-                    });
+            if (movie.getGenres() != null && movie.getGenres().size() > 0) {
+                String genres = movie.getGenres().toString();
+                holder.genre.setText(genres.substring(1, genres.length() - 1));
+            } else {
+                holder.genre.setText("Unknown");
+            }
+            holder.cast.setEllipsize(TextUtils.TruncateAt.END);
+            if (movie.getCast() != null && movie.getCast().size() > 0) {
+                String cast = movie.getCast().toString();
+                holder.cast.setText(cast.substring(1, cast.length() - 1));
+            } else {
+                holder.cast.setText("Unknown");
+            }
+            /* holder.toggleButton
+                     .setOnClickListener(new Button.OnClickListener() {
+                         public void onClick(View v) {
+                             Intent intent = new Intent();
+                             intent.setClass(mContext,
+                                     MovieDetailsActivity.class);
+                             intent.putExtra("movie", (Parcelable) movie);
+                             startActivity(intent);
+                         }
+                     });*/
             // Get and set scores text and background image
             Score score = mController.getScore(movie);
             int scoreValue = -1;
@@ -236,9 +297,10 @@ public class AllMoviesActivity extends Activity {
             holder.score.setBackgroundDrawable(MovieViewUtilities
                     .formatScoreDrawable(scoreValue, scoreType, res));
             if (scoreValue != -1) {
-                holder.score.setText(String.valueOf(scoreValue));
+                holder.scoreLbl.setText(String.valueOf(scoreValue) + "%");
+            } else {
+                holder.scoreLbl.setText("Unknown");
             }
-          //  convertView.setBackgroundResource(mGalleryItemBackground);
             return convertView;
         }
 
@@ -246,35 +308,31 @@ public class AllMoviesActivity extends Activity {
             TextView header;
             Button score;
             TextView title;
-            
             TextView rating;
             TextView length;
             TextView genre;
-            
-            Button toggleButton;
             ImageView poster;
+            TextView scoreLbl;
+            TextView cast;
         }
 
         public int getCount() {
             return movies.size();
         }
 
-        public void refreshMovies(List<Movie> new_movies) {
-            movies = new_movies;
+        public void refreshMovies() {
             notifyDataSetChanged();
         }
     }
-    
     class ThumbnailAdapter extends BaseAdapter {
         private Context mContext;
         private LayoutInflater mInflater;
         int mGalleryItemBackground;
-        
+
         public ThumbnailAdapter(Context context) {
             mContext = context;
             // Cache the LayoutInflate to avoid asking for a new one each time.
             mInflater = LayoutInflater.from(context);
-          
             TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
             mGalleryItemBackground = a.getResourceId(
                     android.R.styleable.Theme_galleryItemBackground, 0);
@@ -290,43 +348,77 @@ public class AllMoviesActivity extends Activity {
         }
 
         public View getView(int position, View convertView, ViewGroup viewGroup) {
-           
-            ImageView poster = new ImageView(mContext);
-            poster.setLayoutParams(new Gallery.LayoutParams(100,130));
-            // The preferred Gallery item background
-            poster.setBackgroundResource(mGalleryItemBackground);
-          
-             Resources res = mContext.getResources();
-            final Movie movie = movies.get(position);
-           if (mController.getPoster(movie).getBytes().length > 0) {
-                poster.setImageBitmap(BitmapFactory.decodeByteArray(mController
-                        .getPoster(movie).getBytes(), 0, mController
-                        .getPoster(movie).getBytes().length));
+            LinearLayout layout = new LinearLayout(mContext);
+            layout.setOrientation(LinearLayout.VERTICAL);
+            ImageView i = new ImageView(mContext);
+            TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
+            int mGalleryItemBackground = a.getResourceId(
+                    android.R.styleable.Theme_galleryItemBackground, 0);
+            a.recycle();
+            i.setBackgroundResource(mGalleryItemBackground);
+            final Movie movie = movies.get(position % movies.size());
+            TextView title = new TextView(mContext);
+            title.setText(movie.getDisplayTitle());
+            title.setTextSize(12);
+            title.setWidth(100);
+            title.setSingleLine(false);
+            title
+                    .setTextAppearance(mContext,
+                            android.R.attr.textColorSecondary);
+            title.setGravity(0x01);
+            title.setEllipsize(TextUtils.TruncateAt.END);
+            if (movie != null
+                    && mController.getPoster(movie).getBytes().length > 0) {
+                i.setImageBitmap(BitmapFactory.decodeByteArray(mController
+                        .getPoster(movie).getBytes(), 0, mController.getPoster(
+                        movie).getBytes().length));
             } else {
-                poster.setImageResource(R.drawable.image_not_available);
+                i.setImageDrawable(mContext.getResources().getDrawable(
+                        R.drawable.movies));
             }
-           
-            return poster;
+            i.setScaleType(ImageView.ScaleType.FIT_XY);
+            layout.addView(i, new LinearLayout.LayoutParams(100, 120));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.FILL_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            layout.addView(title, params);
+            //   layout.setLayoutParams(new GridView.LayoutParams(100, 160));
+            //   linearLayout
+            //       .setBackgroundResource(android.R.drawable.gallery_thumb);
+            return layout;
         }
-
-       
 
         public int getCount() {
             return movies.size();
         }
 
-        public void refreshMovies(List<Movie> new_movies) {
-            
+        public void refreshMovies() {
             notifyDataSetChanged();
         }
     }
 
-    public static void refresh(List<Movie> movies) {
+    @Override
+    public Context getContext() {
+        // TODO Auto-generated method stub
+        return mContext;
+    }
+
+    @Override
+    public NowPlayingControllerWrapper getController() {
+        // TODO Auto-generated method stub
+        return mController;
+    }
+
+    @Override
+    public void refresh() {
+        // TODO Auto-generated method stub
+        movies = mController.getMovies();
+        Comparator comparator = NowPlayingActivity.MOVIE_ORDER[mController
+                .getAllMoviesSelectedSortIndex()];
+        Collections.sort(movies, comparator);
         if (mDetailAdapter != null && mThumbnailAdapter != null) {
-          mDetailAdapter.refreshMovies(movies);
-          mThumbnailAdapter.refreshMovies(movies);
-         
-          
+            mDetailAdapter.refreshMovies();
+            mThumbnailAdapter.refreshMovies();
         }
     }
 }
