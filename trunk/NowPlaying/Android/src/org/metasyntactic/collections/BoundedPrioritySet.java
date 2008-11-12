@@ -52,7 +52,6 @@ public class BoundedPrioritySet<T> {
     }
   }
 
-
   public T removeAny(Set<T> lowPriorityValues) {
     synchronized (lock) {
       T value = removeAny();

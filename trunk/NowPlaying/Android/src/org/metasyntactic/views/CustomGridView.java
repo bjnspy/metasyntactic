@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2007 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,35 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.metasyntactic.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
-/**
- * A gallery of the different styles of buttons.
- */
+/** A gallery of the different styles of buttons. */
 public class CustomGridView extends GridView {
-    public CustomGridView(Context context) {
-        super(context);
-        this.setFocusableInTouchMode(true);
-        // TODO Auto-generated constructor stub
-    }
+  public CustomGridView(Context context) {
+    super(context);
+    this.setFocusableInTouchMode(true);
+    // TODO Auto-generated constructor stub
+  }
 
-    public CustomGridView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        this.setFocusableInTouchMode(true);
-        // TODO Auto-generated constructor stub
-    }
+  public CustomGridView(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+    this.setFocusableInTouchMode(true);
+    // TODO Auto-generated constructor stub
+  }
 
-    public CustomGridView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.setFocusable(true);
-        this.setFocusableInTouchMode(true);
-        // TODO Auto-generated constructor stub
-    }
-    
-
-    
+  public CustomGridView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    this.setFocusable(true);
+    this.setFocusableInTouchMode(true);
+    // TODO Auto-generated constructor stub
+  }
 }

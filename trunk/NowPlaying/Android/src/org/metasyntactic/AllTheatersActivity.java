@@ -30,7 +30,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
 
-
   private static NowPlayingControllerWrapper controller;
   private static Pulser pulser;
   private static TheatersAdapter adapter;
@@ -51,34 +50,28 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     super.onCreate(savedInstanceState);
 
 
-        activity = (NowPlayingActivity) getParent();
-        mContext = this;
-        controller = activity.getController();
-        theaters = controller.getTheaters();
-        String userPostalCode = controller.getUserLocation();
-        Address address = null;
-        try {
-            address =
-                new Geocoder(mContext).getFromLocationName(
-                    userPostalCode, 1).get(0);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        userLocation = new Location(address.getLatitude(), address.getLongitude(),
-            null, null, null, null, null);
-   
-        Collections.sort(theaters, THEATER_ORDER[controller
-            .getAllTheatersSelectedSortIndex()]);
-        
-             
-        // Set up Movies adapter
-        TheatersAdapter mAdapter = new TheatersAdapter(this);
-        setListAdapter(mAdapter);
-
+    activity = (NowPlayingActivity) getParent();
+    mContext = this;
+    controller = activity.getController();
+    theaters = controller.getTheaters();
+    String userPostalCode = controller.getUserLocation();
+    Address address = null;
+    try {
+      address = new Geocoder(mContext).getFromLocationName(userPostalCode, 1).get(0);
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
 
+    userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null, null);
+
+    Collections.sort(theaters, THEATER_ORDER[controller
+        .getAllTheatersSelectedSortIndex()]);
+
+    // Set up Movies adapter
+    TheatersAdapter mAdapter = new TheatersAdapter(this);
+    setListAdapter(mAdapter);
+  }
 
   @Override
   protected void onPause() {
