@@ -200,12 +200,9 @@
 
 
 - (void) updateReviews {
-    NSDictionary* movieMap = self.movieMap;
-    NSDictionary* scores = self.scores;
-
     [ThreadingUtilities performSelector:@selector(updateReviewsBackgroundEntryPoint:)
                                onTarget:self
-               inBackgroundWithArgument:[NSArray arrayWithObjects:scores, movieMap, nil]
+               inBackgroundWithArgument:self.scores
                                    gate:lock
                                 visible:NO];
 }
@@ -503,19 +500,23 @@
 
 
 - (Score*) getNextScore:(NSMutableArray*) scores
-              scoresMap:(NSDictionary*) scoresMap
-               movieMap:(NSDictionary*) movieMap {
-    Movie* movie = [prioritizedMovies removeLastObjectAdded];
-    Score* score = [scoresMap objectForKey:[movieMap objectForKey:movie.canonicalTitle]];
-    if (score != nil) {
-        // only process this movie if we've got no data for it.
-        if (![FileUtilities fileExists:[self reviewsFile:score.canonicalTitle]]) {
-            return score;
+              scoresMap:(NSDictionary*) scoresMap {
+    NSArray* arguments = [prioritizedMovies removeLastObjectAdded];
+    if (arguments != nil) {
+        Movie* movie = [arguments objectAtIndex:0];
+        NSDictionary* movieMap = [arguments objectAtIndex:1];
+        
+        Score* score = [scoresMap objectForKey:[movieMap objectForKey:movie.canonicalTitle]];
+        if (score != nil) {
+            // only process this movie if we've got no data for it.
+            if (![FileUtilities fileExists:[self reviewsFile:score.canonicalTitle]]) {
+                return score;
+            }
         }
     }
 
     if (scores.count > 0) {
-        score = [[[scores lastObject] retain] autorelease];
+        Score* score = [[[scores lastObject] retain] autorelease];
         [scores removeLastObject];
         return score;
     }
@@ -525,8 +526,7 @@
 
 
 - (void) downloadReviews:(NSMutableArray*) scores
-               scoresMap:(NSDictionary*) scoresMap 
-                movieMap:(NSDictionary*) movieMap {
+               scoresMap:(NSDictionary*) scoresMap {
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
 
     if (location == nil) {
@@ -537,7 +537,7 @@
     do {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
-            score = [self getNextScore:scores scoresMap:scoresMap movieMap:movieMap];
+            score = [self getNextScore:scores scoresMap:scoresMap];
             [self downloadReviews:score location:location];
         }
         [autoreleasePool release];
@@ -545,10 +545,7 @@
 }
 
 
-- (void) updateReviewsBackgroundEntryPoint:(NSArray*) arguments {
-    NSDictionary* scoresMap = [arguments objectAtIndex:0];
-    NSDictionary* movieMap = [arguments objectAtIndex:1];
-
+- (void) updateReviewsBackgroundEntryPoint:(NSDictionary*) scoresMap {
     NSMutableArray* scoresWithoutReviews = [NSMutableArray array];
     NSMutableArray* scoresWithReviews = [NSMutableArray array];
 
@@ -566,13 +563,15 @@
         }
     }
 
-    [self downloadReviews:scoresWithoutReviews scoresMap:scoresMap movieMap:movieMap];
-    [self downloadReviews:scoresWithReviews scoresMap:scoresMap movieMap:movieMap];
+    [self downloadReviews:scoresWithoutReviews scoresMap:scoresMap];
+    [self downloadReviews:scoresWithReviews scoresMap:scoresMap];
 }
 
 
-- (void) prioritizeMovie:(Movie*) movie {
-    [prioritizedMovies addObject:movie];
+- (void) prioritizeMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
+    [self ensureMovieMap:movies_];
+    NSArray* arguments = [NSArray arrayWithObjects:movie, self.movieMap, nil];
+    [prioritizedMovies addObject:arguments];
 }
 
 @end
