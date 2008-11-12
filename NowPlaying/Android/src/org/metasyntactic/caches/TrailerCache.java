@@ -145,24 +145,9 @@ public class TrailerCache {
 
     Movie movie;
     do {
-      movie = getNextMovie(moviesSet);
+      movie = prioritizedMovies.removeAny(moviesSet);
       downloadMovieTrailer(movie, index);
     } while (movie != null);
-  }
-
-  private Movie getNextMovie(Set<Movie> movies) {
-    Movie movie = prioritizedMovies.removeAny();
-    if (movie != null) {
-      return movie;
-    }
-
-    if (!movies.isEmpty()) {
-      Iterator<Movie> i = movies.iterator();
-      movie = i.next();
-      i.remove();
-    }
-
-    return movie;
   }
 
   private Map<String, List<String>> generateIndex(String indexText) {
