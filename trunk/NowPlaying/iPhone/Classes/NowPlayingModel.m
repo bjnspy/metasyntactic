@@ -195,7 +195,9 @@ static NSString** KEYS[] = {
                        searchRadius:(id) previousSearchRadius
                  autoUpdateLocation:(id) previousAutoUpdateLocation
                      useNormalFonts:(id) previousUseNormalFonts
-                   favoriteTheaters:(id) previousFavoriteTheaters {
+                   favoriteTheaters:(id) previousFavoriteTheaters 
+          previousDvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs 
+        previousDvdMoviesHideBluray:(id) previousDvdMoviesHideBluray {
     if ([previousUserAddress isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
     }
@@ -210,6 +212,14 @@ static NSString** KEYS[] = {
 
     if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousUseNormalFonts boolValue] forKey:USE_NORMAL_FONTS];
+    }
+    
+    if ([previousDvdMoviesHideDVDs isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideDVDs boolValue] forKey:DVD_MOVIES_HIDE_DVDS];
+    }
+    
+    if ([previousDvdMoviesHideBluray isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideBluray boolValue] forKey:DVD_MOVIES_HIDE_BLURAY];
     }
 
     if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
@@ -243,7 +253,9 @@ static NSString** KEYS[] = {
         id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
-
+        id previousDvdMoviesHideDVDs = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_DVDS];
+        id previousDvdMoviesHideBluray = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_BLURAY];
+        
         for (int i = 0; i < ArrayLength(KEYS); i++) {
             NSString** key = KEYS[i];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
@@ -256,7 +268,9 @@ static NSString** KEYS[] = {
                             searchRadius:previousSearchRadius
                       autoUpdateLocation:previousAutoUpdateLocation
                           useNormalFonts:previousUseNormalFonts
-                        favoriteTheaters:previousFavoriteTheaters];
+                        favoriteTheaters:previousFavoriteTheaters
+               previousDvdMoviesHideDVDs:previousDvdMoviesHideDVDs
+             previousDvdMoviesHideBluray:previousDvdMoviesHideBluray];
 
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
