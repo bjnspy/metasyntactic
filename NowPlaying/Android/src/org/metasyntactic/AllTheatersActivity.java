@@ -49,7 +49,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
 
-
     activity = (NowPlayingActivity) getParent();
     mContext = this;
     controller = activity.getController();
@@ -128,8 +127,9 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
     menu.add(0, MENU_SORT, 0, R.string.menu_theater_sort).setIcon(android.R.drawable.star_on);
 
-    menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class))
+    menu.add(0, MENU_SETTINGS, 0, R.string.settings)
+        .setIcon(android.R.drawable.ic_menu_preferences)
+        .setIntent(new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
 
     return super.onCreateOptionsMenu(menu);
@@ -144,8 +144,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     if (item.getItemId() == MENU_SORT) {
       NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this)
 
-          .setTitle(R.string.theaters_select_sort_title).setKey(
-          NowPlayingPreferenceDialog.Preference_keys.THEATERS_SORT)
+          .setTitle(R.string.theaters_select_sort_title)
+          .setKey(NowPlayingPreferenceDialog.Preference_keys.THEATERS_SORT)
           .setEntries(R.array.entries_theaters_sort_preference)
           .show();
 
@@ -258,7 +258,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   private static final Comparator<Theater> DISTANCE_ORDER = new Comparator<Theater>() {
     public int compare(Theater m1, Theater m2) {
-
 
       Double dist_m1 = userLocation.distanceTo(m1.getLocation());
       Double dist_m2 = userLocation.distanceTo(m2.getLocation());

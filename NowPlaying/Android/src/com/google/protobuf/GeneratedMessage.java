@@ -280,8 +280,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
     private final void verifyExtensionContainingType(GeneratedExtension<MessageType, ?> extension) {
       if (extension.getDescriptor().getContainingType() != getDescriptorForType()) {
         // This can only happen if someone uses unchecked operations.
-        throw new IllegalArgumentException(
-            "Extension is for type \"" + extension.getDescriptor().getContainingType().getFullName() + "\" which does not match message type \"" + getDescriptorForType().getFullName() + "\".");
+        throw new IllegalArgumentException("Extension is for type \"" + extension.getDescriptor()
+            .getContainingType()
+            .getFullName() + "\" which does not match message type \"" + getDescriptorForType().getFullName() + "\".");
       }
     }
 
@@ -459,7 +460,8 @@ public abstract class GeneratedMessage extends AbstractMessage {
    */
   @SuppressWarnings("unchecked")
   public abstract static class ExtendableBuilder<
-      MessageType extends ExtendableMessage, BuilderType extends ExtendableBuilder> extends GeneratedMessage.Builder<BuilderType> {
+      MessageType extends ExtendableMessage, BuilderType extends ExtendableBuilder>
+      extends GeneratedMessage.Builder<BuilderType> {
     protected ExtendableBuilder() {}
 
     @Override

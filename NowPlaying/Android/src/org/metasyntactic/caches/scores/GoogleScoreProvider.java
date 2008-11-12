@@ -43,8 +43,8 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
   }
 
   private String getUrl() {
-    Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
-        getModel().getUserLocation());
+    Location location = getModel().getUserLocationCache()
+        .downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserLocation());
 
     if (StringUtilities.isNullOrEmpty(location.getPostalCode())) {
       return null;
@@ -57,7 +57,10 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     //Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 
-    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale
+        .getDefault()
+        .getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location
+        .getLongitude() * 1000000);
 
     return address;
   }

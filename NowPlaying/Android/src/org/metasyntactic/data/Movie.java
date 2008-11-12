@@ -181,7 +181,34 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   private static String[] suffixArticles;
 
   static {
-    String[] articles = new String[]{"Der", "Das", "Ein", "Eine", "The", "A", "An", "La", "Las", "Le", "Les", "Los", "El", "Un", "Une", "Una", "Il", "O", "Het", "De", "Os", "Az", "Den", "Al", "En", "L'"};
+    String[] articles = new String[]{
+        "Der",
+        "Das",
+        "Ein",
+        "Eine",
+        "The",
+        "A",
+        "An",
+        "La",
+        "Las",
+        "Le",
+        "Les",
+        "Los",
+        "El",
+        "Un",
+        "Une",
+        "Una",
+        "Il",
+        "O",
+        "Het",
+        "De",
+        "Os",
+        "Az",
+        "Den",
+        "Al",
+        "En",
+        "L'"
+    };
 
     prefixArticles = new String[articles.length];
     suffixArticles = new String[articles.length];

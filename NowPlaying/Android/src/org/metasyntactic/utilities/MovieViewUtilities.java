@@ -141,7 +141,6 @@ public class MovieViewUtilities {
           dateStr = null;
         }
 
-
         if (position == 0) {
 
           return dateStr;

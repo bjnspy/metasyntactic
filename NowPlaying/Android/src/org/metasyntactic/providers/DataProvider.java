@@ -78,8 +78,8 @@ public class DataProvider {
     }
 
     long start = System.currentTimeMillis();
-    final Location location = model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
-        model.getUserLocation());
+    final Location location = model.getUserLocationCache()
+        .downloadUserAddressLocationBackgroundEntryPoint(model.getUserLocation());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
 
     if (location == null) {
@@ -94,7 +94,8 @@ public class DataProvider {
     lookupMissingFavorites(result);
     LogUtilities.logTime(DataProvider.class, "Lookup Missing Theaters", start);
 
-    if (result != null && ((result.movies != null && result.movies.size() > 0) || (result.theaters != null && result.theaters.size() > 0))) {
+    if (result != null && ((result.movies != null && result.movies
+        .size() > 0) || (result.theaters != null && result.theaters.size() > 0))) {
       reportResult(result);
       saveResult(result);
     }
@@ -129,7 +130,10 @@ public class DataProvider {
 
     days = min(max(days, 0), 7);
 
-    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale
+        .getDefault()
+        .getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location
+        .getLongitude() * 1000000);
 
     byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {

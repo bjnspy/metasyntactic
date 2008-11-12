@@ -29,8 +29,11 @@ public final class NowPlaying {
   private static com.google.protobuf.Descriptors.FileDescriptor buildDescriptor() {
     java.lang.String descriptorData = "\n\020NowPlaying.proto\"M\n\rShowtimeProto\022\014\n\004T" + "ime\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021" + "\n\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!" + "\n\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Ven" + "dor\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMovieP" + "roto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022" + "\016\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Gen" + "re\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRati" + "ng\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t" + "\022\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubb" + "ed\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDa" + "te\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030" + "\001 \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001" + "(\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPosta" + "lCode\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 " + "\001(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001" + "\"\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(" + "\0132\013.MovieProto\022U\n\030TheaterAndMovieShowtim" + "es\030\006 \003(\01323.TheaterListingsProto.TheaterA" + "ndMovieShowtimesProto\032\200\002\n\035TheaterAndMovi" + "eShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theat" + "erProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.The" + "aterListingsProto.TheaterAndMovieShowtim" + "esProto.MovieAndShowtimesProto\032X\n\026MovieA" + "ndShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(" + "\t\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto" + "\"\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002" + " \001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n" + "\007Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Aut" + "hor\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPr" + "oto\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProtoB\002H\001";
     try {
-      return com.google.protobuf.Descriptors.FileDescriptor.internalBuildGeneratedFileFrom(descriptorData,
-                                                                                           new com.google.protobuf.Descriptors.FileDescriptor[]{});
+      return com.google
+          .protobuf
+          .Descriptors
+          .FileDescriptor
+          .internalBuildGeneratedFileFrom(descriptorData, new com.google.protobuf.Descriptors.FileDescriptor[]{});
     } catch (Exception e) {
       throw new RuntimeException("Failed to parse protocol buffer descriptor for " + "\"NowPlaying.proto\".", e);
     }
@@ -166,23 +169,25 @@ public final class NowPlaying {
       return size;
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ShowtimeProto parseFrom(com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.ShowtimeProto parseFrom(com.google.protobuf.ByteString data,
-                                                     com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                     com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ShowtimeProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.ShowtimeProto parseFrom(byte[] data,
-                                                     com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                     com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -191,17 +196,19 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.ShowtimeProto parseFrom(java.io.InputStream input,
-                                                     com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                     com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.ShowtimeProto parseFrom(com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
     public static NowPlaying.ShowtimeProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                     com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                     com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -587,23 +594,25 @@ public final class NowPlaying {
       return size;
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.AllShowtimesProto parseFrom(com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.AllShowtimesProto parseFrom(com.google.protobuf.ByteString data,
-                                                         com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                         com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.AllShowtimesProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.AllShowtimesProto parseFrom(byte[] data,
-                                                         com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                         com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -612,17 +621,19 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.AllShowtimesProto parseFrom(java.io.InputStream input,
-                                                         com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                         com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.AllShowtimesProto parseFrom(com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
     public static NowPlaying.AllShowtimesProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                         com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                         com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -1173,23 +1184,24 @@ public final class NowPlaying {
       return size;
     }
 
-    public static NowPlaying.MovieProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.MovieProto parseFrom(com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.MovieProto parseFrom(com.google.protobuf.ByteString data,
-                                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                  com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.MovieProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(byte[] data,
-                                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.MovieProto parseFrom(byte[] data, com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -1198,17 +1210,19 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.MovieProto parseFrom(java.io.InputStream input,
-                                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                  com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.MovieProto parseFrom(com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
     public static NowPlaying.MovieProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                  com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -2040,23 +2054,25 @@ public final class NowPlaying {
       return size;
     }
 
-    public static NowPlaying.TheaterProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterProto parseFrom(com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.TheaterProto parseFrom(com.google.protobuf.ByteString data,
-                                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                    com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.TheaterProto parseFrom(byte[] data,
-                                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                    com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -2065,17 +2081,19 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.TheaterProto parseFrom(java.io.InputStream input,
-                                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                    com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.TheaterProto parseFrom(com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
     public static NowPlaying.TheaterProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                    com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -2618,8 +2636,8 @@ public final class NowPlaying {
         }
 
         public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data, com.google.protobuf.ExtensionRegistry extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
           return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
         }
 
@@ -2629,8 +2647,8 @@ public final class NowPlaying {
         }
 
         public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+            byte[] data, com.google.protobuf.ExtensionRegistry extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
           return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
         }
 
@@ -2640,8 +2658,8 @@ public final class NowPlaying {
         }
 
         public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+            java.io.InputStream input, com.google.protobuf.ExtensionRegistry extensionRegistry)
+            throws java.io.IOException {
           return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
         }
 
@@ -2651,8 +2669,8 @@ public final class NowPlaying {
         }
 
         public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input, com.google.protobuf.ExtensionRegistry extensionRegistry)
+            throws java.io.IOException {
           return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
         }
 
@@ -2711,7 +2729,8 @@ public final class NowPlaying {
             return buildPartial();
           }
 
-          private NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
+          private NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto buildParsed()
+              throws com.google.protobuf.InvalidProtocolBufferException {
             if (!isInitialized()) {
               throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
             }
@@ -2866,7 +2885,9 @@ public final class NowPlaying {
 
       // repeated .TheaterListingsProto.TheaterAndMovieShowtimesProto.
       // MovieAndShowtimesProto MovieAndShowtimes = 4;
-      private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimes_ = java.util.Collections
+      private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimes_ = java
+          .util
+          .Collections
           .emptyList();
 
       public java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> getMovieAndShowtimesList() {
@@ -2933,28 +2954,30 @@ public final class NowPlaying {
       }
 
       public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+          com.google.protobuf.ByteString data, com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data).buildParsed();
       }
 
       public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(byte[] data,
-                                                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                                                            com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          java.io.InputStream input) throws java.io.IOException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
         return newBuilder().mergeFrom(input).buildParsed();
       }
 
       public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(java.io.InputStream input,
-                                                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                                                            com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
         return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
       }
 
@@ -2964,8 +2987,8 @@ public final class NowPlaying {
       }
 
       public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+          com.google.protobuf.CodedInputStream input, com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
         return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
       }
 
@@ -3022,7 +3045,8 @@ public final class NowPlaying {
           return buildPartial();
         }
 
-        private NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
+        private NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto buildParsed()
+            throws com.google.protobuf.InvalidProtocolBufferException {
           if (!isInitialized()) {
             throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
           }
@@ -3098,7 +3122,10 @@ public final class NowPlaying {
                 break;
               }
               case 34: {
-                NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder subBuilder = NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto
+                NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder subBuilder = NowPlaying
+                    .TheaterListingsProto
+                    .TheaterAndMovieShowtimesProto
+                    .MovieAndShowtimesProto
                     .newBuilder();
                 input.readMessage(subBuilder, extensionRegistry);
                 addMovieAndShowtimes(subBuilder.buildPartial());
@@ -3223,7 +3250,9 @@ public final class NowPlaying {
 
     // repeated .TheaterListingsProto.TheaterAndMovieShowtimesProto
     // TheaterAndMovieShowtimes = 6;
-    private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes_ = java.util.Collections
+    private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes_ = java
+        .util
+        .Collections
         .emptyList();
 
     public java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> getTheaterAndMovieShowtimesList() {
@@ -3280,23 +3309,25 @@ public final class NowPlaying {
       return size;
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterListingsProto parseFrom(com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.TheaterListingsProto parseFrom(com.google.protobuf.ByteString data,
-                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                            com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterListingsProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.TheaterListingsProto parseFrom(byte[] data,
-                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                            com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -3305,17 +3336,19 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.TheaterListingsProto parseFrom(java.io.InputStream input,
-                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                            com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.TheaterListingsProto parseFrom(com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
     public static NowPlaying.TheaterListingsProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                            com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -3449,7 +3482,8 @@ public final class NowPlaying {
               break;
             }
             case 50: {
-              NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder subBuilder = NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto
+              NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder subBuilder = NowPlaying.TheaterListingsProto
+                  .TheaterAndMovieShowtimesProto
                   .newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addTheaterAndMovieShowtimes(subBuilder.buildPartial());
@@ -3763,23 +3797,24 @@ public final class NowPlaying {
       return size;
     }
 
-    public static NowPlaying.ReviewProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewProto parseFrom(com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.ReviewProto parseFrom(com.google.protobuf.ByteString data,
-                                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                   com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(byte[] data,
-                                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewProto parseFrom(byte[] data, com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -3788,17 +3823,19 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.ReviewProto parseFrom(java.io.InputStream input,
-                                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                   com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.ReviewProto parseFrom(com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
     public static NowPlaying.ReviewProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                   com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -4207,23 +4244,25 @@ public final class NowPlaying {
       return size;
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewsListProto parseFrom(com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.ReviewsListProto parseFrom(com.google.protobuf.ByteString data,
-                                                        com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewsListProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
     public static NowPlaying.ReviewsListProto parseFrom(byte[] data,
-                                                        com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+                                                        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
@@ -4232,17 +4271,19 @@ public final class NowPlaying {
     }
 
     public static NowPlaying.ReviewsListProto parseFrom(java.io.InputStream input,
-                                                        com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.ReviewsListProto parseFrom(com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
     public static NowPlaying.ReviewsListProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                        com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+                                                        com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -4437,15 +4478,28 @@ public final class NowPlaying {
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_MovieProto_descriptor = getDescriptor()
       .getMessageTypes().get(2);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_MovieProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_MovieProto_descriptor,
-      new java.lang.String[]{"Identifier", "Title", "Length", "Language", "Genre", "Description", "RawRating", "Score", "IMDbUrl", "Director", "Cast", "Dubbed", "Subtitled", "ReleaseDate",},
-      NowPlaying.MovieProto.class, NowPlaying.MovieProto.Builder.class);
+      internal_static_MovieProto_descriptor, new java.lang.String[]{
+      "Identifier",
+      "Title",
+      "Length",
+      "Language",
+      "Genre",
+      "Description",
+      "RawRating",
+      "Score",
+      "IMDbUrl",
+      "Director",
+      "Cast",
+      "Dubbed",
+      "Subtitled",
+      "ReleaseDate",
+  }, NowPlaying.MovieProto.class, NowPlaying.MovieProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterProto_descriptor = getDescriptor()
       .getMessageTypes().get(3);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_TheaterProto_descriptor,
-      new java.lang.String[]{"Identifier", "Name", "StreetAddress", "City", "State", "PostalCode", "Country", "Phone", "Latitude", "Longitude",},
-      NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
+      internal_static_TheaterProto_descriptor, new java.lang.String[]{
+      "Identifier", "Name", "StreetAddress", "City", "State", "PostalCode", "Country", "Phone", "Latitude", "Longitude",
+  }, NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_descriptor = getDescriptor()
       .getMessageTypes().get(4);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(

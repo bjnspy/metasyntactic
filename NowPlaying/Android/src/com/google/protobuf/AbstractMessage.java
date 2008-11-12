@@ -256,8 +256,8 @@ public abstract class AbstractMessage implements Message {
       }
     }
 
-    public BuilderType mergeFrom(ByteString data,
-                                 ExtensionRegistry extensionRegistry) throws InvalidProtocolBufferException {
+    public BuilderType mergeFrom(ByteString data, ExtensionRegistry extensionRegistry)
+        throws InvalidProtocolBufferException {
       try {
         CodedInputStream input = data.newCodedInput();
         mergeFrom(input, extensionRegistry);
@@ -283,8 +283,8 @@ public abstract class AbstractMessage implements Message {
       }
     }
 
-    public BuilderType mergeFrom(byte[] data,
-                                 ExtensionRegistry extensionRegistry) throws InvalidProtocolBufferException {
+    public BuilderType mergeFrom(byte[] data, ExtensionRegistry extensionRegistry)
+        throws InvalidProtocolBufferException {
       try {
         CodedInputStream input = CodedInputStream.newInstance(data);
         mergeFrom(input, extensionRegistry);

@@ -95,14 +95,16 @@ public final class TextFormat {
     }
   }
 
-  private static void printSingleField(FieldDescriptor field, Object value,
-                                       TextGenerator generator) throws IOException {
+  private static void printSingleField(FieldDescriptor field, Object value, TextGenerator generator)
+      throws IOException {
     if (field.isExtension()) {
       generator.print("[");
       // We special-case MessageSet elements for compatibility with proto1.
-      if (field.getContainingType().getOptions().getMessageSetWireFormat() && (field.getType() == FieldDescriptor.Type.MESSAGE) && (field.isOptional())
-          // object equality
-          && (field.getExtensionScope() == field.getMessageType())) {
+      if (field.getContainingType()
+          .getOptions()
+          .getMessageSetWireFormat() && (field.getType() == FieldDescriptor.Type.MESSAGE) && (field.isOptional())
+                                     // object equality
+                                     && (field.getExtensionScope() == field.getMessageType())) {
         generator.print(field.getMessageType().getFullName());
       } else {
         generator.print(field.getFullName());
@@ -653,8 +655,8 @@ public final class TextFormat {
    * Parse a text-format message from {@code input} and merge the contents into {@code builder}.  Extensions will be
    * recognized if they are registered in {@code extensionRegistry}.
    */
-  public static void merge(Readable input, ExtensionRegistry extensionRegistry,
-                           Message.Builder builder) throws ParseException, IOException {
+  public static void merge(Readable input, ExtensionRegistry extensionRegistry, Message.Builder builder)
+      throws ParseException, IOException {
     // Read the entire input to a String then parse that.
 
     // If StreamTokenizer were not quite so crippled, or if there were a kind
@@ -688,8 +690,8 @@ public final class TextFormat {
    * Parse a text-format message from {@code input} and merge the contents into {@code builder}.  Extensions will be
    * recognized if they are registered in {@code extensionRegistry}.
    */
-  public static void merge(CharSequence input, ExtensionRegistry extensionRegistry,
-                           Message.Builder builder) throws ParseException {
+  public static void merge(CharSequence input, ExtensionRegistry extensionRegistry, Message.Builder builder)
+      throws ParseException {
     Tokenizer tokenizer = new Tokenizer(input);
 
     while (!tokenizer.atEnd()) {
@@ -698,8 +700,8 @@ public final class TextFormat {
   }
 
   /** Parse a single field from {@code tokenizer} and merge it into {@code builder}. */
-  private static void mergeField(Tokenizer tokenizer, ExtensionRegistry extensionRegistry,
-                                 Message.Builder builder) throws ParseException {
+  private static void mergeField(Tokenizer tokenizer, ExtensionRegistry extensionRegistry, Message.Builder builder)
+      throws ParseException {
     FieldDescriptor field;
     Descriptor type = builder.getDescriptorForType();
     ExtensionRegistry.ExtensionInfo extension = null;
@@ -742,8 +744,9 @@ public final class TextFormat {
         }
       }
       // Again, special-case group names as described above.
-      if (field != null && field.getType() == FieldDescriptor.Type.GROUP && !field.getMessageType().getName().equals(
-          name)) {
+      if (field != null && field.getType() == FieldDescriptor.Type.GROUP && !field.getMessageType()
+          .getName()
+          .equals(name)) {
         field = null;
       }
 

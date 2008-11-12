@@ -275,11 +275,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       TextView title = new TextView(mContext);
       title.setText(movie.getDisplayTitle());
       title.setTextSize(12);
-      title
-          .setTextAppearance(mContext, android.R.attr.textColorSecondary);
+      title.setTextAppearance(mContext, android.R.attr.textColorSecondary);
       title.setGravity(0x01);
       title.setEllipsize(TextUtils.TruncateAt.END);
-      if (movie != null && controller.getPoster(movie).getBytes().length > 0) {
+      if (controller.getPoster(movie).getBytes().length > 0) {
         i.setImageBitmap(BitmapFactory.decodeByteArray(controller
             .getPoster(movie).getBytes(), 0, controller.getPoster(movie).getBytes().length));
       } else {
@@ -328,8 +327,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
-    menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class))
+    menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
+        .setIcon(android.R.drawable.ic_menu_preferences)
+        .setIntent(new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }

@@ -43,7 +43,6 @@ public class LocationUtilities {
     String city = text(element(codeElement, "adminName1"));
     String state = text(element(codeElement, "adminCode1"));
 
-
     return new Location(latitude, longitude, "", city, state, postalCode, country);
   }
 

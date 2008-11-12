@@ -176,7 +176,10 @@ public final class ExtensionRegistry {
         new DescriptorIntPair(extension.descriptor.getContainingType(), extension.descriptor.getNumber()), extension);
 
     FieldDescriptor field = extension.descriptor;
-    if (field.getContainingType().getOptions().getMessageSetWireFormat() && field.getType() == FieldDescriptor.Type.MESSAGE && field.isOptional() && field.getExtensionScope() == field.getMessageType()) {
+    if (field.getContainingType()
+        .getOptions()
+        .getMessageSetWireFormat() && field.getType() == FieldDescriptor.Type.MESSAGE && field.isOptional() && field.getExtensionScope() == field
+        .getMessageType()) {
       // This is an extension of a MessageSet type defined within the extension
       // type's own scope.  For backwards-compatibility, allow it to be looked
       // up by type name.

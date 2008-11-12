@@ -52,8 +52,8 @@ public final class DynamicMessage extends AbstractMessage {
   }
 
   /** Parse a message of the given type from the given input stream. */
-  public static DynamicMessage parseFrom(Descriptor type, CodedInputStream input,
-                                         ExtensionRegistry extensionRegistry) throws IOException {
+  public static DynamicMessage parseFrom(Descriptor type, CodedInputStream input, ExtensionRegistry extensionRegistry)
+      throws IOException {
     return newBuilder(type).mergeFrom(input, extensionRegistry).buildParsed();
   }
 
@@ -63,8 +63,8 @@ public final class DynamicMessage extends AbstractMessage {
   }
 
   /** Parse {@code data} as a message of the given type and return it. */
-  public static DynamicMessage parseFrom(Descriptor type, ByteString data,
-                                         ExtensionRegistry extensionRegistry) throws InvalidProtocolBufferException {
+  public static DynamicMessage parseFrom(Descriptor type, ByteString data, ExtensionRegistry extensionRegistry)
+      throws InvalidProtocolBufferException {
     return newBuilder(type).mergeFrom(data, extensionRegistry).buildParsed();
   }
 
@@ -74,8 +74,8 @@ public final class DynamicMessage extends AbstractMessage {
   }
 
   /** Parse {@code data} as a message of the given type and return it. */
-  public static DynamicMessage parseFrom(Descriptor type, byte[] data,
-                                         ExtensionRegistry extensionRegistry) throws InvalidProtocolBufferException {
+  public static DynamicMessage parseFrom(Descriptor type, byte[] data, ExtensionRegistry extensionRegistry)
+      throws InvalidProtocolBufferException {
     return newBuilder(type).mergeFrom(data, extensionRegistry).buildParsed();
   }
 
@@ -85,8 +85,8 @@ public final class DynamicMessage extends AbstractMessage {
   }
 
   /** Parse a message of the given type from {@code input} and return it. */
-  public static DynamicMessage parseFrom(Descriptor type, InputStream input,
-                                         ExtensionRegistry extensionRegistry) throws IOException {
+  public static DynamicMessage parseFrom(Descriptor type, InputStream input, ExtensionRegistry extensionRegistry)
+      throws IOException {
     return newBuilder(type).mergeFrom(input, extensionRegistry).buildParsed();
   }
 

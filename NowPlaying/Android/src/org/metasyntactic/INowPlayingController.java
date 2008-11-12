@@ -34,8 +34,8 @@ public interface INowPlayingController extends android.os.IInterface {
       return this;
     }
 
-    public boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply,
-                              int flags) throws android.os.RemoteException {
+    public boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags)
+        throws android.os.RemoteException {
       switch (code) {
         case INTERFACE_TRANSACTION: {
           reply.writeString(DESCRIPTOR);
@@ -539,8 +539,8 @@ public interface INowPlayingController extends android.os.IInterface {
         }
       }
 
-      public org.metasyntactic.data.Score getScore(
-          org.metasyntactic.data.Movie movie) throws android.os.RemoteException {
+      public org.metasyntactic.data.Score getScore(org.metasyntactic.data.Movie movie)
+          throws android.os.RemoteException {
         android.os.Parcel _data = android.os.Parcel.obtain();
         android.os.Parcel _reply = android.os.Parcel.obtain();
         org.metasyntactic.data.Score _result;
@@ -566,8 +566,8 @@ public interface INowPlayingController extends android.os.IInterface {
         return _result;
       }
 
-      public org.metasyntactic.data.ByteArray getPoster(
-          org.metasyntactic.data.Movie movie) throws android.os.RemoteException {
+      public org.metasyntactic.data.ByteArray getPoster(org.metasyntactic.data.Movie movie)
+          throws android.os.RemoteException {
         android.os.Parcel _data = android.os.Parcel.obtain();
         android.os.Parcel _reply = android.os.Parcel.obtain();
         org.metasyntactic.data.ByteArray _result;
@@ -615,8 +615,8 @@ public interface INowPlayingController extends android.os.IInterface {
         return _result;
       }
 
-      public java.util.List<java.lang.String> getTrailers(
-          org.metasyntactic.data.Movie movie) throws android.os.RemoteException {
+      public java.util.List<java.lang.String> getTrailers(org.metasyntactic.data.Movie movie)
+          throws android.os.RemoteException {
         android.os.Parcel _data = android.os.Parcel.obtain();
         android.os.Parcel _reply = android.os.Parcel.obtain();
         java.util.List<java.lang.String> _result;
@@ -638,8 +638,8 @@ public interface INowPlayingController extends android.os.IInterface {
         return _result;
       }
 
-      public java.util.List<org.metasyntactic.data.Review> getReviews(
-          org.metasyntactic.data.Movie movie) throws android.os.RemoteException {
+      public java.util.List<org.metasyntactic.data.Review> getReviews(org.metasyntactic.data.Movie movie)
+          throws android.os.RemoteException {
         android.os.Parcel _data = android.os.Parcel.obtain();
         android.os.Parcel _reply = android.os.Parcel.obtain();
         java.util.List<org.metasyntactic.data.Review> _result;
@@ -762,16 +762,16 @@ public interface INowPlayingController extends android.os.IInterface {
 
   public org.metasyntactic.data.Score getScore(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 
-  public org.metasyntactic.data.ByteArray getPoster(
-      org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
+  public org.metasyntactic.data.ByteArray getPoster(org.metasyntactic.data.Movie movie)
+      throws android.os.RemoteException;
 
   public java.lang.String getSynopsis(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 
-  public java.util.List<java.lang.String> getTrailers(
-      org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
+  public java.util.List<java.lang.String> getTrailers(org.metasyntactic.data.Movie movie)
+      throws android.os.RemoteException;
 
-  public java.util.List<org.metasyntactic.data.Review> getReviews(
-      org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
+  public java.util.List<org.metasyntactic.data.Review> getReviews(org.metasyntactic.data.Movie movie)
+      throws android.os.RemoteException;
 
   public java.lang.String getImdbAddress(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 
