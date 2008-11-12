@@ -136,8 +136,8 @@ property_definition(country);
 }
 
 
-
-- (double) distanceTo:(Location*) to {
+- (double) distanceTo:(Location*) to
+        useKilometers:(BOOL) useKilometers {
     const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
     const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
 
@@ -159,17 +159,28 @@ property_definition(country);
     acos(sin(lat2) * sin(lat1) +
          cos(lat2) * cos(lat1) * cos(diff));
 
-    if ([Application useKilometers]) {
+    if (useKilometers) {
         distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
     } else {
         distance *= GREAT_CIRCLE_RADIUS_MILES;
     }
 
-//    if (distance > 200) {
-//        return UNKNOWN_DISTANCE;
-//    }
-
     return distance;
+}
+
+
+- (double) distanceTo:(Location*) to {
+    return [self distanceTo:to useKilometers:[Application useKilometers]];
+}
+
+
+- (double) distanceToMiles:(Location*) to {
+    return [self distanceTo:to useKilometers:NO];
+}
+
+
+- (double) distanceToKilometers:(Location*) to {
+    return [self distanceTo:to useKilometers:YES];
 }
 
 

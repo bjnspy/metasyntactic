@@ -119,7 +119,7 @@
                             performances:(NSMutableDictionary*) performances
               synchronizationInformation:(NSMutableDictionary*) synchronizationInformation
                      originatingLocation:(Location*) originatingLocation
-                            theaterNames:(NSArray*) theaterNames
+                          filterTheaters:(NSArray*) filterTheaters
                        movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     TheaterProto* theater = theaterAndMovieShowtimes.theater;
     NSString* name = theater.name;
@@ -127,7 +127,7 @@
         return;
     }
 
-    if (theaterNames != nil && ![theaterNames containsObject:name]) {
+    if (filterTheaters != nil && ![filterTheaters containsObject:name]) {
         return;
     }
 
@@ -145,21 +145,13 @@
 
     NSMutableDictionary* movieToShowtimesMap = [self processMovieAndShowtimesList:movieAndShowtimesList
                                                                 movieIdToMovieMap:movieIdToMovieMap];
-
-    [synchronizationInformation setObject:[DateUtilities today] forKey:name];
+    
     if (movieToShowtimesMap.count == 0) {
-        // no showtime information available.  fallback to anything we've
-        // stored (but warn the user).
-
-        NSString* performancesFile = [self performancesFile:name];
-        NSDictionary* oldPerformances = [FileUtilities readObject:performancesFile];
-
-        if (oldPerformances.count > 0) {
-            movieToShowtimesMap = [NSMutableDictionary dictionaryWithDictionary:oldPerformances];
-            [synchronizationInformation setObject:[self synchronizationDateForTheater:name] forKey:name];
-        }
+        return;
     }
-
+    [synchronizationInformation setObject:[DateUtilities today] forKey:name];
+    [performances setObject:movieToShowtimesMap forKey:name];
+    
     Location* location = [Location locationWithLatitude:latitude
                                               longitude:longitude
                                                 address:address
@@ -167,8 +159,7 @@
                                                   state:state
                                              postalCode:postalCode
                                                 country:country];
-
-    [performances setObject:movieToShowtimesMap forKey:name];
+    
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name
                                            phoneNumber:phone
@@ -180,7 +171,7 @@
 
 - (NSArray*) processTheaterAndMovieShowtimes:(NSArray*) theaterAndMovieShowtimes
                          originatingLocation:(Location*) originatingLocation
-                                theaterNames:(NSArray*) theaterNames
+                              filterTheaters:(NSArray*) filterTheaters
                            movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
@@ -192,17 +183,17 @@
                                  performances:performances
                    synchronizationInformation:synchronizationInformation
                           originatingLocation:originatingLocation
-                                 theaterNames:theaterNames
+                               filterTheaters:filterTheaters
                             movieIdToMovieMap:movieIdToMovieMap];
     }
-
+    
     return [NSArray arrayWithObjects:theaters, performances, synchronizationInformation, nil];
 }
 
 
 - (LookupResult*) processTheaterListings:(TheaterListingsProto*) element
                      originatingLocation:(Location*) originatingLocation
-                            theaterNames:(NSArray*) theaterNames {
+                            filterTheaters:(NSArray*) filterTheaters {
     NSArray* movieProtos = element.moviesList;
     NSArray* theaterAndMovieShowtimes = element.theaterAndMovieShowtimesList;
 
@@ -210,7 +201,7 @@
 
     NSArray* theatersAndPerformances = [self processTheaterAndMovieShowtimes:theaterAndMovieShowtimes
                                                          originatingLocation:originatingLocation
-                                                                theaterNames:theaterNames
+                                                                filterTheaters:filterTheaters
                                                            movieIdToMovieMap:movieIdToMovieMap];
 
     NSMutableArray* movies = [NSMutableArray arrayWithArray:movieIdToMovieMap.allValues];
@@ -227,7 +218,7 @@
 
 
 - (LookupResult*) lookupLocation:(Location*) location
-                    theaterNames:(NSArray*) theaterNames {
+                    filterTheaters:(NSArray*) filterTheaters {
     if (location.postalCode == nil) {
         return nil;
     }
@@ -264,7 +255,7 @@
 
         return [self processTheaterListings:theaterListings
                         originatingLocation:location
-                               theaterNames:theaterNames];
+                             filterTheaters:filterTheaters];
 
     }
     @catch (NSException * e) {
