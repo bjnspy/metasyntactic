@@ -15,15 +15,16 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s plater.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 plate.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Har ikke nettsalg)</string>
   <string name="string_dot_string">%s. %s</string>
-  <string name="string_dot_string_dot_number_discs_dot">%s. %s. %d plater.</string>
-  <string name="string_dot_string_dot_one_disc_dot">%s. %s. 1 plate.</string>
   <string name="number_string">%d %s</string>
   <string name="number_hours">%d timer</string>
   <string name="number_minutes">%d minutter</string>
   <string name="number_months_ago">%d måneder siden</string>
+  <string name="number_of_number">%d av %d</string>
   <string name="number_weeks_ago">%d uker siden</string>
   <string name="number_years_ago">%d år siden</string>
   <string name="one_hour">1 time</string>
@@ -35,19 +36,26 @@
   <string name="one_year_ago">1 år siden</string>
   <string name="about">Om</string>
   <string name="autoupdate_location">Oppdater plassering automatisk</string>
+  <string name="bluray">Blu-ray</string>
+  <string name="both">Begge</string>
   <string name="call">Ring</string>
   <string name="cast">Skuespillere:</string>
   <string name="change_date">Endre dato</string>
   <string name="citystate_or_postal_code">Sted eller postnummer</string>
   <string name="could_not_find_location_dot">Kunne ikke finne stedet.</string>
+  <string name="dvd">DVD</string>
+  <string name="dvdbluray">DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by">DVD/Blu-ray informasjon levert av:</string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informasjon om fremtidige datoer kan være ufullstendinge. Sett søkedatoen til dagens dato for å se komplette visningstider.</string>
   <string name="director">Regissør:</string>
   <string name="directors">Regissører:</string>
   <string name="distance">Avstand</string>
   <string name="downloading_data">Laster ned data</string>
+  <string name="downloading_poster">Laster ned plakat</string>
   <string name="email">E-mail</string>
   <string name="email_listings">Mail visningstider</string>
   <string name="favorites">Favoritter</string>
+  <string name="format">Format:</string>
   <string name="genre">Sjanger:</string>
   <string name="geolocation_services_provided_by">Stedstjenester levert av:</string>
   <string name="graphics_by_jeffrey_nee">Grafikk av Jeffrey Nee</string>
@@ -61,6 +69,7 @@
   <string name="less_than_number_string_away">Mindre enn %d %s unna</string>
   <string name="less_than_one_string_away">Mindre enn en %s unna</string>
   <string name="license">Lisens</string>
+  <string name="loading_poster">Laster inn plakat</string>
   <string name="localized_by">Oversatt av:</string>
   <string name="location">Sted</string>
   <string name="map">Kart</string>
@@ -71,10 +80,10 @@
   <string name="network_unavailable">Nettverket er utilgjengelig</string>
   <string name="no_information_found">Ingen informasjon funnet</string>
   <string name="no_more_show_times_available_today_dot">Ingen flere visningstider for i dag.</string>
+  <string name="no_results_found_for_string">Ingen resultater funnet for '%s'</string>
   <string name="no_synopsis_available_dot">Intet sammendrag tilgjengelig.</string>
   <string name="none">Ingen</string>
   <string name="not_yet_rated">Ikke vurdert ennå</string>
-  <string name="numbers">Statistikk</string>
   <string name="ok">OK</string>
   <string name="order_tickets_for_string">Bestill billetter til %s</string>
   <string name="play_trailer">Vis trailer</string>
@@ -98,6 +107,7 @@
   <string name="show_number_hidden_theaters">Vis %d skjulte kinoer</string>
   <string name="show_one_hidden_theater">Vis en skjult kino</string>
   <string name="show_times_retrieved_on_string_dot">Vis tider hentet %s.</string>
+  <string name="studio">Filmstudio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Kinoen leverte visningstider sist \n%s.</string>
   <string name="theater_providers_often_limit_the_maximum_search">Leverandørene av kinodataene begrenser ofte avstanden de leverer informasjon for. Dette medfører at noen kinoer ikke vil vises selv om avstanden du søker på er tilstrekkelig.</string>
   <string name="theaters">Kinoer</string>

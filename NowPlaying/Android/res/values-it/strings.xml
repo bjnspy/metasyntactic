@@ -15,7 +15,7 @@
     limitations under the License.
 -->
 <resources>
-  <string name="dollarstring_dot_string_number_discs_dot">$%s. %s - %d dischi.</string>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s dischi.</string>
   <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 disco.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Biglietti online non disponibili)</string>
@@ -74,7 +74,6 @@
   <string name="no_synopsis_available_dot">Nessuna sipnosi disponibile.</string>
   <string name="none">Nessuno</string>
   <string name="not_yet_rated">Non valutato</string>
-  <string name="numbers">Numeri</string>
   <string name="ok">OK</string>
   <string name="order_tickets_for_string">Ordina biglietti per %s</string>
   <string name="play_trailer">Riproduci trailer</string>

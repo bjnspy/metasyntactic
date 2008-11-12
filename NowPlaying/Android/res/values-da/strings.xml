@@ -15,11 +15,11 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s disks.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 disk.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Ingen online billet bestilling)</string>
   <string name="string_dot_string">%s. %s</string>
-  <string name="string_dot_string_dot_number_discs_dot">%s. %s. %d disks.</string>
-  <string name="string_dot_string_dot_one_disc_dot">%s. %s. 1 disk.</string>
   <string name="number_string">%d %s</string>
   <string name="number_hours">%d timer</string>
   <string name="number_minutes">%d minutter</string>
@@ -74,7 +74,6 @@
   <string name="no_synopsis_available_dot">Ingen synopsis tilgængelig.</string>
   <string name="none">None</string>
   <string name="not_yet_rated">Ikke klassificeret</string>
-  <string name="numbers">Statistik</string>
   <string name="ok">OK</string>
   <string name="order_tickets_for_string">Bestil biletter til %s</string>
   <string name="play_trailer">Afspil trailer</string>

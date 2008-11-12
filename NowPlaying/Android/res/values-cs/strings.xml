@@ -15,6 +15,8 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - disků/disky</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 disk.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (bez možnosti onlíne nákupu)</string>
   <string name="string_dot_string">%s. %s</string>
@@ -22,6 +24,7 @@
   <string name="number_hours">%d hodin</string>
   <string name="number_minutes">%d minut</string>
   <string name="number_months_ago">před %d měsíci</string>
+  <string name="number_of_number">%d of %d</string>
   <string name="number_weeks_ago">před %d týdny</string>
   <string name="number_years_ago">před %d lety</string>
   <string name="one_hour">1 hodina</string>
@@ -33,18 +36,26 @@
   <string name="one_year_ago">před 1 rokem</string>
   <string name="about">O programu</string>
   <string name="autoupdate_location">Zdroj automatické aktualizace</string>
+  <string name="bluray">Blu-ray</string>
+  <string name="both">Obě</string>
   <string name="call">Hovor</string>
   <string name="cast">Obsazení:</string>
   <string name="change_date">Datum změny</string>
   <string name="citystate_or_postal_code">Město/stát nebo PSČ</string>
   <string name="could_not_find_location_dot">Nemohu najít polohu.</string>
+  <string name="dvd">DVD</string>
+  <string name="dvdbluray">DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by">Detaily o DVD/Blu-ray poskytl: </string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Data pro budoucí datum mohou být nekompletní. Resetujte datum hledání pro zobrazení úplného seznamu.</string>
   <string name="director">Režisér:</string>
   <string name="directors">Režiséři:</string>
   <string name="distance">Vzdálenost</string>
+  <string name="downloading_data">Stahuji data</string>
+  <string name="downloading_poster">Stahuji plakát</string>
   <string name="email">E-mail</string>
   <string name="email_listings">Seznam emailů</string>
   <string name="favorites">Oblíbené</string>
+  <string name="format">Formát:</string>
   <string name="genre">Žánr:</string>
   <string name="geolocation_services_provided_by">Poskytovatel služeb zeměpisného umístění:</string>
   <string name="graphics_by_jeffrey_nee">Grafika: Jeffrey Nee</string>
@@ -58,6 +69,7 @@
   <string name="less_than_number_string_away">Méně než %d %s</string>
   <string name="less_than_one_string_away">Méně než 1 %s</string>
   <string name="license">Licence</string>
+  <string name="loading_poster">Nahravám plakát</string>
   <string name="localized_by">Lokalizace:</string>
   <string name="location">Poloha</string>
   <string name="map">Mapa</string>
@@ -65,12 +77,13 @@
   <string name="movie_reviews_provided_by">Poskytovatel filmových recenzí:</string>
   <string name="movies">Filmy</string>
   <string name="name">Jméno</string>
+  <string name="network_unavailable">Sít je nedostupná</string>
   <string name="no_information_found">Žádné informace nebyly nalezeny</string>
   <string name="no_more_show_times_available_today_dot">Dnes již nejsou žádná další termíny představení.</string>
+  <string name="no_results_found_for_string">Žádné výsledky pro '%s' nenalezeny</string>
   <string name="no_synopsis_available_dot">Popis není dostupný.</string>
   <string name="none">Žádný</string>
   <string name="not_yet_rated">Ještě nehodnoceno</string>
-  <string name="numbers">Čísla</string>
   <string name="ok">OK</string>
   <string name="order_tickets_for_string">Objednat vstupenky na %s</string>
   <string name="play_trailer">Přehrát trailer</string>
@@ -89,10 +102,12 @@
   <string name="score">Score</string>
   <string name="search_date">Hledat podle datumu</string>
   <string name="search_distance">Hledat podle vzdálenosti</string>
+  <string name="send_feedback">Zaslat komentář</string>
   <string name="settings">Nastavení</string>
   <string name="show_number_hidden_theaters">Zobrazit %d skrytých divatel</string>
   <string name="show_one_hidden_theater">Zobrazit jedno skryté divadlo</string>
   <string name="show_times_retrieved_on_string_dot">Termíny představení byla načtena %s.</string>
+  <string name="studio">Studio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Divadlo zveřejnilo termíny představení \n%s.</string>
   <string name="theater_providers_often_limit_the_maximum_search">Poskytovatelé informací o divadlech často omezují maximální vzdálenost pro kterou poskytou data. Proto se nemusí některé informace zobrazit při nastavení vysoké vzdálenosti.</string>
   <string name="theaters">Divadla</string>

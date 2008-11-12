@@ -15,6 +15,8 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s płyt(y).</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 płyta.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (brak możliwości rezerwowania online)</string>
   <string name="string_dot_string">%s. %s</string>
@@ -22,6 +24,7 @@
   <string name="number_hours">%d godzin</string>
   <string name="number_minutes">%d minut</string>
   <string name="number_months_ago">%d miesięcy temu</string>
+  <string name="number_of_number">%d z %d</string>
   <string name="number_weeks_ago">%d tygodni temu</string>
   <string name="number_years_ago">%d lat temu</string>
   <string name="one_hour">1 godzina</string>
@@ -33,18 +36,26 @@
   <string name="one_year_ago">1 rok temu</string>
   <string name="about">O</string>
   <string name="autoupdate_location">Aktualizuj położenie</string>
+  <string name="bluray">Blu-ray</string>
+  <string name="both">DVD i Blu-ray</string>
   <string name="call">Zadzwoń</string>
   <string name="cast">Obsada:</string>
   <string name="change_date">Data modyfikacji</string>
   <string name="citystate_or_postal_code">Miasto/region lub kod pocztowy</string>
   <string name="could_not_find_location_dot">Nie mogę znaleźć podanego miejsca.</string>
+  <string name="dvd">DVD</string>
+  <string name="dvdbluray">DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by">Szczegóły na temat DVD/Blu-ray:</string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Dane dla przyszłych terminów mogą być niepełne. Przestaw datę na obecny czas aby zobaczyć pełną listę.</string>
   <string name="director">Reżyser:</string>
   <string name="directors">Reżyserzy:</string>
   <string name="distance">Odległość</string>
+  <string name="downloading_data">Ściąganie danych</string>
+  <string name="downloading_poster">Ściąganie plakatu</string>
   <string name="email">E-mail</string>
   <string name="email_listings">Adresy e-mail</string>
   <string name="favorites">Ulubione</string>
+  <string name="format">Format:</string>
   <string name="genre">Gatunek:</string>
   <string name="geolocation_services_provided_by">Serwisy geolokacyjne:</string>
   <string name="graphics_by_jeffrey_nee">Grafika: Jeffrey Nee</string>
@@ -58,6 +69,7 @@
   <string name="less_than_number_string_away">Odległość mniejsza niż %d %s</string>
   <string name="less_than_one_string_away">Odległość mniejsza niż 1 %s</string>
   <string name="license">Licencja</string>
+  <string name="loading_poster">Okładka</string>
   <string name="localized_by">Wersja polska:</string>
   <string name="location">Położenie</string>
   <string name="map">Mapa</string>
@@ -65,12 +77,13 @@
   <string name="movie_reviews_provided_by">Recenzje filmowe:</string>
   <string name="movies">Filmy</string>
   <string name="name">Tytuł</string>
+  <string name="network_unavailable">Sieć niedostępna</string>
   <string name="no_information_found">Brak informacji</string>
   <string name="no_more_show_times_available_today_dot">Brak seansów dzisiaj.</string>
+  <string name="no_results_found_for_string">Brak rezultatów dla:</string>
   <string name="no_synopsis_available_dot">Brak streszczenia.</string>
   <string name="none">Brak</string>
   <string name="not_yet_rated">Brak ocen</string>
-  <string name="numbers">Statystyka</string>
   <string name="ok">OK</string>
   <string name="order_tickets_for_string">Zamów bilety na %s</string>
   <string name="play_trailer">Odtwórz trailer</string>
@@ -89,10 +102,12 @@
   <string name="score">Ocena</string>
   <string name="search_date">Wyszukiwany okres</string>
   <string name="search_distance">Wyszukiwana odległość</string>
+  <string name="send_feedback">Wyślij uwagi</string>
   <string name="settings">Ustawienia</string>
   <string name="show_number_hidden_theaters">Pokaż %d ukrytych kin</string>
   <string name="show_one_hidden_theater">Pokaż 1 ukryte kino</string>
   <string name="show_times_retrieved_on_string_dot">Seanse otrzymane dla %s.</string>
+  <string name="studio">Wytwórnia:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Ostatni seans w kinie\n%s.</string>
   <string name="theater_providers_often_limit_the_maximum_search">Kierownictwo kin dostarcza często danych tylko na ograniczoną liczbę dni naprzód. W rezultacie dane z niektórych kin mogą nie być wyświetlone jeżeli ustawiony jest zbyt długi okres wyszukiwania.</string>
   <string name="theaters">Kina</string>

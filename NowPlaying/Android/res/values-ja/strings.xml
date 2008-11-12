@@ -15,6 +15,8 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s。 %s ー ディスク枚数：　%d</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s。　%s ー ディスク枚数：　１</string>
   <string name="string_string">%s%s</string>
   <string name="string_no_online_ticketing">%s　（オンライン販売不可能）</string>
   <string name="string_dot_string">%s。%s</string>
@@ -42,6 +44,7 @@
   <string name="director">監督:</string>
   <string name="directors">監督:</string>
   <string name="distance">距離</string>
+  <string name="downloading_data">ダウンロード中</string>
   <string name="email">メール</string>
   <string name="email_listings">映画情報をメール</string>
   <string name="favorites">お気に入り</string>
@@ -65,12 +68,12 @@
   <string name="movie_reviews_provided_by">映画レビュー提供:</string>
   <string name="movies">映画</string>
   <string name="name">名前</string>
+  <string name="network_unavailable">ネットワークは使用できません</string>
   <string name="no_information_found">情報不明</string>
   <string name="no_more_show_times_available_today_dot">今日の上映情報はこれまでです。</string>
   <string name="no_synopsis_available_dot">解説はありません。</string>
   <string name="none">設定なし</string>
   <string name="not_yet_rated">未指定</string>
-  <string name="numbers">統計</string>
   <string name="ok">OK</string>
   <string name="order_tickets_for_string">%s のチケットを注文</string>
   <string name="play_trailer">予告編を再生</string>
@@ -89,6 +92,7 @@
   <string name="score">評価</string>
   <string name="search_date">検索日付</string>
   <string name="search_distance">検索距離</string>
+  <string name="send_feedback">フィードバック送信</string>
   <string name="settings">設定</string>
   <string name="show_number_hidden_theaters">%d軒の隠し映画館を表示する</string>
   <string name="show_one_hidden_theater">隠し映画館を表示する</string>

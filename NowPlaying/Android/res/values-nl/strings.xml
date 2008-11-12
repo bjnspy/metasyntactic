@@ -15,6 +15,8 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s cd's.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 cd.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Geen online Tickets)</string>
   <string name="string_dot_string">%s. %s</string>
@@ -22,6 +24,7 @@
   <string name="number_hours">%d uur</string>
   <string name="number_minutes">%d minuten</string>
   <string name="number_months_ago">%d maanden geleden</string>
+  <string name="number_of_number">%d van %d</string>
   <string name="number_weeks_ago">%d weken geleden</string>
   <string name="number_years_ago">%d jaren geleden</string>
   <string name="one_hour">1 uur</string>
@@ -33,18 +36,26 @@
   <string name="one_year_ago">1 jaar geleden</string>
   <string name="about">Over</string>
   <string name="autoupdate_location">Auto-update locatie</string>
+  <string name="bluray">Blu-ray</string>
+  <string name="both">Alllebei</string>
   <string name="call">Bel</string>
   <string name="cast">Cast:</string>
   <string name="change_date">Verander Datum</string>
   <string name="citystate_or_postal_code">Postcode of Stad</string>
   <string name="could_not_find_location_dot">Locatie was onvindbaar</string>
+  <string name="dvd">DVD</string>
+  <string name="dvdbluray">DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by">DVD/Blu-ray gegevens geleverd door </string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informatie voor komende updates kan onvolledig zijn. Verander de zoekdatum in de huidige datum om de volledige lijst te zien.</string>
   <string name="director">Regisseur:</string>
   <string name="directors">Regisseurs:</string>
   <string name="distance">Afstand</string>
+  <string name="downloading_data">Downloading gegevens</string>
+  <string name="downloading_poster">Downloading poster</string>
   <string name="email">E-mail</string>
   <string name="email_listings">E-mail lijst</string>
   <string name="favorites">Favorieten</string>
+  <string name="format">Formaat:</string>
   <string name="genre">Genre:</string>
   <string name="geolocation_services_provided_by">Locatie service geleverd door:</string>
   <string name="graphics_by_jeffrey_nee">Illustraties door Jeffrey Nee</string>
@@ -58,6 +69,7 @@
   <string name="less_than_number_string_away">Minder dan %d %s hier vandaan</string>
   <string name="less_than_one_string_away">Minder dan 1 %s hier vandaan</string>
   <string name="license">Overeenkomst</string>
+  <string name="loading_poster">Laden poster</string>
   <string name="localized_by">Vertaald door:</string>
   <string name="location">Locatie</string>
   <string name="map">Kaart</string>
@@ -65,12 +77,13 @@
   <string name="movie_reviews_provided_by">Filmkritieken geleverd door:</string>
   <string name="movies">Films</string>
   <string name="name">Naam</string>
+  <string name="network_unavailable">Geen netwerkverbinding</string>
   <string name="no_information_found">Geen informatie gevonden</string>
   <string name="no_more_show_times_available_today_dot">Geen nieuwe voorstellingstijden voor vandaag</string>
+  <string name="no_results_found_for_string">Geen informatie gevonden voor '%s'</string>
   <string name="no_synopsis_available_dot">Geen film informatie beschikbaar.</string>
   <string name="none">Geen</string>
   <string name="not_yet_rated">Nog niet beoordeeld</string>
-  <string name="numbers">Nummers</string>
   <string name="ok">Oke</string>
   <string name="order_tickets_for_string">Bestel kaartjes voor %s</string>
   <string name="play_trailer">Toon trailer</string>
@@ -89,10 +102,12 @@
   <string name="score">Cijfer</string>
   <string name="search_date">Zoek op datum</string>
   <string name="search_distance">Zoekafstand</string>
+  <string name="send_feedback">Zend opmerkingen</string>
   <string name="settings">Instellingen</string>
   <string name="show_number_hidden_theaters">Laat %d niet getoonde bioscopen zien</string>
   <string name="show_one_hidden_theater">Laat 1 niet getoonde bioscoop zien</string>
   <string name="show_times_retrieved_on_string_dot">Voorstellingstijden ontvangen op %s.</string>
+  <string name="studio">Studio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Bioscoop laatste ontvangen filmtijden op\n%s </string>
   <string name="theater_providers_often_limit_the_maximum_search">Bioscopen begrenzen vaak de maximale zoekafstand voor de gegevens die ze leveren. Het gevolg is dat sommige bioscopen niet in je zoekresultaat zullen verschijnen, zelfs als je de zoekafstand hoog instelt.</string>
   <string name="theaters">Bioscopen</string>
