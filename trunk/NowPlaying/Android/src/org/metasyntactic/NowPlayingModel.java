@@ -334,4 +334,11 @@ public class NowPlayingModel {
   public String getImdbAddress(Movie movie) {
     return movie.getImdbAddress();
   }
+
+  public void prioritizeMovie(Movie movie) {
+    posterCache.prioritizeMovie(movie);
+    scoreCache.prioritizeMovie(movie);
+    trailerCache.prioritizeMovie(movie);
+    upcomingCache.prioritizeMovie(movie);
+  }
 }

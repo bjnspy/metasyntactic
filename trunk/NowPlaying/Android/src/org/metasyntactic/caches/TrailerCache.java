@@ -16,6 +16,7 @@ package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
+import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
@@ -27,6 +28,7 @@ import java.util.*;
 
 public class TrailerCache {
   private final Object lock = new Object();
+  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(8);
 
   private String trailerFileName(Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
@@ -110,6 +112,10 @@ public class TrailerCache {
   }
 
   private void downloadMovieTrailer(Movie movie, Map<String, List<String>> index) {
+    if (movie == null) {
+      return;
+    }
+
     String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
     if (bestKey == null) {
       // no trailer for this movie.  record that fact.  we'll try again later
@@ -135,9 +141,28 @@ public class TrailerCache {
   }
 
   private void downloadTrailers(List<Movie> movies, Map<String, List<String>> index) {
-    for (Movie movie : movies) {
+    Set<Movie> moviesSet = new TreeSet<Movie>(movies);
+
+    Movie movie;
+    do {
+      movie = getNextMovie(moviesSet);
       downloadMovieTrailer(movie, index);
+    } while (movie != null);
+  }
+
+  private Movie getNextMovie(Set<Movie> movies) {
+    Movie movie = prioritizedMovies.removeAny();
+    if (movie != null) {
+      return movie;
     }
+
+    if (!movies.isEmpty()) {
+      Iterator<Movie> i = movies.iterator();
+      movie = i.next();
+      i.remove();
+    }
+
+    return movie;
   }
 
   private Map<String, List<String>> generateIndex(String indexText) {
@@ -165,5 +190,13 @@ public class TrailerCache {
       return Collections.emptyList();
     }
     return trailers;
+  }
+
+  public void prioritizeMovie(Movie movie) {
+    if (trailerFilePath(movie).exists()) {
+      return;
+    }
+
+    prioritizedMovies.add(movie);
   }
 }

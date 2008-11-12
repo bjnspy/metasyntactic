@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /usr/local/google/mjoshi/downloads/downloads/metasyntactic/NowPlaying/Android/src/org/metasyntactic/INowPlayingController.aidl
+ * Original file: /Projects/metasyntactic/trunk/NowPlaying/Android/src/org/metasyntactic/INowPlayingController.aidl
  */
 package org.metasyntactic;
 import java.lang.String;
@@ -302,6 +302,20 @@ _arg0 = null;
 java.lang.String _result = this.getImdbAddress(_arg0);
 reply.writeNoException();
 reply.writeString(_result);
+return true;
+}
+case TRANSACTION_prioritizeMovie:
+{
+data.enforceInterface(DESCRIPTOR);
+org.metasyntactic.data.Movie _arg0;
+if ((0!=data.readInt())) {
+_arg0 = org.metasyntactic.data.Movie.CREATOR.createFromParcel(data);
+}
+else {
+_arg0 = null;
+}
+this.prioritizeMovie(_arg0);
+reply.writeNoException();
 return true;
 }
 }
@@ -745,6 +759,27 @@ _data.recycle();
 }
 return _result;
 }
+public void prioritizeMovie(org.metasyntactic.data.Movie movie) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+if ((movie!=null)) {
+_data.writeInt(1);
+movie.writeToParcel(_data, 0);
+}
+else {
+_data.writeInt(0);
+}
+mRemote.transact(Stub.TRANSACTION_prioritizeMovie, _data, _reply, 0);
+_reply.readException();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+}
 }
 static final int TRANSACTION_getUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 0);
 static final int TRANSACTION_setUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 1);
@@ -768,6 +803,7 @@ static final int TRANSACTION_getSynopsis = (IBinder.FIRST_CALL_TRANSACTION + 18)
 static final int TRANSACTION_getTrailers = (IBinder.FIRST_CALL_TRANSACTION + 19);
 static final int TRANSACTION_getReviews = (IBinder.FIRST_CALL_TRANSACTION + 20);
 static final int TRANSACTION_getImdbAddress = (IBinder.FIRST_CALL_TRANSACTION + 21);
+static final int TRANSACTION_prioritizeMovie = (IBinder.FIRST_CALL_TRANSACTION + 22);
 }
 public java.lang.String getUserLocation() throws android.os.RemoteException;
 public void setUserLocation(java.lang.String userLocation) throws android.os.RemoteException;
@@ -791,4 +827,5 @@ public java.lang.String getSynopsis(org.metasyntactic.data.Movie movie) throws a
 public java.util.List<java.lang.String> getTrailers(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 public java.util.List<org.metasyntactic.data.Review> getReviews(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 public java.lang.String getImdbAddress(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
+public void prioritizeMovie(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 }

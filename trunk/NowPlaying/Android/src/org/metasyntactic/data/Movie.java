@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-public class Movie implements Parcelable, Persistable {
+public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   private String identifier;
   private String canonicalTitle;
   private String displayTitle;
@@ -265,4 +265,8 @@ public class Movie implements Parcelable, Persistable {
       return new Movie[size];
     }
   };
+
+  public int compareTo(Movie movie) {
+    return getCanonicalTitle().compareTo(movie.getCanonicalTitle());
+  }
 }
