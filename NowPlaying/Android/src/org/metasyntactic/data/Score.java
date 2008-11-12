@@ -23,7 +23,7 @@ import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
 
-public class Score implements Parcelable, Persistable {
+public class Score implements Parcelable, Persistable, Comparable<Score> {
   private String canonicalTitle;
   private String synopsis;
   private String value;
@@ -112,7 +112,6 @@ public class Score implements Parcelable, Persistable {
   };
 
   public int compareTo(Score score) {
-    // TODO Auto-generated method stub
-    return this.value.compareTo(score.value);
+    return getCanonicalTitle().compareTo(score.getCanonicalTitle());
   }
 }
