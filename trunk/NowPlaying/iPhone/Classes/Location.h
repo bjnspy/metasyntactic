@@ -50,6 +50,8 @@
 - (NSString*) mapUrl;
 
 - (double) distanceTo:(Location*) to;
+- (double) distanceToMiles:(Location*) to;
+- (double) distanceToKilometers:(Location*) to;
 
 - (NSString*) fullDisplayString;
 

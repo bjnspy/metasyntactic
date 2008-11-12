@@ -28,6 +28,7 @@
 
 - (id) initWithModel:(NowPlayingModel*) model;
 
+- (Location*) searchLocation;
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;

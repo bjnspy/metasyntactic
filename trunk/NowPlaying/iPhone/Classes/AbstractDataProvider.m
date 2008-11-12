@@ -18,6 +18,7 @@
 #import "DateUtilities.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
+#import "Location.h"
 #import "LookupResult.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
@@ -75,6 +76,11 @@
 }
 
 
+- (NSString*) locationFile {
+    return [[Application dataDirectory] stringByAppendingPathComponent:@"Location.plist"];
+}
+
+
 - (NSString*) moviesFile {
     return [[Application dataDirectory] stringByAppendingPathComponent:@"Movies.plist"];
 }
@@ -108,6 +114,11 @@
 
 - (void) setStale {
     [FileUtilities removeItem:[self lastLookupDateFile]];
+}
+    
+    
+- (Location*) searchLocation {
+    return [Location locationWithDictionary:[FileUtilities readObject:self.locationFile]];
 }
 
 
@@ -179,6 +190,8 @@
     if (result.movies.count > 0 || result.theaters.count > 0) {
         [self saveArray:result.movies to:self.moviesFile];
         [self saveArray:result.theaters to:self.theatersFile];
+        
+        [FileUtilities writeObject:result.location.dictionary toFile:self.locationFile];
         [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
 
         NSString* tempDirectory = [Application uniqueTemporaryDirectory];
@@ -256,10 +269,9 @@
 
 
 - (LookupResult*) lookupLocation:(Location*) location
-                    theaterNames:(NSArray*) theaterNames {
+                  filterTheaters:(NSArray*) filterTheater {
     NSAssert(false, @"Someone improperly subclassed!");
     return nil;
-
 }
 
 
@@ -301,7 +313,7 @@
     for (Location* location in locationToMissingTheaterNames.allKeys) {
         NSArray* theaterNames = [locationToMissingTheaterNames objectsForKey:location];
         LookupResult* favoritesLookupResult = [self lookupLocation:location
-                                                      theaterNames:theaterNames];
+                                                    filterTheaters:theaterNames];
 
         if (favoritesLookupResult == nil) {
             continue;
@@ -355,15 +367,82 @@
 
 
 - (void) update {
-    [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint)
+    NSArray* arguments = [NSArray arrayWithObjects:self.movies, self.theaters, nil];
+    [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint:)
                                onTarget:self
-               inBackgroundWithArgument:nil
+               inBackgroundWithArgument:arguments
                                    gate:gate
                                 visible:YES];
 }
 
 
-- (void) updateBackgroundEntryPoint {
+- (void) addMissingData:(LookupResult*) lookupResult
+         searchLocation:(Location*) searchLocation
+          currentMovies:(NSArray*) currentMovies
+        currentTheaters:(NSArray*) currentTheaters {
+    Location* lastSearchLocation = self.searchLocation;
+    if (lastSearchLocation == nil) {
+        return;
+    }
+
+    // Ok.  so if:
+    //   a) the user is the user is doing their main search
+    //   b) we do not find data for a theater that should be showing up
+    //   c) they're close enough to their last search
+    // then we want to give them the old information we have for that
+    // theater *as well as* a warning to let them know that it may be
+    // out of date.
+    //
+    // This is to deal with the case where the user is confused because
+    // a theater they care about has been filtered out because it didn't
+    // report showtimes.
+    if ([searchLocation distanceToMiles:lastSearchLocation] > 20) {
+        // Not close enough.  Consider this a brand new search in a new
+        // location.  Don't include any old theaters.
+        return;
+    }
+
+    NSMutableSet* existingMovieTitles = [NSMutableSet set];
+    for (Movie* movie in lookupResult.movies) {
+        [existingMovieTitles addObject:movie.canonicalTitle];
+    }
+    
+    NSMutableSet* missingTheaters = [NSMutableSet setWithArray:currentTheaters];
+    [missingTheaters minusSet:[NSSet setWithArray:lookupResult.theaters]];
+    
+    for (Theater* theater in missingTheaters) {
+        // no showtime information available.  fallback to anything we've
+        // stored (but warn the user).
+        NSString* theaterName = theater.name;
+        NSString* performancesFile = [self performancesFile:theaterName];
+        NSDictionary* oldPerformances = [FileUtilities readObject:performancesFile];
+        
+        if (oldPerformances == nil) {
+            continue;
+        }
+                
+        [lookupResult.performances setObject:oldPerformances forKey:theaterName];
+        [lookupResult.synchronizationInformation setObject:[self synchronizationDateForTheater:theaterName] forKey:theaterName];
+        [lookupResult.theaters addObject:theater];
+        
+        // the theater may refer to movies that we don't know about.
+        for (NSString* movieTitle in oldPerformances.allKeys) {
+            if (![existingMovieTitles containsObject:movieTitle]) {
+                [existingMovieTitles addObject:movieTitle];
+                
+                for (Movie* movie in currentMovies) {
+                    if ([movie.canonicalTitle isEqual:movieTitle]) {
+                        [lookupResult.movies addObject:movie];
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+- (void) updateBackgroundEntryPoint:(NSArray*) arguments {
     if (model.userAddress.length == 0) {
         return;
     }
@@ -371,9 +450,20 @@
     if ([self tooSoon:self.lastLookupDate]) {
         return;
     }
+            
 
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
-    LookupResult* result = [self lookupLocation:location theaterNames:nil];
+    if (location == nil) {
+        return;
+    }
+    
+    LookupResult* result = [self lookupLocation:location filterTheaters:nil];
+
+    [self addMissingData:result
+          searchLocation:location
+           currentMovies:[arguments objectAtIndex:0]
+         currentTheaters:[arguments objectAtIndex:1]];
+
     [self updateMissingFavorites:result];
 
     [self saveResult:result];
