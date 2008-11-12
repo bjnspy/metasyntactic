@@ -32,7 +32,7 @@ import java.util.TreeSet;
 public class PosterCache {
   private final Object lock = new Object();
   private final NowPlayingModel model;
-  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(8);
+  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
 
   public PosterCache(NowPlayingModel model) {
     this.model = model;

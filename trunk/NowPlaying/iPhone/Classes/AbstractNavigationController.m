@@ -94,7 +94,6 @@
         return;
     }
 
-    viewLoaded = NO;
     [super didReceiveMemoryWarning];
 }
 
