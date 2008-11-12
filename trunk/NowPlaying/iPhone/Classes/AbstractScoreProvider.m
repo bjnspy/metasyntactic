@@ -200,11 +200,12 @@
 
 
 - (void) updateReviews {
+    NSDictionary* movieMap = self.movieMap;
     NSDictionary* scores = self.scores;
 
     [ThreadingUtilities performSelector:@selector(updateReviewsBackgroundEntryPoint:)
                                onTarget:self
-               inBackgroundWithArgument:scores
+               inBackgroundWithArgument:[NSArray arrayWithObjects:scores, movieMap, nil]
                                    gate:lock
                                 visible:NO];
 }
@@ -501,9 +502,11 @@
 }
 
 
-- (Score*) getNextScore:(NSMutableArray*) scores {
+- (Score*) getNextScore:(NSMutableArray*) scores
+              scoresMap:(NSDictionary*) scoresMap
+               movieMap:(NSDictionary*) movieMap {
     Movie* movie = [prioritizedMovies removeLastObjectAdded];
-    Score* score = [self.scores objectForKey:[self.movieMap objectForKey:movie.canonicalTitle]];
+    Score* score = [scoresMap objectForKey:[movieMap objectForKey:movie.canonicalTitle]];
     if (score != nil) {
         // only process this movie if we've got no data for it.
         if (![FileUtilities fileExists:[self reviewsFile:score.canonicalTitle]]) {
@@ -521,7 +524,9 @@
 }
 
 
-- (void) downloadReviews:(NSMutableArray*) scores {
+- (void) downloadReviews:(NSMutableArray*) scores
+               scoresMap:(NSDictionary*) scoresMap 
+                movieMap:(NSDictionary*) movieMap {
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
 
     if (location == nil) {
@@ -532,7 +537,7 @@
     do {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
-            score = [self getNextScore:scores];
+            score = [self getNextScore:scores scoresMap:scoresMap movieMap:movieMap];
             [self downloadReviews:score location:location];
         }
         [autoreleasePool release];
@@ -540,11 +545,14 @@
 }
 
 
-- (void) updateReviewsBackgroundEntryPoint:(NSDictionary*) scores {
+- (void) updateReviewsBackgroundEntryPoint:(NSArray*) arguments {
+    NSDictionary* scoresMap = [arguments objectAtIndex:0];
+    NSDictionary* movieMap = [arguments objectAtIndex:1];
+
     NSMutableArray* scoresWithoutReviews = [NSMutableArray array];
     NSMutableArray* scoresWithReviews = [NSMutableArray array];
 
-    for (Score* score in scores.allValues) {
+    for (Score* score in scoresMap.allValues) {
         NSString* file = [self reviewsFile:score.canonicalTitle];
 
         NSDate* lastLookupDate = [FileUtilities modificationDate:file];
@@ -558,8 +566,8 @@
         }
     }
 
-    [self downloadReviews:scoresWithoutReviews];
-    [self downloadReviews:scoresWithReviews];
+    [self downloadReviews:scoresWithoutReviews scoresMap:scoresMap movieMap:movieMap];
+    [self downloadReviews:scoresWithReviews scoresMap:scoresMap movieMap:movieMap];
 }
 
 
