@@ -31,4 +31,6 @@ public interface ScoreProvider {
   List<Review> getReviews(List<Movie> movies, Movie movie);
 
   void createDirectory();
+
+  void prioritizeMovie(Movie movie);
 }

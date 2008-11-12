@@ -17,6 +17,7 @@ package org.metasyntactic.caches.scores;
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
@@ -40,6 +41,8 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   private String hash;
 
   private final Object movieMapLock = new Object();
+  private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(8);
+
   private List<Movie> movies;
   private Map<String, String> movieMap;
 
@@ -137,10 +140,11 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
   private void updateReviews() {
     final Map<String, Score> scores = getScores();
+    final Map<String, String> movieMap = getMovieMap();
 
     Runnable runnable = new Runnable() {
       public void run() {
-        updateReviewsBackgroundEntryPoint(scores);
+        updateReviewsBackgroundEntryPoint(scoreMap, movieMap);
       }
     };
     ThreadingUtilities.performOnBackgroundThread("Update Reviews", runnable, lock, false/*visible*/,
@@ -153,9 +157,9 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     LogUtilities.logTime(getClass(), "Update Scores", start);
   }
 
-  private void updateReviewsBackgroundEntryPoint(Map<String, Score> scores) {
+  private void updateReviewsBackgroundEntryPoint(Map<String, Score> scoreMap, Map<String, String> movieMap) {
     long start = System.currentTimeMillis();
-    updateReviewsBackgroundEntryPointWorker(scores);
+    updateReviewsBackgroundEntryPointWorker(scoreMap, movieMap);
     LogUtilities.logTime(getClass(), "Update Reviews", start);
   }
 
@@ -291,27 +295,27 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     return new File(reviewsDirectory, FileUtilities.sanitizeFileName(title) + "-Hash");
   }
 
-  private void updateReviewsBackgroundEntryPointWorker(Map<String, Score> scores) {
-    Map<String, Score> scoresWithoutReviews = new HashMap<String, Score>();
-    Map<String, Score> scoresWithReviews = new HashMap<String, Score>();
+  private void updateReviewsBackgroundEntryPointWorker(Map<String, Score> scoresMap, Map<String, String> movieMap) {
+    Set<Score> scoresWithoutReviews = new TreeSet<Score>();
+    Set<Score> scoresWithReviews = new TreeSet<Score>();
 
-    for (Map.Entry<String, Score> entry : scores.entrySet()) {
+    for (Map.Entry<String, Score> entry : scoresMap.entrySet()) {
       File file = reviewsFile(entry.getKey());
 
       if (!file.exists()) {
-        scoresWithoutReviews.put(entry.getKey(), entry.getValue());
+        scoresWithoutReviews.add(entry.getValue());
       } else {
         if (Math.abs(new Date().getTime() - file.lastModified()) > (2 * Constants.ONE_DAY)) {
-          scoresWithReviews.put(entry.getKey(), entry.getValue());
+          scoresWithReviews.add(entry.getValue());
         }
       }
     }
 
-    downloadReviews(scoresWithoutReviews);
-    downloadReviews(scoresWithReviews);
+    downloadReviews(scoresWithoutReviews, scoresMap, movieMap);
+    downloadReviews(scoresWithReviews, scoresMap, movieMap);
   }
 
-  private void downloadReviews(Map<String, Score> scores) {
+  private void downloadReviews(Set<Score> scores, Map<String, Score> scoresMap, Map<String, String> movieMap) {
     Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         getModel().getUserLocation());
 
@@ -319,9 +323,34 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       return;
     }
 
-    for (Map.Entry<String, Score> entry : scores.entrySet()) {
-      downloadReviews(entry.getKey(), entry.getValue(), location);
+    Score score;
+    do {
+      score = getNextScore(scores, scoresMap, movieMap);
+      downloadReviews(score, location);
+    } while (score != null);
+  }
+
+  private Score getNextScore(Set<Score> scores, Map<String, Score> scoresMap, Map<String, String> movieMap) {
+    Movie movie = prioritizedMovies.removeAny();
+    Score score = null;
+    if (movie != null) {
+      score = scoresMap.get(movieMap.get(movie.getCanonicalTitle()));
+      if (score != null && !reviewsFile(score.getCanonicalTitle()).exists()) {
+        return score;
+      }
     }
+
+    if (!scores.isEmpty()) {
+      Iterator<Score> i = scores.iterator();
+      score = i.next();
+      i.remove();
+    }
+
+    return score;
+  }
+
+  public void prioritizeMovie(Movie movie) {
+    prioritizedMovies.add(movie);
   }
 
   private String serverReviewsAddress(Location location, Score score) {
@@ -335,7 +364,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     return address;
   }
 
-  private void downloadReviews(String title, Score score, Location location) {
+  private void downloadReviews(Score score, Location location) {
     String address = serverReviewsAddress(location, score) + "&hash=true";
     String serverHash = NetworkUtilities.downloadString(address, false);
 
@@ -343,7 +372,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       serverHash = "0";
     }
 
-    String localHash = FileUtilities.readString(reviewsHashFile(title));
+    String localHash = FileUtilities.readString(reviewsHashFile(score.getCanonicalTitle()));
     if (serverHash.equals(localHash)) {
       return;
     }
@@ -359,14 +388,15 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       // we got no reviews.  only save that fact if we don't currently have
       // any reviews.  This way we don't end up checking every single time
       // for movies that don't have reviews yet
-      List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader, reviewsFile(title));
+      List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader,
+                                                                       reviewsFile(score.getCanonicalTitle()));
       if (size(existingReviews) > 0) {
         // we have reviews already.  don't wipe it out.
         return;
       }
     }
 
-    save(title, reviews, serverHash);
+    save(score.getCanonicalTitle(), reviews, serverHash);
     Application.refresh();
   }
 

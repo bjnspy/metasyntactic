@@ -71,6 +71,6 @@ public class ScoreCache {
   }
 
   public void prioritizeMovie(Movie movie) {
-    
+    getCurrentScoreProvider().prioritizeMovie(movie);
   }
 }
