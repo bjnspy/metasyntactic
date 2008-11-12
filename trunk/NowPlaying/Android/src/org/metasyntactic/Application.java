@@ -29,7 +29,7 @@ public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
 
   public final static String host =
-      //*
+      /*
       "metaboxoffice6";
   /*/
   	"metaboxoffice2";
