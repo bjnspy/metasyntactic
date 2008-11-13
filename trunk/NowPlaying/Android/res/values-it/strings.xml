@@ -24,7 +24,7 @@
   <string name="number_hours">%d ore</string>
   <string name="number_minutes">%d minuti</string>
   <string name="number_months_ago">%d mesi fa</string>
-  <string name="number_of_number">%d of %d</string>
+  <string name="number_of_number">%d di %d</string>
   <string name="number_weeks_ago">%d settimane fa</string>
   <string name="number_years_ago">%d anni fa</string>
   <string name="one_hour">1 ora</string>
