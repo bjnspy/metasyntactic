@@ -15,6 +15,8 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">%s$. %s - %s disky(ov)</string>
+  <string name="dollarstring_dot_string_one_disc_dot">%s$. %s - 1 disk</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (bez možnosti online nákupu)</string>
   <string name="string_dot_string">%s. %s</string>
@@ -22,6 +24,7 @@
   <string name="number_hours">%d hodiny</string>
   <string name="number_minutes">%d minút</string>
   <string name="number_months_ago">pred %d mesiacmi</string>
+  <string name="number_of_number">%d z %d</string>
   <string name="number_weeks_ago">pred %d týždňami</string>
   <string name="number_years_ago">pred %d rokmi</string>
   <string name="one_hour">1 hodina</string>
@@ -33,18 +36,26 @@
   <string name="one_year_ago">pred 1 rokom</string>
   <string name="about">O programe</string>
   <string name="autoupdate_location">Automaticky lokalizovať</string>
+  <string name="bluray">Blu-ray</string>
+  <string name="both">Oba</string>
   <string name="call">Zavolať</string>
   <string name="cast">Obsadenie:</string>
   <string name="change_date">Zmeniť dátum</string>
   <string name="citystate_or_postal_code">Mesto/štát alebo PSČ</string>
   <string name="could_not_find_location_dot">Nemôžem nájsť polohu.</string>
+  <string name="dvd">DVD</string>
+  <string name="dvdbluray">DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by">Informácie o DVD/Blu-raz poskytol:</string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informácie pre nadchádzajúce dni nemusia byť kompletné. Nastavte dátum hľadania na dnešok pre zobrazenie úplného zoznamu.</string>
   <string name="director">Režisér:</string>
   <string name="directors">Režiséri:</string>
   <string name="distance">Vzdialenosť</string>
+  <string name="downloading_data">Downloadujem dáta</string>
+  <string name="downloading_poster">Downloadujem plagát</string>
   <string name="email">E-mail</string>
   <string name="email_listings">Poslať E-mailom</string>
   <string name="favorites">Obľúbené</string>
+  <string name="format">Formát:</string>
   <string name="genre">Žáner:</string>
   <string name="geolocation_services_provided_by">Informácie o polohe poskytuje:</string>
   <string name="graphics_by_jeffrey_nee">Grafika: Jeffrey Nee</string>
@@ -58,6 +69,7 @@
   <string name="less_than_number_string_away">Bližšie než %d %s</string>
   <string name="less_than_one_string_away">Bližšie než 1 %s</string>
   <string name="license">Licencia</string>
+  <string name="loading_poster">Nahrávam plagát</string>
   <string name="localized_by">Lokalizácia:</string>
   <string name="location">Poloha</string>
   <string name="map">Mapa</string>
@@ -65,8 +77,10 @@
   <string name="movie_reviews_provided_by">Poskytovateľ filmových recenzií:</string>
   <string name="movies">Filmy</string>
   <string name="name">Meno</string>
+  <string name="network_unavailable">Sieť nedostupná</string>
   <string name="no_information_found">Neboli nájdené žiadne informácie</string>
   <string name="no_more_show_times_available_today_dot">Dnes sa už nehrá.</string>
+  <string name="no_results_found_for_string">Nenájdené žiadne výsledky pre '%s'</string>
   <string name="no_synopsis_available_dot">Popis nie je dostupný.</string>
   <string name="none">Žiaden</string>
   <string name="not_yet_rated">Ešte nehodnotené</string>
@@ -88,11 +102,12 @@
   <string name="score">Hodnotenie</string>
   <string name="search_date">Dátum</string>
   <string name="search_distance">Vzdialenosť</string>
-  <string name="send_feedback">Poslať komentár</string>
+  <string name="send_feedback">Poslať pripomienky</string>
   <string name="settings">Nastavenia</string>
   <string name="show_number_hidden_theaters">Zobraziť %d skrytých kín</string>
   <string name="show_one_hidden_theater">Zobraziť jedno skryté kino</string>
   <string name="show_times_retrieved_on_string_dot">Premietacie časy boli načítané %s.</string>
+  <string name="studio">Štúdio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Program kina naposledy aktualizovaný \n%s.</string>
   <string name="theater_providers_often_limit_the_maximum_search">Poskytovatelia informácií o kinách často obmedzujú maximálnu vzdialenosť, pre ktorú poskytnú dáta. Preto sa nemusia niektoré informácie zobraziť pri nastavení veľkej vzdialenosti.</string>
   <string name="theaters">Kiná</string>
