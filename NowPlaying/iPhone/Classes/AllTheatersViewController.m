@@ -34,7 +34,7 @@
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
 
 @property (retain) NSArray* indexTitles;
-@property (retain) NSArray* visibleCells;
+@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
@@ -46,7 +46,7 @@
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
 @synthesize indexTitles;
-@synthesize visibleCells;
+@synthesize visibleIndexPaths;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -55,7 +55,7 @@
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.indexTitles = nil;
-    self.visibleCells = nil;
+    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -303,8 +303,8 @@
 
     self.title = NSLocalizedString(@"Theaters", nil);
     
-    if (visibleCells.count > 0) {
-        [self.tableView scrollToRowAtIndexPath:[visibleCells objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    if (visibleIndexPaths.count > 0) {
+        [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
     }
 }
 
@@ -327,7 +327,7 @@
 
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
-    self.visibleCells = [self.tableView visibleCells];
+    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
 
     self.segmentedControl = nil;
     self.sortedTheaters = nil;
