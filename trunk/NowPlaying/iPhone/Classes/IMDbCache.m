@@ -139,17 +139,17 @@
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie = [prioritizedMovies removeLastObjectAdded];
-    
+
     if (movie != nil) {
         return movie;
     }
-    
+
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
-    
+
     return nil;
 }
 

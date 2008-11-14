@@ -76,20 +76,17 @@
 
 
 - (NSString*) providerName {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return nil;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (NSString*) lookupServerHash {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return nil;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (NSDictionary*) lookupServerScores {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return nil;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
@@ -505,7 +502,7 @@
     if (arguments != nil) {
         Movie* movie = [arguments objectAtIndex:0];
         NSDictionary* movieMap = [arguments objectAtIndex:1];
-        
+
         Score* score = [scoresMap objectForKey:[movieMap objectForKey:movie.canonicalTitle]];
         if (score != nil) {
             // only process this movie if we've got no data for it.

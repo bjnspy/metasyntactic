@@ -195,8 +195,8 @@ static NSString** KEYS[] = {
                        searchRadius:(id) previousSearchRadius
                  autoUpdateLocation:(id) previousAutoUpdateLocation
                      useNormalFonts:(id) previousUseNormalFonts
-                   favoriteTheaters:(id) previousFavoriteTheaters 
-          previousDvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs 
+                   favoriteTheaters:(id) previousFavoriteTheaters
+          previousDvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
         previousDvdMoviesHideBluray:(id) previousDvdMoviesHideBluray {
     if ([previousUserAddress isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
@@ -213,11 +213,11 @@ static NSString** KEYS[] = {
     if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousUseNormalFonts boolValue] forKey:USE_NORMAL_FONTS];
     }
-    
+
     if ([previousDvdMoviesHideDVDs isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideDVDs boolValue] forKey:DVD_MOVIES_HIDE_DVDS];
     }
-    
+
     if ([previousDvdMoviesHideBluray isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideBluray boolValue] forKey:DVD_MOVIES_HIDE_BLURAY];
     }
@@ -255,7 +255,7 @@ static NSString** KEYS[] = {
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
         id previousDvdMoviesHideDVDs = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_DVDS];
         id previousDvdMoviesHideBluray = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_BLURAY];
-        
+
         for (int i = 0; i < ArrayLength(KEYS); i++) {
             NSString** key = KEYS[i];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];

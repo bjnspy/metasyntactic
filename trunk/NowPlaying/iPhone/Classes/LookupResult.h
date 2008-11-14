@@ -15,7 +15,7 @@
 @interface LookupResult : NSObject {
 @private
     Location* location;
-    
+
     NSMutableArray* movies;
     NSMutableArray* theaters;
 

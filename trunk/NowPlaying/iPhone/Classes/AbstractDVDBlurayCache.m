@@ -70,14 +70,12 @@
 
 
 - (NSString*) serverAddress {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return nil;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (NSString*) directory {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return nil;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
