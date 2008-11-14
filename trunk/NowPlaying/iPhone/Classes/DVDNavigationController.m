@@ -48,19 +48,10 @@
 - (void) loadView {
     [super loadView];
 
-    self.dvdViewController = [[[DVDViewController alloc] initWithNavigationController:self] autorelease];
-    [self pushViewController:dvdViewController animated:NO];
-}
-
-
-- (void) didReceiveMemoryWarning {
-    if (visible) {
-        return;
+    if (dvdViewController == nil) {
+        self.dvdViewController = [[[DVDViewController alloc] initWithNavigationController:self] autorelease];
+        [self pushViewController:dvdViewController animated:NO];
     }
-
-    self.dvdViewController = nil;
-
-    [super didReceiveMemoryWarning];
 }
 
 

@@ -39,8 +39,8 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        [self setViewTitle];
         self.tabBarItem.image = [UIImage imageNamed:@"More.png"];
+        [self setViewTitle];
     }
 
     return self;
@@ -50,9 +50,11 @@
 - (void) loadView {
     [super loadView];
 
-    self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
-    [self pushViewController:viewController animated:NO];
-
+    if (viewController == nil) {
+        self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
+        [self pushViewController:viewController animated:NO];
+    }
+    
     [self setViewTitle];
 }
 

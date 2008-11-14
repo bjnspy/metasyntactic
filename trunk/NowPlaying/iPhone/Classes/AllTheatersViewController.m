@@ -302,10 +302,6 @@
     [self setupIndexTitles];
 
     self.title = NSLocalizedString(@"Theaters", nil);
-    
-    if (visibleIndexPaths.count > 0) {
-        [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
-    }
 }
 
 
@@ -453,6 +449,16 @@
 - (void) refresh {
     [self sortTheaters];
     [self.tableView reloadData];
+    
+    if (visibleIndexPaths.count > 0) {
+        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
+        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
+            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
+            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        }
+        
+        self.visibleIndexPaths = nil;
+    }
 }
 
 
