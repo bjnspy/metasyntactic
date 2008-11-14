@@ -19,7 +19,7 @@
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-		<TextView
+	<TextView
 		android:id="@+id/name"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -33,15 +33,13 @@
 		android:id="@+id/divider2"
 		android:layout_width="fill_parent"
 		android:layout_height="1px"
-		android:background="@drawable/divider_horizontal_bright"
-		/>
+		android:background="@drawable/divider_horizontal_bright" />
 	<TextView
 		android:id="@+id/value"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:paddingLeft="8dip"
 		android:paddingRight="10dip"
-		
 		android:layout_marginTop="15px"
 		android:layout_marginBottom="15px"
 		android:gravity="center_vertical"

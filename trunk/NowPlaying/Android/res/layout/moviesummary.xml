@@ -3,14 +3,13 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_gravity="top"
-	android:layout_height="wrap_content"
-	>
+	android:layout_height="wrap_content">
 	<TextView
 		android:id="@+id/title"
 		android:layout_width="fill_parent"
 		android:textStyle="bold"
 		android:gravity="left|center"
-		android:layout_height="45px"
+		android:layout_height="35px"
 		android:layout_alignParentTop="true"
 		android:layout_marginLeft="11px"
 		android:maxLines="1"
@@ -64,8 +63,8 @@
 		android:layout_marginBottom="10px"
 		android:layout_marginLeft="18px"
 		android:textColor="#ffffff"
-		android:textStyle="bold" 
-		android:layout_marginRight="18px"/>
+		android:textStyle="bold"
+		android:layout_marginRight="18px" />
 	<TextView
 		android:id="@+id/length"
 		android:layout_width="wrap_content"
@@ -76,8 +75,8 @@
 		android:layout_toRightOf="@id/poster"
 		android:layout_marginBottom="10px"
 		android:layout_marginLeft="18px"
-		android:textColor="#ffffff" 
-		android:layout_marginRight="18px"/>
+		android:textColor="#ffffff"
+		android:layout_marginRight="18px" />
 	<TextView
 		android:id="@+id/genrelbl"
 		android:layout_width="wrap_content"
@@ -127,7 +126,6 @@
 		android:layout_toRightOf="@id/genrelbl"
 		android:layout_marginBottom="10px"
 		android:layout_marginLeft="8px"
-		android:textColor="#ffffff" 
-		android:layout_marginRight="18px"/>
-	
+		android:textColor="#ffffff"
+		android:layout_marginRight="18px" />
 </RelativeLayout>

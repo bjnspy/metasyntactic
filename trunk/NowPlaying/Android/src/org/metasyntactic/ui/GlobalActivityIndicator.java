@@ -14,16 +14,20 @@
 
 package org.metasyntactic.ui;
 
-import org.metasyntactic.Application;
 import static org.metasyntactic.threading.ThreadingUtilities.isBackgroundThread;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnMainThread;
+import android.app.Activity;
+import android.content.Context;
+
+import org.metasyntactic.Application;
 
 public class GlobalActivityIndicator {
   private static Object lock = new Object();
   private static int totalBackgroundTaskCount;
   private static int visibleBackgroundTaskCount;
-
-  public GlobalActivityIndicator() {
+  private static Context mContext;
+  public GlobalActivityIndicator(Context context) {
+      this.mContext = context;
   }
 
   private static void startIndicator() {
@@ -33,11 +37,13 @@ public class GlobalActivityIndicator {
           startIndicator();
         }
       });
-
       return;
+      
+     
     }
+    ((Activity)mContext).setProgressBarIndeterminateVisibility(true);      
 
-    // Do work here
+    
   }
 
   private static void stopIndicator() {
@@ -47,11 +53,12 @@ public class GlobalActivityIndicator {
           stopIndicator();
         }
       });
-
       return;
+    
     }
-
-    // Do work here
+    ((Activity)mContext).setProgressBarIndeterminateVisibility(false);  
+    
+   
   }
 
   private static void startNetworkIndicator() {
