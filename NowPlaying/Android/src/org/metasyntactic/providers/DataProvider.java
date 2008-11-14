@@ -411,7 +411,7 @@ public class DataProvider {
     setLastLookupDate();
   }
 
-  Map<String, List<Performance>> lookupTheaterPerformances(Theater theater) {
+  private Map<String, List<Performance>> lookupTheaterPerformances(Theater theater) {
     Map<String, List<Performance>> theaterPerformances = performances.get(theater.getName());
     if (theaterPerformances == null) {
       theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
@@ -421,7 +421,7 @@ public class DataProvider {
     return theaterPerformances;
   }
 
-  private List<Performance> getPerformances(Theater theater, Movie movie) {
+  public List<Performance> getPerformancesForMovieInTheater(Movie movie, Theater theater) {
     Map<String, List<Performance>> theaterPerformances = lookupTheaterPerformances(theater);
     if (theaterPerformances != null) {
       List<Performance> performances = theaterPerformances.get(movie.getCanonicalTitle());

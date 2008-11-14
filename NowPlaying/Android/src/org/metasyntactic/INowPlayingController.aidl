@@ -16,6 +16,7 @@ package org.metasyntactic;
 
 import org.metasyntactic.data.ByteArray;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
@@ -52,6 +53,10 @@ interface INowPlayingController {
   List<String> getTrailers(in Movie movie);
   List<Review> getReviews(in Movie movie);
   String getImdbAddress(in Movie movie);
+  
+  List<Theater> getTheatersShowingMovie(in Movie movie);
+  List<Movie> getMoviesAtTheater(in Theater theater);
+  List<Performance> getPerformancesForMovieAtTheater(in Movie movie, in Theater theater);
   
   void prioritizeMovie(in Movie movie);
 }

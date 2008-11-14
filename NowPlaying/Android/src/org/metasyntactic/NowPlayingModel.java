@@ -341,4 +341,28 @@ public class NowPlayingModel {
     trailerCache.prioritizeMovie(movie);
     upcomingCache.prioritizeMovie(movie);
   }
+
+  public List<Theater> getTheatersShowingMovie(Movie movie) {
+    List<Theater> result = new ArrayList<Theater>();
+    for (Theater theater : this.getTheaters()) {
+      if (theater.getMovieTitles().contains(movie.getCanonicalTitle())) {
+        result.add(theater);
+      }
+    }
+    return result;
+  }
+
+  public List<Movie> getMoviesAtTheater(Theater theater) {
+    List<Movie> result = new ArrayList<Movie>();
+    for (Movie movie : this.getMovies()) {
+      if (theater.getMovieTitles().contains(movie.getCanonicalTitle())) {
+        result.add(movie);
+      }
+    }
+    return result;
+  }
+
+  public List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) {
+    return dataProvider.getPerformancesForMovieInTheater(movie, theater);
+  }
 }
