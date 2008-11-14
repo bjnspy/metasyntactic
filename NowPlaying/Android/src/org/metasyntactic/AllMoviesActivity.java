@@ -90,6 +90,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     private void setupView() {
         final CustomGallery detail = (CustomGallery) findViewById(R.id.detail);
         detail.setAdapter(mDetailAdapter);
+        
         // detail.setSelection(0);
         final CustomGallery thumbnail = (CustomGallery) findViewById(R.id.thumbnails);
         thumbnail.setAdapter(mThumbnailAdapter);
