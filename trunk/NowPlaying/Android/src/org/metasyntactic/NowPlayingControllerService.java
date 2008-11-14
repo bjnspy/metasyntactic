@@ -124,6 +124,18 @@ public class NowPlayingControllerService extends Service {
       return model.getImdbAddress(movie);
     }
 
+    public List<Theater> getTheatersShowingMovie(Movie movie) throws RemoteException {
+      return model.getTheatersShowingMovie(movie);
+    }
+
+    public List<Movie> getMoviesAtTheater(Theater theater) throws RemoteException {
+      return model.getMoviesAtTheater(theater);
+    }
+
+    public List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) throws RemoteException {
+      return model.getPerformancesForMovieAtTheater(movie, theater);
+    }
+
     public ScoreType getScoreType() throws RemoteException {
       return model.getScoreType();
     }

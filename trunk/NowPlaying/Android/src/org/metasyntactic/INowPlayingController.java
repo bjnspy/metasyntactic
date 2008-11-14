@@ -12,7 +12,9 @@ import android.os.Parcel;
 import org.metasyntactic.data.ByteArray;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Theater;
 import org.metasyntactic.caches.scores.ScoreType;
+import java.util.List;
 import java.util.List;
 import java.util.List;
 import java.util.List;
@@ -302,6 +304,58 @@ _arg0 = null;
 java.lang.String _result = this.getImdbAddress(_arg0);
 reply.writeNoException();
 reply.writeString(_result);
+return true;
+}
+case TRANSACTION_getTheatersShowingMovie:
+{
+data.enforceInterface(DESCRIPTOR);
+org.metasyntactic.data.Movie _arg0;
+if ((0!=data.readInt())) {
+_arg0 = org.metasyntactic.data.Movie.CREATOR.createFromParcel(data);
+}
+else {
+_arg0 = null;
+}
+java.util.List<org.metasyntactic.data.Theater> _result = this.getTheatersShowingMovie(_arg0);
+reply.writeNoException();
+reply.writeTypedList(_result);
+return true;
+}
+case TRANSACTION_getMoviesAtTheater:
+{
+data.enforceInterface(DESCRIPTOR);
+org.metasyntactic.data.Theater _arg0;
+if ((0!=data.readInt())) {
+_arg0 = org.metasyntactic.data.Theater.CREATOR.createFromParcel(data);
+}
+else {
+_arg0 = null;
+}
+java.util.List<org.metasyntactic.data.Movie> _result = this.getMoviesAtTheater(_arg0);
+reply.writeNoException();
+reply.writeTypedList(_result);
+return true;
+}
+case TRANSACTION_getPerformancesForMovieAtTheater:
+{
+data.enforceInterface(DESCRIPTOR);
+org.metasyntactic.data.Movie _arg0;
+if ((0!=data.readInt())) {
+_arg0 = org.metasyntactic.data.Movie.CREATOR.createFromParcel(data);
+}
+else {
+_arg0 = null;
+}
+org.metasyntactic.data.Theater _arg1;
+if ((0!=data.readInt())) {
+_arg1 = org.metasyntactic.data.Theater.CREATOR.createFromParcel(data);
+}
+else {
+_arg1 = null;
+}
+java.util.List<org.metasyntactic.data.Performance> _result = this.getPerformancesForMovieAtTheater(_arg0, _arg1);
+reply.writeNoException();
+reply.writeTypedList(_result);
 return true;
 }
 case TRANSACTION_prioritizeMovie:
@@ -759,6 +813,85 @@ _data.recycle();
 }
 return _result;
 }
+public java.util.List<org.metasyntactic.data.Theater> getTheatersShowingMovie(org.metasyntactic.data.Movie movie) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+java.util.List<org.metasyntactic.data.Theater> _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+if ((movie!=null)) {
+_data.writeInt(1);
+movie.writeToParcel(_data, 0);
+}
+else {
+_data.writeInt(0);
+}
+mRemote.transact(Stub.TRANSACTION_getTheatersShowingMovie, _data, _reply, 0);
+_reply.readException();
+_result = _reply.createTypedArrayList(org.metasyntactic.data.Theater.CREATOR);
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
+public java.util.List<org.metasyntactic.data.Movie> getMoviesAtTheater(org.metasyntactic.data.Theater theater) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+java.util.List<org.metasyntactic.data.Movie> _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+if ((theater!=null)) {
+_data.writeInt(1);
+theater.writeToParcel(_data, 0);
+}
+else {
+_data.writeInt(0);
+}
+mRemote.transact(Stub.TRANSACTION_getMoviesAtTheater, _data, _reply, 0);
+_reply.readException();
+_result = _reply.createTypedArrayList(org.metasyntactic.data.Movie.CREATOR);
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
+public java.util.List<org.metasyntactic.data.Performance> getPerformancesForMovieAtTheater(org.metasyntactic.data.Movie movie, org.metasyntactic.data.Theater theater) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+java.util.List<org.metasyntactic.data.Performance> _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+if ((movie!=null)) {
+_data.writeInt(1);
+movie.writeToParcel(_data, 0);
+}
+else {
+_data.writeInt(0);
+}
+if ((theater!=null)) {
+_data.writeInt(1);
+theater.writeToParcel(_data, 0);
+}
+else {
+_data.writeInt(0);
+}
+mRemote.transact(Stub.TRANSACTION_getPerformancesForMovieAtTheater, _data, _reply, 0);
+_reply.readException();
+_result = _reply.createTypedArrayList(org.metasyntactic.data.Performance.CREATOR);
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
 public void prioritizeMovie(org.metasyntactic.data.Movie movie) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -803,7 +936,10 @@ static final int TRANSACTION_getSynopsis = (IBinder.FIRST_CALL_TRANSACTION + 18)
 static final int TRANSACTION_getTrailers = (IBinder.FIRST_CALL_TRANSACTION + 19);
 static final int TRANSACTION_getReviews = (IBinder.FIRST_CALL_TRANSACTION + 20);
 static final int TRANSACTION_getImdbAddress = (IBinder.FIRST_CALL_TRANSACTION + 21);
-static final int TRANSACTION_prioritizeMovie = (IBinder.FIRST_CALL_TRANSACTION + 22);
+static final int TRANSACTION_getTheatersShowingMovie = (IBinder.FIRST_CALL_TRANSACTION + 22);
+static final int TRANSACTION_getMoviesAtTheater = (IBinder.FIRST_CALL_TRANSACTION + 23);
+static final int TRANSACTION_getPerformancesForMovieAtTheater = (IBinder.FIRST_CALL_TRANSACTION + 24);
+static final int TRANSACTION_prioritizeMovie = (IBinder.FIRST_CALL_TRANSACTION + 25);
 }
 public java.lang.String getUserLocation() throws android.os.RemoteException;
 public void setUserLocation(java.lang.String userLocation) throws android.os.RemoteException;
@@ -827,5 +963,8 @@ public java.lang.String getSynopsis(org.metasyntactic.data.Movie movie) throws a
 public java.util.List<java.lang.String> getTrailers(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 public java.util.List<org.metasyntactic.data.Review> getReviews(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 public java.lang.String getImdbAddress(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
+public java.util.List<org.metasyntactic.data.Theater> getTheatersShowingMovie(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
+public java.util.List<org.metasyntactic.data.Movie> getMoviesAtTheater(org.metasyntactic.data.Theater theater) throws android.os.RemoteException;
+public java.util.List<org.metasyntactic.data.Performance> getPerformancesForMovieAtTheater(org.metasyntactic.data.Movie movie, org.metasyntactic.data.Theater theater) throws android.os.RemoteException;
 public void prioritizeMovie(org.metasyntactic.data.Movie movie) throws android.os.RemoteException;
 }
