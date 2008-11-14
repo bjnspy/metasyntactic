@@ -5,53 +5,47 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:background="@drawable/background"
-	android:animationCache="false" >
+	android:animationCache="false">
 	<org.metasyntactic.views.CustomGallery
 		android:id="@+id/detail"
 		android:layout_width="fill_parent"
-		android:layout_height="260px"
+		android:layout_height="205px"
 		android:spacing="0dip"
 		android:layout_gravity="top" />
-		<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_below="@id/detail"
-	android:layout_height="68px"
-	android:background="#484545"
-	>
-	<Button
-		android:id="@+id/details"
-		android:layout_width="160px"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="5px"
-		android:background="@drawable/button"
-		android:text="More Details"
-		android:textStyle="bold"
-		 />
-		<Button
-		android:id="@+id/showtimes"
-		android:layout_width="160px"
-		android:layout_height="wrap_content"
-		android:layout_toRightOf="@id/details"
-		android:layout_marginTop="5px"
-		android:background="@drawable/button"
-		android:text="Get ShowTimes"
-		android:textStyle="bold"
-		 />
-		 <TextView
-		android:id="@+id/browse"
+	<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
-		android:layout_height="22px"
-		android:layout_below="@id/details"
-		android:layout_marginTop="5px"
-		android:background="#2c2b2b"
-		android:text="Browse Other Movies"
-		android:paddingLeft="10px"
-		android:textAppearance="?android:attr/textAppearanceSmall"
-		
-		 />
-		
-		 </RelativeLayout>
+		android:layout_below="@id/detail"
+		android:layout_height="68px"
+		android:background="#484545">
+		<Button
+			android:id="@+id/details"
+			android:layout_width="160px"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5px"
+			android:background="@drawable/button"
+			android:text="More Details"
+			android:textStyle="bold" />
+		<Button
+			android:id="@+id/showtimes"
+			android:layout_width="160px"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@id/details"
+			android:layout_marginTop="5px"
+			android:background="@drawable/button"
+			android:text="Get ShowTimes"
+			android:textStyle="bold" />
+		<TextView
+			android:id="@+id/browse"
+			android:layout_width="fill_parent"
+			android:layout_height="22px"
+			android:layout_below="@id/details"
+			android:layout_marginTop="5px"
+			android:background="#2c2b2b"
+			android:text="Browse Other Movies"
+			android:paddingLeft="10px"
+			android:textAppearance="?android:attr/textAppearanceSmall" />
+	</RelativeLayout>
 	<RelativeLayout
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent">
@@ -60,7 +54,6 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:gravity="left"
-			android:spacing="0dip"
-			 />
+			android:spacing="0dip" />
 	</RelativeLayout>
 </LinearLayout>

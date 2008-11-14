@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_marginTop="0dip"
 	android:layout_gravity="top"
@@ -11,65 +11,61 @@
 		android:id="@+id/divider2"
 		android:layout_width="fill_parent"
 		android:layout_height="1px"
-		android:background="@drawable/divider_horizontal_bright"
-		/>
+		android:background="@drawable/divider_horizontal_bright" />
 	<ListView
 		android:id="@android:id/list"
 		android:layout_width="fill_parent"
-		android:layout_height="350px"
+		android:layout_height="320px"
 		android:drawSelectorOnTop="false"
 		android:layout_below="@id/divider2"
-		android:layoutAnimation="@anim/layout_bottom_to_top_slide"
-		 />
+		android:layoutAnimation="@anim/layout_bottom_to_top_slide" />
 	<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_below="@android:id/list"
-	android:layout_height="100px"
-	android:background="#484545"
-	>
-	
-	<Button
-	android:layout_marginTop="5px"
-	android:layout_marginBottom="15px"
-		android:id="@+id/trailerbtn"
-		android:layout_width="160px"
-		android:layout_height="wrap_content"
-		android:text="Play Trailer"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
 		android:layout_below="@android:id/list"
-		android:layout_alignParentLeft="true" 
-		android:background="@drawable/button"
-		android:textStyle="bold"/>
-	<Button
-	android:layout_marginTop="5px"
-		android:id="@+id/reviewsbtn"
-		android:layout_marginBottom="15px"
-		android:layout_width="160px"
-		android:layout_height="wrap_content"
-		android:text="Read Reviews"
-		android:layout_below="@android:id/list"
-		android:layout_alignParentRight="true" 
-		android:background="@drawable/button"
-		android:textStyle="bold"/>
-	<Button
-		android:layout_marginBottom="10px"
-		android:id="@+id/imdbbtn"
-		android:layout_width="160px"
-		android:layout_height="wrap_content"
-		android:text="Visit IMDb"
-		android:layout_below="@id/trailerbtn"
-		android:layout_alignParentLeft="true" 
-		android:background="@drawable/button"
-		android:textStyle="bold"/>
-	<Button
-	android:layout_marginBottom="10px"
-		android:id="@+id/emailbtn"
-		android:layout_width="160px"
-		android:layout_height="wrap_content"
-		android:text="E-mail Listings"
-		android:layout_below="@id/reviewsbtn"
-		android:layout_alignParentRight="true"
-		android:background="@drawable/button"
-		android:textStyle="bold" />
-</RelativeLayout>
+		android:layout_height="100px"
+		android:background="#484545">
+		<Button
+			android:layout_marginTop="5px"
+			android:layout_marginBottom="15px"
+			android:id="@+id/trailerbtn"
+			android:layout_width="160px"
+			android:layout_height="wrap_content"
+			android:text="Play Trailer"
+			android:layout_below="@android:id/list"
+			android:layout_alignParentLeft="true"
+			android:background="@drawable/button"
+			android:textStyle="bold" />
+		<Button
+			android:layout_marginTop="5px"
+			android:id="@+id/reviewsbtn"
+			android:layout_marginBottom="15px"
+			android:layout_width="160px"
+			android:layout_height="wrap_content"
+			android:text="Read Reviews"
+			android:layout_below="@android:id/list"
+			android:layout_alignParentRight="true"
+			android:background="@drawable/button"
+			android:textStyle="bold" />
+		<Button
+			android:layout_marginBottom="10px"
+			android:id="@+id/imdbbtn"
+			android:layout_width="160px"
+			android:layout_height="wrap_content"
+			android:text="Visit IMDb"
+			android:layout_below="@id/trailerbtn"
+			android:layout_alignParentLeft="true"
+			android:background="@drawable/button"
+			android:textStyle="bold" />
+		<Button
+			android:layout_marginBottom="10px"
+			android:id="@+id/emailbtn"
+			android:layout_width="160px"
+			android:layout_height="wrap_content"
+			android:text="E-mail Listings"
+			android:layout_below="@id/reviewsbtn"
+			android:layout_alignParentRight="true"
+			android:background="@drawable/button"
+			android:textStyle="bold" />
+	</RelativeLayout>
 </RelativeLayout>

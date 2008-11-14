@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<org.metasyntactic.views.CustomGridView
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/grid"
-	android:layoutAnimation="@anim/layout_grid_fade"
-	android:layout_width="wrap_content"
+	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:horizontalSpacing="15dp"
-	android:verticalSpacing="5dp"
-	android:numColumns="3"
-	android:background="@drawable/background"
-	android:gravity="center" 
-	android:animationCache="false" />
+	android:orientation="vertical">
+	<org.metasyntactic.views.CustomGridView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/grid"
+		android:layout_width="fill_parent"
+		android:layout_height="365px"
+		android:horizontalSpacing="35px"
+		android:verticalSpacing="15px"
+		android:numColumns="3"
+		android:background="@drawable/background"
+		android:gravity="center"
+		android:animationCache="false"
+		android:layoutAnimation="@anim/layout_grid_fade" />
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="60px"
+		android:orientation="horizontal"
+		android:background="#2c2b2b">
+		<Button
+			android:id="@+id/up_1"
+			android:layout_width="150px"
+			android:layout_height="60px"
+			android:layout_gravity="top|left"
+			android:layout_marginLeft="15px"
+			android:background="@drawable/up_1" />
+		<Button
+			android:id="@+id/down_1"
+			android:layout_width="150px"
+			android:layout_height="60px"
+			android:layout_gravity="top|right"
+			android:layout_marginRight="25px"
+			android:background="@drawable/down_1" />
+	</LinearLayout>
+</LinearLayout>

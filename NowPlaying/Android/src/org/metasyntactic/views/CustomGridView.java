@@ -18,6 +18,8 @@ package org.metasyntactic.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.widget.GridView;
 
 /** A gallery of the different styles of buttons. */
@@ -40,4 +42,14 @@ public class CustomGridView extends GridView {
     this.setFocusableInTouchMode(true);
     // TODO Auto-generated constructor stub
   }
+
+@Override
+protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+    // TODO Auto-generated method stub
+    super.onScrollChanged(l/20, t/20, oldl, oldt);
+}
+
+
+
+
 }
