@@ -5,17 +5,18 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
 
 import java.util.ArrayList;
@@ -37,6 +38,15 @@ public class ShowtimesActivity extends ListActivity {
         theaterAdapter = new TheaterAdapter(this);
         setListAdapter(theaterAdapter);
     }
+    
+    
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        // TODO Auto-generated method stub
+        
+        super.onListItemClick(l, v, position, id);
+    }
+
 
     private final ServiceConnection serviceConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
@@ -49,7 +59,7 @@ public class ShowtimesActivity extends ListActivity {
                     INowPlayingController.Stub.asInterface(service));
            
             bindView(movie);
-           // theaters = controller.getTheaters(movie);
+            theaters = controller.getTheatersShowingMovie(movie);
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -65,6 +75,7 @@ public class ShowtimesActivity extends ListActivity {
 
     private void bindView(final Movie movie) {
         TextView movielbl = (TextView) findViewById(R.id.movie);
+        movielbl.setEllipsize(TextUtils.TruncateAt.END);
        movielbl.setText(movie.getDisplayTitle());
     }
 
@@ -105,21 +116,28 @@ public class ShowtimesActivity extends ListActivity {
             holder.showtimes = (TextView) convertView.findViewById(R.id.showtimes);
             holder.address = (TextView) convertView.findViewById(R.id.address);
             holder.phone = (TextView) convertView.findViewById(R.id.phone);
-         /*   Theater theater = theaters.get(position);
+            Theater theater = theaters.get(position);
             holder.theater.setText(theater.getName());
             holder.address.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
-            holder.phone.setText(theater.getPhoneNumber());*/
-            // todo add showtimes
-            holder.showtimes.setText("11:00am, 2:00pm, 3:00pm, 7:30pm, 8:30pm, 9:00pm, 10:30pm, 11:30pm");
-            holder.theater.setText("AMC Cupetino Square-16");
-            holder.address.setText("10123 N. Wolfe Road, Cupertino");
-            holder.phone.setText("408-242-2993");
+            holder.phone.setText(theater.getPhoneNumber());
+            List<Performance> list = controller.getPerformancesForMovieAtTheater(movie,theater);
+            String performance="";
+            if (list != null) {
+                for(int i = 0; i < list.size();i++){
+                 performance += list.get(i).getTime() + ", ";  
+                }
+                
+                holder.showtimes.setText(performance.substring(0, performance.length() - 2));
+            } else {
+               holder.showtimes.setText("Unknown.");
+            }
+          
             return convertView;
         }
 
         public int getCount() {
-         //   return theaters.size();
-            return 5;
+           return theaters.size();
+           
         }
 
         private class MovieViewHolder {
@@ -150,6 +168,8 @@ public class ShowtimesActivity extends ListActivity {
             // TODO Auto-generated method stub
             notifyDataSetChanged();
         }
+        
+        
     }
     
 

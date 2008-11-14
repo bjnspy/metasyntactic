@@ -7,6 +7,7 @@
 	android:layout_height="wrap_content"
 	android:layout_marginBottom="0dip"
 	android:animationCache="false">
+	
 	<TextView
 		android:id="@+id/movie"
 		android:layout_width="fill_parent"
@@ -18,8 +19,16 @@
         android:paddingLeft="8dip"
         android:paddingRight="10dip"
         android:paddingTop="15px"
+        android:singleLine="true"
+        
         android:paddingBottom="15px"
 		 />
+	<ImageView
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@drawable/divider_horizontal_bright" />
+    
 	<ListView
 		android:id="@android:id/list"
 		android:layout_width="fill_parent"
