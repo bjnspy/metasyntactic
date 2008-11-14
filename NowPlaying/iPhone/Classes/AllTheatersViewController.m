@@ -34,6 +34,7 @@
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
 
 @property (retain) NSArray* indexTitles;
+@property (retain) NSArray* visibleCells;
 @end
 
 
@@ -45,6 +46,7 @@
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
 @synthesize indexTitles;
+@synthesize visibleCells;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -53,6 +55,7 @@
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.indexTitles = nil;
+    self.visibleCells = nil;
 
     [super dealloc];
 }
@@ -96,7 +99,7 @@
 
 - (void) sortTheatersByName {
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
-    
+
     for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
@@ -105,7 +108,7 @@
 
         unichar firstChar = [theater.name characterAtIndex:0];
         firstChar = toupper(firstChar);
-        
+
         if ([LocaleUtilities isJapanese]) {
             if (CFCharacterSetIsCharacterMember(CFCharacterSetGetPredefined(kCFCharacterSetLetter), firstChar)) {
                 NSString* sectionTitle = [[[NSString alloc] initWithCharacters:&firstChar length:1] autorelease];
@@ -122,14 +125,14 @@
             }
         }
     }
-    
+
     if ([LocaleUtilities isJapanese]) {
-        self.sectionTitles = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys]; 
+        self.sectionTitles = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys];
         [sectionTitles sortUsingSelector:@selector(compare:)];
     } else {
         self.sectionTitles = [NSMutableArray arrayWithArray:indexTitles];
     }
-    
+
     [self removeUnusedSectionTitles];
 }
 
@@ -299,6 +302,10 @@
     [self setupIndexTitles];
 
     self.title = NSLocalizedString(@"Theaters", nil);
+    
+    if (visibleCells.count > 0) {
+        [self.tableView scrollToRowAtIndexPath:[visibleCells objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    }
 }
 
 
@@ -317,6 +324,10 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
+
+    // Store the currently visible cells so we can scroll back to them when
+    // we're reloaded.
+    self.visibleCells = [self.tableView visibleCells];
 
     self.segmentedControl = nil;
     self.sortedTheaters = nil;

@@ -145,13 +145,13 @@
 
     NSMutableDictionary* movieToShowtimesMap = [self processMovieAndShowtimesList:movieAndShowtimesList
                                                                 movieIdToMovieMap:movieIdToMovieMap];
-    
+
     if (movieToShowtimesMap.count == 0) {
         return;
     }
     [synchronizationInformation setObject:[DateUtilities today] forKey:name];
     [performances setObject:movieToShowtimesMap forKey:name];
-    
+
     Location* location = [Location locationWithLatitude:latitude
                                               longitude:longitude
                                                 address:address
@@ -159,7 +159,7 @@
                                                   state:state
                                              postalCode:postalCode
                                                 country:country];
-    
+
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name
                                            phoneNumber:phone
@@ -186,7 +186,7 @@
                                filterTheaters:filterTheaters
                             movieIdToMovieMap:movieIdToMovieMap];
     }
-    
+
     return [NSArray arrayWithObjects:theaters, performances, synchronizationInformation, nil];
 }
 

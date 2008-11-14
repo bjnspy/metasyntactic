@@ -115,8 +115,8 @@
 - (void) setStale {
     [FileUtilities removeItem:[self lastLookupDateFile]];
 }
-    
-    
+
+
 - (Location*) searchLocation {
     return [Location locationWithDictionary:[FileUtilities readObject:self.locationFile]];
 }
@@ -190,7 +190,7 @@
     if (result.movies.count > 0 || result.theaters.count > 0) {
         [self saveArray:result.movies to:self.moviesFile];
         [self saveArray:result.theaters to:self.theatersFile];
-        
+
         [FileUtilities writeObject:result.location.dictionary toFile:self.locationFile];
         [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
 
@@ -270,8 +270,7 @@
 
 - (LookupResult*) lookupLocation:(Location*) location
                   filterTheaters:(NSArray*) filterTheater {
-    NSAssert(false, @"Someone improperly subclassed!");
-    return nil;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
@@ -294,7 +293,7 @@
     for (NSString* movieTitle in performances.allKeys) {
         if (![existingMovieTitles containsObject:movieTitle]) {
             [existingMovieTitles addObject:movieTitle];
-            
+
             for (Movie* movie in currentMovies) {
                 if ([movie.canonicalTitle isEqual:movieTitle]) {
                     [lookupResult.movies addObject:movie];
@@ -419,25 +418,25 @@
     for (Movie* movie in lookupResult.movies) {
         [existingMovieTitles addObject:movie.canonicalTitle];
     }
-    
+
     NSMutableSet* missingTheaters = [NSMutableSet setWithArray:currentTheaters];
     [missingTheaters minusSet:[NSSet setWithArray:lookupResult.theaters]];
-    
+
     for (Theater* theater in missingTheaters) {
         // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
         NSString* theaterName = theater.name;
         NSString* performancesFile = [self performancesFile:theaterName];
         NSDictionary* oldPerformances = [FileUtilities readObject:performancesFile];
-        
+
         if (oldPerformances == nil) {
             continue;
         }
-                
+
         [lookupResult.performances setObject:oldPerformances forKey:theaterName];
         [lookupResult.synchronizationInformation setObject:[self synchronizationDateForTheater:theaterName] forKey:theaterName];
         [lookupResult.theaters addObject:theater];
-        
+
         // the theater may refer to movies that we don't know about.
         [self addMissingMoviesFromPerformances:oldPerformances
                                       toResult:lookupResult
@@ -455,13 +454,13 @@
     if ([self tooSoon:self.lastLookupDate]) {
         return;
     }
-            
+
 
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     if (location == nil) {
         return;
     }
-    
+
     // Do the primary search.
     LookupResult* result = [self lookupLocation:location filterTheaters:nil];
 

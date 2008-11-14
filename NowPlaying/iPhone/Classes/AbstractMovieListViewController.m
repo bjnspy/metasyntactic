@@ -30,6 +30,7 @@
 @property (retain) NSMutableArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
 @property (retain) NSArray* indexTitles;
+@property (retain) NSArray* visibleCells;
 @end
 
 
@@ -40,6 +41,7 @@
 @synthesize sectionTitles;
 @synthesize sectionTitleToContentsMap;
 @synthesize indexTitles;
+@synthesize visibleCells;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -47,49 +49,44 @@
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.indexTitles = nil;
+    self.visibleCells = nil;
 
     [super dealloc];
 }
 
 
 - (NSArray*) movies {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return [NSArray array];
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (BOOL) sortingByTitle {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return YES;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (BOOL) sortingByReleaseDate {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return YES;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (BOOL) sortingByScore {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return YES;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (void) onSortOrderChanged:(id) sender {
-    NSAssert(false, @"Someone subclassed incorrectly");
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return nil;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
 - (int(*)(id,id,void*)) sortByReleaseDateFunction {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return NULL;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
@@ -158,8 +155,8 @@
         [sectionTitles sortUsingSelector:@selector(compare:)];
     } else {
         self.sectionTitles = [NSMutableArray arrayWithArray:self.indexTitles];
-    } 
-    
+    }
+
     [self removeUnusedSectionTitles];
 }
 
@@ -275,6 +272,10 @@
 
     [self initializeSearchButton];
     [self setupIndexTitles];
+    
+    if (visibleCells.count > 0) {
+        [self.tableView scrollToRowAtIndexPath:[visibleCells objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    }
 }
 
 
@@ -282,6 +283,10 @@
     if (/*navigationController.visible ||*/ visible) {
         return;
     }
+
+    // Store the currently visible cells so we can scroll back to them when
+    // we're reloaded.
+    self.visibleCells = [self.tableView visibleCells];
 
     self.sortedMovies = nil;
     self.sectionTitles = nil;

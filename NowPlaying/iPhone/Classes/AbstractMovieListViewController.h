@@ -23,6 +23,7 @@
     NSArray* indexTitles;
 
     BOOL visible;
+    NSArray* visibleCells;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

@@ -105,8 +105,7 @@
 
 
 - (NSString*) locationDirectory {
-    NSAssert(false, @"Someone subclassed incorrectly");
-    return nil;
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 

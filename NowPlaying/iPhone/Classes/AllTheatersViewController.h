@@ -24,6 +24,7 @@
     NSArray* indexTitles;
 
     BOOL visible;
+    NSArray* visibleCells;
 }
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
