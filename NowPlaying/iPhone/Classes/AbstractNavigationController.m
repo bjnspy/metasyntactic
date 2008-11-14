@@ -90,7 +90,7 @@
 
 
 - (void) didReceiveMemoryWarning {
-    if (visible) {
+    if (visible || postersViewController != nil) {
         return;
     }
 
