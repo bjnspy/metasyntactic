@@ -15,6 +15,8 @@
     limitations under the License.
 -->
 <resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s DVD.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 DVD.</string>
   <string name="string_string">%s %s</string>
   <string name="string_no_online_ticketing">%s (Kein Online Kartenverkauf)</string>
   <string name="string_dot_string">%s. %s</string>
@@ -22,6 +24,7 @@
   <string name="number_hours">%d Stunden</string>
   <string name="number_minutes">%d Minuten</string>
   <string name="number_months_ago">%d Monaten</string>
+  <string name="number_of_number">%d von %d</string>
   <string name="number_weeks_ago">%d Wochen</string>
   <string name="number_years_ago">%d Jahren</string>
   <string name="one_hour">Stunde</string>
@@ -33,19 +36,26 @@
   <string name="one_year_ago">einem Jahr</string>
   <string name="about">Über</string>
   <string name="autoupdate_location">automatisch aktualisieren</string>
+  <string name="bluray"> Blu-ray</string>
+  <string name="both">Beide</string>
   <string name="call">Anrufen</string>
   <string name="cast">Darsteller:</string>
   <string name="change_date">ändert am: </string>
   <string name="citystate_or_postal_code">oder Stadt</string>
   <string name="could_not_find_location_dot">konnte nicht gefunden werden.</string>
+  <string name="dvd"> DVD</string>
+  <string name="dvdbluray"> DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by"> DVD/Blu-ray details bereitgestellt von:</string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">für zukünftige Termine können unter Umständen unvollständig sein. Um das komplette Programm zu erhalte, setzen Sie das Suchdatum auf das heutige Datum.</string>
   <string name="director">Regisseur:</string>
   <string name="directors">Regisseure:</string>
   <string name="distance">Entfernung</string>
   <string name="downloading_data">Daten werden geladen</string>
+  <string name="downloading_poster">Poster wird geladen</string>
   <string name="email">E-mail</string>
   <string name="email_listings">per Email schicken</string>
   <string name="favorites">Favoriten</string>
+  <string name="format">Format:</string>
   <string name="genre">Genre:</string>
   <string name="geolocation_services_provided_by">Service bereitgestellt von:</string>
   <string name="graphics_by_jeffrey_nee">von Jeffrey Nee</string>
@@ -59,6 +69,7 @@
   <string name="less_than_number_string_away">mehr als %d %s entfernt</string>
   <string name="less_than_one_string_away">mehr als 1 %s entfernt</string>
   <string name="license">Lizenz</string>
+  <string name="loading_poster"> Poster wird geladen</string>
   <string name="localized_by">Übersetzung:</string>
   <string name="location">Ort</string>
   <string name="map">Karte</string>
@@ -66,9 +77,10 @@
   <string name="movie_reviews_provided_by">bereitgestellt von:</string>
   <string name="movies">Filme</string>
   <string name="name">Name</string>
-  <string name="network_unavailable">Netz nicht verfügbar</string>
+  <string name="network_unavailable">Netzwerk nicht verfügbar</string>
   <string name="no_information_found">Informationen gefunden</string>
   <string name="no_more_show_times_available_today_dot">weiteren Vorstellungen für heute verfügbar.</string>
+  <string name="no_results_found_for_string">Keine Resultate für '%s'</string>
   <string name="no_synopsis_available_dot">Keine inhaltsangabe verfügbar.</string>
   <string name="none">Keine</string>
   <string name="not_yet_rated">keine Altersfreigabe</string>
@@ -90,10 +102,12 @@
   <string name="score">Wertung</string>
   <string name="search_date">Datum suchen</string>
   <string name="search_distance">Suchentfernung</string>
+  <string name="send_feedback">Feedback senden</string>
   <string name="settings">Entfernung</string>
   <string name="show_number_hidden_theaters">%d Kinos außerhalb des Suchradius</string>
   <string name="show_one_hidden_theater">1 Kino außerhalb des Suchradius</string>
   <string name="show_times_retrieved_on_string_dot">aktualisiert am %s.</string>
+  <string name="studio">Studio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">zuletzt aktualisiert am\n%s.</string>
   <string name="theater_providers_often_limit_the_maximum_search">schränken den maximalen Suchradius, für den sie ihre Daten bereitstellen, oft ein. Daher erscheinen manche Kinos nicht in den Suchresultaten, selbst wenn ein großer Suchradius gewählt wurde.</string>
   <string name="theaters">Kinos</string>
