@@ -137,8 +137,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         details.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                Movie movie = movies.get(selection);
+                // TODO Auto-generated method stub  
+                final Movie movie = movies.get(selection);
+                
                 Intent intent = new Intent();
                 intent.setClass(mContext, MovieDetailsActivity.class);
                 intent.putExtra("movie", (Parcelable) movie);
@@ -146,6 +147,18 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             }
         });
         Button showtimes = (Button) findViewById(R.id.showtimes);
+        showtimes.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub 
+                final Movie movie = movies.get(selection);
+                
+                Intent intent = new Intent();
+                intent.setClass(mContext, ShowtimesActivity.class);
+                intent.putExtra("movie", (Parcelable) movie);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

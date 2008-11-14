@@ -62,16 +62,17 @@ public final class R {
         public static final int upcoming=0x7f02001a;
     }
     public static final class id {
-        public static final int address=0x7f070026;
+        public static final int address=0x7f070025;
+        public static final int addresslbl=0x7f070024;
         public static final int author=0x7f07001f;
         public static final int browse=0x7f070017;
-        public static final int calllabel=0x7f070024;
+        public static final int calllabel=0x7f07002a;
         public static final int cast=0x7f070013;
         public static final int castlbl=0x7f070012;
         public static final int desc=0x7f070021;
         public static final int detail=0x7f070014;
         public static final int details=0x7f070015;
-        public static final int divider=0x7f070025;
+        public static final int divider=0x7f07002b;
         public static final int divider1=0x7f07001b;
         public static final int divider2=0x7f070000;
         public static final int down_1=0x7f070009;
@@ -83,10 +84,13 @@ public final class R {
         public static final int header=0x7f07001a;
         public static final int imdbbtn=0x7f070003;
         public static final int length=0x7f07000f;
-        public static final int maplabel=0x7f070022;
-        public static final int maptxt=0x7f070023;
+        public static final int maplabel=0x7f070028;
+        public static final int maptxt=0x7f070029;
+        public static final int movie=0x7f070022;
         public static final int movielist=0x7f070019;
         public static final int name=0x7f070005;
+        public static final int phone=0x7f070027;
+        public static final int phonelbl=0x7f070026;
         public static final int poster=0x7f07000a;
         public static final int progress_horizontal=0x7f07001e;
         public static final int rating=0x7f07000e;
@@ -95,7 +99,8 @@ public final class R {
         public static final int scorelbl=0x7f07000d;
         public static final int showtimes=0x7f070016;
         public static final int source=0x7f070020;
-        public static final int surface_view=0x7f070027;
+        public static final int surface_view=0x7f07002c;
+        public static final int theater=0x7f070023;
         public static final int thumbnails=0x7f070018;
         public static final int title=0x7f07000b;
         public static final int togglebtn=0x7f07001c;
@@ -114,10 +119,12 @@ public final class R {
         public static final int movieview_old=0x7f030007;
         public static final int progressbar_1=0x7f030008;
         public static final int reviewview=0x7f030009;
-        public static final int tabs=0x7f03000a;
-        public static final int theaterdetails=0x7f03000b;
-        public static final int theaterview=0x7f03000c;
-        public static final int videoview=0x7f03000d;
+        public static final int showtimes=0x7f03000a;
+        public static final int showtimes_item=0x7f03000b;
+        public static final int tabs=0x7f03000c;
+        public static final int theaterdetails=0x7f03000d;
+        public static final int theaterview=0x7f03000e;
+        public static final int videoview=0x7f03000f;
     }
     public static final class string {
         public static final int about=0x7f06001c;
