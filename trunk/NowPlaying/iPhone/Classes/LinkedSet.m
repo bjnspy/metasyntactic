@@ -120,8 +120,12 @@
 
 
 - (void) addObject:(id) object {
+    if (object == nil) {
+        return;
+    }
+
     [gate lock];
-    {
+    {   
         LinkedNode* node = [valueToNode objectForKey:object];
         [self removeNode:node];
 
