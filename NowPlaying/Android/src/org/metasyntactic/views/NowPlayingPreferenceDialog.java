@@ -32,12 +32,9 @@ public class NowPlayingPreferenceDialog {
 
   private int preference_value;
 
-  private INowPlaying nowPlaying;
-
   private NowPlayingControllerWrapper controller;
 
   public NowPlayingPreferenceDialog(final INowPlaying nowPlaying) {
-    this.nowPlaying = nowPlaying;
     Context context = nowPlaying.getContext();
     controller = nowPlaying.getController();
     builder = new AlertDialog.Builder(context);

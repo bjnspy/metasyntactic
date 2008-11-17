@@ -20,6 +20,7 @@ import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -31,7 +32,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public static final int MENU_SETTINGS = 2;
 
   private static NowPlayingControllerWrapper controller;
-  private static Pulser pulser;
   private static TheatersAdapter adapter;
   private static Context mContext;
 
@@ -64,8 +64,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
     userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null, null);
 
-    Collections.sort(theaters, THEATER_ORDER[controller
-        .getAllTheatersSelectedSortIndex()]);
+    Collections.sort(theaters, THEATER_ORDER.get(controller
+        .getAllTheatersSelectedSortIndex()));
 
     // Set up Movies adapter
     TheatersAdapter mAdapter = new TheatersAdapter(this);
@@ -146,8 +146,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
           .setTitle(R.string.theaters_select_sort_title)
           .setKey(NowPlayingPreferenceDialog.Preference_keys.THEATERS_SORT)
-          .setEntries(R.array.entries_theaters_sort_preference)
-          .show();
+          .setEntries(R.array.entries_theaters_sort_preference);
+      builder.show();
 
       return true;
     }
@@ -183,7 +183,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       holder.header = (TextView) convertView.findViewById(R.id.header);
 
       // Bind the data efficiently with the holder.
-      Resources res = context.getResources();
       Theater theater = theaters.get(position);
       Address address = null;
       try {
@@ -244,8 +243,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     if (theaters.size() > 0) {
       condition2.open();
     }
-    Collections.sort(theaters, THEATER_ORDER[controller
-        .getAllTheatersSelectedSortIndex()]);
+    Collections.sort(theaters, THEATER_ORDER.get(controller
+        .getAllTheatersSelectedSortIndex()));
     adapter.refreshTheaters(theaters);
   }
 
@@ -266,7 +265,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   };
   // The order of items in this array should match the
   // entries_theater_sort_preference array in res/values/arrays.xml
-  private static final Comparator[] THEATER_ORDER = {TITLE_ORDER, DISTANCE_ORDER,};
+  private static final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(TITLE_ORDER, DISTANCE_ORDER);
 
   public Context getContext() {
     // TODO Auto-generated method stub

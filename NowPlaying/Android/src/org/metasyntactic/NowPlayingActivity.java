@@ -25,7 +25,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +47,7 @@ import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -65,7 +65,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     private int selection;
     private PostersAdapter postersAdapter;
     static NowPlayingControllerWrapper controller;
-    private static boolean isPosterReady;
     private boolean gridAnimationEnded;
     private boolean isPrioritized;
     private boolean isGridSetup;
@@ -83,15 +82,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     /** Updates display of the list of movies. */
     public void refresh() {
         Runnable runnable = new Runnable() {
-            @Override
             public void run() {
                 if (!isDestroyed) {
                     // TODO Auto-generated method stub
                     List<Movie> tmpMovies;
                     tmpMovies = controller.getMovies();
                     // sort movies according to the default sort preference.
-                    Comparator comparator = MOVIE_ORDER[controller
-                            .getAllMoviesSelectedSortIndex()];
+                    Comparator<Movie> comparator = MOVIE_ORDER.get(controller
+                            .getAllMoviesSelectedSortIndex());
                     Collections.sort(tmpMovies, comparator);
                     movies = new ArrayList<Movie>();
                     movies.addAll(tmpMovies);
@@ -216,32 +214,31 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         up.setClickable(true);
         maxpagecount = movies.size() / 9;
         up.setOnClickListener(new OnClickListener() {
-            @Override
             public void onClick(View arg0) {
-                if (pagecount + 1 >= 0) pagecount--;
+                if (pagecount + 1 >= 0) {
+                	pagecount--;
+                }
                 grid.setSelection(pagecount * 10);
             }
         });
         down.setOnClickListener(new OnClickListener() {
-            @Override
             public void onClick(View arg0) {
-                if (pagecount + 1 <= maxpagecount) pagecount++;
+                if (pagecount + 1 <= maxpagecount) {
+                	pagecount++;
+                }
                 grid.setSelection(pagecount * 10);
             }
         });
         grid.setLayoutAnimationListener(new AnimationListener() {
-            @Override
             public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
                 gridAnimationEnded = true;
             }
 
-            @Override
             public void onAnimationRepeat(Animation animation) {
                 // TODO Auto-generated method stub
             }
 
-            @Override
             public void onAnimationStart(Animation arg0) {
                 // TODO Auto-generated method stub
             }
@@ -307,8 +304,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
                 return value2.compareTo(value1);
         }
     };
-    final static Comparator[] MOVIE_ORDER = { TITLE_ORDER, RELEASE_ORDER,
-            SCORE_ORDER };
+    final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(
+    		TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
 
     public class PostersAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
@@ -420,7 +417,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
                     (NowPlayingActivity) mContext).setTitle(
                     R.string.movies_select_sort_title).setKey(
                     NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
-                    .setEntries(R.array.entries_movies_sort_preference).show();
+                    .setEntries(R.array.entries_movies_sort_preference);
+            builder.show();
             return true;
         }
         return false;
