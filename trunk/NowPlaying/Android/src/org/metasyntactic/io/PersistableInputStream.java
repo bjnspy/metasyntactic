@@ -23,20 +23,20 @@ import java.util.*;
 public class PersistableInputStream {
   private final InputStream in;
 
-  public PersistableInputStream(InputStream in) {
+  public PersistableInputStream(final InputStream in) {
     this.in = in;
     initializeBuffers(1 << 11);
   }
 
   public void close() throws IOException {
-    in.close();
+    this.in.close();
   }
 
-  private void readEntireArray(byte[] bytes) throws IOException {
+  private void readEntireArray(final byte[] bytes) throws IOException {
     int position = 0;
 
     while (true) {
-      int read = in.read(bytes, position, bytes.length - position);
+      final int read = this.in.read(bytes, position, bytes.length - position);
       if (read + position == bytes.length) {
         break;
       }
@@ -47,22 +47,22 @@ public class PersistableInputStream {
 
   private final byte[] bytes4 = new byte[4];
   private final byte[] bytes8 = new byte[8];
-  private final ByteBuffer buffer4 = ByteBuffer.wrap(bytes4);
-  private final ByteBuffer buffer8 = ByteBuffer.wrap(bytes8);
+  private final ByteBuffer buffer4 = ByteBuffer.wrap(this.bytes4);
+  private final ByteBuffer buffer8 = ByteBuffer.wrap(this.bytes8);
 
   public int readInt() throws IOException {
-    readEntireArray(bytes4);
-    return buffer4.getInt(0);
+    readEntireArray(this.bytes4);
+    return this.buffer4.getInt(0);
   }
 
   public long readLong() throws IOException {
-    readEntireArray(bytes8);
-    return buffer8.getLong(0);
+    readEntireArray(this.bytes8);
+    return this.buffer8.getLong(0);
   }
 
   public double readDouble() throws IOException {
-    readEntireArray(bytes8);
-    return buffer8.getDouble(0);
+    readEntireArray(this.bytes8);
+    return this.buffer8.getDouble(0);
   }
 
   private char[] chars;
@@ -71,39 +71,39 @@ public class PersistableInputStream {
   private ByteBuffer byteBuffer;
   private CharBuffer charBuffer;
 
-  private void initializeBuffers(int byteCount) {
-    bytes = new byte[byteCount];
-    chars = new char[byteCount / 2];
+  private void initializeBuffers(final int byteCount) {
+    this.bytes = new byte[byteCount];
+    this.chars = new char[byteCount / 2];
 
-    byteBuffer = ByteBuffer.wrap(bytes);
-    charBuffer = byteBuffer.asCharBuffer();
+    this.byteBuffer = ByteBuffer.wrap(this.bytes);
+    this.charBuffer = this.byteBuffer.asCharBuffer();
   }
 
   public String readString() throws IOException {
-    int charCount = readInt();
-    int byteCount = charCount * 2;
+    final int charCount = readInt();
+    final int byteCount = charCount * 2;
 
-    if (byteCount > bytes.length) {
-      initializeBuffers(Math.max(byteCount, bytes.length * 2));
+    if (byteCount > this.bytes.length) {
+      initializeBuffers(Math.max(byteCount, this.bytes.length * 2));
     }
 
-    in.read(bytes, 0, byteCount);
+    this.in.read(this.bytes, 0, byteCount);
 
-    byteBuffer.position(0);
-    charBuffer.position(0);
+    this.byteBuffer.position(0);
+    this.charBuffer.position(0);
 
-    charBuffer.get(chars, 0, charCount);
+    this.charBuffer.get(this.chars, 0, charCount);
 
-    return new String(chars, 0, charCount);
+    return new String(this.chars, 0, charCount);
   }
 
-  public <T extends Persistable> T readPersistable(Persistable.Reader<T> reader) throws IOException {
+  public <T extends Persistable> T readPersistable(final Persistable.Reader<T> reader) throws IOException {
     return reader.read(this);
   }
 
   public List<String> readStringList() throws IOException {
-    int size = readInt();
-    List<String> result = new ArrayList<String>(size);
+    final int size = readInt();
+    final List<String> result = new ArrayList<String>(size);
     for (int i = 0; i < size; i++) {
       result.add(readString());
     }
@@ -111,8 +111,8 @@ public class PersistableInputStream {
   }
 
   public Set<String> readStringSet() throws IOException {
-    int size = readInt();
-    Set<String> result = new HashSet<String>(size);
+    final int size = readInt();
+    final Set<String> result = new HashSet<String>(size);
     for (int i = 0; i < size; i++) {
       result.add(readString());
     }
@@ -120,7 +120,7 @@ public class PersistableInputStream {
   }
 
   public Date readDate() throws IOException {
-    long millis = readLong();
+    final long millis = readLong();
     if (millis == -1) {
       return null;
     }

@@ -3,7 +3,7 @@ package org.metasyntactic.utilities;
 import android.util.Log;
 
 public class LogUtilities {
-  public static void logTime(Class<?> clazz, String message, long start) {
-    Log.i(clazz.getName(), message + ": " + (((double) (System.currentTimeMillis() - start)) / 1000.0) + "s");
+  public static void logTime(final Class<?> clazz, final String message, final long start) {
+    Log.i(clazz.getName(), message + ": " + (System.currentTimeMillis() - start) / 1000.0 + "s");
   }
 }

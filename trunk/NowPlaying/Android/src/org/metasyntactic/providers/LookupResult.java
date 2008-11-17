@@ -33,16 +33,16 @@ public class LookupResult {
   // theater name -> date
   public Map<String, Date> synchronizationData;
 
-  public LookupResult(List<Movie> movies, List<Theater> theaters,
-                      Map<String, Map<String, List<Performance>>> performances, Map<String, Date> synchronizationData) {
+  public LookupResult(final List<Movie> movies, final List<Theater> theaters,
+                      final Map<String, Map<String, List<Performance>>> performances, final Map<String, Date> synchronizationData) {
     this.movies = movies;
     this.theaters = theaters;
     this.performances = performances;
     this.synchronizationData = synchronizationData;
   }
 
-  public boolean containsFavorite(FavoriteTheater favorite) {
-    for (Theater theater : theaters) {
+  public boolean containsFavorite(final FavoriteTheater favorite) {
+    for (final Theater theater : this.theaters) {
       if (theater.getName().equals(favorite.getName())) {
         return true;
       }

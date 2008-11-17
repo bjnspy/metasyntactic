@@ -23,44 +23,44 @@ public class BoundedPrioritySet<T> {
   private final LinkedHashSet<T> set = new LinkedHashSet<T>();
   private final int maxSize;
 
-  public BoundedPrioritySet(int maxSize) {
+  public BoundedPrioritySet(final int maxSize) {
     this.maxSize = maxSize;
   }
 
-  public void add(T value) {
-    synchronized (lock) {
-      set.remove(value);
-      set.add(value);
+  public void add(final T value) {
+    synchronized (this.lock) {
+      this.set.remove(value);
+      this.set.add(value);
 
-      if (set.size() > maxSize) {
+      if (this.set.size() > this.maxSize) {
         removeAny();
       }
     }
   }
 
   public T removeAny() {
-    synchronized (lock) {
-      if (set.isEmpty()) {
+    synchronized (this.lock) {
+      if (this.set.isEmpty()) {
         return null;
       }
 
-      Iterator<T> i = set.iterator();
-      T value = i.next();
+      final Iterator<T> i = this.set.iterator();
+      final T value = i.next();
       i.remove();
 
       return value;
     }
   }
 
-  public T removeAny(Set<T> lowPriorityValues) {
-    synchronized (lock) {
+  public T removeAny(final Set<T> lowPriorityValues) {
+    synchronized (this.lock) {
       T value = removeAny();
       if (value != null) {
         return value;
       }
 
       if (!lowPriorityValues.isEmpty()) {
-        Iterator<T> i = lowPriorityValues.iterator();
+        final Iterator<T> i = lowPriorityValues.iterator();
         value = i.next();
         i.remove();
       }

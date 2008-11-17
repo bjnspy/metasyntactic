@@ -60,47 +60,47 @@ public class UpcomingCache {
   }
 
   private String getHash() {
-    if (hash == null) {
-      hash = FileUtilities.readString(hashFile());
-      if (hash == null) {
-        hash = "";
+    if (this.hash == null) {
+      this.hash = FileUtilities.readString(hashFile());
+      if (this.hash == null) {
+        this.hash = "";
       }
     }
 
-    return hash;
+    return this.hash;
   }
 
   private List<Movie> getMovies() {
-    if (movies == null) {
-      movies = FileUtilities.readPersistableList(Movie.reader, moviesFile());
-      if (movies == null) {
-        movies = Collections.emptyList();
+    if (this.movies == null) {
+      this.movies = FileUtilities.readPersistableList(Movie.reader, moviesFile());
+      if (this.movies == null) {
+        this.movies = Collections.emptyList();
       }
     }
 
-    return movies;
+    return this.movies;
   }
 
   private Map<String, String> getStudioKeys() {
-    if (studioKeys == null) {
-      studioKeys = FileUtilities.readStringToStringMap(studiosFile());
-      if (studioKeys == null) {
-        studioKeys = Collections.emptyMap();
+    if (this.studioKeys == null) {
+      this.studioKeys = FileUtilities.readStringToStringMap(studiosFile());
+      if (this.studioKeys == null) {
+        this.studioKeys = Collections.emptyMap();
       }
     }
 
-    return studioKeys;
+    return this.studioKeys;
   }
 
   private Map<String, String> getTitleKeys() {
-    if (titleKeys == null) {
-      titleKeys = FileUtilities.readStringToStringMap(titlesFile());
-      if (titleKeys == null) {
-        titleKeys = Collections.emptyMap();
+    if (this.titleKeys == null) {
+      this.titleKeys = FileUtilities.readStringToStringMap(titlesFile());
+      if (this.titleKeys == null) {
+        this.titleKeys = Collections.emptyMap();
       }
     }
 
-    return titleKeys;
+    return this.titleKeys;
   }
 
   public void update() {
@@ -113,27 +113,27 @@ public class UpcomingCache {
     final Map<String, String> studioKeys = getStudioKeys();
     final Map<String, String> titleKeys = getTitleKeys();
 
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         updateDetailsBackgroundEntryPoint(movies, studioKeys, titleKeys);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, lock, true,
+    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, this.lock, true,
                                                  Thread.MIN_PRIORITY + 1);
   }
 
   private void updateIndex() {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         updateIndexBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, lock, true,
+    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, this.lock, true,
                                                  Thread.MIN_PRIORITY + 1);
   }
 
   private void updateIndexBackgroundEntryPoint() {
-    long start = System.currentTimeMillis();
+    final long start = System.currentTimeMillis();
     updateIndexBackgroundEntryPointWorker();
     LogUtilities.logTime(UpcomingCache.class, "Update Index", start);
   }
@@ -143,26 +143,26 @@ public class UpcomingCache {
     final Map<String, String> titleKeys = new HashMap<String, String>();
     final List<Movie> movies = new ArrayList<Movie>();
 
-    File indexFile = hashFile();
+    final File indexFile = hashFile();
     if (indexFile.exists()) {
-      long lastModifiedTime = indexFile.lastModified();
+      final long lastModifiedTime = indexFile.lastModified();
 
-      if (Math.abs(lastModifiedTime - new Date().getTime()) < (3 * Constants.ONE_DAY)) {
+      if (Math.abs(lastModifiedTime - new Date().getTime()) < 3 * Constants.ONE_DAY) {
         return;
       }
     }
 
-    String localHash = getHash();
-    String serverHash_ = NetworkUtilities.downloadString(
+    final String localHash = getHash();
+    final String serverHash_ = NetworkUtilities.downloadString(
         "http://" + Application.host + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
-    String serverHash = serverHash_ == null ? "0" : serverHash_;
+    final String serverHash = serverHash_ == null ? "0" : serverHash_;
 
     if (localHash.equals(serverHash)) {
       return;
     }
 
     long start = System.currentTimeMillis();
-    Element resultElement = NetworkUtilities.downloadXml(
+    final Element resultElement = NetworkUtilities.downloadXml(
         "http://" + Application.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
     LogUtilities.logTime(DataProvider.class, "Update Index - Download Xml", start);
 
@@ -183,7 +183,7 @@ public class UpcomingCache {
 
   private void reportResults(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys,
                              final Map<String, String> titleKeys) {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         reportResultsOnMainThread(serverHash, movies, studioKeys, titleKeys);
       }
@@ -191,8 +191,8 @@ public class UpcomingCache {
     ThreadingUtilities.performOnMainThread(runnable);
   }
 
-  private void reportResultsOnMainThread(String serverHash, List<Movie> movies, Map<String, String> studioKeys,
-                                         Map<String, String> titleKeys) {
+  private void reportResultsOnMainThread(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys,
+                                         final Map<String, String> titleKeys) {
     this.hash = serverHash;
     this.movies = movies;
     this.studioKeys = studioKeys;
@@ -201,8 +201,8 @@ public class UpcomingCache {
     updateDetails();
   }
 
-  private void saveResults(String serverHash, List<Movie> movies, Map<String, String> studios,
-                           Map<String, String> titles) {
+  private void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios,
+                           final Map<String, String> titles) {
     FileUtilities.writePersistableCollection(movies, moviesFile());
     FileUtilities.writeStringToStringMap(studios, studiosFile());
     FileUtilities.writeStringToStringMap(titles, titlesFile());
@@ -212,32 +212,32 @@ public class UpcomingCache {
     FileUtilities.writeString(serverHash, hashFile());
   }
 
-  private void processResultElement(Element resultElement, List<Movie> movies, Map<String, String> studioKeys,
-                                    Map<String, String> titleKeys) {
-    for (Element movieElement : children(resultElement)) {
+  private void processResultElement(final Element resultElement, final List<Movie> movies, final Map<String, String> studioKeys,
+                                    final Map<String, String> titleKeys) {
+    for (final Element movieElement : children(resultElement)) {
       processMovieElement(movieElement, movies, studioKeys, titleKeys);
     }
   }
 
-  private void processMovieElement(Element movieElement, List<Movie> movies, Map<String, String> studioKeys,
-                                   Map<String, String> titleKeys) {
+  private void processMovieElement(final Element movieElement, final List<Movie> movies, final Map<String, String> studioKeys,
+                                   final Map<String, String> titleKeys) {
     Date releaseDate = null;
     try {
-      releaseDate = formatter.parse(movieElement.getAttribute("date"));
-    } catch (ParseException e) {
+      releaseDate = this.formatter.parse(movieElement.getAttribute("date"));
+    } catch (final ParseException e) {
       throw new RuntimeException(e);
     }
-    String poster = movieElement.getAttribute("poster");
-    String rating = movieElement.getAttribute("rating");
-    String studio = movieElement.getAttribute("studio");
-    String title = movieElement.getAttribute("title");
-    List<String> directors = processArray(XmlUtilities.element(movieElement, "directors"));
-    List<String> cast = processArray(XmlUtilities.element(movieElement, "actors"));
-    List<String> genres = processArray(XmlUtilities.element(movieElement, "genres"));
-    String studioKey = movieElement.getAttribute("studioKey");
-    String titleKey = movieElement.getAttribute("titleKey");
+    final String poster = movieElement.getAttribute("poster");
+    final String rating = movieElement.getAttribute("rating");
+    final String studio = movieElement.getAttribute("studio");
+    final String title = movieElement.getAttribute("title");
+    final List<String> directors = processArray(XmlUtilities.element(movieElement, "directors"));
+    final List<String> cast = processArray(XmlUtilities.element(movieElement, "actors"));
+    final List<String> genres = processArray(XmlUtilities.element(movieElement, "genres"));
+    final String studioKey = movieElement.getAttribute("studioKey");
+    final String titleKey = movieElement.getAttribute("titleKey");
 
-    Movie movie = new Movie("" + identifier++, title, rating, 0, "", releaseDate, poster, "", studio, directors, cast,
+    final Movie movie = new Movie("" + identifier++, title, rating, 0, "", releaseDate, poster, "", studio, directors, cast,
                             genres);
 
     movies.add(movie);
@@ -245,73 +245,73 @@ public class UpcomingCache {
     titleKeys.put(movie.getCanonicalTitle(), titleKey);
   }
 
-  private List<String> processArray(Element element) {
-    List<String> result = new ArrayList<String>();
-    for (Element child : children(element)) {
+  private List<String> processArray(final Element element) {
+    final List<String> result = new ArrayList<String>();
+    for (final Element child : children(element)) {
       result.add(child.getAttribute("value"));
     }
     return result;
   }
 
-  private void updateDetailsBackgroundEntryPoint(List<Movie> movies, Map<String, String> studioKeys,
-                                                 Map<String, String> titleKeys) {
-    long start = System.currentTimeMillis();
+  private void updateDetailsBackgroundEntryPoint(final List<Movie> movies, final Map<String, String> studioKeys,
+                                                 final Map<String, String> titleKeys) {
+    final long start = System.currentTimeMillis();
     updateDetailsBackgroundEntryPointWorker(movies, studioKeys, titleKeys);
     LogUtilities.logTime(UpcomingCache.class, "Update Details", start);
   }
 
-  private void updateDetailsBackgroundEntryPointWorker(List<Movie> movies, Map<String, String> studioKeys,
-                                                       Map<String, String> titleKeys) {
+  private void updateDetailsBackgroundEntryPointWorker(final List<Movie> movies, final Map<String, String> studioKeys,
+                                                       final Map<String, String> titleKeys) {
     if (movies.isEmpty()) {
       return;
     }
 
-    Set<Movie> moviesSet = new TreeSet<Movie>(movies);
+    final Set<Movie> moviesSet = new TreeSet<Movie>(movies);
     Movie movie;
     do {
-      movie = prioritizedMovies.removeAny(moviesSet);
+      movie = this.prioritizedMovies.removeAny(moviesSet);
       if (movie != null) {
         updateDetails(movie, studioKeys.get(movie.getCanonicalTitle()), titleKeys.get(movie.getCanonicalTitle()));
       }
-    } while (movie != null && !shutdown);
+    } while (movie != null && !this.shutdown);
   }
 
-  private void updateDetails(Movie movie, String studioKey, String titleKey) {
+  private void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
     updateImdb(movie);
     updatePoster(movie);
     updateSynopsisAndCast(movie, studioKey, titleKey);
     updateTrailers(movie, studioKey, titleKey);
   }
 
-  private File getCastFile(Movie movie) {
+  private File getCastFile(final Movie movie) {
     return new File(Application.upcomingCastDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getImdbFile(Movie movie) {
+  private File getImdbFile(final Movie movie) {
     return new File(Application.upcomingImdbDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getPosterFile(Movie movie) {
+  private File getPosterFile(final Movie movie) {
     return new File(Application.upcomingPostersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getSynopsisFile(Movie movie) {
+  private File getSynopsisFile(final Movie movie) {
     return new File(Application.upcomingSynopsesDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getTrailersFile(Movie movie) {
+  private File getTrailersFile(final Movie movie) {
     return new File(Application.upcomingTrailersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private void updateTrailers(Movie movie, String studioKey, String titleKey) {
-    File file = getTrailersFile(movie);
+  private void updateTrailers(final Movie movie, final String studioKey, final String titleKey) {
+    final File file = getTrailersFile(movie);
     if (file.exists()) {
-      if (Math.abs(file.lastModified() - new Date().getTime()) < (3 * Constants.ONE_DAY)) {
+      if (Math.abs(file.lastModified() - new Date().getTime()) < 3 * Constants.ONE_DAY) {
         return;
       }
     }
 
-    String trailersString = NetworkUtilities.downloadString(
+    final String trailersString = NetworkUtilities.downloadString(
         "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studioKey + "&name=" + titleKey,
         false);
 
@@ -319,7 +319,7 @@ public class UpcomingCache {
       return;
     }
 
-    String[] trailers = trailersString.split("\n");
+    final String[] trailers = trailersString.split("\n");
     if (trailers.length == 0) {
       return;
     }
@@ -329,15 +329,15 @@ public class UpcomingCache {
     Application.refresh();
   }
 
-  private void updateSynopsisAndCast(Movie movie, String studioKey, String titleKey) {
-    File file = getSynopsisFile(movie);
+  private void updateSynopsisAndCast(final Movie movie, final String studioKey, final String titleKey) {
+    final File file = getSynopsisFile(movie);
     if (file.exists()) {
       if (Math.abs(file.lastModified() - new Date().getTime()) < Constants.ONE_WEEK) {
         return;
       }
     }
 
-    String result = NetworkUtilities.downloadString(
+    final String result = NetworkUtilities.downloadString(
         "http://" + Application.host + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey,
         false);
 
@@ -345,13 +345,13 @@ public class UpcomingCache {
       return;
     }
 
-    String[] values = result.split("\n");
+    final String[] values = result.split("\n");
     if (values.length == 0) {
       return;
     }
 
-    String synopsis = values[0];
-    List<String> cast = new ArrayList<String>();
+    final String synopsis = values[0];
+    final List<String> cast = new ArrayList<String>();
     for (int i = 1; i < values.length; i++) {
       cast.add(values[i]);
     }
@@ -366,17 +366,17 @@ public class UpcomingCache {
     }
   }
 
-  private void updatePoster(Movie movie) {
+  private void updatePoster(final Movie movie) {
     if (StringUtilities.isNullOrEmpty(movie.getPoster())) {
       return;
     }
 
-    File file = getPosterFile(movie);
+    final File file = getPosterFile(movie);
     if (file.exists()) {
       return;
     }
 
-    byte[] data = NetworkUtilities.download(movie.getPoster(), false);
+    final byte[] data = NetworkUtilities.download(movie.getPoster(), false);
     if (data == null) {
       return;
     }
@@ -386,13 +386,13 @@ public class UpcomingCache {
     Application.refresh();
   }
 
-  private void updateImdb(Movie movie) {
-    File file = getImdbFile(movie);
+  private void updateImdb(final Movie movie) {
+    final File file = getImdbFile(movie);
     if (file.exists()) {
       return;
     }
 
-    String imdbAddress = NetworkUtilities.downloadString(
+    final String imdbAddress = NetworkUtilities.downloadString(
         "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
             movie.getCanonicalTitle()), false);
 
@@ -405,19 +405,19 @@ public class UpcomingCache {
     Application.refresh();
   }
 
-  public byte[] getPoster(Movie movie) {
+  public byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(getPosterFile(movie));
   }
 
-  public String getSynopsis(Movie movie) {
+  public String getSynopsis(final Movie movie) {
     return FileUtilities.readString(getSynopsisFile(movie));
   }
 
-  public void prioritizeMovie(Movie movie) {
-    prioritizedMovies.add(movie);
+  public void prioritizeMovie(final Movie movie) {
+    this.prioritizedMovies.add(movie);
   }
 
   public void shutdown() {
-    shutdown = true;
+    this.shutdown = true;
   }
 }

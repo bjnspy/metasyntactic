@@ -31,11 +31,11 @@ public class AllReviewsActivity extends ListActivity {
   private List<Review> reviews;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
-    reviews = getIntent().getParcelableArrayListExtra("reviews");
-    this.setListAdapter(new ReviewsAdapter(this));
+    this.reviews = getIntent().getParcelableArrayListExtra("reviews");
+    setListAdapter(new ReviewsAdapter(this));
   }
 
   protected void onDestroy() {
@@ -46,22 +46,22 @@ public class AllReviewsActivity extends ListActivity {
   private class ReviewsAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public ReviewsAdapter(Context context) {
+    public ReviewsAdapter(final Context context) {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      inflater = LayoutInflater.from(context);
+      this.inflater = LayoutInflater.from(context);
     }
 
-    public Object getItem(int i) {
+    public Object getItem(final int i) {
       return i;
     }
 
-    public long getItemId(int i) {
+    public long getItemId(final int i) {
       return i;
     }
 
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       MovieViewHolder holder;
-      convertView = inflater.inflate(R.layout.reviewview, null);
+      convertView = this.inflater.inflate(R.layout.reviewview, null);
       holder = new MovieViewHolder();
       holder.toggleButton = (Button) convertView.findViewById(R.id.togglebtn);
       holder.score = (Button) convertView.findViewById(R.id.score);
@@ -69,17 +69,17 @@ public class AllReviewsActivity extends ListActivity {
       holder.source = (TextView) convertView.findViewById(R.id.source);
       holder.desc = (TextView) convertView.findViewById(R.id.desc);
       convertView.setTag(holder);
-      final Review review = reviews.get(position);
+      final Review review = AllReviewsActivity.this.reviews.get(position);
       holder.author.setText(review.getAuthor());
       holder.source.setText(review.getSource());
       holder.desc.setText(review.getText());
       holder.score.setText(String.valueOf(review.getScore()));
       holder.toggleButton.setOnClickListener(new OnClickListener() {
-        public void onClick(View v) {
+        public void onClick(final View v) {
           String review_url = null;
           review_url = review.getLink();
           if (review_url != null) {
-            Intent intent = new Intent();
+            final Intent intent = new Intent();
             intent.putExtra("url", review_url);
             intent.setClass(AllReviewsActivity.this, WebViewActivity.class);
             startActivity(intent);
@@ -101,7 +101,7 @@ public class AllReviewsActivity extends ListActivity {
     }
 
     public int getCount() {
-      return reviews.size();
+      return AllReviewsActivity.this.reviews.size();
     }
   }
 }

@@ -30,24 +30,23 @@ public class NetworkUtilities {
   private static PriorityMutex mutex = new PriorityMutex();
 
   private NetworkUtilities() {
-
   }
 
-  public static String downloadString(String url, boolean important) {
+  public static String downloadString(final String url, final boolean important) {
     try {
       return downloadString(new URL(url), important);
-    } catch (MalformedURLException e) {
+    } catch (final MalformedURLException e) {
       throw new RuntimeException(e);
     }
   }
 
   private final static String[] charsets = new String[]{"UTF-8", "ISO-8859-1",};
 
-  public static String downloadString(URL url, boolean important) {
-    byte[] bytes = download(url, important);
+  public static String downloadString(final URL url, final boolean important) {
+    final byte[] bytes = download(url, important);
 
-    for (String charset : charsets) {
-      String result = decode(bytes, charset);
+    for (final String charset : charsets) {
+      final String result = decode(bytes, charset);
       if (result != null) {
         return result;
       }
@@ -56,50 +55,50 @@ public class NetworkUtilities {
     return null;
   }
 
-  private static String decode(byte[] bytes, String charset) {
+  private static String decode(final byte[] bytes, final String charset) {
     if (bytes == null) {
       return null;
     }
 
     try {
-      Charset utfCharset = Charset.forName(charset);
-      CharsetDecoder decoder = utfCharset.newDecoder();
+      final Charset utfCharset = Charset.forName(charset);
+      final CharsetDecoder decoder = utfCharset.newDecoder();
       return decoder.decode(ByteBuffer.wrap(bytes)).toString();
-    } catch (CharacterCodingException e) {
+    } catch (final CharacterCodingException e) {
       return null;
     }
   }
 
-  public static Element downloadXml(String url, boolean important) {
+  public static Element downloadXml(final String url, final boolean important) {
     try {
       return downloadXml(new URL(url), important);
-    } catch (MalformedURLException e) {
+    } catch (final MalformedURLException e) {
       throw new RuntimeException(e);
     }
   }
 
-  private static Element downloadXml(URL url, boolean important) {
-    byte[] data = download(url, important);
+  private static Element downloadXml(final URL url, final boolean important) {
+    final byte[] data = download(url, important);
     if (data == null || data.length == 0) {
       return null;
     }
     return XmlUtilities.parseInputStream(new ByteArrayInputStream(data));
   }
 
-  public static byte[] download(String url, boolean important) {
+  public static byte[] download(final String url, final boolean important) {
     if (StringUtilities.isNullOrEmpty(url)) {
       return null;
     }
 
     try {
       return download(new URL(url), important);
-    } catch (MalformedURLException e) {
+    } catch (final MalformedURLException e) {
       ExceptionUtilities.log(NetworkUtilities.class, "download", e);
       return null;
     }
   }
 
-  public static byte[] download(URL url, boolean important) {
+  public static byte[] download(final URL url, final boolean important) {
     try {
       mutex.lock(important);
       return downloadWorker(url);
@@ -108,13 +107,13 @@ public class NetworkUtilities {
     }
   }
 
-  private static byte[] downloadWorker(URL url) {
+  private static byte[] downloadWorker(final URL url) {
     try {
-      ByteArrayOutputStream out = new ByteArrayOutputStream();
-      BufferedOutputStream bufferedOut = new BufferedOutputStream(out, 1 << 13);
-      BufferedInputStream in = new BufferedInputStream(url.openStream(), 1 << 13);
+      final ByteArrayOutputStream out = new ByteArrayOutputStream();
+      final BufferedOutputStream bufferedOut = new BufferedOutputStream(out, 1 << 13);
+      final BufferedInputStream in = new BufferedInputStream(url.openStream(), 1 << 13);
 
-      byte[] bytes = new byte[1 << 16];
+      final byte[] bytes = new byte[1 << 16];
       int length;
       while ((length = in.read(bytes)) > 0) {
         bufferedOut.write(bytes, 0, length);
@@ -126,7 +125,7 @@ public class NetworkUtilities {
       in.close();
 
       return out.toByteArray();
-    } catch (IOException e) {
+    } catch (final IOException e) {
       ExceptionUtilities.log(NetworkUtilities.class, "downloadWorker", e);
       return null;
     }

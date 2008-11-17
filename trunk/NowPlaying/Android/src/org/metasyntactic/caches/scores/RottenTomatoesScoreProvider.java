@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
-  public RottenTomatoesScoreProvider(ScoreCache scoreCache) {
+  public RottenTomatoesScoreProvider(final ScoreCache scoreCache) {
     super(scoreCache);
   }
 
@@ -35,23 +35,23 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
 
   @Override
   protected String lookupServerHash() {
-    String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
+    final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
   @Override
   protected Map<String, Score> lookupServerScores() {
-    Element resultElement = NetworkUtilities.downloadXml(
+    final Element resultElement = NetworkUtilities.downloadXml(
         "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml", true);
     if (resultElement != null) {
-      Map<String, Score> ratings = new HashMap<String, Score>();
+      final Map<String, Score> ratings = new HashMap<String, Score>();
 
-      for (Element movieElement : children(resultElement)) {
-        String title = movieElement.getAttribute("title");
-        String link = movieElement.getAttribute("link");
-        String synopsis = movieElement.getAttribute("synopsis");
-        String value = movieElement.getAttribute("score");
-        Score score = new Score(title, synopsis, value, "rottentomatoes", link);
+      for (final Element movieElement : children(resultElement)) {
+        final String title = movieElement.getAttribute("title");
+        final String link = movieElement.getAttribute("link");
+        final String synopsis = movieElement.getAttribute("synopsis");
+        final String value = movieElement.getAttribute("score");
+        final Score score = new Score(title, synopsis, value, "rottentomatoes", link);
 
         ratings.put(score.getCanonicalTitle(), score);
       }

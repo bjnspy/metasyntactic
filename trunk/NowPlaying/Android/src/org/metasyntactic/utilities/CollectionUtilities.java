@@ -21,30 +21,29 @@ import java.util.Map;
 
 public class CollectionUtilities {
   private CollectionUtilities() {
-
   }
 
-  public static <T> int size(Collection<T> collection) {
+  public static <T> int size(final Collection<T> collection) {
     return collection == null ? 0 : collection.size();
   }
 
-  public static <K, V> int size(Map<K, V> map) {
+  public static <K, V> int size(final Map<K, V> map) {
     return map == null ? 0 : map.size();
   }
 
-  public static <K, V> boolean isEmpty(Map<K, V> map) {
+  public static <K, V> boolean isEmpty(final Map<K, V> map) {
     return size(map) == 0;
   }
 
-  public static <T> Collection<T> nonNullCollection(Collection<T> collection) {
+  public static <T> Collection<T> nonNullCollection(final Collection<T> collection) {
     return collection == null ? Collections.EMPTY_SET : collection;
   }
 
-  public static <T> List<T> nonNullList(List<T> list) {
+  public static <T> List<T> nonNullList(final List<T> list) {
     return list == null ? Collections.EMPTY_LIST : list;
   }
 
-  public static <K, V> Map<K, V> nonNullMap(Map<K, V> map) {
+  public static <K, V> Map<K, V> nonNullMap(final Map<K, V> map) {
     return map == null ? Collections.EMPTY_MAP : map;
   }
 }

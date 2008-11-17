@@ -29,64 +29,64 @@ public class PersistableOutputStream {
   private ByteBuffer byteBuffer;
   private CharBuffer charBuffer;
 
-  private void initializeBuffers(int byteCount) {
-    bytes = new byte[byteCount];
-    byteBuffer = ByteBuffer.wrap(bytes);
-    charBuffer = byteBuffer.asCharBuffer();
+  private void initializeBuffers(final int byteCount) {
+    this.bytes = new byte[byteCount];
+    this.byteBuffer = ByteBuffer.wrap(this.bytes);
+    this.charBuffer = this.byteBuffer.asCharBuffer();
   }
 
-  public PersistableOutputStream(OutputStream out) {
+  public PersistableOutputStream(final OutputStream out) {
     this.out = out;
     initializeBuffers(1 << 11);
   }
 
   public void close() throws IOException {
     flush();
-    out.close();
+    this.out.close();
   }
 
   public void flush() throws IOException {
-    out.flush();
+    this.out.flush();
   }
 
   private final byte[] bytes4 = new byte[4];
   private final byte[] bytes8 = new byte[8];
-  private final ByteBuffer buffer4 = ByteBuffer.wrap(bytes4);
-  private final ByteBuffer buffer8 = ByteBuffer.wrap(bytes8);
+  private final ByteBuffer buffer4 = ByteBuffer.wrap(this.bytes4);
+  private final ByteBuffer buffer8 = ByteBuffer.wrap(this.bytes8);
 
-  public void writeInt(int i) throws IOException {
-    buffer4.putInt(0, i);
-    out.write(bytes4);
+  public void writeInt(final int i) throws IOException {
+    this.buffer4.putInt(0, i);
+    this.out.write(this.bytes4);
   }
 
-  public void writeLong(long v) throws IOException {
-    buffer8.putLong(0, v);
-    out.write(bytes8);
+  public void writeLong(final long v) throws IOException {
+    this.buffer8.putLong(0, v);
+    this.out.write(this.bytes8);
   }
 
-  public void writeDouble(double d) throws IOException {
-    buffer8.putDouble(0, d);
-    out.write(bytes8);
+  public void writeDouble(final double d) throws IOException {
+    this.buffer8.putDouble(0, d);
+    this.out.write(this.bytes8);
   }
 
-  public void writeString(String s) throws IOException {
-    int charCount = s.length();
-    int byteCount = charCount * 2;
+  public void writeString(final String s) throws IOException {
+    final int charCount = s.length();
+    final int byteCount = charCount * 2;
 
-    if (byteCount > bytes.length) {
-      initializeBuffers(Math.max(byteCount, bytes.length * 2));
+    if (byteCount > this.bytes.length) {
+      initializeBuffers(Math.max(byteCount, this.bytes.length * 2));
     }
 
     writeInt(charCount);
 
-    byteBuffer.position(0);
-    charBuffer.position(0);
-    charBuffer.put(s);
+    this.byteBuffer.position(0);
+    this.charBuffer.position(0);
+    this.charBuffer.put(s);
 
-    out.write(bytes, 0, byteCount);
+    this.out.write(this.bytes, 0, byteCount);
   }
 
-  public void writePersistable(Persistable persistable) throws IOException {
+  public void writePersistable(final Persistable persistable) throws IOException {
     persistable.persistTo(this);
   }
 
@@ -94,7 +94,7 @@ public class PersistableOutputStream {
     collection = collection == null ? Collections.EMPTY_SET : collection;
 
     writeInt(collection.size());
-    for (T t : collection) {
+    for (final T t : collection) {
       writePersistable(t);
     }
   }
@@ -103,12 +103,12 @@ public class PersistableOutputStream {
     collection = collection == null ? Collections.EMPTY_SET : collection;
 
     writeInt(collection.size());
-    for (String string : collection) {
+    for (final String string : collection) {
       writeString(string);
     }
   }
 
-  public void writeDate(Date date) throws IOException {
+  public void writeDate(final Date date) throws IOException {
     if (date == null) {
       writeLong(-1);
     } else {

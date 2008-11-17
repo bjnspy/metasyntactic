@@ -32,11 +32,11 @@ public class GlobalActivityIndicator {
   private GlobalActivityIndicator() {
   }
 
-  public static void addActivity(Activity a) {
+  public static void addActivity(final Activity a) {
     activities.add(a);
   }
 
-  public static void removeActivity(Activity a) {
+  public static void removeActivity(final Activity a) {
     activities.remove(a);
   }
 
@@ -50,7 +50,7 @@ public class GlobalActivityIndicator {
       return;
     }
 
-    for (Activity a : activities) {
+    for (final Activity a : activities) {
       a.setProgressBarIndeterminateVisibility(true);
     }
   }
@@ -65,7 +65,7 @@ public class GlobalActivityIndicator {
       return;
     }
 
-    for (Activity a : activities) {
+    for (final Activity a : activities) {
       a.setProgressBarIndeterminateVisibility(false);
     }
   }
@@ -98,7 +98,7 @@ public class GlobalActivityIndicator {
     // Do work here
   }
 
-  public static void addBackgroundTask(boolean visible) {
+  public static void addBackgroundTask(final boolean visible) {
     synchronized (lock) {
       totalBackgroundTaskCount++;
 
@@ -116,7 +116,7 @@ public class GlobalActivityIndicator {
     }
   }
 
-  public static void removeBackgroundTask(boolean visible) {
+  public static void removeBackgroundTask(final boolean visible) {
     synchronized (lock) {
       totalBackgroundTaskCount--;
 

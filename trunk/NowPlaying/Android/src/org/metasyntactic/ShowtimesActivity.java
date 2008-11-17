@@ -20,17 +20,17 @@ import java.util.List;
 public class ShowtimesActivity extends ListActivity {
   /** Called when the activity is first created. */
   private TheaterAdapter theaterAdapter;
-  private List<Theater> theaters = new ArrayList<Theater>();
+  private final List<Theater> theaters = new ArrayList<Theater>();
   private Movie movie;
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
+  public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.showtimes);
-    movie = this.getIntent().getExtras().getParcelable("movie");
-    theaterAdapter = new TheaterAdapter(this);
-    setListAdapter(theaterAdapter);
+    this.movie = getIntent().getExtras().getParcelable("movie");
+    this.theaterAdapter = new TheaterAdapter(this);
+    setListAdapter(this.theaterAdapter);
   }
 
   @Override
@@ -40,42 +40,36 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   @Override
-  protected void onListItemClick(ListView l, View v, int position, long id) {
+  protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
     super.onListItemClick(l, v, position, id);
-  }
-
-  private void bindView(final Movie movie) {
-    TextView movielbl = (TextView) findViewById(R.id.movie);
-    movielbl.setEllipsize(TextUtils.TruncateAt.END);
-    movielbl.setText(movie.getDisplayTitle());
   }
 
   class TheaterAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public TheaterAdapter(Context context) {
+    public TheaterAdapter(final Context context) {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      inflater = LayoutInflater.from(context);
+      this.inflater = LayoutInflater.from(context);
     }
 
-    public Object getEntry(int i) {
+    public Object getEntry(final int i) {
       return i;
     }
 
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
-      convertView = inflater.inflate(R.layout.showtimes_item, null);
+    public View getView(final int position, View convertView, final ViewGroup viewGroup) {
+      convertView = this.inflater.inflate(R.layout.showtimes_item, null);
       // Creates a MovieViewHolder and store references to the
       // children views we want to bind data to.
-      MovieViewHolder holder = new MovieViewHolder();
+      final MovieViewHolder holder = new MovieViewHolder();
       holder.theater = (TextView) convertView.findViewById(R.id.theater);
       holder.showtimes = (TextView) convertView.findViewById(R.id.showtimes);
       holder.address = (TextView) convertView.findViewById(R.id.address);
       holder.phone = (TextView) convertView.findViewById(R.id.phone);
-      Theater theater = theaters.get(position);
+      final Theater theater = ShowtimesActivity.this.theaters.get(position);
       holder.theater.setText(theater.getName());
       holder.address.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
       holder.phone.setText(theater.getPhoneNumber());
-      List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie, theater);
+      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(ShowtimesActivity.this.movie, theater);
       String performance = "";
       if (list != null) {
         for (int i = 0; i < list.size(); i++) {
@@ -91,7 +85,7 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     public int getCount() {
-      return theaters.size();
+      return ShowtimesActivity.this.theaters.size();
     }
 
     private class MovieViewHolder {
@@ -101,15 +95,15 @@ public class ShowtimesActivity extends ListActivity {
       TextView phone;
     }
 
-    public long getEntryId(int position) {
+    public long getEntryId(final int position) {
       return position;
     }
 
-    public Object getItem(int position) {
-      return theaters.get(position);
+    public Object getItem(final int position) {
+      return ShowtimesActivity.this.theaters.get(position);
     }
 
-    public long getItemId(int position) {
+    public long getItemId(final int position) {
       return position;
     }
 

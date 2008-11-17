@@ -35,39 +35,39 @@ public class PosterCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
   private boolean shutdown;
 
-  public PosterCache(NowPlayingModel model) {
+  public PosterCache(final NowPlayingModel model) {
     this.model = model;
   }
 
-  private File posterFile(Movie movie) {
+  private File posterFile(final Movie movie) {
     return new File(Application.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
   public void update(final List<Movie> movies) {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, lock, false);
+    ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, this.lock, false);
   }
 
-  private void updateBackgroundEntryPoint(List<Movie> movies) {
+  private void updateBackgroundEntryPoint(final List<Movie> movies) {
     deleteObsoletePosters(movies);
     downloadPosters(movies);
   }
 
-  private void downloadPosters(List<Movie> movies) {
-    Set<Movie> moviesSet = new TreeSet<Movie>(movies);
+  private void downloadPosters(final List<Movie> movies) {
+    final Set<Movie> moviesSet = new TreeSet<Movie>(movies);
 
     Movie movie;
     do {
-      movie = prioritizedMovies.removeAny(moviesSet);
+      movie = this.prioritizedMovies.removeAny(moviesSet);
       downloadPoster(movie);
-    } while (movie != null && !shutdown);
+    } while (movie != null && !this.shutdown);
   }
 
-  private void downloadPoster(Movie movie) {
+  private void downloadPoster(final Movie movie) {
     if (movie == null) {
       return;
     }
@@ -76,14 +76,14 @@ public class PosterCache {
       return;
     }
 
-    byte[] data = downloadPosterWorker(movie);
+    final byte[] data = downloadPosterWorker(movie);
     if (data != null) {
       FileUtilities.writeBytes(data, posterFile(movie));
       Application.refresh();
     }
   }
 
-  private byte[] downloadPosterWorker(Movie movie) {
+  private byte[] downloadPosterWorker(final Movie movie) {
     byte[] data = NetworkUtilities.download(movie.getPoster(), false);
     if (data != null) {
       return data;
@@ -107,11 +107,11 @@ public class PosterCache {
     return null;
   }
 
-  private byte[] downloadPosterFromFandango(Movie movie) {
-    Location location = model.getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(model.getUserLocation());
+  private byte[] downloadPosterFromFandango(final Movie movie) {
+    final Location location = this.model.getUserLocationCache()
+        .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserLocation());
 
-    String country = location == null ? "" : location.getCountry();
+    final String country = location == null ? "" : location.getCountry();
     String postalCode = location == null ? "10009" : location.getPostalCode();
 
     if (StringUtilities.isNullOrEmpty(postalCode) || !"US".equals(country)) {
@@ -121,23 +121,23 @@ public class PosterCache {
     return FandangoPosterDownloader.download(movie, postalCode);
   }
 
-  private void deleteObsoletePosters(List<Movie> movies) {
+  private void deleteObsoletePosters(final List<Movie> movies) {
 
   }
 
-  public byte[] getPoster(Movie movie) {
+  public byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(posterFile(movie));
   }
 
-  public void prioritizeMovie(Movie movie) {
+  public void prioritizeMovie(final Movie movie) {
     if (posterFile(movie).exists()) {
       return;
     }
 
-    prioritizedMovies.add(movie);
+    this.prioritizedMovies.add(movie);
   }
 
   public void shutdown() {
-    shutdown = true;
+    this.shutdown = true;
   }
 }

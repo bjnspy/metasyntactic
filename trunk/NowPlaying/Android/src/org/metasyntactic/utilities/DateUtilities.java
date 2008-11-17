@@ -21,11 +21,11 @@ public class DateUtilities {
   private static Date today;
 
   static {
-    Date dt = new Date();
-    Calendar c1 = Calendar.getInstance();
+    final Date dt = new Date();
+    final Calendar c1 = Calendar.getInstance();
     c1.setTime(dt);
 
-    Calendar c2 = Calendar.getInstance();
+    final Calendar c2 = Calendar.getInstance();
     c2.clear();
 
     c2.set(Calendar.YEAR, c1.get(Calendar.YEAR));

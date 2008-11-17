@@ -29,39 +29,39 @@ public class ScoreCache {
 
   private final NowPlayingModel model;
 
-  public ScoreCache(NowPlayingModel model) {
+  public ScoreCache(final NowPlayingModel model) {
     this.model = model;
   }
 
   public void shutdown() {
-    rottenTomatoesScoreProvider.shutdown();
-    metacriticScoreProvider.shutdown();
-    googleScoreProvider.shutdown();
-    rottenTomatoesScoreProvider.shutdown();
+    this.rottenTomatoesScoreProvider.shutdown();
+    this.metacriticScoreProvider.shutdown();
+    this.googleScoreProvider.shutdown();
+    this.rottenTomatoesScoreProvider.shutdown();
   }
 
   public void createDirectories() {
-    rottenTomatoesScoreProvider.createDirectory();
-    metacriticScoreProvider.createDirectory();
-    googleScoreProvider.createDirectory();
-    noneScoreProvider.createDirectory();
+    this.rottenTomatoesScoreProvider.createDirectory();
+    this.metacriticScoreProvider.createDirectory();
+    this.googleScoreProvider.createDirectory();
+    this.noneScoreProvider.createDirectory();
   }
 
   private ScoreProvider getCurrentScoreProvider() {
-    if (model.getScoreType() == ScoreType.Google) {
-      return googleScoreProvider;
-    } else if (model.getScoreType() == ScoreType.Metacritic) {
-      return metacriticScoreProvider;
-    } else if (model.getScoreType() == ScoreType.RottenTomatoes) {
-      return rottenTomatoesScoreProvider;
-    } else if (model.getScoreType() == ScoreType.None) {
-      return noneScoreProvider;
+    if (this.model.getScoreType() == ScoreType.Google) {
+      return this.googleScoreProvider;
+    } else if (this.model.getScoreType() == ScoreType.Metacritic) {
+      return this.metacriticScoreProvider;
+    } else if (this.model.getScoreType() == ScoreType.RottenTomatoes) {
+      return this.rottenTomatoesScoreProvider;
+    } else if (this.model.getScoreType() == ScoreType.None) {
+      return this.noneScoreProvider;
     } else {
       throw new RuntimeException();
     }
   }
 
-  public Score getScore(List<Movie> movies, Movie movie) {
+  public Score getScore(final List<Movie> movies, final Movie movie) {
     return getCurrentScoreProvider().getScore(movies, movie);
   }
 
@@ -70,14 +70,14 @@ public class ScoreCache {
   }
 
   NowPlayingModel getModel() {
-    return model;
+    return this.model;
   }
 
-  public List<Review> getReviews(List<Movie> movies, Movie movie) {
+  public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
     return getCurrentScoreProvider().getReviews(movies, movie);
   }
 
-  public void prioritizeMovie(List<Movie> movies, Movie movie) {
+  public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
     getCurrentScoreProvider().prioritizeMovie(movies, movie);
   }
 }

@@ -19,10 +19,9 @@ import java.util.Set;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class SetUtilities {
   private SetUtilities() {
-
   }
 
-  public static <T> T any(Set<T> set) {
+  public static <T> T any(final Set<T> set) {
     if (set.isEmpty()) {
       return null;
     }

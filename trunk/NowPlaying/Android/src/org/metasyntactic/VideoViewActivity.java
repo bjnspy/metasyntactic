@@ -26,17 +26,17 @@ public class VideoViewActivity extends Activity {
   private VideoView videoView;
 
   @Override
-  public void onCreate(Bundle icicle) {
+  public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.videoview);
-    path = getIntent().getExtras().getString("trailer_url");
-    videoView = (VideoView) findViewById(R.id.surface_view);
-    videoView.setVideoURI(Uri.parse(path));
+    this.path = getIntent().getExtras().getString("trailer_url");
+    this.videoView = (VideoView) findViewById(R.id.surface_view);
+    this.videoView.setVideoURI(Uri.parse(this.path));
     //  mVideoView.setVideoPath(path);
-    videoView.setMediaController(new MediaController(this));
-    videoView.requestFocus();
-    videoView.start();
+    this.videoView.setMediaController(new MediaController(this));
+    this.videoView.requestFocus();
+    this.videoView.start();
   }
 
   protected void onDestroy() {

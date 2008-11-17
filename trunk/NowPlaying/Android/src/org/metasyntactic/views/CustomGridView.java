@@ -22,24 +22,24 @@ import android.widget.GridView;
 
 /** A gallery of the different styles of buttons. */
 public class CustomGridView extends GridView {
-  public CustomGridView(Context context) {
+  public CustomGridView(final Context context) {
     super(context);
-    this.setFocusableInTouchMode(true);
+    setFocusableInTouchMode(true);
   }
 
-  public CustomGridView(Context context, AttributeSet attrs, int defStyle) {
+  public CustomGridView(final Context context, final AttributeSet attrs, final int defStyle) {
     super(context, attrs, defStyle);
-    this.setFocusableInTouchMode(true);
+    setFocusableInTouchMode(true);
   }
 
-  public CustomGridView(Context context, AttributeSet attrs) {
+  public CustomGridView(final Context context, final AttributeSet attrs) {
     super(context, attrs);
-    this.setFocusable(true);
-    this.setFocusableInTouchMode(true);
+    setFocusable(true);
+    setFocusableInTouchMode(true);
   }
 
   @Override
-  protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+  protected void onScrollChanged(final int l, final int t, final int oldl, final int oldt) {
     super.onScrollChanged(l / 20, t / 20, oldl, oldt);
   }
 }

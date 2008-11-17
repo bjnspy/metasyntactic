@@ -19,12 +19,11 @@ import java.util.Date;
 
 public class Hours {
   private Hours() {
-
   }
 
-  public static int hoursBetween(Date d1, Date d2) {
-    Calendar c1 = Calendar.getInstance();
-    Calendar c2 = Calendar.getInstance();
+  public static int hoursBetween(final Date d1, final Date d2) {
+    final Calendar c1 = Calendar.getInstance();
+    final Calendar c2 = Calendar.getInstance();
 
     c1.setTime(d1);
     c2.setTime(d2);

@@ -22,18 +22,18 @@ import java.util.List;
 
 public class MovieDetailsActivity extends ListActivity {
   /** Called when the activity is first created. */
-  private List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
+  private final List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
   private MovieAdapter movieAdapter;
   private Movie movie;
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
+  public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.moviedetails);
-    movie = this.getIntent().getExtras().getParcelable("movie");
-    movieAdapter = new MovieAdapter(this);
-    setListAdapter(movieAdapter);
+    this.movie = getIntent().getExtras().getParcelable("movie");
+    this.movieAdapter = new MovieAdapter(this);
+    setListAdapter(this.movieAdapter);
   }
 
   @Override
@@ -42,155 +42,15 @@ public class MovieDetailsActivity extends ListActivity {
     super.onDestroy();
   }
 
-  private void bindView(final Movie movie) {
-    Button trailerbtn = (Button) findViewById(R.id.trailerbtn);
-    Button imdbbtn = (Button) findViewById(R.id.imdbbtn);
-    Button reviewsbtn = (Button) findViewById(R.id.reviewsbtn);
-    trailerbtn.setOnClickListener(trailerOnClickListener);
-    imdbbtn.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        String imdb_url = null;
-        imdb_url = NowPlayingControllerWrapper.getImdbAddress(movie);
-        if (imdb_url != null) {
-          Intent intent = new Intent();
-          intent.putExtra("imdb_url", imdb_url);
-          intent.setClass(MovieDetailsActivity.this, WebViewActivity.class);
-          startActivity(intent);
-        } else {
-          Toast.makeText(MovieDetailsActivity.this, "IMDB information is not available.", Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-    reviewsbtn.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(movie));
-        if (reviews.size() > 0) {
-          Intent intent = new Intent();
-          intent.putParcelableArrayListExtra("reviews", reviews);
-          intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
-          startActivity(intent);
-        } else {
-          Toast.makeText(MovieDetailsActivity.this, "Reviews are not available.", Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-    imdbbtn.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        String imdb_url = null;
-        imdb_url = NowPlayingControllerWrapper.getImdbAddress(movie);
-        if (!StringUtilities.isNullOrEmpty(imdb_url)) {
-          Intent intent = new Intent();
-          intent.putExtra("imdb_url", imdb_url);
-          intent.setClass(MovieDetailsActivity.this, WebViewActivity.class);
-          startActivity(intent);
-        } else {
-          Toast.makeText(MovieDetailsActivity.this, "IMDB information is not available.", Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-    reviewsbtn.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(movie));
-        if (reviews.size() > 0) {
-          Intent intent = new Intent();
-          intent.putParcelableArrayListExtra("reviews", reviews);
-          intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
-          startActivity(intent);
-        } else {
-          Toast.makeText(MovieDetailsActivity.this, "Reviews are not yet available.", Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-  }
-
-  private void populateMovieEntries() {
-    // TODO put all strings in res/values/strings.xml
-    MovieDetailEntry entry = new MovieDetailEntry();
-    // Add synopsis
-    entry.setName(movie.getDisplayTitle());
-    String synopsis = NowPlayingControllerWrapper.getSynopsis(movie);
-    if (!StringUtilities.isNullOrEmpty(synopsis)) {
-      // hack to display text on left and bottom or poster
-      entry.setValue(synopsis);
-    } else {
-      entry.setValue("No synopsis available.");
-    }
-    movieDetailEntries.add(entry);
-    // Add rating
-    entry = new MovieDetailEntry();
-    entry.setName("Rating");
-    CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(),
-                                                           NowPlayingActivity.instance.getResources());
-    if (rating != null && rating.length() > 0) {
-      // hack to display text on left and bottom or poster
-      entry.setValue(rating.toString());
-    } else {
-      entry.setValue("UnRated.");
-    }
-    movieDetailEntries.add(entry);
-    // Add length
-    entry = new MovieDetailEntry();
-    entry.setName("Running Time");
-    CharSequence length = MovieViewUtilities.formatLength(movie.getLength(),
-                                                          NowPlayingActivity.instance.getResources());
-    if (length != null && length.length() > 0) {
-      // hack to display text on left and bottom or poster
-      entry.setValue(length.toString());
-    } else {
-      entry.setValue("Unknown.");
-    }
-    movieDetailEntries.add(entry);
-    // Add release date
-    entry = new MovieDetailEntry();
-    entry.setName("Release Date");
-    if (movie.getReleaseDate() != null) {
-      entry.setValue(movie.getReleaseDate().toLocaleString());
-    } else {
-      entry.setValue("Unknown.");
-    }
-    movieDetailEntries.add(entry);
-    // Add directors
-    entry = new MovieDetailEntry();
-    entry.setName("Director(s)");
-    if (movie.getDirectors() != null && movie.getDirectors().size() > 0) {
-      String director = movie.getDirectors().toString();
-      entry.setValue(director.substring(1, director.length() - 1));
-    } else {
-      entry.setValue("Unknown.");
-    }
-    movieDetailEntries.add(entry);
-    // Add cast
-    entry = new MovieDetailEntry();
-    entry.setName("Cast");
-    if (movie.getCast() != null && movie.getCast().size() > 0) {
-      String cast = movie.getCast().toString();
-      entry.setValue(cast.substring(1, cast.length() - 1));
-    } else {
-      entry.setValue("Unknown.");
-    }
-    movieDetailEntries.add(entry);
-    // Add Genres
-    entry = new MovieDetailEntry();
-    entry.setName("Genre");
-    if (movie.getGenres() != null && movie.getGenres().size() > 0) {
-      String genres = movie.getGenres().toString();
-      entry.setValue(genres.substring(1, genres.length() - 1));
-    } else {
-      entry.setValue("Unknown.");
-    }
-    movieDetailEntries.add(entry);
-    movieAdapter.refresh();
-  }
-
   OnClickListener trailerOnClickListener = new OnClickListener() {
-    public void onClick(View v) {
+    public void onClick(final View v) {
       String trailer_url = null;
-      List<String> trailers = NowPlayingControllerWrapper.getTrailers(movie);
+      final List<String> trailers = NowPlayingControllerWrapper.getTrailers(MovieDetailsActivity.this.movie);
       if (trailers.size() > 0) {
         trailer_url = trailers.get(0);
       }
       if (trailer_url != null) {
-        Intent intent = new Intent();
+        final Intent intent = new Intent();
         intent.putExtra("trailer_url", trailer_url);
         intent.setClass(MovieDetailsActivity.this, VideoViewActivity.class);
         startActivity(intent);
@@ -203,23 +63,23 @@ public class MovieDetailsActivity extends ListActivity {
   class MovieAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public MovieAdapter(Context context) {
+    public MovieAdapter(final Context context) {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      inflater = LayoutInflater.from(context);
+      this.inflater = LayoutInflater.from(context);
     }
 
-    public Object getEntry(int i) {
+    public Object getEntry(final int i) {
       return i;
     }
 
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
-      convertView = inflater.inflate(R.layout.moviedetails_item, null);
+    public View getView(final int position, View convertView, final ViewGroup viewGroup) {
+      convertView = this.inflater.inflate(R.layout.moviedetails_item, null);
       // Creates a MovieViewHolder and store references to the
       // children views we want to bind data to.
-      MovieViewHolder holder = new MovieViewHolder();
+      final MovieViewHolder holder = new MovieViewHolder();
       holder.name = (TextView) convertView.findViewById(R.id.name);
       holder.value = (TextView) convertView.findViewById(R.id.value);
-      MovieDetailEntry entry = movieDetailEntries.get(position);
+      final MovieDetailEntry entry = MovieDetailsActivity.this.movieDetailEntries.get(position);
       holder.name.setText(entry.getName());
       holder.value.setText(entry.getValue());
       // Bind the data efficiently with the holder.
@@ -227,7 +87,7 @@ public class MovieDetailsActivity extends ListActivity {
     }
 
     public int getCount() {
-      return movieDetailEntries.size();
+      return MovieDetailsActivity.this.movieDetailEntries.size();
     }
 
     private class MovieViewHolder {
@@ -235,15 +95,15 @@ public class MovieDetailsActivity extends ListActivity {
       TextView value;
     }
 
-    public long getEntryId(int position) {
+    public long getEntryId(final int position) {
       return position;
     }
 
-    public Object getItem(int position) {
-      return movieDetailEntries.get(position);
+    public Object getItem(final int position) {
+      return MovieDetailsActivity.this.movieDetailEntries.get(position);
     }
 
-    public long getItemId(int position) {
+    public long getItemId(final int position) {
       return position;
     }
 
@@ -257,18 +117,18 @@ public class MovieDetailsActivity extends ListActivity {
     String value;
 
     public String getName() {
-      return name;
+      return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
       this.name = name;
     }
 
     public String getValue() {
-      return value;
+      return this.value;
     }
 
-    public void setValue(String value) {
+    public void setValue(final String value) {
       this.value = value;
     }
   }

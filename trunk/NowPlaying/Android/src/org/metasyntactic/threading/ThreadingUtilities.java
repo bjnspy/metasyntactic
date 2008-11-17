@@ -28,7 +28,7 @@ public class ThreadingUtilities {
     return !isMainThread();
   }
 
-  public static void performOnMainThread(Runnable runnable) {
+  public static void performOnMainThread(final Runnable runnable) {
     if (isMainThread()) {
       runnable.run();
     } else {
@@ -36,19 +36,19 @@ public class ThreadingUtilities {
     }
   }
 
-  public static void performOnBackgroundThread(String name, Runnable runnable, Object lock, boolean visible) {
-    int priority = visible ? Thread.NORM_PRIORITY : Thread.MIN_PRIORITY;
+  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock, final boolean visible) {
+    final int priority = visible ? Thread.NORM_PRIORITY : Thread.MIN_PRIORITY;
     performOnBackgroundThread(name, runnable, lock, visible, priority);
   }
 
-  public static void performOnBackgroundThread(String name, Runnable runnable, Object lock, boolean visible,
-                                               int priority) {
+  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock, final boolean visible,
+                                               final int priority) {
     performOnBackgroundThreadWorker(name, runnable, lock == null ? new Object() : lock, visible, priority);
   }
 
-  private static void performOnBackgroundThreadWorker(String name, final Runnable runnable, final Object lock,
-                                                      final boolean visible, int priority) {
-    Thread t = new HandlerThread(name) {
+  private static void performOnBackgroundThreadWorker(final String name, final Runnable runnable, final Object lock,
+                                                      final boolean visible, final int priority) {
+    final Thread t = new HandlerThread(name) {
       @Override
       public void run() {
         Looper.prepare();
@@ -57,7 +57,7 @@ public class ThreadingUtilities {
             GlobalActivityIndicator.addBackgroundTask(visible);
             try {
               runnable.run();
-            } catch (RuntimeException e) {
+            } catch (final RuntimeException e) {
               throw e;
             }
           } finally {
