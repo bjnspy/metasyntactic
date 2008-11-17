@@ -28,7 +28,7 @@ public class VideoViewActivity extends Activity {
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    NowPlayingControllerWrapper.addActivity(this);
+    NowPlayingControllerWrapper1.addActivity(this);
     setContentView(R.layout.videoview);
     path = getIntent().getExtras().getString("trailer_url");
     videoView = (VideoView) findViewById(R.id.surface_view);
@@ -40,7 +40,7 @@ public class VideoViewActivity extends Activity {
   }
 
   protected void onDestroy() {
-    NowPlayingControllerWrapper.removeActivity(this);
+    NowPlayingControllerWrapper1.removeActivity(this);
     super.onDestroy();
   }
 }

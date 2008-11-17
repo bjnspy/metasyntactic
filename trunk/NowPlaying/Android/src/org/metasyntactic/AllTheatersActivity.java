@@ -38,10 +38,10 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    NowPlayingControllerWrapper.addActivity(this);
+    NowPlayingControllerWrapper1.addActivity(this);
 
-    theaters = NowPlayingControllerWrapper.getTheaters();
-    String userPostalCode = NowPlayingControllerWrapper.getUserLocation();
+    theaters = NowPlayingControllerWrapper1.getTheaters();
+    String userPostalCode = NowPlayingControllerWrapper1.getUserLocation();
     Address address = null;
     try {
       address = new Geocoder(this).getFromLocationName(userPostalCode, 1).get(0);
@@ -51,14 +51,14 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
     userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null, null);
 
-    Collections.sort(theaters, THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
+    Collections.sort(theaters, THEATER_ORDER.get(NowPlayingControllerWrapper1.getAllTheatersSelectedSortIndex()));
 
     // Set up Movies adapter
     setListAdapter(new TheatersAdapter());
   }
 
   protected void onDestroy() {
-    NowPlayingControllerWrapper.removeActivity(this);
+    NowPlayingControllerWrapper1.removeActivity(this);
     super.onDestroy();
   }
 
@@ -168,11 +168,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       Theater theater = theaters.get(position);
       Address address = null;
       try {
-        address = new Geocoder(getContext()).getFromLocationName(NowPlayingControllerWrapper.getUserLocation(), 1).get(0);
+        address = new Geocoder(getContext()).getFromLocationName(NowPlayingControllerWrapper1.getUserLocation(), 1).get(0);
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
-      String headerText = MovieViewUtilities.getTheaterHeader(theaters, position, NowPlayingControllerWrapper
+      String headerText = MovieViewUtilities.getTheaterHeader(theaters, position, NowPlayingControllerWrapper1
           .getAllTheatersSelectedSortIndex(), address);
       if (headerText != null) {
         holder.header.setVisibility(1);
@@ -219,11 +219,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       ThreadingUtilities.performOnMainThread(runnable);
       return;
     }
-    List<Theater> theaters = NowPlayingControllerWrapper.getTheaters();
+    List<Theater> theaters = NowPlayingControllerWrapper1.getTheaters();
     if (theaters.size() > 0) {
       condition2.open();
     }
-    Collections.sort(theaters, THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
+    Collections.sort(theaters, THEATER_ORDER.get(NowPlayingControllerWrapper1.getAllTheatersSelectedSortIndex()));
     adapter.refreshTheaters(theaters);
   }
 

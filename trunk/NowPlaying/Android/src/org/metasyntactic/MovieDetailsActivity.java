@@ -29,7 +29,7 @@ public class MovieDetailsActivity extends ListActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    NowPlayingControllerWrapper.addActivity(this);
+    NowPlayingControllerWrapper1.addActivity(this);
     setContentView(R.layout.moviedetails);
     movie = this.getIntent().getExtras().getParcelable("movie");
     movieAdapter = new MovieAdapter(this);
@@ -38,7 +38,7 @@ public class MovieDetailsActivity extends ListActivity {
 
   @Override
   protected void onDestroy() {
-    NowPlayingControllerWrapper.removeActivity(this);
+    NowPlayingControllerWrapper1.removeActivity(this);
     super.onDestroy();
   }
 
@@ -50,7 +50,7 @@ public class MovieDetailsActivity extends ListActivity {
     imdbbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
         String imdb_url = null;
-        imdb_url = NowPlayingControllerWrapper.getImdbAddress(movie);
+        imdb_url = NowPlayingControllerWrapper1.getImdbAddress(movie);
         if (imdb_url != null) {
           Intent intent = new Intent();
           intent.putExtra("imdb_url", imdb_url);
@@ -63,7 +63,7 @@ public class MovieDetailsActivity extends ListActivity {
     });
     reviewsbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
-        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper
+        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper1
             .getReviews(movie));
         if (reviews.size() > 0) {
           Intent intent = new Intent();
@@ -79,7 +79,7 @@ public class MovieDetailsActivity extends ListActivity {
     imdbbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
         String imdb_url = null;
-        imdb_url = NowPlayingControllerWrapper.getImdbAddress(movie);
+        imdb_url = NowPlayingControllerWrapper1.getImdbAddress(movie);
         if (!StringUtilities.isNullOrEmpty(imdb_url)) {
           Intent intent = new Intent();
           intent.putExtra("imdb_url", imdb_url);
@@ -92,7 +92,7 @@ public class MovieDetailsActivity extends ListActivity {
     });
     reviewsbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
-        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper
+        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper1
             .getReviews(movie));
         if (reviews.size() > 0) {
           Intent intent = new Intent();
@@ -111,7 +111,7 @@ public class MovieDetailsActivity extends ListActivity {
     MovieDetailEntry entry = new MovieDetailEntry();
     // Add synopsis
     entry.setName(movie.getDisplayTitle());
-    String synopsis = NowPlayingControllerWrapper.getSynopsis(movie);
+    String synopsis = NowPlayingControllerWrapper1.getSynopsis(movie);
     if (!StringUtilities.isNullOrEmpty(synopsis)) {
       // hack to display text on left and bottom or poster
       entry.setValue(synopsis);
@@ -188,7 +188,7 @@ public class MovieDetailsActivity extends ListActivity {
   OnClickListener trailerOnClickListener = new OnClickListener() {
     public void onClick(View v) {
       String trailer_url = null;
-      List<String> trailers = NowPlayingControllerWrapper.getTrailers(movie);
+      List<String> trailers = NowPlayingControllerWrapper1.getTrailers(movie);
       if (trailers.size() > 0) {
         trailer_url = trailers.get(0);
       }

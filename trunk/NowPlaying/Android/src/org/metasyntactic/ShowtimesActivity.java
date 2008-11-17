@@ -26,7 +26,7 @@ public class ShowtimesActivity extends ListActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    NowPlayingControllerWrapper.addActivity(this);
+    NowPlayingControllerWrapper1.addActivity(this);
     setContentView(R.layout.showtimes);
     movie = this.getIntent().getExtras().getParcelable("movie");
     theaterAdapter = new TheaterAdapter(this);
@@ -35,7 +35,7 @@ public class ShowtimesActivity extends ListActivity {
 
   @Override
   protected void onDestroy() {
-    NowPlayingControllerWrapper.removeActivity(this);
+    NowPlayingControllerWrapper1.removeActivity(this);
     super.onDestroy();
   }
 
@@ -75,7 +75,7 @@ public class ShowtimesActivity extends ListActivity {
       holder.theater.setText(theater.getName());
       holder.address.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
       holder.phone.setText(theater.getPhoneNumber());
-      List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie, theater);
+      List<Performance> list = NowPlayingControllerWrapper1.getPerformancesForMovieAtTheater(movie, theater);
       String performance = "";
       if (list != null) {
         for (int i = 0; i < list.size(); i++) {
