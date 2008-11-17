@@ -1,234 +1,260 @@
-//Copyright 2008 Cyrus Najmabadi
+// Copyright 2008 Cyrus Najmabadi
 //
-//Licensed under the Apache License, Version 2.0 (the "License");
-//you may not use this file except in compliance with the License.
-//You may obtain a copy of the License at
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
 //     http://www.apache.org/licenses/LICENSE-2.0
 //
-//Unless required by applicable law or agreed to in writing, software
-//distributed under the License is distributed on an "AS IS" BASIS,
-//WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//See the License for the specific language governing permissions and
-//limitations under the License.
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 package org.metasyntactic;
 
-import android.os.RemoteException;
+import android.app.Activity;
+import android.content.Context;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
+import org.metasyntactic.ui.GlobalActivityIndicator;
+import org.metasyntactic.utilities.SetUtilities;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
-/**
- * Wrapper that throws runtime exceptions instead of remoting exceptions
- *
- * @author cyrusn@google.com (Cyrus Najmabadi)
- */
+/** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingControllerWrapper {
-  private final INowPlayingController controller;
+  private static final Object lock = new Object();
 
-  public NowPlayingControllerWrapper(INowPlayingController controller) {
-    this.controller = controller;
+  private static final Set<Activity> activities = new LinkedHashSet<Activity>();
+  private static NowPlayingController instance;
+
+  private NowPlayingControllerWrapper() {
+
   }
 
-  public String getUserLocation() {
-    try {
-      return controller.getUserLocation();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static void addActivity(Activity activity) {
+    synchronized (lock) {
+      activities.add(activity);
+      GlobalActivityIndicator.addActivity(activity);
+
+      if (activities.size() == 1) {
+        instance = new NowPlayingController();
+        instance.startup();
+      }
     }
   }
 
-  public void setUserLocation(String userLocation) {
-    try {
-      controller.setUserLocation(userLocation);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static void removeActivity(Activity activity) {
+    synchronized (lock) {
+      GlobalActivityIndicator.removeActivity(activity);
+      activities.remove(activity);
+
+      if (activities.size() == 0) {
+        instance.shutdown();
+        instance = null;
+      }
     }
   }
 
-  public int getSearchDistance() {
-    try {
-      return controller.getSearchDistance();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  private static void checkInstance() {
+    if (instance == null) {
+      throw new RuntimeException("Trying to call into the controller when it does not exist");
     }
   }
 
-  public void setSearchDistance(int searchDistance) {
-    try {
-      controller.setSearchDistance(searchDistance);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+
+  public static Context getApplicationContext() {
+    synchronized (lock) {
+      checkInstance();
+      return SetUtilities.any(activities).getApplicationContext();
     }
   }
 
-  public int getSelectedTabIndex() {
-    try {
-      return controller.getSelectedTabIndex();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+
+  public static String getUserLocation() {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getUserLocation();
     }
   }
 
-  public void setSelectedTabIndex(int index) {
-    try {
-      controller.setSelectedTabIndex(index);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static void setUserLocation(String userLocation) {
+    synchronized (lock) {
+      checkInstance();
+      instance.setUserLocation(userLocation);
     }
   }
 
-  public int getAllMoviesSelectedSortIndex() {
-    try {
-      return controller.getAllMoviesSelectedSortIndex();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static int getSearchDistance() {
+
+    synchronized (lock) {
+      checkInstance();
+      return instance.getSearchDistance();
     }
   }
 
-  public void setAllMoviesSelectedSortIndex(int index) {
-    try {
-      controller.setAllMoviesSelectedSortIndex(index);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static void setSearchDistance(int searchDistance) {
+    synchronized (lock) {
+      checkInstance();
+      instance.setSearchDistance(searchDistance);
     }
   }
 
-  public int getAllTheatersSelectedSortIndex() {
-    try {
-      return controller.getAllTheatersSelectedSortIndex();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static int getSelectedTabIndex() {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getSelectedTabIndex();
     }
   }
 
-  public void setAllTheatersSelectedSortIndex(int index) {
-    try {
-      controller.setAllTheatersSelectedSortIndex(index);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static void setSelectedTabIndex(int index) {
+    synchronized (lock) {
+      checkInstance();
+      instance.setSelectedTabIndex(index);
     }
   }
 
-  public int getUpcomingMoviesSelectedSortIndex() {
-    try {
-      return controller.getUpcomingMoviesSelectedSortIndex();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static int getAllMoviesSelectedSortIndex() {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getAllMoviesSelectedSortIndex();
     }
   }
 
-  public void setUpcomingMoviesSelectedSortIndex(int index) {
-    try {
-      controller.setUpcomingMoviesSelectedSortIndex(index);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static void setAllMoviesSelectedSortIndex(int index) {
+    synchronized (lock) {
+      checkInstance();
+      instance.setAllMoviesSelectedSortIndex(index);
     }
   }
 
-  public List<Movie> getMovies() {
-    try {
-      return controller.getMovies();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static int getAllTheatersSelectedSortIndex() {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getAllTheatersSelectedSortIndex();
     }
   }
 
-  public List<Theater> getTheaters() {
-    try {
-      return controller.getTheaters();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static void setAllTheatersSelectedSortIndex(int index) {
+    synchronized (lock) {
+      checkInstance();
+      instance.setAllTheatersSelectedSortIndex(index);
     }
   }
 
-  public List<String> getTrailers(Movie movie) {
-    try {
-      return controller.getTrailers(movie);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static int getUpcomingMoviesSelectedSortIndex() {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getUpcomingMoviesSelectedSortIndex();
     }
   }
 
-  public List<Review> getReviews(Movie movie) {
-    try {
-      return controller.getReviews(movie);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static void setUpcomingMoviesSelectedSortIndex(int index) {
+    synchronized (lock) {
+      checkInstance();
+      instance.setUpcomingMoviesSelectedSortIndex(index);
     }
   }
 
-  public ScoreType getScoreType() {
-    try {
-      return controller.getScoreType();
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static List<Movie> getMovies() {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getMovies();
     }
   }
 
-  public Score getScore(Movie movie) {
-    try {
-      return controller.getScore(movie);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static List<Theater> getTheaters() {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getTheaters();
     }
   }
 
-  public ByteArray getPoster(Movie movie) {
-    try {
-      return controller.getPoster(movie);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static List<String> getTrailers(Movie movie) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getTrailers(movie);
     }
   }
 
-  public String getSynopsis(Movie movie) {
-    try {
-      return controller.getSynopsis(movie);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static List<Review> getReviews(Movie movie) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getReviews(movie);
     }
   }
 
-  public String getImdbAddress(Movie movie) {
-    try {
-      return controller.getImdbAddress(movie);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static String getImdbAddress(Movie movie) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getImdbAddress(movie);
     }
   }
 
-  public void prioritizeMovie(Movie movie) {
-    try {
-      controller.prioritizeMovie(movie);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static List<Theater> getTheatersShowingMovie(Movie movie) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getTheatersShowingMovie(movie);
     }
   }
 
-  public List<Theater> getTheatersShowingMovie(Movie movie) {
-    try {
-      return controller.getTheatersShowingMovie(movie);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static List<Movie> getMoviesAtTheater(Theater theater) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getMoviesAtTheater(theater);
     }
   }
 
-  public List<Movie> getMoviesAtTheater(Theater theater) {
-    try {
-      return controller.getMoviesAtTheater(theater);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getPerformancesForMovieAtTheater(movie, theater);
     }
   }
 
-  public List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) {
-    try {
-      return controller.getPerformancesForMovieAtTheater(movie, theater);
-    } catch (RemoteException e) {
-      throw new RuntimeException(e);
+  public static ScoreType getScoreType() {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getScoreType();
+    }
+  }
+
+  public static void setScoreType(ScoreType scoreType) {
+    synchronized (lock) {
+      checkInstance();
+      instance.setScoreType(scoreType);
+    }
+  }
+
+  public static Score getScore(Movie movie) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getScore(movie);
+    }
+  }
+
+  public static ByteArray getPoster(Movie movie) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getPoster(movie);
+    }
+  }
+
+  public static String getSynopsis(Movie movie) {
+    synchronized (lock) {
+      checkInstance();
+      return instance.getSynopsis(movie);
+    }
+  }
+
+  public static void prioritizeMovie(Movie movie) {
+    synchronized (lock) {
+      checkInstance();
+      instance.prioritizeMovie(movie);
     }
   }
 }
