@@ -80,7 +80,8 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem, final OnClickListener listener) {
+  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem,
+                                                          final OnClickListener listener) {
     this.builder.setSingleChoiceItems(items, checkedItem, listener);
     return this;
   }

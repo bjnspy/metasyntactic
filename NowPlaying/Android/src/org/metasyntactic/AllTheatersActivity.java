@@ -173,8 +173,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
         throw new RuntimeException(e);
       }
       final String headerText = MovieViewUtilities.getTheaterHeader(AllTheatersActivity.this.theaters, position,
-                                                              NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex(),
-                                                              address);
+                                                                    NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex(),
+                                                                    address);
       if (headerText != null) {
         holder.header.setVisibility(1);
         holder.header.setText(headerText);

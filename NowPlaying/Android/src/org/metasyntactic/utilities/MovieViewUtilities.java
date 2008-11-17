@@ -154,7 +154,8 @@ public class MovieViewUtilities {
     return null;
   }
 
-  public static String getTheaterHeader(final List<Theater> theaters, final int position, final int sortIndex, final Address address) {
+  public static String getTheaterHeader(final List<Theater> theaters, final int position, final int sortIndex,
+                                        final Address address) {
     switch (sortIndex) {
       case TheaterName:
         if (position == 0) {
@@ -167,8 +168,8 @@ public class MovieViewUtilities {
       case Distance:
         //todo (mjoshi) fix this ...incorrect headers are returned, and its slow.
 
-        final Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null,
-                                             null);
+        final Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null,
+                                                   null, null);
 
         final double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
         // Double dist_m2 = userLocation.distanceTo(m2.getLocation());

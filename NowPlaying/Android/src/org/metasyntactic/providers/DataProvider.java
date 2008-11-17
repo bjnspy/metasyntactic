@@ -125,7 +125,9 @@ public class DataProvider {
       return null;
     }
 
-    final String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
+    final String country = isNullOrEmpty(location.getCountry())
+                           ? Locale.getDefault().getCountry()
+                           : location.getCountry();
     int days = Days.daysBetween(DateUtilities.getToday(), this.model.getSearchDate());
 
     days = min(max(days, 0), 7);
@@ -182,7 +184,7 @@ public class DataProvider {
       }
 
       final Movie movie = new Movie(identifier, title, rating, length, imdbAddress, releaseDate, poster, synopsis, "",
-                              directors, cast, genres);
+                                    directors, cast, genres);
       movieIdToMovieMap.put(identifier, movie);
     }
 
@@ -221,9 +223,10 @@ public class DataProvider {
   }
 
   private void processTheaterAndMovieShowtimes(
-      final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto theaterAndMovieShowtimes, final List<Theater> theaters,
-      final Map<String, Map<String, List<Performance>>> performances, final Map<String, Date> synchronizationData,
-      final Location originatingLocation, final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
+      final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto theaterAndMovieShowtimes,
+      final List<Theater> theaters, final Map<String, Map<String, List<Performance>>> performances,
+      final Map<String, Date> synchronizationData, final Location originatingLocation,
+      final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
     final NowPlaying.TheaterProto theater = theaterAndMovieShowtimes.getTheater();
     final String name = theater.getName();
     if (isNullOrEmpty(name)) {
@@ -257,8 +260,8 @@ public class DataProvider {
       // stored (but warn the user).
 
       final File performancesFile = getPerformancesFile(name);
-      final Map<String, List<Performance>> oldPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
-                                                                                                    performancesFile);
+      final Map<String, List<Performance>> oldPerformances = FileUtilities.readStringToListOfPersistables(
+          Performance.reader, performancesFile);
 
       if (!oldPerformances.isEmpty()) {
         movieToShowtimesMap = oldPerformances;
@@ -275,7 +278,8 @@ public class DataProvider {
 
   private Object[] processTheaterAndMovieShowtimes(
       final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes,
-      final Location originatingLocation, final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
+      final Location originatingLocation, final Collection<String> theaterNames,
+      final Map<String, Movie> movieIdToMovieMap) {
 
     final List<Theater> theaters = new ArrayList<Theater>();
 
@@ -291,14 +295,16 @@ public class DataProvider {
     return new Object[]{theaters, performances, synchronizationData,};
   }
 
-  private LookupResult processTheaterListings(final NowPlaying.TheaterListingsProto element, final Location originatingLocation,
+  private LookupResult processTheaterListings(final NowPlaying.TheaterListingsProto element,
+                                              final Location originatingLocation,
                                               final Collection<String> theaterNames) {
     final List<NowPlaying.MovieProto> movieProtos = element.getMoviesList();
     final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList();
     final Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);
 
-    final Object[] theatersAndPerformances = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes, originatingLocation,
-                                                                       theaterNames, movieIdToMovieMap);
+    final Object[] theatersAndPerformances = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes,
+                                                                             originatingLocation, theaterNames,
+                                                                             movieIdToMovieMap);
 
     final List<Movie> movies = new ArrayList<Movie>(movieIdToMovieMap.values());
     final List<Theater> theaters = (List<Theater>) theatersAndPerformances[0];

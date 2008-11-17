@@ -9,13 +9,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
 
 import java.util.ArrayList;
 import java.util.List;

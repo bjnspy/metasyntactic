@@ -3,7 +3,6 @@ package org.metasyntactic;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +68,8 @@ public class ShowtimesActivity extends ListActivity {
       holder.theater.setText(theater.getName());
       holder.address.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
       holder.phone.setText(theater.getPhoneNumber());
-      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(ShowtimesActivity.this.movie, theater);
+      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
+          ShowtimesActivity.this.movie, theater);
       String performance = "";
       if (list != null) {
         for (int i = 0; i < list.size(); i++) {

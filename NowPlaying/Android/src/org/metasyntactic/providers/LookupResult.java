@@ -34,7 +34,8 @@ public class LookupResult {
   public Map<String, Date> synchronizationData;
 
   public LookupResult(final List<Movie> movies, final List<Theater> theaters,
-                      final Map<String, Map<String, List<Performance>>> performances, final Map<String, Date> synchronizationData) {
+                      final Map<String, Map<String, List<Performance>>> performances,
+                      final Map<String, Date> synchronizationData) {
     this.movies = movies;
     this.theaters = theaters;
     this.performances = performances;

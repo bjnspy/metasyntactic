@@ -36,13 +36,14 @@ public class ThreadingUtilities {
     }
   }
 
-  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock, final boolean visible) {
+  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock,
+                                               final boolean visible) {
     final int priority = visible ? Thread.NORM_PRIORITY : Thread.MIN_PRIORITY;
     performOnBackgroundThread(name, runnable, lock, visible, priority);
   }
 
-  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock, final boolean visible,
-                                               final int priority) {
+  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock,
+                                               final boolean visible, final int priority) {
     performOnBackgroundThreadWorker(name, runnable, lock == null ? new Object() : lock, visible, priority);
   }
 

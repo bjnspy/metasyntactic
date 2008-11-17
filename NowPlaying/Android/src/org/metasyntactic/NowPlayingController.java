@@ -29,6 +29,7 @@ public class NowPlayingController {
   }
 
   public void startup() {
+    this.model.startup();
     update();
   }
 

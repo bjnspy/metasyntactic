@@ -50,7 +50,9 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
       return null;
     }
 
-    final String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
+    final String country = isNullOrEmpty(location.getCountry())
+                           ? Locale.getDefault().getCountry()
+                           : location.getCountry();
 
     //Debug.startMethodTracing("getUrlDaysBetween", 1 << 24);
     int days = Days.daysBetween(new Date(), getModel().getSearchDate());
