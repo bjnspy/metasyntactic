@@ -157,6 +157,8 @@ typedef enum {
         if (imageHeight > height) {
             height = imageHeight;
         }
+    } else if (indexPath.section == LocalizedBySection) {
+        return tableView.rowHeight - 10;
     }
 
     return height;

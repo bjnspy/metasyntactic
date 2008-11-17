@@ -136,7 +136,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         thumbnail.setSelection(selection, true);
         Button details = (Button) findViewById(R.id.details);
         details.setOnClickListener(new OnClickListener() {
-            @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub  
                 final Movie movie = movies.get(selection);
@@ -149,7 +148,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         });
         Button showtimes = (Button) findViewById(R.id.showtimes);
         showtimes.setOnClickListener(new OnClickListener() {
-            @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub 
                 final Movie movie = movies.get(selection);
@@ -208,7 +206,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
                     (AllMoviesActivity) mContext).setTitle(
                     R.string.movies_select_sort_title).setKey(
                     NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
-                    .setEntries(R.array.entries_movies_sort_preference).show();
+                    .setEntries(R.array.entries_movies_sort_preference);
+            builder.show();
             return true;
         }
         return false;
@@ -254,8 +253,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             convertView.setTag(holder);
             Resources res = mContext.getResources();
             final Movie movie = movies.get(position);
-            String headerText = MovieViewUtilities.getHeader(movies, position,
-                    mController.getAllMoviesSelectedSortIndex());
             if (mController.getPoster(movie).getBytes().length > 0) {
                 holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(
                         mController.getPoster(movie).getBytes(), 0, mController
@@ -322,13 +319,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     }
     class ThumbnailAdapter extends BaseAdapter {
         private Context mContext;
-        private LayoutInflater mInflater;
         int mGalleryItemBackground;
 
         public ThumbnailAdapter(Context context) {
             mContext = context;
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            mInflater = LayoutInflater.from(context);
             TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
             mGalleryItemBackground = a.getResourceId(
                     android.R.styleable.Theme_galleryItemBackground, 0);
@@ -393,24 +388,21 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         }
     }
 
-    @Override
     public Context getContext() {
         // TODO Auto-generated method stub
         return mContext;
     }
 
-    @Override
     public NowPlayingControllerWrapper getController() {
         // TODO Auto-generated method stub
         return mController;
     }
 
-    @Override
     public void refresh() {
         // TODO Auto-generated method stub
         movies = mController.getMovies();
-        Comparator comparator = NowPlayingActivity.MOVIE_ORDER[mController
-                .getAllMoviesSelectedSortIndex()];
+        Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER.get(mController
+                .getAllMoviesSelectedSortIndex());
         Collections.sort(movies, comparator);
         if (mDetailAdapter != null && mThumbnailAdapter != null) {
             mDetailAdapter.refreshMovies();

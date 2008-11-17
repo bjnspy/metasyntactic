@@ -25,7 +25,6 @@ import java.util.List;
 public class ShowtimesActivity extends ListActivity {
     /** Called when the activity is first created. */
     NowPlayingControllerWrapper controller;
-    private Context mContext;
     TheaterAdapter theaterAdapter;
     List<Theater> theaters = new ArrayList<Theater>();
 
@@ -34,7 +33,6 @@ public class ShowtimesActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.showtimes);
         movie = this.getIntent().getExtras().getParcelable("movie");
-        mContext = this;
         theaterAdapter = new TheaterAdapter(this);
         setListAdapter(theaterAdapter);
     }
@@ -94,11 +92,9 @@ public class ShowtimesActivity extends ListActivity {
 
    
     class TheaterAdapter extends BaseAdapter {
-        private final Context context;
         private final LayoutInflater inflater;
 
         public TheaterAdapter(Context context) {
-            this.context = context;
             // Cache the LayoutInflate to avoid asking for a new one each time.
             inflater = LayoutInflater.from(context);
         }
@@ -152,13 +148,11 @@ public class ShowtimesActivity extends ListActivity {
             return position;
         }
 
-        @Override
         public Object getItem(int position) {
             // TODO Auto-generated method stub
             return theaters.get(position);
         }
 
-        @Override
         public long getItemId(int position) {
             // TODO Auto-generated method stub
             return position;

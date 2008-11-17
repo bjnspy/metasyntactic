@@ -100,8 +100,9 @@
 
 
 - (void) determineLocation {
-    if (self.model.userAddress.length > 0) {
-        Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+    NSString* address = self.model.userAddress;
+    if (address.length > 0) {
+        Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
 
         [self performSelectorOnMainThread:@selector(reportUserLocation:) withObject:location waitUntilDone:NO];
     }

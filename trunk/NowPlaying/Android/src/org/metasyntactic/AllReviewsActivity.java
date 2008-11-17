@@ -29,15 +29,12 @@ import org.metasyntactic.data.Review;
 import java.util.List;
 
 public class AllReviewsActivity extends ListActivity {
-  private static Context context;
-
   private List<Review> reviews;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
-    context = this;
     reviews = getIntent().getParcelableArrayListExtra("reviews");
     this.setListAdapter(new ReviewsAdapter(this));
   }
@@ -71,7 +68,6 @@ public class AllReviewsActivity extends ListActivity {
       holder.source = (TextView) convertView.findViewById(R.id.source);
       holder.desc = (TextView) convertView.findViewById(R.id.desc);
       convertView.setTag(holder);
-      Resources res = context.getResources();
       final Review review = reviews.get(position);
       holder.author.setText(review.getAuthor());
       holder.source.setText(review.getSource());

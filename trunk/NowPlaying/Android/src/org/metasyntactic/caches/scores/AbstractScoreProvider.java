@@ -16,7 +16,6 @@ package org.metasyntactic.caches.scores;
 
 import static org.metasyntactic.utilities.CollectionUtilities.size;
 import static org.metasyntactic.utilities.XmlUtilities.children;
-import android.util.Log;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;

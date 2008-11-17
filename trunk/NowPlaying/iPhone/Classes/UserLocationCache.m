@@ -112,7 +112,7 @@
 }
 
 
-- (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress {
+- (Location*) downloadUserAddressLocationBackgroundEntryPointWorker:(NSString*) userAddress {
     if (userAddress.length == 0) {
         return nil;
     }
@@ -132,5 +132,15 @@
     return location;
 }
 
+
+- (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress {
+    Location* result;
+    [gate lock];
+    {
+        result = [self downloadUserAddressLocationBackgroundEntryPointWorker:userAddress];
+    }
+    [gate unlock];
+    return result;
+}
 
 @end

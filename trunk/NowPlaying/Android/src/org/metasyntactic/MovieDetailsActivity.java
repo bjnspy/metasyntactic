@@ -27,7 +27,6 @@ public class MovieDetailsActivity extends ListActivity {
     /** Called when the activity is first created. */
     NowPlayingControllerWrapper controller;
     List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
-    private Context mContext;
     MovieAdapter movieAdapter;
 
     @Override
@@ -35,7 +34,6 @@ public class MovieDetailsActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.moviedetails);
         movie = this.getIntent().getExtras().getParcelable("movie");
-        mContext = this;
         movieAdapter = new MovieAdapter(this);
         setListAdapter(movieAdapter);
     }
@@ -88,8 +86,8 @@ public class MovieDetailsActivity extends ListActivity {
         });
         reviewsbtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                ArrayList<Review> reviews = (ArrayList) controller
-                        .getReviews(movie);
+                ArrayList<Review> reviews = new ArrayList<Review>(controller
+                        .getReviews(movie));
                 if (reviews != null && reviews.size() > 0) {
                     Intent intent = new Intent();
                     intent.putParcelableArrayListExtra("reviews", reviews);
@@ -122,8 +120,8 @@ public class MovieDetailsActivity extends ListActivity {
         });
         reviewsbtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                ArrayList<Review> reviews = (ArrayList) controller
-                        .getReviews(movie);
+                ArrayList<Review> reviews = new ArrayList<Review>(controller
+                        .getReviews(movie));
                 if (reviews != null && reviews.size() > 0) {
                     Intent intent = new Intent();
                     intent.putParcelableArrayListExtra("reviews", reviews);
@@ -274,7 +272,6 @@ public class MovieDetailsActivity extends ListActivity {
             holder.name.setText(entry.getName());
             holder.value.setText(entry.getValue());
             // Bind the data efficiently with the holder.
-            Resources res = context.getResources();
             return convertView;
         }
 
@@ -292,13 +289,11 @@ public class MovieDetailsActivity extends ListActivity {
             return position;
         }
 
-        @Override
         public Object getItem(int position) {
             // TODO Auto-generated method stub
             return movieDetailEntries.get(position);
         }
 
-        @Override
         public long getItemId(int position) {
             // TODO Auto-generated method stub
             return position;
