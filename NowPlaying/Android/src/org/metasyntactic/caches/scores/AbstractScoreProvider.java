@@ -14,9 +14,6 @@
 
 package org.metasyntactic.caches.scores;
 
-import static org.metasyntactic.utilities.CollectionUtilities.size;
-import static org.metasyntactic.utilities.XmlUtilities.children;
-
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
@@ -26,25 +23,14 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.CollectionUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.utilities.*;
+import static org.metasyntactic.utilities.CollectionUtilities.size;
+import static org.metasyntactic.utilities.XmlUtilities.children;
 import org.metasyntactic.utilities.difference.EditDistance;
 import org.w3c.dom.Element;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public abstract class AbstractScoreProvider implements ScoreProvider {
   private class MovieAndMap {
@@ -324,7 +310,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
     for (Map.Entry<String, Score> entry : scoresMap.entrySet()) {
       File file = reviewsFile(entry.getKey());
-     if (!file.exists()) {
+      if (!file.exists()) {
         scoresWithoutReviews.add(entry.getValue());
       } else {
         if (Math.abs(new Date().getTime() - file.lastModified()) > (2 * Constants.ONE_DAY)) {
@@ -384,52 +370,50 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     if (!StringUtilities.isNullOrEmpty(location.getCountry())) {
       country = location.getCountry();
     }
-   
-    
+
     String address = "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale
         .getDefault()
         .getLanguage() + "&id=" + score.getIdentifier() + "" + "&provider=" + score.getProvider() + "&latitude=" + (int) (location
         .getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
-   
+
     return address;
-   
   }
 
   private void downloadReviews(Score score, Location location) {
-      if(score!=null) {
-    String address = serverReviewsAddress(location, score) + "&hash=true";
-    String serverHash = NetworkUtilities.downloadString(address, false);
+    if (score != null) {
+      String address = serverReviewsAddress(location, score) + "&hash=true";
+      String serverHash = NetworkUtilities.downloadString(address, false);
 
-    if (serverHash == null) {
-      serverHash = "0";
-    }
+      if (serverHash == null) {
+        serverHash = "0";
+      }
 
-    String localHash = FileUtilities.readString(reviewsHashFile(score.getCanonicalTitle()));
-    if (serverHash.equals(localHash)) {
-      return;
-    }
-
-    List<Review> reviews = downloadReviewContents(location, score);
-    if (reviews == null) {
-      // didn't download.  just ignore it.
-      return;
-    }
-
-    if (reviews.isEmpty()) {
-      // we got no reviews.  only save that fact if we don't currently have
-      // any reviews.  This way we don't end up checking every single time
-      // for movies that don't have reviews yet
-      List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader,
-                                                                       reviewsFile(score.getCanonicalTitle()));
-      if (size(existingReviews) > 0) {
-        // we have reviews already.  don't wipe it out.
+      String localHash = FileUtilities.readString(reviewsHashFile(score.getCanonicalTitle()));
+      if (serverHash.equals(localHash)) {
         return;
       }
-    }
 
-    save(score.getCanonicalTitle(), reviews, serverHash);
-    Application.refresh();
+      List<Review> reviews = downloadReviewContents(location, score);
+      if (reviews == null) {
+        // didn't download.  just ignore it.
+        return;
       }
+
+      if (reviews.isEmpty()) {
+        // we got no reviews.  only save that fact if we don't currently have
+        // any reviews.  This way we don't end up checking every single time
+        // for movies that don't have reviews yet
+        List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader,
+                                                                         reviewsFile(score.getCanonicalTitle()));
+        if (size(existingReviews) > 0) {
+          // we have reviews already.  don't wipe it out.
+          return;
+        }
+      }
+
+      save(score.getCanonicalTitle(), reviews, serverHash);
+      Application.refresh();
+    }
   }
 
   private List<Review> downloadReviewContents(Location location, Score score) {

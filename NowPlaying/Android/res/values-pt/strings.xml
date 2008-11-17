@@ -38,7 +38,9 @@
   <string name="change_date">Alterar data</string>
   <string name="citystate_or_postal_code">Ciudad/Estado o código postal</string>
   <string name="could_not_find_location_dot">Não foi possível determinar posição.</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">A informação para datas futuras pode conter incorrecções. Utilize a data de hoje para obter informação mais precisa.</string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">A informação para datas futuras pode conter
+    incorrecções. Utilize a data de hoje para obter informação mais precisa.
+  </string>
   <string name="director">Realização:</string>
   <string name="directors">Realização:</string>
   <string name="distance">Distância</string>
@@ -93,7 +95,10 @@
   <string name="show_one_hidden_theater">1 cinema filtrado</string>
   <string name="show_times_retrieved_on_string_dot">Sessões recolhidas em %s.</string>
   <string name="theater_last_reported_show_times_on_string_dot">Ultima actualização em\n %s</string>
-  <string name="theater_providers_often_limit_the_maximum_search">A distância de pesquisa pode estar limitada pelo serviço que fornece a informação. Consequentemente alguns cinemas podem não constar dos resultados mesmo que o raio de pesquisa seja muito elevado.</string>
+  <string name="theater_providers_often_limit_the_maximum_search">A distância de pesquisa pode estar limitada pelo
+    serviço que fornece a informação. Consequentemente alguns cinemas podem não constar dos resultados mesmo que o raio
+    de pesquisa seja muito elevado.
+  </string>
   <string name="theaters">Cinemas</string>
   <string name="this_theater_has_not_yet_reported_its_show_times"/>
   <string name="ticket_sales_provided_by">Venda de bilhetes por:</string>

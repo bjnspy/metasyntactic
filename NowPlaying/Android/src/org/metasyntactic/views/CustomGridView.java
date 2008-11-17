@@ -41,13 +41,9 @@ public class CustomGridView extends GridView {
     // TODO Auto-generated constructor stub
   }
 
-@Override
-protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+  @Override
+  protected void onScrollChanged(int l, int t, int oldl, int oldt) {
     // TODO Auto-generated method stub
-    super.onScrollChanged(l/20, t/20, oldl, oldt);
-}
-
-
-
-
+    super.onScrollChanged(l / 20, t / 20, oldl, oldt);
+  }
 }

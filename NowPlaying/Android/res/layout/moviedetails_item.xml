@@ -15,34 +15,34 @@
 	* limitations under the License.
 -->
 <LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	<TextView
-		android:id="@+id/name"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center_vertical"
-		android:background="@drawable/dark_header_dithered"
-		android:textColor="?android:attr/textColorSecondary"
-		android:textStyle="bold"
-		android:textSize="14sp"
-		android:paddingLeft="8dip" />
-	<ImageView
-		android:id="@+id/divider2"
-		android:layout_width="fill_parent"
-		android:layout_height="1px"
-		android:background="@drawable/divider_horizontal_bright" />
-	<TextView
-		android:id="@+id/value"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:paddingLeft="8dip"
-		android:paddingRight="10dip"
-		android:layout_marginTop="15px"
-		android:layout_marginBottom="15px"
-		android:gravity="center_vertical"
-		android:singleLine="false"
-		android:textAppearance="?android:attr/textAppearanceSmall" />
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+  <TextView
+      android:id="@+id/name"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_vertical"
+      android:background="@drawable/dark_header_dithered"
+      android:textColor="?android:attr/textColorSecondary"
+      android:textStyle="bold"
+      android:textSize="14sp"
+      android:paddingLeft="8dip"/>
+  <ImageView
+      android:id="@+id/divider2"
+      android:layout_width="fill_parent"
+      android:layout_height="1px"
+      android:background="@drawable/divider_horizontal_bright"/>
+  <TextView
+      android:id="@+id/value"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:paddingLeft="8dip"
+      android:paddingRight="10dip"
+      android:layout_marginTop="15px"
+      android:layout_marginBottom="15px"
+      android:gravity="center_vertical"
+      android:singleLine="false"
+      android:textAppearance="?android:attr/textAppearanceSmall"/>
 </LinearLayout>

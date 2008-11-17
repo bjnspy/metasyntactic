@@ -18,11 +18,7 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /** @author mjoshi@google.com (Megha Joshi) */
 
@@ -65,8 +61,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
         .getAllTheatersSelectedSortIndex()));
 
     // Set up Movies adapter
-    TheatersAdapter mAdapter = new TheatersAdapter(this);
-    setListAdapter(mAdapter);
+    setListAdapter(new TheatersAdapter());
   }
 
   @Override
@@ -152,13 +147,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   }
 
   class TheatersAdapter extends BaseAdapter {
-    private final Context context;
     private final LayoutInflater inflater;
 
-    public TheatersAdapter(Context context) {
-      this.context = context;
+    public TheatersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      inflater = LayoutInflater.from(context);
+      inflater = LayoutInflater.from(getContext());
     }
 
     public Object getItem(int i) {
@@ -183,7 +176,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       Theater theater = theaters.get(position);
       Address address = null;
       try {
-        address = new Geocoder(context).getFromLocationName(controller.getUserLocation(), 1).get(0);
+        address = new Geocoder(getContext()).getFromLocationName(controller.getUserLocation(), 1).get(0);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

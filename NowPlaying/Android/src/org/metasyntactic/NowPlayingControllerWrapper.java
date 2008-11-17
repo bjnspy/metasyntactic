@@ -207,28 +207,28 @@ public class NowPlayingControllerWrapper {
       throw new RuntimeException(e);
     }
   }
-  
+
   public List<Theater> getTheatersShowingMovie(Movie movie) {
-      try {
-          return controller.getTheatersShowingMovie(movie);
-        } catch (RemoteException e) {
-          throw new RuntimeException(e);
-        }
+    try {
+      return controller.getTheatersShowingMovie(movie);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    public List<Movie> getMoviesAtTheater(Theater theater){
-        try {
-            return controller.getMoviesAtTheater(theater);
-          } catch (RemoteException e) {
-            throw new RuntimeException(e);
-          }
+  public List<Movie> getMoviesAtTheater(Theater theater) {
+    try {
+      return controller.getMoviesAtTheater(theater);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    public List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) {
-        try {
-            return controller.getPerformancesForMovieAtTheater(movie,theater);
-          } catch (RemoteException e) {
-            throw new RuntimeException(e);
-          }
+  public List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) {
+    try {
+      return controller.getPerformancesForMovieAtTheater(movie, theater);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
     }
+  }
 }

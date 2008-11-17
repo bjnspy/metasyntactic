@@ -46,7 +46,9 @@
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>
   <string name="dvdbluray_details_provided_by">DVD/Blu-ray -tiedot:</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Tulevien päivien tiedot voivat olla puutteellisia. Aseta hakupäivä nykyiseen päivään nähdäksesi täydelliset tiedot.</string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Tulevien päivien tiedot voivat olla puutteellisia.
+    Aseta hakupäivä nykyiseen päivään nähdäksesi täydelliset tiedot.
+  </string>
   <string name="director">Ohjaaja</string>
   <string name="directors">Ohjaajat</string>
   <string name="distance">Etäisyys</string>
@@ -109,9 +111,14 @@
   <string name="show_times_retrieved_on_string_dot">Näytösajat haettu %s.</string>
   <string name="studio">Studio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Teatterin viimeksi ilmoittamat näytösajat \n%s.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">Elokuvateatteriyritykset rajoittavat usein kuinka kaukaa etäisyyden perusteella hakiessa voidaan saada tuloksia. Sen vuoksi jotkut teatterit eivät näy hakutuloksissa, vaikka hakuetäisyys olisi asetettu kovinkin isoksi.</string>
+  <string name="theater_providers_often_limit_the_maximum_search">Elokuvateatteriyritykset rajoittavat usein kuinka
+    kaukaa etäisyyden perusteella hakiessa voidaan saada tuloksia. Sen vuoksi jotkut teatterit eivät näy hakutuloksissa,
+    vaikka hakuetäisyys olisi asetettu kovinkin isoksi.
+  </string>
   <string name="theaters">Teatterit</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Tämä teatteri ei ole ilmoittanut näytösaikojaan. Niiden tultua saataville, %s hakee ne automaattisesti.</string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Tämä teatteri ei ole ilmoittanut näytösaikojaan.
+    Niiden tultua saataville, %s hakee ne automaattisesti.
+  </string>
   <string name="ticket_sales_provided_by">Lipunmyynti:</string>
   <string name="title">Elokuva</string>
   <string name="today">Tänään</string>

@@ -46,7 +46,9 @@
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>
   <string name="dvdbluray_details_provided_by">Información de DVD/Blu-Ray provista por:</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Los datos pueden estar incompletos si escoge una fecha en el futuro. Vuelva a introducir la fecha actual para obtener los listados completos.</string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Los datos pueden estar incompletos si escoge una
+    fecha en el futuro. Vuelva a introducir la fecha actual para obtener los listados completos.
+  </string>
   <string name="director">Director:</string>
   <string name="directors">Directores:</string>
   <string name="distance">Distancia</string>
@@ -108,10 +110,16 @@
   <string name="show_one_hidden_theater">Mostrar 1 cine oculto</string>
   <string name="show_times_retrieved_on_string_dot">Horarios descargados el %s.</string>
   <string name="studio">Estudio:</string>
-  <string name="theater_last_reported_show_times_on_string_dot">El cine informó de sus horarios por última vez el\n%s.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">Algunos proveedores de datos de cines limitan las distancias de búsqueda. Por esto es posible que algunos cines no aparezcan en sus resultados, aún cuando ponga una distancia de búsqueda alta.</string>
+  <string name="theater_last_reported_show_times_on_string_dot">El cine informó de sus horarios por última vez el\n%s.
+  </string>
+  <string name="theater_providers_often_limit_the_maximum_search">Algunos proveedores de datos de cines limitan las
+    distancias de búsqueda. Por esto es posible que algunos cines no aparezcan en sus resultados, aún cuando ponga una
+    distancia de búsqueda alta.
+  </string>
   <string name="theaters">Cines</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Este cine aún no envía su información de horarios. Cuando esté disponible, %s la descargará automáticamente.</string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Este cine aún no envía su información de horarios.
+    Cuando esté disponible, %s la descargará automáticamente.
+  </string>
   <string name="ticket_sales_provided_by">Venta de entradas de:</string>
   <string name="title">Título</string>
   <string name="today">Hoy</string>
