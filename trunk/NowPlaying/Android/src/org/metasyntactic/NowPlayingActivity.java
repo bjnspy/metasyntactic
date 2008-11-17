@@ -56,7 +56,6 @@ import java.util.List;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
     public static NowPlayingActivity instance;
-    private static Context mContext;
     public static final int MENU_SORT = 1;
     public static final int MENU_SETTINGS = 2;
     private GridView grid;
@@ -151,10 +150,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = this;
         // Request the progress bar to be shown in the title
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        GlobalActivityIndicator progress = new GlobalActivityIndicator(mContext);
+        GlobalActivityIndicator.addActivity(this);
         setContentView(R.layout.progressbar_1);
     }
 
@@ -170,6 +168,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     @Override
     protected void onDestroy() {
+    	GlobalActivityIndicator.removeActivity(this);
         unbindService(serviceConnection);
         isDestroyed = true;
         super.onDestroy();
@@ -243,11 +242,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
                 // TODO Auto-generated method stub
             }
         });
-        postersAdapter = new PostersAdapter(mContext);
+        postersAdapter = new PostersAdapter(this);
         grid.setAdapter(postersAdapter);
         intent = new Intent();
-        intent.setClass(mContext, AllMoviesActivity.class);
-        animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_reverse);
+        intent.setClass(this, AllMoviesActivity.class);
+        animation = AnimationUtils.loadAnimation(this, R.anim.fade_reverse);
         animation.setAnimationListener(new AnimationListener() {
             public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
@@ -344,7 +343,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
                 bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 holder.poster.setImageBitmap(bitmap);
             } else {
-                holder.poster.setImageDrawable(mContext.getResources()
+                holder.poster.setImageDrawable(NowPlayingActivity.this.getResources()
                         .getDrawable(R.drawable.movies));
             }
             convertView.setOnClickListener(new OnClickListener() {
@@ -413,8 +412,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == MENU_SORT) {
-            NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
-                    (NowPlayingActivity) mContext).setTitle(
+            NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
                     R.string.movies_select_sort_title).setKey(
                     NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
                     .setEntries(R.array.entries_movies_sort_preference);

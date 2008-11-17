@@ -14,20 +14,30 @@
 
 package org.metasyntactic.ui;
 
+import android.app.Activity;
+import org.metasyntactic.Application;
 import static org.metasyntactic.threading.ThreadingUtilities.isBackgroundThread;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnMainThread;
-import android.app.Activity;
-import android.content.Context;
 
-import org.metasyntactic.Application;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class GlobalActivityIndicator {
-  private static Object lock = new Object();
+  private static final Object lock = new Object();
   private static int totalBackgroundTaskCount;
   private static int visibleBackgroundTaskCount;
-  private static Context mContext;
-  public GlobalActivityIndicator(Context context) {
-      this.mContext = context;
+
+  private static Set<Activity> activities = new LinkedHashSet<Activity>();
+
+  private GlobalActivityIndicator() {
+  }
+
+  public static void addActivity(Activity a) {
+    activities.add(a);
+  }
+
+  public static void removeActivity(Activity a) {
+    activities.remove(a);
   }
 
   private static void startIndicator() {
@@ -38,12 +48,11 @@ public class GlobalActivityIndicator {
         }
       });
       return;
-      
-     
     }
-    ((Activity)mContext).setProgressBarIndeterminateVisibility(true);      
 
-    
+    for (Activity a : activities) {
+      a.setProgressBarIndeterminateVisibility(true);
+    }
   }
 
   private static void stopIndicator() {
@@ -54,11 +63,11 @@ public class GlobalActivityIndicator {
         }
       });
       return;
-    
     }
-    ((Activity)mContext).setProgressBarIndeterminateVisibility(false);  
-    
-   
+
+    for (Activity a : activities) {
+      a.setProgressBarIndeterminateVisibility(false);
+    }
   }
 
   private static void startNetworkIndicator() {
