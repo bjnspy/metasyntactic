@@ -24,6 +24,7 @@ import org.metasyntactic.io.PersistableOutputStream;
 import java.io.IOException;
 
 public class Review implements Parcelable, Persistable {
+  private static final long serialVersionUID = -1500254001711613076L;
   private String text;
   private int score;
   private String link;

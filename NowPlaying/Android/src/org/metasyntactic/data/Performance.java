@@ -24,6 +24,7 @@ import org.metasyntactic.io.PersistableOutputStream;
 import java.io.IOException;
 
 public class Performance implements Parcelable, Persistable {
+  private static final long serialVersionUID = -3891926085016033570L;
   private String time;
   private String url;
 

@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Theater implements Parcelable, Persistable {
+  private static final long serialVersionUID = 8020194452818140040L;
   private String identifier;
   private String name;
   private String address;
