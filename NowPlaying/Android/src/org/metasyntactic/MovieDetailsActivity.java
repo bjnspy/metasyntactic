@@ -1,12 +1,9 @@
 package org.metasyntactic;
 
 import android.app.ListActivity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,45 +15,30 @@ import android.widget.Toast;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovieDetailsActivity extends ListActivity {
   /** Called when the activity is first created. */
-  NowPlayingControllerWrapper controller;
-  List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
-  MovieAdapter movieAdapter;
+  private List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
+  private MovieAdapter movieAdapter;
+  private Movie movie;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.moviedetails);
     movie = this.getIntent().getExtras().getParcelable("movie");
     movieAdapter = new MovieAdapter(this);
     setListAdapter(movieAdapter);
   }
 
-  private final ServiceConnection serviceConnection = new ServiceConnection() {
-    public void onServiceConnected(ComponentName className, IBinder service) {
-      // This is called when the connection with the service has been
-      // established, giving us the service object we can use to
-      // interact with the service. We are communicating with our
-      // service through an IDL interface, so get a client-side
-      // representation of that from the raw service object.
-      controller = new NowPlayingControllerWrapper(INowPlayingController.Stub.asInterface(service));
-      populateMovieEntries();
-      bindView(movie);
-    }
-
-    public void onServiceDisconnected(ComponentName className) {
-      controller = null;
-    }
-  };
-
   @Override
   protected void onDestroy() {
-    unbindService(serviceConnection);
+    NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
@@ -68,7 +50,7 @@ public class MovieDetailsActivity extends ListActivity {
     imdbbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
         String imdb_url = null;
-        imdb_url = controller.getImdbAddress(movie);
+        imdb_url = NowPlayingControllerWrapper.getImdbAddress(movie);
         if (imdb_url != null) {
           Intent intent = new Intent();
           intent.putExtra("imdb_url", imdb_url);
@@ -81,9 +63,9 @@ public class MovieDetailsActivity extends ListActivity {
     });
     reviewsbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
-        ArrayList<Review> reviews = new ArrayList<Review>(controller
+        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper
             .getReviews(movie));
-        if (reviews != null && reviews.size() > 0) {
+        if (reviews.size() > 0) {
           Intent intent = new Intent();
           intent.putParcelableArrayListExtra("reviews", reviews);
           intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
@@ -97,8 +79,8 @@ public class MovieDetailsActivity extends ListActivity {
     imdbbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
         String imdb_url = null;
-        imdb_url = controller.getImdbAddress(movie);
-        if (imdb_url != null) {
+        imdb_url = NowPlayingControllerWrapper.getImdbAddress(movie);
+        if (!StringUtilities.isNullOrEmpty(imdb_url)) {
           Intent intent = new Intent();
           intent.putExtra("imdb_url", imdb_url);
           intent.setClass(MovieDetailsActivity.this, WebViewActivity.class);
@@ -110,9 +92,9 @@ public class MovieDetailsActivity extends ListActivity {
     });
     reviewsbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
-        ArrayList<Review> reviews = new ArrayList<Review>(controller
+        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper
             .getReviews(movie));
-        if (reviews != null && reviews.size() > 0) {
+        if (reviews.size() > 0) {
           Intent intent = new Intent();
           intent.putParcelableArrayListExtra("reviews", reviews);
           intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
@@ -129,8 +111,8 @@ public class MovieDetailsActivity extends ListActivity {
     MovieDetailEntry entry = new MovieDetailEntry();
     // Add synopsis
     entry.setName(movie.getDisplayTitle());
-    String synopsis = controller.getSynopsis(movie);
-    if (synopsis != null && synopsis.length() > 0) {
+    String synopsis = NowPlayingControllerWrapper.getSynopsis(movie);
+    if (!StringUtilities.isNullOrEmpty(synopsis)) {
       // hack to display text on left and bottom or poster
       entry.setValue(synopsis);
     } else {
@@ -203,22 +185,12 @@ public class MovieDetailsActivity extends ListActivity {
     movieAdapter.refresh();
   }
 
-  @Override
-  protected void onResume() {
-    // TODO Auto-generated method stub
-    super.onResume();
-    boolean bindResult = bindService(new Intent(getBaseContext(), NowPlayingControllerService.class), serviceConnection,
-                                     Context.BIND_AUTO_CREATE);
-    if (!bindResult) {
-      throw new RuntimeException("Failed to bind to service!");
-    }
-  }
-
   OnClickListener trailerOnClickListener = new OnClickListener() {
     public void onClick(View v) {
       String trailer_url = null;
-      if (controller.getTrailers(movie).size() > 0) {
-        trailer_url = controller.getTrailers(movie).get(0);
+      List<String> trailers = NowPlayingControllerWrapper.getTrailers(movie);
+      if (trailers.size() > 0) {
+        trailer_url = trailers.get(0);
       }
       if (trailer_url != null) {
         Intent intent = new Intent();
@@ -267,22 +239,18 @@ public class MovieDetailsActivity extends ListActivity {
     }
 
     public long getEntryId(int position) {
-      // TODO Auto-generated method stub
       return position;
     }
 
     public Object getItem(int position) {
-      // TODO Auto-generated method stub
       return movieDetailEntries.get(position);
     }
 
     public long getItemId(int position) {
-      // TODO Auto-generated method stub
       return position;
     }
 
     public void refresh() {
-      // TODO Auto-generated method stub
       notifyDataSetChanged();
     }
   }
@@ -307,6 +275,4 @@ public class MovieDetailsActivity extends ListActivity {
       this.value = value;
     }
   }
-
-  private Movie movie;
 }

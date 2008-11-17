@@ -32,10 +32,15 @@ public class AllReviewsActivity extends ListActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
+    NowPlayingControllerWrapper.addActivity(this);
     reviews = getIntent().getParcelableArrayListExtra("reviews");
     this.setListAdapter(new ReviewsAdapter(this));
+  }
+
+  protected void onDestroy() {
+    NowPlayingControllerWrapper.removeActivity(this);
+    super.onDestroy();
   }
 
   private class ReviewsAdapter extends BaseAdapter {

@@ -14,7 +14,6 @@
 
 package org.metasyntactic;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
@@ -47,8 +46,6 @@ public class NowPlayingModel {
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
 
-  private final Context context;
-
   private final DataProvider dataProvider = new DataProvider(this);
   private final ScoreCache scoreCache = new ScoreCache(this);
   private final UserLocationCache userLocationCache = new UserLocationCache();
@@ -56,9 +53,8 @@ public class NowPlayingModel {
   private final UpcomingCache upcomingCache = new UpcomingCache();
   private final PosterCache posterCache = new PosterCache(this);
 
-  public NowPlayingModel(Context context) {
-    this.context = context;
-    this.preferences = NowPlayingActivity.instance.getSharedPreferences(NowPlayingModel.class.getName(), 0);
+  public NowPlayingModel() {
+    this.preferences = NowPlayingControllerWrapper.getApplicationContext().getSharedPreferences(NowPlayingModel.class.getName(), 0);
 
     loadData();
 
@@ -88,10 +84,6 @@ public class NowPlayingModel {
 
   public UserLocationCache getUserLocationCache() {
     return userLocationCache;
-  }
-
-  public Context getContext() {
-    return context;
   }
 
   private void updateTrailerCache() {

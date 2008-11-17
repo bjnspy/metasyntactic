@@ -17,12 +17,14 @@
 package org.metasyntactic;
 
 import android.app.Activity;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.*;
@@ -50,37 +52,17 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
   private int selection;
-  NowPlayingControllerWrapper controller;
+
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
     public void onReceive(Context context, Intent intent) {
       refresh();
     }
   };
-  private final ServiceConnection serviceConnection = new ServiceConnection() {
-    public void onServiceConnected(ComponentName className, IBinder service) {
-      // This is called when the connection with the service has been
-      // established, giving us the service object we can use to
-      // interact with the service. We are communicating with our
-      // service through an IDL interface, so get a client-side
-      // representation of that from the raw service object.
-      controller = new NowPlayingControllerWrapper(INowPlayingController.Stub.asInterface(service));
-      onControllerConnected();
-    }
-
-    public void onServiceDisconnected(ComponentName className) {
-      controller = null;
-    }
-  };
-
-  private void onControllerConnected() {
-    refresh();
-    setupView();
-  }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    NowPlayingControllerWrapper.removeActivity(this);
     setContentView(R.layout.movieview);
     detailAdapter = new DetailAdapter();
     thumbnailAdapter = new ThumbnailAdapter();
@@ -97,7 +79,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     // thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
     OnItemSelectedListener listener = new OnItemSelectedListener() {
       public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-        // TODO Auto-generated method stub
         if (thumbnail.getSelectedItemPosition() != position) {
           thumbnail.setSelection(position);
         }
@@ -107,13 +88,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       }
 
       public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
       }
     };
     detail.setOnItemSelectedListener(listener);
     OnItemClickListener thumblistener = new OnItemClickListener() {
       public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
-        // TODO Auto-generated method stub
         if (detail.getSelectedItemPosition() != position) {
           detail.setSelection(position);
         }
@@ -122,7 +101,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       }
 
       public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
       }
     };
     thumbnail.setOnItemClickListener(thumblistener);
@@ -132,7 +110,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     Button details = (Button) findViewById(R.id.details);
     details.setOnClickListener(new OnClickListener() {
       public void onClick(View arg0) {
-        // TODO Auto-generated method stub
         final Movie movie = movies.get(selection);
 
         Intent intent = new Intent();
@@ -144,7 +121,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     Button showtimes = (Button) findViewById(R.id.showtimes);
     showtimes.setOnClickListener(new OnClickListener() {
       public void onClick(View arg0) {
-        // TODO Auto-generated method stub
         final Movie movie = movies.get(selection);
 
         Intent intent = new Intent();
@@ -158,17 +134,13 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
-    boolean bindResult = bindService(new Intent(getBaseContext(), NowPlayingControllerService.class), serviceConnection,
-                                     Context.BIND_AUTO_CREATE);
-    if (!bindResult) {
-      throw new RuntimeException("Failed to bind to service!");
-    }
+
     registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
   @Override
   protected void onDestroy() {
-    unbindService(serviceConnection);
+    NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
@@ -239,10 +211,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       convertView.setTag(holder);
       Resources res = getContext().getResources();
       final Movie movie = movies.get(position);
-      if (controller.getPoster(movie).getBytes().length > 0) {
-        holder.poster
-            .setImageBitmap(BitmapFactory.decodeByteArray(controller.getPoster(movie).getBytes(), 0, controller
-                .getPoster(movie).getBytes().length));
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
+      if (bytes.length > 0) {
+        holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         holder.poster.setBackgroundResource(R.drawable.image_frame);
       }
       holder.title.setText(movie.getDisplayTitle());
@@ -266,13 +237,13 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         holder.cast.setText("Unknown");
       }
       // Get and set scores text and background image
-      Score score = controller.getScore(movie);
+      Score score = NowPlayingControllerWrapper.getScore(movie);
       int scoreValue = -1;
       if (score != null && !score.getValue().equals("")) {
         scoreValue = Integer.parseInt(score.getValue());
       } else {
       }
-      ScoreType scoreType = controller.getScoreType();
+      ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
       holder.score.setBackgroundDrawable(MovieViewUtilities
           .formatScoreDrawable(scoreValue, scoreType, res));
       if (scoreValue != -1) {
@@ -337,9 +308,10 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       title.setTextAppearance(getContext(), android.R.attr.textColorSecondary);
       title.setGravity(0x01);
       title.setEllipsize(TextUtils.TruncateAt.END);
-      if (movie != null && controller.getPoster(movie).getBytes().length > 0) {
-        i.setImageBitmap(BitmapFactory.decodeByteArray(controller
-            .getPoster(movie).getBytes(), 0, controller.getPoster(movie).getBytes().length));
+
+      byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
+      if (bytes.length > 0) {
+        i.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
       } else {
         i.setImageDrawable(getContext().getResources().getDrawable(R.drawable.movies));
       }
@@ -363,14 +335,10 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  public NowPlayingControllerWrapper getController() {
-    return controller;
-  }
-
   public void refresh() {
-    movies = controller.getMovies();
-    Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER.get(controller
-        .getAllMoviesSelectedSortIndex());
+    movies = NowPlayingControllerWrapper.getMovies();
+    Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER
+        .get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     if (detailAdapter != null && thumbnailAdapter != null) {
       detailAdapter.refreshMovies();

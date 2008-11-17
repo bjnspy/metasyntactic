@@ -80,6 +80,14 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
     return provider;
   }
 
+  public int getScoreValue() {
+    try {
+      return Integer.parseInt(getValue());
+    } catch (NumberFormatException e) {
+      return -1;
+    }
+  }
+
   public String getIdentifier() {
     return identifier;
   }

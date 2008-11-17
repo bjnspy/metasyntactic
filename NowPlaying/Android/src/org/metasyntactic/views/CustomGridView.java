@@ -25,25 +25,21 @@ public class CustomGridView extends GridView {
   public CustomGridView(Context context) {
     super(context);
     this.setFocusableInTouchMode(true);
-    // TODO Auto-generated constructor stub
   }
 
   public CustomGridView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     this.setFocusableInTouchMode(true);
-    // TODO Auto-generated constructor stub
   }
 
   public CustomGridView(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.setFocusable(true);
     this.setFocusableInTouchMode(true);
-    // TODO Auto-generated constructor stub
   }
 
   @Override
   protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-    // TODO Auto-generated method stub
     super.onScrollChanged(l / 20, t / 20, oldl, oldt);
   }
 }

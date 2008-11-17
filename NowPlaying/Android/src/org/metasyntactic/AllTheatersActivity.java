@@ -26,10 +26,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
 
-  private static NowPlayingControllerWrapper controller;
   private static TheatersAdapter adapter;
-
-  private NowPlayingActivity activity;
 
   private List<Theater> theaters = new ArrayList<Theater>();
 
@@ -40,28 +37,29 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
+    NowPlayingControllerWrapper.addActivity(this);
 
-    activity = (NowPlayingActivity) getParent();
-    controller = activity.getController();
-    theaters = controller.getTheaters();
-    String userPostalCode = controller.getUserLocation();
+    theaters = NowPlayingControllerWrapper.getTheaters();
+    String userPostalCode = NowPlayingControllerWrapper.getUserLocation();
     Address address = null;
     try {
       address = new Geocoder(this).getFromLocationName(userPostalCode, 1).get(0);
     } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
 
     userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null, null);
 
-    Collections.sort(theaters, THEATER_ORDER.get(controller
-        .getAllTheatersSelectedSortIndex()));
+    Collections.sort(theaters, THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
 
     // Set up Movies adapter
     setListAdapter(new TheatersAdapter());
+  }
+
+  protected void onDestroy() {
+    NowPlayingControllerWrapper.removeActivity(this);
+    super.onDestroy();
   }
 
   @Override
@@ -127,10 +125,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     return super.onCreateOptionsMenu(menu);
   }
 
-  public INowPlaying getNowPlayingActivityContext() {
-    return activity;
-  }
-
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
@@ -159,8 +153,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
 
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-      NowPlayingControllerWrapper controller = activity.getController();
-
       convertView = inflater.inflate(R.layout.theaterview, null);
 
       // Creates a MovieViewHolder and store references to the
@@ -176,12 +168,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       Theater theater = theaters.get(position);
       Address address = null;
       try {
-        address = new Geocoder(getContext()).getFromLocationName(controller.getUserLocation(), 1).get(0);
+        address = new Geocoder(getContext()).getFromLocationName(NowPlayingControllerWrapper.getUserLocation(), 1).get(0);
       } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        throw new RuntimeException(e);
       }
-      String headerText = MovieViewUtilities.getTheaterHeader(theaters, position, controller
+      String headerText = MovieViewUtilities.getTheaterHeader(theaters, position, NowPlayingControllerWrapper
           .getAllTheatersSelectedSortIndex(), address);
       if (headerText != null) {
         holder.header.setVisibility(1);
@@ -214,7 +205,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
 
     public long getItemId(int position) {
-      // TODO Auto-generated method stub
       return position;
     }
   }
@@ -229,12 +219,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       ThreadingUtilities.performOnMainThread(runnable);
       return;
     }
-    List<Theater> theaters = controller.getTheaters();
+    List<Theater> theaters = NowPlayingControllerWrapper.getTheaters();
     if (theaters.size() > 0) {
       condition2.open();
     }
-    Collections.sort(theaters, THEATER_ORDER.get(controller
-        .getAllTheatersSelectedSortIndex()));
+    Collections.sort(theaters, THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     adapter.refreshTheaters(theaters);
   }
 
@@ -259,9 +248,5 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   public Context getContext() {
     return this;
-  }
-
-  public NowPlayingControllerWrapper getController() {
-    return controller;
   }
 }

@@ -1,12 +1,8 @@
 package org.metasyntactic;
 
 import android.app.ListActivity;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +19,14 @@ import java.util.List;
 
 public class ShowtimesActivity extends ListActivity {
   /** Called when the activity is first created. */
-  NowPlayingControllerWrapper controller;
-  TheaterAdapter theaterAdapter;
-  List<Theater> theaters = new ArrayList<Theater>();
+  private TheaterAdapter theaterAdapter;
+  private List<Theater> theaters = new ArrayList<Theater>();
+  private Movie movie;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.showtimes);
     movie = this.getIntent().getExtras().getParcelable("movie");
     theaterAdapter = new TheaterAdapter(this);
@@ -37,51 +34,20 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   @Override
-  protected void onListItemClick(ListView l, View v, int position, long id) {
-    // TODO Auto-generated method stub
-
-    super.onListItemClick(l, v, position, id);
+  protected void onDestroy() {
+    NowPlayingControllerWrapper.removeActivity(this);
+    super.onDestroy();
   }
 
-  private final ServiceConnection serviceConnection = new ServiceConnection() {
-    public void onServiceConnected(ComponentName className, IBinder service) {
-      // This is called when the connection with the service has been
-      // established, giving us the service object we can use to
-      // interact with the service. We are communicating with our
-      // service through an IDL interface, so get a client-side
-      // representation of that from the raw service object.
-      controller = new NowPlayingControllerWrapper(INowPlayingController.Stub.asInterface(service));
-
-      bindView(movie);
-      theaters = controller.getTheatersShowingMovie(movie);
-    }
-
-    public void onServiceDisconnected(ComponentName className) {
-      controller = null;
-    }
-  };
-
   @Override
-  protected void onDestroy() {
-    unbindService(serviceConnection);
-    super.onDestroy();
+  protected void onListItemClick(ListView l, View v, int position, long id) {
+    super.onListItemClick(l, v, position, id);
   }
 
   private void bindView(final Movie movie) {
     TextView movielbl = (TextView) findViewById(R.id.movie);
     movielbl.setEllipsize(TextUtils.TruncateAt.END);
     movielbl.setText(movie.getDisplayTitle());
-  }
-
-  @Override
-  protected void onResume() {
-    // TODO Auto-generated method stub
-    super.onResume();
-    boolean bindResult = bindService(new Intent(getBaseContext(), NowPlayingControllerService.class), serviceConnection,
-                                     Context.BIND_AUTO_CREATE);
-    if (!bindResult) {
-      throw new RuntimeException("Failed to bind to service!");
-    }
   }
 
   class TheaterAdapter extends BaseAdapter {
@@ -109,7 +75,7 @@ public class ShowtimesActivity extends ListActivity {
       holder.theater.setText(theater.getName());
       holder.address.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
       holder.phone.setText(theater.getPhoneNumber());
-      List<Performance> list = controller.getPerformancesForMovieAtTheater(movie, theater);
+      List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie, theater);
       String performance = "";
       if (list != null) {
         for (int i = 0; i < list.size(); i++) {
@@ -136,25 +102,19 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     public long getEntryId(int position) {
-      // TODO Auto-generated method stub
       return position;
     }
 
     public Object getItem(int position) {
-      // TODO Auto-generated method stub
       return theaters.get(position);
     }
 
     public long getItemId(int position) {
-      // TODO Auto-generated method stub
       return position;
     }
 
     public void refresh() {
-      // TODO Auto-generated method stub
       notifyDataSetChanged();
     }
   }
-
-  private Movie movie;
 }
