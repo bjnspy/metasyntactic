@@ -74,6 +74,18 @@ public class NowPlayingModel {
     }
   }
 
+  public void startup() {
+    update();
+  }
+
+  public void shutdown() {
+    dataProvider.shutdown();
+    upcomingCache.shutdown();
+    trailerCache.shutdown();
+    posterCache.shutdown();
+    scoreCache.shutdown();
+  }
+
   private void initializeTestValues() {
     if (true) {
       //return;
@@ -97,7 +109,7 @@ public class NowPlayingModel {
   private void updateIMDbCache() {
   }
 
-  public void update() {
+  private void update() {
     dataProvider.update();
     upcomingCache.update();
     updateTrailerCache();

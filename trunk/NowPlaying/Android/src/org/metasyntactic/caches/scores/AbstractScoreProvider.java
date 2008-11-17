@@ -44,6 +44,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
   private final Object lock = new Object();
+  private boolean shutdown;
 
   private final ScoreCache parentCache;
 
@@ -63,6 +64,10 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     this.parentCache = parentCache;
 
     createDirectory();
+  }
+
+  public void shutdown() {
+    shutdown = true;
   }
 
   public void createDirectory() {
@@ -335,7 +340,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     do {
       score = getNextScore(scores, scoresMap);
       downloadReviews(score, location);
-    } while (score != null);
+    } while (score != null && !shutdown);
   }
 
   private Score getNextScore(Set<Score> scores, Map<String, Score> scoresMap) {

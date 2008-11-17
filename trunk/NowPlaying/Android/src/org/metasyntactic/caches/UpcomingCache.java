@@ -41,6 +41,8 @@ public class UpcomingCache {
   private Map<String, String> studioKeys;
   private Map<String, String> titleKeys;
 
+  private boolean shutdown;
+
   private File hashFile() {
     return new File(Application.upcomingDirectory, "Hash");
   }
@@ -271,7 +273,7 @@ public class UpcomingCache {
       if (movie != null) {
         updateDetails(movie, studioKeys.get(movie.getCanonicalTitle()), titleKeys.get(movie.getCanonicalTitle()));
       }
-    } while (movie != null);
+    } while (movie != null && !shutdown);
   }
 
   private void updateDetails(Movie movie, String studioKey, String titleKey) {
@@ -413,5 +415,9 @@ public class UpcomingCache {
 
   public void prioritizeMovie(Movie movie) {
     prioritizedMovies.add(movie);
+  }
+
+  public void shutdown() {
+    shutdown = true;
   }
 }

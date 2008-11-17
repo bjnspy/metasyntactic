@@ -33,6 +33,7 @@ public class PosterCache {
   private final Object lock = new Object();
   private final NowPlayingModel model;
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
+  private boolean shutdown;
 
   public PosterCache(NowPlayingModel model) {
     this.model = model;
@@ -63,7 +64,7 @@ public class PosterCache {
     do {
       movie = prioritizedMovies.removeAny(moviesSet);
       downloadPoster(movie);
-    } while (movie != null);
+    } while (movie != null && !shutdown);
   }
 
   private void downloadPoster(Movie movie) {
@@ -134,5 +135,9 @@ public class PosterCache {
     }
 
     prioritizedMovies.add(movie);
+  }
+
+  public void shutdown() {
+    shutdown = true;
   }
 }

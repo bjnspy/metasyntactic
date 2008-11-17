@@ -500,4 +500,8 @@ public class DataProvider {
   public Date synchronizationDateForTheater(String theaterName) {
     return getSynchronizationData().get(theaterName);
   }
+
+  public void shutdown() {
+    // NYI
+  }
 }

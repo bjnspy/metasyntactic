@@ -29,6 +29,7 @@ import java.util.*;
 public class TrailerCache {
   private final Object lock = new Object();
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
+  private boolean shutdown;
 
   private String trailerFileName(Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
@@ -147,7 +148,7 @@ public class TrailerCache {
     do {
       movie = prioritizedMovies.removeAny(moviesSet);
       downloadMovieTrailer(movie, index);
-    } while (movie != null);
+    } while (movie != null && !shutdown);
   }
 
   private Map<String, List<String>> generateIndex(String indexText) {
@@ -183,5 +184,9 @@ public class TrailerCache {
     }
 
     prioritizedMovies.add(movie);
+  }
+
+  public void shutdown() {
+    shutdown = true;
   }
 }

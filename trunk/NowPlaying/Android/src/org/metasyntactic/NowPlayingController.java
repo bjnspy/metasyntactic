@@ -32,12 +32,14 @@ public class NowPlayingController {
     update();
   }
 
-  public void shutdown() {}
+  public void shutdown() {
+    model.shutdown();
+  }
 
   private void update() {
     Runnable runnable = new Runnable() {
       public void run() {
-        model.update();
+        model.startup();
       }
     };
 

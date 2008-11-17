@@ -33,6 +33,13 @@ public class ScoreCache {
     this.model = model;
   }
 
+  public void shutdown() {
+    rottenTomatoesScoreProvider.shutdown();
+    metacriticScoreProvider.shutdown();
+    googleScoreProvider.shutdown();
+    rottenTomatoesScoreProvider.shutdown();
+  }
+
   public void createDirectories() {
     rottenTomatoesScoreProvider.createDirectory();
     metacriticScoreProvider.createDirectory();
