@@ -32,7 +32,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   private static NowPlayingControllerWrapper controller;
   private static TheatersAdapter adapter;
-  private static Context mContext;
 
   private NowPlayingActivity activity;
 
@@ -49,13 +48,12 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     super.onCreate(savedInstanceState);
 
     activity = (NowPlayingActivity) getParent();
-    mContext = this;
     controller = activity.getController();
     theaters = controller.getTheaters();
     String userPostalCode = controller.getUserLocation();
     Address address = null;
     try {
-      address = new Geocoder(mContext).getFromLocationName(userPostalCode, 1).get(0);
+      address = new Geocoder(this).getFromLocationName(userPostalCode, 1).get(0);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -267,12 +265,10 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   private static final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(TITLE_ORDER, DISTANCE_ORDER);
 
   public Context getContext() {
-    // TODO Auto-generated method stub
     return this;
   }
 
   public NowPlayingControllerWrapper getController() {
-    // TODO Auto-generated method stub
     return controller;
   }
 }

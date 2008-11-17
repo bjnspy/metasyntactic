@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2007 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -45,7 +45,7 @@ import java.util.List;
 
 public class AllMoviesActivity extends Activity implements INowPlaying {
     private static List<Movie> movies = new ArrayList<Movie>();
-    private static Context mContext;
+    //private static Context mContext;
     public static final int MENU_SORT = 1;
     public static final int MENU_SETTINGS = 2;
     private int selection;
@@ -82,7 +82,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movieview);
-        mContext = this;
         mDetailAdapter = new DetailAdapter(this);
         mThumbnailAdapter = new ThumbnailAdapter(this);
     }
@@ -90,7 +89,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     private void setupView() {
         final CustomGallery detail = (CustomGallery) findViewById(R.id.detail);
         detail.setAdapter(mDetailAdapter);
-        
+
         // detail.setSelection(0);
         final CustomGallery thumbnail = (CustomGallery) findViewById(R.id.thumbnails);
         thumbnail.setAdapter(mThumbnailAdapter);
@@ -104,7 +103,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
                     thumbnail.setSelection(position);
                 }
                 selection = position;
-                Animation animation = AnimationUtils.loadAnimation(mContext,
+                Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this,
                         R.anim.slide_left);
                 arg1.setAnimation(animation);
             }
@@ -121,7 +120,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
                 if (detail.getSelectedItemPosition() != position) {
                     detail.setSelection(position);
                 }
-                Animation animation = AnimationUtils.loadAnimation(mContext,
+                Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this,
                         R.anim.fade_gallery_item);
                 arg1.setAnimation(animation);
             }
@@ -137,11 +136,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         Button details = (Button) findViewById(R.id.details);
         details.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub  
+                // TODO Auto-generated method stub
                 final Movie movie = movies.get(selection);
-                
+
                 Intent intent = new Intent();
-                intent.setClass(mContext, MovieDetailsActivity.class);
+                intent.setClass(AllMoviesActivity.this, MovieDetailsActivity.class);
                 intent.putExtra("movie", (Parcelable) movie);
                 startActivity(intent);
             }
@@ -149,11 +148,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         Button showtimes = (Button) findViewById(R.id.showtimes);
         showtimes.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub 
+                // TODO Auto-generated method stub
                 final Movie movie = movies.get(selection);
-                
+
                 Intent intent = new Intent();
-                intent.setClass(mContext, ShowtimesActivity.class);
+                intent.setClass(AllMoviesActivity.this, ShowtimesActivity.class);
                 intent.putExtra("movie", (Parcelable) movie);
                 startActivity(intent);
             }
@@ -203,7 +202,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == MENU_SORT) {
             NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
-                    (AllMoviesActivity) mContext).setTitle(
+                    AllMoviesActivity.this).setTitle(
                     R.string.movies_select_sort_title).setKey(
                     NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
                     .setEntries(R.array.entries_movies_sort_preference);
@@ -388,18 +387,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         }
     }
 
-    public Context getContext() {
-        // TODO Auto-generated method stub
-        return mContext;
-    }
-
     public NowPlayingControllerWrapper getController() {
-        // TODO Auto-generated method stub
         return mController;
     }
 
     public void refresh() {
-        // TODO Auto-generated method stub
         movies = mController.getMovies();
         Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER.get(mController
                 .getAllMoviesSelectedSortIndex());
