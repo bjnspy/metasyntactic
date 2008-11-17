@@ -44,7 +44,7 @@ public class NowPlayingModel {
 
   // SharedPreferences is not threadsafe.  so we need to lock when using it
   private final Object preferencesLock = new Object();
-  private final SharedPreferences preferences;
+  private SharedPreferences preferences;
 
   private final DataProvider dataProvider = new DataProvider(this);
   private final ScoreCache scoreCache = new ScoreCache(this);
@@ -54,12 +54,6 @@ public class NowPlayingModel {
   private final PosterCache posterCache = new PosterCache(this);
 
   public NowPlayingModel() {
-    this.preferences = NowPlayingControllerWrapper.getApplicationContext()
-        .getSharedPreferences(NowPlayingModel.class.getName(), 0);
-
-    loadData();
-
-    initializeTestValues();
   }
 
   private void loadData() {
@@ -76,6 +70,13 @@ public class NowPlayingModel {
   }
 
   public void startup() {
+	  this.preferences = NowPlayingControllerWrapper.getApplicationContext()
+        .getSharedPreferences(NowPlayingModel.class.getName(), 0);
+
+    loadData();
+
+    initializeTestValues();
+
     update();
   }
 

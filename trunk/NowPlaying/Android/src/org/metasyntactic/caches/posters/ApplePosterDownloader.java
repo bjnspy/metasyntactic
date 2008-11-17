@@ -47,8 +47,8 @@ public class ApplePosterDownloader {
       return;
     }
 
-    final String index = NetworkUtilities.downloadString("http://" + Application.host + ".appspot.com/LookupPosterListings",
-                                                   false);
+    final String index = NetworkUtilities.downloadString(
+        "http://" + Application.host + ".appspot.com/LookupPosterListings", false);
     if (StringUtilities.isNullOrEmpty(index)) {
       return;
     }

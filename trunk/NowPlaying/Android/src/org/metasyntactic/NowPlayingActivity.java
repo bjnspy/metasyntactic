@@ -68,7 +68,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         if (!NowPlayingActivity.this.isDestroyed) {
           final List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
           // sort movies according to the default sort preference.
-          final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
+          final Comparator<Movie> comparator = MOVIE_ORDER.get(
+              NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
           Collections.sort(tmpMovies, comparator);
           NowPlayingActivity.this.movies = new ArrayList<Movie>();
           NowPlayingActivity.this.movies.addAll(tmpMovies);

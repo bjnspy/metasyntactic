@@ -191,8 +191,8 @@ public class UpcomingCache {
     ThreadingUtilities.performOnMainThread(runnable);
   }
 
-  private void reportResultsOnMainThread(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys,
-                                         final Map<String, String> titleKeys) {
+  private void reportResultsOnMainThread(final String serverHash, final List<Movie> movies,
+                                         final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     this.hash = serverHash;
     this.movies = movies;
     this.studioKeys = studioKeys;
@@ -212,15 +212,15 @@ public class UpcomingCache {
     FileUtilities.writeString(serverHash, hashFile());
   }
 
-  private void processResultElement(final Element resultElement, final List<Movie> movies, final Map<String, String> studioKeys,
-                                    final Map<String, String> titleKeys) {
+  private void processResultElement(final Element resultElement, final List<Movie> movies,
+                                    final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     for (final Element movieElement : children(resultElement)) {
       processMovieElement(movieElement, movies, studioKeys, titleKeys);
     }
   }
 
-  private void processMovieElement(final Element movieElement, final List<Movie> movies, final Map<String, String> studioKeys,
-                                   final Map<String, String> titleKeys) {
+  private void processMovieElement(final Element movieElement, final List<Movie> movies,
+                                   final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     Date releaseDate = null;
     try {
       releaseDate = this.formatter.parse(movieElement.getAttribute("date"));
@@ -237,8 +237,8 @@ public class UpcomingCache {
     final String studioKey = movieElement.getAttribute("studioKey");
     final String titleKey = movieElement.getAttribute("titleKey");
 
-    final Movie movie = new Movie("" + identifier++, title, rating, 0, "", releaseDate, poster, "", studio, directors, cast,
-                            genres);
+    final Movie movie = new Movie("" + identifier++, title, rating, 0, "", releaseDate, poster, "", studio, directors,
+                                  cast, genres);
 
     movies.add(movie);
     studioKeys.put(movie.getCanonicalTitle(), studioKey);

@@ -25,20 +25,13 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.*;
-import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.*;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.CustomGallery;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
@@ -252,7 +245,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       i.setScaleType(ImageView.ScaleType.FIT_XY);
       layout.addView(i, new LinearLayout.LayoutParams(100, 120));
       final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,
-                                                                       LinearLayout.LayoutParams.WRAP_CONTENT);
+                                                                             LinearLayout.LayoutParams.WRAP_CONTENT);
       layout.addView(title, params);
       //   layout.setLayoutParams(new GridView.LayoutParams(100, 160));
       //   linearLayout
