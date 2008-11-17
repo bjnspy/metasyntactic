@@ -62,7 +62,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    NowPlayingControllerWrapper1.removeActivity(this);
+    NowPlayingControllerWrapper.removeActivity(this);
     setContentView(R.layout.movieview);
     detailAdapter = new DetailAdapter();
     thumbnailAdapter = new ThumbnailAdapter();
@@ -140,7 +140,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
-    NowPlayingControllerWrapper1.removeActivity(this);
+    NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
@@ -211,7 +211,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       convertView.setTag(holder);
       Resources res = getContext().getResources();
       final Movie movie = movies.get(position);
-      final byte[] bytes = NowPlayingControllerWrapper1.getPoster(movie).getBytes();
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
       if (bytes.length > 0) {
         holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         holder.poster.setBackgroundResource(R.drawable.image_frame);
@@ -237,13 +237,13 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         holder.cast.setText("Unknown");
       }
       // Get and set scores text and background image
-      Score score = NowPlayingControllerWrapper1.getScore(movie);
+      Score score = NowPlayingControllerWrapper.getScore(movie);
       int scoreValue = -1;
       if (score != null && !score.getValue().equals("")) {
         scoreValue = Integer.parseInt(score.getValue());
       } else {
       }
-      ScoreType scoreType = NowPlayingControllerWrapper1.getScoreType();
+      ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
       holder.score.setBackgroundDrawable(MovieViewUtilities
           .formatScoreDrawable(scoreValue, scoreType, res));
       if (scoreValue != -1) {
@@ -309,7 +309,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       title.setGravity(0x01);
       title.setEllipsize(TextUtils.TruncateAt.END);
 
-      byte[] bytes = NowPlayingControllerWrapper1.getPoster(movie).getBytes();
+      byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
       if (bytes.length > 0) {
         i.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
       } else {
@@ -336,9 +336,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   }
 
   public void refresh() {
-    movies = NowPlayingControllerWrapper1.getMovies();
+    movies = NowPlayingControllerWrapper.getMovies();
     Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER
-        .get(NowPlayingControllerWrapper1.getAllMoviesSelectedSortIndex());
+        .get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     if (detailAdapter != null && thumbnailAdapter != null) {
       detailAdapter.refreshMovies();

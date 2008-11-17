@@ -66,16 +66,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     Runnable runnable = new Runnable() {
       public void run() {
         if (!isDestroyed) {
-          List<Movie> tmpMovies = NowPlayingControllerWrapper1.getMovies();
+          List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
           // sort movies according to the default sort preference.
-          Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper1
+          Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
               .getAllMoviesSelectedSortIndex());
           Collections.sort(tmpMovies, comparator);
           movies = new ArrayList<Movie>();
           movies.addAll(tmpMovies);
           if (!isPrioritized) {
             for (int i = 0; i < Math.min(6, movies.size()); i++) {
-              NowPlayingControllerWrapper1.prioritizeMovie(movies.get(i));
+              NowPlayingControllerWrapper.prioritizeMovie(movies.get(i));
             }
             isPrioritized = true;
           }
@@ -109,7 +109,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    NowPlayingControllerWrapper1.addActivity(this);
+    NowPlayingControllerWrapper.addActivity(this);
 
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -118,7 +118,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
-    NowPlayingControllerWrapper1.removeActivity(this);
+    NowPlayingControllerWrapper.removeActivity(this);
     isDestroyed = true;
     super.onDestroy();
   }
@@ -232,8 +232,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     public int compare(Movie m1, Movie m2) {
       int value1 = 0;
       int value2 = 0;
-      Score score1 = NowPlayingControllerWrapper1.getScore(m1);
-      Score score2 = NowPlayingControllerWrapper1.getScore(m1);
+      Score score1 = NowPlayingControllerWrapper.getScore(m1);
+      Score score2 = NowPlayingControllerWrapper.getScore(m1);
       if (score1 != null) {
         value1 = score1.getScoreValue();
       }
@@ -280,7 +280,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       final Movie movie = movies.get(position % movies.size());
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
-      final byte[] bytes = NowPlayingControllerWrapper1.getPoster(movie).getBytes();
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
       if (bytes.length > 0) {
         bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.poster.setImageBitmap(bitmap);

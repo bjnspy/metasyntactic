@@ -26,7 +26,7 @@ public class WebViewActivity extends Activity {
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    NowPlayingControllerWrapper1.addActivity(this);
+    NowPlayingControllerWrapper.addActivity(this);
     webView = new WebView(this);
     setContentView(webView);
     path = getIntent().getExtras().getString("url");
@@ -34,7 +34,7 @@ public class WebViewActivity extends Activity {
   }
 
   protected void onDestroy() {
-    NowPlayingControllerWrapper1.removeActivity(this);
+    NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 }
