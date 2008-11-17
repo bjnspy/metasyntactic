@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Map;
 
 public class NoneScoreProvider extends AbstractScoreProvider {
-  public NoneScoreProvider(ScoreCache scoreCache) {
+  public NoneScoreProvider(final ScoreCache scoreCache) {
     super(scoreCache);
   }
 

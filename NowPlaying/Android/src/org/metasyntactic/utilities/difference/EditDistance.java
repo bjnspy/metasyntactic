@@ -22,13 +22,13 @@ public class EditDistance {
   private EditDistance() {
   }
 
-  public static int getEditDistance(String source, String target) {
+  public static int getEditDistance(final String source, final String target) {
     return getEditDistance(source, target, -1);
   }
 
-  public static int getEditDistance(String source, String target, int costThreshold) {
-    int sourceLength = StringUtilities.isNullOrEmpty(source) ? 0 : source.length();
-    int targetLength = StringUtilities.isNullOrEmpty(target) ? 0 : target.length();
+  public static int getEditDistance(final String source, final String target, final int costThreshold) {
+    final int sourceLength = StringUtilities.isNullOrEmpty(source) ? 0 : source.length();
+    final int targetLength = StringUtilities.isNullOrEmpty(target) ? 0 : target.length();
 
     if (sourceLength == 0) {
       return targetLength;
@@ -39,20 +39,20 @@ public class EditDistance {
     }
 
     if (costThreshold >= 0) {
-      int minimumTLength = sourceLength - costThreshold;
+      final int minimumTLength = sourceLength - costThreshold;
 
       if (targetLength < minimumTLength) {
         return Integer.MAX_VALUE;
       }
 
-      int minimumSLength = targetLength - costThreshold;
+      final int minimumSLength = targetLength - costThreshold;
 
       if (sourceLength < minimumSLength) {
         return Integer.MAX_VALUE;
       }
     }
 
-    int[][] matrix = new int[sourceLength + 1][targetLength + 1];
+    final int[][] matrix = new int[sourceLength + 1][targetLength + 1];
 
     for (int i = 0; i <= sourceLength; i++) {
       matrix[i][0] = i;
@@ -62,27 +62,27 @@ public class EditDistance {
       matrix[0][i] = i;
     }
 
-    char[] sourceChars = source.toCharArray();
-    char[] destChars = target.toCharArray();
+    final char[] sourceChars = source.toCharArray();
+    final char[] destChars = target.toCharArray();
 
     for (int i = 1; i <= sourceLength; i++) {
-      boolean rowIsUnderThreshold = (costThreshold < 0);
+      boolean rowIsUnderThreshold = costThreshold < 0;
 
-      char sourceI = sourceChars[i - 1];
+      final char sourceI = sourceChars[i - 1];
       for (int j = 1; j <= targetLength; j++) {
-        char targetJ = destChars[j - 1];
+        final char targetJ = destChars[j - 1];
 
         int cost = 0;
         if (sourceI != targetJ) {
           cost = 1;
         }
 
-        int totalCost = Math.min(cost + matrix[i - 1][j - 1], Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1));
+        final int totalCost = Math.min(cost + matrix[i - 1][j - 1], Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1));
 
         matrix[i][j] = totalCost;
 
         if (costThreshold >= 0) {
-          rowIsUnderThreshold |= (totalCost <= costThreshold);
+          rowIsUnderThreshold |= totalCost <= costThreshold;
         }
       }
 
@@ -94,7 +94,7 @@ public class EditDistance {
     return matrix[sourceLength][targetLength];
   }
 
-  public static boolean areSimilar(String s1, String s2) {
+  public static boolean areSimilar(final String s1, final String s2) {
     if (s1 == null || s2 == null) {
       return false;
     }
@@ -105,16 +105,16 @@ public class EditDistance {
       }
     }
 
-    int threshold = threshold(s1);
-    int diff = getEditDistance(s1, s2, threshold);
-    return (diff <= threshold);
+    final int threshold = threshold(s1);
+    final int diff = getEditDistance(s1, s2, threshold);
+    return diff <= threshold;
   }
 
-  static int threshold(String string) {
+  static int threshold(final String string) {
     return Math.max(string.length() / 4, 1);
   }
 
-  public static int findClosestMatchIndex(String string, List<String> list) {
+  public static int findClosestMatchIndex(final String string, final List<String> list) {
     int bestDistance = Integer.MAX_VALUE;
     int bestIndex = -1;
 
@@ -124,7 +124,7 @@ public class EditDistance {
 
     if (string.length() > 4) {
       for (int i = 0; i < list.size(); i++) {
-        String other = list.get(i);
+        final String other = list.get(i);
         if (other.length() > 4 && string.contains(other) || other.contains(string)) {
           return i;
         }
@@ -132,9 +132,9 @@ public class EditDistance {
     }
 
     for (int i = 0; i < list.size(); i++) {
-      String value = list.get(i);
+      final String value = list.get(i);
 
-      int distance = getEditDistance(string, value, threshold(string));
+      final int distance = getEditDistance(string, value, threshold(string));
 
       if (distance < bestDistance) {
         bestIndex = i;
@@ -149,8 +149,8 @@ public class EditDistance {
     return -1;
   }
 
-  public static String findClosestMatch(String string, List<String> list) {
-    int index = findClosestMatchIndex(string, list);
+  public static String findClosestMatch(final String string, final List<String> list) {
+    final int index = findClosestMatchIndex(string, list);
     if (index == -1) {
       return null;
     }
@@ -158,13 +158,13 @@ public class EditDistance {
     return list.get(index);
   }
 
-  public static String findClosestMatch(String string, java.util.Collection<String> set) {
+  public static String findClosestMatch(final String string, final java.util.Collection<String> set) {
     if (set.contains(string)) {
       return string;
     }
 
     if (string.length() > 4) {
-      for (String other : set) {
+      for (final String other : set) {
         if (other.length() > 4 && string.contains(other) || other.contains(string)) {
           return other;
         }
@@ -174,8 +174,8 @@ public class EditDistance {
     int bestDistance = Integer.MAX_VALUE;
     String bestValue = null;
 
-    for (String value : set) {
-      int distance = getEditDistance(string, value, threshold(string));
+    for (final String value : set) {
+      final int distance = getEditDistance(string, value, threshold(string));
 
       if (distance < bestDistance) {
         bestDistance = distance;

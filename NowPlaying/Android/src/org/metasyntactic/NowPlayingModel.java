@@ -63,15 +63,15 @@ public class NowPlayingModel {
   }
 
   private void loadData() {
-    String lastVersion = preferences.getString(VERSION_KEY, "");
+    final String lastVersion = this.preferences.getString(VERSION_KEY, "");
     if (!lastVersion.equals(version)) {
-      SharedPreferences.Editor editor = preferences.edit();
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.clear();
       editor.putString(VERSION_KEY, version);
       editor.commit();
 
       Application.reset();
-      scoreCache.createDirectories();
+      this.scoreCache.createDirectories();
     }
   }
 
@@ -80,11 +80,11 @@ public class NowPlayingModel {
   }
 
   public void shutdown() {
-    dataProvider.shutdown();
-    upcomingCache.shutdown();
-    trailerCache.shutdown();
-    posterCache.shutdown();
-    scoreCache.shutdown();
+    this.dataProvider.shutdown();
+    this.upcomingCache.shutdown();
+    this.trailerCache.shutdown();
+    this.posterCache.shutdown();
+    this.scoreCache.shutdown();
   }
 
   private void initializeTestValues() {
@@ -92,74 +92,74 @@ public class NowPlayingModel {
       //return;
     }
 
-    this.setUserLocation("10009");
+    setUserLocation("10009");
   }
 
   public UserLocationCache getUserLocationCache() {
-    return userLocationCache;
+    return this.userLocationCache;
   }
 
   private void updateTrailerCache() {
-    trailerCache.update(getMovies());
+    this.trailerCache.update(getMovies());
   }
 
   private void updatePosterCache() {
-    posterCache.update(getMovies());
+    this.posterCache.update(getMovies());
   }
 
   private void updateIMDbCache() {
   }
 
   private void update() {
-    dataProvider.update();
-    upcomingCache.update();
+    this.dataProvider.update();
+    this.upcomingCache.update();
     updateTrailerCache();
     updatePosterCache();
-    scoreCache.update();
+    this.scoreCache.update();
   }
 
   public String getUserLocation() {
-    synchronized (preferencesLock) {
-      return preferences.getString(USER_LOCATION_KEY, "");
+    synchronized (this.preferencesLock) {
+      return this.preferences.getString(USER_LOCATION_KEY, "");
     }
   }
 
-  public void setUserLocation(String userLocation) {
-    synchronized (preferencesLock) {
-      SharedPreferences.Editor editor = preferences.edit();
+  public void setUserLocation(final String userLocation) {
+    synchronized (this.preferencesLock) {
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putString(USER_LOCATION_KEY, userLocation);
       editor.commit();
     }
   }
 
   public int getSearchDistance() {
-    synchronized (preferencesLock) {
-      return preferences.getInt(SEARCH_DISTANCE_KEY, 5);
+    synchronized (this.preferencesLock) {
+      return this.preferences.getInt(SEARCH_DISTANCE_KEY, 5);
     }
   }
 
   public void setSearchDistance(int searchDistance) {
-    synchronized (preferencesLock) {
+    synchronized (this.preferencesLock) {
       searchDistance = Math.min(Math.max(searchDistance, 1), 50);
 
-      SharedPreferences.Editor editor = preferences.edit();
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putInt(SEARCH_DISTANCE_KEY, searchDistance);
       editor.commit();
     }
   }
 
   public Date getSearchDate() {
-    synchronized (preferencesLock) {
-      String value = preferences.getString(SEARCH_DATE_KEY, "");
+    synchronized (this.preferencesLock) {
+      final String value = this.preferences.getString(SEARCH_DATE_KEY, "");
       if ("".equals(value)) {
         return DateUtilities.getToday();
       }
 
-      SimpleDateFormat format = new SimpleDateFormat();
+      final SimpleDateFormat format = new SimpleDateFormat();
       Date result = null;
       try {
         result = format.parse(value);
-      } catch (ParseException e) {
+      } catch (final ParseException e) {
         throw new RuntimeException(e);
       }
       if (result.before(new Date())) {
@@ -171,26 +171,26 @@ public class NowPlayingModel {
     }
   }
 
-  public void setSearchDate(Date searchDate) {
-    synchronized (preferencesLock) {
-      SimpleDateFormat format = new SimpleDateFormat();
-      String result = format.format(searchDate);
+  public void setSearchDate(final Date searchDate) {
+    synchronized (this.preferencesLock) {
+      final SimpleDateFormat format = new SimpleDateFormat();
+      final String result = format.format(searchDate);
 
-      SharedPreferences.Editor editor = preferences.edit();
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putString(SEARCH_DATE_KEY, result);
       editor.commit();
     }
   }
 
   public int getSelectedTabIndex() {
-    synchronized (preferencesLock) {
-      return preferences.getInt(SELECTED_TAB_INDEX_KEY, 0);
+    synchronized (this.preferencesLock) {
+      return this.preferences.getInt(SELECTED_TAB_INDEX_KEY, 0);
     }
   }
 
-  public void setSelectedTabIndex(int index) {
-    synchronized (preferencesLock) {
-      SharedPreferences.Editor editor = preferences.edit();
+  public void setSelectedTabIndex(final int index) {
+    synchronized (this.preferencesLock) {
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putInt(SELECTED_TAB_INDEX_KEY, index);
       editor.commit();
     }
@@ -199,14 +199,14 @@ public class NowPlayingModel {
   }
 
   public int getAllMoviesSelecetedSortIndex() {
-    synchronized (preferencesLock) {
-      return preferences.getInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
+    synchronized (this.preferencesLock) {
+      return this.preferences.getInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
     }
   }
 
-  public void setAllMoviesSelectedSortIndex(int index) {
-    synchronized (preferencesLock) {
-      SharedPreferences.Editor editor = preferences.edit();
+  public void setAllMoviesSelectedSortIndex(final int index) {
+    synchronized (this.preferencesLock) {
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
@@ -215,14 +215,14 @@ public class NowPlayingModel {
   }
 
   public int getAllTheatersSelectedSortIndex() {
-    synchronized (preferencesLock) {
-      return preferences.getInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, 0);
+    synchronized (this.preferencesLock) {
+      return this.preferences.getInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, 0);
     }
   }
 
-  public void setAllTheatersSelectedSortIndex(int index) {
-    synchronized (preferencesLock) {
-      SharedPreferences.Editor editor = preferences.edit();
+  public void setAllTheatersSelectedSortIndex(final int index) {
+    synchronized (this.preferencesLock) {
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
@@ -231,14 +231,14 @@ public class NowPlayingModel {
   }
 
   public int getUpcomingMoviesSelectedSortIndex() {
-    synchronized (preferencesLock) {
-      return preferences.getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
+    synchronized (this.preferencesLock) {
+      return this.preferences.getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
     }
   }
 
-  public void setUpcomingMoviesSelectedSortIndex(int index) {
-    synchronized (preferencesLock) {
-      SharedPreferences.Editor editor = preferences.edit();
+  public void setUpcomingMoviesSelectedSortIndex(final int index) {
+    synchronized (this.preferencesLock) {
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
@@ -247,8 +247,8 @@ public class NowPlayingModel {
   }
 
   public ScoreType getScoreType() {
-    synchronized (preferencesLock) {
-      String value = preferences.getString(SCORE_TYPE_KEY, null);
+    synchronized (this.preferencesLock) {
+      final String value = this.preferences.getString(SCORE_TYPE_KEY, null);
       if (value == null) {
         return ScoreType.RottenTomatoes;
       }
@@ -257,20 +257,20 @@ public class NowPlayingModel {
     }
   }
 
-  public void setScoreType(ScoreType scoreType) {
-    synchronized (preferencesLock) {
-      SharedPreferences.Editor editor = preferences.edit();
+  public void setScoreType(final ScoreType scoreType) {
+    synchronized (this.preferencesLock) {
+      final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putString(SCORE_TYPE_KEY, scoreType.toString());
       editor.commit();
     }
   }
 
   public List<Movie> getMovies() {
-    return dataProvider.getMovies();
+    return this.dataProvider.getMovies();
   }
 
   public List<Theater> getTheaters() {
-    return dataProvider.getTheaters();
+    return this.dataProvider.getTheaters();
   }
 
   public List<FavoriteTheater> getFavoriteTheaters() {
@@ -283,25 +283,25 @@ public class NowPlayingModel {
     updateTrailerCache();
   }
 
-  public List<String> getTrailers(Movie movie) {
-    return trailerCache.getTrailers(movie);
+  public List<String> getTrailers(final Movie movie) {
+    return this.trailerCache.getTrailers(movie);
   }
 
-  public Score getScore(Movie movie) {
-    return scoreCache.getScore(getMovies(), movie);
+  public Score getScore(final Movie movie) {
+    return this.scoreCache.getScore(getMovies(), movie);
   }
 
-  public List<Review> getReviews(Movie movie) {
-    return scoreCache.getReviews(getMovies(), movie);
+  public List<Review> getReviews(final Movie movie) {
+    return this.scoreCache.getReviews(getMovies(), movie);
   }
 
-  public byte[] getPoster(Movie movie) {
-    byte[] bytes = posterCache.getPoster(movie);
+  public byte[] getPoster(final Movie movie) {
+    byte[] bytes = this.posterCache.getPoster(movie);
     if (bytes != null) {
       return bytes;
     }
 
-    bytes = upcomingCache.getPoster(movie);
+    bytes = this.upcomingCache.getPoster(movie);
     if (bytes != null) {
       return bytes;
     }
@@ -309,26 +309,26 @@ public class NowPlayingModel {
     return null;
   }
 
-  public String getSynopsis(Movie movie) {
-    List<String> options = new ArrayList<String>();
+  public String getSynopsis(final Movie movie) {
+    final List<String> options = new ArrayList<String>();
     if (!isNullOrEmpty(movie.getSynopsis())) {
       options.add(movie.getSynopsis());
     }
 
     if (options.isEmpty() || Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage())) {
-      Score score = getScore(movie);
+      final Score score = getScore(movie);
       if (score != null && !isNullOrEmpty(score.getSynopsis())) {
         options.add(score.getSynopsis());
       }
 
-      String synopsis = upcomingCache.getSynopsis(movie);
+      final String synopsis = this.upcomingCache.getSynopsis(movie);
       if (!isNullOrEmpty(synopsis)) {
         options.add(synopsis);
       }
     }
 
     String bestOption = "";
-    for (String s : options) {
+    for (final String s : options) {
       if (s.length() > bestOption.length()) {
         bestOption = s;
       }
@@ -336,20 +336,20 @@ public class NowPlayingModel {
     return bestOption;
   }
 
-  public String getImdbAddress(Movie movie) {
+  public String getImdbAddress(final Movie movie) {
     return movie.getImdbAddress();
   }
 
-  public void prioritizeMovie(Movie movie) {
-    posterCache.prioritizeMovie(movie);
-    scoreCache.prioritizeMovie(getMovies(), movie);
-    trailerCache.prioritizeMovie(movie);
-    upcomingCache.prioritizeMovie(movie);
+  public void prioritizeMovie(final Movie movie) {
+    this.posterCache.prioritizeMovie(movie);
+    this.scoreCache.prioritizeMovie(getMovies(), movie);
+    this.trailerCache.prioritizeMovie(movie);
+    this.upcomingCache.prioritizeMovie(movie);
   }
 
-  public List<Theater> getTheatersShowingMovie(Movie movie) {
-    List<Theater> result = new ArrayList<Theater>();
-    for (Theater theater : this.getTheaters()) {
+  public List<Theater> getTheatersShowingMovie(final Movie movie) {
+    final List<Theater> result = new ArrayList<Theater>();
+    for (final Theater theater : getTheaters()) {
       if (theater.getMovieTitles().contains(movie.getCanonicalTitle())) {
         result.add(theater);
       }
@@ -357,9 +357,9 @@ public class NowPlayingModel {
     return result;
   }
 
-  public List<Movie> getMoviesAtTheater(Theater theater) {
-    List<Movie> result = new ArrayList<Movie>();
-    for (Movie movie : this.getMovies()) {
+  public List<Movie> getMoviesAtTheater(final Theater theater) {
+    final List<Movie> result = new ArrayList<Movie>();
+    for (final Movie movie : getMovies()) {
       if (theater.getMovieTitles().contains(movie.getCanonicalTitle())) {
         result.add(movie);
       }
@@ -367,7 +367,7 @@ public class NowPlayingModel {
     return result;
   }
 
-  public List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) {
-    return dataProvider.getPerformancesForMovieInTheater(movie, theater);
+  public List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
+    return this.dataProvider.getPerformancesForMovieInTheater(movie, theater);
   }
 }

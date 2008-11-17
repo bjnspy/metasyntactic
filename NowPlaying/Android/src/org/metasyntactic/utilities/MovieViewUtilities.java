@@ -28,17 +28,17 @@ import java.util.Date;
 import java.util.List;
 
 public class MovieViewUtilities {
-
   // Constants for movies sort
   private final static int MovieTitle = 0;
   private final static int Release = 1;
-  private final static int Score = 2;
-
   // constants for Theaters sort
   private final static int TheaterName = 0;
   private final static int Distance = 1;
 
   private static String currentHeader;
+
+  private MovieViewUtilities() {
+  }
 
   /**
    * Formats the movie rating for display. For example if a movie is rated PG 13, the ratings string is "Rated PG-13.".
@@ -47,7 +47,7 @@ public class MovieViewUtilities {
    * @param rating Movie rating.
    * @param res    Context resources handle.
    */
-  public static CharSequence formatRatings(String rating, Resources res) {
+  public static CharSequence formatRatings(final String rating, final Resources res) {
     if (rating.equals("")) {
       return res.getString(R.string.unrated);
     } else {
@@ -61,13 +61,13 @@ public class MovieViewUtilities {
    * @param length Movie length in minutes.
    * @param res    Context resources handle.
    */
-  public static CharSequence formatLength(int length, Resources res) {
+  public static CharSequence formatLength(final int length, final Resources res) {
     String hoursString = "";
     String minutesString = "";
 
     if (length > 0) {
-      int hours = length / 60;
-      int minutes = length % 60;
+      final int hours = length / 60;
+      final int minutes = length % 60;
 
       if (hours == 1) {
         hoursString = res.getString(R.string.one_hour);
@@ -85,7 +85,7 @@ public class MovieViewUtilities {
     return res.getString(R.string.string_string, hoursString, minutesString);
   }
 
-  public static Drawable formatScoreDrawable(int score, ScoreType scoreType, Resources res) {
+  public static Drawable formatScoreDrawable(final int score, final ScoreType scoreType, final Resources res) {
 
     if (scoreType == ScoreType.RottenTomatoes) {
       return formatRottenTomatoesDrawable(score, res);
@@ -93,7 +93,7 @@ public class MovieViewUtilities {
     return formatBasicSquareDrawable(score, res);
   }
 
-  private static Drawable formatRottenTomatoesDrawable(int score, Resources res) {
+  private static Drawable formatRottenTomatoesDrawable(final int score, final Resources res) {
     Drawable scoreDrawable = null;
     scoreDrawable = res.getDrawable(R.drawable.rating_unknown);
     if (score >= 0 && score <= 100) {
@@ -107,7 +107,7 @@ public class MovieViewUtilities {
     return scoreDrawable;
   }
 
-  private static Drawable formatBasicSquareDrawable(int score, Resources res) {
+  private static Drawable formatBasicSquareDrawable(final int score, final Resources res) {
     Drawable scoreDrawable = null;
     scoreDrawable = res.getDrawable(R.drawable.rating_unknown);
     if (score >= 0 && score <= 40) {
@@ -120,7 +120,7 @@ public class MovieViewUtilities {
     return scoreDrawable;
   }
 
-  public static String getHeader(List<Movie> movies, int position, int sortIndex) {
+  public static String getHeader(final List<Movie> movies, final int position, final int sortIndex) {
     switch (sortIndex) {
       case MovieTitle:
         if (position == 0) {
@@ -131,8 +131,8 @@ public class MovieViewUtilities {
         }
         break;
       case Release:
-        Date d1 = movies.get(position).getReleaseDate();
-        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
+        final Date d1 = movies.get(position).getReleaseDate();
+        final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
         String dateStr;
         if (d1 != null) {
           dateStr = df.format(d1);
@@ -144,8 +144,8 @@ public class MovieViewUtilities {
 
           return dateStr;
         }
-        Date d2 = movies.get(position - 1).getReleaseDate();
-        if ((d2 != null) && (d1 != null) && !(d1.equals(d2))) {
+        final Date d2 = movies.get(position - 1).getReleaseDate();
+        if (d2 != null && d1 != null && !d1.equals(d2)) {
 
           return dateStr;
         }
@@ -154,7 +154,7 @@ public class MovieViewUtilities {
     return null;
   }
 
-  public static String getTheaterHeader(List<Theater> theaters, int position, int sortIndex, Address address) {
+  public static String getTheaterHeader(final List<Theater> theaters, final int position, final int sortIndex, final Address address) {
     switch (sortIndex) {
       case TheaterName:
         if (position == 0) {
@@ -167,10 +167,10 @@ public class MovieViewUtilities {
       case Distance:
         //todo (mjoshi) fix this ...incorrect headers are returned, and its slow.
 
-        Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null,
+        final Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null,
                                              null);
 
-        double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
+        final double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
         // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
 
         if (dist_m1 <= 2 && dist_m1 >= 0 && currentHeader != "Less than 2 miles") {

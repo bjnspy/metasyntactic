@@ -23,24 +23,24 @@ import org.w3c.dom.Element;
 
 public class ImdbPosterDownloader {
 
-  public static byte[] download(Movie movie) {
+  public static byte[] download(final Movie movie) {
     return NetworkUtilities.download(getImageUrl(getImdbId(movie)), false);
   }
 
-  private static String getImdbId(Movie movie) {
-    String url = "http://www.trynt.com/movie-imdb-api/v2/?t=" + StringUtilities.urlEncode(movie.getCanonicalTitle());
-    Element tryntElement = NetworkUtilities.downloadXml(url, false);
+  private static String getImdbId(final Movie movie) {
+    final String url = "http://www.trynt.com/movie-imdb-api/v2/?t=" + StringUtilities.urlEncode(movie.getCanonicalTitle());
+    final Element tryntElement = NetworkUtilities.downloadXml(url, false);
 
     return text(element(element(tryntElement, "movie-imdb"), "matched-id"));
   }
 
-  private static String getImageUrl(String imdbId) {
+  private static String getImageUrl(final String imdbId) {
     if (StringUtilities.isNullOrEmpty(imdbId)) {
       return null;
     }
 
-    String address = "http://www.trynt.com/movie-imdb-api/v2/?i=" + imdbId;
-    Element tryntElement = NetworkUtilities.downloadXml(address, false);
+    final String address = "http://www.trynt.com/movie-imdb-api/v2/?i=" + imdbId;
+    final Element tryntElement = NetworkUtilities.downloadXml(address, false);
     return text(element(element(tryntElement, "movie-imdb"), "picture-url"));
   }
 }

@@ -24,13 +24,13 @@ public class WebViewActivity extends Activity {
   private WebView webView;
 
   @Override
-  public void onCreate(Bundle icicle) {
+  public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
     NowPlayingControllerWrapper.addActivity(this);
-    webView = new WebView(this);
-    setContentView(webView);
-    path = getIntent().getExtras().getString("url");
-    webView.loadUrl(path);
+    this.webView = new WebView(this);
+    setContentView(this.webView);
+    this.path = getIntent().getExtras().getString("url");
+    this.webView.loadUrl(this.path);
   }
 
   protected void onDestroy() {

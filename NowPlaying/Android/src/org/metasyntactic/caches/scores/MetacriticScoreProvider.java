@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MetacriticScoreProvider extends AbstractScoreProvider {
-  public MetacriticScoreProvider(ScoreCache scoreCache) {
+  public MetacriticScoreProvider(final ScoreCache scoreCache) {
     super(scoreCache);
   }
 
@@ -35,30 +35,30 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
 
   @Override
   protected String lookupServerHash() {
-    String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
+    final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
   @Override
   protected Map<String, Score> lookupServerScores() {
 
-    String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml";
-    Element resultElement = NetworkUtilities.downloadXml(address, true);
+    final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml";
+    final Element resultElement = NetworkUtilities.downloadXml(address, true);
 
     if (resultElement != null) {
-      Map<String, Score> ratings = new HashMap<String, Score>();
+      final Map<String, Score> ratings = new HashMap<String, Score>();
 
-      for (Element movieElement : children(resultElement)) {
-        String title = movieElement.getAttribute("title");
-        String link = movieElement.getAttribute("link");
-        String synopsis = movieElement.getAttribute("synopsis");
+      for (final Element movieElement : children(resultElement)) {
+        final String title = movieElement.getAttribute("title");
+        final String link = movieElement.getAttribute("link");
+        final String synopsis = movieElement.getAttribute("synopsis");
         String value = movieElement.getAttribute("score");
 
         if (value.equals("xx")) {
           value = "-1";
         }
 
-        Score score = new Score(title, synopsis, value, "metacritic", link);
+        final Score score = new Score(title, synopsis, value, "metacritic", link);
         ratings.put(score.getCanonicalTitle(), score);
       }
 

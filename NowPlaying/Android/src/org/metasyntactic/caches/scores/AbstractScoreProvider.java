@@ -37,7 +37,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     private final Movie movie;
     private final Map<String, String> movieMap;
 
-    private MovieAndMap(Movie movie, Map<String, String> movieMap) {
+    private MovieAndMap(final Movie movie, final Map<String, String> movieMap) {
       this.movie = movie;
       this.movieMap = movieMap;
     }
@@ -60,37 +60,37 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   private final File providerDirectory = new File(Application.scoresDirectory, getProviderName());
   private final File reviewsDirectory = new File(Application.reviewsDirectory, getProviderName());
 
-  public AbstractScoreProvider(ScoreCache parentCache) {
+  public AbstractScoreProvider(final ScoreCache parentCache) {
     this.parentCache = parentCache;
 
     createDirectory();
   }
 
   public void shutdown() {
-    shutdown = true;
+    this.shutdown = true;
   }
 
   public void createDirectory() {
-    providerDirectory.mkdirs();
-    reviewsDirectory.mkdirs();
+    this.providerDirectory.mkdirs();
+    this.reviewsDirectory.mkdirs();
   }
 
   protected abstract String getProviderName();
 
   protected NowPlayingModel getModel() {
-    return parentCache.getModel();
+    return this.parentCache.getModel();
   }
 
   private File scoresFile() {
-    return new File(providerDirectory, "Scores");
+    return new File(this.providerDirectory, "Scores");
   }
 
   private File hashFile() {
-    return new File(providerDirectory, "Hash");
+    return new File(this.providerDirectory, "Hash");
   }
 
   private File movieMapFile() {
-    return new File(providerDirectory, "MovieMap");
+    return new File(this.providerDirectory, "MovieMap");
   }
 
   private Map<String, Score> loadScores() {
@@ -102,7 +102,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
   private String loadHash() {
-    String string = FileUtilities.readString(hashFile());
+    final String string = FileUtilities.readString(hashFile());
     if (string == null) {
       return "";
     }
@@ -110,7 +110,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
   private Map<String, String> loadMovieMap() {
-    Map<String, String> result = FileUtilities.readStringToStringMap(movieMapFile());
+    final Map<String, String> result = FileUtilities.readStringToStringMap(movieMapFile());
     if (result == null) {
       return Collections.emptyMap();
     }
@@ -118,24 +118,24 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
   public Map<String, Score> getScores() {
-    if (scores == null) {
-      scores = loadScores();
+    if (this.scores == null) {
+      this.scores = loadScores();
     }
-    return scores;
+    return this.scores;
   }
 
   private String getHash() {
-    if (hash == null) {
-      hash = loadHash();
+    if (this.hash == null) {
+      this.hash = loadHash();
     }
-    return hash;
+    return this.hash;
   }
 
   private Map<String, String> getMovieMap() {
-    if (movieMap_doNotAccessDirectly == null) {
-      movieMap_doNotAccessDirectly = loadMovieMap();
+    if (this.movieMap_doNotAccessDirectly == null) {
+      this.movieMap_doNotAccessDirectly = loadMovieMap();
     }
-    return movieMap_doNotAccessDirectly;
+    return this.movieMap_doNotAccessDirectly;
   }
 
   public void update() {
@@ -144,48 +144,48 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
   private void updateScores() {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         updateScoresBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, lock, true/*visible*/,
+    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, this.lock, true/*visible*/,
                                                  Thread.MIN_PRIORITY + 1);
   }
 
   private void updateReviews() {
     final Map<String, Score> scoreMap = getScores();
 
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         updateReviewsBackgroundEntryPoint(scoreMap);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Reviews", runnable, lock, false/*visible*/,
+    ThreadingUtilities.performOnBackgroundThread("Update Reviews", runnable, this.lock, false/*visible*/,
                                                  Thread.MIN_PRIORITY + 1);
   }
 
   private void updateScoresBackgroundEntryPoint() {
-    long start = System.currentTimeMillis();
+    final long start = System.currentTimeMillis();
     updateScoresBackgroundEntryPointWorker();
     LogUtilities.logTime(getClass(), "Update Scores", start);
   }
 
-  private void updateReviewsBackgroundEntryPoint(Map<String, Score> scoreMap) {
-    long start = System.currentTimeMillis();
+  private void updateReviewsBackgroundEntryPoint(final Map<String, Score> scoreMap) {
+    final long start = System.currentTimeMillis();
     updateReviewsBackgroundEntryPointWorker(scoreMap);
     LogUtilities.logTime(getClass(), "Update Reviews", start);
   }
 
   private void updateScoresBackgroundEntryPointWorker() {
-    File hashFile = hashFile();
+    final File hashFile = hashFile();
     if (hashFile.exists()) {
       if (Math.abs(hashFile.lastModified() - new Date().getTime()) < Constants.ONE_DAY) {
         return;
       }
     }
 
-    String localHash = getHash();
+    final String localHash = getHash();
     final String serverHash = lookupServerHash();
 
     if (StringUtilities.isNullOrEmpty(serverHash)) {
@@ -210,7 +210,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     reportResult(serverHash, result);
   }
 
-  private void saveResult(String serverHash, Map<String, Score> result) {
+  private void saveResult(final String serverHash, final Map<String, Score> result) {
     FileUtilities.writeStringToPersistableMap(result, scoresFile());
 
     // write this file last, to indicate that we are done.
@@ -218,7 +218,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
   }
 
   private void reportResult(final String hash, final Map<String, Score> scores) {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         reportResultOnMainThread(hash, scores);
       }
@@ -226,18 +226,18 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     ThreadingUtilities.performOnMainThread(runnable);
   }
 
-  private void reportResultOnMainThread(String hash, Map<String, Score> scores) {
+  private void reportResultOnMainThread(final String hash, final Map<String, Score> scores) {
     this.hash = hash;
     this.scores = scores;
-    movieMap_doNotAccessDirectly = null;
-    movies = null;
+    this.movieMap_doNotAccessDirectly = null;
+    this.movies = null;
 
     Application.refresh(true);
 
     updateReviews();
   }
 
-  public Score getScore(final List<Movie> movies, Movie movie) {
+  public Score getScore(final List<Movie> movies, final Movie movie) {
     ensureMovieMap(movies);
 
     return getScores().get(getMovieMap().get(movie.getCanonicalTitle()));
@@ -248,30 +248,30 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       this.movies = movies;
       final Map<String, Score> scores = getScores();
 
-      Runnable runnable = new Runnable() {
+      final Runnable runnable = new Runnable() {
         public void run() {
           regenerateMovieMap(movies, scores);
         }
       };
-      ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, movieMapLock, true);
+      ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, this.movieMapLock, true);
     }
   }
 
-  private void regenerateMovieMap(final List<Movie> movies, Map<String, Score> scores) {
+  private void regenerateMovieMap(final List<Movie> movies, final Map<String, Score> scores) {
     final Map<String, String> result = new HashMap<String, String>();
 
-    List<String> titles = new ArrayList<String>(scores.keySet());
-    List<String> lowercaseTitles = new ArrayList<String>();
-    for (String title : titles) {
+    final List<String> titles = new ArrayList<String>(scores.keySet());
+    final List<String> lowercaseTitles = new ArrayList<String>();
+    for (final String title : titles) {
       lowercaseTitles.add(title.toLowerCase());
     }
 
-    for (Movie movie : movies) {
-      String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
-      int index = EditDistance.findClosestMatchIndex(lowercaseTitle, lowercaseTitles);
+    for (final Movie movie : movies) {
+      final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
+      final int index = EditDistance.findClosestMatchIndex(lowercaseTitle, lowercaseTitles);
 
       if (index >= 0) {
-        String title = titles.get(index);
+        final String title = titles.get(index);
         result.put(movie.getCanonicalTitle(), title);
       }
     }
@@ -282,7 +282,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
     FileUtilities.writeStringToStringMap(result, movieMapFile());
 
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         reportMovieMap(result, movies);
       }
@@ -291,7 +291,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     ThreadingUtilities.performOnMainThread(runnable);
   }
 
-  private void reportMovieMap(Map<String, String> result, List<Movie> movies) {
+  private void reportMovieMap(final Map<String, String> result, final List<Movie> movies) {
     this.movieMap_doNotAccessDirectly = result;
     this.movies = movies;
     Application.refresh(true);
@@ -301,24 +301,24 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
   protected abstract Map<String, Score> lookupServerScores();
 
-  private File reviewsFile(String title) {
-    return new File(reviewsDirectory, FileUtilities.sanitizeFileName(title));
+  private File reviewsFile(final String title) {
+    return new File(this.reviewsDirectory, FileUtilities.sanitizeFileName(title));
   }
 
-  private File reviewsHashFile(String title) {
-    return new File(reviewsDirectory, FileUtilities.sanitizeFileName(title) + "-Hash");
+  private File reviewsHashFile(final String title) {
+    return new File(this.reviewsDirectory, FileUtilities.sanitizeFileName(title) + "-Hash");
   }
 
-  private void updateReviewsBackgroundEntryPointWorker(Map<String, Score> scoresMap) {
-    Set<Score> scoresWithoutReviews = new TreeSet<Score>();
-    Set<Score> scoresWithReviews = new TreeSet<Score>();
+  private void updateReviewsBackgroundEntryPointWorker(final Map<String, Score> scoresMap) {
+    final Set<Score> scoresWithoutReviews = new TreeSet<Score>();
+    final Set<Score> scoresWithReviews = new TreeSet<Score>();
 
-    for (Map.Entry<String, Score> entry : scoresMap.entrySet()) {
-      File file = reviewsFile(entry.getKey());
+    for (final Map.Entry<String, Score> entry : scoresMap.entrySet()) {
+      final File file = reviewsFile(entry.getKey());
       if (!file.exists()) {
         scoresWithoutReviews.add(entry.getValue());
       } else {
-        if (Math.abs(new Date().getTime() - file.lastModified()) > (2 * Constants.ONE_DAY)) {
+        if (Math.abs(new Date().getTime() - file.lastModified()) > 2 * Constants.ONE_DAY) {
           scoresWithReviews.add(entry.getValue());
         }
       }
@@ -328,8 +328,8 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     downloadReviews(scoresWithReviews, scoresMap);
   }
 
-  private void downloadReviews(Set<Score> scores, Map<String, Score> scoresMap) {
-    Location location = getModel().getUserLocationCache()
+  private void downloadReviews(final Set<Score> scores, final Map<String, Score> scoresMap) {
+    final Location location = getModel().getUserLocationCache()
         .downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserLocation());
 
     if (location == null) {
@@ -340,23 +340,23 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     do {
       score = getNextScore(scores, scoresMap);
       downloadReviews(score, location);
-    } while (score != null && !shutdown);
+    } while (score != null && !this.shutdown);
   }
 
-  private Score getNextScore(Set<Score> scores, Map<String, Score> scoresMap) {
-    MovieAndMap movieAndMap = prioritizedMovies.removeAny();
+  private Score getNextScore(final Set<Score> scores, final Map<String, Score> scoresMap) {
+    final MovieAndMap movieAndMap = this.prioritizedMovies.removeAny();
     if (movieAndMap != null) {
-      Movie movie = movieAndMap.movie;
-      Map<String, String> movieMap = movieAndMap.movieMap;
-      Score score = scoresMap.get(movieMap.get(movie.getCanonicalTitle()));
+      final Movie movie = movieAndMap.movie;
+      final Map<String, String> movieMap = movieAndMap.movieMap;
+      final Score score = scoresMap.get(movieMap.get(movie.getCanonicalTitle()));
       if (score != null && !reviewsFile(score.getCanonicalTitle()).exists()) {
         return score;
       }
     }
 
     if (!scores.isEmpty()) {
-      Iterator<Score> i = scores.iterator();
-      Score score = i.next();
+      final Iterator<Score> i = scores.iterator();
+      final Score score = i.next();
       i.remove();
 
       return score;
@@ -365,18 +365,18 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     return null;
   }
 
-  public void prioritizeMovie(List<Movie> movies, Movie movie) {
+  public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
     ensureMovieMap(movies);
-    prioritizedMovies.add(new MovieAndMap(movie, getMovieMap()));
+    this.prioritizedMovies.add(new MovieAndMap(movie, getMovieMap()));
   }
 
-  private String serverReviewsAddress(Location location, Score score) {
+  private String serverReviewsAddress(final Location location, final Score score) {
     String country = Locale.getDefault().getCountry();
     if (!StringUtilities.isNullOrEmpty(location.getCountry())) {
       country = location.getCountry();
     }
 
-    String address = "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale
+    final String address = "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale
         .getDefault()
         .getLanguage() + "&id=" + score.getIdentifier() + "" + "&provider=" + score.getProvider() + "&latitude=" + (int) (location
         .getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
@@ -384,21 +384,21 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     return address;
   }
 
-  private void downloadReviews(Score score, Location location) {
+  private void downloadReviews(final Score score, final Location location) {
     if (score != null) {
-      String address = serverReviewsAddress(location, score) + "&hash=true";
+      final String address = serverReviewsAddress(location, score) + "&hash=true";
       String serverHash = NetworkUtilities.downloadString(address, false);
 
       if (serverHash == null) {
         serverHash = "0";
       }
 
-      String localHash = FileUtilities.readString(reviewsHashFile(score.getCanonicalTitle()));
+      final String localHash = FileUtilities.readString(reviewsHashFile(score.getCanonicalTitle()));
       if (serverHash.equals(localHash)) {
         return;
       }
 
-      List<Review> reviews = downloadReviewContents(location, score);
+      final List<Review> reviews = downloadReviewContents(location, score);
       if (reviews == null) {
         // didn't download.  just ignore it.
         return;
@@ -408,7 +408,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
         // we got no reviews.  only save that fact if we don't currently have
         // any reviews.  This way we don't end up checking every single time
         // for movies that don't have reviews yet
-        List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader,
+        final List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader,
                                                                          reviewsFile(score.getCanonicalTitle()));
         if (size(existingReviews) > 0) {
           // we have reviews already.  don't wipe it out.
@@ -421,9 +421,9 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     }
   }
 
-  private List<Review> downloadReviewContents(Location location, Score score) {
-    String address = serverReviewsAddress(location, score);
-    Element element = NetworkUtilities.downloadXml(address, false);
+  private List<Review> downloadReviewContents(final Location location, final Score score) {
+    final String address = serverReviewsAddress(location, score);
+    final Element element = NetworkUtilities.downloadXml(address, false);
     if (element == null) {
       return null;
     }
@@ -431,14 +431,14 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     return extractReviews(element);
   }
 
-  private List<Review> extractReviews(Element element) {
-    List<Review> result = new ArrayList<Review>();
-    for (Element reviewElement : children(element)) {
-      String text = reviewElement.getAttribute("text");
-      String score = reviewElement.getAttribute("score");
-      String link = reviewElement.getAttribute("link");
-      String author = reviewElement.getAttribute("author");
-      String source = reviewElement.getAttribute("source");
+  private List<Review> extractReviews(final Element element) {
+    final List<Review> result = new ArrayList<Review>();
+    for (final Element reviewElement : children(element)) {
+      final String text = reviewElement.getAttribute("text");
+      final String score = reviewElement.getAttribute("score");
+      final String link = reviewElement.getAttribute("link");
+      final String author = reviewElement.getAttribute("author");
+      final String source = reviewElement.getAttribute("source");
 
       if (author.contains("HREF")) {
         continue;
@@ -447,7 +447,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       int scoreValue = -1;
       try {
         scoreValue = Integer.parseInt(score);
-      } catch (NumberFormatException e) {
+      } catch (final NumberFormatException e) {
       }
 
       result.add(new Review(text, scoreValue, link, author, source));
@@ -456,16 +456,16 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     return result;
   }
 
-  private void save(String title, List<Review> reviews, String serverHash) {
+  private void save(final String title, final List<Review> reviews, final String serverHash) {
     FileUtilities.writePersistableCollection(reviews, reviewsFile(title));
 
     // do this last.  it marks us being complete.
     FileUtilities.writeString(serverHash, reviewsHashFile(title));
   }
 
-  public List<Review> getReviews(List<Movie> movies, Movie movie) {
+  public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
     ensureMovieMap(movies);
-    String title = getMovieMap().get(movie.getCanonicalTitle());
+    final String title = getMovieMap().get(movie.getCanonicalTitle());
     return FileUtilities.readPersistableList(Review.reader, reviewsFile(title));
   }
 }

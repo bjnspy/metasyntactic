@@ -24,13 +24,12 @@ import java.util.Map;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class AddressLocationCache {
   private AddressLocationCache() {
-
   }
 
-  public static Map<Theater, Double> getTheaterDistanceMap(Location location, List<Theater> theaters) {
-    Map<Theater, Double> map = new HashMap<Theater, Double>();
+  public static Map<Theater, Double> getTheaterDistanceMap(final Location location, final List<Theater> theaters) {
+    final Map<Theater, Double> map = new HashMap<Theater, Double>();
 
-    for (Theater theater : theaters) {
+    for (final Theater theater : theaters) {
       double d;
       if (location != null) {
         d = location.distanceTo(theater.getLocation());

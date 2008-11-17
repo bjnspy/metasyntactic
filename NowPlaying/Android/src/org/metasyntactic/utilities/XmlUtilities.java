@@ -28,40 +28,39 @@ import java.util.List;
 
 public class XmlUtilities {
   private XmlUtilities() {
-
   }
 
-  public static Element parseInputStream(InputStream in) {
+  public static Element parseInputStream(final InputStream in) {
     try {
-      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder documentBuilder = factory.newDocumentBuilder();
-      Document document = documentBuilder.parse(in);
+      final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+      final DocumentBuilder documentBuilder = factory.newDocumentBuilder();
+      final Document document = documentBuilder.parse(in);
       if (document == null) {
         return null;
       }
 
       return document.getDocumentElement();
-    } catch (IOException e) {
+    } catch (final IOException e) {
       ExceptionUtilities.log(XmlUtilities.class, "parseInputStream", e);
       return null;
-    } catch (SAXException e) {
+    } catch (final SAXException e) {
       ExceptionUtilities.log(XmlUtilities.class, "parseInputStream", e);
       return null;
-    } catch (ParserConfigurationException e) {
+    } catch (final ParserConfigurationException e) {
       throw new RuntimeException(e);
     }
   }
 
-  public static Element element(Element element, String name) {
+  public static Element element(final Element element, final String name) {
     if (element == null) {
       return null;
     }
 
-    NodeList list = element.getChildNodes();
+    final NodeList list = element.getChildNodes();
     for (int i = 0; i < list.getLength(); i++) {
-      Node child = list.item(i);
+      final Node child = list.item(i);
       if (child.getNodeType() == Node.ELEMENT_NODE) {
-        Element childElement = (Element) child;
+        final Element childElement = (Element) child;
         if (childElement.getTagName().equals(name)) {
           return childElement;
         }
@@ -71,7 +70,7 @@ public class XmlUtilities {
     return null;
   }
 
-  public static String text(Element element) {
+  public static String text(final Element element) {
     if (element == null) {
       return null;
     }
@@ -80,23 +79,23 @@ public class XmlUtilities {
       return null;
     }
 
-    Node child = element.getFirstChild();
+    final Node child = element.getFirstChild();
     if (child.getNodeType() != Node.TEXT_NODE) {
       return null;
     }
 
-    Text textNode = (Text) child;
+    final Text textNode = (Text) child;
     return textNode.getData();
   }
 
-  public static List<Element> children(Element element) {
+  public static List<Element> children(final Element element) {
     if (element != null) {
-      NodeList list = element.getChildNodes();
+      final NodeList list = element.getChildNodes();
       if (list != null) {
-        List<Element> result = new ArrayList<Element>();
+        final List<Element> result = new ArrayList<Element>();
 
         for (int i = 0; i < list.getLength(); i++) {
-          Node child = list.item(i);
+          final Node child = list.item(i);
           if (child instanceof Element) {
             result.add((Element) child);
           }

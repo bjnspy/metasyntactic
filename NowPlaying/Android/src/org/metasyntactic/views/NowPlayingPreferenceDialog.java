@@ -25,91 +25,83 @@ import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.R;
 
 public class NowPlayingPreferenceDialog {
-
-  private AlertDialog.Builder builder;
-
+  private final AlertDialog.Builder builder;
   private Preference_keys preference_key;
-
   private int preference_value;
 
   public NowPlayingPreferenceDialog(final INowPlaying nowPlaying) {
-    Context context = nowPlaying.getContext();
-    builder = new AlertDialog.Builder(context);
-    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {
+    final Context context = nowPlaying.getContext();
+    this.builder = new AlertDialog.Builder(context);
+    final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+      public void onClick(final DialogInterface dialog, final int whichButton) {
         setPreferenceValue();
         nowPlaying.refresh();
       }
     };
-    builder.setPositiveButton(android.R.string.ok, listener)
+    this.builder.setPositiveButton(android.R.string.ok, listener)
         .setNegativeButton(android.R.string.cancel, null)
         .setSingleChoiceItems(R.array.entries_movies_sort_preference, 0, null);
   }
 
   public NowPlayingPreferenceDialog create() {
-    builder.create();
+    this.builder.create();
     return this;
   }
 
-  public NowPlayingPreferenceDialog setIcon(Drawable icon) {
-    builder.setIcon(icon);
+  public NowPlayingPreferenceDialog setIcon(final Drawable icon) {
+    this.builder.setIcon(icon);
     return this;
   }
 
-  public NowPlayingPreferenceDialog setInverseBackgroundForced(boolean useInverseBackground) {
+  public NowPlayingPreferenceDialog setInverseBackgroundForced(final boolean useInverseBackground) {
 
-    builder.setInverseBackgroundForced(useInverseBackground);
+    this.builder.setInverseBackgroundForced(useInverseBackground);
     return this;
   }
 
-  public NowPlayingPreferenceDialog setNegativeButton(int textId, OnClickListener listener) {
-    builder.setNegativeButton(textId, listener);
+  public NowPlayingPreferenceDialog setNegativeButton(final int textId, final OnClickListener listener) {
+    this.builder.setNegativeButton(textId, listener);
     return this;
   }
 
-  public NowPlayingPreferenceDialog setOnItemSelectedListener(OnItemSelectedListener listener) {
-    builder.setOnItemSelectedListener(listener);
+  public NowPlayingPreferenceDialog setOnItemSelectedListener(final OnItemSelectedListener listener) {
+    this.builder.setOnItemSelectedListener(listener);
     return this;
   }
 
-  private NowPlayingPreferenceDialog setPositiveButton(int textId, OnClickListener listener) {
-    builder.setPositiveButton(textId, listener);
-    return this;
-  }
-
-  public NowPlayingPreferenceDialog setEntries(int items) {
-    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int which) {
-        preference_value = which;
+  public NowPlayingPreferenceDialog setEntries(final int items) {
+    final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+      public void onClick(final DialogInterface dialog, final int which) {
+        NowPlayingPreferenceDialog.this.preference_value = which;
       }
     };
-    preference_value = getPreferenceValue();
-    setSingleChoiceItems(items, preference_value, listener);
+    this.preference_value = getPreferenceValue();
+    setSingleChoiceItems(items, this.preference_value, listener);
     return this;
   }
 
-  private NowPlayingPreferenceDialog setSingleChoiceItems(int items, int checkedItem, OnClickListener listener) {
-    builder.setSingleChoiceItems(items, checkedItem, listener);
+  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem, final OnClickListener listener) {
+    this.builder.setSingleChoiceItems(items, checkedItem, listener);
     return this;
   }
 
-  public NowPlayingPreferenceDialog setTitle(int title) {
-    builder.setTitle(title);
+  public NowPlayingPreferenceDialog setTitle(final int title) {
+    this.builder.setTitle(title);
     return this;
   }
 
-  public NowPlayingPreferenceDialog setKey(Preference_keys key) {
+  public NowPlayingPreferenceDialog setKey(final Preference_keys key) {
     this.preference_key = key;
     return this;
   }
 
   public NowPlayingPreferenceDialog show() {
-    builder.show();
+    this.builder.show();
     return this;
   }
 
   private int getPreferenceValue() {
-    switch (preference_key) {
+    switch (this.preference_key) {
       case MOVIES_SORT:
         return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
       case THEATERS_SORT:
@@ -119,12 +111,12 @@ public class NowPlayingPreferenceDialog {
   }
 
   private void setPreferenceValue() {
-    switch (preference_key) {
+    switch (this.preference_key) {
       case MOVIES_SORT:
-        NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(preference_value);
+        NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(this.preference_value);
         break;
       case THEATERS_SORT:
-        NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(preference_value);
+        NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(this.preference_value);
         break;
     }
   }

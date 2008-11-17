@@ -54,13 +54,13 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   private int selection;
 
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
+  public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.removeActivity(this);
     setContentView(R.layout.movieview);
@@ -68,74 +68,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     thumbnailAdapter = new ThumbnailAdapter();
   }
 
-  private void setupView() {
-    final CustomGallery detail = (CustomGallery) findViewById(R.id.detail);
-    detail.setAdapter(detailAdapter);
-
-    // detail.setSelection(0);
-    final CustomGallery thumbnail = (CustomGallery) findViewById(R.id.thumbnails);
-    thumbnail.setAdapter(thumbnailAdapter);
-    thumbnail.setSoundEffectsEnabled(true);
-    // thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
-    OnItemSelectedListener listener = new OnItemSelectedListener() {
-      public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-        if (thumbnail.getSelectedItemPosition() != position) {
-          thumbnail.setSelection(position);
-        }
-        selection = position;
-        Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this, R.anim.slide_left);
-        arg1.setAnimation(animation);
-      }
-
-      public void onNothingSelected(AdapterView<?> arg0) {
-      }
-    };
-    detail.setOnItemSelectedListener(listener);
-    OnItemClickListener thumblistener = new OnItemClickListener() {
-      public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
-        if (detail.getSelectedItemPosition() != position) {
-          detail.setSelection(position);
-        }
-        Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this, R.anim.fade_gallery_item);
-        arg1.setAnimation(animation);
-      }
-
-      public void onNothingSelected(AdapterView<?> arg0) {
-      }
-    };
-    thumbnail.setOnItemClickListener(thumblistener);
-    selection = getIntent().getExtras().getInt("selection");
-    detail.setSelection(selection, true);
-    thumbnail.setSelection(selection, true);
-    Button details = (Button) findViewById(R.id.details);
-    details.setOnClickListener(new OnClickListener() {
-      public void onClick(View arg0) {
-        final Movie movie = movies.get(selection);
-
-        Intent intent = new Intent();
-        intent.setClass(AllMoviesActivity.this, MovieDetailsActivity.class);
-        intent.putExtra("movie", (Parcelable) movie);
-        startActivity(intent);
-      }
-    });
-    Button showtimes = (Button) findViewById(R.id.showtimes);
-    showtimes.setOnClickListener(new OnClickListener() {
-      public void onClick(View arg0) {
-        final Movie movie = movies.get(selection);
-
-        Intent intent = new Intent();
-        intent.setClass(AllMoviesActivity.this, ShowtimesActivity.class);
-        intent.putExtra("movie", (Parcelable) movie);
-        startActivity(intent);
-      }
-    });
-  }
-
   @Override
   protected void onResume() {
     super.onResume();
 
-    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
   @Override
@@ -146,7 +83,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onPause() {
-    unregisterReceiver(broadcastReceiver);
+    unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
 
@@ -154,7 +91,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   private static ThumbnailAdapter thumbnailAdapter;
 
   @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
+  public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
     menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
         .setIcon(android.R.drawable.ic_menu_preferences)
@@ -164,9 +101,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
+  public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
-      NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(AllMoviesActivity.this).setTitle(
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(AllMoviesActivity.this).setTitle(
           R.string.movies_select_sort_title)
           .setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
           .setEntries(R.array.entries_movies_sort_preference);
@@ -177,27 +114,27 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   }
 
   class DetailAdapter extends BaseAdapter {
-    private LayoutInflater inflater;
+    private final LayoutInflater inflater;
 
     public DetailAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      inflater = LayoutInflater.from(getContext());
-      TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
+      this.inflater = LayoutInflater.from(getContext());
+      final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
       a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
     }
 
-    public Object getItem(int i) {
+    public Object getItem(final int i) {
       return i;
     }
 
-    public long getItemId(int i) {
+    public long getItemId(final int i) {
       return i;
     }
 
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       MovieViewHolder holder;
-      convertView = inflater.inflate(R.layout.moviesummary, null);
+      convertView = this.inflater.inflate(R.layout.moviesummary, null);
       holder = new MovieViewHolder();
       holder.score = (Button) convertView.findViewById(R.id.score);
       holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -209,7 +146,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       holder.scoreLbl = (TextView) convertView.findViewById(R.id.scorelbl);
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       convertView.setTag(holder);
-      Resources res = getContext().getResources();
+      final Resources res = getContext().getResources();
       final Movie movie = movies.get(position);
       final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
       if (bytes.length > 0) {
@@ -217,31 +154,31 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         holder.poster.setBackgroundResource(R.drawable.image_frame);
       }
       holder.title.setText(movie.getDisplayTitle());
-      CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), getContext().getResources());
-      CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), getContext().getResources());
+      final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), getContext().getResources());
+      final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), getContext().getResources());
       holder.rating.setText(rating.toString());
       holder.length.setText(length.toString());
       if (movie.getGenres() != null && movie.getGenres().size() > 0) {
-        String genres = movie.getGenres().toString();
+        final String genres = movie.getGenres().toString();
         holder.genre.setText(genres.substring(1, genres.length() - 1));
       } else {
         holder.genre.setText("Unknown");
       }
       holder.cast.setEllipsize(TextUtils.TruncateAt.END);
       if (movie.getCast() != null && movie.getCast().size() > 0) {
-        String cast = movie.getCast().toString();
+        final String cast = movie.getCast().toString();
         holder.cast.setText(cast.substring(1, cast.length() - 1));
       } else {
         holder.cast.setText("Unknown");
       }
       // Get and set scores text and background image
-      Score score = NowPlayingControllerWrapper.getScore(movie);
+      final Score score = NowPlayingControllerWrapper.getScore(movie);
       int scoreValue = -1;
       if (score != null && !score.getValue().equals("")) {
         scoreValue = Integer.parseInt(score.getValue());
       } else {
       }
-      ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
+      final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
       holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
       if (scoreValue != -1) {
         holder.scoreLbl.setText(String.valueOf(scoreValue) + "%");
@@ -275,29 +212,29 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   class ThumbnailAdapter extends BaseAdapter {
     public ThumbnailAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
+      final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
       a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
     }
 
-    public Object getItem(int i) {
+    public Object getItem(final int i) {
       return i;
     }
 
-    public long getItemId(int i) {
+    public long getItemId(final int i) {
       return i;
     }
 
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
-      LinearLayout layout = new LinearLayout(getContext());
+    public View getView(final int position, final View convertView, final ViewGroup viewGroup) {
+      final LinearLayout layout = new LinearLayout(getContext());
       layout.setOrientation(LinearLayout.VERTICAL);
-      ImageView i = new ImageView(getContext());
-      TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-      int galleryItemBackground = a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
+      final ImageView i = new ImageView(getContext());
+      final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
+      final int galleryItemBackground = a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
       i.setBackgroundResource(galleryItemBackground);
       final Movie movie = movies.get(position % movies.size());
-      TextView title = new TextView(getContext());
+      final TextView title = new TextView(getContext());
       title.setText(movie.getDisplayTitle());
       title.setTextSize(12);
       title.setWidth(100);
@@ -306,7 +243,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       title.setGravity(0x01);
       title.setEllipsize(TextUtils.TruncateAt.END);
 
-      byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
       if (bytes.length > 0) {
         i.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
       } else {
@@ -314,7 +251,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       }
       i.setScaleType(ImageView.ScaleType.FIT_XY);
       layout.addView(i, new LinearLayout.LayoutParams(100, 120));
-      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,
+      final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,
                                                                        LinearLayout.LayoutParams.WRAP_CONTENT);
       layout.addView(title, params);
       //   layout.setLayoutParams(new GridView.LayoutParams(100, 160));
@@ -334,7 +271,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
   public void refresh() {
     movies = NowPlayingControllerWrapper.getMovies();
-    Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER
+    final Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER
         .get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     if (detailAdapter != null && thumbnailAdapter != null) {

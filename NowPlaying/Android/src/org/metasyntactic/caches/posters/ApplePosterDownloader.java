@@ -26,19 +26,19 @@ import java.util.Map;
 public class ApplePosterDownloader {
   private static Map<String, String> movieNameToPosterMap;
 
-  public static byte[] download(Movie movie) {
+  public static byte[] download(final Movie movie) {
     createMap();
 
     if (movieNameToPosterMap == null) {
       return null;
     }
 
-    String key = EditDistance.findClosestMatch(movie.getCanonicalTitle(), movieNameToPosterMap.keySet());
+    final String key = EditDistance.findClosestMatch(movie.getCanonicalTitle(), movieNameToPosterMap.keySet());
     if (key == null) {
       return null;
     }
 
-    String address = movieNameToPosterMap.get(key);
+    final String address = movieNameToPosterMap.get(key);
     return NetworkUtilities.download(address, false);
   }
 
@@ -47,19 +47,19 @@ public class ApplePosterDownloader {
       return;
     }
 
-    String index = NetworkUtilities.downloadString("http://" + Application.host + ".appspot.com/LookupPosterListings",
+    final String index = NetworkUtilities.downloadString("http://" + Application.host + ".appspot.com/LookupPosterListings",
                                                    false);
     if (StringUtilities.isNullOrEmpty(index)) {
       return;
     }
 
-    Map<String, String> result = new HashMap<String, String>();
+    final Map<String, String> result = new HashMap<String, String>();
 
-    for (String row : index.split("\n")) {
-      String[] columns = row.split("\t");
+    for (final String row : index.split("\n")) {
+      final String[] columns = row.split("\t");
       if (columns.length >= 2) {
-        String movieName = Movie.makeCanonical(columns[0]);
-        String posterUrl = columns[1];
+        final String movieName = Movie.makeCanonical(columns[0]);
+        final String posterUrl = columns[1];
 
         result.put(movieName, posterUrl);
       }

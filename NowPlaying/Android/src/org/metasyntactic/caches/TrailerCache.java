@@ -31,52 +31,52 @@ public class TrailerCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
   private boolean shutdown;
 
-  private String trailerFileName(Movie movie) {
+  private String trailerFileName(final Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }
 
-  private File trailerFilePath(Movie movie) {
+  private File trailerFilePath(final Movie movie) {
     return new File(Application.trailersDirectory, trailerFileName(movie));
   }
 
-  private void deleteObsoleteTrailers(List<Movie> movies) {
-    File trailersDir = Application.trailersDirectory;
-    Set<String> fileNames = new HashSet<String>(Arrays.asList(trailersDir.list()));
+  private void deleteObsoleteTrailers(final List<Movie> movies) {
+    final File trailersDir = Application.trailersDirectory;
+    final Set<String> fileNames = new HashSet<String>(Arrays.asList(trailersDir.list()));
 
-    for (Movie movie : movies) {
+    for (final Movie movie : movies) {
       fileNames.remove(trailerFileName(movie));
     }
 
-    long now = new Date().getTime();
+    final long now = new Date().getTime();
 
-    for (String fileName : fileNames) {
-      File file = new File(trailersDir, fileName);
+    for (final String fileName : fileNames) {
+      final File file = new File(trailersDir, fileName);
       if (file.exists()) {
-        long writeTime = file.lastModified();
-        long span = Math.abs(writeTime - now);
+        final long writeTime = file.lastModified();
+        final long span = Math.abs(writeTime - now);
 
-        if (span > (4 * Constants.ONE_WEEK)) {
+        if (span > 4 * Constants.ONE_WEEK) {
           file.delete();
         }
       }
     }
   }
 
-  private List<List<Movie>> getOrderedMovies(List<Movie> movies) {
-    List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
-    List<Movie> moviesWithTrailers = new ArrayList<Movie>();
+  private List<List<Movie>> getOrderedMovies(final List<Movie> movies) {
+    final List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
+    final List<Movie> moviesWithTrailers = new ArrayList<Movie>();
 
-    long now = new Date().getTime();
+    final long now = new Date().getTime();
 
-    for (Movie movie : movies) {
-      File file = trailerFilePath(movie);
+    for (final Movie movie : movies) {
+      final File file = trailerFilePath(movie);
       if (!file.exists()) {
         moviesWithoutTrailers.add(movie);
       } else {
-        long writeTime = file.lastModified();
-        long span = Math.abs(writeTime - now);
+        final long writeTime = file.lastModified();
+        final long span = Math.abs(writeTime - now);
 
-        if (span > (2 * Constants.ONE_DAY)) {
+        if (span > 2 * Constants.ONE_DAY) {
           moviesWithTrailers.add(movie);
         }
       }
@@ -86,83 +86,83 @@ public class TrailerCache {
   }
 
   public void update(final List<Movie> movies) {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, lock, false/*visible*/);
+    ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, this.lock, false/*visible*/);
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
     deleteObsoleteTrailers(movies);
 
-    List<List<Movie>> orderedMovies = getOrderedMovies(movies);
+    final List<List<Movie>> orderedMovies = getOrderedMovies(movies);
 
-    String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?q=index";
-    String indexText = NetworkUtilities.downloadString(url, false);
+    final String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?q=index";
+    final String indexText = NetworkUtilities.downloadString(url, false);
     if (indexText == null) {
       return;
     }
 
-    Map<String, List<String>> index = generateIndex(indexText);
+    final Map<String, List<String>> index = generateIndex(indexText);
 
-    for (List<Movie> values : orderedMovies) {
+    for (final List<Movie> values : orderedMovies) {
       downloadTrailers(values, index);
     }
   }
 
-  private void downloadMovieTrailer(Movie movie, Map<String, List<String>> index) {
+  private void downloadMovieTrailer(final Movie movie, final Map<String, List<String>> index) {
     if (movie == null) {
       return;
     }
 
-    String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
+    final String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
     if (bestKey == null) {
       // no trailer for this movie.  record that fact.  we'll try again later
       FileUtilities.writeStringCollection(new ArrayList<String>(), trailerFilePath(movie));
       return;
     }
 
-    List<String> studioAndLocation = index.get(bestKey);
-    String studio = studioAndLocation.get(0);
-    String location = studioAndLocation.get(1);
+    final List<String> studioAndLocation = index.get(bestKey);
+    final String studio = studioAndLocation.get(0);
+    final String location = studioAndLocation.get(1);
 
-    String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
-    String trailersString = NetworkUtilities.downloadString(url, false);
+    final String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
+    final String trailersString = NetworkUtilities.downloadString(url, false);
 
     if (trailersString == null) {
       // didn't get any data.  ignore this for now.
       return;
     }
 
-    List<String> trailers = Arrays.asList(trailersString.split("\n"));
+    final List<String> trailers = Arrays.asList(trailersString.split("\n"));
     FileUtilities.writeStringCollection(trailers, trailerFilePath(movie));
     Application.refresh();
   }
 
-  private void downloadTrailers(List<Movie> movies, Map<String, List<String>> index) {
-    Set<Movie> moviesSet = new TreeSet<Movie>(movies);
+  private void downloadTrailers(final List<Movie> movies, final Map<String, List<String>> index) {
+    final Set<Movie> moviesSet = new TreeSet<Movie>(movies);
 
     Movie movie;
     do {
-      movie = prioritizedMovies.removeAny(moviesSet);
+      movie = this.prioritizedMovies.removeAny(moviesSet);
       downloadMovieTrailer(movie, index);
-    } while (movie != null && !shutdown);
+    } while (movie != null && !this.shutdown);
   }
 
-  private Map<String, List<String>> generateIndex(String indexText) {
-    Map<String, List<String>> index = new HashMap<String, List<String>>();
+  private Map<String, List<String>> generateIndex(final String indexText) {
+    final Map<String, List<String>> index = new HashMap<String, List<String>>();
 
-    for (String row : indexText.split("\n")) {
-      String[] values = row.split("\t");
+    for (final String row : indexText.split("\n")) {
+      final String[] values = row.split("\t");
       if (values.length != 3) {
         continue;
       }
 
-      String fullTitle = values[0];
-      String studio = values[1];
-      String location = values[2];
+      final String fullTitle = values[0];
+      final String studio = values[1];
+      final String location = values[2];
 
       index.put(fullTitle.toLowerCase(), Arrays.asList(studio, location));
     }
@@ -170,23 +170,23 @@ public class TrailerCache {
     return index;
   }
 
-  public List<String> getTrailers(Movie movie) {
-    List<String> trailers = FileUtilities.readStringList(trailerFilePath(movie));
+  public List<String> getTrailers(final Movie movie) {
+    final List<String> trailers = FileUtilities.readStringList(trailerFilePath(movie));
     if (trailers == null) {
       return Collections.emptyList();
     }
     return trailers;
   }
 
-  public void prioritizeMovie(Movie movie) {
+  public void prioritizeMovie(final Movie movie) {
     if (trailerFilePath(movie).exists()) {
       return;
     }
 
-    prioritizedMovies.add(movie);
+    this.prioritizedMovies.add(movie);
   }
 
   public void shutdown() {
-    shutdown = true;
+    this.shutdown = true;
   }
 }

@@ -31,16 +31,16 @@ public class UserLocationCache {
   }
 
   public void downloadUserAddressLocation(final String userAddress) {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         downloadUserAddressLocationBackgroundEntryPoint(userAddress);
       }
     };
 
-    performOnBackgroundThread("Download User Address", runnable, lock, true/*visible*/);
+    performOnBackgroundThread("Download User Address", runnable, this.lock, true/*visible*/);
   }
 
-  public Location downloadUserAddressLocationBackgroundEntryPoint(String userAddress) {
+  public Location downloadUserAddressLocationBackgroundEntryPoint(final String userAddress) {
     assert ThreadingUtilities.isBackgroundThread();
 
     if (StringUtilities.isNullOrEmpty(userAddress)) {
@@ -61,9 +61,9 @@ public class UserLocationCache {
     return location;
   }
 
-  private static boolean containsNumber(String string) {
+  private static boolean containsNumber(final String string) {
     for (int i = 0; i < string.length(); i++) {
-      char c = string.charAt(i);
+      final char c = string.charAt(i);
       if (c >= '0' && c <= '9') {
         return true;
       }
@@ -83,7 +83,7 @@ public class UserLocationCache {
 
       // we append the US name for the country here since that's what the
       // backend prefers
-      String country = Locale.getDefault().getDisplayCountry(Locale.US);
+      final String country = Locale.getDefault().getDisplayCountry(Locale.US);
       if (!StringUtilities.isNullOrEmpty(country)) {
         return userAddress + ". " + country;
       }
@@ -92,12 +92,12 @@ public class UserLocationCache {
     return null;
   }
 
-  public Location locationForUserAddress(String userAddress) {
+  public Location locationForUserAddress(final String userAddress) {
     if (StringUtilities.isNullOrEmpty(userAddress)) {
       return null;
     }
 
-    Location location = loadLocation(massageAddress(userAddress));
+    final Location location = loadLocation(massageAddress(userAddress));
     if (location != null) {
       return location;
     }
@@ -105,21 +105,21 @@ public class UserLocationCache {
     return loadLocation(userAddress);
   }
 
-  private static Location processResult(Element resultElement) {
+  private static Location processResult(final Element resultElement) {
     if (resultElement != null) {
-      String latitude = resultElement.getAttribute("latitude");
-      String longitude = resultElement.getAttribute("longitude");
-      String address = resultElement.getAttribute("address");
-      String city = resultElement.getAttribute("city");
-      String state = resultElement.getAttribute("state");
-      String country = resultElement.getAttribute("country");
-      String postalCode = resultElement.getAttribute("zipcode");
+      final String latitude = resultElement.getAttribute("latitude");
+      final String longitude = resultElement.getAttribute("longitude");
+      final String address = resultElement.getAttribute("address");
+      final String city = resultElement.getAttribute("city");
+      final String state = resultElement.getAttribute("state");
+      final String country = resultElement.getAttribute("country");
+      final String postalCode = resultElement.getAttribute("zipcode");
 
       if (!StringUtilities.isNullOrEmpty(latitude) && !StringUtilities.isNullOrEmpty(longitude)) {
         try {
           return new Location(Double.parseDouble(latitude), Double.parseDouble(longitude), address, city, state,
                               postalCode, country);
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
           ExceptionUtilities.log(UserLocationCache.class, "processResult", e);
           return null;
         }
@@ -129,15 +129,15 @@ public class UserLocationCache {
     return null;
   }
 
-  private Location downloadAddressLocationFromWebService(String address) {
+  private Location downloadAddressLocationFromWebService(final String address) {
     if (StringUtilities.isNullOrEmpty(address)) {
       return null;
     }
 
-    Location result = downloadAddressLocationFromWebServiceWorker(address);
+    final Location result = downloadAddressLocationFromWebServiceWorker(address);
     if (result != null && result.getLatitude() != 0 && result.getLongitude() != 0) {
       if (StringUtilities.isNullOrEmpty(result.getPostalCode())) {
-        Location resultLocation = LocationUtilities.findLocation(result.getLatitude(), result.getLongitude());
+        final Location resultLocation = LocationUtilities.findLocation(result.getLatitude(), result.getLongitude());
         if (!StringUtilities.isNullOrEmpty(resultLocation.getPostalCode())) {
           return new Location(result.getLatitude(), result.getLongitude(), result.getAddress(), result.getCity(),
                               result.getState(), resultLocation.getPostalCode(), result.getCountry());
@@ -148,16 +148,16 @@ public class UserLocationCache {
     return result;
   }
 
-  private Location downloadAddressLocationFromWebServiceWorker(String address) {
-    String escapedAddress = "http://" + Application.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(
+  private Location downloadAddressLocationFromWebServiceWorker(final String address) {
+    final String escapedAddress = "http://" + Application.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(
         address);
 
-    Element element = NetworkUtilities.downloadXml(escapedAddress, true);
+    final Element element = NetworkUtilities.downloadXml(escapedAddress, true);
 
     return processResult(element);
   }
 
-  private Location loadLocation(String address) {
+  private Location loadLocation(final String address) {
     if (!StringUtilities.isNullOrEmpty(address)) {
       return FileUtilities.readPersistable(Location.reader, locationFile(address));
     }
@@ -165,11 +165,11 @@ public class UserLocationCache {
     return null;
   }
 
-  private File locationFile(String address) {
+  private File locationFile(final String address) {
     return new File(Application.userLocationsDirectory, FileUtilities.sanitizeFileName(address));
   }
 
-  private void saveLocation(Location location, String address) {
+  private void saveLocation(final Location location, final String address) {
     if (location == null || StringUtilities.isNullOrEmpty(address)) {
       return;
     }

@@ -36,7 +36,7 @@ public class NowPlayingControllerWrapper {
 
   }
 
-  public static void addActivity(Activity activity) {
+  public static void addActivity(final Activity activity) {
     synchronized (lock) {
       activities.add(activity);
       GlobalActivityIndicator.addActivity(activity);
@@ -48,7 +48,7 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static void removeActivity(Activity activity) {
+  public static void removeActivity(final Activity activity) {
     synchronized (lock) {
       GlobalActivityIndicator.removeActivity(activity);
       activities.remove(activity);
@@ -80,7 +80,7 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static void setUserLocation(String userLocation) {
+  public static void setUserLocation(final String userLocation) {
     synchronized (lock) {
       checkInstance();
       instance.setUserLocation(userLocation);
@@ -95,7 +95,7 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static void setSearchDistance(int searchDistance) {
+  public static void setSearchDistance(final int searchDistance) {
     synchronized (lock) {
       checkInstance();
       instance.setSearchDistance(searchDistance);
@@ -109,7 +109,7 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static void setSelectedTabIndex(int index) {
+  public static void setSelectedTabIndex(final int index) {
     synchronized (lock) {
       checkInstance();
       instance.setSelectedTabIndex(index);
@@ -123,7 +123,7 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static void setAllMoviesSelectedSortIndex(int index) {
+  public static void setAllMoviesSelectedSortIndex(final int index) {
     synchronized (lock) {
       checkInstance();
       instance.setAllMoviesSelectedSortIndex(index);
@@ -137,7 +137,7 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static void setAllTheatersSelectedSortIndex(int index) {
+  public static void setAllTheatersSelectedSortIndex(final int index) {
     synchronized (lock) {
       checkInstance();
       instance.setAllTheatersSelectedSortIndex(index);
@@ -151,7 +151,7 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static void setUpcomingMoviesSelectedSortIndex(int index) {
+  public static void setUpcomingMoviesSelectedSortIndex(final int index) {
     synchronized (lock) {
       checkInstance();
       instance.setUpcomingMoviesSelectedSortIndex(index);
@@ -172,42 +172,42 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static List<String> getTrailers(Movie movie) {
+  public static List<String> getTrailers(final Movie movie) {
     synchronized (lock) {
       checkInstance();
       return instance.getTrailers(movie);
     }
   }
 
-  public static List<Review> getReviews(Movie movie) {
+  public static List<Review> getReviews(final Movie movie) {
     synchronized (lock) {
       checkInstance();
       return instance.getReviews(movie);
     }
   }
 
-  public static String getImdbAddress(Movie movie) {
+  public static String getImdbAddress(final Movie movie) {
     synchronized (lock) {
       checkInstance();
       return instance.getImdbAddress(movie);
     }
   }
 
-  public static List<Theater> getTheatersShowingMovie(Movie movie) {
+  public static List<Theater> getTheatersShowingMovie(final Movie movie) {
     synchronized (lock) {
       checkInstance();
       return instance.getTheatersShowingMovie(movie);
     }
   }
 
-  public static List<Movie> getMoviesAtTheater(Theater theater) {
+  public static List<Movie> getMoviesAtTheater(final Theater theater) {
     synchronized (lock) {
       checkInstance();
       return instance.getMoviesAtTheater(theater);
     }
   }
 
-  public static List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) {
+  public static List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
     synchronized (lock) {
       checkInstance();
       return instance.getPerformancesForMovieAtTheater(movie, theater);
@@ -221,35 +221,35 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  public static void setScoreType(ScoreType scoreType) {
+  public static void setScoreType(final ScoreType scoreType) {
     synchronized (lock) {
       checkInstance();
       instance.setScoreType(scoreType);
     }
   }
 
-  public static Score getScore(Movie movie) {
+  public static Score getScore(final Movie movie) {
     synchronized (lock) {
       checkInstance();
       return instance.getScore(movie);
     }
   }
 
-  public static ByteArray getPoster(Movie movie) {
+  public static ByteArray getPoster(final Movie movie) {
     synchronized (lock) {
       checkInstance();
       return instance.getPoster(movie);
     }
   }
 
-  public static String getSynopsis(Movie movie) {
+  public static String getSynopsis(final Movie movie) {
     synchronized (lock) {
       checkInstance();
       return instance.getSynopsis(movie);
     }
   }
 
-  public static void prioritizeMovie(Movie movie) {
+  public static void prioritizeMovie(final Movie movie) {
     synchronized (lock) {
       checkInstance();
       instance.prioritizeMovie(movie);

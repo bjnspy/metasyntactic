@@ -19,14 +19,13 @@ import java.net.URLEncoder;
 
 public class StringUtilities {
   private StringUtilities() {
-
   }
 
-  public static boolean isNullOrEmpty(String address) {
+  public static boolean isNullOrEmpty(final String address) {
     return address == null || address.length() == 0;
   }
 
-  public static String nonNullString(String name) {
+  public static String nonNullString(final String name) {
     if (name == null) {
       return "";
     }
@@ -34,10 +33,10 @@ public class StringUtilities {
     return name;
   }
 
-  public static String urlEncode(String string) {
+  public static String urlEncode(final String string) {
     try {
       return URLEncoder.encode(string.replace('Õ', '\''), "ISO-8859-1");
-    } catch (UnsupportedEncodingException e) {
+    } catch (final UnsupportedEncodingException e) {
       throw new RuntimeException(e);
     }
   }

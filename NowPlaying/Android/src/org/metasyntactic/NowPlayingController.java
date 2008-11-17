@@ -33,115 +33,115 @@ public class NowPlayingController {
   }
 
   public void shutdown() {
-    model.shutdown();
+    this.model.shutdown();
   }
 
   private void update() {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
-        model.startup();
+        NowPlayingController.this.model.startup();
       }
     };
 
-    ThreadingUtilities.performOnBackgroundThread("Update Model", runnable, lock, false/* visible */);
+    ThreadingUtilities.performOnBackgroundThread("Update Model", runnable, this.lock, false/* visible */);
   }
 
   public String getUserLocation() {
-    return model.getUserLocation();
+    return this.model.getUserLocation();
   }
 
-  public void setUserLocation(String userLocation) {
-    model.setUserLocation(userLocation);
+  public void setUserLocation(final String userLocation) {
+    this.model.setUserLocation(userLocation);
     update();
   }
 
   public int getSearchDistance() {
-    return model.getSearchDistance();
+    return this.model.getSearchDistance();
   }
 
-  public void setSearchDistance(int searchDistance) {
-    model.setSearchDistance(searchDistance);
+  public void setSearchDistance(final int searchDistance) {
+    this.model.setSearchDistance(searchDistance);
   }
 
   public int getSelectedTabIndex() {
-    return model.getSelectedTabIndex();
+    return this.model.getSelectedTabIndex();
   }
 
-  public void setSelectedTabIndex(int index) {
-    model.setSelectedTabIndex(index);
+  public void setSelectedTabIndex(final int index) {
+    this.model.setSelectedTabIndex(index);
   }
 
   public int getAllMoviesSelectedSortIndex() {
-    return model.getAllMoviesSelecetedSortIndex();
+    return this.model.getAllMoviesSelecetedSortIndex();
   }
 
-  public void setAllMoviesSelectedSortIndex(int index) {
-    model.setAllMoviesSelectedSortIndex(index);
+  public void setAllMoviesSelectedSortIndex(final int index) {
+    this.model.setAllMoviesSelectedSortIndex(index);
   }
 
   public int getAllTheatersSelectedSortIndex() {
-    return model.getAllTheatersSelectedSortIndex();
+    return this.model.getAllTheatersSelectedSortIndex();
   }
 
-  public void setAllTheatersSelectedSortIndex(int index) {
-    model.setAllTheatersSelectedSortIndex(index);
+  public void setAllTheatersSelectedSortIndex(final int index) {
+    this.model.setAllTheatersSelectedSortIndex(index);
   }
 
   public int getUpcomingMoviesSelectedSortIndex() {
-    return model.getUpcomingMoviesSelectedSortIndex();
+    return this.model.getUpcomingMoviesSelectedSortIndex();
   }
 
-  public void setUpcomingMoviesSelectedSortIndex(int index) {
-    model.setUpcomingMoviesSelectedSortIndex(index);
+  public void setUpcomingMoviesSelectedSortIndex(final int index) {
+    this.model.setUpcomingMoviesSelectedSortIndex(index);
   }
 
   public List<Movie> getMovies() {
-    return model.getMovies();
+    return this.model.getMovies();
   }
 
   public List<Theater> getTheaters() {
-    return model.getTheaters();
+    return this.model.getTheaters();
   }
 
-  public List<String> getTrailers(Movie movie) {
-    return model.getTrailers(movie);
+  public List<String> getTrailers(final Movie movie) {
+    return this.model.getTrailers(movie);
   }
 
-  public List<Review> getReviews(Movie movie) {
-    return model.getReviews(movie);
+  public List<Review> getReviews(final Movie movie) {
+    return this.model.getReviews(movie);
   }
 
-  public String getImdbAddress(Movie movie) {
-    return model.getImdbAddress(movie);
+  public String getImdbAddress(final Movie movie) {
+    return this.model.getImdbAddress(movie);
   }
 
-  public List<Theater> getTheatersShowingMovie(Movie movie) {
-    return model.getTheatersShowingMovie(movie);
+  public List<Theater> getTheatersShowingMovie(final Movie movie) {
+    return this.model.getTheatersShowingMovie(movie);
   }
 
-  public List<Movie> getMoviesAtTheater(Theater theater) {
-    return model.getMoviesAtTheater(theater);
+  public List<Movie> getMoviesAtTheater(final Theater theater) {
+    return this.model.getMoviesAtTheater(theater);
   }
 
-  public List<Performance> getPerformancesForMovieAtTheater(Movie movie, Theater theater) {
-    return model.getPerformancesForMovieAtTheater(movie, theater);
+  public List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
+    return this.model.getPerformancesForMovieAtTheater(movie, theater);
   }
 
   public ScoreType getScoreType() {
-    return model.getScoreType();
+    return this.model.getScoreType();
   }
 
-  public void setScoreType(ScoreType scoreType) {
-    model.setScoreType(scoreType);
+  public void setScoreType(final ScoreType scoreType) {
+    this.model.setScoreType(scoreType);
     update();
   }
 
-  public Score getScore(Movie movie) {
-    return model.getScore(movie);
+  public Score getScore(final Movie movie) {
+    return this.model.getScore(movie);
   }
 
-  public ByteArray getPoster(Movie movie) {
-    byte[] bytes = model.getPoster(movie);
+  public ByteArray getPoster(final Movie movie) {
+    final byte[] bytes = this.model.getPoster(movie);
     if (bytes == null) {
       return ByteArray.empty;
     }
@@ -149,11 +149,11 @@ public class NowPlayingController {
     return new ByteArray(bytes);
   }
 
-  public String getSynopsis(Movie movie) {
-    return model.getSynopsis(movie);
+  public String getSynopsis(final Movie movie) {
+    return this.model.getSynopsis(movie);
   }
 
-  public void prioritizeMovie(Movie movie) {
-    model.prioritizeMovie(movie);
+  public void prioritizeMovie(final Movie movie) {
+    this.model.prioritizeMovie(movie);
   }
 }

@@ -21,16 +21,15 @@ import org.w3c.dom.Element;
 
 public class LocationUtilities {
   private LocationUtilities() {
-
   }
 
-  private static Location findLocationWithGeonames(double latitude, double longitude) {
-    String url = "http://ws.geonames.org/findNearbyPostalCodes?lat=" + latitude + "&lng=" + longitude + "&maxRows=1";
+  private static Location findLocationWithGeonames(final double latitude, final double longitude) {
+    final String url = "http://ws.geonames.org/findNearbyPostalCodes?lat=" + latitude + "&lng=" + longitude + "&maxRows=1";
 
-    Element geonamesElement = NetworkUtilities.downloadXml(url, true);
-    Element codeElement = element(geonamesElement, "code");
-    String postalCode = text(element(codeElement, "postalcode"));
-    String country = text(element(codeElement, "countryCode"));
+    final Element geonamesElement = NetworkUtilities.downloadXml(url, true);
+    final Element codeElement = element(geonamesElement, "code");
+    final String postalCode = text(element(codeElement, "postalcode"));
+    final String country = text(element(codeElement, "countryCode"));
 
     if (StringUtilities.isNullOrEmpty(postalCode)) {
       return null;
@@ -40,29 +39,29 @@ public class LocationUtilities {
       return null;
     }
 
-    String city = text(element(codeElement, "adminName1"));
-    String state = text(element(codeElement, "adminCode1"));
+    final String city = text(element(codeElement, "adminName1"));
+    final String state = text(element(codeElement, "adminCode1"));
 
     return new Location(latitude, longitude, "", city, state, postalCode, country);
   }
 
-  private static Location findLocationWithGeocoder(double latitude, double longitude) {
-    String url = "http://geocoder.ca/?latt=" + latitude + "&longt=" + longitude + "&geoit=xml&reverse=Reverse+GeoCode+it";
+  private static Location findLocationWithGeocoder(final double latitude, final double longitude) {
+    final String url = "http://geocoder.ca/?latt=" + latitude + "&longt=" + longitude + "&geoit=xml&reverse=Reverse+GeoCode+it";
 
-    Element geodataElement = NetworkUtilities.downloadXml(url, true);
-    String postalCode = text(element(geodataElement, "postal"));
+    final Element geodataElement = NetworkUtilities.downloadXml(url, true);
+    final String postalCode = text(element(geodataElement, "postal"));
 
     if (StringUtilities.isNullOrEmpty(postalCode)) {
       return null;
     }
 
-    String city = text(element(geodataElement, "city"));
-    String state = text(element(geodataElement, "prov"));
+    final String city = text(element(geodataElement, "city"));
+    final String state = text(element(geodataElement, "prov"));
 
     return new Location(latitude, longitude, "", city, state, postalCode, "CA");
   }
 
-  public static Location findLocation(double latitude, double longitude) {
+  public static Location findLocation(final double latitude, final double longitude) {
     Location result = findLocationWithGeonames(latitude, longitude);
     if (result == null) {
       result = findLocationWithGeocoder(latitude, longitude);

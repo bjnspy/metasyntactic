@@ -20,27 +20,27 @@ public class PriorityMutex {
   private int highTaskRunningCount;
 
   public void lockHigh() {
-    synchronized (lock) {
-      highTaskRunningCount++;
+    synchronized (this.lock) {
+      this.highTaskRunningCount++;
     }
   }
 
   public void unlockHigh() {
-    synchronized (lock) {
-      highTaskRunningCount--;
-      if (highTaskRunningCount == 0) {
+    synchronized (this.lock) {
+      this.highTaskRunningCount--;
+      if (this.highTaskRunningCount == 0) {
         // wake up all the low pri threads that have been waiting
-        lock.notifyAll();
+        this.lock.notifyAll();
       }
     }
   }
 
   public void lockLow() {
-    synchronized (lock) {
-      while (highTaskRunningCount > 0) {
+    synchronized (this.lock) {
+      while (this.highTaskRunningCount > 0) {
         try {
-          lock.wait();
-        } catch (InterruptedException e) {
+          this.lock.wait();
+        } catch (final InterruptedException e) {
           throw new RuntimeException(e);
         }
       }
@@ -50,7 +50,7 @@ public class PriorityMutex {
   public void unlockLow() {
   }
 
-  public void lock(boolean high) {
+  public void lock(final boolean high) {
     if (high) {
       lockHigh();
     } else {
@@ -58,7 +58,7 @@ public class PriorityMutex {
     }
   }
 
-  public void unlock(boolean high) {
+  public void unlock(final boolean high) {
     if (high) {
       unlockHigh();
     } else {

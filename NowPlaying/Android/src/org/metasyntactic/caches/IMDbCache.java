@@ -28,62 +28,62 @@ import java.util.*;
 public class IMDbCache {
   private final Object lock = new Object();
 
-  private String movieFileName(Movie movie) {
+  private String movieFileName(final Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }
 
-  private File movieFilePath(Movie movie) {
+  private File movieFilePath(final Movie movie) {
     return new File(Application.imdbDirectory, movieFileName(movie));
   }
 
   public void update(final List<Movie> movies) {
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Upate IMDb", runnable, lock, false);
+    ThreadingUtilities.performOnBackgroundThread("Upate IMDb", runnable, this.lock, false);
   }
 
-  private void updateBackgroundEntryPoint(List<Movie> movies) {
+  private void updateBackgroundEntryPoint(final List<Movie> movies) {
     deleteObsoleteAddresses(movies);
     downloadImdbAddresses(movies);
   }
 
-  private void deleteObsoleteAddresses(List<Movie> movies) {
-    File imdbDir = Application.imdbDirectory;
-    Set<String> fileNames = new HashSet<String>(Arrays.asList(imdbDir.list()));
+  private void deleteObsoleteAddresses(final List<Movie> movies) {
+    final File imdbDir = Application.imdbDirectory;
+    final Set<String> fileNames = new HashSet<String>(Arrays.asList(imdbDir.list()));
 
-    for (Movie movie : movies) {
+    for (final Movie movie : movies) {
       fileNames.remove(movieFileName(movie));
     }
 
-    long now = new Date().getTime();
+    final long now = new Date().getTime();
 
-    for (String fileName : fileNames) {
-      File file = new File(imdbDir, fileName);
+    for (final String fileName : fileNames) {
+      final File file = new File(imdbDir, fileName);
       if (file.exists()) {
-        long writeTime = file.lastModified();
-        long span = Math.abs(writeTime - now);
+        final long writeTime = file.lastModified();
+        final long span = Math.abs(writeTime - now);
 
-        if (span > (4 * Constants.ONE_WEEK)) {
+        if (span > 4 * Constants.ONE_WEEK) {
           file.delete();
         }
       }
     }
   }
 
-  private void downloadImdbAddresses(List<Movie> movies) {
-    for (Movie movie : movies) {
-      File path = movieFilePath(movie);
+  private void downloadImdbAddresses(final List<Movie> movies) {
+    for (final Movie movie : movies) {
+      final File path = movieFilePath(movie);
       if (path.exists()) {
         continue;
       }
 
-      String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
+      final String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
           movie.getCanonicalTitle());
 
-      String imdbAddress = NetworkUtilities.downloadString(url, false);
+      final String imdbAddress = NetworkUtilities.downloadString(url, false);
 
       if (!StringUtilities.isNullOrEmpty(imdbAddress)) {
         FileUtilities.writeString(imdbAddress, movieFilePath(movie));
@@ -92,7 +92,7 @@ public class IMDbCache {
     }
   }
 
-  public String imdbAddressForMovie(Movie movie) {
+  public String imdbAddressForMovie(final Movie movie) {
     return FileUtilities.readString(movieFilePath(movie));
   }
 }

@@ -60,9 +60,9 @@ public class Application {
   static {
     createDirectories();
 
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
-        Context context = NowPlayingControllerWrapper.getApplicationContext();
+        final Context context = NowPlayingControllerWrapper.getApplicationContext();
         if (context != null) {
           context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
         }
@@ -77,9 +77,9 @@ public class Application {
 
   private static List<File> directories() {
     try {
-      List<File> directories = new ArrayList<File>();
+      final List<File> directories = new ArrayList<File>();
 
-      for (Field field : Application.class.getFields()) {
+      for (final Field field : Application.class.getFields()) {
         if (field.getType() != File.class || field.get(null) == root) {
           continue;
         }
@@ -88,7 +88,7 @@ public class Application {
       }
 
       return directories;
-    } catch (IllegalAccessException e) {
+    } catch (final IllegalAccessException e) {
       throw new RuntimeException(e);
     }
   }
@@ -99,30 +99,30 @@ public class Application {
   }
 
   private static void createDirectories() {
-    long start = System.currentTimeMillis();
-    for (File file : directories()) {
+    final long start = System.currentTimeMillis();
+    for (final File file : directories()) {
       file.mkdirs();
     }
     LogUtilities.logTime(Application.class, "Create Directories", start);
   }
 
   private static void deleteDirectories() {
-    long start = System.currentTimeMillis();
+    final long start = System.currentTimeMillis();
     deleteDirectory(applicationDirectory);
     LogUtilities.logTime(Application.class, "Delete Directories", start);
   }
 
-  public static void deleteDirectory(File directory) {
+  public static void deleteDirectory(final File directory) {
     deleteItem(directory);
   }
 
-  private static void deleteItem(File item) {
+  private static void deleteItem(final File item) {
     if (!item.exists()) {
       return;
     }
 
     if (item.isDirectory()) {
-      for (File child : item.listFiles()) {
+      for (final File child : item.listFiles()) {
         deleteItem(child);
       }
     }
@@ -140,7 +140,7 @@ public class Application {
 
   public static void refresh(final boolean force) {
     if (ThreadingUtilities.isBackgroundThread()) {
-      Runnable runnable = new Runnable() {
+      final Runnable runnable = new Runnable() {
         public void run() { refresh(force); }
       };
       ThreadingUtilities.performOnMainThread(runnable);
@@ -157,7 +157,7 @@ public class Application {
   public static File createTempFile() {
     try {
       return File.createTempFile("NPTF", null, tempDirectory);
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new RuntimeException(e);
     }
   }
