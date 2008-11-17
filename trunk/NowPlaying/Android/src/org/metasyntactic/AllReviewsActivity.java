@@ -17,7 +17,6 @@ package org.metasyntactic;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,11 +39,9 @@ public class AllReviewsActivity extends ListActivity {
   }
 
   private class ReviewsAdapter extends BaseAdapter {
-    private final Context context;
     private final LayoutInflater inflater;
 
     public ReviewsAdapter(Context context) {
-      this.context = context;
       // Cache the LayoutInflate to avoid asking for a new one each time.
       inflater = LayoutInflater.from(context);
     }
