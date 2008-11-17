@@ -54,7 +54,8 @@ public class NowPlayingModel {
   private final PosterCache posterCache = new PosterCache(this);
 
   public NowPlayingModel() {
-    this.preferences = NowPlayingControllerWrapper.getApplicationContext().getSharedPreferences(NowPlayingModel.class.getName(), 0);
+    this.preferences = NowPlayingControllerWrapper.getApplicationContext()
+        .getSharedPreferences(NowPlayingModel.class.getName(), 0);
 
     loadData();
 

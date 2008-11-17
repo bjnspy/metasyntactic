@@ -23,7 +23,7 @@ import java.util.List;
 public class NowPlayingController {
   private final NowPlayingModel model = new NowPlayingModel();
   private final Object lock = new Object();
-  
+
   public NowPlayingController() {
 
   }

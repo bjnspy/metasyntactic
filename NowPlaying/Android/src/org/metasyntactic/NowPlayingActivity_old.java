@@ -71,8 +71,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
                 // service through an IDL interface, so get a client-side
                 // representation of that from the raw service object.
                 controller =
-                    new NowPlayingControllerWrapper(INowPlayingController.Stub
-                        .asInterface(service));
+                    new NowPlayingControllerWrapper(INowPlayingController.Stub.asInterface(service));
                 onControllerConnected();
             }
 

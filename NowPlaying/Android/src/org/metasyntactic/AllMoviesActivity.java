@@ -167,7 +167,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
       NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(AllMoviesActivity.this).setTitle(
-          R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
+          R.string.movies_select_sort_title)
+          .setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
           .setEntries(R.array.entries_movies_sort_preference);
       builder.show();
       return true;
@@ -205,8 +206,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       holder.length = (TextView) convertView.findViewById(R.id.length);
       holder.genre = (TextView) convertView.findViewById(R.id.genre);
       holder.cast = (TextView) convertView.findViewById(R.id.cast);
-      holder.scoreLbl = (TextView) convertView
-          .findViewById(R.id.scorelbl);
+      holder.scoreLbl = (TextView) convertView.findViewById(R.id.scorelbl);
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       convertView.setTag(holder);
       Resources res = getContext().getResources();
@@ -217,10 +217,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         holder.poster.setBackgroundResource(R.drawable.image_frame);
       }
       holder.title.setText(movie.getDisplayTitle());
-      CharSequence rating = MovieViewUtilities.formatRatings(movie
-          .getRating(), getContext().getResources());
-      CharSequence length = MovieViewUtilities.formatLength(movie
-          .getLength(), getContext().getResources());
+      CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), getContext().getResources());
+      CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), getContext().getResources());
       holder.rating.setText(rating.toString());
       holder.length.setText(length.toString());
       if (movie.getGenres() != null && movie.getGenres().size() > 0) {
@@ -244,8 +242,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       } else {
       }
       ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
-      holder.score.setBackgroundDrawable(MovieViewUtilities
-          .formatScoreDrawable(scoreValue, scoreType, res));
+      holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
       if (scoreValue != -1) {
         holder.scoreLbl.setText(String.valueOf(scoreValue) + "%");
       } else {

@@ -51,7 +51,8 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-  public NowPlayingPreferenceDialog setIcon(Drawable icon) {    builder.setIcon(icon);
+  public NowPlayingPreferenceDialog setIcon(Drawable icon) {
+    builder.setIcon(icon);
     return this;
   }
 
@@ -123,8 +124,8 @@ public class NowPlayingPreferenceDialog {
         NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(preference_value);
         break;
       case THEATERS_SORT:
-    	NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(preference_value);
-    	break;
+        NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(preference_value);
+        break;
     }
   }
 

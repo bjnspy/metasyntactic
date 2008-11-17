@@ -66,14 +66,12 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-
   public static Context getApplicationContext() {
     synchronized (lock) {
       checkInstance();
       return SetUtilities.any(activities).getApplicationContext();
     }
   }
-
 
   public static String getUserLocation() {
     synchronized (lock) {

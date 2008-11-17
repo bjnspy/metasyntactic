@@ -326,8 +326,10 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(this
-            .getUnknownFields());
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+            .protobuf
+            .UnknownFieldSet
+            .newBuilder(this.getUnknownFields());
         while (true) {
           int tag = input.readTag();
           switch (tag) {
@@ -742,8 +744,10 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(this
-            .getUnknownFields());
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+            .protobuf
+            .UnknownFieldSet
+            .newBuilder(this.getUnknownFields());
         while (true) {
           int tag = input.readTag();
           switch (tag) {
@@ -1382,8 +1386,10 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(this
-            .getUnknownFields());
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+            .protobuf
+            .UnknownFieldSet
+            .newBuilder(this.getUnknownFields());
         while (true) {
           int tag = input.readTag();
           switch (tag) {
@@ -2217,8 +2223,10 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(this
-            .getUnknownFields());
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+            .protobuf
+            .UnknownFieldSet
+            .newBuilder(this.getUnknownFields());
         while (true) {
           int tag = input.readTag();
           switch (tag) {
@@ -2718,7 +2726,9 @@ public final class NowPlaying {
           }
 
           public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto getDefaultInstanceForType() {
-            return NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto
+            return NowPlaying.TheaterListingsProto
+                .TheaterAndMovieShowtimesProto
+                .MovieAndShowtimesProto
                 .getDefaultInstance();
           }
 
@@ -2756,7 +2766,9 @@ public final class NowPlaying {
 
           public Builder mergeFrom(
               NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto other) {
-            if (other == NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto
+            if (other == NowPlaying.TheaterListingsProto
+                .TheaterAndMovieShowtimesProto
+                .MovieAndShowtimesProto
                 .getDefaultInstance()) {
               return this;
             }
@@ -2778,7 +2790,9 @@ public final class NowPlaying {
           @Override
           public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-            com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+                .protobuf
+                .UnknownFieldSet
                 .newBuilder(this.getUnknownFields());
             while (true) {
               int tag = input.readTag();
@@ -2854,7 +2868,9 @@ public final class NowPlaying {
 
           public Builder mergeShowtimes(NowPlaying.AllShowtimesProto value) {
             if (result.hasShowtimes() && result.showtimes_ != NowPlaying.AllShowtimesProto.getDefaultInstance()) {
-              result.showtimes_ = NowPlaying.AllShowtimesProto.newBuilder(result.showtimes_).mergeFrom(value)
+              result.showtimes_ = NowPlaying.AllShowtimesProto
+                  .newBuilder(result.showtimes_)
+                  .mergeFrom(value)
                   .buildPartial();
             } else {
               result.showtimes_ = value;
@@ -3097,7 +3113,9 @@ public final class NowPlaying {
         @Override
         public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-          com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+              .protobuf
+              .UnknownFieldSet
               .newBuilder(this.getUnknownFields());
           while (true) {
             int tag = input.readTag();
@@ -3460,8 +3478,10 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(this
-            .getUnknownFields());
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+            .protobuf
+            .UnknownFieldSet
+            .newBuilder(this.getUnknownFields());
         while (true) {
           int tag = input.readTag();
           switch (tag) {
@@ -3953,8 +3973,10 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(this
-            .getUnknownFields());
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+            .protobuf
+            .UnknownFieldSet
+            .newBuilder(this.getUnknownFields());
         while (true) {
           int tag = input.readTag();
           switch (tag) {
@@ -4386,8 +4408,10 @@ public final class NowPlaying {
       @Override
       public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
                                com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(this
-            .getUnknownFields());
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google
+            .protobuf
+            .UnknownFieldSet
+            .newBuilder(this.getUnknownFields());
         while (true) {
           int tag = input.readTag();
           switch (tag) {
@@ -4466,17 +4490,20 @@ public final class NowPlaying {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_ShowtimeProto_descriptor = getDescriptor()
-      .getMessageTypes().get(0);
+      .getMessageTypes()
+      .get(0);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_ShowtimeProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_ShowtimeProto_descriptor, new java.lang.String[]{"Time", "Url", "Dubbed", "Subtitled",},
       NowPlaying.ShowtimeProto.class, NowPlaying.ShowtimeProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_AllShowtimesProto_descriptor = getDescriptor()
-      .getMessageTypes().get(1);
+      .getMessageTypes()
+      .get(1);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_AllShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_AllShowtimesProto_descriptor, new java.lang.String[]{"Showtimes", "Vendor", "Captioning",},
       NowPlaying.AllShowtimesProto.class, NowPlaying.AllShowtimesProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_MovieProto_descriptor = getDescriptor()
-      .getMessageTypes().get(2);
+      .getMessageTypes()
+      .get(2);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_MovieProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_MovieProto_descriptor, new java.lang.String[]{
       "Identifier",
@@ -4495,38 +4522,44 @@ public final class NowPlaying {
       "ReleaseDate",
   }, NowPlaying.MovieProto.class, NowPlaying.MovieProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterProto_descriptor = getDescriptor()
-      .getMessageTypes().get(3);
+      .getMessageTypes()
+      .get(3);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_TheaterProto_descriptor, new java.lang.String[]{
       "Identifier", "Name", "StreetAddress", "City", "State", "PostalCode", "Country", "Phone", "Latitude", "Longitude",
   }, NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_descriptor = getDescriptor()
-      .getMessageTypes().get(4);
+      .getMessageTypes()
+      .get(4);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_TheaterListingsProto_descriptor, new java.lang.String[]{"Movies", "TheaterAndMovieShowtimes",},
       NowPlaying.TheaterListingsProto.class, NowPlaying.TheaterListingsProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = internal_static_TheaterListingsProto_descriptor
-      .getNestedTypes().get(0);
+      .getNestedTypes()
+      .get(0);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor,
       new java.lang.String[]{"Theater", "MovieAndShowtimes",},
       NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.class,
       NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor
-      .getNestedTypes().get(0);
+      .getNestedTypes()
+      .get(0);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor,
       new java.lang.String[]{"MovieIdentifier", "Showtimes",},
       NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.class,
       NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_ReviewProto_descriptor = getDescriptor()
-      .getMessageTypes().get(5);
+      .getMessageTypes()
+      .get(5);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_ReviewProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_ReviewProto_descriptor,
       new java.lang.String[]{"Title", "Url", "Rating", "Snippet", "Content", "Publisher", "Author", "Date",},
       NowPlaying.ReviewProto.class, NowPlaying.ReviewProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_ReviewsListProto_descriptor = getDescriptor()
-      .getMessageTypes().get(6);
+      .getMessageTypes()
+      .get(6);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_ReviewsListProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_ReviewsListProto_descriptor, new java.lang.String[]{"Reviews",},
       NowPlaying.ReviewsListProto.class, NowPlaying.ReviewsListProto.Builder.class);

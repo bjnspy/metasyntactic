@@ -23,6 +23,7 @@ import java.util.Map;
 
 public interface ScoreProvider {
   void update();
+
   void shutdown();
 
   Map<String, Score> getScores();

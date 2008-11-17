@@ -68,8 +68,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         if (!isDestroyed) {
           List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
           // sort movies according to the default sort preference.
-          Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
-              .getAllMoviesSelectedSortIndex());
+          Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
           Collections.sort(tmpMovies, comparator);
           movies = new ArrayList<Movie>();
           movies.addAll(tmpMovies);
@@ -269,8 +268,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         // we want to bind data to.
         holder = new ViewHolder();
         holder.title = (TextView) convertView.findViewById(R.id.title);
-        holder.poster = (ImageView) convertView
-            .findViewById(R.id.poster);
+        holder.poster = (ImageView) convertView.findViewById(R.id.poster);
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
@@ -285,8 +283,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.poster.setImageBitmap(bitmap);
       } else {
-        holder.poster.setImageDrawable(NowPlayingActivity.this.getResources()
-            .getDrawable(R.drawable.movies));
+        holder.poster.setImageDrawable(NowPlayingActivity.this.getResources().getDrawable(R.drawable.movies));
       }
       convertView.setOnClickListener(new OnClickListener() {
         public void onClick(View v) {
@@ -353,7 +350,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
       NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
+          R.string.movies_select_sort_title)
+          .setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
           .setEntries(R.array.entries_movies_sort_preference);
       builder.show();
       return true;
