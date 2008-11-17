@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Movie implements Parcelable, Persistable, Comparable<Movie> {
+  private static final long serialVersionUID = 4570788252867866289L;
   private String identifier;
   private String canonicalTitle;
   private String displayTitle;

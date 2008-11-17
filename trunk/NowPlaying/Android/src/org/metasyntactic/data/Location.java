@@ -26,6 +26,7 @@ import java.io.IOException;
 import static java.lang.Math.*;
 
 public class Location implements Parcelable, Persistable {
+  private static final long serialVersionUID = 5329395050075385028L;
   private final double latitude;
   private final double longitude;
   private final String address;

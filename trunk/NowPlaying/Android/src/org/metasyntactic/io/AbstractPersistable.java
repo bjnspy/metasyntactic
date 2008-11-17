@@ -21,7 +21,12 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class AbstractPersistable implements Persistable {
-  public static abstract class AbstractReader<T extends Persistable> implements Reader<T> {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5436462848902430842L;
+
+public static abstract class AbstractReader<T extends Persistable> implements Reader<T> {
     public List<T> readList(PersistableInputStream in) throws IOException {
       int count = in.readInt();
       List<T> list = new ArrayList<T>(count);

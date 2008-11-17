@@ -24,6 +24,7 @@ import org.metasyntactic.io.PersistableOutputStream;
 import java.io.IOException;
 
 public class Score implements Parcelable, Persistable, Comparable<Score> {
+  private static final long serialVersionUID = -22337839093764822L;
   private String canonicalTitle;
   private String synopsis;
   private String value;

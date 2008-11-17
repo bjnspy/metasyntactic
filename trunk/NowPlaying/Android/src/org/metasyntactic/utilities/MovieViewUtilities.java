@@ -136,7 +136,7 @@ public class MovieViewUtilities {
         DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
         String dateStr;
         if (d1 != null) {
-          dateStr = df.getDateInstance().format(d1);
+          dateStr = df.format(d1);
         } else {
           dateStr = null;
         }
