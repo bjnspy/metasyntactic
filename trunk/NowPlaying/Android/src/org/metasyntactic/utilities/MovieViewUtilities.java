@@ -121,7 +121,6 @@ public class MovieViewUtilities {
   }
 
   public static String getHeader(List<Movie> movies, int position, int sortIndex) {
-    // TODO Auto-generated method stub
     switch (sortIndex) {
       case MovieTitle:
         if (position == 0) {
@@ -156,8 +155,6 @@ public class MovieViewUtilities {
   }
 
   public static String getTheaterHeader(List<Theater> theaters, int position, int sortIndex, Address address) {
-
-    // TODO Auto-generated method stub
     switch (sortIndex) {
       case TheaterName:
         if (position == 0) {
@@ -168,7 +165,6 @@ public class MovieViewUtilities {
         }
         break;
       case Distance:
-
         //todo (mjoshi) fix this ...incorrect headers are returned, and its slow.
 
         Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null,

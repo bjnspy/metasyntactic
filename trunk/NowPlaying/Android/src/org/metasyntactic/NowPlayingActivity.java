@@ -15,11 +15,13 @@
 package org.metasyntactic;
 
 import android.app.Activity;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.text.TextUtils;
 import android.view.*;
 import android.view.View.OnClickListener;
@@ -28,8 +30,8 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.*;
@@ -43,14 +45,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private Animation animation;
   private int selection;
   private PostersAdapter postersAdapter;
-  static NowPlayingControllerWrapper controller;
   private boolean gridAnimationEnded;
   private boolean isPrioritized;
   private boolean isGridSetup;
   Bitmap bitmap;
   private int pagecount;
+  private int maxpagecount;
   private boolean isDestroyed;
   private List<Movie> movies;
+
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -63,18 +66,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     Runnable runnable = new Runnable() {
       public void run() {
         if (!isDestroyed) {
-          // TODO Auto-generated method stub
-          List<Movie> tmpMovies;
-          tmpMovies = controller.getMovies();
+          List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
           // sort movies according to the default sort preference.
-          Comparator<Movie> comparator = MOVIE_ORDER.get(controller
+          Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
               .getAllMoviesSelectedSortIndex());
           Collections.sort(tmpMovies, comparator);
           movies = new ArrayList<Movie>();
           movies.addAll(tmpMovies);
           if (!isPrioritized) {
             for (int i = 0; i < Math.min(6, movies.size()); i++) {
-              controller.prioritizeMovie(movies.get(i));
+              NowPlayingControllerWrapper.prioritizeMovie(movies.get(i));
             }
             isPrioritized = true;
           }
@@ -96,27 +97,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     return movies;
   }
 
-  private final ServiceConnection serviceConnection = new ServiceConnection() {
-    public void onServiceConnected(ComponentName className, IBinder service) {
-      // This is called when the connection with the service has been
-      // established, giving us the service object we can use to
-      // interact with the service. We are communicating with our
-      // service through an IDL interface, so get a client-side
-      // representation of that from the raw service object.
-      controller = new NowPlayingControllerWrapper(INowPlayingController.Stub.asInterface(service));
-      onControllerConnected();
-    }
-
-    public void onServiceDisconnected(ComponentName className) {
-      controller = null;
-    }
-  };
-  private int maxpagecount;
-
-  private void onControllerConnected() {
-    refresh();
-  }
-
   public NowPlayingActivity() {
     instance = this;
   }
@@ -129,25 +109,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    NowPlayingControllerWrapper.addActivity(this);
+
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    GlobalActivityIndicator.addActivity(this);
     setContentView(R.layout.progressbar_1);
-  }
-
-  /**
-   * Returns an instance of NowPlayingControllerWrapper associated with this Activity.
-   *
-   * @return controller instance of NowPlayingControllerWrapper
-   */
-  public NowPlayingControllerWrapper getController() {
-    return controller;
   }
 
   @Override
   protected void onDestroy() {
-    GlobalActivityIndicator.removeActivity(this);
-    unbindService(serviceConnection);
+    NowPlayingControllerWrapper.removeActivity(this);
     isDestroyed = true;
     super.onDestroy();
   }
@@ -155,11 +126,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
-    boolean bindResult = bindService(new Intent(getBaseContext(), NowPlayingControllerService.class), serviceConnection,
-                                     Context.BIND_AUTO_CREATE);
-    if (!bindResult) {
-      throw new RuntimeException("Failed to bind to service!");
-    }
+
     registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     if (movies != null && movies.size() > 0) {
       setup();
@@ -206,16 +173,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     });
     grid.setLayoutAnimationListener(new AnimationListener() {
       public void onAnimationEnd(Animation animation) {
-        // TODO Auto-generated method stub
         gridAnimationEnded = true;
       }
 
       public void onAnimationRepeat(Animation animation) {
-        // TODO Auto-generated method stub
       }
 
       public void onAnimationStart(Animation arg0) {
-        // TODO Auto-generated method stub
       }
     });
     postersAdapter = new PostersAdapter(this);
@@ -225,18 +189,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     animation = AnimationUtils.loadAnimation(this, R.anim.fade_reverse);
     animation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(Animation animation) {
-        // TODO Auto-generated method stub
         intent.putExtra("selection", selection);
         startActivity(intent);
         setContentView(R.layout.main);
       }
 
       public void onAnimationRepeat(Animation animation) {
-        // TODO Auto-generated method stub
       }
 
       public void onAnimationStart(Animation animation) {
-        // TODO Auto-generated method stub
       }
     });
   }
@@ -269,18 +230,20 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   };
   final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
     public int compare(Movie m1, Movie m2) {
-      Integer value1 = 0;
-      Integer value2 = 0;
-      if (controller.getScore(m1) != null) {
-        value1 = Integer.valueOf(controller.getScore(m1).getValue());
+      int value1 = 0;
+      int value2 = 0;
+      Score score1 = NowPlayingControllerWrapper.getScore(m1);
+      Score score2 = NowPlayingControllerWrapper.getScore(m1);
+      if (score1 != null) {
+        value1 = score1.getScoreValue();
       }
-      if (controller.getScore(m2) != null) {
-        value2 = Integer.valueOf(controller.getScore(m2).getValue());
+      if (score2 != null) {
+        value2 = score2.getScoreValue();
       }
       if (value1 == value2) {
         return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
       } else {
-        return value2.compareTo(value1);
+        return value2 - value1;
       }
     }
   };
@@ -317,7 +280,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       final Movie movie = movies.get(position % movies.size());
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
-      final byte[] bytes = controller.getPoster(movie).getBytes();
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
       if (bytes.length > 0) {
         bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.poster.setImageBitmap(bitmap);
@@ -327,7 +290,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
       convertView.setOnClickListener(new OnClickListener() {
         public void onClick(View v) {
-          // TODO Auto-generated method stub
           selection = position;
           int i = 0;
           View child = grid.getChildAt(i);

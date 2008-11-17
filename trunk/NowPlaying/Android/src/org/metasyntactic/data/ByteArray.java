@@ -18,6 +18,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class ByteArray implements Parcelable {
+  public final static ByteArray empty = new ByteArray(new byte[0]);
+
   private final byte[] bytes;
 
   public ByteArray(byte[] bytes) {

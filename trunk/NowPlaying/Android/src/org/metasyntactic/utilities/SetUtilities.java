@@ -12,14 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package org.metasyntactic;
+package org.metasyntactic.utilities;
 
-import android.content.Context;
+import java.util.Set;
 
-public interface INowPlaying {
+/** @author cyrusn@google.com (Cyrus Najmabadi) */
+public class SetUtilities {
+  private SetUtilities() {
 
-  /** Updates the current tab view. */
-  public void refresh();
+  }
 
-  public Context getContext();
+  public static <T> T any(Set<T> set) {
+    if (set.isEmpty()) {
+      return null;
+    }
+    return set.iterator().next();
+  }
 }

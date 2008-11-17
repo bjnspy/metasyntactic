@@ -66,7 +66,7 @@ public class TheaterDetailsActivity extends Activity {
         desc1.setText(synopsis);
       }
     }
-  
+
         CharSequence rating = MovieViewUtilities.formatRatings(movie
                 .getRating(), NowPlayingActivity_old.instance.getResources());
         CharSequence length = MovieViewUtilities.formatLength(
@@ -161,7 +161,6 @@ public class TheaterDetailsActivity extends Activity {
 
   @Override
   protected void onResume() {
-    // TODO Auto-generated method stub
     super.onResume();
   }
 }

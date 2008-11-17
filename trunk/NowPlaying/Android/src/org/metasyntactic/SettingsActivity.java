@@ -22,6 +22,12 @@ public class SettingsActivity extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.movieview);
+  }
+
+  protected void onDestroy() {
+    NowPlayingControllerWrapper.removeActivity(this);
+    super.onDestroy();
   }
 }
