@@ -56,13 +56,13 @@ public class Application {
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
 
   private static Pulser pulser;
-  private static Context context;
 
   static {
     createDirectories();
 
     Runnable runnable = new Runnable() {
       public void run() {
+        Context context = NowPlayingControllerWrapper.getApplicationContext();
         if (context != null) {
           context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
         }
@@ -152,10 +152,6 @@ public class Application {
     } else {
       pulser.tryPulse();
     }
-  }
-
-  public static void setContext(Context context) {
-    Application.context = context;
   }
 
   public static File createTempFile() {
