@@ -33,13 +33,13 @@ public class AllReviewsActivity extends ListActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    NowPlayingControllerWrapper1.addActivity(this);
+    NowPlayingControllerWrapper.addActivity(this);
     reviews = getIntent().getParcelableArrayListExtra("reviews");
     this.setListAdapter(new ReviewsAdapter(this));
   }
 
   protected void onDestroy() {
-    NowPlayingControllerWrapper1.removeActivity(this);
+    NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 

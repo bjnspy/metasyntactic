@@ -20,11 +20,11 @@ import org.metasyntactic.threading.ThreadingUtilities;
 
 import java.util.List;
 
-public class NowPlayingController1 {
+public class NowPlayingController {
   private final NowPlayingModel model = new NowPlayingModel();
   private final Object lock = new Object();
 
-  public NowPlayingController1() {
+  public NowPlayingController() {
 
   }
 
