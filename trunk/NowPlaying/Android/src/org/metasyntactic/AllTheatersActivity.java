@@ -129,7 +129,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
       NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this)
-
           .setTitle(R.string.theaters_select_sort_title)
           .setKey(NowPlayingPreferenceDialog.Preference_keys.THEATERS_SORT)
           .setEntries(R.array.entries_theaters_sort_preference);
@@ -168,12 +167,14 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       Theater theater = theaters.get(position);
       Address address = null;
       try {
-        address = new Geocoder(getContext()).getFromLocationName(NowPlayingControllerWrapper.getUserLocation(), 1).get(0);
+        address = new Geocoder(getContext()).getFromLocationName(NowPlayingControllerWrapper.getUserLocation(), 1)
+            .get(0);
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
-      String headerText = MovieViewUtilities.getTheaterHeader(theaters, position, NowPlayingControllerWrapper
-          .getAllTheatersSelectedSortIndex(), address);
+      String headerText = MovieViewUtilities.getTheaterHeader(theaters, position,
+                                                              NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex(),
+                                                              address);
       if (headerText != null) {
         holder.header.setVisibility(1);
         holder.header.setText(headerText);

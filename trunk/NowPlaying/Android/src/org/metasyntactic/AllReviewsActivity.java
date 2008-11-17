@@ -63,8 +63,7 @@ public class AllReviewsActivity extends ListActivity {
       MovieViewHolder holder;
       convertView = inflater.inflate(R.layout.reviewview, null);
       holder = new MovieViewHolder();
-      holder.toggleButton = (Button) convertView
-          .findViewById(R.id.togglebtn);
+      holder.toggleButton = (Button) convertView.findViewById(R.id.togglebtn);
       holder.score = (Button) convertView.findViewById(R.id.score);
       holder.author = (TextView) convertView.findViewById(R.id.author);
       holder.source = (TextView) convertView.findViewById(R.id.source);

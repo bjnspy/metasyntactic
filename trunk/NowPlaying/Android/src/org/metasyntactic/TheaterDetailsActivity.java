@@ -50,9 +50,7 @@ public class TheaterDetailsActivity extends Activity {
         Button reviewsbtn = (Button) findViewById(R.id.reviewsbtn);
         title.setText(movie.getDisplayTitle());
         if (controller.getPoster(movie).getBytes().length > 0) {
-            poster.setImageBitmap(BitmapFactory.decodeByteArray(controller
-                    .getPoster(movie).getBytes(), 0, controller
-                    .getPoster(movie).getBytes().length));
+            poster.setImageBitmap(BitmapFactory.decodeByteArray(controller.getPoster(movie).getBytes(), 0, controller.getPoster(movie).getBytes().length));
 
     String synopsis = controller.getSynopsis(movie);
     if (synopsis.length() > 0) {
@@ -67,8 +65,7 @@ public class TheaterDetailsActivity extends Activity {
       }
     }
 
-        CharSequence rating = MovieViewUtilities.formatRatings(movie
-                .getRating(), NowPlayingActivity_old.instance.getResources());
+        CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), NowPlayingActivity_old.instance.getResources());
         CharSequence length = MovieViewUtilities.formatLength(
                 movie.getLength(), NowPlayingActivity_old.instance.getResources());
         rating_length.setText(rating.toString() + " " + length.toString());
@@ -110,8 +107,7 @@ public class TheaterDetailsActivity extends Activity {
         });
         reviewsbtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                ArrayList<Review> reviews = (ArrayList) controller
-                        .getReviews(movie);
+                ArrayList<Review> reviews = (ArrayList) controller.getReviews(movie);
                 if (reviews != null && reviews.size() > 0) {
                     Intent intent = new Intent();
                     intent.putParcelableArrayListExtra("reviews", reviews);
@@ -144,8 +140,7 @@ public class TheaterDetailsActivity extends Activity {
     });
     reviewsbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
-        ArrayList<Review> reviews = (ArrayList) controller
-            .getReviews(movie);
+        ArrayList<Review> reviews = (ArrayList) controller.getReviews(movie);
         if (reviews != null && reviews.size() > 0) {
           Intent intent = new Intent();
           intent.putParcelableArrayListExtra("reviews", reviews);

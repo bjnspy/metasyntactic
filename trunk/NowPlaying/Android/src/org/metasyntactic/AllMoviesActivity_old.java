@@ -49,7 +49,7 @@ public class AllMoviesActivity_old extends ListActivity {
   private static Context context;
 
 
- 
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     // TODO Auto-generated method stub
@@ -67,8 +67,7 @@ public class AllMoviesActivity_old extends ListActivity {
     menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
 
     menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class))
-        .setAlphabeticShortcut('s');
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
 
     return super.onCreateOptionsMenu(menu);
   }
@@ -81,9 +80,7 @@ public class AllMoviesActivity_old extends ListActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
       NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this.activity)
-
-          .setTitle(R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
-          .setEntries(R.array.entries_movies_sort_preference).show();
+.setTitle(R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference).show();
 
       return true;
     }
@@ -129,8 +126,7 @@ public class AllMoviesActivity_old extends ListActivity {
       Resources res = context.getResources();
       final Movie movie = movies.get(position);
 
-      String headerText = MovieViewUtilities.getHeader(movies, position, controller
-          .getAllMoviesSelectedSortIndex());
+      String headerText = MovieViewUtilities.getHeader(movies, position, controller.getAllMoviesSelectedSortIndex());
       if (headerText != null) {
         holder.header.setVisibility(1);
         holder.header.setText(headerText);
@@ -142,10 +138,8 @@ public class AllMoviesActivity_old extends ListActivity {
       }
 
       holder.title.setText(movie.getDisplayTitle());
-      holder.rating.setText(MovieViewUtilities.formatRatings(movie
-          .getRating(), res));
-      holder.length.setText(MovieViewUtilities.formatLength(movie
-          .getLength(), res));
+      holder.rating.setText(MovieViewUtilities.formatRatings(movie.getRating(), res));
+      holder.length.setText(MovieViewUtilities.formatLength(movie.getLength(), res));
       holder.toggleButton.setOnClickListener(new Button.OnClickListener() {
         public void onClick(View v) {
           Intent intent = new Intent();
@@ -166,8 +160,7 @@ public class AllMoviesActivity_old extends ListActivity {
       }
       ScoreType scoreType = controller.getScoreType();
 
-      holder.score.setBackgroundDrawable(MovieViewUtilities
-          .formatScoreDrawable(scoreValue, scoreType, res));
+      holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
       if (scoreValue != -1) {
         holder.score.setText(String.valueOf(scoreValue));
       }

@@ -294,8 +294,7 @@ public class DataProvider {
   private LookupResult processTheaterListings(NowPlaying.TheaterListingsProto element, Location originatingLocation,
                                               Collection<String> theaterNames) {
     List<NowPlaying.MovieProto> movieProtos = element.getMoviesList();
-    List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element
-        .getTheaterAndMovieShowtimesList();
+    List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList();
     Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);
 
     Object[] theatersAndPerformances = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes, originatingLocation,

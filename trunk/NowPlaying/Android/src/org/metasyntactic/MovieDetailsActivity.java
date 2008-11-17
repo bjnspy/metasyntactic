@@ -63,16 +63,14 @@ public class MovieDetailsActivity extends ListActivity {
     });
     reviewsbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
-        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper
-            .getReviews(movie));
+        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(movie));
         if (reviews.size() > 0) {
           Intent intent = new Intent();
           intent.putParcelableArrayListExtra("reviews", reviews);
           intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this, "Reviews are not available.", Toast.LENGTH_SHORT)
-              .show();
+          Toast.makeText(MovieDetailsActivity.this, "Reviews are not available.", Toast.LENGTH_SHORT).show();
         }
       }
     });
@@ -92,8 +90,7 @@ public class MovieDetailsActivity extends ListActivity {
     });
     reviewsbtn.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
-        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper
-            .getReviews(movie));
+        ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(movie));
         if (reviews.size() > 0) {
           Intent intent = new Intent();
           intent.putParcelableArrayListExtra("reviews", reviews);
@@ -122,8 +119,8 @@ public class MovieDetailsActivity extends ListActivity {
     // Add rating
     entry = new MovieDetailEntry();
     entry.setName("Rating");
-    CharSequence rating = MovieViewUtilities.formatRatings(movie
-        .getRating(), NowPlayingActivity.instance.getResources());
+    CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(),
+                                                           NowPlayingActivity.instance.getResources());
     if (rating != null && rating.length() > 0) {
       // hack to display text on left and bottom or poster
       entry.setValue(rating.toString());
