@@ -21,7 +21,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
 import android.widget.AdapterView.OnItemSelectedListener;
 import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.NowPlayingControllerWrapper1;
 import org.metasyntactic.R;
 
 public class NowPlayingPreferenceDialog {
@@ -110,9 +110,9 @@ public class NowPlayingPreferenceDialog {
   private int getPreferenceValue() {
     switch (preference_key) {
       case MOVIES_SORT:
-        return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
+        return NowPlayingControllerWrapper1.getAllMoviesSelectedSortIndex();
       case THEATERS_SORT:
-        return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
+        return NowPlayingControllerWrapper1.getAllTheatersSelectedSortIndex();
     }
     return 0;
   }
@@ -120,10 +120,10 @@ public class NowPlayingPreferenceDialog {
   private void setPreferenceValue() {
     switch (preference_key) {
       case MOVIES_SORT:
-        NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(preference_value);
+        NowPlayingControllerWrapper1.setAllMoviesSelectedSortIndex(preference_value);
         break;
       case THEATERS_SORT:
-    	NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(preference_value);
+    	NowPlayingControllerWrapper1.setAllTheatersSelectedSortIndex(preference_value);
     	break;
     }
   }
