@@ -66,8 +66,7 @@ public class TheaterDetailsActivity extends Activity {
     }
 
         CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), NowPlayingActivity_old.instance.getResources());
-        CharSequence length = MovieViewUtilities.formatLength(
-                movie.getLength(), NowPlayingActivity_old.instance.getResources());
+        CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), NowPlayingActivity_old.instance.getResources());
         rating_length.setText(rating.toString() + " " + length.toString());
         trailerbtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {

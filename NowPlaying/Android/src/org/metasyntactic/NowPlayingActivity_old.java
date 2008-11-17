@@ -128,26 +128,20 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
 
 
     private void setUpUpcomingTab(final TabHost tabs) {
-        tabs.addTab(tabs.newTabSpec("upcoming_tab").setIndicator(
-            getResources().getString(R.string.upcomingIconLabel),
-            getResources().getDrawable(R.drawable.upcoming)).setContent(
-                new Intent(this, AllTheatersActivity.class)));
+        tabs.addTab(tabs.newTabSpec("upcoming_tab").setIndicator(getResources().getString(R.string.upcomingIconLabel),
+            getResources().getDrawable(R.drawable.upcoming)).setContent(new Intent(this, AllTheatersActivity.class)));
     }
 
 
     private void setUpTheatersTab(final TabHost tabs) {
-        tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator(
-            getResources().getString(R.string.theatersIconLabel),
-            getResources().getDrawable(R.drawable.theatres)).setContent(
-            new Intent(this, AllTheatersActivity.class)));
+        tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator(getResources().getString(R.string.theatersIconLabel),
+            getResources().getDrawable(R.drawable.theatres)).setContent(new Intent(this, AllTheatersActivity.class)));
     }
 
 
     private void setUpMoviesTab(final TabHost tabs) {
-        tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator(
-            getResources().getString(R.string.moviesIconLabel),
-            getResources().getDrawable(R.drawable.movies)).setContent(
-            new Intent(this, AllMoviesActivity.class)));
+        tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator(getResources().getString(R.string.moviesIconLabel),
+            getResources().getDrawable(R.drawable.movies)).setContent(new Intent(this, AllMoviesActivity.class)));
     }
 
 
@@ -172,8 +166,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter(
-            Application.NOW_PLAYING_CHANGED_INTENT));
+        registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     }
 
 
@@ -221,8 +214,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
                     }
                     if (controller.getScore(m1) != null
                         && controller.getScore(m2) != null) {
-                        return controller.getScore(m2).compareTo(
-                            controller.getScore(m1));
+                        return controller.getScore(m2).compareTo(controller.getScore(m1));
                     }
 
                     // if m2 is null then m1 is greater

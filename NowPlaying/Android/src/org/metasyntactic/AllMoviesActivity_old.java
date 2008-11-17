@@ -66,8 +66,7 @@ public class AllMoviesActivity_old extends ListActivity {
 
     menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
 
-    menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
 
     return super.onCreateOptionsMenu(menu);
   }
