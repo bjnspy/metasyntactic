@@ -25,7 +25,11 @@ import org.metasyntactic.utilities.StringUtilities;
 import java.io.IOException;
 
 public class FavoriteTheater implements Parcelable, Persistable {
-  private String name;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7339380828909301638L;
+private String name;
   private Location originatingLocation;
 
   public void persistTo(PersistableOutputStream out) throws IOException {

@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -248,11 +247,9 @@ public class MovieDetailsActivity extends ListActivity {
     };
 
     class MovieAdapter extends BaseAdapter {
-        private final Context context;
         private final LayoutInflater inflater;
 
         public MovieAdapter(Context context) {
-            this.context = context;
             // Cache the LayoutInflate to avoid asking for a new one each time.
             inflater = LayoutInflater.from(context);
         }
