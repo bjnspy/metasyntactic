@@ -46,7 +46,9 @@
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>
   <string name="dvdbluray_details_provided_by">DVD/Blu-ray detayları:</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">İleriki tarihler için veri eksik olabilir. Tam listeyi görmek için arama tarihini bugüne ayarlayın.</string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">İleriki tarihler için veri eksik olabilir. Tam
+    listeyi görmek için arama tarihini bugüne ayarlayın.
+  </string>
   <string name="director">Yönetmen:</string>
   <string name="directors">Yönetmenler:</string>
   <string name="distance">Uzaklık</string>
@@ -108,10 +110,17 @@
   <string name="show_one_hidden_theater">1 gizli salonu göster</string>
   <string name="show_times_retrieved_on_string_dot">Seans bilgisi %s tarihinde alındı.</string>
   <string name="studio">Stüdyo:</string>
-  <string name="theater_last_reported_show_times_on_string_dot">Salona ilişkin bulunan en yeni seans\nbilgisi %s tarihine ait.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">Salon bilgisi sağlayıcıları genellikle en yüksek arama uzaklığını sınırlarlar. Bu nedenle, arama uzaklığı çok yüksek olsa bile bazı sinema salonları arama sonuçları içinde yer almayabilir.</string>
+  <string name="theater_last_reported_show_times_on_string_dot">Salona ilişkin bulunan en yeni seans\nbilgisi %s
+    tarihine ait.
+  </string>
+  <string name="theater_providers_often_limit_the_maximum_search">Salon bilgisi sağlayıcıları genellikle en yüksek arama
+    uzaklığını sınırlarlar. Bu nedenle, arama uzaklığı çok yüksek olsa bile bazı sinema salonları arama sonuçları içinde
+    yer almayabilir.
+  </string>
   <string name="theaters">Salonlar</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Bu salon için seans bilgisi yok. %s, bilgi yayınlandığında otomatik olarak alacak.</string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Bu salon için seans bilgisi yok. %s, bilgi
+    yayınlandığında otomatik olarak alacak.
+  </string>
   <string name="ticket_sales_provided_by">Bilet satışı:</string>
   <string name="title">İsim</string>
   <string name="today">Bugün</string>

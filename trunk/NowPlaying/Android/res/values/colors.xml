@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
  * Copyright (C) 2007 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +16,10 @@
  -->
 
 <resources>
-   
-	<drawable name="screen_background_orange">#8b431b00</drawable>
-    <drawable name="alternate_background">#000000bb</drawable>
-    <drawable name="transparent_background">#00000000</drawable>
-    
-  
+
+  <drawable name="screen_background_orange">#8b431b00</drawable>
+  <drawable name="alternate_background">#000000bb</drawable>
+  <drawable name="transparent_background">#00000000</drawable>
+
+
 </resources>

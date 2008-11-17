@@ -40,7 +40,9 @@
   <string name="change_date">Ændre dato</string>
   <string name="citystate_or_postal_code">By eller postnummer</string>
   <string name="could_not_find_location_dot">Kunne ikke finde position</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Data for datoer i fremtiden kan være mangefulde. Nulstil søgedatoen til den nuværende dato for at se den komplette liste.</string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Data for datoer i fremtiden kan være mangefulde.
+    Nulstil søgedatoen til den nuværende dato for at se den komplette liste.
+  </string>
   <string name="director">Instruktør:</string>
   <string name="directors">Instruktører:</string>
   <string name="distance">Afstand</string>
@@ -97,9 +99,13 @@
   <string name="show_one_hidden_theater">Vis 1 skjult biograf</string>
   <string name="show_times_retrieved_on_string_dot">Forestillinger hentet d. %s.</string>
   <string name="theater_last_reported_show_times_on_string_dot">Biografen indrapporterede sidst tider d.\n%s.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">Dataudbydere vil ofte have en maksimum distance de viser resultater for. Nogle biografer vil derfor ikke blive vist, hvis søgeområdet er sat meget højt.</string>
+  <string name="theater_providers_often_limit_the_maximum_search">Dataudbydere vil ofte have en maksimum distance de
+    viser resultater for. Nogle biografer vil derfor ikke blive vist, hvis søgeområdet er sat meget højt.
+  </string>
   <string name="theaters">Biografer</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Denne biograf har endnu ikke informeret om forstillinger. Når de bliver tilgængelige, henter %s dem automatisk.</string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Denne biograf har endnu ikke informeret om
+    forstillinger. Når de bliver tilgængelige, henter %s dem automatisk.
+  </string>
   <string name="ticket_sales_provided_by">Billet-salg leveret af:</string>
   <string name="title">Titel</string>
   <string name="today">Idag</string>

@@ -45,8 +45,10 @@
   <string name="could_not_find_location_dot">Nemohu najít polohu.</string>
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>
-  <string name="dvdbluray_details_provided_by">Detaily o DVD/Blu-ray poskytl: </string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Data pro budoucí datum mohou být nekompletní. Resetujte datum hledání pro zobrazení úplného seznamu.</string>
+  <string name="dvdbluray_details_provided_by">Detaily o DVD/Blu-ray poskytl:</string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Data pro budoucí datum mohou být nekompletní.
+    Resetujte datum hledání pro zobrazení úplného seznamu.
+  </string>
   <string name="director">Režisér:</string>
   <string name="directors">Režiséři:</string>
   <string name="distance">Vzdálenost</string>
@@ -109,9 +111,14 @@
   <string name="show_times_retrieved_on_string_dot">Termíny představení byla načtena %s.</string>
   <string name="studio">Studio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Divadlo zveřejnilo termíny představení \n%s.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">Poskytovatelé informací o divadlech často omezují maximální vzdálenost pro kterou poskytou data. Proto se nemusí některé informace zobrazit při nastavení vysoké vzdálenosti.</string>
+  <string name="theater_providers_often_limit_the_maximum_search">Poskytovatelé informací o divadlech často omezují
+    maximální vzdálenost pro kterou poskytou data. Proto se nemusí některé informace zobrazit při nastavení vysoké
+    vzdálenosti.
+  </string>
   <string name="theaters">Divadla</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Toto divadlo doposud neoznámilo termíny představení. Jakmile budou k dispozici, %s jej automaticky načte.</string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Toto divadlo doposud neoznámilo termíny představení.
+    Jakmile budou k dispozici, %s jej automaticky načte.
+  </string>
   <string name="ticket_sales_provided_by">Poskytovatel prodeje vstupenek:</string>
   <string name="title">Název</string>
   <string name="today">Dnes</string>
