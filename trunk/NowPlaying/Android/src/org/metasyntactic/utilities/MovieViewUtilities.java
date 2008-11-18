@@ -84,7 +84,15 @@ public class MovieViewUtilities {
 
     return res.getString(R.string.string_string, hoursString, minutesString);
   }
-
+  
+  public static String formatListToString(List<String> list) {
+      if (list != null && list.size() > 0) {
+          final String listStr = list.toString();
+          return listStr.substring(1, listStr.length() - 1);
+        } else {
+          return "Unknown";
+        }
+  }
   public static Drawable formatScoreDrawable(final int score, final ScoreType scoreType, final Resources res) {
 
     if (scoreType == ScoreType.RottenTomatoes) {

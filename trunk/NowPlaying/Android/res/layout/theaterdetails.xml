@@ -1,71 +1,135 @@
-<ScrollView
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-  <RelativeLayout
-      android:layout_width="fill_parent"
-      android:layout_marginTop="0dip"
-      android:layout_gravity="top"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="0dip">
+    android:layout_height="wrap_content"
+    android:animationCache="false"
+    android:paddingTop="0px"
+    android:paddingBottom="0px"
+    android:paddingLeft="0px"
+    android:paddingRight="0px">
     <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_height="40px"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="top"
-        android:layout_marginTop="10dip"
-        android:layout_marginBottom="10dip"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="?android:attr/textColorPrimary"/>
-    <TextView
-        android:id="@+id/maplabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14px"
-        android:text="Map"
-        android:layout_below="@id/header"
-        android:layout_alignParentLeft="true"
-        android:textColor="?android:attr/textColorPrimary"/>
-    <TextView
-        android:id="@+id/maptxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14px"
-        android:layout_alignParentRight="true"
-        android:textColor="?android:attr/textColorSecondary"/>
-    <TextView
-        android:id="@+id/calllabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14px"
-        android:text="Map"
-        android:layout_below="@id/maplabel"
-        android:layout_alignParentLeft="true"
-        android:textColor="?android:attr/textColorPrimary"/>
-    <TextView
-        android:id="@+id/maptxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14px"
-        android:layout_alignParentRight="true"
-        android:textColor="?android:attr/textColorSecondary"/>
+        android:id="@+id/theater"
+        android:layout_width="fill_parent"
+        android:layout_height="50px"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:textColor="?android:attr/textColorSecondary"
+        
+        android:singleLine="true"
+         />
     <ImageView
-        android:id="@+id/divider"
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/theater"
+        android:background="@drawable/divider_horizontal_bright" />
+    <TextView
+        android:id="@+id/maplbl"
+        android:layout_below="@id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        
+        android:background="@drawable/dark_header_dithered"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textStyle="bold"
+        android:text="Map"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
+    <ImageView
+        id="@+id/divider3"
+        android:layout_below="@id/maplbl"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        
+        android:background="@drawable/divider_horizontal_bright" />
+    <TextView
+        android:id="@+id/map"
+        android:layout_below="@id/maplbl"
+        android:layout_width="250px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="10dip"
+        android:gravity="center_vertical"
+        android:singleLine="false"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+    
+        android:text="test"
+        android:layout_alignParentLeft="true" />
+    <ImageView
+        android:id="@+id/mapicon"
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dip"
+        android:layout_toRightOf="@id/map"
+        android:src="@drawable/sym_action_map"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical" />
+    <ImageView
+        android:id="@+id/divider4"
+        android:layout_below="@id/mapicon"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        
+        android:background="@drawable/divider_horizontal_bright" />
+    <TextView
+        android:id="@+id/phonelbl"
+        android:layout_below="@id/divider4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        
+        android:background="@drawable/dark_header_dithered"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textStyle="bold"
+        android:text="Phone"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+     />
+    <ImageView
+        id="@+id/divider5"
+        android:layout_below="@id/phonelbl" 
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@drawable/divider_horizontal_bright"
-        android:layout_marginBottom="2dip"
-        android:layout_below="@id/maplabel"
-        android:layout_marginTop="2dip"/>
-    <Button
-        android:id="@+id/emailbtn"
-        android:layout_width="150px"
+        />
+    <TextView
+        android:id="@+id/phone"
+        android:layout_below="@id/phonelbl"
+        android:layout_width="250px"
         android:layout_height="wrap_content"
-        android:text="E-mail Listings"
-        android:layout_below="@id/divider"
-        android:layout_alignParentRight="true"/>
-  </RelativeLayout>
-</ScrollView>
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="10dip"
+        android:gravity="center_vertical"
+        android:singleLine="false"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        
+        
+        android:layout_alignParentLeft="true" />
+    <ImageView
+        android:id="@+id/phoneicon"
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dip"
+        android:layout_toRightOf="@id/phone"
+        android:src="@android:drawable/sym_action_call"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical" />
+        </RelativeLayout>
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="250px"
+        android:drawSelectorOnTop="false"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/divider5"
+        android:layoutAnimation="@anim/layout_bottom_to_top_slide" />
+        </LinearLayout>

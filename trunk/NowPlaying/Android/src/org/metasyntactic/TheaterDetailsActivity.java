@@ -1,161 +1,175 @@
-/*// Copyright 2008 Cyrus Najmabadi
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package org.metasyntactic;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.content.ServiceConnection;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Parcelable;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import org.metasyntactic.ShowtimesActivity.TheaterDetailItemType;
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class TheaterDetailsActivity extends Activity {
-  *//** Called when the activity is first created. *//*
-  NowPlayingControllerWrapper controller;
-
-   @Override
+public class TheaterDetailsActivity extends ListActivity {
+    /** Called when the activity is first created. */
+    NowPlayingControllerWrapper controller;
+    private Context mContext;
+    private Theater theater;
+    MoviesAdapter moviesAdapter;
+    List<Movie> movies = new ArrayList<Movie>();
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.moviedetails);
-        final Movie movie = this.getIntent().getExtras().getParcelable("movie");
-        controller = NowPlayingActivity_old.instance.getController();
-        TextView title = (TextView) findViewById(R.id.header);
-        ImageView poster = (ImageView) findViewById(R.id.poster);
-        TextView desc1 = (TextView) findViewById(R.id.desc1);
-        TextView desc2 = (TextView) findViewById(R.id.desc2);
-        TextView rating_length = (TextView) findViewById(R.id.rated_length);
-        Button trailerbtn = (Button) findViewById(R.id.trailerbtn);
-        Button imdbbtn = (Button) findViewById(R.id.imdbbtn);
-        Button reviewsbtn = (Button) findViewById(R.id.reviewsbtn);
-        title.setText(movie.getDisplayTitle());
-        if (controller.getPoster(movie).getBytes().length > 0) {
-            poster.setImageBitmap(BitmapFactory.decodeByteArray(controller.getPoster(movie).getBytes(), 0, controller.getPoster(movie).getBytes().length));
-
-    String synopsis = controller.getSynopsis(movie);
-    if (synopsis.length() > 0) {
-      // hack to display text on left and bottom or poster
-      if (synopsis.length() > 240) {
-        String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(" ", 250));
-        String desc2_text = synopsis.substring(synopsis.lastIndexOf(" ", 250));
-        desc1.setText(desc1_text);
-        desc2.setText(desc2_text);
-      } else {
-        desc1.setText(synopsis);
-      }
+        NowPlayingControllerWrapper.removeActivity(this);
+        setContentView(R.layout.theaterdetails);
+        theater = this.getIntent().getExtras().getParcelable("theater");
+        
+        mContext = this;
+        bindView();
     }
 
-        CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), NowPlayingActivity_old.instance.getResources());
-        CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), NowPlayingActivity_old.instance.getResources());
-        rating_length.setText(rating.toString() + " " + length.toString());
-        trailerbtn.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                String trailer_url = null;
-                if (controller.getTrailers(movie).size() > 0) {
-                    trailer_url = controller.getTrailers(movie).get(0);
-                }
-                if (trailer_url != null) {
-                    Intent intent = new Intent();
-                    intent.putExtra("trailer_url", trailer_url);
-                    intent.setClass(TheaterDetailsActivity.this,
-                            VideoViewActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(TheaterDetailsActivity.this,
-                            "This movie's trailer is not available.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        imdbbtn.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                String imdb_url = null;
-                imdb_url = controller.getImdbAddress(movie);
-                if (imdb_url != null) {
-                    Intent intent = new Intent();
-                    intent.putExtra("imdb_url", imdb_url);
-                    intent.setClass(TheaterDetailsActivity.this,
-                            WebViewActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(TheaterDetailsActivity.this,
-                            "This movie's IMDB information is not available.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        reviewsbtn.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                ArrayList<Review> reviews = (ArrayList) controller.getReviews(movie);
-                if (reviews != null && reviews.size() > 0) {
-                    Intent intent = new Intent();
-                    intent.putParcelableArrayListExtra("reviews", reviews);
-                    intent.setClass(TheaterDetailsActivity.this,
-                            AllReviewsActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(TheaterDetailsActivity.this,
-                            "This movie's reviews are not yet available.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+      
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        // TODO Auto-generated method stub
+        Movie movie = movies.get(position);
+        Intent intent = new Intent();
+        intent.setClass(mContext,MovieDetailsActivity.class);
+        intent.putExtra("movie",(Parcelable)movie);
+       
+       startActivity(intent);
+        super.onListItemClick(l, v, position, id);
     }
 
-    imdbbtn.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        String imdb_url = null;
-        imdb_url = controller.getImdbAddress(movie);
-        if (imdb_url != null) {
-          Intent intent = new Intent();
-          intent.putExtra("imdb_url", imdb_url);
-          intent.setClass(TheaterDetailsActivity.this, WebViewActivity.class);
-          startActivity(intent);
-        } else {
-          Toast.makeText(TheaterDetailsActivity.this, "This movie's IMDB information is not available.",
-                         Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-    reviewsbtn.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        ArrayList<Review> reviews = (ArrayList) controller.getReviews(movie);
-        if (reviews != null && reviews.size() > 0) {
-          Intent intent = new Intent();
-          intent.putParcelableArrayListExtra("reviews", reviews);
-          intent.setClass(TheaterDetailsActivity.this, AllReviewsActivity.class);
-          startActivity(intent);
-        } else {
-          Toast.makeText(TheaterDetailsActivity.this, "This movie's reviews are not yet available.",
-                         Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-  }
+  
 
-  @Override
-  protected void onResume() {
-    super.onResume();
-  }
+   
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        NowPlayingControllerWrapper.removeActivity(this);
+        super.onDestroy();
+    }
+
+
+
+    private void bindView() {
+        TextView theaterlbl = (TextView) findViewById(R.id.theater);
+        theaterlbl.setEllipsize(TextUtils.TruncateAt.END);
+        theaterlbl.setText(theater.getName());
+        
+        TextView phonelbl = (TextView) findViewById(R.id.phone);
+        phonelbl.setEllipsize(TextUtils.TruncateAt.END);
+        phonelbl.setText(theater.getPhoneNumber());
+        
+        TextView maplbl = (TextView) findViewById(R.id.map);
+        maplbl.setEllipsize(TextUtils.TruncateAt.END);
+        maplbl.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
+        
+        moviesAdapter = new MoviesAdapter(this);
+        setListAdapter(moviesAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+     
+    }
+
+    class MoviesAdapter extends BaseAdapter {
+        private final Context context;
+        private final LayoutInflater inflater;
+
+        public MoviesAdapter(Context context) {
+           this.context = context;
+            // Cache the LayoutInflate to avoid asking for a new one each time.
+            inflater = LayoutInflater.from(context);
+        }
+        public Object getEntry(int i) {
+            return i;
+        }
+
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
+            convertView = inflater.inflate(R.layout.theaterdetails_item, null);
+            MovieViewHolder holder = new MovieViewHolder();
+            holder.label = (TextView) convertView.findViewById(R.id.label);
+            
+            holder.data = (TextView) convertView.findViewById(R.id.data);
+            int theaterIndex = position / TheaterDetailItemType.values().length;
+            Movie movie = movies.get(position);
+            holder.label.setText(movie.getDisplayTitle());
+                    List<Performance> list = controller
+                            .getPerformancesForMovieAtTheater(movie, theater);
+                  
+                    String performance = "";
+                    if (list != null) {
+                        for (int i = 0; i < list.size(); i++) {
+                            performance += list.get(i).getTime() + ", ";
+                        }
+                        performance = performance.substring(0, performance
+                                .length() - 2);
+                        holder.data.setText(performance);
+                      
+                    } else {
+                        holder.data.setText("Unknown.");
+                    }
+                
+             
+          
+            return convertView;
+        }
+
+        public int getCount() {
+            return movies.size();
+        }
+
+        private class MovieViewHolder {
+            TextView label;
+                       TextView data;
+        }
+
+        public long getEntryId(int position) {
+            // TODO Auto-generated method stub
+            return position;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            // TODO Auto-generated method stub
+            return movies.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            // TODO Auto-generated method stub
+            return position;
+        }
+
+        public void refresh() {
+            // TODO Auto-generated method stub
+            notifyDataSetChanged();
+        }
+    }
+   
+    private Movie movie;
+
 }
-*/
