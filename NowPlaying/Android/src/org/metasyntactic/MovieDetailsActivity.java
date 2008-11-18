@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,7 +94,7 @@ public class MovieDetailsActivity extends ListActivity {
         Button imdbbtn = (Button) findViewById(R.id.imdbbtn);
         Button reviewsbtn = (Button) findViewById(R.id.reviewsbtn);
         Button trailersbtn = (Button) findViewById(R.id.trailerbtn);
-        Button emailbtn = (Button) findViewById(R.id.emailbtn);
+        Button showtimes = (Button) findViewById(R.id.showtimesbtn);
         imdbbtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 String imdb_url = null;
@@ -126,6 +127,18 @@ public class MovieDetailsActivity extends ListActivity {
                             "This movie's reviews are not yet available.",
                             Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        
+        showtimes.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+               
+                Intent intent = new Intent();
+                intent.setClass(mContext, ShowtimesActivity.class);
+                intent.putExtra("movie", (Parcelable) movie);
+                startActivity(intent);
             }
         });
     }
