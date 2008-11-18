@@ -21,7 +21,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
         android:textColor="?android:attr/textColorSecondary"
-        
+         android:layout_marginLeft="8dip"
+        android:layout_marginRight="10dip"
         android:singleLine="true"
          />
     <ImageView
@@ -36,7 +37,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        
+         android:paddingLeft="8dip"
+        android:paddingRight="10dip"
         android:background="@drawable/dark_header_dithered"
         android:textColor="?android:attr/textColorSecondary"
         android:textStyle="bold"
@@ -52,6 +54,7 @@
         android:background="@drawable/divider_horizontal_bright" />
     <TextView
         android:id="@+id/map"
+        android:minHeight="50px"
         android:layout_below="@id/maplbl"
         android:layout_width="250px"
         android:layout_height="wrap_content"
@@ -60,22 +63,25 @@
         android:gravity="center_vertical"
         android:singleLine="false"
         android:textAppearance="?android:attr/textAppearanceSmall"
-    
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
         android:text="test"
         android:layout_alignParentLeft="true" />
     <ImageView
         android:id="@+id/mapicon"
-        
+        android:layout_below="@id/maplbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dip"
         android:layout_toRightOf="@id/map"
         android:src="@drawable/sym_action_map"
         android:layout_alignParentRight="true"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical"
+         android:paddingTop="5px"
+        android:paddingBottom="5px" />
     <ImageView
         android:id="@+id/divider4"
-        android:layout_below="@id/mapicon"
+        android:layout_below="@id/map"
         android:layout_width="fill_parent"
         android:layout_height="1px"
         
@@ -86,7 +92,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        
+         android:paddingLeft="8dip"
+        android:paddingRight="10dip"
         android:background="@drawable/dark_header_dithered"
         android:textColor="?android:attr/textColorSecondary"
         android:textStyle="bold"
@@ -103,6 +110,7 @@
     <TextView
         android:id="@+id/phone"
         android:layout_below="@id/phonelbl"
+         android:minHeight="50px"
         android:layout_width="250px"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dip"
@@ -115,21 +123,50 @@
         android:layout_alignParentLeft="true" />
     <ImageView
         android:id="@+id/phoneicon"
-        
+        android:layout_below="@id/phonelbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dip"
+         android:paddingTop="10px"
+        android:paddingBottom="10px"
         android:layout_toRightOf="@id/phone"
         android:src="@android:drawable/sym_action_call"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical" />
         </RelativeLayout>
+       
+    <TextView
+       
+       
+        android:layout_width="fill_parent"
+        android:layout_height="5px"
+        android:gravity="center_vertical"
+       
+       android:background="@drawable/divider_horizontal_bright"
+        android:textColor="?android:attr/textColorSecondary"
+      
+        android:textAppearance="?android:attr/textAppearanceSmall"
+     />
+  <TextView
+       
+       
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="40px"
+         android:paddingLeft="8dip"
+        android:paddingRight="10dip"
+        android:textColor="?android:attr/textColorSecondary"
+      android:textStyle="bold"
+      android:text="Showtimes"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+     />
+  
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="250px"
-        android:drawSelectorOnTop="false"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/divider5"
+        android:layout_height="200px"       
+        android:layout_gravity="bottom"
+        
         android:layoutAnimation="@anim/layout_bottom_to_top_slide" />
         </LinearLayout>
