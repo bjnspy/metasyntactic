@@ -468,7 +468,14 @@ static NSString* titles_key = @"Titles";
     }
 
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
-    [FileUtilities writeObject:trailers toFile:trailersFile];
+    NSMutableArray* final = [NSMutableArray array];
+    for (NSString* trailer in trailers) {
+        if (trailer.length > 0) {
+            [final addObject:trailer];
+        }
+    }
+    
+    [FileUtilities writeObject:final toFile:trailersFile];
     [NowPlayingAppDelegate refresh];
 }
 
