@@ -32,6 +32,10 @@ public class NowPlayingControllerWrapper {
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
   private static NowPlayingController instance;
 
+  static {
+    Application.initialize();
+  }
+
   private NowPlayingControllerWrapper() {
 
   }

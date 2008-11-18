@@ -117,11 +117,6 @@
 }
 
 
-- (Location*) searchLocation {
-    return [Location locationWithDictionary:[FileUtilities readObject:self.locationFile]];
-}
-
-
 - (NSArray*) loadMovies {
     NSArray* array = [FileUtilities readObject:self.moviesFile];
     if (array == nil) {
@@ -191,7 +186,6 @@
         [self saveArray:result.movies to:self.moviesFile];
         [self saveArray:result.theaters to:self.theatersFile];
 
-        [FileUtilities writeObject:result.location.dictionary toFile:self.locationFile];
         [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
 
         NSString* tempDirectory = [Application uniqueTemporaryDirectory];
@@ -392,11 +386,6 @@
          searchLocation:(Location*) searchLocation
           currentMovies:(NSArray*) currentMovies
         currentTheaters:(NSArray*) currentTheaters {
-    Location* lastSearchLocation = self.searchLocation;
-    if (lastSearchLocation == nil) {
-        return;
-    }
-
     // Ok.  so if:
     //   a) the user is the user is doing their main search
     //   b) we do not find data for a theater that should be showing up
@@ -408,11 +397,6 @@
     // This is to deal with the case where the user is confused because
     // a theater they care about has been filtered out because it didn't
     // report showtimes.
-    if ([searchLocation distanceToMiles:lastSearchLocation] > 20) {
-        // Not close enough.  Consider this a brand new search in a new
-        // location.  Don't include any old theaters.
-        return;
-    }
 
     NSMutableSet* existingMovieTitles = [NSMutableSet set];
     for (Movie* movie in lookupResult.movies) {
@@ -423,6 +407,12 @@
     [missingTheaters minusSet:[NSSet setWithArray:lookupResult.theaters]];
 
     for (Theater* theater in missingTheaters) {
+        if ([theater.location distanceToMiles:searchLocation] > 50) {
+            // Not close enough.  Consider this a brand new search in a new
+            // location.  Don't include this old theaters.
+            continue;
+        }
+        
         // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
         NSString* theaterName = theater.name;

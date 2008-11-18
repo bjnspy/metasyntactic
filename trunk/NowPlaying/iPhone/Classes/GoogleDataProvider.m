@@ -209,11 +209,10 @@
     NSMutableDictionary* performances = [theatersAndPerformances objectAtIndex:1];
     NSMutableDictionary* synchronizationInformation = [theatersAndPerformances objectAtIndex:2];
 
-    return [LookupResult resultWithLocation:originatingLocation
-                                     movies:movies
-                                   theaters:theaters
-                               performances:performances
-                 synchronizationInformation:synchronizationInformation];
+    return [LookupResult resultWithMovies:movies
+                                 theaters:theaters
+                             performances:performances
+               synchronizationInformation:synchronizationInformation];
 }
 
 

@@ -72,7 +72,9 @@ public class Application {
   }
 
   private Application() {
+  }
 
+  public static void initialize() {
   }
 
   private static List<File> directories() {
