@@ -133,8 +133,12 @@
     NSInteger guess = synopsis.length * posterHeight * 1.1 / chunk1Height;
     guess = MIN(guess, synopsis.length);
 
+    NSCharacterSet* charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    
     while (true) {
-        NSRange whitespaceRange = [synopsis rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, guess)];
+        NSRange whitespaceRange = [synopsis rangeOfCharacterFromSet:charSet
+                                                            options:NSBackwardsSearch
+                                                              range:NSMakeRange(0, guess)];
         NSInteger whitespace = whitespaceRange.location;
         if (whitespace == 0) {
             return synopsis.length;
