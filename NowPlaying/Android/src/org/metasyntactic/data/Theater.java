@@ -22,6 +22,7 @@ import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.nonNullString;
+import org.metasyntactic.Application;
 
 import java.io.IOException;
 import java.util.*;
@@ -142,8 +143,8 @@ public class Theater implements Parcelable, Persistable {
       String address = source.readString();
       String phoneNumber = source.readString();
 
-      Location location = source.readParcelable(null);
-      Location originatingLocation = source.readParcelable(null);
+      Location location = source.readParcelable(Application.applicationContext.getClassLoader());
+      Location originatingLocation = source.readParcelable(Application.applicationContext.getClassLoader());
       List<String> movieTitles = new ArrayList<String>();
       source.readStringList(movieTitles);
 

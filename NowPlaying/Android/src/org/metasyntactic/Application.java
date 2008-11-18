@@ -56,7 +56,7 @@ public class Application {
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
 
   private static Pulser pulser;
-
+  public static Context applicationContext;
   static {
     createDirectories();
 
@@ -72,7 +72,9 @@ public class Application {
   }
 
   private Application() {
+
   }
+
 
   public static void initialize() {
   }
