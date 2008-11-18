@@ -69,10 +69,10 @@
             android:textStyle="bold" />
         <Button
             android:layout_marginBottom="5px"
-            android:id="@+id/emailbtn"
+            android:id="@+id/showtimesbtn"
             android:layout_width="160px"
             android:layout_height="50px"
-            android:text="E-mail Listings"
+            android:text="Showtimes"
             android:layout_below="@id/reviewsbtn"
             android:layout_alignParentRight="true"
             android:background="@drawable/button"

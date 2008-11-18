@@ -16,7 +16,9 @@
         android:gravity="left"
         android:layout_gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorPrimary" />
+        android:textColor="?android:attr/textColorPrimary"
+        android:paddingTop="5px"
+        android:paddingBottom="5px" />
   <ImageView
         android:id="@+id/divider1"
         android:layout_width="fill_parent"

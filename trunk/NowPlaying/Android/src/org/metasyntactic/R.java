@@ -86,7 +86,6 @@ public final class R {
         public static final int divider4=0x7f070029;
         public static final int divider5=0x7f07002b;
         public static final int droid=0x7f07001a;
-        public static final int emailbtn=0x7f070004;
         public static final int genre=0x7f07000f;
         public static final int genrelbl=0x7f07000e;
         public static final int grid=0x7f070007;
@@ -111,6 +110,7 @@ public final class R {
         public static final int score=0x7f07000a;
         public static final int scorelbl=0x7f07000b;
         public static final int showtimes=0x7f070014;
+        public static final int showtimesbtn=0x7f070004;
         public static final int source=0x7f07001d;
         public static final int surface_view=0x7f07002f;
         public static final int theater=0x7f070024;
