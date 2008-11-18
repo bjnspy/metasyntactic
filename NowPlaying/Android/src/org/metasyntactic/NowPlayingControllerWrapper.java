@@ -41,7 +41,7 @@ public class NowPlayingControllerWrapper {
   }
 
   public static void addActivity(final Activity activity) {
-    synchronized (lock) {
+   
       activities.add(activity);
       GlobalActivityIndicator.addActivity(activity);
 
@@ -49,11 +49,11 @@ public class NowPlayingControllerWrapper {
         instance = new NowPlayingController();
         instance.startup();
       }
-    }
+    
   }
 
   public static void removeActivity(final Activity activity) {
-    synchronized (lock) {
+   
       GlobalActivityIndicator.removeActivity(activity);
       activities.remove(activity);
 
@@ -61,7 +61,7 @@ public class NowPlayingControllerWrapper {
         instance.shutdown();
         instance = null;
       }
-    }
+    
   }
 
   private static void checkInstance() {

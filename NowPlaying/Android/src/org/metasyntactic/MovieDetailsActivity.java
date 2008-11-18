@@ -46,7 +46,11 @@ public class MovieDetailsActivity extends ListActivity {
         // Add title and synopsis
         MovieDetailEntry entry = new MovieDetailEntry();
         entry.setName(movie.getDisplayTitle());
-        entry.setValue(movie.getSynopsis());
+        String synopsis = movie.getSynopsis();
+        if (synopsis != null || synopsis.length() > 0)
+            entry.setValue(synopsis);
+        else
+            entry.setValue("Unknown");
         movieDetailEntries.add(entry);
         // Add Rating
         entry = new MovieDetailEntry();
@@ -86,10 +90,10 @@ public class MovieDetailsActivity extends ListActivity {
     }
 
     void bindButtonClickListeners() {
-        Button imdbbtn = (Button)findViewById(R.id.imdbbtn);
-        Button reviewsbtn = (Button)findViewById(R.id.reviewsbtn);
-        Button trailersbtn = (Button)findViewById(R.id.trailerbtn);
-        Button emailbtn = (Button)findViewById(R.id.emailbtn);
+        Button imdbbtn = (Button) findViewById(R.id.imdbbtn);
+        Button reviewsbtn = (Button) findViewById(R.id.reviewsbtn);
+        Button trailersbtn = (Button) findViewById(R.id.trailerbtn);
+        Button emailbtn = (Button) findViewById(R.id.emailbtn);
         imdbbtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 String imdb_url = null;
@@ -151,7 +155,7 @@ public class MovieDetailsActivity extends ListActivity {
             if (position == 0) {
                 holder.name.setTextAppearance(mContext,
                         android.R.attr.textAppearanceLarge);
-               holder.name.setBackgroundResource(R.drawable.shape_1);
+                holder.name.setBackgroundResource(R.drawable.shape_1);
                 holder.name.setMinHeight(50);
             }
             return convertView;

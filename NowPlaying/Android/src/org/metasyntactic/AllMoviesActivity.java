@@ -44,7 +44,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class AllMoviesActivity extends Activity implements INowPlaying {
-
     private static List<Movie> movies = new ArrayList<Movie>();
     private static Context mContext;
     public static final int MENU_SORT = 1;
@@ -52,14 +51,13 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     private int selection;
     private static DetailAdapter mDetailAdapter;
     private static ThumbnailAdapter mThumbnailAdapter;
-
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             refresh();
         }
     };
-  
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +72,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     private void setupView() {
         final CustomGallery detail = (CustomGallery) findViewById(R.id.detail);
         detail.setAdapter(mDetailAdapter);
-        
         // detail.setSelection(0);
         final CustomGallery thumbnail = (CustomGallery) findViewById(R.id.thumbnails);
         thumbnail.setAdapter(mThumbnailAdapter);
@@ -124,7 +121,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
                 final Movie movie = movies.get(selection);
-                
                 Intent intent = new Intent();
                 intent.setClass(mContext, MovieDetailsActivity.class);
                 intent.putExtra("movie", (Parcelable) movie);
@@ -137,7 +133,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
                 final Movie movie = movies.get(selection);
-                
                 Intent intent = new Intent();
                 intent.setClass(mContext, ShowtimesActivity.class);
                 intent.putExtra("movie", (Parcelable) movie);
@@ -146,41 +141,31 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         });
     }
 
-
-
-  
     @Override
     protected void onResume() {
         super.onResume();
-        
         registerReceiver(broadcastReceiver, new IntentFilter(
                 Application.NOW_PLAYING_CHANGED_INTENT));
     }
 
-
     @Override
     protected void onDestroy() {
-      
-        if(broadcastReceiver!=null){
+        if (broadcastReceiver != null) {
             unregisterReceiver(broadcastReceiver);
             broadcastReceiver = null;
-            }
+        }
         NowPlayingControllerWrapper.removeActivity(this);
         super.onDestroy();
     }
 
     @Override
     protected void onPause() {
-        if(broadcastReceiver!=null){
+        if (broadcastReceiver != null) {
             unregisterReceiver(broadcastReceiver);
             broadcastReceiver = null;
-            }
+        }
         super.onPause();
     }
-
-
-   
-  
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -204,22 +189,16 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             return true;
         }
         return false;
-
     }
-  
 
-  class DetailAdapter extends BaseAdapter {
-      private Context mContext;
-      private LayoutInflater mInflater;
-      int mGalleryItemBackground;
-
-
+    class DetailAdapter extends BaseAdapter {
+        private Context mContext;
+        private LayoutInflater mInflater;
+        int mGalleryItemBackground;
 
         public DetailAdapter(Context context) {
             mContext = context;
-
             int mGalleryItemBackground;
-
             // Cache the LayoutInflate to avoid asking for a new one each time.
             mInflater = LayoutInflater.from(context);
             TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
@@ -227,70 +206,78 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
                     android.R.styleable.Theme_galleryItemBackground, 0);
             a.recycle();
         }
-    public DetailAdapter() {
-      // Cache the LayoutInflate to avoid asking for a new one each time.
-      mInflater = LayoutInflater.from(getContext());
-      final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-      a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
-      a.recycle();
-    }
 
-       
-    public Object getItem(final int i) {
-      return i;
-    }
+        public DetailAdapter() {
+            // Cache the LayoutInflate to avoid asking for a new one each time.
+            mInflater = LayoutInflater.from(getContext());
+            final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
+            a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
+            a.recycle();
+        }
+
+        public Object getItem(final int i) {
+            return i;
+        }
 
         public long getItemId(int i) {
             return i;
         }
 
-    public View getView(final int position, View convertView, final ViewGroup viewGroup) {
-      MovieViewHolder holder;
-      convertView = mInflater.inflate(R.layout.moviesummary, null);
-      holder = new MovieViewHolder();
-      holder.score = (Button) convertView.findViewById(R.id.score);
-      holder.title = (TextView) convertView.findViewById(R.id.title);
-      holder.poster = (ImageView) convertView.findViewById(R.id.poster);
-      holder.rating = (TextView) convertView.findViewById(R.id.rating);
-      holder.length = (TextView) convertView.findViewById(R.id.length);
-      holder.genre = (TextView) convertView.findViewById(R.id.genre);
-      holder.cast = (TextView) convertView.findViewById(R.id.cast);
-      holder.scoreLbl = (TextView) convertView.findViewById(R.id.scorelbl);
-      holder.title.setEllipsize(TextUtils.TruncateAt.END);
-      convertView.setTag(holder);
-      final Resources res = getContext().getResources();
-      final Movie movie = movies.get(position);
-      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
-      if (bytes.length > 0) {
-        holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-        holder.poster.setBackgroundResource(R.drawable.image_frame);
-      }
-      holder.title.setText(movie.getDisplayTitle());
-      final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), getContext().getResources());
-      final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), getContext().getResources());
-      holder.rating.setText(rating.toString());
-      holder.length.setText(length.toString());
-      holder.genre.setText(MovieViewUtilities.formatListToString(movie.getGenres()));
-      holder.cast.setEllipsize(TextUtils.TruncateAt.END);
-      holder.cast.setText(MovieViewUtilities.formatListToString(movie.getCast()));
-      // Get and set scores text and background image
-      final Score score = NowPlayingControllerWrapper.getScore(movie);
-      int scoreValue = -1;
-      if (score != null && !score.getValue().equals("")) {
-        scoreValue = Integer.parseInt(score.getValue());
-      } else {
-      }
-      final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
-      holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
-      if (scoreValue != -1) {
-        holder.scoreLbl.setText(String.valueOf(scoreValue) + "%");
-      } else {
-        holder.scoreLbl.setText("Unknown");
-      }
-      return convertView;
-    }
-   
-
+        public View getView(final int position, View convertView,
+                final ViewGroup viewGroup) {
+            MovieViewHolder holder;
+            convertView = mInflater.inflate(R.layout.moviesummary, null);
+            holder = new MovieViewHolder();
+            holder.score = (Button) convertView.findViewById(R.id.score);
+            holder.title = (TextView) convertView.findViewById(R.id.title);
+            holder.poster = (ImageView) convertView.findViewById(R.id.poster);
+            holder.rating = (TextView) convertView.findViewById(R.id.rating);
+            holder.length = (TextView) convertView.findViewById(R.id.length);
+            holder.genre = (TextView) convertView.findViewById(R.id.genre);
+            holder.cast = (TextView) convertView.findViewById(R.id.cast);
+            holder.scoreLbl = (TextView) convertView
+                    .findViewById(R.id.scorelbl);
+            holder.title.setEllipsize(TextUtils.TruncateAt.END);
+            convertView.setTag(holder);
+            final Resources res = getContext().getResources();
+            final Movie movie = movies.get(position);
+            final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie)
+                    .getBytes();
+            if (bytes.length > 0) {
+                holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(
+                        bytes, 0, bytes.length));
+                holder.poster.setBackgroundResource(R.drawable.image_frame);
+            }
+            holder.title.setText(movie.getDisplayTitle());
+            final CharSequence rating = MovieViewUtilities.formatRatings(movie
+                    .getRating(), getContext().getResources());
+            final CharSequence length = MovieViewUtilities.formatLength(movie
+                    .getLength(), getContext().getResources());
+            holder.rating.setText(rating.toString());
+            holder.length.setText(length.toString());
+            holder.genre.setText(MovieViewUtilities.formatListToString(movie
+                    .getGenres()));
+            holder.cast.setEllipsize(TextUtils.TruncateAt.END);
+            holder.cast.setText(MovieViewUtilities.formatListToString(movie
+                    .getCast()));
+            // Get and set scores text and background image
+            final Score score = NowPlayingControllerWrapper.getScore(movie);
+            int scoreValue = -1;
+            if (score != null && !score.getValue().equals("")) {
+                scoreValue = Integer.parseInt(score.getValue());
+            } else {
+            }
+            final ScoreType scoreType = NowPlayingControllerWrapper
+                    .getScoreType();
+            holder.score.setBackgroundDrawable(MovieViewUtilities
+                    .formatScoreDrawable(scoreValue, scoreType, res));
+            if (scoreValue != -1) {
+                holder.scoreLbl.setText(String.valueOf(scoreValue) + "%");
+            } else {
+                holder.scoreLbl.setText("Unknown");
+            }
+            return convertView;
+        }
 
         class MovieViewHolder {
             TextView header;
@@ -335,7 +322,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             return i;
         }
 
-
         public View getView(int position, View convertView, ViewGroup viewGroup) {
             LinearLayout layout = new LinearLayout(mContext);
             layout.setOrientation(LinearLayout.VERTICAL);
@@ -346,16 +332,17 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             a.recycle();
             i.setBackgroundResource(mGalleryItemBackground);
             final Movie movie = movies.get(position % movies.size());
-       
-            final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie).getBytes();
+            final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie)
+                    .getBytes();
             if (bytes.length > 0) {
-              i.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                i.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0,
+                        bytes.length));
             } else {
-              i.setImageDrawable(getContext().getResources().getDrawable(R.drawable.movies));
+                i.setImageDrawable(getContext().getResources().getDrawable(
+                        R.drawable.movies));
             }
             i.setScaleType(ImageView.ScaleType.FIT_XY);
-            layout.addView(i, new LinearLayout.LayoutParams(95,130));
-    
+            layout.addView(i, new LinearLayout.LayoutParams(95, 130));
             return layout;
         }
 
@@ -374,18 +361,17 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         return mContext;
     }
 
-
     @Override
     public void refresh() {
         // TODO Auto-generated method stub
         movies = NowPlayingControllerWrapper.getMovies();
-        Comparator comparator = NowPlayingActivity.MOVIE_ORDER.get(NowPlayingControllerWrapper
-                .getAllMoviesSelectedSortIndex());
+        Comparator comparator = NowPlayingActivity.MOVIE_ORDER
+                .get(NowPlayingControllerWrapper
+                        .getAllMoviesSelectedSortIndex());
         Collections.sort(movies, comparator);
         if (mDetailAdapter != null && mThumbnailAdapter != null) {
             mDetailAdapter.refreshMovies();
             mThumbnailAdapter.refreshMovies();
         }
-
     }
 }
