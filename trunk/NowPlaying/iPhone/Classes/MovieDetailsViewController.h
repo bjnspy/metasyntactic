@@ -23,7 +23,7 @@
 
     NSMutableArray* theatersArray;
     NSMutableArray* showtimesArray;
-    NSArray* trailersArray;
+    NSString* trailer;
     NSArray* reviewsArray;
     NSString* imdbAddress;
 

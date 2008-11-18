@@ -47,9 +47,9 @@
 @property (retain) DVD* dvd;
 @property (retain) NSMutableArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
-@property (retain) NSArray* trailersArray;
+@property (copy) NSString* trailer;
 @property (retain) NSArray* reviewsArray;
-@property (retain) NSString* imdbAddress;
+@property (copy) NSString* imdbAddress;
 @property (retain) UIView* actionsView;
 @property NSInteger hiddenTheaterCount;
 @property (retain) NSLock* posterDownloadLock;
@@ -66,7 +66,7 @@
 @synthesize dvd;
 @synthesize theatersArray;
 @synthesize showtimesArray;
-@synthesize trailersArray;
+@synthesize trailer;
 @synthesize reviewsArray;
 @synthesize imdbAddress;
 @synthesize actionsView;
@@ -82,7 +82,7 @@
     self.dvd = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
-    self.trailersArray = nil;
+    self.trailer = nil;
     self.reviewsArray = nil;
     self.imdbAddress = nil;
     self.actionsView = nil;
@@ -133,7 +133,7 @@
     NSMutableArray* selectors = [NSMutableArray array];
     NSMutableArray* titles = [NSMutableArray array];
 
-    if (trailersArray.count > 0) {
+    if (trailer.length > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
         [titles addObject:NSLocalizedString(@"Play trailer", nil)];
     }
@@ -177,7 +177,10 @@
 
 
 - (void) initializeData {
-    self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:movie]];
+    NSArray* trailers = [self.model trailersForMovie:movie];
+    if (trailers.count > 0) {
+        self.trailer = [trailers objectAtIndex:0];
+    }
 
     if (!self.model.noScores) {
         self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
@@ -271,7 +274,7 @@
     self.dvd = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
-    self.trailersArray = nil;
+    self.trailer = nil;
     self.reviewsArray = nil;
     self.imdbAddress = nil;
     self.hiddenTheaterCount = 0;
@@ -638,7 +641,7 @@
 
 
 - (void) playTrailer {
-    NSString* urlString = [trailersArray objectAtIndex:0];
+    NSString* urlString = trailer;
     MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:urlString]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
