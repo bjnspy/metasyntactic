@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import org.metasyntactic.ui.GlobalActivityIndicator;
+import org.metasyntactic.utilities.ExceptionUtilities;
 
 public class ThreadingUtilities {
   public static boolean isMainThread() {
@@ -59,6 +60,7 @@ public class ThreadingUtilities {
             try {
               runnable.run();
             } catch (final RuntimeException e) {
+              ExceptionUtilities.log(ThreadingUtilities.class, "performOnBackgroundThreadWorker", e);
               throw e;
             }
           } finally {
