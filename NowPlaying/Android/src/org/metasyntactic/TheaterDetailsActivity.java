@@ -101,12 +101,7 @@ public class TheaterDetailsActivity extends ListActivity {
     setListAdapter(moviesAdapter);
   }
 
-  @Override
-  protected void onResume() {
-    super.onResume();
-  }
-
-  class MoviesAdapter extends BaseAdapter {
+  private class MoviesAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
     public MoviesAdapter() {
