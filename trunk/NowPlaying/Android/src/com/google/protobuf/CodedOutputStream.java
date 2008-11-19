@@ -247,7 +247,8 @@ public final class CodedOutputStream {
    * @param value  Object representing the field's value.  Must be of the exact type which would be returned by {@link
    *               Message#getField(Descriptors.FieldDescriptor)} for this field.
    */
-  public void writeField(final Descriptors.FieldDescriptor.Type type, final int number, final Object value) throws IOException {
+  public void writeField(final Descriptors.FieldDescriptor.Type type, final int number, final Object value)
+      throws IOException {
     switch (type) {
       case DOUBLE:
         writeDouble(number, (Double) value);
@@ -426,9 +427,9 @@ public final class CodedOutputStream {
    * reasons, the wire format differs from normal fields.
    */
   public static int computeMessageSetExtensionSize(final int fieldNumber, final Message value) {
-    return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 + computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID,
-                                                                               fieldNumber) + computeMessageSize(
-        WireFormat.MESSAGE_SET_MESSAGE, value);
+    return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 +
+           computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID, fieldNumber) +
+           computeMessageSize(WireFormat.MESSAGE_SET_MESSAGE, value);
   }
 
   /**
@@ -436,9 +437,9 @@ public final class CodedOutputStream {
    * For historical reasons, the wire format differs from normal fields.
    */
   public static int computeRawMessageSetExtensionSize(final int fieldNumber, final ByteString value) {
-    return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 + computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID,
-                                                                               fieldNumber) + computeBytesSize(
-        WireFormat.MESSAGE_SET_MESSAGE, value);
+    return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 +
+           computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID, fieldNumber) +
+           computeBytesSize(WireFormat.MESSAGE_SET_MESSAGE, value);
   }
 
   /**
@@ -450,7 +451,8 @@ public final class CodedOutputStream {
    * @param value  Object representing the field's value.  Must be of the exact type which would be returned by {@link
    *               Message#getField(Descriptors.FieldDescriptor)} for this field.
    */
-  public static int computeFieldSize(final Descriptors.FieldDescriptor.Type type, final int number, final Object value) {
+  public static int computeFieldSize(final Descriptors.FieldDescriptor.Type type, final int number,
+                                     final Object value) {
     switch (type) {
       case DOUBLE:
         return computeDoubleSize(number, (Double) value);

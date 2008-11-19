@@ -132,10 +132,23 @@ public class DataProvider {
 
     days = min(max(days, 0), 7);
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale
-        .getDefault()
-        .getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location
-        .getLongitude() * 1000000);
+    final String address = "http://" +
+                           Application
+                               .host +
+                                     ".appspot.com/LookupTheaterListings2?country=" +
+                                     country +
+                                     "&language=" +
+                                     Locale
+                                         .getDefault()
+                                         .getLanguage() +
+                                                        "&day=" +
+                                                        days +
+                                                        "&format=pb" +
+                                                        "&latitude=" +
+                                                        (int) (location.getLatitude() * 1000000) +
+                                                        "&longitude=" +
+                                                        (int) (location
+                                                            .getLongitude() * 1000000);
 
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
@@ -302,9 +315,8 @@ public class DataProvider {
     final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList();
     final Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);
 
-    final LookupResult result = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes,
-                                                                             originatingLocation, theaterNames,
-                                                                             movieIdToMovieMap);
+    final LookupResult result = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes, originatingLocation,
+                                                                theaterNames, movieIdToMovieMap);
 
     final List<Movie> movies = new ArrayList<Movie>(movieIdToMovieMap.values());
 

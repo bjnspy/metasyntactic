@@ -15,7 +15,6 @@
 package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.Application;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
@@ -24,8 +23,12 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.*;
+import org.metasyntactic.utilities.CollectionUtilities;
 import static org.metasyntactic.utilities.CollectionUtilities.size;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.XmlUtilities.children;
 import org.metasyntactic.utilities.difference.EditDistance;
 import org.w3c.dom.Element;
@@ -377,10 +380,26 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       country = location.getCountry();
     }
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale
-        .getDefault()
-        .getLanguage() + "&id=" + score.getIdentifier() + "" + "&provider=" + score.getProvider() + "&latitude=" + (int) (location
-        .getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    final String address = "http://" +
+                           Application
+                               .host +
+                                     ".appspot.com/LookupMovieReviews2?country=" +
+                                     country +
+                                     "&language=" +
+                                     Locale
+                                         .getDefault()
+                                         .getLanguage() +
+                                                        "&id=" +
+                                                        score.getIdentifier() +
+                                                        "" +
+                                                        "&provider=" +
+                                                        score.getProvider() +
+                                                        "&latitude=" +
+                                                        (int) (location
+                                                            .getLatitude() * 1000000) +
+                                                                                      "&longitude=" +
+                                                                                      (int) (location.getLongitude() *
+                                                                                             1000000);
 
     return address;
   }

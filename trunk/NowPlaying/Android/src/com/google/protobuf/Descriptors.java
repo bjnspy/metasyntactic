@@ -195,12 +195,14 @@ public final class Descriptors {
 
       if (dependencies.length != proto.getDependencyCount()) {
         throw new DescriptorValidationException(result,
-                                                "Dependencies passed to FileDescriptor.buildFrom() don't match " + "those listed in the FileDescriptorProto.");
+                                                "Dependencies passed to FileDescriptor.buildFrom() don't match " +
+                                                "those listed in the FileDescriptorProto.");
       }
       for (int i = 0; i < proto.getDependencyCount(); i++) {
         if (!dependencies[i].getName().equals(proto.getDependency(i))) {
           throw new DescriptorValidationException(result,
-                                                  "Dependencies passed to FileDescriptor.buildFrom() don't match " + "those listed in the FileDescriptorProto.");
+                                                  "Dependencies passed to FileDescriptor.buildFrom() don't match " +
+                                                  "those listed in the FileDescriptorProto.");
         }
       }
 
@@ -212,7 +214,8 @@ public final class Descriptors {
      * This method is to be called by generated code only.  It is equivalent to {@code buildFrom} except that the {@code
      * FileDescriptorProto} is encoded in protocol buffer wire format.
      */
-    public static FileDescriptor internalBuildGeneratedFileFrom(final String descriptorData, final FileDescriptor[] dependencies)
+    public static FileDescriptor internalBuildGeneratedFileFrom(final String descriptorData,
+                                                                final FileDescriptor[] dependencies)
         throws DescriptorValidationException, InvalidProtocolBufferException {
       // Hack:  We can't embed a raw byte array inside generated Java code
       //   (at least, not efficiently), but we can embed Strings.  So, the
@@ -238,8 +241,8 @@ public final class Descriptors {
     private final FileDescriptor[] dependencies;
     private final DescriptorPool pool;
 
-    private FileDescriptor(final FileDescriptorProto proto, final FileDescriptor[] dependencies, final DescriptorPool pool)
-        throws DescriptorValidationException {
+    private FileDescriptor(final FileDescriptorProto proto, final FileDescriptor[] dependencies,
+                           final DescriptorPool pool) throws DescriptorValidationException {
       this.pool = pool;
       this.proto = proto;
       this.dependencies = dependencies.clone();
@@ -608,8 +611,8 @@ public final class Descriptors {
      */
     public int compareTo(final FieldDescriptor other) {
       if (other.containingType != this.containingType) {
-        throw new IllegalArgumentException(
-            "FieldDescriptors can only be compared to other FieldDescriptors " + "for fields of the same message type.");
+        throw new IllegalArgumentException("FieldDescriptors can only be compared to other FieldDescriptors " +
+                                           "for fields of the same message type.");
       }
       return getNumber() - other.getNumber();
     }
@@ -699,8 +702,8 @@ public final class Descriptors {
       private Object defaultDefault;
     }
 
-    private FieldDescriptor(final FieldDescriptorProto proto, final FileDescriptor file, final Descriptor parent, final int index,
-                            final boolean isExtension) throws DescriptorValidationException {
+    private FieldDescriptor(final FieldDescriptorProto proto, final FileDescriptor file, final Descriptor parent,
+                            final int index, final boolean isExtension) throws DescriptorValidationException {
       this.index = index;
       this.proto = proto;
       this.fullName = computeFullName(file, parent, proto.getName());
@@ -745,8 +748,11 @@ public final class Descriptors {
         this.containingType = (Descriptor) extendee;
 
         if (!getContainingType().isExtensionNumber(getNumber())) {
-          throw new DescriptorValidationException(this,
-                                                  "\"" + getContainingType().getFullName() + "\" does not declare " + getNumber() + " as an extension number.");
+          throw new DescriptorValidationException(this, "\"" +
+                                                        getContainingType().getFullName() +
+                                                        "\" does not declare " +
+                                                        getNumber() +
+                                                        " as an extension number.");
         }
       }
 
@@ -766,7 +772,8 @@ public final class Descriptors {
 
         if (getJavaType() == JavaType.MESSAGE) {
           if (!(typeDescriptor instanceof Descriptor)) {
-            throw new DescriptorValidationException(this, "\"" + this.proto.getTypeName() + "\" is not a message type.");
+            throw new DescriptorValidationException(this,
+                                                    "\"" + this.proto.getTypeName() + "\" is not a message type.");
           }
           this.messageType = (Descriptor) typeDescriptor;
 
@@ -838,8 +845,9 @@ public final class Descriptors {
             case ENUM:
               this.defaultValue = this.enumType.findValueByName(this.proto.getDefaultValue());
               if (this.defaultValue == null) {
-                throw new DescriptorValidationException(this,
-                                                        "Unknown enum default value: \"" + this.proto.getDefaultValue() + "\"");
+                throw new DescriptorValidationException(this, "Unknown enum default value: \"" +
+                                                              this.proto.getDefaultValue() +
+                                                              "\"");
               }
               break;
             case MESSAGE:
@@ -848,8 +856,10 @@ public final class Descriptors {
           }
         } catch (final NumberFormatException e) {
           final DescriptorValidationException validationException = new DescriptorValidationException(this,
-                                                                                                "Could not parse default value: \"" + this.proto
-                                                                                                    .getDefaultValue() + "\"");
+                                                                                                      "Could not parse default value: \"" +
+                                                                                                      this.proto
+                                                                                                          .getDefaultValue() +
+                                                                                                                             "\"");
           validationException.initCause(e);
           throw validationException;
         }
@@ -963,8 +973,8 @@ public final class Descriptors {
     private final Descriptor containingType;
     private final EnumValueDescriptor[] values;
 
-    private EnumDescriptor(final EnumDescriptorProto proto, final FileDescriptor file, final Descriptor parent, final int index)
-        throws DescriptorValidationException {
+    private EnumDescriptor(final EnumDescriptorProto proto, final FileDescriptor file, final Descriptor parent,
+                           final int index) throws DescriptorValidationException {
       this.index = index;
       this.proto = proto;
       this.fullName = computeFullName(file, parent, proto.getName());
@@ -1032,8 +1042,8 @@ public final class Descriptors {
     private final FileDescriptor file;
     private final EnumDescriptor type;
 
-    private EnumValueDescriptor(final EnumValueDescriptorProto proto, final FileDescriptor file, final EnumDescriptor parent, final int index)
-        throws DescriptorValidationException {
+    private EnumValueDescriptor(final EnumValueDescriptorProto proto, final FileDescriptor file,
+                                final EnumDescriptor parent, final int index) throws DescriptorValidationException {
       this.index = index;
       this.proto = proto;
       this.file = file;
@@ -1166,8 +1176,8 @@ public final class Descriptors {
     private Descriptor inputType;
     private Descriptor outputType;
 
-    private MethodDescriptor(final MethodDescriptorProto proto, final FileDescriptor file, final ServiceDescriptor parent, final int index)
-        throws DescriptorValidationException {
+    private MethodDescriptor(final MethodDescriptorProto proto, final FileDescriptor file,
+                             final ServiceDescriptor parent, final int index) throws DescriptorValidationException {
       this.index = index;
       this.proto = proto;
       this.file = file;
@@ -1309,7 +1319,8 @@ public final class Descriptors {
      * '.'), partially-qualified, or unqualified.  C++-like name lookup semantics are used to search for the matching
      * descriptor.
      */
-    GenericDescriptor lookupSymbol(final String name, final GenericDescriptor relativeTo) throws DescriptorValidationException {
+    GenericDescriptor lookupSymbol(final String name, final GenericDescriptor relativeTo)
+        throws DescriptorValidationException {
       // TODO(kenton):  This could be optimized in a number of ways.
 
       GenericDescriptor result;
@@ -1384,8 +1395,11 @@ public final class Descriptors {
           if (dotpos == -1) {
             throw new DescriptorValidationException(descriptor, "\"" + fullName + "\" is already defined.");
           } else {
-            throw new DescriptorValidationException(descriptor, "\"" + fullName.substring(
-                dotpos + 1) + "\" is already defined in \"" + fullName.substring(0, dotpos) + "\".");
+            throw new DescriptorValidationException(descriptor, "\"" +
+                                                                fullName.substring(dotpos + 1) +
+                                                                "\" is already defined in \"" +
+                                                                fullName.substring(0, dotpos) +
+                                                                "\".");
           }
         } else {
           throw new DescriptorValidationException(descriptor, "\"" + fullName + "\" is already defined in file \"" + old
@@ -1438,10 +1452,14 @@ public final class Descriptors {
       if (old != null) {
         this.descriptorsByName.put(fullName, old);
         if (!(old instanceof PackageDescriptor)) {
-          throw new DescriptorValidationException(file,
-                                                  "\"" + name + "\" is already defined (as something other than a " + "package) in file \"" + old
-                                                      .getFile()
-                                                      .getName() + "\".");
+          throw new DescriptorValidationException(file, "\"" +
+                                                        name +
+                                                        "\" is already defined (as something other than a " +
+                                                        "package) in file \"" +
+                                                        old
+                                                            .getFile()
+                                                            .getName() +
+                                                                       "\".");
         }
       }
     }
@@ -1478,10 +1496,15 @@ public final class Descriptors {
       final FieldDescriptor old = this.fieldsByNumber.put(key, field);
       if (old != null) {
         this.fieldsByNumber.put(key, old);
-        throw new DescriptorValidationException(field,
-                                                "Field number " + field.getNumber() + "has already been used in \"" + field
-                                                    .getContainingType()
-                                                    .getFullName() + "\" by field \"" + old.getName() + "\".");
+        throw new DescriptorValidationException(field, "Field number " +
+                                                       field.getNumber() +
+                                                       "has already been used in \"" +
+                                                       field
+                                                           .getContainingType()
+                                                           .getFullName() +
+                                                                          "\" by field \"" +
+                                                                          old.getName() +
+                                                                          "\".");
       }
     }
 

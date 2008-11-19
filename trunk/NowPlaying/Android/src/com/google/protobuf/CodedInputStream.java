@@ -385,7 +385,14 @@ public final class CodedInputStream {
     final byte b6 = readRawByte();
     final byte b7 = readRawByte();
     final byte b8 = readRawByte();
-    return (long) b1 & 0xff | ((long) b2 & 0xff) << 8 | ((long) b3 & 0xff) << 16 | ((long) b4 & 0xff) << 24 | ((long) b5 & 0xff) << 32 | ((long) b6 & 0xff) << 40 | ((long) b7 & 0xff) << 48 | ((long) b8 & 0xff) << 56;
+    return (long) b1 & 0xff |
+           ((long) b2 & 0xff) << 8 |
+           ((long) b3 & 0xff) << 16 |
+           ((long) b4 & 0xff) << 24 |
+           ((long) b5 & 0xff) << 32 |
+           ((long) b6 & 0xff) << 40 |
+           ((long) b7 & 0xff) << 48 |
+           ((long) b8 & 0xff) << 56;
   }
 
   /**

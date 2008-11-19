@@ -135,8 +135,8 @@ public final class ExtensionRegistry {
   /** Add a non-message-type extension to the registry by descriptor. */
   public void add(final FieldDescriptor type) {
     if (type.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
-      throw new IllegalArgumentException(
-          "ExtensionRegistry.add() must be provided a default instance when " + "adding an embedded message extension.");
+      throw new IllegalArgumentException("ExtensionRegistry.add() must be provided a default instance when " +
+                                         "adding an embedded message extension.");
     }
     add(new ExtensionInfo(type, null));
   }
@@ -172,14 +172,18 @@ public final class ExtensionRegistry {
     }
 
     this.extensionsByName.put(extension.descriptor.getFullName(), extension);
-    this.extensionsByNumber.put(
-        new DescriptorIntPair(extension.descriptor.getContainingType(), extension.descriptor.getNumber()), extension);
+    this.extensionsByNumber
+        .put(new DescriptorIntPair(extension.descriptor.getContainingType(), extension.descriptor.getNumber()),
+             extension);
 
     final FieldDescriptor field = extension.descriptor;
     if (field.getContainingType()
         .getOptions()
-        .getMessageSetWireFormat() && field.getType() == FieldDescriptor.Type.MESSAGE && field.isOptional() && field.getExtensionScope() == field
-        .getMessageType()) {
+        .getMessageSetWireFormat() &&
+                                   field.getType() == FieldDescriptor.Type.MESSAGE &&
+                                   field.isOptional() &&
+                                   field.getExtensionScope() == field
+                                       .getMessageType()) {
       // This is an extension of a MessageSet type defined within the extension
       // type's own scope.  For backwards-compatibility, allow it to be looked
       // up by type name.

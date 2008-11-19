@@ -32,8 +32,10 @@ public class InvalidProtocolBufferException extends IOException {
   }
 
   static InvalidProtocolBufferException truncatedMessage() {
-    return new InvalidProtocolBufferException(
-        "While parsing a protocol message, the input ended unexpectedly " + "in the middle of a field.  This could mean either than the " + "input has been truncated or that an embedded message " + "misreported its own length.");
+    return new InvalidProtocolBufferException("While parsing a protocol message, the input ended unexpectedly " +
+                                              "in the middle of a field.  This could mean either than the " +
+                                              "input has been truncated or that an embedded message " +
+                                              "misreported its own length.");
   }
 
   static InvalidProtocolBufferException negativeSize() {
@@ -58,12 +60,12 @@ public class InvalidProtocolBufferException extends IOException {
   }
 
   static InvalidProtocolBufferException recursionLimitExceeded() {
-    return new InvalidProtocolBufferException(
-        "Protocol message had too many levels of nesting.  May be malicious.  " + "Use CodedInputStream.setRecursionLimit() to increase the depth limit.");
+    return new InvalidProtocolBufferException("Protocol message had too many levels of nesting.  May be malicious.  " +
+                                              "Use CodedInputStream.setRecursionLimit() to increase the depth limit.");
   }
 
   static InvalidProtocolBufferException sizeLimitExceeded() {
-    return new InvalidProtocolBufferException(
-        "Protocol message was too large.  May be malicious.  " + "Use CodedInputStream.setSizeLimit() to increase the size limit.");
+    return new InvalidProtocolBufferException("Protocol message was too large.  May be malicious.  " +
+                                              "Use CodedInputStream.setSizeLimit() to increase the size limit.");
   }
 }

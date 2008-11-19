@@ -14,7 +14,6 @@
 
 package org.metasyntactic.utilities.difference;
 
-import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.util.List;

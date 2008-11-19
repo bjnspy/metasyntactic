@@ -144,7 +144,8 @@ public class Theater implements Parcelable, Persistable {
       String phoneNumber = source.readString();
 
       Location location = source.readParcelable(NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
-      Location originatingLocation = source.readParcelable(NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
+      Location originatingLocation = source.readParcelable(
+          NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
       List<String> movieTitles = new ArrayList<String>();
       source.readStringList(movieTitles);
 

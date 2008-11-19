@@ -231,7 +231,8 @@ public abstract class AbstractMessage implements Message {
       return mergeFrom(input, ExtensionRegistry.getEmptyRegistry());
     }
 
-    public BuilderType mergeFrom(final CodedInputStream input, final ExtensionRegistry extensionRegistry) throws IOException {
+    public BuilderType mergeFrom(final CodedInputStream input, final ExtensionRegistry extensionRegistry)
+        throws IOException {
       final UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder(getUnknownFields());
       FieldSet.mergeFrom(input, unknownFields, extensionRegistry, this);
       setUnknownFields(unknownFields.build());
@@ -306,7 +307,8 @@ public abstract class AbstractMessage implements Message {
       return (BuilderType) this;
     }
 
-    public BuilderType mergeFrom(final InputStream input, final ExtensionRegistry extensionRegistry) throws IOException {
+    public BuilderType mergeFrom(final InputStream input, final ExtensionRegistry extensionRegistry)
+        throws IOException {
       final CodedInputStream codedInput = CodedInputStream.newInstance(input);
       mergeFrom(codedInput, extensionRegistry);
       codedInput.checkLastTagWas(0);

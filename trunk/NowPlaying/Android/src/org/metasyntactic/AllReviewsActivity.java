@@ -79,11 +79,10 @@ public class AllReviewsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       MovieViewHolder holder;
       convertView = this.inflater.inflate(R.layout.reviewview, null);
-      holder = new MovieViewHolder(
-          (ImageView) convertView.findViewById(R.id.score),
-          (TextView) convertView.findViewById(R.id.author),
-          (TextView) convertView.findViewById(R.id.source),
-          (TextView) convertView.findViewById(R.id.desc));
+      holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score),
+                                   (TextView) convertView.findViewById(R.id.author),
+                                   (TextView) convertView.findViewById(R.id.source),
+                                   (TextView) convertView.findViewById(R.id.desc));
 
       convertView.setTag(holder);
       final Review review = AllReviewsActivity.this.reviews.get(position);

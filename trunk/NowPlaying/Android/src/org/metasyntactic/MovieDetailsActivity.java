@@ -145,9 +145,8 @@ public class MovieDetailsActivity extends ListActivity {
       convertView = this.inflater.inflate(R.layout.moviedetails_item, null);
       // Creates a MovieViewHolder and store references to the
       // children views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder(
-          (TextView) convertView.findViewById(R.id.name),
-          (TextView) convertView.findViewById(R.id.value));
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.name),
+                                                         (TextView) convertView.findViewById(R.id.value));
 
       final MovieDetailEntry entry = MovieDetailsActivity.this.movieDetailEntries.get(position);
       holder.name.setText(entry.getName());

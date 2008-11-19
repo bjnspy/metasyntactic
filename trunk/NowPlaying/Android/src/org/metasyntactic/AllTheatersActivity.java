@@ -71,7 +71,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress
         .getLongitude(), null, null, null, null, null);
 
-    Collections.sort(this.theaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
+    Collections.sort(this.theaters,
+                     this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     // Set up Movies adapter
     this.adapter = new TheatersAdapter();
     setListAdapter(this.adapter);
@@ -124,18 +125,17 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       // Creates a MovieViewHolder and store references to the
       // children
       // views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder(
-          (TextView) convertView.findViewById(R.id.header),
-          (TextView) convertView.findViewById(R.id.address),
-          (TextView) convertView.findViewById(R.id.title),
-          (ImageView) convertView.findViewById(R.id.divider1));
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.header),
+                                                         (TextView) convertView.findViewById(R.id.address),
+                                                         (TextView) convertView.findViewById(R.id.title),
+                                                         (ImageView) convertView.findViewById(R.id.divider1));
 
       // Bind the data efficiently with the holder.
       final Theater theater = AllTheatersActivity.this.theaters.get(position);
 
       final String headerText = MovieViewUtilities.getTheaterHeader(AllTheatersActivity.this.theaters, position,
-                                                              NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex(),
-                                                              AllTheatersActivity.this.userAddress);
+                                                                    NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex(),
+                                                                    AllTheatersActivity.this.userAddress);
 
       if (headerText != null) {
         holder.header.setVisibility(1);
@@ -161,7 +161,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       private final TextView title;
       private final ImageView divider;
 
-      private MovieViewHolder(final TextView header, final TextView address, final TextView title, final ImageView divider) {
+      private MovieViewHolder(final TextView header, final TextView address, final TextView title,
+                              final ImageView divider) {
         this.header = header;
         this.address = address;
         this.title = title;
@@ -206,7 +207,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     final Theater theater = this.theaters.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, TheaterDetailsActivity.class);
-    intent.putExtra("theater", (Parcelable)theater);
+    intent.putExtra("theater", (Parcelable) theater);
     startActivity(intent);
     super.onListItemClick(l, v, position, id);
   }

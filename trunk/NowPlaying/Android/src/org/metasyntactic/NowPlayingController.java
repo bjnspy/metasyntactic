@@ -14,11 +14,10 @@
 
 package org.metasyntactic;
 
+import android.content.Context;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
-
-import android.content.Context;
 
 import java.util.List;
 

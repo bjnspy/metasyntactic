@@ -27,7 +27,37 @@ public final class NowPlaying {
   private static final com.google.protobuf.Descriptors.FileDescriptor descriptor = buildDescriptor();
 
   private static com.google.protobuf.Descriptors.FileDescriptor buildDescriptor() {
-    java.lang.String descriptorData = "\n\020NowPlaying.proto\"M\n\rShowtimeProto\022\014\n\004T" + "ime\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021" + "\n\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!" + "\n\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Ven" + "dor\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMovieP" + "roto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022" + "\016\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Gen" + "re\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRati" + "ng\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t" + "\022\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubb" + "ed\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDa" + "te\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030" + "\001 \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001" + "(\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPosta" + "lCode\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 " + "\001(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001" + "\"\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(" + "\0132\013.MovieProto\022U\n\030TheaterAndMovieShowtim" + "es\030\006 \003(\01323.TheaterListingsProto.TheaterA" + "ndMovieShowtimesProto\032\200\002\n\035TheaterAndMovi" + "eShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theat" + "erProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.The" + "aterListingsProto.TheaterAndMovieShowtim" + "esProto.MovieAndShowtimesProto\032X\n\026MovieA" + "ndShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(" + "\t\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto" + "\"\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002" + " \001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n" + "\007Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Aut" + "hor\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPr" + "oto\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProtoB\002H\001";
+    java.lang.String descriptorData = "\n\020NowPlaying.proto\"M\n\rShowtimeProto\022\014\n\004T" +
+                                      "ime\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021" +
+                                      "\n\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!" +
+                                      "\n\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Ven" +
+                                      "dor\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMovieP" +
+                                      "roto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022" +
+                                      "\016\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Gen" +
+                                      "re\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRati" +
+                                      "ng\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t" +
+                                      "\022\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubb" +
+                                      "ed\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDa" +
+                                      "te\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030" +
+                                      "\001 \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001" +
+                                      "(\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPosta" +
+                                      "lCode\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 " +
+                                      "\001(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001" +
+                                      "\"\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(" +
+                                      "\0132\013.MovieProto\022U\n\030TheaterAndMovieShowtim" +
+                                      "es\030\006 \003(\01323.TheaterListingsProto.TheaterA" +
+                                      "ndMovieShowtimesProto\032\200\002\n\035TheaterAndMovi" +
+                                      "eShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theat" +
+                                      "erProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.The" +
+                                      "aterListingsProto.TheaterAndMovieShowtim" +
+                                      "esProto.MovieAndShowtimesProto\032X\n\026MovieA" +
+                                      "ndShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(" +
+                                      "\t\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto" +
+                                      "\"\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002" +
+                                      " \001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n" +
+                                      "\007Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Aut" +
+                                      "hor\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPr" +
+                                      "oto\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProtoB\002H\001";
     try {
       return com.google
           .protobuf
