@@ -46,7 +46,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         />
     <ImageView
-        id="@+id/divider3"
+        android:id="@+id/divider3"
         android:layout_below="@id/maplbl"
         android:layout_width="fill_parent"
         android:layout_height="1px"
@@ -101,7 +101,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
      />
     <ImageView
-        id="@+id/divider5"
+        android:id="@+id/divider5"
         android:layout_below="@id/phonelbl" 
         android:layout_width="fill_parent"
         android:layout_height="1px"
@@ -110,7 +110,7 @@
     <TextView
         android:id="@+id/phone"
         android:layout_below="@id/phonelbl"
-         android:minHeight="50px"
+        android:minHeight="50px"
         android:layout_width="250px"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dip"
