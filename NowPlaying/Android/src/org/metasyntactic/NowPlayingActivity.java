@@ -54,7 +54,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private boolean isPrioritized;
   private boolean isGridSetup;
   private List<Movie> movies;
-  private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
       refresh();
@@ -116,10 +116,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
-    if (this.broadcastReceiver != null) {
-      unregisterReceiver(this.broadcastReceiver);
-      this.broadcastReceiver = null;
-    }
+    unregisterReceiver(this.broadcastReceiver);
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -174,10 +171,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onPause() {
-    if (this.broadcastReceiver != null) {
-      unregisterReceiver(this.broadcastReceiver);
-      this.broadcastReceiver = null;
-    }
+   unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
 
@@ -203,15 +197,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   };
   final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
-      Integer value1 = 0;
-      Integer value2 = 0;
+      int value1 = 0;
+      int value2 = 0;
       final Score s1 = NowPlayingControllerWrapper.getScore(m1);
       final Score s2 = NowPlayingControllerWrapper.getScore(m2);
-      if (m1 != null) {
-        value1 = Integer.valueOf(s1.getValue());
+      if (s1 != null) {
+        value1 = s1.getScoreValue();
       }
-      if (m2 != null) {
-        value2 = Integer.valueOf(s2.getValue());
+      if (s1 != null) {
+        value2 = s2.getScoreValue();
       }
       if (value1 == value2) {
         return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());

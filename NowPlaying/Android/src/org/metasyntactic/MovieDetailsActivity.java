@@ -107,7 +107,7 @@ public class MovieDetailsActivity extends ListActivity {
       public void onClick(final View v) {
         final ArrayList<Review> reviews = new ArrayList<Review>(NowPlayingControllerWrapper
             .getReviews(MovieDetailsActivity.this.movie));
-        if (reviews != null && reviews.size() > 0) {
+        if (reviews.size() > 0) {
           final Intent intent = new Intent();
           intent.putParcelableArrayListExtra("reviews", reviews);
           intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
@@ -164,8 +164,8 @@ public class MovieDetailsActivity extends ListActivity {
     }
 
     private class MovieViewHolder {
-      TextView name;
-      TextView value;
+      private TextView name;
+      private TextView value;
     }
 
     public long getEntryId(final int position) {
@@ -186,8 +186,8 @@ public class MovieDetailsActivity extends ListActivity {
   }
 
   private class MovieDetailEntry {
-    String name;
-    String value;
+    private String name;
+    private String value;
 
     public String getName() {
       return this.name;
