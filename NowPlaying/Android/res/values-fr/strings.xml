@@ -40,9 +40,7 @@
   <string name="change_date">Modifier la date</string>
   <string name="citystate_or_postal_code">Ville/province ou code postal</string>
   <string name="could_not_find_location_dot">Impossible de trouver votre lieu actuel.</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">L’horaire pour les dates futures pourrait être
-    incomplet. Retournez à la date du jour pour voir l'horaire complet.
-  </string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">L’horaire pour les dates futures pourrait être incomplet. Retournez à la date du jour pour voir l'horaire complet.</string>
   <string name="director">Directeur:</string>
   <string name="directors">Directeurs:</string>
   <string name="distance">Distance</string>
@@ -97,17 +95,10 @@
   <string name="show_number_hidden_theaters">Afficher %d cinémas cachés</string>
   <string name="show_one_hidden_theater">Afficher 1 cinéma caché</string>
   <string name="show_times_retrieved_on_string_dot">Horaire des représentations téléchargé le %s.</string>
-  <string name="theater_last_reported_show_times_on_string_dot">Le cinéma à mis à jour son horaire la dernière fois
-    le\n%s.
-  </string>
-  <string name="theater_providers_often_limit_the_maximum_search">es fournisseurs d'horaires de cinémas limitent souvent
-    la distance maximale pour laquelle ils vont donner des résultats. Par conséquent, il se peut que certains cinémas
-    n'apparaissent pas dans vos résultats de recherches même si votre étendue de recherche est grande.
-  </string>
+  <string name="theater_last_reported_show_times_on_string_dot">Le cinéma à mis à jour son horaire la dernière fois le\n%s.</string>
+  <string name="theater_providers_often_limit_the_maximum_search">es fournisseurs d'horaires de cinémas limitent souvent la distance maximale pour laquelle ils vont donner des résultats. Par conséquent, il se peut que certains cinémas n'apparaissent pas dans vos résultats de recherches même si votre étendue de recherche est grande.</string>
   <string name="theaters">Cinémas</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Ce cinéma n'a pas encore fourni l'horaire de ses
-    représentations. Dès qu'il est disponible, $@ l'ajoutera automatiquement.
-  </string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Ce cinéma n'a pas encore fourni l'horaire de ses représentations. Dès qu'il est disponible, $@ l'ajoutera automatiquement.</string>
   <string name="ticket_sales_provided_by">Vente de billets par:</string>
   <string name="title">Titre</string>
   <string name="today">Aujourd'hui</string>

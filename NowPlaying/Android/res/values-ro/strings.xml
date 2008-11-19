@@ -46,9 +46,7 @@
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>
   <string name="dvdbluray_details_provided_by">Detalii DVD/Blu-ray oferite de:</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informaţia pentru zilele următoare poate fi
-    incompletă. Folosiţi data curentă pentru a vedea toate intrările.
-  </string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informaţia pentru zilele următoare poate fi incompletă. Folosiţi data curentă pentru a vedea toate intrările.</string>
   <string name="director">Regizor:</string>
   <string name="directors">Regizori:</string>
   <string name="distance">Distanţa</string>
@@ -69,7 +67,7 @@
   <string name="last_tuesday">Marţea trecută</string>
   <string name="last_wednesday">Miercurea trecută</string>
   <string name="less_than_number_string_away">La mai puţin de %d %s</string>
-  <string name="less_than_one_string_away">La mai puţin de 1 %s away</string>
+  <string name="less_than_one_string_away"> La mai puţin de 1 %s away</string>
   <string name="license">Liceţă</string>
   <string name="loading_poster">Încarc posterul</string>
   <string name="localized_by">Localizat de:</string>
@@ -110,17 +108,10 @@
   <string name="show_one_hidden_theater">Arată un cinematograf ascuns</string>
   <string name="show_times_retrieved_on_string_dot">Arată orele găsite pe %s.</string>
   <string name="studio">Studio:</string>
-  <string name="theater_last_reported_show_times_on_string_dot">Cinematograful a raportat orele de rulare ultima oară
-    pe\n%s.
-  </string>
-  <string name="theater_providers_often_limit_the_maximum_search">Furnizorii de date pentru cinematografe deseori pun o
-    limită maximă pentru distanţa de căutare. Din această cauză unele cinematografe nu vor apărea chit că distanţa de
-    căutare este maximă.
-  </string>
+  <string name="theater_last_reported_show_times_on_string_dot">Cinematograful a raportat orele de rulare ultima oară pe\n%s.</string>
+  <string name="theater_providers_often_limit_the_maximum_search">Furnizorii de date pentru cinematografe deseori pun o limită maximă pentru distanţa de căutare. Din această cauză unele cinematografe nu vor apărea chit că distanţa de căutare este maximă.</string>
   <string name="theaters">Cinematografe</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Acest cinematograf nu a raportat încă timpii de
-    rulare. Când devin disponibili, %s vor apărea automat.
-  </string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Acest cinematograf nu a raportat încă timpii de rulare. Când devin disponibili, %s vor apărea automat.</string>
   <string name="ticket_sales_provided_by">Vânzarea biletelor este furnizată de:</string>
   <string name="title">Titlu</string>
   <string name="today">Azi</string>
