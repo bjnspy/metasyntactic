@@ -338,9 +338,13 @@ public class UpcomingCache {
       }
     }
 
-    final String result = NetworkUtilities.downloadString(
-        "http://" + Application.host + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey,
-        false);
+    final String result = NetworkUtilities.downloadString("http://" +
+                                                          Application
+                                                              .host +
+                                                                    ".appspot.com/LookupUpcomingListings?format=2&studio=" +
+                                                                    studioKey +
+                                                                    "&name=" +
+                                                                    titleKey, false);
 
     if (isNullOrEmpty(result)) {
       return;
@@ -393,9 +397,12 @@ public class UpcomingCache {
       return;
     }
 
-    final String imdbAddress = NetworkUtilities.downloadString(
-        "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
-            movie.getCanonicalTitle()), false);
+    final String imdbAddress = NetworkUtilities.downloadString("http://" +
+                                                               Application
+                                                                   .host +
+                                                                         ".appspot.com/LookupIMDbListings?q=" +
+                                                                         StringUtilities.urlEncode(
+                                                                             movie.getCanonicalTitle()), false);
 
     if (isNullOrEmpty(imdbAddress)) {
       return;

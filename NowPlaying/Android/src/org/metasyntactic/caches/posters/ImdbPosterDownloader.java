@@ -15,9 +15,9 @@
 package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.data.Movie;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.XmlUtilities.element;
 import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.w3c.dom.Element;
@@ -29,8 +29,8 @@ public class ImdbPosterDownloader {
   }
 
   private static String getImdbId(final Movie movie) {
-    final String url = "http://www.trynt.com/movie-imdb-api/v2/?t=" + StringUtilities.urlEncode(
-        movie.getCanonicalTitle());
+    final String url = "http://www.trynt.com/movie-imdb-api/v2/?t=" +
+                       StringUtilities.urlEncode(movie.getCanonicalTitle());
     final Element tryntElement = NetworkUtilities.downloadXml(url, false);
 
     return text(element(element(tryntElement, "movie-imdb"), "matched-id"));

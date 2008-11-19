@@ -129,7 +129,13 @@ public class TrailerCache {
     final String studio = studioAndLocation.get(0);
     final String location = studioAndLocation.get(1);
 
-    final String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
+    final String url = "http://" +
+                       Application
+                           .host +
+                                 ".appspot.com/LookupTrailerListings?studio=" +
+                                 studio +
+                                 "&name=" +
+                                 location;
     final String trailersString = NetworkUtilities.downloadString(url, false);
 
     if (trailersString == null) {

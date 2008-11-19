@@ -235,7 +235,8 @@ final class FieldSet {
         isValid = value instanceof ByteString;
         break;
       case ENUM:
-        isValid = value instanceof EnumValueDescriptor && ((EnumValueDescriptor) value).getType() == field.getEnumType();
+        isValid = value instanceof EnumValueDescriptor &&
+                  ((EnumValueDescriptor) value).getType() == field.getEnumType();
         break;
       case MESSAGE:
         isValid = value instanceof Message && ((Message) value).getDescriptorForType() == field.getMessageType();
@@ -248,11 +249,16 @@ final class FieldSet {
       // considered one line of code.  So, let's make sure to include the
       // field name and other useful info in the exception.
       throw new IllegalArgumentException(
-          "Wrong object type used with protocol message reflection.  " + "Message type \"" + field.getContainingType()
-              .getFullName() + "\", field \"" + (field.isExtension()
-                                                 ? field.getFullName()
-                                                 : field.getName()) + "\", value was type \"" + value.getClass()
-              .getName() + "\".");
+          "Wrong object type used with protocol message reflection.  " +
+          "Message type \"" +
+          field.getContainingType()
+              .getFullName() +
+                             "\", field \"" +
+                             (field.isExtension() ? field.getFullName() : field.getName()) +
+                             "\", value was type \"" +
+                             value.getClass()
+                                 .getName() +
+                                            "\".");
     }
   }
 
@@ -401,8 +407,8 @@ final class FieldSet {
    * @return {@code true} unless the tag is an end-group tag.
    */
   public static boolean mergeFieldFrom(final CodedInputStream input, final UnknownFieldSet.Builder unknownFields,
-                                       final ExtensionRegistry extensionRegistry, final Message.Builder builder, final int tag)
-      throws java.io.IOException {
+                                       final ExtensionRegistry extensionRegistry, final Message.Builder builder,
+                                       final int tag) throws java.io.IOException {
     final Descriptor type = builder.getDescriptorForType();
 
     if (type.getOptions().getMessageSetWireFormat() && tag == WireFormat.MESSAGE_SET_ITEM_TAG) {
@@ -492,7 +498,8 @@ final class FieldSet {
   private static void mergeMessageSetExtensionFromCodedStream(final CodedInputStream input,
                                                               final UnknownFieldSet.Builder unknownFields,
                                                               final ExtensionRegistry extensionRegistry,
-                                                              final Message.Builder builder) throws java.io.IOException {
+                                                              final Message.Builder builder)
+      throws java.io.IOException {
     final Descriptor type = builder.getDescriptorForType();
 
     // The wire format for MessageSet is:
@@ -589,7 +596,8 @@ final class FieldSet {
 
   /** Write a single field. */
   @SuppressWarnings("unchecked")
-  public void writeField(final FieldDescriptor field, final Object value, final CodedOutputStream output) throws java.io.IOException {
+  public void writeField(final FieldDescriptor field, final Object value, final CodedOutputStream output)
+      throws java.io.IOException {
     if (field.isExtension() && field.getContainingType().getOptions().getMessageSetWireFormat()) {
       output.writeMessageSetExtension(field.getNumber(), (Message) value);
     } else {

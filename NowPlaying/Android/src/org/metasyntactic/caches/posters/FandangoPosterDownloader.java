@@ -15,10 +15,10 @@
 package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.Application;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.utilities.XmlUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.*;
 import org.metasyntactic.utilities.difference.EditDistance;
@@ -48,8 +48,9 @@ public class FandangoPosterDownloader {
     String posterUrl = movieNameToPosterMap.get(key);
     final int lastSlashIndex = posterUrl.lastIndexOf('/');
     if (lastSlashIndex > 0) {
-      posterUrl = posterUrl.substring(0, lastSlashIndex) + "/" + StringUtilities.urlEncode(
-          posterUrl.substring(lastSlashIndex + 1));
+      posterUrl = posterUrl.substring(0, lastSlashIndex) +
+                  "/" +
+                  StringUtilities.urlEncode(posterUrl.substring(lastSlashIndex + 1));
     }
 
     return NetworkUtilities.download(posterUrl, false);
@@ -68,9 +69,19 @@ public class FandangoPosterDownloader {
     final Calendar calendar = Calendar.getInstance();
     calendar.setTime(new Date());
 
-    final String url = "http://" + Application.host + ".appspot.com/LookupTheaterListings?q=" + trimPostalCode(
-        postalCode) + "&date=" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar
-        .get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
+    final String url = "http://" +
+                       Application
+                           .host +
+                                 ".appspot.com/LookupTheaterListings?q=" +
+                                 trimPostalCode(postalCode) +
+                                 "&date=" +
+                                 calendar.get(Calendar.YEAR) +
+                                 "-" +
+                                 (calendar.get(Calendar.MONTH) + 1) +
+                                 "-" +
+                                 calendar
+                                     .get(Calendar.DAY_OF_MONTH) +
+                                                                 "&provider=Fandango";
 
     final Element element = NetworkUtilities.downloadXml(url, false);
     processFandangoElement(element);

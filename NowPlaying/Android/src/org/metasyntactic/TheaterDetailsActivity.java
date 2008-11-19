@@ -115,9 +115,8 @@ public class TheaterDetailsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
-      final MovieViewHolder holder = new MovieViewHolder(
-          (TextView) convertView.findViewById(R.id.label),
-          (TextView) convertView.findViewById(R.id.data));
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.label),
+                                                         (TextView) convertView.findViewById(R.id.data));
 
       final Movie movie = TheaterDetailsActivity.this.movies.get(position);
       holder.label.setText(movie.getDisplayTitle());

@@ -17,9 +17,8 @@ package org.metasyntactic.caches.posters;
 import org.metasyntactic.Application;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.utilities.difference.EditDistance;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.utilities.difference.EditDistance;
 
 import java.util.HashMap;
 import java.util.Map;

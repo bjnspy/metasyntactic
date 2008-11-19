@@ -52,29 +52,33 @@ public final class DynamicMessage extends AbstractMessage {
   }
 
   /** Parse a message of the given type from the given input stream. */
-  public static DynamicMessage parseFrom(final Descriptor type, final CodedInputStream input, final ExtensionRegistry extensionRegistry)
-      throws IOException {
+  public static DynamicMessage parseFrom(final Descriptor type, final CodedInputStream input,
+                                         final ExtensionRegistry extensionRegistry) throws IOException {
     return newBuilder(type).mergeFrom(input, extensionRegistry).buildParsed();
   }
 
   /** Parse {@code data} as a message of the given type and return it. */
-  public static DynamicMessage parseFrom(final Descriptor type, final ByteString data) throws InvalidProtocolBufferException {
+  public static DynamicMessage parseFrom(final Descriptor type, final ByteString data)
+      throws InvalidProtocolBufferException {
     return newBuilder(type).mergeFrom(data).buildParsed();
   }
 
   /** Parse {@code data} as a message of the given type and return it. */
-  public static DynamicMessage parseFrom(final Descriptor type, final ByteString data, final ExtensionRegistry extensionRegistry)
+  public static DynamicMessage parseFrom(final Descriptor type, final ByteString data,
+                                         final ExtensionRegistry extensionRegistry)
       throws InvalidProtocolBufferException {
     return newBuilder(type).mergeFrom(data, extensionRegistry).buildParsed();
   }
 
   /** Parse {@code data} as a message of the given type and return it. */
-  public static DynamicMessage parseFrom(final Descriptor type, final byte[] data) throws InvalidProtocolBufferException {
+  public static DynamicMessage parseFrom(final Descriptor type, final byte[] data)
+      throws InvalidProtocolBufferException {
     return newBuilder(type).mergeFrom(data).buildParsed();
   }
 
   /** Parse {@code data} as a message of the given type and return it. */
-  public static DynamicMessage parseFrom(final Descriptor type, final byte[] data, final ExtensionRegistry extensionRegistry)
+  public static DynamicMessage parseFrom(final Descriptor type, final byte[] data,
+                                         final ExtensionRegistry extensionRegistry)
       throws InvalidProtocolBufferException {
     return newBuilder(type).mergeFrom(data, extensionRegistry).buildParsed();
   }
@@ -85,8 +89,8 @@ public final class DynamicMessage extends AbstractMessage {
   }
 
   /** Parse a message of the given type from {@code input} and return it. */
-  public static DynamicMessage parseFrom(final Descriptor type, final InputStream input, final ExtensionRegistry extensionRegistry)
-      throws IOException {
+  public static DynamicMessage parseFrom(final Descriptor type, final InputStream input,
+                                         final ExtensionRegistry extensionRegistry) throws IOException {
     return newBuilder(type).mergeFrom(input, extensionRegistry).buildParsed();
   }
 
@@ -263,7 +267,8 @@ public final class DynamicMessage extends AbstractMessage {
     }
 
     @Override
-    public Builder mergeFrom(final CodedInputStream input, final ExtensionRegistry extensionRegistry) throws IOException {
+    public Builder mergeFrom(final CodedInputStream input, final ExtensionRegistry extensionRegistry)
+        throws IOException {
       final UnknownFieldSet.Builder unknownFieldsBuilder = UnknownFieldSet.newBuilder(this.unknownFields);
       FieldSet.mergeFrom(input, unknownFieldsBuilder, extensionRegistry, this);
       this.unknownFields = unknownFieldsBuilder.build();

@@ -22,7 +22,6 @@ import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import static java.lang.Math.max;
@@ -59,10 +58,23 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     //Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale
-        .getDefault()
-        .getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location
-        .getLongitude() * 1000000);
+    final String address = "http://" +
+                           Application
+                               .host +
+                                     ".appspot.com/LookupTheaterListings2?country=" +
+                                     country +
+                                     "&language=" +
+                                     Locale
+                                         .getDefault()
+                                         .getLanguage() +
+                                                        "&day=" +
+                                                        days +
+                                                        "&format=pb" +
+                                                        "&latitude=" +
+                                                        (int) (location.getLatitude() * 1000000) +
+                                                        "&longitude=" +
+                                                        (int) (location
+                                                            .getLongitude() * 1000000);
 
     return address;
   }

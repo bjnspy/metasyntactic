@@ -85,7 +85,8 @@ public final class TextFormat {
   }
 
   @SuppressWarnings("unchecked")
-  public static void printField(final FieldDescriptor field, final Object value, final TextGenerator generator) throws IOException {
+  public static void printField(final FieldDescriptor field, final Object value, final TextGenerator generator)
+      throws IOException {
     if (field.isRepeated()) {
       // Repeated field.  Print each element.
       for (final Object element : (List<Object>) value) {
@@ -136,7 +137,8 @@ public final class TextFormat {
     generator.print("\n");
   }
 
-  private static void printFieldValue(final FieldDescriptor field, final Object value, final TextGenerator generator) throws IOException {
+  private static void printFieldValue(final FieldDescriptor field, final Object value, final TextGenerator generator)
+      throws IOException {
     switch (field.getType()) {
       case INT32:
       case INT64:
@@ -186,7 +188,8 @@ public final class TextFormat {
     }
   }
 
-  private static void printUnknownFields(final UnknownFieldSet unknownFields, final TextGenerator generator) throws IOException {
+  private static void printUnknownFields(final UnknownFieldSet unknownFields, final TextGenerator generator)
+      throws IOException {
     for (final Map.Entry<Integer, UnknownFieldSet.Field> entry : unknownFields.asMap().entrySet()) {
       final UnknownFieldSet.Field field = entry.getValue();
 
@@ -341,9 +344,12 @@ public final class TextFormat {
     private int previousColumn = 0;
 
     private static Pattern WHITESPACE = Pattern.compile("(\\s|(#.*$))+", Pattern.MULTILINE);
-    private static Pattern TOKEN = Pattern.compile("[a-zA-Z_][0-9a-zA-Z_+-]*|" +                 // an identifier
-                                                   "[0-9+-][0-9a-zA-Z_.+-]*|" +                  // a number
-                                                   "\"([^\"\n\\\\]|\\\\.)*(\"|\\\\?$)|" +        // a double-quoted string
+    private static Pattern TOKEN = Pattern.compile("[a-zA-Z_][0-9a-zA-Z_+-]*|" +
+                                                   // an identifier
+                                                   "[0-9+-][0-9a-zA-Z_.+-]*|" +
+                                                   // a number
+                                                   "\"([^\"\n\\\\]|\\\\.)*(\"|\\\\?$)|" +
+                                                   // a double-quoted string
                                                    "\'([^\"\n\\\\]|\\\\.)*(\'|\\\\?$)",
                                                    // a single-quoted string
                                                    Pattern.MULTILINE);
@@ -657,8 +663,8 @@ public final class TextFormat {
    * Parse a text-format message from {@code input} and merge the contents into {@code builder}.  Extensions will be
    * recognized if they are registered in {@code extensionRegistry}.
    */
-  public static void merge(final Readable input, final ExtensionRegistry extensionRegistry, final Message.Builder builder)
-      throws ParseException, IOException {
+  public static void merge(final Readable input, final ExtensionRegistry extensionRegistry,
+                           final Message.Builder builder) throws ParseException, IOException {
     // Read the entire input to a String then parse that.
 
     // If StreamTokenizer were not quite so crippled, or if there were a kind
@@ -692,8 +698,8 @@ public final class TextFormat {
    * Parse a text-format message from {@code input} and merge the contents into {@code builder}.  Extensions will be
    * recognized if they are registered in {@code extensionRegistry}.
    */
-  public static void merge(final CharSequence input, final ExtensionRegistry extensionRegistry, final Message.Builder builder)
-      throws ParseException {
+  public static void merge(final CharSequence input, final ExtensionRegistry extensionRegistry,
+                           final Message.Builder builder) throws ParseException {
     final Tokenizer tokenizer = new Tokenizer(input);
 
     while (!tokenizer.atEnd()) {
@@ -702,8 +708,8 @@ public final class TextFormat {
   }
 
   /** Parse a single field from {@code tokenizer} and merge it into {@code builder}. */
-  private static void mergeField(final Tokenizer tokenizer, final ExtensionRegistry extensionRegistry, final Message.Builder builder)
-      throws ParseException {
+  private static void mergeField(final Tokenizer tokenizer, final ExtensionRegistry extensionRegistry,
+                                 final Message.Builder builder) throws ParseException {
     FieldDescriptor field;
     final Descriptor type = builder.getDescriptorForType();
     ExtensionRegistry.ExtensionInfo extension = null;
@@ -1105,7 +1111,8 @@ public final class TextFormat {
     return parseInteger(text, false, true);
   }
 
-  private static long parseInteger(final String text, final boolean isSigned, final boolean isLong) throws NumberFormatException {
+  private static long parseInteger(final String text, final boolean isSigned, final boolean isLong)
+      throws NumberFormatException {
     int pos = 0;
 
     boolean negative = false;

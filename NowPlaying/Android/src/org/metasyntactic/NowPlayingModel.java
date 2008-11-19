@@ -295,6 +295,7 @@ public class NowPlayingModel {
   }
 
   private final static byte[] EMPTY_BYTES = new byte[0];
+
   public byte[] getPoster(final Movie movie) {
     byte[] bytes = this.posterCache.getPoster(movie);
     if (bytes != null) {

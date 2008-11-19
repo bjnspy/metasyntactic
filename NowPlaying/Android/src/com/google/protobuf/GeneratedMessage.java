@@ -311,9 +311,11 @@ public abstract class GeneratedMessage extends AbstractMessage {
     }
 
     /** Get one element of a repeated extension. */
-    public final <Type> Type getExtension(final GeneratedExtension<MessageType, List<Type>> extension, final int index) {
+    public final <Type> Type getExtension(final GeneratedExtension<MessageType, List<Type>> extension,
+                                          final int index) {
       verifyExtensionContainingType(extension);
-      return (Type) extension.singularFromReflectionType(this.extensions.getRepeatedField(extension.getDescriptor(), index));
+      return (Type) extension.singularFromReflectionType(
+          this.extensions.getRepeatedField(extension.getDescriptor(), index));
     }
 
     /** Called by subclasses to check if all extensions are initialized. */
@@ -482,12 +484,14 @@ public abstract class GeneratedMessage extends AbstractMessage {
     }
 
     /** Get one element of a repeated extension. */
-    public final <Type> Type getExtension(final GeneratedExtension<MessageType, List<Type>> extension, final int index) {
+    public final <Type> Type getExtension(final GeneratedExtension<MessageType, List<Type>> extension,
+                                          final int index) {
       return internalGetResult().getExtension(extension, index);
     }
 
     /** Set the value of an extension. */
-    public final <Type> BuilderType setExtension(final GeneratedExtension<MessageType, Type> extension, final Type value) {
+    public final <Type> BuilderType setExtension(final GeneratedExtension<MessageType, Type> extension,
+                                                 final Type value) {
       final ExtendableMessage<MessageType> message = internalGetResult();
       message.verifyExtensionContainingType(extension);
       message.extensions.setField(extension.getDescriptor(), extension.toReflectionType(value));
@@ -495,8 +499,8 @@ public abstract class GeneratedMessage extends AbstractMessage {
     }
 
     /** Set the value of one element of a repeated extension. */
-    public final <Type> BuilderType setExtension(final GeneratedExtension<MessageType, List<Type>> extension, final int index,
-                                                 final Type value) {
+    public final <Type> BuilderType setExtension(final GeneratedExtension<MessageType, List<Type>> extension,
+                                                 final int index, final Type value) {
       final ExtendableMessage<MessageType> message = internalGetResult();
       message.verifyExtensionContainingType(extension);
       message.extensions.setRepeatedField(extension.getDescriptor(), index, extension.singularToReflectionType(value));
@@ -504,7 +508,8 @@ public abstract class GeneratedMessage extends AbstractMessage {
     }
 
     /** Append a value to a repeated extension. */
-    public final <Type> BuilderType addExtension(final GeneratedExtension<MessageType, List<Type>> extension, final Type value) {
+    public final <Type> BuilderType addExtension(final GeneratedExtension<MessageType, List<Type>> extension,
+                                                 final Type value) {
       final ExtendableMessage<MessageType> message = internalGetResult();
       message.verifyExtensionContainingType(extension);
       message.extensions.addRepeatedField(extension.getDescriptor(), extension.singularToReflectionType(value));
@@ -683,7 +688,8 @@ public abstract class GeneratedMessage extends AbstractMessage {
     @SuppressWarnings("unchecked")
     private Object fromReflectionType(final Object value) {
       if (this.descriptor.isRepeated()) {
-        if (this.descriptor.getJavaType() == FieldDescriptor.JavaType.MESSAGE || this.descriptor.getJavaType() == FieldDescriptor.JavaType.ENUM) {
+        if (this.descriptor.getJavaType() == FieldDescriptor.JavaType.MESSAGE ||
+            this.descriptor.getJavaType() == FieldDescriptor.JavaType.ENUM) {
           // Must convert the whole list.
           final List result = new ArrayList();
           for (final Object element : (List) value) {
