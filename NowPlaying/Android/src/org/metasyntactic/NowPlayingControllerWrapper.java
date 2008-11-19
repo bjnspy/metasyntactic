@@ -208,4 +208,14 @@ public class NowPlayingControllerWrapper {
     checkInstance();
     instance.prioritizeMovie(movie);
   }
+
+  public static boolean isAutoUpdateEnabled() {
+    checkInstance();
+    return instance.isAutoUpdateEnabled();
+  }
+
+  public static void setAutoUpdateEnabled(boolean enabled) {
+    checkInstance();
+    instance.setAutoUpdateEnabled(enabled);
+  }
 }

@@ -453,6 +453,9 @@
 
     // Do the primary search.
     LookupResult* result = [self lookupLocation:location filterTheaters:nil];
+    if (result.movies.count == 0 || result.theaters.count == 0) {
+        return;
+    }
 
     // Try to restore any theaters that went missing
     [self addMissingData:result
@@ -474,7 +477,7 @@
 
 
 - (void) reportResult:(LookupResult*) result {
-    if (result.movies.count > 0 || result.theaters.count > 0) {
+    if (result.movies.count > 0 && result.theaters.count > 0) {
         self.moviesData = result.movies;
         self.theatersData = result.theaters;
         self.synchronizationInformationData = result.synchronizationInformation;

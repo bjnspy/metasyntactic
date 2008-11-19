@@ -42,6 +42,7 @@ public class NowPlayingModel {
   private final static String ALL_THEATERS_SELECTED_SORT_INDEX_KEY = "allTheatersSelectedSortIndex";
   private final static String UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY = "upcomingMoviesSelectedSortIndex";
   private final static String SCORE_TYPE_KEY = "scoreType";
+  private final static String AUTO_UPDATED_ENABLED_KEY = "autoUpdateEnabled";
 
   // SharedPreferences is not threadsafe.  so we need to lock when using it
   private final Object preferencesLock = new Object();
@@ -129,6 +130,8 @@ public class NowPlayingModel {
       editor.putString(USER_LOCATION_KEY, userLocation);
       editor.commit();
     }
+
+    this.markDataProviderOutOfDate();
   }
 
   public int getSearchDistance() {
@@ -179,6 +182,12 @@ public class NowPlayingModel {
       editor.putString(SEARCH_DATE_KEY, result);
       editor.commit();
     }
+
+    this.markDataProviderOutOfDate();
+  }
+
+  private void markDataProviderOutOfDate() {
+    dataProvider.markOutOfDate();
   }
 
   public int getSelectedTabIndex() {
@@ -260,6 +269,20 @@ public class NowPlayingModel {
     synchronized (this.preferencesLock) {
       final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putString(SCORE_TYPE_KEY, scoreType.toString());
+      editor.commit();
+    }
+  }
+
+  public boolean isAutoUpdateEnabled() {
+    synchronized (this.preferencesLock) {
+      return this.preferences.getBoolean(AUTO_UPDATED_ENABLED_KEY, false);
+    }
+  }
+
+  public void setAutoUpdateEnabled(boolean enabled) {
+    synchronized (this.preferencesLock) {
+      final SharedPreferences.Editor editor = this.preferences.edit();
+      editor.putBoolean(SCORE_TYPE_KEY, enabled);
       editor.commit();
     }
   }

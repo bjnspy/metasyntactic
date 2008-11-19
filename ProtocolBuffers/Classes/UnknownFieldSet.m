@@ -160,5 +160,4 @@ static PBUnknownFieldSet* defaultInstance = nil;
     return data;
 }
 
-
 @end

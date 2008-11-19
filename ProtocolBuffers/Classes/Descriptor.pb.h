@@ -119,9 +119,9 @@
 - (BOOL) hasName;
 - (BOOL) hasPackage;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) NSString* package;
-@property (retain, readonly) PBFileOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* package;
+@property (readonly, retain) PBFileOptions* options;
 - (NSArray*) dependencyList;
 - (NSString*) dependencyAtIndex:(int32_t) index;
 - (NSArray*) messageTypeList;
@@ -238,8 +238,8 @@
 }
 - (BOOL) hasName;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) PBMessageOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) PBMessageOptions* options;
 - (NSArray*) fieldList;
 - (PBFieldDescriptorProto*) fieldAtIndex:(int32_t) index;
 - (NSArray*) extensionList;
@@ -425,14 +425,14 @@
 - (BOOL) hasExtendee;
 - (BOOL) hasDefaultValue;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
+@property (readonly, retain) NSString* name;
 @property (readonly) int32_t number;
-@property (retain, readonly) PBFieldDescriptorProto_Label* label;
-@property (retain, readonly) PBFieldDescriptorProto_Type* type;
-@property (retain, readonly) NSString* typeName;
-@property (retain, readonly) NSString* extendee;
-@property (retain, readonly) NSString* defaultValue;
-@property (retain, readonly) PBFieldOptions* options;
+@property (readonly, retain) PBFieldDescriptorProto_Label* label;
+@property (readonly, retain) PBFieldDescriptorProto_Type* type;
+@property (readonly, retain) NSString* typeName;
+@property (readonly, retain) NSString* extendee;
+@property (readonly, retain) NSString* defaultValue;
+@property (readonly, retain) PBFieldOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -582,8 +582,8 @@
 }
 - (BOOL) hasName;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) PBEnumOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) PBEnumOptions* options;
 - (NSArray*) valueList;
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
 
@@ -657,9 +657,9 @@
 - (BOOL) hasName;
 - (BOOL) hasNumber;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
+@property (readonly, retain) NSString* name;
 @property (readonly) int32_t number;
-@property (retain, readonly) PBEnumValueOptions* options;
+@property (readonly, retain) PBEnumValueOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -727,8 +727,8 @@
 }
 - (BOOL) hasName;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) PBServiceOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) PBServiceOptions* options;
 - (NSArray*) methodList;
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
 
@@ -805,10 +805,10 @@
 - (BOOL) hasInputType;
 - (BOOL) hasOutputType;
 - (BOOL) hasOptions;
-@property (retain, readonly) NSString* name;
-@property (retain, readonly) NSString* inputType;
-@property (retain, readonly) NSString* outputType;
-@property (retain, readonly) PBMethodOptions* options;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* inputType;
+@property (readonly, retain) NSString* outputType;
+@property (readonly, retain) PBMethodOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -892,12 +892,12 @@
 - (BOOL) hasOptimizeFor;
 - (BOOL) hasObjectivecPackage;
 - (BOOL) hasObjectivecClassPrefix;
-@property (retain, readonly) NSString* javaPackage;
-@property (retain, readonly) NSString* javaOuterClassname;
+@property (readonly, retain) NSString* javaPackage;
+@property (readonly, retain) NSString* javaOuterClassname;
 - (BOOL) javaMultipleFiles;
-@property (retain, readonly) PBFileOptions_OptimizeMode* optimizeFor;
-@property (retain, readonly) NSString* objectivecPackage;
-@property (retain, readonly) NSString* objectivecClassPrefix;
+@property (readonly, retain) PBFileOptions_OptimizeMode* optimizeFor;
+@property (readonly, retain) NSString* objectivecPackage;
+@property (readonly, retain) NSString* objectivecClassPrefix;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -1049,8 +1049,8 @@
 }
 - (BOOL) hasCtype;
 - (BOOL) hasExperimentalMapKey;
-@property (retain, readonly) PBFieldOptions_CType* ctype;
-@property (retain, readonly) NSString* experimentalMapKey;
+@property (readonly, retain) PBFieldOptions_CType* ctype;
+@property (readonly, retain) NSString* experimentalMapKey;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;

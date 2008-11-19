@@ -19,6 +19,7 @@ import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 
+import java.util.Date;
 import java.util.List;
 
 public class NowPlayingController {
@@ -152,5 +153,22 @@ public class NowPlayingController {
 
   public void prioritizeMovie(final Movie movie) {
     this.model.prioritizeMovie(movie);
+  }
+
+  public boolean isAutoUpdateEnabled() {
+    return this.model.isAutoUpdateEnabled();
+  }
+
+  public void setAutoUpdateEnabled(boolean enabled) {
+    this.model.setAutoUpdateEnabled(enabled);
+  }
+
+  public Date getSearchDate() {
+    return this.model.getSearchDate();
+  }
+
+  public void setSearchDate(Date date) {
+    this.model.setSearchDate(date);
+    update();
   }
 }
