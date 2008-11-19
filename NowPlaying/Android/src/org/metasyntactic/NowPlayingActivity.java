@@ -62,7 +62,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     /** Updates display of the list of movies. */
     public void refresh() {
-        List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
+        final List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
         // sort movies according to the default sort preference.
         final Comparator<Movie> comparator = this.MOVIE_ORDER.get(NowPlayingControllerWrapper
                 .getAllMoviesSelectedSortIndex());
@@ -104,7 +104,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     @Override
     protected void onDestroy() {
-        unregisterReceiver(this.broadcastReceiver);
         NowPlayingControllerWrapper.removeActivity(this);
         super.onDestroy();
     }
