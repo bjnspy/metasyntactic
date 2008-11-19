@@ -175,7 +175,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
     public DetailAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(getContext());
+      this.inflater = LayoutInflater.from(AllMoviesActivity.this);
       final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
       a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
@@ -204,7 +204,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       convertView.setTag(holder);
-      final Resources res = getContext().getResources();
+      final Resources res = AllMoviesActivity.this.getResources();
       final Movie movie = AllMoviesActivity.this.movies.get(position);
       final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
       if (bytes.length > 0) {
@@ -213,9 +213,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       }
       holder.title.setText(movie.getDisplayTitle());
       final CharSequence rating = MovieViewUtilities.formatRatings(movie
-          .getRating(), getContext().getResources());
+          .getRating(), AllMoviesActivity.this.getResources());
       final CharSequence length = MovieViewUtilities.formatLength(movie
-          .getLength(), getContext().getResources());
+          .getLength(), AllMoviesActivity.this.getResources());
       holder.rating.setText(rating.toString());
       holder.length.setText(length.toString());
       holder.genre.setText(MovieViewUtilities.formatListToString(movie
@@ -302,7 +302,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       if (bytes.length > 0) {
         i.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
       } else {
-        i.setImageDrawable(getContext().getResources().getDrawable(R.drawable.movies));
+        i.setImageDrawable(AllMoviesActivity.this.getResources().getDrawable(R.drawable.movies));
       }
       i.setScaleType(ImageView.ScaleType.FIT_XY);
       layout.addView(i, new LinearLayout.LayoutParams(95, 130));

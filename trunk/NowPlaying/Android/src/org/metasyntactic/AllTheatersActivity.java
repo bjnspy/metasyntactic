@@ -111,7 +111,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
     public TheatersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(getContext());
+      this.inflater = LayoutInflater.from(AllTheatersActivity.this);
     }
 
     public Object getItem(final int i) {
