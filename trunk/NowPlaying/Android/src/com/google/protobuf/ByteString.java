@@ -27,7 +27,7 @@ import java.io.*;
 public final class ByteString {
   private final byte[] bytes;
 
-  private ByteString(byte[] bytes) {
+  private ByteString(final byte[] bytes) {
     this.bytes = bytes;
   }
 
@@ -36,8 +36,8 @@ public final class ByteString {
    *
    * @throws ArrayIndexOutOfBoundsException {@code index} is < 0 or >= size
    */
-  public byte byteAt(int index) {
-    return bytes[index];
+  public byte byteAt(final int index) {
+    return this.bytes[index];
   }
 
   /** Gets the number of bytes. */
@@ -57,14 +57,14 @@ public final class ByteString {
   public static final ByteString EMPTY = new ByteString(new byte[0]);
 
   /** Copies the given bytes into a {@code ByteString}. */
-  public static ByteString copyFrom(byte[] bytes, int offset, int size) {
-    byte[] copy = new byte[size];
+  public static ByteString copyFrom(final byte[] bytes, final int offset, final int size) {
+    final byte[] copy = new byte[size];
     System.arraycopy(bytes, offset, copy, 0, size);
     return new ByteString(copy);
   }
 
   /** Copies the given bytes into a {@code ByteString}. */
-  public static ByteString copyFrom(byte[] bytes) {
+  public static ByteString copyFrom(final byte[] bytes) {
     return copyFrom(bytes, 0, bytes.length);
   }
 
@@ -72,15 +72,15 @@ public final class ByteString {
    * Encodes {@code text} into a sequence of bytes using the named charset and returns the result as a {@code
    * ByteString}.
    */
-  public static ByteString copyFrom(String text, String charsetName) throws UnsupportedEncodingException {
+  public static ByteString copyFrom(final String text, final String charsetName) throws UnsupportedEncodingException {
     return new ByteString(text.getBytes(charsetName));
   }
 
   /** Encodes {@code text} into a sequence of UTF-8 bytes and returns the result as a {@code ByteString}. */
-  public static ByteString copyFromUtf8(String text) {
+  public static ByteString copyFromUtf8(final String text) {
     try {
       return new ByteString(text.getBytes("UTF-8"));
-    } catch (UnsupportedEncodingException e) {
+    } catch (final UnsupportedEncodingException e) {
       throw new RuntimeException("UTF-8 not supported?", e);
     }
   }
@@ -94,8 +94,8 @@ public final class ByteString {
    * @param target buffer to copy into
    * @param offset in the target buffer
    */
-  public void copyTo(byte[] target, int offset) {
-    System.arraycopy(bytes, 0, target, offset, bytes.length);
+  public void copyTo(final byte[] target, final int offset) {
+    System.arraycopy(this.bytes, 0, target, offset, this.bytes.length);
   }
 
   /**
@@ -106,20 +106,20 @@ public final class ByteString {
    * @param targetOffset offset within the target buffer
    * @param size         number of bytes to copy
    */
-  public void copyTo(byte[] target, int sourceOffset, int targetOffset, int size) {
-    System.arraycopy(bytes, sourceOffset, target, targetOffset, size);
+  public void copyTo(final byte[] target, final int sourceOffset, final int targetOffset, final int size) {
+    System.arraycopy(this.bytes, sourceOffset, target, targetOffset, size);
   }
 
   /** Copies bytes to a {@code byte[]}. */
   public byte[] toByteArray() {
-    int size = this.bytes.length;
-    byte[] copy = new byte[size];
+    final int size = this.bytes.length;
+    final byte[] copy = new byte[size];
     System.arraycopy(this.bytes, 0, copy, 0, size);
     return copy;
   }
 
   /** Constructs a new {@code String} by decoding the bytes using the specified charset. */
-  public String toString(String charsetName) throws UnsupportedEncodingException {
+  public String toString(final String charsetName) throws UnsupportedEncodingException {
     return new String(this.bytes, charsetName);
   }
 
@@ -127,7 +127,7 @@ public final class ByteString {
   public String toStringUtf8() {
     try {
       return new String(this.bytes, "UTF-8");
-    } catch (UnsupportedEncodingException e) {
+    } catch (final UnsupportedEncodingException e) {
       throw new RuntimeException("UTF-8 not supported?", e);
     }
   }
@@ -136,7 +136,7 @@ public final class ByteString {
   // equals() and hashCode()
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(final Object o) {
     if (o == this) {
       return true;
     }
@@ -145,14 +145,14 @@ public final class ByteString {
       return false;
     }
 
-    ByteString other = (ByteString) o;
-    int size = this.bytes.length;
+    final ByteString other = (ByteString) o;
+    final int size = this.bytes.length;
     if (size != other.bytes.length) {
       return false;
     }
 
-    byte[] bytes = this.bytes;
-    byte[] otherBytes = other.bytes;
+    final byte[] bytes = this.bytes;
+    final byte[] otherBytes = other.bytes;
     for (int i = 0; i < size; i++) {
       if (bytes[i] != otherBytes[i]) {
         return false;
@@ -169,8 +169,8 @@ public final class ByteString {
     int h = this.hash;
 
     if (h == 0) {
-      byte[] bytes = this.bytes;
-      int size = this.bytes.length;
+      final byte[] bytes = this.bytes;
+      final int size = this.bytes.length;
 
       h = size;
       for (int i = 0; i < size; i++) {
@@ -191,7 +191,7 @@ public final class ByteString {
 
   /** Creates an {@code InputStream} which can be used to read the bytes. */
   public InputStream newInput() {
-    return new ByteArrayInputStream(bytes);
+    return new ByteArrayInputStream(this.bytes);
   }
 
   /**
@@ -201,14 +201,14 @@ public final class ByteString {
   public CodedInputStream newCodedInput() {
     // We trust CodedInputStream not to modify the bytes, or to give anyone
     // else access to them.
-    return CodedInputStream.newInstance(bytes);
+    return CodedInputStream.newInstance(this.bytes);
   }
 
   // =================================================================
   // Output stream
 
   /** Creates a new {@link Output} with the given initial capacity. */
-  public static Output newOutput(int initialCapacity) {
+  public static Output newOutput(final int initialCapacity) {
     return new Output(new ByteArrayOutputStream(initialCapacity));
   }
 
@@ -222,14 +222,14 @@ public final class ByteString {
     private final ByteArrayOutputStream bout;
 
     /** Constructs a new output with the given initial capacity. */
-    private Output(ByteArrayOutputStream bout) {
+    private Output(final ByteArrayOutputStream bout) {
       super(bout);
       this.bout = bout;
     }
 
     /** Creates a {@code ByteString} instance from this {@code Output}. */
     public ByteString toByteString() {
-      byte[] byteArray = bout.toByteArray();
+      final byte[] byteArray = this.bout.toByteArray();
       return new ByteString(byteArray);
     }
   }
@@ -245,7 +245,7 @@ public final class ByteString {
    * @param size The target byte size of the {@code ByteString}.  You must write exactly this many bytes before building
    *             the result.
    */
-  static CodedBuilder newCodedBuilder(int size) {
+  static CodedBuilder newCodedBuilder(final int size) {
     return new CodedBuilder(size);
   }
 
@@ -254,22 +254,22 @@ public final class ByteString {
     private final CodedOutputStream output;
     private final byte[] buffer;
 
-    private CodedBuilder(int size) {
-      buffer = new byte[size];
-      output = CodedOutputStream.newInstance(buffer);
+    private CodedBuilder(final int size) {
+      this.buffer = new byte[size];
+      this.output = CodedOutputStream.newInstance(this.buffer);
     }
 
     public ByteString build() {
-      output.checkNoSpaceLeft();
+      this.output.checkNoSpaceLeft();
 
       // We can be confident that the CodedOutputStream will not modify the
       // underlying bytes anymore because it already wrote all of them.  So,
       // no need to make a copy.
-      return new ByteString(buffer);
+      return new ByteString(this.buffer);
     }
 
     public CodedOutputStream getCodedOutput() {
-      return output;
+      return this.output;
     }
   }
 }

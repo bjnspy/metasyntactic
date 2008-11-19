@@ -33,12 +33,12 @@ import java.util.List;
  */
 public final class CodedInputStream {
   /** Create a new CodedInputStream wrapping the given InputStream. */
-  public static CodedInputStream newInstance(InputStream input) {
+  public static CodedInputStream newInstance(final InputStream input) {
     return new CodedInputStream(input);
   }
 
   /** Create a new CodedInputStream wrapping the given byte array. */
-  public static CodedInputStream newInstance(byte[] buf) {
+  public static CodedInputStream newInstance(final byte[] buf) {
     return new CodedInputStream(buf);
   }
 
@@ -49,17 +49,17 @@ public final class CodedInputStream {
    * since a protocol message may legally end wherever a tag occurs, and zero is not a valid tag number.
    */
   public int readTag() throws IOException {
-    if (bufferPos == bufferSize && !refillBuffer(false)) {
-      lastTag = 0;
+    if (this.bufferPos == this.bufferSize && !refillBuffer(false)) {
+      this.lastTag = 0;
       return 0;
     }
 
-    lastTag = readRawVarint32();
-    if (lastTag == 0) {
+    this.lastTag = readRawVarint32();
+    if (this.lastTag == 0) {
       // If we actually read zero, that's not a valid tag.
       throw InvalidProtocolBufferException.invalidTag();
     }
-    return lastTag;
+    return this.lastTag;
   }
 
   /**
@@ -68,8 +68,8 @@ public final class CodedInputStream {
    *
    * @throws InvalidProtocolBufferException {@code value} does not match the last tag.
    */
-  public void checkLastTagWas(int value) throws InvalidProtocolBufferException {
-    if (lastTag != value) {
+  public void checkLastTagWas(final int value) throws InvalidProtocolBufferException {
+    if (this.lastTag != value) {
       throw InvalidProtocolBufferException.invalidEndTag();
     }
   }
@@ -80,7 +80,7 @@ public final class CodedInputStream {
    * @return {@code false} if the tag is an endgroup tag, in which case nothing is skipped.  Otherwise, returns {@code
    *         true}.
    */
-  public boolean skipField(int tag) throws IOException {
+  public boolean skipField(final int tag) throws IOException {
     switch (WireFormat.getTagWireType(tag)) {
       case WireFormat.WIRETYPE_VARINT:
         readInt32();
@@ -111,7 +111,7 @@ public final class CodedInputStream {
    */
   public void skipMessage() throws IOException {
     while (true) {
-      int tag = readTag();
+      final int tag = readTag();
       if (tag == 0 || !skipField(tag)) {
         return;
       }
@@ -162,12 +162,12 @@ public final class CodedInputStream {
 
   /** Read a {@code string} field value from the stream. */
   public String readString() throws IOException {
-    int size = readRawVarint32();
-    if (size < bufferSize - bufferPos && size > 0) {
+    final int size = readRawVarint32();
+    if (size < this.bufferSize - this.bufferPos && size > 0) {
       // Fast path:  We already have the bytes in a contiguous buffer, so
       //   just copy directly from it.
-      String result = new String(buffer, bufferPos, size, "UTF-8");
-      bufferPos += size;
+      final String result = new String(this.buffer, this.bufferPos, size, "UTF-8");
+      this.bufferPos += size;
       return result;
     } else {
       // Slow path:  Build a byte array first then copy it.
@@ -176,50 +176,50 @@ public final class CodedInputStream {
   }
 
   /** Read a {@code group} field value from the stream. */
-  public void readGroup(int fieldNumber, Message.Builder builder, ExtensionRegistry extensionRegistry)
+  public void readGroup(final int fieldNumber, final Message.Builder builder, final ExtensionRegistry extensionRegistry)
       throws IOException {
-    if (recursionDepth >= recursionLimit) {
+    if (this.recursionDepth >= this.recursionLimit) {
       throw InvalidProtocolBufferException.recursionLimitExceeded();
     }
-    ++recursionDepth;
+    ++this.recursionDepth;
     builder.mergeFrom(this, extensionRegistry);
     checkLastTagWas(WireFormat.makeTag(fieldNumber, WireFormat.WIRETYPE_END_GROUP));
-    --recursionDepth;
+    --this.recursionDepth;
   }
 
   /** Reads a {@code group} field value from the stream and merges it into the given {@link UnknownFieldSet}. */
-  public void readUnknownGroup(int fieldNumber, UnknownFieldSet.Builder builder) throws IOException {
-    if (recursionDepth >= recursionLimit) {
+  public void readUnknownGroup(final int fieldNumber, final UnknownFieldSet.Builder builder) throws IOException {
+    if (this.recursionDepth >= this.recursionLimit) {
       throw InvalidProtocolBufferException.recursionLimitExceeded();
     }
-    ++recursionDepth;
+    ++this.recursionDepth;
     builder.mergeFrom(this);
     checkLastTagWas(WireFormat.makeTag(fieldNumber, WireFormat.WIRETYPE_END_GROUP));
-    --recursionDepth;
+    --this.recursionDepth;
   }
 
   /** Read an embedded message field value from the stream. */
-  public void readMessage(Message.Builder builder, ExtensionRegistry extensionRegistry) throws IOException {
-    int length = readRawVarint32();
-    if (recursionDepth >= recursionLimit) {
+  public void readMessage(final Message.Builder builder, final ExtensionRegistry extensionRegistry) throws IOException {
+    final int length = readRawVarint32();
+    if (this.recursionDepth >= this.recursionLimit) {
       throw InvalidProtocolBufferException.recursionLimitExceeded();
     }
-    int oldLimit = pushLimit(length);
-    ++recursionDepth;
+    final int oldLimit = pushLimit(length);
+    ++this.recursionDepth;
     builder.mergeFrom(this, extensionRegistry);
     checkLastTagWas(0);
-    --recursionDepth;
+    --this.recursionDepth;
     popLimit(oldLimit);
   }
 
   /** Read a {@code bytes} field value from the stream. */
   public ByteString readBytes() throws IOException {
-    int size = readRawVarint32();
-    if (size < bufferSize - bufferPos && size > 0) {
+    final int size = readRawVarint32();
+    if (size < this.bufferSize - this.bufferPos && size > 0) {
       // Fast path:  We already have the bytes in a contiguous buffer, so
       //   just copy directly from it.
-      ByteString result = ByteString.copyFrom(buffer, bufferPos, size);
-      bufferPos += size;
+      final ByteString result = ByteString.copyFrom(this.buffer, this.bufferPos, size);
+      this.bufferPos += size;
       return result;
     } else {
       // Slow path:  Build a byte array first then copy it.
@@ -268,7 +268,7 @@ public final class CodedInputStream {
    * @return An object representing the field's value, of the exact type which would be returned by {@link
    *         Message#getField(Descriptors.FieldDescriptor)} for this field.
    */
-  public Object readPrimitiveField(Descriptors.FieldDescriptor.Type type) throws IOException {
+  public Object readPrimitiveField(final Descriptors.FieldDescriptor.Type type) throws IOException {
     switch (type) {
       case DOUBLE:
         return readDouble();
@@ -356,7 +356,7 @@ public final class CodedInputStream {
     int shift = 0;
     long result = 0;
     while (shift < 64) {
-      byte b = readRawByte();
+      final byte b = readRawByte();
       result |= (long) (b & 0x7F) << shift;
       if ((b & 0x80) == 0) {
         return result;
@@ -368,24 +368,24 @@ public final class CodedInputStream {
 
   /** Read a 32-bit little-endian integer from the stream. */
   public int readRawLittleEndian32() throws IOException {
-    byte b1 = readRawByte();
-    byte b2 = readRawByte();
-    byte b3 = readRawByte();
-    byte b4 = readRawByte();
-    return (((int) b1 & 0xff)) | (((int) b2 & 0xff) << 8) | (((int) b3 & 0xff) << 16) | (((int) b4 & 0xff) << 24);
+    final byte b1 = readRawByte();
+    final byte b2 = readRawByte();
+    final byte b3 = readRawByte();
+    final byte b4 = readRawByte();
+    return b1 & 0xff | (b2 & 0xff) << 8 | (b3 & 0xff) << 16 | (b4 & 0xff) << 24;
   }
 
   /** Read a 64-bit little-endian integer from the stream. */
   public long readRawLittleEndian64() throws IOException {
-    byte b1 = readRawByte();
-    byte b2 = readRawByte();
-    byte b3 = readRawByte();
-    byte b4 = readRawByte();
-    byte b5 = readRawByte();
-    byte b6 = readRawByte();
-    byte b7 = readRawByte();
-    byte b8 = readRawByte();
-    return (((long) b1 & 0xff)) | (((long) b2 & 0xff) << 8) | (((long) b3 & 0xff) << 16) | (((long) b4 & 0xff) << 24) | (((long) b5 & 0xff) << 32) | (((long) b6 & 0xff) << 40) | (((long) b7 & 0xff) << 48) | (((long) b8 & 0xff) << 56);
+    final byte b1 = readRawByte();
+    final byte b2 = readRawByte();
+    final byte b3 = readRawByte();
+    final byte b4 = readRawByte();
+    final byte b5 = readRawByte();
+    final byte b6 = readRawByte();
+    final byte b7 = readRawByte();
+    final byte b8 = readRawByte();
+    return (long) b1 & 0xff | ((long) b2 & 0xff) << 8 | ((long) b3 & 0xff) << 16 | ((long) b4 & 0xff) << 24 | ((long) b5 & 0xff) << 32 | ((long) b6 & 0xff) << 40 | ((long) b7 & 0xff) << 48 | ((long) b8 & 0xff) << 56;
   }
 
   /**
@@ -397,8 +397,8 @@ public final class CodedInputStream {
    *
    * @return A signed 32-bit integer.
    */
-  public static int decodeZigZag32(int n) {
-    return (n >>> 1) ^ -(n & 1);
+  public static int decodeZigZag32(final int n) {
+    return n >>> 1 ^ -(n & 1);
   }
 
   /**
@@ -410,17 +410,17 @@ public final class CodedInputStream {
    *
    * @return A signed 64-bit integer.
    */
-  public static long decodeZigZag64(long n) {
-    return (n >>> 1) ^ -(n & 1);
+  public static long decodeZigZag64(final long n) {
+    return n >>> 1 ^ -(n & 1);
   }
 
   // -----------------------------------------------------------------
 
-  private byte[] buffer;
+  private final byte[] buffer;
   private int bufferSize;
   private int bufferSizeAfterLimit = 0;
   private int bufferPos = 0;
-  private InputStream input;
+  private final InputStream input;
   private int lastTag = 0;
 
   /**
@@ -443,13 +443,13 @@ public final class CodedInputStream {
   private static final int DEFAULT_SIZE_LIMIT = 64 << 20;  // 64MB
   private static final int BUFFER_SIZE = 4096 * 32;
 
-  private CodedInputStream(byte[] buffer) {
+  private CodedInputStream(final byte[] buffer) {
     this.buffer = buffer;
     this.bufferSize = buffer.length;
     this.input = null;
   }
 
-  private CodedInputStream(InputStream input) {
+  private CodedInputStream(final InputStream input) {
     this.buffer = new byte[BUFFER_SIZE];
     this.bufferSize = 0;
     this.input = input;
@@ -461,12 +461,12 @@ public final class CodedInputStream {
    *
    * @return the old limit.
    */
-  public int setRecursionLimit(int limit) {
+  public int setRecursionLimit(final int limit) {
     if (limit < 0) {
       throw new IllegalArgumentException("Recursion limit cannot be negative: " + limit);
     }
-    int oldLimit = recursionLimit;
-    recursionLimit = limit;
+    final int oldLimit = this.recursionLimit;
+    this.recursionLimit = limit;
     return oldLimit;
   }
 
@@ -479,12 +479,12 @@ public final class CodedInputStream {
    *
    * @return the old limit.
    */
-  public int setSizeLimit(int limit) {
+  public int setSizeLimit(final int limit) {
     if (limit < 0) {
       throw new IllegalArgumentException("Size limit cannot be negative: " + limit);
     }
-    int oldLimit = sizeLimit;
-    sizeLimit = limit;
+    final int oldLimit = this.sizeLimit;
+    this.sizeLimit = limit;
     return oldLimit;
   }
 
@@ -498,12 +498,12 @@ public final class CodedInputStream {
     if (byteLimit < 0) {
       throw InvalidProtocolBufferException.negativeSize();
     }
-    byteLimit += totalBytesRetired + bufferPos;
-    int oldLimit = currentLimit;
+    byteLimit += this.totalBytesRetired + this.bufferPos;
+    final int oldLimit = this.currentLimit;
     if (byteLimit > oldLimit) {
       throw InvalidProtocolBufferException.truncatedMessage();
     }
-    currentLimit = byteLimit;
+    this.currentLimit = byteLimit;
 
     recomputeBufferSizeAfterLimit();
 
@@ -511,14 +511,14 @@ public final class CodedInputStream {
   }
 
   private void recomputeBufferSizeAfterLimit() {
-    bufferSize += bufferSizeAfterLimit;
-    int bufferEnd = totalBytesRetired + bufferSize;
-    if (bufferEnd > currentLimit) {
+    this.bufferSize += this.bufferSizeAfterLimit;
+    final int bufferEnd = this.totalBytesRetired + this.bufferSize;
+    if (bufferEnd > this.currentLimit) {
       // Limit is in current buffer.
-      bufferSizeAfterLimit = bufferEnd - currentLimit;
-      bufferSize -= bufferSizeAfterLimit;
+      this.bufferSizeAfterLimit = bufferEnd - this.currentLimit;
+      this.bufferSize -= this.bufferSizeAfterLimit;
     } else {
-      bufferSizeAfterLimit = 0;
+      this.bufferSizeAfterLimit = 0;
     }
   }
 
@@ -527,8 +527,8 @@ public final class CodedInputStream {
    *
    * @param oldLimit The old limit, as returned by {@code pushLimit}.
    */
-  public void popLimit(int oldLimit) {
-    currentLimit = oldLimit;
+  public void popLimit(final int oldLimit) {
+    this.currentLimit = oldLimit;
     recomputeBufferSizeAfterLimit();
   }
 
@@ -537,12 +537,12 @@ public final class CodedInputStream {
    * refillBuffer() gurantees that either there will be at least one byte in the buffer when it returns or it will throw
    * an exception.  If {@code mustSucceed} is false, refillBuffer() returns false if no more bytes were available.
    */
-  private boolean refillBuffer(boolean mustSucceed) throws IOException {
-    if (bufferPos < bufferSize) {
+  private boolean refillBuffer(final boolean mustSucceed) throws IOException {
+    if (this.bufferPos < this.bufferSize) {
       throw new IllegalStateException("refillBuffer() called when buffer wasn't empty.");
     }
 
-    if (totalBytesRetired + bufferSize == currentLimit) {
+    if (this.totalBytesRetired + this.bufferSize == this.currentLimit) {
       // Oops, we hit a limit.
       if (mustSucceed) {
         throw InvalidProtocolBufferException.truncatedMessage();
@@ -551,12 +551,12 @@ public final class CodedInputStream {
       }
     }
 
-    totalBytesRetired += bufferSize;
+    this.totalBytesRetired += this.bufferSize;
 
-    bufferPos = 0;
-    bufferSize = (input == null) ? -1 : input.read(buffer);
-    if (bufferSize == -1) {
-      bufferSize = 0;
+    this.bufferPos = 0;
+    this.bufferSize = this.input == null ? -1 : this.input.read(this.buffer);
+    if (this.bufferSize == -1) {
+      this.bufferSize = 0;
       if (mustSucceed) {
         throw InvalidProtocolBufferException.truncatedMessage();
       } else {
@@ -564,8 +564,8 @@ public final class CodedInputStream {
       }
     } else {
       recomputeBufferSizeAfterLimit();
-      int totalBytesRead = totalBytesRetired + bufferSize + bufferSizeAfterLimit;
-      if (totalBytesRead > sizeLimit || totalBytesRead < 0) {
+      final int totalBytesRead = this.totalBytesRetired + this.bufferSize + this.bufferSizeAfterLimit;
+      if (totalBytesRead > this.sizeLimit || totalBytesRead < 0) {
         throw InvalidProtocolBufferException.sizeLimitExceeded();
       }
       return true;
@@ -578,10 +578,10 @@ public final class CodedInputStream {
    * @throws InvalidProtocolBufferException The end of the stream or the current limit was reached.
    */
   public byte readRawByte() throws IOException {
-    if (bufferPos == bufferSize) {
+    if (this.bufferPos == this.bufferSize) {
       refillBuffer(true);
     }
-    return buffer[bufferPos++];
+    return this.buffer[this.bufferPos++];
   }
 
   /**
@@ -589,48 +589,48 @@ public final class CodedInputStream {
    *
    * @throws InvalidProtocolBufferException The end of the stream or the current limit was reached.
    */
-  public byte[] readRawBytes(int size) throws IOException {
+  public byte[] readRawBytes(final int size) throws IOException {
     if (size < 0) {
       throw InvalidProtocolBufferException.negativeSize();
     }
 
-    if (totalBytesRetired + bufferPos + size > currentLimit) {
+    if (this.totalBytesRetired + this.bufferPos + size > this.currentLimit) {
       // Read to the end of the stream anyway.
-      skipRawBytes(currentLimit - totalBytesRetired - bufferPos);
+      skipRawBytes(this.currentLimit - this.totalBytesRetired - this.bufferPos);
       // Then fail.
       throw InvalidProtocolBufferException.truncatedMessage();
     }
 
-    if (size <= bufferSize - bufferPos) {
+    if (size <= this.bufferSize - this.bufferPos) {
       // We have all the bytes we need already.
-      byte[] bytes = new byte[size];
-      System.arraycopy(buffer, bufferPos, bytes, 0, size);
-      bufferPos += size;
+      final byte[] bytes = new byte[size];
+      System.arraycopy(this.buffer, this.bufferPos, bytes, 0, size);
+      this.bufferPos += size;
       return bytes;
     } else if (size < BUFFER_SIZE) {
       // Reading more bytes than are in the buffer, but not an excessive number
       // of bytes.  We can safely allocate the resulting array ahead of time.
 
       // First copy what we have.
-      byte[] bytes = new byte[size];
-      int pos = bufferSize - bufferPos;
-      System.arraycopy(buffer, bufferPos, bytes, 0, pos);
-      bufferPos = bufferSize;
+      final byte[] bytes = new byte[size];
+      int pos = this.bufferSize - this.bufferPos;
+      System.arraycopy(this.buffer, this.bufferPos, bytes, 0, pos);
+      this.bufferPos = this.bufferSize;
 
       // We want to use refillBuffer() and then copy from the buffer into our
       // byte array rather than reading directly into our byte array because
       // the input may be unbuffered.
       refillBuffer(true);
 
-      while (size - pos > bufferSize) {
-        System.arraycopy(buffer, 0, bytes, pos, bufferSize);
-        pos += bufferSize;
-        bufferPos = bufferSize;
+      while (size - pos > this.bufferSize) {
+        System.arraycopy(this.buffer, 0, bytes, pos, this.bufferSize);
+        pos += this.bufferSize;
+        this.bufferPos = this.bufferSize;
         refillBuffer(true);
       }
 
-      System.arraycopy(buffer, 0, bytes, pos, size - pos);
-      bufferPos = size - pos;
+      System.arraycopy(this.buffer, 0, bytes, pos, size - pos);
+      this.bufferPos = size - pos;
 
       return bytes;
     } else {
@@ -644,27 +644,27 @@ public final class CodedInputStream {
 
       // Remember the buffer markers since we'll have to copy the bytes out of
       // it later.
-      int originalBufferPos = bufferPos;
-      int originalBufferSize = bufferSize;
+      final int originalBufferPos = this.bufferPos;
+      final int originalBufferSize = this.bufferSize;
 
       // Mark the current buffer consumed.
-      totalBytesRetired += bufferSize;
-      bufferPos = 0;
-      bufferSize = 0;
+      this.totalBytesRetired += this.bufferSize;
+      this.bufferPos = 0;
+      this.bufferSize = 0;
 
       // Read all the rest of the bytes we need.
       int sizeLeft = size - (originalBufferSize - originalBufferPos);
-      List<byte[]> chunks = new ArrayList<byte[]>();
+      final List<byte[]> chunks = new ArrayList<byte[]>();
 
       while (sizeLeft > 0) {
-        byte[] chunk = new byte[Math.min(sizeLeft, BUFFER_SIZE)];
+        final byte[] chunk = new byte[Math.min(sizeLeft, BUFFER_SIZE)];
         int pos = 0;
         while (pos < chunk.length) {
-          int n = (input == null) ? -1 : input.read(chunk, pos, chunk.length - pos);
+          final int n = this.input == null ? -1 : this.input.read(chunk, pos, chunk.length - pos);
           if (n == -1) {
             throw InvalidProtocolBufferException.truncatedMessage();
           }
-          totalBytesRetired += n;
+          this.totalBytesRetired += n;
           pos += n;
         }
         sizeLeft -= chunk.length;
@@ -672,14 +672,14 @@ public final class CodedInputStream {
       }
 
       // OK, got everything.  Now concatenate it all into one buffer.
-      byte[] bytes = new byte[size];
+      final byte[] bytes = new byte[size];
 
       // Start by copying the leftover bytes from this.buffer.
       int pos = originalBufferSize - originalBufferPos;
-      System.arraycopy(buffer, originalBufferPos, bytes, 0, pos);
+      System.arraycopy(this.buffer, originalBufferPos, bytes, 0, pos);
 
       // And now all the chunks.
-      for (byte[] chunk : chunks) {
+      for (final byte[] chunk : chunks) {
         System.arraycopy(chunk, 0, bytes, pos, chunk.length);
         pos += chunk.length;
       }
@@ -694,36 +694,36 @@ public final class CodedInputStream {
    *
    * @throws InvalidProtocolBufferException The end of the stream or the current limit was reached.
    */
-  public void skipRawBytes(int size) throws IOException {
+  public void skipRawBytes(final int size) throws IOException {
     if (size < 0) {
       throw InvalidProtocolBufferException.negativeSize();
     }
 
-    if (totalBytesRetired + bufferPos + size > currentLimit) {
+    if (this.totalBytesRetired + this.bufferPos + size > this.currentLimit) {
       // Read to the end of the stream anyway.
-      skipRawBytes(currentLimit - totalBytesRetired - bufferPos);
+      skipRawBytes(this.currentLimit - this.totalBytesRetired - this.bufferPos);
       // Then fail.
       throw InvalidProtocolBufferException.truncatedMessage();
     }
 
-    if (size < bufferSize - bufferPos) {
+    if (size < this.bufferSize - this.bufferPos) {
       // We have all the bytes we need already.
-      bufferPos += size;
+      this.bufferPos += size;
     } else {
       // Skipping more bytes than are in the buffer.  First skip what we have.
-      int pos = bufferSize - bufferPos;
-      totalBytesRetired += pos;
-      bufferPos = 0;
-      bufferSize = 0;
+      int pos = this.bufferSize - this.bufferPos;
+      this.totalBytesRetired += pos;
+      this.bufferPos = 0;
+      this.bufferSize = 0;
 
       // Then skip directly from the InputStream for the rest.
       while (pos < size) {
-        int n = (input == null) ? -1 : (int) input.skip(size - pos);
+        final int n = this.input == null ? -1 : (int) this.input.skip(size - pos);
         if (n <= 0) {
           throw InvalidProtocolBufferException.truncatedMessage();
         }
         pos += n;
-        totalBytesRetired += n;
+        this.totalBytesRetired += n;
       }
     }
   }
