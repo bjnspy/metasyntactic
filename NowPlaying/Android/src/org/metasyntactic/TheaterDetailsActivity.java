@@ -1,7 +1,6 @@
 package org.metasyntactic;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -55,16 +54,19 @@ public class TheaterDetailsActivity extends ListActivity {
   }
 
   private void bindView() {
-    final TextView theaterlbl = (TextView) findViewById(R.id.theater);
-    theaterlbl.setEllipsize(TextUtils.TruncateAt.END);
-    theaterlbl.setText(this.theater.getName());
-    final TextView phonelbl = (TextView) findViewById(R.id.phone);
-    phonelbl.setEllipsize(TextUtils.TruncateAt.END);
-    phonelbl.setText(this.theater.getPhoneNumber());
-    final TextView maplbl = (TextView) findViewById(R.id.map);
-    maplbl.setEllipsize(TextUtils.TruncateAt.END);
+    final TextView theaterLabel = (TextView) findViewById(R.id.theater);
+    theaterLabel.setEllipsize(TextUtils.TruncateAt.END);
+    theaterLabel.setText(this.theater.getName());
+
+    final TextView phoneLabel = (TextView) findViewById(R.id.phone);
+    phoneLabel.setEllipsize(TextUtils.TruncateAt.END);
+    phoneLabel.setText(this.theater.getPhoneNumber());
+
+    final TextView mapLabel = (TextView) findViewById(R.id.map);
+    mapLabel.setEllipsize(TextUtils.TruncateAt.END);
     final String address = this.theater.getAddress() + ", " + this.theater.getLocation().getCity();
-    maplbl.setText(address);
+    mapLabel.setText(address);
+
     this.movies = NowPlayingControllerWrapper.getMoviesAtTheater(this.theater);
     final ImageView mapIcon = (ImageView) findViewById(R.id.mapicon);
     final ImageView phoneIcon = (ImageView) findViewById(R.id.phoneicon);
@@ -72,27 +74,32 @@ public class TheaterDetailsActivity extends ListActivity {
         .parse("geo:0,0?q=" + address));
     final Intent callIntent = new Intent("android.intent.action.DIAL", Uri
         .parse("tel:" + this.theater.getPhoneNumber()));
+
     mapIcon.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(mapIntent);
       }
     });
-    maplbl.setOnClickListener(new OnClickListener() {
+
+    mapLabel.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(mapIntent);
       }
     });
+
     phoneIcon.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(callIntent);
       }
     });
-    phonelbl.setOnClickListener(new OnClickListener() {
+
+    phoneLabel.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(callIntent);
       }
     });
-    this.moviesAdapter = new MoviesAdapter(this);
+
+    this.moviesAdapter = new MoviesAdapter();
     setListAdapter(this.moviesAdapter);
   }
 
@@ -104,9 +111,9 @@ public class TheaterDetailsActivity extends ListActivity {
   class MoviesAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public MoviesAdapter(final Context context) {
+    public MoviesAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(context);
+      this.inflater = LayoutInflater.from(TheaterDetailsActivity.this);
     }
 
     public Object getEntry(final int i) {
@@ -124,8 +131,8 @@ public class TheaterDetailsActivity extends ListActivity {
           .getPerformancesForMovieAtTheater(movie, TheaterDetailsActivity.this.theater);
       String performance = "";
       if (list != null) {
-        for (int i = 0; i < list.size(); i++) {
-          performance += list.get(i).getTime() + ", ";
+        for (Performance aList : list) {
+          performance += aList.getTime() + ", ";
         }
         performance = performance
             .substring(0, performance.length() - 2);
@@ -141,8 +148,8 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     private class MovieViewHolder {
-      TextView label;
-      TextView data;
+      private TextView label;
+      private TextView data;
     }
 
     public long getEntryId(final int position) {
