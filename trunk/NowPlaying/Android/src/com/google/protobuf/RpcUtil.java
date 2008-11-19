@@ -100,6 +100,8 @@ public final class RpcUtil {
 
   /** Exception thrown when a one-time callback is called more than once. */
   public static final class AlreadyCalledException extends RuntimeException {
+    private static final long serialVersionUID = 4206383824743069120L;
+
     public AlreadyCalledException() {
       super("This RpcCallback was already called and cannot be called " + "multiple times.");
     }

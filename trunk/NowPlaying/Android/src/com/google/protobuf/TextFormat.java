@@ -77,17 +77,18 @@ public final class TextFormat {
   }
 
   private static void print(final Message message, final TextGenerator generator) throws IOException {
-    final Descriptor descriptor = message.getDescriptorForType();
+    message.getDescriptorForType();
     for (final Map.Entry<FieldDescriptor, Object> field : message.getAllFields().entrySet()) {
       printField(field.getKey(), field.getValue(), generator);
     }
     printUnknownFields(message.getUnknownFields(), generator);
   }
 
+  @SuppressWarnings("unchecked")
   public static void printField(final FieldDescriptor field, final Object value, final TextGenerator generator) throws IOException {
     if (field.isRepeated()) {
       // Repeated field.  Print each element.
-      for (final Object element : (List) value) {
+      for (final Object element : (List<Object>) value) {
         printSingleField(field, element, generator);
       }
     } else {
@@ -187,7 +188,6 @@ public final class TextFormat {
 
   private static void printUnknownFields(final UnknownFieldSet unknownFields, final TextGenerator generator) throws IOException {
     for (final Map.Entry<Integer, UnknownFieldSet.Field> entry : unknownFields.asMap().entrySet()) {
-      final String prefix = entry.getKey().toString() + ": ";
       final UnknownFieldSet.Field field = entry.getValue();
 
       for (final long value : field.getVarintList()) {
@@ -636,6 +636,8 @@ public final class TextFormat {
 
   /** Thrown when parsing an invalid text format message. */
   public static class ParseException extends IOException {
+    private static final long serialVersionUID = -2415844419546702530L;
+
     public ParseException(final String message) {
       super(message);
     }
@@ -1022,6 +1024,8 @@ public final class TextFormat {
    * seen.
    */
   static class InvalidEscapeSequence extends IOException {
+    private static final long serialVersionUID = 4129493875149653879L;
+
     public InvalidEscapeSequence(final String description) {
       super(description);
     }

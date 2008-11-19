@@ -276,7 +276,7 @@ public class DataProvider {
                              new HashSet<String>(movieToShowtimesMap.keySet())));
   }
 
-  private Object[] processTheaterAndMovieShowtimes(
+  private LookupResult processTheaterAndMovieShowtimes(
       final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes,
       final Location originatingLocation, final Collection<String> theaterNames,
       final Map<String, Movie> movieIdToMovieMap) {
@@ -292,7 +292,7 @@ public class DataProvider {
                                       theaterNames, movieIdToMovieMap);
     }
 
-    return new Object[]{theaters, performances, synchronizationData,};
+    return new LookupResult(null, theaters, performances, synchronizationData);
   }
 
   private LookupResult processTheaterListings(final NowPlaying.TheaterListingsProto element,
@@ -302,16 +302,13 @@ public class DataProvider {
     final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList();
     final Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);
 
-    final Object[] theatersAndPerformances = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes,
+    final LookupResult result = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes,
                                                                              originatingLocation, theaterNames,
                                                                              movieIdToMovieMap);
 
     final List<Movie> movies = new ArrayList<Movie>(movieIdToMovieMap.values());
-    final List<Theater> theaters = (List<Theater>) theatersAndPerformances[0];
-    final Map<String, Map<String, List<Performance>>> performances = (Map<String, Map<String, List<Performance>>>) theatersAndPerformances[1];
-    final Map<String, Date> synchronizationData = (Map<String, Date>) theatersAndPerformances[2];
 
-    return new LookupResult(movies, theaters, performances, synchronizationData);
+    return new LookupResult(movies, result.theaters, result.performances, result.synchronizationData);
   }
 
   private File getMoviesFile() {
@@ -448,6 +445,7 @@ public class DataProvider {
     return this.theaters;
   }
 
+  @SuppressWarnings("unchecked")
   private void lookupMissingFavorites(final LookupResult lookupResult) {
     if (lookupResult == null) {
       return;

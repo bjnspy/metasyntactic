@@ -62,6 +62,7 @@ public class TrailerCache {
     }
   }
 
+  @SuppressWarnings("unchecked")
   private List<List<Movie>> getOrderedMovies(final List<Movie> movies) {
     final List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
     final List<Movie> moviesWithTrailers = new ArrayList<Movie>();

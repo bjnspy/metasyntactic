@@ -34,6 +34,8 @@ import java.util.Map;
  * @author kenton@google.com Kenton Varda
  */
 public class UninitializedMessageException extends RuntimeException {
+  private static final long serialVersionUID = -7466929953374883507L;
+
   public UninitializedMessageException(final Message message) {
     this(findMissingFields(message));
   }
@@ -84,6 +86,7 @@ public class UninitializedMessageException extends RuntimeException {
   }
 
   /** Recursive helper implementing {@link #findMissingFields(Message)}. */
+  @SuppressWarnings("unchecked")
   private static void findMissingFields(final Message message, final String prefix, final List<String> results) {
     for (final FieldDescriptor field : message.getDescriptorForType().getFields()) {
       if (field.isRequired() && !message.hasField(field)) {
@@ -98,7 +101,7 @@ public class UninitializedMessageException extends RuntimeException {
       if (field.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
         if (field.isRepeated()) {
           int i = 0;
-          for (final Object element : (List) value) {
+          for (final Object element : (List<Object>) value) {
             findMissingFields((Message) element, subMessagePrefix(prefix, field, i++), results);
           }
         } else {
