@@ -22,13 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import org.metasyntactic.data.Review;
 
 import java.util.List;
@@ -88,25 +82,33 @@ public class AllReviewsActivity extends ListActivity {
                 final ViewGroup viewGroup) {
             MovieViewHolder holder;
             convertView = this.inflater.inflate(R.layout.reviewview, null);
-            holder = new MovieViewHolder();
-            holder.score = (ImageView) convertView.findViewById(R.id.score);
-            holder.author = (TextView) convertView.findViewById(R.id.author);
-            holder.source = (TextView) convertView.findViewById(R.id.source);
-            holder.desc = (TextView) convertView.findViewById(R.id.desc);
+            holder = new MovieViewHolder(
+                (ImageView) convertView.findViewById(R.id.score),
+                (TextView) convertView.findViewById(R.id.author),
+                (TextView) convertView.findViewById(R.id.source),
+                (TextView) convertView.findViewById(R.id.desc));
+
             convertView.setTag(holder);
             final Review review = AllReviewsActivity.this.reviews.get(position);
             holder.author.setText(review.getAuthor());
             holder.source.setText(review.getSource());
-            holder.desc.setText(review.getText());
+            holder.description.setText(review.getText());
             // todo holder score image set.
             return convertView;
         }
 
-        class MovieViewHolder {
-            ImageView score;
-            TextView author;
-            TextView source;
-            TextView desc;
+        private class MovieViewHolder {
+            private final ImageView score;
+            private final TextView author;
+            private final TextView source;
+            private final TextView description;
+
+          private MovieViewHolder(ImageView score, TextView author, TextView source, TextView description) {
+            this.score = score;
+            this.author = author;
+            this.source = source;
+            this.description = description;
+          }
         }
 
         public int getCount() {
