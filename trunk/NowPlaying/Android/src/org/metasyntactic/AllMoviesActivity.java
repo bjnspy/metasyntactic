@@ -82,7 +82,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     // thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
     final OnItemSelectedListener listener = new OnItemSelectedListener() {
       public void onItemSelected(final AdapterView<?> arg0, final View arg1, final int position, final long id) {
-        // TODO Auto-generated method stub
         if (thumbnail.getSelectedItemPosition() != position) {
           thumbnail.setSelection(position);
         }
@@ -92,7 +91,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       }
 
       public void onNothingSelected(final AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
       }
     };
     detail.setOnItemSelectedListener(listener);
