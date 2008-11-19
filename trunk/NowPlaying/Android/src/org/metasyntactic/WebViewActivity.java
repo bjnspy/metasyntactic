@@ -19,18 +19,14 @@ import android.os.Bundle;
 import android.webkit.WebView;
 
 public class WebViewActivity extends Activity {
-  /** TODO: Set the path variable to a streaming video URL or a local media file path. */
-  private String path;
-  private WebView webView;
-
   @Override
   public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
     NowPlayingControllerWrapper.addActivity(this);
-    this.webView = new WebView(this);
-    setContentView(this.webView);
-    this.path = getIntent().getExtras().getString("url");
-    this.webView.loadUrl(this.path);
+    WebView webView = new WebView(this);
+    setContentView(webView);
+    String path = getIntent().getExtras().getString("url");
+    webView.loadUrl(path);
   }
 
   protected void onDestroy() {

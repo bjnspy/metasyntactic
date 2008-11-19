@@ -21,22 +21,19 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class VideoViewActivity extends Activity {
-  /** TODO: Set the path variable to a streaming video URL or a local media file path. */
-  private String path;
-  private VideoView videoView;
 
   @Override
   public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.videoview);
-    this.path = getIntent().getExtras().getString("trailer_url");
-    this.videoView = (VideoView) findViewById(R.id.surface_view);
-    this.videoView.setVideoURI(Uri.parse(this.path));
+    String path = getIntent().getExtras().getString("trailer_url");
+    VideoView videoView = (VideoView) findViewById(R.id.surface_view);
+    videoView.setVideoURI(Uri.parse(path));
     //  mVideoView.setVideoPath(path);
-    this.videoView.setMediaController(new MediaController(this));
-    this.videoView.requestFocus();
-    this.videoView.start();
+    videoView.setMediaController(new MediaController(this));
+    videoView.requestFocus();
+    videoView.start();
   }
 
   protected void onDestroy() {
