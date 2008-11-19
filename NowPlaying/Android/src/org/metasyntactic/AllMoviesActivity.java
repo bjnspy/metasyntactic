@@ -47,12 +47,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class AllMoviesActivity extends Activity implements INowPlaying {
-  private List<Movie> movies = new ArrayList<Movie>();
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
   private int selection;
-  private static DetailAdapter detailAdapter;
-  private static ThumbnailAdapter thumbnailAdapter;
+ 
+  private List<Movie> movies = new ArrayList<Movie>();
+  private DetailAdapter detailAdapter;
+  private ThumbnailAdapter thumbnailAdapter;
+
   private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -270,14 +272,10 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   }
 
   class ThumbnailAdapter extends BaseAdapter {
-    private final LayoutInflater inflater;
-    private final int galleryItemBackground;
-
     public ThumbnailAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(AllMoviesActivity.this);
+      LayoutInflater inflater = LayoutInflater.from(AllMoviesActivity.this);
       final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-      this.galleryItemBackground = a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
     }
 
@@ -294,9 +292,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       layout.setOrientation(LinearLayout.VERTICAL);
       final ImageView i = new ImageView(AllMoviesActivity.this);
       final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-      final int mGalleryItemBackground = a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
+      final int galleryItemBackground = a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
-      i.setBackgroundResource(mGalleryItemBackground);
+      i.setBackgroundResource(galleryItemBackground);
       final Movie movie = AllMoviesActivity.this.movies.get(position % AllMoviesActivity.this.movies.size());
       final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie)
           .getBytes();
