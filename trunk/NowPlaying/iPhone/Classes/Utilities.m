@@ -187,7 +187,7 @@
             [body appendString:@"<a href=\""];
             [body appendString:performance.url];
             [body appendString:@"\">"];
-            [body appendString:performance.time];
+            [body appendString:[Utilities asciiString:performance.time]];
             [body appendString:@"</a>"];
         }
     }

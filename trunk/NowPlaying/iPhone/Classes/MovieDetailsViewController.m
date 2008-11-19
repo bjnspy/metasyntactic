@@ -691,12 +691,12 @@
         Theater* theater = [theatersArray objectAtIndex:i];
         NSArray* performances = [showtimesArray objectAtIndex:i];
 
-        [body appendString:theater.name];
+        [body appendString:[Utilities asciiString:theater.name]];
         [body appendString:@"\n"];
         [body appendString:@"<a href=\""];
         [body appendString:theater.mapUrl];
         [body appendString:@"\">"];
-        [body appendString:[self.model simpleAddressForTheater:theater]];
+        [body appendString:[Utilities asciiString:[self.model simpleAddressForTheater:theater]]];
         [body appendString:@"</a>"];
 
         [body appendString:@"\n"];
