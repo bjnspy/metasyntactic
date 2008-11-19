@@ -56,7 +56,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   // entries_theater_sort_preference array in res/values/arrays.xml
   private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(TITLE_ORDER, DISTANCE_ORDER);
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

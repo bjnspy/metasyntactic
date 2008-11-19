@@ -70,7 +70,7 @@ public class NowPlayingModel {
   }
 
   public void startup() {
-      this.preferences = NowPlayingControllerWrapper.getApplicationContext()
+    this.preferences = NowPlayingControllerWrapper.getApplicationContext()
         .getSharedPreferences(NowPlayingModel.class.getName(), 0);
 
     loadData();

@@ -57,6 +57,7 @@ public class Application {
 
   private static Pulser pulser;
   public static Context applicationContext;
+
   static {
     createDirectories();
 
@@ -74,7 +75,6 @@ public class Application {
   private Application() {
 
   }
-
 
   public static void initialize() {
   }
