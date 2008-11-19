@@ -143,7 +143,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
     @Override
     protected void onDestroy() {
-        unregisterReceiver(this.broadcastReceiver);
         NowPlayingControllerWrapper.removeActivity(this);
         super.onDestroy();
     }
