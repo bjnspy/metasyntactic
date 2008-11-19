@@ -280,11 +280,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         }
     }
     class ThumbnailAdapter extends BaseAdapter {
-        private final LayoutInflater inflater;
-
-        public ThumbnailAdapter() {
+      public ThumbnailAdapter() {
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            this.inflater = LayoutInflater.from(AllMoviesActivity.this);
+        LayoutInflater inflater = LayoutInflater.from(AllMoviesActivity.this);
             final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
             a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
             a.recycle();
