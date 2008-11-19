@@ -115,9 +115,10 @@ public class TheaterDetailsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
-      final MovieViewHolder holder = new MovieViewHolder();
-      holder.label = (TextView) convertView.findViewById(R.id.label);
-      holder.data = (TextView) convertView.findViewById(R.id.data);
+      final MovieViewHolder holder = new MovieViewHolder(
+          (TextView) convertView.findViewById(R.id.label),
+          (TextView) convertView.findViewById(R.id.data));
+
       final Movie movie = TheaterDetailsActivity.this.movies.get(position);
       holder.label.setText(movie.getDisplayTitle());
       final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie,
@@ -137,8 +138,13 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     private class MovieViewHolder {
-      private TextView label;
-      private TextView data;
+      private final TextView label;
+      private final TextView data;
+
+      private MovieViewHolder(TextView label, TextView data) {
+        this.label = label;
+        this.data = data;
+      }
     }
 
     public long getEntryId(final int position) {
