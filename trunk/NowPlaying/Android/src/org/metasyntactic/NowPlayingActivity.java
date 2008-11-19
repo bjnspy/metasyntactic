@@ -40,7 +40,6 @@ import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import java.util.*;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
-  public static NowPlayingActivity instance;
   public static final int MENU_SORT = 1;
   public static final int MENU_THEATER = 2;
   public static final int MENU_UPCOMING = 3;
@@ -54,6 +53,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private boolean isPrioritized;
   private boolean isGridSetup;
   private List<Movie> movies;
+
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -63,14 +63,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   /** Updates display of the list of movies. */
   public void refresh() {
-    List<Movie> tmpMovies;
-    tmpMovies = NowPlayingControllerWrapper.getMovies();
+    List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
     Collections.sort(tmpMovies, comparator);
-    this.movies = new ArrayList<Movie>();
-    this.movies.addAll(tmpMovies);
+    this.movies = new ArrayList<Movie>(tmpMovies);
+
     if (!this.isPrioritized) {
       for (int i = 0; i < Math.min(6, this.movies.size()); i++) {
         NowPlayingControllerWrapper.prioritizeMovie(this.movies.get(i));
@@ -96,7 +95,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   public NowPlayingActivity() {
-    instance = this;
   }
 
   public Context getContext() {
@@ -236,10 +234,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         convertView = this.mInflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children views
         // we want to bind data to.
-        holder = new ViewHolder();
-        holder.title = (TextView) convertView.findViewById(R.id.title);
-        holder.poster = (ImageView) convertView
-            .findViewById(R.id.poster);
+        holder = new ViewHolder(
+            (TextView) convertView.findViewById(R.id.title),
+            (ImageView) convertView.findViewById(R.id.poster));
+
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
@@ -273,8 +271,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
 
     private class ViewHolder {
-      private TextView title;
-      private ImageView poster;
+      private final TextView title;
+      private final ImageView poster;
+
+      private ViewHolder(TextView title, ImageView poster) {
+        this.title = title;
+        this.poster = poster;
+      }
     }
 
     public final int getCount() {
