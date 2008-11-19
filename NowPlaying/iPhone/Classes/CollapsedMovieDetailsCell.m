@@ -72,5 +72,4 @@
     ratingAndRuntimeLabel.frame = frame;
 }
 
-
 @end

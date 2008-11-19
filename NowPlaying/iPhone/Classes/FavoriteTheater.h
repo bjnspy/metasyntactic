@@ -29,5 +29,4 @@
 
 - (NSDictionary*) dictionary;
 
-
 @end

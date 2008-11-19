@@ -290,6 +290,4 @@
     [gate unlock];
 }
 
-
-
 @end

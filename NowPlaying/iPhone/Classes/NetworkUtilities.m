@@ -201,5 +201,4 @@ static PriorityMutex* mutex = nil;
     return [self isReachableWithoutRequiringConnection:flags];
 }
 
-
 @end

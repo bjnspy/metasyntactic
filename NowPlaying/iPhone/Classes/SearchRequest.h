@@ -38,5 +38,4 @@
                            value:(NSString*) value
                            model:(NowPlayingModel*) model;
 
-
 @end

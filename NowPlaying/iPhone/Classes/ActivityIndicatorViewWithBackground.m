@@ -19,6 +19,7 @@
 @property (retain) UIActivityIndicatorView* activityIndicator;
 @end
 
+
 @implementation ActivityIndicatorViewWithBackground
 
 @synthesize imageView;

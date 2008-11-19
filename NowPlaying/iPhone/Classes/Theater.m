@@ -144,5 +144,4 @@ property_definition(movieTitles);
     return showtime;
 }
 
-
 @end

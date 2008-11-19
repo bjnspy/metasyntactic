@@ -278,5 +278,4 @@ static BOOL use24HourTime;
     return use24HourTime;
 }
 
-
 @end

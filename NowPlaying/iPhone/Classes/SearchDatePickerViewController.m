@@ -65,5 +65,4 @@
     [navigationController.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
 }
 
-
 @end

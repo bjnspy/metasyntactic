@@ -67,5 +67,4 @@ property_definition(url);
     return dictionary;
 }
 
-
 @end

@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.content.Context;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
+import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.utilities.SetUtilities;
 
@@ -27,7 +28,6 @@ import java.util.Set;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingControllerWrapper {
-  private static final Object lock = new Object();
 
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
   private static NowPlayingController instance;
@@ -41,222 +41,172 @@ public class NowPlayingControllerWrapper {
   }
 
   public static void addActivity(final Activity activity) {
-   
-      activities.add(activity);
-      GlobalActivityIndicator.addActivity(activity);
+    checkThread();
+    activities.add(activity);
+    GlobalActivityIndicator.addActivity(activity);
 
-      if (activities.size() == 1) {
-        instance = new NowPlayingController();
-        instance.startup();
-      }
-    
+    if (activities.size() == 1) {
+      instance = new NowPlayingController();
+      instance.startup();
+    }
   }
 
   public static void removeActivity(final Activity activity) {
-   
-      GlobalActivityIndicator.removeActivity(activity);
-      activities.remove(activity);
+    checkThread();
+    GlobalActivityIndicator.removeActivity(activity);
+    activities.remove(activity);
 
-      if (activities.size() == 0) {
-        instance.shutdown();
-        instance = null;
-      }
-    
+    if (activities.size() == 0) {
+      instance.shutdown();
+      instance = null;
+    }
+  }
+
+  private static void checkThread() {
+    if (!ThreadingUtilities.isMainThread()) {
+      throw new RuntimeException("Trying to call into the controller on a background thread");
+    }
   }
 
   private static void checkInstance() {
+    checkThread();
     if (instance == null) {
       throw new RuntimeException("Trying to call into the controller when it does not exist");
     }
   }
 
   public static Context getApplicationContext() {
-    synchronized (lock) {
-      checkInstance();
-      return SetUtilities.any(activities).getApplicationContext();
-    }
+    checkInstance();
+    return SetUtilities.any(activities).getApplicationContext();
   }
 
   public static String getUserLocation() {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getUserLocation();
-    }
+    checkInstance();
+    return instance.getUserLocation();
   }
 
   public static void setUserLocation(final String userLocation) {
-    synchronized (lock) {
-      checkInstance();
-      instance.setUserLocation(userLocation);
-    }
+    checkInstance();
+    instance.setUserLocation(userLocation);
   }
 
   public static int getSearchDistance() {
-
-    synchronized (lock) {
-      checkInstance();
-      return instance.getSearchDistance();
-    }
+    checkInstance();
+    return instance.getSearchDistance();
   }
 
   public static void setSearchDistance(final int searchDistance) {
-    synchronized (lock) {
-      checkInstance();
-      instance.setSearchDistance(searchDistance);
-    }
+    checkInstance();
+    instance.setSearchDistance(searchDistance);
   }
 
   public static int getSelectedTabIndex() {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getSelectedTabIndex();
-    }
+    checkInstance();
+    return instance.getSelectedTabIndex();
   }
 
   public static void setSelectedTabIndex(final int index) {
-    synchronized (lock) {
-      checkInstance();
-      instance.setSelectedTabIndex(index);
-    }
+    checkInstance();
+    instance.setSelectedTabIndex(index);
   }
 
   public static int getAllMoviesSelectedSortIndex() {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getAllMoviesSelectedSortIndex();
-    }
+    checkInstance();
+    return instance.getAllMoviesSelectedSortIndex();
   }
 
   public static void setAllMoviesSelectedSortIndex(final int index) {
-    synchronized (lock) {
-      checkInstance();
-      instance.setAllMoviesSelectedSortIndex(index);
-    }
+    checkInstance();
+    instance.setAllMoviesSelectedSortIndex(index);
   }
 
   public static int getAllTheatersSelectedSortIndex() {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getAllTheatersSelectedSortIndex();
-    }
+    checkInstance();
+    return instance.getAllTheatersSelectedSortIndex();
   }
 
   public static void setAllTheatersSelectedSortIndex(final int index) {
-    synchronized (lock) {
-      checkInstance();
-      instance.setAllTheatersSelectedSortIndex(index);
-    }
+    checkInstance();
+    instance.setAllTheatersSelectedSortIndex(index);
   }
 
   public static int getUpcomingMoviesSelectedSortIndex() {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getUpcomingMoviesSelectedSortIndex();
-    }
+    checkInstance();
+    return instance.getUpcomingMoviesSelectedSortIndex();
   }
 
   public static void setUpcomingMoviesSelectedSortIndex(final int index) {
-    synchronized (lock) {
-      checkInstance();
-      instance.setUpcomingMoviesSelectedSortIndex(index);
-    }
+    checkInstance();
+    instance.setUpcomingMoviesSelectedSortIndex(index);
   }
 
   public static List<Movie> getMovies() {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getMovies();
-    }
+    checkInstance();
+    return instance.getMovies();
   }
 
   public static List<Theater> getTheaters() {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getTheaters();
-    }
+    checkInstance();
+    return instance.getTheaters();
   }
 
   public static List<String> getTrailers(final Movie movie) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getTrailers(movie);
-    }
+    checkInstance();
+    return instance.getTrailers(movie);
   }
 
   public static List<Review> getReviews(final Movie movie) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getReviews(movie);
-    }
+    checkInstance();
+    return instance.getReviews(movie);
   }
 
   public static String getImdbAddress(final Movie movie) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getImdbAddress(movie);
-    }
+    checkInstance();
+    return instance.getImdbAddress(movie);
   }
 
   public static List<Theater> getTheatersShowingMovie(final Movie movie) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getTheatersShowingMovie(movie);
-    }
+    checkInstance();
+    return instance.getTheatersShowingMovie(movie);
   }
 
   public static List<Movie> getMoviesAtTheater(final Theater theater) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getMoviesAtTheater(theater);
-    }
+    checkInstance();
+    return instance.getMoviesAtTheater(theater);
   }
 
   public static List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getPerformancesForMovieAtTheater(movie, theater);
-    }
+    checkInstance();
+    return instance.getPerformancesForMovieAtTheater(movie, theater);
   }
 
   public static ScoreType getScoreType() {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getScoreType();
-    }
+    checkInstance();
+    return instance.getScoreType();
   }
 
   public static void setScoreType(final ScoreType scoreType) {
-    synchronized (lock) {
-      checkInstance();
-      instance.setScoreType(scoreType);
-    }
+    checkInstance();
+    instance.setScoreType(scoreType);
   }
 
   public static Score getScore(final Movie movie) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getScore(movie);
-    }
+    checkInstance();
+    return instance.getScore(movie);
   }
 
   public static ByteArray getPoster(final Movie movie) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getPoster(movie);
-    }
+    checkInstance();
+    return instance.getPoster(movie);
   }
 
   public static String getSynopsis(final Movie movie) {
-    synchronized (lock) {
-      checkInstance();
-      return instance.getSynopsis(movie);
-    }
+    checkInstance();
+    return instance.getSynopsis(movie);
   }
 
   public static void prioritizeMovie(final Movie movie) {
-    synchronized (lock) {
-      checkInstance();
-      instance.prioritizeMovie(movie);
-    }
+    checkInstance();
+    instance.prioritizeMovie(movie);
   }
 }

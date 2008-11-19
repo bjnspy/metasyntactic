@@ -21,6 +21,7 @@
 @property (retain) NSMutableDictionary* synchronizationInformation;
 @end
 
+
 @implementation LookupResult
 
 @synthesize movies;
@@ -62,6 +63,5 @@ synchronizationInformation:(NSMutableDictionary*) synchronizationInformation_ {
                                     performances:performances
                       synchronizationInformation:synchronizationInformation] autorelease];
 }
-
 
 @end

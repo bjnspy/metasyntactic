@@ -151,5 +151,4 @@ static UIImage* warning32x32 = nil;
     return warning32x32;
 }
 
-
 @end

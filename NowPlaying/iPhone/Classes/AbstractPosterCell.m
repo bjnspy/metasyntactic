@@ -139,5 +139,4 @@
     imageLoadingView.alpha = 1;
 }
 
-
 @end
