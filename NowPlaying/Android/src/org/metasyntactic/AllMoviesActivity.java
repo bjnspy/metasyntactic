@@ -170,7 +170,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     return false;
   }
 
-  class DetailAdapter extends BaseAdapter {
+  private class DetailAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
     public DetailAdapter() {
@@ -200,7 +200,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       holder.length = (TextView) convertView.findViewById(R.id.length);
       holder.genre = (TextView) convertView.findViewById(R.id.genre);
       holder.cast = (TextView) convertView.findViewById(R.id.cast);
-      holder.scoreLbl = (TextView) convertView
+      holder.scoreLabel = (TextView) convertView
           .findViewById(R.id.scorelbl);
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       convertView.setTag(holder);
@@ -235,23 +235,23 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       holder.score.setBackgroundDrawable(MovieViewUtilities
           .formatScoreDrawable(scoreValue, scoreType, res));
       if (scoreValue != -1) {
-        holder.scoreLbl.setText(String.valueOf(scoreValue) + "%");
+        holder.scoreLabel.setText(String.valueOf(scoreValue) + "%");
       } else {
-        holder.scoreLbl.setText("Unknown");
+        holder.scoreLabel.setText("Unknown");
       }
       return convertView;
     }
 
-    class MovieViewHolder {
-      TextView header;
-      Button score;
-      TextView title;
-      TextView rating;
-      TextView length;
-      TextView genre;
-      ImageView poster;
-      TextView scoreLbl;
-      TextView cast;
+    private class MovieViewHolder {
+      private TextView header;
+      private Button score;
+      private TextView title;
+      private TextView rating;
+      private TextView length;
+      private TextView genre;
+      private ImageView poster;
+      private TextView scoreLabel;
+      private TextView cast;
     }
 
     public int getCount() {
@@ -263,7 +263,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  class ThumbnailAdapter extends BaseAdapter {
+  private class ThumbnailAdapter extends BaseAdapter {
     public ThumbnailAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
