@@ -120,19 +120,15 @@ public class TheaterDetailsActivity extends ListActivity {
       holder.data = (TextView) convertView.findViewById(R.id.data);
       final Movie movie = TheaterDetailsActivity.this.movies.get(position);
       holder.label.setText(movie.getDisplayTitle());
-      final List<Performance> list = NowPlayingControllerWrapper
-          .getPerformancesForMovieAtTheater(movie, TheaterDetailsActivity.this.theater);
+      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie,
+                                                                                                  TheaterDetailsActivity.this.theater);
       String performance = "";
-      if (list != null) {
-        for (Performance aList : list) {
-          performance += aList.getTime() + ", ";
-        }
-        performance = performance
-            .substring(0, performance.length() - 2);
-        holder.data.setText(performance);
-      } else {
-        holder.data.setText("Unknown.");
+      for (Performance aList : list) {
+        performance += aList.getTime() + ", ";
       }
+      performance = performance.substring(0, performance.length() - 2);
+      holder.data.setText(performance);
+
       return convertView;
     }
 
