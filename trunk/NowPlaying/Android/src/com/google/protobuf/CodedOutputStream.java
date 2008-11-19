@@ -427,9 +427,9 @@ public final class CodedOutputStream {
    * reasons, the wire format differs from normal fields.
    */
   public static int computeMessageSetExtensionSize(final int fieldNumber, final Message value) {
-    return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 +
-           computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID, fieldNumber) +
-           computeMessageSize(WireFormat.MESSAGE_SET_MESSAGE, value);
+    return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 + computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID,
+                                                                               fieldNumber) + computeMessageSize(
+        WireFormat.MESSAGE_SET_MESSAGE, value);
   }
 
   /**
@@ -437,9 +437,9 @@ public final class CodedOutputStream {
    * For historical reasons, the wire format differs from normal fields.
    */
   public static int computeRawMessageSetExtensionSize(final int fieldNumber, final ByteString value) {
-    return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 +
-           computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID, fieldNumber) +
-           computeBytesSize(WireFormat.MESSAGE_SET_MESSAGE, value);
+    return computeTagSize(WireFormat.MESSAGE_SET_ITEM) * 2 + computeUInt32Size(WireFormat.MESSAGE_SET_TYPE_ID,
+                                                                               fieldNumber) + computeBytesSize(
+        WireFormat.MESSAGE_SET_MESSAGE, value);
   }
 
   /**

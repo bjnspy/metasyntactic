@@ -35,10 +35,8 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
 
   @Override
   protected String lookupServerHash() {
-    final String address = "http://" +
-                           Application
-                               .host +
-                                     ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
+    final String address = "http://" + Application
+        .host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 

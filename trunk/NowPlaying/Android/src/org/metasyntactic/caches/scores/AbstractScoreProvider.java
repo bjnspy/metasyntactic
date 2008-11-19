@@ -428,8 +428,8 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
         // we got no reviews.  only save that fact if we don't currently have
         // any reviews.  This way we don't end up checking every single time
         // for movies that don't have reviews yet
-        final List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader,
-                                                                               reviewsFile(score.getCanonicalTitle()));
+        final List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader, reviewsFile(
+            score.getCanonicalTitle()));
         if (size(existingReviews) > 0) {
           // we have reviews already.  don't wipe it out.
           return;

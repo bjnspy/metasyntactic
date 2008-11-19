@@ -35,10 +35,8 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
 
   @Override
   protected String lookupServerHash() {
-    final String address = "http://" +
-                           Application
-                               .host +
-                                     ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
+    final String address = "http://" + Application
+        .host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 

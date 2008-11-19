@@ -99,9 +99,8 @@ public class ShowtimesActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.showtimes_item, null);
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder(
-          (TextView) convertView.findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
-          (TextView) convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView.findViewById(
+          R.id.label), (ImageView) convertView.findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data));
 
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       final Theater theater = ShowtimesActivity.this.theaters.get(theaterIndex);
