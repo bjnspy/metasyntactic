@@ -679,7 +679,7 @@
 
 - (void) emailListings {
     NSString* movieAndDate = [NSString stringWithFormat:@"%@ - %@",
-                              movie.canonicalTitle,
+                              [Utilities asciiString:movie.canonicalTitle],
                               [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 

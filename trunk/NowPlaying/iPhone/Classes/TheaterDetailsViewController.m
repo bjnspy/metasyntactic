@@ -321,14 +321,14 @@
 
 - (void) didSelectEmailListings {
     NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
-                                theater.name,
+                                [Utilities asciiString:theater.name],
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 
     [body appendString:@"<a href=\""];
     [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
-    [body appendString:[self.model simpleAddressForTheater:theater]];
+    [body appendString:[Utilities asciiString:[self.model simpleAddressForTheater:theater]]];
     [body appendString:@"</a>"];
 
     for (int i = 0; i < movies.count; i++) {
@@ -337,7 +337,7 @@
         Movie* movie = [movies objectAtIndex:i];
         NSArray* performances = [movieShowtimes objectAtIndex:i];
 
-        [body appendString:movie.displayTitle];
+        [body appendString:[Utilities asciiString:movie.displayTitle]];
         [body appendString:@"\n"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
                                                       movie:movie
