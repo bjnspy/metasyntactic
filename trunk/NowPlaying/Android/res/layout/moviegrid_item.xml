@@ -12,17 +12,17 @@
         android:layout_width="80px"
         android:layout_height="120px"
         android:scaleType="fitXY"
-        android:layout_marginBottom="2px"
+        android:layout_marginBottom="5px"
         
         android:layout_gravity="center" />
     <TextView
         android:id="@+id/title"
-        android:layout_width="80px"
-        android:layout_height="35px"
-       
+        android:layout_width="95px"
+        android:layout_height="wrap_content"
+      
         android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="12px"
+        android:textColor="?android:attr/textColorPrimary"
         
         android:singleLine="false"
         android:layout_gravity="center"
