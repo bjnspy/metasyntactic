@@ -192,14 +192,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       MovieViewHolder holder;
       convertView = this.inflater.inflate(R.layout.moviesummary, null);
-      holder = new MovieViewHolder((Button) convertView.findViewById(R.id.score),
-                                   (TextView) convertView.findViewById(R.id.title),
-                                   (TextView) convertView.findViewById(R.id.rating),
-                                   (TextView) convertView.findViewById(R.id.length),
-                                   (TextView) convertView.findViewById(R.id.genre),
-                                   (ImageView) convertView.findViewById(R.id.poster),
-                                   (TextView) convertView.findViewById(R.id.scoreLabel),
-                                   (TextView) convertView.findViewById(R.id.cast));
+      holder = new MovieViewHolder((Button) convertView.findViewById(R.id.score), (TextView) convertView.findViewById(
+          R.id.title), (TextView) convertView.findViewById(R.id.rating), (TextView) convertView.findViewById(
+          R.id.length), (TextView) convertView.findViewById(R.id.genre), (ImageView) convertView.findViewById(
+          R.id.poster), (TextView) convertView.findViewById(R.id.scoreLabel), (TextView) convertView.findViewById(
+          R.id.cast));
 
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       convertView.setTag(holder);

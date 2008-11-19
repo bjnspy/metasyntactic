@@ -81,8 +81,8 @@ public final class ExtensionRegistry {
 
   /** Returns an unmodifiable view of the registry. */
   public ExtensionRegistry getUnmodifiable() {
-    return new ExtensionRegistry(Collections.unmodifiableMap(this.extensionsByName),
-                                 Collections.unmodifiableMap(this.extensionsByNumber));
+    return new ExtensionRegistry(Collections.unmodifiableMap(this.extensionsByName), Collections.unmodifiableMap(
+        this.extensionsByNumber));
   }
 
   /** A (Descriptor, Message) pair, returned by lookup methods. */

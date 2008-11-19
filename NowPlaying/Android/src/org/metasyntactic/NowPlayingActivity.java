@@ -236,8 +236,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         convertView = this.mInflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children views
         // we want to bind data to.
-        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title),
-                                (ImageView) convertView.findViewById(R.id.poster));
+        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title), (ImageView) convertView.findViewById(
+            R.id.poster));
 
         convertView.setTag(holder);
       } else {

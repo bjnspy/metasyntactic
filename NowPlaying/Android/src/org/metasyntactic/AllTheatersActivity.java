@@ -71,8 +71,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress
         .getLongitude(), null, null, null, null, null);
 
-    Collections.sort(this.theaters,
-                     this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
+    Collections.sort(this.theaters, this.THEATER_ORDER.get(
+        NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     // Set up Movies adapter
     this.adapter = new TheatersAdapter();
     setListAdapter(this.adapter);

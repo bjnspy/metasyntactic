@@ -314,8 +314,8 @@ public abstract class GeneratedMessage extends AbstractMessage {
     public final <Type> Type getExtension(final GeneratedExtension<MessageType, List<Type>> extension,
                                           final int index) {
       verifyExtensionContainingType(extension);
-      return (Type) extension.singularFromReflectionType(
-          this.extensions.getRepeatedField(extension.getDescriptor(), index));
+      return (Type) extension.singularFromReflectionType(this.extensions.getRepeatedField(extension.getDescriptor(),
+                                                                                          index));
     }
 
     /** Called by subclasses to check if all extensions are initialized. */

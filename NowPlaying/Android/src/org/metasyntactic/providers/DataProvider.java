@@ -285,8 +285,8 @@ public class DataProvider {
     final Location location = new Location(latitude, longitude, address, city, state, postalCode, country);
 
     performances.put(name, movieToShowtimesMap);
-    theaters.add(new Theater(identifier, name, address, phone, location, originatingLocation,
-                             new HashSet<String>(movieToShowtimesMap.keySet())));
+    theaters.add(new Theater(identifier, name, address, phone, location, originatingLocation, new HashSet<String>(
+        movieToShowtimesMap.keySet())));
   }
 
   private LookupResult processTheaterAndMovieShowtimes(
@@ -424,8 +424,8 @@ public class DataProvider {
   private Map<String, List<Performance>> lookupTheaterPerformances(final Theater theater) {
     Map<String, List<Performance>> theaterPerformances = this.performances.get(theater.getName());
     if (theaterPerformances == null) {
-      theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
-                                                                         getPerformancesFile(theater.getName()));
+      theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader, getPerformancesFile(
+          theater.getName()));
       this.performances.put(theater.getName(), theaterPerformances);
     }
     return theaterPerformances;

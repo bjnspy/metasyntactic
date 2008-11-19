@@ -150,11 +150,8 @@ public class UserLocationCache {
   }
 
   private Location downloadAddressLocationFromWebServiceWorker(final String address) {
-    final String escapedAddress = "http://" +
-                                  Application
-                                      .host +
-                                            ".appspot.com/LookupLocation?q=" +
-                                            StringUtilities.urlEncode(address);
+    final String escapedAddress = "http://" + Application
+        .host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(address);
 
     final Element element = NetworkUtilities.downloadXml(escapedAddress, true);
 
