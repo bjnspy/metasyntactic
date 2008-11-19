@@ -108,7 +108,7 @@ public final class R {
         public static final int rating=0x7f07000c;
         public static final int reviewsbtn=0x7f070002;
         public static final int score=0x7f07000a;
-        public static final int scorelbl=0x7f07000b;
+        public static final int scoreLabel=0x7f07000b;
         public static final int showtimes=0x7f070014;
         public static final int showtimesbtn=0x7f070004;
         public static final int source=0x7f07001d;

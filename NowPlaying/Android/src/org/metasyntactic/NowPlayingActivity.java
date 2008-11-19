@@ -214,7 +214,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
     }
   };
-  private final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
+  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
 
   public class PostersAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;

@@ -39,7 +39,7 @@
         android:layout_marginLeft="18px"
         android:layout_marginBottom="13px" />
     <TextView
-        android:id="@+id/scorelbl"
+        android:id="@+id/scoreLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="left"
