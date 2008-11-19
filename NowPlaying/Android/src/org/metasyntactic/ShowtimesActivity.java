@@ -27,7 +27,7 @@ public class ShowtimesActivity extends ListActivity {
     private TheaterAdapter theaterAdapter;
     private List<Theater> theaters ;
     private Movie movie;
-    private List<TheaterDetailItem> detailItems = new ArrayList<TheaterDetailItem>();
+    private final List<TheaterDetailItem> detailItems = new ArrayList<TheaterDetailItem>();
     private Context mContext;
 
     enum TheaterDetailItemType {
@@ -35,10 +35,12 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
         // TODO Auto-generated method stub
-        Intent intent = detailItems.get(position).getIntent();
-        if (intent != null) startActivity(intent);
+        final Intent intent = this.detailItems.get(position).getIntent();
+        if (intent != null) {
+          startActivity(intent);
+        }
         super.onListItemClick(l, v, position, id);
     }
 
@@ -47,7 +49,7 @@ public class ShowtimesActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         NowPlayingControllerWrapper.addActivity(this);
         setContentView(R.layout.showtimes);
-        mContext = this;
+        this.mContext = this;
         this.movie = getIntent().getExtras().getParcelable("movie");
     }
 
@@ -57,16 +59,16 @@ public class ShowtimesActivity extends ListActivity {
         super.onDestroy();
     }
     private void bindView() {
-        TextView movielbl = (TextView) findViewById(R.id.movie);
+        final TextView movielbl = (TextView) findViewById(R.id.movie);
         movielbl.setEllipsize(TextUtils.TruncateAt.END);
-        movielbl.setText(movie.getDisplayTitle());
-        theaters = NowPlayingControllerWrapper.getTheatersShowingMovie(movie);
-      
+        movielbl.setText(this.movie.getDisplayTitle());
+        this.theaters = NowPlayingControllerWrapper.getTheatersShowingMovie(this.movie);
+
     }
 
     private void populateTheaterDetailItems() {
         // TODO Auto-generated method stub
-        for (int i = 0; i < theaters.size(); i++) {
+        for (int i = 0; i < this.theaters.size(); i++) {
             populateTheaterDetailItem();
         }
     }
@@ -75,58 +77,56 @@ public class ShowtimesActivity extends ListActivity {
         // Add name_showtimes type
         TheaterDetailItem entry1 = new TheaterDetailItem();
         entry1.setType(TheaterDetailItemType.NAME_SHOWTIMES);
-        detailItems.add(entry1);
+        this.detailItems.add(entry1);
         // Add address type
         entry1 = new TheaterDetailItem();
         entry1.setType(TheaterDetailItemType.ADDRESS);
-        detailItems.add(entry1);
+        this.detailItems.add(entry1);
         // Add phone type
         entry1 = new TheaterDetailItem();
         entry1.setType(TheaterDetailItemType.PHONE);
-        detailItems.add(entry1);
+        this.detailItems.add(entry1);
     }
 
-   
+
     @Override
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
         bindView();
         populateTheaterDetailItems();
-        theaterAdapter = new TheaterAdapter(this);
-        setListAdapter(theaterAdapter);
+        this.theaterAdapter = new TheaterAdapter(this);
+        setListAdapter(this.theaterAdapter);
     }
 
     class TheaterAdapter extends BaseAdapter {
-        private final Context context;
         private final LayoutInflater inflater;
 
-        public TheaterAdapter(Context context) {
-            this.context = context;
+        public TheaterAdapter(final Context context) {
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            inflater = LayoutInflater.from(context);
+            this.inflater = LayoutInflater.from(context);
         }
 
-        public View getView(int position, View convertView, ViewGroup viewGroup) {
-            convertView = inflater.inflate(R.layout.showtimes_item, null);
-            TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder();
+        public View getView(final int position, View convertView, final ViewGroup viewGroup) {
+            convertView = this.inflater.inflate(R.layout.showtimes_item, null);
+            final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder();
             holder.label = (TextView) convertView.findViewById(R.id.label);
             holder.icon = (ImageView) convertView.findViewById(R.id.icon);
             holder.data = (TextView) convertView.findViewById(R.id.data);
-            int theaterIndex = position / TheaterDetailItemType.values().length;
-            Theater theater = theaters.get(theaterIndex);
-            switch (detailItems.get(position).getType()) {
+            final int theaterIndex = position / TheaterDetailItemType.values().length;
+            final Theater theater = ShowtimesActivity.this.theaters.get(theaterIndex);
+            switch (ShowtimesActivity.this.detailItems.get(position).getType()) {
                 case NAME_SHOWTIMES:
-                    holder.label.setTextAppearance(mContext,
+                    holder.label.setTextAppearance(ShowtimesActivity.this.mContext,
                             android.R.attr.textAppearanceLarge);
                     // holder.label.setTextColor(Color.BLACK);
                     holder.label.setMinHeight(50);
                     holder.label
                             .setBackgroundColor(Color.parseColor("#2c2c2b"));
                     holder.label.setText(theater.getName());
-                    List<Performance> list = NowPlayingControllerWrapper
-                            .getPerformancesForMovieAtTheater(movie, theater);
-                    holder.icon.setImageDrawable(mContext.getResources()
+                    final List<Performance> list = NowPlayingControllerWrapper
+                            .getPerformancesForMovieAtTheater(ShowtimesActivity.this.movie, theater);
+                    holder.icon.setImageDrawable(ShowtimesActivity.this.mContext.getResources()
                             .getDrawable(android.R.drawable.sym_action_email));
                     String performance = "";
                     if (list != null) {
@@ -136,43 +136,43 @@ public class ShowtimesActivity extends ListActivity {
                         performance = performance.substring(0, performance
                                 .length() - 2);
                         holder.data.setText(performance);
-                        String addr = "user@example.com";
-                        Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri
+                        final String addr = "user@example.com";
+                        final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri
                                 .parse("mailto:" + addr));
                         intent1.putExtra("subject", "ShowTimes for "
-                                + movie.getDisplayTitle() + " at "
+                                + ShowtimesActivity.this.movie.getDisplayTitle() + " at "
                                 + theater.getName());
                         intent1.putExtra("body", performance);
-                        detailItems.get(position).setIntent(intent1);
+                        ShowtimesActivity.this.detailItems.get(position).setIntent(intent1);
                     } else {
                         holder.data.setText("Unknown.");
                     }
                     break;
                 case PHONE:
                     holder.data.setText(theater.getPhoneNumber());
-                    holder.icon.setImageDrawable(mContext.getResources()
+                    holder.icon.setImageDrawable(ShowtimesActivity.this.mContext.getResources()
                             .getDrawable(android.R.drawable.sym_action_call));
                     holder.label.setText("Phone");
-                    Intent intent2 = new Intent("android.intent.action.DIAL",
+                    final Intent intent2 = new Intent("android.intent.action.DIAL",
                             Uri.parse("tel:" + theater.getPhoneNumber()));
-                    detailItems.get(position).setIntent(intent2);
+                    ShowtimesActivity.this.detailItems.get(position).setIntent(intent2);
                     break;
                 case ADDRESS:
-                    String address = theater.getAddress() + ", "
+                    final String address = theater.getAddress() + ", "
                             + theater.getLocation().getCity();
                     holder.data.setText(address);
-                    holder.icon.setImageDrawable(mContext.getResources()
+                    holder.icon.setImageDrawable(ShowtimesActivity.this.mContext.getResources()
                             .getDrawable(R.drawable.sym_action_map));
                     holder.label.setText("Address");
-                    Intent intent3 = new Intent("android.intent.action.VIEW",
+                    final Intent intent3 = new Intent("android.intent.action.VIEW",
                             Uri.parse("geo:0,0?q=" + address));
-                    detailItems.get(position).setIntent(intent3);
+                    ShowtimesActivity.this.detailItems.get(position).setIntent(intent3);
             }
             return convertView;
         }
 
         public int getCount() {
-            return detailItems.size();
+            return ShowtimesActivity.this.detailItems.size();
         }
 
         private class TheaterDetailsViewHolder {
@@ -189,8 +189,7 @@ public class ShowtimesActivity extends ListActivity {
             return ShowtimesActivity.this.theaters.get(position);
         }
 
-        @Override
-        public long getItemId(int position) {
+        public long getItemId(final int position) {
             // TODO Auto-generated method stub
             return position;
         }
@@ -204,18 +203,18 @@ public class ShowtimesActivity extends ListActivity {
         Intent intent;
 
         public Intent getIntent() {
-            return intent;
+            return this.intent;
         }
 
-        public void setIntent(Intent intent) {
+        public void setIntent(final Intent intent) {
             this.intent = intent;
         }
 
         public TheaterDetailItemType getType() {
-            return type;
+            return this.type;
         }
 
-        public void setType(TheaterDetailItemType type) {
+        public void setType(final TheaterDetailItemType type) {
             this.type = type;
         }
     }

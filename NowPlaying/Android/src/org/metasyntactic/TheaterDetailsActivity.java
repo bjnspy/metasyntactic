@@ -32,21 +32,21 @@ public class TheaterDetailsActivity extends ListActivity {
     List<Movie> movies = new ArrayList<Movie>();
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NowPlayingControllerWrapper.removeActivity(this);
         setContentView(R.layout.theaterdetails);
-        theater = this.getIntent().getExtras().getParcelable("theater");
-        mContext = this;
+        this.theater = getIntent().getExtras().getParcelable("theater");
+        this.mContext = this;
         bindView();
     }
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
         // TODO Auto-generated method stub
-        Movie movie = movies.get(position);
-        Intent intent = new Intent();
-        intent.setClass(mContext, MovieDetailsActivity.class);
+        final Movie movie = this.movies.get(position);
+        final Intent intent = new Intent();
+        intent.setClass(this.mContext, MovieDetailsActivity.class);
         intent.putExtra("movie", (Parcelable) movie);
         startActivity(intent);
         super.onListItemClick(l, v, position, id);
@@ -60,50 +60,46 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     private void bindView() {
-        TextView theaterlbl = (TextView) findViewById(R.id.theater);
+        final TextView theaterlbl = (TextView) findViewById(R.id.theater);
         theaterlbl.setEllipsize(TextUtils.TruncateAt.END);
-        theaterlbl.setText(theater.getName());
-        TextView phonelbl = (TextView) findViewById(R.id.phone);
+        theaterlbl.setText(this.theater.getName());
+        final TextView phonelbl = (TextView) findViewById(R.id.phone);
         phonelbl.setEllipsize(TextUtils.TruncateAt.END);
-        phonelbl.setText(theater.getPhoneNumber());
-        TextView maplbl = (TextView) findViewById(R.id.map);
+        phonelbl.setText(this.theater.getPhoneNumber());
+        final TextView maplbl = (TextView) findViewById(R.id.map);
         maplbl.setEllipsize(TextUtils.TruncateAt.END);
-        final String address = theater.getAddress() + ", "
-                + theater.getLocation().getCity();
+        final String address = this.theater.getAddress() + ", "
+                + this.theater.getLocation().getCity();
         maplbl.setText(address);
-        movies = NowPlayingControllerWrapper.getMoviesAtTheater(theater);
-        ImageView mapIcon = (ImageView) findViewById(R.id.mapicon);
-        ImageView phoneIcon = (ImageView) findViewById(R.id.phoneicon);
+        this.movies = NowPlayingControllerWrapper.getMoviesAtTheater(this.theater);
+        final ImageView mapIcon = (ImageView) findViewById(R.id.mapicon);
+        final ImageView phoneIcon = (ImageView) findViewById(R.id.phoneicon);
         final Intent mapIntent = new Intent("android.intent.action.VIEW", Uri
                 .parse("geo:0,0?q=" + address));
         final Intent callIntent = new Intent("android.intent.action.DIAL", Uri
-                .parse("tel:" + theater.getPhoneNumber()));
+                .parse("tel:" + this.theater.getPhoneNumber()));
         mapIcon.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
+            public void onClick(final View arg0) {
                 startActivity(mapIntent);
             }
         });
         maplbl.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
+            public void onClick(final View arg0) {
                 startActivity(mapIntent);
             }
         });
         phoneIcon.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
+            public void onClick(final View arg0) {
                 startActivity(callIntent);
             }
         });
         phonelbl.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
+            public void onClick(final View arg0) {
                 startActivity(callIntent);
             }
         });
-        moviesAdapter = new MoviesAdapter(this);
-        setListAdapter(moviesAdapter);
+        this.moviesAdapter = new MoviesAdapter(this);
+        setListAdapter(this.moviesAdapter);
     }
 
     @Override
@@ -112,28 +108,26 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     class MoviesAdapter extends BaseAdapter {
-        private final Context context;
         private final LayoutInflater inflater;
 
-        public MoviesAdapter(Context context) {
-            this.context = context;
+        public MoviesAdapter(final Context context) {
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            inflater = LayoutInflater.from(context);
+            this.inflater = LayoutInflater.from(context);
         }
 
-        public Object getEntry(int i) {
+        public Object getEntry(final int i) {
             return i;
         }
 
-        public View getView(int position, View convertView, ViewGroup viewGroup) {
-            convertView = inflater.inflate(R.layout.theaterdetails_item, null);
-            MovieViewHolder holder = new MovieViewHolder();
+        public View getView(final int position, View convertView, final ViewGroup viewGroup) {
+            convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
+            final MovieViewHolder holder = new MovieViewHolder();
             holder.label = (TextView) convertView.findViewById(R.id.label);
             holder.data = (TextView) convertView.findViewById(R.id.data);
-            Movie movie = movies.get(position);
+            final Movie movie = TheaterDetailsActivity.this.movies.get(position);
             holder.label.setText(movie.getDisplayTitle());
-            List<Performance> list = NowPlayingControllerWrapper
-                    .getPerformancesForMovieAtTheater(movie, theater);
+            final List<Performance> list = NowPlayingControllerWrapper
+                    .getPerformancesForMovieAtTheater(movie, TheaterDetailsActivity.this.theater);
             String performance = "";
             if (list != null) {
                 for (int i = 0; i < list.size(); i++) {
@@ -149,7 +143,7 @@ public class TheaterDetailsActivity extends ListActivity {
         }
 
         public int getCount() {
-            return movies.size();
+            return TheaterDetailsActivity.this.movies.size();
         }
 
         private class MovieViewHolder {
@@ -157,19 +151,17 @@ public class TheaterDetailsActivity extends ListActivity {
             TextView data;
         }
 
-        public long getEntryId(int position) {
+        public long getEntryId(final int position) {
             // TODO Auto-generated method stub
             return position;
         }
 
-        @Override
-        public Object getItem(int position) {
+        public Object getItem(final int position) {
             // TODO Auto-generated method stub
-            return movies.get(position);
+            return TheaterDetailsActivity.this.movies.get(position);
         }
 
-        @Override
-        public long getItemId(int position) {
+        public long getItemId(final int position) {
             // TODO Auto-generated method stub
             return position;
         }
@@ -179,6 +171,4 @@ public class TheaterDetailsActivity extends ListActivity {
             notifyDataSetChanged();
         }
     }
-
-    private Movie movie;
 }
