@@ -155,10 +155,10 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
 
     private class MovieViewHolder {
-      TextView header;
-      TextView address;
-      TextView title;
-      ImageView divider;
+      private TextView header;
+      private TextView address;
+      private TextView title;
+      private ImageView divider;
     }
 
     public void refreshTheaters(final List<Theater> new_theaters) {
@@ -198,7 +198,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     final Theater theater = this.theaters.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, TheaterDetailsActivity.class);
-    intent.putExtra("theater", (Parcelable) theater);
+    intent.putExtra("theater", (Parcelable)theater);
     startActivity(intent);
     super.onListItemClick(l, v, position, id);
   }
