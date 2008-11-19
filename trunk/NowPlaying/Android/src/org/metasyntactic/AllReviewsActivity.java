@@ -79,11 +79,12 @@ public class AllReviewsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       MovieViewHolder holder;
       convertView = this.inflater.inflate(R.layout.reviewview, null);
-      holder = new MovieViewHolder();
-      holder.score = (ImageView) convertView.findViewById(R.id.score);
-      holder.author = (TextView) convertView.findViewById(R.id.author);
-      holder.source = (TextView) convertView.findViewById(R.id.source);
-      holder.description = (TextView) convertView.findViewById(R.id.desc);
+      holder = new MovieViewHolder(
+          (ImageView) convertView.findViewById(R.id.score),
+          (TextView) convertView.findViewById(R.id.author),
+          (TextView) convertView.findViewById(R.id.source),
+          (TextView) convertView.findViewById(R.id.desc));
+
       convertView.setTag(holder);
       final Review review = AllReviewsActivity.this.reviews.get(position);
       holder.author.setText(review.getAuthor());
@@ -94,10 +95,17 @@ public class AllReviewsActivity extends ListActivity {
     }
 
     private class MovieViewHolder {
-      private ImageView score;
-      private TextView author;
-      private TextView source;
-      private TextView description;
+      private final ImageView score;
+      private final TextView author;
+      private final TextView source;
+      private final TextView description;
+
+      private MovieViewHolder(ImageView score, TextView author, TextView source, TextView description) {
+        this.score = score;
+        this.author = author;
+        this.source = source;
+        this.description = description;
+      }
     }
 
     public int getCount() {
