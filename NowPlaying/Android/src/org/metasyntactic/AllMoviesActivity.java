@@ -55,7 +55,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   private DetailAdapter detailAdapter;
   private ThumbnailAdapter thumbnailAdapter;
 
-  private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
       refresh();
@@ -137,20 +137,14 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
-    if (this.broadcastReceiver != null) {
-      unregisterReceiver(this.broadcastReceiver);
-      this.broadcastReceiver = null;
-    }
+    unregisterReceiver(this.broadcastReceiver);
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
   protected void onPause() {
-    if (this.broadcastReceiver != null) {
-      unregisterReceiver(this.broadcastReceiver);
-      this.broadcastReceiver = null;
-    }
+    unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
 
