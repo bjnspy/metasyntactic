@@ -94,7 +94,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-
     menu.add(0, MENU_SORT, 0, R.string.menu_theater_sort).setIcon(android.R.drawable.star_on);
 
     menu.add(0, MENU_SETTINGS, 0, R.string.settings)
@@ -123,12 +122,12 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       // Creates a MovieViewHolder and store references to the
       // children
       // views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder();
-      holder.divider = (ImageView) convertView
-          .findViewById(R.id.divider1);
-      holder.title = (TextView) convertView.findViewById(R.id.title);
-      holder.address = (TextView) convertView.findViewById(R.id.address);
-      holder.header = (TextView) convertView.findViewById(R.id.header);
+      final MovieViewHolder holder = new MovieViewHolder(
+          (TextView) convertView.findViewById(R.id.header),
+          (TextView) convertView.findViewById(R.id.address),
+          (TextView) convertView.findViewById(R.id.title),
+          (ImageView) convertView.findViewById(R.id.divider1));
+
       // Bind the data efficiently with the holder.
       final Theater theater = AllTheatersActivity.this.theaters.get(position);
 
@@ -155,10 +154,17 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
 
     private class MovieViewHolder {
-      private TextView header;
-      private TextView address;
-      private TextView title;
-      private ImageView divider;
+      private final TextView header;
+      private final TextView address;
+      private final TextView title;
+      private final ImageView divider;
+
+      private MovieViewHolder(TextView header, TextView address, TextView title, ImageView divider) {
+        this.header = header;
+        this.address = address;
+        this.title = title;
+        this.divider = divider;
+      }
     }
 
     public void refreshTheaters(final List<Theater> new_theaters) {
