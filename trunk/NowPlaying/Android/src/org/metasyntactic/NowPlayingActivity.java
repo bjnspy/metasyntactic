@@ -300,6 +300,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
                     }
                 }
             });
+            convertView.setBackgroundDrawable(NowPlayingActivity.this.getResources().getDrawable(R.drawable.gallery_background_1));
             return convertView;
         }
 
