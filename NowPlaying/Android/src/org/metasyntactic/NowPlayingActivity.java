@@ -175,12 +175,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onPause();
   }
 
-  final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
+  private final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
       return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
     }
   };
-  final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
+  private final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
       final Calendar c1 = Calendar.getInstance();
       c1.set(1900, 11, 11);
@@ -195,7 +195,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       return d2.compareTo(d1);
     }
   };
-  final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
+  private final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
       int value1 = 0;
       int value2 = 0;
@@ -214,7 +214,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
     }
   };
-  final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
+  private final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
 
   public class PostersAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
@@ -272,9 +272,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       return convertView;
     }
 
-    class ViewHolder {
-      TextView title;
-      ImageView poster;
+    private class ViewHolder {
+      private TextView title;
+      private ImageView poster;
     }
 
     public final int getCount() {
