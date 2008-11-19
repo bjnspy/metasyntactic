@@ -194,7 +194,7 @@ public class NowPlayingControllerWrapper {
     return instance.getScore(movie);
   }
 
-  public static ByteArray getPoster(final Movie movie) {
+  public static byte[] getPoster(final Movie movie) {
     checkInstance();
     return instance.getPoster(movie);
   }

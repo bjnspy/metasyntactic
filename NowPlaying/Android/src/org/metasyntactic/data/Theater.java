@@ -16,7 +16,7 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.io.AbstractPersistable;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
@@ -143,8 +143,8 @@ public class Theater implements Parcelable, Persistable {
       String address = source.readString();
       String phoneNumber = source.readString();
 
-      Location location = source.readParcelable(Application.applicationContext.getClassLoader());
-      Location originatingLocation = source.readParcelable(Application.applicationContext.getClassLoader());
+      Location location = source.readParcelable(NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
+      Location originatingLocation = source.readParcelable(NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
       List<String> movieTitles = new ArrayList<String>();
       source.readStringList(movieTitles);
 

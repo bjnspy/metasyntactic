@@ -143,13 +143,8 @@ public class NowPlayingController {
     return this.model.getScore(movie);
   }
 
-  public ByteArray getPoster(final Movie movie) {
-    final byte[] bytes = this.model.getPoster(movie);
-    if (bytes == null) {
-      return ByteArray.empty;
-    }
-
-    return new ByteArray(bytes);
+  public byte[] getPoster(final Movie movie) {
+    return this.model.getPoster(movie);
   }
 
   public String getSynopsis(final Movie movie) {

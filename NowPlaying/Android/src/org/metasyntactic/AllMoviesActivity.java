@@ -214,8 +214,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       convertView.setTag(holder);
       final Resources res = getContext().getResources();
       final Movie movie = AllMoviesActivity.this.movies.get(position);
-      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie)
-          .getBytes();
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
       if (bytes.length > 0) {
         holder.poster.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         holder.poster.setBackgroundResource(R.drawable.image_frame);
@@ -296,8 +295,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       a.recycle();
       i.setBackgroundResource(galleryItemBackground);
       final Movie movie = AllMoviesActivity.this.movies.get(position % AllMoviesActivity.this.movies.size());
-      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie)
-          .getBytes();
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
       if (bytes.length > 0) {
         i.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
       } else {

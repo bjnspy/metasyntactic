@@ -259,8 +259,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       final Movie movie = NowPlayingActivity.this.movies.get(position % NowPlayingActivity.this.movies.size());
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
-      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie)
-          .getBytes();
+      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
       if (bytes.length > 0) {
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.poster.setImageBitmap(bitmap);
