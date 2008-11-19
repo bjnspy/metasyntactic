@@ -18,14 +18,16 @@ import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 
+import android.content.Context;
+
 import java.util.List;
 
 public class NowPlayingController {
-  private final NowPlayingModel model = new NowPlayingModel();
+  private final NowPlayingModel model;
   private final Object lock = new Object();
 
-  public NowPlayingController() {
-
+  public NowPlayingController(final Context applicationContext) {
+    this.model = new NowPlayingModel(applicationContext);
   }
 
   public void startup() {
@@ -40,7 +42,7 @@ public class NowPlayingController {
   private void update() {
     final Runnable runnable = new Runnable() {
       public void run() {
-        NowPlayingController.this.model.startup();
+        NowPlayingController.this.model.update();
       }
     };
 

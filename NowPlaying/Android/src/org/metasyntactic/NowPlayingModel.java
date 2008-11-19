@@ -14,6 +14,7 @@
 
 package org.metasyntactic;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
@@ -44,7 +45,7 @@ public class NowPlayingModel {
 
   // SharedPreferences is not threadsafe.  so we need to lock when using it
   private final Object preferencesLock = new Object();
-  private SharedPreferences preferences;
+  private final SharedPreferences preferences;
 
   private final DataProvider dataProvider = new DataProvider(this);
   private final ScoreCache scoreCache = new ScoreCache(this);
@@ -53,7 +54,11 @@ public class NowPlayingModel {
   private final UpcomingCache upcomingCache = new UpcomingCache();
   private final PosterCache posterCache = new PosterCache(this);
 
-  public NowPlayingModel() {
+  public NowPlayingModel(final Context applicationContext) {
+    this.preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);
+    loadData();
+
+    initializeTestValues();
   }
 
   private void loadData() {
@@ -70,13 +75,6 @@ public class NowPlayingModel {
   }
 
   public void startup() {
-    this.preferences = NowPlayingControllerWrapper.getApplicationContext()
-        .getSharedPreferences(NowPlayingModel.class.getName(), 0);
-
-    loadData();
-
-    initializeTestValues();
-
     update();
   }
 
@@ -86,6 +84,14 @@ public class NowPlayingModel {
     this.trailerCache.shutdown();
     this.posterCache.shutdown();
     this.scoreCache.shutdown();
+  }
+
+  public void update() {
+    this.dataProvider.update();
+    this.upcomingCache.update();
+    updateTrailerCache();
+    updatePosterCache();
+    this.scoreCache.update();
   }
 
   private void initializeTestValues() {
@@ -109,14 +115,6 @@ public class NowPlayingModel {
   }
 
   private void updateIMDbCache() {
-  }
-
-  private void update() {
-    this.dataProvider.update();
-    this.upcomingCache.update();
-    updateTrailerCache();
-    updatePosterCache();
-    this.scoreCache.update();
   }
 
   public String getUserLocation() {
