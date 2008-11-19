@@ -67,17 +67,17 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.movieview);
     NowPlayingControllerWrapper.addActivity(this);
-    detailAdapter = new DetailAdapter();
-    thumbnailAdapter = new ThumbnailAdapter();
+    this.detailAdapter = new DetailAdapter();
+    this.thumbnailAdapter = new ThumbnailAdapter();
     setupView();
   }
 
   private void setupView() {
     final CustomGallery detail = (CustomGallery) findViewById(R.id.detail);
-    detail.setAdapter(detailAdapter);
+    detail.setAdapter(this.detailAdapter);
     // detail.setSelection(0);
     final CustomGallery thumbnail = (CustomGallery) findViewById(R.id.thumbnails);
-    thumbnail.setAdapter(thumbnailAdapter);
+    thumbnail.setAdapter(this.thumbnailAdapter);
     thumbnail.setSoundEffectsEnabled(true);
     // thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
     final OnItemSelectedListener listener = new OnItemSelectedListener() {
@@ -171,7 +171,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     if (item.getItemId() == MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(AllMoviesActivity.this).setTitle(
           R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
-          .setEntries(R.array.entries_movies_sort_preference).show();
+          .setEntries(R.array.entries_movies_sort_preference);
+      builder.show();
       return true;
     }
     return false;
@@ -274,7 +275,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   class ThumbnailAdapter extends BaseAdapter {
     public ThumbnailAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      LayoutInflater inflater = LayoutInflater.from(AllMoviesActivity.this);
       final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
       a.recycle();
     }
@@ -326,9 +326,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     final Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER
         .get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
-    if (detailAdapter != null && thumbnailAdapter != null) {
-      detailAdapter.refreshMovies();
-      thumbnailAdapter.refreshMovies();
+    if (this.detailAdapter != null && this.thumbnailAdapter != null) {
+      this.detailAdapter.refreshMovies();
+      this.thumbnailAdapter.refreshMovies();
     }
   }
 }

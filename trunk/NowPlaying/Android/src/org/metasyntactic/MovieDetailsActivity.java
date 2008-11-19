@@ -32,13 +32,13 @@ public class MovieDetailsActivity extends ListActivity {
     setContentView(R.layout.moviedetails);
     this.movie = getIntent().getExtras().getParcelable("movie");
     populateMovieDetailEntries();
-    MovieAdapter movieAdapter = new MovieAdapter();
+    final MovieAdapter movieAdapter = new MovieAdapter();
     setListAdapter(movieAdapter);
     bindButtonClickListeners();
   }
 
   private void populateMovieDetailEntries() {
-    final Resources res = this.getResources();
+    final Resources res = getResources();
     // Add title and synopsis
     MovieDetailEntry entry = new MovieDetailEntry();
     entry.setName(this.movie.getDisplayTitle());
@@ -87,7 +87,6 @@ public class MovieDetailsActivity extends ListActivity {
   void bindButtonClickListeners() {
     final Button imdbbtn = (Button) findViewById(R.id.imdbbtn);
     final Button reviewsbtn = (Button) findViewById(R.id.reviewsbtn);
-    final Button trailersbtn = (Button) findViewById(R.id.trailerbtn);
     final Button showtimes = (Button) findViewById(R.id.showtimesbtn);
     imdbbtn.setOnClickListener(new OnClickListener() {
       public void onClick(final View v) {
