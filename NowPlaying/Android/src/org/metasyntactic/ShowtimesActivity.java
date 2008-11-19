@@ -99,10 +99,11 @@ public class ShowtimesActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.showtimes_item, null);
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder();
-      holder.label = (TextView) convertView.findViewById(R.id.label);
-      holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-      holder.data = (TextView) convertView.findViewById(R.id.data);
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder(
+          (TextView) convertView.findViewById(R.id.label),
+          (ImageView) convertView.findViewById(R.id.icon),
+          (TextView) convertView.findViewById(R.id.data));
+
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       final Theater theater = ShowtimesActivity.this.theaters.get(theaterIndex);
       switch (ShowtimesActivity.this.detailItems.get(position).getType()) {
@@ -119,11 +120,10 @@ public class ShowtimesActivity extends ListActivity {
               .getDrawable(android.R.drawable.sym_action_email));
           String performance = "";
           if (list != null) {
-            for (int i = 0; i < list.size(); i++) {
-              performance += list.get(i).getTime() + ", ";
+            for (Performance per : list) {
+              performance += per.getTime() + ", ";
             }
-            performance = performance.substring(0, performance
-                .length() - 2);
+            performance = performance.substring(0, performance.length() - 2);
             holder.data.setText(performance);
             final String addr = "user@example.com";
             final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri
@@ -161,9 +161,15 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     private class TheaterDetailsViewHolder {
-      TextView label;
-      ImageView icon;
-      TextView data;
+      private TextView label;
+      private ImageView icon;
+      private TextView data;
+
+      private TheaterDetailsViewHolder(TextView label, ImageView icon, TextView data) {
+        this.label = label;
+        this.icon = icon;
+        this.data = data;
+      }
     }
 
     public long getEntryId(final int position) {
@@ -184,8 +190,8 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   private class TheaterDetailItem {
-    TheaterDetailItemType type;
-    Intent intent;
+    private TheaterDetailItemType type;
+    private Intent intent;
 
     public Intent getIntent() {
       return this.intent;
