@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic;
 
 import android.app.Activity;
@@ -24,312 +23,343 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
+
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
+import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
-  public static final int MENU_SORT = 1;
-  public static final int MENU_THEATER = 2;
-  public static final int MENU_UPCOMING = 3;
-  public static final int MENU_SETTINGS = 4;
-  private GridView grid;
-  private Intent intent;
-  private Animation animation;
-  private int selection;
-  private PostersAdapter postersAdapter;
-  private boolean gridAnimationEnded;
-  private boolean isPrioritized;
-  private boolean isGridSetup;
-  private List<Movie> movies;
-
-  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
-      refresh();
-    }
-  };
-
-  /** Updates display of the list of movies. */
-  public void refresh() {
-    final List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
-    // sort movies according to the default sort preference.
-    final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
-        .getAllMoviesSelectedSortIndex());
-    Collections.sort(tmpMovies, comparator);
-    this.movies = new ArrayList<Movie>(tmpMovies);
-
-    if (!this.isPrioritized) {
-      for (int i = 0; i < Math.min(6, this.movies.size()); i++) {
-        NowPlayingControllerWrapper.prioritizeMovie(this.movies.get(i));
-      }
-      this.isPrioritized = true;
-    }
-    if (this.movies.size() > 0 && !this.isGridSetup) {
-      setup();
-      this.isGridSetup = true;
-    }
-    if (this.postersAdapter != null && this.gridAnimationEnded) {
-      this.postersAdapter.refreshMovies();
-    }
-  }
-
-  public List<Movie> getMovies() {
-    return this.movies;
-  }
-
-  @Override
-  public boolean onTouchEvent(final MotionEvent event) {
-    return super.onTouchEvent(event);
-  }
-
-  public NowPlayingActivity() {
-  }
-
-  public Context getContext() {
-    return this;
-  }
-
-  /** Called when the activity is first created. */
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    NowPlayingControllerWrapper.addActivity(this);
-
-    // Request the progress bar to be shown in the title
-    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    setContentView(R.layout.progressbar_1);
-  }
-
-  @Override
-  protected void onDestroy() {
-    unregisterReceiver(this.broadcastReceiver);
-    NowPlayingControllerWrapper.removeActivity(this);
-    super.onDestroy();
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-
-    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
-    if (this.movies != null && this.movies.size() > 0) {
-      setup();
-      this.isGridSetup = true;
-    }
-    if (this.postersAdapter != null) {
-      this.postersAdapter.refreshMovies();
-    }
-  }
-
-  private void setup() {
-    setContentView(R.layout.moviegrid_anim);
-    this.grid = (GridView) findViewById(R.id.grid);
-    this.grid.setLayoutAnimationListener(new AnimationListener() {
-      public void onAnimationEnd(final Animation animation) {
-        NowPlayingActivity.this.gridAnimationEnded = true;
-      }
-
-      public void onAnimationRepeat(final Animation animation) {
-      }
-
-      public void onAnimationStart(final Animation arg0) {
-      }
-    });
-    this.postersAdapter = new PostersAdapter();
-    this.grid.setAdapter(this.postersAdapter);
-    this.intent = new Intent();
-    this.intent.setClass(this, AllMoviesActivity.class);
-    this.animation = AnimationUtils.loadAnimation(this, R.anim.fade_reverse);
-    this.animation.setAnimationListener(new AnimationListener() {
-      public void onAnimationEnd(final Animation animation) {
-        NowPlayingActivity.this.grid.setVisibility(View.GONE);
-        NowPlayingActivity.this.intent.putExtra("selection", NowPlayingActivity.this.selection);
-        startActivity(NowPlayingActivity.this.intent);
-      }
-
-      public void onAnimationRepeat(final Animation animation) {
-      }
-
-      public void onAnimationStart(final Animation animation) {
-      }
-    });
-  }
-
-  @Override
-  protected void onPause() {
-    unregisterReceiver(this.broadcastReceiver);
-    super.onPause();
-  }
-
-  private final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
-    public int compare(final Movie m1, final Movie m2) {
-      return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
-    }
-  };
-  private final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
-    public int compare(final Movie m1, final Movie m2) {
-      final Calendar c1 = Calendar.getInstance();
-      c1.set(1900, 11, 11);
-      Date d1 = c1.getTime();
-      Date d2 = c1.getTime();
-      if (m1.getReleaseDate() != null) {
-        d1 = m1.getReleaseDate();
-      }
-      if (m2.getReleaseDate() != null) {
-        d2 = m2.getReleaseDate();
-      }
-      return d2.compareTo(d1);
-    }
-  };
-  private final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
-    public int compare(final Movie m1, final Movie m2) {
-      int value1 = 0;
-      int value2 = 0;
-      final Score s1 = NowPlayingControllerWrapper.getScore(m1);
-      final Score s2 = NowPlayingControllerWrapper.getScore(m2);
-      if (s1 != null) {
-        value1 = s1.getScoreValue();
-      }
-      if (s1 != null) {
-        value2 = s2.getScoreValue();
-      }
-      if (value1 == value2) {
-        return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
-      } else {
-        return value2 - value1;
-      }
-    }
-  };
-
-  @SuppressWarnings("unchecked")
-  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
-
-  public class PostersAdapter extends BaseAdapter {
-    private final LayoutInflater mInflater;
-
-    public PostersAdapter() {
-      // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.mInflater = LayoutInflater.from(NowPlayingActivity.this);
-    }
-
-    public View getView(final int position, View convertView, final ViewGroup parent) {
-      // to findViewById() on each row.
-      final ViewHolder holder;
-      final int pagecount = position / 9;
-      Log.i("getView", String.valueOf(pagecount));
-      // When convertView is not null, we can reuse it directly, there is no need
-      // to reinflate it. We only inflate a new View when the convertView supplied
-      // by ListView is null.
-      if (convertView == null) {
-        convertView = this.mInflater.inflate(R.layout.moviegrid_item, null);
-        // Creates a ViewHolder and store references to the two children views
-        // we want to bind data to.
-        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title), (ImageView) convertView.findViewById(
-            R.id.poster));
-
-        convertView.setTag(holder);
-      } else {
-        // Get the ViewHolder back to get fast access to the TextView
-        // and the ImageView.
-        holder = (ViewHolder) convertView.getTag();
-      }
-      final Movie movie = NowPlayingActivity.this.movies.get(position % NowPlayingActivity.this.movies.size());
-      holder.title.setText(movie.getDisplayTitle());
-      holder.title.setEllipsize(TextUtils.TruncateAt.END);
-      final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
-      if (bytes.length > 0) {
-        final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        holder.poster.setImageBitmap(bitmap);
-      } else {
-        holder.poster.setImageDrawable(getResources()
-            .getDrawable(R.drawable.movies));
-      }
-      convertView.setOnClickListener(new OnClickListener() {
-        public void onClick(final View v) {
-          NowPlayingActivity.this.selection = position;
-          int i = 0;
-          View child = NowPlayingActivity.this.grid.getChildAt(i);
-          while (child != null && child.getVisibility() == View.VISIBLE) {
-            child.startAnimation(NowPlayingActivity.this.animation);
-            i++;
-            child = NowPlayingActivity.this.grid.getChildAt(i);
-          }
+    private static final int MENU_SORT = 1;
+    private static final int MENU_THEATER = 2;
+    private static final int MENU_UPCOMING = 3;
+    private static final int MENU_SETTINGS = 4;
+    private GridView grid;
+    private Intent intent;
+    private Animation animation;
+    private int selection;
+    private PostersAdapter postersAdapter;
+    private boolean gridAnimationEnded;
+    private boolean isPrioritized;
+    private boolean isGridSetup;
+    private List<Movie> movies;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refresh();
         }
-      });
-      return convertView;
+    };
+
+    /** Updates display of the list of movies. */
+    public void refresh() {
+        // TODO Auto-generated method stub
+        List<Movie> tmpMovies;
+        tmpMovies = NowPlayingControllerWrapper.getMovies();
+        // sort movies according to the default sort preference.
+        Comparator comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
+                .getAllMoviesSelectedSortIndex());
+        Collections.sort(tmpMovies, comparator);
+        movies = new ArrayList<Movie>();
+        movies.addAll(tmpMovies);
+        if (!isPrioritized) {
+            for (int i = 0; i < Math.min(6, movies.size()); i++) {
+                NowPlayingControllerWrapper.prioritizeMovie(movies.get(i));
+            }
+            isPrioritized = true;
+        }
+        if (movies.size() > 0 && !isGridSetup) {
+            setup();
+            isGridSetup = true;
+        }
+        if (postersAdapter != null && gridAnimationEnded) {
+            postersAdapter.refreshMovies();
+        }
     }
 
-    private class ViewHolder {
-      private final TextView title;
-      private final ImageView poster;
-
-      private ViewHolder(final TextView title, final ImageView poster) {
-        this.title = title;
-        this.poster = poster;
-      }
+    public List<Movie> getMovies() {
+        return movies;
     }
 
-    public final int getCount() {
-      if (NowPlayingActivity.this.movies != null) {
-        return Math.min(100, NowPlayingActivity.this.movies.size());
-      } else {
-        return 0;
-      }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // TODO Auto-generated method stub
+        return super.onTouchEvent(event);
     }
 
-    public final Object getItem(final int position) {
-      return NowPlayingActivity.this.movies.get(position % NowPlayingActivity.this.movies.size());
+    public Context getContext() {
+        return this;
     }
 
-    public final long getItemId(final int position) {
-      return position;
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Request the progress bar to be shown in the title
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        GlobalActivityIndicator.addActivity(NowPlayingActivity.this);
+        setContentView(R.layout.progressbar_1);
+        NowPlayingControllerWrapper.addActivity(this);
     }
 
-    public void refreshMovies() {
-      // if(gridAnimationEnded)
-      notifyDataSetChanged();
+    @Override
+    protected void onDestroy() {
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+            broadcastReceiver = null;
+        }
+        NowPlayingControllerWrapper.removeActivity(this);
+        super.onDestroy();
     }
-  }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
-    menu.add(0, MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
-    menu.add(0, MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
-    menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings)
-        .setIcon(android.R.drawable.ic_menu_preferences)
-        .setIntent(new Intent(this, SettingsActivity.class))
-        .setAlphabeticShortcut('s');
-    return super.onCreateOptionsMenu(menu);
-  }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(broadcastReceiver, new IntentFilter(
+                Application.NOW_PLAYING_CHANGED_INTENT));
+        if (movies != null && movies.size() > 0) {
+            setup();
+            isGridSetup = true;
+        }
+        if (postersAdapter != null) {
+            postersAdapter.refreshMovies();
+        }
+    }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
-    if (item.getItemId() == MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
-          .setEntries(R.array.entries_movies_sort_preference);
-      builder.show();
-      return true;
+    private void setup() {
+        setContentView(R.layout.moviegrid_anim);
+        grid = (GridView) findViewById(R.id.grid);
+        int maxpagecount = (movies.size() - 1) / 9;
+        grid.setLayoutAnimationListener(new AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // TODO Auto-generated method stub
+                gridAnimationEnded = true;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onAnimationStart(Animation arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+        postersAdapter = new PostersAdapter(NowPlayingActivity.this);
+        grid.setAdapter(postersAdapter);
+        intent = new Intent();
+        intent.setClass(NowPlayingActivity.this, AllMoviesActivity.class);
+        animation = AnimationUtils.loadAnimation(NowPlayingActivity.this,
+                R.anim.fade_reverse);
+        animation.setAnimationListener(new AnimationListener() {
+            public void onAnimationEnd(Animation animation) {
+                // TODO Auto-generated method stub
+                grid.setVisibility(View.GONE);
+                intent.putExtra("selection", selection);
+                startActivity(intent);
+            }
+
+            public void onAnimationRepeat(Animation animation) {
+                // TODO Auto-generated method stub
+            }
+
+            public void onAnimationStart(Animation animation) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
-    if (item.getItemId() == MENU_THEATER) {
-      final Intent intent = new Intent();
-      intent.setClass(this, AllTheatersActivity.class);
-      startActivity(intent);
-      return true;
+
+    @Override
+    protected void onPause() {
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+            broadcastReceiver = null;
+        }
+        super.onPause();
     }
-    return false;
-  }
+
+    final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
+        public int compare(Movie m1, Movie m2) {
+            return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
+        }
+    };
+    final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
+        public int compare(Movie m1, Movie m2) {
+            Calendar c1 = Calendar.getInstance();
+            c1.set(1900, 11, 11);
+            Date d1 = c1.getTime();
+            Date d2 = c1.getTime();
+            if (m1.getReleaseDate() != null) d1 = m1.getReleaseDate();
+            if (m2.getReleaseDate() != null) d2 = m2.getReleaseDate();
+            return d2.compareTo(d1);
+        }
+    };
+    final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
+        public int compare(Movie m1, Movie m2) {
+            Integer value1 = 0;
+            Integer value2 = 0;
+            Score s1 = NowPlayingControllerWrapper.getScore(m1);
+            Score s2 = NowPlayingControllerWrapper.getScore(m2);
+            if (s1 != null) {
+                value1 = Integer.valueOf(s1.getValue());
+            }
+            if (s2 != null) {
+                value2 = Integer.valueOf(s2.getValue());
+            }
+            if (value1 == value2)
+                return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
+            else
+                return value2 - value1;
+        }
+    };
+    final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(
+            TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
+
+    private class PostersAdapter extends BaseAdapter {
+        private LayoutInflater mInflater;
+
+        public PostersAdapter(Context context) {
+            // Cache the LayoutInflate to avoid asking for a new one each time.
+            mInflater = LayoutInflater.from(context);
+        }
+
+        public View getView(final int position, View convertView,
+                ViewGroup parent) {
+            // to findViewById() on each row.
+            final ViewHolder holder;
+            int pagecount = position / 9;
+            Log.i("getView", String.valueOf(pagecount));
+            // When convertView is not null, we can reuse it directly, there is
+            // no need
+            // to reinflate it. We only inflate a new View when the convertView
+            // supplied
+            // by ListView is null.
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.moviegrid_item, null);
+                // Creates a ViewHolder and store references to the two children
+                // views
+                // we want to bind data to.
+                holder = new ViewHolder();
+                holder.title = (TextView) convertView.findViewById(R.id.title);
+                holder.poster = (ImageView) convertView
+                        .findViewById(R.id.poster);
+                convertView.setTag(holder);
+            } else {
+                // Get the ViewHolder back to get fast access to the TextView
+                // and the ImageView.
+                holder = (ViewHolder) convertView.getTag();
+            }
+            final Movie movie = movies.get(position % movies.size());
+            holder.title.setText(movie.getDisplayTitle());
+            holder.title.setEllipsize(TextUtils.TruncateAt.END);
+            final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
+            if (bytes.length > 0) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0,
+                        bytes.length);
+                holder.poster.setImageBitmap(bitmap);
+            } else {
+                holder.poster.setImageDrawable(NowPlayingActivity.this
+                        .getResources().getDrawable(R.drawable.movies));
+            }
+            convertView.setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    selection = position;
+                    int i = 0;
+                    View child = grid.getChildAt(i);
+                    while (child != null
+                            && child.getVisibility() == View.VISIBLE) {
+                        child.startAnimation(animation);
+                        i++;
+                        child = grid.getChildAt(i);
+                    }
+                }
+            });
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView title;
+            ImageView poster;
+        }
+
+        public final int getCount() {
+            if (movies != null) {
+                return Math.min(100, movies.size());
+            } else
+                return 0;
+        }
+
+        public final Object getItem(int position) {
+            return movies.get(position % movies.size());
+        }
+
+        public final long getItemId(int position) {
+            return position;
+        }
+
+        public void refreshMovies() {
+            // if(gridAnimationEnded)
+            notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
+                android.R.drawable.star_on);
+        menu.add(0, MENU_THEATER, 0, R.string.menu_theater).setIcon(
+                R.drawable.theatres);
+        menu.add(0, MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
+                R.drawable.upcoming);
+        menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+                android.R.drawable.ic_menu_preferences).setIntent(
+                new Intent(this, SettingsActivity.class))
+                .setAlphabeticShortcut('s');
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == MENU_SORT) {
+            NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
+                    (NowPlayingActivity) NowPlayingActivity.this).setTitle(
+                    R.string.movies_select_sort_title).setKey(
+                    NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
+                    .setEntries(R.array.entries_movies_sort_preference).show();
+            return true;
+        }
+        if (item.getItemId() == MENU_THEATER) {
+            Intent intent = new Intent();
+            intent.setClass(NowPlayingActivity.this, AllTheatersActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
+    }
 }
