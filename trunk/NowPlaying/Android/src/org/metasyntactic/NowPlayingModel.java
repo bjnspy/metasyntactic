@@ -294,6 +294,7 @@ public class NowPlayingModel {
     return this.scoreCache.getReviews(getMovies(), movie);
   }
 
+  private final static byte[] EMPTY_BYTES = new byte[0];
   public byte[] getPoster(final Movie movie) {
     byte[] bytes = this.posterCache.getPoster(movie);
     if (bytes != null) {
@@ -305,7 +306,7 @@ public class NowPlayingModel {
       return bytes;
     }
 
-    return null;
+    return EMPTY_BYTES;
   }
 
   public String getSynopsis(final Movie movie) {
