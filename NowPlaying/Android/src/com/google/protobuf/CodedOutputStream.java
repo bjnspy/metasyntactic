@@ -548,6 +548,8 @@ public final class CodedOutputStream {
    * array has space.  Otherwise, this exception will be thrown.
    */
   public static class OutOfSpaceException extends IOException {
+    private static final long serialVersionUID = -5599726480645681016L;
+
     OutOfSpaceException() {
       super("CodedOutputStream was writing to a flat byte array and ran " + "out of space.");
     }

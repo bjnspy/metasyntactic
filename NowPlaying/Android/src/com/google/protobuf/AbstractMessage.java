@@ -67,11 +67,12 @@ public abstract class AbstractMessage implements Message {
     return TextFormat.printToString(this);
   }
 
+  @SuppressWarnings("unchecked")
   public void writeTo(final CodedOutputStream output) throws IOException {
     for (final Map.Entry<FieldDescriptor, Object> entry : getAllFields().entrySet()) {
       final FieldDescriptor field = entry.getKey();
       if (field.isRepeated()) {
-        for (final Object element : (List) entry.getValue()) {
+        for (final Object element : (List<Object>) entry.getValue()) {
           output.writeField(field.getType(), field.getNumber(), element);
         }
       } else {
@@ -117,6 +118,7 @@ public abstract class AbstractMessage implements Message {
 
   private int memoizedSize = -1;
 
+  @SuppressWarnings("unchecked")
   public int getSerializedSize() {
     int size = this.memoizedSize;
     if (size != -1) {
@@ -127,7 +129,7 @@ public abstract class AbstractMessage implements Message {
     for (final Map.Entry<FieldDescriptor, Object> entry : getAllFields().entrySet()) {
       final FieldDescriptor field = entry.getKey();
       if (field.isRepeated()) {
-        for (final Object element : (List) entry.getValue()) {
+        for (final Object element : (List<Object>) entry.getValue()) {
           size += CodedOutputStream.computeFieldSize(field.getType(), field.getNumber(), element);
         }
       } else {

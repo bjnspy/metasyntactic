@@ -45,8 +45,10 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       return dist_m1.compareTo(dist_m2);
     }
   };
+
   // The order of items in this array should match the
   // entries_theater_sort_preference array in res/values/arrays.xml
+  @SuppressWarnings("unchecked")
   private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(this.TITLE_ORDER, this.DISTANCE_ORDER);
 
   @Override
@@ -159,7 +161,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       private final TextView title;
       private final ImageView divider;
 
-      private MovieViewHolder(TextView header, TextView address, TextView title, ImageView divider) {
+      private MovieViewHolder(final TextView header, final TextView address, final TextView title, final ImageView divider) {
         this.header = header;
         this.address = address;
         this.title = title;

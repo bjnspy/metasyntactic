@@ -47,12 +47,13 @@ public abstract class GeneratedMessage extends AbstractMessage {
   }
 
   /** Internal helper which returns a mutable map. */
+  @SuppressWarnings("unchecked")
   private final Map<FieldDescriptor, Object> getAllFieldsMutable() {
     final TreeMap<FieldDescriptor, Object> result = new TreeMap<FieldDescriptor, Object>();
     final Descriptor descriptor = internalGetFieldAccessorTable().descriptor;
     for (final FieldDescriptor field : descriptor.getFields()) {
       if (field.isRepeated()) {
-        final List value = (List) getField(field);
+        final List<Object> value = (List<Object>) getField(field);
         if (!value.isEmpty()) {
           result.put(field, value);
         }
@@ -226,7 +227,6 @@ public abstract class GeneratedMessage extends AbstractMessage {
 
     protected <T> void addAll(final Iterable<T> values, final Collection<? super T> list) {
       if (values instanceof Collection) {
-        @SuppressWarnings("unsafe")
         final Collection<T> collection = (Collection<T>) values;
         list.addAll(collection);
       } else {
@@ -300,7 +300,6 @@ public abstract class GeneratedMessage extends AbstractMessage {
     }
 
     /** Get the value of an extension. */
-    @SuppressWarnings("unchecked")
     public final <Type> Type getExtension(final GeneratedExtension<MessageType, Type> extension) {
       verifyExtensionContainingType(extension);
       final Object value = this.extensions.getField(extension.getDescriptor());
@@ -312,7 +311,6 @@ public abstract class GeneratedMessage extends AbstractMessage {
     }
 
     /** Get one element of a repeated extension. */
-    @SuppressWarnings("unchecked")
     public final <Type> Type getExtension(final GeneratedExtension<MessageType, List<Type>> extension, final int index) {
       verifyExtensionContainingType(extension);
       return (Type) extension.singularFromReflectionType(this.extensions.getRepeatedField(extension.getDescriptor(), index));
@@ -529,8 +527,8 @@ public abstract class GeneratedMessage extends AbstractMessage {
     @Override
     protected boolean parseUnknownField(final CodedInputStream input, final UnknownFieldSet.Builder unknownFields,
                                         final ExtensionRegistry extensionRegistry, final int tag) throws IOException {
-      final ExtendableMessage<MessageType> message = internalGetResult();
-      return message.extensions.mergeFieldFrom(input, unknownFields, extensionRegistry, this, tag);
+      internalGetResult();
+      return FieldSet.mergeFieldFrom(input, unknownFields, extensionRegistry, this, tag);
     }
 
     // ---------------------------------------------------------------
@@ -947,7 +945,6 @@ public abstract class GeneratedMessage extends AbstractMessage {
         this.clearMethod = getMethodOrDie(builderClass, "clear" + camelCaseName);
       }
 
-      @SuppressWarnings("unchecked")
       Class type;
       Method getMethod;
       Method getRepeatedMethod;
@@ -1041,7 +1038,6 @@ public abstract class GeneratedMessage extends AbstractMessage {
       private final Method valueOfMethod;
       private final Method getValueDescriptorMethod;
 
-      @Override @SuppressWarnings("unchecked")
       public Object get(final GeneratedMessage message) {
         final List newList = new ArrayList();
         for (final Object element : (List) super.get(message)) {

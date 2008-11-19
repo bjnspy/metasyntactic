@@ -63,7 +63,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   /** Updates display of the list of movies. */
   public void refresh() {
-    List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
+    final List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
@@ -212,6 +212,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
     }
   };
+
+  @SuppressWarnings("unchecked")
   public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
 
   public class PostersAdapter extends BaseAdapter {
@@ -225,7 +227,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     public View getView(final int position, View convertView, final ViewGroup parent) {
       // to findViewById() on each row.
       final ViewHolder holder;
-      int pagecount = position / 9;
+      final int pagecount = position / 9;
       Log.i("getView", String.valueOf(pagecount));
       // When convertView is not null, we can reuse it directly, there is no need
       // to reinflate it. We only inflate a new View when the convertView supplied
@@ -249,7 +251,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
       if (bytes.length > 0) {
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.poster.setImageBitmap(bitmap);
       } else {
         holder.poster.setImageDrawable(getResources()
@@ -274,7 +276,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       private final TextView title;
       private final ImageView poster;
 
-      private ViewHolder(TextView title, ImageView poster) {
+      private ViewHolder(final TextView title, final ImageView poster) {
         this.title = title;
         this.poster = poster;
       }

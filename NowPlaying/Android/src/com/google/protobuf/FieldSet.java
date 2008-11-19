@@ -150,21 +150,23 @@ final class FieldSet {
   }
 
   /** See {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)}. */
+  @SuppressWarnings("unchecked")
   public int getRepeatedFieldCount(final Descriptors.FieldDescriptor field) {
     if (!field.isRepeated()) {
       throw new IllegalArgumentException("getRepeatedFieldCount() can only be called on repeated fields.");
     }
 
-    return ((List) getField(field)).size();
+    return ((List<Object>) getField(field)).size();
   }
 
   /** See {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)}. */
+  @SuppressWarnings("unchecked")
   public Object getRepeatedField(final Descriptors.FieldDescriptor field, final int index) {
     if (!field.isRepeated()) {
       throw new IllegalArgumentException("getRepeatedField() can only be called on repeated fields.");
     }
 
-    return ((List) getField(field)).get(index);
+    return ((List<Object>) getField(field)).get(index);
   }
 
   /** See {@link Message.Builder#setRepeatedField(Descriptors.FieldDescriptor,int,Object)}. */
@@ -285,7 +287,6 @@ final class FieldSet {
   }
 
   /** Like {@link #isInitialized()}, but also checks for the presence of all required fields in the given type. */
-  @SuppressWarnings("unchecked")
   public boolean isInitialized(final Descriptor type) {
     // Check that all required fields are present.
     for (final FieldDescriptor field : type.getFields()) {
@@ -587,12 +588,13 @@ final class FieldSet {
   }
 
   /** Write a single field. */
+  @SuppressWarnings("unchecked")
   public void writeField(final FieldDescriptor field, final Object value, final CodedOutputStream output) throws java.io.IOException {
     if (field.isExtension() && field.getContainingType().getOptions().getMessageSetWireFormat()) {
       output.writeMessageSetExtension(field.getNumber(), (Message) value);
     } else {
       if (field.isRepeated()) {
-        for (final Object element : (List) value) {
+        for (final Object element : (List<Object>) value) {
           output.writeField(field.getType(), field.getNumber(), element);
         }
       } else {
@@ -602,6 +604,7 @@ final class FieldSet {
   }
 
   /** See {@link Message#getSerializedSize()}.  It's up to the caller to cache the resulting size if desired. */
+  @SuppressWarnings("unchecked")
   public int getSerializedSize() {
     int size = 0;
     for (final Map.Entry<FieldDescriptor, Object> entry : this.fields.entrySet()) {
@@ -612,7 +615,7 @@ final class FieldSet {
         size += CodedOutputStream.computeMessageSetExtensionSize(field.getNumber(), (Message) value);
       } else {
         if (field.isRepeated()) {
-          for (final Object element : (List) value) {
+          for (final Object element : (List<Object>) value) {
             size += CodedOutputStream.computeFieldSize(field.getType(), field.getNumber(), element);
           }
         } else {

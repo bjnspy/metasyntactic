@@ -25,6 +25,8 @@ import java.io.IOException;
  * @author kenton@google.com Kenton Varda
  */
 public class InvalidProtocolBufferException extends IOException {
+  private static final long serialVersionUID = -1616151763072450476L;
+
   public InvalidProtocolBufferException(final String description) {
     super(description);
   }

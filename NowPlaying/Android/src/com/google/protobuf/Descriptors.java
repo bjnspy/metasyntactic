@@ -1220,6 +1220,8 @@ public final class Descriptors {
 
   /** Thrown when building descriptors fails because the source DescriptorProtos are not valid. */
   public static class DescriptorValidationException extends Exception {
+    private static final long serialVersionUID = 2131682639153503919L;
+
     /** Gets the full name of the descriptor where the error occurred. */
     public String getProblemSymbolName() { return this.name; }
 
