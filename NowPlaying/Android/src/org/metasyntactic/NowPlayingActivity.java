@@ -63,7 +63,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   /** Updates display of the list of movies. */
   public void refresh() {
-    // TODO Auto-generated method stub
     List<Movie> tmpMovies;
     tmpMovies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
@@ -93,7 +92,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onTouchEvent(final MotionEvent event) {
-    // TODO Auto-generated method stub
     return super.onTouchEvent(event);
   }
 
@@ -167,11 +165,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
 
       public void onAnimationRepeat(final Animation animation) {
-        // TODO Auto-generated method stub
       }
 
       public void onAnimationStart(final Animation animation) {
-        // TODO Auto-generated method stub
       }
     });
   }
@@ -269,7 +265,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
       convertView.setOnClickListener(new OnClickListener() {
         public void onClick(final View v) {
-          // TODO Auto-generated method stub
           NowPlayingActivity.this.selection = position;
           int i = 0;
           View child = NowPlayingActivity.this.grid.getChildAt(i);

@@ -40,7 +40,6 @@ public class TheaterDetailsActivity extends ListActivity {
 
   @Override
   protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
-    // TODO Auto-generated method stub
     final Movie movie = this.movies.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, MovieDetailsActivity.class);
@@ -51,7 +50,6 @@ public class TheaterDetailsActivity extends ListActivity {
 
   @Override
   protected void onDestroy() {
-    // TODO Auto-generated method stub
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -148,22 +146,18 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     public long getEntryId(final int position) {
-      // TODO Auto-generated method stub
       return position;
     }
 
     public Object getItem(final int position) {
-      // TODO Auto-generated method stub
       return TheaterDetailsActivity.this.movies.get(position);
     }
 
     public long getItemId(final int position) {
-      // TODO Auto-generated method stub
       return position;
     }
 
     public void refresh() {
-      // TODO Auto-generated method stub
       notifyDataSetChanged();
     }
   }

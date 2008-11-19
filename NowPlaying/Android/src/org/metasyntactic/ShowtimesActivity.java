@@ -31,7 +31,6 @@ public class ShowtimesActivity extends ListActivity {
 
   @Override
   protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
-    // TODO Auto-generated method stub
     final Intent intent = this.detailItems.get(position).getIntent();
     if (intent != null) {
       startActivity(intent);
@@ -61,8 +60,7 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   private void populateTheaterDetailItems() {
-    // TODO Auto-generated method stub
-    for (int i = 0; i < this.theaters.size(); i++) {
+    for (Theater theater : this.theaters) {
       populateTheaterDetailItem();
     }
   }
@@ -84,7 +82,6 @@ public class ShowtimesActivity extends ListActivity {
 
   @Override
   protected void onResume() {
-    // TODO Auto-generated method stub
     super.onResume();
     bindView();
     populateTheaterDetailItems();
@@ -178,7 +175,6 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     public long getItemId(final int position) {
-      // TODO Auto-generated method stub
       return position;
     }
 

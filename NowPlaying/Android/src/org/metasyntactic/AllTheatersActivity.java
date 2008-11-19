@@ -3,7 +3,6 @@ package org.metasyntactic;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -65,8 +64,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     try {
       this.userAddress = new Geocoder(this).getFromLocationName(userPostalCode, 1).get(0);
     } catch (final IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
     this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress
         .getLongitude(), null, null, null, null, null);
@@ -197,7 +195,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override
   protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
-    // TODO Auto-generated method stub
     final Theater theater = this.theaters.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, TheaterDetailsActivity.class);
