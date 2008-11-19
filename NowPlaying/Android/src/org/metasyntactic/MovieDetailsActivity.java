@@ -1,7 +1,6 @@
 package org.metasyntactic;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -9,16 +8,16 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,8 +26,7 @@ import java.util.List;
 public class MovieDetailsActivity extends ListActivity {
     /** Called when the activity is first created. */
     private final List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
-    private MovieAdapter movieAdapter;
-    private Movie movie;
+  private Movie movie;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -37,8 +35,8 @@ public class MovieDetailsActivity extends ListActivity {
         setContentView(R.layout.moviedetails);
         this.movie = getIntent().getExtras().getParcelable("movie");
         populateMovieDetailEntries();
-        this.movieAdapter = new MovieAdapter(this);
-        setListAdapter(this.movieAdapter);
+        MovieAdapter movieAdapter = new MovieAdapter();
+        setListAdapter(movieAdapter);
         bindButtonClickListeners();
     }
 
@@ -48,7 +46,7 @@ public class MovieDetailsActivity extends ListActivity {
         MovieDetailEntry entry = new MovieDetailEntry();
         entry.setName(this.movie.getDisplayTitle());
         final String synopsis = this.movie.getSynopsis();
-        if (synopsis != null || synopsis.length() > 0) {
+        if (!StringUtilities.isNullOrEmpty(synopsis)) {
           entry.setValue(synopsis);
         } else {
           entry.setValue("Unknown");
@@ -79,14 +77,13 @@ public class MovieDetailsActivity extends ListActivity {
         // Add cast
         entry = new MovieDetailEntry();
         entry.setName("Cast");
-        entry.setValue(MovieViewUtilities.formatListToString(this.movie.getCast())
-                .toString());
+        entry.setValue(MovieViewUtilities.formatListToString(this.movie.getCast()));
         this.movieDetailEntries.add(entry);
         // Add cast
         entry = new MovieDetailEntry();
         entry.setName("Director");
         entry.setValue(MovieViewUtilities.formatListToString(
-                this.movie.getDirectors()).toString());
+                this.movie.getDirectors()));
         this.movieDetailEntries.add(entry);
     }
 
@@ -170,9 +167,9 @@ public class MovieDetailsActivity extends ListActivity {
     private class MovieAdapter extends BaseAdapter {
         private final LayoutInflater inflater;
 
-        public MovieAdapter(final Context context) {
+        public MovieAdapter() {
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            this.inflater = LayoutInflater.from(context);
+            this.inflater = LayoutInflater.from(MovieDetailsActivity.this);
         }
 
         public Object getEntry(final int i) {
@@ -183,9 +180,10 @@ public class MovieDetailsActivity extends ListActivity {
             convertView = this.inflater.inflate(R.layout.moviedetails_item, null);
             // Creates a MovieViewHolder and store references to the
             // children views we want to bind data to.
-            final MovieViewHolder holder = new MovieViewHolder();
-            holder.name = (TextView) convertView.findViewById(R.id.name);
-            holder.value = (TextView) convertView.findViewById(R.id.value);
+            final MovieViewHolder holder = new MovieViewHolder(
+                (TextView) convertView.findViewById(R.id.name),
+                (TextView) convertView.findViewById(R.id.value));
+
             final MovieDetailEntry entry = MovieDetailsActivity.this.movieDetailEntries.get(position);
             holder.name.setText(entry.getName());
             holder.value.setText(entry.getValue());
@@ -204,8 +202,13 @@ public class MovieDetailsActivity extends ListActivity {
         }
 
         private class MovieViewHolder {
-            TextView name;
-            TextView value;
+            private final TextView name;
+            private final TextView value;
+
+          private MovieViewHolder(TextView name, TextView value) {
+            this.name = name;
+            this.value = value;
+          }
         }
 
         public long getEntryId(final int position) {
