@@ -59,5 +59,4 @@ static UIFont* footerFont = nil;
     return footerFont;
 }
 
-
 @end

@@ -51,5 +51,4 @@ static UIColor* tintColor = nil;
     return tintColor;
 }
 
-
 @end

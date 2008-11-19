@@ -110,5 +110,4 @@ const NSInteger TOP_BUFFER = 5;
     return TOP_BUFFER + MAX(imageHeight, labelHeight);
 }
 
-
 @end

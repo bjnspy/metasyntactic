@@ -275,5 +275,4 @@
     return [UIImage imageWithData:smallPosterData];
 }
 
-
 @end

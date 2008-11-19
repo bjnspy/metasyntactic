@@ -136,5 +136,4 @@
     [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
 }
 
-
 @end

@@ -439,5 +439,4 @@ static DifferenceEngine* differenceEngine = nil;
     return isMetric && !isUK;
 }
 
-
 @end

@@ -34,5 +34,4 @@
 - (NowPlayingModel*) model;
 - (NowPlayingController*) controller;
 
-
 @end

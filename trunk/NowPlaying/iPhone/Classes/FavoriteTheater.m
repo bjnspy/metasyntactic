@@ -90,5 +90,4 @@ property_definition(originatingLocation);
     return name.hash;
 }
 
-
 @end
