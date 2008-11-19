@@ -161,9 +161,9 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     private class TheaterDetailsViewHolder {
-      private TextView label;
-      private ImageView icon;
-      private TextView data;
+      private final TextView label;
+      private final ImageView icon;
+      private final TextView data;
 
       private TheaterDetailsViewHolder(TextView label, ImageView icon, TextView data) {
         this.label = label;
