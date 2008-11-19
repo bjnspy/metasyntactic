@@ -515,4 +515,8 @@ public class DataProvider {
   public void shutdown() {
     // NYI
   }
+
+  public void markOutOfDate() {
+    getLastLookupDateFile().delete();
+  }
 }
