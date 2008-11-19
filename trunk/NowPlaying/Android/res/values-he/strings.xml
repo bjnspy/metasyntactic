@@ -40,9 +40,7 @@
   <string name="could_not_find_location_dot">מיקום לא נמצא.</string>
   <string name="dvd">DVD</string>
   <string name="dvdbluray_details_provided_by">:סופקו על ידי DVD/Blu-ray פרטי</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">מידע לתאריכים עתידיים עלול להיות לא שלם. אפס את תאריך
-    החיפוש לתאריך הנוכחי כדי לראות רשומות מלאות.
-  </string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">מידע לתאריכים עתידיים עלול להיות לא שלם. אפס את תאריך החיפוש לתאריך הנוכחי כדי לראות רשומות מלאות.</string>
   <string name="director">:במאי</string>
   <string name="directors">:במאים</string>
   <string name="distance">מרחק</string>
@@ -60,7 +58,7 @@
   <string name="last_thursday">חמישי שעבר</string>
   <string name="last_tuesday">שלישי שעבר</string>
   <string name="last_wednesday">רביעי שעבר</string>
-  <string name="less_than_number_string_away">%s %d במרחק קטן מ</string>
+  <string name="less_than_number_string_away"> %s %d במרחק קטן מ</string>
   <string name="less_than_one_string_away">במרחק קטן מ%s מכאן</string>
   <string name="license">רישיון</string>
   <string name="localized_by">:לוקליזציה</string>
@@ -99,13 +97,9 @@
   <string name="show_one_hidden_theater">הצג בית קולנוע מוסתר</string>
   <string name="show_times_retrieved_on_string_dot">.%s הראה זמנים שהתקבלו ב</string>
   <string name="theater_last_reported_show_times_on_string_dot">זמני הקרנה התקבלו לאחרונה ב\n%s.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">ספקי בתי קולנוע מגבילים לעיתים את המרחק המקסימלי עבורו
-    הם מספקים מידע. כתוצאה, בתי קולנוע מסויימים לא יופיעו גם אם מרחק החיפוש הוגדר כגבוה.
-  </string>
+  <string name="theater_providers_often_limit_the_maximum_search">ספקי בתי קולנוע מגבילים לעיתים את המרחק המקסימלי עבורו הם מספקים מידע. כתוצאה, בתי קולנוע מסויימים לא יופיעו גם אם מרחק החיפוש הוגדר כגבוה.</string>
   <string name="theaters">בתי קולנוע</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">בית הקולנוע עוד לא דיווח על זמני הקרנה. כשהם יהיו
-    זמינים %s ישיג אותם אוטומטית.
-  </string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">בית הקולנוע עוד לא דיווח על זמני הקרנה. כשהם יהיו זמינים %s ישיג אותם אוטומטית.</string>
   <string name="ticket_sales_provided_by">:ספקית מכירות כרטיסים</string>
   <string name="title">כותרת</string>
   <string name="today">היום</string>

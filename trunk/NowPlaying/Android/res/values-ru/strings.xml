@@ -46,9 +46,7 @@
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>
   <string name="dvdbluray_details_provided_by">Информация о DVD/Blu-ray предоставлена:</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Данные для будущих дат могут быть неполными. Измените
-    дату поиска на текущую чтобы увидеть полный список.
-  </string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Данные для будущих дат могут быть неполными. Измените дату поиска на текущую чтобы увидеть полный список.</string>
   <string name="director">Режиссёр:</string>
   <string name="directors">Режиссёры:</string>
   <string name="distance">Distance</string>
@@ -111,14 +109,9 @@
   <string name="show_times_retrieved_on_string_dot">Расписания получены %s.</string>
   <string name="studio">Студия:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Последний раз расписания обновлены\n%s.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">Провайдеры данных часто устанавливают ограничение на
-    максимальную дистанцию поиска, которой Вы можете воспользоваться. Поэтому некоторые кинотеатры могут не отображаться
-    даже при достаточно большой дистанции поиска.
-  </string>
+  <string name="theater_providers_often_limit_the_maximum_search">Провайдеры данных часто устанавливают ограничение на максимальную дистанцию поиска, которой Вы можете воспользоваться. Поэтому некоторые кинотеатры могут не отображаться даже при достаточно большой дистанции поиска.</string>
   <string name="theaters">Кинотеатры</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Этот кинотеатр пока не предоставил данные о своём
-    расписании. Как только эта информация появится, %s получит её автоматически
-  </string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Этот кинотеатр пока не предоставил данные о своём расписании. Как только эта информация появится, %s получит её автоматически</string>
   <string name="ticket_sales_provided_by">Продажа билетов предоставлена:</string>
   <string name="title">Название</string>
   <string name="today">Сегодня</string>

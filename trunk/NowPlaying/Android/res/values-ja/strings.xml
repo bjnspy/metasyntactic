@@ -98,9 +98,7 @@
   <string name="show_one_hidden_theater">隠し映画館を表示する</string>
   <string name="show_times_retrieved_on_string_dot">上映情報取得時間: %s</string>
   <string name="theater_last_reported_show_times_on_string_dot">この映画館の上映情報は%sに\n更新されました。</string>
-  <string name="theater_providers_often_limit_the_maximum_search">
-    映画情報プロバイダーのデータはしばしば検索距離の制限が課されています。「検索距離」を上限の設定に変更してもある映画館は表示されないかもしれません。
-  </string>
+  <string name="theater_providers_often_limit_the_maximum_search">映画情報プロバイダーのデータはしばしば検索距離の制限が課されています。「検索距離」を上限の設定に変更してもある映画館は表示されないかもしれません。</string>
   <string name="theaters">映画館</string>
   <string name="this_theater_has_not_yet_reported_its_show_times">この映画館はまだ上映情報はありません。情報が入ったら%sが自動的に取得します。</string>
   <string name="ticket_sales_provided_by">チケット販売提供:</string>

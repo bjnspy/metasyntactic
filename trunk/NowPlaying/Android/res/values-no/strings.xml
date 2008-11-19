@@ -46,9 +46,7 @@
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>
   <string name="dvdbluray_details_provided_by">DVD/Blu-ray informasjon levert av:</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informasjon om fremtidige datoer kan være
-    ufullstendinge. Sett søkedatoen til dagens dato for å se komplette visningstider.
-  </string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informasjon om fremtidige datoer kan være ufullstendinge. Sett søkedatoen til dagens dato for å se komplette visningstider.</string>
   <string name="director">Regissør:</string>
   <string name="directors">Regissører:</string>
   <string name="distance">Avstand</string>
@@ -111,14 +109,9 @@
   <string name="show_times_retrieved_on_string_dot">Vis tider hentet %s.</string>
   <string name="studio">Filmstudio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">Kinoen leverte visningstider sist \n%s.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">Leverandørene av kinodataene begrenser ofte avstanden
-    de leverer informasjon for. Dette medfører at noen kinoer ikke vil vises selv om avstanden du søker på er
-    tilstrekkelig.
-  </string>
+  <string name="theater_providers_often_limit_the_maximum_search">Leverandørene av kinodataene begrenser ofte avstanden de leverer informasjon for. Dette medfører at noen kinoer ikke vil vises selv om avstanden du søker på er tilstrekkelig.</string>
   <string name="theaters">Kinoer</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Denne kinoen har ikke levert visningstider. Når de
-    blir tilgjengelig, vil %s hente de automatisk.
-  </string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Denne kinoen har ikke levert visningstider. Når de blir tilgjengelig, vil %s hente de automatisk.</string>
   <string name="ticket_sales_provided_by">Billettsalg levert av:</string>
   <string name="title">Tittel</string>
   <string name="today">I dag</string>

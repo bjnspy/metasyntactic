@@ -36,19 +36,17 @@
   <string name="one_year_ago">einem Jahr</string>
   <string name="about">Über</string>
   <string name="autoupdate_location">automatisch aktualisieren</string>
-  <string name="bluray">Blu-ray</string>
+  <string name="bluray"> Blu-ray</string>
   <string name="both">Beide</string>
   <string name="call">Anrufen</string>
   <string name="cast">Darsteller:</string>
-  <string name="change_date">ändert am:</string>
+  <string name="change_date">ändert am: </string>
   <string name="citystate_or_postal_code">oder Stadt</string>
   <string name="could_not_find_location_dot">konnte nicht gefunden werden.</string>
-  <string name="dvd">DVD</string>
-  <string name="dvdbluray">DVD/Blu-ray</string>
-  <string name="dvdbluray_details_provided_by">DVD/Blu-ray details bereitgestellt von:</string>
-  <string name="data_for_future_dates_may_be_incomplete_dot_reset">für zukünftige Termine können unter Umständen
-    unvollständig sein. Um das komplette Programm zu erhalte, setzen Sie das Suchdatum auf das heutige Datum.
-  </string>
+  <string name="dvd"> DVD</string>
+  <string name="dvdbluray"> DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by"> DVD/Blu-ray details bereitgestellt von:</string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">für zukünftige Termine können unter Umständen unvollständig sein. Um das komplette Programm zu erhalte, setzen Sie das Suchdatum auf das heutige Datum.</string>
   <string name="director">Regisseur:</string>
   <string name="directors">Regisseure:</string>
   <string name="distance">Entfernung</string>
@@ -71,7 +69,7 @@
   <string name="less_than_number_string_away">mehr als %d %s entfernt</string>
   <string name="less_than_one_string_away">mehr als 1 %s entfernt</string>
   <string name="license">Lizenz</string>
-  <string name="loading_poster">Poster wird geladen</string>
+  <string name="loading_poster"> Poster wird geladen</string>
   <string name="localized_by">Übersetzung:</string>
   <string name="location">Ort</string>
   <string name="map">Karte</string>
@@ -111,14 +109,9 @@
   <string name="show_times_retrieved_on_string_dot">aktualisiert am %s.</string>
   <string name="studio">Studio:</string>
   <string name="theater_last_reported_show_times_on_string_dot">zuletzt aktualisiert am\n%s.</string>
-  <string name="theater_providers_often_limit_the_maximum_search">schränken den maximalen Suchradius, für den sie ihre
-    Daten bereitstellen, oft ein. Daher erscheinen manche Kinos nicht in den Suchresultaten, selbst wenn ein großer
-    Suchradius gewählt wurde.
-  </string>
+  <string name="theater_providers_often_limit_the_maximum_search">schränken den maximalen Suchradius, für den sie ihre Daten bereitstellen, oft ein. Daher erscheinen manche Kinos nicht in den Suchresultaten, selbst wenn ein großer Suchradius gewählt wurde.</string>
   <string name="theaters">Kinos</string>
-  <string name="this_theater_has_not_yet_reported_its_show_times">Kino hat sein Programm noch nicht veröffentlicht. %s
-    wird das Programm bei Veröffentlichung automatisch abrufen.
-  </string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Kino hat sein Programm noch nicht veröffentlicht.  %s wird das Programm bei Veröffentlichung automatisch abrufen.</string>
   <string name="ticket_sales_provided_by">bereitgestellt von:</string>
   <string name="title">Titel</string>
   <string name="today">Heute</string>
