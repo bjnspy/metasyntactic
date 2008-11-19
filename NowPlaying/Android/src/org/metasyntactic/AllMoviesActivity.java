@@ -16,12 +16,14 @@
 package org.metasyntactic;
 
 import android.app.Activity;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.*;
@@ -44,13 +46,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class AllMoviesActivity extends Activity implements INowPlaying {
-    private static List<Movie> movies = new ArrayList<Movie>();
     public static final int MENU_SORT = 1;
     public static final int MENU_SETTINGS = 2;
+    private List<Movie> movies = new ArrayList<Movie>();
     private int selection;
-    private static DetailAdapter mDetailAdapter;
-    private static ThumbnailAdapter mThumbnailAdapter;
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private DetailAdapter detailAdapter;
+    private ThumbnailAdapter thumbnailAdapter;
+
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             refresh();
@@ -62,23 +65,22 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movieview);
         NowPlayingControllerWrapper.addActivity(this);
-        mDetailAdapter = new DetailAdapter(this);
-        mThumbnailAdapter = new ThumbnailAdapter(this);
+        detailAdapter = new DetailAdapter();
+        thumbnailAdapter = new ThumbnailAdapter();
         setupView();
     }
 
     private void setupView() {
         final CustomGallery detail = (CustomGallery) findViewById(R.id.detail);
-        detail.setAdapter(mDetailAdapter);
+        detail.setAdapter(detailAdapter);
         // detail.setSelection(0);
         final CustomGallery thumbnail = (CustomGallery) findViewById(R.id.thumbnails);
-        thumbnail.setAdapter(mThumbnailAdapter);
+        thumbnail.setAdapter(thumbnailAdapter);
         thumbnail.setSoundEffectsEnabled(true);
         // thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
         final OnItemSelectedListener listener = new OnItemSelectedListener() {
             public void onItemSelected(final AdapterView<?> arg0, final View arg1,
                     final int position, final long id) {
-                // TODO Auto-generated method stub
                 if (thumbnail.getSelectedItemPosition() != position) {
                     thumbnail.setSelection(position);
                 }
@@ -89,14 +91,12 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             }
 
             public void onNothingSelected(final AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
             }
         };
         detail.setOnItemSelectedListener(listener);
         final OnItemClickListener thumblistener = new OnItemClickListener() {
             public void onItemClick(final AdapterView<?> arg0, final View arg1,
                     final int position, final long id) {
-                // TODO Auto-generated method stub
                 if (detail.getSelectedItemPosition() != position) {
                     detail.setSelection(position);
                 }
@@ -143,20 +143,14 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
     @Override
     protected void onDestroy() {
-        if (this.broadcastReceiver != null) {
-            unregisterReceiver(this.broadcastReceiver);
-            this.broadcastReceiver = null;
-        }
+        unregisterReceiver(this.broadcastReceiver);
         NowPlayingControllerWrapper.removeActivity(this);
         super.onDestroy();
     }
 
     @Override
     protected void onPause() {
-        if (this.broadcastReceiver != null) {
-            unregisterReceiver(this.broadcastReceiver);
-            this.broadcastReceiver = null;
-        }
+        unregisterReceiver(this.broadcastReceiver);
         super.onPause();
     }
 
@@ -185,22 +179,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     }
 
     private class DetailAdapter extends BaseAdapter {
-        private final LayoutInflater mInflater;
-        int mGalleryItemBackground;
-
-        public DetailAdapter(final Context context) {
-            int mGalleryItemBackground;
-            // Cache the LayoutInflate to avoid asking for a new one each time.
-            this.mInflater = LayoutInflater.from(context);
-            final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-            mGalleryItemBackground = a.getResourceId(
-                    android.R.styleable.Theme_galleryItemBackground, 0);
-            a.recycle();
-        }
+        private final LayoutInflater inflater;
 
         public DetailAdapter() {
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            this.mInflater = LayoutInflater.from(getContext());
+            this.inflater = LayoutInflater.from(getContext());
             final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
             a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
             a.recycle();
@@ -218,7 +201,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
                 final ViewGroup viewGroup) {
             MovieViewHolder holder;
             if (convertView == null) {
-                convertView = this.mInflater.inflate(R.layout.moviesummary, null);
+                convertView = this.inflater.inflate(R.layout.moviesummary, null);
                 holder = new MovieViewHolder();
                 holder.score = (Button) convertView.findViewById(R.id.score);
                 holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -297,17 +280,13 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         }
     }
     class ThumbnailAdapter extends BaseAdapter {
-        private final Context mContext;
-        private final LayoutInflater mInflater;
-        int mGalleryItemBackground;
+        private final LayoutInflater inflater;
 
-        public ThumbnailAdapter(final Context context) {
-            this.mContext = context;
+        public ThumbnailAdapter() {
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            this.mInflater = LayoutInflater.from(context);
+            this.inflater = LayoutInflater.from(AllMoviesActivity.this);
             final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-            this.mGalleryItemBackground = a.getResourceId(
-                    android.R.styleable.Theme_galleryItemBackground, 0);
+            a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
             a.recycle();
         }
 
@@ -320,9 +299,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         }
 
         public View getView(final int position, final View convertView, final ViewGroup viewGroup) {
-            final LinearLayout layout = new LinearLayout(this.mContext);
+            final LinearLayout layout = new LinearLayout(AllMoviesActivity.this);
             layout.setOrientation(LinearLayout.VERTICAL);
-            final ImageView i = new ImageView(this.mContext);
+            final ImageView i = new ImageView(AllMoviesActivity.this);
             final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
             final int mGalleryItemBackground = a.getResourceId(
                     android.R.styleable.Theme_galleryItemBackground, 0);
@@ -352,20 +331,18 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     }
 
     public Context getContext() {
-        // TODO Auto-generated method stub
-        return AllMoviesActivity.this;
+      return this;
     }
 
     public void refresh() {
-        // TODO Auto-generated method stub
         movies = NowPlayingControllerWrapper.getMovies();
         final Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER
                 .get(NowPlayingControllerWrapper
                         .getAllMoviesSelectedSortIndex());
         Collections.sort(movies, comparator);
-        if (mDetailAdapter != null && mThumbnailAdapter != null) {
-            mDetailAdapter.refreshMovies();
-            mThumbnailAdapter.refreshMovies();
+        if (detailAdapter != null && thumbnailAdapter != null) {
+            detailAdapter.refreshMovies();
+            thumbnailAdapter.refreshMovies();
         }
     }
 }
