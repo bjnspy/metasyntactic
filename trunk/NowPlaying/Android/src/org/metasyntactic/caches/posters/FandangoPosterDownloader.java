@@ -15,6 +15,7 @@
 package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.Application;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -55,7 +56,7 @@ public class FandangoPosterDownloader {
   }
 
   private static void createMovieMap(final String postalCode) {
-    if (StringUtilities.isNullOrEmpty(postalCode)) {
+    if (isNullOrEmpty(postalCode)) {
       return;
     }
 
@@ -85,7 +86,7 @@ public class FandangoPosterDownloader {
       final String poster = movieElement.getAttribute("posterhref");
       final String title = Movie.makeCanonical(text(element(movieElement, "title")));
 
-      if (StringUtilities.isNullOrEmpty(poster) || StringUtilities.isNullOrEmpty(title)) {
+      if (isNullOrEmpty(poster) || isNullOrEmpty(title)) {
         continue;
       }
 

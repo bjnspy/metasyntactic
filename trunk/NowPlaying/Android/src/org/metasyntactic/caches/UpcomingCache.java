@@ -21,6 +21,7 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.*;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.XmlUtilities.children;
 import org.w3c.dom.Element;
 
@@ -315,7 +316,7 @@ public class UpcomingCache {
         "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studioKey + "&name=" + titleKey,
         false);
 
-    if (StringUtilities.isNullOrEmpty(trailersString)) {
+    if (isNullOrEmpty(trailersString)) {
       return;
     }
 
@@ -341,7 +342,7 @@ public class UpcomingCache {
         "http://" + Application.host + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey,
         false);
 
-    if (StringUtilities.isNullOrEmpty(result)) {
+    if (isNullOrEmpty(result)) {
       return;
     }
 
@@ -367,7 +368,7 @@ public class UpcomingCache {
   }
 
   private void updatePoster(final Movie movie) {
-    if (StringUtilities.isNullOrEmpty(movie.getPoster())) {
+    if (isNullOrEmpty(movie.getPoster())) {
       return;
     }
 
@@ -396,7 +397,7 @@ public class UpcomingCache {
         "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
             movie.getCanonicalTitle()), false);
 
-    if (StringUtilities.isNullOrEmpty(imdbAddress)) {
+    if (isNullOrEmpty(imdbAddress)) {
       return;
     }
 

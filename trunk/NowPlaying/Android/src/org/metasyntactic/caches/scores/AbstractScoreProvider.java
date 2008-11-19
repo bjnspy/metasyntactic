@@ -15,6 +15,7 @@
 package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.Application;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
@@ -188,7 +189,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     final String localHash = getHash();
     final String serverHash = lookupServerHash();
 
-    if (StringUtilities.isNullOrEmpty(serverHash)) {
+    if (isNullOrEmpty(serverHash)) {
       return;
     }
 
@@ -372,7 +373,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
   private String serverReviewsAddress(final Location location, final Score score) {
     String country = Locale.getDefault().getCountry();
-    if (!StringUtilities.isNullOrEmpty(location.getCountry())) {
+    if (!isNullOrEmpty(location.getCountry())) {
       country = location.getCountry();
     }
 

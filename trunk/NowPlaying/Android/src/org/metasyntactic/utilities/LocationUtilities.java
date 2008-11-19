@@ -15,6 +15,7 @@
 package org.metasyntactic.utilities;
 
 import org.metasyntactic.data.Location;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.XmlUtilities.element;
 import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.w3c.dom.Element;
@@ -31,7 +32,7 @@ public class LocationUtilities {
     final String postalCode = text(element(codeElement, "postalcode"));
     final String country = text(element(codeElement, "countryCode"));
 
-    if (StringUtilities.isNullOrEmpty(postalCode)) {
+    if (isNullOrEmpty(postalCode)) {
       return null;
     }
 
@@ -51,7 +52,7 @@ public class LocationUtilities {
     final Element geodataElement = NetworkUtilities.downloadXml(url, true);
     final String postalCode = text(element(geodataElement, "postal"));
 
-    if (StringUtilities.isNullOrEmpty(postalCode)) {
+    if (isNullOrEmpty(postalCode)) {
       return null;
     }
 

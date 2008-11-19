@@ -15,6 +15,7 @@
 package org.metasyntactic.utilities;
 
 import org.metasyntactic.threading.PriorityMutex;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.w3c.dom.Element;
 
 import java.io.*;
@@ -86,7 +87,7 @@ public class NetworkUtilities {
   }
 
   public static byte[] download(final String url, final boolean important) {
-    if (StringUtilities.isNullOrEmpty(url)) {
+    if (isNullOrEmpty(url)) {
       return null;
     }
 

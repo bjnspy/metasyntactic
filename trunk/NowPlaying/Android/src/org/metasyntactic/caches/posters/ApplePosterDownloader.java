@@ -19,6 +19,7 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.utilities.difference.EditDistance;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class ApplePosterDownloader {
 
     final String index = NetworkUtilities.downloadString(
         "http://" + Application.host + ".appspot.com/LookupPosterListings", false);
-    if (StringUtilities.isNullOrEmpty(index)) {
+    if (isNullOrEmpty(index)) {
       return;
     }
 
