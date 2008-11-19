@@ -193,6 +193,7 @@ public class MovieDetailsActivity extends ListActivity {
                 holder.name.setBackgroundResource(R.drawable.shape_1);
                 holder.name.setMinHeight(50);
             }
+            
             return convertView;
         }
 
