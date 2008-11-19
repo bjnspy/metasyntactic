@@ -23,35 +23,20 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.*;
 import android.view.View.OnClickListener;
-
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
-import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
     private static final int MENU_SORT = 1;
@@ -67,7 +52,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     private boolean isPrioritized;
     private boolean isGridSetup;
     private List<Movie> movies;
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             refresh();
@@ -80,7 +66,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         List<Movie> tmpMovies;
         tmpMovies = NowPlayingControllerWrapper.getMovies();
         // sort movies according to the default sort preference.
-        final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
+        final Comparator<Movie> comparator = this.MOVIE_ORDER.get(NowPlayingControllerWrapper
                 .getAllMoviesSelectedSortIndex());
         Collections.sort(tmpMovies, comparator);
         this.movies = new ArrayList<Movie>();
@@ -104,12 +90,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         return this.movies;
     }
 
-    @Override
-    public boolean onTouchEvent(final MotionEvent event) {
-        // TODO Auto-generated method stub
-        return super.onTouchEvent(event);
-    }
-
     public Context getContext() {
         return this;
     }
@@ -118,19 +98,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        NowPlayingControllerWrapper.addActivity(this);
         // Request the progress bar to be shown in the title
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        GlobalActivityIndicator.addActivity(NowPlayingActivity.this);
         setContentView(R.layout.progressbar_1);
-        NowPlayingControllerWrapper.addActivity(this);
     }
 
     @Override
     protected void onDestroy() {
-        if (this.broadcastReceiver != null) {
-            unregisterReceiver(this.broadcastReceiver);
-            this.broadcastReceiver = null;
-        }
+        unregisterReceiver(this.broadcastReceiver);
         NowPlayingControllerWrapper.removeActivity(this);
         super.onDestroy();
     }
@@ -164,7 +140,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             public void onAnimationStart(final Animation arg0) {
             }
         });
-        this.postersAdapter = new PostersAdapter(NowPlayingActivity.this);
+        this.postersAdapter = new PostersAdapter();
         this.grid.setAdapter(this.postersAdapter);
         this.intent = new Intent();
         this.intent.setClass(NowPlayingActivity.this, AllMoviesActivity.class);
@@ -172,37 +148,31 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
                 R.anim.fade_reverse);
         this.animation.setAnimationListener(new AnimationListener() {
             public void onAnimationEnd(final Animation animation) {
-                // TODO Auto-generated method stub
                 NowPlayingActivity.this.grid.setVisibility(View.GONE);
                 NowPlayingActivity.this.intent.putExtra("selection", NowPlayingActivity.this.selection);
                 startActivity(NowPlayingActivity.this.intent);
             }
 
             public void onAnimationRepeat(final Animation animation) {
-                // TODO Auto-generated method stub
             }
 
             public void onAnimationStart(final Animation animation) {
-                // TODO Auto-generated method stub
             }
         });
     }
 
     @Override
     protected void onPause() {
-        if (this.broadcastReceiver != null) {
-            unregisterReceiver(this.broadcastReceiver);
-            this.broadcastReceiver = null;
-        }
+        unregisterReceiver(this.broadcastReceiver);
         super.onPause();
     }
 
-    final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
+    private final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
         public int compare(final Movie m1, final Movie m2) {
             return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
         }
     };
-    final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
+    private final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
         public int compare(final Movie m1, final Movie m2) {
             final Calendar c1 = Calendar.getInstance();
             c1.set(1900, 11, 11);
@@ -217,17 +187,17 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             return d2.compareTo(d1);
         }
     };
-    final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
+    private final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
         public int compare(final Movie m1, final Movie m2) {
-            Integer value1 = 0;
-            Integer value2 = 0;
+            int value1 = 0;
+            int value2 = 0;
             final Score s1 = NowPlayingControllerWrapper.getScore(m1);
             final Score s2 = NowPlayingControllerWrapper.getScore(m2);
             if (s1 != null) {
-                value1 = Integer.valueOf(s1.getValue());
+                value1 = s1.getScoreValue();
             }
             if (s2 != null) {
-                value2 = Integer.valueOf(s2.getValue());
+                value2 = s2.getScoreValue();
             }
             if (value1 == value2) {
               return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
@@ -236,15 +206,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             }
         }
     };
-    final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(
+    public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(
             TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
 
     private class PostersAdapter extends BaseAdapter {
         private final LayoutInflater mInflater;
 
-        public PostersAdapter(final Context context) {
+        public PostersAdapter() {
             // Cache the LayoutInflate to avoid asking for a new one each time.
-            this.mInflater = LayoutInflater.from(context);
+            this.mInflater = LayoutInflater.from(NowPlayingActivity.this);
         }
 
         public View getView(final int position, View convertView,
@@ -263,10 +233,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
                 // Creates a ViewHolder and store references to the two children
                 // views
                 // we want to bind data to.
-                holder = new ViewHolder();
-                holder.title = (TextView) convertView.findViewById(R.id.title);
-                holder.poster = (ImageView) convertView
-                        .findViewById(R.id.poster);
+                holder = new ViewHolder(
+                    (TextView) convertView.findViewById(R.id.title),
+                    (ImageView) convertView.findViewById(R.id.poster));
+
                 convertView.setTag(holder);
             } else {
                 // Get the ViewHolder back to get fast access to the TextView
@@ -302,9 +272,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             return convertView;
         }
 
-        class ViewHolder {
-            TextView title;
-            ImageView poster;
+        private class ViewHolder {
+            private final TextView title;
+            private final ImageView poster;
+
+          private ViewHolder(final TextView title, final ImageView poster) {
+            this.title = title;
+            this.poster = poster;
+          }
         }
 
         public final int getCount() {
@@ -351,7 +326,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
                     NowPlayingActivity.this).setTitle(
                     R.string.movies_select_sort_title).setKey(
                     NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
-                    .setEntries(R.array.entries_movies_sort_preference).show();
+                    .setEntries(R.array.entries_movies_sort_preference);
+          builder.show();
             return true;
         }
         if (item.getItemId() == MENU_THEATER) {
