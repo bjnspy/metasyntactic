@@ -40,7 +40,6 @@ public class AllReviewsActivity extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        // TODO Auto-generated method stub
         Log.i("test", "on list item click");
         String review_url = null;
         review_url = reviews.get(position).getLink();
