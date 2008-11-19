@@ -16,13 +16,13 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.Application;
 import org.metasyntactic.io.AbstractPersistable;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.nonNullString;
-import org.metasyntactic.Application;
 
 import java.io.IOException;
 import java.util.*;

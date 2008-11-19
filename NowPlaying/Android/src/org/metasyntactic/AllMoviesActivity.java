@@ -50,7 +50,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
   private int selection;
- 
+
   private List<Movie> movies = new ArrayList<Movie>();
   private DetailAdapter detailAdapter;
   private ThumbnailAdapter thumbnailAdapter;
