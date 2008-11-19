@@ -83,21 +83,21 @@ public class AllReviewsActivity extends ListActivity {
       holder.score = (ImageView) convertView.findViewById(R.id.score);
       holder.author = (TextView) convertView.findViewById(R.id.author);
       holder.source = (TextView) convertView.findViewById(R.id.source);
-      holder.desc = (TextView) convertView.findViewById(R.id.desc);
+      holder.description = (TextView) convertView.findViewById(R.id.desc);
       convertView.setTag(holder);
       final Review review = AllReviewsActivity.this.reviews.get(position);
       holder.author.setText(review.getAuthor());
       holder.source.setText(review.getSource());
-      holder.desc.setText(review.getText());
+      holder.description.setText(review.getText());
       // todo holder score image set.
       return convertView;
     }
 
     private class MovieViewHolder {
-      ImageView score;
-      TextView author;
-      TextView source;
-      TextView desc;
+      private ImageView score;
+      private TextView author;
+      private TextView source;
+      private TextView description;
     }
 
     public int getCount() {
