@@ -15,6 +15,7 @@
 package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.data.Movie;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.element;
@@ -36,7 +37,7 @@ public class ImdbPosterDownloader {
   }
 
   private static String getImageUrl(final String imdbId) {
-    if (StringUtilities.isNullOrEmpty(imdbId)) {
+    if (isNullOrEmpty(imdbId)) {
       return null;
     }
 

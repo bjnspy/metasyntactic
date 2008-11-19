@@ -19,6 +19,7 @@ import org.metasyntactic.data.Location;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnBackgroundThread;
 import org.metasyntactic.utilities.*;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.w3c.dom.Element;
 
 import java.io.File;
@@ -43,7 +44,7 @@ public class UserLocationCache {
   public Location downloadUserAddressLocationBackgroundEntryPoint(final String userAddress) {
     assert ThreadingUtilities.isBackgroundThread();
 
-    if (StringUtilities.isNullOrEmpty(userAddress)) {
+    if (isNullOrEmpty(userAddress)) {
       return null;
     }
 
@@ -84,7 +85,7 @@ public class UserLocationCache {
       // we append the US name for the country here since that's what the
       // backend prefers
       final String country = Locale.getDefault().getDisplayCountry(Locale.US);
-      if (!StringUtilities.isNullOrEmpty(country)) {
+      if (!isNullOrEmpty(country)) {
         return userAddress + ". " + country;
       }
     }
@@ -93,7 +94,7 @@ public class UserLocationCache {
   }
 
   public Location locationForUserAddress(final String userAddress) {
-    if (StringUtilities.isNullOrEmpty(userAddress)) {
+    if (isNullOrEmpty(userAddress)) {
       return null;
     }
 
@@ -115,7 +116,7 @@ public class UserLocationCache {
       final String country = resultElement.getAttribute("country");
       final String postalCode = resultElement.getAttribute("zipcode");
 
-      if (!StringUtilities.isNullOrEmpty(latitude) && !StringUtilities.isNullOrEmpty(longitude)) {
+      if (!isNullOrEmpty(latitude) && !isNullOrEmpty(longitude)) {
         try {
           return new Location(Double.parseDouble(latitude), Double.parseDouble(longitude), address, city, state,
                               postalCode, country);
@@ -130,15 +131,15 @@ public class UserLocationCache {
   }
 
   private Location downloadAddressLocationFromWebService(final String address) {
-    if (StringUtilities.isNullOrEmpty(address)) {
+    if (isNullOrEmpty(address)) {
       return null;
     }
 
     final Location result = downloadAddressLocationFromWebServiceWorker(address);
     if (result != null && result.getLatitude() != 0 && result.getLongitude() != 0) {
-      if (StringUtilities.isNullOrEmpty(result.getPostalCode())) {
+      if (isNullOrEmpty(result.getPostalCode())) {
         final Location resultLocation = LocationUtilities.findLocation(result.getLatitude(), result.getLongitude());
-        if (!StringUtilities.isNullOrEmpty(resultLocation.getPostalCode())) {
+        if (!isNullOrEmpty(resultLocation.getPostalCode())) {
           return new Location(result.getLatitude(), result.getLongitude(), result.getAddress(), result.getCity(),
                               result.getState(), resultLocation.getPostalCode(), result.getCountry());
         }
@@ -158,7 +159,7 @@ public class UserLocationCache {
   }
 
   private Location loadLocation(final String address) {
-    if (!StringUtilities.isNullOrEmpty(address)) {
+    if (!isNullOrEmpty(address)) {
       return FileUtilities.readPersistable(Location.reader, locationFile(address));
     }
 
@@ -170,7 +171,7 @@ public class UserLocationCache {
   }
 
   private void saveLocation(final Location location, final String address) {
-    if (location == null || StringUtilities.isNullOrEmpty(address)) {
+    if (location == null || isNullOrEmpty(address)) {
       return;
     }
 

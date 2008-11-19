@@ -15,6 +15,7 @@
 package org.metasyntactic.utilities.difference;
 
 import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class EditDistance {
   }
 
   public static int getEditDistance(final String source, final String target, final int costThreshold) {
-    final int sourceLength = StringUtilities.isNullOrEmpty(source) ? 0 : source.length();
-    final int targetLength = StringUtilities.isNullOrEmpty(target) ? 0 : target.length();
+    final int sourceLength = isNullOrEmpty(source) ? 0 : source.length();
+    final int targetLength = isNullOrEmpty(target) ? 0 : target.length();
 
     if (sourceLength == 0) {
       return targetLength;

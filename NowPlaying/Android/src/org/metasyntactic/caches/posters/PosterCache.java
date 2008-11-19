@@ -15,6 +15,7 @@
 package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.Application;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Location;
@@ -114,7 +115,7 @@ public class PosterCache {
     final String country = location == null ? "" : location.getCountry();
     String postalCode = location == null ? "10009" : location.getPostalCode();
 
-    if (StringUtilities.isNullOrEmpty(postalCode) || !"US".equals(country)) {
+    if (isNullOrEmpty(postalCode) || !"US".equals(country)) {
       postalCode = "10009";
     }
 

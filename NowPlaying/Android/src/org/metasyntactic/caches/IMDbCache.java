@@ -21,6 +21,7 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
 import java.util.*;
@@ -85,7 +86,7 @@ public class IMDbCache {
 
       final String imdbAddress = NetworkUtilities.downloadString(url, false);
 
-      if (!StringUtilities.isNullOrEmpty(imdbAddress)) {
+      if (!isNullOrEmpty(imdbAddress)) {
         FileUtilities.writeString(imdbAddress, movieFilePath(movie));
         Application.refresh();
       }
