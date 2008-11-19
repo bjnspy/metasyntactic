@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="100px"
-    android:layout_height="200px"
+    android:layout_height="205px"
     android:paddingLeft="0px"
     android:paddingRight="0px"
     android:layout_marginBottom="30px">
@@ -13,15 +13,16 @@
         android:layout_height="130px"
         android:scaleType="fitXY"
         android:layout_marginBottom="5px"
+         android:layout_marginTop="5px"
         android:layout_gravity="center" />
     <TextView
         android:id="@+id/title"
         android:layout_width="fill_parent"
-        android:layout_height="30px"
-        android:textColor="#ffffff"
+        android:layout_height="wrap_content"
+       
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        
+        android:textColor="?android:attr/textColorSecondary"
         
         android:singleLine="false"
         android:layout_gravity="center"
