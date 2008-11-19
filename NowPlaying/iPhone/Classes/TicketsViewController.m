@@ -326,20 +326,20 @@
 
 - (void) didSelectEmailListings {
     NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
-                                movie.canonicalTitle,
+                                [Utilities asciiString:movie.canonicalTitle],
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 
-    [body appendString:theater.name];
+    [body appendString:[Utilities asciiString:theater.name]];
     [body appendString:@"\n"];
     [body appendString:@"<a href=\""];
     [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
-    [body appendString:[self.model simpleAddressForTheater:theater]];
+    [body appendString:[Utilities asciiString:[self.model simpleAddressForTheater:theater]]];
     [body appendString:@"</a>"];
 
     [body appendString:@"\n\n"];
-    [body appendString:movie.canonicalTitle];
+    [body appendString:[Utilities asciiString:movie.canonicalTitle]];
     [body appendString:@"\n"];
 
     [body appendString:[Utilities generateShowtimeLinks:self.model
