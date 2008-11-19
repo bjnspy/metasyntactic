@@ -37,7 +37,6 @@ public class NowPlayingControllerWrapper {
   }
 
   private NowPlayingControllerWrapper() {
-
   }
 
   public static void addActivity(final Activity activity) {
@@ -46,7 +45,7 @@ public class NowPlayingControllerWrapper {
     GlobalActivityIndicator.addActivity(activity);
 
     if (activities.size() == 1) {
-      instance = new NowPlayingController();
+      instance = new NowPlayingController(activity.getApplicationContext());
       instance.startup();
     }
   }
