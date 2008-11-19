@@ -52,11 +52,11 @@ public final class RpcUtil {
                                                                                final Class<Type> originalClass,
                                                                                final Type defaultInstance) {
     return new RpcCallback<Message>() {
-      public void run(Message parameter) {
+      public void run(final Message parameter) {
         Type typedParameter;
         try {
           typedParameter = originalClass.cast(parameter);
-        } catch (ClassCastException e) {
+        } catch (final ClassCastException e) {
           typedParameter = copyAsType(defaultInstance, parameter);
         }
         originalCallback.run(typedParameter);
@@ -69,7 +69,7 @@ public final class RpcUtil {
    * be a different class (e.g. DynamicMessage).
    */
   @SuppressWarnings("unchecked")
-  private static <Type extends Message> Type copyAsType(Type typeDefaultInstance, Message source) {
+  private static <Type extends Message> Type copyAsType(final Type typeDefaultInstance, final Message source) {
     return (Type) typeDefaultInstance.newBuilderForType()
         .mergeFrom(source)
         .build();
@@ -85,12 +85,12 @@ public final class RpcUtil {
     return new RpcCallback<ParameterType>() {
       boolean alreadyCalled = false;
 
-      public void run(ParameterType parameter) {
+      public void run(final ParameterType parameter) {
         synchronized (this) {
-          if (alreadyCalled) {
+          if (this.alreadyCalled) {
             throw new AlreadyCalledException();
           }
-          alreadyCalled = true;
+          this.alreadyCalled = true;
         }
 
         originalCallback.run(parameter);

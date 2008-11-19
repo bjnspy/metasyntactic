@@ -46,7 +46,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         />
     <ImageView
-        android:id="@+id/divider3"
+        id="@+id/divider3"
         android:layout_below="@id/maplbl"
         android:layout_width="fill_parent"
         android:layout_height="1px"

@@ -40,21 +40,21 @@ public final class WireFormat {
   static final int TAG_TYPE_MASK = (1 << TAG_TYPE_BITS) - 1;
 
   /** Given a tag value, determines the wire type (the lower 3 bits). */
-  static int getTagWireType(int tag) {
+  static int getTagWireType(final int tag) {
     return tag & TAG_TYPE_MASK;
   }
 
   /** Given a tag value, determines the field number (the upper 29 bits). */
-  public static int getTagFieldNumber(int tag) {
+  public static int getTagFieldNumber(final int tag) {
     return tag >>> TAG_TYPE_BITS;
   }
 
   /** Makes a tag value given a field number and wire type. */
-  static int makeTag(int fieldNumber, int wireType) {
-    return (fieldNumber << TAG_TYPE_BITS) | wireType;
+  static int makeTag(final int fieldNumber, final int wireType) {
+    return fieldNumber << TAG_TYPE_BITS | wireType;
   }
 
-  static int getWireFormatForFieldType(Descriptors.FieldDescriptor.Type type) {
+  static int getWireFormatForFieldType(final Descriptors.FieldDescriptor.Type type) {
     switch (type) {
       case DOUBLE:
         return WIRETYPE_FIXED64;

@@ -91,7 +91,9 @@ public class PersistableOutputStream {
   }
 
   public <T extends Persistable> void writePersistableCollection(Collection<T> collection) throws IOException {
-    collection = collection == null ? Collections.EMPTY_SET : collection;
+    if (collection == null) {
+      collection = Collections.emptySet();
+    }
 
     writeInt(collection.size());
     for (final T t : collection) {
@@ -100,7 +102,9 @@ public class PersistableOutputStream {
   }
 
   public void writeStringCollection(Collection<String> collection) throws IOException {
-    collection = collection == null ? Collections.EMPTY_SET : collection;
+    if (collection == null) {
+      collection = Collections.emptySet();
+    }
 
     writeInt(collection.size());
     for (final String string : collection) {

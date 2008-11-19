@@ -81,8 +81,8 @@ public final class ExtensionRegistry {
 
   /** Returns an unmodifiable view of the registry. */
   public ExtensionRegistry getUnmodifiable() {
-    return new ExtensionRegistry(Collections.unmodifiableMap(extensionsByName),
-                                 Collections.unmodifiableMap(extensionsByNumber));
+    return new ExtensionRegistry(Collections.unmodifiableMap(this.extensionsByName),
+                                 Collections.unmodifiableMap(this.extensionsByNumber));
   }
 
   /** A (Descriptor, Message) pair, returned by lookup methods. */
@@ -93,12 +93,12 @@ public final class ExtensionRegistry {
     /** A default instance of the extension's type, if it has a message type. Otherwise, {@code null}. */
     public final Message defaultInstance;
 
-    private ExtensionInfo(FieldDescriptor descriptor) {
+    private ExtensionInfo(final FieldDescriptor descriptor) {
       this.descriptor = descriptor;
       this.defaultInstance = null;
     }
 
-    private ExtensionInfo(FieldDescriptor descriptor, Message defaultInstance) {
+    private ExtensionInfo(final FieldDescriptor descriptor, final Message defaultInstance) {
       this.descriptor = descriptor;
       this.defaultInstance = defaultInstance;
     }
@@ -110,8 +110,8 @@ public final class ExtensionRegistry {
    *
    * @return Information about the extension if found, or {@code null} otherwise.
    */
-  public ExtensionInfo findExtensionByName(String fullName) {
-    return extensionsByName.get(fullName);
+  public ExtensionInfo findExtensionByName(final String fullName) {
+    return this.extensionsByName.get(fullName);
   }
 
   /**
@@ -119,12 +119,12 @@ public final class ExtensionRegistry {
    *
    * @return Information about the extension if found, or {@code null} otherwise.
    */
-  public ExtensionInfo findExtensionByNumber(Descriptor containingType, int fieldNumber) {
-    return extensionsByNumber.get(new DescriptorIntPair(containingType, fieldNumber));
+  public ExtensionInfo findExtensionByNumber(final Descriptor containingType, final int fieldNumber) {
+    return this.extensionsByNumber.get(new DescriptorIntPair(containingType, fieldNumber));
   }
 
   /** Add an extension from a generated file to the registry. */
-  public void add(GeneratedMessage.GeneratedExtension<?, ?> extension) {
+  public void add(final GeneratedMessage.GeneratedExtension<?, ?> extension) {
     if (extension.getDescriptor().getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
       add(new ExtensionInfo(extension.getDescriptor(), extension.getMessageDefaultInstance()));
     } else {
@@ -133,7 +133,7 @@ public final class ExtensionRegistry {
   }
 
   /** Add a non-message-type extension to the registry by descriptor. */
-  public void add(FieldDescriptor type) {
+  public void add(final FieldDescriptor type) {
     if (type.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
       throw new IllegalArgumentException(
           "ExtensionRegistry.add() must be provided a default instance when " + "adding an embedded message extension.");
@@ -142,7 +142,7 @@ public final class ExtensionRegistry {
   }
 
   /** Add a message-type extension to the registry by descriptor. */
-  public void add(FieldDescriptor type, Message defaultInstance) {
+  public void add(final FieldDescriptor type, final Message defaultInstance) {
     if (type.getJavaType() != FieldDescriptor.JavaType.MESSAGE) {
       throw new IllegalArgumentException(
           "ExtensionRegistry.add() provided a default instance for a " + "non-message extension.");
@@ -153,8 +153,8 @@ public final class ExtensionRegistry {
   // =================================================================
   // Private stuff.
 
-  private ExtensionRegistry(Map<String, ExtensionInfo> extensionsByName,
-                            Map<DescriptorIntPair, ExtensionInfo> extensionsByNumber) {
+  private ExtensionRegistry(final Map<String, ExtensionInfo> extensionsByName,
+                            final Map<DescriptorIntPair, ExtensionInfo> extensionsByNumber) {
     this.extensionsByName = extensionsByName;
     this.extensionsByNumber = extensionsByNumber;
   }
@@ -165,17 +165,17 @@ public final class ExtensionRegistry {
   private static final ExtensionRegistry EMPTY = new ExtensionRegistry(Collections.<String, ExtensionInfo>emptyMap(),
                                                                        Collections.<DescriptorIntPair, ExtensionInfo>emptyMap());
 
-  private void add(ExtensionInfo extension) {
+  private void add(final ExtensionInfo extension) {
     if (!extension.descriptor.isExtension()) {
       throw new IllegalArgumentException(
           "ExtensionRegistry.add() was given a FieldDescriptor for a regular " + "(non-extension) field.");
     }
 
-    extensionsByName.put(extension.descriptor.getFullName(), extension);
-    extensionsByNumber.put(
+    this.extensionsByName.put(extension.descriptor.getFullName(), extension);
+    this.extensionsByNumber.put(
         new DescriptorIntPair(extension.descriptor.getContainingType(), extension.descriptor.getNumber()), extension);
 
-    FieldDescriptor field = extension.descriptor;
+    final FieldDescriptor field = extension.descriptor;
     if (field.getContainingType()
         .getOptions()
         .getMessageSetWireFormat() && field.getType() == FieldDescriptor.Type.MESSAGE && field.isOptional() && field.getExtensionScope() == field
@@ -183,7 +183,7 @@ public final class ExtensionRegistry {
       // This is an extension of a MessageSet type defined within the extension
       // type's own scope.  For backwards-compatibility, allow it to be looked
       // up by type name.
-      extensionsByName.put(field.getMessageType().getFullName(), extension);
+      this.extensionsByName.put(field.getMessageType().getFullName(), extension);
     }
   }
 
@@ -192,21 +192,21 @@ public final class ExtensionRegistry {
     final Descriptor descriptor;
     final int number;
 
-    DescriptorIntPair(Descriptor descriptor, int number) {
+    DescriptorIntPair(final Descriptor descriptor, final int number) {
       this.descriptor = descriptor;
       this.number = number;
     }
 
     public int hashCode() {
-      return descriptor.hashCode() * ((1 << 16) - 1) + number;
+      return this.descriptor.hashCode() * ((1 << 16) - 1) + this.number;
     }
 
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
       if (!(obj instanceof DescriptorIntPair)) {
         return false;
       }
-      DescriptorIntPair other = (DescriptorIntPair) obj;
-      return descriptor == other.descriptor && number == other.number;
+      final DescriptorIntPair other = (DescriptorIntPair) obj;
+      return this.descriptor == other.descriptor && this.number == other.number;
     }
   }
 }

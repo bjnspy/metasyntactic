@@ -42,7 +42,7 @@ public final class UnknownFieldSet {
   }
 
   /** Create a new {@link UnknownFieldSet.Builder} and initialize it to be a copy of {@code copyFrom}. */
-  public static Builder newBuilder(UnknownFieldSet copyFrom) {
+  public static Builder newBuilder(final UnknownFieldSet copyFrom) {
     return new Builder().mergeFrom(copyFrom);
   }
 
@@ -54,7 +54,7 @@ public final class UnknownFieldSet {
   private static UnknownFieldSet defaultInstance = new UnknownFieldSet(Collections.<Integer, Field>emptyMap());
 
   /** Construct an {@code UnknownFieldSet} around the given map.  The map is expected to be immutable. */
-  private UnknownFieldSet(Map<Integer, Field> fields) {
+  private UnknownFieldSet(final Map<Integer, Field> fields) {
     this.fields = fields;
   }
 
@@ -62,23 +62,23 @@ public final class UnknownFieldSet {
 
   /** Get a map of fields in the set by number. */
   public Map<Integer, Field> asMap() {
-    return fields;
+    return this.fields;
   }
 
   /** Check if the given field number is present in the set. */
-  public boolean hasField(int number) {
-    return fields.containsKey(number);
+  public boolean hasField(final int number) {
+    return this.fields.containsKey(number);
   }
 
   /** Get a field by number.  Returns an empty field if not present.  Never returns {@code null}. */
-  public Field getField(int number) {
-    Field result = fields.get(number);
-    return (result == null) ? Field.getDefaultInstance() : result;
+  public Field getField(final int number) {
+    final Field result = this.fields.get(number);
+    return result == null ? Field.getDefaultInstance() : result;
   }
 
   /** Serializes the set and writes it to {@code output}. */
-  public void writeTo(CodedOutputStream output) throws IOException {
-    for (Map.Entry<Integer, Field> entry : fields.entrySet()) {
+  public void writeTo(final CodedOutputStream output) throws IOException {
+    for (final Map.Entry<Integer, Field> entry : this.fields.entrySet()) {
       entry.getValue().writeTo(entry.getKey(), output);
     }
   }
@@ -97,10 +97,10 @@ public final class UnknownFieldSet {
    */
   public final ByteString toByteString() {
     try {
-      ByteString.CodedBuilder out = ByteString.newCodedBuilder(getSerializedSize());
+      final ByteString.CodedBuilder out = ByteString.newCodedBuilder(getSerializedSize());
       writeTo(out.getCodedOutput());
       return out.build();
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new RuntimeException("Serializing to a ByteString threw an IOException (should " + "never happen).", e);
     }
   }
@@ -111,12 +111,12 @@ public final class UnknownFieldSet {
    */
   public final byte[] toByteArray() {
     try {
-      byte[] result = new byte[getSerializedSize()];
-      CodedOutputStream output = CodedOutputStream.newInstance(result);
+      final byte[] result = new byte[getSerializedSize()];
+      final CodedOutputStream output = CodedOutputStream.newInstance(result);
       writeTo(output);
       output.checkNoSpaceLeft();
       return result;
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new RuntimeException("Serializing to a byte array threw an IOException " + "(should never happen).", e);
     }
   }
@@ -125,8 +125,8 @@ public final class UnknownFieldSet {
    * Serializes the message and writes it to {@code output}.  This is just a trivial wrapper around {@link
    * #writeTo(CodedOutputStream)}.
    */
-  public final void writeTo(OutputStream output) throws IOException {
-    CodedOutputStream codedOutput = CodedOutputStream.newInstance(output);
+  public final void writeTo(final OutputStream output) throws IOException {
+    final CodedOutputStream codedOutput = CodedOutputStream.newInstance(output);
     writeTo(codedOutput);
     codedOutput.flush();
   }
@@ -134,15 +134,15 @@ public final class UnknownFieldSet {
   /** Get the number of bytes required to encode this set. */
   public int getSerializedSize() {
     int result = 0;
-    for (Map.Entry<Integer, Field> entry : fields.entrySet()) {
+    for (final Map.Entry<Integer, Field> entry : this.fields.entrySet()) {
       result += entry.getValue().getSerializedSize(entry.getKey());
     }
     return result;
   }
 
   /** Serializes the set and writes it to {@code output} using {@code MessageSet} wire format. */
-  public void writeAsMessageSetTo(CodedOutputStream output) throws IOException {
-    for (Map.Entry<Integer, Field> entry : fields.entrySet()) {
+  public void writeAsMessageSetTo(final CodedOutputStream output) throws IOException {
+    for (final Map.Entry<Integer, Field> entry : this.fields.entrySet()) {
       entry.getValue().writeAsMessageSetExtensionTo(entry.getKey(), output);
     }
   }
@@ -150,29 +150,29 @@ public final class UnknownFieldSet {
   /** Get the number of bytes required to encode this set using {@code MessageSet} wire format. */
   public int getSerializedSizeAsMessageSet() {
     int result = 0;
-    for (Map.Entry<Integer, Field> entry : fields.entrySet()) {
+    for (final Map.Entry<Integer, Field> entry : this.fields.entrySet()) {
       result += entry.getValue().getSerializedSizeAsMessageSetExtension(entry.getKey());
     }
     return result;
   }
 
   /** Parse an {@code UnknownFieldSet} from the given input stream. */
-  static public UnknownFieldSet parseFrom(CodedInputStream input) throws IOException {
+  static public UnknownFieldSet parseFrom(final CodedInputStream input) throws IOException {
     return newBuilder().mergeFrom(input).build();
   }
 
   /** Parse {@code data} as an {@code UnknownFieldSet} and return it. */
-  public static UnknownFieldSet parseFrom(ByteString data) throws InvalidProtocolBufferException {
+  public static UnknownFieldSet parseFrom(final ByteString data) throws InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data).build();
   }
 
   /** Parse {@code data} as an {@code UnknownFieldSet} and return it. */
-  public static UnknownFieldSet parseFrom(byte[] data) throws InvalidProtocolBufferException {
+  public static UnknownFieldSet parseFrom(final byte[] data) throws InvalidProtocolBufferException {
     return newBuilder().mergeFrom(data).build();
   }
 
   /** Parse an {@code UnknownFieldSet} from {@code input} and return it. */
-  public static UnknownFieldSet parseFrom(InputStream input) throws IOException {
+  public static UnknownFieldSet parseFrom(final InputStream input) throws IOException {
     return newBuilder().mergeFrom(input).build();
   }
 
@@ -198,24 +198,24 @@ public final class UnknownFieldSet {
     Field.Builder lastField = null;
 
     /** Get a field builder for the given field number which includes any values that already exist. */
-    private Field.Builder getFieldBuilder(int number) {
-      if (lastField != null) {
-        if (number == lastFieldNumber) {
-          return lastField;
+    private Field.Builder getFieldBuilder(final int number) {
+      if (this.lastField != null) {
+        if (number == this.lastFieldNumber) {
+          return this.lastField;
         }
         // Note:  addField() will reset lastField and lastFieldNumber.
-        addField(lastFieldNumber, lastField.build());
+        addField(this.lastFieldNumber, this.lastField.build());
       }
       if (number == 0) {
         return null;
       } else {
-        Field existing = fields.get(number);
-        lastFieldNumber = number;
-        lastField = Field.newBuilder();
+        final Field existing = this.fields.get(number);
+        this.lastFieldNumber = number;
+        this.lastField = Field.newBuilder();
         if (existing != null) {
-          lastField.mergeFrom(existing);
+          this.lastField.mergeFrom(existing);
         }
-        return lastField;
+        return this.lastField;
       }
     }
 
@@ -228,20 +228,20 @@ public final class UnknownFieldSet {
     public UnknownFieldSet build() {
       getFieldBuilder(0);  // Force lastField to be built.
       UnknownFieldSet result;
-      if (fields.isEmpty()) {
+      if (this.fields.isEmpty()) {
         result = getDefaultInstance();
       } else {
-        result = new UnknownFieldSet(Collections.unmodifiableMap(fields));
+        result = new UnknownFieldSet(Collections.unmodifiableMap(this.fields));
       }
-      fields = null;
+      this.fields = null;
       return result;
     }
 
     /** Reset the builder to an empty set. */
     public Builder clear() {
-      fields = new TreeMap<Integer, Field>();
-      lastFieldNumber = 0;
-      lastField = null;
+      this.fields = new TreeMap<Integer, Field>();
+      this.lastFieldNumber = 0;
+      this.lastField = null;
       return this;
     }
 
@@ -249,9 +249,9 @@ public final class UnknownFieldSet {
      * Merge the fields from {@code other} into this set.  If a field number exists in both sets, {@code other}'s values
      * for that field will be appended to the values in this set.
      */
-    public Builder mergeFrom(UnknownFieldSet other) {
+    public Builder mergeFrom(final UnknownFieldSet other) {
       if (other != getDefaultInstance()) {
-        for (Map.Entry<Integer, Field> entry : other.fields.entrySet()) {
+        for (final Map.Entry<Integer, Field> entry : other.fields.entrySet()) {
           mergeField(entry.getKey(), entry.getValue());
         }
       }
@@ -259,7 +259,7 @@ public final class UnknownFieldSet {
     }
 
     /** Add a field to the {@code UnknownFieldSet}.  If a field with the same number already exists, the two are merged. */
-    public Builder mergeField(int number, Field field) {
+    public Builder mergeField(final int number, final Field field) {
       if (number == 0) {
         throw new IllegalArgumentException("Zero is not a valid field number.");
       }
@@ -278,7 +278,7 @@ public final class UnknownFieldSet {
      * Convenience method for merging a new field containing a single varint value.  This is used in particular when an
      * unknown enum value is encountered.
      */
-    public Builder mergeVarintField(int number, int value) {
+    public Builder mergeVarintField(final int number, final int value) {
       if (number == 0) {
         throw new IllegalArgumentException("Zero is not a valid field number.");
       }
@@ -287,24 +287,24 @@ public final class UnknownFieldSet {
     }
 
     /** Check if the given field number is present in the set. */
-    public boolean hasField(int number) {
+    public boolean hasField(final int number) {
       if (number == 0) {
         throw new IllegalArgumentException("Zero is not a valid field number.");
       }
-      return number == lastFieldNumber || fields.containsKey(number);
+      return number == this.lastFieldNumber || this.fields.containsKey(number);
     }
 
     /** Add a field to the {@code UnknownFieldSet}.  If a field with the same number already exists, it is removed. */
-    public Builder addField(int number, Field field) {
+    public Builder addField(final int number, final Field field) {
       if (number == 0) {
         throw new IllegalArgumentException("Zero is not a valid field number.");
       }
-      if (lastField != null && lastFieldNumber == number) {
+      if (this.lastField != null && this.lastFieldNumber == number) {
         // Discard this.
-        lastField = null;
-        lastFieldNumber = 0;
+        this.lastField = null;
+        this.lastFieldNumber = 0;
       }
-      fields.put(number, field);
+      this.fields.put(number, field);
       return this;
     }
 
@@ -314,13 +314,13 @@ public final class UnknownFieldSet {
      */
     public Map<Integer, Field> asMap() {
       getFieldBuilder(0);  // Force lastField to be built.
-      return Collections.unmodifiableMap(fields);
+      return Collections.unmodifiableMap(this.fields);
     }
 
     /** Parse an entire message from {@code input} and merge its fields into this set. */
-    public Builder mergeFrom(CodedInputStream input) throws IOException {
+    public Builder mergeFrom(final CodedInputStream input) throws IOException {
       while (true) {
-        int tag = input.readTag();
+        final int tag = input.readTag();
         if (tag == 0 || !mergeFieldFrom(tag, input)) {
           break;
         }
@@ -335,8 +335,8 @@ public final class UnknownFieldSet {
      *
      * @return {@code false} if the tag is an engroup tag.
      */
-    public boolean mergeFieldFrom(int tag, CodedInputStream input) throws IOException {
-      int number = WireFormat.getTagFieldNumber(tag);
+    public boolean mergeFieldFrom(final int tag, final CodedInputStream input) throws IOException {
+      final int number = WireFormat.getTagFieldNumber(tag);
       switch (WireFormat.getTagWireType(tag)) {
         case WireFormat.WIRETYPE_VARINT:
           getFieldBuilder(number).addVarint(input.readInt64());
@@ -348,7 +348,7 @@ public final class UnknownFieldSet {
           getFieldBuilder(number).addLengthDelimited(input.readBytes());
           return true;
         case WireFormat.WIRETYPE_START_GROUP: {
-          UnknownFieldSet.Builder subBuilder = UnknownFieldSet.newBuilder();
+          final UnknownFieldSet.Builder subBuilder = UnknownFieldSet.newBuilder();
           input.readUnknownGroup(number, subBuilder);
           getFieldBuilder(number).addGroup(subBuilder.build());
           return true;
@@ -367,15 +367,15 @@ public final class UnknownFieldSet {
      * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the set being built.  This is just a small
      * wrapper around {@link #mergeFrom(CodedInputStream)}.
      */
-    public Builder mergeFrom(ByteString data) throws InvalidProtocolBufferException {
+    public Builder mergeFrom(final ByteString data) throws InvalidProtocolBufferException {
       try {
-        CodedInputStream input = data.newCodedInput();
+        final CodedInputStream input = data.newCodedInput();
         mergeFrom(input);
         input.checkLastTagWas(0);
         return this;
-      } catch (InvalidProtocolBufferException e) {
+      } catch (final InvalidProtocolBufferException e) {
         throw e;
-      } catch (IOException e) {
+      } catch (final IOException e) {
         throw new RuntimeException("Reading from a ByteString threw an IOException (should " + "never happen).", e);
       }
     }
@@ -384,15 +384,15 @@ public final class UnknownFieldSet {
      * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the set being built.  This is just a small
      * wrapper around {@link #mergeFrom(CodedInputStream)}.
      */
-    public Builder mergeFrom(byte[] data) throws InvalidProtocolBufferException {
+    public Builder mergeFrom(final byte[] data) throws InvalidProtocolBufferException {
       try {
-        CodedInputStream input = CodedInputStream.newInstance(data);
+        final CodedInputStream input = CodedInputStream.newInstance(data);
         mergeFrom(input);
         input.checkLastTagWas(0);
         return this;
-      } catch (InvalidProtocolBufferException e) {
+      } catch (final InvalidProtocolBufferException e) {
         throw e;
-      } catch (IOException e) {
+      } catch (final IOException e) {
         throw new RuntimeException("Reading from a byte array threw an IOException (should " + "never happen).", e);
       }
     }
@@ -401,8 +401,8 @@ public final class UnknownFieldSet {
      * Parse an {@code UnknownFieldSet} from {@code input} and merge it with the set being built.  This is just a small
      * wrapper around {@link #mergeFrom(CodedInputStream)}.
      */
-    public Builder mergeFrom(InputStream input) throws IOException {
-      CodedInputStream codedInput = CodedInputStream.newInstance(input);
+    public Builder mergeFrom(final InputStream input) throws IOException {
+      final CodedInputStream codedInput = CodedInputStream.newInstance(input);
       mergeFrom(codedInput);
       codedInput.checkLastTagWas(0);
       return this;
@@ -432,7 +432,7 @@ public final class UnknownFieldSet {
     }
 
     /** Construct a new {@link Builder} and initialize it to a copy of {@code copyFrom}. */
-    public static Builder newBuilder(Field copyFrom) {
+    public static Builder newBuilder(final Field copyFrom) {
       return new Builder().mergeFrom(copyFrom);
     }
 
@@ -444,58 +444,58 @@ public final class UnknownFieldSet {
     private static Field defaultInstance = newBuilder().build();
 
     /** Get the list of varint values for this field. */
-    public List<Long> getVarintList() { return varint; }
+    public List<Long> getVarintList() { return this.varint; }
 
     /** Get the list of fixed32 values for this field. */
-    public List<Integer> getFixed32List() { return fixed32; }
+    public List<Integer> getFixed32List() { return this.fixed32; }
 
     /** Get the list of fixed64 values for this field. */
-    public List<Long> getFixed64List() { return fixed64; }
+    public List<Long> getFixed64List() { return this.fixed64; }
 
     /** Get the list of length-delimited values for this field. */
-    public List<ByteString> getLengthDelimitedList() { return lengthDelimited; }
+    public List<ByteString> getLengthDelimitedList() { return this.lengthDelimited; }
 
     /**
      * Get the list of embedded group values for this field.  These are represented using {@link UnknownFieldSet}s
      * rather than {@link Message}s since the group's type is presumably unknown.
      */
-    public List<UnknownFieldSet> getGroupList() { return group; }
+    public List<UnknownFieldSet> getGroupList() { return this.group; }
 
     /** Serializes the field, including field number, and writes it to {@code output}. */
-    public void writeTo(int fieldNumber, CodedOutputStream output) throws IOException {
-      for (long value : varint) {
+    public void writeTo(final int fieldNumber, final CodedOutputStream output) throws IOException {
+      for (final long value : this.varint) {
         output.writeUInt64(fieldNumber, value);
       }
-      for (int value : fixed32) {
+      for (final int value : this.fixed32) {
         output.writeFixed32(fieldNumber, value);
       }
-      for (long value : fixed64) {
+      for (final long value : this.fixed64) {
         output.writeFixed64(fieldNumber, value);
       }
-      for (ByteString value : lengthDelimited) {
+      for (final ByteString value : this.lengthDelimited) {
         output.writeBytes(fieldNumber, value);
       }
-      for (UnknownFieldSet value : group) {
+      for (final UnknownFieldSet value : this.group) {
         output.writeUnknownGroup(fieldNumber, value);
       }
     }
 
     /** Get the number of bytes required to encode this field, including field number. */
-    public int getSerializedSize(int fieldNumber) {
+    public int getSerializedSize(final int fieldNumber) {
       int result = 0;
-      for (long value : varint) {
+      for (final long value : this.varint) {
         result += CodedOutputStream.computeUInt64Size(fieldNumber, value);
       }
-      for (int value : fixed32) {
+      for (final int value : this.fixed32) {
         result += CodedOutputStream.computeFixed32Size(fieldNumber, value);
       }
-      for (long value : fixed64) {
+      for (final long value : this.fixed64) {
         result += CodedOutputStream.computeFixed64Size(fieldNumber, value);
       }
-      for (ByteString value : lengthDelimited) {
+      for (final ByteString value : this.lengthDelimited) {
         result += CodedOutputStream.computeBytesSize(fieldNumber, value);
       }
-      for (UnknownFieldSet value : group) {
+      for (final UnknownFieldSet value : this.group) {
         result += CodedOutputStream.computeUnknownGroupSize(fieldNumber, value);
       }
       return result;
@@ -505,8 +505,8 @@ public final class UnknownFieldSet {
      * Serializes the field, including field number, and writes it to {@code output}, using {@code MessageSet} wire
      * format.
      */
-    public void writeAsMessageSetExtensionTo(int fieldNumber, CodedOutputStream output) throws IOException {
-      for (ByteString value : lengthDelimited) {
+    public void writeAsMessageSetExtensionTo(final int fieldNumber, final CodedOutputStream output) throws IOException {
+      for (final ByteString value : this.lengthDelimited) {
         output.writeRawMessageSetExtension(fieldNumber, value);
       }
     }
@@ -515,9 +515,9 @@ public final class UnknownFieldSet {
      * Get the number of bytes required to encode this field, including field number, using {@code MessageSet} wire
      * format.
      */
-    public int getSerializedSizeAsMessageSetExtension(int fieldNumber) {
+    public int getSerializedSizeAsMessageSetExtension(final int fieldNumber) {
       int result = 0;
-      for (ByteString value : lengthDelimited) {
+      for (final ByteString value : this.lengthDelimited) {
         result += CodedOutputStream.computeRawMessageSetExtensionSize(fieldNumber, value);
       }
       return result;
@@ -544,40 +544,40 @@ public final class UnknownFieldSet {
        * other method will throw a {@code NullPointerException}.
        */
       public Field build() {
-        if (result.varint == null) {
-          result.varint = Collections.emptyList();
+        if (this.result.varint == null) {
+          this.result.varint = Collections.emptyList();
         } else {
-          result.varint = Collections.unmodifiableList(result.varint);
+          this.result.varint = Collections.unmodifiableList(this.result.varint);
         }
-        if (result.fixed32 == null) {
-          result.fixed32 = Collections.emptyList();
+        if (this.result.fixed32 == null) {
+          this.result.fixed32 = Collections.emptyList();
         } else {
-          result.fixed32 = Collections.unmodifiableList(result.fixed32);
+          this.result.fixed32 = Collections.unmodifiableList(this.result.fixed32);
         }
-        if (result.fixed64 == null) {
-          result.fixed64 = Collections.emptyList();
+        if (this.result.fixed64 == null) {
+          this.result.fixed64 = Collections.emptyList();
         } else {
-          result.fixed64 = Collections.unmodifiableList(result.fixed64);
+          this.result.fixed64 = Collections.unmodifiableList(this.result.fixed64);
         }
-        if (result.lengthDelimited == null) {
-          result.lengthDelimited = Collections.emptyList();
+        if (this.result.lengthDelimited == null) {
+          this.result.lengthDelimited = Collections.emptyList();
         } else {
-          result.lengthDelimited = Collections.unmodifiableList(result.lengthDelimited);
+          this.result.lengthDelimited = Collections.unmodifiableList(this.result.lengthDelimited);
         }
-        if (result.group == null) {
-          result.group = Collections.emptyList();
+        if (this.result.group == null) {
+          this.result.group = Collections.emptyList();
         } else {
-          result.group = Collections.unmodifiableList(result.group);
+          this.result.group = Collections.unmodifiableList(this.result.group);
         }
 
-        Field returnMe = result;
-        result = null;
+        final Field returnMe = this.result;
+        this.result = null;
         return returnMe;
       }
 
       /** Discard the field's contents. */
       public Builder clear() {
-        result = new Field();
+        this.result = new Field();
         return this;
       }
 
@@ -585,82 +585,82 @@ public final class UnknownFieldSet {
        * Merge the values in {@code other} into this field.  For each list of values, {@code other}'s values are append
        * to the ones in this field.
        */
-      public Builder mergeFrom(Field other) {
+      public Builder mergeFrom(final Field other) {
         if (!other.varint.isEmpty()) {
-          if (result.varint == null) {
-            result.varint = new ArrayList<Long>();
+          if (this.result.varint == null) {
+            this.result.varint = new ArrayList<Long>();
           }
-          result.varint.addAll(other.varint);
+          this.result.varint.addAll(other.varint);
         }
         if (!other.fixed32.isEmpty()) {
-          if (result.fixed32 == null) {
-            result.fixed32 = new ArrayList<Integer>();
+          if (this.result.fixed32 == null) {
+            this.result.fixed32 = new ArrayList<Integer>();
           }
-          result.fixed32.addAll(other.fixed32);
+          this.result.fixed32.addAll(other.fixed32);
         }
         if (!other.fixed64.isEmpty()) {
-          if (result.fixed64 == null) {
-            result.fixed64 = new ArrayList<Long>();
+          if (this.result.fixed64 == null) {
+            this.result.fixed64 = new ArrayList<Long>();
           }
-          result.fixed64.addAll(other.fixed64);
+          this.result.fixed64.addAll(other.fixed64);
         }
         if (!other.lengthDelimited.isEmpty()) {
-          if (result.lengthDelimited == null) {
-            result.lengthDelimited = new ArrayList<ByteString>();
+          if (this.result.lengthDelimited == null) {
+            this.result.lengthDelimited = new ArrayList<ByteString>();
           }
-          result.lengthDelimited.addAll(other.lengthDelimited);
+          this.result.lengthDelimited.addAll(other.lengthDelimited);
         }
         if (!other.group.isEmpty()) {
-          if (result.group == null) {
-            result.group = new ArrayList<UnknownFieldSet>();
+          if (this.result.group == null) {
+            this.result.group = new ArrayList<UnknownFieldSet>();
           }
-          result.group.addAll(other.group);
+          this.result.group.addAll(other.group);
         }
         return this;
       }
 
       /** Add a varint value. */
-      public Builder addVarint(long value) {
-        if (result.varint == null) {
-          result.varint = new ArrayList<Long>();
+      public Builder addVarint(final long value) {
+        if (this.result.varint == null) {
+          this.result.varint = new ArrayList<Long>();
         }
-        result.varint.add(value);
+        this.result.varint.add(value);
         return this;
       }
 
       /** Add a fixed32 value. */
-      public Builder addFixed32(int value) {
-        if (result.fixed32 == null) {
-          result.fixed32 = new ArrayList<Integer>();
+      public Builder addFixed32(final int value) {
+        if (this.result.fixed32 == null) {
+          this.result.fixed32 = new ArrayList<Integer>();
         }
-        result.fixed32.add(value);
+        this.result.fixed32.add(value);
         return this;
       }
 
       /** Add a fixed64 value. */
-      public Builder addFixed64(long value) {
-        if (result.fixed64 == null) {
-          result.fixed64 = new ArrayList<Long>();
+      public Builder addFixed64(final long value) {
+        if (this.result.fixed64 == null) {
+          this.result.fixed64 = new ArrayList<Long>();
         }
-        result.fixed64.add(value);
+        this.result.fixed64.add(value);
         return this;
       }
 
       /** Add a length-delimited value. */
-      public Builder addLengthDelimited(ByteString value) {
-        if (result.lengthDelimited == null) {
-          result.lengthDelimited = new ArrayList<ByteString>();
+      public Builder addLengthDelimited(final ByteString value) {
+        if (this.result.lengthDelimited == null) {
+          this.result.lengthDelimited = new ArrayList<ByteString>();
         }
-        result.lengthDelimited.add(value);
+        this.result.lengthDelimited.add(value);
         return this;
       }
 
       /** Add an embedded group. */
-      public Builder addGroup(UnknownFieldSet value) {
-        if (result.group == null) {
-          result.group = new ArrayList<UnknownFieldSet>();
+      public Builder addGroup(final UnknownFieldSet value) {
+        if (this.result.group == null) {
+          this.result.group = new ArrayList<UnknownFieldSet>();
         }
-        result.group.add(value);
+        this.result.group.add(value);
         return this;
       }
     }

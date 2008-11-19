@@ -25,7 +25,7 @@ import java.io.IOException;
  * @author kenton@google.com Kenton Varda
  */
 public class InvalidProtocolBufferException extends IOException {
-  public InvalidProtocolBufferException(String description) {
+  public InvalidProtocolBufferException(final String description) {
     super(description);
   }
 

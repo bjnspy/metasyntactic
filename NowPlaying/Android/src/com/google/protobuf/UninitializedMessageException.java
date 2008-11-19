@@ -34,11 +34,11 @@ import java.util.Map;
  * @author kenton@google.com Kenton Varda
  */
 public class UninitializedMessageException extends RuntimeException {
-  public UninitializedMessageException(Message message) {
+  public UninitializedMessageException(final Message message) {
     this(findMissingFields(message));
   }
 
-  private UninitializedMessageException(List<String> missingFields) {
+  private UninitializedMessageException(final List<String> missingFields) {
     super(buildDescription(missingFields));
     this.missingFields = missingFields;
   }
@@ -50,7 +50,7 @@ public class UninitializedMessageException extends RuntimeException {
    * field, e.g. "foo.bar[5].baz".
    */
   public List<String> getMissingFields() {
-    return Collections.unmodifiableList(missingFields);
+    return Collections.unmodifiableList(this.missingFields);
   }
 
   /**
@@ -62,10 +62,10 @@ public class UninitializedMessageException extends RuntimeException {
   }
 
   /** Construct the description string for this exception. */
-  private static String buildDescription(List<String> missingFields) {
-    StringBuilder description = new StringBuilder("Message missing required fields: ");
+  private static String buildDescription(final List<String> missingFields) {
+    final StringBuilder description = new StringBuilder("Message missing required fields: ");
     boolean first = true;
-    for (String field : missingFields) {
+    for (final String field : missingFields) {
       if (first) {
         first = false;
       } else {
@@ -77,28 +77,28 @@ public class UninitializedMessageException extends RuntimeException {
   }
 
   /** Populates {@code this.missingFields} with the full "path" of each missing required field in the given message. */
-  private static List<String> findMissingFields(Message message) {
-    List<String> results = new ArrayList<String>();
+  private static List<String> findMissingFields(final Message message) {
+    final List<String> results = new ArrayList<String>();
     findMissingFields(message, "", results);
     return results;
   }
 
   /** Recursive helper implementing {@link #findMissingFields(Message)}. */
-  private static void findMissingFields(Message message, String prefix, List<String> results) {
-    for (FieldDescriptor field : message.getDescriptorForType().getFields()) {
+  private static void findMissingFields(final Message message, final String prefix, final List<String> results) {
+    for (final FieldDescriptor field : message.getDescriptorForType().getFields()) {
       if (field.isRequired() && !message.hasField(field)) {
         results.add(prefix + field.getName());
       }
     }
 
-    for (Map.Entry<FieldDescriptor, Object> entry : message.getAllFields().entrySet()) {
-      FieldDescriptor field = entry.getKey();
-      Object value = entry.getValue();
+    for (final Map.Entry<FieldDescriptor, Object> entry : message.getAllFields().entrySet()) {
+      final FieldDescriptor field = entry.getKey();
+      final Object value = entry.getValue();
 
       if (field.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
         if (field.isRepeated()) {
           int i = 0;
-          for (Object element : (List) value) {
+          for (final Object element : (List) value) {
             findMissingFields((Message) element, subMessagePrefix(prefix, field, i++), results);
           }
         } else {
@@ -110,8 +110,8 @@ public class UninitializedMessageException extends RuntimeException {
     }
   }
 
-  private static String subMessagePrefix(String prefix, FieldDescriptor field, int index) {
-    StringBuilder result = new StringBuilder(prefix);
+  private static String subMessagePrefix(final String prefix, final FieldDescriptor field, final int index) {
+    final StringBuilder result = new StringBuilder(prefix);
     if (field.isExtension()) {
       result.append('(')
           .append(field.getFullName())
