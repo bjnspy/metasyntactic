@@ -29,7 +29,7 @@ public class TheaterDetailsActivity extends ListActivity {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    NowPlayingControllerWrapper.removeActivity(this);
+    NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.theaterdetails);
     this.theater = getIntent().getExtras().getParcelable("theater");
     bindView();
