@@ -62,9 +62,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     /** Updates display of the list of movies. */
     public void refresh() {
-        // TODO Auto-generated method stub
-        List<Movie> tmpMovies;
-        tmpMovies = NowPlayingControllerWrapper.getMovies();
+        List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
         // sort movies according to the default sort preference.
         final Comparator<Movie> comparator = this.MOVIE_ORDER.get(NowPlayingControllerWrapper
                 .getAllMoviesSelectedSortIndex());
@@ -256,7 +254,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             }
             convertView.setOnClickListener(new OnClickListener() {
                 public void onClick(final View v) {
-                    // TODO Auto-generated method stub
                     NowPlayingActivity.this.selection = position;
                     int i = 0;
                     View child = NowPlayingActivity.this.grid.getChildAt(i);
