@@ -23,10 +23,8 @@ import java.util.List;
 
 public class TheaterDetailsActivity extends ListActivity {
   /** Called when the activity is first created. */
-  NowPlayingControllerWrapper controller;
   private Theater theater;
-  MoviesAdapter moviesAdapter;
-  List<Movie> movies = new ArrayList<Movie>();
+  private List<Movie> movies = new ArrayList<Movie>();
 
   @Override
   public void onCreate(final Bundle savedInstanceState) {
@@ -99,8 +97,8 @@ public class TheaterDetailsActivity extends ListActivity {
       }
     });
 
-    this.moviesAdapter = new MoviesAdapter();
-    setListAdapter(this.moviesAdapter);
+    MoviesAdapter moviesAdapter = new MoviesAdapter();
+    setListAdapter(moviesAdapter);
   }
 
   @Override
