@@ -36,14 +36,26 @@ public class CollectionUtilities {
   }
 
   public static <T> Collection<T> nonNullCollection(final Collection<T> collection) {
-    return collection == null ? Collections.EMPTY_SET : collection;
+    if (collection == null) {
+      return Collections.emptySet();
+    }
+
+    return collection;
   }
 
   public static <T> List<T> nonNullList(final List<T> list) {
-    return list == null ? Collections.EMPTY_LIST : list;
+    if (list == null) {
+      return Collections.emptyList();
+    }
+
+    return list;
   }
 
   public static <K, V> Map<K, V> nonNullMap(final Map<K, V> map) {
-    return map == null ? Collections.EMPTY_MAP : map;
+    if (map == null) {
+      return Collections.emptyMap();
+    }
+
+    return map;
   }
 }
