@@ -43,7 +43,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
 
   private String getUrl() {
     final Location location = getModel().getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserLocation());
+        .downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserAddress());
 
     if (isNullOrEmpty(location.getPostalCode())) {
       return null;

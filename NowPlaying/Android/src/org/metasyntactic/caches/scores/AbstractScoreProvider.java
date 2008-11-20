@@ -334,7 +334,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
   private void downloadReviews(final Set<Score> scores, final Map<String, Score> scoresMap) {
     final Location location = getModel().getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserLocation());
+        .downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserAddress());
 
     if (location == null) {
       return;
