@@ -53,9 +53,9 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   private void bindView() {
-    final TextView movielbl = (TextView) findViewById(R.id.movie);
-    movielbl.setEllipsize(TextUtils.TruncateAt.END);
-    movielbl.setText(this.movie.getDisplayTitle());
+    final TextView movieLabel = (TextView) findViewById(R.id.movie);
+    movieLabel.setEllipsize(TextUtils.TruncateAt.END);
+    movieLabel.setText(this.movie.getDisplayTitle());
     this.theaters = NowPlayingControllerWrapper.getTheatersShowingMovie(this.movie);
   }
 
