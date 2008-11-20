@@ -65,7 +65,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     private boolean isPrioritized;
     private boolean isGridSetup;
     private List<Movie> movies;
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             refresh();
@@ -117,17 +117,21 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     @Override
     protected void onDestroy() {
-        unregisterReceiver(broadcastReceiver);
         NowPlayingControllerWrapper.removeActivity(this);
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+      unregisterReceiver(broadcastReceiver);
+        super.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         refresh();
-        registerReceiver(this.broadcastReceiver, new IntentFilter(
-                Application.NOW_PLAYING_CHANGED_INTENT));
+        registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
         if (this.movies != null && this.movies.size() > 0) {
             setup();
             this.isGridSetup = true;
@@ -172,11 +176,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             public void onAnimationStart(final Animation animation) {
             }
         });
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     private final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
