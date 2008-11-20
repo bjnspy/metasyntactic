@@ -47,7 +47,7 @@ public class MovieViewUtilities {
    * @param rating Movie rating.
    * @param res    Context resources handle.
    */
-  public static CharSequence formatRatings(final String rating, final Resources res) {
+  public static String formatRatings(final String rating, final Resources res) {
     if (rating.equals("")) {
       return res.getString(R.string.unrated);
     } else {
@@ -61,7 +61,7 @@ public class MovieViewUtilities {
    * @param length Movie length in minutes.
    * @param res    Context resources handle.
    */
-  public static CharSequence formatLength(final int length, final Resources res) {
+  public static String formatLength(final int length, final Resources res) {
     String hoursString = "";
     String minutesString = "";
 
