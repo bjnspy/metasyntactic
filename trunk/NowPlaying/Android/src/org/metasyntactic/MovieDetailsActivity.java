@@ -39,9 +39,10 @@ public class MovieDetailsActivity extends ListActivity {
         setListAdapter(movieAdapter);
         bindButtonClickListeners();
     }
-
+  
     private void populateMovieDetailEntries() {
         final Resources res = MovieDetailsActivity.this.getResources();
+        // TODO move strings to res/strings.xml
         // Add title and synopsis
         MovieDetailEntry entry = new MovieDetailEntry();
         entry.setName(this.movie.getDisplayTitle());

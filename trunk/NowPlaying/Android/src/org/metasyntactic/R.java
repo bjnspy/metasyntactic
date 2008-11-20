@@ -134,14 +134,15 @@ public final class R {
         public static final int movieview_old=0x7f030007;
         public static final int progressbar_1=0x7f030008;
         public static final int reviewview=0x7f030009;
-        public static final int settings_item=0x7f03000a;
-        public static final int showtimes=0x7f03000b;
-        public static final int showtimes_item=0x7f03000c;
-        public static final int tabs=0x7f03000d;
-        public static final int theaterdetails=0x7f03000e;
-        public static final int theaterdetails_item=0x7f03000f;
-        public static final int theaterview=0x7f030010;
-        public static final int videoview=0x7f030011;
+        public static final int settings=0x7f03000a;
+        public static final int settings_item=0x7f03000b;
+        public static final int showtimes=0x7f03000c;
+        public static final int showtimes_item=0x7f03000d;
+        public static final int tabs=0x7f03000e;
+        public static final int theaterdetails=0x7f03000f;
+        public static final int theaterdetails_item=0x7f030010;
+        public static final int theaterview=0x7f030011;
+        public static final int videoview=0x7f030012;
     }
     public static final class string {
         /** About
