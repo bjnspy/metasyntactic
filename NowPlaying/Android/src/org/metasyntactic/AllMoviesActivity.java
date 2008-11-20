@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2007 Google Inc.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,13 +26,24 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.view.*;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
@@ -50,10 +61,10 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     public static final int MENU_SETTINGS = 2;
     private List<Movie> movies = new ArrayList<Movie>();
     private int selection;
+    private Movie selectedMovie;
     private DetailAdapter detailAdapter;
     private ThumbnailAdapter thumbnailAdapter;
-
-    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             refresh();
@@ -67,6 +78,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         NowPlayingControllerWrapper.addActivity(this);
         detailAdapter = new DetailAdapter();
         thumbnailAdapter = new ThumbnailAdapter();
+        refresh();
         setupView();
     }
 
@@ -79,8 +91,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         thumbnail.setSoundEffectsEnabled(true);
         // thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
         final OnItemSelectedListener listener = new OnItemSelectedListener() {
-            public void onItemSelected(final AdapterView<?> arg0, final View arg1,
-                    final int position, final long id) {
+            public void onItemSelected(final AdapterView<?> arg0,
+                    final View arg1, final int position, final long id) {
                 if (thumbnail.getSelectedItemPosition() != position) {
                     thumbnail.setSelection(position);
                 }
@@ -106,13 +118,14 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             }
         };
         thumbnail.setOnItemClickListener(thumblistener);
-        this.selection = getIntent().getExtras().getInt("selection");
-        detail.setSelection(this.selection, true);
-        thumbnail.setSelection(this.selection, true);
+        this.selectedMovie = getIntent().getExtras().getParcelable("movie");
+        detail.setSelection(movies.indexOf(selectedMovie), true);
+        thumbnail.setSelection(movies.indexOf(selectedMovie), true);
         final Button details = (Button) findViewById(R.id.details);
         details.setOnClickListener(new OnClickListener() {
             public void onClick(final View arg0) {
-                final Movie movie = movies.get(AllMoviesActivity.this.selection);
+                final Movie movie = movies
+                        .get(AllMoviesActivity.this.selection);
                 final Intent intent = new Intent();
                 intent.setClass(AllMoviesActivity.this,
                         MovieDetailsActivity.class);
@@ -123,7 +136,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         final Button showtimes = (Button) findViewById(R.id.showtimes);
         showtimes.setOnClickListener(new OnClickListener() {
             public void onClick(final View arg0) {
-                final Movie movie = movies.get(AllMoviesActivity.this.selection);
+                final Movie movie = movies
+                        .get(AllMoviesActivity.this.selection);
                 final Intent intent = new Intent();
                 intent
                         .setClass(AllMoviesActivity.this,
@@ -149,7 +163,6 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
     @Override
     protected void onPause() {
-        unregisterReceiver(this.broadcastReceiver);
         super.onPause();
     }
 
@@ -200,7 +213,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
                 final ViewGroup viewGroup) {
             MovieViewHolder holder;
             if (convertView == null) {
-                convertView = this.inflater.inflate(R.layout.moviesummary, null);
+                convertView = this.inflater
+                        .inflate(R.layout.moviesummary, null);
                 holder = new MovieViewHolder();
                 holder.score = (Button) convertView.findViewById(R.id.score);
                 holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -279,9 +293,10 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         }
     }
     class ThumbnailAdapter extends BaseAdapter {
-      public ThumbnailAdapter() {
+        public ThumbnailAdapter() {
             // Cache the LayoutInflate to avoid asking for a new one each time.
-        LayoutInflater inflater = LayoutInflater.from(AllMoviesActivity.this);
+            LayoutInflater inflater = LayoutInflater
+                    .from(AllMoviesActivity.this);
             final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
             a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
             a.recycle();
@@ -295,7 +310,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
             return i;
         }
 
-        public View getView(final int position, final View convertView, final ViewGroup viewGroup) {
+        public View getView(final int position, final View convertView,
+                final ViewGroup viewGroup) {
             final LinearLayout layout = new LinearLayout(AllMoviesActivity.this);
             layout.setOrientation(LinearLayout.VERTICAL);
             final ImageView i = new ImageView(AllMoviesActivity.this);
@@ -328,7 +344,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     }
 
     public Context getContext() {
-      return this;
+        return this;
     }
 
     public void refresh() {

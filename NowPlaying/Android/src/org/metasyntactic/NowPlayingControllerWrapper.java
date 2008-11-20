@@ -68,7 +68,7 @@ public class NowPlayingControllerWrapper {
   }
 
   private static void checkInstance() {
-   checkThread();
+    checkThread();
     if (instance == null) {
       throw new RuntimeException("Trying to call into the controller when it does not exist");
     }
@@ -91,6 +91,7 @@ public class NowPlayingControllerWrapper {
 
   public static int getSearchDistance() {
     checkInstance();
+    
     return instance.getSearchDistance();
   }
 
