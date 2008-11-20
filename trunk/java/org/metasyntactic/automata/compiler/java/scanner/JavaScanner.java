@@ -1,15 +1,15 @@
-package com.google.automata.compiler.java.scanner;
+package org.metasyntactic.automata.compiler.java.scanner;
 
-import com.google.automata.compiler.framework.parsers.Source;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.Span;
-import com.google.automata.compiler.framework.parsers.packrat.PackratScanner;
-import com.google.automata.compiler.framework.parsers.packrat.Rule;
-import com.google.automata.compiler.java.scanner.keywords.KeywordToken;
-import com.google.automata.compiler.java.scanner.literals.*;
-import com.google.automata.compiler.java.scanner.operators.OperatorToken;
-import com.google.automata.compiler.java.scanner.separators.SeparatorToken;
-import com.google.automata.compiler.util.Function4;
+import org.metasyntactic.automata.compiler.framework.parsers.Source;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Span;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratScanner;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
+import org.metasyntactic.automata.compiler.java.scanner.keywords.KeywordToken;
+import org.metasyntactic.automata.compiler.java.scanner.literals.*;
+import org.metasyntactic.automata.compiler.java.scanner.operators.OperatorToken;
+import org.metasyntactic.automata.compiler.java.scanner.separators.SeparatorToken;
+import org.metasyntactic.automata.compiler.util.Function4;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

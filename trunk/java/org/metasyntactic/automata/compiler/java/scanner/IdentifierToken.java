@@ -1,4 +1,4 @@
-package com.google.automata.compiler.java.scanner;
+package org.metasyntactic.automata.compiler.java.scanner;
 
 public class IdentifierToken extends JavaToken {
   public IdentifierToken(String text) {

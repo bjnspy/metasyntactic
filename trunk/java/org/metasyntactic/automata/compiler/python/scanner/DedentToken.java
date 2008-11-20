@@ -1,4 +1,4 @@
-package com.google.automata.compiler.python.scanner;
+package org.metasyntactic.automata.compiler.python.scanner;
 
 public class DedentToken extends PythonToken {
   public static final DedentToken instance = new DedentToken();

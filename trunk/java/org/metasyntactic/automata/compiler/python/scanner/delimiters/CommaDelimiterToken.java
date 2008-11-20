@@ -1,4 +1,4 @@
-package com.google.automata.compiler.python.scanner.delimiters;
+package org.metasyntactic.automata.compiler.python.scanner.delimiters;
 
 public class CommaDelimiterToken extends DelimiterToken {
   public static final CommaDelimiterToken instance = new CommaDelimiterToken();

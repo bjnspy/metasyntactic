@@ -1,4 +1,4 @@
-package com.google.automata.compiler.util;
+package org.metasyntactic.automata.compiler.util;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,6 +1,6 @@
-package com.google.automata.compiler.framework.parsers;
+package org.metasyntactic.automata.compiler.framework.parsers;
 
-import com.google.automata.compiler.util.Optional;
+import org.metasyntactic.automata.compiler.util.Optional;
 
 import java.util.List;
 

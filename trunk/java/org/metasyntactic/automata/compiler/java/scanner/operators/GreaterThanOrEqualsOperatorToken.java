@@ -1,4 +1,4 @@
-package com.google.automata.compiler.java.scanner.operators;
+package org.metasyntactic.automata.compiler.java.scanner.operators;
 
 public class GreaterThanOrEqualsOperatorToken extends OperatorToken {
   public final static GreaterThanOrEqualsOperatorToken instance = new GreaterThanOrEqualsOperatorToken();

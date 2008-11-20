@@ -1,6 +1,6 @@
-package com.google.automata.compiler.python.scanner.operators;
+package org.metasyntactic.automata.compiler.python.scanner.operators;
 
-import com.google.automata.compiler.python.scanner.PythonToken;
+import org.metasyntactic.automata.compiler.python.scanner.PythonToken;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

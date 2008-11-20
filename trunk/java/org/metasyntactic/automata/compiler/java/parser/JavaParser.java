@@ -1,8 +1,8 @@
-package com.google.automata.compiler.java.parser;
+package org.metasyntactic.automata.compiler.java.parser;
 
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.packrat.PackratParser;
-import com.google.automata.compiler.java.scanner.JavaToken;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratParser;
+import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
 import java.util.List;
 

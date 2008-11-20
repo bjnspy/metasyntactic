@@ -1,4 +1,4 @@
-package com.google.automata.compiler.util;
+package org.metasyntactic.automata.compiler.util;
 
 import java.io.LineNumberReader;
 import java.io.StringReader;

@@ -1,6 +1,6 @@
-package com.google.automata.compiler.framework.parsers;
+package org.metasyntactic.automata.compiler.framework.parsers;
 
-import com.google.common.base.Preconditions;
+import org.metasyntactic.common.base.Preconditions;
 
 /**
  * Created by IntelliJ IDEA.

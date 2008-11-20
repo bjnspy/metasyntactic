@@ -1,4 +1,4 @@
-package com.google.automata.compiler.java;
+package org.metasyntactic.automata.compiler.java;
 
 public class JavaCompiler {
 

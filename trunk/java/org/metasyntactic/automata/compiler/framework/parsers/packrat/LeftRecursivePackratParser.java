@@ -1,21 +1,21 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import com.google.automata.compiler.framework.parsers.ActionMap;
-import com.google.automata.compiler.framework.parsers.Grammar;
-import com.google.automata.compiler.framework.parsers.Parser;
-import com.google.automata.compiler.framework.parsers.Position;
-import com.google.automata.compiler.framework.parsers.SimpleSpan;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.Span;
-import com.google.automata.compiler.framework.parsers.Token;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import static com.google.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
-import com.google.automata.compiler.java.parser.JavaGrammar;
-import com.google.automata.compiler.java.scanner.IdentifierToken;
-import com.google.automata.compiler.java.scanner.JavaToken;
-import com.google.automata.compiler.java.scanner.operators.MinusOperatorToken;
+import org.metasyntactic.automata.compiler.framework.parsers.ActionMap;
+import org.metasyntactic.automata.compiler.framework.parsers.Grammar;
+import org.metasyntactic.automata.compiler.framework.parsers.Parser;
+import org.metasyntactic.automata.compiler.framework.parsers.Position;
+import org.metasyntactic.automata.compiler.framework.parsers.SimpleSpan;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Span;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
+import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
+import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
+import org.metasyntactic.automata.compiler.java.scanner.IdentifierToken;
+import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
+import org.metasyntactic.automata.compiler.java.scanner.operators.MinusOperatorToken;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

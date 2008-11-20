@@ -1,15 +1,15 @@
-package com.google.automata.compiler.java.scanner;
+package org.metasyntactic.automata.compiler.java.scanner;
 
-import com.google.automata.compiler.framework.parsers.Source;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.packrat.EvaluationResult;
-import com.google.automata.compiler.framework.parsers.packrat.PackratGrammar;
-import com.google.automata.compiler.framework.parsers.packrat.Rule;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import static com.google.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.FunctionExpression;
-import com.google.automata.compiler.java.scanner.operators.OperatorToken;
-import com.google.automata.compiler.java.scanner.separators.SeparatorToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Source;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.EvaluationResult;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
+import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.FunctionExpression;
+import org.metasyntactic.automata.compiler.java.scanner.operators.OperatorToken;
+import org.metasyntactic.automata.compiler.java.scanner.separators.SeparatorToken;
 
 import java.io.*;
 import java.util.LinkedHashSet;

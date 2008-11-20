@@ -1,4 +1,4 @@
-package com.google.automata.compiler.framework.parsers.packrat;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class EvaluationResult {

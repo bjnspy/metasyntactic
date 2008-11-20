@@ -1,6 +1,6 @@
-package com.google.automata.compiler.java.scanner.operators;
+package org.metasyntactic.automata.compiler.java.scanner.operators;
 
-import com.google.automata.compiler.java.scanner.JavaToken;
+import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

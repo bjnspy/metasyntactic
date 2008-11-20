@@ -1,6 +1,6 @@
-package com.google.automata.compiler.python.scanner.literals;
+package org.metasyntactic.automata.compiler.python.scanner.literals;
 
-import com.google.automata.compiler.util.UnimplementedException;
+import org.metasyntactic.automata.compiler.util.UnimplementedException;
 
 /**
  * Created by IntelliJ IDEA. User: cyrusn Date: Jun 24, 2008 Time: 2:56:17 PM To change this template use File |

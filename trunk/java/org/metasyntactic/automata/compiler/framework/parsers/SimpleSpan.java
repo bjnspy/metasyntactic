@@ -1,8 +1,8 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers;
+package org.metasyntactic.automata.compiler.framework.parsers;
 
-import com.google.common.base.Preconditions;
+import org.metasyntactic.common.base.Preconditions;
 
 public class SimpleSpan extends AbstractSpan implements Span {
   private final Position startPosition;

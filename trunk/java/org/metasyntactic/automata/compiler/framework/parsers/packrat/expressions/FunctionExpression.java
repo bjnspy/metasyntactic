@@ -1,8 +1,8 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat.expressions;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
-import com.google.automata.compiler.framework.parsers.packrat.EvaluationResult;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.EvaluationResult;
 
 /**
  * TODO(cyrusn): javadoc

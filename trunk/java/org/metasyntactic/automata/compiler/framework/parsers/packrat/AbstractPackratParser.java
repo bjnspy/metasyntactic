@@ -1,27 +1,27 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import com.google.automata.compiler.framework.parsers.ActionMap;
-import com.google.automata.compiler.framework.parsers.Parser;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.Token;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.CharacterExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.ChoiceExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.DelimitedSequenceExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.EmptyExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.ExpressionVisitor;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.FunctionExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.NotExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.OneOrMoreExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.RepetitionExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.SequenceExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.TerminalExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.TokenExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.TypeExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.VariableExpression;
-import com.google.common.base.Preconditions;
+import org.metasyntactic.automata.compiler.framework.parsers.ActionMap;
+import org.metasyntactic.automata.compiler.framework.parsers.Parser;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.CharacterExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.ChoiceExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.DelimitedSequenceExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.EmptyExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.ExpressionVisitor;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.FunctionExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.NotExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.OneOrMoreExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.RepetitionExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.SequenceExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.TerminalExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.TokenExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.TypeExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.VariableExpression;
+import org.metasyntactic.common.base.Preconditions;
 
 import java.util.ArrayList;
 import java.util.Arrays;

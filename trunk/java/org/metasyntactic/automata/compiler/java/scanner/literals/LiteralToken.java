@@ -1,6 +1,6 @@
-package com.google.automata.compiler.java.scanner.literals;
+package org.metasyntactic.automata.compiler.java.scanner.literals;
 
-import com.google.automata.compiler.java.scanner.JavaToken;
+import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
 public abstract class LiteralToken<T> extends JavaToken {
   protected LiteralToken(String text) {

@@ -1,6 +1,6 @@
-package com.google.automata.compiler.java.scanner.separators;
+package org.metasyntactic.automata.compiler.java.scanner.separators;
 
-import com.google.automata.compiler.java.scanner.JavaToken;
+import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

@@ -1,4 +1,4 @@
-package com.google.common.base;
+package org.metasyntactic.common.base;
 
 public class Pair<A, B> {
   private final A first;

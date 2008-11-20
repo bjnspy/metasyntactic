@@ -1,6 +1,6 @@
-package com.google.automata.compiler.java.scanner.literals;
+package org.metasyntactic.automata.compiler.java.scanner.literals;
 
-import com.google.automata.compiler.util.UnimplementedException;
+import org.metasyntactic.automata.compiler.util.UnimplementedException;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,6 +1,6 @@
-package com.google.automata.compiler.java.scanner.keywords;
+package org.metasyntactic.automata.compiler.java.scanner.keywords;
 
-import com.google.automata.compiler.java.scanner.JavaToken;
+import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
 import java.util.HashMap;
 import java.util.Map;

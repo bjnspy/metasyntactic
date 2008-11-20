@@ -1,4 +1,4 @@
-package com.google.automata.compiler.framework.parsers;
+package org.metasyntactic.automata.compiler.framework.parsers;
 
 /**
  *
