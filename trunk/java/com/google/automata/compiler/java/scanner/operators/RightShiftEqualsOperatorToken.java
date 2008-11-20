@@ -1,0 +1,9 @@
+package com.google.automata.compiler.java.scanner.operators;
+
+public class RightShiftEqualsOperatorToken extends OperatorToken {
+  public final static RightShiftEqualsOperatorToken instance = new RightShiftEqualsOperatorToken();
+
+  private RightShiftEqualsOperatorToken() {
+    super(">>=");
+  }
+}
