@@ -51,19 +51,23 @@ public class NowPlayingController {
 
   private void updateBackgroundEntryPoint() {
     Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
-        this.model.getUserLocation());
+        this.model.getUserAddress());
     if (location != null) {
       NowPlayingController.this.model.update();
     }
   }
 
-  public String getUserLocation() {
-    return this.model.getUserLocation();
+  public String getUserAddress() {
+    return this.model.getUserAddress();
   }
 
-  public void setUserLocation(final String userLocation) {
-    this.model.setUserLocation(userLocation);
+  public void setUserAddress(final String userAddress) {
+    this.model.setUserAddress(userAddress);
     update();
+  }
+
+  public Location getLocationForAddress(final String address) {
+    return this.model.getUserLocationCache().locationForUserAddress(address);
   }
 
   public int getSearchDistance() {

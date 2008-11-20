@@ -81,12 +81,17 @@ public class NowPlayingControllerWrapper {
 
   public static String getUserLocation() {
     checkInstance();
-    return instance.getUserLocation();
+    return instance.getUserAddress();
   }
 
   public static void setUserLocation(final String userLocation) {
     checkInstance();
-    instance.setUserLocation(userLocation);
+    instance.setUserAddress(userLocation);
+  }
+
+  public static Location getLocationForAddress(final String address) {
+    checkInstance();
+    return instance.getLocationForAddress(address);
   }
 
   public static int getSearchDistance() {

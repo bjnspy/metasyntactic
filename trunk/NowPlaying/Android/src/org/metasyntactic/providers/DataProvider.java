@@ -79,7 +79,7 @@ public class DataProvider {
 
     long start = System.currentTimeMillis();
     final Location location = this.model.getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserLocation());
+        .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
 
     if (location == null) {

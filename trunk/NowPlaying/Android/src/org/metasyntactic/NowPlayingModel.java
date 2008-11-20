@@ -34,7 +34,7 @@ import java.util.*;
 public class NowPlayingModel {
   private final static String version = "3";
   private final static String VERSION_KEY = "version";
-  private final static String USER_LOCATION_KEY = "userLocation";
+  private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";
   private final static String SEARCH_DISTANCE_KEY = "searchDistance";
   private final static String SELECTED_TAB_INDEX_KEY = "selectedTabIndex";
@@ -97,10 +97,10 @@ public class NowPlayingModel {
 
   private void initializeTestValues() {
     if (true) {
-      //return;
+      return;
     }
 
-    setUserLocation("10009");
+    setUserAddress("10009");
   }
 
   public UserLocationCache getUserLocationCache() {
@@ -118,16 +118,16 @@ public class NowPlayingModel {
   private void updateIMDbCache() {
   }
 
-  public String getUserLocation() {
+  public String getUserAddress() {
     synchronized (this.preferencesLock) {
-      return this.preferences.getString(USER_LOCATION_KEY, "");
+      return this.preferences.getString(USER_ADDRESS_KEY, "");
     }
   }
 
-  public void setUserLocation(final String userLocation) {
+  public void setUserAddress(final String userLocation) {
     synchronized (this.preferencesLock) {
       final SharedPreferences.Editor editor = this.preferences.edit();
-      editor.putString(USER_LOCATION_KEY, userLocation);
+      editor.putString(USER_ADDRESS_KEY, userLocation);
       editor.commit();
     }
 
