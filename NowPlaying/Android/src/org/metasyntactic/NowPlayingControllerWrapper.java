@@ -51,7 +51,7 @@ public class NowPlayingControllerWrapper {
   }
 
   public static void removeActivity(final Activity activity) {
-   checkThread();
+    checkThread();
     GlobalActivityIndicator.removeActivity(activity);
     activities.remove(activity);
 
@@ -91,7 +91,7 @@ public class NowPlayingControllerWrapper {
 
   public static int getSearchDistance() {
     checkInstance();
-    
+
     return instance.getSearchDistance();
   }
 

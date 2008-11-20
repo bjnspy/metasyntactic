@@ -111,7 +111,7 @@ public class ShowtimesActivity extends ListActivity {
           holder.label.setMinHeight(50);
           holder.label
               .setBackgroundColor(Color.parseColor("#808080"));
-         holder.label.setTextColor(Color.WHITE);
+          holder.label.setTextColor(Color.WHITE);
           holder.label.setText(theater.getName());
           final List<Performance> list = NowPlayingControllerWrapper
               .getPerformancesForMovieAtTheater(ShowtimesActivity.this.movie, theater);
