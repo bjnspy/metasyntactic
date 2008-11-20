@@ -1,8 +1,10 @@
 package org.metasyntactic;
 
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -32,6 +34,13 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   private Address userAddress;
 
+  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
+      refresh();
+    }
+  };
+
   // Define comparators for theater listings sort.
   private final Comparator<Theater> TITLE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
@@ -56,7 +65,21 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setupView();
-    refresh();
+  }
+
+  protected void onDestroy() {
+    NowPlayingControllerWrapper.removeActivity(this);
+    super.onDestroy();
+  }
+
+  protected void onPause() {
+    unregisterReceiver(broadcastReceiver);
+    super.onPause();
+  }
+
+  protected void onResume() {
+    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
+    super.onResume();
   }
 
   private void setupView() {
@@ -76,11 +99,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     // Set up Movies adapter
     this.adapter = new TheatersAdapter();
     setListAdapter(this.adapter);
-  }
-
-  protected void onDestroy() {
-    NowPlayingControllerWrapper.removeActivity(this);
-    super.onDestroy();
   }
 
   @Override
