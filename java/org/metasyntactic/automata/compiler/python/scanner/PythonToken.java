@@ -1,7 +1,7 @@
-package com.google.automata.compiler.python.scanner;
+package org.metasyntactic.automata.compiler.python.scanner;
 
-import com.google.automata.compiler.framework.parsers.Token;
-import com.google.common.base.Preconditions;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.common.base.Preconditions;
 
 /**
  * Created by IntelliJ IDEA. User: cyrusn Date: Jun 24, 2008 Time: 2:00:29 PM To change this template use File |

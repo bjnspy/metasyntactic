@@ -1,10 +1,10 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat.expressions;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
-import com.google.automata.compiler.framework.parsers.packrat.PackratGrammar;
-import com.google.automata.compiler.framework.parsers.packrat.Rule;
-import com.google.common.base.Preconditions;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
+import org.metasyntactic.common.base.Preconditions;
 
 /**
  * Each nonterminal in a parsing expression grammar essentially represents a

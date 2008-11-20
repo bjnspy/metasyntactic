@@ -1,4 +1,4 @@
-package com.google.automata.compiler.python.scanner;
+package org.metasyntactic.automata.compiler.python.scanner;
 
 /**
  * Created by IntelliJ IDEA.

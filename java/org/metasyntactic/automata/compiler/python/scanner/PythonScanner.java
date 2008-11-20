@@ -1,18 +1,18 @@
-package com.google.automata.compiler.python.scanner;
+package org.metasyntactic.automata.compiler.python.scanner;
 
-import com.google.automata.compiler.framework.parsers.Source;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.Span;
-import com.google.automata.compiler.framework.parsers.packrat.PackratScanner;
-import com.google.automata.compiler.framework.parsers.packrat.Rule;
-import com.google.automata.compiler.python.scanner.delimiters.DelimiterToken;
-import com.google.automata.compiler.python.scanner.keywords.KeywordToken;
-import com.google.automata.compiler.python.scanner.literals.FloatingPointLiteralToken;
-import com.google.automata.compiler.python.scanner.literals.ImaginaryNumberLiteralToken;
-import com.google.automata.compiler.python.scanner.literals.IntegerLiteralToken;
-import com.google.automata.compiler.python.scanner.literals.StringLiteralToken;
-import com.google.automata.compiler.python.scanner.operators.OperatorToken;
-import com.google.automata.compiler.util.Function4;
+import org.metasyntactic.automata.compiler.framework.parsers.Source;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Span;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratScanner;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.DelimiterToken;
+import org.metasyntactic.automata.compiler.python.scanner.keywords.KeywordToken;
+import org.metasyntactic.automata.compiler.python.scanner.literals.FloatingPointLiteralToken;
+import org.metasyntactic.automata.compiler.python.scanner.literals.ImaginaryNumberLiteralToken;
+import org.metasyntactic.automata.compiler.python.scanner.literals.IntegerLiteralToken;
+import org.metasyntactic.automata.compiler.python.scanner.literals.StringLiteralToken;
+import org.metasyntactic.automata.compiler.python.scanner.operators.OperatorToken;
+import org.metasyntactic.automata.compiler.util.Function4;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

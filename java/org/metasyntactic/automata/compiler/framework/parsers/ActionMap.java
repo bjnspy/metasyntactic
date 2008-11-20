@@ -1,8 +1,8 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers;
+package org.metasyntactic.automata.compiler.framework.parsers;
 
-import com.google.automata.compiler.util.Function4;
+import org.metasyntactic.automata.compiler.util.Function4;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

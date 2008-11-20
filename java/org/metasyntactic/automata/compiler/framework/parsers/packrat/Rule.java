@@ -1,11 +1,11 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import com.google.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import com.google.automata.compiler.framework.parsers.Source;
-import com.google.automata.compiler.util.Function4;
-import com.google.common.base.Preconditions;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
+import org.metasyntactic.automata.compiler.framework.parsers.Source;
+import org.metasyntactic.automata.compiler.util.Function4;
+import org.metasyntactic.common.base.Preconditions;
 
 import java.util.Map;
 

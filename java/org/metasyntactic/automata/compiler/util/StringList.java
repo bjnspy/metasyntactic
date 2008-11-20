@@ -1,6 +1,6 @@
-package com.google.automata.compiler.util;
+package org.metasyntactic.automata.compiler.util;
 
-import com.google.common.base.Preconditions;
+import org.metasyntactic.common.base.Preconditions;
 
 import java.util.AbstractList;
 

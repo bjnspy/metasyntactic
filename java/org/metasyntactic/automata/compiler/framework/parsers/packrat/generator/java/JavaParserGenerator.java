@@ -1,17 +1,16 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat.generator.java;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat.generator.java;
 
-import com.google.automata.compiler.framework.parsers.packrat.Grammar;
-import com.google.automata.compiler.framework.parsers.packrat.Rule;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.*;
-import com.google.automata.compiler.framework.parsers.packrat.generator.ParserGenerator;
-import com.google.automata.compiler.util.IndentingWriter;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.Grammar;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.generator.ParserGenerator;
+import org.metasyntactic.automata.compiler.util.IndentingWriter;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,13 +45,13 @@ public class JavaParserGenerator implements ParserGenerator {
     writer.writeLine("package " + namespace + ";");
     writer.writeLine();
     writer.writeLine("import java.util.*;");
-    writer.writeLine("import com.google.automata.compiler.framework.parsers.*;");
+    writer.writeLine("import org.metasyntactic.automata.compiler.framework.parsers.*;");
     writer.writeLine(
-        "import com.google.automata.compiler.java.scanner.*;\n" +
-            "import com.google.automata.compiler.java.scanner.keywords.*;\n" +
-            "import com.google.automata.compiler.java.scanner.literals.*;\n" +
-            "import com.google.automata.compiler.java.scanner.operators.*;\n" +
-            "import com.google.automata.compiler.java.scanner.separators.*;");
+        "import org.metasyntactic.automata.compiler.java.scanner.*;\n" +
+            "import org.metasyntactic.automata.compiler.java.scanner.keywords.*;\n" +
+            "import org.metasyntactic.automata.compiler.java.scanner.literals.*;\n" +
+            "import org.metasyntactic.automata.compiler.java.scanner.operators.*;\n" +
+            "import org.metasyntactic.automata.compiler.java.scanner.separators.*;");
     writer.writeLine();
     writer.writeLineAndIndent("public abstract class " + name + " {");
 
@@ -278,6 +277,10 @@ public class JavaParserGenerator implements ParserGenerator {
 
         writer.writeLine(
             "return new EvaluationResult(true, result.getPosition(), trimList(values));");
+      }
+
+      @Override public void visit(DelimitedSequenceExpression sequenceExpression) {
+        throw new RuntimeException("nyi");
       }
 
       @Override public void visit(ChoiceExpression choiceExpression) {

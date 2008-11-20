@@ -1,9 +1,9 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.util;
+package org.metasyntactic.automata.compiler.util;
 
-import com.google.common.base.Pair;
-import com.google.common.base.Nullable;
+import org.metasyntactic.common.base.Pair;
+import org.metasyntactic.common.base.Nullable;
 
 /**
  * TODO(cyrusn): javadoc

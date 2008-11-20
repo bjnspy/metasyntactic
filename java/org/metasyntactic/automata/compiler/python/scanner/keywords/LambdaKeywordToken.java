@@ -1,4 +1,4 @@
-package com.google.automata.compiler.python.scanner.keywords;
+package org.metasyntactic.automata.compiler.python.scanner.keywords;
 
 public class LambdaKeywordToken extends KeywordToken {
   public static final LambdaKeywordToken instance = new LambdaKeywordToken();

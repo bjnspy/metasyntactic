@@ -1,6 +1,6 @@
-package com.google.automata.compiler.python.scanner.delimiters;
+package org.metasyntactic.automata.compiler.python.scanner.delimiters;
 
-import com.google.automata.compiler.python.scanner.PythonToken;
+import org.metasyntactic.automata.compiler.python.scanner.PythonToken;
 
 public class LeftCurlyDelimiterToken extends DelimiterToken {
   public static final LeftCurlyDelimiterToken instance = new LeftCurlyDelimiterToken();

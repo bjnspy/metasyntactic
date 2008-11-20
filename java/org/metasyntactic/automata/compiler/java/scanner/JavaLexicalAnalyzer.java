@@ -1,8 +1,8 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.java.scanner;
+package org.metasyntactic.automata.compiler.java.scanner;
 
-import com.google.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
 
 import java.util.ArrayList;
 import java.util.List;

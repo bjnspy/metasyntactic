@@ -1,38 +1,14 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import com.google.automata.compiler.framework.parsers.Token;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.CharacterExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.ChoiceExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.EmptyExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.ExpressionVisitor;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.ExpressionVoidVisitor;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.FunctionExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.NotExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.OneOrMoreExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.RecursionExpressionVisitor;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.RepetitionExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.SequenceExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.TerminalExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.TokenExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.TypeExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.VariableExpression;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.DelimitedSequenceExpression;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
+import org.metasyntactic.collections.HashMultiMap;
+import org.metasyntactic.collections.MultiMap;
+import org.metasyntactic.common.base.Preconditions;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.IdentityHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Formally, a parsing expression grammar consists of: <ul> <li>A finite set N of nonterminal symbols.</li> <li>A finite
@@ -104,8 +80,8 @@ public class Grammar {
   private final Set<Expression> nullableExpressions = new LinkedHashSet<Expression>();
 
   private final Set<String> acceptsAnyToken = new LinkedHashSet<String>();
-  private final Multimap<String,Token> firstTokenMap = new HashMultimap<String, Token>();
-  private final Multimap<String,Integer> firstTypeMap = new HashMultimap<String,Integer>();
+  private final MultiMap<String,Token> firstTokenMap = new HashMultiMap<String, Token>();
+  private final MultiMap<String,Integer> firstTypeMap = new HashMultiMap<String,Integer>();
 
   public boolean isNullable(String variable) {
     return nullableVariables.contains(variable);
@@ -145,8 +121,8 @@ public class Grammar {
 
   private void createFirstSets() {
     Set<Expression> acceptsAnyTokenExpression = new LinkedHashSet<Expression>();
-    Multimap<Expression,Token> expresionToFirstTokens = new HashMultimap<Expression, Token>();
-    Multimap<Expression,Integer> expressionToFirstTypes = new HashMultimap<Expression, Integer>();
+    MultiMap<Expression,Token> expresionToFirstTokens = new HashMultiMap<Expression, Token>();
+    MultiMap<Expression,Integer> expressionToFirstTypes = new HashMultiMap<Expression, Integer>();
 
     boolean changed;
 
@@ -175,8 +151,8 @@ public class Grammar {
   private boolean processFirstSets(
       Rule rule,
       final Set<Expression> acceptsAnyTokenExpression,
-      final Multimap<Expression, Token> expresionToFirstTokens,
-      final Multimap<Expression, Integer> expressionToFirstTypes) {
+      final MultiMap<Expression, Token> expresionToFirstTokens,
+      final MultiMap<Expression, Integer> expressionToFirstTypes) {
     return rule.getExpression().accept(new ExpressionVisitor<Object, Boolean>() {
       @Override public Boolean visit(EmptyExpression emptyExpression) {
         return false;

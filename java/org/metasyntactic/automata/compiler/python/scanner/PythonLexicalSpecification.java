@@ -1,13 +1,13 @@
-package com.google.automata.compiler.python.scanner;
+package org.metasyntactic.automata.compiler.python.scanner;
 
-import com.google.automata.compiler.framework.parsers.Source;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.packrat.PackratGrammar;
-import com.google.automata.compiler.framework.parsers.packrat.Rule;
-import static com.google.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
-import com.google.automata.compiler.python.scanner.delimiters.DelimiterToken;
-import com.google.automata.compiler.python.scanner.keywords.KeywordToken;
-import com.google.automata.compiler.python.scanner.operators.OperatorToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Source;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
+import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.DelimiterToken;
+import org.metasyntactic.automata.compiler.python.scanner.keywords.KeywordToken;
+import org.metasyntactic.automata.compiler.python.scanner.operators.OperatorToken;
 
 import java.io.*;
 import java.util.LinkedHashSet;

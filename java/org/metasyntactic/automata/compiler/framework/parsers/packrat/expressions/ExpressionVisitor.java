@@ -1,6 +1,6 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat.expressions;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
 /**
  * A visitor for {@link Expression}s

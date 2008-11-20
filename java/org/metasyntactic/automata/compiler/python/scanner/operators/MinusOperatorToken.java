@@ -1,4 +1,4 @@
-package com.google.automata.compiler.python.scanner.operators;
+package org.metasyntactic.automata.compiler.python.scanner.operators;
 
 public class MinusOperatorToken extends OperatorToken {
   public static MinusOperatorToken instance = new MinusOperatorToken();

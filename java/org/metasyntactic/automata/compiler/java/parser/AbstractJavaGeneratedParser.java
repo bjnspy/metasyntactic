@@ -1,12 +1,12 @@
-package com.google.automata.compiler.java.parser;
+package org.metasyntactic.automata.compiler.java.parser;
 
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.Token;
-import com.google.automata.compiler.java.scanner.IdentifierToken;
-import com.google.automata.compiler.java.scanner.keywords.*;
-import com.google.automata.compiler.java.scanner.literals.LiteralToken;
-import com.google.automata.compiler.java.scanner.operators.*;
-import com.google.automata.compiler.java.scanner.separators.*;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.automata.compiler.java.scanner.IdentifierToken;
+import org.metasyntactic.automata.compiler.java.scanner.keywords.*;
+import org.metasyntactic.automata.compiler.java.scanner.literals.LiteralToken;
+import org.metasyntactic.automata.compiler.java.scanner.operators.*;
+import org.metasyntactic.automata.compiler.java.scanner.separators.*;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
-package com.google.automata.compiler.python.scanner.literals;
+package org.metasyntactic.automata.compiler.python.scanner.literals;
 
-import com.google.automata.compiler.python.scanner.PythonToken;
+import org.metasyntactic.automata.compiler.python.scanner.PythonToken;
 
 /**
  * Created by IntelliJ IDEA.

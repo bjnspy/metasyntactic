@@ -1,6 +1,6 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.util;
+package org.metasyntactic.automata.compiler.util;
 
 import java.io.IOException;
 import java.io.Writer;

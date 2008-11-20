@@ -1,6 +1,6 @@
-package com.google.automata.compiler.python.scanner.keywords;
+package org.metasyntactic.automata.compiler.python.scanner.keywords;
 
-import com.google.automata.compiler.python.scanner.PythonToken;
+import org.metasyntactic.automata.compiler.python.scanner.PythonToken;
 
 import java.util.HashMap;
 import java.util.Map;

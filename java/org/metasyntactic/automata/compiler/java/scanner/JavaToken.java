@@ -1,7 +1,7 @@
-package com.google.automata.compiler.java.scanner;
+package org.metasyntactic.automata.compiler.java.scanner;
 
-import com.google.automata.compiler.framework.parsers.Token;
-import com.google.common.base.Preconditions;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.common.base.Preconditions;
 
 public abstract class JavaToken implements Token {
   private final String text;

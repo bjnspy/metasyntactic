@@ -1,4 +1,4 @@
-package com.google.automata.compiler.framework.parsers.packrat.expressions;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
 /**
  * Created by IntelliJ IDEA.

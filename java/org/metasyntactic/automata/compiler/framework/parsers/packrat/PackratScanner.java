@@ -1,12 +1,12 @@
-package com.google.automata.compiler.framework.parsers.packrat;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import com.google.automata.compiler.framework.parsers.Scanner;
-import com.google.automata.compiler.framework.parsers.Source;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.Token;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.*;
-import com.google.automata.compiler.util.Function4;
-import com.google.common.base.Preconditions;
+import org.metasyntactic.automata.compiler.framework.parsers.Scanner;
+import org.metasyntactic.automata.compiler.framework.parsers.Source;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
+import org.metasyntactic.automata.compiler.util.Function4;
+import org.metasyntactic.common.base.Preconditions;
 
 import java.util.*;
 

@@ -1,12 +1,12 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import com.google.automata.compiler.framework.parsers.ActionMap;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.Token;
-import com.google.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import com.google.automata.compiler.util.Function4;
+import org.metasyntactic.automata.compiler.framework.parsers.ActionMap;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
+import org.metasyntactic.automata.compiler.util.Function4;
 
 import java.util.List;
 

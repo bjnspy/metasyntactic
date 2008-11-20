@@ -1,20 +1,20 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.python.scanner;
+package org.metasyntactic.automata.compiler.python.scanner;
 
-import com.google.automata.compiler.framework.parsers.SimpleSpan;
-import com.google.automata.compiler.framework.parsers.Source;
-import com.google.automata.compiler.framework.parsers.SourceToken;
-import com.google.automata.compiler.framework.parsers.Span;
-import com.google.automata.compiler.framework.parsers.SyntaxException;
-import com.google.automata.compiler.framework.parsers.packrat.AbstractPackratParser;
-import com.google.automata.compiler.python.parser.PythonGrammar;
-import com.google.automata.compiler.python.scanner.delimiters.LeftBracketDelimiterToken;
-import com.google.automata.compiler.python.scanner.delimiters.LeftCurlyDelimiterToken;
-import com.google.automata.compiler.python.scanner.delimiters.LeftParenthesisDelimiterToken;
-import com.google.automata.compiler.python.scanner.delimiters.RightBracketDelimiterToken;
-import com.google.automata.compiler.python.scanner.delimiters.RightCurlyDelimiterToken;
-import com.google.automata.compiler.python.scanner.delimiters.RightParenthesisDelimiterToken;
+import org.metasyntactic.automata.compiler.framework.parsers.SimpleSpan;
+import org.metasyntactic.automata.compiler.framework.parsers.Source;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Span;
+import org.metasyntactic.automata.compiler.framework.parsers.SyntaxException;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.AbstractPackratParser;
+import org.metasyntactic.automata.compiler.python.parser.PythonGrammar;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftBracketDelimiterToken;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftCurlyDelimiterToken;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftParenthesisDelimiterToken;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightBracketDelimiterToken;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightCurlyDelimiterToken;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightParenthesisDelimiterToken;
 
 import java.io.BufferedReader;
 import java.io.File;

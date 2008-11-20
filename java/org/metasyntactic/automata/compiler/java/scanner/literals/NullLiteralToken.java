@@ -1,4 +1,4 @@
-package com.google.automata.compiler.java.scanner.literals;
+package org.metasyntactic.automata.compiler.java.scanner.literals;
 
 /**
  * Created by IntelliJ IDEA.

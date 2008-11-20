@@ -1,4 +1,4 @@
-package com.google.automata.compiler.java.scanner.separators;
+package org.metasyntactic.automata.compiler.java.scanner.separators;
 
 public class RightCurlySeparatorToken extends SeparatorToken {
   public final static RightCurlySeparatorToken instance = new RightCurlySeparatorToken();

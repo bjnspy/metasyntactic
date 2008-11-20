@@ -1,4 +1,4 @@
-package com.google.automata.compiler.java.scanner;
+package org.metasyntactic.automata.compiler.java.scanner;
 
 public class WhitespaceToken extends JavaToken {
   public WhitespaceToken(String text) {

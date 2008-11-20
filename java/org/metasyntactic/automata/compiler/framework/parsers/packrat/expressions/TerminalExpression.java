@@ -1,8 +1,8 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.automata.compiler.framework.parsers.packrat.expressions;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
-import com.google.common.base.Preconditions;
+import org.metasyntactic.common.base.Preconditions;
 
 /**
  * An atomic parsing expression consisting of a single terminal succeeds if the

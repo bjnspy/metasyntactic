@@ -1,6 +1,6 @@
-package com.google.automata.compiler.framework.parsers.packrat.expressions;
+package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
-import com.google.automata.compiler.framework.parsers.Token;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
 
 import java.lang.reflect.InvocationTargetException;
 
