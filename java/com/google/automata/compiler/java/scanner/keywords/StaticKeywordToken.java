@@ -1,0 +1,11 @@
+// Copyright 2008 Google Inc. All rights reserved.
+
+package com.google.automata.compiler.java.scanner.keywords;
+
+public class StaticKeywordToken extends KeywordToken {
+  public static final StaticKeywordToken instance = new StaticKeywordToken();
+
+  private StaticKeywordToken() {
+    super("static");
+  }
+}
