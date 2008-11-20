@@ -42,11 +42,19 @@ public class NowPlayingController {
   private void update() {
     final Runnable runnable = new Runnable() {
       public void run() {
-        NowPlayingController.this.model.update();
+        updateBackgroundEntryPoint();
       }
     };
 
     ThreadingUtilities.performOnBackgroundThread("Update Model", runnable, this.lock, false/* visible */);
+  }
+
+  private void updateBackgroundEntryPoint() {
+    Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+        this.model.getUserLocation());
+    if (location != null) {
+      NowPlayingController.this.model.update();
+    }
   }
 
   public String getUserLocation() {
