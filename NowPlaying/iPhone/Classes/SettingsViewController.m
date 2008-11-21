@@ -123,8 +123,12 @@
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
     if (row >= 0 && row <= 4) {
-        SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
+        static NSString* reuseIdentifier = @"SettingCellReuseIdentifier";
+        SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
         NSString* key = @"";
         NSString* value = @"";
         if (row == 0) {

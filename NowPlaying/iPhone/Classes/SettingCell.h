@@ -16,6 +16,8 @@
 @private
     UILabel* keyLabel;
     UILabel* valueLabel;
+    
+    UIFont* cachedFont;
 }
 
 - (void) setKey:(NSString*) key

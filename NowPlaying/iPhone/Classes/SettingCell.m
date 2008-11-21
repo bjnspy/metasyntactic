@@ -19,6 +19,7 @@
 @interface SettingCell()
 @property (retain) UILabel* keyLabel;
 @property (retain) UILabel* valueLabel;
+@property (retain) UIFont* cachedFont;
 @end
 
 
@@ -26,10 +27,12 @@
 
 @synthesize keyLabel;
 @synthesize valueLabel;
+@synthesize cachedFont;
 
 - (void) dealloc {
     self.keyLabel = nil;
     self.valueLabel = nil;
+    self.cachedFont = nil;
 
     [super dealloc];
 }
@@ -52,13 +55,20 @@
 }
 
 
-- (void) layoutSubviews {
-    [super layoutSubviews];
-
-    keyLabel.font = self.font;
-    
+- (void) resizeLabels {
     [keyLabel sizeToFit];
     [valueLabel sizeToFit];
+}
+
+
+- (void) layoutSubviews {
+    [super layoutSubviews];
+    
+    if (cachedFont == nil) {
+        self.cachedFont = self.font;
+        self.keyLabel.font = self.cachedFont;
+        [self resizeLabels];
+    }
     
     CGRect keyFrame = keyLabel.frame;
     keyFrame.origin.y = floor((self.contentView.frame.size.height - keyFrame.size.height) / 2);
@@ -81,9 +91,11 @@
 
 
 - (void) setKey:(NSString*) key
-          value:(NSString*) value {
+          value:(NSString*) value {  
     keyLabel.text = key;
     valueLabel.text = value;
+
+    [self resizeLabels];
 }
 
 

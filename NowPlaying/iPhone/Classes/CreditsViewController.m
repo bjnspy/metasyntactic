@@ -21,6 +21,7 @@
 
 @interface CreditsViewController()
 @property (retain) NowPlayingModel* model;
+@property (retain) NSArray* languages;
 @property (retain) NSDictionary* localizers;
 @end
 
@@ -41,13 +42,23 @@ typedef enum {
 } CreditsSection;
 
 @synthesize model;
+@synthesize languages;
 @synthesize localizers;
 
 - (void) dealloc {
     self.model = nil;
+    self.languages = nil;
     self.localizers = nil;
 
     [super dealloc];
+}
+
+
+NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
+    NSString* language1 = [LocaleUtilities displayLanguage:code1];
+    NSString* language2 = [LocaleUtilities displayLanguage:code2];
+
+    return [language1 compare:language2];
 }
 
 
@@ -75,6 +86,9 @@ typedef enum {
         [dictionary setObject:@"Ján Senko"          forKey:@"sk"];
         [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
         self.localizers = dictionary;
+        
+        self.languages = [localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL];
+        
     }
 
     return self;
@@ -165,19 +179,16 @@ typedef enum {
 }
 
 
-NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
-    NSString* language1 = [LocaleUtilities displayLanguage:code1];
-    NSString* language2 = [LocaleUtilities displayLanguage:code2];
-
-    return [language1 compare:language2];
-}
-
-
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
-    SettingCell* cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+    static NSString* reuseIdentifier = @"LocalizationCellIdentifier";
+    SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+    }
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    NSString* code = [[localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL] objectAtIndex:row];
+    NSString* code = [languages objectAtIndex:row];
     NSString* person = [localizers objectForKey:code];
     NSString* language = [LocaleUtilities displayLanguage:code];
 

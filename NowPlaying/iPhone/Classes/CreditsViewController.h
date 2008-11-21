@@ -15,6 +15,7 @@
 @interface CreditsViewController : UITableViewController {
 @private
     NowPlayingModel* model;
+    NSArray* languages;
     NSDictionary* localizers;
 }
 
