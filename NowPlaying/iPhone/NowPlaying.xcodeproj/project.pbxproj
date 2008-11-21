@@ -1758,7 +1758,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "9BDD959A-22BB-4E5C-9A71-796AA1B60881";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9BDD959A-22BB-4E5C-9A71-796AA1B60881";
-				SDKROOT = iphonesimulator2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = AdHoc;
 		};
@@ -1800,7 +1800,7 @@
 				PROVISIONING_PROFILE = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
 				"PROVISIONING_PROFILE[sdk=iphoneos2.1]" = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
-				SDKROOT = iphonesimulator2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = Distribution;
 		};
@@ -1842,7 +1842,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = DefaultProfileUuid;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
-				SDKROOT = iphonesimulator2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = Debug;
 		};
@@ -1871,7 +1871,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = DefaultProfileUuid;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
-				SDKROOT = iphonesimulator2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = Release;
 		};
