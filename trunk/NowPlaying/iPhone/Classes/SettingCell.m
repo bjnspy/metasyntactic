@@ -17,19 +17,19 @@
 #import "ColorCache.h"
 
 @interface SettingCell()
+@property (retain) UILabel* keyLabel;
 @property (retain) UILabel* valueLabel;
-@property (retain) UIColor* valueColor;
 @end
 
 
 @implementation SettingCell
 
+@synthesize keyLabel;
 @synthesize valueLabel;
-@synthesize valueColor;
 
 - (void) dealloc {
+    self.keyLabel = nil;
     self.valueLabel = nil;
-    self.valueColor = nil;
 
     [super dealloc];
 }
@@ -37,12 +37,14 @@
 
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+        self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
+        
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.valueColor = [ColorCache commandColor];
-
+        valueLabel.textColor = [ColorCache commandColor];
         valueLabel.adjustsFontSizeToFitWidth = YES;
         valueLabel.minimumFontSize = valueLabel.font.pointSize - 4;
 
+        [self.contentView addSubview:keyLabel];
         [self.contentView addSubview:valueLabel];
     }
 
@@ -53,26 +55,35 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGRect frame = valueLabel.frame;
-    frame.origin.y = floor((self.contentView.frame.size.height - valueLabel.frame.size.height) / 2);
-    frame.origin.x = self.contentView.frame.size.width - frame.size.width;
-
+    keyLabel.font = self.font;
+    
+    [keyLabel sizeToFit];
+    [valueLabel sizeToFit];
+    
+    CGRect keyFrame = keyLabel.frame;
+    keyFrame.origin.y = floor((self.contentView.frame.size.height - keyFrame.size.height) / 2);
+    keyFrame.origin.x = 10;
+    keyLabel.frame = keyFrame;
+    
+    CGRect valueFrame = valueLabel.frame;
+    valueFrame.origin.y = floor((self.contentView.frame.size.height - valueFrame.size.height) / 2);
+    valueFrame.origin.x = MAX(keyFrame.origin.x + keyFrame.size.width + 10,
+                              self.contentView.frame.size.width - valueFrame.size.width);
+    valueFrame.size.width = MIN(valueFrame.size.width,
+                                self.contentView.frame.size.width - valueFrame.origin.x);
+    
     if (self.accessoryType == UITableViewCellAccessoryNone) {
-        frame.origin.x -= 10;
+        valueFrame.origin.x -= 10;
     }
-
-    valueLabel.frame = frame;
+    
+    valueLabel.frame = valueFrame;
 }
 
 
 - (void) setKey:(NSString*) key
           value:(NSString*) value {
-    self.text = key;
+    keyLabel.text = key;
     valueLabel.text = value;
-
-    [valueLabel sizeToFit];
-    CGRect frame = valueLabel.frame;
-    valueLabel.frame = frame;
 }
 
 
@@ -80,9 +91,11 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
+        keyLabel.textColor = [UIColor whiteColor];
         valueLabel.textColor = [UIColor whiteColor];
     } else {
-        valueLabel.textColor = valueColor;
+        keyLabel.textColor = [UIColor blackColor];
+        valueLabel.textColor = [ColorCache commandColor];
     }
 }
 

@@ -14,8 +14,8 @@
 
 @interface SettingCell : UITableViewCell {
 @private
+    UILabel* keyLabel;
     UILabel* valueLabel;
-    UIColor* valueColor;
 }
 
 - (void) setKey:(NSString*) key
