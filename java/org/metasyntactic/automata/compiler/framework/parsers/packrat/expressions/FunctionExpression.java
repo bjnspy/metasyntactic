@@ -34,6 +34,8 @@ public abstract class FunctionExpression<T> extends Expression {
 
   public abstract List<Token> getShortestDerivableTokenStream();
 
+  public abstract List<Class<? extends Token>> getShortestDerivableClassStream();
+
   public String getName() {
     return name;
   }

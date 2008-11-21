@@ -1,11 +1,9 @@
 package org.metasyntactic.automata.compiler.java.scanner.operators;
 
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA. User: cyrusn Date: Jun 22, 2008 Time: 6:58:41 PM To change this template use File |
@@ -13,6 +11,7 @@ import java.util.Map;
  */
 public class OperatorToken extends JavaToken {
   private static final Map<String, OperatorToken> map = new LinkedHashMap<String, OperatorToken>();
+  public static Set<Class> tokenClasses = new LinkedHashSet<Class>();
 
   static {
     Class[] classes = new Class[]{
@@ -81,6 +80,8 @@ public class OperatorToken extends JavaToken {
         throw new RuntimeException(e);
       }
     }
+
+    tokenClasses.addAll(Arrays.asList(classes));
   }
 
   public OperatorToken(String text) {
@@ -99,13 +100,50 @@ public class OperatorToken extends JavaToken {
 
   public static String[] getOperators() {
     return new String[]{
-        "=", ">", "<", "!", "~", "?", ":",
-        "==", "<=", ">=", "!=", "&&", "||", "++", "--",
-        "+", "-", "*", "/", "&", "|", "^", "%", "<<", /*">>", ">>>",*/
-        "+=", "-=", "*=", "/=", "&=", "|=", "^=", "%=", "<<=", ">>=", ">>>="};
+        "=",
+        ">",
+        "<",
+        "!",
+        "~",
+        "?",
+        ":",
+        "==",
+        "<=",
+        ">=",
+        "!=",
+        "&&",
+        "||",
+        "++",
+        "--",
+        "+",
+        "-",
+        "*",
+        "/",
+        "&",
+        "|",
+        "^",
+        "%",
+        "<<",
+        /*">>", ">>>",*/
+        "+=",
+        "-=",
+        "*=",
+        "/=",
+        "&=",
+        "|=",
+        "^=",
+        "%=",
+        "<<=",
+        ">>=",
+        ">>>="
+    };
   }
 
   @Override protected Type getTokenType() {
     return Type.Operator;
+  }
+
+  public Class<? extends Token> getRepresentativeClass() {
+    return this.getClass();
   }
 }

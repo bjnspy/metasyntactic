@@ -183,6 +183,10 @@ public abstract class Expression {
     @Override public List<Token> getShortestDerivableTokenStream() {
       throw new RuntimeException("NYI");
     }
+
+    @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
+      throw new RuntimeException("NYI");
+    }
   };
 
   private final static Expression ANY_CHARACTER_EXPRESSION = new FunctionExpression<Source>("anyCharacter") {
@@ -205,6 +209,10 @@ public abstract class Expression {
     }
 
     @Override public List<Token> getShortestDerivableTokenStream() {
+      throw new RuntimeException("NYI");
+    }
+
+    @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
       throw new RuntimeException("NYI");
     }
 
@@ -245,7 +253,11 @@ public abstract class Expression {
         return false;
       }
 
-      public List<Token> getShortestDerivableTokenStream() {
+      @Override public List<Token> getShortestDerivableTokenStream() {
+        throw new RuntimeException("NYI");
+      }
+
+      @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
         throw new RuntimeException("NYI");
       }
     };

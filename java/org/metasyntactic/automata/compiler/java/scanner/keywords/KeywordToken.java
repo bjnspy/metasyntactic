@@ -1,12 +1,16 @@
 package org.metasyntactic.automata.compiler.java.scanner.keywords;
 
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class KeywordToken extends JavaToken {
   private final static Map<String, KeywordToken> map = new HashMap<String, KeywordToken>();
+  public final static Set<Class> tokenClasses = new LinkedHashSet<Class>();
 
   static {
     if (true) {
@@ -19,6 +23,7 @@ public abstract class KeywordToken extends JavaToken {
           KeywordToken token = (KeywordToken) clazz.getField("instance").get(null);
 
           map.put(keyword, token);
+          tokenClasses.add(clazz);
         } catch (ClassNotFoundException e) {
           throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
@@ -46,19 +51,64 @@ public abstract class KeywordToken extends JavaToken {
 
   public static String[] getKeywords() {
     return new String[]{
-        "abstract", "continue", "for", "new", "switch",
-        "assert", "default", "if", "package", "synchronized",
-        "boolean", "do", "goto", "private", "this",
-        "break", "double", "implements", "protected", "throw",
-        "byte", "else", "import", "public", "throws",
-        "case", "enum", "instanceof", "return", "transient",
-        "catch", "extends", "int", "short", "try",
-        "char", "final", "interface", "static", "void",
-        "class", "finally", "long", "strictfp", "volatile",
-        "const", "float", "native", "super", "while"};
+        "abstract",
+        "continue",
+        "for",
+        "new",
+        "switch",
+        "assert",
+        "default",
+        "if",
+        "package",
+        "synchronized",
+        "boolean",
+        "do",
+        "goto",
+        "private",
+        "this",
+        "break",
+        "double",
+        "implements",
+        "protected",
+        "throw",
+        "byte",
+        "else",
+        "import",
+        "public",
+        "throws",
+        "case",
+        "enum",
+        "instanceof",
+        "return",
+        "transient",
+        "catch",
+        "extends",
+        "int",
+        "short",
+        "try",
+        "char",
+        "final",
+        "interface",
+        "static",
+        "void",
+        "class",
+        "finally",
+        "long",
+        "strictfp",
+        "volatile",
+        "const",
+        "float",
+        "native",
+        "super",
+        "while"
+    };
   }
 
   @Override protected Type getTokenType() {
     return Type.Keyword;
+  }
+
+  public Class<? extends Token> getRepresentativeClass() {
+    return this.getClass();
   }
 }

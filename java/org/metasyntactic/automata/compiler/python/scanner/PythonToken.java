@@ -68,4 +68,8 @@ public abstract class PythonToken implements Token {
   public int compareTo(Token token) {
     return getType() - token.getType();
   }
+
+  public Class<? extends Token> getRepresentativeClass() {
+    throw new RuntimeException("NYI");
+  }
 }
