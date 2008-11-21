@@ -54,10 +54,10 @@ public class PackratGrammar implements Grammar {
 
     createSets();
 
-    computeShortestDerivableTokenStreamMap();
+    computeShortestDerivableClassStreamMap();
     for (Rule rule : rules) {
       System.out.println(rule.getVariable());
-      System.out.println("\t" + getShortestDerivableTokenStream(rule.getVariable()));
+      System.out.println("\t" + getShortestDerivableClassStream(rule.getVariable()));
     }
   }
 
@@ -596,6 +596,108 @@ public class PackratGrammar implements Grammar {
       }
 
       return Collections.singletonList(representative);
+    }
+  }
+
+  private Map<String, List<Class<? extends Token>>> shortestDerivableClassStreamMap;
+
+  public final List<Class<? extends Token>> getShortestDerivableClassStream(String variable) {
+    computeShortestDerivableClassStreamMap();
+
+    return shortestDerivableClassStreamMap.get(variable);
+  }
+
+  private void computeShortestDerivableClassStreamMap() {
+    shortestDerivableClassStreamMap = new LinkedHashMap<String, List<Class<? extends Token>>>();
+
+    boolean changed;
+    do {
+      changed = false;
+      for (Rule rule : rules) {
+        List<Class<? extends Token>> oldTokenStream = shortestDerivableClassStreamMap.get(rule.getVariable());
+        List<Class<? extends Token>> newTokenStream = rule.getExpression().accept(
+            new ShortestDerivableClassStreamVisitor());
+        if (oldTokenStream == null || newTokenStream.size() < oldTokenStream.size()) {
+          changed = true;
+          shortestDerivableClassStreamMap.put(rule.getVariable(), newTokenStream);
+        }
+      }
+    } while (changed);
+  }
+
+  private class ShortestDerivableClassStreamVisitor implements ExpressionVisitor<Object, List<Class<? extends Token>>> {
+    public List<Class<? extends Token>> visit(EmptyExpression emptyExpression) {
+      return Collections.emptyList();
+    }
+
+    public List<Class<? extends Token>> visit(CharacterExpression characterExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public List<Class<? extends Token>> visit(TerminalExpression terminalExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public List<Class<? extends Token>> visit(VariableExpression variableExpression) {
+      return shortestDerivableClassStreamMap.get(variableExpression.getVariable());
+    }
+
+    public List<Class<? extends Token>> visit(DelimitedSequenceExpression sequenceExpression) {
+      return sequenceExpression.getElement().accept(this);
+    }
+
+    public List<Class<? extends Token>> visit(SequenceExpression sequenceExpression) {
+      List<Class<? extends Token>> result = new ArrayList<Class<? extends Token>>();
+
+      for (Expression child : sequenceExpression.getChildren()) {
+        List<Class<? extends Token>> childResult = child.accept(this);
+        if (childResult == null) {
+          return null;
+        }
+
+        result.addAll(childResult);
+      }
+
+      return result;
+    }
+
+    public List<Class<? extends Token>> visit(ChoiceExpression choiceExpression) {
+      List<Class<? extends Token>> result = null;
+
+      for (Expression child : choiceExpression.getChildren()) {
+        List<Class<? extends Token>> childResult = child.accept(this);
+        if (childResult != null) {
+          if (result == null || childResult.size() < result.size()) {
+            result = childResult;
+          }
+        }
+      }
+
+      return result;
+    }
+
+    public List<Class<? extends Token>> visit(NotExpression notExpression) {
+      return Collections.emptyList();
+    }
+
+    public List<Class<? extends Token>> visit(RepetitionExpression repetitionExpression) {
+      return Collections.emptyList();
+    }
+
+    public List<Class<? extends Token>> visit(FunctionExpression<Object> functionExpression) {
+      return functionExpression.getShortestDerivableClassStream();
+    }
+
+    public List<Class<? extends Token>> visit(OneOrMoreExpression oneOrMoreExpression) {
+      return oneOrMoreExpression.getChild().accept(this);
+    }
+
+    public List<Class<? extends Token>> visit(TokenExpression tokenExpression) {
+      return Collections.<Class<? extends Token>>singletonList(tokenExpression.getToken().getRepresentativeClass());
+    }
+
+    public List<Class<? extends Token>> visit(TypeExpression typeExpression) {
+      return (List) Collections.singletonList(typeExpression.getType());
     }
   }
 }

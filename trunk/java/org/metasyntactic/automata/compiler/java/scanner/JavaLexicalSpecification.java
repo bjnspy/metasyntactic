@@ -71,6 +71,10 @@ public class JavaLexicalSpecification extends PackratGrammar {
     @Override public List<Token> getShortestDerivableTokenStream() {
       return Collections.<Token>singletonList(IdentifierToken.representative);
     }
+
+    @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
+      return Collections.<Class<? extends Token>>singletonList(IdentifierToken.class);
+    }
   });
 
   public static Rule OPERATOR_RULE = new Rule("Operator", choice(OperatorToken.getOperators()));
