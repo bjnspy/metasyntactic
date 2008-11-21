@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AllTheatersViewController : UITableViewController {
+#import "RefreshableTableViewController.h"
+
+@interface AllTheatersViewController : RefreshableTableViewController {
 @private
     TheatersNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
@@ -29,7 +31,6 @@
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
 
-- (void) refresh;
 - (NowPlayingModel*) model;
 
 @end

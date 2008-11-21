@@ -181,10 +181,12 @@
 
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
-    Movie* movie = [prioritizedMovies removeLastObjectAdded];
-
-    if (movie != nil) {
-        return movie;
+    Movie* movie;
+    
+    while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
+        if (![FileUtilities fileExists:[self posterFilePath:movie]]) {
+            return movie;
+        }
     }
 
     if (movies.count > 0) {
@@ -236,11 +238,6 @@
 
 
 - (void) prioritizeMovie:(Movie*) movie {
-    // Only prioritize this movie if we don't have a poster
-    if ([FileUtilities fileExists:[self posterFilePath:movie]]) {
-        return;
-    }
-
     [prioritizedMovies addObject:movie];
 }
 

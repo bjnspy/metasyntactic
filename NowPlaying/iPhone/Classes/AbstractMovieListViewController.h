@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractMovieListViewController : UITableViewController {
+#import "RefreshableTableViewController.h"
+
+@interface AbstractMovieListViewController : RefreshableTableViewController {
 @protected
     AbstractNavigationController* navigationController;
 
@@ -27,8 +29,6 @@
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
-
-- (void) refresh;
 
 /* protected */
 - (NowPlayingModel*) model;

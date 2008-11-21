@@ -216,12 +216,18 @@ const double LOAD_DELAY = 1;
 
 
 - (void) addImageToView:(NSArray*) arguments {
+    NSNumber* index = [arguments objectAtIndex:0];
+    if (index.intValue < (currentPage - 1) ||
+        index.intValue > (currentPage + 1)) {
+        return;
+    }
+    
     if (scrollView.dragging || scrollView.decelerating) {
         [self performSelector:@selector(addImageToView:) withObject:arguments afterDelay:1];
         return;
     }
 
-    [self addImage:[arguments objectAtIndex:0] toView:[arguments objectAtIndex:1]];
+    [self addImage:[arguments objectAtIndex:1] toView:[arguments objectAtIndex:2]];
 }
 
 
@@ -286,7 +292,7 @@ const double LOAD_DELAY = 1;
         [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:LOAD_DELAY];
     } else {
         UIView* pageView = [indexAndPageView objectAtIndex:1];
-        NSArray* arguments = [NSArray arrayWithObjects:image, pageView, nil];
+        NSArray* arguments = [NSArray arrayWithObjects:index, image, pageView, nil];
         [self addImageToView:arguments];
     }
 }

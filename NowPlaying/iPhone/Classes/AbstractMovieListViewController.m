@@ -313,7 +313,7 @@
 }
 
 
-- (void) refresh {
+- (void) refreshWorker {
     [self sortMovies];
     [self.tableView reloadData];
 
@@ -340,7 +340,7 @@
         movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     }
 
-    [self.model prioritizeMovie:movie];
+    //[self.model prioritizeMovie:movie];
 
     UITableViewCell* cell = [self createCell:movie];
     return cell;

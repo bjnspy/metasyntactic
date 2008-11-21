@@ -28,6 +28,8 @@
     NSArray* genres;
 
     NSString* displayTitle;
+    
+    NSString* cachedRatingAndRuntimeString;
 }
 
 @property (readonly, copy) NSString* identifier;
