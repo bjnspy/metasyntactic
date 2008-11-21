@@ -1,6 +1,7 @@
 package org.metasyntactic.automata.compiler.framework.parsers;
 
-public interface Token {
+public interface Token extends Comparable<Token> {
   String getText();
+
   int getType();
 }

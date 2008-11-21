@@ -20,4 +20,6 @@ public abstract class LiteralToken<T> extends JavaToken {
   private static Type type() {
     return Type.Literal;
   }
+
+  public static final LiteralToken representative = new IntegerLiteralToken("0");
 }

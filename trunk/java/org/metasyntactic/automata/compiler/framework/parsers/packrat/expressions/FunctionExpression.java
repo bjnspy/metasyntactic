@@ -2,10 +2,14 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.EvaluationResult;
+
+import java.util.List;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public abstract class FunctionExpression<T> extends Expression {
@@ -17,15 +21,18 @@ public abstract class FunctionExpression<T> extends Expression {
 
   public abstract EvaluationResult apply(T input, int position);
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
-    return visitor.visit((FunctionExpression<TInput>)this);
+  @SuppressWarnings("unchecked") @Override public <TInput, TResult> TResult accept(
+      ExpressionVisitor<TInput, TResult> visitor) {
+    return visitor.visit((FunctionExpression<TInput>) this);
   }
 
-  @Override public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
-    visitor.visit((FunctionExpression<TInput>)this);
+  @SuppressWarnings("unchecked") @Override public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
+    visitor.visit((FunctionExpression<TInput>) this);
   }
 
   public abstract boolean isNullable();
+
+  public abstract List<Token> getShortestDerivableTokenStream();
 
   public String getName() {
     return name;

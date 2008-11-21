@@ -4,6 +4,7 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.expression
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class DelimitedSequenceExpression extends Expression {
@@ -15,8 +16,7 @@ public class DelimitedSequenceExpression extends Expression {
     this(element, delimiter, false);
   }
 
-  public DelimitedSequenceExpression(Expression element, Expression delimiter,
-      boolean allowsTrailingDelimiter) {
+  public DelimitedSequenceExpression(Expression element, Expression delimiter, boolean allowsTrailingDelimiter) {
     this.element = element;
     this.delimiter = delimiter;
     this.allowsTrailingDelimiter = allowsTrailingDelimiter;
@@ -58,7 +58,7 @@ public class DelimitedSequenceExpression extends Expression {
   }
 
   @Override protected int hashCodeWorker() {
-    int result = super.hashCode();
+    int result = 0;
     result = 31 * result + element.hashCode();
     result = 31 * result + delimiter.hashCode();
     result = 31 * result + (allowsTrailingDelimiter ? 1 : 0);
