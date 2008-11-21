@@ -256,12 +256,12 @@ public class NowPlayingModel {
 
   public ScoreType getScoreType() {
     synchronized (this.preferencesLock) {
-      final String value = this.preferences.getString(SCORE_TYPE_KEY, null);
+     final String value = this.preferences.getString(SCORE_TYPE_KEY, null);
       if (value == null) {
         return ScoreType.RottenTomatoes;
       }
 
-      return ScoreType.valueOf(value);
+     return ScoreType.valueOf(value);
     }
   }
 
@@ -282,7 +282,7 @@ public class NowPlayingModel {
   public void setAutoUpdateEnabled(boolean enabled) {
     synchronized (this.preferencesLock) {
       final SharedPreferences.Editor editor = this.preferences.edit();
-      editor.putBoolean(SCORE_TYPE_KEY, enabled);
+      editor.putBoolean(AUTO_UPDATED_ENABLED_KEY, enabled);
       editor.commit();
     }
   }

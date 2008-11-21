@@ -22,6 +22,7 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.utilities.SetUtilities;
 
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -223,5 +224,16 @@ public class NowPlayingControllerWrapper {
   public static void setAutoUpdateEnabled(boolean enabled) {
     checkInstance();
     instance.setAutoUpdateEnabled(enabled);
+  }
+  
+  public static Date getSearchDate() {
+	checkInstance();
+	return instance.getSearchDate();
+  }
+
+  public static void setSearchDate(Date date) {
+	checkInstance();
+    instance.setSearchDate(date);
+   
   }
 }

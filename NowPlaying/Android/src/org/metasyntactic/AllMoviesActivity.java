@@ -146,6 +146,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   @Override
   protected void onPause() {
     super.onPause();
+    unregisterReceiver(this.broadcastReceiver);
   }
 
   @Override
@@ -161,8 +162,9 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(AllMoviesActivity.this).setTitle(
-          R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT)
-          .setEntries(R.array.entries_movies_sort_preference).show();
+          R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
+          .setEntries(R.array.entries_movies_sort_preference);
+      builder.show();
       return true;
     }
     return false;

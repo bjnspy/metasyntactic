@@ -144,6 +144,7 @@ public class NowPlayingController {
 
   public ScoreType getScoreType() {
     return this.model.getScoreType();
+	
   }
 
   public void setScoreType(final ScoreType scoreType) {
