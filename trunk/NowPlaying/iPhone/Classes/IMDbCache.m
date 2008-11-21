@@ -138,11 +138,12 @@
 
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
-    Movie* movie = [prioritizedMovies removeLastObjectAdded];
-
-    if (movie != nil) {
-        return movie;
-    }
+    Movie* movie;
+    while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
+        if (![FileUtilities fileExists:[self imdbFile:movie]]) {
+            return movie;
+        }
+    }        
 
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
@@ -167,10 +168,6 @@
 
 
 - (void) prioritizeMovie:(Movie*) movie {
-    if ([FileUtilities fileExists:[self imdbFile:movie]]) {
-        return;
-    }
-
     [prioritizedMovies addObject:movie];
 }
 

@@ -30,6 +30,7 @@
 @property (retain) NSArray* directors;
 @property (retain) NSArray* cast;
 @property (retain) NSArray* genres;
+@property (retain) NSString* cachedRatingAndRuntimeString;
 @end
 
 
@@ -48,6 +49,7 @@ property_definition(studio);
 property_definition(directors);
 property_definition(cast);
 property_definition(genres);
+@synthesize cachedRatingAndRuntimeString;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -63,6 +65,7 @@ property_definition(genres);
     self.directors = nil;
     self.cast = nil;
     self.genres = nil;
+    self.cachedRatingAndRuntimeString = nil;
 
     [super dealloc];
 }
@@ -269,7 +272,12 @@ static NSString* articles[] = {
 
 
 - (NSString*) ratingAndRuntimeString {
-    return [NSString stringWithFormat:NSLocalizedString(@"%@. %@", "Rated R. 2 hours 34 minutes"), self.ratingString, self.runtimeString];
+    if (cachedRatingAndRuntimeString == nil) {
+        self.cachedRatingAndRuntimeString = 
+        [NSString stringWithFormat:NSLocalizedString(@"%@. %@", "Rated R. 2 hours 34 minutes"), self.ratingString, self.runtimeString];
+    }
+    
+    return cachedRatingAndRuntimeString;
 }
 
 @end

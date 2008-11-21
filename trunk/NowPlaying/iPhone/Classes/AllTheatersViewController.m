@@ -446,7 +446,7 @@
 }
 
 
-- (void) refresh {
+- (void) refreshWorker {
     [self sortTheaters];
     [self.tableView reloadData];
     

@@ -64,7 +64,7 @@
 
 - (void) removeNode:(LinkedNode*) node {
     [[node retain] autorelease];
-
+    
     if (node.value != nil) {
         [valueToNode removeObjectForKey:node.value];
     }

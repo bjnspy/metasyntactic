@@ -124,7 +124,7 @@
     if (movie == nil) {
         return;
     }
-
+    
     NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
@@ -159,10 +159,11 @@
 
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
-    Movie* movie = [prioritizedMovies removeLastObjectAdded];
-
-    if (movie != nil) {
-        return movie;
+    Movie* movie;
+    while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
+        if (![FileUtilities fileExists:[self trailerFile:movie]]) {
+            return movie;
+        }
     }
 
     if (movies.count > 0) {
@@ -196,12 +197,6 @@
 
 
 - (void) prioritizeMovie:(Movie*) movie {
-    // only prioritize this movie if we don't already have a
-    // trailer for it.
-    if ([FileUtilities fileExists:[self trailerFile:movie]]) {
-        return;
-    }
-
     [prioritizedMovies addObject:movie];
 }
 
