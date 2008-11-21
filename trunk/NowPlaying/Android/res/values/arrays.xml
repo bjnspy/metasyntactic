@@ -13,6 +13,41 @@
     <item>Name</item>
     <item>Distance</item>
   </string-array>
-
+  
+  <!-- Used in search distance preferences -->
+  <string-array name="entries_search_distance_preference">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>15</item>
+    <item>20</item>
+    <item>25</item>
+    <item>30</item>
+    <item>35</item>
+    <item>40</item>
+    <item>45</item>
+    <item>50</item>
+  </string-array>
+  
+  <!-- Used in reviews provider preferences -->
+  <string-array name="entries_reviews_provider_preference">
+    <item>Google</item>
+    <item>Metacritic</item>   
+    <item>RottenTomatoes</item> 
+  </string-array>
+  
+   <!-- Used in auto update location preferences -->
+  <string-array name="entries_auto_update_preference">
+    <item>On</item>
+    <item>Off</item>       
+  </string-array>
+  
 
 </resources>

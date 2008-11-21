@@ -102,7 +102,7 @@ public class UserLocationCache {
     if (location != null) {
       return location;
     }
-
+      
     return loadLocation(userAddress);
   }
 

@@ -105,7 +105,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.theaters_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.THEATERS_SORT)
+          R.string.theaters_select_sort_title).setKey(NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT)
           .setEntries(R.array.entries_theaters_sort_preference);
       builder.show();
       return true;

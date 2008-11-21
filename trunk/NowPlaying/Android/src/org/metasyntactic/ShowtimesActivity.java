@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
@@ -23,7 +25,7 @@ import java.util.List;
 public class ShowtimesActivity extends ListActivity {
   private List<Theater> theaters;
   private Movie movie;
-  private final List<TheaterDetailItem> detailItems = new ArrayList<TheaterDetailItem>();
+  private List<TheaterDetailItem> detailItems;
 
   enum TheaterDetailItemType {
     NAME_SHOWTIMES, ADDRESS, PHONE
@@ -60,6 +62,7 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   private void populateTheaterDetailItems() {
+	detailItems = new ArrayList<TheaterDetailItem>();
     for (Theater theater : this.theaters) {
       populateTheaterDetailItem();
     }
@@ -103,6 +106,9 @@ public class ShowtimesActivity extends ListActivity {
           R.id.label), (ImageView) convertView.findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data));
 
       final int theaterIndex = position / TheaterDetailItemType.values().length;
+      Log.i("theaterIndex ", String.valueOf(theaterIndex));
+      Log.i("position ", String.valueOf(position));
+      Log.i("values length ", String.valueOf(TheaterDetailItemType.values().length));
       final Theater theater = ShowtimesActivity.this.theaters.get(theaterIndex);
       switch (ShowtimesActivity.this.detailItems.get(position).getType()) {
         case NAME_SHOWTIMES:
@@ -176,7 +182,7 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     public Object getItem(final int position) {
-      return ShowtimesActivity.this.theaters.get(position);
+      return ShowtimesActivity.this.detailItems.get(position);
     }
 
     public long getItemId(final int position) {
