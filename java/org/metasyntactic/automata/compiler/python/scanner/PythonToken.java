@@ -51,6 +51,7 @@ public abstract class PythonToken implements Token {
   public abstract Type getTokenType();
 
   public static enum Type {
+    Identifier,
     Delimiter,
     Keyword,
     Literal,
@@ -58,10 +59,13 @@ public abstract class PythonToken implements Token {
     Comment,
     Dedent,
     Error,
-    Identifier,
     Indent,
     LineContinuation,
     Newline,
     Whitespace
+  }
+
+  public int compareTo(Token token) {
+    return getType() - token.getType();
   }
 }

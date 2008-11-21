@@ -89,9 +89,7 @@ public abstract class Expression {
 
   /** @return a new parsing expression representing: subExpression? */
   public static Expression optional(final Expression subExpression) {
-    return new ChoiceExpression(
-        subExpression,
-        EmptyExpression.instance) {
+    return new ChoiceExpression(subExpression, EmptyExpression.instance) {
       @Override public String toString() {
         return "(Optional " + subExpression + ")";
       }
@@ -144,6 +142,10 @@ public abstract class Expression {
     return new SequenceExpression(children);
   }
 
+  public static Expression delimitedList(Expression expression, Expression delimeter) {
+    return new DelimitedSequenceExpression(expression, delimeter);
+  }
+
   public static Expression anyCharacter() {
     return ANY_CHARACTER_EXPRESSION;
   }
@@ -160,86 +162,92 @@ public abstract class Expression {
     return not(anyToken());
   }
 
-  private final static Expression ANY_TOKEN_EXPRESSION =
-      new FunctionExpression<List<SourceToken<? extends Token>>>("anyToken") {
-        @Override public EvaluationResult apply(
-            List<SourceToken<? extends Token>> tokens,
-            int position) {
-          if (position >= tokens.size()) {
-            return EvaluationResult.failure;
-          } else {
-            return new EvaluationResult(position + 1, tokens.get(position));
-          }
-        }
+  private final static Expression ANY_TOKEN_EXPRESSION = new FunctionExpression<List<SourceToken<? extends Token>>>(
+      "anyToken") {
+    @Override public EvaluationResult apply(List<SourceToken<? extends Token>> tokens, int position) {
+      if (position >= tokens.size()) {
+        return EvaluationResult.failure;
+      } else {
+        return new EvaluationResult(position + 1, tokens.get(position));
+      }
+    }
 
+    @Override public String toString() {
+      return ".";
+    }
 
-        @Override public String toString() {
-          return ".";
-        }
+    @Override public boolean isNullable() {
+      return false;
+    }
 
-        @Override public boolean isNullable() {
-          return false;
-        }
-      };
+    @Override public List<Token> getShortestDerivableTokenStream() {
+      throw new RuntimeException("NYI");
+    }
+  };
 
-  private final static Expression ANY_CHARACTER_EXPRESSION =
-      new FunctionExpression<Source>("anyCharacter") {
-        @Override public EvaluationResult apply(Source input, int position) {
-          String text = input.getText();
+  private final static Expression ANY_CHARACTER_EXPRESSION = new FunctionExpression<Source>("anyCharacter") {
+    @Override public EvaluationResult apply(Source input, int position) {
+      String text = input.getText();
 
-          if (position >= text.length()) {
-            return EvaluationResult.failure;
-          } else {
-            return new EvaluationResult(position + 1, text.substring(position, position + 1));
-          }
-        }
+      if (position >= text.length()) {
+        return EvaluationResult.failure;
+      } else {
+        return new EvaluationResult(position + 1, text.substring(position, position + 1));
+      }
+    }
 
-        @Override public String toString() {
-          return ".";
-        }
+    @Override public String toString() {
+      return ".";
+    }
 
-        @Override public boolean isNullable() {
-          return false;
-        }
+    @Override public boolean isNullable() {
+      return false;
+    }
 
-        public String getCode() {
-          return
-              "          String text = input.getText();\n" +
-                  "\n" +
-                  "          if (position >= text.length()) {\n" +
-                  "            return EvaluationResult.failure;\n" +
-                  "          } else {\n" +
-                  "            return new EvaluationResult(true, position + 1, text.substring(position, position + 1));\n" +
-                  "          }";
-        }
-      };
+    @Override public List<Token> getShortestDerivableTokenStream() {
+      throw new RuntimeException("NYI");
+    }
+
+    public String getCode() {
+      return "          String text = input.getText();\n" +
+             "\n" +
+             "          if (position >= text.length()) {\n" +
+             "            return EvaluationResult.failure;\n" +
+             "          } else {\n" +
+             "            return new EvaluationResult(true, position + 1, text.substring(position, position + 1));\n" +
+             "          }";
+    }
+  };
 
   public static Expression range(final char startInclusive, final char endInclusive) {
     Preconditions.checkArgument(startInclusive <= endInclusive);
 
-    return
-        new FunctionExpression<Source>("range") {
-          @Override public EvaluationResult apply(Source input, int position) {
-            String text = input.getText();
+    return new FunctionExpression<Source>("range") {
+      @Override public EvaluationResult apply(Source input, int position) {
+        String text = input.getText();
 
-            if (position < text.length()) {
-              char c = text.charAt(position);
+        if (position < text.length()) {
+          char c = text.charAt(position);
 
-              if (c >= startInclusive && c <= endInclusive) {
-                return new EvaluationResult(position + 1, text.substring(position, position + 1));
-              }
-            }
-
-            return EvaluationResult.failure;
+          if (c >= startInclusive && c <= endInclusive) {
+            return new EvaluationResult(position + 1, text.substring(position, position + 1));
           }
+        }
 
-          @Override public String toString() {
-            return "[" + startInclusive + "-" + endInclusive + "]";
-          }
+        return EvaluationResult.failure;
+      }
 
-          @Override public boolean isNullable() {
-            return false;
-          }
-        };
+      @Override public String toString() {
+        return "[" + startInclusive + "-" + endInclusive + "]";
+      }
+
+      @Override public boolean isNullable() {
+        return false;
+      }
+
+      public List<Token> getShortestDerivableTokenStream() {
+        throw new RuntimeException("NYI");
+      }
+    };
   }
 }

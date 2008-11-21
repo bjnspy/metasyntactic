@@ -9,11 +9,11 @@ public class TypeExpression extends Expression {
   public final Class<? extends Token> type;
   public final int typeValue;
 
-  public TypeExpression(Class<? extends Token> type) {
+  protected TypeExpression(Class<? extends Token> type) {
     this.type = type;
 
     try {
-      typeValue = (Integer)type.getMethod("typeValue").invoke(null);
+      typeValue = (Integer) type.getMethod("typeValue").invoke(null);
     } catch (IllegalAccessException e) {
       throw new RuntimeException(e);
     } catch (InvocationTargetException e) {
@@ -52,7 +52,7 @@ public class TypeExpression extends Expression {
     return type.hashCode();
   }
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
+  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 

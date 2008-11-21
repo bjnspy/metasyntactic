@@ -20,12 +20,18 @@ public abstract class JavaToken implements Token {
   }
 
   @Override public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     JavaToken javaToken = (JavaToken) o;
 
-    if (!text.equals(javaToken.text)) return false;
+    if (!text.equals(javaToken.text)) {
+      return false;
+    }
 
     return true;
   }
@@ -41,13 +47,30 @@ public abstract class JavaToken implements Token {
   protected abstract Type getTokenType();
 
   public static enum Type {
+    Identifier,
     Keyword,
     Literal,
     Operator,
     Separator,
     Comment,
     Error,
-    Identifier,
     Whitespace
+  }
+
+  public int compareTo(Token token) {
+    int value = getType() - token.getType();
+    if (value != 0) {
+      return value;
+    }
+
+    String text1 = getText();
+    String text2 = token.getText();
+
+    value = text1.length() - text2.length();
+    if (value != 0) {
+      return value;
+    }
+
+    return text1.compareTo(text2);
   }
 }

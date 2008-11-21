@@ -54,40 +54,19 @@ public class PackratGrammar implements Grammar {
 
     createSets();
 
-    /*
-    System.out.println("Nullable variables  : " + nullableVariables);
-    System.out.println("Nullable expressions:");
-    for (Expression e : nullableExpressions) {
-      System.out.println("\t" + e);
+    computeShortestDerivableTokenStreamMap();
+    for (Rule rule : rules) {
+      System.out.println(rule.getVariable());
+      System.out.println("\t" + getShortestDerivableTokenStream(rule.getVariable()));
     }
-    */
-
-/*
-    System.out.println("Accepts any token: ");
-    System.out.println(acceptsAnyToken);
-    System.out.println();
-
-    System.out.println("First tokens: ");
-
-    for (Object key : firstTokenMap.keySet()) {
-      System.out.println(key + " -> " + firstTokenMap.getCollection(key));
-    }
-
-    System.out.println();
-    System.out.println("First types: ");
-    for (Object key : firstTypeMap.keySet()) {
-      System.out.println(key + " -> " + firstTypeMap.getCollection(key));
-    }
-    */
   }
 
   @Override public <T extends Token> AbstractPackratParser<T> createParser(List<SourceToken<T>> tokens) {
     return createParser(tokens, ActionMap.EMPTY_MAP);
   }
 
-  @Override public <T extends Token> AbstractPackratParser<T> createParser(
-      List<SourceToken<T>> tokens,
-      ActionMap<T> map) {
+  @Override public <T extends Token> AbstractPackratParser<T> createParser(List<SourceToken<T>> tokens,
+                                                                           ActionMap<T> map) {
     if (leftRecursive) {
       return new LeftRecursivePackratParser<T>(this, tokens, map);
     } else {
@@ -124,19 +103,6 @@ public class PackratGrammar implements Grammar {
   public boolean isFirstType(String variable, Token token) {
     Collection<Integer> types = firstTypeMap.get(variable);
     return types != null && types.contains(token.getType());
-    /*
-    Collection<Class<? extends Token>> types = firstTypeMap.getCollection(variable);
-    if (types != null) {
-      Class<? extends Token> actualType = token.getClass();
-      for (Class<? extends Token> expectedType : types) {
-        if (expectedType.isAssignableFrom(actualType)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-    */
   }
 
   private void createSets() {
@@ -155,10 +121,8 @@ public class PackratGrammar implements Grammar {
       changed = false;
 
       for (Rule rule : rules) {
-        changed |= processFirstSets(rule, acceptsAnyTokenExpression, expresionToFirstTokens,
-            expressionToFirstTypes);
+        changed |= processFirstSets(rule, acceptsAnyTokenExpression, expresionToFirstTokens, expressionToFirstTypes);
       }
-
     } while (changed);
 
     for (Rule rule : rules) {
@@ -166,18 +130,14 @@ public class PackratGrammar implements Grammar {
         acceptsAnyToken.add(rule.getVariable());
       }
 
-      firstTokenMap.putAll(rule.getVariable(), expresionToFirstTokens.get(
-          rule.getExpression()));
-      firstTypeMap.putAll(rule.getVariable(), expressionToFirstTypes.get(
-          rule.getExpression()));
+      firstTokenMap.putAll(rule.getVariable(), expresionToFirstTokens.get(rule.getExpression()));
+      firstTypeMap.putAll(rule.getVariable(), expressionToFirstTypes.get(rule.getExpression()));
     }
   }
 
-  private boolean processFirstSets(
-      Rule rule,
-      final Set<Expression> acceptsAnyTokenExpression,
-      final MultiMap<Expression, Token> expresionToFirstTokens,
-      final MultiMap<Expression, Integer> expressionToFirstTypes) {
+  private boolean processFirstSets(Rule rule, final Set<Expression> acceptsAnyTokenExpression,
+                                   final MultiMap<Expression, Token> expresionToFirstTokens,
+                                   final MultiMap<Expression, Integer> expressionToFirstTypes) {
     return rule.getExpression().accept(new ExpressionVisitor<Object, Boolean>() {
       @Override public Boolean visit(EmptyExpression emptyExpression) {
         return false;
@@ -265,14 +225,12 @@ public class PackratGrammar implements Grammar {
       }
 
       @Override public Boolean visit(TokenExpression tokenExpression) {
-        return expresionToFirstTokens.putAll(tokenExpression, Collections.singleton(
-            tokenExpression.getToken()));
+        return expresionToFirstTokens.putAll(tokenExpression, Collections.singleton(tokenExpression.getToken()));
       }
 
       @Override public Boolean visit(TypeExpression typeExpression) {
         //return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(typeExpression.getType()));
-        return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(
-            typeExpression.getTypeValue()));
+        return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(typeExpression.getTypeValue()));
       }
     });
   }
@@ -302,8 +260,7 @@ public class PackratGrammar implements Grammar {
       rule.getExpression().accept(new RecursionExpressionVisitor() {
         @Override public void visit(VariableExpression expression) {
           if (!map.containsKey(expression.getVariable())) {
-            throw new IllegalArgumentException(
-                "No rule found with the variable: " + expression.getVariable());
+            throw new IllegalArgumentException("No rule found with the variable: " + expression.getVariable());
           }
         }
       });
@@ -525,6 +482,120 @@ public class PackratGrammar implements Grammar {
 
     @Override public Boolean visit(TypeExpression typeExpression) {
       return false;
+    }
+  }
+
+  private Map<String, List<Token>> shortestDerivableTokenStreamMap;
+
+  public final List<Token> getShortestDerivableTokenStream(String variable) {
+    computeShortestDerivableTokenStreamMap();
+
+    return shortestDerivableTokenStreamMap.get(variable);
+  }
+
+  private void computeShortestDerivableTokenStreamMap() {
+    shortestDerivableTokenStreamMap = new LinkedHashMap<String, List<Token>>();
+
+    boolean changed;
+    do {
+      changed = false;
+      for (Rule rule : rules) {
+        List<Token> oldTokenStream = shortestDerivableTokenStreamMap.get(rule.getVariable());
+        List<Token> newTokenStream = rule.getExpression().accept(new ShortestDerivableTokenStreamVisitor());
+        if (oldTokenStream == null || newTokenStream.size() < oldTokenStream.size()) {
+          changed = true;
+          shortestDerivableTokenStreamMap.put(rule.getVariable(), newTokenStream);
+        }
+      }
+    } while (changed);
+  }
+
+  private class ShortestDerivableTokenStreamVisitor implements ExpressionVisitor<Object, List<Token>> {
+    public List<Token> visit(EmptyExpression emptyExpression) {
+      return Collections.emptyList();
+    }
+
+    public List<Token> visit(CharacterExpression characterExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public List<Token> visit(TerminalExpression terminalExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public List<Token> visit(VariableExpression variableExpression) {
+      return shortestDerivableTokenStreamMap.get(variableExpression.getVariable());
+    }
+
+    public List<Token> visit(DelimitedSequenceExpression sequenceExpression) {
+      return sequenceExpression.getElement().accept(this);
+    }
+
+    public List<Token> visit(SequenceExpression sequenceExpression) {
+      List<Token> result = new ArrayList<Token>();
+
+      for (Expression child : sequenceExpression.getChildren()) {
+        List<Token> childResult = child.accept(this);
+        if (childResult == null) {
+          return null;
+        }
+
+        result.addAll(childResult);
+      }
+
+      return result;
+    }
+
+    public List<Token> visit(ChoiceExpression choiceExpression) {
+      List<Token> result = null;
+
+      for (Expression child : choiceExpression.getChildren()) {
+        List<Token> childResult = child.accept(this);
+        if (childResult != null) {
+          if (result == null || childResult.size() < result.size()) {
+            result = childResult;
+          } else if (childResult.size() == 1 && childResult.size() == result.size()) {
+            if (childResult.get(0).compareTo(result.get(0)) < 0) {
+              result = childResult;
+            }
+          }
+        }
+      }
+
+      return result;
+    }
+
+    public List<Token> visit(NotExpression notExpression) {
+      return Collections.emptyList();
+    }
+
+    public List<Token> visit(RepetitionExpression repetitionExpression) {
+      return Collections.emptyList();
+    }
+
+    public List<Token> visit(FunctionExpression<Object> functionExpression) {
+      return functionExpression.getShortestDerivableTokenStream();
+    }
+
+    public List<Token> visit(OneOrMoreExpression oneOrMoreExpression) {
+      return oneOrMoreExpression.getChild().accept(this);
+    }
+
+    public List<Token> visit(TokenExpression tokenExpression) {
+      return Collections.singletonList(tokenExpression.getToken());
+    }
+
+    public List<Token> visit(TypeExpression typeExpression) {
+      final Token representative;
+      try {
+        representative = (Token) typeExpression.getType().getField("representative").get(null);
+      } catch (IllegalAccessException e) {
+        throw new RuntimeException(e);
+      } catch (NoSuchFieldException e) {
+        throw new RuntimeException(e);
+      }
+
+      return Collections.singletonList(representative);
     }
   }
 }

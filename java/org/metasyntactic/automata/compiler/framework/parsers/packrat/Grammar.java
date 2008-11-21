@@ -48,40 +48,15 @@ public class Grammar {
     checkRules();
 
     createSets();
-
-    /*
-    System.out.println("Nullable variables  : " + nullableVariables);
-    System.out.println("Nullable expressions:");
-    for (Expression e : nullableExpressions) {
-      System.out.println("\t" + e);
-    }
-    */
-
-/*
-    System.out.println("Accepts any token: ");
-    System.out.println(acceptsAnyToken);
-    System.out.println();
-
-    System.out.println("First tokens: ");
-
-    for (Object key : firstTokenMap.keySet()) {
-      System.out.println(key + " -> " + firstTokenMap.getCollection(key));
-    }
-
-    System.out.println();
-    System.out.println("First types: ");
-    for (Object key : firstTypeMap.keySet()) {
-      System.out.println(key + " -> " + firstTypeMap.getCollection(key));
-    }
-    */
   }
 
   private final Set<String> nullableVariables = new LinkedHashSet<String>();
   private final Set<Expression> nullableExpressions = new LinkedHashSet<Expression>();
 
   private final Set<String> acceptsAnyToken = new LinkedHashSet<String>();
-  private final MultiMap<String,Token> firstTokenMap = new HashMultiMap<String, Token>();
-  private final MultiMap<String,Integer> firstTypeMap = new HashMultiMap<String,Integer>();
+
+  private final MultiMap<String, Token> firstTokenMap = new HashMultiMap<String, Token>();
+  private final MultiMap<String, Integer> firstTypeMap = new HashMultiMap<String, Integer>();
 
   public boolean isNullable(String variable) {
     return nullableVariables.contains(variable);
@@ -93,25 +68,12 @@ public class Grammar {
 
   public boolean isFirstToken(String variable, Token token) {
     Collection<Token> tokens = firstTokenMap.get(variable);
-    return tokens != null && tokens.contains(token);
+    return tokens.contains(token);
   }
 
   public boolean isFirstType(String variable, Token token) {
     Collection<Integer> types = firstTypeMap.get(variable);
-    return types != null && types.contains(token.getType());
-    /*
-    Collection<Class<? extends Token>> types = firstTypeMap.getCollection(variable);
-    if (types != null) {
-      Class<? extends Token> actualType = token.getClass();
-      for (Class<? extends Token> expectedType : types) {
-        if (expectedType.isAssignableFrom(actualType)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-    */
+    return types.contains(token.getType());
   }
 
   private void createSets() {
@@ -121,8 +83,8 @@ public class Grammar {
 
   private void createFirstSets() {
     Set<Expression> acceptsAnyTokenExpression = new LinkedHashSet<Expression>();
-    MultiMap<Expression,Token> expresionToFirstTokens = new HashMultiMap<Expression, Token>();
-    MultiMap<Expression,Integer> expressionToFirstTypes = new HashMultiMap<Expression, Integer>();
+    MultiMap<Expression, Token> expresionToFirstTokens = new HashMultiMap<Expression, Token>();
+    MultiMap<Expression, Integer> expressionToFirstTypes = new HashMultiMap<Expression, Integer>();
 
     boolean changed;
 
@@ -130,10 +92,8 @@ public class Grammar {
       changed = false;
 
       for (Rule rule : rules) {
-        changed |= processFirstSets(rule, acceptsAnyTokenExpression, expresionToFirstTokens,
-            expressionToFirstTypes);
+        changed |= processFirstSets(rule, acceptsAnyTokenExpression, expresionToFirstTokens, expressionToFirstTypes);
       }
-
     } while (changed);
 
     for (Rule rule : rules) {
@@ -141,18 +101,15 @@ public class Grammar {
         acceptsAnyToken.add(rule.getVariable());
       }
 
-      firstTokenMap.putAll(rule.getVariable(), expresionToFirstTokens.get(
-          rule.getExpression()));
-      firstTypeMap.putAll(rule.getVariable(), expressionToFirstTypes.get(
-          rule.getExpression()));
+      firstTokenMap.putAll(rule.getVariable(), expresionToFirstTokens.get(rule.getExpression()));
+      firstTypeMap.putAll(rule.getVariable(), expressionToFirstTypes.get(rule.getExpression()));
     }
   }
 
-  private boolean processFirstSets(
-      Rule rule,
-      final Set<Expression> acceptsAnyTokenExpression,
-      final MultiMap<Expression, Token> expresionToFirstTokens,
-      final MultiMap<Expression, Integer> expressionToFirstTypes) {
+  private boolean processFirstSets(Rule rule, final Set<Expression> acceptsAnyTokenExpression,
+                                   final MultiMap<Expression, Token> expresionToFirstTokens,
+                                   final MultiMap<Expression, Integer> expressionToFirstTypes) {
+
     return rule.getExpression().accept(new ExpressionVisitor<Object, Boolean>() {
       @Override public Boolean visit(EmptyExpression emptyExpression) {
         return false;
@@ -235,14 +192,12 @@ public class Grammar {
       }
 
       @Override public Boolean visit(TokenExpression tokenExpression) {
-        return expresionToFirstTokens.putAll(tokenExpression, Collections.singleton(
-            tokenExpression.getToken()));
+        return expresionToFirstTokens.putAll(tokenExpression, Collections.singleton(tokenExpression.getToken()));
       }
 
       @Override public Boolean visit(TypeExpression typeExpression) {
         //return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(typeExpression.getType()));
-        return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(
-            typeExpression.getTypeValue()));
+        return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(typeExpression.getTypeValue()));
       }
     });
   }
@@ -272,8 +227,7 @@ public class Grammar {
       rule.getExpression().accept(new RecursionExpressionVisitor() {
         @Override public void visit(VariableExpression expression) {
           if (!map.containsKey(expression.getVariable())) {
-            throw new IllegalArgumentException(
-                "No rule found with the variable: " + expression.getVariable());
+            throw new IllegalArgumentException("No rule found with the variable: " + expression.getVariable());
           }
         }
       });
@@ -322,6 +276,10 @@ public class Grammar {
     return map.get(variable);
   }
 
+  public Set<String> getVariables() {
+    return map.keySet();
+  }
+
   @Override public boolean equals(Object o) {
     if (this == o) {
       return true;
@@ -332,14 +290,7 @@ public class Grammar {
 
     Grammar grammar = (Grammar) o;
 
-    if (!rules.equals(grammar.rules)) {
-      return false;
-    }
-    if (!startRule.equals(grammar.startRule)) {
-      return false;
-    }
-
-    return true;
+    return rules.equals(grammar.rules) && startRule.equals(grammar.startRule);
   }
 
   @Override public int hashCode() {

@@ -6,32 +6,14 @@ import org.metasyntactic.automata.compiler.framework.parsers.ActionMap;
 import org.metasyntactic.automata.compiler.framework.parsers.Parser;
 import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
 import org.metasyntactic.automata.compiler.framework.parsers.Token;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.CharacterExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.ChoiceExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.DelimitedSequenceExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.EmptyExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.ExpressionVisitor;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.FunctionExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.NotExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.OneOrMoreExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.RepetitionExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.SequenceExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.TerminalExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.TokenExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.TypeExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.VariableExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
 import org.metasyntactic.common.base.Preconditions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public abstract class AbstractPackratParser<T extends Token> implements Parser {
@@ -42,10 +24,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
 
   protected final List<SourceToken<T>> input;
 
-  protected AbstractPackratParser(
-      PackratGrammar grammar,
-      List<SourceToken<T>> input,
-      ActionMap<T> actions) {
+  protected AbstractPackratParser(PackratGrammar grammar, List<SourceToken<T>> input, ActionMap<T> actions) {
     Preconditions.checkNotNull(grammar);
     Preconditions.checkNotNull(actions);
     this.grammar = grammar;
@@ -68,14 +47,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
 
     AbstractPackratParser parser = (AbstractPackratParser) o;
 
-    if (!actions.equals(parser.actions)) {
-      return false;
-    }
-    if (!grammar.equals(parser.grammar)) {
-      return false;
-    }
-
-    return true;
+    return actions.equals(parser.actions) && grammar.equals(parser.grammar);
   }
 
   @Override public int hashCode() {
@@ -98,6 +70,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return null;
     }
   }
+
   protected abstract EvaluationResult evaluateRule(final int position, final Rule rule);
 
   protected final boolean checkToken(int position, Rule rule) {
@@ -116,9 +89,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
     return true;
   }
 
-  protected abstract EvaluationResult evaluateExpression(
-      final int position,
-      final Expression expression);
+  protected abstract EvaluationResult evaluateExpression(final int position, final Expression expression);
 
   private static List<Object> trimList(ArrayList<Object> values) {
     if (values == null || values.isEmpty()) {
@@ -172,8 +143,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
     }
   }
 
-  protected class EvaluationExpressionVisitor implements
-      ExpressionVisitor<List<SourceToken<T>>, EvaluationResult> {
+  protected class EvaluationExpressionVisitor implements ExpressionVisitor<List<SourceToken<T>>, EvaluationResult> {
     protected int position;
 
     public EvaluationExpressionVisitor() {
@@ -213,12 +183,9 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       while (true) {
         int currentPosition = result.position;
 
-        EvaluationResult delimiterResult =
-            evaluateExpression(currentPosition, sequenceExpression.getDelimiter());
+        EvaluationResult delimiterResult = evaluateExpression(currentPosition, sequenceExpression.getDelimiter());
         if (delimiterResult.isFailure()) {
-          return new EvaluationResult(
-              currentPosition,
-              Arrays.asList(trimList(elements), trimList(delimiters)));
+          return new EvaluationResult(currentPosition, Arrays.asList(trimList(elements), trimList(delimiters)));
         }
 
         result = evaluateExpression(delimiterResult.position, sequenceExpression.getElement());
@@ -228,9 +195,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
             delimiters = addValue(delimiters, delimiterResult);
           }
 
-          return new EvaluationResult(
-              currentPosition,
-              Arrays.asList(trimList(elements), trimList(delimiters)));
+          return new EvaluationResult(currentPosition, Arrays.asList(trimList(elements), trimList(delimiters)));
         }
 
         elements = addValue(elements, result);
@@ -298,8 +263,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       ArrayList<Object> values = null;
 
       while (true) {
-        EvaluationResult result = evaluateExpression(currentPosition,
-            repetitionExpression.getChild());
+        EvaluationResult result = evaluateExpression(currentPosition, repetitionExpression.getChild());
 
         if (result.isSuccess()) {
           currentPosition = result.position;
@@ -324,8 +288,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return values;
     }
 
-    @Override public EvaluationResult visit(
-        FunctionExpression<List<SourceToken<T>>> functionExpression) {
+    @Override public EvaluationResult visit(FunctionExpression<List<SourceToken<T>>> functionExpression) {
       return functionExpression.apply(input, position);
     }
 
@@ -358,8 +321,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
   }
 
   protected static class MemoMap {
-    private final Map<EvaluationKey, EvaluationResult> memoizationMap =
-        new LinkedHashMap<EvaluationKey, EvaluationResult>();
+    private final Map<EvaluationKey, EvaluationResult> memoizationMap = new LinkedHashMap<EvaluationKey, EvaluationResult>();
 
     private final EvaluationKey key = new EvaluationKey(null, 0);
 
