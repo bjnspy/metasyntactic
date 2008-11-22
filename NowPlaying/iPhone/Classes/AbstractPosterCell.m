@@ -91,6 +91,7 @@
 
     UIImage* image = [model smallPosterForMovie:movie];
     if (image == nil) {
+        [model prioritizeMovie:movie];
         if ([GlobalActivityIndicator hasBackgroundTasks]) {
             // don't need to do anything.
             // keep up the spinner

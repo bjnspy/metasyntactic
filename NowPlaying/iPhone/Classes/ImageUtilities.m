@@ -59,7 +59,7 @@
         return nil;
     }
 
-    return UIImagePNGRepresentation(result);
+    return UIImageJPEGRepresentation(result, 0.5);
 }
 
 @end

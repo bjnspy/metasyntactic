@@ -180,6 +180,22 @@
 }
 
 
+/*
+- (void) drawLabel:(UILabel*) label {
+    [label.textColor set];
+    [label.text drawInRect:label.frame withFont:label.font lineBreakMode:label.lineBreakMode];
+}
+
+
+- (void) drawRect:(CGRect) rect {
+    [super drawRect:rect];
+    
+    [self drawLabel:titleLabel];
+    [self drawLabel:ratingLabel];
+    //[self drawLabel:scoreLabel];
+}
+*/
+
 - (void) setScore:(Movie*) movie {
     if (model.rottenTomatoesScores) {
         [self setRottenTomatoesScore:movie];
@@ -198,6 +214,8 @@
     [self setScore:movie];
     ratingLabel.text = movie.ratingAndRuntimeString;
     titleLabel.text = movie.displayTitle;
+    
+    //[self setNeedsDisplay];
 }
 
 

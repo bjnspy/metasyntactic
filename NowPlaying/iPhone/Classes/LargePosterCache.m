@@ -100,7 +100,22 @@
                       index:(NSInteger) index {
     NSString* path = [self posterFilePath:movie index:index];
     NSData* data = [FileUtilities readData:path];
-    return [UIImage imageWithData:data];
+    UIImage* image = [UIImage imageWithData:data];
+
+    CGSize size = image.size;
+    if (size.height >= size.width && image.size.height > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+        NSData* resizedData = [ImageUtilities scaleImageData:data
+                                     toHeight:FULL_SCREEN_POSTER_HEIGHT];
+        image = [UIImage imageWithData:data];
+        [FileUtilities writeData:resizedData toFile:path];
+    } else if (size.width >= size.height && image.size.width > (FULL_SCREEN_POSTER_HEIGHT + 1)) {
+        NSData* resizedData = [ImageUtilities scaleImageData:data
+                                                    toHeight:FULL_SCREEN_POSTER_WIDTH];
+        image = [UIImage imageWithData:data];
+        [FileUtilities writeData:resizedData toFile:path];
+    }
+    
+    return image;
 }
 
 
