@@ -28,7 +28,7 @@
     NSArray* genres;
 
     NSString* displayTitle;
-    
+
     NSString* cachedRatingAndRuntimeString;
 }
 
