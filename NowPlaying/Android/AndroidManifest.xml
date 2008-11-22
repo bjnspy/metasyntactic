@@ -24,6 +24,10 @@
 			android:name="ShowtimesActivity">
 		</activity>
 		<activity
+            android:label="@string/app_name"
+            android:name="UpcomingMoviesActivity">
+        </activity>
+		<activity
 			android:label="@string/app_name"
 			android:name="AllMoviesActivity">
 		</activity>

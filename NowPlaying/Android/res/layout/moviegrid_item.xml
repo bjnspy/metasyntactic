@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
+    android:layout_width="110px"
     android:layout_height="wrap_content"
     android:paddingLeft="0px"
     android:paddingRight="0px"
@@ -17,12 +17,13 @@
         android:layout_gravity="center" />
     <TextView
         android:id="@+id/title"
-        android:layout_width="95px"
-        android:layout_height="wrap_content"
-      
+        android:layout_width="110px"
+        android:layout_height="30px"
+        android:paddingLeft="10px"
+        android:paddingRight="10px"
         android:gravity="center"
         android:textSize="12px"
-        android:textColor="?android:attr/textColorPrimary"
+        android:textColor="?android:attr/textColorPrimaryInverse"
         
         android:singleLine="false"
         android:layout_gravity="center"
