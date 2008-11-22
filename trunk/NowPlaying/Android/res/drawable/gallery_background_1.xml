@@ -16,6 +16,6 @@
  -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@drawable/black_box" />
-    <item android:drawable="@drawable/black_box" />
+    <item android:state_pressed="true" android:drawable="@drawable/black_opaque_box" />
+    <item android:drawable="@drawable/black_opaque_box" />
 </selector>

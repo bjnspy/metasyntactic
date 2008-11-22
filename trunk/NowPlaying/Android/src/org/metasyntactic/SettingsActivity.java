@@ -175,7 +175,9 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 	settings = new SettingsItem();
 	settings.setLabel("Set Search Distance");
 	int distance = NowPlayingControllerWrapper.getSearchDistance();
-	settings.setData(String.valueOf(distance));
+	//TODO Remove hardcoded values once the controller method for distance units
+	// is available.
+	settings.setData(String.valueOf(distance) + " miles");
 	settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DISTANCE);
 	detailItems.add(settings);
 

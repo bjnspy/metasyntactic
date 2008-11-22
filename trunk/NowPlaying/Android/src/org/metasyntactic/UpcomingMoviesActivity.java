@@ -53,7 +53,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class NowPlayingActivity extends Activity implements INowPlaying {
+public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private static final int MENU_SORT = 1;
   private static final int MENU_THEATER = 2;
   private static final int MENU_UPCOMING = 3;
@@ -163,7 +163,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 	final int maxpagecount = (this.movies.size() - 1) / 9;
 	this.grid.setLayoutAnimationListener(new AnimationListener() {
 	  public void onAnimationEnd(final Animation animation) {
-		NowPlayingActivity.this.gridAnimationEnded = true;
+		UpcomingMoviesActivity.this.gridAnimationEnded = true;
 	  }
 
 	  public void onAnimationRepeat(final Animation animation) {
@@ -175,15 +175,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 	this.postersAdapter = new PostersAdapter();
 	this.grid.setAdapter(this.postersAdapter);
 	this.intent = new Intent();
-	this.intent.setClass(NowPlayingActivity.this, AllMoviesActivity.class);
-	this.animation = AnimationUtils.loadAnimation(NowPlayingActivity.this,
+	this.intent.setClass(UpcomingMoviesActivity.this, AllMoviesActivity.class);
+	this.animation = AnimationUtils.loadAnimation(UpcomingMoviesActivity.this,
 		R.anim.fade_reverse);
 	this.animation.setAnimationListener(new AnimationListener() {
 	  public void onAnimationEnd(final Animation animation) {
-		NowPlayingActivity.this.grid.setVisibility(View.GONE);
-		NowPlayingActivity.this.intent.putExtra("movie",
-			(Parcelable) NowPlayingActivity.this.selectedMovie);
-		startActivity(NowPlayingActivity.this.intent);
+		UpcomingMoviesActivity.this.grid.setVisibility(View.GONE);
+		UpcomingMoviesActivity.this.intent.putExtra("movie",
+			(Parcelable) UpcomingMoviesActivity.this.selectedMovie);
+		startActivity(UpcomingMoviesActivity.this.intent);
 	  }
 
 	  public void onAnimationRepeat(final Animation animation) {
@@ -241,7 +241,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
 	public PostersAdapter() {
 	  // Cache the LayoutInflate to avoid asking for a new one each time.
-	  this.mInflater = LayoutInflater.from(NowPlayingActivity.this);
+	  this.mInflater = LayoutInflater.from(UpcomingMoviesActivity.this);
 	}
 
 	public View getView(final int position, View convertView,
@@ -269,8 +269,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 		// and the ImageView.
 		holder = (ViewHolder) convertView.getTag();
 	  }
-	  final Movie movie = NowPlayingActivity.this.movies.get(position
-		  % NowPlayingActivity.this.movies.size());
+	  final Movie movie = UpcomingMoviesActivity.this.movies.get(position
+		  % UpcomingMoviesActivity.this.movies.size());
 	  holder.title.setText(movie.getDisplayTitle());
 	  holder.title.setEllipsize(TextUtils.TruncateAt.END);
 	  Log.i("NowPlayingActivity getview", "trying to show posters");
@@ -285,17 +285,17 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 	  }
 	  convertView.setOnClickListener(new OnClickListener() {
 		public void onClick(final View v) {
-		  NowPlayingActivity.this.selectedMovie = movies.get(position);
+		  UpcomingMoviesActivity.this.selectedMovie = movies.get(position);
 		  int i = 0;
-		  View child = NowPlayingActivity.this.grid.getChildAt(i);
+		  View child = UpcomingMoviesActivity.this.grid.getChildAt(i);
 		  while (child != null && child.getVisibility() == View.VISIBLE) {
-			child.startAnimation(NowPlayingActivity.this.animation);
+			child.startAnimation(UpcomingMoviesActivity.this.animation);
 			i++;
-			child = NowPlayingActivity.this.grid.getChildAt(i);
+			child = UpcomingMoviesActivity.this.grid.getChildAt(i);
 		  }
 		}
 	  });
-	  convertView.setBackgroundDrawable(getResources().getDrawable(
+	  holder.title.setBackgroundDrawable(getResources().getDrawable(
 		  R.drawable.gallery_background_1));
 	  return convertView;
 	}
@@ -311,16 +311,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 	}
 
 	public final int getCount() {
-	  if (NowPlayingActivity.this.movies != null) {
-		return Math.min(100, NowPlayingActivity.this.movies.size());
+	  if (UpcomingMoviesActivity.this.movies != null) {
+		return Math.min(100, UpcomingMoviesActivity.this.movies.size());
 	  } else {
 		return 0;
 	  }
 	}
 
 	public final Object getItem(final int position) {
-	  return NowPlayingActivity.this.movies.get(position
-		  % NowPlayingActivity.this.movies.size());
+	  return UpcomingMoviesActivity.this.movies.get(position
+		  % UpcomingMoviesActivity.this.movies.size());
 	}
 
 	public final long getItemId(final int position) {
@@ -351,7 +351,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
 	if (item.getItemId() == MENU_SORT) {
 	  final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
-		  NowPlayingActivity.this).setTitle(R.string.movies_select_sort_title)
+		  UpcomingMoviesActivity.this).setTitle(R.string.movies_select_sort_title)
 		  .setPositiveButton(android.R.string.ok).setNegativeButton(
 			  android.R.string.cancel).setKey(
 			  NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
@@ -361,7 +361,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 	}
 	if (item.getItemId() == MENU_THEATER) {
 	  final Intent intent = new Intent();
-	  intent.setClass(NowPlayingActivity.this, AllTheatersActivity.class);
+	  intent.setClass(UpcomingMoviesActivity.this, AllTheatersActivity.class);
 	  startActivity(intent);
 	  return true;
 	}
