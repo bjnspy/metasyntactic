@@ -20,7 +20,7 @@ import java.util.*;
  *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
-public class PackratGrammar implements Grammar {
+public abstract class PackratGrammar<TTokenType> implements Grammar {
   private final Set<Rule> rules;
   private final Rule startRule;
   private final Map<String, Rule> variableToRuleMap = new IdentityHashMap<String, Rule>();
@@ -53,13 +53,26 @@ public class PackratGrammar implements Grammar {
     checkForLeftRecursion();
 
     createSets();
-
-    computeShortestDerivableTokenStreamMap();
+/*
     for (Rule rule : rules) {
-      System.out.println(rule.getVariable());
-      System.out.println("\t" + getShortestDerivableTokenStream(rule.getVariable()));
+      System.out.println("Rule     : " + rule);
+      Collection<Integer> first = firstMap.get(rule.getVariable());
+      Set<TTokenType> firstSet = new LinkedHashSet<TTokenType>();
+      for (Integer i : first) {
+        firstSet.add(getTokenFromType(i));
+      }
+      System.out.println("First set: " + firstSet);
     }
+    */
+
+//    computeShortestDerivableTokenStreamMap();
+//    for (Rule rule : rules) {
+//      System.out.println(rule.getVariable());
+//      System.out.println("\t" + getShortestDerivableTokenStream(rule.getVariable()));
+//    }
   }
+
+  protected abstract TTokenType getTokenFromType(int type);
 
   protected Map<String, Rule> getVariableToRuleMap() {
     return variableToRuleMap;
@@ -88,8 +101,7 @@ public class PackratGrammar implements Grammar {
   private final Set<Expression> nullableExpressions = new LinkedHashSet<Expression>();
 
   private final Set<String> acceptsAnyToken = new LinkedHashSet<String>();
-  private final MultiMap<String, Token> firstTokenMap = new HashMultiMap<String, Token>();
-  private final MultiMap<String, Integer> firstTypeMap = new HashMultiMap<String, Integer>();
+  private final MultiMap<String, Integer> firstMap = new HashMultiMap<String, Integer>();
 
   public boolean isNullable(String variable) {
     return nullableVariables.contains(variable);
@@ -100,13 +112,8 @@ public class PackratGrammar implements Grammar {
   }
 
   public boolean isFirstToken(String variable, Token token) {
-    Collection<Token> tokens = firstTokenMap.get(variable);
-    return tokens != null && tokens.contains(token);
-  }
-
-  public boolean isFirstType(String variable, Token token) {
-    Collection<Integer> types = firstTypeMap.get(variable);
-    return types != null && types.contains(token.getType());
+    Collection<Integer> types = firstMap.get(variable);
+    return types.contains(token.getType());
   }
 
   private void createSets() {
@@ -116,8 +123,7 @@ public class PackratGrammar implements Grammar {
 
   private void createFirstSets() {
     Set<Expression> acceptsAnyTokenExpression = new LinkedHashSet<Expression>();
-    MultiMap<Expression, Token> expresionToFirstTokens = new HashMultiMap<Expression, Token>();
-    MultiMap<Expression, Integer> expressionToFirstTypes = new HashMultiMap<Expression, Integer>();
+    MultiMap<Expression, Integer> expresionToFirstTokens = new HashMultiMap<Expression, Integer>();
 
     boolean changed;
 
@@ -125,7 +131,7 @@ public class PackratGrammar implements Grammar {
       changed = false;
 
       for (Rule rule : rules) {
-        changed |= processFirstSets(rule, acceptsAnyTokenExpression, expresionToFirstTokens, expressionToFirstTypes);
+        changed |= processFirstSets(rule, acceptsAnyTokenExpression, expresionToFirstTokens);
       }
     } while (changed);
 
@@ -134,14 +140,12 @@ public class PackratGrammar implements Grammar {
         acceptsAnyToken.add(rule.getVariable());
       }
 
-      firstTokenMap.putAll(rule.getVariable(), expresionToFirstTokens.get(rule.getExpression()));
-      firstTypeMap.putAll(rule.getVariable(), expressionToFirstTypes.get(rule.getExpression()));
+      firstMap.putAll(rule.getVariable(), expresionToFirstTokens.get(rule.getExpression()));
     }
   }
 
   private boolean processFirstSets(Rule rule, final Set<Expression> acceptsAnyTokenExpression,
-                                   final MultiMap<Expression, Token> expresionToFirstTokens,
-                                   final MultiMap<Expression, Integer> expressionToFirstTypes) {
+                                   final MultiMap<Expression, Integer> expressionToFirstTokens) {
     return rule.getExpression().accept(new ExpressionVisitor<Object, Boolean>() {
       @Override public Boolean visit(EmptyExpression emptyExpression) {
         return false;
@@ -175,8 +179,7 @@ public class PackratGrammar implements Grammar {
           changed |= acceptsAnyTokenExpression.add(parent);
         }
 
-        changed |= expresionToFirstTokens.putAll(parent, expresionToFirstTokens.get(child));
-        changed |= expressionToFirstTypes.putAll(parent, expressionToFirstTypes.get(child));
+        changed |= expressionToFirstTokens.putAll(parent, expressionToFirstTokens.get(child));
         return changed;
       }
 
@@ -229,12 +232,12 @@ public class PackratGrammar implements Grammar {
       }
 
       @Override public Boolean visit(TokenExpression tokenExpression) {
-        return expresionToFirstTokens.putAll(tokenExpression, Collections.singleton(tokenExpression.getToken()));
+        return expressionToFirstTokens.putAll(tokenExpression, Collections.singleton(
+            tokenExpression.getToken().getType()));
       }
 
       @Override public Boolean visit(TypeExpression typeExpression) {
-        //return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(typeExpression.getType()));
-        return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(typeExpression.getTypeValue()));
+        return expressionToFirstTokens.putAll(typeExpression, typeExpression.getTypes());
       }
     });
   }

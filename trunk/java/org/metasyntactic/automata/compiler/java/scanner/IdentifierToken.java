@@ -9,11 +9,11 @@ public class IdentifierToken extends JavaToken {
     return type();
   }
 
-  public static int typeValue() {
+  public static int getTypeValue() {
     return type().ordinal();
   }
 
-  private static Type type() {
+  public static Type type() {
     return Type.Identifier;
   }
 

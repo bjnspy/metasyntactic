@@ -18,7 +18,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JavaLexicalSpecification extends PackratGrammar {
+public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
   private final static Rule javaStartRule;
   private final static Set<Rule> javaRules;
 
@@ -340,5 +340,9 @@ public class JavaLexicalSpecification extends PackratGrammar {
 
     in.close();
     return writer.toString();
+  }
+
+  protected JavaToken.Type getTokenFromType(int type) {
+    return JavaToken.Type.values()[type];
   }
 }
