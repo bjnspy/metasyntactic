@@ -8,13 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Represents the sequence e_1 e_2 ... e_n of several possible
- * subexpressions.
- *
- * <p>The sequence operator e1 e2 first invokes e1, and if e1 succeeds,
- * subsequently invokes e2 on the remainder of the input string left unconsumed
- *  by e1, and returns the result. If either e1 or e2 fails, then the sequence
- *  expression e1 e2 fails.
+ * Represents the sequence e_1 e_2 ... e_n of several possible subexpressions.
+ * <p/>
+ * <p>The sequence operator e1 e2 first invokes e1, and if e1 succeeds, subsequently invokes e2 on the remainder of the
+ * input string left unconsumed by e1, and returns the result. If either e1 or e2 fails, then the sequence expression e1
+ * e2 fails.
  *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
@@ -56,7 +54,7 @@ public class SequenceExpression extends Expression {
     return Arrays.hashCode(children);
   }
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
+  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 

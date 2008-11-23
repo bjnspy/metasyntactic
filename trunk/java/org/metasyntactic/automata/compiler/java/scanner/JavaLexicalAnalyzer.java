@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class JavaLexicalAnalyzer {
@@ -18,9 +19,7 @@ public class JavaLexicalAnalyzer {
     for (SourceToken<JavaToken> sourceToken : tokens) {
       JavaToken token = sourceToken.getToken();
 
-      if (!(token instanceof CommentToken ||
-          token instanceof WhitespaceToken ||
-          token instanceof ErrorToken)) {
+      if (!(token instanceof CommentToken || token instanceof WhitespaceToken || token instanceof ErrorToken)) {
         result.add(sourceToken);
       }
     }

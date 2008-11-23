@@ -35,7 +35,7 @@ public class TokenExpression extends Expression {
     return token.hashCode();
   }
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
+  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 

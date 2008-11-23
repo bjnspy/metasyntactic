@@ -3487,8 +3487,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> CompilationUnitMap;
 
   private EvaluationResult parseCompilationUnit(int position) {
-    EvaluationResult result = (CompilationUnitMap == null ? null : CompilationUnitMap.get(
-        position));
+    EvaluationResult result = (CompilationUnitMap == null ? null : CompilationUnitMap.get(position));
     if (result == null) {
       result = evaluateCompilationUnitExpression_4(position);
       CompilationUnitMap = initializeMap(CompilationUnitMap);
@@ -3500,8 +3499,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> PackageDeclarationMap;
 
   private EvaluationResult parsePackageDeclaration(int position) {
-    EvaluationResult result = (PackageDeclarationMap == null ? null : PackageDeclarationMap.get(
-        position));
+    EvaluationResult result = (PackageDeclarationMap == null ? null : PackageDeclarationMap.get(position));
     if (result == null) {
       result = evaluatePackageDeclarationExpression_1(position);
       PackageDeclarationMap = initializeMap(PackageDeclarationMap);
@@ -3513,8 +3511,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> QualifiedIdentifierMap;
 
   private EvaluationResult parseQualifiedIdentifier(int position) {
-    EvaluationResult result = (QualifiedIdentifierMap == null ? null : QualifiedIdentifierMap.get(
-        position));
+    EvaluationResult result = (QualifiedIdentifierMap == null ? null : QualifiedIdentifierMap.get(position));
     if (result == null) {
       result = evaluateQualifiedIdentifierExpression_3(position);
       QualifiedIdentifierMap = initializeMap(QualifiedIdentifierMap);
@@ -3526,8 +3523,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ImportDeclarationMap;
 
   private EvaluationResult parseImportDeclaration(int position) {
-    EvaluationResult result = (ImportDeclarationMap == null ? null : ImportDeclarationMap.get(
-        position));
+    EvaluationResult result = (ImportDeclarationMap == null ? null : ImportDeclarationMap.get(position));
     if (result == null) {
       result = evaluateImportDeclarationExpression_0(position);
       ImportDeclarationMap = initializeMap(ImportDeclarationMap);
@@ -3539,9 +3535,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> SingleTypeImportDeclarationMap;
 
   private EvaluationResult parseSingleTypeImportDeclaration(int position) {
-    EvaluationResult result =
-        (SingleTypeImportDeclarationMap == null ? null : SingleTypeImportDeclarationMap.get(
-            position));
+    EvaluationResult result = (SingleTypeImportDeclarationMap == null ? null : SingleTypeImportDeclarationMap.get(
+        position));
     if (result == null) {
       result = evaluateSingleTypeImportDeclarationExpression_0(position);
       SingleTypeImportDeclarationMap = initializeMap(SingleTypeImportDeclarationMap);
@@ -3553,9 +3548,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> TypeImportOnDemandDeclarationMap;
 
   private EvaluationResult parseTypeImportOnDemandDeclaration(int position) {
-    EvaluationResult result =
-        (TypeImportOnDemandDeclarationMap == null ? null : TypeImportOnDemandDeclarationMap.get(
-            position));
+    EvaluationResult result = (TypeImportOnDemandDeclarationMap == null ? null : TypeImportOnDemandDeclarationMap.get(
+        position));
     if (result == null) {
       result = evaluateTypeImportOnDemandDeclarationExpression_0(position);
       TypeImportOnDemandDeclarationMap = initializeMap(TypeImportOnDemandDeclarationMap);
@@ -3567,9 +3561,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> SingleStaticImportDeclarationMap;
 
   private EvaluationResult parseSingleStaticImportDeclaration(int position) {
-    EvaluationResult result =
-        (SingleStaticImportDeclarationMap == null ? null : SingleStaticImportDeclarationMap.get(
-            position));
+    EvaluationResult result = (SingleStaticImportDeclarationMap == null ? null : SingleStaticImportDeclarationMap.get(
+        position));
     if (result == null) {
       result = evaluateSingleStaticImportDeclarationExpression_0(position);
       SingleStaticImportDeclarationMap = initializeMap(SingleStaticImportDeclarationMap);
@@ -3581,9 +3574,9 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> StaticImportOnDemandDeclarationMap;
 
   private EvaluationResult parseStaticImportOnDemandDeclaration(int position) {
-    EvaluationResult result =
-        (StaticImportOnDemandDeclarationMap == null ? null : StaticImportOnDemandDeclarationMap.get(
-            position));
+    EvaluationResult result = (StaticImportOnDemandDeclarationMap == null
+                               ? null
+                               : StaticImportOnDemandDeclarationMap.get(position));
     if (result == null) {
       result = evaluateStaticImportOnDemandDeclarationExpression_0(position);
       StaticImportOnDemandDeclarationMap = initializeMap(StaticImportOnDemandDeclarationMap);
@@ -3595,8 +3588,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> TypeDeclarationMap;
 
   private EvaluationResult parseTypeDeclaration(int position) {
-    EvaluationResult result = (TypeDeclarationMap == null ? null : TypeDeclarationMap.get(
-        position));
+    EvaluationResult result = (TypeDeclarationMap == null ? null : TypeDeclarationMap.get(position));
     if (result == null) {
       result = evaluateTypeDeclarationExpression_0(position);
       TypeDeclarationMap = initializeMap(TypeDeclarationMap);
@@ -3608,8 +3600,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ClassDeclarationMap;
 
   private EvaluationResult parseClassDeclaration(int position) {
-    EvaluationResult result = (ClassDeclarationMap == null ? null : ClassDeclarationMap.get(
-        position));
+    EvaluationResult result = (ClassDeclarationMap == null ? null : ClassDeclarationMap.get(position));
     if (result == null) {
       result = evaluateClassDeclarationExpression_0(position);
       ClassDeclarationMap = initializeMap(ClassDeclarationMap);
@@ -3621,8 +3612,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> NormalClassDeclarationMap;
 
   private EvaluationResult parseNormalClassDeclaration(int position) {
-    EvaluationResult result =
-        (NormalClassDeclarationMap == null ? null : NormalClassDeclarationMap.get(position));
+    EvaluationResult result = (NormalClassDeclarationMap == null ? null : NormalClassDeclarationMap.get(position));
     if (result == null) {
       result = evaluateNormalClassDeclarationExpression_3(position);
       NormalClassDeclarationMap = initializeMap(NormalClassDeclarationMap);
@@ -3694,8 +3684,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ClassBodyDeclarationMap;
 
   private EvaluationResult parseClassBodyDeclaration(int position) {
-    EvaluationResult result = (ClassBodyDeclarationMap == null ? null : ClassBodyDeclarationMap.get(
-        position));
+    EvaluationResult result = (ClassBodyDeclarationMap == null ? null : ClassBodyDeclarationMap.get(position));
     if (result == null) {
       result = evaluateClassBodyDeclarationExpression_0(position);
       ClassBodyDeclarationMap = initializeMap(ClassBodyDeclarationMap);
@@ -3707,8 +3696,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> StaticInitializerMap;
 
   private EvaluationResult parseStaticInitializer(int position) {
-    EvaluationResult result = (StaticInitializerMap == null ? null : StaticInitializerMap.get(
-        position));
+    EvaluationResult result = (StaticInitializerMap == null ? null : StaticInitializerMap.get(position));
     if (result == null) {
       result = evaluateStaticInitializerExpression_0(position);
       StaticInitializerMap = initializeMap(StaticInitializerMap);
@@ -3720,8 +3708,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> InterfaceDeclarationMap;
 
   private EvaluationResult parseInterfaceDeclaration(int position) {
-    EvaluationResult result = (InterfaceDeclarationMap == null ? null : InterfaceDeclarationMap.get(
-        position));
+    EvaluationResult result = (InterfaceDeclarationMap == null ? null : InterfaceDeclarationMap.get(position));
     if (result == null) {
       result = evaluateInterfaceDeclarationExpression_0(position);
       InterfaceDeclarationMap = initializeMap(InterfaceDeclarationMap);
@@ -3733,9 +3720,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> NormalInterfaceDeclarationMap;
 
   private EvaluationResult parseNormalInterfaceDeclaration(int position) {
-    EvaluationResult result =
-        (NormalInterfaceDeclarationMap == null ? null : NormalInterfaceDeclarationMap.get(
-            position));
+    EvaluationResult result = (NormalInterfaceDeclarationMap == null ? null : NormalInterfaceDeclarationMap.get(
+        position));
     if (result == null) {
       result = evaluateNormalInterfaceDeclarationExpression_1(position);
       NormalInterfaceDeclarationMap = initializeMap(NormalInterfaceDeclarationMap);
@@ -3747,8 +3733,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ExtendsInterfacesMap;
 
   private EvaluationResult parseExtendsInterfaces(int position) {
-    EvaluationResult result = (ExtendsInterfacesMap == null ? null : ExtendsInterfacesMap.get(
-        position));
+    EvaluationResult result = (ExtendsInterfacesMap == null ? null : ExtendsInterfacesMap.get(position));
     if (result == null) {
       result = evaluateExtendsInterfacesExpression_0(position);
       ExtendsInterfacesMap = initializeMap(ExtendsInterfacesMap);
@@ -3760,8 +3745,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ClassOrInterfaceBodyMap;
 
   private EvaluationResult parseClassOrInterfaceBody(int position) {
-    EvaluationResult result = (ClassOrInterfaceBodyMap == null ? null : ClassOrInterfaceBodyMap.get(
-        position));
+    EvaluationResult result = (ClassOrInterfaceBodyMap == null ? null : ClassOrInterfaceBodyMap.get(position));
     if (result == null) {
       result = evaluateClassOrInterfaceBodyExpression_1(position);
       ClassOrInterfaceBodyMap = initializeMap(ClassOrInterfaceBodyMap);
@@ -3773,8 +3757,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> EnumDeclarationMap;
 
   private EvaluationResult parseEnumDeclaration(int position) {
-    EvaluationResult result = (EnumDeclarationMap == null ? null : EnumDeclarationMap.get(
-        position));
+    EvaluationResult result = (EnumDeclarationMap == null ? null : EnumDeclarationMap.get(position));
     if (result == null) {
       result = evaluateEnumDeclarationExpression_0(position);
       EnumDeclarationMap = initializeMap(EnumDeclarationMap);
@@ -3822,8 +3805,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> AnnotationDeclarationMap;
 
   private EvaluationResult parseAnnotationDeclaration(int position) {
-    EvaluationResult result =
-        (AnnotationDeclarationMap == null ? null : AnnotationDeclarationMap.get(position));
+    EvaluationResult result = (AnnotationDeclarationMap == null ? null : AnnotationDeclarationMap.get(position));
     if (result == null) {
       result = evaluateAnnotationDeclarationExpression_0(position);
       AnnotationDeclarationMap = initializeMap(AnnotationDeclarationMap);
@@ -3847,9 +3829,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> AnnotationElementDeclarationMap;
 
   private EvaluationResult parseAnnotationElementDeclaration(int position) {
-    EvaluationResult result =
-        (AnnotationElementDeclarationMap == null ? null : AnnotationElementDeclarationMap.get(
-            position));
+    EvaluationResult result = (AnnotationElementDeclarationMap == null ? null : AnnotationElementDeclarationMap.get(
+        position));
     if (result == null) {
       result = evaluateAnnotationElementDeclarationExpression_0(position);
       AnnotationElementDeclarationMap = initializeMap(AnnotationElementDeclarationMap);
@@ -3861,9 +3842,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> AnnotationDefaultDeclarationMap;
 
   private EvaluationResult parseAnnotationDefaultDeclaration(int position) {
-    EvaluationResult result =
-        (AnnotationDefaultDeclarationMap == null ? null : AnnotationDefaultDeclarationMap.get(
-            position));
+    EvaluationResult result = (AnnotationDefaultDeclarationMap == null ? null : AnnotationDefaultDeclarationMap.get(
+        position));
     if (result == null) {
       result = evaluateAnnotationDefaultDeclarationExpression_0(position);
       AnnotationDefaultDeclarationMap = initializeMap(AnnotationDefaultDeclarationMap);
@@ -3875,9 +3855,10 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ClassOrInterfaceMemberDeclarationMap;
 
   private EvaluationResult parseClassOrInterfaceMemberDeclaration(int position) {
-    EvaluationResult result =
-        (ClassOrInterfaceMemberDeclarationMap == null ? null : ClassOrInterfaceMemberDeclarationMap
-            .get(position));
+    EvaluationResult result = (ClassOrInterfaceMemberDeclarationMap == null
+                               ? null
+                               : ClassOrInterfaceMemberDeclarationMap
+                                   .get(position));
     if (result == null) {
       result = evaluateClassOrInterfaceMemberDeclarationExpression_0(position);
       ClassOrInterfaceMemberDeclarationMap = initializeMap(ClassOrInterfaceMemberDeclarationMap);
@@ -3889,8 +3870,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ConstructorDeclarationMap;
 
   private EvaluationResult parseConstructorDeclaration(int position) {
-    EvaluationResult result =
-        (ConstructorDeclarationMap == null ? null : ConstructorDeclarationMap.get(position));
+    EvaluationResult result = (ConstructorDeclarationMap == null ? null : ConstructorDeclarationMap.get(position));
     if (result == null) {
       result = evaluateConstructorDeclarationExpression_5(position);
       ConstructorDeclarationMap = initializeMap(ConstructorDeclarationMap);
@@ -3902,8 +3882,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> FieldDeclarationMap;
 
   private EvaluationResult parseFieldDeclaration(int position) {
-    EvaluationResult result = (FieldDeclarationMap == null ? null : FieldDeclarationMap.get(
-        position));
+    EvaluationResult result = (FieldDeclarationMap == null ? null : FieldDeclarationMap.get(position));
     if (result == null) {
       result = evaluateFieldDeclarationExpression_3(position);
       FieldDeclarationMap = initializeMap(FieldDeclarationMap);
@@ -3915,8 +3894,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> VariableDeclaratorMap;
 
   private EvaluationResult parseVariableDeclarator(int position) {
-    EvaluationResult result = (VariableDeclaratorMap == null ? null : VariableDeclaratorMap.get(
-        position));
+    EvaluationResult result = (VariableDeclaratorMap == null ? null : VariableDeclaratorMap.get(position));
     if (result == null) {
       result = evaluateVariableDeclaratorExpression_2(position);
       VariableDeclaratorMap = initializeMap(VariableDeclaratorMap);
@@ -3928,8 +3906,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> VariableDeclaratorIdMap;
 
   private EvaluationResult parseVariableDeclaratorId(int position) {
-    EvaluationResult result = (VariableDeclaratorIdMap == null ? null : VariableDeclaratorIdMap.get(
-        position));
+    EvaluationResult result = (VariableDeclaratorIdMap == null ? null : VariableDeclaratorIdMap.get(position));
     if (result == null) {
       result = evaluateVariableDeclaratorIdExpression_2(position);
       VariableDeclaratorIdMap = initializeMap(VariableDeclaratorIdMap);
@@ -3941,8 +3918,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> MethodDeclarationMap;
 
   private EvaluationResult parseMethodDeclaration(int position) {
-    EvaluationResult result = (MethodDeclarationMap == null ? null : MethodDeclarationMap.get(
-        position));
+    EvaluationResult result = (MethodDeclarationMap == null ? null : MethodDeclarationMap.get(position));
     if (result == null) {
       result = evaluateMethodDeclarationExpression_1(position);
       MethodDeclarationMap = initializeMap(MethodDeclarationMap);
@@ -3954,8 +3930,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> FormalParameterMap;
 
   private EvaluationResult parseFormalParameter(int position) {
-    EvaluationResult result = (FormalParameterMap == null ? null : FormalParameterMap.get(
-        position));
+    EvaluationResult result = (FormalParameterMap == null ? null : FormalParameterMap.get(position));
     if (result == null) {
       result = evaluateFormalParameterExpression_1(position);
       FormalParameterMap = initializeMap(FormalParameterMap);
@@ -4039,8 +4014,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ClassOrInterfaceTypeMap;
 
   private EvaluationResult parseClassOrInterfaceType(int position) {
-    EvaluationResult result = (ClassOrInterfaceTypeMap == null ? null : ClassOrInterfaceTypeMap.get(
-        position));
+    EvaluationResult result = (ClassOrInterfaceTypeMap == null ? null : ClassOrInterfaceTypeMap.get(position));
     if (result == null) {
       result = evaluateClassOrInterfaceTypeExpression_4(position);
       ClassOrInterfaceTypeMap = initializeMap(ClassOrInterfaceTypeMap);
@@ -4076,8 +4050,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> NonWildcardTypeArgumentsMap;
 
   private EvaluationResult parseNonWildcardTypeArguments(int position) {
-    EvaluationResult result =
-        (NonWildcardTypeArgumentsMap == null ? null : NonWildcardTypeArgumentsMap.get(position));
+    EvaluationResult result = (NonWildcardTypeArgumentsMap == null ? null : NonWildcardTypeArgumentsMap.get(position));
     if (result == null) {
       result = evaluateNonWildcardTypeArgumentsExpression_3(position);
       NonWildcardTypeArgumentsMap = initializeMap(NonWildcardTypeArgumentsMap);
@@ -4113,8 +4086,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> NormalAnnotationMap;
 
   private EvaluationResult parseNormalAnnotation(int position) {
-    EvaluationResult result = (NormalAnnotationMap == null ? null : NormalAnnotationMap.get(
-        position));
+    EvaluationResult result = (NormalAnnotationMap == null ? null : NormalAnnotationMap.get(position));
     if (result == null) {
       result = evaluateNormalAnnotationExpression_3(position);
       NormalAnnotationMap = initializeMap(NormalAnnotationMap);
@@ -4126,8 +4098,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ElementValuePairMap;
 
   private EvaluationResult parseElementValuePair(int position) {
-    EvaluationResult result = (ElementValuePairMap == null ? null : ElementValuePairMap.get(
-        position));
+    EvaluationResult result = (ElementValuePairMap == null ? null : ElementValuePairMap.get(position));
     if (result == null) {
       result = evaluateElementValuePairExpression_0(position);
       ElementValuePairMap = initializeMap(ElementValuePairMap);
@@ -4139,8 +4110,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> SingleElementAnnotationMap;
 
   private EvaluationResult parseSingleElementAnnotation(int position) {
-    EvaluationResult result =
-        (SingleElementAnnotationMap == null ? null : SingleElementAnnotationMap.get(position));
+    EvaluationResult result = (SingleElementAnnotationMap == null ? null : SingleElementAnnotationMap.get(position));
     if (result == null) {
       result = evaluateSingleElementAnnotationExpression_0(position);
       SingleElementAnnotationMap = initializeMap(SingleElementAnnotationMap);
@@ -4152,8 +4122,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> MarkerAnnotationMap;
 
   private EvaluationResult parseMarkerAnnotation(int position) {
-    EvaluationResult result = (MarkerAnnotationMap == null ? null : MarkerAnnotationMap.get(
-        position));
+    EvaluationResult result = (MarkerAnnotationMap == null ? null : MarkerAnnotationMap.get(position));
     if (result == null) {
       result = evaluateMarkerAnnotationExpression_0(position);
       MarkerAnnotationMap = initializeMap(MarkerAnnotationMap);
@@ -4177,9 +4146,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ElementValueArrayInitializerMap;
 
   private EvaluationResult parseElementValueArrayInitializer(int position) {
-    EvaluationResult result =
-        (ElementValueArrayInitializerMap == null ? null : ElementValueArrayInitializerMap.get(
-            position));
+    EvaluationResult result = (ElementValueArrayInitializerMap == null ? null : ElementValueArrayInitializerMap.get(
+        position));
     if (result == null) {
       result = evaluateElementValueArrayInitializerExpression_4(position);
       ElementValueArrayInitializerMap = initializeMap(ElementValueArrayInitializerMap);
@@ -4215,9 +4183,10 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> LocalVariableDeclarationStatementMap;
 
   private EvaluationResult parseLocalVariableDeclarationStatement(int position) {
-    EvaluationResult result =
-        (LocalVariableDeclarationStatementMap == null ? null : LocalVariableDeclarationStatementMap
-            .get(position));
+    EvaluationResult result = (LocalVariableDeclarationStatementMap == null
+                               ? null
+                               : LocalVariableDeclarationStatementMap
+                                   .get(position));
     if (result == null) {
       result = evaluateLocalVariableDeclarationStatementExpression_0(position);
       LocalVariableDeclarationStatementMap = initializeMap(LocalVariableDeclarationStatementMap);
@@ -4229,8 +4198,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> LocalVariableDeclarationMap;
 
   private EvaluationResult parseLocalVariableDeclaration(int position) {
-    EvaluationResult result =
-        (LocalVariableDeclarationMap == null ? null : LocalVariableDeclarationMap.get(position));
+    EvaluationResult result = (LocalVariableDeclarationMap == null ? null : LocalVariableDeclarationMap.get(position));
     if (result == null) {
       result = evaluateLocalVariableDeclarationExpression_0(position);
       LocalVariableDeclarationMap = initializeMap(LocalVariableDeclarationMap);
@@ -4266,8 +4234,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> LabeledStatementMap;
 
   private EvaluationResult parseLabeledStatement(int position) {
-    EvaluationResult result = (LabeledStatementMap == null ? null : LabeledStatementMap.get(
-        position));
+    EvaluationResult result = (LabeledStatementMap == null ? null : LabeledStatementMap.get(position));
     if (result == null) {
       result = evaluateLabeledStatementExpression_0(position);
       LabeledStatementMap = initializeMap(LabeledStatementMap);
@@ -4279,8 +4246,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ExpressionStatementMap;
 
   private EvaluationResult parseExpressionStatement(int position) {
-    EvaluationResult result = (ExpressionStatementMap == null ? null : ExpressionStatementMap.get(
-        position));
+    EvaluationResult result = (ExpressionStatementMap == null ? null : ExpressionStatementMap.get(position));
     if (result == null) {
       result = evaluateExpressionStatementExpression_0(position);
       ExpressionStatementMap = initializeMap(ExpressionStatementMap);
@@ -4304,8 +4270,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> AssertStatementMap;
 
   private EvaluationResult parseAssertStatement(int position) {
-    EvaluationResult result = (AssertStatementMap == null ? null : AssertStatementMap.get(
-        position));
+    EvaluationResult result = (AssertStatementMap == null ? null : AssertStatementMap.get(position));
     if (result == null) {
       result = evaluateAssertStatementExpression_2(position);
       AssertStatementMap = initializeMap(AssertStatementMap);
@@ -4317,8 +4282,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> SwitchStatementMap;
 
   private EvaluationResult parseSwitchStatement(int position) {
-    EvaluationResult result = (SwitchStatementMap == null ? null : SwitchStatementMap.get(
-        position));
+    EvaluationResult result = (SwitchStatementMap == null ? null : SwitchStatementMap.get(position));
     if (result == null) {
       result = evaluateSwitchStatementExpression_2(position);
       SwitchStatementMap = initializeMap(SwitchStatementMap);
@@ -4330,8 +4294,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> SwitchBlockStatementGroupMap;
 
   private EvaluationResult parseSwitchBlockStatementGroup(int position) {
-    EvaluationResult result =
-        (SwitchBlockStatementGroupMap == null ? null : SwitchBlockStatementGroupMap.get(position));
+    EvaluationResult result = (SwitchBlockStatementGroupMap == null ? null : SwitchBlockStatementGroupMap.get(
+        position));
     if (result == null) {
       result = evaluateSwitchBlockStatementGroupExpression_2(position);
       SwitchBlockStatementGroupMap = initializeMap(SwitchBlockStatementGroupMap);
@@ -4355,8 +4319,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> CaseSwitchLabelMap;
 
   private EvaluationResult parseCaseSwitchLabel(int position) {
-    EvaluationResult result = (CaseSwitchLabelMap == null ? null : CaseSwitchLabelMap.get(
-        position));
+    EvaluationResult result = (CaseSwitchLabelMap == null ? null : CaseSwitchLabelMap.get(position));
     if (result == null) {
       result = evaluateCaseSwitchLabelExpression_0(position);
       CaseSwitchLabelMap = initializeMap(CaseSwitchLabelMap);
@@ -4368,8 +4331,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> DefaultSwitchLabelMap;
 
   private EvaluationResult parseDefaultSwitchLabel(int position) {
-    EvaluationResult result = (DefaultSwitchLabelMap == null ? null : DefaultSwitchLabelMap.get(
-        position));
+    EvaluationResult result = (DefaultSwitchLabelMap == null ? null : DefaultSwitchLabelMap.get(position));
     if (result == null) {
       result = evaluateDefaultSwitchLabelExpression_0(position);
       DefaultSwitchLabelMap = initializeMap(DefaultSwitchLabelMap);
@@ -4417,8 +4379,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> BasicForStatementMap;
 
   private EvaluationResult parseBasicForStatement(int position) {
-    EvaluationResult result = (BasicForStatementMap == null ? null : BasicForStatementMap.get(
-        position));
+    EvaluationResult result = (BasicForStatementMap == null ? null : BasicForStatementMap.get(position));
     if (result == null) {
       result = evaluateBasicForStatementExpression_3(position);
       BasicForStatementMap = initializeMap(BasicForStatementMap);
@@ -4454,8 +4415,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> EnhancedForStatementMap;
 
   private EvaluationResult parseEnhancedForStatement(int position) {
-    EvaluationResult result = (EnhancedForStatementMap == null ? null : EnhancedForStatementMap.get(
-        position));
+    EvaluationResult result = (EnhancedForStatementMap == null ? null : EnhancedForStatementMap.get(position));
     if (result == null) {
       result = evaluateEnhancedForStatementExpression_0(position);
       EnhancedForStatementMap = initializeMap(EnhancedForStatementMap);
@@ -4479,8 +4439,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ContinueStatementMap;
 
   private EvaluationResult parseContinueStatement(int position) {
-    EvaluationResult result = (ContinueStatementMap == null ? null : ContinueStatementMap.get(
-        position));
+    EvaluationResult result = (ContinueStatementMap == null ? null : ContinueStatementMap.get(position));
     if (result == null) {
       result = evaluateContinueStatementExpression_0(position);
       ContinueStatementMap = initializeMap(ContinueStatementMap);
@@ -4492,8 +4451,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ReturnStatementMap;
 
   private EvaluationResult parseReturnStatement(int position) {
-    EvaluationResult result = (ReturnStatementMap == null ? null : ReturnStatementMap.get(
-        position));
+    EvaluationResult result = (ReturnStatementMap == null ? null : ReturnStatementMap.get(position));
     if (result == null) {
       result = evaluateReturnStatementExpression_0(position);
       ReturnStatementMap = initializeMap(ReturnStatementMap);
@@ -4517,8 +4475,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> SynchronizedStatementMap;
 
   private EvaluationResult parseSynchronizedStatement(int position) {
-    EvaluationResult result =
-        (SynchronizedStatementMap == null ? null : SynchronizedStatementMap.get(position));
+    EvaluationResult result = (SynchronizedStatementMap == null ? null : SynchronizedStatementMap.get(position));
     if (result == null) {
       result = evaluateSynchronizedStatementExpression_0(position);
       SynchronizedStatementMap = initializeMap(SynchronizedStatementMap);
@@ -4542,8 +4499,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> TryStatementWithFinallyMap;
 
   private EvaluationResult parseTryStatementWithFinally(int position) {
-    EvaluationResult result =
-        (TryStatementWithFinallyMap == null ? null : TryStatementWithFinallyMap.get(position));
+    EvaluationResult result = (TryStatementWithFinallyMap == null ? null : TryStatementWithFinallyMap.get(position));
     if (result == null) {
       result = evaluateTryStatementWithFinallyExpression_1(position);
       TryStatementWithFinallyMap = initializeMap(TryStatementWithFinallyMap);
@@ -4555,9 +4511,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> TryStatementWithoutFinallyMap;
 
   private EvaluationResult parseTryStatementWithoutFinally(int position) {
-    EvaluationResult result =
-        (TryStatementWithoutFinallyMap == null ? null : TryStatementWithoutFinallyMap.get(
-            position));
+    EvaluationResult result = (TryStatementWithoutFinallyMap == null ? null : TryStatementWithoutFinallyMap.get(
+        position));
     if (result == null) {
       result = evaluateTryStatementWithoutFinallyExpression_1(position);
       TryStatementWithoutFinallyMap = initializeMap(TryStatementWithoutFinallyMap);
@@ -4593,8 +4548,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> AssignmentOperatorMap;
 
   private EvaluationResult parseAssignmentOperator(int position) {
-    EvaluationResult result = (AssignmentOperatorMap == null ? null : AssignmentOperatorMap.get(
-        position));
+    EvaluationResult result = (AssignmentOperatorMap == null ? null : AssignmentOperatorMap.get(position));
     if (result == null) {
       result = evaluateAssignmentOperatorExpression_0(position);
       AssignmentOperatorMap = initializeMap(AssignmentOperatorMap);
@@ -4618,8 +4572,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> TernaryExpressionMap;
 
   private EvaluationResult parseTernaryExpression(int position) {
-    EvaluationResult result = (TernaryExpressionMap == null ? null : TernaryExpressionMap.get(
-        position));
+    EvaluationResult result = (TernaryExpressionMap == null ? null : TernaryExpressionMap.get(position));
     if (result == null) {
       result = evaluateTernaryExpressionExpression_0(position);
       TernaryExpressionMap = initializeMap(TernaryExpressionMap);
@@ -4643,8 +4596,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> BinaryExpressionMap;
 
   private EvaluationResult parseBinaryExpression(int position) {
-    EvaluationResult result = (BinaryExpressionMap == null ? null : BinaryExpressionMap.get(
-        position));
+    EvaluationResult result = (BinaryExpressionMap == null ? null : BinaryExpressionMap.get(position));
     if (result == null) {
       result = evaluateBinaryExpressionExpression_4(position);
       BinaryExpressionMap = initializeMap(BinaryExpressionMap);
@@ -4680,8 +4632,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> PrefixExpressionMap;
 
   private EvaluationResult parsePrefixExpression(int position) {
-    EvaluationResult result = (PrefixExpressionMap == null ? null : PrefixExpressionMap.get(
-        position));
+    EvaluationResult result = (PrefixExpressionMap == null ? null : PrefixExpressionMap.get(position));
     if (result == null) {
       result = evaluatePrefixExpressionExpression_0(position);
       PrefixExpressionMap = initializeMap(PrefixExpressionMap);
@@ -4705,8 +4656,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> PossibleCastExpressionMap;
 
   private EvaluationResult parsePossibleCastExpression(int position) {
-    EvaluationResult result =
-        (PossibleCastExpressionMap == null ? null : PossibleCastExpressionMap.get(position));
+    EvaluationResult result = (PossibleCastExpressionMap == null ? null : PossibleCastExpressionMap.get(position));
     if (result == null) {
       result = evaluatePossibleCastExpressionExpression_1(position);
       PossibleCastExpressionMap = initializeMap(PossibleCastExpressionMap);
@@ -4718,8 +4668,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> PrimaryExpressionMap;
 
   private EvaluationResult parsePrimaryExpression(int position) {
-    EvaluationResult result = (PrimaryExpressionMap == null ? null : PrimaryExpressionMap.get(
-        position));
+    EvaluationResult result = (PrimaryExpressionMap == null ? null : PrimaryExpressionMap.get(position));
     if (result == null) {
       result = evaluatePrimaryExpressionExpression_2(position);
       PrimaryExpressionMap = initializeMap(PrimaryExpressionMap);
@@ -4731,8 +4680,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> PostfixOperatorMap;
 
   private EvaluationResult parsePostfixOperator(int position) {
-    EvaluationResult result = (PostfixOperatorMap == null ? null : PostfixOperatorMap.get(
-        position));
+    EvaluationResult result = (PostfixOperatorMap == null ? null : PostfixOperatorMap.get(position));
     if (result == null) {
       result = evaluatePostfixOperatorExpression_0(position);
       PostfixOperatorMap = initializeMap(PostfixOperatorMap);
@@ -4744,8 +4692,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ValueExpressionMap;
 
   private EvaluationResult parseValueExpression(int position) {
-    EvaluationResult result = (ValueExpressionMap == null ? null : ValueExpressionMap.get(
-        position));
+    EvaluationResult result = (ValueExpressionMap == null ? null : ValueExpressionMap.get(position));
     if (result == null) {
       result = evaluateValueExpressionExpression_1(position);
       ValueExpressionMap = initializeMap(ValueExpressionMap);
@@ -4805,8 +4752,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ParenthesizedExpressionMap;
 
   private EvaluationResult parseParenthesizedExpression(int position) {
-    EvaluationResult result =
-        (ParenthesizedExpressionMap == null ? null : ParenthesizedExpressionMap.get(position));
+    EvaluationResult result = (ParenthesizedExpressionMap == null ? null : ParenthesizedExpressionMap.get(position));
     if (result == null) {
       result = evaluateParenthesizedExpressionExpression_0(position);
       ParenthesizedExpressionMap = initializeMap(ParenthesizedExpressionMap);
@@ -4818,8 +4764,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> MethodInvocationMap;
 
   private EvaluationResult parseMethodInvocation(int position) {
-    EvaluationResult result = (MethodInvocationMap == null ? null : MethodInvocationMap.get(
-        position));
+    EvaluationResult result = (MethodInvocationMap == null ? null : MethodInvocationMap.get(position));
     if (result == null) {
       result = evaluateMethodInvocationExpression_1(position);
       MethodInvocationMap = initializeMap(MethodInvocationMap);
@@ -4831,8 +4776,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ThisConstructorInvocationMap;
 
   private EvaluationResult parseThisConstructorInvocation(int position) {
-    EvaluationResult result =
-        (ThisConstructorInvocationMap == null ? null : ThisConstructorInvocationMap.get(position));
+    EvaluationResult result = (ThisConstructorInvocationMap == null ? null : ThisConstructorInvocationMap.get(
+        position));
     if (result == null) {
       result = evaluateThisConstructorInvocationExpression_0(position);
       ThisConstructorInvocationMap = initializeMap(ThisConstructorInvocationMap);
@@ -4844,9 +4789,8 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> SuperConstructorInvocationMap;
 
   private EvaluationResult parseSuperConstructorInvocation(int position) {
-    EvaluationResult result =
-        (SuperConstructorInvocationMap == null ? null : SuperConstructorInvocationMap.get(
-            position));
+    EvaluationResult result = (SuperConstructorInvocationMap == null ? null : SuperConstructorInvocationMap.get(
+        position));
     if (result == null) {
       result = evaluateSuperConstructorInvocationExpression_0(position);
       SuperConstructorInvocationMap = initializeMap(SuperConstructorInvocationMap);
@@ -4858,8 +4802,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> CreationExpressionMap;
 
   private EvaluationResult parseCreationExpression(int position) {
-    EvaluationResult result = (CreationExpressionMap == null ? null : CreationExpressionMap.get(
-        position));
+    EvaluationResult result = (CreationExpressionMap == null ? null : CreationExpressionMap.get(position));
     if (result == null) {
       result = evaluateCreationExpressionExpression_0(position);
       CreationExpressionMap = initializeMap(CreationExpressionMap);
@@ -4871,8 +4814,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ObjectCreationExpressionMap;
 
   private EvaluationResult parseObjectCreationExpression(int position) {
-    EvaluationResult result =
-        (ObjectCreationExpressionMap == null ? null : ObjectCreationExpressionMap.get(position));
+    EvaluationResult result = (ObjectCreationExpressionMap == null ? null : ObjectCreationExpressionMap.get(position));
     if (result == null) {
       result = evaluateObjectCreationExpressionExpression_1(position);
       ObjectCreationExpressionMap = initializeMap(ObjectCreationExpressionMap);
@@ -4884,8 +4826,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ArrayCreationExpressionMap;
 
   private EvaluationResult parseArrayCreationExpression(int position) {
-    EvaluationResult result =
-        (ArrayCreationExpressionMap == null ? null : ArrayCreationExpressionMap.get(position));
+    EvaluationResult result = (ArrayCreationExpressionMap == null ? null : ArrayCreationExpressionMap.get(position));
     if (result == null) {
       result = evaluateArrayCreationExpressionExpression_4(position);
       ArrayCreationExpressionMap = initializeMap(ArrayCreationExpressionMap);
@@ -4897,8 +4838,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> ArrayInitializerMap;
 
   private EvaluationResult parseArrayInitializer(int position) {
-    EvaluationResult result = (ArrayInitializerMap == null ? null : ArrayInitializerMap.get(
-        position));
+    EvaluationResult result = (ArrayInitializerMap == null ? null : ArrayInitializerMap.get(position));
     if (result == null) {
       result = evaluateArrayInitializerExpression_4(position);
       ArrayInitializerMap = initializeMap(ArrayInitializerMap);
@@ -4910,8 +4850,7 @@ public abstract class AbstractJavaGeneratedParser {
   private Map<Integer, EvaluationResult> VariableInitializerMap;
 
   private EvaluationResult parseVariableInitializer(int position) {
-    EvaluationResult result = (VariableInitializerMap == null ? null : VariableInitializerMap.get(
-        position));
+    EvaluationResult result = (VariableInitializerMap == null ? null : VariableInitializerMap.get(position));
     if (result == null) {
       result = evaluateVariableInitializerExpression_0(position);
       VariableInitializerMap = initializeMap(VariableInitializerMap);

@@ -63,13 +63,38 @@ public abstract class KeywordToken extends PythonToken {
 
   public static String[] getKeywords() {
     return new String[]{
-        "and", "del", "from", "not", "while",
-        "as", "elif", "global", "or", "with",
-        "assert", "else", "if", "pass", "yield",
-        "break", "except", "import", "print",
-        "class", "exec", "in", "raise",
-        "continue", "finally", "is", "return",
-        "def", "for", "lambda", "try"};
+        "and",
+        "del",
+        "from",
+        "not",
+        "while",
+        "as",
+        "elif",
+        "global",
+        "or",
+        "with",
+        "assert",
+        "else",
+        "if",
+        "pass",
+        "yield",
+        "break",
+        "except",
+        "import",
+        "print",
+        "class",
+        "exec",
+        "in",
+        "raise",
+        "continue",
+        "finally",
+        "is",
+        "return",
+        "def",
+        "for",
+        "lambda",
+        "try"
+    };
   }
 
   @Override public Type getTokenType() {

@@ -8,13 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Represents the ordered choice e_1 / e_2 / ... / e_n of several possible
- * subexpressions.
- *
- * <p>The choice operator e1 / e2 first invokes e1, and if e1 succeeds, returns
- * its result immediately. Otherwise, if e1 fails, then the choice operator
- * backtracks to the original input position at which it invoked e1, but then
- * calls e2 instead, returning e2's result.
+ * Represents the ordered choice e_1 / e_2 / ... / e_n of several possible subexpressions.
+ * <p/>
+ * <p>The choice operator e1 / e2 first invokes e1, and if e1 succeeds, returns its result immediately. Otherwise, if e1
+ * fails, then the choice operator backtracks to the original input position at which it invoked e1, but then calls e2
+ * instead, returning e2's result.
  *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
@@ -22,7 +20,7 @@ public class ChoiceExpression extends Expression {
   private final Expression[] children;
 
   ChoiceExpression(List<Expression> children) {
-    this((Expression[])children.toArray());
+    this((Expression[]) children.toArray());
   }
 
   public ChoiceExpression(Expression... children) {

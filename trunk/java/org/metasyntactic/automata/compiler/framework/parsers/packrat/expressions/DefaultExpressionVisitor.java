@@ -2,9 +2,9 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
-public class DefaultExpressionVisitor<TInput,TResult> implements ExpressionVisitor<TInput, TResult> {
+public class DefaultExpressionVisitor<TInput, TResult> implements ExpressionVisitor<TInput, TResult> {
   protected TResult defaultCase(Expression expression) {
-      return null;
+    return null;
   }
 
   @Override public TResult visit(EmptyExpression expression) {

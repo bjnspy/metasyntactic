@@ -2,14 +2,8 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import org.metasyntactic.automata.compiler.framework.parsers.ActionMap;
+import org.metasyntactic.automata.compiler.framework.parsers.*;
 import org.metasyntactic.automata.compiler.framework.parsers.Grammar;
-import org.metasyntactic.automata.compiler.framework.parsers.Parser;
-import org.metasyntactic.automata.compiler.framework.parsers.Position;
-import org.metasyntactic.automata.compiler.framework.parsers.SimpleSpan;
-import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
-import org.metasyntactic.automata.compiler.framework.parsers.Span;
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
 import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
 import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
@@ -17,31 +11,22 @@ import org.metasyntactic.automata.compiler.java.scanner.IdentifierToken;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.automata.compiler.java.scanner.operators.MinusOperatorToken;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class LeftRecursivePackratParser<T extends Token> extends AbstractPackratParser<T> {
   private LeftRecursionChain leftRecursionStack;
   private Map<Integer, Head> headsMap = new LinkedHashMap<Integer, Head>();
 
-  public LeftRecursivePackratParser(
-      PackratGrammar grammar,
-      List<SourceToken<T>> tokens) {
+  public LeftRecursivePackratParser(PackratGrammar grammar, List<SourceToken<T>> tokens) {
     this(grammar, tokens, ActionMap.EMPTY_MAP);
   }
 
-  public LeftRecursivePackratParser(
-      PackratGrammar grammar,
-      List<SourceToken<T>> tokens,
-      ActionMap<T> actions) {
+  public LeftRecursivePackratParser(PackratGrammar grammar, List<SourceToken<T>> tokens, ActionMap<T> actions) {
     super(grammar, tokens, actions);
   }
 
@@ -54,8 +39,7 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     EvaluationResult memoEntry = recall(position, rule);
 
     if (memoEntry == null) {
-      LeftRecursionChain lr = new LeftRecursionChain(null, rule.getVariable(), null,
-          leftRecursionStack);
+      LeftRecursionChain lr = new LeftRecursionChain(null, rule.getVariable(), null, leftRecursionStack);
       leftRecursionStack = lr;
 
       memoEntry = new EvaluationResult(position, leftRecursionStack);
@@ -99,9 +83,7 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     }
   }
 
-  private EvaluationResult leftRecursionAnswer(
-      int position,
-      Rule rule) {
+  private EvaluationResult leftRecursionAnswer(int position, Rule rule) {
     EvaluationResult memoEntry = memoizationMap.get(position, rule);
 
     LeftRecursionChain chain = (LeftRecursionChain) memoEntry.answer;
@@ -132,9 +114,8 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     }
 
     // Do not evaluate any rule that is not involved in this left recursion.
-    if (memoEntry == null &&
-        !rule.getVariable().equals(head.variable) &&
-        !head.involvedSet.contains(rule.getVariable())) {
+    if (memoEntry == null && !rule.getVariable().equals(head.variable) && !head.involvedSet.contains(
+        rule.getVariable())) {
       return EvaluationResult.failure;
     }
 
@@ -148,10 +129,7 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     return memoEntry;
   }
 
-  private EvaluationResult growLeftRecursion(
-      int position,
-      Rule rule,
-      Head head) {
+  private EvaluationResult growLeftRecursion(int position, Rule rule, Head head) {
     EvaluationResult memoEntry = memoizationMap.get(position, rule);
     headsMap.put(position, head);
 
@@ -178,8 +156,7 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     private Head head;
     private LeftRecursionChain next;
 
-    private LeftRecursionChain(EvaluationResult seed, String rule, Head head,
-        LeftRecursionChain next) {
+    private LeftRecursionChain(EvaluationResult seed, String rule, Head head, LeftRecursionChain next) {
       this.seed = seed;
       this.rule = rule;
       this.head = head;
@@ -204,15 +181,9 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
   public static void main(String... args) {
     Object o1 = JavaGrammar.instance;
 
-    Grammar g = new PackratGrammar<JavaToken.Type>(
-        new Rule("x", variable("expr")),
-        new Rule("expr", choice(
-            sequence(
-                variable("x"),
-                token(MinusOperatorToken.instance),
-                type(IdentifierToken.class)),
-            type(IdentifierToken.class)
-        ))) {
+    Grammar g = new PackratGrammar<JavaToken.Type>(new Rule("x", variable("expr")), new Rule("expr", choice(sequence(
+        variable("x"), token(MinusOperatorToken.instance), type(IdentifierToken.class)), type(
+        IdentifierToken.class)))) {
       protected JavaToken.Type getTokenFromType(int type) {
         return JavaToken.Type.values()[type];
       }
@@ -221,12 +192,11 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
 
     Span s = new SimpleSpan(new Position(0, 0), new Position(0, 0));
     System.out.println(g);
-    Parser p = g.createParser(Arrays.asList(
-        new SourceToken<JavaToken>(new IdentifierToken("1"), s),
-        new SourceToken<JavaToken>(MinusOperatorToken.instance, s),
-        new SourceToken<JavaToken>(new IdentifierToken("2"), s),
-        new SourceToken<JavaToken>(MinusOperatorToken.instance, s),
-        new SourceToken<JavaToken>(new IdentifierToken("3"), s)));
+    Parser p = g.createParser(Arrays.asList(new SourceToken<JavaToken>(new IdentifierToken("1"), s),
+                                            new SourceToken<JavaToken>(MinusOperatorToken.instance, s),
+                                            new SourceToken<JavaToken>(new IdentifierToken("2"), s),
+                                            new SourceToken<JavaToken>(MinusOperatorToken.instance, s),
+                                            new SourceToken<JavaToken>(new IdentifierToken("3"), s)));
 
     Object o = p.parse();
 

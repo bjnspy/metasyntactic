@@ -3,8 +3,7 @@
 package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
 /**
- * An atomic parsing expression consisting of the empty string always trivially
- * succeeds without consuming any input.
+ * An atomic parsing expression consisting of the empty string always trivially succeeds without consuming any input.
  *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
@@ -14,7 +13,7 @@ public class EmptyExpression extends Expression {
   private EmptyExpression() {
   }
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
+  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 

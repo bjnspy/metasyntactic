@@ -17,8 +17,8 @@ package org.metasyntactic.collections;
 import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class HashMultiMap<K,V> implements MultiMap<K,V> {
-  private final Map<K,Collection<V>> map = new HashMap<K, Collection<V>>();
+public class HashMultiMap<K, V> implements MultiMap<K, V> {
+  private final Map<K, Collection<V>> map = new HashMap<K, Collection<V>>();
 
   public Collection<V> get(K key) {
     Collection<V> result = map.get(key);

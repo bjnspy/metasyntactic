@@ -3,11 +3,8 @@ package org.metasyntactic.automata.compiler.python.scanner.literals;
 import org.metasyntactic.automata.compiler.python.scanner.PythonToken;
 
 /**
- * Created by IntelliJ IDEA.
- * User: cyrusn
- * Date: Jun 22, 2008
- * Time: 5:36:03 PM
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: cyrusn Date: Jun 22, 2008 Time: 5:36:03 PM To change this template use File |
+ * Settings | File Templates.
  */
 public abstract class LiteralToken<T> extends PythonToken {
   protected LiteralToken(String text) {

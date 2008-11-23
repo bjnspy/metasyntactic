@@ -5,10 +5,9 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.expression
 import org.metasyntactic.common.base.Preconditions;
 
 /**
- * The zero-or-more operator consumes zero or more consecutive repetitions
- * of its sub-expression e.  Unlike in context-free grammars and regular
- * expressions, however, this operator always behave greedily, consuming as
- * much input as possible and never backtracking.
+ * The zero-or-more operator consumes zero or more consecutive repetitions of its sub-expression e.  Unlike in
+ * context-free grammars and regular expressions, however, this operator always behave greedily, consuming as much input
+ * as possible and never backtracking.
  *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
@@ -46,7 +45,7 @@ public class RepetitionExpression extends Expression {
     return child.hashCode();
   }
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
+  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 
