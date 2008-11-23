@@ -80,6 +80,10 @@ public class NowPlayingControllerWrapper {
     return SetUtilities.any(activities).getApplicationContext();
   }
 
+  public static boolean isRunning() {
+    return instance != null;
+  }
+
   public static String getUserLocation() {
     checkInstance();
     return instance.getUserAddress();
