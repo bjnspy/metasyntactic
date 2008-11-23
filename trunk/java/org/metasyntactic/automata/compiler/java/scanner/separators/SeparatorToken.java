@@ -9,9 +9,9 @@ import java.util.*;
  * Created by IntelliJ IDEA. User: cyrusn Date: Jun 22, 2008 Time: 6:59:45 PM To change this template use File |
  * Settings | File Templates.
  */
-public class SeparatorToken extends JavaToken {
+public abstract class SeparatorToken extends JavaToken {
   private final static Map<String, SeparatorToken> map = new LinkedHashMap<String, SeparatorToken>();
-  public final static Set<Class> tokenClasses = new LinkedHashSet<Class>();
+  public final static Set<Class<? extends Token>> tokenClasses = new LinkedHashSet<Class<? extends Token>>();
 
   static {
     Class[] classes = new Class[]{
@@ -55,10 +55,14 @@ public class SeparatorToken extends JavaToken {
       }
     }
 
-    tokenClasses.addAll(Arrays.asList(classes));
+    tokenClasses.addAll(Arrays.<Class<? extends Token>>asList(classes));
   }
 
-  public SeparatorToken(String text) {
+  public static Set<Class<? extends Token>> getTokenClasses() {
+    return tokenClasses;
+  }
+
+  protected SeparatorToken(String text) {
     super(text);
   }
 
@@ -78,11 +82,25 @@ public class SeparatorToken extends JavaToken {
     return token;
   }
 
-  @Override protected Type getTokenType() {
-    return Type.Separator;
-  }
-
   public Class<? extends Token> getRepresentativeClass() {
     return this.getClass();
+  }
+
+  private Type type;
+  protected Type getTokenType() {
+    if (type == null) {
+      String name = this.getClass().getName();
+      name = name.substring(0, name.length() - "Token".length());
+
+      try {
+        type = (Type)Type.class.getField(name).get(null);
+      } catch (IllegalAccessException e) {
+        throw new RuntimeException(e);
+      } catch (NoSuchFieldException e) {
+        throw new RuntimeException(e);
+      }
+    }
+
+    return type;
   }
 }

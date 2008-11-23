@@ -631,4 +631,39 @@ public class JavaGrammar extends PackratGrammar {
     in.close();
     return sb.toString();
   }
+
+  /*
+    private Map<Expression, Map<Class<? extends Token>, List<Token>>> prefixMap;
+
+  public List<Token> shortestPrefix(String variable, Class<? extends Token> clazz) {
+    computePrefixMap();
+
+    Map<Class<? extends Token>, List<Token>> tempMap = prefixMap.get(getVariableToRuleMap().get(variable).getExpression());
+    if (tempMap == null) {
+      return null;
+    }
+
+    return tempMap.get(clazz);
+  }
+
+
+  private void computePrefixMap() {
+    if (prefixMap != null) {
+      return;
+    }
+
+    prefixMap = new LinkedHashMap<Expression, Map<Class<? extends Token>, List<Token>>>();
+
+    boolean changed;
+    do {
+      changed = false;
+
+      for (Rule rule : getRules()) {
+        for (Class<? extends Token> clazz : JavaToken.getTokenClasses()) {
+
+        }
+      }
+    } while (changed);
+  }
+  */
 }

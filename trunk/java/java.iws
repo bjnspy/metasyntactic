@@ -16,20 +16,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/OperatorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/OperatorToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/WhitespaceToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/WhitespaceToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SeparatorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SeparatorToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/FunctionExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/FunctionExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/CommentToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/CommentToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SeparatorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SeparatorToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -150,10 +145,99 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="LiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="57" selection-start="316" selection-end="316" vertical-scroll-proportion="0.21192053">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="4" selection-start="906" selection-end="906" vertical-scroll-proportion="0.68874174">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaGrammar.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="41" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.60273975">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="PackratGrammar.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="13" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-17.244898">
+            <state line="67" column="52" selection-start="2450" selection-end="2450" vertical-scroll-proportion="-4.150685">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionMap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/ActionMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="81" selection-start="487" selection-end="487" vertical-scroll-proportion="0.29139072">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntegerLiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/IntegerLiteralToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="47" selection-start="348" selection-end="348" vertical-scroll-proportion="0.29139072">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SeparatorToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SeparatorToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="60" column="44" selection-start="2001" selection-end="2001" vertical-scroll-proportion="0.32876712">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OperatorToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/OperatorToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="148" column="0" selection-start="4041" selection-end="4041" vertical-scroll-proportion="0.89041096">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="113" column="3" selection-start="2747" selection-end="2747" vertical-scroll-proportion="0.89403975">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuestionMarkOperatorToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/QuestionMarkOperatorToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="7" selection-start="76" selection-end="76" vertical-scroll-proportion="0.052980132">
               <folding />
             </state>
           </provider>
@@ -746,6 +830,51 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Unnamed">
+    <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -775,22 +904,6 @@
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method>
-        <option name="Make" value="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -802,35 +915,6 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="ADDITIONAL_CLASS_PATH" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method>
-        <option name="Make" value="true" />
-      </method>
     </configuration>
     <configuration default="false" name="Unnamed" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" value="org.metasyntactic.automata.compiler.java.parser.JavaGrammar" />
@@ -965,7 +1049,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32935917" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3245033" order="8" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3245033" order="8" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
       <window_info id="Profile" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="8" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -977,7 +1061,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4781457" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38543046" order="4" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38543046" order="4" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
@@ -1048,64 +1132,88 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/CommentToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="70" selection-start="537" selection-end="537" vertical-scroll-proportion="0.5298013">
+        <state line="41" column="21" selection-start="2322" selection-end="2322" vertical-scroll-proportion="0.7281553">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/IdentifierToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaScanner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="3" selection-start="368" selection-end="459" vertical-scroll-proportion="0.45033112">
+        <state line="71" column="22" selection-start="3747" selection-end="3747" vertical-scroll-proportion="1.5364238">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/WhitespaceToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.34437087">
+        <state line="71" column="32" selection-start="1441" selection-end="1441" vertical-scroll-proportion="1.3287672">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="3" selection-start="696" selection-end="696" vertical-scroll-proportion="0.47682118">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="7" column="4" selection-start="158" selection-end="158" vertical-scroll-proportion="0.18708241">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TypeExpression.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/RightCurlySeparatorToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="32" selection-start="821" selection-end="821" vertical-scroll-proportion="0.33333334">
+        <state line="7" column="3" selection-start="282" selection-end="282" vertical-scroll-proportion="0.18543047">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/CharKeywordToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="7" selection-start="127" selection-end="127" vertical-scroll-proportion="0.105960265">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="3" selection-start="2361" selection-end="2361" vertical-scroll-proportion="0.9205298">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="113" column="3" selection-start="2747" selection-end="2747" vertical-scroll-proportion="0.89403975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/QuestionMarkOperatorToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="7" selection-start="76" selection-end="76" vertical-scroll-proportion="0.052980132">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/OperatorToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="24" selection-start="3686" selection-end="3686" vertical-scroll-proportion="1.5153061">
+        <state line="148" column="0" selection-start="4041" selection-end="4041" vertical-scroll-proportion="0.89041096">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/IntegerLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="47" selection-start="348" selection-end="348" vertical-scroll-proportion="0.29139072">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SeparatorToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="44" selection-start="2001" selection-end="2001" vertical-scroll-proportion="0.32876712">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SeparatorToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="2405" selection-end="2405" vertical-scroll-proportion="1.4846939">
+        <state line="8" column="57" selection-start="316" selection-end="316" vertical-scroll-proportion="0.21192053">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1114,60 +1222,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="0" selection-start="2367" selection-end="2367" vertical-scroll-proportion="1.1130221">
+        <state line="26" column="4" selection-start="906" selection-end="906" vertical-scroll-proportion="0.68874174">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="64" selection-end="64" vertical-scroll-proportion="0.05896806">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="38" selection-start="1506" selection-end="1506" vertical-scroll-proportion="1.5153061">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/FunctionExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.9183673">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="255" column="16" selection-start="8546" selection-end="8546" vertical-scroll-proportion="1.2704082">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="5" selection-start="3557" selection-end="3557" vertical-scroll-proportion="0.8622449">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="41" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.33163264">
+        <state line="22" column="41" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.60273975">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/ActionMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="81" selection-start="487" selection-end="487" vertical-scroll-proportion="0.29139072">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-17.244898">
+        <state line="67" column="52" selection-start="2450" selection-end="2450" vertical-scroll-proportion="-4.150685">
           <folding />
         </state>
       </provider>
