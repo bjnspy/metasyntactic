@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic;
 
 import android.app.Activity;
@@ -22,6 +21,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,14 +38,12 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
@@ -64,7 +62,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private Movie selectedMovie;
   private PostersAdapter postersAdapter;
   private boolean gridAnimationEnded;
-  private boolean isPrioritized;
   private boolean isGridSetup;
   private List<Movie> movies;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -76,25 +73,18 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   /** Updates display of the list of movies. */
   public void refresh() {
-	final List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
+	movies = NowPlayingControllerWrapper.getMovies();
 	// sort movies according to the default sort preference.
-	final Comparator<Movie> comparator = this.MOVIE_ORDER
+	final Comparator<Movie> comparator = MOVIE_ORDER
 		.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
-	Collections.sort(tmpMovies, comparator);
-	this.movies = new ArrayList<Movie>();
-	this.movies.addAll(tmpMovies);
-	if (!this.isPrioritized) {
-	  for (int i = 0; i < Math.min(6, this.movies.size()); i++) {
-		NowPlayingControllerWrapper.prioritizeMovie(this.movies.get(i));
-	  }
-	  this.isPrioritized = true;
-	}
-	if (this.movies.size() > 0 && !this.isGridSetup) {
+	Collections.sort(movies, comparator);
+	if (movies.size() > 0 && !isGridSetup) {
 	  setup();
-	  this.isGridSetup = true;
+	  // set isGridSetup, so that grid is not recreated on every refresh.
+	  isGridSetup = true;
 	}
-	if (this.postersAdapter != null && this.gridAnimationEnded) {
-	  this.postersAdapter.refreshMovies();
+	if (postersAdapter != null && gridAnimationEnded) {
+	  postersAdapter.refreshMovies();
 	}
   }
 
@@ -111,22 +101,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public void onCreate(final Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	// Request the progress bar to be shown in the title
+	NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
 	requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-	
 	setContentView(R.layout.progressbar_1);
-	
-	LinearLayout linearLayout = (LinearLayout)findViewById(R.id.linearLayout);
-	linearLayout.forceLayout();
-	
-	NowPlayingControllerWrapper.addActivity(this);
-	String userLocation = NowPlayingControllerWrapper.getUserLocation();
-	if (userLocation == null || userLocation == "") {
-	 
-	  Intent intent = new Intent();
-	  intent.setClass(this, SettingsActivity.class);
-	  startActivity(intent);
-	}
-
   }
 
   @Override
@@ -138,23 +115,37 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onPause() {
 	unregisterReceiver(broadcastReceiver);
-	Log.i("NowPlayingActivity onPause", "receiver unregisterered");
 	super.onPause();
   }
 
   @Override
   protected void onResume() {
 	super.onResume();
-	refresh();
-	registerReceiver(this.broadcastReceiver, new IntentFilter(
-		Application.NOW_PLAYING_CHANGED_INTENT));
-	if (this.movies != null && this.movies.size() > 0) {
-	  setup();
-	  this.isGridSetup = true;
-	}
-	if (this.postersAdapter != null) {
-	  this.postersAdapter.refreshMovies();
-	}
+	//Workaround to show the progress dialog with a immediate return from onresume,
+	// and then continue the work on main UI thread after the progressdialog is visible.
+	// Normally, when we are doing work on background thread we wont need this hack to 
+	// show progressdialog.
+	Runnable action = new Runnable() {
+	  public void run() {
+		if(NowPlayingActivity.this.grid!=null)
+			NowPlayingActivity.this.grid.setVisibility(View.VISIBLE);
+		
+		// reset so the grid is setup everytime we return to this activity
+		final String userLocation = NowPlayingControllerWrapper
+			.getUserLocation();
+		if (userLocation == null || userLocation == "") {
+		  Intent intent = new Intent();
+		  intent.setClass(NowPlayingActivity.this, SettingsActivity.class);
+		  startActivity(intent);
+		}
+		refresh();
+		registerReceiver(broadcastReceiver, new IntentFilter(
+			Application.NOW_PLAYING_CHANGED_INTENT));
+			
+	  }
+	};
+	Handler mHandler = new Handler();
+	mHandler.postDelayed(action, 1000);
   }
 
   private void setup() {
@@ -251,15 +242,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 	  final int pagecount = position / 9;
 	  Log.i("getView", String.valueOf(pagecount));
 	  // When convertView is not null, we can reuse it directly, there is
-	  // no need
-	  // to reinflate it. We only inflate a new View when the convertView
-	  // supplied
-	  // by ListView is null.
+	  // no need to reinflate it. We only inflate a new View when the convertView
+	  // supplied by ListView is null.
 	  if (convertView == null) {
 		convertView = this.mInflater.inflate(R.layout.moviegrid_item, null);
 		// Creates a ViewHolder and store references to the two children
-		// views
-		// we want to bind data to.
+		// views we want to bind data to.
 		holder = new ViewHolder(
 			(TextView) convertView.findViewById(R.id.title),
 			(ImageView) convertView.findViewById(R.id.poster));
@@ -271,6 +259,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 	  }
 	  final Movie movie = NowPlayingActivity.this.movies.get(position
 		  % NowPlayingActivity.this.movies.size());
+	  NowPlayingControllerWrapper.prioritizeMovie(movie);
 	  holder.title.setText(movie.getDisplayTitle());
 	  holder.title.setEllipsize(TextUtils.TruncateAt.END);
 	  Log.i("NowPlayingActivity getview", "trying to show posters");
