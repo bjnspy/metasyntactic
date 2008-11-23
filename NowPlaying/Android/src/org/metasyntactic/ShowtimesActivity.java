@@ -62,7 +62,7 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   private void populateTheaterDetailItems() {
-	detailItems = new ArrayList<TheaterDetailItem>();
+    detailItems = new ArrayList<TheaterDetailItem>();
     for (Theater theater : this.theaters) {
       populateTheaterDetailItem();
     }
@@ -102,61 +102,61 @@ public class ShowtimesActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.showtimes_item, null);
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView.findViewById(
-          R.id.label), (ImageView) convertView.findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data));
-
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
+          .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
+          (TextView) convertView.findViewById(R.id.data));
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       Log.i("theaterIndex ", String.valueOf(theaterIndex));
       Log.i("position ", String.valueOf(position));
       Log.i("values length ", String.valueOf(TheaterDetailItemType.values().length));
       final Theater theater = ShowtimesActivity.this.theaters.get(theaterIndex);
       switch (ShowtimesActivity.this.detailItems.get(position).getType()) {
-        case NAME_SHOWTIMES:
-          holder.label.setTextAppearance(ShowtimesActivity.this, android.R.attr.textAppearanceLarge);
-          // holder.label.setTextColor(Color.BLACK);
-          holder.label.setMinHeight(50);
-          holder.label
-              .setBackgroundColor(Color.parseColor("#808080"));
-          holder.label.setTextColor(Color.WHITE);
-          holder.label.setText(theater.getName());
-          final List<Performance> list = NowPlayingControllerWrapper
-              .getPerformancesForMovieAtTheater(ShowtimesActivity.this.movie, theater);
-          holder.icon.setImageDrawable(ShowtimesActivity.this.getResources()
-              .getDrawable(android.R.drawable.sym_action_email));
-          String performance = "";
-          if (list != null) {
-            for (Performance per : list) {
-              performance += per.getTime() + ", ";
-            }
-            performance = performance.substring(0, performance.length() - 2);
-            holder.data.setText(performance);
-            final String addr = "user@example.com";
-            final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri
-                .parse("mailto:" + addr));
-            intent1.putExtra("subject", "ShowTimes for " + ShowtimesActivity.this.movie
-                .getDisplayTitle() + " at " + theater.getName());
-            intent1.putExtra("body", performance);
-            ShowtimesActivity.this.detailItems.get(position).setIntent(intent1);
-          } else {
-            holder.data.setText("Unknown.");
+      case NAME_SHOWTIMES:
+        holder.label.setTextAppearance(ShowtimesActivity.this, android.R.attr.textAppearanceLarge);
+        // holder.label.setTextColor(Color.BLACK);
+        holder.label.setMinHeight(50);
+        holder.label.setBackgroundColor(Color.parseColor("#808080"));
+        holder.label.setTextColor(Color.WHITE);
+        holder.label.setText(theater.getName());
+        final List<Performance> list = NowPlayingControllerWrapper
+            .getPerformancesForMovieAtTheater(ShowtimesActivity.this.movie, theater);
+        holder.icon.setImageDrawable(ShowtimesActivity.this.getResources().getDrawable(
+            android.R.drawable.sym_action_email));
+        String performance = "";
+        if (list != null) {
+          for (Performance per : list) {
+            performance += per.getTime() + ", ";
           }
-          break;
-        case PHONE:
-          holder.data.setText(theater.getPhoneNumber());
-          holder.icon.setImageDrawable(ShowtimesActivity.this.getResources()
-              .getDrawable(android.R.drawable.sym_action_call));
-          holder.label.setText("Phone");
-          final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:" + theater.getPhoneNumber()));
-          ShowtimesActivity.this.detailItems.get(position).setIntent(intent2);
-          break;
-        case ADDRESS:
-          final String address = theater.getAddress() + ", " + theater.getLocation().getCity();
-          holder.data.setText(address);
-          holder.icon.setImageDrawable(ShowtimesActivity.this.getResources()
-              .getDrawable(R.drawable.sym_action_map));
-          holder.label.setText("Address");
-          final Intent intent3 = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q=" + address));
-          ShowtimesActivity.this.detailItems.get(position).setIntent(intent3);
+          performance = performance.substring(0, performance.length() - 2);
+          holder.data.setText(performance);
+          final String addr = "user@example.com";
+          final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
+          intent1.putExtra("subject", "ShowTimes for "
+              + ShowtimesActivity.this.movie.getDisplayTitle() + " at " + theater.getName());
+          intent1.putExtra("body", performance);
+          ShowtimesActivity.this.detailItems.get(position).setIntent(intent1);
+        } else {
+          holder.data.setText("Unknown.");
+        }
+        break;
+      case PHONE:
+        holder.data.setText(theater.getPhoneNumber());
+        holder.icon.setImageDrawable(ShowtimesActivity.this.getResources().getDrawable(
+            android.R.drawable.sym_action_call));
+        holder.label.setText("Phone");
+        final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
+            + theater.getPhoneNumber()));
+        ShowtimesActivity.this.detailItems.get(position).setIntent(intent2);
+        break;
+      case ADDRESS:
+        final String address = theater.getAddress() + ", " + theater.getLocation().getCity();
+        holder.data.setText(address);
+        holder.icon.setImageDrawable(ShowtimesActivity.this.getResources().getDrawable(
+            R.drawable.sym_action_map));
+        holder.label.setText("Address");
+        final Intent intent3 = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
+            + address));
+        ShowtimesActivity.this.detailItems.get(position).setIntent(intent3);
       }
       return convertView;
     }

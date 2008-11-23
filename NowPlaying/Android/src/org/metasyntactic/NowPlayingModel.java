@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic;
 
 import android.content.Context;
@@ -43,11 +42,9 @@ public class NowPlayingModel {
   private final static String UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY = "upcomingMoviesSelectedSortIndex";
   private final static String SCORE_TYPE_KEY = "scoreType";
   private final static String AUTO_UPDATED_ENABLED_KEY = "autoUpdateEnabled";
-
-  // SharedPreferences is not threadsafe.  so we need to lock when using it
+  // SharedPreferences is not threadsafe. so we need to lock when using it
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
-
   private final DataProvider dataProvider = new DataProvider(this);
   private final ScoreCache scoreCache = new ScoreCache(this);
   private final UserLocationCache userLocationCache = new UserLocationCache();
@@ -56,9 +53,9 @@ public class NowPlayingModel {
   private final PosterCache posterCache = new PosterCache(this);
 
   public NowPlayingModel(final Context applicationContext) {
-    this.preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);
+    this.preferences = applicationContext.getSharedPreferences(
+        NowPlayingModel.class.getName(), 0);
     loadData();
-
     initializeTestValues();
   }
 
@@ -69,7 +66,6 @@ public class NowPlayingModel {
       editor.clear();
       editor.putString(VERSION_KEY, version);
       editor.commit();
-
       Application.reset();
       this.scoreCache.createDirectories();
     }
@@ -99,7 +95,6 @@ public class NowPlayingModel {
     if (true) {
       return;
     }
-
     setUserAddress("10009");
   }
 
@@ -130,7 +125,6 @@ public class NowPlayingModel {
       editor.putString(USER_ADDRESS_KEY, userLocation);
       editor.commit();
     }
-
     this.markDataProviderOutOfDate();
   }
 
@@ -143,7 +137,6 @@ public class NowPlayingModel {
   public void setSearchDistance(int searchDistance) {
     synchronized (this.preferencesLock) {
       searchDistance = Math.min(Math.max(searchDistance, 1), 50);
-
       final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putInt(SEARCH_DISTANCE_KEY, searchDistance);
       editor.commit();
@@ -156,7 +149,6 @@ public class NowPlayingModel {
       if ("".equals(value)) {
         return DateUtilities.getToday();
       }
-
       final SimpleDateFormat format = new SimpleDateFormat();
       Date result = null;
       try {
@@ -168,7 +160,6 @@ public class NowPlayingModel {
         result = DateUtilities.getToday();
         setSearchDate(result);
       }
-
       return result;
     }
   }
@@ -177,12 +168,10 @@ public class NowPlayingModel {
     synchronized (this.preferencesLock) {
       final SimpleDateFormat format = new SimpleDateFormat();
       final String result = format.format(searchDate);
-
       final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putString(SEARCH_DATE_KEY, result);
       editor.commit();
     }
-
     this.markDataProviderOutOfDate();
   }
 
@@ -202,7 +191,6 @@ public class NowPlayingModel {
       editor.putInt(SELECTED_TAB_INDEX_KEY, index);
       editor.commit();
     }
-
     Application.refresh();
   }
 
@@ -218,7 +206,6 @@ public class NowPlayingModel {
       editor.putInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
-
     Application.refresh();
   }
 
@@ -234,13 +221,13 @@ public class NowPlayingModel {
       editor.putInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
-
     Application.refresh();
   }
 
   public int getUpcomingMoviesSelectedSortIndex() {
     synchronized (this.preferencesLock) {
-      return this.preferences.getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
+      return this.preferences
+          .getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
     }
   }
 
@@ -250,18 +237,16 @@ public class NowPlayingModel {
       editor.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
-
     Application.refresh();
   }
 
   public ScoreType getScoreType() {
     synchronized (this.preferencesLock) {
-     final String value = this.preferences.getString(SCORE_TYPE_KEY, null);
+      final String value = this.preferences.getString(SCORE_TYPE_KEY, null);
       if (value == null) {
         return ScoreType.RottenTomatoes;
       }
-
-     return ScoreType.valueOf(value);
+      return ScoreType.valueOf(value);
     }
   }
 
@@ -324,12 +309,10 @@ public class NowPlayingModel {
     if (bytes != null) {
       return bytes;
     }
-
     bytes = this.upcomingCache.getPoster(movie);
     if (bytes != null) {
       return bytes;
     }
-
     return EMPTY_BYTES;
   }
 
@@ -338,19 +321,18 @@ public class NowPlayingModel {
     if (!isNullOrEmpty(movie.getSynopsis())) {
       options.add(movie.getSynopsis());
     }
-
-    if (options.isEmpty() || Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage())) {
+    if (options.isEmpty()
+        || Locale.getDefault().getLanguage().equals(
+            Locale.ENGLISH.getLanguage())) {
       final Score score = getScore(movie);
       if (score != null && !isNullOrEmpty(score.getSynopsis())) {
         options.add(score.getSynopsis());
       }
-
       final String synopsis = this.upcomingCache.getSynopsis(movie);
       if (!isNullOrEmpty(synopsis)) {
         options.add(synopsis);
       }
     }
-
     String bestOption = "";
     for (final String s : options) {
       if (s.length() > bestOption.length()) {
@@ -391,7 +373,8 @@ public class NowPlayingModel {
     return result;
   }
 
-  public List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
+  public List<Performance> getPerformancesForMovieAtTheater(final Movie movie,
+      final Theater theater) {
     return this.dataProvider.getPerformancesForMovieInTheater(movie, theater);
   }
 }

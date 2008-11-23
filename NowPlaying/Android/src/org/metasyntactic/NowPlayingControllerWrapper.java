@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic;
 
 import android.app.Activity;
@@ -29,10 +28,8 @@ import java.util.Set;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingControllerWrapper {
-
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
   private static NowPlayingController instance;
-
   static {
     Application.initialize();
   }
@@ -44,7 +41,6 @@ public class NowPlayingControllerWrapper {
     checkThread();
     activities.add(activity);
     GlobalActivityIndicator.addActivity(activity);
-
     if (activities.size() == 1) {
       instance = new NowPlayingController(activity.getApplicationContext());
       instance.startup();
@@ -55,7 +51,6 @@ public class NowPlayingControllerWrapper {
     checkThread();
     GlobalActivityIndicator.removeActivity(activity);
     activities.remove(activity);
-
     if (activities.size() == 0) {
       instance.shutdown();
       instance = null;
@@ -101,7 +96,6 @@ public class NowPlayingControllerWrapper {
 
   public static int getSearchDistance() {
     checkInstance();
-
     return instance.getSearchDistance();
   }
 
@@ -185,7 +179,8 @@ public class NowPlayingControllerWrapper {
     return instance.getMoviesAtTheater(theater);
   }
 
-  public static List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
+  public static List<Performance> getPerformancesForMovieAtTheater(final Movie movie,
+      final Theater theater) {
     checkInstance();
     return instance.getPerformancesForMovieAtTheater(movie, theater);
   }
@@ -229,15 +224,14 @@ public class NowPlayingControllerWrapper {
     checkInstance();
     instance.setAutoUpdateEnabled(enabled);
   }
-  
+
   public static Date getSearchDate() {
-	checkInstance();
-	return instance.getSearchDate();
+    checkInstance();
+    return instance.getSearchDate();
   }
 
   public static void setSearchDate(Date date) {
-	checkInstance();
+    checkInstance();
     instance.setSearchDate(date);
-   
   }
 }

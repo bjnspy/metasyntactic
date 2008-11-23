@@ -1,17 +1,3 @@
-// Copyright 2008 Cyrus Najmabadi
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package org.metasyntactic;
 
 import android.app.ListActivity;
@@ -45,12 +31,11 @@ public class AllReviewsActivity extends ListActivity {
     String review_url = null;
     review_url = reviews.get(position).getLink();
     if (review_url != null) {
-      Intent intent = new Intent("android.intent.action.VIEW", Uri
-          .parse(review_url));
+      Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
       startActivity(intent);
     } else {
-      Toast
-          .makeText(AllReviewsActivity.this, "This review article is not available.", Toast.LENGTH_SHORT).show();
+      Toast.makeText(AllReviewsActivity.this, "This review article is not available.",
+          Toast.LENGTH_SHORT).show();
     }
     super.onListItemClick(l, v, position, id);
   }
@@ -80,10 +65,8 @@ public class AllReviewsActivity extends ListActivity {
       MovieViewHolder holder;
       convertView = this.inflater.inflate(R.layout.reviewview, null);
       holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score),
-                                   (TextView) convertView.findViewById(R.id.author),
-                                   (TextView) convertView.findViewById(R.id.source),
-                                   (TextView) convertView.findViewById(R.id.desc));
-
+          (TextView) convertView.findViewById(R.id.author), (TextView) convertView
+              .findViewById(R.id.source), (TextView) convertView.findViewById(R.id.desc));
       convertView.setTag(holder);
       final Review review = AllReviewsActivity.this.reviews.get(position);
       holder.author.setText(review.getAuthor());
@@ -99,7 +82,8 @@ public class AllReviewsActivity extends ListActivity {
       private final TextView source;
       private final TextView description;
 
-      private MovieViewHolder(ImageView score, TextView author, TextView source, TextView description) {
+      private MovieViewHolder(ImageView score, TextView author, TextView source,
+          TextView description) {
         this.score = score;
         this.author = author;
         this.source = source;
