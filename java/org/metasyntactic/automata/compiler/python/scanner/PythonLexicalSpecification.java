@@ -14,7 +14,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PythonLexicalSpecification extends PackratGrammar {
+public class PythonLexicalSpecification extends PackratGrammar<PythonToken.Type> {
   private final static Rule pythonStartRule;
   private final static Set<Rule> pythonRules;
 
@@ -395,6 +395,10 @@ public class PythonLexicalSpecification extends PackratGrammar {
             range('a', 'f'),
             range('A', 'F')
         )));
+  }
+
+  protected PythonToken.Type getTokenFromType(int type) {
+    return PythonToken.Type.values()[type];
   }
 
   static long totalTime = 0;

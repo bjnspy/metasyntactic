@@ -80,8 +80,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
 
       if (!grammar.isNullable(variable) &&
           !grammar.acceptsAnyToken(variable) &&
-          !grammar.isFirstToken(variable, token) &&
-          !grammar.isFirstType(variable, token)) {
+          !grammar.isFirstToken(variable, token)) {
         return false;
       }
     }

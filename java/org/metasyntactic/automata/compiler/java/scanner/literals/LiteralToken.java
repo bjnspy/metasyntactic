@@ -49,7 +49,7 @@ public abstract class LiteralToken<T> extends JavaToken {
 
   protected Type getTokenType() {
     if (type == null) {
-      String name = this.getClass().getName();
+      String name = this.getClass().getSimpleName();
       name = name.substring(0, name.length() - "Token".length());
 
       try {

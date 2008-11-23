@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class JavaGrammar extends PackratGrammar {
+public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
   private final static Rule javaStartRule;
   private final static Set<Rule> javaRules;
 
@@ -666,4 +666,8 @@ public class JavaGrammar extends PackratGrammar {
     } while (changed);
   }
   */
+
+  protected JavaToken.Type getTokenFromType(int type) {
+    return JavaToken.Type.values()[type];
+  }
 }

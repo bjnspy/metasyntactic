@@ -143,15 +143,11 @@ public abstract class OperatorToken extends JavaToken {
     };
   }
 
-  public Class<? extends Token> getRepresentativeClass() {
-    return this.getClass();
-  }
-
   private Type type;
 
   protected Type getTokenType() {
     if (type == null) {
-      String name = this.getClass().getName();
+      String name = this.getClass().getSimpleName();
       name = name.substring(0, name.length() - "Token".length());
 
       try {

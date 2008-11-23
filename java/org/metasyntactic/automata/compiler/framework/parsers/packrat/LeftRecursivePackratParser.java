@@ -204,7 +204,7 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
   public static void main(String... args) {
     Object o1 = JavaGrammar.instance;
 
-    Grammar g = new PackratGrammar(
+    Grammar g = new PackratGrammar<JavaToken.Type>(
         new Rule("x", variable("expr")),
         new Rule("expr", choice(
             sequence(
@@ -212,7 +212,11 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
                 token(MinusOperatorToken.instance),
                 type(IdentifierToken.class)),
             type(IdentifierToken.class)
-        )));
+        ))) {
+      protected JavaToken.Type getTokenFromType(int type) {
+        return JavaToken.Type.values()[type];
+      }
+    };
 //        new Rule("num", character("5")));
 
     Span s = new SimpleSpan(new Position(0, 0), new Position(0, 0));

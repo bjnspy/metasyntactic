@@ -54,9 +54,7 @@ public class Grammar {
   private final Set<Expression> nullableExpressions = new LinkedHashSet<Expression>();
 
   private final Set<String> acceptsAnyToken = new LinkedHashSet<String>();
-
-  private final MultiMap<String, Token> firstTokenMap = new HashMultiMap<String, Token>();
-  private final MultiMap<String, Integer> firstTypeMap = new HashMultiMap<String, Integer>();
+  private final MultiMap<String, Integer> firstMap = new HashMultiMap<String, Integer>();
 
   public boolean isNullable(String variable) {
     return nullableVariables.contains(variable);
@@ -67,13 +65,8 @@ public class Grammar {
   }
 
   public boolean isFirstToken(String variable, Token token) {
-    Collection<Token> tokens = firstTokenMap.get(variable);
-    return tokens.contains(token);
-  }
-
-  public boolean isFirstType(String variable, Token token) {
-    Collection<Integer> types = firstTypeMap.get(variable);
-    return types.contains(token.getType());
+    Collection<Integer> tokens = firstMap.get(variable);
+    return tokens.contains(token.getType());
   }
 
   private void createSets() {
@@ -83,8 +76,7 @@ public class Grammar {
 
   private void createFirstSets() {
     Set<Expression> acceptsAnyTokenExpression = new LinkedHashSet<Expression>();
-    MultiMap<Expression, Token> expresionToFirstTokens = new HashMultiMap<Expression, Token>();
-    MultiMap<Expression, Integer> expressionToFirstTypes = new HashMultiMap<Expression, Integer>();
+    MultiMap<Expression, Integer> expressionToFirstTokens = new HashMultiMap<Expression, Integer>();
 
     boolean changed;
 
@@ -92,7 +84,7 @@ public class Grammar {
       changed = false;
 
       for (Rule rule : rules) {
-        changed |= processFirstSets(rule, acceptsAnyTokenExpression, expresionToFirstTokens, expressionToFirstTypes);
+        changed |= processFirstSets(rule, acceptsAnyTokenExpression, expressionToFirstTokens);
       }
     } while (changed);
 
@@ -101,14 +93,12 @@ public class Grammar {
         acceptsAnyToken.add(rule.getVariable());
       }
 
-      firstTokenMap.putAll(rule.getVariable(), expresionToFirstTokens.get(rule.getExpression()));
-      firstTypeMap.putAll(rule.getVariable(), expressionToFirstTypes.get(rule.getExpression()));
+      firstMap.putAll(rule.getVariable(), expressionToFirstTokens.get(rule.getExpression()));
     }
   }
 
   private boolean processFirstSets(Rule rule, final Set<Expression> acceptsAnyTokenExpression,
-                                   final MultiMap<Expression, Token> expresionToFirstTokens,
-                                   final MultiMap<Expression, Integer> expressionToFirstTypes) {
+                                   final MultiMap<Expression, Integer> expressionToFirstTokens) {
 
     return rule.getExpression().accept(new ExpressionVisitor<Object, Boolean>() {
       @Override public Boolean visit(EmptyExpression emptyExpression) {
@@ -137,8 +127,7 @@ public class Grammar {
           changed |= acceptsAnyTokenExpression.add(parent);
         }
 
-        changed |= expresionToFirstTokens.putAll(parent, expresionToFirstTokens.get(child));
-        changed |= expressionToFirstTypes.putAll(parent, expressionToFirstTypes.get(child));
+        changed |= expressionToFirstTokens.putAll(parent, expressionToFirstTokens.get(child));
 
         return changed;
       }
@@ -192,12 +181,12 @@ public class Grammar {
       }
 
       @Override public Boolean visit(TokenExpression tokenExpression) {
-        return expresionToFirstTokens.putAll(tokenExpression, Collections.singleton(tokenExpression.getToken()));
+        return expressionToFirstTokens.putAll(tokenExpression, Collections.singleton(
+            tokenExpression.getToken().getType()));
       }
 
       @Override public Boolean visit(TypeExpression typeExpression) {
-        //return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(typeExpression.getType()));
-        return expressionToFirstTypes.putAll(typeExpression, Collections.singleton(typeExpression.getTypeValue()));
+        return expressionToFirstTokens.putAll(typeExpression, typeExpression.getTypes());
       }
     });
   }

@@ -124,12 +124,12 @@ public abstract class JavaToken implements Token {
     WhileKeyword,
     // Literal
     CharacterLiteral,
-    FalseLiteral,
+    FalseBooleanLiteral,
     FloatingPointLiteral,
     IntegerLiteral,
     NullLiteral,
     StringLiteral,
-    TrueLiteral,
+    TrueBooleanLiteral,
     // Operators
     EqualsOperator,
     GreaterThanOperator,

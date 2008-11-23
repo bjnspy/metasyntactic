@@ -1,103 +1,19 @@
 package org.metasyntactic.automata.compiler.python.parser;
 
-import org.metasyntactic.automata.compiler.framework.parsers.ActionMap;
-import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
 import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
-import org.metasyntactic.automata.compiler.python.scanner.DedentToken;
-import org.metasyntactic.automata.compiler.python.scanner.IdentifierToken;
-import org.metasyntactic.automata.compiler.python.scanner.IndentToken;
-import org.metasyntactic.automata.compiler.python.scanner.NewlineToken;
-import org.metasyntactic.automata.compiler.python.scanner.PythonToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.AndEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.AtDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.BackQuoteDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.ColonDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.CommaDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.DelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.DivideEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.DotDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.EllipsisDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.EqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.ExclusiveOrEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.ExponentEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftBracketDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftCurlyDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftParenthesisDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftShiftEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.MinusEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.ModulusEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.OrEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.PlusEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightBracketDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightCurlyDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightParenthesisDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightShiftEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.SemicolonDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.TimesEqualsDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.AndKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.AsKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.AssertKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.BreakKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ClassKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ContinueKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.DefKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.DelKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ElifKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ElseKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ExceptKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ExecKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.FinallyKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ForKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.FromKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.GlobalKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.IfKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ImportKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.InKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.IsKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.KeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.LambdaKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.NotKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.OrKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.PassKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.PrintKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.RaiseKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.ReturnKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.TryKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.WhileKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.WithKeywordToken;
-import org.metasyntactic.automata.compiler.python.scanner.keywords.YieldKeywordToken;
+import org.metasyntactic.automata.compiler.python.scanner.*;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.*;
+import org.metasyntactic.automata.compiler.python.scanner.keywords.*;
 import org.metasyntactic.automata.compiler.python.scanner.literals.LiteralToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.AndOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.BitwiseNotOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.DivideOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.EqualsEqualsOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.ExclusiveOrOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.ExponentOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.GreaterThanOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.GreaterThanOrEqualsOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.LeftShiftOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.LessThanGreaterThanOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.LessThanOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.LessThanOrEqualsOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.MinusOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.ModulusOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.NotEqualsOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.OperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.OrOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.PlusOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.RightShiftOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.TimesOperatorToken;
-import org.metasyntactic.automata.compiler.python.scanner.operators.TruncatingDivideOperatorToken;
+import org.metasyntactic.automata.compiler.python.scanner.operators.*;
 
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class PythonGrammar extends PackratGrammar {
+public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
   private final static Rule pythonStartRule;
   private final static Set<Rule> pythonRules;
 
@@ -1168,5 +1084,9 @@ public class PythonGrammar extends PackratGrammar {
   }
 
   public static void main(String... args) {
+  }
+
+  protected PythonToken.Type getTokenFromType(int type) {
+    return PythonToken.Type.values()[type];
   }
 }
