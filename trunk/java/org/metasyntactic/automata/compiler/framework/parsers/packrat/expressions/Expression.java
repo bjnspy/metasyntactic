@@ -180,7 +180,7 @@ public abstract class Expression {
       return false;
     }
 
-    @Override public List<Token> getShortestDerivableTokenStream() {
+    @Override public List<Integer> getShortestDerivableTokenStream() {
       throw new RuntimeException("NYI");
     }
 
@@ -208,7 +208,7 @@ public abstract class Expression {
       return false;
     }
 
-    @Override public List<Token> getShortestDerivableTokenStream() {
+    @Override public List<Integer> getShortestDerivableTokenStream() {
       throw new RuntimeException("NYI");
     }
 
@@ -253,7 +253,7 @@ public abstract class Expression {
         return false;
       }
 
-      @Override public List<Token> getShortestDerivableTokenStream() {
+      @Override public List<Integer> getShortestDerivableTokenStream() {
         throw new RuntimeException("NYI");
       }
 

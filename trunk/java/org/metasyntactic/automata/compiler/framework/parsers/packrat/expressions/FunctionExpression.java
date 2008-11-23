@@ -32,7 +32,7 @@ public abstract class FunctionExpression<T> extends Expression {
 
   public abstract boolean isNullable();
 
-  public abstract List<Token> getShortestDerivableTokenStream();
+  public abstract List<Integer> getShortestDerivableTokenStream();
 
   public abstract List<Class<? extends Token>> getShortestDerivableClassStream();
 
