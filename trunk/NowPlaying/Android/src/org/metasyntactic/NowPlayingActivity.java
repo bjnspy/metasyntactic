@@ -101,7 +101,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public void onCreate(final Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	// Request the progress bar to be shown in the title
-	NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
 	requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 	setContentView(R.layout.progressbar_1);
   }
@@ -121,16 +120,24 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
 	super.onResume();
-	//Workaround to show the progress dialog with a immediate return from onresume,
-	// and then continue the work on main UI thread after the progressdialog is visible.
+	if (isGridSetup)
+	  NowPlayingActivity.this.grid.setVisibility(View.VISIBLE);
+	//Hack to show the progress dialog with a immediate return from onResume,
+	// and then continue the work on main UI thread after the ProgressDialog is visible.
 	// Normally, when we are doing work on background thread we wont need this hack to 
-	// show progressdialog.
+	// show ProgressDialog.
 	Runnable action = new Runnable() {
+	  private boolean activityAdded;
+
 	  public void run() {
-		if(NowPlayingActivity.this.grid!=null)
-			NowPlayingActivity.this.grid.setVisibility(View.VISIBLE);
-		
-		// reset so the grid is setup everytime we return to this activity
+		//For the first Activity, we add activity in onResume (which is different from
+		//rest of the Activities in this application). This is to show progress dialog
+		// with a quick return from onCreate(), onResume(). If we don't do this we would 
+		// see a black screen for 1-2 seconds until controller methods complete executing.
+		if (!activityAdded) {
+		  NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
+		  activityAdded = true;
+		}
 		final String userLocation = NowPlayingControllerWrapper
 			.getUserLocation();
 		if (userLocation == null || userLocation == "") {
@@ -141,7 +148,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 		refresh();
 		registerReceiver(broadcastReceiver, new IntentFilter(
 			Application.NOW_PLAYING_CHANGED_INTENT));
-			
 	  }
 	};
 	Handler mHandler = new Handler();
