@@ -16,6 +16,4 @@ public class IdentifierToken extends JavaToken {
   public static Type type() {
     return Type.Identifier;
   }
-
-  public static final IdentifierToken representative = new IdentifierToken("identifier");
 }

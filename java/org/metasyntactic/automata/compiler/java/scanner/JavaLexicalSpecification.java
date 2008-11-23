@@ -68,8 +68,8 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
       return false;
     }
 
-    @Override public List<Token> getShortestDerivableTokenStream() {
-      return Collections.<Token>singletonList(IdentifierToken.representative);
+    @Override public List<Integer> getShortestDerivableTokenStream() {
+      return Collections.singletonList(IdentifierToken.getTypeValue());
     }
 
     @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
