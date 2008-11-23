@@ -423,6 +423,11 @@
             continue;
         }
 
+        NSDate* date = [self synchronizationDateForTheater:theaterName];
+        if (ABS(date.timeIntervalSinceNow) > ONE_MONTH) {
+            continue;
+        }
+        
         [lookupResult.performances setObject:oldPerformances forKey:theaterName];
         [lookupResult.synchronizationInformation setObject:[self synchronizationDateForTheater:theaterName] forKey:theaterName];
         [lookupResult.theaters addObject:theater];
