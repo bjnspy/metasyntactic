@@ -62,8 +62,8 @@ public class Application {
 
     final Runnable runnable = new Runnable() {
       public void run() {
-        final Context context = NowPlayingControllerWrapper.getApplicationContext();
-        if (context != null) {
+        if (NowPlayingControllerWrapper.isRunning()) {
+          final Context context = NowPlayingControllerWrapper.getApplicationContext();
           context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
         }
       }
