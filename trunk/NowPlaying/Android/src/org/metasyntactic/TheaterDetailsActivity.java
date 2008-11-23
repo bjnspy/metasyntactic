@@ -55,48 +55,40 @@ public class TheaterDetailsActivity extends ListActivity {
     final TextView theaterLabel = (TextView) findViewById(R.id.theater);
     theaterLabel.setEllipsize(TextUtils.TruncateAt.END);
     theaterLabel.setText(this.theater.getName());
-
     final TextView phoneLabel = (TextView) findViewById(R.id.phone);
     phoneLabel.setEllipsize(TextUtils.TruncateAt.END);
     phoneLabel.setText(this.theater.getPhoneNumber());
-
     final TextView mapLabel = (TextView) findViewById(R.id.map);
     mapLabel.setEllipsize(TextUtils.TruncateAt.END);
     final String address = this.theater.getAddress() + ", " + this.theater.getLocation().getCity();
     mapLabel.setText(address);
-
     this.movies = NowPlayingControllerWrapper.getMoviesAtTheater(this.theater);
     final ImageView mapIcon = (ImageView) findViewById(R.id.mapicon);
     final ImageView phoneIcon = (ImageView) findViewById(R.id.phoneicon);
-    final Intent mapIntent = new Intent("android.intent.action.VIEW", Uri
-        .parse("geo:0,0?q=" + address));
-    final Intent callIntent = new Intent("android.intent.action.DIAL", Uri
-        .parse("tel:" + this.theater.getPhoneNumber()));
-
+    final Intent mapIntent = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
+        + address));
+    final Intent callIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
+        + this.theater.getPhoneNumber()));
     mapIcon.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(mapIntent);
       }
     });
-
     mapLabel.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(mapIntent);
       }
     });
-
     phoneIcon.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(callIntent);
       }
     });
-
     phoneLabel.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(callIntent);
       }
     });
-
     MoviesAdapter moviesAdapter = new MoviesAdapter();
     setListAdapter(moviesAdapter);
   }
@@ -115,20 +107,18 @@ public class TheaterDetailsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
-      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.label),
-                                                         (TextView) convertView.findViewById(R.id.data));
-
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
+          .findViewById(R.id.label), (TextView) convertView.findViewById(R.id.data));
       final Movie movie = TheaterDetailsActivity.this.movies.get(position);
       holder.label.setText(movie.getDisplayTitle());
-      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie,
-                                                                                                  TheaterDetailsActivity.this.theater);
+      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
+          movie, TheaterDetailsActivity.this.theater);
       String performance = "";
       for (Performance aList : list) {
         performance += aList.getTime() + ", ";
       }
       performance = performance.substring(0, performance.length() - 2);
       holder.data.setText(performance);
-
       return convertView;
     }
 

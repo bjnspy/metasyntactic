@@ -53,40 +53,39 @@ public class MovieDetailsActivity extends ListActivity {
         value = res.getString(R.string.no_synopsis_available_dot);
       }
       MovieDetailEntry entry = new MovieDetailEntry(this.movie.getDisplayTitle(), value);
-
       this.movieDetailEntries.add(entry);
     }
     {
       // Add Rating
-      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.rated), MovieViewUtilities.formatRatings(
-          this.movie.getRating(), res));
+      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.rated),
+          MovieViewUtilities.formatRatings(this.movie.getRating(), res));
       this.movieDetailEntries.add(entry);
     }
     {
       // Add release Date
       Date releaseDate = this.movie.getReleaseDate();
-      String releaseDateString = releaseDate == null
-                                 ? res.getString(R.string.unknown_release_date)
-                                 : releaseDate.toString();
-      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date), releaseDateString);
+      String releaseDateString = releaseDate == null ? res.getString(R.string.unknown_release_date)
+          : releaseDate.toString();
+      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date),
+          releaseDateString);
       this.movieDetailEntries.add(entry);
     }
     {
       // Add length
       MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.running_time),
-                                                    MovieViewUtilities.formatLength(this.movie.getLength(), res));
+          MovieViewUtilities.formatLength(this.movie.getLength(), res));
       this.movieDetailEntries.add(entry);
     }
     {
       // Add cast
-      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast), MovieViewUtilities.formatListToString(
-          this.movie.getCast()));
+      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast),
+          MovieViewUtilities.formatListToString(this.movie.getCast()));
       this.movieDetailEntries.add(entry);
     }
     {
       // Add cast
       MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director),
-                                                    MovieViewUtilities.formatListToString(this.movie.getDirectors()));
+          MovieViewUtilities.formatListToString(this.movie.getDirectors()));
       this.movieDetailEntries.add(entry);
     }
   }
@@ -110,8 +109,8 @@ public class MovieDetailsActivity extends ListActivity {
           final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this, "This movie's IMDB information is not available.",
-                         Toast.LENGTH_SHORT).show();
+          Toast.makeText(MovieDetailsActivity.this,
+              "This movie's IMDB information is not available.", Toast.LENGTH_SHORT).show();
         }
       }
     });
@@ -127,8 +126,8 @@ public class MovieDetailsActivity extends ListActivity {
           final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this, "This movie's trailers are not available.", Toast.LENGTH_SHORT)
-              .show();
+          Toast.makeText(MovieDetailsActivity.this, "This movie's trailers are not available.",
+              Toast.LENGTH_SHORT).show();
         }
       }
     });
@@ -146,8 +145,8 @@ public class MovieDetailsActivity extends ListActivity {
           intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this, "This movie's reviews are not yet available.", Toast.LENGTH_SHORT)
-              .show();
+          Toast.makeText(MovieDetailsActivity.this, "This movie's reviews are not yet available.",
+              Toast.LENGTH_SHORT).show();
         }
       }
     });
@@ -177,18 +176,17 @@ public class MovieDetailsActivity extends ListActivity {
       convertView = this.inflater.inflate(R.layout.moviedetails_item, null);
       // Creates a MovieViewHolder and store references to the
       // children views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.name),
-                                                         (TextView) convertView.findViewById(R.id.value));
-
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
+          .findViewById(R.id.name), (TextView) convertView.findViewById(R.id.value));
       final MovieDetailEntry entry = MovieDetailsActivity.this.movieDetailEntries.get(position);
       holder.name.setText(entry.name);
       holder.value.setText(entry.value);
       if (position == 0) {
-        holder.name.setTextAppearance(MovieDetailsActivity.this, android.R.attr.textAppearanceLarge);
+        holder.name
+            .setTextAppearance(MovieDetailsActivity.this, android.R.attr.textAppearanceLarge);
         holder.name.setBackgroundResource(R.drawable.shape_1);
         holder.name.setMinHeight(50);
       }
-
       return convertView;
     }
 
