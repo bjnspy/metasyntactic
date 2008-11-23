@@ -23,7 +23,7 @@ import java.util.*;
 public class PackratGrammar implements Grammar {
   private final Set<Rule> rules;
   private final Rule startRule;
-  private final Map<String, Rule> map = new IdentityHashMap<String, Rule>();
+  private final Map<String, Rule> variableToRuleMap = new IdentityHashMap<String, Rule>();
   protected boolean leftRecursive;
 
   public PackratGrammar(Rule startRule, Rule... remainingRules) {
@@ -46,7 +46,7 @@ public class PackratGrammar implements Grammar {
     this.startRule = startRule;
 
     for (Rule rule : rules) {
-      map.put(rule.getVariable(), rule);
+      variableToRuleMap.put(rule.getVariable(), rule);
     }
 
     checkForMissingRules();
@@ -54,11 +54,15 @@ public class PackratGrammar implements Grammar {
 
     createSets();
 
-    computeShortestDerivableClassStreamMap();
+    computeShortestDerivableTokenStreamMap();
     for (Rule rule : rules) {
       System.out.println(rule.getVariable());
-      System.out.println("\t" + getShortestDerivableClassStream(rule.getVariable()));
+      System.out.println("\t" + getShortestDerivableTokenStream(rule.getVariable()));
     }
+  }
+
+  protected Map<String, Rule> getVariableToRuleMap() {
+    return variableToRuleMap;
   }
 
   @Override public <T extends Token> AbstractPackratParser<T> createParser(List<SourceToken<T>> tokens) {
@@ -259,7 +263,7 @@ public class PackratGrammar implements Grammar {
     for (Rule rule : rules) {
       rule.getExpression().accept(new RecursionExpressionVisitor() {
         @Override public void visit(VariableExpression expression) {
-          if (!map.containsKey(expression.getVariable())) {
+          if (!variableToRuleMap.containsKey(expression.getVariable())) {
             throw new IllegalArgumentException("No rule found with the variable: " + expression.getVariable());
           }
         }
@@ -294,7 +298,7 @@ public class PackratGrammar implements Grammar {
   }
 
   public Rule getRule(String variable) {
-    return map.get(variable);
+    return variableToRuleMap.get(variable);
   }
 
   @Override public boolean equals(Object o) {
@@ -485,29 +489,43 @@ public class PackratGrammar implements Grammar {
     }
   }
 
-  private Map<String, List<Token>> shortestDerivableTokenStreamMap;
+  private Map<Expression, List<Token>> shortestDerivableTokenStreamMap;
 
-  public final List<Token> getShortestDerivableTokenStream(String variable) {
+  private List<Token> getShortestDerivableTokenStream(Expression expression) {
+    return shortestDerivableTokenStreamMap.get(expression);
+  }
+
+  public List<Token> getShortestDerivableTokenStream(String variable) {
     computeShortestDerivableTokenStreamMap();
 
-    return shortestDerivableTokenStreamMap.get(variable);
+    return shortestDerivableTokenStreamMap.get(variableToRuleMap.get(variable).getExpression());
   }
 
   private void computeShortestDerivableTokenStreamMap() {
-    shortestDerivableTokenStreamMap = new LinkedHashMap<String, List<Token>>();
+    if (shortestDerivableTokenStreamMap != null) {
+      return;
+    }
+    shortestDerivableTokenStreamMap = new LinkedHashMap<Expression, List<Token>>();
 
     boolean changed;
     do {
       changed = false;
       for (Rule rule : rules) {
-        List<Token> oldTokenStream = shortestDerivableTokenStreamMap.get(rule.getVariable());
-        List<Token> newTokenStream = rule.getExpression().accept(new ShortestDerivableTokenStreamVisitor());
+        Expression expression = rule.getExpression();
+        List<Token> oldTokenStream = shortestDerivableTokenStreamMap.get(expression);
+        List<Token> newTokenStream = computeShortestDerivableTokenStream(expression);
         if (oldTokenStream == null || newTokenStream.size() < oldTokenStream.size()) {
           changed = true;
-          shortestDerivableTokenStreamMap.put(rule.getVariable(), newTokenStream);
+          shortestDerivableTokenStreamMap.put(expression, newTokenStream);
         }
       }
     } while (changed);
+  }
+
+  private List<Token> computeShortestDerivableTokenStream(Expression expression) {
+    List<Token> result = expression.accept(new ShortestDerivableTokenStreamVisitor());
+    shortestDerivableTokenStreamMap.put(expression, result);
+    return result;
   }
 
   private class ShortestDerivableTokenStreamVisitor implements ExpressionVisitor<Object, List<Token>> {
@@ -524,18 +542,18 @@ public class PackratGrammar implements Grammar {
     }
 
     public List<Token> visit(VariableExpression variableExpression) {
-      return shortestDerivableTokenStreamMap.get(variableExpression.getVariable());
+      return getShortestDerivableTokenStream(variableExpression.getVariable());
     }
 
     public List<Token> visit(DelimitedSequenceExpression sequenceExpression) {
-      return sequenceExpression.getElement().accept(this);
+      return computeShortestDerivableTokenStream(sequenceExpression.getElement());
     }
 
     public List<Token> visit(SequenceExpression sequenceExpression) {
       List<Token> result = new ArrayList<Token>();
 
       for (Expression child : sequenceExpression.getChildren()) {
-        List<Token> childResult = child.accept(this);
+        List<Token> childResult = computeShortestDerivableTokenStream(child);
         if (childResult == null) {
           return null;
         }
@@ -550,14 +568,10 @@ public class PackratGrammar implements Grammar {
       List<Token> result = null;
 
       for (Expression child : choiceExpression.getChildren()) {
-        List<Token> childResult = child.accept(this);
+        List<Token> childResult = computeShortestDerivableTokenStream(child);
         if (childResult != null) {
           if (result == null || childResult.size() < result.size()) {
             result = childResult;
-          } else if (childResult.size() == 1 && childResult.size() == result.size()) {
-            if (childResult.get(0).compareTo(result.get(0)) < 0) {
-              result = childResult;
-            }
           }
         }
       }
@@ -578,7 +592,7 @@ public class PackratGrammar implements Grammar {
     }
 
     public List<Token> visit(OneOrMoreExpression oneOrMoreExpression) {
-      return oneOrMoreExpression.getChild().accept(this);
+      return computeShortestDerivableTokenStream(oneOrMoreExpression.getChild());
     }
 
     public List<Token> visit(TokenExpression tokenExpression) {
@@ -596,108 +610,6 @@ public class PackratGrammar implements Grammar {
       }
 
       return Collections.singletonList(representative);
-    }
-  }
-
-  private Map<String, List<Class<? extends Token>>> shortestDerivableClassStreamMap;
-
-  public final List<Class<? extends Token>> getShortestDerivableClassStream(String variable) {
-    computeShortestDerivableClassStreamMap();
-
-    return shortestDerivableClassStreamMap.get(variable);
-  }
-
-  private void computeShortestDerivableClassStreamMap() {
-    shortestDerivableClassStreamMap = new LinkedHashMap<String, List<Class<? extends Token>>>();
-
-    boolean changed;
-    do {
-      changed = false;
-      for (Rule rule : rules) {
-        List<Class<? extends Token>> oldTokenStream = shortestDerivableClassStreamMap.get(rule.getVariable());
-        List<Class<? extends Token>> newTokenStream = rule.getExpression().accept(
-            new ShortestDerivableClassStreamVisitor());
-        if (oldTokenStream == null || newTokenStream.size() < oldTokenStream.size()) {
-          changed = true;
-          shortestDerivableClassStreamMap.put(rule.getVariable(), newTokenStream);
-        }
-      }
-    } while (changed);
-  }
-
-  private class ShortestDerivableClassStreamVisitor implements ExpressionVisitor<Object, List<Class<? extends Token>>> {
-    public List<Class<? extends Token>> visit(EmptyExpression emptyExpression) {
-      return Collections.emptyList();
-    }
-
-    public List<Class<? extends Token>> visit(CharacterExpression characterExpression) {
-      throw new RuntimeException("NYI");
-    }
-
-    public List<Class<? extends Token>> visit(TerminalExpression terminalExpression) {
-      throw new RuntimeException("NYI");
-    }
-
-    public List<Class<? extends Token>> visit(VariableExpression variableExpression) {
-      return shortestDerivableClassStreamMap.get(variableExpression.getVariable());
-    }
-
-    public List<Class<? extends Token>> visit(DelimitedSequenceExpression sequenceExpression) {
-      return sequenceExpression.getElement().accept(this);
-    }
-
-    public List<Class<? extends Token>> visit(SequenceExpression sequenceExpression) {
-      List<Class<? extends Token>> result = new ArrayList<Class<? extends Token>>();
-
-      for (Expression child : sequenceExpression.getChildren()) {
-        List<Class<? extends Token>> childResult = child.accept(this);
-        if (childResult == null) {
-          return null;
-        }
-
-        result.addAll(childResult);
-      }
-
-      return result;
-    }
-
-    public List<Class<? extends Token>> visit(ChoiceExpression choiceExpression) {
-      List<Class<? extends Token>> result = null;
-
-      for (Expression child : choiceExpression.getChildren()) {
-        List<Class<? extends Token>> childResult = child.accept(this);
-        if (childResult != null) {
-          if (result == null || childResult.size() < result.size()) {
-            result = childResult;
-          }
-        }
-      }
-
-      return result;
-    }
-
-    public List<Class<? extends Token>> visit(NotExpression notExpression) {
-      return Collections.emptyList();
-    }
-
-    public List<Class<? extends Token>> visit(RepetitionExpression repetitionExpression) {
-      return Collections.emptyList();
-    }
-
-    public List<Class<? extends Token>> visit(FunctionExpression<Object> functionExpression) {
-      return functionExpression.getShortestDerivableClassStream();
-    }
-
-    public List<Class<? extends Token>> visit(OneOrMoreExpression oneOrMoreExpression) {
-      return oneOrMoreExpression.getChild().accept(this);
-    }
-
-    public List<Class<? extends Token>> visit(TokenExpression tokenExpression) {
-      return Collections.<Class<? extends Token>>singletonList(tokenExpression.getToken().getRepresentativeClass());
-    }
-
-    public List<Class<? extends Token>> visit(TypeExpression typeExpression) {
-      return (List) Collections.singletonList(typeExpression.getType());
     }
   }
 }

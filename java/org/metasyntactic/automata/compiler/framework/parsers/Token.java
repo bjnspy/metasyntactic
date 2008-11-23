@@ -5,5 +5,5 @@ public interface Token extends Comparable<Token> {
 
   int getType();
 
-  Class<? extends Token> getRepresentativeClass();
+  //Class<? extends Token> getRepresentativeClass();
 }
