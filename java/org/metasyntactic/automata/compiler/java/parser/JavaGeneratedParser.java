@@ -2,14 +2,14 @@
 
 package org.metasyntactic.automata.compiler.java.parser;
 
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
-import org.metasyntactic.automata.compiler.util.Tuple3;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
 
 import java.util.List;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class JavaGeneratedParser extends AbstractJavaGeneratedParser {

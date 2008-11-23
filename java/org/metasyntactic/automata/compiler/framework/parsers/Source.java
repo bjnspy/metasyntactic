@@ -8,11 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: cyrusn
- * Date: Jun 22, 2008
- * Time: 4:01:21 PM
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: cyrusn Date: Jun 22, 2008 Time: 4:01:21 PM To change this template use File |
+ * Settings | File Templates.
  */
 public class Source {
   private final String text;
@@ -84,7 +81,7 @@ public class Source {
   public Position getPosition(int characterIndex) {
     computeLines();
     final int index = Arrays.binarySearch(lineStartCharacterMap, characterIndex);
-    final int line = index < 0 ? -index -2 : index;
+    final int line = index < 0 ? -index - 2 : index;
 
     int lineStart = lineStartCharacterMap[line];
     final int character = characterIndex - lineStart;

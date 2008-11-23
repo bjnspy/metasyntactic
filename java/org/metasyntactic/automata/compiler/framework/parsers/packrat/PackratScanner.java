@@ -8,17 +8,18 @@ import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions
 import org.metasyntactic.automata.compiler.util.Function4;
 import org.metasyntactic.common.base.Preconditions;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class PackratScanner<T extends Token> implements Scanner<T> {
   private final Source input;
   private final PackratGrammar lexicalSpecification;
   private final Map<String, Function4<Object, Source, Integer, Integer, Object>> actions;
 
-  public PackratScanner(
-      PackratGrammar lexicalSpecification,
-      Map<String, Function4<Object, Source, Integer, Integer, Object>> actions,
-      Source input) {
+  public PackratScanner(PackratGrammar lexicalSpecification,
+                        Map<String, Function4<Object, Source, Integer, Integer, Object>> actions, Source input) {
     Preconditions.checkNotNull(input);
     Preconditions.checkNotNull(lexicalSpecification);
     Preconditions.checkNotNull(actions);
@@ -117,12 +118,9 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
     return result;
   }
 
-  private final QuickQueue<EvaluationExpressionVisitor> visitors =
-      new QuickQueue<EvaluationExpressionVisitor>();
+  private final QuickQueue<EvaluationExpressionVisitor> visitors = new QuickQueue<EvaluationExpressionVisitor>();
 
-  private EvaluationResult evaluateExpression(
-      final int position,
-      final Expression expression) {
+  private EvaluationResult evaluateExpression(final int position, final Expression expression) {
     EvaluationExpressionVisitor visitor = visitors.poll();
     if (visitor == null) {
       visitor = new EvaluationExpressionVisitor();
@@ -272,8 +270,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
       ArrayList<Object> values = null;
 
       while (true) {
-        EvaluationResult result = evaluateExpression(currentPosition,
-            repetitionExpression.getChild());
+        EvaluationResult result = evaluateExpression(currentPosition, repetitionExpression.getChild());
 
         if (result.isSuccess()) {
           currentPosition = result.position;

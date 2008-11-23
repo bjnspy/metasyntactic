@@ -16,10 +16,7 @@ import java.util.List;
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class PackratParser<T extends Token> extends AbstractPackratParser<T> {
-  protected PackratParser(
-      PackratGrammar grammar,
-      List<SourceToken<T>> input,
-      ActionMap<T> actions) {
+  protected PackratParser(PackratGrammar grammar, List<SourceToken<T>> input, ActionMap<T> actions) {
     super(grammar, input, actions);
   }
 
@@ -50,8 +47,7 @@ public class PackratParser<T extends Token> extends AbstractPackratParser<T> {
       result = evaluateExpression(position, rule.getExpression());
 
       if (result.isSuccess()) {
-        Function4<Object, List<SourceToken<T>>, Integer, Integer, Object> action = actions.get(
-            rule.getVariable());
+        Function4<Object, List<SourceToken<T>>, Integer, Integer, Object> action = actions.get(rule.getVariable());
 
         if (action != null) {
           Object value = action.apply(result.answer, input, position, result.position);
@@ -66,12 +62,9 @@ public class PackratParser<T extends Token> extends AbstractPackratParser<T> {
     return result;
   }
 
-  private final QuickQueue<EvaluationExpressionVisitor> visitors =
-      new QuickQueue<EvaluationExpressionVisitor>();
+  private final QuickQueue<EvaluationExpressionVisitor> visitors = new QuickQueue<EvaluationExpressionVisitor>();
 
-  @Override protected EvaluationResult evaluateExpression(
-      final int position,
-      final Expression expression) {
+  @Override protected EvaluationResult evaluateExpression(final int position, final Expression expression) {
     furtherstPosition = Math.max(position, furtherstPosition);
 
     EvaluationExpressionVisitor visitor = visitors.poll();

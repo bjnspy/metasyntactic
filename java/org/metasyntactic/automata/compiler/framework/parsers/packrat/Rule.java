@@ -2,16 +2,15 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
 import org.metasyntactic.automata.compiler.framework.parsers.Source;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
 import org.metasyntactic.automata.compiler.util.Function4;
 import org.metasyntactic.common.base.Preconditions;
 
 import java.util.Map;
 
 /**
- * A {@code rule} has the form A ? e, where A is a nonterminal symbol and e is
- * a parsing expression.
+ * A {@code rule} has the form A ? e, where A is a nonterminal symbol and e is a parsing expression.
  *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */

@@ -2,14 +2,15 @@
 
 package org.metasyntactic.automata.compiler.util;
 
-import org.metasyntactic.common.base.Pair;
 import org.metasyntactic.common.base.Nullable;
+import org.metasyntactic.common.base.Pair;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
-public class Tuple3<A,B,C> extends Pair<A,B> {
+public class Tuple3<A, B, C> extends Pair<A, B> {
   private final C third;
 
   public Tuple3(@Nullable A first, @Nullable B second, @Nullable C third) {

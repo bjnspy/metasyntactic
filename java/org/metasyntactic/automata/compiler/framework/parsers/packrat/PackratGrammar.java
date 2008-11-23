@@ -68,7 +68,7 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
     }
     */
 
-
+/*
     computeShortestDerivableTokenStreamMap();
     for (Rule rule : rules) {
       System.out.println(rule.getVariable());
@@ -80,6 +80,7 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
 
       System.out.println("\t" + shortestList);
     }
+    */
   }
 
   protected abstract TTokenType getTokenFromType(int type);

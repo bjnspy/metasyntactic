@@ -4,6 +4,7 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.generator;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public interface ParserGenerator {

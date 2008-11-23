@@ -4,6 +4,7 @@ package org.metasyntactic.automata.compiler.framework.parsers;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class SyntaxException extends RuntimeException {

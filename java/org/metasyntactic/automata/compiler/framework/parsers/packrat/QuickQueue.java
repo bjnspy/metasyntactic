@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class QuickQueue<T> {
-  private T[] array = (T[])new Object[16];
+  private T[] array = (T[]) new Object[16];
   private int size;
 
   public QuickQueue() {

@@ -10,8 +10,7 @@ import java.util.Set;
 
 public abstract class KeywordToken extends JavaToken {
   private final static Map<String, KeywordToken> map = new HashMap<String, KeywordToken>();
-  private final static Set<Class<? extends Token>> tokenClasses =
-      new LinkedHashSet<Class<? extends Token>>();
+  private final static Set<Class<? extends Token>> tokenClasses = new LinkedHashSet<Class<? extends Token>>();
 
   static {
     if (true) {
@@ -110,13 +109,14 @@ public abstract class KeywordToken extends JavaToken {
   }
 
   private Type type;
+
   protected Type getTokenType() {
     if (type == null) {
       String name = this.getClass().getSimpleName();
       name = name.substring(0, name.length() - "Token".length());
 
       try {
-        type = (Type)Type.class.getField(name).get(null);
+        type = (Type) Type.class.getField(name).get(null);
       } catch (IllegalAccessException e) {
         throw new RuntimeException(e);
       } catch (NoSuchFieldException e) {

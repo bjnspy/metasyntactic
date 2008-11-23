@@ -4,6 +4,7 @@ package org.metasyntactic.automata.compiler.util;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class None<T> implements Optional<T> {

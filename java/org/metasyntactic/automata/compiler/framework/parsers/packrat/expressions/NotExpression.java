@@ -5,8 +5,8 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.expression
 import org.metasyntactic.common.base.Preconditions;
 
 /**
- * The expression !e invokes the sub-expression e, and then succeeds if e fails
- * and fails if e succeeds, but in either case never consumes any input.
+ * The expression !e invokes the sub-expression e, and then succeeds if e fails and fails if e succeeds, but in either
+ * case never consumes any input.
  *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
@@ -44,7 +44,7 @@ public class NotExpression extends Expression {
     return child.hashCode();
   }
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
+  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 

@@ -2,35 +2,17 @@
 
 package org.metasyntactic.automata.compiler.python.scanner;
 
-import org.metasyntactic.automata.compiler.framework.parsers.SimpleSpan;
-import org.metasyntactic.automata.compiler.framework.parsers.Source;
-import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
-import org.metasyntactic.automata.compiler.framework.parsers.Span;
-import org.metasyntactic.automata.compiler.framework.parsers.SyntaxException;
+import org.metasyntactic.automata.compiler.framework.parsers.*;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.AbstractPackratParser;
 import org.metasyntactic.automata.compiler.python.parser.PythonGrammar;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftBracketDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftCurlyDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.LeftParenthesisDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightBracketDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightCurlyDelimiterToken;
-import org.metasyntactic.automata.compiler.python.scanner.delimiters.RightParenthesisDelimiterToken;
+import org.metasyntactic.automata.compiler.python.scanner.delimiters.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Queue;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class PythonLexicalAnalyzer {
@@ -48,8 +30,7 @@ public class PythonLexicalAnalyzer {
     return result;
   }
 
-  private List<SourceToken<PythonToken>> processWhitespace(
-      List<SourceToken<PythonToken>> tokens) {
+  private List<SourceToken<PythonToken>> processWhitespace(List<SourceToken<PythonToken>> tokens) {
     if (tokens.isEmpty()) {
       return tokens;
     }
@@ -65,8 +46,7 @@ public class PythonLexicalAnalyzer {
     return result;
   }
 
-  private static List<SourceToken<PythonToken>> processComments(
-      List<SourceToken<PythonToken>> tokens) {
+  private static List<SourceToken<PythonToken>> processComments(List<SourceToken<PythonToken>> tokens) {
     if (tokens.isEmpty()) {
       return tokens;
     }
@@ -143,9 +123,7 @@ public class PythonLexicalAnalyzer {
         if (currentIndent == stack.peek()) {
           // ignore
         } else {
-          Span span = new SimpleSpan(
-              token.getSpan().getStartPosition(),
-              token.getSpan().getStartPosition());
+          Span span = new SimpleSpan(token.getSpan().getStartPosition(), token.getSpan().getStartPosition());
 
           if (currentIndent > stack.peek()) {
             stack.add(currentIndent);
@@ -169,9 +147,7 @@ public class PythonLexicalAnalyzer {
     }
 
     SourceToken<PythonToken> lastToken = tokens.get(tokens.size() - 1);
-    Span span = new SimpleSpan(
-        lastToken.getSpan().getEndPosition(),
-        lastToken.getSpan().getEndPosition());
+    Span span = new SimpleSpan(lastToken.getSpan().getEndPosition(), lastToken.getSpan().getEndPosition());
 
     while (stack.poll() != 0) {
       result.add(new SourceToken<PythonToken>(DedentToken.instance, span));
@@ -198,8 +174,7 @@ public class PythonLexicalAnalyzer {
     return length;
   }
 
-  private static List<SourceToken<PythonToken>> processBlankLines(
-      List<SourceToken<PythonToken>> tokens) {
+  private static List<SourceToken<PythonToken>> processBlankLines(List<SourceToken<PythonToken>> tokens) {
     if (tokens.isEmpty()) {
       return tokens;
     }
@@ -239,8 +214,7 @@ public class PythonLexicalAnalyzer {
     return result;
   }
 
-  private static List<SourceToken<PythonToken>> processImplicitLineJoins
-      (List<SourceToken<PythonToken>> tokens) {
+  private static List<SourceToken<PythonToken>> processImplicitLineJoins(List<SourceToken<PythonToken>> tokens) {
     if (tokens.isEmpty()) {
       return tokens;
     }
@@ -258,8 +232,8 @@ public class PythonLexicalAnalyzer {
           pyToken == LeftCurlyDelimiterToken.instance) {
         openCount++;
       } else if (pyToken == RightParenthesisDelimiterToken.instance ||
-          pyToken == RightBracketDelimiterToken.instance ||
-          pyToken == RightCurlyDelimiterToken.instance) {
+                 pyToken == RightBracketDelimiterToken.instance ||
+                 pyToken == RightCurlyDelimiterToken.instance) {
         openCount--;
         if (openCount < 0) {
           throw new SyntaxException("Mismatched delimiter: " + token);
@@ -287,8 +261,7 @@ public class PythonLexicalAnalyzer {
     return WhitespaceToken.class.isAssignableFrom(token.getClass());
   }
 
-  private static List<SourceToken<PythonToken>> processExplicitLineJoins(
-      List<SourceToken<PythonToken>> tokens) {
+  private static List<SourceToken<PythonToken>> processExplicitLineJoins(List<SourceToken<PythonToken>> tokens) {
     if (tokens.isEmpty()) {
       return tokens;
     }
@@ -311,8 +284,7 @@ public class PythonLexicalAnalyzer {
         SourceToken<PythonToken> nextToken = tokens.get(i + 1);
 
         if (!isNewLine(nextToken.getToken())) {
-          throw new SyntaxException(
-              "Token following line continuation character was not a new line: " + nextToken);
+          throw new SyntaxException("Token following line continuation character was not a new line: " + nextToken);
         }
 
         // Skip both the line continuation and the new line
@@ -333,18 +305,17 @@ public class PythonLexicalAnalyzer {
     //System.out.println(JavaGrammar.instance);
 
     if (false) {
-      String input =
-          "def perm(l):\n" +
-          "        # Compute the list of all permutations of l\n" +
-          "    if len(l) <= 1:\n" +
-          "                  return [l]\n" +
-          "    r = []\n" +
-          "    for i in range(len(l)):\n" +
-          "             s = l[:i] + l[i+1:]\n" +
-          "             p = perm(s)\n" +
-          "             for x in p:\n" +
-          "              r.append(l[i:i+1] + x)\n" +
-          "    return r";
+      String input = "def perm(l):\n" +
+                     "        # Compute the list of all permutations of l\n" +
+                     "    if len(l) <= 1:\n" +
+                     "                  return [l]\n" +
+                     "    r = []\n" +
+                     "    for i in range(len(l)):\n" +
+                     "             s = l[:i] + l[i+1:]\n" +
+                     "             p = perm(s)\n" +
+                     "             for x in p:\n" +
+                     "              r.append(l[i:i+1] + x)\n" +
+                     "    return r";
 
       List<SourceToken<PythonToken>> tokens = new PythonScanner(new Source(input)).scan();
       List<SourceToken<PythonToken>> analyzedTokens = new PythonLexicalAnalyzer().analyze(tokens);
@@ -419,9 +390,7 @@ public class PythonLexicalAnalyzer {
     System.out.println("Parsed: " + file);
   }
 
-  public static String readFile
-      (File
-          file) throws IOException {
+  public static String readFile(File file) throws IOException {
     Reader in = new BufferedReader(new FileReader(file));
 
     StringBuilder sb = new StringBuilder();

@@ -7,6 +7,7 @@ import java.io.Writer;
 
 /**
  * TODO(cyrusn): javadoc
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class IndentingWriter extends Writer {

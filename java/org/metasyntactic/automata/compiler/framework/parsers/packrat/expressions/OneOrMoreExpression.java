@@ -1,11 +1,8 @@
 package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
 /**
- * Created by IntelliJ IDEA.
- * User: cyrusn
- * Date: Jun 20, 2008
- * Time: 7:58:35 PM
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: cyrusn Date: Jun 20, 2008 Time: 7:58:35 PM To change this template use File |
+ * Settings | File Templates.
  */
 public class OneOrMoreExpression extends Expression {
   private final Expression child;
@@ -19,12 +16,18 @@ public class OneOrMoreExpression extends Expression {
   }
 
   @Override public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof OneOrMoreExpression)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof OneOrMoreExpression)) {
+      return false;
+    }
 
     OneOrMoreExpression that = (OneOrMoreExpression) o;
 
-    if (!child.equals(that.child)) return false;
+    if (!child.equals(that.child)) {
+      return false;
+    }
 
     return true;
   }
@@ -33,7 +36,7 @@ public class OneOrMoreExpression extends Expression {
     return child.hashCode();
   }
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
+  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 

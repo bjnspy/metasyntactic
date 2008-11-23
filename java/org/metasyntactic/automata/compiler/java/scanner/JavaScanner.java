@@ -16,49 +16,48 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class JavaScanner extends PackratScanner<JavaToken> {
-  private final static Map<String, Function4<Object, Source, Integer, Integer, Object>> actions =
-      new IdentityHashMap<String, Function4<Object, Source, Integer, Integer, Object>>();
+  private final static Map<String, Function4<Object, Source, Integer, Integer, Object>> actions = new IdentityHashMap<String, Function4<Object, Source, Integer, Integer, Object>>();
 
   static {
     final Set<String> keywords = new HashSet<String>(Arrays.asList(KeywordToken.getKeywords()));
 
     actions.put(JavaLexicalSpecification.KEYWORD_OR_IDENTIFIER_RULE.getVariable(),
-        new Function4<Object, Source, Integer, Integer, Object>() {
-          @Override
-          public Object apply(Object argument1, Source source, Integer start, Integer end) {
-            String text = source.getText().substring(start, end);
+                new Function4<Object, Source, Integer, Integer, Object>() {
+                  @Override
+                  public Object apply(Object argument1, Source source, Integer start, Integer end) {
+                    String text = source.getText().substring(start, end);
 
-            if (text.equals("true")) {
-              return makeToken(TrueBooleanLiteralToken.instance, source, start, end);
-            } else if (text.equals("false")) {
-              return makeToken(FalseBooleanLiteralToken.instance, source, start, end);
-            } else if (text.equals("null")) {
-              return makeToken(NullLiteralToken.instance, source, start, end);
-            } else if (keywords.contains(text)) {
-              return makeToken(KeywordToken.getKeywordToken(text), source, start, end);
-            } else {
-              return makeToken(new IdentifierToken(text), source, start, end);
-            }
-          }
-        });
+                    if (text.equals("true")) {
+                      return makeToken(TrueBooleanLiteralToken.instance, source, start, end);
+                    } else if (text.equals("false")) {
+                      return makeToken(FalseBooleanLiteralToken.instance, source, start, end);
+                    } else if (text.equals("null")) {
+                      return makeToken(NullLiteralToken.instance, source, start, end);
+                    } else if (keywords.contains(text)) {
+                      return makeToken(KeywordToken.getKeywordToken(text), source, start, end);
+                    } else {
+                      return makeToken(new IdentifierToken(text), source, start, end);
+                    }
+                  }
+                });
 
     actions.put(JavaLexicalSpecification.SEPARATOR_RULE.getVariable(),
-        new Function4<Object, Source, Integer, Integer, Object>() {
-          @Override
-          public Object apply(Object argument1, Source source, Integer start, Integer end) {
-            String text = source.getText().substring(start, end);
-            return makeToken(SeparatorToken.getSeparatorToken(text), source, start, end);
-          }
-        });
+                new Function4<Object, Source, Integer, Integer, Object>() {
+                  @Override
+                  public Object apply(Object argument1, Source source, Integer start, Integer end) {
+                    String text = source.getText().substring(start, end);
+                    return makeToken(SeparatorToken.getSeparatorToken(text), source, start, end);
+                  }
+                });
 
     actions.put(JavaLexicalSpecification.OPERATOR_RULE.getVariable(),
-        new Function4<Object, Source, Integer, Integer, Object>() {
-          @Override
-          public Object apply(Object argument1, Source source, Integer start, Integer end) {
-            String text = source.getText().substring(start, end);
-            return makeToken(OperatorToken.getOperatorToken(text), source, start, end);
-          }
-        });
+                new Function4<Object, Source, Integer, Integer, Object>() {
+                  @Override
+                  public Object apply(Object argument1, Source source, Integer start, Integer end) {
+                    String text = source.getText().substring(start, end);
+                    return makeToken(OperatorToken.getOperatorToken(text), source, start, end);
+                  }
+                });
 
     addAction(JavaLexicalSpecification.WHITESPACE_RULE, WhitespaceToken.class);
     addAction(JavaLexicalSpecification.CHARACTER_LITERAL_RULE, CharacterLiteralToken.class);
@@ -95,8 +94,7 @@ public class JavaScanner extends PackratScanner<JavaToken> {
     });
   }
 
-  private static SourceToken<JavaToken> makeToken(JavaToken token, Source source, Integer start,
-                                                  Integer end) {
+  private static SourceToken<JavaToken> makeToken(JavaToken token, Source source, Integer start, Integer end) {
     return new SourceToken<JavaToken>(token, span(source, start, end));
   }
 

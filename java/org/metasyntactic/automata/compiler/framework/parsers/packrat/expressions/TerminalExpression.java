@@ -5,9 +5,8 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.expression
 import org.metasyntactic.common.base.Preconditions;
 
 /**
- * An atomic parsing expression consisting of a single terminal succeeds if the
- * first character of the input string matches that terminal, and in that case
- * consumes the input character; otherwise the expression yields a failure
+ * An atomic parsing expression consisting of a single terminal succeeds if the first character of the input string
+ * matches that terminal, and in that case consumes the input character; otherwise the expression yields a failure
  * result.
  *
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -46,7 +45,7 @@ public class TerminalExpression extends Expression {
     return terminal.hashCode();
   }
 
-  @Override public <TInput,TResult> TResult accept(ExpressionVisitor<TInput,TResult> visitor) {
+  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 
