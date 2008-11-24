@@ -1,67 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    
-       android:paddingTop="0px"
-    android:paddingBottom="0px"
-    android:paddingLeft="0px"
-    android:paddingRight="0px"
-    android:animationCache="false">
-    <org.metasyntactic.views.CustomGallery
-        android:id="@+id/detail"
-        android:layout_width="fill_parent"
-        android:layout_height="240px"
-    android:background="@drawable/shape_5"   
-        
-        android:spacing="0dip"
-        android:paddingBottom="15px"
-        android:layout_gravity="top" />
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_below="@id/detail"
-        android:layout_height="wrap_content"
-       android:background="@drawable/shape_1"   
-        android:paddingRight="0px"
-    android:paddingLeft="0px"    
-        >
-        <Button
-            android:id="@+id/details"
-            android:layout_width="170px"
-            android:layout_height="50px"
-            android:layout_marginTop="2px"
-            android:layout_marginBottom="2px"
-            android:background="@drawable/button"
-            android:text="More Details"
-            android:layout_alignParentLeft="true"
-        
-            android:textStyle="bold" />
-        <Button
-            android:id="@+id/showtimes"
-            android:layout_width="170px"
-            android:layout_height="50px"
-            android:layout_marginBottom="2px"
-            android:layout_alignParentRight="true"
-          
-            android:layout_toRightOf="@id/details"
-            android:layout_marginTop="2px"
-            android:background="@drawable/button"
-            android:text="Get ShowTimes"
-            android:textStyle="bold" />
-    
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent">
-        <org.metasyntactic.views.CustomGallery
-            android:id="@+id/thumbnails"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:spacing="10px"
-            android:layout_marginTop="5px" />
-    </RelativeLayout>
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:paddingTop="0px"
+	android:paddingBottom="0px"
+	android:paddingLeft="0px"
+	android:paddingRight="0px"
+	android:animationCache="false">
+	<org.metasyntactic.views.CustomGallery
+		android:id="@+id/detail"
+		android:layout_width="340px"
+		android:layout_height="240px"
+		android:background="@drawable/shape_5"
+		android:spacing="10px"
+		android:paddingBottom="0px"
+		android:paddingRight="15px"
+		android:layout_gravity="top" />
+	<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_below="@id/detail"
+		android:layout_height="wrap_content"
+		android:background="@drawable/shape_1"
+		android:paddingRight="0px"
+		android:paddingLeft="0px">
+		<Button
+			android:id="@+id/details"
+			android:layout_width="170px"
+			android:layout_height="50px"
+			android:layout_marginTop="2px"
+			android:layout_marginBottom="2px"
+			android:background="@drawable/button"
+			android:text="More Details"
+			android:layout_alignParentLeft="true"
+			android:textStyle="bold" />
+		<Button
+			android:id="@+id/showtimes"
+			android:layout_width="170px"
+			android:layout_height="50px"
+			android:layout_marginBottom="2px"
+			android:layout_alignParentRight="true"
+			android:layout_toRightOf="@id/details"
+			android:layout_marginTop="2px"
+			android:background="@drawable/button"
+			android:text="Get ShowTimes"
+			android:textStyle="bold" />
+	</RelativeLayout>
+	<RelativeLayout
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent">
+		<org.metasyntactic.views.CustomGallery
+			android:id="@+id/thumbnails"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="left"
+			android:spacing="10px"
+			android:layout_marginTop="5px" />
+	</RelativeLayout>
 </LinearLayout>

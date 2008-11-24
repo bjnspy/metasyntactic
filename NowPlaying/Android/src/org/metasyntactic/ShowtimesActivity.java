@@ -3,11 +3,14 @@ package org.metasyntactic;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,6 +21,8 @@ import android.widget.TextView;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,17 +111,13 @@ public class ShowtimesActivity extends ListActivity {
           .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
           (TextView) convertView.findViewById(R.id.data));
       final int theaterIndex = position / TheaterDetailItemType.values().length;
-      Log.i("theaterIndex ", String.valueOf(theaterIndex));
-      Log.i("position ", String.valueOf(position));
-      Log.i("values length ", String.valueOf(TheaterDetailItemType.values().length));
       final Theater theater = ShowtimesActivity.this.theaters.get(theaterIndex);
       switch (ShowtimesActivity.this.detailItems.get(position).getType()) {
       case NAME_SHOWTIMES:
         holder.label.setTextAppearance(ShowtimesActivity.this, android.R.attr.textAppearanceLarge);
-        // holder.label.setTextColor(Color.BLACK);
         holder.label.setMinHeight(50);
-        holder.label.setBackgroundColor(Color.parseColor("#808080"));
-        holder.label.setTextColor(Color.WHITE);
+        holder.label.setBackgroundResource(R.drawable.opaque_box);
+        holder.label.setTextColor(Color.BLACK);
         holder.label.setText(theater.getName());
         final List<Performance> list = NowPlayingControllerWrapper
             .getPerformancesForMovieAtTheater(ShowtimesActivity.this.movie, theater);
@@ -214,4 +215,32 @@ public class ShowtimesActivity extends ListActivity {
       this.type = type;
     }
   }
+  
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.movies).setIntent(
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
+        R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
+        R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(final MenuItem item) {
+    
+    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
+      final Intent intent = new Intent();
+      intent.setClass(ShowtimesActivity.this, AllTheatersActivity.class);
+      startActivity(intent);
+      return true;
+    }
+    return false;
+  }
+
 }

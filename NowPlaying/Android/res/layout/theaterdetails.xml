@@ -156,9 +156,9 @@
         android:minHeight="50px"
          android:paddingLeft="8dip"
         android:paddingRight="10dip"
-        android:textColor="?android:attr/textColorPrimary"
-        android:background="#808080"
-      android:textStyle="bold"
+        android:textColor="#FF000000"
+        android:background="@drawable/opaque_box"
+      
       android:text="Showtimes"
         android:textAppearance="?android:attr/textAppearanceMedium"
      />

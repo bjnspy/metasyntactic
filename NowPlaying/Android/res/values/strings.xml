@@ -8,6 +8,8 @@
     <string name="menu_theater_sort">Sort Theaters</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_theater">Theaters</string>
+    <string name="menu_movies">Movies</string>
+    
     <string name="menu_upcoming">Upcoming</string>
     <string name="location">Location</string>
     

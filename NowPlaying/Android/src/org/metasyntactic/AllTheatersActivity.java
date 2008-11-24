@@ -98,12 +98,27 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
     this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress
         .getLongitude(), null, null, null, null, null);
-    Log.i("TEst", String.valueOf(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     Collections.sort(this.theaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper
         .getAllTheatersSelectedSortIndex()));
     // Set up Movies adapter
     this.adapter = new TheatersAdapter();
     setListAdapter(this.adapter);
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MENU_SORT, 0, R.string.menu_theater_sort).setIcon(android.R.drawable.star_on);
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.movies).setIntent(
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
+        R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
+        R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    return super.onCreateOptionsMenu(menu);
   }
 
   @Override
@@ -117,17 +132,15 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       builder.show();
       return true;
     }
-    return true;
+    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
+      final Intent intent = new Intent();
+      intent.setClass(AllTheatersActivity.this, AllTheatersActivity.class);
+      startActivity(intent);
+      return true;
+    }
+    return false;
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MENU_SORT, 0, R.string.menu_theater_sort).setIcon(android.R.drawable.star_on);
-    menu.add(0, MENU_SETTINGS, 0, R.string.settings)
-        .setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-            new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
-    return super.onCreateOptionsMenu(menu);
-  }
 
   private class TheatersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;

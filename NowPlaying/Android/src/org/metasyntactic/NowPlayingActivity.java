@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.Arrays;
@@ -39,10 +40,6 @@ import java.util.Date;
 import java.util.List;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
-  private static final int MENU_SORT = 1;
-  private static final int MENU_THEATER = 2;
-  private static final int MENU_UPCOMING = 3;
-  private static final int MENU_SETTINGS = 4;
   private GridView grid;
   private Intent intent;
   private Animation animation;
@@ -320,13 +317,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
         android.R.drawable.star_on);
-    menu.add(0, MENU_THEATER, 0, R.string.menu_theater).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
-    menu.add(0, MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
         R.drawable.upcoming);
-    menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
         new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
@@ -334,7 +331,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-    if (item.getItemId() == MENU_SORT) {
+    if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
           NowPlayingActivity.this).setTitle(R.string.movies_select_sort_title)
           .setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
@@ -344,7 +341,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       builder.show();
       return true;
     }
-    if (item.getItemId() == MENU_THEATER) {
+    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(NowPlayingActivity.this, AllTheatersActivity.class);
       startActivity(intent);
