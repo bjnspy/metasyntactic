@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,4 +156,32 @@ public class TheaterDetailsActivity extends ListActivity {
       notifyDataSetChanged();
     }
   }
+  
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.movies).setIntent(
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
+        R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
+        R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(final MenuItem item) {
+   
+    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
+      final Intent intent = new Intent();
+      intent.setClass(TheaterDetailsActivity.this, AllTheatersActivity.class);
+      startActivity(intent);
+      return true;
+    }
+    return false;
+  }
+
 }

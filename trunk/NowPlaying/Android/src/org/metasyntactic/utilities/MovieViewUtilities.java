@@ -28,6 +28,12 @@ import java.util.Date;
 import java.util.List;
 
 public class MovieViewUtilities {
+  public static final int MENU_SORT = 1;
+  public static final int MENU_THEATER = 2;
+  public static final int MENU_UPCOMING = 3;
+  public static final int MENU_SETTINGS = 4;
+  public static final int MENU_MOVIES = 5;
+  
   // Constants for movies sort
   private final static int MovieTitle = 0;
   private final static int Release = 1;

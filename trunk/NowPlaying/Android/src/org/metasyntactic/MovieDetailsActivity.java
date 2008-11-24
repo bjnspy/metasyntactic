@@ -3,21 +3,27 @@ package org.metasyntactic;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -184,7 +190,9 @@ public class MovieDetailsActivity extends ListActivity {
       if (position == 0) {
         holder.name
             .setTextAppearance(MovieDetailsActivity.this, android.R.attr.textAppearanceLarge);
-        holder.name.setBackgroundResource(R.drawable.shape_1);
+        holder.name.setBackgroundResource(R.drawable.opaque_box);
+        holder.name.setTextColor(Color.BLACK);
+        
         holder.name.setMinHeight(50);
       }
       return convertView;
@@ -230,4 +238,32 @@ public class MovieDetailsActivity extends ListActivity {
       this.value = value;
     }
   }
+  
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.movies).setIntent(
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
+        R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
+        R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(final MenuItem item) {
+   
+    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
+      final Intent intent = new Intent();
+      intent.setClass(MovieDetailsActivity.this, AllTheatersActivity.class);
+      startActivity(intent);
+      return true;
+    }
+    return false;
+  }
+
 }

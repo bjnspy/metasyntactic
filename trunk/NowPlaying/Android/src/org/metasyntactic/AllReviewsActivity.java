@@ -7,10 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import org.metasyntactic.data.Review;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.List;
 
@@ -95,4 +99,32 @@ public class AllReviewsActivity extends ListActivity {
       return AllReviewsActivity.this.reviews.size();
     }
   }
+  
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.movies).setIntent(
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
+        R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
+        R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(final MenuItem item) {
+    
+    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
+      final Intent intent = new Intent();
+      intent.setClass(AllReviewsActivity.this, AllTheatersActivity.class);
+      startActivity(intent);
+      return true;
+    }
+    return false;
+  }
+
 }
