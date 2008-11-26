@@ -19,14 +19,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.R;
 import org.metasyntactic.caches.scores.ScoreType;
 
 import java.util.Arrays;
@@ -36,7 +34,7 @@ public class NowPlayingPreferenceDialog {
   private final AlertDialog.Builder builder;
   private PreferenceKeys prefKey;
   private int intValue;
-  private TextView mTextView;
+  private TextView textView;
   private final INowPlaying nowPlaying;
   DialogInterface.OnClickListener positiveButtonListener;
 
@@ -202,12 +200,12 @@ public class NowPlayingPreferenceDialog {
 
   public NowPlayingPreferenceDialog setTextView(final View textEntryView) {
 	//mTextView = (TextView) textEntryView.findViewById(R.id.dialogEdit);
-	this.mTextView.setText(getStringPreferenceValue());
+	this.textView.setText(getStringPreferenceValue());
 	this.builder.setView(textEntryView);
 
 	this.positiveButtonListener = new DialogInterface.OnClickListener() {
 	  public void onClick(final DialogInterface dialog, final int which) {
-		setStringPreferenceValue(NowPlayingPreferenceDialog.this.mTextView.getText().toString());
+		setStringPreferenceValue(NowPlayingPreferenceDialog.this.textView.getText().toString());
 		NowPlayingPreferenceDialog.this.nowPlaying.refresh();
 	  }
 	};

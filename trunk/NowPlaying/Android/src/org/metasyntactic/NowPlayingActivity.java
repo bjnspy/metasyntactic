@@ -115,7 +115,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
       public void run() {
         // For the first Activity, we add activity in onResume (which is
-        // different from rest of the Activities in this application). 
+        // different from rest of the Activities in this application).
         // This is to show progress dialog with a quick return from onCreate(),
         // onResume(). If we don't do this we would
         // see a black screen for 1-2 seconds until controller methods complete
@@ -136,8 +136,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             Application.NOW_PLAYING_CHANGED_INTENT));
       }
     };
-    Handler mHandler = new Handler();
-    mHandler.postDelayed(action, 1000);
+    Handler handler = new Handler();
+    handler.postDelayed(action, 1000);
   }
 
   private void setup() {
@@ -220,11 +220,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter {
-    private final LayoutInflater mInflater;
+    private final LayoutInflater inflater;
 
     public PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.mInflater = LayoutInflater.from(NowPlayingActivity.this);
+      this.inflater = LayoutInflater.from(NowPlayingActivity.this);
     }
 
     public View getView(final int position, View convertView,
@@ -238,7 +238,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // convertView
       // supplied by ListView is null.
       if (convertView == null) {
-        convertView = this.mInflater.inflate(R.layout.moviegrid_item, null);
+        convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
         holder = new ViewHolder(

@@ -30,7 +30,6 @@ import android.widget.TextView;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -218,11 +217,11 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       RELEASE_ORDER, SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter {
-    private final LayoutInflater mInflater;
+    private final LayoutInflater inflater;
 
     public PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.mInflater = LayoutInflater.from(UpcomingMoviesActivity.this);
+      this.inflater = LayoutInflater.from(UpcomingMoviesActivity.this);
     }
 
     public View getView(final int position, View convertView, final ViewGroup parent) {
@@ -236,7 +235,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       // supplied
       // by ListView is null.
       if (convertView == null) {
-        convertView = this.mInflater.inflate(R.layout.moviegrid_item, null);
+        convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views
         // we want to bind data to.
@@ -309,12 +308,12 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       notifyDataSetChanged();
     }
   }
-  
+
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
@@ -327,7 +326,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-   
+
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(UpcomingMoviesActivity.this, AllTheatersActivity.class);
