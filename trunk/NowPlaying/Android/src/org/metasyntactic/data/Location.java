@@ -21,6 +21,7 @@ import org.metasyntactic.io.AbstractPersistable;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
+import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 
 import java.io.IOException;
 import static java.lang.Math.*;
@@ -62,11 +63,11 @@ public class Location implements Parcelable, Persistable {
                   String country) {
     this.latitude = latitude;
     this.longitude = longitude;
-    this.address = address;
-    this.city = city;
-    this.state = state;
-    this.postalCode = postalCode;
-    this.country = country;
+    this.address = nonNullString(address);
+    this.city = nonNullString(city);
+    this.state = nonNullString(state);
+    this.postalCode = nonNullString(postalCode);
+    this.country = nonNullString(country);
   }
 
   public double getLatitude() {
@@ -95,6 +96,26 @@ public class Location implements Parcelable, Persistable {
 
   public String getCountry() {
     return country;
+  }
+
+  public String toDisplayString() {
+    return toDisplayStringWorker().trim();
+  }
+
+  private String toDisplayStringWorker() {
+        if (city.length() > 0 || state.length() > 0 || postalCode.length() > 0) {
+        if (city.length() > 0) {
+            if (state.length() > 0 || postalCode.length() > 0) {
+                return city + ", " + state + " " + postalCode;
+            } else {
+                return city;
+            }
+        } else {
+            return state + " " + postalCode;
+        }
+    }
+
+    return "";
   }
 
   public static String country(Location location) {
