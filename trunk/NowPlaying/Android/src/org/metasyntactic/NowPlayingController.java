@@ -62,6 +62,10 @@ public class NowPlayingController {
   }
 
   public void setUserAddress(final String userAddress) {
+    if (getUserAddress().equals(userAddress)) {
+      return;
+    }
+
     this.model.setUserAddress(userAddress);
     update();
   }

@@ -41,7 +41,7 @@ public class MovieDetailsActivity extends ListActivity {
     setContentView(R.layout.moviedetails);
     this.movie = getIntent().getExtras().getParcelable("movie");
     populateMovieDetailEntries();
-    MovieAdapter movieAdapter = new MovieAdapter();
+    final MovieAdapter movieAdapter = new MovieAdapter();
     setListAdapter(movieAdapter);
     bindButtonClickListeners();
   }
@@ -58,39 +58,39 @@ public class MovieDetailsActivity extends ListActivity {
       } else {
         value = res.getString(R.string.no_synopsis_available_dot);
       }
-      MovieDetailEntry entry = new MovieDetailEntry(this.movie.getDisplayTitle(), value);
+      final MovieDetailEntry entry = new MovieDetailEntry(this.movie.getDisplayTitle(), value);
       this.movieDetailEntries.add(entry);
     }
     {
       // Add Rating
-      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.rated),
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.rated),
           MovieViewUtilities.formatRatings(this.movie.getRating(), res));
       this.movieDetailEntries.add(entry);
     }
     {
       // Add release Date
-      Date releaseDate = this.movie.getReleaseDate();
-      String releaseDateString = releaseDate == null ? res.getString(R.string.unknown_release_date)
+      final Date releaseDate = this.movie.getReleaseDate();
+      final String releaseDateString = releaseDate == null ? res.getString(R.string.unknown_release_date)
           : releaseDate.toString();
-      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date),
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date),
           releaseDateString);
       this.movieDetailEntries.add(entry);
     }
     {
       // Add length
-      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.running_time),
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.running_time),
           MovieViewUtilities.formatLength(this.movie.getLength(), res));
       this.movieDetailEntries.add(entry);
     }
     {
       // Add cast
-      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast),
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast),
           MovieViewUtilities.formatListToString(this.movie.getCast()));
       this.movieDetailEntries.add(entry);
     }
     {
       // Add cast
-      MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director),
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director),
           MovieViewUtilities.formatListToString(this.movie.getDirectors()));
       this.movieDetailEntries.add(entry);
     }
@@ -188,11 +188,10 @@ public class MovieDetailsActivity extends ListActivity {
       holder.name.setText(entry.name);
       holder.value.setText(entry.value);
       if (position == 0) {
-        holder.name
-            .setTextAppearance(MovieDetailsActivity.this, android.R.attr.textAppearanceLarge);
-        holder.name.setBackgroundResource(R.drawable.opaque_box);
+        holder.name.setTextAppearance(MovieDetailsActivity.this, android.R.attr.textAppearanceLarge);
+        //holder.name.setBackgroundResource(R.drawable.opaque_box);
         holder.name.setTextColor(Color.BLACK);
-        
+
         holder.name.setMinHeight(50);
       }
       return convertView;
@@ -206,7 +205,7 @@ public class MovieDetailsActivity extends ListActivity {
       private final TextView name;
       private final TextView value;
 
-      private MovieViewHolder(TextView name, TextView value) {
+      private MovieViewHolder(final TextView name, final TextView value) {
         this.name = name;
         this.value = value;
       }
@@ -233,17 +232,17 @@ public class MovieDetailsActivity extends ListActivity {
     private final String name;
     private final String value;
 
-    private MovieDetailEntry(String name, String value) {
+    private MovieDetailEntry(final String name, final String value) {
       this.name = name;
       this.value = value;
     }
   }
-  
+
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
@@ -256,7 +255,7 @@ public class MovieDetailsActivity extends ListActivity {
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-   
+
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(MovieDetailsActivity.this, AllTheatersActivity.class);
