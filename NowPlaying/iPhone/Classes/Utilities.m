@@ -164,7 +164,7 @@
 
 
 + (NSString*) stringByAddingPercentEscapes:(NSString*) string {
-    return [self string:string byAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+    return [self string:string byAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 
@@ -187,7 +187,7 @@
             [body appendString:@"<a href=\""];
             [body appendString:performance.url];
             [body appendString:@"\">"];
-            [body appendString:[Utilities asciiString:performance.time]];
+            [body appendString:performance.time];
             [body appendString:@"</a>"];
         }
     }
