@@ -26,30 +26,30 @@ import org.metasyntactic.utilities.LocationUtilities;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class LocationTracker implements LocationListener {
   private final NowPlayingController controller;
-  private LocationManager locationManager;
+  private final LocationManager locationManager;
 
   private final Object lock = new Object();
   private boolean shutdown;
 
-  public LocationTracker(NowPlayingController controller, Context context) {
+  public LocationTracker(final NowPlayingController controller, final Context context) {
     this.controller = controller;
     this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
-    this.autoUpdateLocation();
+    autoUpdateLocation();
   }
 
-  public void autoUpdateLocation() {
-    if (controller.isAutoUpdateEnabled()) {
-      Criteria criteria = new Criteria();
+  private void autoUpdateLocation() {
+    if (this.controller.isAutoUpdateEnabled()) {
+      final Criteria criteria = new Criteria();
       criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-      String provider = locationManager.getBestProvider(criteria, true);
-      locationManager.requestLocationUpdates(provider, 5 * 60 * 1000, 1000, this);
+      final String provider = this.locationManager.getBestProvider(criteria, true);
+      this.locationManager.requestLocationUpdates(provider, 5 * 60 * 1000, 1000, this);
     }
   }
 
   public void shutdown() {
-    shutdown = true;
-    locationManager.removeUpdates(this);
+    this.shutdown = true;
+    this.locationManager.removeUpdates(this);
   }
 
   public void onLocationChanged(final android.location.Location location) {
@@ -57,21 +57,21 @@ public class LocationTracker implements LocationListener {
       return;
     }
 
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         findLocationBackgroundEntryPoint(location.getLatitude(), location.getLongitude());
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Lookup location", runnable, lock, true);
+    ThreadingUtilities.performOnBackgroundThread("Lookup location", runnable, this.lock, true);
   }
 
-  private void findLocationBackgroundEntryPoint(double latitude, double longitude) {
+  private void findLocationBackgroundEntryPoint(final double latitude, final double longitude) {
     final Location location = LocationUtilities.findLocation(latitude, longitude);
     if (location == null) {
       return;
     }
 
-    Runnable runnable = new Runnable() {
+    final Runnable runnable = new Runnable() {
       public void run() {
         reportFoundLocation(location);
       }
@@ -79,22 +79,22 @@ public class LocationTracker implements LocationListener {
     ThreadingUtilities.performOnMainThread(runnable);
   }
 
-  private void reportFoundLocation(Location location) {
-    if (shutdown) {
+  private void reportFoundLocation(final Location location) {
+    if (this.shutdown) {
       return;
     }
 
-    String displayString = location.toDisplayString();
-    controller.reportLocationForAddress(location, displayString);
-    controller.setUserAddress(displayString);
+    final String displayString = location.toDisplayString();
+    this.controller.reportLocationForAddress(location, displayString);
+    this.controller.setUserAddress(displayString);
   }
 
-  public void onStatusChanged(String s, int i, Bundle bundle) {
+  public void onStatusChanged(final String s, final int i, final Bundle bundle) {
   }
 
-  public void onProviderEnabled(String s) {
+  public void onProviderEnabled(final String s) {
   }
 
-  public void onProviderDisabled(String s) {
+  public void onProviderDisabled(final String s) {
   }
 }

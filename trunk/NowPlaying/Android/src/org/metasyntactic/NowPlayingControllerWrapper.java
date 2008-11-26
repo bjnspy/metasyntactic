@@ -33,6 +33,8 @@ public class NowPlayingControllerWrapper {
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
   private static NowPlayingController instance;
 
+  private static LocationTracker locationTracker;
+
   static {
     Application.initialize();
   }
@@ -49,6 +51,8 @@ public class NowPlayingControllerWrapper {
       instance = new NowPlayingController(activity.getApplicationContext());
       instance.startup();
     }
+
+    restartLocationTracker();
   }
 
   public static void removeActivity(final Activity activity) {
@@ -59,6 +63,21 @@ public class NowPlayingControllerWrapper {
     if (activities.size() == 0) {
       instance.shutdown();
       instance = null;
+    }
+
+    restartLocationTracker();
+  }
+
+  private static void restartLocationTracker() {
+    checkThread();
+
+    if (locationTracker != null) {
+      locationTracker.shutdown();
+      locationTracker = null;
+    }
+
+    if (activities.size() > 0) {
+      locationTracker = new LocationTracker(instance, getApplicationContext());
     }
   }
 
@@ -228,6 +247,7 @@ public class NowPlayingControllerWrapper {
   public static void setAutoUpdateEnabled(boolean enabled) {
     checkInstance();
     instance.setAutoUpdateEnabled(enabled);
+    restartLocationTracker();
   }
 
   public static Date getSearchDate() {

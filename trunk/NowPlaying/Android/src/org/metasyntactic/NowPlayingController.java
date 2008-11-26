@@ -7,7 +7,7 @@
 //     http://www.apache.org/licenses/LICENSE-2.0
 //
 //Unless required by applicable law or agreed to in writing, software
-//distributed under the License is distributed on an "AS IS" BASIS,
+//distributed under the License is distributed on an "AS IS" BASIS,th
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
@@ -50,7 +50,7 @@ public class NowPlayingController {
   }
 
   private void updateBackgroundEntryPoint() {
-    Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+    final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
     if (location != null) {
       NowPlayingController.this.model.update();
@@ -176,7 +176,7 @@ public class NowPlayingController {
     return this.model.isAutoUpdateEnabled();
   }
 
-  public void setAutoUpdateEnabled(boolean enabled) {
+  public void setAutoUpdateEnabled(final boolean enabled) {
     this.model.setAutoUpdateEnabled(enabled);
   }
 
@@ -184,12 +184,12 @@ public class NowPlayingController {
     return this.model.getSearchDate();
   }
 
-  public void setSearchDate(Date date) {
+  public void setSearchDate(final Date date) {
     this.model.setSearchDate(date);
     update();
   }
 
-  public void reportLocationForAddress(Location location, String displayString) {
+  public void reportLocationForAddress(final Location location, final String displayString) {
     this.model.reportLocationForAddress(location, displayString);
   }
 }
