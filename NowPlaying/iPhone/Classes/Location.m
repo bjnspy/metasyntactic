@@ -235,8 +235,12 @@ property_definition(country);
             state,
             postalCode];
 
-    return [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
-            [Utilities stringByAddingPercentEscapes:arguments]];
+    NSString* encoded = [Utilities stringByAddingPercentEscapes:arguments];
+    if (encoded != nil) {
+        return [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", encoded];
+    } else {
+        return [NSString stringWithFormat:@"http://maps.google.com/maps?sll=%f,%f", latitude, longitude];
+    }
 }
 
 @end
