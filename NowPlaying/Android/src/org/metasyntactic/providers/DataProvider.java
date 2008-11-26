@@ -83,6 +83,7 @@ public class DataProvider {
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
 
     if (location == null) {
+      // Todo.  we should report an error to the user here.
       return;
     }
 

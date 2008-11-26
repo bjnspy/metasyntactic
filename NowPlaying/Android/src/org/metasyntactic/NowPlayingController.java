@@ -11,6 +11,7 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
+
 package org.metasyntactic;
 
 import android.content.Context;
@@ -44,13 +45,13 @@ public class NowPlayingController {
         updateBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities
-        .performOnBackgroundThread("Update Model", runnable, this.lock, false/* visible */);
+
+    ThreadingUtilities.performOnBackgroundThread("Update Model", runnable, this.lock, false/* visible */);
   }
 
   private void updateBackgroundEntryPoint() {
-    Location location = this.model.getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
+    Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+        this.model.getUserAddress());
     if (location != null) {
       NowPlayingController.this.model.update();
     }
@@ -143,6 +144,7 @@ public class NowPlayingController {
 
   public ScoreType getScoreType() {
     return this.model.getScoreType();
+
   }
 
   public void setScoreType(final ScoreType scoreType) {
@@ -181,5 +183,9 @@ public class NowPlayingController {
   public void setSearchDate(Date date) {
     this.model.setSearchDate(date);
     update();
+  }
+
+  public void reportLocationForAddress(Location location, String displayString) {
+    this.model.reportLocationForAddress(location, displayString);
   }
 }

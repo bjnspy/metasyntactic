@@ -102,7 +102,7 @@ public class UserLocationCache {
     if (location != null) {
       return location;
     }
-      
+
     return loadLocation(userAddress);
   }
 
@@ -176,5 +176,9 @@ public class UserLocationCache {
     }
 
     FileUtilities.writePersistable(location, locationFile(address));
+  }
+
+  public void reportLocationForAddress(Location location, String address) {
+    saveLocation(location, address);
   }
 }

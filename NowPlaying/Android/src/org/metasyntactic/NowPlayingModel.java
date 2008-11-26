@@ -377,4 +377,8 @@ public class NowPlayingModel {
       final Theater theater) {
     return this.dataProvider.getPerformancesForMovieInTheater(movie, theater);
   }
+
+  public void reportLocationForAddress(Location location, String address) {
+    userLocationCache.reportLocationForAddress(location, address);
+  }
 }
