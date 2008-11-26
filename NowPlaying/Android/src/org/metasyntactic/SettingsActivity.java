@@ -1,6 +1,5 @@
 package org.metasyntactic;
 
-import android.R;
 import android.app.DatePickerDialog;
 import android.app.ListActivity;
 import android.content.Context;
