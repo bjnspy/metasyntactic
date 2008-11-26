@@ -152,7 +152,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         android.R.drawable.star_on);
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
@@ -307,10 +307,10 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       layout.setOrientation(LinearLayout.VERTICAL);
       final ImageView i = new ImageView(AllMoviesActivity.this);
       final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-      final int mGalleryItemBackground = a.getResourceId(
+      final int galleryItemBackground = a.getResourceId(
           android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
-      i.setBackgroundResource(mGalleryItemBackground);
+      i.setBackgroundResource(galleryItemBackground);
       final Movie movie = movies.get(position % movies.size());
       final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
       if (bytes.length > 0) {

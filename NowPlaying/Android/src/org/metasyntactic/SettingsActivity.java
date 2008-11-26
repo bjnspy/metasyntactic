@@ -11,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
@@ -25,9 +24,9 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   private List<Theater> theaters;
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
-  private int mYear;
-  private int mMonth;
-  private int mDay;
+  private int year;
+  private int month;
+  private int day;
 
   @Override
   public void onCreate(final Bundle savedInstanceState) {
@@ -108,14 +107,14 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
 	case SEARCH_DATE:
 
-	  final DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+	  final DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(final DatePicker view, final int year, final int monthOfYear,
 			final int dayOfMonth) {
-		  SettingsActivity.this.mYear = year;
-		  SettingsActivity.this.mMonth = monthOfYear;
-		  SettingsActivity.this.mDay = dayOfMonth;
+		  SettingsActivity.this.year = year;
+		  SettingsActivity.this.month = monthOfYear;
+		  SettingsActivity.this.day = dayOfMonth;
 		  final Calendar cal1 = Calendar.getInstance();
-		  cal1.set(SettingsActivity.this.mYear, SettingsActivity.this.mMonth, SettingsActivity.this.mDay);
+		  cal1.set(SettingsActivity.this.year, SettingsActivity.this.month, SettingsActivity.this.day);
 		  NowPlayingControllerWrapper.setSearchDate(cal1.getTime());
 		  refresh();
 		}
@@ -124,11 +123,11 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 	  final Calendar cal = Calendar.getInstance();
 	  cal.setTime(searchDate);
 
-	  this.mYear = cal.get(Calendar.YEAR);
-	  this.mMonth = cal.get(Calendar.MONTH);
-	  this.mDay = cal.get(Calendar.DAY_OF_MONTH);
+	  this.year = cal.get(Calendar.YEAR);
+	  this.month = cal.get(Calendar.MONTH);
+	  this.day = cal.get(Calendar.DAY_OF_MONTH);
 	  new DatePickerDialog(SettingsActivity.this,
-		  mDateSetListener, this.mYear, this.mMonth, this.mDay).show();
+		  dateSetListener, this.year, this.month, this.day).show();
 	  super.onListItemClick(l, v, position, id);
 	  return;
 	}
