@@ -231,13 +231,12 @@ public class NowPlayingControllerWrapper {
   }
 
   public static Date getSearchDate() {
-	checkInstance();
-	return instance.getSearchDate();
+    checkInstance();
+    return instance.getSearchDate();
   }
 
   public static void setSearchDate(Date date) {
-	checkInstance();
+    checkInstance();
     instance.setSearchDate(date);
-
   }
 }
