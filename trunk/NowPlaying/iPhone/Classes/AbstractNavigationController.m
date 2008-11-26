@@ -67,7 +67,7 @@
 
 
 - (void) refresh {
-    if (!viewLoaded) {
+    if (!viewLoaded || !visible) {
         return;
     }
 
