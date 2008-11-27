@@ -122,7 +122,7 @@ property_definition(movieTitles);
 
 
 - (NSString*) mapUrl {
-    return [location mapUrl];
+    return location.mapUrl;
 }
 
 
