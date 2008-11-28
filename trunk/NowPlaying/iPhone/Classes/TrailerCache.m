@@ -154,7 +154,7 @@
     }
     
     [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate minorRefresh];
 }
 
 

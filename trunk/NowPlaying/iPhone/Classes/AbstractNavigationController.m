@@ -66,16 +66,26 @@
 }
 
 
-- (void) refresh {
+- (void) refreshWithSelector:(SEL) selector {
     if (!viewLoaded || !visible) {
         return;
     }
-
+    
     for (id controller in self.viewControllers) {
-        if ([controller respondsToSelector:@selector(refresh)]) {
-            [controller refresh];
+        if ([controller respondsToSelector:selector]) {
+            [controller performSelector:selector];
         }
     }
+}
+
+
+- (void) majorRefresh {
+    [self refreshWithSelector:@selector(majorRefresh)];
+}
+
+
+- (void) minorRefresh {
+    [self refreshWithSelector:@selector(minorRefresh)];
 }
 
 

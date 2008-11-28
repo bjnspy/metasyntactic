@@ -309,11 +309,15 @@
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
-    [self refresh];
+    [self majorRefresh];
 }
 
 
-- (void) refreshWorker {
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
     [self sortMovies];
     [self.tableView reloadData];
 
@@ -441,7 +445,7 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self refresh];
+    [self majorRefresh];
 }
 
 @end

@@ -82,7 +82,7 @@
 
 - (void) onSortOrderChanged:(id) sender {
     self.model.allMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
-    [self refresh];
+    [self majorRefresh];
 }
 
 
@@ -115,7 +115,7 @@
 }
 
 
-- (void) refresh {
+- (void) majorRefresh {
     if (self.model.noScores && segmentedControl.numberOfSegments == 3) {
         segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
         [segmentedControl removeSegmentAtIndex:2 animated:NO];
@@ -123,7 +123,7 @@
         [segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
 
-    [super refresh];
+    [super majorRefresh];
 }
 
 

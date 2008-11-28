@@ -19,7 +19,8 @@
 
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
 
-- (void) refresh;
+- (void) majorRefresh;
+
 - (NowPlayingModel*) model;
 - (NowPlayingController*) controller;
 

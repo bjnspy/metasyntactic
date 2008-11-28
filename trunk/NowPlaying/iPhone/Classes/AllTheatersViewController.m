@@ -73,7 +73,7 @@
 
 - (void) onSortOrderChanged:(id) sender {
     self.model.allTheatersSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
-    [self refresh];
+    [self majorRefresh];
 }
 
 
@@ -442,11 +442,15 @@
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
-    [self refresh];
+    [self majorRefresh];
 }
 
 
-- (void) refreshWorker {
+- (void) minorRefreshWorker {
+}
+
+
+- (void) majorRefreshWorker {
     [self sortTheaters];
     [self.tableView reloadData];
     
@@ -463,7 +467,7 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self refresh];
+    [self majorRefresh];
 }
 
 @end

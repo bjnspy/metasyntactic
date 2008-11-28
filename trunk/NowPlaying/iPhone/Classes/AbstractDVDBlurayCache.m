@@ -436,7 +436,7 @@
         [self setMovies:movies];
 
         [self updateDetails];
-        [NowPlayingAppDelegate refresh:YES];
+        [NowPlayingAppDelegate majorRefresh];
     }
 }
 
@@ -463,7 +463,7 @@
     if (data != nil) {
         [FileUtilities writeData:data toFile:file];
     }
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate minorRefresh];
 }
 
 
@@ -497,7 +497,7 @@
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:imdbFile];
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate minorRefresh];
 }
 
 

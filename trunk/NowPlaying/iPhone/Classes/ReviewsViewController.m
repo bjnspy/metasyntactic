@@ -228,13 +228,18 @@
 }
 
 
-- (void) refresh {
+- (void) minorRefresh {
+    [self majorRefresh];
+}
+
+
+- (void) majorRefresh {
     [self.tableView reloadData];
 }
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self refresh];
+    [self majorRefresh];
 }
 
 @end

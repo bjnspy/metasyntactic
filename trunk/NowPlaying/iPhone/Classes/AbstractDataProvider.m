@@ -496,7 +496,7 @@
         self.synchronizationInformationData = result.synchronizationInformation;
         self.performancesData = [NSMutableDictionary dictionary];
         [self.model onDataProviderUpdated];
-        [NowPlayingAppDelegate refresh:YES];
+        [NowPlayingAppDelegate majorRefresh:YES];
     }
 }
 

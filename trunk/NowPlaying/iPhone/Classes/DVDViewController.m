@@ -80,7 +80,7 @@
 
 - (void) onSortOrderChanged:(id) sender {
     self.model.dvdMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
-    [self refresh];
+    [self majorRefresh];
 }
 
 
@@ -151,9 +151,9 @@
 }
 
 
-- (void) refresh {
+- (void) majorRefresh {
     self.tableView.rowHeight = 100;
-    [super refresh];
+    [super majorRefresh];
 }
 
 @end

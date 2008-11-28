@@ -83,11 +83,11 @@
 
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
-    [self refresh];
+    [self majorRefresh];
 }
 
 
-- (void) refresh {
+- (void) majorRefresh {
     self.tableView.rowHeight = 38;
     [self.tableView reloadData];
 }

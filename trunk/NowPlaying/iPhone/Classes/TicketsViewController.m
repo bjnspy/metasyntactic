@@ -65,7 +65,7 @@
 }
 
 
-- (void) refresh {
+- (void) majorRefresh {
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     self.performances = [NSMutableArray array];
 
@@ -136,7 +136,7 @@
 
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
-    [self refresh];
+    [self majorRefresh];
 }
 
 

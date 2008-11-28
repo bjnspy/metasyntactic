@@ -262,7 +262,7 @@
     self.hashData = hash;
     self.movieMapData = nil;
     self.movies = nil;
-    [NowPlayingAppDelegate refresh:YES];
+    [NowPlayingAppDelegate majorRefresh:YES];
 
     [self updateReviews];
 }
@@ -329,7 +329,7 @@
     self.movieMapData = map;
     self.movies = movies_;
 
-    [NowPlayingAppDelegate refresh:YES];
+    [NowPlayingAppDelegate majorRefresh:YES];
 }
 
 
@@ -492,7 +492,7 @@
 
     [self saveReviews:reviews hash:serverHash title:score.canonicalTitle];
 
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate minorRefresh];
 }
 
 

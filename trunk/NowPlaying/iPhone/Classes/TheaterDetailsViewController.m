@@ -165,11 +165,16 @@
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
-    [self refresh];
+    [self majorRefresh];
 }
 
 
-- (void) refresh {
+- (void) minorRefresh {
+    [self majorRefresh];
+}
+
+
+- (void) majorRefresh {
     [self.tableView reloadData];
 }
 
@@ -435,7 +440,7 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self refresh];
+    [self majorRefresh];
 }
 
 @end

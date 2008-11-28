@@ -320,7 +320,7 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self startup];
-    [self refresh];
+    [self majorRefresh];
 }
 
 
@@ -343,7 +343,12 @@
 }
 
 
-- (void) refresh {
+- (void) minorRefresh {
+    [self majorRefresh];
+}
+
+
+- (void) majorRefresh {
     [self initializeData];
     [self.tableView reloadData];
 }
@@ -603,7 +608,7 @@
     [self.tableView deselectRowAtIndexPath:startPath animated:NO];
 
     filterTheatersByDistance = NO;
-    [self refresh];
+    [self majorRefresh];
 
     // this animates showing the theaters.  but it's unfortunately too slow
     /*
@@ -796,7 +801,7 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self refresh];
+    [self majorRefresh];
 }
 
 

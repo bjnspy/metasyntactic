@@ -82,7 +82,7 @@
 
 - (void) onSortOrderChanged:(id) sender {
     self.model.upcomingMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
-    [self refresh];
+    [self majorRefresh];
 }
 
 
@@ -130,9 +130,9 @@
 }
 
 
-- (void) refresh {
+- (void) majorRefresh {
     self.tableView.rowHeight = 100;
-    [super refresh];
+    [super majorRefresh];
 }
 
 @end

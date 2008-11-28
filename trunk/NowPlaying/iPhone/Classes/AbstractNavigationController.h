@@ -28,7 +28,8 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
-- (void) refresh;
+- (void) majorRefresh;
+- (void) minorRefresh;
 
 - (NowPlayingModel*) model;
 - (NowPlayingController*) controller;
