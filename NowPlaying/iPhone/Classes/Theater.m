@@ -19,12 +19,13 @@
 #import "Utilities.h"
 
 @interface Theater()
-@property (copy) NSString* identifier;
-@property (copy) NSString* name;
-@property (copy) NSString* phoneNumber;
-@property (retain) Location* location;
-@property (retain) Location* originatingLocation;
-@property (retain) NSArray* movieTitles;
+    @property (copy) NSString* identifier;
+    @property (copy) NSString* name;
+    @property (copy) NSString* phoneNumber;
+    @property (retain) Location* location;
+    @property (retain) Location* originatingLocation;
+    @property (retain) NSArray* movieTitles;
+    @property (retain) NSString* simpleAddress;
 @end
 
 
@@ -36,6 +37,7 @@ property_definition(phoneNumber);
 property_definition(location);
 property_definition(originatingLocation);
 property_definition(movieTitles);
+@synthesize simpleAddress;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -44,6 +46,7 @@ property_definition(movieTitles);
     self.location = nil;
     self.originatingLocation = nil;
     self.movieTitles = nil;
+    self.simpleAddress = nil;
 
     [super dealloc];
 }
@@ -142,6 +145,24 @@ property_definition(movieTitles);
     }
 
     return showtime;
+}
+
+
+- (NSString*) simpleAddressWorker {
+    if (location.address.length != 0 && location.city.length != 0) {
+        return [NSString stringWithFormat:@"%@, %@", location.address, location.city];
+    } else {
+        return location.address;
+    }
+}
+
+
+- (NSString*) simpleAddress {
+    if (simpleAddress == nil) {
+        self.simpleAddress = [self simpleAddressWorker];
+    }
+    
+    return simpleAddress;
 }
 
 @end

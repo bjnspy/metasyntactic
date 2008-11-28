@@ -135,4 +135,11 @@
     [super majorRefresh];
 }
 
+
+- (void) minorRefresh {
+    for (id cell in self.tableView.visibleCells) {
+        [cell loadImage];
+    }   
+}
+
 @end

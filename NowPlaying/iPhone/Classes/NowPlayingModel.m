@@ -858,12 +858,7 @@ static NSString** KEYS[] = {
 
 
 - (NSString*) simpleAddressForTheater:(Theater*) theater {
-    Location* location = theater.location;
-    if (location.address.length != 0 && location.city.length != 0) {
-        return [NSString stringWithFormat:@"%@, %@", location.address, location.city];
-    } else {
-        return location.address;
-    }
+    return theater.simpleAddress;
 }
 
 
