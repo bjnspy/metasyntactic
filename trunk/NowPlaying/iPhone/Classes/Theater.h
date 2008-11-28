@@ -22,6 +22,8 @@
     Location* originatingLocation;
 
     NSArray* movieTitles;
+    
+    NSString* simpleAddress;
 }
 
 @property (readonly, copy) NSString* identifier;
@@ -42,6 +44,7 @@
 
 - (NSDictionary*) dictionary;
 - (NSString*) mapUrl;
+- (NSString*) simpleAddress;
 
 + (NSString*) processShowtime:(NSString*) showtime;
 

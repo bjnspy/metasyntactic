@@ -30,12 +30,12 @@
 #import "WarningView.h"
 
 @interface TheaterDetailsViewController()
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) UISegmentedControl* segmentedControl;
-@property (retain) UIButton* favoriteButton;
-@property (retain) Theater* theater;
-@property (retain) NSArray* movies;
-@property (retain) NSMutableArray* movieShowtimes;
+    @property (assign) AbstractNavigationController* navigationController;
+    @property (retain) UISegmentedControl* segmentedControl;
+    @property (retain) UIButton* favoriteButton;
+    @property (retain) Theater* theater;
+    @property (retain) NSArray* movies;
+    @property (retain) NSMutableArray* movieShowtimes;
 @end
 
 
