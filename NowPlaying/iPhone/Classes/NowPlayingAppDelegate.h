@@ -20,16 +20,19 @@
 
     NowPlayingModel* model;
     NowPlayingController* controller;
-    Pulser* pulser;
+    Pulser* minorRefreshPulser;
+    Pulser* majorRefreshPulser;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
 @property (readonly, retain) ApplicationTabBarController* tabBarController;
 @property (readonly, retain) NowPlayingController* controller;
 @property (readonly, retain) NowPlayingModel* model;
-@property (readonly, retain) Pulser* pulser;
 
-+ (void) refresh;
-+ (void) refresh:(BOOL) force;
++ (void) minorRefresh;
++ (void) majorRefresh;
++ (void) majorRefresh:(BOOL) force;
+
+
 
 @end

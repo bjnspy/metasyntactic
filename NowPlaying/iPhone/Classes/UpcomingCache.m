@@ -316,7 +316,7 @@ static NSString* titles_key = @"Titles";
     self.movieMap = nil;
 
     [self updateDetails];
-    [NowPlayingAppDelegate refresh:YES];
+    [NowPlayingAppDelegate majorRefresh];
 }
 
 
@@ -385,7 +385,7 @@ static NSString* titles_key = @"Titles";
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:imdbFile];
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate minorRefresh];
 }
 
 
@@ -444,7 +444,7 @@ static NSString* titles_key = @"Titles";
     [FileUtilities writeObject:synopsis toFile:synopsisFile];
     [FileUtilities writeObject:cast toFile:[self castFile:movie]];
 
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate minorRefresh];
 }
 
 
@@ -476,7 +476,7 @@ static NSString* titles_key = @"Titles";
     }
     
     [FileUtilities writeObject:final toFile:trailersFile];
-    [NowPlayingAppDelegate refresh];
+    [NowPlayingAppDelegate minorRefresh];
 }
 
 

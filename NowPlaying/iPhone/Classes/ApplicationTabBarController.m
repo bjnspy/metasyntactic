@@ -118,9 +118,20 @@
 }
 
 
-- (void) refresh {
+- (void) majorRefresh {
     for (id viewController in self.viewControllers) {
-        [viewController refresh];
+        if ([viewController respondsToSelector:@selector(majorRefresh)]) {
+            [viewController majorRefresh];
+        }
+    }
+}
+
+
+- (void) minorRefresh {
+    for (id viewController in self.viewControllers) {
+        if ([viewController respondsToSelector:@selector(minorRefresh)]) {
+            [viewController minorRefresh];
+        }
     }
 }
 

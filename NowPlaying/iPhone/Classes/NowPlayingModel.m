@@ -1024,6 +1024,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     [self markDataProviderOutOfDate];
 
     [[NSUserDefaults standardUserDefaults] setObject:userAddress forKey:USER_ADDRESS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

@@ -174,7 +174,7 @@
         [FileUtilities writeData:data toFile:path];
 
         if (data.length > 0) {
-            [NowPlayingAppDelegate refresh];
+            [NowPlayingAppDelegate minorRefresh];
         }
     }
 }

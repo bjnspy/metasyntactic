@@ -259,7 +259,7 @@
                                                      important:NO];
     if (data != nil) {
         [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
-        [NowPlayingAppDelegate refresh];
+        [NowPlayingAppDelegate minorRefresh];
     }
 }
 

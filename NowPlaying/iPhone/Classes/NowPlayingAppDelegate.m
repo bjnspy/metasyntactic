@@ -26,7 +26,8 @@
 @property (retain) ApplicationTabBarController* tabBarController;
 @property (retain) NowPlayingController* controller;
 @property (retain) NowPlayingModel* model;
-@property (retain) Pulser* pulser;
+@property (retain) Pulser* majorRefreshPulser;
+@property (retain) Pulser* minorRefreshPulser;
 @end
 
 
@@ -38,14 +39,16 @@ static NowPlayingAppDelegate* appDelegate = nil;
 @synthesize tabBarController;
 @synthesize controller;
 @synthesize model;
-@synthesize pulser;
+@synthesize majorRefreshPulser;
+@synthesize minorRefreshPulser;
 
 - (void) dealloc {
     self.window = nil;
     self.tabBarController = nil;
     self.controller = nil;
     self.model = nil;
-    self.pulser = nil;
+    self.majorRefreshPulser = nil;
+    self.minorRefreshPulser = nil;
 
     [super dealloc];
 }
@@ -63,7 +66,8 @@ static NowPlayingAppDelegate* appDelegate = nil;
     self.controller = [NowPlayingController controllerWithAppDelegate:self];
 
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
-    self.pulser = [Pulser pulserWithTarget:tabBarController action:@selector(refresh) pulseInterval:5];
+    self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
+    self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
@@ -77,27 +81,42 @@ static NowPlayingAppDelegate* appDelegate = nil;
 }
 
 
-- (void) refresh:(NSNumber*) force {
+- (void) majorRefresh:(NSNumber*) force {
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(refresh:) withObject:force waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(majorRefresh:) withObject:force waitUntilDone:NO];
         return;
     }
 
     if (force.boolValue) {
-        [pulser forcePulse];
+        [majorRefreshPulser forcePulse];
     } else {
-        [pulser tryPulse];
+        [majorRefreshPulser tryPulse];
     }
 }
 
 
-+ (void) refresh:(BOOL) force {
-    [appDelegate refresh:[NSNumber numberWithBool:force]];
++ (void) majorRefresh:(BOOL) force {
+    [appDelegate majorRefresh:[NSNumber numberWithBool:force]];
 }
 
 
-+ (void) refresh {
-    [self refresh:NO];
++ (void) majorRefresh {
+    [self majorRefresh:NO];
+}
+
+
+- (void) minorRefresh {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
+        return;
+    }
+    
+    [minorRefreshPulser tryPulse];
+}
+
+
++ (void) minorRefresh {
+    [appDelegate minorRefresh];
 }
 
 @end

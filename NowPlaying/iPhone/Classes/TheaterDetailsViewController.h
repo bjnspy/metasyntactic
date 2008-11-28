@@ -29,6 +29,7 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                             theater:(Theater*) theater;
 
-- (void) refresh;
+- (void) majorRefresh;
+- (void) minorRefresh;
 
 @end

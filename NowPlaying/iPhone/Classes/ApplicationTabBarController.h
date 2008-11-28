@@ -28,7 +28,8 @@
 - (NowPlayingModel*) model;
 - (NowPlayingController*) controller;
 
-- (void) refresh;
+- (void) majorRefresh;
+- (void) minorRefresh;
 
 - (void) popNavigationControllersToRoot;
 

@@ -36,7 +36,7 @@
 }
 
 
-- (void) refresh {
+- (void) majorRefresh {
     label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
 
     CGRect screenRect = self.view.bounds;
@@ -94,7 +94,7 @@
 
     [picker becomeFirstResponder];
 
-    [self refresh];
+    [self majorRefresh];
 }
 
 
@@ -134,7 +134,7 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self refresh];
+    [self majorRefresh];
 }
 
 @end

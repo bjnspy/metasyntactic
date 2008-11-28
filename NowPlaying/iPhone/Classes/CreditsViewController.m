@@ -95,7 +95,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (void) refresh {
+- (void) majorRefresh {
     [self.tableView reloadData];
 }
 
@@ -370,7 +370,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self refresh];
+    [self majorRefresh];
 }
 
 @end
