@@ -25,6 +25,7 @@
   <string name="number_minutes">%d minutter</string>
   <string name="number_months_ago">%d måneder siden</string>
   <string name="number_of_number">%d av %d</string>
+  <string name="number_theaters_outside_search_area">%d kinoer utenfor søkeområdet</string>
   <string name="number_weeks_ago">%d uker siden</string>
   <string name="number_years_ago">%d år siden</string>
   <string name="one_hour">1 time</string>
@@ -32,6 +33,7 @@
   <string name="one_mile">1 mile</string>
   <string name="one_minute">1 minutt</string>
   <string name="one_month_ago">1 måned siden</string>
+  <string name="one_theater_outside_search_area">1 kino utenfor søkeområdet</string>
   <string name="one_week_ago">1 uke siden</string>
   <string name="one_year_ago">1 år siden</string>
   <string name="about">Om</string>
