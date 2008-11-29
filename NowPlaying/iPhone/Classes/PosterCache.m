@@ -213,7 +213,7 @@
     // movies with poster links download faster. try them first.
     NSMutableArray* moviesWithPosterLinks = [NSMutableArray array];
     NSMutableArray* moviesWithoutPosterLinks = [NSMutableArray array];
-    
+
     for (Movie* movie in movies) {
         if (movie.poster.length == 0) {
             [moviesWithoutPosterLinks addObject:movie];
@@ -221,13 +221,13 @@
             [moviesWithPosterLinks addObject:movie];
         }
     }
-    
+
     Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
     NSString* postalCode = location.postalCode;
     if (postalCode == nil || ![@"US" isEqual:location.country]) {
         postalCode = @"10009";
     }
-    
+
     [self downloadPosters:moviesWithPosterLinks postalCode:postalCode];
     [self downloadPosters:moviesWithoutPosterLinks postalCode:postalCode];
 }

@@ -309,7 +309,7 @@ static NSString** KEYS[] = {
         self.posterCache = [PosterCache cacheWithModel:self];
         self.scoreCache = [ScoreCache cacheWithModel:self];
         self.upcomingCache = [UpcomingCache cacheWithModel:self];
-        
+
         [self clearCaches];
 
         searchRadius = -1;
