@@ -25,6 +25,7 @@
   <string name="number_minutes">%d minut</string>
   <string name="number_months_ago">před %d měsíci</string>
   <string name="number_of_number">%d of %d</string>
+  <string name="number_theaters_outside_search_area">Počet divadel mimo dosah: %d</string>
   <string name="number_weeks_ago">před %d týdny</string>
   <string name="number_years_ago">před %d lety</string>
   <string name="one_hour">1 hodina</string>
@@ -32,6 +33,7 @@
   <string name="one_mile">1 míle</string>
   <string name="one_minute">1 minuta</string>
   <string name="one_month_ago">před 1 měsícem</string>
+  <string name="one_theater_outside_search_area">Počet divadel mimo dosah: 1</string>
   <string name="one_week_ago">před 1 týdnem</string>
   <string name="one_year_ago">před 1 rokem</string>
   <string name="about">O programu</string>
