@@ -34,7 +34,6 @@
 
 @interface AbstractScoreProvider()
 @property (assign) ScoreCache* parentCache;
-@property (retain) NSLock* lock;
 @property (retain) NSDictionary* scoresData;
 @property (retain) NSString* hashData;
 @property (retain) NSLock* movieMapLock;
@@ -49,7 +48,6 @@
 @implementation AbstractScoreProvider
 
 @synthesize parentCache;
-@synthesize lock;
 @synthesize scoresData;
 @synthesize hashData;
 @synthesize movieMapLock;
@@ -61,7 +59,6 @@
 
 - (void) dealloc {
     self.parentCache = nil;
-    self.lock = nil;
     self.scoresData = nil;
     self.hashData = nil;
     self.movieMapLock = nil;
@@ -92,7 +89,6 @@
 
 - (id) initWithCache:(ScoreCache*) parentCache_ {
     if (self = [super init]) {
-        self.lock = [[[NSRecursiveLock alloc] init] autorelease];
         self.parentCache = parentCache_;
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
@@ -191,7 +187,7 @@
     [ThreadingUtilities performSelector:@selector(updateScoresBackgroundEntryPoint)
                                onTarget:self
                inBackgroundWithArgument:nil
-                                   gate:lock
+                                   gate:gate
                                 visible:YES];
 }
 
@@ -200,7 +196,7 @@
     [ThreadingUtilities performSelector:@selector(updateReviewsBackgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:self.scores
-                                   gate:lock
+                                   gate:gate
                                 visible:NO];
 }
 
@@ -227,7 +223,7 @@
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
 
     if (lastLookupDate != nil) {
-        if (ABS([lastLookupDate timeIntervalSinceNow]) < ONE_DAY) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
             return;
         }
     }
@@ -562,6 +558,18 @@
 
     [self downloadReviews:scoresWithoutReviews scoresMap:scoresMap];
     [self downloadReviews:scoresWithReviews scoresMap:scoresMap];
+}
+
+
+- (void) clearStaleDataBackgroundEntryPoint {
+    for (NSString* path in [FileUtilities directoryContentsPaths:reviewsDirectory]) {
+        NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
+        if (lastModifiedDate != nil) {
+            if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
+                [FileUtilities removeItem:path];
+            }
+        }
+    }
 }
 
 

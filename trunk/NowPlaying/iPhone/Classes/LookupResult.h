@@ -16,10 +16,10 @@
 @private
     NSMutableArray* movies;
     NSMutableArray* theaters;
-    
+
     // theater name -> movie name -> [ { showtime, showid } ]
     NSMutableDictionary* performances;
-    
+
     // theater name -> date
     NSMutableDictionary* synchronizationInformation;
 }

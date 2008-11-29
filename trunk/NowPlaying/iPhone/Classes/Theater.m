@@ -161,7 +161,7 @@ property_definition(movieTitles);
     if (simpleAddress == nil) {
         self.simpleAddress = [self simpleAddressWorker];
     }
-    
+
     return simpleAddress;
 }
 

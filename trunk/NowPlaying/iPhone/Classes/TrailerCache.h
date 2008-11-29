@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface TrailerCache : NSObject {
+#import "AbstractCache.h"
+
+@interface TrailerCache : AbstractCache {
 @private
     NowPlayingModel* model;
 
-    NSLock* gate;
     LinkedSet* prioritizedMovies;
 }
 

@@ -128,7 +128,7 @@
         if (cell == nil) {
             cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         NSString* key = @"";
         NSString* value = @"";
         if (row == 0) {

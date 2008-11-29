@@ -70,7 +70,7 @@
     if (!viewLoaded || !visible) {
         return;
     }
-    
+
     for (id controller in self.viewControllers) {
         if ([controller respondsToSelector:selector]) {
             [controller performSelector:selector];

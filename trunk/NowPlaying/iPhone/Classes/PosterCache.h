@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PosterCache : NSObject {
+#import "AbstractCache.h"
+
+@interface PosterCache : AbstractCache {
 @private
-    NSLock* gate;
     NowPlayingModel* model;
 
     LinkedSet* prioritizedMovies;

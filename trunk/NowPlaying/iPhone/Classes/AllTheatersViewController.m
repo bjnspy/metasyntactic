@@ -174,7 +174,8 @@
     [sectionTitles addObject:reallyFarAway];
     [sectionTitles addObject:unknownDistance];
 
-    for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
+    NSArray* theatersInRange = [self.model theatersInRange:sortedTheaters];
+    for (Theater* theater in theatersInRange) {
         if ([self.model isFavoriteTheater:theater]) {
             [sectionTitleToContentsMap addObject:theater forKey:favorites];
             continue;
@@ -219,7 +220,15 @@
     }
 
     if (sectionTitles.count == 0) {
-        self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
+        NSArray* theaters = self.model.theaters;
+        if (theaters.count == 1) {
+            self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"1 theater outside search zone", nil)];
+        } else if (theaters.count > 1) {
+            self.sectionTitles = [NSArray arrayWithObject:
+                                  [NSString stringWithFormat:NSLocalizedString(@"%d theaters outside search zone", nil), theaters.count]];
+        } else {
+            self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
+        }
     }
 }
 
@@ -345,8 +354,26 @@
 }
 
 
+- (BOOL) outOfBounds:(NSIndexPath*) indexPath {
+    if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
+        return YES;
+    }
+    
+    NSArray* theaters = [sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]];
+    if (indexPath.row < 0 || indexPath.row >= theaters.count) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+    if ([self outOfBounds:indexPath]) {
+        return;
+    }
+    
     Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     [navigationController pushTheaterDetails:theater animated:YES];
@@ -366,6 +393,10 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    if ([self outOfBounds:indexPath]) {
+        return [[[UITableView alloc] init] autorelease];
+    }
+    
     Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     static NSString* reuseIdentifier = @"AllTheatersCellIdentifier";
@@ -453,14 +484,14 @@
 - (void) majorRefreshWorker {
     [self sortTheaters];
     [self.tableView reloadData];
-    
+
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-        
+
         self.visibleIndexPaths = nil;
     }
 }

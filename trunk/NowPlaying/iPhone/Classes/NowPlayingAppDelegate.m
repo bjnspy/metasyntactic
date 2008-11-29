@@ -110,7 +110,7 @@ static NowPlayingAppDelegate* appDelegate = nil;
         [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
         return;
     }
-    
+
     [minorRefreshPulser tryPulse];
 }
 

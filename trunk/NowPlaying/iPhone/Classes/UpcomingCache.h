@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface UpcomingCache : NSObject {
+#import "AbstractCache.h"
+
+@interface UpcomingCache : AbstractCache {
 @private
     NowPlayingModel* model;
-
-    NSLock* gate;
 
     NSDictionary* indexData;
 

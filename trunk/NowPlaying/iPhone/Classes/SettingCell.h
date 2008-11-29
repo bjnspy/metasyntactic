@@ -16,7 +16,7 @@
 @private
     UILabel* keyLabel;
     UILabel* valueLabel;
-    
+
     UIFont* cachedFont;
 }
 

@@ -13,11 +13,11 @@
 // limitations under the License.
 
 #import "ScoreProvider.h"
+#import "AbstractCache.h"
 
-@interface AbstractScoreProvider : NSObject<ScoreProvider> {
+@interface AbstractScoreProvider : AbstractCache<ScoreProvider> {
 @private
     ScoreCache* parentCache;
-    NSLock* lock;
 
     // Mapping from score title to score.
     NSDictionary* scoresData;

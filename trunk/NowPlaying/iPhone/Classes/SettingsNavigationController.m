@@ -54,7 +54,7 @@
         self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
         [self pushViewController:viewController animated:NO];
     }
-    
+
     [self setViewTitle];
 }
 

@@ -30,7 +30,6 @@
 
 @interface UpcomingCache()
 @property (assign) NowPlayingModel* model;
-@property (retain) NSLock* gate;
 @property (retain) NSDictionary* indexData;
 @property (retain) NSArray* recentMovies;
 @property (retain) NSDictionary* movieMap;
@@ -45,7 +44,6 @@ static NSString* hash_key = @"Hash";
 static NSString* studios_key = @"Studios";
 static NSString* titles_key = @"Titles";
 
-@synthesize gate;
 @synthesize model;
 @synthesize indexData;
 @synthesize recentMovies;
@@ -53,7 +51,6 @@ static NSString* titles_key = @"Titles";
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.gate = nil;
     self.model = nil;
     self.indexData = nil;
     self.recentMovies = nil;
@@ -66,7 +63,6 @@ static NSString* titles_key = @"Titles";
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.model = model_;
     }
@@ -205,30 +201,22 @@ static NSString* titles_key = @"Titles";
 
 
 - (void) updateIndex {
-    [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint:)
+    [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint)
                                onTarget:self
-               inBackgroundWithArgument:[self.index objectForKey:movies_key]
+               inBackgroundWithArgument:nil
                                    gate:gate
                                 visible:YES];
 }
 
 
-- (void) deleteObsoleteData:(NSArray*) movies
-                     directory:(NSString*) directory
-               fileSelector:(SEL) fileSelector {
+- (void) clearStaleData:(NSString*) directory {
     NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-    NSMutableSet* set = [NSMutableSet setWithArray:paths];
 
-    for (Movie* movie in movies) {
-        NSString* filePath = [self performSelector:fileSelector withObject:movie];
-        [set removeObject:filePath];
-    }
-
-    for (NSString* filePath in set) {
+    for (NSString* filePath in paths) {
         NSDate* downloadDate = [FileUtilities modificationDate:filePath];
 
         if (downloadDate != nil) {
-            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > CACHE_LIMIT) {
                 [FileUtilities removeItem:filePath];
             }
         }
@@ -236,18 +224,16 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (void) deleteObsoleteData:(NSArray*) movies {
-    [self deleteObsoleteData:movies directory:[Application upcomingCastDirectory] fileSelector:@selector(castFile:)];
-    [self deleteObsoleteData:movies directory:[Application upcomingIMDbDirectory] fileSelector:@selector(imdbFile:)];
-    [self deleteObsoleteData:movies directory:[Application upcomingPostersDirectory] fileSelector:@selector(posterFile:)];
-    [self deleteObsoleteData:movies directory:[Application upcomingSynopsesDirectory] fileSelector:@selector(synopsisFile:)];
-    [self deleteObsoleteData:movies directory:[Application upcomingTrailersDirectory] fileSelector:@selector(trailersFile:)];
+- (void) clearStaleDataBackgroundEntryPoint {
+    [self clearStaleData:[Application upcomingCastDirectory]];
+    [self clearStaleData:[Application upcomingIMDbDirectory]];
+    [self clearStaleData:[Application upcomingPostersDirectory]];
+    [self clearStaleData:[Application upcomingSynopsesDirectory]];
+    [self clearStaleData:[Application upcomingTrailersDirectory]];
 }
 
 
-- (void) updateIndexBackgroundEntryPoint:(NSArray*) oldMovies {
-    [self deleteObsoleteData:oldMovies];
-
+- (void) updateIndexBackgroundEntryPoint {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
 
     if (lastLookupDate != nil) {
@@ -474,7 +460,7 @@ static NSString* titles_key = @"Titles";
             [final addObject:trailer];
         }
     }
-    
+
     [FileUtilities writeObject:final toFile:trailersFile];
     [NowPlayingAppDelegate minorRefresh];
 }

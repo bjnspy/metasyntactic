@@ -87,6 +87,7 @@ static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
 static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray";
 static NSString* USER_ADDRESS                           = @"userLocation";
 static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
+static NSString* RUN_COUNT                              = @"runCount";
 
 
 static NSString** KEYS[] = {
@@ -172,11 +173,6 @@ static NSString** KEYS[] = {
 
 - (void) updateUpcomingCache {
     [upcomingCache update];
-}
-
-
-- (void) updateLargePosterCache {
-    [largePosterCache update];
 }
 
 
@@ -277,6 +273,29 @@ static NSString** KEYS[] = {
 }
 
 
+- (void) synchronize {
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+- (void) clearCaches {
+    NSInteger runCount = [[NSUserDefaults standardUserDefaults] integerForKey:RUN_COUNT];
+    [[NSUserDefaults standardUserDefaults] setInteger:(runCount + 1) forKey:RUN_COUNT];
+    [self synchronize];
+
+    if (runCount % 20 == 0) {
+        [userLocationCache clearStaleData];
+        [largePosterCache clearStaleData];
+        [trailerCache clearStaleData];
+        [blurayCache clearStaleData];
+        [dvdCache clearStaleData];
+        [posterCache clearStaleData];
+        [scoreCache clearStaleData];
+        [upcomingCache clearStaleData];
+    }
+}
+
+
 - (id) init {
     if (self = [super init]) {
         [self loadData];
@@ -290,6 +309,8 @@ static NSString** KEYS[] = {
         self.posterCache = [PosterCache cacheWithModel:self];
         self.scoreCache = [ScoreCache cacheWithModel:self];
         self.upcomingCache = [UpcomingCache cacheWithModel:self];
+        
+        [self clearCaches];
 
         searchRadius = -1;
         cachedScoreProviderIndex = -1;
@@ -311,7 +332,6 @@ static NSString** KEYS[] = {
         @selector(updateIMDbCache),
         @selector(updateUpcomingCache),
         @selector(updateDVDCache),
-        @selector(updateLargePosterCache),
     };
 
     if (value >= ArrayLength(selectors)) {
@@ -1019,7 +1039,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     [self markDataProviderOutOfDate];
 
     [[NSUserDefaults standardUserDefaults] setObject:userAddress forKey:USER_ADDRESS];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self synchronize];
 }
 
 

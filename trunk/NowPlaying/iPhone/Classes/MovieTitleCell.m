@@ -189,7 +189,7 @@
 
 - (void) drawRect:(CGRect) rect {
     [super drawRect:rect];
-    
+
     [self drawLabel:titleLabel];
     [self drawLabel:ratingLabel];
     //[self drawLabel:scoreLabel];
@@ -214,7 +214,7 @@
     [self setScore:movie];
     ratingLabel.text = movie.ratingAndRuntimeString;
     titleLabel.text = movie.displayTitle;
-    
+
     //[self setNeedsDisplay];
 }
 

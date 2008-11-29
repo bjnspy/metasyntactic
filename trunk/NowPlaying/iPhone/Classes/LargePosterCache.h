@@ -12,15 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface LargePosterCache : NSObject {
+#import "AbstractCache.h"
+
+@interface LargePosterCache : AbstractCache {
 @private
-    NSLock* gate;
     NSDictionary* indexData;
 }
 
 + (LargePosterCache*) cache;
-
-- (void) update;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

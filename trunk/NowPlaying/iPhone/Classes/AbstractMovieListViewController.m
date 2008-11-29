@@ -25,12 +25,12 @@
 #import "Utilities.h"
 
 @interface AbstractMovieListViewController()
-@property (assign) AbstractNavigationController* navigationController;
-@property (retain) NSArray* sortedMovies;
-@property (retain) NSMutableArray* sectionTitles;
-@property (retain) MultiDictionary* sectionTitleToContentsMap;
-@property (retain) NSArray* indexTitles;
-@property (retain) NSArray* visibleIndexPaths;
+    @property (assign) AbstractNavigationController* navigationController;
+    @property (retain) NSArray* sortedMovies;
+    @property (retain) NSMutableArray* sectionTitles;
+    @property (retain) MultiDictionary* sectionTitleToContentsMap;
+    @property (retain) NSArray* indexTitles;
+    @property (retain) NSArray* visibleIndexPaths;
 @end
 
 
@@ -327,14 +327,38 @@
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-    
+
         self.visibleIndexPaths = nil;
     }
 }
 
 
+- (BOOL) outOfBounds:(NSIndexPath*) indexPath {
+    NSArray* movies;
+    if (self.sortingByScore) {
+        movies = sortedMovies;
+    } else {
+        if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
+            return YES;
+        }
+        
+        movies = [sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]];
+    }
+    
+    if (indexPath.row < 0 || indexPath.row >= movies.count) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    if ([self outOfBounds:indexPath]) {
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    }
+    
     Movie* movie;
     if (self.sortingByTitle) {
         movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
@@ -346,8 +370,7 @@
 
     //[self.model prioritizeMovie:movie];
 
-    UITableViewCell* cell = [self createCell:movie];
-    return cell;
+    return [self createCell:movie];
 }
 
 
@@ -365,6 +388,10 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+    if ([self outOfBounds:indexPath]) {
+        return;
+    }
+
     Movie* movie;
     if (self.sortingByTitle) {
         movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];

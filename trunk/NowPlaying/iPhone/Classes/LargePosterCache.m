@@ -24,17 +24,14 @@
 #import "ThreadingUtilities.h"
 
 @interface LargePosterCache()
-@property (retain) NSLock* gate;
 @property (retain) NSDictionary* indexData;
 @end
 
 @implementation LargePosterCache
 
-@synthesize gate;
 @synthesize indexData;
 
 - (void) dealloc {
-    self.gate = nil;
     self.indexData = nil;
 
     [super dealloc];
@@ -43,7 +40,6 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;
@@ -55,30 +51,21 @@
 }
 
 
-- (void) update {
-    [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint) onTarget:self inBackgroundWithArgument:nil gate:gate visible:NO];
-}
+- (void) clearStaleDataBackgroundEntryPoint {
+    NSArray* paths = [FileUtilities directoryContentsPaths:[Application largePostersDirectory]];
 
-
-- (void) deleteObsoletePosters {
-    for (NSString* path in [FileUtilities directoryContentsPaths:[Application largePostersDirectory]]) {
-        if (![path hasSuffix:@"jpg"]) {
+    for (NSString* path in paths) {
+        if ([path hasSuffix:@"plist"]) {
             continue;
         }
 
         NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
-
         if (lastModifiedDate != nil) {
-            if (ABS([lastModifiedDate timeIntervalSinceNow]) > ONE_MONTH) {
+            if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
                 [FileUtilities removeItem:path];
             }
         }
     }
-}
-
-
-- (void) updateBackgroundEntryPoint {
-    [self deleteObsoletePosters];
 }
 
 
@@ -114,7 +101,7 @@
         image = [UIImage imageWithData:data];
         [FileUtilities writeData:resizedData toFile:path];
     }
-    
+
     return image;
 }
 
