@@ -222,10 +222,10 @@
     if (sectionTitles.count == 0) {
         NSArray* theaters = self.model.theaters;
         if (theaters.count == 1) {
-            self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"1 theater outside search zone", nil)];
+            self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"1 theater outside search area", nil)];
         } else if (theaters.count > 1) {
             self.sectionTitles = [NSArray arrayWithObject:
-                                  [NSString stringWithFormat:NSLocalizedString(@"%d theaters outside search zone", nil), theaters.count]];
+                                  [NSString stringWithFormat:NSLocalizedString(@"%d theaters outside search area", nil), theaters.count]];
         } else {
             self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
         }
