@@ -25,6 +25,7 @@
   <string name="number_minutes">%d minutes</string>
   <string name="number_months_ago">%d months ago</string>
   <string name="number_of_number">%d of %d</string>
+  <string name="number_theaters_outside_search_area">%d theaters outside search area</string>
   <string name="number_weeks_ago">%d weeks ago</string>
   <string name="number_years_ago">%d years ago</string>
   <string name="one_hour">1 hour</string>
@@ -32,6 +33,7 @@
   <string name="one_mile">1 mile</string>
   <string name="one_minute">1 minute</string>
   <string name="one_month_ago">1 month ago</string>
+  <string name="one_theater_outside_search_area">1 theater outside search area</string>
   <string name="one_week_ago">1 week ago</string>
   <string name="one_year_ago">1 year ago</string>
   <string name="about">About</string>
