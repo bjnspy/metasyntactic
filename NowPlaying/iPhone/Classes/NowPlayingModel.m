@@ -1210,8 +1210,15 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
 
+    NSString* subject;
+    if ([LocaleUtilities isJapanese]) {
+        subject = [Utilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
+    } else {
+        subject = @"Now%20Playing%20Feedback";
+    }
+    
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
-    NSString* result = [@"mailto:cyrus.najmabadi@gmail.com?subject=Now%20Playing%20Feedback&body=" stringByAppendingString:encodedBody];
+    NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
     return result;
 }
 
