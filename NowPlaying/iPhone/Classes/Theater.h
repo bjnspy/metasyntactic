@@ -22,7 +22,7 @@
     Location* originatingLocation;
 
     NSArray* movieTitles;
-    
+
     NSString* simpleAddress;
 }
 

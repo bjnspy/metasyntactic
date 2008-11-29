@@ -32,7 +32,6 @@
 
 @interface AbstractDVDBlurayCache()
 @property (assign) NowPlayingModel* model;
-@property (retain) NSLock* gate;
 @property (retain) PointerSet* moviesSetData;
 @property (retain) NSArray* moviesData;
 @property (retain) LinkedSet* prioritizedMovies;
@@ -41,14 +40,12 @@
 
 @implementation AbstractDVDBlurayCache
 
-@synthesize gate;
 @synthesize model;
 @synthesize moviesSetData;
 @synthesize moviesData;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.gate = nil;
     self.model = nil;
     self.moviesSetData = nil;
     self.moviesData = nil;
@@ -60,7 +57,6 @@
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet set];
         self.model = model_;
     }
@@ -141,9 +137,9 @@
 
 
 - (void) updateMovies {
-    [ThreadingUtilities performSelector:@selector(updateMoviesBackgroundEntryPoint:)
+    [ThreadingUtilities performSelector:@selector(updateMoviesBackgroundEntryPoint)
                                onTarget:self
-               inBackgroundWithArgument:self.movies
+               inBackgroundWithArgument:nil
                                    gate:gate
                                 visible:YES];
 }
@@ -371,23 +367,14 @@
 }
 
 
-- (void) deleteObsoleteData:(NSArray*) movies
-                  directory:(NSString*) directory
-               fileSelector:(SEL) fileSelector {
+- (void) clearStaleData:(NSString*) directory {
     NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-    NSMutableSet* set = [NSMutableSet setWithArray:paths];
 
-    for (Movie* movie in movies) {
-        IMP imp = [self methodForSelector:fileSelector];
-        NSString* filePath = imp(self, fileSelector, movie, nil);
-        [set removeObject:filePath];
-    }
-
-    for (NSString* filePath in set) {
+    for (NSString* filePath in paths) {
         NSDate* downloadDate = [FileUtilities modificationDate:filePath];
 
         if (downloadDate != nil) {
-            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > CACHE_LIMIT) {
                 [FileUtilities removeItem:filePath];
             }
         }
@@ -395,16 +382,14 @@
 }
 
 
-- (void) deleteObsoleteData:(NSArray*) movies {
-    [self deleteObsoleteData:movies directory:[self detailsDirectory] fileSelector:@selector(detailsFile:set:)];
-    [self deleteObsoleteData:movies directory:[self imdbDirectory]    fileSelector:@selector(imdbFile:set:)];
-    [self deleteObsoleteData:movies directory:[self postersDirectory] fileSelector:@selector(posterFile:set:)];
+- (void) clearStaleDataBackgroundEntryPoint {
+    [self clearStaleData:[self detailsDirectory]];
+    [self clearStaleData:[self imdbDirectory]];
+    [self clearStaleData:[self postersDirectory]];
 }
 
 
-- (void) updateMoviesBackgroundEntryPoint:(NSArray*) oldMovies {
-    [self deleteObsoleteData:oldMovies];
-
+- (void) updateMoviesBackgroundEntryPoint {
     NSDate* lastUpdateDate = [FileUtilities modificationDate:[self indexFile]];
     if (lastUpdateDate != nil) {
         if (ABS(lastUpdateDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {

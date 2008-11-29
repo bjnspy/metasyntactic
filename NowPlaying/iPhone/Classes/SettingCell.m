@@ -41,7 +41,7 @@
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        
+
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         valueLabel.textColor = [ColorCache commandColor];
         valueLabel.adjustsFontSizeToFitWidth = YES;
@@ -63,35 +63,35 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     if (cachedFont == nil) {
         self.cachedFont = self.font;
         self.keyLabel.font = self.cachedFont;
         [self resizeLabels];
     }
-    
+
     CGRect keyFrame = keyLabel.frame;
     keyFrame.origin.y = floor((self.contentView.frame.size.height - keyFrame.size.height) / 2);
     keyFrame.origin.x = 10;
     keyLabel.frame = keyFrame;
-    
+
     CGRect valueFrame = valueLabel.frame;
     valueFrame.origin.y = floor((self.contentView.frame.size.height - valueFrame.size.height) / 2);
     valueFrame.origin.x = MAX(keyFrame.origin.x + keyFrame.size.width + 10,
                               self.contentView.frame.size.width - valueFrame.size.width);
     valueFrame.size.width = MIN(valueFrame.size.width,
                                 self.contentView.frame.size.width - valueFrame.origin.x);
-    
+
     if (self.accessoryType == UITableViewCellAccessoryNone) {
         valueFrame.origin.x -= 10;
     }
-    
+
     valueLabel.frame = valueFrame;
 }
 
 
 - (void) setKey:(NSString*) key
-          value:(NSString*) value {  
+          value:(NSString*) value {
     keyLabel.text = key;
     valueLabel.text = value;
 

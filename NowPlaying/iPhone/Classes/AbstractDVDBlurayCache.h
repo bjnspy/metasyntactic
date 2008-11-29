@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface AbstractDVDBlurayCache : NSObject {
+#import "AbstractCache.h"
+
+@interface AbstractDVDBlurayCache : AbstractCache {
 @private
     NowPlayingModel* model;
-
-    NSLock* gate;
 
     PointerSet* moviesSetData;
     NSArray* moviesData;

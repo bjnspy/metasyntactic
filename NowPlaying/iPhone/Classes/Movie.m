@@ -273,10 +273,10 @@ static NSString* articles[] = {
 
 - (NSString*) ratingAndRuntimeString {
     if (cachedRatingAndRuntimeString == nil) {
-        self.cachedRatingAndRuntimeString = 
+        self.cachedRatingAndRuntimeString =
         [NSString stringWithFormat:NSLocalizedString(@"%@. %@", "Rated R. 2 hours 34 minutes"), self.ratingString, self.runtimeString];
     }
-    
+
     return cachedRatingAndRuntimeString;
 }
 

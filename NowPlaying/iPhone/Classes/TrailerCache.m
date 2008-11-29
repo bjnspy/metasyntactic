@@ -25,7 +25,6 @@
 
 @interface TrailerCache()
 @property (assign) NowPlayingModel* model;
-@property (retain) NSLock* gate;
 @property (retain) LinkedSet* prioritizedMovies;
 @end
 
@@ -33,12 +32,10 @@
 @implementation TrailerCache
 
 @synthesize model;
-@synthesize gate;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
     self.model = nil;
-    self.gate = nil;
     self.prioritizedMovies = nil;
 
     [super dealloc];
@@ -48,7 +45,6 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
@@ -64,27 +60,6 @@
 - (NSString*) trailerFile:(Movie*) movie {
     NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
     return [[Application trailersDirectory] stringByAppendingPathComponent:name];
-}
-
-
-- (void) deleteObsoleteTrailers:(NSArray*) movies {
-    NSArray* paths = [FileUtilities directoryContentsPaths:[Application trailersDirectory]];
-    NSMutableSet* set = [NSMutableSet setWithArray:paths];
-
-    for (Movie* movie in movies) {
-        NSString* filePath = [self trailerFile:movie];
-        [set removeObject:filePath];
-    }
-
-    for (NSString* filePath in set) {
-        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
-
-        if (downloadDate != nil) {
-            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
-                [FileUtilities removeItem:filePath];
-            }
-        }
-    }
 }
 
 
@@ -124,7 +99,7 @@
     if (movie == nil) {
         return;
     }
-    
+
     NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
@@ -152,7 +127,7 @@
             [final addObject:trailer];
         }
     }
-    
+
     [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
     [NowPlayingAppDelegate minorRefresh];
 }
@@ -224,8 +199,6 @@
 
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
-    [self deleteObsoleteTrailers:movies];
-
     NSArray* orderedMovies = [self getOrderedMovies:movies];
     NSMutableArray* moviesWithoutTrailers = [orderedMovies objectAtIndex:0];
     NSMutableArray* moviesWithTrailers = [orderedMovies objectAtIndex:1];
@@ -253,6 +226,21 @@
         return [NSArray array];
     }
     return trailers;
+}
+
+
+- (void) clearStaleDataBackgroundEntryPoint {
+    NSArray* paths = [FileUtilities directoryContentsPaths:[Application trailersDirectory]];
+    
+    for (NSString* filePath in paths) {
+        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
+        
+        if (downloadDate != nil) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > CACHE_LIMIT) {
+                [FileUtilities removeItem:filePath];
+            }
+        }
+    }
 }
 
 @end

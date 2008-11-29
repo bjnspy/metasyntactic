@@ -231,15 +231,15 @@
     for (NSDictionary* encodedPerformance in unsureArray) {
         Performance* performance = [Performance performanceWithDictionary:encodedPerformance];
         NSDate* date = [DateUtilities dateWithNaturalLanguageString:performance.time];
-        
+
         [timeToPerformance setObject:performance forKey:date];
     }
-    
+
     NSMutableArray* decodedArray = [NSMutableArray array];
     for (NSDate* date in [timeToPerformance.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
         [decodedArray addObject:[timeToPerformance objectForKey:date]];
     }
-        
+
     [theaterPerformances setObject:decodedArray forKey:movie.canonicalTitle];
     return decodedArray;
 }
@@ -420,7 +420,7 @@
             // location.  Don't include this old theaters.
             continue;
         }
-        
+
         // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
         NSString* theaterName = theater.name;
@@ -435,7 +435,7 @@
         if (ABS(date.timeIntervalSinceNow) > ONE_MONTH) {
             continue;
         }
-        
+
         [lookupResult.performances setObject:oldPerformances forKey:theaterName];
         [lookupResult.synchronizationInformation setObject:[self synchronizationDateForTheater:theaterName] forKey:theaterName];
         [lookupResult.theaters addObject:theater];
@@ -467,6 +467,7 @@
     // Do the primary search.
     LookupResult* result = [self lookupLocation:location filterTheaters:nil];
     if (result.movies.count == 0 || result.theaters.count == 0) {
+        [self performSelectorOnMainThread:@selector(reportError) withObject:nil waitUntilDone:NO];
         return;
     }
 
@@ -503,6 +504,19 @@
 
 - (NSDate*) synchronizationDateForTheater:(NSString*) theaterName {
     return [self.synchronizationInformation objectForKey:theaterName];
+}
+
+
+- (void) reportError {
+    /*
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+                                                     message:NSLocalizedString(@"Could not find location.", nil)
+                                                    delegate:nil
+                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                           otherButtonTitles:nil] autorelease];
+    
+    [alert show];
+     */
 }
 
 @end

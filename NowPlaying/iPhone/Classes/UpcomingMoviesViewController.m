@@ -136,10 +136,10 @@
 }
 
 
-- (void) minorRefresh {
+- (void) minorRefreshWorker {
     for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
-    }   
+    }
 }
 
 @end

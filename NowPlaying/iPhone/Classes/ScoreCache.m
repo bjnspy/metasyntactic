@@ -108,4 +108,12 @@
     [self.currentScoreProvider prioritizeMovie:movie inMovies:movies];
 }
 
+
+- (void) clearStaleData {
+    [rottenTomatoesScoreProvider clearStaleData];
+    [metacriticScoreProvider clearStaleData];
+    [googleScoreProvider clearStaleData];
+    [noneScoreProvider clearStaleData];
+}
+
 @end

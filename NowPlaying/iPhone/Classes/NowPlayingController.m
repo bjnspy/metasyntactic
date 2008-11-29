@@ -73,12 +73,6 @@
 }
 
 
-- (void) spawnBackgroundThreads {
-    [self spawnScoresLookupThread];
-    [self spawnDataProviderLookupThread];
-}
-
-
 - (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
@@ -119,7 +113,8 @@
 
         [alert show];
     } else {
-        [self spawnBackgroundThreads];
+        [self spawnScoresLookupThread];
+        [self spawnDataProviderLookupThread];
         [self.model performSelector:@selector(update) withObject:nil afterDelay:1];
     }
 }
@@ -131,7 +126,7 @@
     }
 
     [self.model setSearchDate:searchDate];
-    [self spawnBackgroundThreads];
+    [self spawnDetermineLocationThread];
     [appDelegate.tabBarController popNavigationControllersToRoot];
 }
 

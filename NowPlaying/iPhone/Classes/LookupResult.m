@@ -34,7 +34,7 @@
     self.theaters = nil;
     self.performances = nil;
     self.synchronizationInformation = nil;
-    
+
     [super dealloc];
 }
 
@@ -49,7 +49,7 @@ synchronizationInformation:(NSMutableDictionary*) synchronizationInformation_ {
         self.performances = performances_;
         self.synchronizationInformation = synchronizationInformation_;
     }
-    
+
     return self;
 }
 

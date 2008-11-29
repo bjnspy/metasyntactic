@@ -89,6 +89,7 @@
 		747AB8610EB963AE002438D0 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
 		747AB9270EB97822002438D0 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB9260EB97822002438D0 /* PointerSet.m */; };
 		747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 747ABB770EBA4228002438D0 /* VideoETALogo.png */; };
+		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
 		747C56970E67583600BD69DA /* NowPlayingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */; };
 		747C56980E67583600BD69DA /* NowPlayingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56940E67583600BD69DA /* NowPlayingController.m */; };
 		747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56960E67583600BD69DA /* NowPlayingModel.m */; };
@@ -415,6 +416,8 @@
 		747AB9260EB97822002438D0 /* PointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerSet.m; sourceTree = "<group>"; };
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747ABB770EBA4228002438D0 /* VideoETALogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VideoETALogo.png; path = Resources/VideoETALogo.png; sourceTree = "<group>"; };
+		747B4C210EE110D000F6FB1F /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
+		747B4C220EE110D000F6FB1F /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		747C56910E67583600BD69DA /* NowPlayingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingAppDelegate.h; sourceTree = "<group>"; };
 		747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingAppDelegate.m; sourceTree = "<group>"; };
 		747C56930E67583600BD69DA /* NowPlayingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingController.h; sourceTree = "<group>"; };
@@ -1105,6 +1108,8 @@
 				744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */,
 				744AF8410EC4DF12008B5B35 /* AbstractDVDBlurayCache.h */,
 				744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */,
+				747B4C210EE110D000F6FB1F /* AbstractCache.h */,
+				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -1671,6 +1676,7 @@
 				74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */,
 				74FF70BB0EC9710600B0D534 /* DVDFilterViewController.m in Sources */,
 				7427C1630ED6BCDA00B7BF09 /* RefreshableTableViewController.m in Sources */,
+				747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,4 +28,7 @@
 
 // only call on the background
 - (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress;
+
+- (void) clearStaleData;
+
 @end

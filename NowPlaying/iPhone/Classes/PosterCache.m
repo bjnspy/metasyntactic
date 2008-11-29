@@ -33,7 +33,6 @@
 #import "Utilities.h"
 
 @interface PosterCache()
-@property (retain) NSLock* gate;
 @property (retain) NowPlayingModel* model;
 @property (retain) LinkedSet* prioritizedMovies;
 @end
@@ -41,12 +40,10 @@
 
 @implementation PosterCache
 
-@synthesize gate;
 @synthesize model;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.gate = nil;
     self.model = nil;
     self.prioritizedMovies = nil;
 
@@ -56,7 +53,6 @@
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.model = model_;
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
@@ -91,19 +87,14 @@
 }
 
 
-- (void) deleteObsoletePosters:(NSArray*) movies {
-    NSMutableSet* set = [NSMutableSet set];
-    [set addObjectsFromArray:[FileUtilities directoryContentsPaths:[Application postersDirectory]]];
+- (void) clearStaleDataBackgroundEntryPoint {
+    NSArray* paths = [FileUtilities directoryContentsPaths:[Application postersDirectory]];
 
-    for (Movie* movie in movies) {
-        [set removeObject:[self posterFilePath:movie]];
-    }
-
-    for (NSString* filePath in set) {
+    for (NSString* filePath in paths) {
         NSDate* downloadDate = [FileUtilities modificationDate:filePath];
 
         if (downloadDate != nil) {
-            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
+            if (ABS(downloadDate.timeIntervalSinceNow) > CACHE_LIMIT) {
                 [FileUtilities removeItem:filePath];
             }
         }
@@ -182,7 +173,7 @@
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie;
-    
+
     while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
         if (![FileUtilities fileExists:[self posterFilePath:movie]]) {
             return movie;
@@ -213,11 +204,16 @@
 }
 
 
-- (void) downloadPosters:(NSArray*) movies {
+- (void) prioritizeMovie:(Movie*) movie {
+    [prioritizedMovies addObject:movie];
+}
+
+
+- (void) backgroundEntryPoint:(NSArray*) movies {
     // movies with poster links download faster. try them first.
     NSMutableArray* moviesWithPosterLinks = [NSMutableArray array];
     NSMutableArray* moviesWithoutPosterLinks = [NSMutableArray array];
-
+    
     for (Movie* movie in movies) {
         if (movie.poster.length == 0) {
             [moviesWithoutPosterLinks addObject:movie];
@@ -225,26 +221,15 @@
             [moviesWithPosterLinks addObject:movie];
         }
     }
-
+    
     Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
     NSString* postalCode = location.postalCode;
     if (postalCode == nil || ![@"US" isEqual:location.country]) {
         postalCode = @"10009";
     }
-
+    
     [self downloadPosters:moviesWithPosterLinks postalCode:postalCode];
     [self downloadPosters:moviesWithoutPosterLinks postalCode:postalCode];
-}
-
-
-- (void) prioritizeMovie:(Movie*) movie {
-    [prioritizedMovies addObject:movie];
-}
-
-
-- (void) backgroundEntryPoint:(NSArray*) movies {
-    [self deleteObsoletePosters:movies];
-    [self downloadPosters:movies];
 }
 
 

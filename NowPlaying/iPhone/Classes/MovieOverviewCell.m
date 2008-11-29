@@ -134,7 +134,7 @@
     guess = MIN(guess, synopsis.length);
 
     NSCharacterSet* charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    
+
     while (true) {
         NSRange whitespaceRange = [synopsis rangeOfCharacterFromSet:charSet
                                                             options:NSBackwardsSearch

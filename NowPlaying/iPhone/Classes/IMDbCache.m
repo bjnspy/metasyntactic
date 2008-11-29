@@ -143,7 +143,7 @@
         if (![FileUtilities fileExists:[self imdbFile:movie]]) {
             return movie;
         }
-    }        
+    }
 
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
