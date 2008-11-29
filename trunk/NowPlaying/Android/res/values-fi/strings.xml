@@ -25,6 +25,7 @@
   <string name="number_minutes">%d minuuttia</string>
   <string name="number_months_ago">%d kuukautta sitten</string>
   <string name="number_of_number">%d / %d</string>
+  <string name="number_theaters_outside_search_area">%d teatteria hakualueen ulkopuolella</string>
   <string name="number_weeks_ago">%d viikkoa sitten</string>
   <string name="number_years_ago">%d vuotta sitten</string>
   <string name="one_hour">1 tunti</string>
@@ -32,6 +33,7 @@
   <string name="one_mile">1 maili</string>
   <string name="one_minute">1 minuutti</string>
   <string name="one_month_ago">1 kuukausi sitten</string>
+  <string name="one_theater_outside_search_area">1 teatteri hakualueen ulkopuolella</string>
   <string name="one_week_ago">1 viikko sitten</string>
   <string name="one_year_ago">1 vuosi sitten</string>
   <string name="about">Tietoja</string>
