@@ -341,14 +341,14 @@
         if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
             return YES;
         }
-        
+
         movies = [sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]];
     }
-    
+
     if (indexPath.row < 0 || indexPath.row >= movies.count) {
         return YES;
     }
-    
+
     return NO;
 }
 
@@ -358,7 +358,7 @@
     if ([self outOfBounds:indexPath]) {
         return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     }
-    
+
     Movie* movie;
     if (self.sortingByTitle) {
         movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];

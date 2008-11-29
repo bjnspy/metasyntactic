@@ -358,12 +358,12 @@
     if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
         return YES;
     }
-    
+
     NSArray* theaters = [sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]];
     if (indexPath.row < 0 || indexPath.row >= theaters.count) {
         return YES;
     }
-    
+
     return NO;
 }
 
@@ -373,7 +373,7 @@
     if ([self outOfBounds:indexPath]) {
         return;
     }
-    
+
     Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     [navigationController pushTheaterDetails:theater animated:YES];
@@ -396,7 +396,7 @@
     if ([self outOfBounds:indexPath]) {
         return [[[UITableView alloc] init] autorelease];
     }
-    
+
     Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     static NSString* reuseIdentifier = @"AllTheatersCellIdentifier";

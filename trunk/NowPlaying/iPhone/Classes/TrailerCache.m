@@ -231,10 +231,10 @@
 
 - (void) clearStaleDataBackgroundEntryPoint {
     NSArray* paths = [FileUtilities directoryContentsPaths:[Application trailersDirectory]];
-    
+
     for (NSString* filePath in paths) {
         NSDate* downloadDate = [FileUtilities modificationDate:filePath];
-        
+
         if (downloadDate != nil) {
             if (ABS(downloadDate.timeIntervalSinceNow) > CACHE_LIMIT) {
                 [FileUtilities removeItem:filePath];
