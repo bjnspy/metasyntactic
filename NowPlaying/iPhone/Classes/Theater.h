@@ -46,6 +46,4 @@
 - (NSString*) mapUrl;
 - (NSString*) simpleAddress;
 
-+ (NSString*) processShowtime:(NSString*) showtime;
-
 @end

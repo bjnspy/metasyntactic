@@ -14,15 +14,15 @@
 
 @interface Performance : NSObject {
 @private
-    NSString* time;
+    NSDate* time;
     NSString* url;
 }
 
-@property (readonly, copy) NSString* time;
+@property (readonly, copy) NSDate* time;
 @property (readonly, copy) NSString* url;
 
 + (Performance*) performanceWithDictionary:(NSDictionary*) dictionary;
-+ (Performance*) performanceWithTime:(NSString*) time
++ (Performance*) performanceWithTime:(NSDate*) time
                                  url:(NSString*) url;
 
 - (NSDictionary*) dictionary;

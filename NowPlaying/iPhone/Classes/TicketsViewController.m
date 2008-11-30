@@ -69,13 +69,21 @@
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     self.performances = [NSMutableArray array];
 
-    NSDate* now = [NSDate date];
+    NSDate* now = [DateUtilities currentTime];
+    
     for (Performance* performance in allPerformances) {
         if ([DateUtilities isToday:self.model.searchDate]) {
-            NSDate* showtimeDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
+            NSDate* time = performance.time;
 
-            if ([now compare:showtimeDate] == NSOrderedDescending) {
-                continue;
+            // skip times that have already passed.
+            if ([now compare:time] == NSOrderedDescending) {
+                
+                // except for times that are before 4 AM
+                NSDateComponents* components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit
+                                                                               fromDate:time];
+                if (components.hour > 4) {
+                    continue;
+                }
             }
         }
 
@@ -236,11 +244,13 @@
 
     if (performance.url.length == 0) {
         cell.textColor = [UIColor blackColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), performance.time];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil),
+                     [DateUtilities formatShortTime:performance.time]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [ColorCache commandColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil), performance.time];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil),
+                     [DateUtilities formatShortTime:performance.time]];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 

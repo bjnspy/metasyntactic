@@ -14,6 +14,7 @@
 
 #import "MovieShowtimesCell.h"
 
+#import "DateUtilities.h"
 #import "FontCache.h"
 #import "ImageCache.h"
 #import "Performance.h"
@@ -45,12 +46,12 @@
         return @"";
     }
 
-    NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
+    NSMutableString* text = [NSMutableString stringWithString:[DateUtilities formatShortTime:[[showtimes objectAtIndex:0] time]]];
 
     for (int i = 1; i < showtimes.count; i++) {
         [text appendString:@", "];
         Performance* performance = [showtimes objectAtIndex:i];
-        [text appendString:performance.time];
+        [text appendString:[DateUtilities formatShortTime:performance.time]];
     }
 
     return text;

@@ -29,10 +29,21 @@
 #import "Utilities.h"
 #import "XmlElement.h"
 
+@interface GoogleDataProvider()
+@property (retain) NSCalendar* calendar;
+@property (retain) NSDateComponents* dateComponents;
+@end
+
 
 @implementation GoogleDataProvider
 
+@synthesize calendar;
+@synthesize dateComponents;
+
 - (void) dealloc {
+    self.calendar = nil;
+    self.dateComponents = nil;
+
     [super dealloc];
 }
 
@@ -80,6 +91,135 @@
 }
 
 
+- (BOOL) hasTimeSuffix:(NSString*) time {
+    return [time hasSuffix:@"am"] || [time hasSuffix:@"pm"];
+}
+
+
+- (BOOL) is24HourTime:(NSArray*) times {
+    for (NSString* time in times) {
+        if (time.length != 5 || [time rangeOfString:@":"].location != 2) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+
+- (BOOL) is12HourTime:(NSArray*) times {
+    for (NSString* time in times) {
+        if ([time rangeOfString:@":"].length == 0) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+
+- (NSArray*) process24HourTimes:(NSArray*) showtimes {
+    NSMutableArray* times = [NSMutableArray array];
+
+    for (NSString* time in times) {
+        NSInteger hour = [[time substringToIndex:2] intValue];
+        NSInteger minute = [[time substringFromIndex:3] intValue];
+        
+        [dateComponents setHour:hour];
+        [dateComponents setMinute:minute];
+        
+        NSDate* date = [calendar dateFromComponents:dateComponents];
+        
+        [times addObject:date];
+    }
+    
+    return times;
+}
+
+
+- (NSDate*) processUnknownTime:(NSString*) showtime {     
+     if (![showtime hasSuffix:@"am"] && ![showtime hasSuffix:@"pm"]) {
+         showtime = [NSString stringWithFormat:@"%@pm", showtime];
+     }
+
+    return [NSDate dateWithNaturalLanguageString:showtime];
+}
+
+
+- (NSArray*) process12HourTimes:(NSArray*) times {
+    NSString* lastTime = [times lastObject];
+    
+    // walk backwards from the end.  switch the time when we see an AM/PM marker
+    NSMutableArray* reverseArray = [NSMutableArray array];
+    BOOL isPM = [lastTime hasSuffix:@"pm"];
+    
+    for (NSInteger i = times.count - 1; i >= 0; i--) {
+        NSString* time = [times objectAtIndex:i];
+        
+        if ([self hasTimeSuffix:time]) {
+            isPM = [time hasSuffix:@"pm"];
+            
+            // trim off the suffix
+            time = [time substringToIndex:time.length - 2];
+        }
+        
+        NSRange range = [time rangeOfString:@":"];
+        
+        NSInteger hour = [[time substringToIndex:range.location] intValue];
+        NSInteger minute = [[time substringFromIndex:range.location + 1] intValue];
+        
+        if (isPM && hour < 12) {
+            hour += 12;
+        } else if (!isPM && hour == 12) {
+            hour = 0;
+        }
+        
+        [dateComponents setHour:hour];
+        [dateComponents setMinute:minute];
+        
+        NSDate* date = [calendar dateFromComponents:dateComponents];
+        
+        [reverseArray addObject:date];
+    }
+    
+    NSMutableArray* result = [NSMutableArray array];
+    for (NSInteger i = reverseArray.count - 1; i >= 0; i--) {
+        [result addObject:[reverseArray objectAtIndex:i]];
+    }
+    
+    return result;
+}
+
+
+- (NSArray*) processUnknownTimes:(NSArray*) times {
+    NSMutableArray* result = [NSMutableArray array];
+    for (NSString* time in times) {
+        [result addObject:[self processUnknownTime:time]];
+    }
+    return result;
+}
+
+
+- (NSArray*) processTimes:(NSArray*) showtimes {
+    if (showtimes.count == 0) {
+        return [NSArray array];
+    }
+    
+    NSMutableArray* times = [NSMutableArray array];
+    for (ShowtimeProto* showtime in showtimes) {
+        [times addObject:showtime.time];
+    }
+    
+    if ([self is24HourTime:times]) {
+        return [self process24HourTimes:times];
+    } else if ([self is12HourTime:times] && [self hasTimeSuffix:times.lastObject]) {
+        return [self process12HourTimes:times];
+    } else {
+        return [self processUnknownTimes:times];
+    }
+}
+
+
 - (NSMutableDictionary*) processMovieAndShowtimesList:(NSArray*) movieAndShowtimesList
                                     movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -91,11 +231,14 @@
 
         NSMutableArray* performances = [NSMutableArray array];
 
-        for (ShowtimeProto* showtime in movieAndShowtimes.showtimes.showtimesList) {
-            NSString* time = showtime.time;
-            NSString* url = showtime.url;
+        NSArray* times = [self processTimes:movieAndShowtimes.showtimes.showtimesList];
+        
+        NSArray* showtimes = movieAndShowtimes.showtimes.showtimesList;
+        for (NSInteger i = 0; i < showtimes.count; i++) {
+            ShowtimeProto* showtime = [showtimes objectAtIndex:i];
+            NSDate* time = [times objectAtIndex:i];
 
-            time = [Theater processShowtime:time];
+            NSString* url = showtime.url;
 
             if ([url hasPrefix:@"m="]) {
                 url = [NSString stringWithFormat:@"http://iphone.fandango.com/tms.asp?a=11586&%@", url];
@@ -106,7 +249,7 @@
 
             [performances addObject:performance.dictionary];
         }
-
+        
         [dictionary setObject:performances forKey:movieTitle];
     }
 
@@ -176,7 +319,7 @@
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
     NSMutableDictionary* synchronizationInformation = [NSMutableDictionary dictionary];
-
+                               
     for (TheaterListingsProto_TheaterAndMovieShowtimesProto* proto in theaterAndMovieShowtimes) {
         [self processTheaterAndMovieShowtimes:proto
                                      theaters:theaters
@@ -194,6 +337,9 @@
 - (LookupResult*) processTheaterListings:(TheaterListingsProto*) element
                      originatingLocation:(Location*) originatingLocation
                             filterTheaters:(NSArray*) filterTheaters {
+                                self.calendar = [NSCalendar currentCalendar];
+                                self.dateComponents = [[[NSDateComponents alloc] init] autorelease];
+                                
     NSArray* movieProtos = element.moviesList;
     NSArray* theaterAndMovieShowtimes = element.theaterAndMovieShowtimesList;
 

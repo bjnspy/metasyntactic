@@ -129,25 +129,6 @@ property_definition(movieTitles);
 }
 
 
-+ (NSString*) processShowtime:(NSString*) showtime {
-    if ([DateUtilities use24HourTime]) {
-        return showtime;
-    }
-
-    if ([showtime hasSuffix:@" PM"]) {
-        return [NSString stringWithFormat:@"%@pm", [showtime substringToIndex:showtime.length - 3]];
-    } else if ([showtime hasSuffix:@" AM"]) {
-        return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:showtime.length - 3]];
-    }
-
-    if (![showtime hasSuffix:@"am"] && ![showtime hasSuffix:@"pm"]) {
-        return [NSString stringWithFormat:@"%@pm", showtime];
-    }
-
-    return showtime;
-}
-
-
 - (NSString*) simpleAddressWorker {
     if (location.address.length != 0 && location.city.length != 0) {
         return [NSString stringWithFormat:@"%@, %@", location.address, location.city];

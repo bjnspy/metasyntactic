@@ -229,8 +229,34 @@ static BOOL use24HourTime;
 }
 
 
++ (NSString*) formatShortTimeWorker:(NSDate*) date {
+    NSDateComponents* components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) 
+                                               fromDate:date];
+    
+    if ([self use24HourTime]) {
+        return [NSString stringWithFormat:@"%02d:%02d", components.hour, components.minute];
+    } else {
+        if (components.hour == 0) {
+            return [NSString stringWithFormat:@"12:%02dam", components.minute];
+        } else if (components.hour == 12) {
+            return [NSString stringWithFormat:@"12:%02dpm", components.minute];
+        } else if (components.hour > 12) {
+            return [NSString stringWithFormat:@"%d:%02dpm", components.hour - 12, components.minute];
+        } else {
+            return [NSString stringWithFormat:@"%d:%02dam", components.hour, components.minute];
+        }
+    }
+}
+
+
 + (NSString*) formatShortTime:(NSDate*) date {
-    return [self format:date formatter:shortTimeFormatter];
+    NSString* result;
+    [gate lock];
+    {
+        result = [self formatShortTimeWorker:date];
+    }
+    [gate unlock];
+    return result;
 }
 
 
@@ -276,6 +302,23 @@ static BOOL use24HourTime;
 
 + (BOOL) use24HourTime {
     return use24HourTime;
+}
+
+
++ (NSDate*) currentTimeWorker {
+    return [calendar dateFromComponents:[calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit
+                                                    fromDate:[NSDate date]]];
+}
+
+
++ (NSDate*) currentTime {
+    NSDate* result;
+    [gate lock];
+    {
+        result = [self currentTimeWorker];
+    }
+    [gate unlock];
+    return result;
 }
 
 @end
