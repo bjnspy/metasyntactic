@@ -230,7 +230,7 @@
     NSMutableArray* decodedArray = [NSMutableArray array];
     for (NSDictionary* encodedPerformance in unsureArray) {
         Performance* performance = [Performance performanceWithDictionary:encodedPerformance];
-     
+
         [decodedArray addObject:performance];
     }
 

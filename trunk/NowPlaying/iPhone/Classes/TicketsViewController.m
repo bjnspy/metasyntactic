@@ -70,14 +70,14 @@
     self.performances = [NSMutableArray array];
 
     NSDate* now = [DateUtilities currentTime];
-    
+
     for (Performance* performance in allPerformances) {
         if ([DateUtilities isToday:self.model.searchDate]) {
             NSDate* time = performance.time;
 
             // skip times that have already passed.
             if ([now compare:time] == NSOrderedDescending) {
-                
+
                 // except for times that are before 4 AM
                 NSDateComponents* components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit
                                                                                fromDate:time];

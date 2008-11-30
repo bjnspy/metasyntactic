@@ -102,7 +102,7 @@
             return NO;
         }
     }
-    
+
     return YES;
 }
 
@@ -113,7 +113,7 @@
             return NO;
         }
     }
-    
+
     return YES;
 }
 
@@ -124,20 +124,20 @@
     for (NSString* time in times) {
         NSInteger hour = [[time substringToIndex:2] intValue];
         NSInteger minute = [[time substringFromIndex:3] intValue];
-        
+
         [dateComponents setHour:hour];
         [dateComponents setMinute:minute];
-        
+
         NSDate* date = [calendar dateFromComponents:dateComponents];
-        
+
         [times addObject:date];
     }
-    
+
     return times;
 }
 
 
-- (NSDate*) processUnknownTime:(NSString*) showtime {     
+- (NSDate*) processUnknownTime:(NSString*) showtime {
      if (![showtime hasSuffix:@"am"] && ![showtime hasSuffix:@"pm"]) {
          showtime = [NSString stringWithFormat:@"%@pm", showtime];
      }
@@ -148,45 +148,45 @@
 
 - (NSArray*) process12HourTimes:(NSArray*) times {
     NSString* lastTime = [times lastObject];
-    
+
     // walk backwards from the end.  switch the time when we see an AM/PM marker
     NSMutableArray* reverseArray = [NSMutableArray array];
     BOOL isPM = [lastTime hasSuffix:@"pm"];
-    
+
     for (NSInteger i = times.count - 1; i >= 0; i--) {
         NSString* time = [times objectAtIndex:i];
-        
+
         if ([self hasTimeSuffix:time]) {
             isPM = [time hasSuffix:@"pm"];
-            
+
             // trim off the suffix
             time = [time substringToIndex:time.length - 2];
         }
-        
+
         NSRange range = [time rangeOfString:@":"];
-        
+
         NSInteger hour = [[time substringToIndex:range.location] intValue];
         NSInteger minute = [[time substringFromIndex:range.location + 1] intValue];
-        
+
         if (isPM && hour < 12) {
             hour += 12;
         } else if (!isPM && hour == 12) {
             hour = 0;
         }
-        
+
         [dateComponents setHour:hour];
         [dateComponents setMinute:minute];
-        
+
         NSDate* date = [calendar dateFromComponents:dateComponents];
-        
+
         [reverseArray addObject:date];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
     for (NSInteger i = reverseArray.count - 1; i >= 0; i--) {
         [result addObject:[reverseArray objectAtIndex:i]];
     }
-    
+
     return result;
 }
 
@@ -204,12 +204,12 @@
     if (showtimes.count == 0) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* times = [NSMutableArray array];
     for (ShowtimeProto* showtime in showtimes) {
         [times addObject:showtime.time];
     }
-    
+
     if ([self is24HourTime:times]) {
         return [self process24HourTimes:times];
     } else if ([self is12HourTime:times] && [self hasTimeSuffix:times.lastObject]) {
@@ -232,7 +232,7 @@
         NSMutableArray* performances = [NSMutableArray array];
 
         NSArray* times = [self processTimes:movieAndShowtimes.showtimes.showtimesList];
-        
+
         NSArray* showtimes = movieAndShowtimes.showtimes.showtimesList;
         for (NSInteger i = 0; i < showtimes.count; i++) {
             ShowtimeProto* showtime = [showtimes objectAtIndex:i];
@@ -249,7 +249,7 @@
 
             [performances addObject:performance.dictionary];
         }
-        
+
         [dictionary setObject:performances forKey:movieTitle];
     }
 
@@ -319,7 +319,7 @@
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
     NSMutableDictionary* synchronizationInformation = [NSMutableDictionary dictionary];
-                               
+
     for (TheaterListingsProto_TheaterAndMovieShowtimesProto* proto in theaterAndMovieShowtimes) {
         [self processTheaterAndMovieShowtimes:proto
                                      theaters:theaters
@@ -339,7 +339,7 @@
                             filterTheaters:(NSArray*) filterTheaters {
                                 self.calendar = [NSCalendar currentCalendar];
                                 self.dateComponents = [[[NSDateComponents alloc] init] autorelease];
-                                
+
     NSArray* movieProtos = element.moviesList;
     NSArray* theaterAndMovieShowtimes = element.theaterAndMovieShowtimesList;
 
