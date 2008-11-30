@@ -183,12 +183,12 @@
         Performance* performance = [performances objectAtIndex:i];
 
         if (performance.url.length == 0) {
-            [body appendString:[DateUtilities formatShortTime:performance.time]];
+            [body appendString:performance.timeString];
         } else {
             [body appendString:@"<a href=\""];
             [body appendString:performance.url];
             [body appendString:@"\">"];
-            [body appendString:[DateUtilities formatShortTime:performance.time]];
+            [body appendString:performance.timeString];
             [body appendString:@"</a>"];
         }
     }

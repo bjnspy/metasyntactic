@@ -314,8 +314,6 @@ static NSString** KEYS[] = {
 
         searchRadius = -1;
         cachedScoreProviderIndex = -1;
-
-        [self performSelector:@selector(update) withObject:nil afterDelay:2];
     }
 
     return self;
@@ -644,13 +642,6 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) onDataProviderUpdated {
-    [self updatePosterCache];
-    [self updateTrailerCache];
-    [self updateIMDbCache];
-}
-
-
 - (NSMutableArray*) loadFavoriteTheaters {
     NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:FAVORITE_THEATERS];
     if (array.count == 0) {
@@ -846,14 +837,25 @@ static NSString** KEYS[] = {
 }
 
 
-- (BOOL) isStale:(Theater*) theater {
+- (BOOL) isStaleWorker:(Theater*) theater {
     NSDate* globalSyncDate = [dataProvider lastLookupDate];
     NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
     if (globalSyncDate == nil || theaterSyncDate == nil) {
         return NO;
     }
-
+    
     return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
+}
+
+
+- (BOOL) isStale:(Theater*) theater {
+    NSNumber* stale = theater.isStale;
+    if (stale == nil) {
+        stale = [NSNumber numberWithBool:[self isStaleWorker:theater]];
+        theater.isStale = stale;
+    }
+    
+    return [stale boolValue];
 }
 
 

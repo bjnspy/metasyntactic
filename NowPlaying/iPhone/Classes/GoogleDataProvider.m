@@ -118,8 +118,8 @@
 }
 
 
-- (NSArray*) process24HourTimes:(NSArray*) showtimes {
-    NSMutableArray* times = [NSMutableArray array];
+- (NSArray*) process24HourTimes:(NSArray*) times {
+    NSMutableArray* result = [NSMutableArray array];
 
     for (NSString* time in times) {
         NSInteger hour = [[time substringToIndex:2] intValue];
@@ -130,10 +130,10 @@
 
         NSDate* date = [calendar dateFromComponents:dateComponents];
 
-        [times addObject:date];
+        [result addObject:date];
     }
 
-    return times;
+    return result;
 }
 
 
@@ -142,7 +142,7 @@
          showtime = [NSString stringWithFormat:@"%@pm", showtime];
      }
 
-    return [NSDate dateWithNaturalLanguageString:showtime];
+    return [DateUtilities dateWithNaturalLanguageString:showtime];
 }
 
 
@@ -230,10 +230,10 @@
         NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
 
         NSMutableArray* performances = [NSMutableArray array];
-
-        NSArray* times = [self processTimes:movieAndShowtimes.showtimes.showtimesList];
-
+        
         NSArray* showtimes = movieAndShowtimes.showtimes.showtimesList;
+        NSArray* times = [self processTimes:showtimes];
+
         for (NSInteger i = 0; i < showtimes.count; i++) {
             ShowtimeProto* showtime = [showtimes objectAtIndex:i];
             NSDate* time = [times objectAtIndex:i];

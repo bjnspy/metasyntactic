@@ -245,12 +245,12 @@
     if (performance.url.length == 0) {
         cell.textColor = [UIColor blackColor];
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil),
-                     [DateUtilities formatShortTime:performance.time]];
+                     performance.timeString];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [ColorCache commandColor];
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil),
-                     [DateUtilities formatShortTime:performance.time]];
+                     performance.timeString];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 

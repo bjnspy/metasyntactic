@@ -115,7 +115,6 @@
     } else {
         [self spawnScoresLookupThread];
         [self spawnDataProviderLookupThread];
-        [self.model performSelector:@selector(update) withObject:nil afterDelay:1];
     }
 }
 

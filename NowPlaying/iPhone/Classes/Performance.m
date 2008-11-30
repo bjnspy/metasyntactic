@@ -14,21 +14,25 @@
 
 #import "Performance.h"
 
+#import "DateUtilities.h"
 #import "Utilities.h"
 
 @interface Performance()
 @property (copy) NSDate* time;
 @property (copy) NSString* url;
+@property (copy) NSString* timeString;
 @end
 
 @implementation Performance
 
 property_definition(time);
 property_definition(url);
+@synthesize timeString;
 
 - (void) dealloc {
     self.time = nil;
     self.url = nil;
+    self.timeString = nil;
 
     [super dealloc];
 }
@@ -65,6 +69,15 @@ property_definition(url);
     [dictionary setObject:url forKey:url_key];
 
     return dictionary;
+}
+
+
+- (NSString*) timeString {
+    if (timeString == nil) {
+        self.timeString = [DateUtilities formatShortTime:time];
+    }
+    
+    return timeString;
 }
 
 @end
