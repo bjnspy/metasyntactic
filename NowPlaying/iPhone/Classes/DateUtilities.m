@@ -230,9 +230,9 @@ static BOOL use24HourTime;
 
 
 + (NSString*) formatShortTimeWorker:(NSDate*) date {
-    NSDateComponents* components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) 
+    NSDateComponents* components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                                fromDate:date];
-    
+
     if ([self use24HourTime]) {
         return [NSString stringWithFormat:@"%02d:%02d", components.hour, components.minute];
     } else {

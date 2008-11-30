@@ -159,7 +159,7 @@ static MainThreadGate* gate;
         [data writeToFile:file atomically:YES];
     }
     [gate unlock];
-    
+
     /*
     if ([NSThread threadPriority] == 0.0) {
         [NSThread sleepForTimeInterval:0.25];

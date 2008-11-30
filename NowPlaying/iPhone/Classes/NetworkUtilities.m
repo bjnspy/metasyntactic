@@ -118,7 +118,7 @@ static PriorityMutex* mutex = nil;
     if (![NSThread isMainThread]) {
         [NSThread sleepForTimeInterval:0.25];
     }
-    
+
     if (error != nil) {
         return nil;
     }
