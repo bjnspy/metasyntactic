@@ -36,4 +36,6 @@
 
 + (BOOL) use24HourTime;
 
++ (NSDate*) currentTime;
+
 @end

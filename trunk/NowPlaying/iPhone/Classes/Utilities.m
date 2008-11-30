@@ -15,6 +15,7 @@
 #import "Utilities.h"
 
 #import "DataProvider.h"
+#import "DateUtilities.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"
 #import "Theater.h"
@@ -182,12 +183,12 @@
         Performance* performance = [performances objectAtIndex:i];
 
         if (performance.url.length == 0) {
-            [body appendString:performance.time];
+            [body appendString:[DateUtilities formatShortTime:performance.time]];
         } else {
             [body appendString:@"<a href=\""];
             [body appendString:performance.url];
             [body appendString:@"\">"];
-            [body appendString:performance.time];
+            [body appendString:[DateUtilities formatShortTime:performance.time]];
             [body appendString:@"</a>"];
         }
     }

@@ -227,17 +227,11 @@
         return unsureArray;
     }
 
-    NSMutableDictionary* timeToPerformance = [NSMutableDictionary dictionary];
+    NSMutableArray* decodedArray = [NSMutableArray array];
     for (NSDictionary* encodedPerformance in unsureArray) {
         Performance* performance = [Performance performanceWithDictionary:encodedPerformance];
-        NSDate* date = [DateUtilities dateWithNaturalLanguageString:performance.time];
-
-        [timeToPerformance setObject:performance forKey:date];
-    }
-
-    NSMutableArray* decodedArray = [NSMutableArray array];
-    for (NSDate* date in [timeToPerformance.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
-        [decodedArray addObject:[timeToPerformance objectForKey:date]];
+     
+        [decodedArray addObject:performance];
     }
 
     [theaterPerformances setObject:decodedArray forKey:movie.canonicalTitle];

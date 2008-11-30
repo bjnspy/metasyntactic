@@ -16,6 +16,9 @@
 #import "DataProvider.h"
 
 @interface GoogleDataProvider : AbstractDataProvider<DataProvider> {
+@private
+    NSCalendar* calendar;
+    NSDateComponents* dateComponents;
 }
 
 + (GoogleDataProvider*) providerWithModel:(NowPlayingModel*) model;

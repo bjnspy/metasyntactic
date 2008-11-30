@@ -17,7 +17,7 @@
 #import "Utilities.h"
 
 @interface Performance()
-@property (copy) NSString* time;
+@property (copy) NSDate* time;
 @property (copy) NSString* url;
 @end
 
@@ -34,10 +34,10 @@ property_definition(url);
 }
 
 
-- (id) initWithTime:(NSString*) time_
+- (id) initWithTime:(NSDate*) time_
                 url:(NSString*) url_ {
     if (self = [super init]) {
-        self.time = [Utilities nonNilString:time_];
+        self.time = time_;
         self.url = [Utilities nonNilString:url_];
     }
 
@@ -45,7 +45,7 @@ property_definition(url);
 }
 
 
-+ (Performance*) performanceWithTime:(NSString*) time
++ (Performance*) performanceWithTime:(NSDate*) time
                                  url:(NSString*) url {
     return [[[Performance alloc] initWithTime:time
                                           url:url] autorelease];
