@@ -46,12 +46,12 @@
         return @"";
     }
 
-    NSMutableString* text = [NSMutableString stringWithString:[DateUtilities formatShortTime:[[showtimes objectAtIndex:0] time]]];
+    NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] timeString]];
 
     for (int i = 1; i < showtimes.count; i++) {
         [text appendString:@", "];
         Performance* performance = [showtimes objectAtIndex:i];
-        [text appendString:[DateUtilities formatShortTime:performance.time]];
+        [text appendString:performance.timeString];
     }
 
     return text;

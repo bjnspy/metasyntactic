@@ -24,6 +24,8 @@
     NSArray* movieTitles;
 
     NSString* simpleAddress;
+    
+    NSNumber* isStale;
 }
 
 @property (readonly, copy) NSString* identifier;
@@ -32,6 +34,7 @@
 @property (readonly, retain) Location* location;
 @property (readonly, retain) Location* originatingLocation;
 @property (readonly, retain) NSArray* movieTitles;
+@property (retain) NSNumber* isStale;
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name

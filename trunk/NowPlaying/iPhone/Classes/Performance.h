@@ -16,6 +16,7 @@
 @private
     NSDate* time;
     NSString* url;
+    NSString* timeString;
 }
 
 @property (readonly, copy) NSDate* time;
@@ -26,5 +27,6 @@
                                  url:(NSString*) url;
 
 - (NSDictionary*) dictionary;
+- (NSString*) timeString;
 
 @end

@@ -443,7 +443,7 @@
 }
 
 
-- (void) updateBackgroundEntryPoint:(NSArray*) arguments {
+- (void) updateBackgroundEntryPointWorker:(NSArray*) arguments {
     if (model.userAddress.length == 0) {
         return;
     }
@@ -484,13 +484,23 @@
 }
 
 
+- (void) updateBackgroundEntryPoint:(NSArray*) arguments {
+    [self updateBackgroundEntryPointWorker:arguments];
+    [self performSelectorOnMainThread:@selector(updateModel) withObject:nil waitUntilDone:NO];
+}
+
+
+- (void) updateModel {
+    [self.model update];
+}
+
+
 - (void) reportResult:(LookupResult*) result {
     if (result.movies.count > 0 && result.theaters.count > 0) {
         self.moviesData = result.movies;
         self.theatersData = result.theaters;
         self.synchronizationInformationData = result.synchronizationInformation;
         self.performancesData = [NSMutableDictionary dictionary];
-        [self.model onDataProviderUpdated];
         [NowPlayingAppDelegate majorRefresh:YES];
     }
 }
