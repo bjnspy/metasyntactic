@@ -72,6 +72,7 @@
   <string name="less_than_one_string_away">Méně než 1 %s</string>
   <string name="license">Licence</string>
   <string name="loading_poster">Nahravám plakát</string>
+  <string name="local_results_unavailable">Místní výsledky nejsou dostupné</string>
   <string name="localized_by">Lokalizace:</string>
   <string name="location">Poloha</string>
   <string name="map">Mapa</string>
@@ -126,6 +127,7 @@
   <string name="website">Webová stránka</string>
   <string name="written_by_cyrus_najmabadi">Autor aplikace: Cyrus Najmabadi</string>
   <string name="yesterday">Včera</string>
+  <string name="your_strings_country_is_set_to_string_full_support">Vaše země nastavená v %s je: %s\n\nBrzy bude k dispozici plná podpora pro Nyní se hraje i ve vaší zemi a některé funkce můžete využívat již dnes. Jakmile budou přidány další funkce, budete na aktualizace automaticky upozorněni.</string>
   <string name="kilometer">kilometr</string>
   <string name="kilometers">kilometry</string>
   <string name="mile">míle</string>
