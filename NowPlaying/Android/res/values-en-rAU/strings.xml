@@ -72,6 +72,7 @@
   <string name="less_than_one_string_away">Less than 1 %s away</string>
   <string name="license">Licence</string>
   <string name="loading_poster">Loading poster</string>
+  <string name="local_results_unavailable">Local results unavailable</string>
   <string name="localized_by">Localised by:</string>
   <string name="location">Location</string>
   <string name="map">Map</string>
@@ -126,6 +127,7 @@
   <string name="website">Website</string>
   <string name="written_by_cyrus_najmabadi">Written by Cyrus Najmabadi</string>
   <string name="yesterday">Yesterday</string>
+  <string name="your_strings_country_is_set_to_string_full_support">Your %s's country is set to: %s\n\nFull support for Now Playing is coming soon to your country, and some features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
   <string name="kilometer">kilometre</string>
   <string name="kilometers">kilometres</string>
   <string name="mile">mile</string>

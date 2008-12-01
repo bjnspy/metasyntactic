@@ -129,6 +129,8 @@
   <string name="license">License</string>
   <!--Loading poster-->
   <string name="loading_poster">Loading poster</string>
+  <!--Local results unavailable-->
+  <string name="local_results_unavailable">Local results unavailable</string>
   <!--Localized by:-->
   <string name="localized_by">Localized by:</string>
   <!--Location-->
@@ -237,6 +239,8 @@
   <string name="written_by_cyrus_najmabadi">Written by Cyrus Najmabadi</string>
   <!--Yesterday-->
   <string name="yesterday">Yesterday</string>
+  <!--Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and some features are already available for you to use today! When more features become ready, you will automatically be notified of updates.-->
+  <string name="your_strings_country_is_set_to_string_full_support">Your %s's country is set to: %s\n\nFull support for Now Playing is coming soon to your country, and some features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
   <!--kilometer-->
   <string name="kilometer">kilometer</string>
   <!--kilometers-->
