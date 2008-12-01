@@ -72,6 +72,7 @@
   <string name="less_than_one_string_away">Mindre enn en %s unna</string>
   <string name="license">Lisens</string>
   <string name="loading_poster">Laster inn plakat</string>
+  <string name="local_results_unavailable">Lokale resultater er ikke tilgjengelig</string>
   <string name="localized_by">Oversatt av:</string>
   <string name="location">Sted</string>
   <string name="map">Kart</string>
@@ -126,6 +127,7 @@
   <string name="website">Nettsted</string>
   <string name="written_by_cyrus_najmabadi">Skrevet av Cyrus Najmabadi</string>
   <string name="yesterday">I går</string>
+  <string name="your_strings_country_is_set_to_string_full_support">Din %ss land er satt til: %s\n\nFull støtte for Now Playing kommer snart til ditt land, og noen funksjoner er allerede klare til bruk i dag! Når flere funksjoner blir klare, vil du bli informert om oppdateringer.</string>
   <string name="kilometer">kilometer</string>
   <string name="kilometers">kilometer</string>
   <string name="mile">mile</string>

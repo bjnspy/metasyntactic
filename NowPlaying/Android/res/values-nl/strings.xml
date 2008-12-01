@@ -25,6 +25,7 @@
   <string name="number_minutes">%d minuten</string>
   <string name="number_months_ago">%d maanden geleden</string>
   <string name="number_of_number">%d van %d</string>
+  <string name="number_theaters_outside_search_area">% bioscopen buiten zoekgebied</string>
   <string name="number_weeks_ago">%d weken geleden</string>
   <string name="number_years_ago">%d jaren geleden</string>
   <string name="one_hour">1 uur</string>
@@ -32,6 +33,7 @@
   <string name="one_mile">1 mijl</string>
   <string name="one_minute">1 minuut</string>
   <string name="one_month_ago">1 maand geleden</string>
+  <string name="one_theater_outside_search_area">1 bioscoop buiten zoekgebied</string>
   <string name="one_week_ago">1 week geleden</string>
   <string name="one_year_ago">1 jaar geleden</string>
   <string name="about">Over</string>
