@@ -181,8 +181,6 @@
 
 
 - (void) saveResult:(LookupResult*) result {
-    NSAssert(result.movies.count > 0 && result.theaters.count > 0, @"");
-
     NSString* tempDirectory = [Application uniqueTemporaryDirectory];
     for (NSString* theaterName in result.performances) {
         NSMutableDictionary* value = [result.performances objectForKey:theaterName];
@@ -493,8 +491,6 @@
 
 
 - (void) reportResult:(LookupResult*) result {
-    NSAssert(result.movies.count > 0 && result.theaters.count > 0, @"");
-    
     self.moviesData = result.movies;
     self.theatersData = result.theaters;
     self.synchronizationInformationData = result.synchronizationInformation;

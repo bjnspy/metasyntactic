@@ -127,7 +127,7 @@
   <string name="website">Website</string>
   <string name="written_by_cyrus_najmabadi">Written by Cyrus Najmabadi</string>
   <string name="yesterday">Yesterday</string>
-  <string name="your_strings_country_is_set_to_string_full_support">Your %s's country is set to: %s\n\nFull support for Now Playing is coming soon to your country, and some features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
+  <string name="your_strings_country_is_set_to_string_full_support">Your %s's country is set to: %s\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
   <string name="kilometer">kilometre</string>
   <string name="kilometers">kilometres</string>
   <string name="mile">mile</string>
