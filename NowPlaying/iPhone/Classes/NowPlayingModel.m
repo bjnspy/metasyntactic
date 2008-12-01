@@ -337,7 +337,7 @@ static NSString** KEYS[] = {
 
 - (id) init {
     if (self = [super init]) {
-        [self checkCountry];
+        //[self checkCountry];
         [self loadData];
 
         self.userLocationCache = [UserLocationCache cache];

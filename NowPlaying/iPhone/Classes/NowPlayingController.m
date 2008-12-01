@@ -139,7 +139,7 @@
     [self spawnDetermineLocationThread];
 
     // Force a refresh so the UI displays this new address.
-    // [NowPlayingAppDelegate majorRefresh:YES];
+    [NowPlayingAppDelegate majorRefresh:YES];
 }
 
 
