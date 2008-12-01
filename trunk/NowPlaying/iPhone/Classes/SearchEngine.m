@@ -75,8 +75,25 @@
 }
 
 
+- (BOOL) abortEarly {
+    BOOL result;
+    
+    [gate lock];
+    {
+        result = currentlyExecutingRequest.requestId != currentRequestId;
+    }
+    [gate unlock];
+    
+    return result;
+}
+
+
 - (BOOL) arrayMatches:(NSArray*) array {
     for (NSString* text in array) {
+        if ([self abortEarly]) {
+            return NO;
+        }
+
         NSString* lowercaseText = [[Utilities asciiString:text] lowercaseString];
 
         NSRange range = [lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue];
@@ -171,19 +188,6 @@
         }
     }
     [result sortUsingFunction:compareMoviesByTitle context:nil];
-    return result;
-}
-
-
-- (BOOL) abortEarly {
-    BOOL result;
-
-    [gate lock];
-    {
-        result = currentlyExecutingRequest.requestId != currentRequestId;
-    }
-    [gate unlock];
-
     return result;
 }
 

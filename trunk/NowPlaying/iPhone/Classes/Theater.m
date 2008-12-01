@@ -64,12 +64,12 @@ property_definition(movieTitles);
 }
 
 
-- (id)      initWithIdentifier:(NSString*) identifier_
-                          name:(NSString*) name_
-                   phoneNumber:(NSString*) phoneNumber_
-                      location:(Location*) location_
-           originatingLocation:(Location*) originatingLocation_
-                   movieTitles:(NSArray*) movieTitles_ {
+- (id) initWithIdentifier:(NSString*) identifier_
+                     name:(NSString*) name_
+              phoneNumber:(NSString*) phoneNumber_
+                 location:(Location*) location_
+      originatingLocation:(Location*) originatingLocation_
+              movieTitles:(NSArray*) movieTitles_ {
     if (self = [self init]) {
         self.identifier = [Utilities nonNilString:identifier_];
         self.name = [[Utilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

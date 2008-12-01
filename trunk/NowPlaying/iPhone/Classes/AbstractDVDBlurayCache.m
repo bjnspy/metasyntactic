@@ -139,8 +139,7 @@
 - (void) updateMovies {
     [ThreadingUtilities performSelector:@selector(updateMoviesBackgroundEntryPoint)
                                onTarget:self
-               inBackgroundWithArgument:nil
-                                   gate:gate
+               inBackgroundWithGate:gate
                                 visible:YES];
 }
 
@@ -367,25 +366,10 @@
 }
 
 
-- (void) clearStaleData:(NSString*) directory {
-    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-
-    for (NSString* filePath in paths) {
-        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
-
-        if (downloadDate != nil) {
-            if (ABS(downloadDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                [FileUtilities removeItem:filePath];
-            }
-        }
-    }
-}
-
-
 - (void) clearStaleDataBackgroundEntryPoint {
-    [self clearStaleData:[self detailsDirectory]];
-    [self clearStaleData:[self imdbDirectory]];
-    [self clearStaleData:[self postersDirectory]];
+    [self clearDirectory:[self detailsDirectory]];
+    [self clearDirectory:[self imdbDirectory]];
+    [self clearDirectory:[self postersDirectory]];
 }
 
 
@@ -447,8 +431,8 @@
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
     if (data != nil) {
         [FileUtilities writeData:data toFile:file];
+        [NowPlayingAppDelegate minorRefresh];
     }
-    [NowPlayingAppDelegate minorRefresh];
 }
 
 

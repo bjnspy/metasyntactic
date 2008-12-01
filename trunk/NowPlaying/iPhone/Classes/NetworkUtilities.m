@@ -15,16 +15,39 @@
 #import "NetworkUtilities.h"
 
 #import "PriorityMutex.h"
+#import "Pulser.h"
 #import "XmlParser.h"
 
 @implementation NetworkUtilities
 
-static PriorityMutex* mutex = nil;
+static PriorityMutex* priorityMutex = nil;
+
+static NSLock* gate = nil;
+static NSInteger inflightOperations = 0;
+static Pulser* pulser = nil;
 
 + (void) initialize {
     if (self == [NetworkUtilities class]) {
-        mutex = [[PriorityMutex alloc] init];
+        priorityMutex = [[PriorityMutex alloc] init];
+
+        gate = [[NSRecursiveLock alloc] init];
+        pulser = [[Pulser pulserWithTarget:self
+                                    action:@selector(updateNetworkActivityIndicator)
+                             pulseInterval:5] retain]; 
     }
+}
+
+
++ (void) updateNetworkActivityIndicator {
+    [gate lock];
+    {
+        if (inflightOperations > 0) {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        } else {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        }
+    }
+    [gate unlock];
 }
 
 
@@ -102,6 +125,13 @@ static PriorityMutex* mutex = nil;
         return nil;
     }
 
+    [gate lock];
+    {
+        inflightOperations++;
+        [pulser tryPulse];
+    }
+    [gate unlock];
+
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.timeoutInterval = 120;
     request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
@@ -113,6 +143,14 @@ static PriorityMutex* mutex = nil;
     NSData* data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response
                                                      error:&error];
+
+    
+    [gate lock];
+    {
+        inflightOperations--;
+        [pulser tryPulse];
+    }
+    [gate unlock];
 
     // pause a bit so we don't saturate the network.
     if (![NSThread isMainThread]) {
@@ -130,11 +168,11 @@ static PriorityMutex* mutex = nil;
 + (NSData*) highPriorityDataWithContentsOfUrl:(NSURL*) url {
     NSData* data;
 
-    [mutex lockHigh];
+    [priorityMutex lockHigh];
     {
         data = [self dataWithContentsOfUrlWorker:url];
     }
-    [mutex unlockHigh];
+    [priorityMutex unlockHigh];
 
     return data;
 }
@@ -143,11 +181,11 @@ static PriorityMutex* mutex = nil;
 + (NSData*) lowPriorityDataWithContentsOfUrl:(NSURL*) url {
     NSData* data;
 
-    [mutex lockLow];
+    [priorityMutex lockLow];
     {
         data = [self dataWithContentsOfUrlWorker:url];
     }
-    [mutex unlockLow];
+    [priorityMutex unlockLow];
 
     return data;
 }

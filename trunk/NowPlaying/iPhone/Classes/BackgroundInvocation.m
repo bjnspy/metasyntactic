@@ -27,11 +27,6 @@
 @synthesize gate;
 @synthesize visible;
 
-+ (void) initialize {
-    if (self == [BackgroundInvocation class]) {
-    }
-}
-
 - (void) dealloc {
     self.gate = nil;
     self.visible = NO;
@@ -85,7 +80,7 @@
 
 
 - (void) run {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
     {
         [self runWorker];
     }

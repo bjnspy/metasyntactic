@@ -186,8 +186,7 @@
 - (void) updateScores {
     [ThreadingUtilities performSelector:@selector(updateScoresBackgroundEntryPoint)
                                onTarget:self
-               inBackgroundWithArgument:nil
-                                   gate:gate
+               inBackgroundWithGate:gate
                                 visible:YES];
 }
 
@@ -319,11 +318,8 @@
 
 
 - (void) reportMovieMap:(NSArray*) arguments {
-    NSDictionary* map = [arguments objectAtIndex:0];
-    NSArray* movies_ = [arguments objectAtIndex:1];
-
-    self.movieMapData = map;
-    self.movies = movies_;
+    self.movieMapData = [arguments objectAtIndex:0];
+    self.movies = [arguments objectAtIndex:1];
 
     [NowPlayingAppDelegate majorRefresh:YES];
 }
@@ -455,14 +451,12 @@
     }
 
     NSString* address = [[self serverReviewsAddress:location score:score] stringByAppendingString:@"&hash=true"];
+    NSString* localHash = [FileUtilities readObject:[self reviewsHashFile:score.canonicalTitle]];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address important:NO];
 
-    if (serverHash == nil) {
-        serverHash = @"0";
-    }
-
-    NSString* localHash = [FileUtilities readObject:[self reviewsHashFile:score.canonicalTitle]];
-    if ([serverHash isEqual:localHash]) {
+    if (serverHash.length == 0 ||
+        [serverHash isEqual:@"0"] ||
+        [serverHash isEqual:localHash]) {
         return;
     }
 
@@ -473,20 +467,22 @@
     }
 
 
+    NSString* title = score.canonicalTitle;
     if (reviews.count == 0) {
         // we got no reviews.  only save that fact if we don't currently have
         // any reviews.  This way we don't end up checking every single time
         // for movies that don't have reviews yet
-        NSArray* existingReviews = [FileUtilities readObject:[self reviewsFile:score.canonicalTitle]];
+        NSArray* existingReviews = [FileUtilities readObject:[self reviewsFile:title]];
         if (existingReviews.count > 0) {
             // we have reviews already.  don't wipe it out.
             // rewrite the reviews so the mod date is correct.
-            [self saveEncodedReviews:existingReviews hash:serverHash title:score.canonicalTitle];
+            [FileUtilities removeItem:[self reviewsFile:title]];
+            [self saveEncodedReviews:existingReviews hash:serverHash title:title];
             return;
         }
     }
 
-    [self saveReviews:reviews hash:serverHash title:score.canonicalTitle];
+    [self saveReviews:reviews hash:serverHash title:title];
 
     [NowPlayingAppDelegate minorRefresh];
 }
@@ -562,14 +558,7 @@
 
 
 - (void) clearStaleDataBackgroundEntryPoint {
-    for (NSString* path in [FileUtilities directoryContentsPaths:reviewsDirectory]) {
-        NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
-        if (lastModifiedDate != nil) {
-            if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                [FileUtilities removeItem:path];
-            }
-        }
-    }
+    [self clearDirectory:reviewsDirectory];
 }
 
 

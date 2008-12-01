@@ -144,4 +144,16 @@ static NSMutableArray* lowPriorityOperations;
     [invocation performSelectorInBackground:@selector(run) withObject:nil];
 }
 
+
++ (void) performSelector:(SEL) selector
+                onTarget:(id) target
+    inBackgroundWithGate:(NSLock*) gate
+                 visible:(BOOL) visible {
+    [self performSelector:selector
+                 onTarget:target
+ inBackgroundWithArgument:nil
+                     gate:gate
+                  visible:visible];
+}
+
 @end

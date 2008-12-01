@@ -102,8 +102,7 @@
 
 
 - (NSDate*) lastLookupDate {
-    NSDate* lastLookupDate = [FileUtilities modificationDate:[self lastLookupDateFile]];
-    return lastLookupDate;
+    return [FileUtilities modificationDate:[self lastLookupDateFile]];
 }
 
 
@@ -112,7 +111,7 @@
 }
 
 
-- (void) setStale {
+- (void) markOutOfDate {
     [FileUtilities removeItem:[self lastLookupDateFile]];
 }
 
@@ -182,24 +181,25 @@
 
 
 - (void) saveResult:(LookupResult*) result {
-    if (result.movies.count > 0 || result.theaters.count > 0) {
-        [self saveArray:result.movies to:self.moviesFile];
-        [self saveArray:result.theaters to:self.theatersFile];
+    NSAssert(result.movies.count > 0 && result.theaters.count > 0, @"");
 
-        [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
-
-        NSString* tempDirectory = [Application uniqueTemporaryDirectory];
-        for (NSString* theaterName in result.performances) {
-            NSMutableDictionary* value = [result.performances objectForKey:theaterName];
-
-            [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentDirectory:tempDirectory]];
-        }
-
-        [FileUtilities removeItem:self.performancesDirectory];
-        [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
-
-        [self setLastLookupDate];
+    NSString* tempDirectory = [Application uniqueTemporaryDirectory];
+    for (NSString* theaterName in result.performances) {
+        NSMutableDictionary* value = [result.performances objectForKey:theaterName];
+        
+        [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentDirectory:tempDirectory]];
     }
+    
+    [FileUtilities removeItem:self.performancesDirectory];
+    [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
+
+    [self saveArray:result.movies to:self.moviesFile];
+    [self saveArray:result.theaters to:self.theatersFile];
+    
+    [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];    
+    
+    // Do this last.  It signifies that we are done
+    [self setLastLookupDate];
 }
 
 
@@ -208,7 +208,8 @@
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
                                [FileUtilities readObject:[self performancesFile:theater.name]]];
-        [self.performancesData setObject:theaterPerformances forKey:theater.name];
+        [performancesData setObject:theaterPerformances
+                             forKey:theater.name];
     }
     return theaterPerformances;
 }
@@ -302,10 +303,6 @@
 
 
 - (void) updateMissingFavorites:(LookupResult*) lookupResult {
-    if (lookupResult == nil) {
-        return;
-    }
-
     NSArray* favoriteTheaters = self.model.favoriteTheaters;
     if (favoriteTheaters.count == 0) {
         return;
@@ -389,7 +386,7 @@
           currentMovies:(NSArray*) currentMovies
         currentTheaters:(NSArray*) currentTheaters {
     // Ok.  so if:
-    //   a) the user is the user is doing their main search
+    //   a) the user is doing their main search
     //   b) we do not find data for a theater that should be showing up
     //   c) they're close enough to their last search
     // then we want to give them the old information we have for that
@@ -425,13 +422,13 @@
             continue;
         }
 
-        NSDate* date = [self synchronizationDateForTheater:theaterName];
+        NSDate* date = [self synchronizationDateForTheater:theater];
         if (ABS(date.timeIntervalSinceNow) > ONE_MONTH) {
             continue;
         }
 
         [lookupResult.performances setObject:oldPerformances forKey:theaterName];
-        [lookupResult.synchronizationInformation setObject:[self synchronizationDateForTheater:theaterName] forKey:theaterName];
+        [lookupResult.synchronizationInformation setObject:date forKey:theaterName];
         [lookupResult.theaters addObject:theater];
 
         // the theater may refer to movies that we don't know about.
@@ -496,31 +493,40 @@
 
 
 - (void) reportResult:(LookupResult*) result {
-    if (result.movies.count > 0 && result.theaters.count > 0) {
-        self.moviesData = result.movies;
-        self.theatersData = result.theaters;
-        self.synchronizationInformationData = result.synchronizationInformation;
-        self.performancesData = [NSMutableDictionary dictionary];
-        [NowPlayingAppDelegate majorRefresh:YES];
-    }
+    NSAssert(result.movies.count > 0 && result.theaters.count > 0, @"");
+    
+    self.moviesData = result.movies;
+    self.theatersData = result.theaters;
+    self.synchronizationInformationData = result.synchronizationInformation;
+    self.performancesData = [NSMutableDictionary dictionary];
+    [NowPlayingAppDelegate majorRefresh:YES];
 }
 
 
-- (NSDate*) synchronizationDateForTheater:(NSString*) theaterName {
-    return [self.synchronizationInformation objectForKey:theaterName];
+- (NSDate*) synchronizationDateForTheater:(Theater*) theater {
+    return [self.synchronizationInformation objectForKey:theater.name];
 }
 
 
 - (void) reportError {
-    /*
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:NSLocalizedString(@"Could not find location.", nil)
+                                                     message:NSLocalizedString(@"No information found", nil)
                                                     delegate:nil
                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                            otherButtonTitles:nil] autorelease];
 
     [alert show];
-     */
+}
+
+
+- (BOOL) isStale:(Theater*) theater {
+    NSDate* globalSyncDate = [self lastLookupDate];
+    NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
+    if (globalSyncDate == nil || theaterSyncDate == nil) {
+        return NO;
+    }
+    
+    return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];    
 }
 
 @end

@@ -708,10 +708,9 @@
 			children = (
 				74447D550DC8474A00CC146C /* UI */,
 				7474FE910E6359BC00BAA43D /* Caches */,
-				74F3B2430E3CE79900DD25DA /* DataProviders */,
-				7474FE8F0E63595400BAA43D /* Posters */,
+				74EB7B3D0EE34373005BD3F0 /* Data */,
+				74F3B2430E3CE79900DD25DA /* DataProvider */,
 				745184B40E91D8D600D4E0C5 /* ProtocolBuffers */,
-				7491444F0E764D0E00CC42A8 /* Scores */,
 				744246FE0E89F79000ACDBCF /* Search */,
 				74E6F0190E723FA200A4C2BE /* Threading */,
 				748AB37B0EB6C57C004918A6 /* Collections */,
@@ -725,24 +724,8 @@
 				747C56940E67583600BD69DA /* NowPlayingController.m */,
 				747C56950E67583600BD69DA /* NowPlayingModel.h */,
 				747C56960E67583600BD69DA /* NowPlayingModel.m */,
-				746A01410DC819270079D89B /* Movie.h */,
-				746A01420DC819270079D89B /* Movie.m */,
-				746A02030DC819430079D89B /* Theater.h */,
-				746A02040DC819430079D89B /* Theater.m */,
-				741371880E88E79C00CF4900 /* Score.h */,
-				741371890E88E79C00CF4900 /* Score.m */,
-				743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */,
-				743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */,
-				74EC04F30DD2B704006953A4 /* Location.h */,
-				74EC04F40DD2B704006953A4 /* Location.m */,
-				7457FE900E21A41A00929D3E /* Performance.h */,
-				7457FE910E21A41A00929D3E /* Performance.m */,
-				74AD65F70E92CCFC00A01FD5 /* DVD.h */,
-				74AD65F80E92CCFC00A01FD5 /* DVD.m */,
 				74A41ACD0E9E172B007CF82C /* Pulser.h */,
 				74A41ACE0E9E172B007CF82C /* Pulser.m */,
-				749569590E2D6248007BFF21 /* Review.h */,
-				7495695A0E2D6248007BFF21 /* Review.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1086,30 +1069,27 @@
 		7474FE910E6359BC00BAA43D /* Caches */ = {
 			isa = PBXGroup;
 			children = (
+				74EB7B3F0EE343F6005BD3F0 /* UI */,
+				7474FE8F0E63595400BAA43D /* Posters */,
+				7491444F0E764D0E00CC42A8 /* Scores */,
+				747B4C210EE110D000F6FB1F /* AbstractCache.h */,
+				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
+				744AF8410EC4DF12008B5B35 /* AbstractDVDBlurayCache.h */,
+				744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */,
+				74AD66330E92D49500A01FD5 /* DVDCache.h */,
+				74AD66340E92D49500A01FD5 /* DVDCache.m */,
+				744AF7F90EC4DC1F008B5B35 /* BlurayCache.h */,
+				744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */,
 				748AB0300EB61C2C004918A6 /* IMDbCache.h */,
 				748AB0310EB61C2C004918A6 /* IMDbCache.m */,
 				747CA1BF0E8594C300A09E89 /* LocationCache.h */,
 				747CA1C00E8594C300A09E89 /* LocationCache.m */,
 				747CA1390E8591B600A09E89 /* UserLocationCache.h */,
 				747CA13A0E8591B600A09E89 /* UserLocationCache.m */,
-				740C9FE60E3A838E00D7A56B /* ColorCache.h */,
-				740C9FE70E3A838E00D7A56B /* ColorCache.m */,
-				74EFE5340E35637200B6E103 /* FontCache.h */,
-				74EFE5350E35637200B6E103 /* FontCache.m */,
-				74EFE4AE0E355D7500B6E103 /* ImageCache.h */,
-				74EFE4AF0E355D7500B6E103 /* ImageCache.m */,
 				74F187200E2710A400AB5E1E /* TrailerCache.h */,
 				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
-				74AD66330E92D49500A01FD5 /* DVDCache.h */,
-				74AD66340E92D49500A01FD5 /* DVDCache.m */,
-				744AF7F90EC4DC1F008B5B35 /* BlurayCache.h */,
-				744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */,
-				744AF8410EC4DF12008B5B35 /* AbstractDVDBlurayCache.h */,
-				744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */,
-				747B4C210EE110D000F6FB1F /* AbstractCache.h */,
-				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -1344,21 +1324,57 @@
 		74E6F0190E723FA200A4C2BE /* Threading */ = {
 			isa = PBXGroup;
 			children = (
+				740246770E785B0000ECE1B4 /* Invocation.h */,
+				740246780E785B0000ECE1B4 /* Invocation.m */,
 				740246600E785A9000ECE1B4 /* BackgroundInvocation.h */,
 				740246610E785A9000ECE1B4 /* BackgroundInvocation.m */,
 				749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */,
 				749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */,
 				74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */,
 				74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */,
-				740246770E785B0000ECE1B4 /* Invocation.h */,
-				740246780E785B0000ECE1B4 /* Invocation.m */,
 				74BD51C80EB786FC0098C2DF /* MainThreadGate.h */,
 				74BD51C90EB786FC0098C2DF /* MainThreadGate.m */,
 			);
 			name = Threading;
 			sourceTree = "<group>";
 		};
-		74F3B2430E3CE79900DD25DA /* DataProviders */ = {
+		74EB7B3D0EE34373005BD3F0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				746A01410DC819270079D89B /* Movie.h */,
+				746A01420DC819270079D89B /* Movie.m */,
+				746A02030DC819430079D89B /* Theater.h */,
+				746A02040DC819430079D89B /* Theater.m */,
+				741371880E88E79C00CF4900 /* Score.h */,
+				741371890E88E79C00CF4900 /* Score.m */,
+				743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */,
+				743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */,
+				74EC04F30DD2B704006953A4 /* Location.h */,
+				74EC04F40DD2B704006953A4 /* Location.m */,
+				7457FE900E21A41A00929D3E /* Performance.h */,
+				7457FE910E21A41A00929D3E /* Performance.m */,
+				74AD65F70E92CCFC00A01FD5 /* DVD.h */,
+				74AD65F80E92CCFC00A01FD5 /* DVD.m */,
+				749569590E2D6248007BFF21 /* Review.h */,
+				7495695A0E2D6248007BFF21 /* Review.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		74EB7B3F0EE343F6005BD3F0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				740C9FE60E3A838E00D7A56B /* ColorCache.h */,
+				740C9FE70E3A838E00D7A56B /* ColorCache.m */,
+				74EFE5340E35637200B6E103 /* FontCache.h */,
+				74EFE5350E35637200B6E103 /* FontCache.m */,
+				74EFE4AE0E355D7500B6E103 /* ImageCache.h */,
+				74EFE4AF0E355D7500B6E103 /* ImageCache.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		74F3B2430E3CE79900DD25DA /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
 				74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */,
@@ -1372,7 +1388,7 @@
 				745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */,
 				745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */,
 			);
-			name = DataProviders;
+			name = DataProvider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

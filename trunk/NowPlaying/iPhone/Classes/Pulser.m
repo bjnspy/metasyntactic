@@ -63,6 +63,11 @@
 
 
 - (void) tryPulse:(NSDate*) date {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(tryPulse:) withObject:date waitUntilDone:NO];
+        return;
+    }
+
     if ([date compare:lastPulseTime] == NSOrderedAscending) {
         // we sent out a pulse after this one.  just disregard this pulse
         //NSLog(@"Pulse at '%@' < last pulse at '%@'.  Disregarding.", date, lastPulseTime);
@@ -82,21 +87,29 @@
 
     // ok, actually pulse.
     self.lastPulseTime = now;
-    NSLog(@"Pulse at '%@' being performed at '%@'.", date, lastPulseTime);
+    //NSLog(@"Pulse at '%@' being performed at '%@'.", date, lastPulseTime);
     [target performSelector:action];
 }
 
 
 - (void) forcePulse {
-    NSAssert([NSThread isMainThread], @"");
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(forcePulse) withObject:nil waitUntilDone:NO];
+        return;
+    }
+    
     self.lastPulseTime = [NSDate date];
-    NSLog(@"Forced pulse at '%@'.", lastPulseTime);
+    //NSLog(@"Forced pulse at '%@'.", lastPulseTime);
     [target performSelector:action];
 }
 
 
 - (void) tryPulse {
-    NSAssert([NSThread isMainThread], @"");
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(tryPulse) withObject:nil waitUntilDone:NO];
+        return;
+    }
+    
     [self tryPulse:[NSDate date]];
 }
 

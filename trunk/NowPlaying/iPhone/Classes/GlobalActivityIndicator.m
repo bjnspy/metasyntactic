@@ -52,18 +52,8 @@ static NSInteger visibleBackgroundTaskCount = 0;
 }
 
 
-- (void) startNetworkIndicator {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-}
-
-
 - (void) stopIndicator {
     [activityIndicatorView stopAnimating];
-}
-
-
-- (void) stopNetworkIndicator {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 
@@ -79,10 +69,6 @@ static NSInteger visibleBackgroundTaskCount = 0;
                 [indicator performSelectorOnMainThread:@selector(startIndicator) withObject:nil waitUntilDone:NO];
             }
         }
-
-        if (totalBackgroundTaskCount == 1) {
-            [indicator performSelectorOnMainThread:@selector(startNetworkIndicator) withObject:nil waitUntilDone:NO];
-        }
     }
     [gate unlock];
 }
@@ -96,13 +82,7 @@ static NSInteger visibleBackgroundTaskCount = 0;
         if (isVisible) {
             visibleBackgroundTaskCount--;
 
-            if (visibleBackgroundTaskCount == 0) {
-                [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
-            }
-        }
-
-        if (totalBackgroundTaskCount == 0) {
-            [indicator performSelectorOnMainThread:@selector(stopNetworkIndicator) withObject:nil waitUntilDone:NO];
+            [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
         }
 
         [NowPlayingAppDelegate minorRefresh];

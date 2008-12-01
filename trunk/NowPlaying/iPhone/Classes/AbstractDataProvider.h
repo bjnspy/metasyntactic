@@ -31,14 +31,13 @@
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
-- (NSDate*) synchronizationDateForTheater:(NSString*) theaterName;
+- (NSDate*) synchronizationDateForTheater:(Theater*) theater;
 
-- (void) setStale;
+- (void) markOutOfDate;
 - (NSDate*) lastLookupDate;
 
-- (void) update;
+- (BOOL) isStale:(Theater*) theater;
 
-/* @protected */
-- (NSString*) performancesFile:(NSString*) theaterName;
+- (void) update;
 
 @end

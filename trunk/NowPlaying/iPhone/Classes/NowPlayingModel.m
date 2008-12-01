@@ -88,7 +88,7 @@ static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray"
 static NSString* USER_ADDRESS                           = @"userLocation";
 static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
 static NSString* RUN_COUNT                              = @"runCount";
-
+static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
 
 static NSString** KEYS[] = {
     &VERSION,
@@ -106,6 +106,7 @@ static NSString** KEYS[] = {
     &UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
     &USER_ADDRESS,
     &USE_NORMAL_FONTS,
+    &RUN_COUNT,
 };
 
 
@@ -156,6 +157,11 @@ static NSString** KEYS[] = {
 }
 
 
+- (void) updateUpcomingCache {
+    [upcomingCache update];
+}
+
+
 - (void) updateIMDbCache {
     [imdbCache update:self.movies];
 }
@@ -171,11 +177,6 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) updateUpcomingCache {
-    [upcomingCache update];
-}
-
-
 + (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
     NSMutableArray* result = [NSMutableArray array];
     for (FavoriteTheater* theater in favoriteTheaters) {
@@ -183,7 +184,6 @@ static NSString** KEYS[] = {
     }
 
     [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
-
 }
 
 
@@ -286,6 +286,7 @@ static NSString** KEYS[] = {
     if (runCount % 20 == 0) {
         [userLocationCache clearStaleData];
         [largePosterCache clearStaleData];
+        [imdbCache clearStaleData];
         [trailerCache clearStaleData];
         [blurayCache clearStaleData];
         [dvdCache clearStaleData];
@@ -296,8 +297,47 @@ static NSString** KEYS[] = {
 }
 
 
+- (void) checkCountry {
+    NSSet* supportedCountries = [NSSet setWithObjects:
+    @"US", @"CA", @"GB", @"AU",
+    @"BR", @"CH", @"ES", @"JA",
+    @"DE", @"BE", @"CZ", @"NL",
+    @"IT", @"PO", @"TR", @"MY", nil];
+    
+    NSString* userCountry = [LocaleUtilities isoCountry];
+    if ([supportedCountries containsObject:userCountry]) {
+        return;
+    }
+    
+    // Only warn once per upgrade.
+    NSString* key = [NSString stringWithFormat:@"%@-%@", UNSUPPORTED_COUNTRY, currentVersion]; 
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:key]) {
+        return;
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
+    
+    NSString* warning =
+    [NSString stringWithFormat:
+    NSLocalizedString(@"Your device's country is set to: %@\n\n"
+                      @"Now Playing is not fully supported in this country. "
+                      @"Local movies, theaters and showtimes will be unavailable. "
+                      @"Other features will be partially available.\n\n"
+                      @"Worldwide support is being actively improved, so please check back in the future!", nil),
+     [LocaleUtilities displayCountry]];
+    
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+                                                     message:warning
+                                                    delegate:nil
+                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                           otherButtonTitles:nil] autorelease];
+    
+    [alert show];
+}
+
+
 - (id) init {
     if (self = [super init]) {
+        [self checkCountry];
         [self loadData];
 
         self.userLocationCache = [UserLocationCache cache];
@@ -337,7 +377,9 @@ static NSString** KEYS[] = {
     }
 
     [self performSelector:selectors[value]];
-    [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:value + 1] afterDelay:1];
+    [self performSelector:@selector(updateCaches:)
+               withObject:[NSNumber numberWithInt:value + 1]
+               afterDelay:1];
 }
 
 
@@ -512,16 +554,6 @@ static NSString** KEYS[] = {
 }
 
 
-- (NSInteger) numbersSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:NUMBERS_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (void) setNumbersSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NUMBERS_SELECTED_SEGMENT_INDEX];
-}
-
-
 - (BOOL) allMoviesSortingByReleaseDate {
     return self.allMoviesSelectedSegmentIndex == 0;
 }
@@ -557,21 +589,6 @@ static NSString** KEYS[] = {
 }
 
 
-- (BOOL) numbersSortingByDailyGross {
-    return self.numbersSelectedSegmentIndex == 0;
-}
-
-
-- (BOOL) numbersSortingByWeekendGross {
-    return self.numbersSelectedSegmentIndex == 1;
-}
-
-
-- (BOOL) numbersSortingByTotalGross {
-    return self.numbersSelectedSegmentIndex == 2;
-}
-
-
 - (BOOL) autoUpdateLocation {
     return [[NSUserDefaults standardUserDefaults] boolForKey:AUTO_UPDATE_LOCATION];
 }
@@ -585,7 +602,7 @@ static NSString** KEYS[] = {
 - (NSString*) userAddress {
     NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:USER_ADDRESS];
     if (result == nil) {
-        result =  @"";
+        result = @"";
     }
 
     return result;
@@ -622,7 +639,7 @@ static NSString** KEYS[] = {
 
 
 - (void) markDataProviderOutOfDate {
-    [dataProvider setStale];
+    [dataProvider markOutOfDate];
 }
 
 
@@ -759,7 +776,12 @@ static NSString** KEYS[] = {
         return result;
     }
 
-    return [blurayCache imdbAddressForMovie:movie];
+    result = [blurayCache imdbAddressForMovie:movie];
+    if (result.length > 0) {
+        return result;
+    }
+    
+    return nil;
 }
 
 
@@ -769,7 +791,12 @@ static NSString** KEYS[] = {
         return dvd;
     }
 
-    return [blurayCache detailsForMovie:movie];
+    dvd = [blurayCache detailsForMovie:movie];
+    if (dvd != nil) {
+        return dvd;
+    }
+    
+    return nil;
 }
 
 
@@ -833,18 +860,12 @@ static NSString** KEYS[] = {
 
 
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [dataProvider synchronizationDateForTheater:theater.name];
+    return [dataProvider synchronizationDateForTheater:theater];
 }
 
 
 - (BOOL) isStaleWorker:(Theater*) theater {
-    NSDate* globalSyncDate = [dataProvider lastLookupDate];
-    NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
-    if (globalSyncDate == nil || theaterSyncDate == nil) {
-        return NO;
-    }
-    
-    return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
+    return [dataProvider isStale:theater];
 }
 
 
@@ -885,7 +906,7 @@ static NSString** KEYS[] = {
 
 
 - (NSDictionary*) theaterDistanceMap:(Location*) location
-                             theaters:(NSArray*) theaters {
+                            theaters:(NSArray*) theaters {
     NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
 
     for (Theater* theater in theaters) {
@@ -913,11 +934,10 @@ static NSString** KEYS[] = {
 
 
 - (BOOL) tooFarAway:(double) distance {
-    if (distance != UNKNOWN_DISTANCE && self.searchRadius < 50 && distance > self.searchRadius) {
-        return true;
-    }
-
-    return false;
+    return 
+        distance != UNKNOWN_DISTANCE &&
+        self.searchRadius < 50 &&
+        distance > self.searchRadius;
 }
 
 
