@@ -70,6 +70,7 @@
   <string name="less_than_one_string_away">Odległość mniejsza niż 1 %s</string>
   <string name="license">Licencja</string>
   <string name="loading_poster">Okładka</string>
+  <string name="local_results_unavailable">Lokalne wyniki niedostępne</string>
   <string name="localized_by">Wersja polska:</string>
   <string name="location">Położenie</string>
   <string name="map">Mapa</string>
@@ -124,6 +125,7 @@
   <string name="website">Strona www</string>
   <string name="written_by_cyrus_najmabadi">Autor: Cyrus Najmabadi</string>
   <string name="yesterday">Wczoraj</string>
+  <string name="your_strings_country_is_set_to_string_full_support">Kraj w ustawieniach Twojego %s'a to %s\n\nPełne wsparcie dla Now Playing w Twoim kraju będzie dostępne wkrótce, ale pewne funkcje są dostępne już dziś! Kiedy więcej funkcji będzie dostępnych, zostaniesz automatycznie poinformowany o możliwych aktualizacjach.</string>
   <string name="kilometer">kilometr</string>
   <string name="kilometers">kilometerów</string>
   <string name="mile">mila</string>
