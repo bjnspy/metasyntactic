@@ -15,13 +15,13 @@
 @protocol DataProvider
 - (void) update;
 
-- (void) setStale;
+- (void) markOutOfDate;
 - (NSDate*) lastLookupDate;
+
+- (BOOL) isStale:(Theater*) theater;
 
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
-- (NSDate*) synchronizationDateForTheater:(NSString*) theaterName;
-
-- (NSString*) displayName;
+- (NSDate*) synchronizationDateForTheater:(Theater*) theater;
 @end

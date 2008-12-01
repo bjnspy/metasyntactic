@@ -54,25 +54,6 @@
 }
 
 
-- (void) spawnDataProviderLookupThread {
-    [self.model.dataProvider update];
-}
-
-
-- (void) spawnScoresLookupThread {
-    [self.model.scoreCache update];
-}
-
-
-- (void) spawnDetermineLocationThread {
-    [ThreadingUtilities performSelector:@selector(determineLocation)
-                               onTarget:self
-               inBackgroundWithArgument:nil
-                                   gate:determineLocationLock
-                                visible:YES];
-}
-
-
 - (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
@@ -88,12 +69,30 @@
 }
 
 
+- (void) spawnDataProviderLookupThread {
+    [self.model.dataProvider update];
+}
+
+
+- (void) spawnScoresLookupThread {
+    [self.model.scoreCache update];
+}
+
+
+- (void) spawnDetermineLocationThread {
+    [ThreadingUtilities performSelector:@selector(determineLocationBackgroundEntryPoint)
+                               onTarget:self
+                   inBackgroundWithGate:determineLocationLock
+                                visible:YES];
+}
+
+
 - (void) start {
     [self spawnDetermineLocationThread];
 }
 
 
-- (void) determineLocation {
+- (void) determineLocationBackgroundEntryPoint {
     NSString* address = self.model.userAddress;
     if (address.length > 0) {
         Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
@@ -113,8 +112,8 @@
 
         [alert show];
     } else {
-        [self spawnScoresLookupThread];
         [self spawnDataProviderLookupThread];
+        [self spawnScoresLookupThread];
     }
 }
 
@@ -123,10 +122,10 @@
     if ([searchDate isEqual:self.model.searchDate]) {
         return;
     }
-
-    [self.model setSearchDate:searchDate];
-    [self spawnDetermineLocationThread];
+    
     [appDelegate.tabBarController popNavigationControllersToRoot];
+    [self.model setSearchDate:searchDate];
+    [self spawnDataProviderLookupThread];
 }
 
 
@@ -134,13 +133,13 @@
     if ([userAddress isEqual:self.model.userAddress]) {
         return;
     }
-
-    [self.model setUserAddress:userAddress];
+    
     [appDelegate.tabBarController popNavigationControllersToRoot];
+    [self.model setUserAddress:userAddress];
     [self spawnDetermineLocationThread];
 
     // Force a refresh so the UI displays this new address.
-    [NowPlayingAppDelegate majorRefresh:YES];
+    // [NowPlayingAppDelegate majorRefresh:YES];
 }
 
 

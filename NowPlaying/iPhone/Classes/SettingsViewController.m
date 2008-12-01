@@ -17,8 +17,8 @@
 #import "Application.h"
 #import "ColorCache.h"
 #import "CreditsViewController.h"
-#import "DateUtilities.h"
 #import "DVDFilterViewController.h"
+#import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "LocationManager.h"
@@ -134,7 +134,7 @@
         if (row == 0) {
             key = NSLocalizedString(@"Location", nil);
             Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
-            if (location.postalCode == nil) {
+            if (location.postalCode.length == 0) {
                 value = self.model.userAddress;
             } else {
                 value = location.postalCode;

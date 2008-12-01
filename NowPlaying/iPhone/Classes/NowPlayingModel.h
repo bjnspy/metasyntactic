@@ -81,9 +81,6 @@ enum ViewControllerType {
 - (NSInteger) dvdMoviesSelectedSegmentIndex;
 - (void) setDvdMoviesSelectedSegmentIndex:(NSInteger) index;
 
-- (NSInteger) numbersSelectedSegmentIndex;
-- (void) setNumbersSelectedSegmentIndex:(NSInteger) index;
-
 - (BOOL) allMoviesSortingByTitle;
 - (BOOL) allMoviesSortingByScore;
 - (BOOL) allMoviesSortingByReleaseDate;
@@ -100,10 +97,6 @@ enum ViewControllerType {
 - (BOOL) dvdMoviesShowOnlyBluray;
 - (void) setDvdMoviesShowDVDs:(BOOL) value;
 - (void) setDvdMoviesShowBluray:(BOOL) value;
-
-- (BOOL) numbersSortingByDailyGross;
-- (BOOL) numbersSortingByWeekendGross;
-- (BOOL) numbersSortingByTotalGross;
 
 - (void) saveNavigationStack:(AbstractNavigationController*) controller;
 - (NSArray*) navigationStackTypes;

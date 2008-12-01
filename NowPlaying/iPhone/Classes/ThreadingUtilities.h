@@ -21,4 +21,9 @@ inBackgroundWithArgument:(id) argument
                     gate:(NSLock*) gate
                  visible:(BOOL) visible;
 
++ (void) performSelector:(SEL) selector
+                onTarget:(id) target
+    inBackgroundWithGate:(NSLock*) gate
+                 visible:(BOOL) visible;
+
 @end

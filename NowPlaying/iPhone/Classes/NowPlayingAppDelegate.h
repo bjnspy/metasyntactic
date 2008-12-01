@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "TappableImageViewDelegate.h"
-
 @interface NowPlayingAppDelegate : NSObject<UIApplicationDelegate> {
+@private
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
 
@@ -32,7 +31,5 @@
 + (void) minorRefresh;
 + (void) majorRefresh;
 + (void) majorRefresh:(BOOL) force;
-
-
 
 @end

@@ -14,9 +14,9 @@
 
 #import "DVDFilterViewController.h"
 
-#import "SettingsNavigationController.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
+#import "SettingsNavigationController.h"
 
 @interface DVDFilterViewController()
 @property (assign) SettingsNavigationController* navigationController;

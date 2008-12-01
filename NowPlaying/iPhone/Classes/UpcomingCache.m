@@ -203,33 +203,17 @@ static NSString* titles_key = @"Titles";
 - (void) updateIndex {
     [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint)
                                onTarget:self
-               inBackgroundWithArgument:nil
-                                   gate:gate
+               inBackgroundWithGate:gate
                                 visible:YES];
 }
 
 
-- (void) clearStaleData:(NSString*) directory {
-    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-
-    for (NSString* filePath in paths) {
-        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
-
-        if (downloadDate != nil) {
-            if (ABS(downloadDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                [FileUtilities removeItem:filePath];
-            }
-        }
-    }
-}
-
-
 - (void) clearStaleDataBackgroundEntryPoint {
-    [self clearStaleData:[Application upcomingCastDirectory]];
-    [self clearStaleData:[Application upcomingIMDbDirectory]];
-    [self clearStaleData:[Application upcomingPostersDirectory]];
-    [self clearStaleData:[Application upcomingSynopsesDirectory]];
-    [self clearStaleData:[Application upcomingTrailersDirectory]];
+    [self clearDirectory:[Application upcomingCastDirectory]];
+    [self clearDirectory:[Application upcomingIMDbDirectory]];
+    [self clearDirectory:[Application upcomingPostersDirectory]];
+    [self clearDirectory:[Application upcomingSynopsesDirectory]];
+    [self clearDirectory:[Application upcomingTrailersDirectory]];
 }
 
 

@@ -37,7 +37,8 @@
 
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
-@synthesize upcomingMoviesNavigationController;@synthesize dvdNavigationController;
+@synthesize upcomingMoviesNavigationController;
+@synthesize dvdNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
 @synthesize lastRefreshDate;

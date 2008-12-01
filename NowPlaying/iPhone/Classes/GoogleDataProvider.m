@@ -58,7 +58,6 @@
 
     for (MovieProto* movieProto in movies) {
         NSString* identifier = movieProto.identifier;
-        NSString* poster = @"";
         NSString* title = movieProto.title;
         NSString* rating = movieProto.rawRating;
         NSInteger length = movieProto.length;
@@ -69,7 +68,10 @@
         NSString* releaseDateString = movieProto.releaseDate;
         NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
 
-        NSString* imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
+        NSString* imdbAddress = @"";
+        if (movieProto.iMDbUrl.length > 0) {
+           imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
+        }
 
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
@@ -77,7 +79,7 @@
                                            length:length
                                       releaseDate:releaseDate
                                       imdbAddress:imdbAddress
-                                           poster:poster
+                                           poster:@""
                                          synopsis:synopsis
                                            studio:@""
                                         directors:directors
@@ -147,12 +149,10 @@
 
 
 - (NSArray*) process12HourTimes:(NSArray*) times {
-    NSString* lastTime = [times lastObject];
-
     // walk backwards from the end.  switch the time when we see an AM/PM marker
     NSMutableArray* reverseArray = [NSMutableArray array];
-    BOOL isPM = [lastTime hasSuffix:@"pm"];
-
+    
+    BOOL isPM;
     for (NSInteger i = times.count - 1; i >= 0; i--) {
         NSString* time = [times objectAtIndex:i];
 
@@ -224,8 +224,7 @@
                                     movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-    for (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* movieAndShowtimes in
-         movieAndShowtimesList) {
+    for (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* movieAndShowtimes in movieAndShowtimesList) {
         NSString* movieId = movieAndShowtimes.movieIdentifier;
         NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
 
@@ -363,13 +362,13 @@
 
 
 - (LookupResult*) lookupLocation:(Location*) location
-                    filterTheaters:(NSArray*) filterTheaters {
+                  filterTheaters:(NSArray*) filterTheaters {
     if (location.postalCode == nil) {
         return nil;
     }
 
     NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry]
-    : location.country;
+                                                     : location.country;
 
 
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
@@ -407,11 +406,6 @@
     }
 
     return nil;
-}
-
-
-- (NSString*) displayName {
-    return @"Google";
 }
 
 @end

@@ -116,7 +116,6 @@
                                                                    important:NO];
     if (trailersString == nil) {
         // didn't get any data.  ignore this for now.
-        NSLog(@"", nil);
         return;
     }
 
@@ -129,7 +128,10 @@
     }
 
     [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
-    [NowPlayingAppDelegate minorRefresh];
+    
+    if (final.count > 0) {
+        [NowPlayingAppDelegate minorRefresh];
+    }
 }
 
 
@@ -230,17 +232,7 @@
 
 
 - (void) clearStaleDataBackgroundEntryPoint {
-    NSArray* paths = [FileUtilities directoryContentsPaths:[Application trailersDirectory]];
-
-    for (NSString* filePath in paths) {
-        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
-
-        if (downloadDate != nil) {
-            if (ABS(downloadDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                [FileUtilities removeItem:filePath];
-            }
-        }
-    }
+    [self clearDirectory:[Application trailersDirectory]];
 }
 
 @end

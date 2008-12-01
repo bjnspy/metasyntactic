@@ -26,7 +26,6 @@
 
 @interface IMDbCache()
 @property (assign) NowPlayingModel* model;
-@property (retain) NSLock* gate;
 @property (retain) LinkedSet* prioritizedMovies;
 @end
 
@@ -34,12 +33,10 @@
 @implementation IMDbCache
 
 @synthesize model;
-@synthesize gate;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
     self.model = nil;
-    self.gate = nil;
     self.prioritizedMovies = nil;
 
     [super dealloc];
@@ -49,7 +46,6 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
@@ -116,24 +112,8 @@
 }
 
 
-- (void) deleteObsoleteAddresses:(NSArray*) movies {
-    NSArray* paths = [FileUtilities directoryContentsPaths:[Application imdbDirectory]];
-    NSMutableSet* set = [NSMutableSet setWithArray:paths];
-
-    for (Movie* movie in movies) {
-        NSString* filePath = [self imdbFile:movie];
-        [set removeObject:filePath];
-    }
-
-    for (NSString* filePath in set) {
-        NSDate* downloadDate = [FileUtilities modificationDate:filePath];
-
-        if (downloadDate != nil) {
-            if (ABS(downloadDate.timeIntervalSinceNow) > ONE_MONTH) {
-                [FileUtilities removeItem:filePath];
-            }
-        }
-    }
+- (void) clearStaleDataBackgroundEntryPoint {
+    [self clearDirectory:[Application imdbDirectory]];
 }
 
 
@@ -156,8 +136,6 @@
 
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
-    [self deleteObsoleteAddresses:movies];
-
     NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
     Movie* movie = nil;
     do {
