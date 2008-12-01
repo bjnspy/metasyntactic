@@ -298,19 +298,12 @@ static NSString** KEYS[] = {
 
 
 - (void) checkCountry {
-    NSSet* supportedCountries = [NSSet setWithObjects:
-    @"US", @"CA", @"GB", @"AU",
-    @"BR", @"CH", @"ES", @"JA",
-    @"DE", @"BE", @"CZ", @"NL",
-    @"IT", @"PO", @"TR", @"MY", nil];
-    
-    NSString* userCountry = [LocaleUtilities isoCountry];
-    if ([supportedCountries containsObject:userCountry]) {
+    if ([LocaleUtilities isSupportedCountry]) {
         return;
     }
     
     // Only warn once per upgrade.
-    NSString* key = [NSString stringWithFormat:@"%@-%@", UNSUPPORTED_COUNTRY, currentVersion]; 
+    NSString* key = [NSString stringWithFormat:@"%@-%@-%@", UNSUPPORTED_COUNTRY, currentVersion, [LocaleUtilities isoCountry]]; 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:key]) {
         return;
     }
@@ -318,11 +311,8 @@ static NSString** KEYS[] = {
     
     NSString* warning =
     [NSString stringWithFormat:
-    NSLocalizedString(@"Your device's country is set to: %@\n\n"
-                      @"Now Playing is not fully supported in this country. "
-                      @"Local movies, theaters and showtimes will be unavailable. "
-                      @"Other features will be partially available.\n\n"
-                      @"Worldwide support is being actively improved, so please check back in the future!", nil),
+    NSLocalizedString(@"Your %@'s country is set to: %@\n\nNow Playing is coming soon to your country, and some features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
+     [UIDevice currentDevice].localizedModel,
      [LocaleUtilities displayCountry]];
     
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
@@ -337,7 +327,7 @@ static NSString** KEYS[] = {
 
 - (id) init {
     if (self = [super init]) {
-        //[self checkCountry];
+        [self checkCountry];
         [self loadData];
 
         self.userLocationCache = [UserLocationCache cache];
@@ -1137,6 +1127,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         return NSLocalizedString(@"Downloading data", nil);
     } else if (![NetworkUtilities isNetworkAvailable]) {
         return NSLocalizedString(@"Network unavailable", nil);
+    } else if (![LocaleUtilities isSupportedCountry]) {
+        return [NSString stringWithFormat:
+                NSLocalizedString(@"Local results unavailable", nil),
+                [LocaleUtilities displayCountry]];
     } else {
         return NSLocalizedString(@"No information found", nil);
     }

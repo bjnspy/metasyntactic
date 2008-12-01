@@ -509,6 +509,7 @@
 
 
 - (void) reportError {
+    /*
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
                                                      message:NSLocalizedString(@"No information found", nil)
                                                     delegate:nil
@@ -516,6 +517,7 @@
                                            otherButtonTitles:nil] autorelease];
 
     [alert show];
+     */
 }
 
 

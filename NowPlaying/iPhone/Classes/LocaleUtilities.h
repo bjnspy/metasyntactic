@@ -27,4 +27,6 @@
 + (BOOL) isEnglish;
 + (BOOL) isJapanese;
 
++ (BOOL) isSupportedCountry;
+
 @end
