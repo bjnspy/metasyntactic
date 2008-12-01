@@ -70,4 +70,29 @@
     return [@"ja" isEqual:[self isoLanguage]];
 }
 
+
++ (BOOL) isSupportedCountry {
+    NSSet* supportedCountries = [NSSet setWithObjects:
+                                 @"AU", // Australia
+                                 @"BE", // Belgium
+                                 @"BR", // Brazil
+                                 @"CA", // Canada
+                                 @"CH", // Switzerland
+                                 @"CZ", // Czech Republic
+                                 @"DE", // Germany
+                                 @"ES", // Spain
+                                 @"JP", // Japan
+                                 @"GB", // Great Britain
+                                 @"IT", // Italy
+                                 @"MY", // Malaysia
+                                 @"NL", // The Netherlands
+                                 @"PL", // Poland
+                                 @"US", // United States
+                                 @"TR", // Turkey
+                                 nil];
+    
+    NSString* userCountry = [LocaleUtilities isoCountry];
+    return [supportedCountries containsObject:userCountry];
+}
+
 @end
