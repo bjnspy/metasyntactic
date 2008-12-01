@@ -25,6 +25,7 @@
   <string name="number_minutes">%d мин</string>
   <string name="number_months_ago">Месяцев назад: %d</string>
   <string name="number_of_number">%d из %d</string>
+  <string name="number_theaters_outside_search_area">Кинотеатров за пределами области поиска: %d</string>
   <string name="number_weeks_ago">Недель назад: %d</string>
   <string name="number_years_ago">Лет назад: %d</string>
   <string name="one_hour">1 час</string>
@@ -32,6 +33,7 @@
   <string name="one_mile">1 миля</string>
   <string name="one_minute">1 минута</string>
   <string name="one_month_ago">1 месяц назад</string>
+  <string name="one_theater_outside_search_area">1 кинотеатр за пределами области поиска</string>
   <string name="one_week_ago">1 неделя назад</string>
   <string name="one_year_ago">1 год назад</string>
   <string name="about">О программе</string>
