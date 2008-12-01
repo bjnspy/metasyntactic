@@ -311,7 +311,7 @@ static NSString** KEYS[] = {
     
     NSString* warning =
     [NSString stringWithFormat:
-    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and some features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
+    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
      [UIDevice currentDevice].localizedModel,
      [LocaleUtilities displayCountry]];
     

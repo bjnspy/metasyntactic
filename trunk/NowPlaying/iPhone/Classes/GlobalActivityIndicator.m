@@ -82,7 +82,9 @@ static NSInteger visibleBackgroundTaskCount = 0;
         if (isVisible) {
             visibleBackgroundTaskCount--;
 
-            [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
+            if (visibleBackgroundTaskCount == 0) {
+                [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
+            }
         }
 
         [NowPlayingAppDelegate minorRefresh];
