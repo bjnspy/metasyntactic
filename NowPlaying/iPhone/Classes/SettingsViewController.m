@@ -88,7 +88,7 @@
 
 
 - (void) majorRefresh {
-    //self.tableView.rowHeight = 38;
+    self.tableView.rowHeight = 43;
     [self.tableView reloadData];
 }
 
@@ -101,7 +101,7 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 6;
+        return 7;
     } else {
         return 1;
     }
@@ -264,12 +264,8 @@
 
 
 - (void) didSelectFooterRow:(NSInteger) row {
-    //if (row == 0) {
-    //    [Application openBrowser:self.model.feedbackUrl];
-    //} else if (row == 1) {
-        CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
-        [navigationController pushViewController:controller animated:YES];
-    //}
+    CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
+    [navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -347,6 +343,18 @@
 - (void) onSearchRadiusChanged:(NSString*) radius {
     [self.controller setSearchRadius:radius.intValue];
     [self.tableView reloadData];
+}
+
+
+- (UIView*)        tableView:(UITableView*) tableView
+       viewForFooterInSection:(NSInteger) section {
+    return [[[UIView alloc] init] autorelease];
+}
+
+
+- (CGFloat)          tableView:(UITableView*) tableView
+      heightForFooterInSection:(NSInteger) section {
+    return -5;
 }
 
 @end
