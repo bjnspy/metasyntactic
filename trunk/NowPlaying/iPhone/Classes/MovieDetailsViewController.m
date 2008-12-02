@@ -19,6 +19,7 @@
 #import "Application.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
+#import "DataProvider.h"
 #import "DVD.h"
 #import "DVDCache.h"
 #import "DateUtilities.h"
@@ -26,6 +27,7 @@
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "LargePosterCache.h"
+#import "LookupResult.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
@@ -34,15 +36,16 @@
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
 #import "PostersViewController.h"
+#import "SearchDatePickerViewController.h"
 #import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "ThreadingUtilities.h"
+#import "UpdatingListingsViewController.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
 @interface MovieDetailsViewController()
-@property (assign) AbstractNavigationController* navigationController;
 @property (retain) Movie* movie;
 @property (retain) DVD* dvd;
 @property (retain) NSMutableArray* theatersArray;
@@ -61,7 +64,6 @@
 
 @implementation MovieDetailsViewController
 
-@synthesize navigationController;
 @synthesize movie;
 @synthesize dvd;
 @synthesize theatersArray;
@@ -77,7 +79,6 @@
 @synthesize posterImageView;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.movie = nil;
     self.dvd = nil;
     self.theatersArray = nil;
@@ -116,16 +117,6 @@
     [result addObjectsFromArray:nonFavorites];
 
     self.theatersArray = result;
-}
-
-
-- (NowPlayingController*) controller {
-    return navigationController.controller;
-}
-
-
-- (NowPlayingModel*) model {
-    return navigationController.model;
 }
 
 
@@ -221,8 +212,7 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) controller
                               movie:(Movie*) movie_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = controller;
+    if (self = [super initWithNavigationController:controller]) {
         self.movie = movie_;
         self.posterDownloadLock = [[[NSRecursiveLock alloc] init] autorelease];
 
@@ -256,7 +246,7 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     visible = YES;
-    [self.model saveNavigationStack:self.navigationController];
+    [self.model saveNavigationStack:navigationController];
 }
 
 
@@ -692,6 +682,27 @@
 
 - (void) visitWebsite {
     [Application openBrowser:dvd.url];
+}
+
+
+- (void) onSuccess:(LookupResult*) lookupResult context:(id) array {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
+        return;
+    }
+    
+    NSDate* searchDate = [array lastObject];
+
+    if (![lookupResult.movies containsObject:movie]) {
+        NSString* text = 
+        [NSString stringWithFormat:
+         NSLocalizedString(@"No listings found for '%@' on %@", @"No listings found for 'The Dark Knight' on 5/18/2008"),
+         movie.canonicalTitle,
+         [DateUtilities formatShortDate:searchDate]];
+        
+        [self onFailure:text context:array];
+    } else {
+        [super onSuccess:lookupResult context:array];
+    }
 }
 
 
