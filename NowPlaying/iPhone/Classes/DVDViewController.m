@@ -119,7 +119,6 @@
     self.segmentedControl = [self createSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
 
-    self.title = NSLocalizedString(@"DVD", nil);
     self.tableView.rowHeight = 100;
 }
 
@@ -152,6 +151,12 @@
 
 
 - (void) majorRefresh {
+    if (self.model.dvdMoviesShowOnlyBluray) {
+        self.title = NSLocalizedString(@"Blu-ray", nil);
+    } else {
+        self.title = NSLocalizedString(@"DVD", nil);
+    }
+    
     self.tableView.rowHeight = 100;
     [super majorRefresh];
 }

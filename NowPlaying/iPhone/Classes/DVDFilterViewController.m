@@ -128,7 +128,8 @@
 
         [self setCheckmarkForCell:cell atRow:i];
     }
-
+    
+    [NowPlayingAppDelegate majorRefresh:YES];
     [navigationController popViewControllerAnimated:YES];
 }
 

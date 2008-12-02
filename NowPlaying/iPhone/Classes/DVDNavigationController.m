@@ -35,10 +35,19 @@
 }
 
 
+- (void) setupTitle {
+    if (self.model.dvdMoviesShowOnlyBluray) {
+        self.title = NSLocalizedString(@"Blu-ray", nil);
+    } else {
+        self.title = NSLocalizedString(@"DVD", nil);
+    }    
+}
+
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        self.title = NSLocalizedString(@"DVD", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"DVD.png"];
+        [self setupTitle];
     }
 
     return self;
@@ -63,6 +72,12 @@
     }
 
     return [super movieForTitle:canonicalTitle];
+}
+
+
+- (void) majorRefresh {
+    [self setupTitle];
+    [super majorRefresh];
 }
 
 @end
