@@ -183,7 +183,7 @@
     // header
     NSInteger sections = 1;
 
-    // e-mail listings
+    // e-mail listings/change date
     sections++;
 
     // movies
@@ -199,7 +199,7 @@
         // theater address and possibly phone number
         return 1 + (theater.phoneNumber.length == 0 ? 0 : 1);
     } else if (section == 1) {
-        return 1;
+        return 2;
     } else {
         return 2;
     }
@@ -245,15 +245,19 @@
 }
 
 
-- (UITableViewCell*) cellForEmailListings {
+- (UITableViewCell*) cellForActionRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
     cell.textColor = [ColorCache commandColor];
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textAlignment = UITextAlignmentCenter;
 
-    cell.text = NSLocalizedString(@"E-mail listings", nil);
-
+    if (row == 0) {
+        cell.text = NSLocalizedString(@"E-mail listings", nil);
+    } else {
+        cell.text = NSLocalizedString(@"Change date", nil);
+    }
+    
     return cell;
 }
 
@@ -296,7 +300,7 @@
     if (section == 0) {
         return [self cellForHeaderRow:row];
     } else if (section == 1) {
-        return [self cellForEmailListings];
+        return [self cellForActionRow:row];
     } else {
         return [self cellForTheaterIndex:(section - 2) row:row];
     }
@@ -372,6 +376,10 @@
 }
 
 
+- (void) didSelectChangeDate {
+}
+
+
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
     [navigationController pushTicketsView:movie
@@ -395,7 +403,11 @@
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     } else if (section == 1) {
-        [self didSelectEmailListings];
+        if (row == 0) {
+            [self didSelectEmailListings];
+        } else {
+            [self didSelectChangeDate];
+        }
     } else {
         section -= 2;
 

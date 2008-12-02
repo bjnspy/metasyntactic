@@ -19,6 +19,7 @@
 @property (retain) NSArray* selectors;
 @property (retain) NSArray* titles;
 @property (retain) NSArray* buttons;
+@property (retain) UILabel* footer;
 @end
 
 
@@ -28,12 +29,14 @@
 @synthesize selectors;
 @synthesize titles;
 @synthesize buttons;
+@synthesize footer;
 
 - (void) dealloc {
     self.target = nil;
     self.selectors = nil;
     self.titles = nil;
     self.buttons = nil;
+    self.footer = nil;
 
     [super dealloc];
 }
@@ -41,12 +44,20 @@
 
 - (id) initWithTarget:(id) target_
             selectors:(NSArray*) selectors_
-               titles:(NSArray*) titles_ {
+               titles:(NSArray*) titles_
+               footer:(NSString*) footer_ {
     if (self = [super initWithFrame:CGRectZero]) {
         self.target = target_;
         self.selectors = selectors_;
         self.titles = titles_;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        if (footer_ != nil) {
+            self.footer = [[[UILabel alloc] init] autorelease];
+            footer.text = footer_;
+            footer.opaque = NO;
+            footer.backgroundColor = [UIColor clearColor];
+        }
 
         NSMutableArray* array = [NSMutableArray array];
         for (NSString* title in titles) {
@@ -77,16 +88,27 @@
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
-                         titles:(NSArray*) titles {
+                         titles:(NSArray*) titles 
+                         footer:(NSString*) footer {
     return [[[ActionsView alloc] initWithTarget:(id) target
                                       selectors:selectors
-                                         titles:titles] autorelease];
+                                         titles:titles
+                                         footer:footer] autorelease];
+}
+
+
++ (ActionsView*) viewWithTarget:(id) target
+                      selectors:(NSArray*) selectors
+                         titles:(NSArray*) titles {
+    return [ActionsView viewWithTarget:target selectors:selectors titles:titles footer:nil];
 }
 
 
 - (void) onButtonPressed:(UIButton*) button {
     SEL selector = [[selectors objectAtIndex:[buttons indexOfObject:button]] pointerValue];
-    [target performSelector:selector];
+    if ([target respondsToSelector:selector]) {
+        [target performSelector:selector];
+    }
 }
 
 
@@ -113,16 +135,33 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
+    
+    BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
+    
+    //int lastRow = (buttons.count - 1) / 2;
     for (int i = 0; i < buttons.count; i++) {
         UIButton* button = [buttons objectAtIndex:i];
-        NSInteger column = i % 2;
-        NSInteger row = i / 2;
+        
+        NSInteger column;
+        NSInteger row;
+        if (oddNumberOfButtons && i != 0) {
+            column = (i + 1) % 2;
+            row = (i + 1) / 2;
+        } else {
+            column = i % 2;
+            row = i / 2;
+        }
 
         CGRect frame = button.frame;
-        frame.size.width = (self.frame.size.width / 2) - 14;
         frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
         frame.origin.y = (8 + frame.size.height) * row + 8;
+        
+        if (i == 0 && oddNumberOfButtons) {
+            frame.size.width = (self.frame.size.width - 2 * frame.origin.x); 
+        } else {
+            frame.size.width = (self.frame.size.width / 2) - 14;
+        }
+
         button.frame = frame;
     }
 }

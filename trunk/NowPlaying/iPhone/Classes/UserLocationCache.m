@@ -73,7 +73,7 @@
 
 - (NSString*) massageAddress:(NSString*) userAddress {
     userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (userAddress.length <= 7 &&
+    if (userAddress.length <= 8 &&
         [self containsNumber:userAddress]) {
         // possibly a postal code.  append the country to help make it unique
 

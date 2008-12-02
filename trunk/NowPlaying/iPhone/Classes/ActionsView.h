@@ -19,6 +19,7 @@
     NSArray* titles;
 
     NSArray* buttons;
+    UILabel* footer;
 
     CGFloat height;
 }
@@ -26,6 +27,11 @@
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
                          titles:(NSArray*) titles;
+
++ (ActionsView*) viewWithTarget:(id) target
+                      selectors:(NSArray*) selectors
+                         titles:(NSArray*) titles
+                         footer:(NSString*) footer;
 
 - (CGFloat) height;
 
