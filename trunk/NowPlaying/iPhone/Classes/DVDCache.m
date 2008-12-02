@@ -15,8 +15,6 @@
 #import "DVDCache.h"
 
 #import "Application.h"
-#import "LinkedSet.h"
-#import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
