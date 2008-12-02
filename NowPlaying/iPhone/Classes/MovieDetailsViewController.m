@@ -41,7 +41,6 @@
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "ThreadingUtilities.h"
-#import "UpdatingListingsViewController.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
