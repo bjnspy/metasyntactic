@@ -187,7 +187,6 @@
 		74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC08720DD3EEBB006953A4 /* MultiDictionary.m */; };
 		74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC92D50EE4E090004E044E /* LookupRequest.m */; };
 		74EC959D0EE5C610004E044E /* BlackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC959C0EE5C610004E044E /* BlackButton.png */; };
-		74EC95B40EE5C72E004E044E /* UpdatingListingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC95B30EE5C72E004E044E /* UpdatingListingsViewController.m */; };
 		74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */; };
 		74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */; };
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
@@ -625,8 +624,6 @@
 		74EC92D40EE4E090004E044E /* LookupRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupRequest.h; sourceTree = "<group>"; };
 		74EC92D50EE4E090004E044E /* LookupRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupRequest.m; sourceTree = "<group>"; };
 		74EC959C0EE5C610004E044E /* BlackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackButton.png; path = Resources/BlackButton.png; sourceTree = "<group>"; };
-		74EC95B20EE5C72E004E044E /* UpdatingListingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatingListingsViewController.h; sourceTree = "<group>"; };
-		74EC95B30EE5C72E004E044E /* UpdatingListingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatingListingsViewController.m; sourceTree = "<group>"; };
 		74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDetailsViewController.h; sourceTree = "<group>"; };
 		74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsViewController.m; sourceTree = "<group>"; };
 		74EF2F920EB8D93C0053B3CC /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
@@ -986,8 +983,6 @@
 				74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */,
 				7427C1610ED6BCDA00B7BF09 /* RefreshableTableViewController.h */,
 				7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */,
-				74EC95B20EE5C72E004E044E /* UpdatingListingsViewController.h */,
-				74EC95B30EE5C72E004E044E /* UpdatingListingsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1715,7 +1710,6 @@
 				7427C1630ED6BCDA00B7BF09 /* RefreshableTableViewController.m in Sources */,
 				747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */,
 				74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */,
-				74EC95B40EE5C72E004E044E /* UpdatingListingsViewController.m in Sources */,
 				74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

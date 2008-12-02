@@ -13,7 +13,6 @@
 #import "DateUtilities.h"
 #import "NowPlayingModel.h"
 #import "SearchDatePickerViewController.h"
-#import "UpdatingListingsViewController.h"
 
 @interface AbstractDetailsViewController()
 @property (assign) AbstractNavigationController* navigationController;
