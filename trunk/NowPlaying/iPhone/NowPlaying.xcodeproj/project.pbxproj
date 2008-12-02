@@ -186,7 +186,7 @@
 		74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC069F0DD2D69B006953A4 /* Utilities.m */; };
 		74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC08720DD3EEBB006953A4 /* MultiDictionary.m */; };
 		74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC92D50EE4E090004E044E /* LookupRequest.m */; };
-		74EC94780EE545FB004E044E /* RedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC94770EE545FB004E044E /* RedButton.png */; };
+		74EC959D0EE5C610004E044E /* BlackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC959C0EE5C610004E044E /* BlackButton.png */; };
 		74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */; };
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
@@ -622,7 +622,7 @@
 		74EC92C40EE4DD43004E044E /* DataProviderUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderUpdateDelegate.h; sourceTree = "<group>"; };
 		74EC92D40EE4E090004E044E /* LookupRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupRequest.h; sourceTree = "<group>"; };
 		74EC92D50EE4E090004E044E /* LookupRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupRequest.m; sourceTree = "<group>"; };
-		74EC94770EE545FB004E044E /* RedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedButton.png; path = Resources/RedButton.png; sourceTree = "<group>"; };
+		74EC959C0EE5C610004E044E /* BlackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackButton.png; path = Resources/BlackButton.png; sourceTree = "<group>"; };
 		74EF2F920EB8D93C0053B3CC /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
 		74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
 		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
@@ -771,7 +771,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				74EC94770EE545FB004E044E /* RedButton.png */,
+				74EC959C0EE5C610004E044E /* BlackButton.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
@@ -1526,7 +1526,7 @@
 				74A70AD30EC391A0008C661D /* RightArrow.png in Resources */,
 				744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */,
 				747412910EC7C0B500625001 /* ImageLoading.png in Resources */,
-				74EC94780EE545FB004E044E /* RedButton.png in Resources */,
+				74EC959D0EE5C610004E044E /* BlackButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

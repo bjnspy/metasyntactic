@@ -440,15 +440,16 @@
     [button setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(onCancelPressed:) forControlEvents:UIControlEventTouchUpInside];
 
-    UIImage* image = [UIImage imageNamed:@"RedButton.png"];
+    UIImage* image = [[UIImage imageNamed:@"BlackButton.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [button setBackgroundImage:image forState:UIControlStateNormal];
     [button sizeToFit];
 
     CGRect applicationFrame = [UIScreen mainScreen].applicationFrame;
     CGRect frame = CGRectZero;
-    frame.size = image.size;
-    frame.origin.x = (int)((applicationFrame.size.width - image.size.width) / 2.0);
+    frame.origin.x = 10;
     frame.origin.y = applicationFrame.size.height - frame.origin.x - image.size.height;
+    frame.size.height = image.size.height;
+    frame.size.width = (int)(applicationFrame.size.width - 2 * frame.origin.x);
     //frame.size.width -= 2 * frame.origin.x;
     //frame.size.height = button.frame.size.height;
     button.frame = frame;
