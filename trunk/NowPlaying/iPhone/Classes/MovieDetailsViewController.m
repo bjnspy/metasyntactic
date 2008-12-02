@@ -379,6 +379,20 @@
 }
 
 
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (section == 1 && theatersArray.count > 0) {
+        if ([DateUtilities isToday:self.model.searchDate]) {
+            return NSLocalizedString(@"Today", nil);
+        } else {
+            return [DateUtilities formatFullDate:self.model.searchDate];
+        }
+    }
+    
+    return nil;
+}
+
+
 - (NSInteger) getTheaterIndex:(NSInteger) section {
     return section - 1;
 }
@@ -547,7 +561,7 @@
         if (theatersArray.count == 0) {
             return height + 8;
         } else {
-            return height;
+            return height + 1;
         }
     }
 

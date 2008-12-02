@@ -19,6 +19,7 @@
 @interface SettingCell()
 @property (retain) UILabel* keyLabel;
 @property (retain) UILabel* valueLabel;
+@property (retain) UILabel* separatorLine;
 @property (retain) UIFont* cachedFont;
 @end
 
@@ -27,18 +28,21 @@
 
 @synthesize keyLabel;
 @synthesize valueLabel;
+@synthesize separatorLine;
 @synthesize cachedFont;
 
 - (void) dealloc {
     self.keyLabel = nil;
     self.valueLabel = nil;
+    self.separatorLine = nil;
     self.cachedFont = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
+- (id) initWithFrame:(CGRect) frame
+     reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
 
@@ -46,6 +50,8 @@
         valueLabel.textColor = [ColorCache commandColor];
         valueLabel.adjustsFontSizeToFitWidth = YES;
         valueLabel.minimumFontSize = valueLabel.font.pointSize - 4;
+        
+        self.separatorLine = [[[UILabel alloc] init] autorelease];
 
         [self.contentView addSubview:keyLabel];
         [self.contentView addSubview:valueLabel];
@@ -81,19 +87,28 @@
                               self.contentView.frame.size.width - valueFrame.size.width);
     valueFrame.size.width = MIN(valueFrame.size.width,
                                 self.contentView.frame.size.width - valueFrame.origin.x);
-
+    
     if (self.accessoryType == UITableViewCellAccessoryNone) {
         valueFrame.origin.x -= 10;
     }
 
     valueLabel.frame = valueFrame;
+    
+    CGRect separatorFrame = CGRectMake(1, -1, self.contentView.frame.size.width - 2, 1);
+    separatorLine.frame = separatorFrame;
 }
 
 
 - (void) setKey:(NSString*) key
-          value:(NSString*) value {
+          value:(NSString*) value
+  hideSeparator:(BOOL) hideSeparator  {
     keyLabel.text = key;
     valueLabel.text = value;
+    
+    [separatorLine removeFromSuperview];
+    if (hideSeparator) {
+        [self.contentView addSubview:separatorLine];
+    }
 
     [self resizeLabels];
 }

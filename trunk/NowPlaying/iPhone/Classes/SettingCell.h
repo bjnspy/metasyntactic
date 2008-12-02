@@ -16,11 +16,16 @@
 @private
     UILabel* keyLabel;
     UILabel* valueLabel;
+    UILabel* separatorLine;
 
     UIFont* cachedFont;
 }
 
+- (id) initWithFrame:(CGRect) frame
+     reuseIdentifier:(NSString*) reuseIdentifier;
+
 - (void) setKey:(NSString*) key
-          value:(NSString*) value;
+          value:(NSString*) value
+  hideSeparator:(BOOL) hideSeparator;
 
 @end

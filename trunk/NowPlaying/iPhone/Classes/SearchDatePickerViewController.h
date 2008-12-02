@@ -17,6 +17,8 @@
 @interface SearchDatePickerViewController : PickerEditorViewController {
 }
 
-+ (SearchDatePickerViewController*) pickerWithNavigationController:(AbstractNavigationController*) navigationController;
++ (SearchDatePickerViewController*) pickerWithNavigationController:(AbstractNavigationController*) navigationController
+                                                            object:(id) object 
+                                                          selector:(SEL) selector;
 
 @end

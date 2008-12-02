@@ -206,6 +206,20 @@
 }
 
 
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (section == 2 && movies.count > 0) {
+        if ([DateUtilities isToday:self.model.searchDate]) {
+            return NSLocalizedString(@"Today", nil);
+        } else {
+            return [DateUtilities formatFullDate:self.model.searchDate];
+        }
+    }
+    
+    return nil;
+}
+
+
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                 reuseIdentifier:nil] autorelease];

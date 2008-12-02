@@ -38,6 +38,7 @@
 
 - (BOOL) isStale:(Theater*) theater;
 
-- (void) update;
+- (void) update:(NSDate*) searchDate delegate:(id<DataProviderUpdateDelegate>) delegate context:(id) context;
+- (void) saveResult:(LookupResult*) result;
 
 @end

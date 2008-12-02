@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface TicketsViewController : UITableViewController {
+#import "DataProviderUpdateDelegate.h"
+
+@interface TicketsViewController : UITableViewController<DataProviderUpdateDelegate> {
 @private
     AbstractNavigationController* navigationController;
     Movie* movie;
@@ -21,6 +23,8 @@
     NSMutableArray* performances;
 
     BOOL visible;
+    
+    NSInteger updateId;
 }
 
 @property (readonly, retain) Movie* movie;

@@ -88,7 +88,7 @@
 
 
 - (void) majorRefresh {
-    self.tableView.rowHeight = 38;
+    //self.tableView.rowHeight = 38;
     [self.tableView reloadData];
 }
 
@@ -101,22 +101,24 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 2;
+        return 6;
     } else {
-        return 7;
+        return 1;
     }
 }
 
 
-- (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
+- (UITableViewCell*) cellForFooterRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    if (row == 0) {
-        cell.text = NSLocalizedString(@"Send Feedback", nil);
-    } else {
-        cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
-    }
+    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"About", nil), NSLocalizedString(@"Send Feedback", nil)];
+    
+    //if (row == 0) {
+    cell.text = text;
+    //} else {
+    //    cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
+    //}
     return cell;
 }
 
@@ -126,7 +128,8 @@
         static NSString* reuseIdentifier = @"SettingCellReuseIdentifier";
         SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[SettingCell alloc] initWithFrame:CGRectZero
+                                       reuseIdentifier:reuseIdentifier] autorelease];
         }
 
         NSString* key = @"";
@@ -172,7 +175,7 @@
             }
         }
 
-        [cell setKey:key value:value];
+        [cell setKey:key value:value hideSeparator:NO];
 
         return cell;
     } else if (row >= 5 && row <= 6) {
@@ -207,9 +210,9 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
           cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        return [self cellForHeaderRow:indexPath.row];
-    } else {
         return [self cellForSettingsRow:indexPath.row];
+    } else {
+        return [self cellForFooterRow:indexPath.row];
     }
 }
 
@@ -226,9 +229,17 @@
 
 
 - (void) pushSearchDatePicker {
-    SearchDatePickerViewController* pickerController = [SearchDatePickerViewController pickerWithNavigationController:navigationController];
+    SearchDatePickerViewController* pickerController =
+    [SearchDatePickerViewController pickerWithNavigationController:navigationController
+                                                            object:self
+                                                          selector:@selector(onSearchDateChanged:)];
 
     [navigationController pushViewController:pickerController animated:YES];
+}
+
+
+- (void) onSearchDateChanged:(NSString*) dateString {
+    [navigationController.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
 }
 
 
@@ -252,13 +263,13 @@
 }
 
 
-- (void) didSelectHeaderRow:(NSInteger) row {
-    if (row == 0) {
-        [Application openBrowser:self.model.feedbackUrl];
-    } else if (row == 1) {
+- (void) didSelectFooterRow:(NSInteger) row {
+    //if (row == 0) {
+    //    [Application openBrowser:self.model.feedbackUrl];
+    //} else if (row == 1) {
         CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
         [navigationController pushViewController:controller animated:YES];
-    }
+    //}
 }
 
 
@@ -319,9 +330,9 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        [self didSelectHeaderRow:indexPath.row];
-    } else if (indexPath.section == 1) {
         [self didSelectSettingsRow:indexPath.row];
+    } else if (indexPath.section == 1) {
+        [self didSelectFooterRow:indexPath.row];
     }
 }
 
@@ -336,18 +347,6 @@
 - (void) onSearchRadiusChanged:(NSString*) radius {
     [self.controller setSearchRadius:radius.intValue];
     [self.tableView reloadData];
-}
-
-
-- (UIView*)        tableView:(UITableView*) tableView
-      viewForFooterInSection:(NSInteger) section {
-    return [[[UIView alloc] init] autorelease];
-}
-
-
-- (CGFloat)          tableView:(UITableView*) tableView
-      heightForFooterInSection:(NSInteger) section {
-    return -5;
 }
 
 @end
