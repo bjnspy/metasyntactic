@@ -29,6 +29,7 @@
 @implementation CreditsViewController
 
 typedef enum {
+    SendFeedbackSection,
     WrittenBySection,
     GraphicsBySection,
     ReviewsBySection,
@@ -112,7 +113,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
-    if (section == WrittenBySection) {
+    if (section == SendFeedbackSection) {
+        return 1;
+    } else if (section == WrittenBySection) {
         return 2;
     } else if (section == GraphicsBySection) {
         return 2;
@@ -172,7 +175,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             height = imageHeight;
         }
     } else if (indexPath.section == LocalizedBySection) {
-        return tableView.rowHeight - 10;
+        return tableView.rowHeight - 14;
     }
 
     return height;
@@ -183,7 +186,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     static NSString* reuseIdentifier = @"LocalizationCellIdentifier";
     SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[SettingCell alloc] initWithFrame:CGRectZero
+                                   reuseIdentifier:reuseIdentifier] autorelease];
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -192,7 +196,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSString* person = [localizers objectForKey:code];
     NSString* language = [LocaleUtilities displayLanguage:code];
 
-    [cell setKey:language value:person];
+    [cell setKey:language value:person hideSeparator:(row != 0)];
     return cell;
 }
 
@@ -220,6 +224,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
 
         [cell.contentView addSubview:imageView];
+    } else if (section == SendFeedbackSection) {
+        cell.text = NSLocalizedString(@"Send Feedback", nil);
     } else if (section == WrittenBySection) {
         if (row == 0) {
             cell.text = NSLocalizedString(@"E-mail", @"This is a verb.  it means 'send email to developer'");
@@ -283,7 +289,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsBySection) {
+    if (indexPath.section >= SendFeedbackSection && indexPath.section <= DVDDetailsBySection) {
         return UITableViewCellAccessoryDetailDisclosureButton;
     } else if (indexPath.section == LocalizedBySection) {
         return UITableViewCellAccessoryNone;
@@ -327,7 +333,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSInteger row = indexPath.row;
 
     NSString* url = nil;
-    if (section == WrittenBySection) {
+    if (section == SendFeedbackSection) {
+        url = [self.model feedbackUrl];
+    } else if (section == WrittenBySection) {
         if (row == 0) {
             url = [self.model feedbackUrl];
         } else {

@@ -69,8 +69,65 @@
 }
 
 
+- (BOOL) tooSoon:(NSDate*) lastDate {
+    if (lastDate == nil) {
+        return NO;
+    }
+    
+    NSDate* now = [NSDate date];
+    
+    if (![DateUtilities isSameDay:now date:lastDate]) {
+        // different days. we definitely need to refresh
+        return NO;
+    }
+    
+    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
+    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
+    
+    // same day, check if they're at least 8 hours apart.
+    if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
+        return NO;
+    }
+    
+    // it's been less than 8 hours. it's too soon to refresh
+    return YES;
+}
+
+
 - (void) spawnDataProviderLookupThread {
-    [self.model.dataProvider update];
+    if (self.model.userAddress.length == 0) {
+        return;
+    }
+    
+    if ([self tooSoon:[self.model.dataProvider lastLookupDate]]) {
+        return;
+    }
+
+    [self.model.dataProvider update:self.model.searchDate delegate:self context:nil];
+}
+
+
+- (void) onSuccess:(LookupResult*) lookupResult context:(id) context {
+    // Save the results.
+    [self.model.dataProvider saveResult:lookupResult];
+}
+
+
+- (void) onFailure:(NSString*) error context:(id) context {
+    [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:NO];
+}
+
+
+- (void) reportError:(NSString*) error {
+    /*
+     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+     message:NSLocalizedString(@"No information found", nil)
+     delegate:nil
+     cancelButtonTitle:NSLocalizedString(@"OK", nil)
+     otherButtonTitles:nil] autorelease];
+     
+     [alert show];
+     */
 }
 
 
@@ -118,13 +175,20 @@
 }
 
 
+- (void) markDataProviderOutOfDate {
+    [self.model.dataProvider markOutOfDate];
+}
+
+
 - (void) setSearchDate:(NSDate*) searchDate {
-    if ([searchDate isEqual:self.model.searchDate]) {
+    if ([DateUtilities isSameDay:searchDate date:self.model.searchDate]) {
         return;
     }
     
     [appDelegate.tabBarController popNavigationControllersToRoot];
     [self.model setSearchDate:searchDate];
+
+    [self markDataProviderOutOfDate];
     [self spawnDataProviderLookupThread];
 }
 
@@ -136,6 +200,8 @@
     
     [appDelegate.tabBarController popNavigationControllersToRoot];
     [self.model setUserAddress:userAddress];
+
+    [self markDataProviderOutOfDate];
     [self spawnDetermineLocationThread];
 
     // Force a refresh so the UI displays this new address.

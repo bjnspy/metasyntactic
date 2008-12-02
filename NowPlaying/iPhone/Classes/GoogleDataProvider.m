@@ -261,7 +261,7 @@
                             performances:(NSMutableDictionary*) performances
               synchronizationInformation:(NSMutableDictionary*) synchronizationInformation
                      originatingLocation:(Location*) originatingLocation
-                          filterTheaters:(NSArray*) filterTheaters
+                            theaterNames:(NSArray*) theaterNames
                        movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     TheaterProto* theater = theaterAndMovieShowtimes.theater;
     NSString* name = theater.name;
@@ -269,7 +269,7 @@
         return;
     }
 
-    if (filterTheaters != nil && ![filterTheaters containsObject:name]) {
+    if (theaterNames.count > 0  && ![theaterNames containsObject:name]) {
         return;
     }
 
@@ -313,7 +313,7 @@
 
 - (NSArray*) processTheaterAndMovieShowtimes:(NSArray*) theaterAndMovieShowtimes
                          originatingLocation:(Location*) originatingLocation
-                              filterTheaters:(NSArray*) filterTheaters
+                                theaterNames:(NSArray*) theaterNames
                            movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
@@ -325,7 +325,7 @@
                                  performances:performances
                    synchronizationInformation:synchronizationInformation
                           originatingLocation:originatingLocation
-                               filterTheaters:filterTheaters
+                                 theaterNames:theaterNames
                             movieIdToMovieMap:movieIdToMovieMap];
     }
 
@@ -335,7 +335,7 @@
 
 - (LookupResult*) processTheaterListings:(TheaterListingsProto*) element
                      originatingLocation:(Location*) originatingLocation
-                            filterTheaters:(NSArray*) filterTheaters {
+                            theaterNames:(NSArray*) theaterNames {
                                 self.calendar = [NSCalendar currentCalendar];
                                 self.dateComponents = [[[NSDateComponents alloc] init] autorelease];
 
@@ -346,7 +346,7 @@
 
     NSArray* theatersAndPerformances = [self processTheaterAndMovieShowtimes:theaterAndMovieShowtimes
                                                          originatingLocation:originatingLocation
-                                                                filterTheaters:filterTheaters
+                                                                theaterNames:theaterNames
                                                            movieIdToMovieMap:movieIdToMovieMap];
 
     NSMutableArray* movies = [NSMutableArray arrayWithArray:movieIdToMovieMap.allValues];
@@ -362,7 +362,8 @@
 
 
 - (LookupResult*) lookupLocation:(Location*) location
-                  filterTheaters:(NSArray*) filterTheaters {
+                      searchDate:(NSDate*) searchDate
+                    theaterNames:(NSArray*) theaterNames {
     if (location.postalCode == nil) {
         return nil;
     }
@@ -373,7 +374,7 @@
 
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                    fromDate:[DateUtilities today]
-                                                                     toDate:self.model.searchDate
+                                                                     toDate:searchDate
                                                                     options:0];
     NSInteger day = components.day;
     day = MIN(MAX(day, 0), 7);
@@ -399,7 +400,7 @@
 
         return [self processTheaterListings:theaterListings
                         originatingLocation:location
-                             filterTheaters:filterTheaters];
+                               theaterNames:theaterNames];
 
     }
     @catch (NSException * e) {

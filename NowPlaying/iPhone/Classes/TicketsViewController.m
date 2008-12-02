@@ -21,6 +21,7 @@
 #import "DataProvider.h"
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
+#import "LookupResult.h"
 #import "Movie.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"
@@ -89,6 +90,8 @@
 
         [performances addObject:performance];
     }
+    
+    [self.tableView reloadData];
 }
 
 
@@ -228,7 +231,8 @@
 }
 
 
-- (UITableViewCell*) showtimeCellForSection:(NSInteger) section row:(NSInteger) row {
+- (UITableViewCell*) showtimeCellForSection:(NSInteger) section
+                                        row:(NSInteger) row {
     static NSString* reuseIdentifier = @"TicketsViewShowtimeCellIdentifier";
 
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
@@ -367,11 +371,197 @@
 
 - (void) didSelectInfoCellAtRow:(NSInteger) row {
     if (row == 0) {
-        SearchDatePickerViewController* pickerController = [SearchDatePickerViewController pickerWithNavigationController:navigationController];
+        SearchDatePickerViewController* pickerController =
+        [SearchDatePickerViewController pickerWithNavigationController:navigationController
+                                                                object:self
+                                                              selector:@selector(onSearchDateChanged:)];
         [navigationController pushViewController:pickerController animated:YES];
     } else {
         [self didSelectEmailListings];
     }
+}
+
+
+- (void) dismissModalViewController {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(dismissModalViewController) withObject:nil waitUntilDone:NO];
+        return;
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+- (UILabel*) createLabel {
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    label.text = NSLocalizedString(@"Updating Listings", nil);
+    label.backgroundColor = [UIColor clearColor];
+    label.opaque = NO;
+    label.font = [UIFont boldSystemFontOfSize:24];
+    label.textColor = [UIColor whiteColor];
+    [label sizeToFit];
+    
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    CGRect labelFrame = label.frame;
+    labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
+    labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0) - 20;
+    label.frame = labelFrame;
+    
+    return label;
+}
+
+
+- (UIActivityIndicatorView*) createActivityIndicator:(UILabel*) label {
+    UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    activityIndicator.hidesWhenStopped = YES;
+    [activityIndicator sizeToFit];
+    
+    CGRect labelFrame = label.frame;
+    CGRect activityFrame = activityIndicator.frame;
+    
+    activityFrame.origin.x = (int)(labelFrame.origin.x - activityFrame.size.width) - 5;
+    activityFrame.origin.y = (int)(labelFrame.origin.y + (labelFrame.size.height / 2) - (activityFrame.size.height / 2));
+    activityIndicator.frame = activityFrame;
+    
+    [activityIndicator startAnimating];
+    
+    return activityIndicator;
+}
+
+
+- (UIButton*) createButton {
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    button.backgroundColor = [UIColor blackColor];
+    button.font = [button.font fontWithSize:button.font.pointSize + 4];
+    button.opaque = NO;
+    button.backgroundColor = [UIColor clearColor];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(onCancelPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+    UIImage* image = [UIImage imageNamed:@"RedButton.png"];
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+    [button sizeToFit];
+
+    CGRect applicationFrame = [UIScreen mainScreen].applicationFrame;
+    CGRect frame = CGRectZero;
+    frame.size = image.size;
+    frame.origin.x = (int)((applicationFrame.size.width - image.size.width) / 2.0);
+    frame.origin.y = applicationFrame.size.height - frame.origin.x - image.size.height;
+    //frame.size.width -= 2 * frame.origin.x;
+    //frame.size.height = button.frame.size.height;
+    button.frame = frame;
+    
+    return button;
+}
+
+
+- (void) onCancelPressed:(id) sender {
+    ++updateId;
+    [self dismissModalViewController];
+}
+
+
+- (UIView*) createView {
+    CGRect viewFrame = [UIScreen mainScreen].applicationFrame;
+    viewFrame.origin.y = 0;
+    
+    UIView* view = [[[UIView alloc] initWithFrame:viewFrame] autorelease];
+    view.backgroundColor = [UIColor blackColor];
+    
+    UILabel* label = [self createLabel];
+    UIActivityIndicatorView* activityIndicator = [self createActivityIndicator:label];
+    UIButton* button = [self createButton];
+    
+    CGRect frame = activityIndicator.frame;
+    double width = frame.size.width;
+    frame.origin.x = (int)(frame.origin.x + width / 2);
+    activityIndicator.frame = frame;
+    
+    frame = label.frame;
+    frame.origin.x = (int)(frame.origin.x + width / 2);
+    label.frame = frame;
+    
+    [view addSubview:activityIndicator];
+    [view addSubview:label];
+    [view addSubview:button];
+    
+    return view;
+}
+
+
+- (void) presentModalViewController {
+    UIView* view = [self createView];
+    
+    UIViewController* viewController = [[[UIViewController alloc] init] autorelease];
+    viewController.view = view;
+    
+    [self presentModalViewController:viewController animated:YES];
+}
+
+
+- (void) onSearchDateChanged:(NSString*) dateString {
+    NSDate* searchDate = [DateUtilities dateWithNaturalLanguageString:dateString];
+    if ([DateUtilities isSameDay:searchDate date:self.model.searchDate]) {
+        return;
+    }
+    
+    [self presentModalViewController];
+
+    NSArray* array = [NSArray arrayWithObjects:[NSNumber numberWithInt:++updateId],
+                      searchDate, nil];
+    [self.model.dataProvider update:searchDate delegate:self context:array];
+}
+
+
+- (void) onSuccess:(LookupResult*) lookupResult context:(id) array {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
+        return;
+    }
+    
+    NSDate* searchDate = [array lastObject];
+    
+    NSArray* lookupResultPerformances = [[lookupResult.performances objectForKey:theater.name] objectForKey:movie.canonicalTitle];
+    
+    if (lookupResultPerformances.count == 0) {
+        NSString* text = 
+        [NSString stringWithFormat:
+         NSLocalizedString(@"No listings found for '%@' at '%@' on %@", @"No listings found for 'The Dark Knight' at 'Regal Meridian 6' on 5/18/2008"),
+         movie.canonicalTitle,
+         theater.name,
+         [DateUtilities formatShortDate:searchDate]];
+        
+        [self onFailure:text context:array];
+    } else {
+        // Save the results.  this will also force a refresh
+        [self.model setSearchDate:searchDate];
+        [self.model.dataProvider saveResult:lookupResult];
+    
+        [self dismissModalViewController];
+    }
+}
+
+
+- (void) onFailure:(NSString*) error context:(id) array {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
+        return;
+    }
+    
+    [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:NO];
+}
+
+
+- (void) reportError:(NSString*) error {
+    [self dismissModalViewController];
+
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+                                                     message:error
+                                                    delegate:nil
+                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                           otherButtonTitles:nil] autorelease];
+    
+    [alert show];
 }
 
 

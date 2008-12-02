@@ -15,10 +15,12 @@
 #import "AbstractDataProvider.h"
 
 #import "Application.h"
+#import "DataProviderUpdateDelegate.h"
 #import "DateUtilities.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "Location.h"
+#import "LookupRequest.h"
 #import "LookupResult.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
@@ -181,6 +183,8 @@
 
 
 - (void) saveResult:(LookupResult*) result {
+    NSAssert(![NSThread isMainThread], nil);
+    
     NSString* tempDirectory = [Application uniqueTemporaryDirectory];
     for (NSString* theaterName in result.performances) {
         NSMutableDictionary* value = [result.performances objectForKey:theaterName];
@@ -198,6 +202,11 @@
     
     // Do this last.  It signifies that we are done
     [self setLastLookupDate];
+    
+    // Let the rest of the app know about the results.
+    [self performSelectorOnMainThread:@selector(reportResult:)
+                           withObject:result
+                        waitUntilDone:NO];
 }
 
 
@@ -264,7 +273,8 @@
 
 
 - (LookupResult*) lookupLocation:(Location*) location
-                  filterTheaters:(NSArray*) filterTheater {
+                      searchDate:(NSDate*) searchDate
+                    theaterNames:(NSArray*) theaterNames {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -300,7 +310,8 @@
 }
 
 
-- (void) updateMissingFavorites:(LookupResult*) lookupResult {
+- (void) updateMissingFavorites:(LookupResult*) lookupResult
+                     searchDate:(NSDate*) searchDate {
     NSArray* favoriteTheaters = self.model.favoriteTheaters;
     if (favoriteTheaters.count == 0) {
         return;
@@ -322,7 +333,8 @@
     for (Location* location in locationToMissingTheaterNames.allKeys) {
         NSArray* theaterNames = [locationToMissingTheaterNames objectsForKey:location];
         LookupResult* favoritesLookupResult = [self lookupLocation:location
-                                                    filterTheaters:theaterNames];
+                                                        searchDate:searchDate
+                                                      theaterNames:theaterNames];
 
         if (favoritesLookupResult == nil) {
             continue;
@@ -344,38 +356,22 @@
 }
 
 
-- (BOOL) tooSoon:(NSDate*) lastDate {
-    if (lastDate == nil) {
-        return NO;
-    }
+- (void) update:(NSDate*) searchDate
+       delegate:(id<DataProviderUpdateDelegate>) delegate
+       context:(id) context {
+    LookupRequest* request = [LookupRequest requestWithSearchDate:searchDate
+                                                         delegate:delegate
+                                                         context:context
+                                                    currentMovies:self.movies
+                                                  currentTheaters:self.theaters];
 
-    NSDate* now = [NSDate date];
-
-    if (![DateUtilities isSameDay:now date:lastDate]) {
-        // different days. we definitely need to refresh
-        return NO;
-    }
-
-    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
-    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-
-    // same day, check if they're at least 8 hours apart.
-    if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
-        return NO;
-    }
-
-    // it's been less than 8 hours. it's too soon to refresh
-    return YES;
-}
-
-
-- (void) update {
-    NSArray* arguments = [NSArray arrayWithObjects:self.movies, self.theaters, nil];
     [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint:)
                                onTarget:self
-               inBackgroundWithArgument:arguments
+               inBackgroundWithArgument:request
                                    gate:gate
                                 visible:YES];
+    
+    
 }
 
 
@@ -438,49 +434,37 @@
 }
 
 
-- (void) updateBackgroundEntryPointWorker:(NSArray*) arguments {
-    if (model.userAddress.length == 0) {
-        return;
-    }
-
-    if ([self tooSoon:self.lastLookupDate]) {
-        return;
-    }
-
-
+- (void) updateBackgroundEntryPointWorker:(LookupRequest*) request {
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     if (location == nil) {
+        [request.delegate onFailure:NSLocalizedString(@"Could not find location.", nil) context:request.context];
         return;
     }
 
     // Do the primary search.
-    LookupResult* result = [self lookupLocation:location filterTheaters:nil];
+    LookupResult* result = [self lookupLocation:location 
+                                     searchDate:request.searchDate
+                                       theaterNames:nil];
     if (result.movies.count == 0 || result.theaters.count == 0) {
-        [self performSelectorOnMainThread:@selector(reportError) withObject:nil waitUntilDone:NO];
+        [request.delegate onFailure:NSLocalizedString(@"No information found", nil) context:request.context];
         return;
     }
 
     // Try to restore any theaters that went missing
     [self addMissingData:result
           searchLocation:location
-           currentMovies:[arguments objectAtIndex:0]
-         currentTheaters:[arguments objectAtIndex:1]];
+           currentMovies:request.currentMovies
+         currentTheaters:request.currentTheaters];
 
     // Lookup data for the users' favorites.
-    [self updateMissingFavorites:result];
+    [self updateMissingFavorites:result searchDate:request.searchDate];
 
-    // Save the results.
-    [self saveResult:result];
-
-    // Let the rest of the app know about the results.
-    [self performSelectorOnMainThread:@selector(reportResult:)
-                           withObject:result
-                        waitUntilDone:NO];
+    [request.delegate onSuccess:result context:request.context];
 }
 
 
-- (void) updateBackgroundEntryPoint:(NSArray*) arguments {
-    [self updateBackgroundEntryPointWorker:arguments];
+- (void) updateBackgroundEntryPoint:(LookupRequest*) request {
+    [self updateBackgroundEntryPointWorker:request];
     [self performSelectorOnMainThread:@selector(updateModel) withObject:nil waitUntilDone:NO];
 }
 
@@ -501,19 +485,6 @@
 
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater {
     return [self.synchronizationInformation objectForKey:theater.name];
-}
-
-
-- (void) reportError {
-    /*
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:NSLocalizedString(@"No information found", nil)
-                                                    delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                           otherButtonTitles:nil] autorelease];
-
-    [alert show];
-     */
 }
 
 

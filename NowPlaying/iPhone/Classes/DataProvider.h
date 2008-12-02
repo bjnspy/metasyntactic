@@ -13,7 +13,8 @@
 // limitations under the License.
 
 @protocol DataProvider
-- (void) update;
+- (void) update:(NSDate*) searchDate delegate:(id<DataProviderUpdateDelegate>) delegate context:(id) context;
+- (void) saveResult:(LookupResult*) result;
 
 - (void) markOutOfDate;
 - (NSDate*) lastLookupDate;

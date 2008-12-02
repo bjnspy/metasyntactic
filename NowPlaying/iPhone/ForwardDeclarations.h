@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @protocol DataProvider;
+@protocol DataProviderUpdateDelegate;
 @protocol ScoreProvider;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;

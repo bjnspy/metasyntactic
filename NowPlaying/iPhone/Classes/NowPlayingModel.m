@@ -628,13 +628,7 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) markDataProviderOutOfDate {
-    [dataProvider markOutOfDate];
-}
-
-
 - (void) setSearchDate:(NSDate*) date {
-    [self markDataProviderOutOfDate];
     [[NSUserDefaults standardUserDefaults] setObject:date forKey:SEARCH_DATE];
 }
 
@@ -1048,8 +1042,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (void) setUserAddress:(NSString*) userAddress {
-    [self markDataProviderOutOfDate];
-
     [[NSUserDefaults standardUserDefaults] setObject:userAddress forKey:USER_ADDRESS];
     [self synchronize];
 }
