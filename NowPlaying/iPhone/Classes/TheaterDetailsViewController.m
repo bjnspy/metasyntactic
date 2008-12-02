@@ -19,6 +19,7 @@
 #import "ColorCache.h"
 #import "DateUtilities.h"
 #import "ImageCache.h"
+#import "LookupResult.h"
 #import "Movie.h"
 #import "MovieShowtimesCell.h"
 #import "MovieTitleCell.h"
@@ -30,7 +31,6 @@
 #import "WarningView.h"
 
 @interface TheaterDetailsViewController()
-    @property (assign) AbstractNavigationController* navigationController;
     @property (retain) UISegmentedControl* segmentedControl;
     @property (retain) UIButton* favoriteButton;
     @property (retain) Theater* theater;
@@ -41,7 +41,6 @@
 
 @implementation TheaterDetailsViewController
 
-@synthesize navigationController;
 @synthesize theater;
 @synthesize movies;
 @synthesize movieShowtimes;
@@ -49,7 +48,6 @@
 @synthesize favoriteButton;
 
 - (void) dealloc {
-    self.navigationController = nil;
     self.theater = nil;
     self.movies = nil;
     self.movieShowtimes = nil;
@@ -57,16 +55,6 @@
     self.favoriteButton = nil;
 
     [super dealloc];
-}
-
-
-- (NowPlayingModel*) model {
-    return navigationController.model;
-}
-
-
-- (NowPlayingController*) controller {
-    return navigationController.controller;
 }
 
 
@@ -105,8 +93,7 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) controller
                             theater:(Theater*) theater_ {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = controller;
+    if (self = [super initWithNavigationController:controller]) {
         self.theater = theater_;
     }
 
@@ -376,16 +363,38 @@
 }
 
 
-- (void) didSelectChangeDate {
-}
-
-
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
     [navigationController pushTicketsView:movie
                                   theater:theater
                                     title:movie.displayTitle
                                  animated:animated];
+}
+
+
+- (void) didSelectChangeDate {
+    [self changeDate];
+}
+
+
+- (void) onSuccess:(LookupResult*) lookupResult context:(id) array {
+    if (updateId != [[array objectAtIndex:0] intValue]) {
+        return;
+    }
+    
+    NSDate* searchDate = [array lastObject];
+    
+    if (![lookupResult.theaters containsObject:theater]) {
+        NSString* text = 
+        [NSString stringWithFormat:
+         NSLocalizedString(@"No listings found at '%@' on %@", @"No listings found at 'Regal Meridian 6' on 5/18/2008"),
+         theater.name,
+         [DateUtilities formatShortDate:searchDate]];
+        
+        [self onFailure:text context:array];
+    } else {
+        [super onSuccess:lookupResult context:array];
+    }
 }
 
 

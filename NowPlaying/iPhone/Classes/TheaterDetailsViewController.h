@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface TheaterDetailsViewController : UITableViewController {
+#import "AbstractDetailsViewController.h"
+
+@interface TheaterDetailsViewController : AbstractDetailsViewController {
 @private
-    AbstractNavigationController* navigationController;
     Theater* theater;
 
     UISegmentedControl* segmentedControl;
