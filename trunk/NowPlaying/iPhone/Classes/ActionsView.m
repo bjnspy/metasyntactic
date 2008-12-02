@@ -65,7 +65,7 @@
             [button setTitle:title forState:UIControlStateNormal];
             [button sizeToFit];
 
-            [button addTarget:self action:@selector(onButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:self action:@selector(onButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
             [array addObject:button];
             [self addSubview:button];
@@ -104,7 +104,7 @@
 }
 
 
-- (void) onButtonPressed:(UIButton*) button {
+- (void) onButtonTapped:(UIButton*) button {
     SEL selector = [[selectors objectAtIndex:[buttons indexOfObject:button]] pointerValue];
     if ([target respondsToSelector:selector]) {
         [target performSelector:selector];
