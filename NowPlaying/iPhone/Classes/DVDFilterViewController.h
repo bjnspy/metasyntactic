@@ -14,9 +14,13 @@
 
 @interface DVDFilterViewController : UITableViewController {
 @private
-    SettingsNavigationController* navigationController;
+    AbstractNavigationController* navigationController;
+    id target;
+    SEL selector;
 }
 
-- (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
+                             target:(id) target
+                           selector:(SEL) selector;
 
 @end

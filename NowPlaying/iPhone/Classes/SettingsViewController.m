@@ -88,7 +88,7 @@
 
 
 - (void) majorRefresh {
-    self.tableView.rowHeight = 43;
+    //self.tableView.rowHeight = 43;
     [self.tableView reloadData];
 }
 
@@ -101,7 +101,7 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 7;
+        return 6;
     } else {
         return 1;
     }
@@ -124,7 +124,7 @@
 
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
-    if (row >= 0 && row <= 4) {
+    if (row >= 0 && row <= 3) {
         static NSString* reuseIdentifier = @"SettingCellReuseIdentifier";
         SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
@@ -164,21 +164,12 @@
         } else if (row == 3) {
             key = NSLocalizedString(@"Reviews", nil);
             value = self.model.currentScoreProvider;
-        } else if (row == 4) {
-            key = NSLocalizedString(@"DVD/Blu-ray", nil);
-            if (self.model.dvdMoviesShowBoth) {
-                value = NSLocalizedString(@"Both", nil);
-            } else if (self.model.dvdMoviesShowOnlyDVDs) {
-                value = NSLocalizedString(@"DVD", nil);
-            } else if (self.model.dvdMoviesShowOnlyBluray) {
-                value = NSLocalizedString(@"Blu-ray", nil);
-            }
         }
 
         [cell setKey:key value:value hideSeparator:NO];
 
         return cell;
-    } else if (row >= 5 && row <= 6) {
+    } else if (row >= 4 && row <= 5) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -187,11 +178,11 @@
 
         NSString* text = @"";
         BOOL on = NO;
-        if (row == 5) {
+        if (row == 4) {
             text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
             on = self.model.autoUpdateLocation;
             [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
-        } else if (row == 6) {
+        } else if (row == 5) {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
@@ -315,10 +306,6 @@
         ScoreProviderViewController* controller =
         [[[ScoreProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
         [navigationController pushViewController:controller animated:YES];
-    } else if (row == 4) {
-        DVDFilterViewController* controller =
-        [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
-        [navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -345,7 +332,7 @@
     [self.tableView reloadData];
 }
 
-
+/*
 - (UIView*)        tableView:(UITableView*) tableView
        viewForFooterInSection:(NSInteger) section {
     return [[[UIView alloc] init] autorelease];
@@ -356,5 +343,6 @@
       heightForFooterInSection:(NSInteger) section {
     return -5;
 }
+ */
 
 @end
