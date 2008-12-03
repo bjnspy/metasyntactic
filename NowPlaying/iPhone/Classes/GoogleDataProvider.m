@@ -139,12 +139,17 @@
 }
 
 
-- (NSDate*) processUnknownTime:(NSString*) showtime {
+- (id) processUnknownTime:(NSString*) showtime {
      if (![showtime hasSuffix:@"am"] && ![showtime hasSuffix:@"pm"]) {
          showtime = [NSString stringWithFormat:@"%@pm", showtime];
      }
 
-    return [DateUtilities dateWithNaturalLanguageString:showtime];
+    NSDate* date = [DateUtilities dateWithNaturalLanguageString:showtime];
+    if (date == nil) {
+        return [NSNull null];
+    }
+    
+    return date;
 }
 
 
@@ -235,7 +240,10 @@
 
         for (NSInteger i = 0; i < showtimes.count; i++) {
             ShowtimeProto* showtime = [showtimes objectAtIndex:i];
-            NSDate* time = [times objectAtIndex:i];
+            id time = [times objectAtIndex:i];
+            if (time == [NSNull null]) {
+                continue;
+            }
 
             NSString* url = showtime.url;
 

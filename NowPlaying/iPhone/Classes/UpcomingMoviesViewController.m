@@ -14,6 +14,7 @@
 
 #import "UpcomingMoviesViewController.h"
 
+#import "GlobalActivityIndicator.h"
 #import "NowPlayingModel.h"
 #import "UpcomingCache.h"
 #import "UpcomingMovieCell.h"
@@ -113,6 +114,12 @@
     self.segmentedControl = nil;
 
     [super didReceiveMemoryWarning];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    [super viewWillAppear:animated];
 }
 
 

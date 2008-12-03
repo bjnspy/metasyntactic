@@ -17,6 +17,7 @@
 #import "BlurayCache.h"
 #import "DVDCache.h"
 #import "DVDCell.h"
+#import "DVDFilterViewController.h"
 #import "DVDNavigationController.h"
 #import "NowPlayingModel.h"
 #import "TappableLabel.h"
@@ -25,6 +26,10 @@
 @property (retain) UIView* titleView;
 @property (retain) UIToolbar* toolbar;
 @property (retain) UISegmentedControl* segmentedControl;
+@property (retain) UIButton* flipButton;
+@property (retain) UIView* superView;
+@property (retain) UITableView* cachedTableView;
+@property (retain) UITableViewController* dvdFilterViewController;
 @end
 
 
@@ -33,11 +38,19 @@
 @synthesize titleView;
 @synthesize toolbar;
 @synthesize segmentedControl;
+@synthesize flipButton;
+@synthesize superView;
+@synthesize cachedTableView;
+@synthesize dvdFilterViewController;
 
 - (void) dealloc {
     self.titleView = nil;
     self.toolbar = nil;
     self.segmentedControl = nil;
+    self.flipButton = nil;
+    self.superView = nil;
+    self.cachedTableView = nil;
+    self.dvdFilterViewController = nil;
 
     [super dealloc];
 }
@@ -113,9 +126,29 @@
 }
 
 
+- (void) setupFlipUpButton {
+    self.flipButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage* image = [UIImage imageNamed:@"FlipUp-Normal.png"];
+    
+    [flipButton setImage:image forState:UIControlStateNormal];
+    [flipButton setImage:[UIImage imageNamed:@"FlipUp-Highlighted.png"] forState:UIControlStateHighlighted];
+    [flipButton setImage:[UIImage imageNamed:@"FlipUp-Highlighted.png"] forState:(UIControlStateHighlighted | UIControlStateSelected)];
+    [flipButton setImage:[UIImage imageNamed:@"FlipUp-Selected.png"] forState:UIControlStateSelected];
+    [flipButton addTarget:self action:@selector(flipUpDown:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGRect frame = flipButton.frame;
+    frame.size = image.size;
+    flipButton.frame = frame;
+    
+    UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:flipButton] autorelease];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+
 - (void) loadView {
     [super loadView];
-
+        
+    [self setupFlipUpButton];
     self.segmentedControl = [self createSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
 
@@ -166,6 +199,44 @@
     for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
     }
+}
+
+
+- (void) flipUpDown:(id) sender {
+    flipButton.selected = !flipButton.selected;
+    
+    if (superView == nil) {
+        self.superView = self.tableView.superview;
+    }
+    
+    if (dvdFilterViewController == nil) {
+        self.dvdFilterViewController = [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
+        UIView* dvdView = dvdFilterViewController.view;
+        CGRect frame = dvdView.frame;
+        frame.origin.y -= 20;
+        dvdView.frame = frame;
+    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    {
+        [UIView setAnimationDuration:1];
+        
+        if (flipButton.selected) {
+            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp
+                                   forView:superView
+                                     cache:YES];
+            self.cachedTableView = self.tableView;
+            [self.tableView removeFromSuperview];
+            [superView addSubview:dvdFilterViewController.view];
+        } else {
+            [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
+                                   forView:superView
+                                     cache:YES];
+            [dvdFilterViewController.view removeFromSuperview];
+            [superView addSubview:self.cachedTableView];
+        }
+    }
+    [UIView commitAnimations];
 }
 
 @end
