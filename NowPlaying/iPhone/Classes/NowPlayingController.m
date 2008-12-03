@@ -95,15 +95,12 @@
 
 
 - (void) spawnDataProviderLookupThread {
-    if (self.model.userAddress.length == 0) {
-        return;
+    if (self.model.userAddress.length == 0 ||
+        [self tooSoon:[self.model.dataProvider lastLookupDate]]) {
+        [self.model performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
+    } else {
+        [self.model.dataProvider update:self.model.searchDate delegate:self context:nil];
     }
-    
-    if ([self tooSoon:[self.model.dataProvider lastLookupDate]]) {
-        return;
-    }
-
-    [self.model.dataProvider update:self.model.searchDate delegate:self context:nil];
 }
 
 
