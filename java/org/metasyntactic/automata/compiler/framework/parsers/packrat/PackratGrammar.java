@@ -68,22 +68,56 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
     }
     */
 
-/*
+    /*
     computeShortestDerivableTokenStreamMap();
     for (Rule rule : rules) {
       System.out.println(rule.getVariable());
       List<Integer> shortest = getShortestDerivableTokenStream(rule.getVariable());
       List<TTokenType> shortestList = new ArrayList<TTokenType>();
       for (Integer i : shortest) {
-        shortestList.add(getTokenFromType(i));
+        shortestList.add(getTokenFromTerminal(i));
       }
 
       System.out.println("\t" + shortestList);
     }
     */
+
+    /*
+    computeShortestPrefixMap();
+
+    for (Rule rule : rules) {
+      for (int token : getTerminals()) {
+        List<Integer> prefix = getShortestPrefix(rule.getVariable(), token);
+        List<TTokenType> prefixList = null;
+        if (prefix == null) {
+          continue;
+        }
+        System.out.println("E(" + rule.getVariable() + ", " + getTokenFromTerminal(token) + ")");
+        prefixList = new ArrayList<TTokenType>();
+        for (int i : prefix) {
+          prefixList.add(getTokenFromTerminal(i));
+        }
+
+        System.out.println("\t" + prefixList);
+        System.out.println();
+      }
+    }
+    */
   }
 
-  protected abstract TTokenType getTokenFromType(int type);
+  protected abstract TTokenType getTokenFromTerminal(int terminal);
+
+  protected abstract Set<Integer> getTerminalsWorker();
+
+  private Set<Integer> tokens;
+
+  protected Set<Integer> getTerminals() {
+    if (tokens == null) {
+      tokens = getTerminalsWorker();
+    }
+
+    return tokens;
+  }
 
   protected Map<String, Rule> getVariableToRuleMap() {
     return variableToRuleMap;
@@ -512,7 +546,7 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
   public List<Integer> getShortestDerivableTokenStream(String variable) {
     computeShortestDerivableTokenStreamMap();
 
-    return shortestDerivableTokenStreamMap.get(variableToRuleMap.get(variable).getExpression());
+    return getShortestDerivableTokenStream(variableToRuleMap.get(variable).getExpression());
   }
 
   private void computeShortestDerivableTokenStreamMap() {
@@ -615,6 +649,187 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
 
     public List<Integer> visit(TypeExpression typeExpression) {
       return Collections.singletonList(SetUtilities.any(typeExpression.getTypes()));
+    }
+  }
+
+  private Map<Expression, Map<Integer, List<Integer>>> shortestPrefixMap;
+
+  protected abstract double prefixCost(List<Integer> tokens);
+
+  private List<Integer> getShortestPrefix(Expression expression, int token) {
+    Map<Integer, List<Integer>> map = shortestPrefixMap.get(expression);
+    if (map == null) {
+      map = new LinkedHashMap<Integer, List<Integer>>();
+      shortestPrefixMap.put(expression, map);
+    }
+
+    return map.get(token);
+  }
+
+  public List<Integer> getShortestPrefix(String variable, int token) {
+    computeShortestPrefixMap();
+
+    return shortestPrefixMap.get(variableToRuleMap.get(variable).getExpression()).get(token);
+  }
+
+  private void computeShortestPrefixMap() {
+    if (shortestPrefixMap != null) {
+      return;
+    }
+    computeShortestDerivableTokenStreamMap();
+    shortestPrefixMap = new LinkedHashMap<Expression, Map<Integer, List<Integer>>>();
+
+    for (Rule rule : rules) {
+      shortestPrefixMap.put(getVariableToRuleMap().get(rule.getVariable()).getExpression(),
+                            new LinkedHashMap<Integer, List<Integer>>());
+    }
+
+    boolean changed;
+    do {
+      changed = false;
+      for (Rule rule : rules) {
+        for (int token : getTerminals()) {
+          TTokenType terminal = getTokenFromTerminal(token);
+
+          Expression expression = rule.getExpression();
+          List<Integer> oldTokenStream = getShortestPrefix(expression, token);
+          List<Integer> newTokenStream = computeShortestPrefix(expression, token);
+
+          if (prefixCost(newTokenStream) < prefixCost(oldTokenStream)) {
+              changed = true;
+              shortestPrefixMap.get(expression).put(token, newTokenStream);
+/*
+              System.out.println("E(" + rule.getVariable() + ", " + terminal + ")");
+              List<TTokenType> prefixList = new ArrayList<TTokenType>();
+              for (int i : newTokenStream) {
+                prefixList.add(getTokenFromTerminal(i));
+              }
+
+              System.out.println("\t" + prefixList);
+              System.out.println();
+              */
+          }
+        }
+      }
+    } while (changed);
+  }
+
+  private List<Integer> computeShortestPrefix(Expression expression, int token) {
+    List<Integer> result = expression.accept(new ShortestPrefixVisitor(token));
+    Map<Integer, List<Integer>> map = shortestPrefixMap.get(expression);
+    if (map == null) {
+      map = new LinkedHashMap<Integer, List<Integer>>();
+      shortestPrefixMap.put(expression, map);
+    }
+    map.put(token, result);
+    return result;
+  }
+
+  private class ShortestPrefixVisitor implements ExpressionVisitor<Object, List<Integer>> {
+    private final int token;
+
+    public ShortestPrefixVisitor(int token) {
+      this.token = token;
+    }
+
+    public List<Integer> visit(EmptyExpression emptyExpression) {
+      return null;
+    }
+
+    public List<Integer> visit(CharacterExpression characterExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public List<Integer> visit(TerminalExpression terminalExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public List<Integer> visit(VariableExpression variableExpression) {
+      return getShortestPrefix(variableExpression.getVariable(), token);
+    }
+
+    public List<Integer> visit(DelimitedSequenceExpression sequenceExpression) {
+      List<Integer> result = computeShortestPrefix(sequenceExpression.getElement(), token);
+      if (result != null) {
+        return result;
+      }
+
+      result = computeShortestPrefix(sequenceExpression.getDelimiter(), token);
+      if (result != null) {
+        // say we have the delimited sequence:   a, b, c
+        // and the token is ','
+        // Then the shortest prefix will be: 'a,'
+        // so we tack on the shortest deriable string of our element type
+        // and then add on the delimiter
+        List<Integer> list = new ArrayList<Integer>();
+        list.addAll(getShortestDerivableTokenStream(sequenceExpression.getElement()));
+        list.addAll(result);
+        return list;
+      }
+
+      return null;
+    }
+
+    public List<Integer> visit(SequenceExpression sequenceExpression) {
+      // find the first child that can derive this token
+      final Expression[] children = sequenceExpression.getChildren();
+      for (int i = 0; i < children.length; i++) {
+        List<Integer> result = computeShortestPrefix(children[i], token);
+        if (result != null) {
+          // add all the derivable strings in the children before hte match
+          List<Integer> list = new ArrayList<Integer>();
+          for (int j = 0; j < i; j++) {
+            list.addAll(getShortestDerivableTokenStream(children[j]));
+          }
+          list.addAll(result);
+          return list;
+        }
+      }
+
+      return null;
+    }
+
+    public List<Integer> visit(ChoiceExpression choiceExpression) {
+      List<Integer> result = null;
+      for (Expression child : choiceExpression.getChildren()) {
+        List<Integer> list = computeShortestPrefix(child, token);
+        if (prefixCost(list) < prefixCost(result)) {
+            result = list;
+        }
+      }
+      return result;
+    }
+
+    public List<Integer> visit(NotExpression notExpression) {
+      return null;
+    }
+
+    public List<Integer> visit(RepetitionExpression repetitionExpression) {
+      return computeShortestPrefix(repetitionExpression.getChild(), token);
+    }
+
+    public List<Integer> visit(FunctionExpression<Object> functionExpression) {
+      return functionExpression.getShortestPrefix(token);
+    }
+
+    public List<Integer> visit(OneOrMoreExpression oneOrMoreExpression) {
+      return computeShortestPrefix(oneOrMoreExpression.getChild(), token);
+    }
+
+    public List<Integer> visit(TokenExpression tokenExpression) {
+      if (tokenExpression.getToken().getType() == token) {
+        return Collections.emptyList();
+      } else {
+        return null;
+      }
+    }
+
+    public List<Integer> visit(TypeExpression typeExpression) {
+      if (typeExpression.getTypes().contains(token)) {
+        return Collections.emptyList();
+      } else {
+        return null;
+      }
     }
   }
 }

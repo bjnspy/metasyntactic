@@ -239,7 +239,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
         values = addValue(values, result);
 
         result = evaluateExpression(currentPosition, oneOrMoreExpression.getChild());
-        if (!result.isFailure()) {
+        if (result.isFailure()) {
           return new EvaluationResult(currentPosition, trimList(values));
         }
       }
