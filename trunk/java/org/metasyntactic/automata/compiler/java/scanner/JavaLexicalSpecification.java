@@ -2,7 +2,6 @@ package org.metasyntactic.automata.compiler.java.scanner;
 
 import org.metasyntactic.automata.compiler.framework.parsers.Source;
 import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.EvaluationResult;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
@@ -72,8 +71,14 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
       return Collections.singletonList(IdentifierToken.getTypeValue());
     }
 
-    @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
-      return Collections.<Class<? extends Token>>singletonList(IdentifierToken.class);
+    @Override public List<Integer> getShortestPrefix(int token) {
+      if (token == JavaToken.Type.Identifier.ordinal()) {
+        return Collections.emptyList();
+      } else if (JavaToken.getKeywordValues().contains(token)) {
+        return Collections.emptyList();
+      }
+
+      return null;
     }
   });
 
@@ -342,7 +347,15 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
     return writer.toString();
   }
 
-  protected JavaToken.Type getTokenFromType(int type) {
+  protected JavaToken.Type getTokenFromTerminal(int type) {
     return JavaToken.Type.values()[type];
+  }
+
+  protected Set<Integer> getTerminalsWorker() {
+    return JavaToken.getValues();
+  }
+
+  protected double prefixCost(List<Integer> tokens) {
+    return tokens.size();
   }
 }

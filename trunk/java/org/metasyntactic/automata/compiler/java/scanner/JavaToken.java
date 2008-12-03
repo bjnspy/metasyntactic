@@ -3,6 +3,9 @@ package org.metasyntactic.automata.compiler.java.scanner;
 import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.common.base.Preconditions;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public abstract class JavaToken implements Token {
   private final String text;
 
@@ -65,6 +68,37 @@ public abstract class JavaToken implements Token {
   }
 
   protected abstract Type getTokenType();
+
+  private static Set<Integer> values;
+
+  public static Set<Integer> getValues() {
+    if (values == null) {
+      Set<Integer> result = new LinkedHashSet<Integer>();
+      for (JavaToken.Type type : JavaToken.Type.values()) {
+        result.add(type.ordinal());
+      }
+      values = result;
+    }
+
+    return values;
+  }
+
+  private static Set<Integer> keywordValues;
+
+  public static Set<Integer> getKeywordValues() {
+    if (keywordValues == null) {
+      Set<Integer> result = new LinkedHashSet<Integer>();
+      for (JavaToken.Type type : JavaToken.Type.values()) {
+        if (type.ordinal() >= Type.AbstractKeyword.ordinal() &&
+            type.ordinal() <= Type.WhileKeyword.ordinal()) {
+            result.add(type.ordinal());
+        }
+      }
+      keywordValues = result;
+    }
+
+    return keywordValues;
+  }
 
   public static enum Type {
     Identifier,

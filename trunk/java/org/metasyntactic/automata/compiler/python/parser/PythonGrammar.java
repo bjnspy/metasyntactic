@@ -11,6 +11,7 @@ import org.metasyntactic.automata.compiler.python.scanner.operators.*;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
@@ -414,7 +415,19 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
   public static void main(String... args) {
   }
 
-  protected PythonToken.Type getTokenFromType(int type) {
+  protected PythonToken.Type getTokenFromTerminal(int type) {
     return PythonToken.Type.values()[type];
+  }
+
+  protected Set<Integer> getTerminalsWorker() {
+    Set<Integer> result = new LinkedHashSet<Integer>();
+    for (PythonToken.Type type : PythonToken.Type.values()) {
+      result.add(type.ordinal());
+    }
+    return result;
+  }
+
+  protected double prefixCost(List<Integer> tokens) {
+    return tokens.size();
   }
 }

@@ -8,10 +8,7 @@ import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.EvaluationResult;
 import org.metasyntactic.common.base.Preconditions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * A parsing expression is a hierarchical expression similar to a regular expression, which is constructed in the
@@ -184,8 +181,8 @@ public abstract class Expression {
       throw new RuntimeException("NYI");
     }
 
-    @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
-      throw new RuntimeException("NYI");
+    @Override public List<Integer> getShortestPrefix(int token) {
+      return Collections.emptyList();
     }
   };
 
@@ -212,7 +209,7 @@ public abstract class Expression {
       throw new RuntimeException("NYI");
     }
 
-    @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
+    @Override public List<Integer> getShortestPrefix(int token) {
       throw new RuntimeException("NYI");
     }
 
@@ -254,11 +251,11 @@ public abstract class Expression {
       }
 
       @Override public List<Integer> getShortestDerivableTokenStream() {
-        throw new RuntimeException("NYI");
+      throw new RuntimeException("NYI");
       }
 
-      @Override public List<Class<? extends Token>> getShortestDerivableClassStream() {
-        throw new RuntimeException("NYI");
+      @Override public List<Integer> getShortestPrefix(int token) {
+      throw new RuntimeException("NYI");
       }
     };
   }

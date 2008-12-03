@@ -2,7 +2,6 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions;
 
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.EvaluationResult;
 
 import java.util.List;
@@ -34,7 +33,7 @@ public abstract class FunctionExpression<T> extends Expression {
 
   public abstract List<Integer> getShortestDerivableTokenStream();
 
-  public abstract List<Class<? extends Token>> getShortestDerivableClassStream();
+  public abstract List<Integer> getShortestPrefix(int token);
 
   public String getName() {
     return name;

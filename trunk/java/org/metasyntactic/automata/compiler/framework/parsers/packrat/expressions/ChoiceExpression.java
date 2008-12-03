@@ -17,10 +17,11 @@ import java.util.List;
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class ChoiceExpression extends Expression {
+  private final static Expression[] EXPRESSION_ARRAY = new Expression[0];
   private final Expression[] children;
 
   ChoiceExpression(List<Expression> children) {
-    this((Expression[]) children.toArray());
+    this(children.toArray(EXPRESSION_ARRAY));
   }
 
   public ChoiceExpression(Expression... children) {

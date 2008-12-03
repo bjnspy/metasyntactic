@@ -249,7 +249,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
 
     @Override public EvaluationResult visit(NotExpression notExpression) {
       EvaluationResult result = evaluateExpression(position, notExpression.getChild());
-      if (result.isFailure()) {
+      if (result.isSuccess()) {
         return EvaluationResult.failure;
       } else {
         return new EvaluationResult(position, null);
@@ -324,9 +324,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
     private final EvaluationKey key = new EvaluationKey(null, 0);
 
     protected final void put(int position, Rule rule, EvaluationResult result) {
-      key.position = position;
-      key.rule = rule.getVariable();
-      memoizationMap.put(key, result);
+      memoizationMap.put(new EvaluationKey(rule.getVariable(), position), result);
     }
 
     protected final EvaluationResult get(int position, Rule rule) {

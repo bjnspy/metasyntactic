@@ -7,6 +7,7 @@ import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
 import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
 import org.metasyntactic.automata.compiler.java.scanner.IdentifierToken;
+import org.metasyntactic.automata.compiler.java.scanner.JavaLexicalAnalyzer;
 import org.metasyntactic.automata.compiler.java.scanner.JavaScanner;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.automata.compiler.java.scanner.keywords.*;
@@ -276,10 +277,10 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
         "NonWildcardTypeArguments")), variable("ClassOrInterfaceType"), variable("Arguments"), optional(variable(
         "ClassBody")))));
 
-    rules.add(new Rule("ArrayCreationExpression", sequence(token(NewKeywordToken.instance), optional(variable(
-        "NonWildcardTypeArguments")), choice(variable("ClassOrInterfaceType"), variable("PrimitiveType")), oneOrMore(
-        sequence(token(LeftBracketSeparatorToken.instance), optional(variable("Expression")), token(
-            RightBracketSeparatorToken.instance))), optional(variable("ArrayInitializer")))));
+    rules.add(new Rule("ArrayCreationExpression", sequence(token(NewKeywordToken.instance), choice(variable(
+        "ClassOrInterfaceType"), variable("PrimitiveType")), oneOrMore(sequence(token(
+        LeftBracketSeparatorToken.instance), optional(variable("Expression")), token(
+        RightBracketSeparatorToken.instance))), optional(variable("ArrayInitializer")))));
   }
 
   private static void addStatements(Set<Rule> rules) {
@@ -491,8 +492,9 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
         "MarkerAnnotation"))));
 
     rules.add(new Rule("NormalAnnotation", sequence(token(AtSeparatorToken.instance), variable("QualifiedIdentifier"),
-                                                    token(LeftParenthesisSeparatorToken.instance), delimitedList(
-        variable("ElementValuePair"), token(CommaSeparatorToken.instance)), token(
+                                                    token(LeftParenthesisSeparatorToken.instance),
+                                                    delimitedOptionalList(variable("ElementValuePair"), token(
+                                                        CommaSeparatorToken.instance)), token(
         RightParenthesisSeparatorToken.instance))));
 
     rules.add(new Rule("ElementValuePair", sequence(identifier(), token(EqualsOperatorToken.instance), variable(
@@ -530,13 +532,13 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
     System.out.println(JavaGrammar.instance);
 
     if (true) {
-      return;
+    //  return;
     }
 
     if (false) {
     } else {
       //File start = new File("/home/cyrusn/Desktop/classes");
-      File start = new File("/Users/cyrusn/Downloads/src/");
+      File start = new File("/Projects/jdk/Projects/j2se/src/share/classes/");
       Set<String> files = new LinkedHashSet<String>();
       collectFiles(start, files);
 
@@ -582,9 +584,10 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
       if (tokens == null) {
         System.out.println("Couldn't lex: " + file);
+        return;
       }
     }
-/*
+
     List<SourceToken<JavaToken>> analyzedTokens = new JavaLexicalAnalyzer().analyze(tokens);
 
     {
@@ -597,9 +600,10 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
       if (result == null) {
         System.out.println("Couldn't parse: " + file);
+        return;
       }
     }
-    */
+
 /*
     {
       long start = System.currentTimeMillis();
@@ -667,7 +671,34 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
   }
   */
 
-  protected JavaToken.Type getTokenFromType(int type) {
+  protected JavaToken.Type getTokenFromTerminal(int type) {
     return JavaToken.Type.values()[type];
+  }
+
+  protected Set<Integer> getTerminalsWorker() {
+    return JavaToken.getValues();
+  }
+
+  protected double prefixCost(List<Integer> tokens) {
+    if (tokens == null) {
+      return Float.MAX_VALUE;
+    }
+
+    double cost = 0;
+
+    for (int terminal : tokens) {
+      JavaToken.Type token = getTokenFromTerminal(terminal);
+
+      // @ means annotation, and we never really want to insert that.
+      if (token == JavaToken.Type.AtSeparator) {
+        cost += 100;
+      } else if (token == JavaToken.Type.Identifier) {
+        cost += 0.75;
+      } else {
+        cost++;
+      }
+    }
+
+    return cost;
   }
 }
