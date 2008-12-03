@@ -21,6 +21,11 @@
     UIView* titleView;
     UIToolbar* toolbar;
     UISegmentedControl* segmentedControl;
+    UIButton* flipButton;
+    
+    UIView* superView;
+    UITableView* cachedTableView;
+    UITableViewController* dvdFilterViewController;
 }
 
 - (id) initWithNavigationController:(DVDNavigationController*) navigationController;

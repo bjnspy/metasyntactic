@@ -248,6 +248,7 @@
     searchButton.frame = frame;
 
     UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
+    //UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search:)] autorelease];
     self.navigationItem.leftBarButtonItem = item;
 }
 
