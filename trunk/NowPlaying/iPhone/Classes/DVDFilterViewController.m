@@ -19,24 +19,34 @@
 #import "SettingsNavigationController.h"
 
 @interface DVDFilterViewController()
-@property (assign) SettingsNavigationController* navigationController;
+@property (assign) AbstractNavigationController* navigationController;
+@property (retain) id target;
+@property SEL selector;
 @end
 
 
 @implementation DVDFilterViewController
 
 @synthesize navigationController;
+@synthesize target;
+@synthesize selector;
 
 - (void) dealloc {
     self.navigationController = nil;
+    self.target = nil;
+    self.selector = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(SettingsNavigationController*) navigationController_ {
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
+                             target:(id) target_ 
+                           selector:(SEL) selector_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
+        self.target = target_;
+        self.selector = selector_;
         self.title = NSLocalizedString(@"DVD/Blu-ray", nil);
     }
 
@@ -130,7 +140,8 @@
     }
     
     [NowPlayingAppDelegate majorRefresh:YES];
-    [navigationController popViewControllerAnimated:YES];
+    
+    [target performSelector:selector];
 }
 
 @end
