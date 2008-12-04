@@ -16,6 +16,7 @@ package org.metasyntactic;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
@@ -65,17 +66,22 @@ public class NowPlayingController {
         }
       });
     } else {
-      model.update();
+      this.model.update();
     }
   }
 
   private void reportUnknownLocation() {
-    Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+    final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
     if (context == null) {
       return;
     }
 
-    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot).show();
+    new AlertDialog.Builder(context)
+        .setMessage(R.string.could_not_find_location_dot)
+        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+          public void onClick(final DialogInterface dialogInterface, final int i) {
+          }
+        }).show();
   }
 
   public String getUserAddress() {

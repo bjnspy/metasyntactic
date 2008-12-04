@@ -20,11 +20,11 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
-
+import android.widget.TextView;
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.R;
 import org.metasyntactic.caches.scores.ScoreType;
 
 import java.util.Arrays;
@@ -199,7 +199,7 @@ public class NowPlayingPreferenceDialog {
   }
 
   public NowPlayingPreferenceDialog setTextView(final View textEntryView) {
-	//mTextView = (TextView) textEntryView.findViewById(R.id.dialogEdit);
+	this.textView = (TextView) textEntryView.findViewById(R.id.dialogEdit);
 	this.textView.setText(getStringPreferenceValue());
 	this.builder.setView(textEntryView);
 
