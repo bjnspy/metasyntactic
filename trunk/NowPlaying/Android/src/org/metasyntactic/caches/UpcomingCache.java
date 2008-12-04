@@ -41,8 +41,6 @@ public class UpcomingCache extends AbstractCache {
   private Map<String, String> studioKeys;
   private Map<String, String> titleKeys;
 
-  private boolean shutdown;
-
   private File hashFile() {
     return new File(Application.upcomingDirectory, "Hash");
   }
@@ -413,10 +411,6 @@ public class UpcomingCache extends AbstractCache {
 
   public void prioritizeMovie(final Movie movie) {
     this.prioritizedMovies.add(movie);
-  }
-
-  public void shutdown() {
-    this.shutdown = true;
   }
 
   protected void clearStaleDataBackgroundEntryPoint() {

@@ -16,6 +16,7 @@ package org.metasyntactic;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import org.metasyntactic.caches.IMDbCache;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.caches.UserLocationCache;
@@ -54,6 +55,7 @@ public class NowPlayingModel {
   private final TrailerCache trailerCache = new TrailerCache();
   private final UpcomingCache upcomingCache = new UpcomingCache();
   private final PosterCache posterCache = new PosterCache(this);
+  private final IMDbCache imdbCache = new IMDbCache();
 
   public NowPlayingModel(final Context applicationContext) {
     this.preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);
@@ -71,6 +73,7 @@ public class NowPlayingModel {
       trailerCache.clearStaleData();
       posterCache.clearStaleData();
       scoreCache.clearStaleData();
+      imdbCache.clearStaleData();
     }
   }
 
@@ -96,6 +99,7 @@ public class NowPlayingModel {
     this.trailerCache.shutdown();
     this.posterCache.shutdown();
     this.scoreCache.shutdown();
+    this.imdbCache.shutdown();
   }
 
   public void update() {

@@ -48,8 +48,6 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
   }
 
-  private boolean shutdown;
-
   private final ScoreCache parentCache;
 
   private Map<String, Score> scores;
@@ -68,10 +66,6 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     this.parentCache = parentCache;
 
     createDirectory();
-  }
-
-  public void shutdown() {
-    this.shutdown = true;
   }
 
   public void createDirectory() {

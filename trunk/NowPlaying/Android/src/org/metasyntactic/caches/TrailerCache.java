@@ -28,7 +28,6 @@ import java.util.*;
 
 public class TrailerCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
-  private boolean shutdown;
 
   private String trailerFileName(final Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
@@ -160,9 +159,5 @@ public class TrailerCache extends AbstractCache {
     }
 
     this.prioritizedMovies.add(movie);
-  }
-
-  public void shutdown() {
-    this.shutdown = true;
   }
 }

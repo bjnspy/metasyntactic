@@ -23,6 +23,7 @@ import java.util.Date;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public abstract class AbstractCache {
   protected final Object lock = new Object();
+  protected boolean shutdown;
 
   public void clearStaleData() {
     Runnable runnable = new Runnable() {
@@ -48,5 +49,9 @@ public abstract class AbstractCache {
         }
       }
     }
+  }
+
+  public void shutdown() {
+    shutdown = true;
   }
 }

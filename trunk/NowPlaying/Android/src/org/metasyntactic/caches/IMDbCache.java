@@ -15,7 +15,6 @@
 package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
-import org.metasyntactic.Constants;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
@@ -24,7 +23,7 @@ import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
-import java.util.*;
+import java.util.List;
 
 public class IMDbCache extends AbstractCache {
   private String movieFileName(final Movie movie) {
@@ -48,31 +47,12 @@ public class IMDbCache extends AbstractCache {
     downloadImdbAddresses(movies);
   }
 
-  private void deleteObsoleteAddresses(final List<Movie> movies) {
-    final File imdbDir = Application.imdbDirectory;
-    final Set<String> fileNames = new HashSet<String>(Arrays.asList(imdbDir.list()));
-
-    for (final Movie movie : movies) {
-      fileNames.remove(movieFileName(movie));
-    }
-
-    final long now = new Date().getTime();
-
-    for (final String fileName : fileNames) {
-      final File file = new File(imdbDir, fileName);
-      if (file.exists()) {
-        final long writeTime = file.lastModified();
-        final long span = Math.abs(writeTime - now);
-
-        if (span > 4 * Constants.ONE_WEEK) {
-          file.delete();
-        }
-      }
-    }
-  }
-
   private void downloadImdbAddresses(final List<Movie> movies) {
     for (final Movie movie : movies) {
+      if (shutdown) {
+        break;
+      }
+
       final File path = movieFilePath(movie);
       if (path.exists()) {
         continue;
