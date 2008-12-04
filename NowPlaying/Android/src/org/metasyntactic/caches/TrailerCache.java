@@ -26,8 +26,7 @@ import org.metasyntactic.utilities.difference.EditDistance;
 import java.io.File;
 import java.util.*;
 
-public class TrailerCache {
-  private final Object lock = new Object();
+public class TrailerCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
   private boolean shutdown;
 
@@ -39,27 +38,8 @@ public class TrailerCache {
     return new File(Application.trailersDirectory, trailerFileName(movie));
   }
 
-  private void deleteObsoleteTrailers(final List<Movie> movies) {
-    final File trailersDir = Application.trailersDirectory;
-    final Set<String> fileNames = new HashSet<String>(Arrays.asList(trailersDir.list()));
-
-    for (final Movie movie : movies) {
-      fileNames.remove(trailerFileName(movie));
-    }
-
-    final long now = new Date().getTime();
-
-    for (final String fileName : fileNames) {
-      final File file = new File(trailersDir, fileName);
-      if (file.exists()) {
-        final long writeTime = file.lastModified();
-        final long span = Math.abs(writeTime - now);
-
-        if (span > 4 * Constants.ONE_WEEK) {
-          file.delete();
-        }
-      }
-    }
+  protected void clearStaleDataBackgroundEntryPoint() {
+    clearDirectory(Application.trailersDirectory);
   }
 
   @SuppressWarnings("unchecked")
@@ -96,8 +76,6 @@ public class TrailerCache {
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
-    deleteObsoleteTrailers(movies);
-
     final List<List<Movie>> orderedMovies = getOrderedMovies(movies);
 
     final String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?q=index";

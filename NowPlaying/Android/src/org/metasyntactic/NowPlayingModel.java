@@ -11,6 +11,7 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
+
 package org.metasyntactic;
 
 import android.content.Context;
@@ -42,6 +43,8 @@ public class NowPlayingModel {
   private final static String UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY = "upcomingMoviesSelectedSortIndex";
   private final static String SCORE_TYPE_KEY = "scoreType";
   private final static String AUTO_UPDATED_ENABLED_KEY = "autoUpdateEnabled";
+  private final static String CLEAR_CACHE_KEY = "clearCache";
+
   // SharedPreferences is not threadsafe. so we need to lock when using it
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
@@ -53,10 +56,22 @@ public class NowPlayingModel {
   private final PosterCache posterCache = new PosterCache(this);
 
   public NowPlayingModel(final Context applicationContext) {
-    this.preferences = applicationContext.getSharedPreferences(
-        NowPlayingModel.class.getName(), 0);
+    this.preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);
     loadData();
+    clearCaches();
     initializeTestValues();
+  }
+
+  private void clearCaches() {
+    int version = this.preferences.getInt(CLEAR_CACHE_KEY, 1);
+    this.preferences.edit().putInt(CLEAR_CACHE_KEY, version + 1).commit();
+
+    if (version % 20 == 0) {
+      upcomingCache.clearStaleData();
+      trailerCache.clearStaleData();
+      posterCache.clearStaleData();
+      scoreCache.clearStaleData();
+    }
   }
 
   private void loadData() {
@@ -84,11 +99,18 @@ public class NowPlayingModel {
   }
 
   public void update() {
+    updatePrimaryCaches();
+  }
+
+  private void updatePrimaryCaches() {
     this.dataProvider.update();
-    this.upcomingCache.update();
-    updateTrailerCache();
-    updatePosterCache();
     this.scoreCache.update();
+  }
+
+  public void updateSecondaryCaches() {
+    this.trailerCache.update(getMovies());
+    this.posterCache.update(getMovies());
+    this.upcomingCache.update();
   }
 
   private void initializeTestValues() {
@@ -100,17 +122,6 @@ public class NowPlayingModel {
 
   public UserLocationCache getUserLocationCache() {
     return this.userLocationCache;
-  }
-
-  private void updateTrailerCache() {
-    this.trailerCache.update(getMovies());
-  }
-
-  private void updatePosterCache() {
-    this.posterCache.update(getMovies());
-  }
-
-  private void updateIMDbCache() {
   }
 
   public String getUserAddress() {
@@ -284,12 +295,6 @@ public class NowPlayingModel {
     return Collections.emptyList();
   }
 
-  public void onDataProvidedUpdated() {
-    updateIMDbCache();
-    updatePosterCache();
-    updateTrailerCache();
-  }
-
   public List<String> getTrailers(final Movie movie) {
     return this.trailerCache.getTrailers(movie);
   }
@@ -321,9 +326,7 @@ public class NowPlayingModel {
     if (!isNullOrEmpty(movie.getSynopsis())) {
       options.add(movie.getSynopsis());
     }
-    if (options.isEmpty()
-        || Locale.getDefault().getLanguage().equals(
-            Locale.ENGLISH.getLanguage())) {
+    if (options.isEmpty() || Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage())) {
       final Score score = getScore(movie);
       if (score != null && !isNullOrEmpty(score.getSynopsis())) {
         options.add(score.getSynopsis());
@@ -373,8 +376,7 @@ public class NowPlayingModel {
     return result;
   }
 
-  public List<Performance> getPerformancesForMovieAtTheater(final Movie movie,
-      final Theater theater) {
+  public List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
     return this.dataProvider.getPerformancesForMovieInTheater(movie, theater);
   }
 

@@ -43,7 +43,7 @@
   <string name="call">電話</string>
   <string name="cast">キャスト:</string>
   <string name="change_date">日付を変える</string>
-  <string name="citystate_or_postal_code">郵便番号か市名と州名</string>
+  <string name="citystate_or_postal_code">郵便番号</string>
   <string name="could_not_find_location_dot">場所は見つかりません。</string>
   <string name="dvd">DVD</string>
   <string name="dvdbluray">DVD/Blu-ray</string>

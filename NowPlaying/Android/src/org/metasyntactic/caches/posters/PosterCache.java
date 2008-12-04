@@ -16,6 +16,7 @@ package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
@@ -29,8 +30,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class PosterCache {
-  private final Object lock = new Object();
+public class PosterCache extends AbstractCache {
   private final NowPlayingModel model;
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
   private boolean shutdown;
@@ -53,7 +53,6 @@ public class PosterCache {
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
-    deleteObsoletePosters(movies);
     downloadPosters(movies);
   }
 
@@ -121,8 +120,8 @@ public class PosterCache {
     return FandangoPosterDownloader.download(movie, postalCode);
   }
 
-  private void deleteObsoletePosters(final List<Movie> movies) {
-
+  protected void clearStaleDataBackgroundEntryPoint() {
+    clearDirectory(Application.postersDirectory);
   }
 
   public byte[] getPoster(final Movie movie) {

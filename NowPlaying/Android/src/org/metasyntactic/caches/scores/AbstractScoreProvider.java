@@ -17,6 +17,7 @@ package org.metasyntactic.caches.scores;
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
@@ -36,7 +37,7 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.util.*;
 
-public abstract class AbstractScoreProvider implements ScoreProvider {
+public abstract class AbstractScoreProvider extends AbstractCache implements ScoreProvider {
   private class MovieAndMap {
     private final Movie movie;
     private final Map<String, String> movieMap;
@@ -47,7 +48,6 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     }
   }
 
-  private final Object lock = new Object();
   private boolean shutdown;
 
   private final ScoreCache parentCache;
@@ -153,8 +153,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
         updateScoresBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, this.lock, true/*visible*/,
-                                                 Thread.MIN_PRIORITY + 1);
+    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, this.lock, true/*visible*/);
   }
 
   private void updateReviews() {
@@ -165,8 +164,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
         updateReviewsBackgroundEntryPoint(scoreMap);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Reviews", runnable, this.lock, false/*visible*/,
-                                                 Thread.MIN_PRIORITY + 1);
+    ThreadingUtilities.performOnBackgroundThread("Update Reviews", runnable, this.lock, false/*visible*/);
   }
 
   private void updateScoresBackgroundEntryPoint() {
@@ -380,26 +378,11 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       country = location.getCountry();
     }
 
-    final String address = "http://" +
-                           Application
-                               .host +
-                                     ".appspot.com/LookupMovieReviews2?country=" +
-                                     country +
-                                     "&language=" +
-                                     Locale
-                                         .getDefault()
-                                         .getLanguage() +
-                                                        "&id=" +
-                                                        score.getIdentifier() +
-                                                        "" +
-                                                        "&provider=" +
-                                                        score.getProvider() +
-                                                        "&latitude=" +
-                                                        (int) (location
-                                                            .getLatitude() * 1000000) +
-                                                                                      "&longitude=" +
-                                                                                      (int) (location.getLongitude() *
-                                                                                             1000000);
+    final String address = "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country +
+                           "&language=" + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "" +
+                           "&provider=" + score.getProvider() + "&latitude=" +
+                           (int) (location.getLatitude() * 1000000) + "&longitude=" +
+                           (int) (location.getLongitude() * 1000000);
 
     return address;
   }
@@ -428,8 +411,8 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
         // we got no reviews.  only save that fact if we don't currently have
         // any reviews.  This way we don't end up checking every single time
         // for movies that don't have reviews yet
-        final List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader, reviewsFile(
-            score.getCanonicalTitle()));
+        final List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader,
+                                                                               reviewsFile(score.getCanonicalTitle()));
         if (size(existingReviews) > 0) {
           // we have reviews already.  don't wipe it out.
           return;
@@ -487,5 +470,9 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
     ensureMovieMap(movies);
     final String title = getMovieMap().get(movie.getCanonicalTitle());
     return FileUtilities.readPersistableList(Review.reader, reviewsFile(title));
+  }
+
+  protected void clearStaleDataBackgroundEntryPoint() {
+    clearDirectory(reviewsDirectory);
   }
 }

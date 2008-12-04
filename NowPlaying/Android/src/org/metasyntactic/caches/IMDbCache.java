@@ -26,9 +26,7 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import java.io.File;
 import java.util.*;
 
-public class IMDbCache {
-  private final Object lock = new Object();
-
+public class IMDbCache extends AbstractCache {
   private String movieFileName(final Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }
@@ -47,7 +45,6 @@ public class IMDbCache {
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
-    deleteObsoleteAddresses(movies);
     downloadImdbAddresses(movies);
   }
 
@@ -95,5 +92,9 @@ public class IMDbCache {
 
   public String imdbAddressForMovie(final Movie movie) {
     return FileUtilities.readString(movieFilePath(movie));
+  }
+
+  protected void clearStaleDataBackgroundEntryPoint() {
+    clearDirectory(Application.imdbDirectory);
   }
 }

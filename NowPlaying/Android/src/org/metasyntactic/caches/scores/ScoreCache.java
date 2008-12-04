@@ -80,4 +80,11 @@ public class ScoreCache {
   public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
     getCurrentScoreProvider().prioritizeMovie(movies, movie);
   }
+
+  public void clearStaleData() {
+    rottenTomatoesScoreProvider.clearStaleData();
+    metacriticScoreProvider.clearStaleData();
+    googleScoreProvider.clearStaleData();
+    noneScoreProvider.clearStaleData();
+  }
 }

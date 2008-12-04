@@ -73,6 +73,15 @@ public class DataProvider {
   }
 
   private void updateBackgroundEntryPoint() {
+    updateBackgroundEntryPointWorker();
+    ThreadingUtilities.performOnMainThread(new Runnable() {
+      public void run() {
+        model.updateSecondaryCaches();
+      }
+    });
+  }
+
+  private void updateBackgroundEntryPointWorker() {
     if (isUpToDate()) {
       return;
     }
@@ -103,12 +112,11 @@ public class DataProvider {
   }
 
   private void reportResult(final LookupResult result) {
-    final Runnable runnable = new Runnable() {
+    ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
         reportResultOnMainThread(result);
       }
-    };
-    ThreadingUtilities.performOnMainThread(runnable);
+    });
   }
 
   private void reportResultOnMainThread(final LookupResult result) {
@@ -116,7 +124,6 @@ public class DataProvider {
     this.theaters = result.theaters;
     this.synchronizationData = result.synchronizationData;
     this.performances = result.performances;
-    this.model.onDataProvidedUpdated();
 
     Application.refresh(true);
   }
@@ -133,23 +140,10 @@ public class DataProvider {
 
     days = min(max(days, 0), 7);
 
-    final String address = "http://" +
-                           Application
-                               .host +
-                                     ".appspot.com/LookupTheaterListings2?country=" +
-                                     country +
-                                     "&language=" +
-                                     Locale
-                                         .getDefault()
-                                         .getLanguage() +
-                                                        "&day=" +
-                                                        days +
-                                                        "&format=pb" +
-                                                        "&latitude=" +
-                                                        (int) (location.getLatitude() * 1000000) +
-                                                        "&longitude=" +
-                                                        (int) (location
-                                                            .getLongitude() * 1000000);
+    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country +
+                           "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" +
+                           "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" +
+                           (int) (location.getLongitude() * 1000000);
 
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
@@ -286,8 +280,8 @@ public class DataProvider {
     final Location location = new Location(latitude, longitude, address, city, state, postalCode, country);
 
     performances.put(name, movieToShowtimesMap);
-    theaters.add(new Theater(identifier, name, address, phone, location, originatingLocation, new HashSet<String>(
-        movieToShowtimesMap.keySet())));
+    theaters.add(new Theater(identifier, name, address, phone, location, originatingLocation,
+                             new HashSet<String>(movieToShowtimesMap.keySet())));
   }
 
   private LookupResult processTheaterAndMovieShowtimes(
@@ -313,7 +307,8 @@ public class DataProvider {
                                               final Location originatingLocation,
                                               final Collection<String> theaterNames) {
     final List<NowPlaying.MovieProto> movieProtos = element.getMoviesList();
-    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList();
+    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element
+        .getTheaterAndMovieShowtimesList();
     final Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);
 
     final LookupResult result = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes, originatingLocation,
@@ -425,8 +420,8 @@ public class DataProvider {
   private Map<String, List<Performance>> lookupTheaterPerformances(final Theater theater) {
     Map<String, List<Performance>> theaterPerformances = this.performances.get(theater.getName());
     if (theaterPerformances == null) {
-      theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader, getPerformancesFile(
-          theater.getName()));
+      theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
+                                                                         getPerformancesFile(theater.getName()));
       this.performances.put(theater.getName(), theaterPerformances);
     }
     return theaterPerformances;
