@@ -30,8 +30,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class UpcomingCache {
-  private final Object lock = new Object();
+public class UpcomingCache extends AbstractCache {
   private static int identifier;
 
   private final SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
@@ -119,8 +118,7 @@ public class UpcomingCache {
         updateDetailsBackgroundEntryPoint(movies, studioKeys, titleKeys);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, this.lock, true,
-                                                 Thread.MIN_PRIORITY + 1);
+    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, this.lock, false);
   }
 
   private void updateIndex() {
@@ -129,8 +127,7 @@ public class UpcomingCache {
         updateIndexBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, this.lock, true,
-                                                 Thread.MIN_PRIORITY + 1);
+    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, this.lock, true);
   }
 
   private void updateIndexBackgroundEntryPoint() {
@@ -418,5 +415,13 @@ public class UpcomingCache {
 
   public void shutdown() {
     this.shutdown = true;
+  }
+
+  protected void clearStaleDataBackgroundEntryPoint() {
+    clearDirectory(Application.upcomingCastDirectory);
+    clearDirectory(Application.upcomingImdbDirectory);
+    clearDirectory(Application.upcomingPostersDirectory);
+    clearDirectory(Application.upcomingSynopsesDirectory);
+    clearDirectory(Application.upcomingTrailersDirectory);
   }
 }

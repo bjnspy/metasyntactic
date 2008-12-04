@@ -35,4 +35,6 @@ public interface ScoreProvider {
   void createDirectory();
 
   void prioritizeMovie(List<Movie> movies, Movie movie);
+
+  void clearStaleData();
 }

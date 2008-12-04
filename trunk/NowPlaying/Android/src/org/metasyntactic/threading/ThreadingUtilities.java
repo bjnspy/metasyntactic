@@ -38,18 +38,7 @@ public class ThreadingUtilities {
   }
 
   public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock,
-                                               final boolean visible) {
-    final int priority = visible ? Thread.NORM_PRIORITY : Thread.MIN_PRIORITY;
-    performOnBackgroundThread(name, runnable, lock, visible, priority);
-  }
-
-  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock,
-                                               final boolean visible, final int priority) {
-    performOnBackgroundThreadWorker(name, runnable, lock == null ? new Object() : lock, visible, priority);
-  }
-
-  private static void performOnBackgroundThreadWorker(final String name, final Runnable runnable, final Object lock,
-                                                      final boolean visible, final int priority) {
+                                                      final boolean visible) {
     final Thread t = new HandlerThread(name) {
       @Override
       public void run() {
@@ -70,7 +59,7 @@ public class ThreadingUtilities {
       }
     };
 
-    t.setPriority(priority);
+    t.setPriority(visible ? (Thread.MIN_PRIORITY + 1): Thread.MIN_PRIORITY);
 
     t.start();
   }
