@@ -122,8 +122,8 @@ public class NowPlayingController {
     return this.model.getTheaters();
   }
 
-  public List<String> getTrailers(final Movie movie) {
-    return this.model.getTrailers(movie);
+  public String getTrailer(final Movie movie) {
+    return this.model.getTrailer(movie);
   }
 
   public List<Review> getReviews(final Movie movie) {

@@ -160,44 +160,44 @@ public final class R {
     public static final class string {
         /** About
          */
-        public static final int about=0x7f060020;
+        public static final int about=0x7f060022;
         public static final int app_name=0x7f06000c;
         /** Auto-Update Location
          */
-        public static final int autoupdate_location=0x7f060021;
+        public static final int autoupdate_location=0x7f060023;
         /** Blu-ray
          */
-        public static final int bluray=0x7f060022;
+        public static final int bluray=0x7f060024;
         /** Both
          */
-        public static final int both=0x7f060023;
+        public static final int both=0x7f060025;
         /** Call
          */
-        public static final int call=0x7f060024;
+        public static final int call=0x7f060026;
         /** Cast:
          */
-        public static final int cast=0x7f060025;
+        public static final int cast=0x7f060027;
         /** Change date
          */
-        public static final int change_date=0x7f060026;
+        public static final int change_date=0x7f060028;
         /** City/State or Postal Code
          */
-        public static final int citystate_or_postal_code=0x7f060027;
+        public static final int citystate_or_postal_code=0x7f060029;
         /** Could not find location.
          */
-        public static final int could_not_find_location_dot=0x7f060028;
+        public static final int could_not_find_location_dot=0x7f06002a;
         /** Data for future dates may be incomplete. Reset the search date to the current date to see full listings.
          */
-        public static final int data_for_future_dates_may_be_incomplete_dot_reset=0x7f06002c;
+        public static final int data_for_future_dates_may_be_incomplete_dot_reset=0x7f06002e;
         /** Director:
          */
-        public static final int director=0x7f06002d;
+        public static final int director=0x7f06002f;
         /** Directors:
          */
-        public static final int directors=0x7f06002e;
+        public static final int directors=0x7f060030;
         /** Distance
          */
-        public static final int distance=0x7f06002f;
+        public static final int distance=0x7f060031;
         /** $%@. %@ - 1 disc.
          */
         public static final int dollarstring_dot_string_one_disc_dot=0x7f06000e;
@@ -206,88 +206,91 @@ public final class R {
         public static final int dollarstring_dot_string_string_discs_dot=0x7f06000d;
         /** Downloading data
          */
-        public static final int downloading_data=0x7f060030;
+        public static final int downloading_data=0x7f060032;
         /** Downloading poster
          */
-        public static final int downloading_poster=0x7f060031;
+        public static final int downloading_poster=0x7f060033;
         /** DVD
          */
-        public static final int dvd=0x7f060029;
+        public static final int dvd=0x7f06002b;
         /** DVD/Blu-ray
          */
-        public static final int dvdbluray=0x7f06002a;
+        public static final int dvdbluray=0x7f06002c;
         /** DVD/Blu-ray details provided by:
          */
-        public static final int dvdbluray_details_provided_by=0x7f06002b;
+        public static final int dvdbluray_details_provided_by=0x7f06002d;
         /** E-mail
          */
-        public static final int email=0x7f060032;
+        public static final int email=0x7f060034;
         /** E-mail listings
          */
-        public static final int email_listings=0x7f060033;
+        public static final int email_listings=0x7f060035;
         /** Favorites
          */
-        public static final int favorites=0x7f060034;
+        public static final int favorites=0x7f060036;
         /** Format:
          */
-        public static final int format=0x7f060035;
+        public static final int format=0x7f060037;
         /** Genre:
          */
-        public static final int genre=0x7f060036;
+        public static final int genre=0x7f060038;
         /** Geolocation services provided by:
          */
-        public static final int geolocation_services_provided_by=0x7f060037;
+        public static final int geolocation_services_provided_by=0x7f060039;
         /** Graphics by Jeffrey Nee
          */
-        public static final int graphics_by_jeffrey_nee=0x7f060038;
+        public static final int graphics_by_jeffrey_nee=0x7f06003a;
         /** kilometer
          */
-        public static final int kilometer=0x7f060079;
+        public static final int kilometer=0x7f06007d;
         /** kilometers
          */
-        public static final int kilometers=0x7f06007a;
+        public static final int kilometers=0x7f06007e;
         /** Last Friday
          */
-        public static final int last_friday=0x7f060039;
+        public static final int last_friday=0x7f06003b;
         /** Last Monday
          */
-        public static final int last_monday=0x7f06003a;
+        public static final int last_monday=0x7f06003c;
         /** Last Saturday
          */
-        public static final int last_saturday=0x7f06003b;
+        public static final int last_saturday=0x7f06003d;
         /** Last Sunday
          */
-        public static final int last_sunday=0x7f06003c;
+        public static final int last_sunday=0x7f06003e;
         /** Last Thursday
          */
-        public static final int last_thursday=0x7f06003d;
+        public static final int last_thursday=0x7f06003f;
         /** Last Tuesday
          */
-        public static final int last_tuesday=0x7f06003e;
+        public static final int last_tuesday=0x7f060040;
         /** Last Wednesday
          */
-        public static final int last_wednesday=0x7f06003f;
+        public static final int last_wednesday=0x7f060041;
         /** Less than %d %@ away
          */
-        public static final int less_than_number_string_away=0x7f060040;
+        public static final int less_than_number_string_away=0x7f060042;
         /** Less than 1 %@ away
          */
-        public static final int less_than_one_string_away=0x7f060041;
+        public static final int less_than_one_string_away=0x7f060043;
         /** License
          */
-        public static final int license=0x7f060042;
+        public static final int license=0x7f060044;
         /** Loading poster
          */
-        public static final int loading_poster=0x7f060043;
+        public static final int loading_poster=0x7f060045;
+        /** Local results unavailable
+         */
+        public static final int local_results_unavailable=0x7f060046;
         /** Localized by:
          */
-        public static final int localized_by=0x7f060044;
+        public static final int localized_by=0x7f060047;
         /** Location
          */
         public static final int location=0x7f060009;
         /** Map
          */
-        public static final int map=0x7f060045;
+        public static final int map=0x7f060048;
         public static final int menu_movie_sort=0x7f060003;
         public static final int menu_movies=0x7f060006;
         public static final int menu_settings=0x7f060005;
@@ -296,45 +299,45 @@ public final class R {
         public static final int menu_upcoming=0x7f060008;
         /** mile
          */
-        public static final int mile=0x7f06007b;
+        public static final int mile=0x7f06007f;
         /** miles
          */
-        public static final int miles=0x7f06007c;
+        public static final int miles=0x7f060080;
         /** Movie details provided by:
          */
-        public static final int movie_details_provided_by=0x7f060046;
+        public static final int movie_details_provided_by=0x7f060049;
         /** Movie reviews provided by:
          */
-        public static final int movie_reviews_provided_by=0x7f060047;
+        public static final int movie_reviews_provided_by=0x7f06004a;
         /** Movies
          */
-        public static final int movies=0x7f060048;
+        public static final int movies=0x7f06004b;
         public static final int moviesIconLabel=0x7f060000;
         public static final int movies_select_sort_title=0x7f06000a;
         /** Name
          */
-        public static final int name=0x7f060049;
+        public static final int name=0x7f06004c;
         /** Network unavailable
          */
-        public static final int network_unavailable=0x7f06004a;
+        public static final int network_unavailable=0x7f06004d;
         /** No information found
          */
-        public static final int no_information_found=0x7f06004b;
+        public static final int no_information_found=0x7f06004e;
         /** No more show times available today.
          */
-        public static final int no_more_show_times_available_today_dot=0x7f06004c;
+        public static final int no_more_show_times_available_today_dot=0x7f06004f;
         /** No results found for '%@'
          */
-        public static final int no_results_found_for_string=0x7f06004d;
+        public static final int no_results_found_for_string=0x7f060050;
         /** No synopsis available.
          */
-        public static final int no_synopsis_available_dot=0x7f06004e;
+        public static final int no_synopsis_available_dot=0x7f060051;
         /** None
          */
-        public static final int none=0x7f06004f;
+        public static final int none=0x7f060052;
         /** Not yet rated
          */
-        public static final int not_yet_rated=0x7f060050;
+        public static final int not_yet_rated=0x7f060053;
         /** %d hours
          */
         public static final int number_hours=0x7f060013;
@@ -350,102 +353,108 @@ public final class R {
         /** %d %@
          */
         public static final int number_string=0x7f060012;
+        /** %d theaters outside search area
+         */
+        public static final int number_theaters_outside_search_area=0x7f060017;
         /** %d weeks ago
          */
-        public static final int number_weeks_ago=0x7f060017;
+        public static final int number_weeks_ago=0x7f060018;
         /** %d years ago
          */
-        public static final int number_years_ago=0x7f060018;
+        public static final int number_years_ago=0x7f060019;
         /** OK
          */
-        public static final int ok=0x7f060051;
+        public static final int ok=0x7f060054;
         /** 1 hour
          */
-        public static final int one_hour=0x7f060019;
+        public static final int one_hour=0x7f06001a;
         /** 1 kilometer
          */
-        public static final int one_kilometer=0x7f06001a;
+        public static final int one_kilometer=0x7f06001b;
         /** 1 mile
          */
-        public static final int one_mile=0x7f06001b;
+        public static final int one_mile=0x7f06001c;
         /** 1 minute
          */
-        public static final int one_minute=0x7f06001c;
+        public static final int one_minute=0x7f06001d;
         /** 1 month ago
          */
-        public static final int one_month_ago=0x7f06001d;
+        public static final int one_month_ago=0x7f06001e;
+        /** 1 theater outside search area
+         */
+        public static final int one_theater_outside_search_area=0x7f06001f;
         /** 1 week ago
          */
-        public static final int one_week_ago=0x7f06001e;
+        public static final int one_week_ago=0x7f060020;
         /** 1 year ago
          */
-        public static final int one_year_ago=0x7f06001f;
+        public static final int one_year_ago=0x7f060021;
         /** Order tickets for %@
          */
-        public static final int order_tickets_for_string=0x7f060052;
+        public static final int order_tickets_for_string=0x7f060055;
         /** Play trailer
          */
-        public static final int play_trailer=0x7f060053;
+        public static final int play_trailer=0x7f060056;
         /** Please enter your location
          */
-        public static final int please_enter_your_location=0x7f060054;
+        public static final int please_enter_your_location=0x7f060057;
         /** Project website
          */
-        public static final int project_website=0x7f060055;
+        public static final int project_website=0x7f060058;
         /** Rated:
          */
-        public static final int rated=0x7f060057;
+        public static final int rated=0x7f06005a;
         /** Rated %@
          */
-        public static final int rated_string=0x7f060056;
+        public static final int rated_string=0x7f060059;
         /** Read reviews
          */
-        public static final int read_reviews=0x7f060058;
+        public static final int read_reviews=0x7f06005b;
         /** Really close by
          */
-        public static final int really_close_by=0x7f060059;
+        public static final int really_close_by=0x7f06005c;
         /** Really far away
          */
-        public static final int really_far_away=0x7f06005a;
+        public static final int really_far_away=0x7f06005d;
         /** Release
          */
-        public static final int release=0x7f06005b;
+        public static final int release=0x7f06005e;
         /** Release date:
          */
-        public static final int release_date=0x7f06005c;
+        public static final int release_date=0x7f06005f;
         /** Release: %@
          */
-        public static final int release_string=0x7f06005d;
+        public static final int release_string=0x7f060060;
         /** Reviews
          */
-        public static final int reviews=0x7f06005e;
+        public static final int reviews=0x7f060061;
         /** Running time:
          */
-        public static final int running_time=0x7f06005f;
+        public static final int running_time=0x7f060062;
         /** Score
          */
-        public static final int score=0x7f060060;
+        public static final int score=0x7f060063;
         /** Search Date
          */
-        public static final int search_date=0x7f060061;
+        public static final int search_date=0x7f060064;
         /** Search Distance
          */
-        public static final int search_distance=0x7f060062;
+        public static final int search_distance=0x7f060065;
         /** Send Feedback
          */
-        public static final int send_feedback=0x7f060063;
+        public static final int send_feedback=0x7f060066;
         /** Settings
          */
-        public static final int settings=0x7f060064;
+        public static final int settings=0x7f060067;
         /** Show %d hidden theaters
          */
-        public static final int show_number_hidden_theaters=0x7f060065;
+        public static final int show_number_hidden_theaters=0x7f060068;
         /** Show 1 hidden theater
          */
-        public static final int show_one_hidden_theater=0x7f060066;
+        public static final int show_one_hidden_theater=0x7f060069;
         /** Show times retrieved on %@.
          */
-        public static final int show_times_retrieved_on_string_dot=0x7f060067;
+        public static final int show_times_retrieved_on_string_dot=0x7f06006a;
         /** %@. %@
          */
         public static final int string_dot_string=0x7f060011;
@@ -457,57 +466,60 @@ public final class R {
         public static final int string_string=0x7f06000f;
         /** Studio:
          */
-        public static final int studio=0x7f060068;
+        public static final int studio=0x7f06006b;
         /** Theater last reported show times on\n%@.
          */
-        public static final int theater_last_reported_show_times_on_string_dot=0x7f060069;
+        public static final int theater_last_reported_show_times_on_string_dot=0x7f06006c;
         /** Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set high.
          */
-        public static final int theater_providers_often_limit_the_maximum_search=0x7f06006a;
+        public static final int theater_providers_often_limit_the_maximum_search=0x7f06006d;
         /** Theaters
          */
-        public static final int theaters=0x7f06006b;
+        public static final int theaters=0x7f06006e;
         public static final int theatersIconLabel=0x7f060002;
         public static final int theaters_select_sort_title=0x7f06000b;
         /** This theater has not yet reported its show times. When they become available, %@ will retrieve them automatically.
          */
-        public static final int this_theater_has_not_yet_reported_its_show_times=0x7f06006c;
+        public static final int this_theater_has_not_yet_reported_its_show_times=0x7f06006f;
         /** Ticket sales provided by:
          */
-        public static final int ticket_sales_provided_by=0x7f06006d;
+        public static final int ticket_sales_provided_by=0x7f060070;
         /** Title
          */
-        public static final int title=0x7f06006e;
+        public static final int title=0x7f060071;
         /** Today
          */
-        public static final int today=0x7f06006f;
+        public static final int today=0x7f060072;
         /** Unknown Distance
          */
-        public static final int unknown_distance=0x7f060070;
+        public static final int unknown_distance=0x7f060073;
         /** Unknown release date
          */
-        public static final int unknown_release_date=0x7f060071;
+        public static final int unknown_release_date=0x7f060074;
         /** Unrated
          */
-        public static final int unrated=0x7f060072;
+        public static final int unrated=0x7f060075;
         /** Upcoming
          */
-        public static final int upcoming=0x7f060073;
+        public static final int upcoming=0x7f060076;
         public static final int upcomingIconLabel=0x7f060001;
         /** Use Small Fonts
          */
-        public static final int use_small_fonts=0x7f060074;
+        public static final int use_small_fonts=0x7f060077;
         /** Visit IMDb
          */
-        public static final int visit_imdb=0x7f060075;
+        public static final int visit_imdb=0x7f060078;
         /** Website
          */
-        public static final int website=0x7f060076;
+        public static final int website=0x7f060079;
         /** Written by Cyrus Najmabadi
          */
-        public static final int written_by_cyrus_najmabadi=0x7f060077;
+        public static final int written_by_cyrus_najmabadi=0x7f06007a;
         /** Yesterday
          */
-        public static final int yesterday=0x7f060078;
+        public static final int yesterday=0x7f06007b;
+        /** Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.
+         */
+        public static final int your_strings_country_is_set_to_string_full_support=0x7f06007c;
     }
 }
