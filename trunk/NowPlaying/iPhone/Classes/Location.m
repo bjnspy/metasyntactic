@@ -228,12 +228,28 @@ property_definition(country);
 }
 
 
-- (NSString*) mapUrl {
-    NSString* arguments = [NSString stringWithFormat:@"%@, %@, %@ %@",
+- (NSString*) japaneseMapArguments {
+    return [NSString stringWithFormat:@"%@%@%@", state, city, address];
+}
+
+
+- (NSString*) defaultMapArguments {
+    return [NSString stringWithFormat:@"%@, %@, %@ %@",
             address,
             city,
             state,
             postalCode];
+}
+
+
+- (NSString*) mapUrl {
+    NSString* arguments;
+    if ([@"JP" isEqual:country]) {
+        arguments = [self japaneseMapArguments];
+    } else {
+        arguments = [self defaultMapArguments];
+    }
+
 
     NSString* encoded = [Utilities stringByAddingPercentEscapes:arguments];
     if (encoded != nil) {

@@ -22,32 +22,33 @@ import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class Performance implements Parcelable, Persistable {
   private static final long serialVersionUID = -3891926085016033570L;
-  private String time;
+  private Date time;
   private String url;
 
   public void persistTo(PersistableOutputStream out) throws IOException {
-    out.writeString(time);
+    out.writeDate(time);
     out.writeString(url);
   }
 
   public static final Reader<Performance> reader = new AbstractPersistable.AbstractReader<Performance>() {
     public Performance read(PersistableInputStream in) throws IOException {
-      String time = in.readString();
+      Date time = in.readDate();
       String url = in.readString();
 
       return new Performance(time, url);
     }
   };
 
-  public Performance(String time, String url) {
+  public Performance(Date time, String url) {
     this.time = time;
     this.url = url;
   }
 
-  public String getTime() {
+  public Date getTime() {
     return time;
   }
 
@@ -60,13 +61,13 @@ public class Performance implements Parcelable, Persistable {
   }
 
   public void writeToParcel(Parcel dest, int flags) {
-    dest.writeString(time);
+    dest.writeValue(time);
     dest.writeString(url);
   }
 
   public static final Parcelable.Creator<Performance> CREATOR = new Parcelable.Creator<Performance>() {
     public Performance createFromParcel(Parcel source) {
-      String time = source.readString();
+      Date time = (Date) source.readValue(Date.class.getClassLoader());
       String url = source.readString();
       return new Performance(time, url);
     }
