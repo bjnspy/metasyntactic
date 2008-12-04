@@ -33,7 +33,6 @@ import java.util.TreeSet;
 public class PosterCache extends AbstractCache {
   private final NowPlayingModel model;
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
-  private boolean shutdown;
 
   public PosterCache(final NowPlayingModel model) {
     this.model = model;
@@ -134,9 +133,5 @@ public class PosterCache extends AbstractCache {
     }
 
     this.prioritizedMovies.add(movie);
-  }
-
-  public void shutdown() {
-    this.shutdown = true;
   }
 }
