@@ -54,7 +54,7 @@ public class IMDbCache extends AbstractCache {
       }
 
       // Nothing to do if we already have a valid imdb address
-      if (!StringUtilities.isNullOrEmpty(movie.getImdbAddress())) {
+      if (!StringUtilities.isNullOrEmpty(movie.getIMDbAddress())) {
         continue;
       }
 
