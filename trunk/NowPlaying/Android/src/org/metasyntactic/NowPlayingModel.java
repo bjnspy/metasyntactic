@@ -66,15 +66,18 @@ public class NowPlayingModel {
   }
 
   private void clearCaches() {
-    int version = this.preferences.getInt(CLEAR_CACHE_KEY, 1);
-    this.preferences.edit().putInt(CLEAR_CACHE_KEY, version + 1).commit();
+    int version;
+    synchronized (this.preferencesLock) {
+      version = this.preferences.getInt(CLEAR_CACHE_KEY, 1);
+      this.preferences.edit().putInt(CLEAR_CACHE_KEY, version + 1).commit();
+    }
 
     if (version % 20 == 0) {
-      upcomingCache.clearStaleData();
-      trailerCache.clearStaleData();
-      posterCache.clearStaleData();
-      scoreCache.clearStaleData();
-      imdbCache.clearStaleData();
+      this.upcomingCache.clearStaleData();
+      this.trailerCache.clearStaleData();
+      this.posterCache.clearStaleData();
+      this.scoreCache.clearStaleData();
+      this.imdbCache.clearStaleData();
     }
   }
 
@@ -142,7 +145,7 @@ public class NowPlayingModel {
       editor.putString(USER_ADDRESS_KEY, userLocation);
       editor.commit();
     }
-    this.markDataProviderOutOfDate();
+    markDataProviderOutOfDate();
   }
 
   public int getSearchDistance() {
@@ -189,11 +192,11 @@ public class NowPlayingModel {
       editor.putString(SEARCH_DATE_KEY, result);
       editor.commit();
     }
-    this.markDataProviderOutOfDate();
+    markDataProviderOutOfDate();
   }
 
   private void markDataProviderOutOfDate() {
-    dataProvider.markOutOfDate();
+    this.dataProvider.markOutOfDate();
   }
 
   public int getSelectedTabIndex() {
@@ -281,7 +284,7 @@ public class NowPlayingModel {
     }
   }
 
-  public void setAutoUpdateEnabled(boolean enabled) {
+  public void setAutoUpdateEnabled(final boolean enabled) {
     synchronized (this.preferencesLock) {
       final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putBoolean(AUTO_UPDATED_ENABLED_KEY, enabled);
@@ -357,12 +360,12 @@ public class NowPlayingModel {
       return result;
     }
 
-    result = imdbCache.getIMDbAddress(movie);
+    result = this.imdbCache.getIMDbAddress(movie);
     if (!StringUtilities.isNullOrEmpty(result)) {
       return result;
     }
 
-    result = upcomingCache.getIMDbAddress(movie);
+    result = this.upcomingCache.getIMDbAddress(movie);
     if (!StringUtilities.isNullOrEmpty(result)) {
       return result;
     }
@@ -401,11 +404,11 @@ public class NowPlayingModel {
     return this.dataProvider.getPerformancesForMovieInTheater(movie, theater);
   }
 
-  public void reportLocationForAddress(Location location, String address) {
-    userLocationCache.reportLocationForAddress(location, address);
+  public void reportLocationForAddress(final Location location, final String address) {
+    this.userLocationCache.reportLocationForAddress(location, address);
   }
 
   public List<Movie> getUpcomingMovies() {
-    return upcomingCache.getMovies();
+    return this.upcomingCache.getMovies();
   }
 }
