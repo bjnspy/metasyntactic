@@ -20,5 +20,6 @@ public class Constants {
   public final static long ONE_HOUR = 60 * ONE_MINUTE;
   public final static long ONE_DAY = 24 * ONE_HOUR;
   public final static long ONE_WEEK = 7 * ONE_DAY;
+  public final static long FOUR_WEEKS = 4 * ONE_WEEK;
   public final static long CACHE_LIMIT = 60 * ONE_DAY;
 }
