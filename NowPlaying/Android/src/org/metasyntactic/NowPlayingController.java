@@ -14,10 +14,12 @@
 
 package org.metasyntactic;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.util.Date;
 import java.util.List;
@@ -50,11 +52,30 @@ public class NowPlayingController {
   }
 
   private void updateBackgroundEntryPoint() {
+    if (isNullOrEmpty(this.model.getUserAddress())) {
+      return;
+    }
+
     final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
-    if (location != null) {
-      NowPlayingController.this.model.update();
+    if (location == null) {
+      ThreadingUtilities.performOnMainThread(new Runnable() {
+        public void run() {
+          reportUnknownLocation();
+        }
+      });
+    } else {
+      model.update();
     }
+  }
+
+  private void reportUnknownLocation() {
+    Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+    if (context == null) {
+      return;
+    }
+
+    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot).show();
   }
 
   public String getUserAddress() {
@@ -148,7 +169,6 @@ public class NowPlayingController {
 
   public ScoreType getScoreType() {
     return this.model.getScoreType();
-
   }
 
   public void setScoreType(final ScoreType scoreType) {

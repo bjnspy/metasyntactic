@@ -16,11 +16,12 @@ package org.metasyntactic;
 
 import android.app.Activity;
 import android.content.Context;
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
-import org.metasyntactic.utilities.SetUtilities;
+import static org.metasyntactic.utilities.SetUtilities.any;
 
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -96,7 +97,16 @@ public class NowPlayingControllerWrapper {
 
   public static Context getApplicationContext() {
     checkInstance();
-    return SetUtilities.any(activities).getApplicationContext();
+    return any(activities).getApplicationContext();
+  }
+
+  public static Context tryGetApplicationContext() {
+    checkThread();
+    if (isEmpty(activities)) {
+      return null;
+    }
+
+    return any(activities);
   }
 
   public static boolean isRunning() {
