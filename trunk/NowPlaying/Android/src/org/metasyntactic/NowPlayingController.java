@@ -192,4 +192,8 @@ public class NowPlayingController {
   public void reportLocationForAddress(final Location location, final String displayString) {
     this.model.reportLocationForAddress(location, displayString);
   }
+
+  public List<Movie> getUpcomingMovies() {
+    return this.model.getUpcomingMovies();
+  }
 }

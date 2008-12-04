@@ -70,7 +70,7 @@ public class UpcomingCache extends AbstractCache {
     return this.hash;
   }
 
-  private List<Movie> getMovies() {
+  public List<Movie> getMovies() {
     if (this.movies == null) {
       this.movies = FileUtilities.readPersistableList(Movie.reader, moviesFile());
       if (this.movies == null) {
