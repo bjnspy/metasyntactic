@@ -17,12 +17,14 @@ package org.metasyntactic.providers;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
 import org.metasyntactic.Application;
+import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.*;
 import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.time.Hours;
+import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
 import org.metasyntactic.utilities.*;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
@@ -48,9 +50,12 @@ public class DataProvider {
   }
 
   public void update() {
+    final List<Movie> movies = getMovies();
+    final List<Theater> theaters = getTheaters();
+
     final Runnable runnable = new Runnable() {
       public void run() {
-        updateBackgroundEntryPoint();
+        updateBackgroundEntryPoint(movies, theaters);
       }
     };
     ThreadingUtilities.performOnBackgroundThread("Update Provider", runnable, this.lock, true/* visible */);
@@ -65,15 +70,16 @@ public class DataProvider {
 
     // same date. make sure it's been at least 12 hours
     final int hours = Hours.hoursBetween(lastLookupDate, new Date());
-    if (hours > 12) {
+    if (hours > 8) {
       return false;
     }
 
     return true;
   }
 
-  private void updateBackgroundEntryPoint() {
-    updateBackgroundEntryPointWorker();
+  private void updateBackgroundEntryPoint(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
+    updateBackgroundEntryPointWorker(currentMovies, currentTheaters);
+
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
         model.updateSecondaryCaches();
@@ -81,14 +87,14 @@ public class DataProvider {
     });
   }
 
-  private void updateBackgroundEntryPointWorker() {
+  private void updateBackgroundEntryPointWorker(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
     if (isUpToDate()) {
       return;
     }
 
     long start = System.currentTimeMillis();
-    final Location location = this.model.getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
+    final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+        this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
 
     if (location == null) {
@@ -100,14 +106,130 @@ public class DataProvider {
     final LookupResult result = lookupLocation(location, null);
     LogUtilities.logTime(DataProvider.class, "Lookup Theaters", start);
 
+    if (result == null || isEmpty(result.movies) || isEmpty(result.theaters)) {
+      return;
+    }
+
+    start = System.currentTimeMillis();
+    addMissingData(result, location, currentMovies, currentTheaters);
+    LogUtilities.logTime(DataProvider.class, "Add missing data", start);
+
     start = System.currentTimeMillis();
     lookupMissingFavorites(result);
     LogUtilities.logTime(DataProvider.class, "Lookup Missing Theaters", start);
 
-    if (result != null && (result.movies != null && result.movies
-        .size() > 0 || result.theaters != null && result.theaters.size() > 0)) {
-      reportResult(result);
-      saveResult(result);
+    reportResult(result);
+    saveResult(result);
+  }
+
+  private void addMissingData(LookupResult result, Location location, List<Movie> currentMovies,
+                              List<Theater> currentTheaters) {
+    // Ok.  so if:
+    //   a) the user is doing their main search
+    //   b) we do not find data for a theater that should be showing up
+    //   c) they're close enough to their last search
+    // then we want to give them the old information we have for that
+    // theater *as well as* a warning to let them know that it may be
+    // out of date.
+    //
+    // This is to deal with the case where the user is confused because
+    // a theater they care about has been filtered out because it didn't
+    // report showtimes.
+    Set<String> existingMovieTitles = new LinkedHashSet<String>();
+    for (Movie movie : result.movies) {
+      existingMovieTitles.add(movie.getCanonicalTitle());
+    }
+
+    Set<Theater> missingTheaters = new LinkedHashSet<Theater>(currentTheaters);
+    missingTheaters.removeAll(result.theaters);
+
+    for (Theater theater : missingTheaters) {
+      if (theater.getLocation().distanceTo(location) > 50) {
+        // Not close enough.  Consider this a brand new search in a new
+        // location.  Don't include this old theaters.
+        continue;
+      }
+
+      // no showtime information available.  fallback to anything we've
+      // stored (but warn the user).
+      Map<String, List<Performance>> oldPerformances = lookupTheaterPerformances(theater);
+      if (isEmpty(oldPerformances)) {
+        continue;
+      }
+
+      Date syncDate = this.synchronizationDateForTheater(theater.getName());
+      if (Math.abs(syncDate.getTime() - new Date().getTime()) > Constants.FOUR_WEEKS) {
+        continue;
+      }
+
+      result.performances.put(theater.getName(), oldPerformances);
+      result.synchronizationData.put(theater.getName(), syncDate);
+      result.theaters.add(theater);
+
+      addMissingMovies(oldPerformances, result, existingMovieTitles, currentMovies);
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  private void lookupMissingFavorites(final LookupResult lookupResult) {
+    if (lookupResult == null) {
+      return;
+    }
+
+    final List<FavoriteTheater> favoriteTheaters = this.model.getFavoriteTheaters();
+    if (favoriteTheaters.isEmpty()) {
+      return;
+    }
+
+    final MultiValueMap locationToMissingTheaterNames = new MultiValueMap();
+
+    for (final FavoriteTheater favorite : favoriteTheaters) {
+      if (!lookupResult.containsFavorite(favorite)) {
+        locationToMissingTheaterNames.put(favorite.getOriginatingLocation(), favorite.getName());
+      }
+    }
+
+    final Set<String> movieTitles = new LinkedHashSet<String>();
+    for (final Movie movie : lookupResult.movies) {
+      movieTitles.add(movie.getCanonicalTitle());
+    }
+
+    for (final Location location : (Set<Location>) locationToMissingTheaterNames.keySet()) {
+      final Collection<String> theaterNames = locationToMissingTheaterNames.getCollection(location);
+      final LookupResult favoritesLookupResult = lookupLocation(location, theaterNames);
+
+      if (favoritesLookupResult == null) {
+        continue;
+      }
+
+      lookupResult.theaters.addAll(favoritesLookupResult.theaters);
+      lookupResult.performances.putAll(favoritesLookupResult.performances);
+
+      // the theater may refer to movies that we don't know about.
+      for (final String theaterName : favoritesLookupResult.performances.keySet()) {
+        addMissingMovies(favoritesLookupResult.performances.get(theaterName), lookupResult, movieTitles,
+                         favoritesLookupResult.movies);
+      }
+    }
+  }
+
+  private void addMissingMovies(Map<String, List<Performance>> performances, LookupResult result,
+                                Set<String> existingMovieTitles, List<Movie> currentMovies) {
+    if (isEmpty(performances)) {
+      return;
+    }
+
+    for (String movieTitle : performances.keySet()) {
+      if (!existingMovieTitles.contains(movieTitle)) {
+        existingMovieTitles.add(movieTitle);
+
+        for (Movie movie : currentMovies) {
+          if (movie.getCanonicalTitle().equals(movieTitle)) {
+            result.movies.add(movie);
+            break;
+          }
+        }
+      }
     }
   }
 
@@ -451,57 +573,6 @@ public class DataProvider {
       this.theaters = loadTheaters();
     }
     return this.theaters;
-  }
-
-  @SuppressWarnings("unchecked")
-  private void lookupMissingFavorites(final LookupResult lookupResult) {
-    if (lookupResult == null) {
-      return;
-    }
-
-    final List<FavoriteTheater> favoriteTheaters = this.model.getFavoriteTheaters();
-    if (favoriteTheaters.isEmpty()) {
-      return;
-    }
-
-    final MultiValueMap locationToMissingTheaterNames = new MultiValueMap();
-
-    for (final FavoriteTheater favorite : favoriteTheaters) {
-      if (!lookupResult.containsFavorite(favorite)) {
-        locationToMissingTheaterNames.put(favorite.getOriginatingLocation(), favorite.getName());
-      }
-    }
-
-    final Set<String> movieTitles = new LinkedHashSet<String>();
-    for (final Movie movie : lookupResult.movies) {
-      movieTitles.add(movie.getCanonicalTitle());
-    }
-
-    for (final Location location : (Set<Location>) locationToMissingTheaterNames.keySet()) {
-      final Collection<String> theaterNames = locationToMissingTheaterNames.getCollection(location);
-      final LookupResult favoritesLookupResult = lookupLocation(location, theaterNames);
-
-      if (favoritesLookupResult == null) {
-        continue;
-      }
-
-      lookupResult.theaters.addAll(favoritesLookupResult.theaters);
-      lookupResult.performances.putAll(favoritesLookupResult.performances);
-
-      // the theater may refer to movies that we don't know about.
-      for (final String theaterName : favoritesLookupResult.performances.keySet()) {
-        for (final String movieTitle : favoritesLookupResult.performances.get(theaterName).keySet()) {
-          if (movieTitles.add(movieTitle)) {
-            for (final Movie movie : favoritesLookupResult.movies) {
-              if (movie.getCanonicalTitle().equals(movieTitle)) {
-                lookupResult.movies.add(movie);
-                break;
-              }
-            }
-          }
-        }
-      }
-    }
   }
 
   public Date synchronizationDateForTheater(final String theaterName) {

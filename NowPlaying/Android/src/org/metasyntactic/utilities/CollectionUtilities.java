@@ -27,6 +27,10 @@ public class CollectionUtilities {
     return collection == null ? 0 : collection.size();
   }
 
+  public static <T> boolean isEmpty(final Collection<T> collection) {
+    return size(collection) == 0;
+  }
+
   public static <K, V> int size(final Map<K, V> map) {
     return map == null ? 0 : map.size();
   }

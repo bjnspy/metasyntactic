@@ -103,16 +103,16 @@ public class Location implements Parcelable, Persistable {
   }
 
   private String toDisplayStringWorker() {
-        if (city.length() > 0 || state.length() > 0 || postalCode.length() > 0) {
-        if (city.length() > 0) {
-            if (state.length() > 0 || postalCode.length() > 0) {
-                return city + ", " + state + " " + postalCode;
-            } else {
-                return city;
-            }
+    if (city.length() > 0 || state.length() > 0 || postalCode.length() > 0) {
+      if (city.length() > 0) {
+        if (state.length() > 0 || postalCode.length() > 0) {
+          return city + ", " + state + " " + postalCode;
         } else {
-            return state + " " + postalCode;
+          return city;
         }
+      } else {
+        return state + " " + postalCode;
+      }
     }
 
     return "";
