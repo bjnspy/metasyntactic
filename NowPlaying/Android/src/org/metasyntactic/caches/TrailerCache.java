@@ -117,7 +117,7 @@ public class TrailerCache extends AbstractCache {
     }
 
     final List<String> trailers = Arrays.asList(trailersString.split("\n"));
-    FileUtilities.writeStringCollection(trailers, trailerFilePath(movie));
+    FileUtilities.writeString(trailers.get(0), trailerFilePath(movie));
     Application.refresh();
   }
 
@@ -150,12 +150,8 @@ public class TrailerCache extends AbstractCache {
     return index;
   }
 
-  public List<String> getTrailers(final Movie movie) {
-    final List<String> trailers = FileUtilities.readStringList(trailerFilePath(movie));
-    if (trailers == null) {
-      return Collections.emptyList();
-    }
-    return trailers;
+  public String getTrailer(final Movie movie) {
+    return FileUtilities.readString(trailerFilePath(movie));
   }
 
   public void prioritizeMovie(final Movie movie) {

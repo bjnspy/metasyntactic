@@ -322,7 +322,7 @@ public class UpcomingCache extends AbstractCache {
       return;
     }
 
-    FileUtilities.writeStringCollection(Arrays.asList(trailers), file);
+    FileUtilities.writeString(trailers[0], file);
 
     Application.refresh();
   }
@@ -389,8 +389,10 @@ public class UpcomingCache extends AbstractCache {
       return;
     }
 
-    final String imdbAddress = NetworkUtilities.downloadString("http://" + Application
-        .host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(movie.getCanonicalTitle()), false);
+    final String imdbAddress = NetworkUtilities.downloadString("http://" + Application.host +
+                                                               ".appspot.com/LookupIMDbListings?q=" +
+                                                               StringUtilities.urlEncode(movie.getCanonicalTitle()),
+                                                               false);
 
     if (isNullOrEmpty(imdbAddress)) {
       return;

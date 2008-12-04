@@ -4,7 +4,6 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -23,7 +22,6 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -122,13 +120,10 @@ public class MovieDetailsActivity extends ListActivity {
     });
     trailersbtn.setOnClickListener(new OnClickListener() {
       public void onClick(final View v) {
-        String trailer_url = null;
-        final List<String> trailers = NowPlayingControllerWrapper
-            .getTrailers(MovieDetailsActivity.this.movie);
-        if (trailers != null && trailers.size() > 0) {
-          trailer_url = trailers.get(0);
-        }
-        if (trailer_url != null) {
+        final String trailer_url = NowPlayingControllerWrapper
+            .getTrailer(MovieDetailsActivity.this.movie);
+
+        if (!StringUtilities.isNullOrEmpty(trailer_url)) {
           final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
           startActivity(intent);
         } else {

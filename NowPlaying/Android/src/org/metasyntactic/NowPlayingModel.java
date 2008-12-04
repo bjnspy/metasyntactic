@@ -32,7 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class NowPlayingModel {
-  private final static String version = "3";
+  private final static String version = "4";
   private final static String VERSION_KEY = "version";
   private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -295,8 +295,8 @@ public class NowPlayingModel {
     return Collections.emptyList();
   }
 
-  public List<String> getTrailers(final Movie movie) {
-    return this.trailerCache.getTrailers(movie);
+  public String getTrailer(final Movie movie) {
+    return this.trailerCache.getTrailer(movie);
   }
 
   public Score getScore(final Movie movie) {

@@ -184,9 +184,9 @@ public class NowPlayingControllerWrapper {
     return instance.getTheaters();
   }
 
-  public static List<String> getTrailers(final Movie movie) {
+  public static String getTrailer(final Movie movie) {
     checkInstance();
-    return instance.getTrailers(movie);
+    return instance.getTrailer(movie);
   }
 
   public static List<Review> getReviews(final Movie movie) {
