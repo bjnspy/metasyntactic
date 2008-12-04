@@ -143,9 +143,15 @@
         [titles addObject:NSLocalizedString(@"Website", nil)];
     }
     
-    [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
-    [titles addObject:NSLocalizedString(@"Change date", nil)];
+    if ([self.navigationController isKindOfClass:[MoviesNavigationController class]]) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
+        [titles addObject:NSLocalizedString(@"Change date", nil)];
+    }
 
+    if (selectors.count == 0) {
+        return;
+    }
+    
     self.actionsView = [ActionsView viewWithTarget:self selectors:selectors titles:titles];
     [actionsView sizeToFit];
 }
