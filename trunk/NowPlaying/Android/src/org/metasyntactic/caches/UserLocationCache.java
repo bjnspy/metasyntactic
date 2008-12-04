@@ -79,7 +79,7 @@ public class UserLocationCache {
 
   private static String massageAddress(String userAddress) {
     userAddress = userAddress.trim();
-    if (userAddress.length() <= 7 && containsNumber(userAddress)) {
+    if (userAddress.length() <= 8 && containsNumber(userAddress)) {
       // possibly a postal code.  append the country to help make it unique
 
       // we append the US name for the country here since that's what the
@@ -150,8 +150,8 @@ public class UserLocationCache {
   }
 
   private Location downloadAddressLocationFromWebServiceWorker(final String address) {
-    final String escapedAddress = "http://" + Application
-        .host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(address);
+    final String escapedAddress =
+        "http://" + Application.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(address);
 
     final Element element = NetworkUtilities.downloadXml(escapedAddress, true);
 

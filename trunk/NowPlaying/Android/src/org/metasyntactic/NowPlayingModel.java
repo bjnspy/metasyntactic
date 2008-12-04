@@ -352,7 +352,7 @@ public class NowPlayingModel {
   }
 
   public String getIMDbAddress(final Movie movie) {
-    String result = movie.getImdbAddress();
+    String result = movie.getIMDbAddress();
     if (!StringUtilities.isNullOrEmpty(result)) {
       return result;
     }

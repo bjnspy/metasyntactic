@@ -125,7 +125,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     return length;
   }
 
-  public String getImdbAddress() {
+  public String getIMDbAddress() {
     return imdbAddress;
   }
 
