@@ -98,7 +98,8 @@ public class DataProvider {
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
 
     if (location == null) {
-      // Todo.  we should report an error to the user here.
+      // this should be impossible.  we only update if the user has entered a
+      // valid location
       return;
     }
 
@@ -377,8 +378,7 @@ public class DataProvider {
     final double latitude = theater.getLatitude();
     final double longitude = theater.getLongitude();
 
-    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList = theaterAndMovieShowtimes
-        .getMovieAndShowtimesList();
+    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList = theaterAndMovieShowtimes.getMovieAndShowtimesList();
 
     Map<String, List<Performance>> movieToShowtimesMap = processMovieAndShowtimesList(movieAndShowtimesList,
                                                                                       movieIdToMovieMap);
