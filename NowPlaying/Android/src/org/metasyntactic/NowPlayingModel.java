@@ -383,4 +383,8 @@ public class NowPlayingModel {
   public void reportLocationForAddress(Location location, String address) {
     userLocationCache.reportLocationForAddress(location, address);
   }
+
+  public List<Movie> getUpcomingMovies() {
+    return upcomingCache.getMovies();
+  }
 }

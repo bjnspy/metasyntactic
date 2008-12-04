@@ -174,6 +174,11 @@ public class NowPlayingControllerWrapper {
     return instance.getMovies();
   }
 
+  public static List<Movie> getUpcomingMovies() {
+    checkInstance();
+    return instance.getUpcomingMovies();
+  }
+
   public static List<Theater> getTheaters() {
     checkInstance();
     return instance.getTheaters();
