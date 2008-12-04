@@ -333,11 +333,15 @@ public class DataProvider {
 
       final List<Performance> performances = new ArrayList<Performance>();
 
-      for (final NowPlaying.ShowtimeProto showtime : movieAndShowtimes.getShowtimes().getShowtimesList()) {
-        String time = showtime.getTime();
-        String url = showtime.getUrl();
+      List<Date> times = processTimes(movieAndShowtimes.getShowtimes().getShowtimesList());
+      List<NowPlaying.ShowtimeProto> showtimes = movieAndShowtimes.getShowtimes().getShowtimesList();
 
-        time = Theater.processShowtime(time);
+      for (int i = 0; i < showtimes.size(); i++) {
+        Date time = times.get(i);
+        if (time == null) {
+          continue;
+        }
+        String url = showtimes.get(i).getUrl();
 
         if (url != null && url.startsWith("m=")) {
           url = "http://iphone.fandango.com/tms.asp?a=11586&" + url;
@@ -351,6 +355,97 @@ public class DataProvider {
     }
 
     return result;
+  }
+
+  private boolean hasTimeSuffix(String time) {
+    return time.endsWith("am") || time.endsWith("pm");
+  }
+
+  private boolean is24HourTime(List<NowPlaying.ShowtimeProto> showtimes) {
+    for (NowPlaying.ShowtimeProto proto : showtimes) {
+      String time = proto.getTime();
+      if (time.length() != 5 || time.indexOf(":") != 2) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private boolean is12HourTime(List<NowPlaying.ShowtimeProto> showtimes) {
+    for (NowPlaying.ShowtimeProto proto : showtimes) {
+      if (!proto.getTime().contains(":")) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private List<Date> process24HourTimes(List<NowPlaying.ShowtimeProto> showtimes) {
+    List<Date> result = new ArrayList<Date>();
+
+    for (NowPlaying.ShowtimeProto proto : showtimes) {
+      try {
+        String time = proto.getTime();
+        int hour = Integer.parseInt(time.substring(0, 2));
+        int minute = Integer.parseInt(time.substring(3));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+
+        result.add(calendar.getTime());
+      } catch (NumberFormatException e) {
+        result.add(null);
+      }
+    }
+
+    return result;
+  }
+
+  private final SimpleDateFormat format = new SimpleDateFormat("h:mm a");
+
+  private List<Date> process12HourTimes(List<NowPlaying.ShowtimeProto> showtimes) {
+    List<Date> reverseArray = new ArrayList<Date>();
+
+    boolean isPM = true;
+    for (int i = showtimes.size() - 1; i >= 0; i--) {
+      String time = showtimes.get(i).getTime();
+
+      if (hasTimeSuffix(time)) {
+        isPM = time.endsWith("pm");
+        time = time.substring(0, time.length() - 2);
+      }
+
+      if (isPM) {
+        time += " PM";
+      } else {
+        time += " AM";
+      }
+
+      try {
+        Date date = format.parse(time);
+        reverseArray.add(date);
+      } catch (ParseException e) {
+        reverseArray.add(null);
+      }
+    }
+
+    Collections.reverse(reverseArray);
+    return reverseArray;
+  }
+
+  private List<Date> processTimes(List<NowPlaying.ShowtimeProto> showtimes) {
+    if (showtimes.size() == 0) {
+      return Collections.emptyList();
+    }
+
+    if (is24HourTime(showtimes)) {
+      return process24HourTimes(showtimes);
+    } else {
+      return process12HourTimes(showtimes);
+    }
   }
 
   private void processTheaterAndMovieShowtimes(

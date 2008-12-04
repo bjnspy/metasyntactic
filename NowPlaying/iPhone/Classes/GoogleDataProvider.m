@@ -344,8 +344,8 @@
 - (LookupResult*) processTheaterListings:(TheaterListingsProto*) element
                      originatingLocation:(Location*) originatingLocation
                             theaterNames:(NSArray*) theaterNames {
-                                self.calendar = [NSCalendar currentCalendar];
-                                self.dateComponents = [[[NSDateComponents alloc] init] autorelease];
+    self.calendar = [NSCalendar currentCalendar];
+    self.dateComponents = [[[NSDateComponents alloc] init] autorelease];
 
     NSArray* movieProtos = element.moviesList;
     NSArray* theaterAndMovieShowtimes = element.theaterAndMovieShowtimesList;
