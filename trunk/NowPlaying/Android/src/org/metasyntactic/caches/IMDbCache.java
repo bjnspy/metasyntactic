@@ -53,13 +53,18 @@ public class IMDbCache extends AbstractCache {
         break;
       }
 
+      // Nothing to do if we already have a valid imdb address
+      if (!StringUtilities.isNullOrEmpty(movie.getImdbAddress())) {
+        continue;
+      }
+
       final File path = movieFilePath(movie);
       if (path.exists()) {
         continue;
       }
 
-      final String url = "http://" + Application
-          .host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(movie.getCanonicalTitle());
+      final String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" +
+                         StringUtilities.urlEncode(movie.getCanonicalTitle());
 
       final String imdbAddress = NetworkUtilities.downloadString(url, false);
 
@@ -70,7 +75,7 @@ public class IMDbCache extends AbstractCache {
     }
   }
 
-  public String imdbAddressForMovie(final Movie movie) {
+  public String getIMDbAddress(final Movie movie) {
     return FileUtilities.readString(movieFilePath(movie));
   }
 

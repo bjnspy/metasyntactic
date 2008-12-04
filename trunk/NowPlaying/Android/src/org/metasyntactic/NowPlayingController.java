@@ -130,8 +130,8 @@ public class NowPlayingController {
     return this.model.getReviews(movie);
   }
 
-  public String getImdbAddress(final Movie movie) {
-    return this.model.getImdbAddress(movie);
+  public String getIMDbAddress(final Movie movie) {
+    return this.model.getIMDbAddress(movie);
   }
 
   public List<Theater> getTheatersShowingMovie(final Movie movie) {

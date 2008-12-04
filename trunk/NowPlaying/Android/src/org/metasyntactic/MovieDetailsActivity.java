@@ -108,7 +108,7 @@ public class MovieDetailsActivity extends ListActivity {
     imdbbtn.setOnClickListener(new OnClickListener() {
       public void onClick(final View v) {
         String imdb_url = null;
-        imdb_url = NowPlayingControllerWrapper.getImdbAddress(MovieDetailsActivity.this.movie);
+        imdb_url = NowPlayingControllerWrapper.getIMDbAddress(MovieDetailsActivity.this.movie);
         if (imdb_url != null) {
           final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
           startActivity(intent);
