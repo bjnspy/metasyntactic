@@ -26,6 +26,7 @@ import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.text.ParseException;
@@ -115,6 +116,7 @@ public class NowPlayingModel {
     this.trailerCache.update(getMovies());
     this.posterCache.update(getMovies());
     this.upcomingCache.update();
+    this.imdbCache.update(getMovies());
   }
 
   private void initializeTestValues() {
@@ -349,8 +351,23 @@ public class NowPlayingModel {
     return bestOption;
   }
 
-  public String getImdbAddress(final Movie movie) {
-    return movie.getImdbAddress();
+  public String getIMDbAddress(final Movie movie) {
+    String result = movie.getImdbAddress();
+    if (!StringUtilities.isNullOrEmpty(result)) {
+      return result;
+    }
+
+    result = imdbCache.getIMDbAddress(movie);
+    if (!StringUtilities.isNullOrEmpty(result)) {
+      return result;
+    }
+
+    result = upcomingCache.getIMDbAddress(movie);
+    if (!StringUtilities.isNullOrEmpty(result)) {
+      return result;
+    }
+
+    return "";
   }
 
   public void prioritizeMovie(final Movie movie) {

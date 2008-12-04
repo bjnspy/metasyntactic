@@ -194,9 +194,9 @@ public class NowPlayingControllerWrapper {
     return instance.getReviews(movie);
   }
 
-  public static String getImdbAddress(final Movie movie) {
+  public static String getIMDbAddress(final Movie movie) {
     checkInstance();
-    return instance.getImdbAddress(movie);
+    return instance.getIMDbAddress(movie);
   }
 
   public static List<Theater> getTheatersShowingMovie(final Movie movie) {

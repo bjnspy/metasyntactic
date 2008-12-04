@@ -283,7 +283,7 @@ public class UpcomingCache extends AbstractCache {
     return new File(Application.upcomingCastDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getImdbFile(final Movie movie) {
+  private File getIMDbFile(final Movie movie) {
     return new File(Application.upcomingImdbDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
@@ -382,7 +382,7 @@ public class UpcomingCache extends AbstractCache {
   }
 
   private void updateImdb(final Movie movie) {
-    final File file = getImdbFile(movie);
+    final File file = getIMDbFile(movie);
     if (file.exists()) {
       return;
     }
@@ -407,6 +407,10 @@ public class UpcomingCache extends AbstractCache {
 
   public String getSynopsis(final Movie movie) {
     return FileUtilities.readString(getSynopsisFile(movie));
+  }
+
+  public String getIMDbAddress(final Movie movie) {
+    return FileUtilities.readString(getIMDbFile(movie));
   }
 
   public void prioritizeMovie(final Movie movie) {
