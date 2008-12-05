@@ -415,7 +415,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     NSString* sectionTitle = [sectionTitles objectAtIndex:section];
-    if (sectionTitle == [Application starString]) {
+    if ([sectionTitle isEqual:[Application starString]]) {
         return NSLocalizedString(@"Favorites", nil);
     }
 
