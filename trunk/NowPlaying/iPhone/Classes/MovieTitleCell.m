@@ -14,6 +14,7 @@
 
 #import "MovieTitleCell.h"
 
+#import "Application.h"
 #import "ColorCache.h"
 #import "FontCache.h"
 #import "ImageCache.h"
@@ -180,22 +181,6 @@
 }
 
 
-/*
-- (void) drawLabel:(UILabel*) label {
-    [label.textColor set];
-    [label.text drawInRect:label.frame withFont:label.font lineBreakMode:label.lineBreakMode];
-}
-
-
-- (void) drawRect:(CGRect) rect {
-    [super drawRect:rect];
-
-    [self drawLabel:titleLabel];
-    [self drawLabel:ratingLabel];
-    //[self drawLabel:scoreLabel];
-}
-*/
-
 - (void) setScore:(Movie*) movie {
     if (model.rottenTomatoesScores) {
         [self setRottenTomatoesScore:movie];
@@ -213,9 +198,12 @@
 - (void) setMovie:(Movie*) movie owner:(id) owner {
     [self setScore:movie];
     ratingLabel.text = movie.ratingAndRuntimeString;
-    titleLabel.text = movie.displayTitle;
-
-    //[self setNeedsDisplay];
+    
+    if ([model isBookmarkedMovie:movie]) {
+        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
+    } else {
+        titleLabel.text = movie.displayTitle;
+    }
 }
 
 

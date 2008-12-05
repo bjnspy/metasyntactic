@@ -79,17 +79,18 @@ static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
 static NSString* BOOKMARKED_MOVIES                      = @"bookmarkedMovies";
 static NSString* BOOKMARKED_UPCOMING_MOVIES             = @"bookmarkedUpcomingMovies";
 static NSString* BOOKMARKED_DVD_MOVIES                  = @"bookmarkedDVDMovies";
+static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
+static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
+static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
+static NSString* PRIORITIZE_BOOKMARKS                   = @"prioritizeBookmarks";
 static NSString* RATINGS_PROVIDER_INDEX                 = @"scoreProviderIndex";
 static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
 static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX = @"upcomingMoviesSelectedSegmentIndex";
-static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
-static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
-static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray";
 static NSString* USER_ADDRESS                           = @"userLocation";
 static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
 static NSString* RUN_COUNT                              = @"runCount";
@@ -103,17 +104,18 @@ static NSString** KEYS[] = {
     &BOOKMARKED_MOVIES,
     &BOOKMARKED_UPCOMING_MOVIES,
     &BOOKMARKED_DVD_MOVIES,
+    &DVD_MOVIES_SELECTED_SEGMENT_INDEX,
+    &DVD_MOVIES_HIDE_DVDS,
+    &DVD_MOVIES_HIDE_BLURAY,
     &FAVORITE_THEATERS,
     &NAVIGATION_STACK_TYPES,
     &NAVIGATION_STACK_VALUES,
+    &PRIORITIZE_BOOKMARKS,
     &RATINGS_PROVIDER_INDEX,
     &SEARCH_DATE,
     &SEARCH_RADIUS,
     &SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
     &UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
-    &DVD_MOVIES_SELECTED_SEGMENT_INDEX,
-    &DVD_MOVIES_HIDE_DVDS,
-    &DVD_MOVIES_HIDE_BLURAY,
     &USER_ADDRESS,
     &USE_NORMAL_FONTS,
     &RUN_COUNT,
@@ -231,6 +233,7 @@ static NSString** KEYS[] = {
 - (void) restorePreviousUserAddress:(id) previousUserAddress
                        searchRadius:(id) previousSearchRadius
                  autoUpdateLocation:(id) previousAutoUpdateLocation
+                prioritizeBookmarks:(id) previousPrioritizeBookmarks
                      useNormalFonts:(id) previousUseNormalFonts
                    bookmarkedMovies:(id) previousBookmarkedMovies
            bookmarkedUpcomingMovies:(id) previousBookmarkedUpcomingMovies
@@ -248,6 +251,10 @@ static NSString** KEYS[] = {
 
     if ([previousAutoUpdateLocation isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];
+    }
+    
+    if ([previousPrioritizeBookmarks isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setBool:[previousPrioritizeBookmarks boolValue] forKey:PRIORITIZE_BOOKMARKS];
     }
 
     if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
@@ -304,6 +311,7 @@ static NSString** KEYS[] = {
         id previousUserAddress = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ADDRESS];
         id previousSearchRadius = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_RADIUS];
         id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
+        id previousPrioritizeBookmarks = [[NSUserDefaults standardUserDefaults] objectForKey:PRIORITIZE_BOOKMARKS]; 
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousBookmarkedMovies = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_MOVIES];
         id previousBookmarkedUpcomingMovies = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_UPCOMING_MOVIES];
@@ -322,6 +330,7 @@ static NSString** KEYS[] = {
         [self restorePreviousUserAddress:previousUserAddress
                             searchRadius:previousSearchRadius
                       autoUpdateLocation:previousAutoUpdateLocation
+                     prioritizeBookmarks:previousPrioritizeBookmarks
                           useNormalFonts:previousUseNormalFonts
                         bookmarkedMovies:previousBookmarkedMovies
                 bookmarkedUpcomingMovies:previousBookmarkedUpcomingMovies
@@ -638,6 +647,16 @@ static NSString** KEYS[] = {
 
 - (BOOL) dvdMoviesSortingByTitle {
     return self.dvdMoviesSelectedSegmentIndex == 1;
+}
+
+
+- (BOOL) prioritizeBookmarks {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:PRIORITIZE_BOOKMARKS];
+}
+
+
+- (void) setPrioritizeBookmarks:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:value forKey:PRIORITIZE_BOOKMARKS];
 }
 
 
@@ -1193,8 +1212,19 @@ NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
         return NSOrderedSame;
     }
 
+    NowPlayingModel* model = context;
+    
     Movie* movie1 = t1;
     Movie* movie2 = t2;
+    
+    BOOL movie1Bookmarked = [model isBookmarkedMovie:movie1];
+    BOOL movie2Bookmarked = [model isBookmarkedMovie:movie2];
+    
+    if (movie1Bookmarked && !movie2Bookmarked) {
+        return NSOrderedAscending;
+    } else if (movie2Bookmarked && !movie1Bookmarked) {
+        return NSOrderedDescending;
+    }
 
     return [movie1.displayTitle compare:movie2.displayTitle options:NSCaseInsensitiveSearch];
 }

@@ -14,6 +14,7 @@
 
 #import "UpcomingMovieCell.h"
 
+#import "Application.h"
 #import "DateUtilities.h"
 #import "ImageCache.h"
 #import "Movie.h"
@@ -192,7 +193,7 @@
         rating = movie.rating;		
     }
 
-    if ([owner sortingByTitle]) {
+    if ([owner sortingByTitle] || [model isBookmarkedUpcomingMovie:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
         if (!movie.isUnrated) {
@@ -224,7 +225,12 @@
         [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
     } else {
         self.movie = movie_;
-        titleLabel.text = movie.displayTitle;
+        
+        if ([model isBookmarkedUpcomingMovie:movie]) {
+            titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
+        } else {
+            titleLabel.text = movie.displayTitle;
+        }
 
         [self clearImage];
 

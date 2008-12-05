@@ -64,7 +64,8 @@
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Release", @"This is on a button that allows the user to sort movies based on how recently they were released."),
                                NSLocalizedString(@"Title", @"This is on a button that allows the user to sort movies based on their title."),
-                               NSLocalizedString(@"Score", @"This is on a button that allows users to sort movies by how well they were rated."), nil]] autorelease];
+                               NSLocalizedString(@"Score", @"This is on a button that allows users to sort movies by how well they were rated."), 
+                               nil]] autorelease];
 
     control.segmentedControlStyle = UISegmentedControlStyleBar;
     control.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;

@@ -88,7 +88,7 @@
 
 
 - (void) majorRefresh {
-    //self.tableView.rowHeight = 43;
+    self.tableView.rowHeight = 43;
     [self.tableView reloadData];
 }
 
@@ -101,7 +101,7 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 6;
+        return 7;
     } else {
         return 1;
     }
@@ -113,12 +113,8 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"About", nil), NSLocalizedString(@"Send Feedback", nil)];
-    
-    //if (row == 0) {
     cell.text = text;
-    //} else {
-    //    cell.text = NSLocalizedString(@"About", @"Clicking on this takes you to an 'about this application' page");
-    //}
+    
     return cell;
 }
 
@@ -169,25 +165,31 @@
         [cell setKey:key value:value hideSeparator:NO];
 
         return cell;
-    } else if (row >= 4 && row <= 5) {
+    } else if (row >= 4 && row <= 6) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.accessoryView = picker;
 
-        NSString* text = @"";
-        BOOL on = NO;
+        NSString* text;
+        BOOL on;
+        SEL selector;
         if (row == 4) {
             text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
             on = self.model.autoUpdateLocation;
-            [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
+            selector = @selector(onAutoUpdateChanged:);
         } else if (row == 5) {
+            text = NSLocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'"); 
+            on = self.model.prioritizeBookmarks;
+            selector = @selector(onPrioritizeBookmarksChanged:);
+        } else if (row == 6) {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
-            [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
+            selector = @selector(onUseSmallFontsChanged:);
         }
 
+        [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
         picker.on = on;
         cell.text = text;
 
@@ -214,8 +216,12 @@
 
 
 - (void) onUseSmallFontsChanged:(id) sender {
-    BOOL useSmallFonts = !self.model.useSmallFonts;
-    [self.model setUseSmallFonts:useSmallFonts];
+    [self.model setUseSmallFonts:!self.model.useSmallFonts];
+}
+
+
+- (void) onPrioritizeBookmarksChanged:(id) sender {
+    [self.model setPrioritizeBookmarks:!self.model.prioritizeBookmarks];
 }
 
 
@@ -332,7 +338,7 @@
     [self.tableView reloadData];
 }
 
-/*
+
 - (UIView*)        tableView:(UITableView*) tableView
        viewForFooterInSection:(NSInteger) section {
     return [[[UIView alloc] init] autorelease];
@@ -343,6 +349,6 @@
       heightForFooterInSection:(NSInteger) section {
     return -5;
 }
- */
+
 
 @end
