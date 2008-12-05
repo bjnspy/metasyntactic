@@ -63,6 +63,8 @@
   <string name="autoupdate_location">Auto-Update Location</string>
   <!--Blu-ray-->
   <string name="bluray">Blu-ray</string>
+  <!--Bookmarks-->
+  <string name="bookmarks">Bookmarks</string>
   <!--Both-->
   <string name="both">Both</string>
   <!--Call-->
