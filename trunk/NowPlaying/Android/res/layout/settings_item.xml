@@ -1,56 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="@drawable/divider_horizontal_bright" />
-    
-    <TextView
-        android:id="@+id/label"
-        android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:gravity="center_vertical">
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        
-        android:background="@drawable/dark_header_dithered"
-        android:textColor="?android:attr/textColorSecondary"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:paddingLeft="8dip"
-        android:paddingTop="5px"
-        android:paddingBottom="5px" />
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="@drawable/divider_horizontal_bright" />
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="40px"
-        android:minHeight="?android:attr/listPreferredItemHeight"
-        android:orientation="horizontal">
+        android:layout_marginLeft="16sp"
+        android:layout_marginRight="6sp"
+        android:layout_marginTop="6sp"
+        android:layout_marginBottom="6sp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="?android:attr/textColorSecondary" />
         <TextView
             android:id="@+id/data"
-            android:layout_width="250px"
-            android:layout_height="30px"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="10dip"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
-           
-            android:textAppearance="?android:attr/textAppearanceSmall"
-             />
-        <ImageView
-            android:id="@+id/icon"
             android:layout_width="wrap_content"
-            android:layout_height="30px"
-            android:layout_marginRight="8dip"
-            android:src="@android:drawable/ic_menu_edit"
-            android:gravity="center_vertical" 
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
-    
-</LinearLayout> 
-    
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label"
+            android:layout_alignLeft="@id/label"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="2" />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="30px"
+        android:src="@android:drawable/ic_menu_edit"
+        android:gravity="center_vertical" />
+    <CheckBox
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center_vertical" />
+</LinearLayout>

@@ -38,8 +38,8 @@ public class CustomGridView extends GridView {
     setFocusableInTouchMode(true);
   }
 
-  @Override
+ /* @Override
   protected void onScrollChanged(final int l, final int t, final int oldl, final int oldt) {
     super.onScrollChanged(l / 20, t / 20, oldl, oldt);
-  }
+  }*/
 }

@@ -162,7 +162,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
           .findViewById(R.id.header), (TextView) convertView.findViewById(R.id.address),
           (TextView) convertView.findViewById(R.id.title), (ImageView) convertView
-              .findViewById(R.id.divider1));
+              .findViewById(R.id.divider));
       // Bind the data efficiently with the holder.
       final Theater theater = AllTheatersActivity.this.theaters.get(position);
       final String headerText = MovieViewUtilities.getTheaterHeader(
