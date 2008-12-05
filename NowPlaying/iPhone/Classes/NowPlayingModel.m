@@ -59,6 +59,7 @@
 @property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
+@property (retain) NSMutableArray* bookmarkedTitlesData;
 @property (retain) NSMutableArray* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
 @end
@@ -73,6 +74,7 @@ static NSString* VERSION = @"version";
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSegmentIndex";
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
+static NSString* BOOKMARKED_TITLES                      = @"bookmarkedTitles";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
@@ -111,6 +113,7 @@ static NSString** KEYS[] = {
 
 
 @synthesize dataProvider;
+@synthesize bookmarkedTitlesData;
 @synthesize favoriteTheatersData;
 
 @synthesize userLocationCache;
@@ -125,6 +128,7 @@ static NSString** KEYS[] = {
 
 - (void) dealloc {
     self.dataProvider = nil;
+    self.bookmarkedTitlesData = nil;
     self.favoriteTheatersData = nil;
 
     self.userLocationCache = nil;
@@ -184,6 +188,11 @@ static NSString** KEYS[] = {
     }
 
     [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
+}
+
+
++ (void) saveBookmarkedTitles:(NSArray*) bookmarkedTitles {
+    [[NSUserDefaults standardUserDefaults] setObject:bookmarkedTitles forKey:BOOKMARKED_TITLES];
 }
 
 
@@ -655,6 +664,50 @@ static NSString** KEYS[] = {
     }
 
     return result;
+}
+
+
+- (NSMutableArray*) loadBookmarkedTitles {
+    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:BOOKMARKED_TITLES];
+    if (array.count == 0) {
+        return [NSMutableArray array];
+    }
+    
+    return [NSMutableArray arrayWithObjects:array];
+}
+
+
+- (NSMutableArray*) bookmarkedTitles {
+    if (bookmarkedTitlesData == nil) {
+        self.bookmarkedTitlesData = [self loadBookmarkedTitles];
+    }
+    
+    return bookmarkedTitlesData;
+}
+
+
+- (BOOL) isBookmarked:(Movie*) movie {
+    return [self.bookmarkedTitles containsObject:movie.canonicalTitle];
+}
+
+
+- (void) saveBookmarkedTitles {
+    [NowPlayingModel saveBookmarkedTitles:self.bookmarkedTitles];
+}
+
+
+- (void) addBookmark:(Movie*) movie {
+    if (![self.bookmarkedTitles containsObject:movie.canonicalTitle]) {
+        [self.bookmarkedTitles addObject:movie.canonicalTitle];
+    }
+    
+    [self saveBookmarkedTitles];
+}
+
+
+- (void) removeBookmark:(Movie*) movie {
+    [self.bookmarkedTitles removeObject:movie.canonicalTitle];
+    [self saveBookmarkedTitles];
 }
 
 
