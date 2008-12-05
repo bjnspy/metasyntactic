@@ -204,12 +204,64 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (void) clearStaleDataBackgroundEntryPoint {
-    [self clearDirectory:[Application upcomingCastDirectory]];
-    [self clearDirectory:[Application upcomingIMDbDirectory]];
-    [self clearDirectory:[Application upcomingPostersDirectory]];
-    [self clearDirectory:[Application upcomingSynopsesDirectory]];
-    [self clearDirectory:[Application upcomingTrailersDirectory]];
+- (NSString*) castFile:(Movie*) movie {
+    return [[[Application upcomingCastDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (NSString*) imdbFile:(Movie*) movie {
+    return [[[Application upcomingIMDbDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (NSString*) posterFile:(Movie*) movie {
+    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+    fileName = [fileName stringByAppendingPathExtension:@"jpg"];
+    return [[Application upcomingPostersDirectory] stringByAppendingPathComponent:fileName];
+}
+
+
+- (NSString*) smallPosterFile:(Movie*) movie {
+    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
+    fileName = [fileName stringByAppendingString:@"-small.png"];
+    return [[Application upcomingPostersDirectory] stringByAppendingPathComponent:fileName];
+}
+
+
+- (NSString*) synopsisFile:(Movie*) movie {
+    return [[[Application upcomingSynopsesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (NSString*) trailersFile:(Movie*) movie {
+    return [[[Application upcomingTrailersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSSet setWithObjects:
+            [Application upcomingCastDirectory],
+            [Application upcomingIMDbDirectory],
+            [Application upcomingPostersDirectory],
+            [Application upcomingSynopsesDirectory],
+            [Application upcomingTrailersDirectory]];
+    
+}
+
+
+- (NSSet*) cachedPathsToExclude {
+    NSMutableSet* result = [NSMutableSet set];
+    
+    for (Movie* movie in model.allBookmarkedMovies) {
+        [result addObject:[self castFile:movie]];
+        [result addObject:[self imdbFile:movie]];
+        [result addObject:[self posterFile:movie]];
+        [result addObject:[self smallPosterFile:movie]];
+        [result addObject:[self synopsisFile:movie]];
+        [result addObject:[self trailersFile:movie]];
+    }
+    
+    return result;
 }
 
 
@@ -283,45 +335,6 @@ static NSString* titles_key = @"Titles";
 
     [self updateDetails];
     [NowPlayingAppDelegate majorRefresh];
-}
-
-
-- (void) deleteObsoleteData {
-
-}
-
-
-- (NSString*) castFile:(Movie*) movie {
-    return [[[Application upcomingCastDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (NSString*) imdbFile:(Movie*) movie {
-    return [[[Application upcomingIMDbDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (NSString*) posterFile:(Movie*) movie {
-    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    fileName = [fileName stringByAppendingPathExtension:@"jpg"];
-    return [[Application upcomingPostersDirectory] stringByAppendingPathComponent:fileName];
-}
-
-
-- (NSString*) smallPosterFile:(Movie*) movie {
-    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    fileName = [fileName stringByAppendingString:@"-small.png"];
-    return [[Application upcomingPostersDirectory] stringByAppendingPathComponent:fileName];
-}
-
-
-- (NSString*) synopsisFile:(Movie*) movie {
-    return [[[Application upcomingSynopsesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (NSString*) trailersFile:(Movie*) movie {
-    return [[[Application upcomingTrailersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -474,8 +487,6 @@ static NSString* titles_key = @"Titles";
 
 
 - (void) updateDetailsInBackgroundEntryPoint:(NSDictionary*) index_ {
-    [self deleteObsoleteData];
-
     NSArray* movies = [index_ objectForKey:movies_key];
     if (movies == nil) {
         return;

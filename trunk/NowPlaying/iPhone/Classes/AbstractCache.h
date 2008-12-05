@@ -22,6 +22,5 @@
 
 /* @protected */
 - (id) initWithModel:(NowPlayingModel*) model;
-- (void) clearDirectory:(NSString*) directory;
 
 @end

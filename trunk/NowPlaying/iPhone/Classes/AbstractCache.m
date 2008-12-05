@@ -46,21 +46,25 @@
 }
 
 
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSSet set];
+}
+
+
+- (NSSet*) cachedPathsToExclude {
+    return [NSSet set];
+}
+
+
 - (void) clearStaleData {
-    [ThreadingUtilities performSelector:@selector(clearStaleDataBackgroundEntryPoint)
-                               onTarget:self
-               inBackgroundWithGate:gate
-                                visible:NO];
-}
+    NSSet* cachedDirectoriesToClear = self.cachedDirectoriesToClear;
+    NSSet* cachedPathsToExclude = self.cachedPathsToExclude;
 
-
-- (void) clearStaleDataBackgroundEntryPoint {
-    @throw [NSException exceptionWithName:@"Improper Subclassing" reason:@"" userInfo:nil];
-}
-
-
-- (void) clearDirectory:(NSString*) directory {
-    for (NSString* path in [FileUtilities directoryContentsPaths:directory]) {
+    for (NSString* path in cachedDirectoriesToClear) {
+        if ([cachedPathsToExclude containsObject:path]) {
+            continue;
+        }
+        
         NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
         if (lastModifiedDate != nil) {
             if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {

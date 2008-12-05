@@ -110,9 +110,21 @@
 }
 
 
-- (void) clearStaleDataBackgroundEntryPoint {
-    [self clearDirectory:[Application imdbDirectory]];
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSMutableSet setWithObject:[Application imdbDirectory]];
 }
+
+
+- (NSSet*) cachedPathsToExclude {
+    NSMutableSet* result = [NSMutableSet set];
+    
+    for (Movie* movie in model.allBookmarkedMovies) {
+        [result addObject:[self imdbFile:movie]];
+    }
+    
+    return result;
+}
+
 
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
