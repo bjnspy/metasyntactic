@@ -59,18 +59,18 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   /** Updates display of the list of movies. */
   public void refresh() {
-    movies = NowPlayingControllerWrapper.getMovies();
+    this.movies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
-    Collections.sort(movies, comparator);
-    if (movies.size() > 0 && !isGridSetup) {
+    Collections.sort(this.movies, comparator);
+    if (this.movies.size() > 0 && !this.isGridSetup) {
       setup();
       // set isGridSetup, so that grid is not recreated on every refresh.
-      isGridSetup = true;
+      this.isGridSetup = true;
     }
-    if (postersAdapter != null && gridAnimationEnded) {
-      postersAdapter.refreshMovies();
+    if (this.postersAdapter != null && this.gridAnimationEnded) {
+      this.postersAdapter.refreshMovies();
     }
   }
 
@@ -99,21 +99,22 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onPause() {
-    unregisterReceiver(broadcastReceiver);
+    unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
-    if (isGridSetup)
+    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
+    if (this.isGridSetup) {
       NowPlayingActivity.this.grid.setVisibility(View.VISIBLE);
+    }
     // Hack to show the progress dialog with a immediate return from onResume,
     // and then continue the work on main UI thread after the ProgressDialog is
     // visible. Normally, when we are doing work on background thread we wont need this
     // hack to show ProgressDialog.
-    Runnable action = new Runnable() {
+    final Runnable action = new Runnable() {
       public void run() {
         // For the first Activity, we add activity in onResume (which is
         // different from rest of the Activities in this application).
@@ -121,21 +122,21 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         // onResume(). If we don't do this we would
         // see a black screen for 1-2 seconds until controller methods complete
         // executing.
-        if (!activityAdded) {
+        if (!NowPlayingActivity.this.activityAdded) {
           NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
-          activityAdded = true;
+          NowPlayingActivity.this.activityAdded = true;
           refresh();
         }
         final String userLocation = NowPlayingControllerWrapper.getUserLocation();
         if (userLocation == null || userLocation == "") {
-          Intent intent = new Intent();
+          final Intent intent = new Intent();
           intent.setClass(NowPlayingActivity.this, SettingsActivity.class);
           startActivity(intent);
         }
       }
     };
-    Handler handler = new Handler();
-    if (!activityAdded) {
+    final Handler handler = new Handler();
+    if (!this.activityAdded) {
       handler.postDelayed(action, 1000);
     } else {
       handler.post(action);
@@ -147,11 +148,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.grid = (GridView) findViewById(R.id.grid);
     final int maxpagecount = (this.movies.size() - 1) / 9;
     this.grid.setOnItemClickListener(new OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView parent, View v, int position, long id) {
+      public void onItemClick(final AdapterView parent, final View v, final int position, final long id) {
         // TODO Auto-generated method stub
         Log.i("test", "item selected");
-        NowPlayingActivity.this.selectedMovie = movies.get(position);
+        NowPlayingActivity.this.selectedMovie = NowPlayingActivity.this.movies.get(position);
         int i = 0;
         View child = NowPlayingActivity.this.grid.getChildAt(i);
         while (child != null && child.getVisibility() == View.VISIBLE) {

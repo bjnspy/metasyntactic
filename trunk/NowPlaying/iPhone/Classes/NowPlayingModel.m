@@ -230,6 +230,26 @@ static NSString** KEYS[] = {
 }
 
 
+- (NSArray*) restoreMoviesArray:(NSArray*) previousMovies {
+    NSMutableArray* result = [NSMutableArray array];
+    
+    for (id previousMovie in previousMovies) {
+        if (![previousMovie isKindOfClass:[NSDictionary class]]) {
+            continue;
+        }
+        
+        if (![Movie canReadDictionary:previousMovie]) {
+            continue;
+        }
+        
+        Movie* movie = [Movie movieWithDictionary:previousMovie];
+        [result addObject:movie];
+    }
+    
+    return result;
+}
+
+
 - (void) restorePreviousUserAddress:(id) previousUserAddress
                        searchRadius:(id) previousSearchRadius
                  autoUpdateLocation:(id) previousAutoUpdateLocation
@@ -269,18 +289,20 @@ static NSString** KEYS[] = {
         [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideBluray boolValue] forKey:DVD_MOVIES_HIDE_BLURAY];
     }
     
-    /*
-    if ([previousBookmarkedTitles isKindOfClass:[NSArray class]]) {
-        NSMutableArray* bookmarkedTitles = [NSMutableArray array];
-        for (id previousBookmark in previousBookmarkedTitles) {
-            if ([previousBookmark isKindOfClass:[NSString class]]) {
-                [bookmarkedTitles addObject:previousBookmark];
-            }
-        }
-        
-        [NowPlayingModel saveBookmarkedTitles:bookmarkedTitles];
+    if ([previousBookmarkedMovies isKindOfClass:[NSArray class]]) {
+        NSArray* bookmarkedMovies = [self restoreMoviesArray:previousBookmarkedMovies];
+        [NowPlayingModel saveBookmarkedMovies:bookmarkedMovies];
     }
-     */
+    
+    if ([previousBookmarkedUpcomingMovies isKindOfClass:[NSArray class]]) {
+        NSArray* bookmarkedUpcomingMovies = [self restoreMoviesArray:previousBookmarkedUpcomingMovies];
+        [NowPlayingModel saveBookmarkedUpcomingMovies:bookmarkedUpcomingMovies];
+    }
+    
+    if ([previousBookmarkedDVDMovies isKindOfClass:[NSArray class]]) {
+        NSArray* bookmarkedDVDMovies = [self restoreMoviesArray:previousBookmarkedDVDMovies];
+        [NowPlayingModel saveBookmarkedDVDMovies:bookmarkedDVDMovies];
+    }
 
     if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
         NSMutableArray* favoriteTheaters = [NSMutableArray array];
@@ -1432,13 +1454,14 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSString*) feedbackUrl {
-    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nCountry: %@\nLanguage: %@",
+    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
                       currentVersion,
                       self.userAddress,
                       self.searchRadius,
                       [DateUtilities formatShortDate:self.searchDate],
                       self.currentScoreProvider,
                       (self.autoUpdateLocation ? @"yes" : @"no"),
+                      (self.prioritizeBookmarks ? @"yes" : @"no"),
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
 

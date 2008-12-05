@@ -159,7 +159,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   private void populateSettingsItems() {
     this.detailItems = new ArrayList<SettingsItem>();
-    
+
  // auto update location
      SettingsItem settings = new SettingsItem();
     settings.setLabel("Auto Update Location");
@@ -224,7 +224,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 	settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.REVIEWS_PROVIDER);
 	this.detailItems.add(settings);
 
-	
+
   }
 
   @Override
@@ -246,28 +246,27 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 	public View getView(final int position, View convertView,
 		final ViewGroup viewGroup) {
 	  convertView = this.inflater.inflate(R.layout.settings_item, null);
-      
+
 	  final SettingsViewHolder holder = new SettingsViewHolder(
           (TextView) convertView.findViewById(R.id.label),
           (ImageView) convertView.findViewById(R.id.icon),
           (TextView) convertView.findViewById(R.id.data),
           (CheckBox) convertView.findViewById(R.id.check));
-    
+
 	  if( position ==0){
 	     holder.check.setVisibility(View.VISIBLE);
 	     holder.icon.setVisibility(View.GONE);
 	     holder.check.setChecked(NowPlayingControllerWrapper.isAutoUpdateEnabled());
 	     holder.check.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
-        @Override
-        public void onCheckedChanged(CompoundButton arg0, boolean checked) {
+        public void onCheckedChanged(final CompoundButton arg0, final boolean checked) {
            Log.i("test",String.valueOf(checked));
             NowPlayingControllerWrapper.setAutoUpdateEnabled(checked);
             Log.i("test",String.valueOf(NowPlayingControllerWrapper.isAutoUpdateEnabled()));
             populateSettingsItems();
             SettingsActivity.this.settingsAdapter.refresh();
         }
-	       
+
 	     });
 	  }
 	   final SettingsItem settingsItem = SettingsActivity.this.detailItems

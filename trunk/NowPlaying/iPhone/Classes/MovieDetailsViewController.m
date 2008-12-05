@@ -292,10 +292,10 @@
 
 - (void) initializeBookmarkButton {
     self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bookmarkButton setImage:[UIImage imageNamed:@"Bookmark-Inactive.png"] forState:UIControlStateNormal];
-    [bookmarkButton setImage:[UIImage imageNamed:@"Bookmark-Active.png"] forState:UIControlStateSelected];
-    //[bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
-    //[bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
+    //[bookmarkButton setImage:[UIImage imageNamed:@"Bookmark-Inactive.png"] forState:UIControlStateNormal];
+    //[bookmarkButton setImage:[UIImage imageNamed:@"Bookmark-Active.png"] forState:UIControlStateSelected];
+    [bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
+    [bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
     
     [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
     

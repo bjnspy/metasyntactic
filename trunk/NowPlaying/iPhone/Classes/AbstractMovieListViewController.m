@@ -162,6 +162,7 @@
     if ([LocaleUtilities isJapanese]) {
         self.sectionTitles = [NSMutableArray arrayWithArray:sectionTitleToContentsMap.allKeys];
         [sectionTitles sortUsingSelector:@selector(compare:)];
+        [self.sectionTitles insertObject:[Application starString] atIndex:0];
     } else {
         self.sectionTitles = [NSMutableArray arrayWithArray:self.indexTitles];
     }

@@ -46,6 +46,8 @@
 @property (readonly, retain) NSArray* cast;
 @property (readonly, retain) NSArray* genres;
 
++ (BOOL) canReadDictionary:(NSDictionary*) dictionary;
+
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithIdentifier:(NSString*) identifier
                          title:(NSString*) title
