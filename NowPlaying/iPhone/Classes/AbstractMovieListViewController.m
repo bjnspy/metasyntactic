@@ -131,9 +131,10 @@
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
 
     NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
+    BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
     
     for (Movie* movie in sortedMovies) {
-        if ([bookmarkedMovies containsObject:movie]) {
+        if (prioritizeBookmarks && [bookmarkedMovies containsObject:movie]) {
             [sectionTitleToContentsMap addObject:movie forKey:[Application starString]];
             continue;
         }
@@ -171,6 +172,7 @@
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByScore context:self.model];
 
     NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
+    BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
     
     NSString* bookmarksString = [Application starString];
     NSString* moviesString = NSLocalizedString(@"Movies", nil);
@@ -178,7 +180,7 @@
     self.sectionTitles = [NSMutableArray arrayWithObjects:bookmarksString, moviesString, nil];
     
     for (Movie* movie in sortedMovies) {
-        if ([bookmarkedMovies containsObject:movie]) {
+        if (prioritizeBookmarks && [bookmarkedMovies containsObject:movie]) {
             [sectionTitleToContentsMap addObject:movie forKey:bookmarksString];
         } else {
             [sectionTitleToContentsMap addObject:movie forKey:moviesString];
@@ -197,9 +199,10 @@
     NSDate* today = [DateUtilities today];
 
     NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
+    BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
     
     for (Movie* movie in sortedMovies) {
-        if ([bookmarkedMovies containsObject:movie]) {
+        if (prioritizeBookmarks && [bookmarkedMovies containsObject:movie]) {
             NSString* starString = [Application starString];
             [sectionTitleToContentsMap addObject:movie forKey:starString];
             if (![sectionTitles containsObject:starString]) {
@@ -232,7 +235,25 @@
 }
 
 
+- (void) setupIndexTitles {
+    if ([LocaleUtilities isJapanese]) {
+        self.indexTitles = nil;
+    } else {
+        NSMutableArray* array = [NSMutableArray arrayWithObjects:
+                                 @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
+                                 @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
+                                 @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+        if (self.model.prioritizeBookmarks) {
+            [array insertObject:[Application starString] atIndex:0];
+        }
+        
+        self.indexTitles = array;
+    }
+}
+
+
 - (void) sortMovies {
+    [self setupIndexTitles];
     self.sectionTitles = [NSMutableArray array];
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
 
@@ -285,27 +306,12 @@
 }
 
 
-- (void) setupIndexTitles {
-    if ([LocaleUtilities isJapanese]) {
-        self.indexTitles = nil;
-    } else {
-        self.indexTitles =
-        [NSArray arrayWithObjects:
-         [Application starString],
-         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
-         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
-         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
-    }
-}
-
-
 - (void) loadView {
     [super loadView];
 
     self.sortedMovies = [NSArray array];
 
     [self initializeSearchButton];
-    [self setupIndexTitles];
 }
 
 

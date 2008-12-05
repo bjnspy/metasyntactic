@@ -105,6 +105,9 @@ enum ViewControllerType {
 - (NSArray*) navigationStackTypes;
 - (NSArray*) navigationStackValues;
 
+- (BOOL) prioritizeBookmarks;
+- (void) setPrioritizeBookmarks:(BOOL) value;
+
 - (BOOL) autoUpdateLocation;
 - (void) setAutoUpdateLocation:(BOOL) value;
 

@@ -529,7 +529,8 @@ static NSString* titles_key = @"Titles";
         NSDate* now = [NSDate date];
 
         for (Movie* movie in [self.index objectForKey:movies_key]) {
-            if ([now compare:movie.releaseDate] == NSOrderedDescending) {
+            if (![model isBookmarkedUpcomingMovie:movie] &&
+                [now compare:movie.releaseDate] == NSOrderedDescending) {
                 continue;
             }
 

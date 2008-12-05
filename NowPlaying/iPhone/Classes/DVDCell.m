@@ -14,6 +14,7 @@
 
 #import "DVDCell.h"
 
+#import "Application.h"
 #import "DVD.h"
 #import "DVDCache.h"
 #import "DVDViewController.h"
@@ -204,14 +205,14 @@
         rating = movie.rating;		
     }
 
-    if ([owner sortingByTitle]) {
+    if ([owner sortingByTitle] || [model isBookmarkedDVDMovie:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
         if (!movie.isUnrated) {
             releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", nil), releaseDate];
         }
 
-        ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
+        ratedLabel.text = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
     } else {
         ratedLabel.text = rating;
     }
@@ -238,7 +239,12 @@
     } else {
         // switching to a new movie.  update everything.
         self.movie = movie_;
-        titleLabel.text = movie.displayTitle;
+        
+        if ([model isBookmarkedDVDMovie:movie]) {
+            titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
+        } else {
+            titleLabel.text = movie.displayTitle;
+        }
 
         for (UILabel* label in self.allLabels) {
             [label removeFromSuperview];
