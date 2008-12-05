@@ -14,6 +14,7 @@
 
 #import "AbstractMovieListViewController.h"
 
+#import "Application.h"
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
@@ -129,7 +130,14 @@
 - (void) sortMoviesByTitle {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
 
+    NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
+    
     for (Movie* movie in sortedMovies) {
+        if ([bookmarkedMovies containsObject:movie]) {
+            [sectionTitleToContentsMap addObject:movie forKey:NSLocalizedString(@"Bookmarks", nil)];
+            continue;
+        }
+        
         NSString* title = movie.displayTitle;
         unichar firstChar = [self firstCharacter:title];
 
@@ -156,13 +164,26 @@
     } else {
         self.sectionTitles = [NSMutableArray arrayWithArray:self.indexTitles];
     }
-
-    [self removeUnusedSectionTitles];
 }
 
 
 - (void) sortMoviesByScore {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByScore context:self.model];
+
+    NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
+    
+    NSString* bookmarksString = NSLocalizedString(@"Bookmarks", nil);
+    NSString* moviesString = NSLocalizedString(@"Movies", nil);
+    
+    self.sectionTitles = [NSArray arrayWithObjects:bookmarksString, moviesString, nil];
+    
+    for (Movie* movie in sortedMovies) {
+        if ([bookmarkedMovies containsObject:movie]) {
+            [sectionTitleToContentsMap addObject:movie forKey:bookmarksString];
+        } else {
+            [sectionTitleToContentsMap addObject:movie forKey:moviesString];
+        }
+    }
 }
 
 
@@ -175,7 +196,14 @@
 
     NSDate* today = [DateUtilities today];
 
+    NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
+    
     for (Movie* movie in sortedMovies) {
+        if ([bookmarkedMovies containsObject:movie]) {
+            [sectionTitleToContentsMap addObject:movie forKey:NSLocalizedString(@"Bookmarks", nil)];
+            continue;
+        }
+        
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
         NSDate* releaseDate = [self.model releaseDateForMovie:movie];
 
@@ -212,6 +240,8 @@
     } else if (self.sortingByScore) {
         [self sortMoviesByScore];
     }
+    
+    [self removeUnusedSectionTitles];
 
     if (sectionTitles.count == 0) {
         self.sectionTitles = [NSArray arrayWithObject:self.model.noInformationFound];
@@ -258,6 +288,7 @@
     } else {
         self.indexTitles =
         [NSArray arrayWithObjects:
+         [Application starString],
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
          @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
@@ -331,17 +362,11 @@
 
 
 - (BOOL) outOfBounds:(NSIndexPath*) indexPath {
-    NSArray* movies;
-    if (self.sortingByScore) {
-        movies = sortedMovies;
-    } else {
-        if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
-            return YES;
-        }
-
-        movies = [sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]];
+    if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
+        return YES;
     }
-
+    
+    NSArray* movies = [sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]];
     if (indexPath.row < 0 || indexPath.row >= movies.count) {
         return YES;
     }
@@ -356,16 +381,7 @@
         return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     }
 
-    Movie* movie;
-    if (self.sortingByTitle) {
-        movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    } else if (self.sortingByScore) {
-        movie = [sortedMovies objectAtIndex:indexPath.row];
-    } else if (self.sortingByReleaseDate) {
-        movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    }
-
-    //[self.model prioritizeMovie:movie];
+    Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     return [self createCell:movie];
 }
@@ -389,51 +405,36 @@
         return;
     }
 
-    Movie* movie;
-    if (self.sortingByTitle) {
-        movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    } else if (self.sortingByScore) {
-        movie = [sortedMovies objectAtIndex:indexPath.row];
-    } else {
-        movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    }
+    Movie* movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     [navigationController pushMovieDetails:movie animated:YES];
 }
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    if (self.sortingByTitle) {
-        return sectionTitles.count;
-    } else if (self.sortingByScore) {
-        return 1;
-    } else {
-        return sectionTitles.count;
-    }
+    return sectionTitles.count;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (self.sortingByTitle) {
-        return [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:section]] count];
-    } else if (self.sortingByScore) {
-        return sortedMovies.count;
-    } else {
-        return [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:section]] count];
-    }
+    return [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:section]] count];
+}
+
+
+- (NSString*) titleForHeaderInSectionWorker:(NSInteger) section {
+    return [sectionTitles objectAtIndex:section];
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (self.sortingByTitle) {
-        return [sectionTitles objectAtIndex:section];
-    } else if (self.sortingByScore && sortedMovies.count > 0) {
-        return nil;
-    } else {
-        return [sectionTitles objectAtIndex:section];
+    NSString* sectionTitle = [self titleForHeaderInSectionWorker:section];
+    if (sectionTitle == [Application starString]) {
+        return NSLocalizedString(@"Bookmarks", nil);
     }
+    
+    return sectionTitle;
 }
 
 
@@ -451,20 +452,24 @@
 - (NSInteger)           tableView:(UITableView*) tableView
       sectionForSectionIndexTitle:(NSString*) title
                           atIndex:(NSInteger) index {
-    if (index == 0) {
-        return index;
-    }
+    unichar firstChar = [title characterAtIndex:0];
 
-    for (unichar c = [title characterAtIndex:0]; c >= 'A'; c--) {
-        NSString* s = [NSString stringWithFormat:@"%c", c];
-
-        NSInteger result = [sectionTitles indexOfObject:s];
-        if (result != NSNotFound) {
-            return result;
+    if (firstChar == '#') {
+        return [sectionTitles indexOfObject:@"#"];
+    } else if (firstChar == [Application starCharacter]) {
+        return [sectionTitles indexOfObject:[Application starString]];
+    } else {
+        for (unichar c = firstChar; c >= 'A'; c--) {
+            NSString* s = [NSString stringWithFormat:@"%c", c];
+            
+            NSInteger result = [sectionTitles indexOfObject:s];
+            if (result != NSNotFound) {
+                return result;
+            }
         }
+        
+        return NSNotFound;
     }
-
-    return 0;
 }
 
 
