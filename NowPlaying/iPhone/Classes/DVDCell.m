@@ -231,6 +231,12 @@
 
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
+    if ([model isBookmarkedDVDMovie:movie]) {
+        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
+    } else {
+        titleLabel.text = movie.displayTitle;
+    }
+    
     if (movie == movie_) {
         // refreshing with the same movie.
         // update our image if necessary.
@@ -239,12 +245,6 @@
     } else {
         // switching to a new movie.  update everything.
         self.movie = movie_;
-        
-        if ([model isBookmarkedDVDMovie:movie]) {
-            titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
-        } else {
-            titleLabel.text = movie.displayTitle;
-        }
 
         for (UILabel* label in self.allLabels) {
             [label removeFromSuperview];

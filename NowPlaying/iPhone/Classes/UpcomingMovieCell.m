@@ -219,18 +219,19 @@
 }
 
 
-- (void) setMovie:(Movie*) movie_ owner:(id) owner {
+- (void) setMovie:(Movie*) movie_
+            owner:(id) owner {
+    if ([model isBookmarkedUpcomingMovie:movie]) {
+        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
+    } else {
+        titleLabel.text = movie.displayTitle;
+    }
+    
     if (movie == movie_) {
         [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
         [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
     } else {
         self.movie = movie_;
-        
-        if ([model isBookmarkedUpcomingMovie:movie]) {
-            titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
-        } else {
-            titleLabel.text = movie.displayTitle;
-        }
 
         [self clearImage];
 
