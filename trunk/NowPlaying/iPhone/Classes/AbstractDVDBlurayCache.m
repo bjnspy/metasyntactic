@@ -452,7 +452,7 @@
         }
 
         // we have a sentinel.  only update if it's been long enough
-        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
         }
     }
@@ -466,7 +466,9 @@
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:imdbFile];
-    [NowPlayingAppDelegate minorRefresh];
+    if (imdbAddress.length > 0) {
+        [NowPlayingAppDelegate minorRefresh];
+    }
 }
 
 
