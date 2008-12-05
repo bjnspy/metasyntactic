@@ -48,7 +48,6 @@ public class NowPlayingController {
         updateBackgroundEntryPoint();
       }
     };
-
     ThreadingUtilities.performOnBackgroundThread("Update Model", runnable, this.lock, false/* visible */);
   }
 

@@ -3,28 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_5"   
-    
+    android:background="@drawable/shape_5"
     android:paddingTop="0px"
     android:paddingBottom="0px"
     android:paddingLeft="0px"
     android:paddingRight="0px"
-    android:orientation="vertical"
-    >
-    <org.metasyntactic.views.CustomGridView
+    android:orientation="vertical">
+    <GridView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/grid"
-         android:paddingLeft="5px"
-         android:paddingRight="5px"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:horizontalSpacing="15px"
-        android:verticalSpacing="25px"
+        android:horizontalSpacing="10dip"
+        android:verticalSpacing="15dip"
         android:numColumns="3"
-        android:paddingBottom="10px"
-        android:paddingTop="10px"
-        android:gravity="center"
+        android:drawSelectorOnTop="false"
+        android:paddingTop="2dip"
+        android:paddingRight="0dip"
         android:animationCache="false"
         android:layoutAnimation="@anim/layout_grid_fade" />
-    
 </RelativeLayout>

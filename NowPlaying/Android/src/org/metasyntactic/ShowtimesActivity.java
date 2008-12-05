@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,10 +39,11 @@ public class ShowtimesActivity extends ListActivity {
 
   @Override
   protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
-    final Intent intent = this.detailItems.get(position).getIntent();
-    if (intent != null) {
-      startActivity(intent);
-    }
+    final Intent intent = new Intent();
+    intent.setClass(ShowtimesActivity.this, ShowtimesDetailsActivity.class);
+    intent.putExtra("movie", (Parcelable) movie);
+    intent.putExtra("theater", (Parcelable) theaters.get(position));
+    startActivity(intent);
     super.onListItemClick(l, v, position, id);
   }
 
@@ -49,7 +51,7 @@ public class ShowtimesActivity extends ListActivity {
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
-    setContentView(R.layout.showtimes);
+    setContentView(R.layout.theaters_movie);
     this.movie = getIntent().getExtras().getParcelable("movie");
   }
 
@@ -66,114 +68,54 @@ public class ShowtimesActivity extends ListActivity {
     this.theaters = NowPlayingControllerWrapper.getTheatersShowingMovie(this.movie);
   }
 
-  private void populateTheaterDetailItems() {
-    this.detailItems = new ArrayList<TheaterDetailItem>();
-    for (final Theater theater : this.theaters) {
-      populateTheaterDetailItem();
-    }
-  }
-
-  private void populateTheaterDetailItem() {
-    // Add name_showtimes type
-    TheaterDetailItem entry1 = new TheaterDetailItem();
-    entry1.setType(TheaterDetailItemType.NAME_SHOWTIMES);
-    this.detailItems.add(entry1);
-    // Add address type
-    entry1 = new TheaterDetailItem();
-    entry1.setType(TheaterDetailItemType.ADDRESS);
-    this.detailItems.add(entry1);
-    // Add phone type
-    entry1 = new TheaterDetailItem();
-    entry1.setType(TheaterDetailItemType.PHONE);
-    this.detailItems.add(entry1);
-  }
-
   @Override
   protected void onResume() {
     super.onResume();
     bindView();
-    populateTheaterDetailItems();
-    final TheaterAdapter theaterAdapter = new TheaterAdapter();
+    // populateTheaterDetailItems();
+    final TheaterListAdapter theaterAdapter = new TheaterListAdapter();
     setListAdapter(theaterAdapter);
   }
 
-  private class TheaterAdapter extends BaseAdapter {
+  private class TheaterListAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public TheaterAdapter() {
+    public TheaterListAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(ShowtimesActivity.this);
     }
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
-      convertView = this.inflater.inflate(R.layout.showtimes_item, null);
+      convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
       final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
-          .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
-          (TextView) convertView.findViewById(R.id.data));
-      final int theaterIndex = position / TheaterDetailItemType.values().length;
-      final Theater theater = ShowtimesActivity.this.theaters.get(theaterIndex);
-      switch (ShowtimesActivity.this.detailItems.get(position).getType()) {
-      case NAME_SHOWTIMES:
-        holder.label.setTextAppearance(ShowtimesActivity.this, android.R.attr.textAppearanceLarge);
-        holder.label.setMinHeight(50);
-        //holder.label.setBackgroundResource(R.drawable.opaque_box);
-        holder.label.setTextColor(Color.BLACK);
-        holder.label.setText(theater.getName());
-        final List<Performance> list = NowPlayingControllerWrapper
-            .getPerformancesForMovieAtTheater(ShowtimesActivity.this.movie, theater);
-        holder.icon.setImageDrawable(getResources().getDrawable(
-            android.R.drawable.sym_action_email));
-        String performance = "";
-        if (list != null) {
-          for (final Performance per : list) {
-            performance += per.getTime() + ", ";
-          }
-          performance = performance.substring(0, performance.length() - 2);
-          holder.data.setText(performance);
-          final String addr = "user@example.com";
-          final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
-          intent1.putExtra("subject", "ShowTimes for "
-              + ShowtimesActivity.this.movie.getDisplayTitle() + " at " + theater.getName());
-          intent1.putExtra("body", performance);
-          ShowtimesActivity.this.detailItems.get(position).setIntent(intent1);
-        } else {
-          holder.data.setText("Unknown.");
+          .findViewById(R.id.label), (TextView) convertView.findViewById(R.id.data));
+      final Theater theater = ShowtimesActivity.this.theaters.get(position);
+      holder.label.setText(theater.getName());
+      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
+          ShowtimesActivity.this.movie, theater);
+      String performance = "";
+      if (list != null) {
+        for (final Performance per : list) {
+          performance += per.getTime() + ", ";
         }
-        break;
-      case PHONE:
-        holder.data.setText(theater.getPhoneNumber());
-        holder.icon.setImageDrawable(getResources().getDrawable(
-            android.R.drawable.sym_action_call));
-        holder.label.setText("Phone");
-        final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
-            + theater.getPhoneNumber()));
-        ShowtimesActivity.this.detailItems.get(position).setIntent(intent2);
-        break;
-      case ADDRESS:
-        final String address = theater.getAddress() + ", " + theater.getLocation().getCity();
-        holder.data.setText(address);
-        holder.icon.setImageDrawable(getResources().getDrawable(
-            R.drawable.sym_action_map));
-        holder.label.setText("Address");
-        final Intent intent3 = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
-            + address));
-        ShowtimesActivity.this.detailItems.get(position).setIntent(intent3);
+        performance = performance.substring(0, performance.length() - 2);
+        holder.data.setText(performance);
+      } else {
+        holder.data.setText("Unknown.");
       }
       return convertView;
     }
 
     public int getCount() {
-      return ShowtimesActivity.this.detailItems.size();
+      return ShowtimesActivity.this.theaters.size();
     }
 
     private class TheaterDetailsViewHolder {
       private final TextView label;
-      private final ImageView icon;
       private final TextView data;
 
-      private TheaterDetailsViewHolder(final TextView label, final ImageView icon, final TextView data) {
+      private TheaterDetailsViewHolder(final TextView label, final TextView data) {
         this.label = label;
-        this.icon = icon;
         this.data = data;
       }
     }
@@ -183,7 +125,7 @@ public class ShowtimesActivity extends ListActivity {
     }
 
     public Object getItem(final int position) {
-      return ShowtimesActivity.this.detailItems.get(position);
+      return ShowtimesActivity.this.theaters.get(position);
     }
 
     public long getItemId(final int position) {
@@ -218,22 +160,20 @@ public class ShowtimesActivity extends ListActivity {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
-        R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies)
+        .setIntent(new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
         R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
+        .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(ShowtimesActivity.this, AllTheatersActivity.class);
@@ -242,5 +182,4 @@ public class ShowtimesActivity extends ListActivity {
     }
     return false;
   }
-
 }

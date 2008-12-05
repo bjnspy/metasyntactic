@@ -33,6 +33,10 @@ public class MovieViewUtilities {
   public static final int MENU_UPCOMING = 3;
   public static final int MENU_SETTINGS = 4;
   public static final int MENU_MOVIES = 5;
+  public static final int MENU_TRAILERS = 6;
+  public static final int MENU_REVIEWS = 7;
+  public static final int MENU_IMDB = 8;
+  public static final int MENU_SHOWTIMES = 9;
   
   // Constants for movies sort
   private final static int MovieTitle = 0;

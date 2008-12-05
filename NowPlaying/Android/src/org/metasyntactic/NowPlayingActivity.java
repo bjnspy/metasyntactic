@@ -18,14 +18,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
@@ -48,10 +49,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private boolean gridAnimationEnded;
   private boolean isGridSetup;
   private List<Movie> movies;
+  private boolean activityAdded;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      refresh();
+      //  refresh();
     }
   };
 
@@ -59,8 +61,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public void refresh() {
     movies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
-    final Comparator<Movie> comparator = MOVIE_ORDER
-        .get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
+    final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
+        .getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     if (movies.size() > 0 && !isGridSetup) {
       setup();
@@ -104,6 +106,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
+    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     if (isGridSetup)
       NowPlayingActivity.this.grid.setVisibility(View.VISIBLE);
     // Hack to show the progress dialog with a immediate return from onResume,
@@ -111,8 +114,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     // visible. Normally, when we are doing work on background thread we wont need this
     // hack to show ProgressDialog.
     Runnable action = new Runnable() {
-      private boolean activityAdded;
-
       public void run() {
         // For the first Activity, we add activity in onResume (which is
         // different from rest of the Activities in this application).
@@ -123,27 +124,43 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         if (!activityAdded) {
           NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
           activityAdded = true;
+          refresh();
         }
-        final String userLocation = NowPlayingControllerWrapper
-            .getUserLocation();
+        final String userLocation = NowPlayingControllerWrapper.getUserLocation();
         if (userLocation == null || userLocation == "") {
           Intent intent = new Intent();
           intent.setClass(NowPlayingActivity.this, SettingsActivity.class);
           startActivity(intent);
         }
-        refresh();
-        registerReceiver(broadcastReceiver, new IntentFilter(
-            Application.NOW_PLAYING_CHANGED_INTENT));
       }
     };
     Handler handler = new Handler();
-    handler.postDelayed(action, 1000);
+    if (!activityAdded) {
+      handler.postDelayed(action, 1000);
+    } else {
+      handler.post(action);
+    }
   }
 
   private void setup() {
     setContentView(R.layout.moviegrid_anim);
     this.grid = (GridView) findViewById(R.id.grid);
     final int maxpagecount = (this.movies.size() - 1) / 9;
+    this.grid.setOnItemClickListener(new OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView parent, View v, int position, long id) {
+        // TODO Auto-generated method stub
+        Log.i("test", "item selected");
+        NowPlayingActivity.this.selectedMovie = movies.get(position);
+        int i = 0;
+        View child = NowPlayingActivity.this.grid.getChildAt(i);
+        while (child != null && child.getVisibility() == View.VISIBLE) {
+          child.startAnimation(NowPlayingActivity.this.animation);
+          i++;
+          child = NowPlayingActivity.this.grid.getChildAt(i);
+        }
+      }
+    });
     this.grid.setLayoutAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
         NowPlayingActivity.this.gridAnimationEnded = true;
@@ -159,8 +176,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.grid.setAdapter(this.postersAdapter);
     this.intent = new Intent();
     this.intent.setClass(NowPlayingActivity.this, AllMoviesActivity.class);
-    this.animation = AnimationUtils.loadAnimation(NowPlayingActivity.this,
-        R.anim.fade_reverse);
+    this.animation = AnimationUtils.loadAnimation(NowPlayingActivity.this, R.anim.fade_reverse);
     this.animation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
         NowPlayingActivity.this.grid.setVisibility(View.GONE);
@@ -216,8 +232,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
     }
   };
-  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(
-      TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
+  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER,
+      RELEASE_ORDER, SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
@@ -227,8 +243,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       this.inflater = LayoutInflater.from(NowPlayingActivity.this);
     }
 
-    public View getView(final int position, View convertView,
-        final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
       // to findViewById() on each row.
       final ViewHolder holder;
       final int pagecount = position / 9;
@@ -241,8 +256,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
-        holder = new ViewHolder(
-            (TextView) convertView.findViewById(R.id.title),
+        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title),
             (ImageView) convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
       } else {
@@ -258,27 +272,26 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       Log.i("NowPlayingActivity getview", "trying to show posters");
       final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
       if (bytes.length > 0) {
-        final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0,
-            bytes.length);
+        final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         holder.poster.setImageBitmap(bitmap);
       } else {
-        holder.poster.setImageDrawable(getResources().getDrawable(
-            R.drawable.movies));
+        holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loading));
       }
-      convertView.setOnClickListener(new OnClickListener() {
-        public void onClick(final View v) {
-          NowPlayingActivity.this.selectedMovie = movies.get(position);
-          int i = 0;
-          View child = NowPlayingActivity.this.grid.getChildAt(i);
-          while (child != null && child.getVisibility() == View.VISIBLE) {
-            child.startAnimation(NowPlayingActivity.this.animation);
-            i++;
-            child = NowPlayingActivity.this.grid.getChildAt(i);
-          }
-        }
-      });
-      convertView.setBackgroundDrawable(getResources().getDrawable(
-          R.drawable.gallery_background_1));
+      /* convertView.setOnLongClickListener(new OnLongClickListener() {
+         public boolean onLongClick(final View v) {
+           NowPlayingActivity.this.selectedMovie = movies.get(position);
+           int i = 0;
+           View child = NowPlayingActivity.this.grid.getChildAt(i);
+           while (child != null && child.getVisibility() == View.VISIBLE) {
+             child.startAnimation(NowPlayingActivity.this.animation);
+             i++;
+             child = NowPlayingActivity.this.grid.getChildAt(i);
+           }
+           return false;
+         }
+       });*/
+      convertView
+          .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       return convertView;
     }
 
@@ -301,8 +314,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
 
     public final Object getItem(final int position) {
-      return NowPlayingActivity.this.movies.get(position
-          % NowPlayingActivity.this.movies.size());
+      return NowPlayingActivity.this.movies.get(position % NowPlayingActivity.this.movies.size());
     }
 
     public final long getItemId(final int position) {
@@ -324,8 +336,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
         R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
+        .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -333,11 +345,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
-          NowPlayingActivity.this).setTitle(R.string.movies_select_sort_title)
-          .setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
-          .setEntries(R.array.entries_movies_sort_preference)
-          .setPositiveButton(android.R.string.ok).setNegativeButton(
-              android.R.string.cancel);
+          NowPlayingActivity.this).setTitle(R.string.movies_select_sort_title).setKey(
+          NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
+          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
+          .setNegativeButton(android.R.string.cancel);
       builder.show();
       return true;
     }

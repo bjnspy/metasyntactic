@@ -20,6 +20,10 @@
 			android:name="MovieDetailsActivity">
 		</activity>
 		<activity
+            android:label="@string/app_name"
+            android:name="ShowtimesDetailsActivity">
+        </activity>
+		<activity
 			android:label="@string/app_name"
 			android:name="ShowtimesActivity">
 		</activity>

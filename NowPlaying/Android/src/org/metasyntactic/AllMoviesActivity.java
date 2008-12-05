@@ -150,16 +150,15 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
         android.R.drawable.star_on);
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
-        R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies)
+        .setIntent(new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
         R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
+        .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -167,11 +166,10 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
-          AllMoviesActivity.this).setTitle(R.string.movies_select_sort_title)
-          .setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
-          .setEntries(R.array.entries_movies_sort_preference)
-          .setPositiveButton(android.R.string.ok).setNegativeButton(
-              android.R.string.cancel);
+          AllMoviesActivity.this).setTitle(R.string.movies_select_sort_title).setKey(
+          NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
+          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
+          .setNegativeButton(android.R.string.cancel);
       builder.show();
       return true;
     }
@@ -316,7 +314,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       if (bytes.length > 0) {
         i.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
       } else {
-        i.setImageDrawable(getContext().getResources().getDrawable(R.drawable.movies));
+        i.setImageDrawable(getContext().getResources().getDrawable(R.drawable.loading));
       }
       i.setScaleType(ImageView.ScaleType.FIT_XY);
       layout.addView(i, new LinearLayout.LayoutParams(95, 130));

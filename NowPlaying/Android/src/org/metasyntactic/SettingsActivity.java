@@ -5,11 +5,22 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
@@ -147,10 +158,27 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   private void populateSettingsItems() {
+    this.detailItems = new ArrayList<SettingsItem>();
+    
+ // auto update location
+     SettingsItem settings = new SettingsItem();
+    settings.setLabel("Auto Update Location");
+    final Boolean isAutoUpdate = NowPlayingControllerWrapper.isAutoUpdateEnabled();
+    if (isAutoUpdate != null) {
+      if (isAutoUpdate) {
+      settings.setData("On");
+    } else {
+      settings.setData("Off");
+    }
+    } else {
+      settings.setData("Unknown");
+    }
+    settings
+        .setKey(NowPlayingPreferenceDialog.PreferenceKeys.AUTO_UPDATE_LOCATION);
+    this.detailItems.add(settings);
 	// location
-	this.detailItems = new ArrayList<SettingsItem>();
-	SettingsItem settings = new SettingsItem();
-	settings.setLabel("Set Location");
+	settings = new SettingsItem();
+	settings.setLabel("Location");
 	final String location = NowPlayingControllerWrapper.getUserLocation();
 	if (location != null && location != "") {
 	  settings.setData(location);
@@ -162,7 +190,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
 	// search distance
 	settings = new SettingsItem();
-	settings.setLabel("Set Search Distance");
+	settings.setLabel("Search Distance");
 	final int distance = NowPlayingControllerWrapper.getSearchDistance();
 	//TODO Remove hardcoded values once the controller method for distance units
 	// is available.
@@ -172,7 +200,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
 	// search date
 	settings = new SettingsItem();
-	settings.setLabel("Set Search Date");
+	settings.setLabel("Search Date");
 	settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DATE);
 	  final Date d1 = NowPlayingControllerWrapper.getSearchDate();
       final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
@@ -186,7 +214,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
 	// reviews provider
 	settings = new SettingsItem();
-	settings.setLabel("Set Reviews Provider");
+	settings.setLabel("Reviews Provider");
 	final ScoreType type = NowPlayingControllerWrapper.getScoreType();
 	if (type != null) {
 	  settings.setData(type.toString());
@@ -196,22 +224,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 	settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.REVIEWS_PROVIDER);
 	this.detailItems.add(settings);
 
-	// auto update location
-	settings = new SettingsItem();
-	settings.setLabel("Auto Update Location");
-	final Boolean isAutoUpdate = NowPlayingControllerWrapper.isAutoUpdateEnabled();
-	if (isAutoUpdate != null) {
-	  if (isAutoUpdate) {
-      settings.setData("On");
-    } else {
-      settings.setData("Off");
-    }
-	} else {
-	  settings.setData("Unknown");
-	}
-	settings
-		.setKey(NowPlayingPreferenceDialog.PreferenceKeys.AUTO_UPDATE_LOCATION);
-	this.detailItems.add(settings);
+	
   }
 
   @Override
@@ -233,11 +246,31 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 	public View getView(final int position, View convertView,
 		final ViewGroup viewGroup) {
 	  convertView = this.inflater.inflate(R.layout.settings_item, null);
+      
 	  final SettingsViewHolder holder = new SettingsViewHolder(
-		  (TextView) convertView.findViewById(R.id.label),
-		  (ImageView) convertView.findViewById(R.id.icon),
-		  (TextView) convertView.findViewById(R.id.data));
-	  final SettingsItem settingsItem = SettingsActivity.this.detailItems
+          (TextView) convertView.findViewById(R.id.label),
+          (ImageView) convertView.findViewById(R.id.icon),
+          (TextView) convertView.findViewById(R.id.data),
+          (CheckBox) convertView.findViewById(R.id.check));
+    
+	  if( position ==0){
+	     holder.check.setVisibility(View.VISIBLE);
+	     holder.icon.setVisibility(View.GONE);
+	     holder.check.setChecked(NowPlayingControllerWrapper.isAutoUpdateEnabled());
+	     holder.check.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+
+        @Override
+        public void onCheckedChanged(CompoundButton arg0, boolean checked) {
+           Log.i("test",String.valueOf(checked));
+            NowPlayingControllerWrapper.setAutoUpdateEnabled(checked);
+            Log.i("test",String.valueOf(NowPlayingControllerWrapper.isAutoUpdateEnabled()));
+            populateSettingsItems();
+            SettingsActivity.this.settingsAdapter.refresh();
+        }
+	       
+	     });
+	  }
+	   final SettingsItem settingsItem = SettingsActivity.this.detailItems
 		  .get(position);
 	  holder.data.setText(settingsItem.getData());
 
@@ -252,10 +285,14 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 	private class SettingsViewHolder {
 	  private final TextView label;
 	  private final TextView data;
+	  private final CheckBox check;
+	  private final ImageView icon;
 
-	  private SettingsViewHolder(final TextView label, final ImageView icon, final TextView data) {
+	  private SettingsViewHolder(final TextView label, final ImageView icon, final TextView data, final CheckBox check) {
 		this.label = label;
 		this.data = data;
+		this.check = check;
+		this.icon = icon;
 	  }
 	}
 

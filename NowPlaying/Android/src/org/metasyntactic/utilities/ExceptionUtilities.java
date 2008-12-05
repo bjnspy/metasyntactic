@@ -21,6 +21,6 @@ public class ExceptionUtilities {
   }
 
   public static void log(final Class<?> clazz, final String method, final Exception e) {
-    Log.e(clazz.getName(), method, e);
+  //  Log.e(clazz.getName(), method, e);
   }
 }

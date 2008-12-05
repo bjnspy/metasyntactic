@@ -70,7 +70,7 @@
   <!--Call-->
   <string name="call">Call</string>
   <!--Cast:-->
-  <string name="cast">Cast:</string>
+  <string name="cast">Cast</string>
   <!--Change date-->
   <string name="change_date">Change date</string>
   <!--City/State or Postal Code-->
@@ -86,7 +86,7 @@
   <!--Data for future dates may be incomplete. Reset the search date to the current date to see full listings.-->
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Data for future dates may be incomplete. Reset the search date to the current date to see full listings.</string>
   <!--Director:-->
-  <string name="director">Director:</string>
+  <string name="director">Director</string>
   <!--Directors:-->
   <string name="directors">Directors:</string>
   <!--Distance-->
@@ -174,7 +174,7 @@
   <!--Rated %@-->
   <string name="rated_string">Rated %s</string>
   <!--Rated:-->
-  <string name="rated">Rated:</string>
+  <string name="rated">Rated</string>
   <!--Read reviews-->
   <string name="read_reviews">Read reviews</string>
   <!--Really close by-->
@@ -184,13 +184,13 @@
   <!--Release-->
   <string name="release">Release</string>
   <!--Release date:-->
-  <string name="release_date">Release date:</string>
+  <string name="release_date">Release date</string>
   <!--Release: %@-->
   <string name="release_string">Release: %s</string>
   <!--Reviews-->
   <string name="reviews">Reviews</string>
   <!--Running time:-->
-  <string name="running_time">Running time:</string>
+  <string name="running_time">Running time</string>
   <!--Score-->
   <string name="score">Score</string>
   <!--Search Date-->

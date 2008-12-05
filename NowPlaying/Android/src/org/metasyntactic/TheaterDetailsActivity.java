@@ -37,6 +37,7 @@ public class TheaterDetailsActivity extends ListActivity {
     setContentView(R.layout.theaterdetails);
     this.theater = getIntent().getExtras().getParcelable("theater");
     bindView();
+    
   }
 
   @Override

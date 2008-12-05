@@ -4,40 +4,31 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="@drawable/divider_horizontal_bright" />
-    
     <TextView
         android:id="@+id/name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        
         android:background="@drawable/dark_header_dithered"
         android:textColor="?android:attr/textColorSecondary"
         android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:paddingLeft="8dip"
-        android:paddingTop="5px"
-        android:paddingBottom="5px" />
+        android:textSize="14sp"
+        android:paddingLeft="8dip" />
     <ImageView
+        android:id="@+id/divider"
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@drawable/divider_horizontal_bright" />
-  
-        <TextView
-            android:id="@+id/value"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="10dip"
-            android:gravity="center_vertical"
-            android:singleLine="false"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_marginTop="15px"
-            android:layout_marginBottom="15px" />
-  
-</LinearLayout> 
-    
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="fill_parent"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:paddingLeft="8dip"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:singleLine="false"
+        android:textSize="14px"
+        android:textColor="?android:attr/textColorPrimary"
+        android:paddingRight="6dip"
+        android:paddingBottom="8dip" />
+</LinearLayout>

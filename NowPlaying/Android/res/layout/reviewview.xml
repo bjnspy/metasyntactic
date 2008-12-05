@@ -14,9 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginTop="5dip"
         android:layout_marginRight="10dip"
-        
-        android:background="@drawable/fresh"
-         />
+        android:background="@drawable/fresh" />
     <TextView
         android:id="@+id/author"
         android:layout_width="wrap_content"
@@ -37,13 +35,12 @@
         android:layout_below="@id/author"
         android:textColor="?android:attr/textColorSecondary"
         android:text="Source" />
-        <ImageView
+    <ImageView
         android:id="@+id/divider"
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:layout_below="@id/source"
         android:background="@drawable/divider_horizontal_bright" />
-    
     <TextView
         android:id="@+id/desc"
         android:paddingTop="5px"
@@ -54,7 +51,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/divider"
         android:textColor="?android:attr/textColorPrimary"
-        
         android:background="#000000" />
     <ImageView
         android:id="@+id/togglebtn"
