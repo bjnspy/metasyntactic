@@ -200,6 +200,7 @@ static NSString** KEYS[] = {
                        searchRadius:(id) previousSearchRadius
                  autoUpdateLocation:(id) previousAutoUpdateLocation
                      useNormalFonts:(id) previousUseNormalFonts
+                   bookmarkedTitles:(id) previousBookmarkedTitles
                    favoriteTheaters:(id) previousFavoriteTheaters
           previousDvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
         previousDvdMoviesHideBluray:(id) previousDvdMoviesHideBluray {
@@ -225,6 +226,17 @@ static NSString** KEYS[] = {
 
     if ([previousDvdMoviesHideBluray isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideBluray boolValue] forKey:DVD_MOVIES_HIDE_BLURAY];
+    }
+    
+    if ([previousBookmarkedTitles isKindOfClass:[NSArray class]]) {
+        NSMutableArray* bookmarkedTitles = [NSMutableArray array];
+        for (id previousBookmark in previousBookmarkedTitles) {
+            if ([previousBookmark isKindOfClass:[NSString class]]) {
+                [bookmarkedTitles addObject:previousBookmark];
+            }
+        }
+        
+        [NowPlayingModel saveBookmarkedTitles:bookmarkedTitles];
     }
 
     if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
@@ -257,6 +269,7 @@ static NSString** KEYS[] = {
         id previousSearchRadius = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_RADIUS];
         id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
+        id previousBookmarkedTitles = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_TITLES];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
         id previousDvdMoviesHideDVDs = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_DVDS];
         id previousDvdMoviesHideBluray = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_BLURAY];
@@ -273,6 +286,7 @@ static NSString** KEYS[] = {
                             searchRadius:previousSearchRadius
                       autoUpdateLocation:previousAutoUpdateLocation
                           useNormalFonts:previousUseNormalFonts
+                        bookmarkedTitles:previousBookmarkedTitles
                         favoriteTheaters:previousFavoriteTheaters
                previousDvdMoviesHideDVDs:previousDvdMoviesHideDVDs
              previousDvdMoviesHideBluray:previousDvdMoviesHideBluray];
