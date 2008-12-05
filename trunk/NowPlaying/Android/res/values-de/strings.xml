@@ -25,6 +25,7 @@
   <string name="number_minutes">%d Minuten</string>
   <string name="number_months_ago">%d Monaten</string>
   <string name="number_of_number">%d von %d</string>
+  <string name="number_theaters_outside_search_area">%d Kinos außerhalb des Suchradius</string>
   <string name="number_weeks_ago">%d Wochen</string>
   <string name="number_years_ago">%d Jahren</string>
   <string name="one_hour">Stunde</string>
@@ -32,6 +33,7 @@
   <string name="one_mile">Meile</string>
   <string name="one_minute">1 Minute</string>
   <string name="one_month_ago">1 Monat</string>
+  <string name="one_theater_outside_search_area">1 Kino außerhalb des Suchradius</string>
   <string name="one_week_ago">einer Woche</string>
   <string name="one_year_ago">einem Jahr</string>
   <string name="about">Über</string>
