@@ -221,12 +221,12 @@
 
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
-    if ([model isBookmarkedUpcomingMovie:movie]) {
-        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
+    if ([model isBookmarkedUpcomingMovie:movie_]) {
+        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie_.displayTitle];
     } else {
-        titleLabel.text = movie.displayTitle;
+        titleLabel.text = movie_.displayTitle;
     }
-    
+
     if (movie == movie_) {
         [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
         [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
