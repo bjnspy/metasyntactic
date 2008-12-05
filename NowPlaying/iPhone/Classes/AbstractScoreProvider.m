@@ -33,7 +33,6 @@
 #import "XmlParser.h"
 
 @interface AbstractScoreProvider()
-@property (assign) ScoreCache* parentCache;
 @property (retain) NSDictionary* scoresData;
 @property (retain) NSString* hashData;
 @property (retain) NSLock* movieMapLock;
@@ -47,7 +46,6 @@
 
 @implementation AbstractScoreProvider
 
-@synthesize parentCache;
 @synthesize scoresData;
 @synthesize hashData;
 @synthesize movieMapLock;
@@ -58,7 +56,6 @@
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.parentCache = nil;
     self.scoresData = nil;
     self.hashData = nil;
     self.movieMapLock = nil;
@@ -87,9 +84,8 @@
 }
 
 
-- (id) initWithCache:(ScoreCache*) parentCache_ {
-    if (self = [super init]) {
-        self.parentCache = parentCache_;
+- (id) initWithModel:(NowPlayingModel*) model_ {
+    if (self = [super initWithModel:model_]) {
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
@@ -99,11 +95,6 @@
     }
 
     return self;
-}
-
-
-- (NowPlayingModel*) model {
-    return parentCache.model;
 }
 
 
@@ -516,7 +507,7 @@
 
 - (void) downloadReviews:(NSMutableArray*) scores
                scoresMap:(NSDictionary*) scoresMap {
-    Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+    Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
 
     if (location == nil) {
         return;

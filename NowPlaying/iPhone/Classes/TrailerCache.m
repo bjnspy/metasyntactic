@@ -24,18 +24,15 @@
 #import "ThreadingUtilities.h"
 
 @interface TrailerCache()
-@property (assign) NowPlayingModel* model;
 @property (retain) LinkedSet* prioritizedMovies;
 @end
 
 
 @implementation TrailerCache
 
-@synthesize model;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.model = nil;
     self.prioritizedMovies = nil;
 
     [super dealloc];
@@ -43,8 +40,7 @@
 
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
-    if (self = [super init]) {
-        self.model = model_;
+    if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 

@@ -27,16 +27,16 @@
 }
 
 
-- (id) initWithCache:(ScoreCache*) cache_ {
-    if (self = [super initWithCache:cache_]) {
+- (id) initWithModel:(NowPlayingModel*) model_ {
+    if (self = [super initWithModel:model_]) {
     }
 
     return self;
 }
 
 
-+ (MetacriticScoreProvider*) providerWithCache:(ScoreCache*) cache {
-    return [[[MetacriticScoreProvider alloc] initWithCache:cache] autorelease];
++ (MetacriticScoreProvider*) providerWithModel:(NowPlayingModel*) model {
+    return [[[MetacriticScoreProvider alloc] initWithModel:model] autorelease];
 }
 
 

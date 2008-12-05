@@ -54,10 +54,10 @@
     if (self = [super init]) {
         self.model = model_;
 
-        self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider providerWithCache:self];
-        self.metacriticScoreProvider = [MetacriticScoreProvider providerWithCache:self];
-        self.googleScoreProvider = [GoogleScoreProvider providerWithCache:self];
-        self.noneScoreProvider = [NoneScoreProvider providerWithCache:self];
+        self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider providerWithModel:model];
+        self.metacriticScoreProvider = [MetacriticScoreProvider providerWithModel:model];
+        self.googleScoreProvider = [GoogleScoreProvider providerWithModel:model];
+        self.noneScoreProvider = [NoneScoreProvider providerWithModel:model];
     }
 
     return self;

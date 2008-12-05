@@ -16,7 +16,6 @@
 
 @interface IMDbCache : AbstractCache {
 @private
-    NowPlayingModel* model;
     LinkedSet* prioritizedMovies;
 }
 

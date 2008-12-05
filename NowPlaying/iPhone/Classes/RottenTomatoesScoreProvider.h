@@ -17,6 +17,6 @@
 @interface RottenTomatoesScoreProvider : AbstractScoreProvider {
 }
 
-+ (RottenTomatoesScoreProvider*) providerWithCache:(ScoreCache*) cache;
++ (RottenTomatoesScoreProvider*) providerWithModel:(NowPlayingModel*) model;
 
 @end

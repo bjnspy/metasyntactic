@@ -33,18 +33,15 @@
 #import "Utilities.h"
 
 @interface PosterCache()
-@property (retain) NowPlayingModel* model;
 @property (retain) LinkedSet* prioritizedMovies;
 @end
 
 
 @implementation PosterCache
 
-@synthesize model;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.model = nil;
     self.prioritizedMovies = nil;
 
     [super dealloc];
@@ -52,8 +49,7 @@
 
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
-    if (self = [super init]) {
-        self.model = model_;
+    if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
 
@@ -114,7 +110,7 @@
         return data;
     }
 
-    [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+    [model.largePosterCache downloadFirstPosterForMovie:movie];
 
     // if we had a network connection, then it means we don't know of any
     // posters for this movie.  record that fact and try again another time

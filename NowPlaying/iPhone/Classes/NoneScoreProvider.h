@@ -17,6 +17,6 @@
 @interface NoneScoreProvider : AbstractScoreProvider {
 }
 
-+ (NoneScoreProvider*) providerWithCache:(ScoreCache*) cache;
++ (NoneScoreProvider*) providerWithModel:(NowPlayingModel*) model;
 
 @end

@@ -27,16 +27,16 @@
 }
 
 
-- (id) initWithCache:(ScoreCache*) cache_ {
-    if (self = [super initWithCache:cache_]) {
+- (id) initWithModel:(NowPlayingModel*) model_ {
+    if (self = [super initWithModel:model_]) {
     }
 
     return self;
 }
 
 
-+ (RottenTomatoesScoreProvider*) providerWithCache:(ScoreCache*) cache {
-    return [[[RottenTomatoesScoreProvider alloc] initWithCache:cache] autorelease];
++ (RottenTomatoesScoreProvider*) providerWithModel:(NowPlayingModel*) model {
+    return [[[RottenTomatoesScoreProvider alloc] initWithModel:model] autorelease];
 }
 
 

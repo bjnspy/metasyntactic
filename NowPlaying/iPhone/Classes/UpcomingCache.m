@@ -29,7 +29,6 @@
 #import "XmlElement.h"
 
 @interface UpcomingCache()
-@property (assign) NowPlayingModel* model;
 @property (retain) NSDictionary* indexData;
 @property (retain) NSArray* recentMovies;
 @property (retain) NSDictionary* movieMap;
@@ -44,14 +43,12 @@ static NSString* hash_key = @"Hash";
 static NSString* studios_key = @"Studios";
 static NSString* titles_key = @"Titles";
 
-@synthesize model;
 @synthesize indexData;
 @synthesize recentMovies;
 @synthesize movieMap;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.model = nil;
     self.indexData = nil;
     self.recentMovies = nil;
     self.movieMap = nil;
@@ -62,9 +59,8 @@ static NSString* titles_key = @"Titles";
 
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
-    if (self = [super init]) {
+    if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        self.model = model_;
     }
 
     return self;
@@ -363,7 +359,7 @@ static NSString* titles_key = @"Titles";
 
 - (void) updatePoster:(Movie*) movie {
     if (movie.poster.length == 0) {
-        [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+        [model.largePosterCache downloadFirstPosterForMovie:movie];
         return;
     }
 

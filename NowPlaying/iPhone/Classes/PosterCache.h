@@ -16,8 +16,6 @@
 
 @interface PosterCache : AbstractCache {
 @private
-    NowPlayingModel* model;
-
     LinkedSet* prioritizedMovies;
 }
 
