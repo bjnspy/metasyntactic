@@ -111,7 +111,7 @@
 
 
 - (NSSet*) cachedDirectoriesToClear {
-    return [NSMutableSet setWithObject:[Application imdbDirectory]];
+    return [NSSet setWithObject:[Application imdbDirectory]];
 }
 
 

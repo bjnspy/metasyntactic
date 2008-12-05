@@ -35,7 +35,9 @@
 #import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
+#import "TheatersNavigationController.h"
 #import "ThreadingUtilities.h"
+#import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
@@ -53,6 +55,7 @@
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
 @property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
+@property (retain) UIButton* bookmarkButton;
 @end
 
 
@@ -71,6 +74,7 @@
 @synthesize posterDownloadLock;
 @synthesize posterImage;
 @synthesize posterImageView;
+@synthesize bookmarkButton;
 
 - (void) dealloc {
     self.movie = nil;
@@ -86,6 +90,7 @@
     self.posterDownloadLock = nil;
     self.posterImage = nil;
     self.posterImageView = nil;
+    self.bookmarkButton = nil;
 
     [super dealloc];
 }
@@ -111,6 +116,16 @@
     [result addObjectsFromArray:nonFavorites];
 
     self.theatersArray = result;
+}
+
+
+- (BOOL) isUpcomingMovie {
+    return [self.model.upcomingCache.upcomingMovies containsObject:movie];
+}
+
+
+- (BOOL) isDVD {
+    return dvd != nil;
 }
 
 
@@ -143,7 +158,7 @@
         [titles addObject:NSLocalizedString(@"Website", nil)];
     }
     
-    if ([self.navigationController isKindOfClass:[MoviesNavigationController class]]) {
+    if (![self isUpcomingMovie] && ![self isDVD]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
         [titles addObject:NSLocalizedString(@"Change date", nil)];
     }
@@ -226,6 +241,72 @@
 }
 
 
+- (BOOL) isBookmarked {
+    if ([self isDVD]) {
+        return [self.model isBookmarkedDVDMovie:movie];
+    } else if ([self isUpcomingMovie]) {
+        return [self.model isBookmarkedUpcomingMovie:movie];
+    } else {
+        return [self.model isBookmarkedMovie:movie];
+    }
+}
+
+
+- (void) addBookmark {
+    if ([self isDVD]) {
+        return [self.model addBookmarkedDVDMovie:movie];
+    } else if ([self isUpcomingMovie]) {
+        return [self.model addBookmarkedUpcomingMovie:movie];
+    } else {
+        return [self.model addBookmarkedMovie:movie];
+    }
+}
+
+
+- (void) removeBookmark {
+    if ([self isDVD]) {
+        [self.model removeBookmarkedDVDMovie:movie];
+    } else if ([self isUpcomingMovie]) {
+        [self.model removeBookmarkedUpcomingMovie:movie];
+    } else {    
+        [self.model removeBookmarkedMovie:movie];
+    }
+}
+
+
+- (void) setBookmarkImage {
+    self.bookmarkButton.selected = [self isBookmarked];
+}
+
+
+- (void) switchBookmark:(id) sender {
+    if ([self isBookmarked]) {
+        [self removeBookmark];
+    } else {
+        [self addBookmark];
+    }
+    
+    [self setBookmarkImage];
+}
+
+
+- (void) initializeBookmarkButton {
+    self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
+    [bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
+    [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGRect frame = bookmarkButton.frame;
+    frame.size = [ImageCache emptyStarImage].size;
+    frame.size.width += 10;
+    frame.size.height += 10;
+    bookmarkButton.frame = frame;
+    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:bookmarkButton] autorelease];
+    [self setBookmarkImage];
+}
+
+
 - (void) loadView {
     [super loadView];
 
@@ -240,6 +321,7 @@
     self.navigationItem.titleView = label;
 
     [self setupPosterView];
+    [self initializeBookmarkButton];
     [self.model prioritizeMovie:movie];
 }
 
@@ -305,8 +387,6 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self startup];
     [self majorRefresh];

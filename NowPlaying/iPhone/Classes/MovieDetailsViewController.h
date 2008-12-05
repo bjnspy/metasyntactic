@@ -42,6 +42,8 @@
     NSInteger posterCount;
 
     BOOL visible;
+    
+    UIButton* bookmarkButton;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
