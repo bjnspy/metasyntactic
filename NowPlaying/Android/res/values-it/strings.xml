@@ -72,6 +72,7 @@
   <string name="less_than_one_string_away">A meno di 1 %s</string>
   <string name="license">Licenza</string>
   <string name="loading_poster">Carico poster</string>
+  <string name="local_results_unavailable">Risultati locali non disponibili</string>
   <string name="localized_by">Traduzione di:</string>
   <string name="location">Luogo</string>
   <string name="map">Mappa</string>
@@ -126,6 +127,7 @@
   <string name="website">Sito Web</string>
   <string name="written_by_cyrus_najmabadi">Scritto da Cyrus Najmabadi</string>
   <string name="yesterday">Ieri</string>
+  <string name="your_strings_country_is_set_to_string_full_support">La nazione del tuo %s è: %s\n\nIl tuo paese sarà presto supportato completamente nel frattempo, ed alcune funzioni sono disponibili per te già da oggi! Quando le nuove funzionalità saranno pronte, sarai automaticamente notificato degli aggiornamenti.</string>
   <string name="kilometer">chilometro</string>
   <string name="kilometers">chilometri</string>
   <string name="mile">miglio</string>
