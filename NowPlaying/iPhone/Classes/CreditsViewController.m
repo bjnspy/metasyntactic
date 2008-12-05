@@ -29,8 +29,8 @@
 @implementation CreditsViewController
 
 typedef enum {
-    SendFeedbackSection,
     WrittenBySection,
+    MyOtherApplicationsSection,
     GraphicsBySection,
     ReviewsBySection,
     TicketSalesBySection,
@@ -113,12 +113,12 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
-    if (section == SendFeedbackSection) {
+    if (section == WrittenBySection) {
+        return 2;
+    } else if (section == MyOtherApplicationsSection) {
         return 1;
-    } else if (section == WrittenBySection) {
-        return 2;
     } else if (section == GraphicsBySection) {
-        return 2;
+        return 1;
     } else if (section == ReviewsBySection) {
         return 2;
     } else if (section == TicketSalesBySection) {
@@ -224,20 +224,16 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
 
         [cell.contentView addSubview:imageView];
-    } else if (section == SendFeedbackSection) {
-        cell.text = NSLocalizedString(@"Send Feedback", nil);
     } else if (section == WrittenBySection) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"E-mail", @"This is a verb.  it means 'send email to developer'");
+            cell.text = NSLocalizedString(@"Send Feedback", nil);
         } else {
             cell.text = NSLocalizedString(@"Project website", nil);
         }
+    } else if (section == MyOtherApplicationsSection) {
+        cell.text = NSLocalizedString(@"ComiXology", nil);
     } else if (section == GraphicsBySection) {
-        if (row == 0) {
-            cell.text = NSLocalizedString(@"E-mail", @"This is a verb.  it means 'send email to developer'");
-        } else {
-            cell.text = NSLocalizedString(@"Website", nil);
-        }
+        cell.text = NSLocalizedString(@"Website", nil);
     } else if (section == GeolocationServicesBySection) {
         if (row == 1) {
             cell.text = @"GeoNames";
@@ -257,6 +253,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
       titleForHeaderInSection:(NSInteger) section {
     if (section == WrittenBySection) {
         return NSLocalizedString(@"Written by Cyrus Najmabadi", nil);
+    } else if (section == MyOtherApplicationsSection) {
+        return NSLocalizedString(@"My other applications", nil);
     } else if (section == GraphicsBySection) {
         return NSLocalizedString(@"Graphics by Jeffrey Nee", nil);
     } else if (section == ReviewsBySection) {
@@ -289,7 +287,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section >= SendFeedbackSection && indexPath.section <= DVDDetailsBySection) {
+    if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsBySection) {
         return UITableViewCellAccessoryDetailDisclosureButton;
     } else if (indexPath.section == LocalizedBySection) {
         return UITableViewCellAccessoryNone;
@@ -333,20 +331,16 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSInteger row = indexPath.row;
 
     NSString* url = nil;
-    if (section == SendFeedbackSection) {
-        url = [self.model feedbackUrl];
-    } else if (section == WrittenBySection) {
+    if (section == WrittenBySection) {
         if (row == 0) {
             url = [self.model feedbackUrl];
         } else {
             url = @"http://metasyntactic.googlecode.com";
         }
+    } else if (section == MyOtherApplicationsSection) {
+        url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
     } else if (section == GraphicsBySection) {
-        if (row == 0) {
-            url = @"mailto:jeff@jeffnee.com";
-        } else {
-            url = @"http://www.jeffnee.com";
-        }
+        url = @"http://www.jeffnee.com";
     } else if (section == ReviewsBySection) {
         if (row == 0) {
             url = @"http://www.rottentomatoes.com";
