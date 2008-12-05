@@ -256,7 +256,11 @@
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     for (XmlElement* child in element.children) {
-        [self processVideoElement:child result:result];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [self processVideoElement:child result:result];
+        }
+        [pool release];
     }
 
     return result;

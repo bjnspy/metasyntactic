@@ -375,10 +375,10 @@
 }
 
 
-- (void) addMissingData:(LookupResult*) lookupResult
-         searchLocation:(Location*) searchLocation
-          currentMovies:(NSArray*) currentMovies
-        currentTheaters:(NSArray*) currentTheaters {
+- (void) addMissingTheaters:(LookupResult*) lookupResult
+             searchLocation:(Location*) searchLocation
+              currentMovies:(NSArray*) currentMovies
+            currentTheaters:(NSArray*) currentTheaters {
     // Ok.  so if:
     //   a) the user is doing their main search
     //   b) we do not find data for a theater that should be showing up
@@ -434,6 +434,15 @@
 }
 
 
+- (void) addMissingBookmarkedMovies:(LookupResult*) result {
+    for (Movie* movie in model.bookmarkedMovies) {
+        if (![result.movies containsObject:movie]) {
+            [result.movies addObject:movie];
+        }
+    }
+}
+
+
 - (void) updateBackgroundEntryPointWorker:(LookupRequest*) request {
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     if (location == nil) {
@@ -450,15 +459,17 @@
         return;
     }
 
-    // Try to restore any theaters that went missing
-    [self addMissingData:result
-          searchLocation:location
-           currentMovies:request.currentMovies
-         currentTheaters:request.currentTheaters];
-
     // Lookup data for the users' favorites.
     [self updateMissingFavorites:result searchDate:request.searchDate];
-
+    
+    // Try to restore any theaters that went missing
+    [self addMissingTheaters:result
+              searchLocation:location
+               currentMovies:request.currentMovies
+             currentTheaters:request.currentTheaters];
+    
+    [self addMissingBookmarkedMovies:result];
+    
     [request.delegate onSuccess:result context:request.context];
 }
 

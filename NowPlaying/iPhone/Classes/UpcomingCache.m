@@ -146,9 +146,9 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (NSArray*) processResultElement:(XmlElement*) resultElement
-                       studioKeys:(NSMutableDictionary*) studioKeys
-                        titleKeys:(NSMutableDictionary*) titleKeys {
+- (NSMutableArray*) processResultElement:(XmlElement*) resultElement
+                              studioKeys:(NSMutableDictionary*) studioKeys
+                               titleKeys:(NSMutableDictionary*) titleKeys {
     NSMutableArray* result = [NSMutableArray array];
 
     for (XmlElement* movieElement in resultElement.children) {
@@ -292,9 +292,15 @@ static NSString* titles_key = @"Titles";
 
     NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
-    NSArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
+    NSMutableArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
     if (movies.count == 0) {
         return;
+    }
+    
+    for (Movie* movie in model.bookmarkedUpcomingMovies) {
+        if (![movies containsObject:movie]) {
+            [movies addObject:movie];
+        }
     }
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];

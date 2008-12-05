@@ -132,8 +132,6 @@
     } else {
         self.sectionTitles = [NSMutableArray arrayWithArray:indexTitles];
     }
-
-    [self removeUnusedSectionTitles];
 }
 
 
@@ -205,8 +203,6 @@
         // so we simulate here directly.
     outer: ;
     }
-
-    [self removeUnusedSectionTitles];
 }
 
 
@@ -218,6 +214,8 @@
     } else {
         [self sortTheatersByDistance];
     }
+    
+    [self removeUnusedSectionTitles];
 
     if (sectionTitles.count == 0) {
         NSArray* theaters = self.model.theaters;
