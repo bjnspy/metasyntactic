@@ -134,7 +134,7 @@
     
     for (Movie* movie in sortedMovies) {
         if ([bookmarkedMovies containsObject:movie]) {
-            [sectionTitleToContentsMap addObject:movie forKey:NSLocalizedString(@"Bookmarks", nil)];
+            [sectionTitleToContentsMap addObject:movie forKey:[Application starString]];
             continue;
         }
         
@@ -172,10 +172,10 @@
 
     NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
     
-    NSString* bookmarksString = NSLocalizedString(@"Bookmarks", nil);
+    NSString* bookmarksString = [Application starString];
     NSString* moviesString = NSLocalizedString(@"Movies", nil);
     
-    self.sectionTitles = [NSArray arrayWithObjects:bookmarksString, moviesString, nil];
+    self.sectionTitles = [NSMutableArray arrayWithObjects:bookmarksString, moviesString, nil];
     
     for (Movie* movie in sortedMovies) {
         if ([bookmarkedMovies containsObject:movie]) {
@@ -200,25 +200,28 @@
     
     for (Movie* movie in sortedMovies) {
         if ([bookmarkedMovies containsObject:movie]) {
-            [sectionTitleToContentsMap addObject:movie forKey:NSLocalizedString(@"Bookmarks", nil)];
-            continue;
-        }
-        
-        NSString* title = NSLocalizedString(@"Unknown release date", nil);
-        NSDate* releaseDate = [self.model releaseDateForMovie:movie];
-
-        if (releaseDate != nil) {
-            if ([releaseDate compare:today] == NSOrderedDescending) {
-                title = [DateUtilities formatFullDate:releaseDate];
-            } else {
-                title = [DateUtilities timeSinceNow:releaseDate];
+            NSString* starString = [Application starString];
+            [sectionTitleToContentsMap addObject:movie forKey:starString];
+            if (![sectionTitles containsObject:starString]) {
+                [sectionTitles insertObject:starString atIndex:0];
             }
-        }
-
-        [sectionTitleToContentsMap addObject:movie forKey:title];
-
-        if (![sectionTitles containsObject:title]) {
-            [sectionTitles addObject:title];
+        } else {
+            NSString* title = NSLocalizedString(@"Unknown release date", nil);
+            NSDate* releaseDate = [self.model releaseDateForMovie:movie];
+            
+            if (releaseDate != nil) {
+                if ([releaseDate compare:today] == NSOrderedDescending) {
+                    title = [DateUtilities formatFullDate:releaseDate];
+                } else {
+                    title = [DateUtilities timeSinceNow:releaseDate];
+                }
+            }
+            
+            [sectionTitleToContentsMap addObject:movie forKey:title];
+            
+            if (![sectionTitles containsObject:title]) {
+                [sectionTitles addObject:title];
+            }
         }
     }
 
@@ -422,19 +425,22 @@
 }
 
 
-- (NSString*) titleForHeaderInSectionWorker:(NSInteger) section {
-    return [sectionTitles objectAtIndex:section];
-}
-
-
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    NSString* sectionTitle = [self titleForHeaderInSectionWorker:section];
-    if (sectionTitle == [Application starString]) {
+    NSString* title = [sectionTitles objectAtIndex:section];
+    
+    if (self.sortingByScore) {
+        // Hide the header if sorting by score and we have no bookmarked movies
+        if (sectionTitles.count == 1 && [NSLocalizedString(@"Movies", nil) isEqual:title]) {
+            return nil;
+        }
+    }
+    
+    if ([title isEqual:[Application starString]]) {
         return NSLocalizedString(@"Bookmarks", nil);
     }
     
-    return sectionTitle;
+    return title;
 }
 
 
