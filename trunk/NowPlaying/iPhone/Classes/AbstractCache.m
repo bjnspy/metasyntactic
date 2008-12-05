@@ -18,23 +18,27 @@
 #import "ThreadingUtilities.h"
 
 @interface AbstractCache()
+@property (retain) NowPlayingModel* model;
 @property (retain) NSLock* gate;
 @end
 
 
 @implementation AbstractCache
 
+@synthesize model;
 @synthesize gate;
 
 - (void) dealloc {
+    self.model = nil;
     self.gate = nil;
 
     [super dealloc];
 }
 
 
-- (id) init {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
+        self.model = model_;
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 

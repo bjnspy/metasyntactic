@@ -16,8 +16,6 @@
 
 @interface AbstractDVDBlurayCache : AbstractCache {
 @private
-    NowPlayingModel* model;
-
     PointerSet* moviesSetData;
     NSArray* moviesData;
 

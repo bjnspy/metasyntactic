@@ -17,8 +17,6 @@
 
 @interface AbstractScoreProvider : AbstractCache<ScoreProvider> {
 @private
-    ScoreCache* parentCache;
-
     // Mapping from score title to score.
     NSDictionary* scoresData;
     NSString* hashData;
@@ -35,8 +33,6 @@
     LinkedSet* prioritizedMovies;
 }
 
-@property (readonly, assign) ScoreCache* parentCache;
-
-- (id) initWithCache:(ScoreCache*) cache;
+- (id) initWithModel:(NowPlayingModel*) model;
 
 @end

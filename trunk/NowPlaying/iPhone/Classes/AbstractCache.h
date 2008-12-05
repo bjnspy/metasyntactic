@@ -15,11 +15,13 @@
 @interface AbstractCache : NSObject {
 @protected
     NSLock* gate;
+    NowPlayingModel* model;
 }
 
 - (void) clearStaleData;
 
 /* @protected */
+- (id) initWithModel:(NowPlayingModel*) model;
 - (void) clearDirectory:(NSString*) directory;
 
 @end

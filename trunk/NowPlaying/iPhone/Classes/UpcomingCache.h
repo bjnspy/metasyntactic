@@ -16,8 +16,6 @@
 
 @interface UpcomingCache : AbstractCache {
 @private
-    NowPlayingModel* model;
-
     NSDictionary* indexData;
 
     NSArray* recentMovies;

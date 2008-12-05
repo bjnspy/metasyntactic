@@ -35,16 +35,16 @@
 }
 
 
-- (id) initWithCache:(ScoreCache*) cache_ {
-    if (self = [super initWithCache:cache_]) {
+- (id) initWithModel:(NowPlayingModel*) model_ {
+    if (self = [super initWithModel:model_]) {
     }
 
     return self;
 }
 
 
-+ (GoogleScoreProvider*) providerWithCache:(ScoreCache*) cache {
-    return [[[GoogleScoreProvider alloc] initWithCache:cache] autorelease];
++ (GoogleScoreProvider*) providerWithModel:(NowPlayingModel*) model {
+    return [[[GoogleScoreProvider alloc] initWithModel:model] autorelease];
 }
 
 
@@ -53,13 +53,8 @@
 }
 
 
-- (NowPlayingModel*) model {
-    return self.parentCache.model;
-}
-
-
 - (NSString*) serverUrl {
-    Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
+    Location* location = [model.userLocationCache locationForUserAddress:model.userAddress];
 
     if (location.postalCode == nil) {
         return nil;
@@ -71,7 +66,7 @@
 
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                    fromDate:[DateUtilities today]
-                                                                     toDate:self.model.searchDate
+                                                                     toDate:model.searchDate
                                                                     options:0];
     NSInteger day = components.day;
     day = MIN(MAX(day, 0), 7);

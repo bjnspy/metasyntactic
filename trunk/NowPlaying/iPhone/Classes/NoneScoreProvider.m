@@ -21,16 +21,16 @@
 }
 
 
-- (id) initWithCache:(ScoreCache*) cache_ {
-    if (self = [super initWithCache:cache_]) {
+- (id) initWithModel:(NowPlayingModel*) model_ {
+    if (self = [super initWithModel:model_]) {
     }
 
     return self;
 }
 
 
-+ (NoneScoreProvider*) providerWithCache:(ScoreCache*) cache {
-    return [[[NoneScoreProvider alloc] initWithCache:cache] autorelease];
++ (NoneScoreProvider*) providerWithModel:(NowPlayingModel*) model; {
+    return [[[NoneScoreProvider alloc] initWithModel:model] autorelease];
 }
 
 

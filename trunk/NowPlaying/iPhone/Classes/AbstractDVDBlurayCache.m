@@ -31,7 +31,6 @@
 #import "XmlElement.h"
 
 @interface AbstractDVDBlurayCache()
-@property (assign) NowPlayingModel* model;
 @property (retain) PointerSet* moviesSetData;
 @property (retain) NSArray* moviesData;
 @property (retain) LinkedSet* prioritizedMovies;
@@ -40,13 +39,11 @@
 
 @implementation AbstractDVDBlurayCache
 
-@synthesize model;
 @synthesize moviesSetData;
 @synthesize moviesData;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.model = nil;
     self.moviesSetData = nil;
     self.moviesData = nil;
     self.prioritizedMovies = nil;
@@ -56,9 +53,8 @@
 
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
-    if (self = [super init]) {
+    if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet set];
-        self.model = model_;
     }
 
     return self;
@@ -421,7 +417,7 @@
     }
 
     if (movie.poster.length == 0) {
-        [self.model.largePosterCache downloadFirstPosterForMovie:movie];
+        [model.largePosterCache downloadFirstPosterForMovie:movie];
         return;
     }
 

@@ -372,7 +372,7 @@ static NSString** KEYS[] = {
         [self loadData];
 
         self.userLocationCache = [UserLocationCache cache];
-        self.largePosterCache = [LargePosterCache cache];
+        self.largePosterCache = [LargePosterCache cacheWithModel:self];
         self.imdbCache = [IMDbCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cacheWithModel:self];
         self.blurayCache = [BlurayCache cacheWithModel:self];

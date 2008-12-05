@@ -19,7 +19,7 @@
     NSDictionary* indexData;
 }
 
-+ (LargePosterCache*) cache;
++ (LargePosterCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

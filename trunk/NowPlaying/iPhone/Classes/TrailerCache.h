@@ -16,8 +16,6 @@
 
 @interface TrailerCache : AbstractCache {
 @private
-    NowPlayingModel* model;
-
     LinkedSet* prioritizedMovies;
 }
 

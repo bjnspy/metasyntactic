@@ -38,16 +38,16 @@
 }
 
 
-- (id) init {
-    if (self = [super init]) {
+- (id) initWithModel:(NowPlayingModel*) model_ {
+    if (self = [super initWithModel:model_]) {
     }
 
     return self;
 }
 
 
-+ (LargePosterCache*) cache {
-    return [[[LargePosterCache alloc] init] autorelease];
++ (LargePosterCache*) cacheWithModel:(NowPlayingModel*) model {
+    return [[[LargePosterCache alloc] initWithModel:model] autorelease];
 }
 
 
