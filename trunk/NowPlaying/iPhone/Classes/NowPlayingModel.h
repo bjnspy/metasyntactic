@@ -33,6 +33,7 @@ enum ViewControllerType {
 
     NSInteger searchRadius;
 
+    NSMutableArray* bookmarkedTitlesData;
     NSMutableArray* favoriteTheatersData;
 
     id<DataProvider> dataProvider;
@@ -158,6 +159,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (BOOL) isFavoriteTheater:(Theater*) theater;
 - (void) addFavoriteTheater:(Theater*) theater;
 - (void) removeFavoriteTheater:(Theater*) theater;
+
+- (NSMutableArray*) bookmarkedTitles;
+- (BOOL) isBookmarked:(Movie*) movie;
+- (void) addBookmark:(Movie*) movie;
+- (void) removeBookmark:(Movie*) movie;
 
 - (NSString*) noInformationFound;
 - (NSString*) feedbackUrl;
