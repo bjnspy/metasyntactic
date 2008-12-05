@@ -203,13 +203,28 @@ static NSString** KEYS[] = {
 }
 
 
-+ (void) saveBookmarkedMovies:(NSArray*) bookmarkedMovies {
++ (void) saveMovies:(NSArray*) movies key:(NSString*) key {
     NSMutableArray* result = [NSMutableArray array];
-    for (Movie* movie in bookmarkedMovies) {
+    for (Movie* movie in movies) {
         [result addObject:movie.dictionary];
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:result forKey:BOOKMARKED_MOVIES];
+    [[NSUserDefaults standardUserDefaults] setObject:result forKey:key];
+}
+
+
++ (void) saveBookmarkedMovies:(NSArray*) bookmarkedMovies {
+    [self saveMovies:bookmarkedMovies key:BOOKMARKED_MOVIES];
+}
+
+
++ (void) saveBookmarkedUpcomingMovies:(NSArray*) bookmarkedMovies {
+    [self saveMovies:bookmarkedMovies key:BOOKMARKED_UPCOMING_MOVIES];
+}
+
+
++ (void) saveBookmarkedDVDMovies:(NSArray*) bookmarkedMovies {
+    [self saveMovies:bookmarkedMovies key:BOOKMARKED_DVD_MOVIES];
 }
 
 
@@ -218,9 +233,11 @@ static NSString** KEYS[] = {
                  autoUpdateLocation:(id) previousAutoUpdateLocation
                      useNormalFonts:(id) previousUseNormalFonts
                    bookmarkedMovies:(id) previousBookmarkedMovies
+           bookmarkedUpcomingMovies:(id) previousBookmarkedUpcomingMovies
+                bookmarkedDVDMovies:(id) previousBookmarkedDVDMovies
                    favoriteTheaters:(id) previousFavoriteTheaters
-          previousDvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
-        previousDvdMoviesHideBluray:(id) previousDvdMoviesHideBluray {
+                  dvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
+                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray {
     if ([previousUserAddress isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
     }
@@ -289,6 +306,8 @@ static NSString** KEYS[] = {
         id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousBookmarkedMovies = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_MOVIES];
+        id previousBookmarkedUpcomingMovies = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_UPCOMING_MOVIES];
+        id previousBookmarkedDVDMovies = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_DVD_MOVIES];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
         id previousDvdMoviesHideDVDs = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_DVDS];
         id previousDvdMoviesHideBluray = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_BLURAY];
@@ -305,9 +324,11 @@ static NSString** KEYS[] = {
                       autoUpdateLocation:previousAutoUpdateLocation
                           useNormalFonts:previousUseNormalFonts
                         bookmarkedMovies:previousBookmarkedMovies
+                bookmarkedUpcomingMovies:previousBookmarkedUpcomingMovies
+                     bookmarkedDVDMovies:previousBookmarkedDVDMovies
                         favoriteTheaters:previousFavoriteTheaters
-               previousDvdMoviesHideDVDs:previousDvdMoviesHideDVDs
-             previousDvdMoviesHideBluray:previousDvdMoviesHideBluray];
+                       dvdMoviesHideDVDs:previousDvdMoviesHideDVDs
+                     dvdMoviesHideBluray:previousDvdMoviesHideBluray];
 
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
@@ -684,24 +705,8 @@ static NSString** KEYS[] = {
 }
 
 
-- (NSMutableDictionary*) loadFavoriteTheaters {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:FAVORITE_THEATERS];
-    if (array.count == 0) {
-        return [NSMutableDictionary dictionary];
-    }
-
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    for (NSDictionary* dictionary in array) {
-        FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:dictionary];
-        [result setObject:theater forKey:theater.name];
-    }
-
-    return result;
-}
-
-
-- (NSMutableDictionary*) loadBookmarkedMovies {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:BOOKMARKED_MOVIES];
+- (NSMutableDictionary*) loadMovies:(NSString*) key {
+    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:key];
     if (array.count == 0) {
         return [NSMutableDictionary dictionary];
     }
@@ -716,10 +721,50 @@ static NSString** KEYS[] = {
 }
 
 
+- (NSMutableDictionary*) loadBookmarkedMovies {
+    return [self loadMovies:BOOKMARKED_MOVIES];
+}
+
+
+- (NSMutableDictionary*) loadBookmarkedUpcomingMovies {
+    return [self loadMovies:BOOKMARKED_UPCOMING_MOVIES];
+}
+
+
+- (NSMutableDictionary*) loadBookmarkedDVDMovies {
+    return [self loadMovies:BOOKMARKED_DVD_MOVIES];
+}
+
+
 - (void) ensureBookmarkedMovies {
     if (bookmarkedMoviesData == nil) {
         self.bookmarkedMoviesData = [self loadBookmarkedMovies];
     }
+}
+
+
+- (void) ensureBookmarkedUpcomingMovies {
+    if (bookmarkedUpcomingMoviesData == nil) {
+        self.bookmarkedUpcomingMoviesData = [self loadBookmarkedUpcomingMovies];
+    }
+}
+
+
+- (void) ensureBookmarkedDVDMovies {
+    if (bookmarkedDVDMoviesData == nil) {
+        self.bookmarkedDVDMoviesData = [self loadBookmarkedDVDMovies];
+    }
+}
+
+
+- (NSSet*) allBookmarkedMovies {
+    NSMutableSet* set = [NSMutableSet set];
+    
+    [set addObjectsFromArray:self.bookmarkedMovies];
+    [set addObjectsFromArray:self.bookmarkedUpcomingMovies];
+    [set addObjectsFromArray:self.bookmarkedDVDMovies];
+    
+    return set;
 }
 
 
@@ -729,28 +774,73 @@ static NSString** KEYS[] = {
 }
 
 
-- (BOOL) isBookmarked:(Movie*) movie {
-    [self ensureBookmarkedMovies];
-    return [bookmarkedMoviesData objectForKey:movie.canonicalTitle] != nil;
+- (NSArray*) bookmarkedUpcomingMovies {
+    [self ensureBookmarkedUpcomingMovies];
+    return bookmarkedUpcomingMoviesData.allValues;
 }
 
 
-- (void) saveBookmarkedMovies {
+- (NSArray*) bookmarkedDVDMovies {
+    [self ensureBookmarkedDVDMovies];
+    return bookmarkedDVDMoviesData.allValues;
+}
+
+
+- (void) addBookmarkedMovie:(Movie*) movie {
+    [self ensureBookmarkedMovies];
+    [bookmarkedMoviesData setObject:movie.dictionary forKey:movie.canonicalTitle];    
     [NowPlayingModel saveBookmarkedMovies:self.bookmarkedMovies];
 }
 
 
-- (void) addBookmark:(Movie*) movie {
-    [self ensureBookmarkedMovies];
-    [bookmarkedMoviesData setObject:movie.dictionary forKey:movie.canonicalTitle];    
-    [self saveBookmarkedMovies];
+- (void) addBookmarkedUpcomingMovie:(Movie*) movie {
+    [self ensureBookmarkedUpcomingMovies];
+    [bookmarkedUpcomingMoviesData setObject:movie.dictionary forKey:movie.canonicalTitle];    
+    [NowPlayingModel saveBookmarkedUpcomingMovies:self.bookmarkedUpcomingMovies];
 }
 
 
-- (void) removeBookmark:(Movie*) movie {
+- (void) addBookmarkedDVDMovie:(Movie*) movie {
+    [self ensureBookmarkedDVDMovies];
+    [bookmarkedDVDMoviesData setObject:movie.dictionary forKey:movie.canonicalTitle];    
+    [NowPlayingModel saveBookmarkedDVDMovies:self.bookmarkedDVDMovies];
+}
+
+
+- (void) removeBookmarkedMovie:(Movie*) movie {
     [self ensureBookmarkedMovies];
     [bookmarkedMoviesData removeObjectForKey:movie.canonicalTitle];
-    [self saveBookmarkedMovies];
+    [NowPlayingModel saveBookmarkedMovies:self.bookmarkedMovies];
+}
+
+
+- (void) removeBookmarkedUpcomingMovie:(Movie*) movie {
+    [self ensureBookmarkedUpcomingMovies];
+    [bookmarkedUpcomingMoviesData removeObjectForKey:movie.canonicalTitle];
+    [NowPlayingModel saveBookmarkedUpcomingMovies:self.bookmarkedUpcomingMovies];
+}
+
+
+- (void) removeBookmarkedDVDMovie:(Movie*) movie {
+    [self ensureBookmarkedDVDMovies];
+    [bookmarkedDVDMoviesData removeObjectForKey:movie.canonicalTitle];
+    [NowPlayingModel saveBookmarkedDVDMovies:self.bookmarkedDVDMovies];
+}
+
+
+- (NSMutableDictionary*) loadFavoriteTheaters {
+    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:FAVORITE_THEATERS];
+    if (array.count == 0) {
+        return [NSMutableDictionary dictionary];
+    }
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    for (NSDictionary* dictionary in array) {
+        FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:dictionary];
+        [result setObject:theater forKey:theater.name];
+    }
+    
+    return result;
 }
 
 

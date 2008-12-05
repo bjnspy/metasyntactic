@@ -21,6 +21,7 @@
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
+#import "NowPlayingModel.h"
 #import "ThreadingUtilities.h"
 
 @interface TrailerCache()
@@ -227,8 +228,19 @@
 }
 
 
-- (void) clearStaleDataBackgroundEntryPoint {
-    [self clearDirectory:[Application trailersDirectory]];
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSSet setWithObject:[Application trailersDirectory]];
+}
+
+
+- (NSSet*) cachedPathsToExclude {
+    NSMutableSet* result = [NSMutableSet set];
+    
+    for (Movie* movie in model.allBookmarkedMovies) {
+        [result addObject:[self trailerFile:movie]];
+    }
+    
+    return result;
 }
 
 @end

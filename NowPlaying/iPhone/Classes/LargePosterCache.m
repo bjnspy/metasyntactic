@@ -21,6 +21,7 @@
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
+#import "NowPlayingModel.h"
 #import "ThreadingUtilities.h"
 
 @interface LargePosterCache()
@@ -51,24 +52,6 @@
 }
 
 
-- (void) clearStaleDataBackgroundEntryPoint {
-    NSArray* paths = [FileUtilities directoryContentsPaths:[Application largePostersDirectory]];
-
-    for (NSString* path in paths) {
-        if ([path hasSuffix:@"plist"]) {
-            continue;
-        }
-
-        NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
-        if (lastModifiedDate != nil) {
-            if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                [FileUtilities removeItem:path];
-            }
-        }
-    }
-}
-
-
 - (NSString*) posterFilePath:(Movie*) movie index:(NSInteger) index {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d", index];
@@ -80,6 +63,23 @@
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d-small", index];
     return [[[Application largePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"png"];
+}
+
+
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSSet setWithObject:[Application largePostersDirectory]];
+}
+
+
+- (NSSet*) cachedPathsToExclude {
+    NSMutableSet* result = [NSMutableSet set];
+    
+    for (Movie* movie in model.allBookmarkedMovies) {
+        [result addObject:[self posterFilePath:movie index:0]];
+        [result addObject:[self smallPosterFilePath:movie index:0]];
+    }
+    
+    return result;
 }
 
 

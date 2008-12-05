@@ -253,20 +253,6 @@
 
 
 - (NSDictionary*) processElement:(XmlElement*) element {
-    // <video url="http://videoeta.com/movie/54201"
-    // title="Antwone Fisher"
-    // year="2002"
-    // release_date="2009-01-20"
-    // retail_price="34.99"
-    // mpaa_rating="PG-13"
-    // format="Blu-ray"
-    // genre="Drama"
-    // discs="1"
-    // image="http://videoeta.com/images/eta/np/movies/medium/FOX_BR2256500.jpg"
-    // cast="Denzel Washington/Derek Luke/Joy Bryant/Salli Richardson"
-    // director="Denzel Washington"
-    // synopsis="Story of a young sailor who's past is full of tragedy and child abuse.  Fisher turns to his girlfriend and a Navy psychiatrist to help come to terms with his demons and confront his past."/>
-
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     for (XmlElement* child in element.children) {
@@ -362,10 +348,24 @@
 }
 
 
-- (void) clearStaleDataBackgroundEntryPoint {
-    [self clearDirectory:[self detailsDirectory]];
-    [self clearDirectory:[self imdbDirectory]];
-    [self clearDirectory:[self postersDirectory]];
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSSet setWithObjects:
+            [self detailsDirectory],
+            [self imdbDirectory],
+            [self postersDirectory], nil];
+}
+
+
+- (NSSet*) cachedPathsToExclude {
+    NSMutableSet* result = [NSMutableSet set];
+    for (Movie* movie in model.allBookmarkedMovies) {
+        [result addObject:[self imdbFile:movie set:nil]];
+        [result addObject:[self detailsFile:movie set:nil]];
+        [result addObject:[self posterFile:movie set:nil]];
+        [result addObject:[self smallPosterFile:movie set:nil]];
+    }
+    
+    return result;
 }
 
 

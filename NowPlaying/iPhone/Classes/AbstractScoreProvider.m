@@ -548,8 +548,20 @@
 }
 
 
-- (void) clearStaleDataBackgroundEntryPoint {
-    [self clearDirectory:reviewsDirectory];
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSSet setWithObject:reviewsDirectory];
+}
+
+
+- (NSSet*) cachedPathsToExclude {
+    NSMutableSet* result = [NSMutableSet set];
+    
+    for (Movie* movie in model.allBookmarkedMovies) {
+        [result addObject:[self reviewsFile:movie.canonicalTitle]];
+        [result addObject:[self reviewsHashFile:movie.canonicalTitle]];
+    }
+    
+    return result;
 }
 
 

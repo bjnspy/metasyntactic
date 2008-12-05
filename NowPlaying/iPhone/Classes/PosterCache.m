@@ -83,8 +83,20 @@
 }
 
 
-- (void) clearStaleDataBackgroundEntryPoint {
-    [self clearDirectory:[Application postersDirectory]];
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSSet setWithObject:[Application postersDirectory]];
+}
+
+
+- (NSSet*) cachedPathsToExclude {
+    NSMutableSet* result = [NSMutableSet set];
+    
+    for (Movie* movie in model.allBookmarkedMovies) {
+        [result addObject:[self posterFilePath:movie]];
+        [result addObject:[self smallPosterFilePath:movie]];
+    }
+    
+    return result;
 }
 
 
