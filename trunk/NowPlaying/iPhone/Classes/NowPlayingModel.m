@@ -740,20 +740,30 @@ static NSString** KEYS[] = {
     if (bookmarkedMoviesData == nil) {
         self.bookmarkedMoviesData = [self loadBookmarkedMovies];
     }
-}
-
-
-- (void) ensureBookmarkedUpcomingMovies {
     if (bookmarkedUpcomingMoviesData == nil) {
         self.bookmarkedUpcomingMoviesData = [self loadBookmarkedUpcomingMovies];
     }
-}
-
-
-- (void) ensureBookmarkedDVDMovies {
     if (bookmarkedDVDMoviesData == nil) {
         self.bookmarkedDVDMoviesData = [self loadBookmarkedDVDMovies];
     }
+}
+
+
+- (BOOL) isBookmarkedMovie:(Movie*) movie {
+    [self ensureBookmarkedMovies];
+    return [bookmarkedMoviesData objectForKey:movie.canonicalTitle] != nil;
+}
+
+
+- (BOOL) isBookmarkedUpcomingMovie:(Movie*) movie {
+    [self ensureBookmarkedMovies];
+    return [bookmarkedUpcomingMoviesData objectForKey:movie.canonicalTitle] != nil;
+}
+
+
+- (BOOL) isBookmarkedDVDMovie:(Movie*) movie {
+    [self ensureBookmarkedMovies];
+    return [bookmarkedDVDMoviesData objectForKey:movie.canonicalTitle] != nil;
 }
 
 
@@ -775,34 +785,34 @@ static NSString** KEYS[] = {
 
 
 - (NSArray*) bookmarkedUpcomingMovies {
-    [self ensureBookmarkedUpcomingMovies];
+    [self ensureBookmarkedMovies];
     return bookmarkedUpcomingMoviesData.allValues;
 }
 
 
 - (NSArray*) bookmarkedDVDMovies {
-    [self ensureBookmarkedDVDMovies];
+    [self ensureBookmarkedMovies];
     return bookmarkedDVDMoviesData.allValues;
 }
 
 
 - (void) addBookmarkedMovie:(Movie*) movie {
     [self ensureBookmarkedMovies];
-    [bookmarkedMoviesData setObject:movie.dictionary forKey:movie.canonicalTitle];    
+    [bookmarkedMoviesData setObject:movie forKey:movie.canonicalTitle];    
     [NowPlayingModel saveBookmarkedMovies:self.bookmarkedMovies];
 }
 
 
 - (void) addBookmarkedUpcomingMovie:(Movie*) movie {
-    [self ensureBookmarkedUpcomingMovies];
-    [bookmarkedUpcomingMoviesData setObject:movie.dictionary forKey:movie.canonicalTitle];    
+    [self ensureBookmarkedMovies];
+    [bookmarkedUpcomingMoviesData setObject:movie forKey:movie.canonicalTitle];    
     [NowPlayingModel saveBookmarkedUpcomingMovies:self.bookmarkedUpcomingMovies];
 }
 
 
 - (void) addBookmarkedDVDMovie:(Movie*) movie {
-    [self ensureBookmarkedDVDMovies];
-    [bookmarkedDVDMoviesData setObject:movie.dictionary forKey:movie.canonicalTitle];    
+    [self ensureBookmarkedMovies];
+    [bookmarkedDVDMoviesData setObject:movie forKey:movie.canonicalTitle];    
     [NowPlayingModel saveBookmarkedDVDMovies:self.bookmarkedDVDMovies];
 }
 
@@ -815,14 +825,14 @@ static NSString** KEYS[] = {
 
 
 - (void) removeBookmarkedUpcomingMovie:(Movie*) movie {
-    [self ensureBookmarkedUpcomingMovies];
+    [self ensureBookmarkedMovies];
     [bookmarkedUpcomingMoviesData removeObjectForKey:movie.canonicalTitle];
     [NowPlayingModel saveBookmarkedUpcomingMovies:self.bookmarkedUpcomingMovies];
 }
 
 
 - (void) removeBookmarkedDVDMovie:(Movie*) movie {
-    [self ensureBookmarkedDVDMovies];
+    [self ensureBookmarkedMovies];
     [bookmarkedDVDMoviesData removeObjectForKey:movie.canonicalTitle];
     [NowPlayingModel saveBookmarkedDVDMovies:self.bookmarkedDVDMovies];
 }

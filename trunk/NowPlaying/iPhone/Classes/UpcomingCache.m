@@ -244,7 +244,7 @@ static NSString* titles_key = @"Titles";
             [Application upcomingIMDbDirectory],
             [Application upcomingPostersDirectory],
             [Application upcomingSynopsesDirectory],
-            [Application upcomingTrailersDirectory]];
+            [Application upcomingTrailersDirectory], nil];
     
 }
 
