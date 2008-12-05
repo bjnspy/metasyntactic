@@ -141,6 +141,39 @@ static NSString* articles[] = {
 }
 
 
++ (BOOL) isStringArray:(id) array {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return NO;
+    }
+    
+    for (id value in array) {
+        if (![value isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+
++ (BOOL) canReadDictionary:(NSDictionary*) dictionary {
+    return
+    [[dictionary objectForKey:identifier_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:canonicalTitle_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:displayTitle_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:rating_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:imdbAddress_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:poster_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:synopsis_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:studio_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:releaseDate_key] isKindOfClass:[NSDate class]] &&
+    [[dictionary objectForKey:length_key] isKindOfClass:[NSNumber class]] &&
+    [self isStringArray:[dictionary objectForKey:directors_key]] &&
+    [self isStringArray:[dictionary objectForKey:cast_key]] &&
+    [self isStringArray:[dictionary objectForKey:genres_key]];
+}
+
+
 + (Movie*) movieWithIdentifier:(NSString*) identifier
                          title:(NSString*) title
                         rating:(NSString*) rating

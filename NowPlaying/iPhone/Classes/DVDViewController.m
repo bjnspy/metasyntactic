@@ -58,13 +58,20 @@
 
 - (NSArray*) movies {
     NSMutableArray* result = [NSMutableArray array];
-
+    
     if (self.model.dvdMoviesShowDVDs) {
         [result addObjectsFromArray:self.model.dvdCache.movies];
     }
 
     if (self.model.dvdMoviesShowBluray) {
         [result addObjectsFromArray:self.model.blurayCache.movies];
+    }
+    
+    NSSet* set = [NSSet setWithArray:result];
+    for (Movie* movie in self.model.bookmarkedDVDMovies) {
+        if (![set containsObject:movie]) {
+            [result addObject:movie];
+        }
     }
 
     return result;

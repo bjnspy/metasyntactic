@@ -70,10 +70,20 @@ public class UpcomingCache extends AbstractCache {
 
   public List<Movie> getMovies() {
     if (this.movies == null) {
-      this.movies = FileUtilities.readPersistableList(Movie.reader, moviesFile());
-      if (this.movies == null) {
-        this.movies = Collections.emptyList();
+      Date today = new Date();
+      List<Movie> list = FileUtilities.readPersistableList(Movie.reader, moviesFile());
+      if (list == null) {
+        list = Collections.emptyList();
       }
+      for (Iterator<Movie> i = list.iterator(); i.hasNext(); ) {
+        Movie movie = i.next();
+
+        if (movie.getReleaseDate() != null && movie.getReleaseDate().compareTo(today) < 0) {
+          i.remove();
+        }
+      }
+
+      this.movies = list;
     }
 
     return this.movies;
