@@ -214,7 +214,7 @@
     } else {
         [self sortTheatersByDistance];
     }
-    
+
     [self removeUnusedSectionTitles];
 
     if (sectionTitles.count == 0) {

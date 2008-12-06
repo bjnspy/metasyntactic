@@ -145,13 +145,13 @@ static NSString* articles[] = {
     if (![array isKindOfClass:[NSArray class]]) {
         return NO;
     }
-    
+
     for (id value in array) {
         if (![value isKindOfClass:[NSString class]]) {
             return NO;
         }
     }
-    
+
     return YES;
 }
 

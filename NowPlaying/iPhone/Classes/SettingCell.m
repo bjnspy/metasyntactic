@@ -50,7 +50,7 @@
         valueLabel.textColor = [ColorCache commandColor];
         valueLabel.adjustsFontSizeToFitWidth = YES;
         valueLabel.minimumFontSize = valueLabel.font.pointSize - 4;
-        
+
         self.separatorLine = [[[UILabel alloc] init] autorelease];
 
         [self.contentView addSubview:keyLabel];
@@ -87,13 +87,13 @@
                               self.contentView.frame.size.width - valueFrame.size.width);
     valueFrame.size.width = MIN(valueFrame.size.width,
                                 self.contentView.frame.size.width - valueFrame.origin.x);
-    
+
     if (self.accessoryType == UITableViewCellAccessoryNone) {
         valueFrame.origin.x -= 10;
     }
 
     valueLabel.frame = valueFrame;
-    
+
     CGRect separatorFrame = CGRectMake(1, -1, self.contentView.frame.size.width - 2, 1);
     separatorLine.frame = separatorFrame;
 }
@@ -104,7 +104,7 @@
   hideSeparator:(BOOL) hideSeparator  {
     keyLabel.text = key;
     valueLabel.text = value;
-    
+
     [separatorLine removeFromSuperview];
     if (hideSeparator) {
         [self.contentView addSubview:separatorLine];

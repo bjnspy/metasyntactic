@@ -97,7 +97,7 @@
         [self performSelectorOnMainThread:@selector(forcePulse) withObject:nil waitUntilDone:NO];
         return;
     }
-    
+
     self.lastPulseTime = [NSDate date];
     //NSLog(@"Forced pulse at '%@'.", lastPulseTime);
     [target performSelector:action];
@@ -109,7 +109,7 @@
         [self performSelectorOnMainThread:@selector(tryPulse) withObject:nil waitUntilDone:NO];
         return;
     }
-    
+
     [self tryPulse:[NSDate date]];
 }
 

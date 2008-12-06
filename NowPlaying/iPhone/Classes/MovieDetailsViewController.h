@@ -42,7 +42,7 @@
     NSInteger posterCount;
 
     BOOL visible;
-    
+
     UIButton* bookmarkButton;
 }
 

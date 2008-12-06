@@ -56,16 +56,16 @@
 - (void) initializeData {
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     self.performances = [NSMutableArray array];
-    
+
     NSDate* now = [DateUtilities currentTime];
-    
+
     for (Performance* performance in allPerformances) {
         if ([DateUtilities isToday:self.model.searchDate]) {
             NSDate* time = performance.time;
-            
+
             // skip times that have already passed.
             if ([now compare:time] == NSOrderedDescending) {
-                
+
                 // except for times that are before 4 AM
                 NSDateComponents* components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit
                                                                                fromDate:time];
@@ -74,9 +74,9 @@
                 }
             }
         }
-        
+
         [performances addObject:performance];
-    }    
+    }
 }
 
 
@@ -372,23 +372,23 @@
     if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
-    
+
     NSDate* searchDate = [array lastObject];
-    
+
     NSArray* lookupResultPerformances = [[lookupResult.performances objectForKey:theater.name] objectForKey:movie.canonicalTitle];
-    
+
     if (lookupResultPerformances.count == 0) {
-        NSString* text = 
+        NSString* text =
         [NSString stringWithFormat:
          NSLocalizedString(@"No listings found for '%@' at '%@' on %@", @"No listings found for 'The Dark Knight' at 'Regal Meridian 6' on 5/18/2008"),
          movie.canonicalTitle,
          theater.name,
          [DateUtilities formatShortDate:searchDate]];
-        
+
         [self onDataProviderUpdateFailure:text context:array];
     } else {
         [super onDataProviderUpdateSuccess:lookupResult context:array];
-        
+
         // find the up to date version of this theater and movie
         self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:theater]];
         self.movie = [lookupResult.movies objectAtIndex:[lookupResult.movies indexOfObject:movie]];

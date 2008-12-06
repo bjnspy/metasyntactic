@@ -22,7 +22,7 @@
     UIToolbar* toolbar;
     UISegmentedControl* segmentedControl;
     UIButton* flipButton;
-    
+
     UIView* superView;
     UITableView* cachedTableView;
     UITableViewController* dvdFilterViewController;

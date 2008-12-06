@@ -150,12 +150,12 @@
     if (movies.count == 0) {
         return [NSMutableDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (Movie* movie in movies) {
         [result setObject:movie forKey:movie.canonicalTitle];
     }
-    
+
     return result;
 }
 
@@ -164,7 +164,7 @@
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
-    
+
     return bookmarksData;
 }
 
@@ -376,19 +376,19 @@
     NSMutableArray* encoded = [NSMutableArray array];
     for (Movie* video in videos) {
         [encoded addObject:video.dictionary];
-    }    
+    }
     [FileUtilities writeObject:encoded toFile:file];
 }
 
 
 - (void) saveData:(NSDictionary*) dictionary {
     NSArray* videos = dictionary.allKeys;
-    
+
     for (Movie* movie in dictionary) {
         DVD* dvd = [dictionary objectForKey:movie];
         [FileUtilities writeObject:dvd.dictionary toFile:[self detailsFile:movie set:nil]];
     }
-    
+
     // do this last.  it signifies that we're done
     [self saveVideosArray:videos toFile:self.moviesFile];
 }
@@ -425,7 +425,7 @@
 
     [self saveData:map];
 
-    [self performSelectorOnMainThread:@selector(reportResults:) 
+    [self performSelectorOnMainThread:@selector(reportResults:)
                            withObject:map
                         waitUntilDone:NO];
 }
@@ -444,7 +444,7 @@
             [movies addObject:movie];
         }
     }
-    
+
     // also determine if any of the data we found match items the user bookmarked
     for (Movie* movie in movies) {
         if ([model isBookmarked:movie]) {
@@ -452,7 +452,7 @@
         }
     }
     [self saveBookmarks];
-    
+
     [self setMovies:movies];
     [self updateDetails];
     [NowPlayingAppDelegate majorRefresh];

@@ -125,7 +125,7 @@
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -163,7 +163,7 @@
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
         [titles addObject:NSLocalizedString(@"Website", nil)];
     }
-    
+
     if (![self isUpcomingMovie] && ![self isDVD]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
         [titles addObject:NSLocalizedString(@"Change date", nil)];
@@ -172,7 +172,7 @@
     if (selectors.count == 0) {
         return;
     }
-    
+
     self.actionsView = [ActionsView viewWithTarget:self selectors:selectors titles:titles];
     [actionsView sizeToFit];
 }
@@ -273,7 +273,7 @@
     } else {
         [self addBookmark];
     }
-    
+
     [self setBookmarkImage];
 }
 
@@ -284,15 +284,15 @@
     //[bookmarkButton setImage:[UIImage imageNamed:@"Bookmark-Active.png"] forState:UIControlStateSelected];
     [bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
     [bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
-    
+
     [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     CGRect frame = bookmarkButton.frame;
     frame.size = [ImageCache emptyStarImage].size;
     frame.size.width += 10;
     frame.size.height += 10;
     bookmarkButton.frame = frame;
-    
+
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:bookmarkButton] autorelease];
     [self setBookmarkImage];
 }
@@ -448,7 +448,7 @@
             return [DateUtilities formatFullDate:self.model.searchDate];
         }
     }
-    
+
     return nil;
 }
 
@@ -760,20 +760,20 @@
     if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
-    
+
     NSDate* searchDate = [array lastObject];
 
     if (![lookupResult.movies containsObject:movie]) {
-        NSString* text = 
+        NSString* text =
         [NSString stringWithFormat:
          NSLocalizedString(@"No listings found for '%@' on %@", @"No listings found for 'The Dark Knight' on 5/18/2008"),
          movie.canonicalTitle,
          [DateUtilities formatShortDate:searchDate]];
-        
+
         [self onDataProviderUpdateFailure:text context:array];
     } else {
         [super onDataProviderUpdateSuccess:lookupResult context:array];
-        
+
         // Find the most up to date version of this movie
         self.movie = [lookupResult.movies objectAtIndex:[lookupResult.movies indexOfObject:movie]];
     }

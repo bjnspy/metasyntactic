@@ -148,7 +148,7 @@
     if (date == nil) {
         return [NSNull null];
     }
-    
+
     return date;
 }
 
@@ -156,7 +156,7 @@
 - (NSArray*) process12HourTimes:(NSArray*) times {
     // walk backwards from the end.  switch the time when we see an AM/PM marker
     NSMutableArray* reverseArray = [NSMutableArray array];
-    
+
     BOOL isPM;
     for (NSInteger i = times.count - 1; i >= 0; i--) {
         NSString* time = [times objectAtIndex:i];
@@ -234,7 +234,7 @@
         NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
 
         NSMutableArray* performances = [NSMutableArray array];
-        
+
         NSArray* showtimes = movieAndShowtimes.showtimes.showtimesList;
         NSArray* times = [self processTimes:showtimes];
 

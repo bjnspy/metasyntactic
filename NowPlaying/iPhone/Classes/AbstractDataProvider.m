@@ -131,14 +131,14 @@
     if (array == nil) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* decodedMovies = [NSMutableArray array];
-    
+
     for (int i = 0; i < array.count; i++) {
         Movie* movie = [Movie movieWithDictionary:[array objectAtIndex:i]];
         [decodedMovies addObject:movie];
     }
-    
+
     return decodedMovies;
 }
 
@@ -162,7 +162,7 @@
     if (movies.count == 0) {
         return [NSMutableDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (Movie* movie in movies) {
         [result setObject:movie forKey:movie.canonicalTitle];
@@ -175,7 +175,7 @@
     if (bookmarksData == nil) {
         self.bookmarksData = [self loadBookmarks];
     }
-    
+
     return bookmarksData;
 }
 
@@ -220,25 +220,25 @@
 
 - (void) saveResult:(LookupResult*) result {
     NSAssert(![NSThread isMainThread], nil);
-    
+
     NSString* tempDirectory = [Application uniqueTemporaryDirectory];
     for (NSString* theaterName in result.performances) {
         NSMutableDictionary* value = [result.performances objectForKey:theaterName];
-        
+
         [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentDirectory:tempDirectory]];
     }
-    
+
     [FileUtilities removeItem:self.performancesDirectory];
     [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
 
     [self saveArray:result.movies to:self.moviesFile];
     [self saveArray:result.theaters to:self.theatersFile];
-    
-    [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];    
-    
+
+    [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];
+
     // Do this last.  It signifies that we are done
     [self setLastLookupDate];
-    
+
     // Let the rest of the app know about the results.
     [self performSelectorOnMainThread:@selector(reportResult:)
                            withObject:result
@@ -406,8 +406,8 @@
                inBackgroundWithArgument:request
                                    gate:gate
                                 visible:YES];
-    
-    
+
+
 }
 
 
@@ -478,7 +478,7 @@
     }
 
     // Do the primary search.
-    LookupResult* result = [self lookupLocation:location 
+    LookupResult* result = [self lookupLocation:location
                                      searchDate:request.searchDate
                                        theaterNames:nil];
     if (result.movies.count == 0 || result.theaters.count == 0) {
@@ -488,13 +488,13 @@
 
     // Lookup data for the users' favorites.
     [self updateMissingFavorites:result searchDate:request.searchDate];
-    
+
     // Try to restore any theaters that went missing
     [self addMissingTheaters:result
               searchLocation:location
                currentMovies:request.currentMovies
              currentTheaters:request.currentTheaters];
-    
+
     [request.delegate onDataProviderUpdateSuccess:result context:request.context];
 }
 
@@ -517,7 +517,7 @@
             [result.movies addObject:movie];
         }
     }
-    
+
     // also determine if any of the data we found match items the user bookmarked
     for (Movie* movie in result.movies) {
         if ([model isBookmarked:movie]) {
@@ -525,12 +525,12 @@
         }
     }
     [self saveBookmarks];
-    
+
     self.moviesData = result.movies;
     self.theatersData = result.theaters;
     self.synchronizationInformationData = result.synchronizationInformation;
     self.performancesData = [NSMutableDictionary dictionary];
-    
+
     [NowPlayingAppDelegate majorRefresh:YES];
 }
 
@@ -546,8 +546,8 @@
     if (globalSyncDate == nil || theaterSyncDate == nil) {
         return NO;
     }
-    
-    return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];    
+
+    return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
 }
 
 

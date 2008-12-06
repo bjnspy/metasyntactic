@@ -90,7 +90,7 @@
                                  @"US", // United States
                                  @"TR", // Turkey
                                  nil];
-    
+
     NSString* userCountry = [LocaleUtilities isoCountry];
     return [supportedCountries containsObject:userCountry];
 }

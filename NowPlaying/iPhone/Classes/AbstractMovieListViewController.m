@@ -131,13 +131,13 @@
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
 
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
-    
+
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [sectionTitleToContentsMap addObject:movie forKey:[Application starString]];
             continue;
         }
-        
+
         NSString* title = movie.displayTitle;
         unichar firstChar = [self firstCharacter:title];
 
@@ -170,14 +170,14 @@
 
 - (void) sortMoviesByScore {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByScore context:self.model];
-    
+
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
-    
+
     NSString* bookmarksString = [Application starString];
     NSString* moviesString = NSLocalizedString(@"Movies", nil);
-    
+
     self.sectionTitles = [NSMutableArray arrayWithObjects:bookmarksString, moviesString, nil];
-    
+
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [sectionTitleToContentsMap addObject:movie forKey:bookmarksString];
@@ -196,9 +196,9 @@
     [formatter setTimeStyle:kCFDateFormatterNoStyle];
 
     NSDate* today = [DateUtilities today];
-    
+
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
-    
+
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             NSString* starString = [Application starString];
@@ -209,7 +209,7 @@
         } else {
             NSString* title = NSLocalizedString(@"Unknown release date", nil);
             NSDate* releaseDate = [self.model releaseDateForMovie:movie];
-            
+
             if (releaseDate != nil) {
                 if ([releaseDate compare:today] == NSOrderedDescending) {
                     title = [DateUtilities formatFullDate:releaseDate];
@@ -217,9 +217,9 @@
                     title = [DateUtilities timeSinceNow:releaseDate];
                 }
             }
-            
+
             [sectionTitleToContentsMap addObject:movie forKey:title];
-            
+
             if (![sectionTitles containsObject:title]) {
                 [sectionTitles addObject:title];
             }
@@ -244,7 +244,7 @@
         if (self.model.prioritizeBookmarks) {
             [array insertObject:[Application starString] atIndex:0];
         }
-        
+
         self.indexTitles = array;
     }
 }
@@ -262,7 +262,7 @@
     } else if (self.sortingByScore) {
         [self sortMoviesByScore];
     }
-    
+
     [self removeUnusedSectionTitles];
 
     if (sectionTitles.count == 0) {
@@ -374,7 +374,7 @@
     if (indexPath.section < 0 || indexPath.section >= sectionTitles.count) {
         return YES;
     }
-    
+
     NSArray* movies = [sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]];
     if (indexPath.row < 0 || indexPath.row >= movies.count) {
         return YES;
@@ -434,18 +434,18 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     NSString* title = [sectionTitles objectAtIndex:section];
-    
+
     if (self.sortingByScore) {
         // Hide the header if sorting by score and we have no bookmarked movies
         if (sectionTitles.count == 1 && [NSLocalizedString(@"Movies", nil) isEqual:title]) {
             return nil;
         }
     }
-    
+
     if ([title isEqual:[Application starString]]) {
         return NSLocalizedString(@"Bookmarks", nil);
     }
-    
+
     return title;
 }
 
@@ -473,13 +473,13 @@
     } else {
         for (unichar c = firstChar; c >= 'A'; c--) {
             NSString* s = [NSString stringWithFormat:@"%c", c];
-            
+
             NSInteger result = [sectionTitles indexOfObject:s];
             if (result != NSNotFound) {
                 return result;
             }
         }
-        
+
         return NSNotFound;
     }
 }
