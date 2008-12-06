@@ -20,6 +20,8 @@
     NSArray* moviesData;
 
     LinkedSet* prioritizedMovies;
+    
+    NSMutableDictionary* bookmarksData;
 }
 
 - (id) initWithModel:(NowPlayingModel*) model;
@@ -34,5 +36,8 @@
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
+
+- (void) addBookmark:(NSString*) canonicalTitle;
+- (void) removeBookmark:(NSString*) canonicalTitle;
 
 @end

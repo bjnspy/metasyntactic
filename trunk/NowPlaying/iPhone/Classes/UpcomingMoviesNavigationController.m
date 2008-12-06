@@ -56,7 +56,7 @@
 
 
 - (Movie*) movieForTitle:(NSString*) canonicalTitle {
-    for (Movie* movie in self.model.upcomingCache.upcomingMovies) {
+    for (Movie* movie in self.model.upcomingCache.movies) {
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
             return movie;
         }

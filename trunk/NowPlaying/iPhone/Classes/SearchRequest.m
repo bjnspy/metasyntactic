@@ -65,7 +65,7 @@
         self.value = value_;
         self.movies = model.movies;
         self.theaters = model.theaters;
-        self.upcomingMovies = model.upcomingCache.upcomingMovies;
+        self.upcomingMovies = model.upcomingCache.movies;
         self.dvds = model.dvdCache.movies;
         self.bluray = model.blurayCache.movies;
 
