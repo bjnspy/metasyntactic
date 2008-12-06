@@ -15,6 +15,7 @@
 #import "DVDViewController.h"
 
 #import "BlurayCache.h"
+#import "DateUtilities.h"
 #import "DVDCache.h"
 #import "DVDCell.h"
 #import "DVDFilterViewController.h"
@@ -30,6 +31,7 @@
 @property (retain) UIView* superView;
 @property (retain) UITableView* cachedTableView;
 @property (retain) UITableViewController* dvdFilterViewController;
+@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
@@ -42,6 +44,7 @@
 @synthesize superView;
 @synthesize cachedTableView;
 @synthesize dvdFilterViewController;
+@synthesize visibleIndexPaths;
 
 - (void) dealloc {
     self.titleView = nil;
@@ -51,6 +54,7 @@
     self.superView = nil;
     self.cachedTableView = nil;
     self.dvdFilterViewController = nil;
+    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -92,6 +96,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
+    scrollToCurrentDateOnRefresh = YES;
     self.model.dvdMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
     [self majorRefresh];
 }
@@ -147,7 +152,8 @@
 
 - (void) loadView {
     [super loadView];
-        
+    
+    scrollToCurrentDateOnRefresh = YES;
     [self setupFlipUpButton];
     self.segmentedControl = [self createSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
@@ -245,6 +251,44 @@
 
 - (void) onDvdFilterChanged {
     [self flipUpDown:nil];
+}
+
+
+- (void) sortMoviesByReleaseDate {
+    [super sortMoviesByReleaseDate];
+    
+    if (!scrollToCurrentDateOnRefresh || visibleIndexPaths != nil) {
+        return;
+    }
+    scrollToCurrentDateOnRefresh = NO;
+
+    NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];    
+    NSDate* today = [DateUtilities today];
+    
+    NSDate* date = nil;
+    for (Movie* movie in movies) {
+        NSDate* releaseDate = [self.model releaseDateForMovie:movie];
+            
+        if (releaseDate != nil) {
+            if ([releaseDate compare:today] == NSOrderedDescending) {
+                date = releaseDate;
+                break;
+            }
+        }
+    }
+
+    if (date == nil) {
+        return;
+    }
+    
+    NSString* title = [DateUtilities formatFullDate:date];
+    NSInteger section = [sectionTitles indexOfObject:title];
+    
+    if (section < 0 || section >= sectionTitles.count) {
+        return;
+    }
+
+    self.visibleIndexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:section], nil]; 
 }
 
 @end
