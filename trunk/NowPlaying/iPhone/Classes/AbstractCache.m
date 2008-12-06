@@ -51,20 +51,10 @@
 }
 
 
-- (NSSet*) cachedPathsToExclude {
-    return [NSSet set];
-}
-
-
 - (void) clearStaleData {
     NSSet* cachedDirectoriesToClear = self.cachedDirectoriesToClear;
-    NSSet* cachedPathsToExclude = self.cachedPathsToExclude;
 
     for (NSString* path in cachedDirectoriesToClear) {
-        if ([cachedPathsToExclude containsObject:path]) {
-            continue;
-        }
-        
         NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
         if (lastModifiedDate != nil) {
             if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {

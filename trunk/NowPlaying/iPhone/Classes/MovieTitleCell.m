@@ -199,7 +199,7 @@
     [self setScore:movie];
     ratingLabel.text = movie.ratingAndRuntimeString;
     
-    if ([model isBookmarkedMovie:movie]) {
+    if ([model isBookmarked:movie]) {
         titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
     } else {
         titleLabel.text = movie.displayTitle;

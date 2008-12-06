@@ -232,15 +232,4 @@
     return [NSSet setWithObject:[Application trailersDirectory]];
 }
 
-
-- (NSSet*) cachedPathsToExclude {
-    NSMutableSet* result = [NSMutableSet set];
-    
-    for (Movie* movie in model.allBookmarkedMovies) {
-        [result addObject:[self trailerFile:movie]];
-    }
-    
-    return result;
-}
-
 @end

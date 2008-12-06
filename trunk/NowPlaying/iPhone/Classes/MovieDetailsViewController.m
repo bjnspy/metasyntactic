@@ -120,7 +120,13 @@
 
 
 - (BOOL) isUpcomingMovie {
-    return [self.model.upcomingCache.upcomingMovies containsObject:movie];
+    for (Movie* upcomingMovie in self.model.upcomingCache.upcomingMovies) {
+        if (upcomingMovie == movie) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 
@@ -242,35 +248,17 @@
 
 
 - (BOOL) isBookmarked {
-    if ([self isDVD]) {
-        return [self.model isBookmarkedDVDMovie:movie];
-    } else if ([self isUpcomingMovie]) {
-        return [self.model isBookmarkedUpcomingMovie:movie];
-    } else {
-        return [self.model isBookmarkedMovie:movie];
-    }
+    return [self.model isBookmarked:movie];
 }
 
 
 - (void) addBookmark {
-    if ([self isDVD]) {
-        return [self.model addBookmarkedDVDMovie:movie];
-    } else if ([self isUpcomingMovie]) {
-        return [self.model addBookmarkedUpcomingMovie:movie];
-    } else {
-        return [self.model addBookmarkedMovie:movie];
-    }
+    [self.model addBookmark:movie];
 }
 
 
 - (void) removeBookmark {
-    if ([self isDVD]) {
-        [self.model removeBookmarkedDVDMovie:movie];
-    } else if ([self isUpcomingMovie]) {
-        [self.model removeBookmarkedUpcomingMovie:movie];
-    } else {    
-        [self.model removeBookmarkedMovie:movie];
-    }
+    [self.model removeBookmark:movie];
 }
 
 

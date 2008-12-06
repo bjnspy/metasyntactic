@@ -249,22 +249,6 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (NSSet*) cachedPathsToExclude {
-    NSMutableSet* result = [NSMutableSet set];
-    
-    for (Movie* movie in model.allBookmarkedMovies) {
-        [result addObject:[self castFile:movie]];
-        [result addObject:[self imdbFile:movie]];
-        [result addObject:[self posterFile:movie]];
-        [result addObject:[self smallPosterFile:movie]];
-        [result addObject:[self synopsisFile:movie]];
-        [result addObject:[self trailersFile:movie]];
-    }
-    
-    return result;
-}
-
-
 - (void) updateIndexBackgroundEntryPoint {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.indexFile];
 
@@ -295,12 +279,6 @@ static NSString* titles_key = @"Titles";
     NSMutableArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
     if (movies.count == 0) {
         return;
-    }
-    
-    for (Movie* movie in model.bookmarkedUpcomingMovies) {
-        if (![movies containsObject:movie]) {
-            [movies addObject:movie];
-        }
     }
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
@@ -529,7 +507,7 @@ static NSString* titles_key = @"Titles";
         NSDate* now = [NSDate date];
 
         for (Movie* movie in [self.index objectForKey:movies_key]) {
-            if (![model isBookmarkedUpcomingMovie:movie] &&
+            if (![model isBookmarked:movie] &&
                 [now compare:movie.releaseDate] == NSOrderedDescending) {
                 continue;
             }
