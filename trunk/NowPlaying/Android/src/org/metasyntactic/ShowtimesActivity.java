@@ -2,30 +2,19 @@ package org.metasyntactic;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.CollectionUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShowtimesActivity extends ListActivity {
@@ -94,9 +83,9 @@ public class ShowtimesActivity extends ListActivity {
       final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
           ShowtimesActivity.this.movie, theater);
       String performance = "";
-      if (list != null) {
+      if (CollectionUtilities.size(list) > 0) {
         for (final Performance per : list) {
-          performance += per.getTime() + ", ";
+          performance += per.getTimeString() + ", ";
         }
         performance = performance.substring(0, performance.length() - 2);
         holder.data.setText(performance);

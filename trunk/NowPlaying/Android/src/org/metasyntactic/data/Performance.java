@@ -22,12 +22,22 @@ import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Performance implements Parcelable, Persistable {
   private static final long serialVersionUID = -3891926085016033570L;
-  private Date time;
-  private String url;
+  private final static SimpleDateFormat format = new SimpleDateFormat("h:mma");
+
+  static {
+    DateFormatSymbols symbols = format.getDateFormatSymbols();
+    symbols.setAmPmStrings(new String[] {"am", "pm"});
+    format.setDateFormatSymbols(symbols);
+  }
+
+  private final Date time;
+  private final String url;
 
   public void persistTo(PersistableOutputStream out) throws IOException {
     out.writeDate(time);
@@ -50,6 +60,10 @@ public class Performance implements Parcelable, Persistable {
 
   public Date getTime() {
     return time;
+  }
+
+  public String getTimeString() {
+    return format.format(getTime());
   }
 
   public String getUrl() {
