@@ -13,6 +13,6 @@
 // limitations under the License.
 
 @protocol DataProviderUpdateDelegate
-- (void) onSuccess:(LookupResult*) lookupResult context:(id) context;
-- (void) onFailure:(NSString*) error context:(id) context;
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) context;
+- (void) onDataProviderUpdateFailure:(NSString*) error context:(id) context;
 @end
