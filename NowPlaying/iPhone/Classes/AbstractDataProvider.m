@@ -38,6 +38,7 @@
 @property (retain) NSArray* theatersData;
 @property (retain) NSDictionary* synchronizationInformationData;
 @property (retain) NSMutableDictionary* performancesData;
+@property (retain) NSMutableDictionary* bookmarksData;
 @end
 
 
@@ -49,6 +50,7 @@
 @synthesize theatersData;
 @synthesize performancesData;
 @synthesize synchronizationInformationData;
+@synthesize bookmarksData;
 
 - (void) dealloc {
     self.gate = nil;
@@ -57,6 +59,7 @@
     self.theatersData = nil;
     self.performancesData = nil;
     self.synchronizationInformationData = nil;
+    self.bookmarksData = nil;
 
     [super dealloc];
 }
@@ -85,6 +88,11 @@
 
 - (NSString*) moviesFile {
     return [[Application dataDirectory] stringByAppendingPathComponent:@"Movies.plist"];
+}
+
+
+- (NSString*) bookmarksFile {
+    return [[Application dataDirectory] stringByAppendingPathComponent:@"Bookmarks.plist"];
 }
 
 
@@ -118,20 +126,25 @@
 }
 
 
-- (NSArray*) loadMovies {
-    NSArray* array = [FileUtilities readObject:self.moviesFile];
+- (NSArray*) loadMovies:(NSString*) file {
+    NSArray* array = [FileUtilities readObject:file];
     if (array == nil) {
         return [NSArray array];
     }
-
+    
     NSMutableArray* decodedMovies = [NSMutableArray array];
-
+    
     for (int i = 0; i < array.count; i++) {
         Movie* movie = [Movie movieWithDictionary:[array objectAtIndex:i]];
         [decodedMovies addObject:movie];
     }
-
+    
     return decodedMovies;
+}
+
+
+- (NSArray*) loadMovies {
+    return [self loadMovies:self.moviesFile];
 }
 
 
@@ -141,6 +154,29 @@
     }
 
     return moviesData;
+}
+
+
+- (NSMutableDictionary*) loadBookmarks {
+    NSArray* movies = [self loadMovies:self.bookmarksFile];
+    if (movies.count == 0) {
+        return [NSMutableDictionary dictionary];
+    }
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    for (Movie* movie in movies) {
+        [result setObject:movie forKey:movie.canonicalTitle];
+    }
+    return result;
+}
+
+
+- (NSMutableDictionary*) bookmarks {
+    if (bookmarksData == nil) {
+        self.bookmarksData = [self loadBookmarks];
+    }
+    
+    return bookmarksData;
 }
 
 
@@ -469,11 +505,32 @@
 }
 
 
+- (void) saveBookmarks {
+    [self saveArray:self.bookmarks.allValues to:self.bookmarksFile];
+}
+
+
 - (void) reportResult:(LookupResult*) result {
+    // add in any previously bookmarked movies that we now no longer know about.
+    for (Movie* movie in self.bookmarks.allValues) {
+        if (![result.movies containsObject:movie]) {
+            [result.movies addObject:movie];
+        }
+    }
+    
+    // also determine if any of the data we found match items the user bookmarked
+    for (Movie* movie in result.movies) {
+        if ([model isBookmarked:movie]) {
+            [self.bookmarks setObject:movie forKey:movie.canonicalTitle];
+        }
+    }
+    [self saveBookmarks];
+    
     self.moviesData = result.movies;
     self.theatersData = result.theaters;
     self.synchronizationInformationData = result.synchronizationInformation;
     self.performancesData = [NSMutableDictionary dictionary];
+    
     [NowPlayingAppDelegate majorRefresh:YES];
 }
 
@@ -491,6 +548,23 @@
     }
     
     return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];    
+}
+
+
+- (void) addBookmark:(NSString*) canonicalTitle {
+    for (Movie* movie in self.movies) {
+        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+            [self.bookmarks setObject:movie forKey:canonicalTitle];
+            [self saveBookmarks];
+            return;
+        }
+    }
+}
+
+
+- (void) removeBookmark:(NSString*) canonicalTitle {
+    [self.bookmarks removeObjectForKey:canonicalTitle];
+    [self saveBookmarks];
 }
 
 @end
