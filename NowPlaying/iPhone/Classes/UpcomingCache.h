@@ -17,11 +17,9 @@
 @interface UpcomingCache : AbstractCache {
 @private
     NSString* hashData;
-    NSDictionary* allMoviesData;
+    NSDictionary* movieMapData;
     NSDictionary* studioKeysData;
     NSDictionary* titleKeysData;
-
-    NSArray* recentMovies;
 
     LinkedSet* prioritizedMovies;
     
@@ -32,7 +30,7 @@
 
 - (void) update;
 
-- (NSArray*) upcomingMovies;
+- (NSArray*) movies;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

@@ -34,6 +34,7 @@
 @property (retain) PointerSet* moviesSetData;
 @property (retain) NSArray* moviesData;
 @property (retain) LinkedSet* prioritizedMovies;
+@property (retain) NSMutableDictionary* bookmarksData;
 @end
 
 
@@ -42,11 +43,13 @@
 @synthesize moviesSetData;
 @synthesize moviesData;
 @synthesize prioritizedMovies;
+@synthesize bookmarksData;
 
 - (void) dealloc {
     self.moviesSetData = nil;
     self.moviesData = nil;
     self.prioritizedMovies = nil;
+    self.bookmarksData = nil;
 
     [super dealloc];
 }
@@ -86,12 +89,17 @@
 }
 
 
-- (NSString*) indexFile {
-    return [[self directory] stringByAppendingPathComponent:@"Index.plist"];
+- (NSString*) moviesFile {
+    return [[self directory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
 
-- (NSArray*) decodeArray:(NSArray*) array {
+- (NSString*) bookmarksFile {
+    return [[self directory] stringByAppendingPathComponent:@"Bookmarks.plist"];
+}
+
+
+- (NSArray*) decodeMovieArray:(NSArray*) array {
     if (array == nil) {
         return [NSArray array];
     }
@@ -105,9 +113,14 @@
 }
 
 
+- (NSArray*) loadMovies:(NSString*) file {
+    NSArray* encodedMovies = [FileUtilities readObject:file];
+    return [self decodeMovieArray:encodedMovies];
+}
+
+
 - (NSArray*) loadMovies {
-    NSArray* encodedMovies = [FileUtilities readObject:[self indexFile]];
-    return [self decodeArray:encodedMovies];
+    return [self loadMovies:self.moviesFile];
 }
 
 
@@ -129,6 +142,30 @@
 - (PointerSet*) moviesSet {
     [self movies];
     return moviesSetData;
+}
+
+
+- (NSMutableDictionary*) loadBookmarks {
+    NSArray* movies = [self loadMovies:self.bookmarksFile];
+    if (movies.count == 0) {
+        return [NSMutableDictionary dictionary];
+    }
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    for (Movie* movie in movies) {
+        [result setObject:movie forKey:movie.canonicalTitle];
+    }
+    
+    return result;
+}
+
+
+- (NSMutableDictionary*) bookmarks {
+    if (bookmarksData == nil) {
+        self.bookmarksData = [self loadBookmarks];
+    }
+    
+    return bookmarksData;
 }
 
 
@@ -335,20 +372,25 @@
 }
 
 
+- (void) saveVideosArray:(NSArray*) videos toFile:(NSString*) file {
+    NSMutableArray* encoded = [NSMutableArray array];
+    for (Movie* video in videos) {
+        [encoded addObject:video.dictionary];
+    }    
+    [FileUtilities writeObject:encoded toFile:file];
+}
+
+
 - (void) saveData:(NSDictionary*) dictionary {
     NSArray* videos = dictionary.allKeys;
-    NSMutableArray* encodedVideos = [NSMutableArray array];
-
-    for (Movie* movie in videos) {
-        [encodedVideos addObject:movie.dictionary];
-    }
-
-    [FileUtilities writeObject:encodedVideos toFile:self.indexFile];
-
+    
     for (Movie* movie in dictionary) {
         DVD* dvd = [dictionary objectForKey:movie];
         [FileUtilities writeObject:dvd.dictionary toFile:[self detailsFile:movie set:nil]];
     }
+    
+    // do this last.  it signifies that we're done
+    [self saveVideosArray:videos toFile:self.moviesFile];
 }
 
 
@@ -361,7 +403,7 @@
 
 
 - (void) updateMoviesBackgroundEntryPoint {
-    NSDate* lastUpdateDate = [FileUtilities modificationDate:[self indexFile]];
+    NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
     if (lastUpdateDate != nil) {
         if (ABS(lastUpdateDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
@@ -383,17 +425,37 @@
 
     [self saveData:map];
 
-    [self performSelectorOnMainThread:@selector(reportResults:) withObject:map.allKeys waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(reportResults:) 
+                           withObject:map
+                        waitUntilDone:NO];
 }
 
 
-- (void) reportResults:(NSArray*) movies {
-    if (movies.count > 0) {
-        [self setMovies:movies];
+- (void) saveBookmarks {
+    [self saveVideosArray:self.bookmarks.allValues toFile:self.bookmarksFile];
+}
 
-        [self updateDetails];
-        [NowPlayingAppDelegate majorRefresh];
+
+- (void) reportResults:(NSDictionary*) map {
+    NSMutableArray* movies = [NSMutableArray arrayWithArray:map.allKeys];
+    // add in any previously bookmarked movies that we now no longer know about.
+    for (Movie* movie in self.bookmarks.allValues) {
+        if (![movies containsObject:movie]) {
+            [movies addObject:movie];
+        }
     }
+    
+    // also determine if any of the data we found match items the user bookmarked
+    for (Movie* movie in movies) {
+        if ([model isBookmarked:movie]) {
+            [self.bookmarks setObject:movie forKey:movie.canonicalTitle];
+        }
+    }
+    [self saveBookmarks];
+    
+    [self setMovies:movies];
+    [self updateDetails];
+    [NowPlayingAppDelegate majorRefresh];
 }
 
 
@@ -537,6 +599,23 @@
     }
 
     return [DVD dvdWithDictionary:dictionary];
+}
+
+
+- (void) addBookmark:(NSString*) canonicalTitle {
+    for (Movie* movie in self.movies) {
+        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
+            [self.bookmarks setObject:movie forKey:canonicalTitle];
+            [self saveBookmarks];
+            return;
+        }
+    }
+}
+
+
+- (void) removeBookmark:(NSString*) canonicalTitle {
+    [self.bookmarks removeObjectForKey:canonicalTitle];
+    [self saveBookmarks];
 }
 
 @end

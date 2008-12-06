@@ -720,10 +720,8 @@ static NSString** KEYS[] = {
     
     [dataProvider addBookmark:movie.canonicalTitle];
     [upcomingCache addBookmark:movie.canonicalTitle];
-    /*
     [dvdCache addBookmark:movie.canonicalTitle];
     [blurayCache addBookmark:movie.canonicalTitle];
-     */
 }
 
 
@@ -734,10 +732,8 @@ static NSString** KEYS[] = {
     
     [dataProvider removeBookmark:movie.canonicalTitle];
     [upcomingCache removeBookmark:movie.canonicalTitle];
-    /*
     [dvdCache removeBookmark:movie.canonicalTitle];
     [blurayCache removeBookmark:movie.canonicalTitle];
-     */
 }
 
 

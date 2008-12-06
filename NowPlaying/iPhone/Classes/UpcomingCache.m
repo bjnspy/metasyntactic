@@ -30,10 +30,9 @@
 
 @interface UpcomingCache()
 @property (retain) NSString* hashData;
-@property (retain) NSDictionary* allMoviesData;
+@property (retain) NSDictionary* movieMapData;
 @property (retain) NSDictionary* studioKeysData;
 @property (retain) NSDictionary* titleKeysData;
-@property (retain) NSArray* recentMovies;
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) NSMutableDictionary* bookmarksData;
 @end
@@ -42,19 +41,17 @@
 @implementation UpcomingCache
 
 @synthesize hashData;
-@synthesize allMoviesData;
+@synthesize movieMapData;
 @synthesize studioKeysData;
 @synthesize titleKeysData;
-@synthesize recentMovies;
 @synthesize prioritizedMovies;
 @synthesize bookmarksData;
 
 - (void) dealloc {
     self.hashData = nil;
-    self.allMoviesData = nil;
+    self.movieMapData = nil;
     self.studioKeysData = nil;
     self.titleKeysData = nil;
-    self.recentMovies = nil;
     self.prioritizedMovies = nil;
     self.bookmarksData = nil;
 
@@ -181,12 +178,15 @@
                               studioKeys:(NSMutableDictionary*) studioKeys
                                titleKeys:(NSMutableDictionary*) titleKeys {
     NSMutableArray* result = [NSMutableArray array];
-
+    NSDate* now = [NSDate date];
+    
     for (XmlElement* movieElement in resultElement.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             Movie* movie = [self processMovieElement:movieElement studioKeys:studioKeys titleKeys:titleKeys];
-            if (movie != nil) {
+            
+            if (movie != nil &&
+                [now compare:movie.releaseDate] != NSOrderedDescending) {
                 [result addObject:movie];
             }
         }
@@ -212,17 +212,22 @@
 }
 
 
-- (NSDictionary*) loadAllMovies {
+- (NSDictionary*) loadMovies {
     return [self loadMovies:self.moviesFile];
 }
 
 
-- (NSDictionary*) allMovies {
-    if (allMoviesData == nil) {
-        self.allMoviesData = [self loadAllMovies];
+- (NSDictionary*) movieMap {
+    if (movieMapData == nil) {
+        self.movieMapData = [self loadMovies];
     }
     
-    return allMoviesData;
+    return movieMapData;
+}
+
+
+- (NSArray*) movies {
+    return self.movieMap.allValues;
 }
 
 
@@ -389,7 +394,7 @@
 
 - (void) updateDetails {
     NSAssert([NSThread isMainThread], @"");
-    NSArray* arguments = [NSArray arrayWithObjects:self.allMovies, self.studioKeys, self.titleKeys, nil];
+    NSArray* arguments = [NSArray arrayWithObjects:self.movies, self.studioKeys, self.titleKeys, nil];
     [ThreadingUtilities performSelector:@selector(updateDetailsInBackgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:arguments
@@ -427,17 +432,15 @@
     }
     [self saveBookmarks];
     
-    NSMutableDictionary* allMovies = [NSMutableDictionary dictionary];
+    NSMutableDictionary* movieMap = [NSMutableDictionary dictionary];
     for (Movie* movie in movies) {
-        [allMovies setObject:movie forKey:movie.canonicalTitle];
+        [movieMap setObject:movie forKey:movie.canonicalTitle];
     }
     
     self.hashData = [arguments objectAtIndex:0];
-    self.allMoviesData = allMovies;
+    self.movieMapData = movieMap;
     self.studioKeysData = [arguments objectAtIndex:2];
     self.titleKeysData = [arguments objectAtIndex:3];
-
-    self.recentMovies = nil;
 
     [self updateDetails];
     [NowPlayingAppDelegate majorRefresh];
@@ -593,12 +596,12 @@
 
 
 - (void) updateDetailsInBackgroundEntryPoint:(NSArray*) arguments {
-    NSDictionary* movies = [arguments objectAtIndex:0];
+    NSArray* movies = [arguments objectAtIndex:0];
     if (movies.count == 0) {
         return;
     }
 
-    NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies.allValues];
+    NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
     NSDictionary* studios = [arguments objectAtIndex:1];
     NSDictionary* titles = [arguments objectAtIndex:2];
 
@@ -622,7 +625,7 @@
     [prioritizedMovies addObject:movie];
 }
 
-
+/*
 - (NSArray*) upcomingMovies {
     if (recentMovies == nil) {
         NSMutableArray* result = [NSMutableArray array];
@@ -646,20 +649,21 @@
 
     return recentMovies;
 }
+ */
 
 
 - (NSDate*) releaseDateForMovie:(Movie*) movie {
-    return [[self.allMovies objectForKey:movie.canonicalTitle] releaseDate];
+    return [[self.movieMap objectForKey:movie.canonicalTitle] releaseDate];
 }
 
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
-    return [[self.allMovies objectForKey:movie.canonicalTitle] directors];
+    return [[self.movieMap objectForKey:movie.canonicalTitle] directors];
 }
 
 
 - (NSArray*) castForMovie:(Movie*) movie {
-    NSArray* result = [[self.allMovies objectForKey:movie.canonicalTitle] cast];
+    NSArray* result = [[self.movieMap objectForKey:movie.canonicalTitle] cast];
     if (result.count > 0) {
         return result;
     }
@@ -674,7 +678,7 @@
 
 
 - (NSArray*) genresForMovie:(Movie*) movie {
-    return [[self.allMovies objectForKey:movie.canonicalTitle] genres];
+    return [[self.movieMap objectForKey:movie.canonicalTitle] genres];
 }
 
 
@@ -724,7 +728,7 @@
 
 
 - (void) addBookmark:(NSString*) canonicalTitle {
-    for (Movie* movie in self.allMovies.allValues) {
+    for (Movie* movie in self.movies) {
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
             [self.bookmarks setObject:movie forKey:canonicalTitle];
             [self saveBookmarks];

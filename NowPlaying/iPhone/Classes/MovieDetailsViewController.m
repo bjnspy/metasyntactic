@@ -120,7 +120,7 @@
 
 
 - (BOOL) isUpcomingMovie {
-    for (Movie* upcomingMovie in self.model.upcomingCache.upcomingMovies) {
+    for (Movie* upcomingMovie in self.model.upcomingCache.movies) {
         if (upcomingMovie == movie) {
             return YES;
         }
