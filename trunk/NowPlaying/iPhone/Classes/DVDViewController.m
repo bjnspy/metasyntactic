@@ -62,7 +62,7 @@
 
 - (NSArray*) movies {
     NSMutableArray* result = [NSMutableArray array];
-    
+
     if (self.model.dvdMoviesShowDVDs) {
         [result addObjectsFromArray:self.model.dvdCache.movies];
     }
@@ -134,17 +134,17 @@
 - (void) setupFlipUpButton {
     self.flipButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage* image = [UIImage imageNamed:@"FlipUp-Normal.png"];
-    
+
     [flipButton setImage:image forState:UIControlStateNormal];
     [flipButton setImage:[UIImage imageNamed:@"FlipUp-Highlighted.png"] forState:UIControlStateHighlighted];
     [flipButton setImage:[UIImage imageNamed:@"FlipUp-Highlighted.png"] forState:(UIControlStateHighlighted | UIControlStateSelected)];
     [flipButton setImage:[UIImage imageNamed:@"FlipUp-Selected.png"] forState:UIControlStateSelected];
     [flipButton addTarget:self action:@selector(flipUpDown:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     CGRect frame = flipButton.frame;
     frame.size = image.size;
     flipButton.frame = frame;
-    
+
     UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:flipButton] autorelease];
     self.navigationItem.rightBarButtonItem = item;
 }
@@ -152,7 +152,7 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     scrollToCurrentDateOnRefresh = YES;
     [self setupFlipUpButton];
     self.segmentedControl = [self createSegmentedControl];
@@ -195,7 +195,7 @@
     } else {
         self.title = NSLocalizedString(@"DVD", nil);
     }
-    
+
     self.tableView.rowHeight = 100;
     [super majorRefresh];
 }
@@ -210,11 +210,11 @@
 
 - (void) flipUpDown:(id) sender {
     flipButton.selected = !flipButton.selected;
-    
+
     if (superView == nil) {
         self.superView = self.tableView.superview;
     }
-    
+
     if (dvdFilterViewController == nil) {
         self.dvdFilterViewController =
             [[[DVDFilterViewController alloc] initWithNavigationController:navigationController
@@ -225,11 +225,11 @@
         frame.origin.y -= 20;
         dvdView.frame = frame;
     }
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:1];
-        
+
         if (flipButton.selected) {
             [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp
                                    forView:superView
@@ -256,19 +256,19 @@
 
 - (void) sortMoviesByReleaseDate {
     [super sortMoviesByReleaseDate];
-    
+
     if (!scrollToCurrentDateOnRefresh || visibleIndexPaths != nil) {
         return;
     }
     scrollToCurrentDateOnRefresh = NO;
 
-    NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];    
+    NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
     NSDate* today = [DateUtilities today];
-    
+
     NSDate* date = nil;
     for (Movie* movie in movies) {
         NSDate* releaseDate = [self.model releaseDateForMovie:movie];
-            
+
         if (releaseDate != nil) {
             if ([releaseDate compare:today] == NSOrderedDescending) {
                 date = releaseDate;
@@ -280,15 +280,15 @@
     if (date == nil) {
         return;
     }
-    
+
     NSString* title = [DateUtilities formatFullDate:date];
     NSInteger section = [sectionTitles indexOfObject:title];
-    
+
     if (section < 0 || section >= sectionTitles.count) {
         return;
     }
 
-    self.visibleIndexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:section], nil]; 
+    self.visibleIndexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:section], nil];
 }
 
 @end

@@ -41,7 +41,7 @@
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                             target:(id) target_ 
+                             target:(id) target_
                            selector:(SEL) selector_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
@@ -138,9 +138,9 @@
 
         [self setCheckmarkForCell:cell atRow:i];
     }
-    
+
     [NowPlayingAppDelegate majorRefresh:YES];
-    
+
     [target performSelector:selector];
 }
 

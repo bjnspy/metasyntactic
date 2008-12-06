@@ -76,7 +76,7 @@ property_definition(url);
     if (timeString == nil) {
         self.timeString = [DateUtilities formatShortTime:time];
     }
-    
+
     return timeString;
 }
 

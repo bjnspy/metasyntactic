@@ -18,7 +18,7 @@
 }
 
 + (SearchDatePickerViewController*) pickerWithNavigationController:(AbstractNavigationController*) navigationController
-                                                            object:(id) object 
+                                                            object:(id) object
                                                           selector:(SEL) selector;
 
 @end

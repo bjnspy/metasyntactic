@@ -36,7 +36,7 @@
     self.context = nil;
     self.currentMovies = nil;
     self.currentTheaters = nil;
-    
+
     [super dealloc];
 }
 
@@ -53,7 +53,7 @@
         self.currentMovies = currentMovies_;
         self.currentTheaters = currentTheaters_;
     }
-    
+
     return self;
 }
 

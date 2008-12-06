@@ -236,7 +236,7 @@
     } else {
         titleLabel.text = movie_.displayTitle;
     }
-    
+
     if (movie == movie_) {
         // refreshing with the same movie.
         // update our image if necessary.

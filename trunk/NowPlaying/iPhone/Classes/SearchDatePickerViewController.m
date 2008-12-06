@@ -28,8 +28,8 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                          withValues:(NSArray*) values_
-                       defaultValue:(NSString*) defaultValue_ 
-                             object:(id) object_ 
+                       defaultValue:(NSString*) defaultValue_
+                             object:(id) object_
                            selector:(SEL) selector_ {
     if (self = [super initWithController:navigationController_
                                    title:NSLocalizedString(@"Search Date", @"This is noun, not a verb. It is the date we are getting movie listings for.")
@@ -44,8 +44,8 @@
 }
 
 
-+ (SearchDatePickerViewController*) pickerWithNavigationController:(AbstractNavigationController*) navigationController 
-                                                            object:(id) object 
++ (SearchDatePickerViewController*) pickerWithNavigationController:(AbstractNavigationController*) navigationController
+                                                            object:(id) object
                                                           selector:(SEL) selector {
     NSMutableArray* values = [NSMutableArray array];
     NSDate* today = [NSDate date];

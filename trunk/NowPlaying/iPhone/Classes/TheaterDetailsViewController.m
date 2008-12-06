@@ -154,13 +154,13 @@
 - (void) initializeData {
     self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
                                                                          context:self.model];
-    
+
     self.movieShowtimes = [NSMutableArray array];
     for (Movie* movie in movies) {
         NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
-        
+
         [movieShowtimes addObject:showtimes];
-    }    
+    }
 }
 
 
@@ -206,7 +206,7 @@
             return [DateUtilities formatFullDate:self.model.searchDate];
         }
     }
-    
+
     return nil;
 }
 
@@ -248,7 +248,7 @@
     } else {
         cell.text = NSLocalizedString(@"Change date", nil);
     }
-    
+
     return cell;
 }
 
@@ -385,20 +385,20 @@
     if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
-    
+
     NSDate* searchDate = [array lastObject];
-    
+
     if (![lookupResult.theaters containsObject:theater]) {
-        NSString* text = 
+        NSString* text =
         [NSString stringWithFormat:
          NSLocalizedString(@"No listings found at '%@' on %@", @"No listings found at 'Regal Meridian 6' on 5/18/2008"),
          theater.name,
          [DateUtilities formatShortDate:searchDate]];
-        
+
         [self onDataProviderUpdateFailure:text context:array];
     } else {
         [super onDataProviderUpdateSuccess:lookupResult context:array];
-        
+
         // find the up to date version of this theater
         self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:theater]];
     }

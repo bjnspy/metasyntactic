@@ -114,7 +114,7 @@
 
     NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"About", nil), NSLocalizedString(@"Send Feedback", nil)];
     cell.text = text;
-    
+
     return cell;
 }
 
@@ -180,7 +180,7 @@
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
         } else if (row == 5) {
-            text = NSLocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'"); 
+            text = NSLocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.prioritizeBookmarks;
             selector = @selector(onPrioritizeBookmarksChanged:);
         } else if (row == 6) {

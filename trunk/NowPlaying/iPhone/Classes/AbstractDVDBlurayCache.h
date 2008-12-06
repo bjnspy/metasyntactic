@@ -20,7 +20,7 @@
     NSArray* moviesData;
 
     LinkedSet* prioritizedMovies;
-    
+
     NSMutableDictionary* bookmarksData;
 }
 

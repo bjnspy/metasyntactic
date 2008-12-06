@@ -220,7 +220,7 @@ static NSString** KEYS[] = {
     if ([previousAutoUpdateLocation isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];
     }
-    
+
     if ([previousPrioritizeBookmarks isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousPrioritizeBookmarks boolValue] forKey:PRIORITIZE_BOOKMARKS];
     }
@@ -236,7 +236,7 @@ static NSString** KEYS[] = {
     if ([previousDvdMoviesHideBluray isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideBluray boolValue] forKey:DVD_MOVIES_HIDE_BLURAY];
     }
-    
+
     if ([previousBookmarkedTitles isKindOfClass:[NSArray class]]) {
         NSMutableSet* bookmarkedTitles = [NSMutableSet set];
         for (id previousTitle in previousBookmarkedTitles) {
@@ -276,7 +276,7 @@ static NSString** KEYS[] = {
         id previousUserAddress = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ADDRESS];
         id previousSearchRadius = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_RADIUS];
         id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
-        id previousPrioritizeBookmarks = [[NSUserDefaults standardUserDefaults] objectForKey:PRIORITIZE_BOOKMARKS]; 
+        id previousPrioritizeBookmarks = [[NSUserDefaults standardUserDefaults] objectForKey:PRIORITIZE_BOOKMARKS];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousBookmarkedTitles = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_TITLES];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
@@ -333,26 +333,26 @@ static NSString** KEYS[] = {
     if ([LocaleUtilities isSupportedCountry]) {
         return;
     }
-    
+
     // Only warn once per upgrade.
-    NSString* key = [NSString stringWithFormat:@"%@-%@-%@", UNSUPPORTED_COUNTRY, currentVersion, [LocaleUtilities isoCountry]]; 
+    NSString* key = [NSString stringWithFormat:@"%@-%@-%@", UNSUPPORTED_COUNTRY, currentVersion, [LocaleUtilities isoCountry]];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:key]) {
         return;
     }
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
-    
+
     NSString* warning =
     [NSString stringWithFormat:
     NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
      [UIDevice currentDevice].localizedModel,
      [LocaleUtilities displayCountry]];
-    
+
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
                                                      message:warning
                                                     delegate:nil
                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                            otherButtonTitles:nil] autorelease];
-    
+
     [alert show];
 }
 
@@ -690,7 +690,7 @@ static NSString** KEYS[] = {
     if (array.count == 0) {
         return [NSMutableSet set];
     }
-    
+
     return [NSMutableSet setWithArray:array];
 }
 
@@ -717,7 +717,7 @@ static NSString** KEYS[] = {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData addObject:movie.canonicalTitle];
     [NowPlayingModel saveBookmarkedTitles:bookmarkedTitlesData];
-    
+
     [dataProvider addBookmark:movie.canonicalTitle];
     [upcomingCache addBookmark:movie.canonicalTitle];
     [dvdCache addBookmark:movie.canonicalTitle];
@@ -729,7 +729,7 @@ static NSString** KEYS[] = {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData removeObject:movie.canonicalTitle];
     [NowPlayingModel saveBookmarkedTitles:bookmarkedTitlesData];
-    
+
     [dataProvider removeBookmark:movie.canonicalTitle];
     [upcomingCache removeBookmark:movie.canonicalTitle];
     [dvdCache removeBookmark:movie.canonicalTitle];
@@ -742,13 +742,13 @@ static NSString** KEYS[] = {
     if (array.count == 0) {
         return [NSMutableDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (NSDictionary* dictionary in array) {
         FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:dictionary];
         [result setObject:theater forKey:theater.name];
     }
-    
+
     return result;
 }
 
@@ -773,7 +773,7 @@ static NSString** KEYS[] = {
 
 - (void) addFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
-    
+
     FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
                                                     originatingLocation:theater.originatingLocation];
     [favoriteTheatersData setObject:favoriteTheater forKey:theater.name];
@@ -783,14 +783,14 @@ static NSString** KEYS[] = {
 
 - (BOOL) isFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
-    
+
     return [favoriteTheatersData objectForKey:theater.name] != nil;
 }
 
 
 - (void) removeFavoriteTheater:(Theater*) theater {
     [self ensureFavoriteTheaters];
-    
+
     [favoriteTheatersData removeObjectForKey:theater.name];
     [self saveFavoriteTheaters];
 }
@@ -857,7 +857,7 @@ static NSString** KEYS[] = {
     if (result.length > 0) {
         return result;
     }
-    
+
     return nil;
 }
 
@@ -872,7 +872,7 @@ static NSString** KEYS[] = {
     if (dvd != nil) {
         return dvd;
     }
-    
+
     return nil;
 }
 
@@ -952,7 +952,7 @@ static NSString** KEYS[] = {
         stale = [NSNumber numberWithBool:[self isStaleWorker:theater]];
         theater.isStale = stale;
     }
-    
+
     return [stale boolValue];
 }
 
@@ -1011,7 +1011,7 @@ static NSString** KEYS[] = {
 
 
 - (BOOL) tooFarAway:(double) distance {
-    return 
+    return
         distance != UNKNOWN_DISTANCE &&
         self.searchRadius < 50 &&
         distance > self.searchRadius;
@@ -1093,13 +1093,13 @@ NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
     }
 
     NowPlayingModel* model = context;
-    
+
     Movie* movie1 = t1;
     Movie* movie2 = t2;
-    
+
     BOOL movie1Bookmarked = [model isBookmarked:movie1];
     BOOL movie2Bookmarked = [model isBookmarked:movie2];
-    
+
     if (movie1Bookmarked && !movie2Bookmarked) {
         return NSOrderedAscending;
     } else if (movie2Bookmarked && !movie1Bookmarked) {

@@ -198,7 +198,7 @@
 - (void) setMovie:(Movie*) movie owner:(id) owner {
     [self setScore:movie];
     ratingLabel.text = movie.ratingAndRuntimeString;
-    
+
     if ([model isBookmarked:movie]) {
         titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie.displayTitle];
     } else {

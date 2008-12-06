@@ -40,7 +40,7 @@
         self.title = NSLocalizedString(@"Blu-ray", nil);
     } else {
         self.title = NSLocalizedString(@"DVD", nil);
-    }    
+    }
 }
 
 

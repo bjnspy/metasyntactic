@@ -33,7 +33,7 @@ static Pulser* pulser = nil;
         gate = [[NSRecursiveLock alloc] init];
         pulser = [[Pulser pulserWithTarget:self
                                     action:@selector(updateNetworkActivityIndicator)
-                             pulseInterval:5] retain]; 
+                             pulseInterval:5] retain];
     }
 }
 
@@ -144,7 +144,7 @@ static Pulser* pulser = nil;
                                          returningResponse:&response
                                                      error:&error];
 
-    
+
     [gate lock];
     {
         inflightOperations--;

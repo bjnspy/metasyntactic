@@ -51,7 +51,7 @@
         self.selectors = selectors_;
         self.titles = titles_;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        
+
         if (footer_ != nil) {
             self.footer = [[[UILabel alloc] init] autorelease];
             footer.text = footer_;
@@ -88,7 +88,7 @@
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
-                         titles:(NSArray*) titles 
+                         titles:(NSArray*) titles
                          footer:(NSString*) footer {
     return [[[ActionsView alloc] initWithTarget:(id) target
                                       selectors:selectors
@@ -135,13 +135,13 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
-    
+
     //int lastRow = (buttons.count - 1) / 2;
     for (int i = 0; i < buttons.count; i++) {
         UIButton* button = [buttons objectAtIndex:i];
-        
+
         NSInteger column;
         NSInteger row;
         if (oddNumberOfButtons && i != 0) {
@@ -155,9 +155,9 @@
         CGRect frame = button.frame;
         frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);
         frame.origin.y = (8 + frame.size.height) * row + 8;
-        
+
         if (i == 0 && oddNumberOfButtons) {
-            frame.size.width = (self.frame.size.width - 2 * frame.origin.x); 
+            frame.size.width = (self.frame.size.width - 2 * frame.origin.x);
         } else {
             frame.size.width = (self.frame.size.width / 2) - 14;
         }

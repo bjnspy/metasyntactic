@@ -77,13 +77,13 @@
 
 - (BOOL) abortEarly {
     BOOL result;
-    
+
     [gate lock];
     {
         result = currentlyExecutingRequest.requestId != currentRequestId;
     }
     [gate unlock];
-    
+
     return result;
 }
 

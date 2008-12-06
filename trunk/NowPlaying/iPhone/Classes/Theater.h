@@ -24,7 +24,7 @@
     NSArray* movieTitles;
 
     NSString* simpleAddress;
-    
+
     NSNumber* isStale;
 }
 

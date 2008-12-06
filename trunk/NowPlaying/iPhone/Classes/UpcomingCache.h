@@ -22,7 +22,7 @@
     NSDictionary* titleKeysData;
 
     LinkedSet* prioritizedMovies;
-    
+
     NSMutableDictionary* bookmarksData;
 }
 
