@@ -16,12 +16,16 @@
 
 @interface UpcomingCache : AbstractCache {
 @private
-    NSDictionary* indexData;
+    NSString* hashData;
+    NSDictionary* allMoviesData;
+    NSDictionary* studioKeysData;
+    NSDictionary* titleKeysData;
 
     NSArray* recentMovies;
-    NSDictionary* movieMap;
 
     LinkedSet* prioritizedMovies;
+    
+    NSMutableDictionary* bookmarksData;
 }
 
 + (UpcomingCache*) cacheWithModel:(NowPlayingModel*) model;
@@ -43,4 +47,6 @@
 
 - (void) prioritizeMovie:(Movie*) movie;
 
+- (void) addBookmark:(NSString*) canonicalTitle;
+- (void) removeBookmark:(NSString*) canonicalTitle;
 @end

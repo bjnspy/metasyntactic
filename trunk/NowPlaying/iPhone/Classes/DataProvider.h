@@ -25,4 +25,7 @@
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater;
+
+- (void) addBookmark:(NSString*) canonicalTitle;
+- (void) removeBookmark:(NSString*) canonicalTitle;
 @end

@@ -20,6 +20,7 @@
     NSArray* moviesData;
     NSArray* theatersData;
     NSDictionary* synchronizationInformationData;
+    NSMutableDictionary* bookmarksData;
 
     NSMutableDictionary* performancesData;
 }
@@ -40,5 +41,8 @@
 
 - (void) update:(NSDate*) searchDate delegate:(id<DataProviderUpdateDelegate>) delegate context:(id) context;
 - (void) saveResult:(LookupResult*) result;
+
+- (void) addBookmark:(NSString*) canonicalTitle;
+- (void) removeBookmark:(NSString*) canonicalTitle;
 
 @end
