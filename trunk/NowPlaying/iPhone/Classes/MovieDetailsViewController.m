@@ -188,6 +188,13 @@
 
 
 - (void) initializeData {
+    for (Movie* other in self.model.movies) {
+        if ([movie isEqual:other]) {
+            self.movie = other;
+            break;
+        }
+    }
+    
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
         self.trailer = [trailers objectAtIndex:0];

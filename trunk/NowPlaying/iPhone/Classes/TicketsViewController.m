@@ -53,19 +53,34 @@
 }
 
 
-- (void) majorRefresh {
+- (void) initializeData {
+    // find the up to date version of this theater and movie
+    for (Theater* other in self.model.theaters) {
+        if ([theater isEqual:other]) {
+            self.theater = other;
+            break;
+        }
+    }
+    
+    for (Movie* other in self.model.movies) {
+        if ([movie isEqual:other]) {
+            self.movie = other;
+            break;
+        }
+    }
+    
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     self.performances = [NSMutableArray array];
-
+    
     NSDate* now = [DateUtilities currentTime];
-
+    
     for (Performance* performance in allPerformances) {
         if ([DateUtilities isToday:self.model.searchDate]) {
             NSDate* time = performance.time;
-
+            
             // skip times that have already passed.
             if ([now compare:time] == NSOrderedDescending) {
-
+                
                 // except for times that are before 4 AM
                 NSDateComponents* components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit
                                                                                fromDate:time];
@@ -74,10 +89,14 @@
                 }
             }
         }
-
+        
         [performances addObject:performance];
-    }
-    
+    }    
+}
+
+
+- (void) majorRefresh {
+    [self initializeData];
     [self.tableView reloadData];
 }
 
