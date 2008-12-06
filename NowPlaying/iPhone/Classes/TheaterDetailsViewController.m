@@ -104,16 +104,6 @@
 - (void) loadView {
     [super loadView];
 
-    self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
-                                                                         context:self.model];
-
-    self.movieShowtimes = [NSMutableArray array];
-    for (Movie* movie in movies) {
-        NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
-
-        [movieShowtimes addObject:showtimes];
-    }
-
     UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
     label.text = theater.name;
 
@@ -161,7 +151,29 @@
 }
 
 
+- (void) initializeData {
+    // find the up to date version of this theater
+    for (Theater* t in self.model.theaters) {
+        if ([theater.name isEqual:t.name]) {
+            self.theater = t;
+            break;
+        }
+    }
+    
+    self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
+                                                                         context:self.model];
+    
+    self.movieShowtimes = [NSMutableArray array];
+    for (Movie* movie in movies) {
+        NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
+        
+        [movieShowtimes addObject:showtimes];
+    }    
+}
+
+
 - (void) majorRefresh {
+    [self initializeData];
     [self.tableView reloadData];
 }
 
