@@ -473,7 +473,7 @@
 - (void) updateBackgroundEntryPointWorker:(LookupRequest*) request {
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     if (location == nil) {
-        [request.delegate onFailure:NSLocalizedString(@"Could not find location.", nil) context:request.context];
+        [request.delegate onDataProviderUpdateFailure:NSLocalizedString(@"Could not find location.", nil) context:request.context];
         return;
     }
 
@@ -482,7 +482,7 @@
                                      searchDate:request.searchDate
                                        theaterNames:nil];
     if (result.movies.count == 0 || result.theaters.count == 0) {
-        [request.delegate onFailure:NSLocalizedString(@"No information found", nil) context:request.context];
+        [request.delegate onDataProviderUpdateFailure:NSLocalizedString(@"No information found", nil) context:request.context];
         return;
     }
 
@@ -495,7 +495,7 @@
                currentMovies:request.currentMovies
              currentTheaters:request.currentTheaters];
     
-    [request.delegate onSuccess:result context:request.context];
+    [request.delegate onDataProviderUpdateSuccess:result context:request.context];
 }
 
 

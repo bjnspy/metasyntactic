@@ -54,21 +54,6 @@
 
 
 - (void) initializeData {
-    // find the up to date version of this theater and movie
-    for (Theater* other in self.model.theaters) {
-        if ([theater isEqual:other]) {
-            self.theater = other;
-            break;
-        }
-    }
-    
-    for (Movie* other in self.model.movies) {
-        if ([movie isEqual:other]) {
-            self.movie = other;
-            break;
-        }
-    }
-    
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     self.performances = [NSMutableArray array];
     
@@ -383,7 +368,7 @@
 }
 
 
-- (void) onSuccess:(LookupResult*) lookupResult context:(id) array {
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
     if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
@@ -400,9 +385,13 @@
          theater.name,
          [DateUtilities formatShortDate:searchDate]];
         
-        [self onFailure:text context:array];
+        [self onDataProviderUpdateFailure:text context:array];
     } else {
-        [super onSuccess:lookupResult context:array];
+        [super onDataProviderUpdateSuccess:lookupResult context:array];
+        
+        // find the up to date version of this theater and movie
+        self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:theater]];
+        self.movie = [lookupResult.movies objectAtIndex:[lookupResult.movies indexOfObject:movie]];
     }
 }
 

@@ -188,13 +188,6 @@
 
 
 - (void) initializeData {
-    for (Movie* other in self.model.movies) {
-        if ([movie isEqual:other]) {
-            self.movie = other;
-            break;
-        }
-    }
-    
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
         self.trailer = [trailers objectAtIndex:0];
@@ -763,7 +756,7 @@
 }
 
 
-- (void) onSuccess:(LookupResult*) lookupResult context:(id) array {
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
     if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
@@ -777,9 +770,12 @@
          movie.canonicalTitle,
          [DateUtilities formatShortDate:searchDate]];
         
-        [self onFailure:text context:array];
+        [self onDataProviderUpdateFailure:text context:array];
     } else {
-        [super onSuccess:lookupResult context:array];
+        [super onDataProviderUpdateSuccess:lookupResult context:array];
+        
+        // Find the most up to date version of this movie
+        self.movie = [lookupResult.movies objectAtIndex:[lookupResult.movies indexOfObject:movie]];
     }
 }
 

@@ -194,7 +194,7 @@
 }
 
 
-- (void) onFailure:(NSString*) error context:(id) array {
+- (void) onDataProviderUpdateFailure:(NSString*) error context:(id) array {
     if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
@@ -215,7 +215,7 @@
 }
 
 
-- (void) onSuccess:(LookupResult*) lookupResult context:(id) array {
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
     if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }

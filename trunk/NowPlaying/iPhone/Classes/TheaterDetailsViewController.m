@@ -152,14 +152,6 @@
 
 
 - (void) initializeData {
-    // find the up to date version of this theater
-    for (Theater* t in self.model.theaters) {
-        if ([theater.name isEqual:t.name]) {
-            self.theater = t;
-            break;
-        }
-    }
-    
     self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
                                                                          context:self.model];
     
@@ -389,7 +381,7 @@
 }
 
 
-- (void) onSuccess:(LookupResult*) lookupResult context:(id) array {
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) array {
     if (updateId != [[array objectAtIndex:0] intValue]) {
         return;
     }
@@ -403,9 +395,12 @@
          theater.name,
          [DateUtilities formatShortDate:searchDate]];
         
-        [self onFailure:text context:array];
+        [self onDataProviderUpdateFailure:text context:array];
     } else {
-        [super onSuccess:lookupResult context:array];
+        [super onDataProviderUpdateSuccess:lookupResult context:array];
+        
+        // find the up to date version of this theater
+        self.theater = [lookupResult.theaters objectAtIndex:[lookupResult.theaters indexOfObject:theater]];
     }
 }
 

@@ -104,13 +104,13 @@
 }
 
 
-- (void) onSuccess:(LookupResult*) lookupResult context:(id) context {
+- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) context {
     // Save the results.
     [self.model.dataProvider saveResult:lookupResult];
 }
 
 
-- (void) onFailure:(NSString*) error context:(id) context {
+- (void) onDataProviderUpdateFailure:(NSString*) error context:(id) context {
     [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:NO];
 }
 
