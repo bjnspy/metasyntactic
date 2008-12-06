@@ -71,18 +71,6 @@
 }
 
 
-- (NSSet*) cachedPathsToExclude {
-    NSMutableSet* result = [NSMutableSet set];
-    
-    for (Movie* movie in model.allBookmarkedMovies) {
-        [result addObject:[self posterFilePath:movie index:0]];
-        [result addObject:[self smallPosterFilePath:movie index:0]];
-    }
-    
-    return result;
-}
-
-
 - (UIImage*) posterForMovie:(Movie*) movie
                       index:(NSInteger) index {
     NSString* path = [self posterFilePath:movie index:index];

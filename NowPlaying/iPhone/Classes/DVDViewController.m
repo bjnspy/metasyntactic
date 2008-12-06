@@ -66,13 +66,6 @@
     if (self.model.dvdMoviesShowBluray) {
         [result addObjectsFromArray:self.model.blurayCache.movies];
     }
-    
-    NSSet* set = [NSSet setWithArray:result];
-    for (Movie* movie in self.model.bookmarkedDVDMovies) {
-        if (![set containsObject:movie]) {
-            [result addObject:movie];
-        }
-    }
 
     return result;
 }

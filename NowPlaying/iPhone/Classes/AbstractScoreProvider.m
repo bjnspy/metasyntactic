@@ -553,18 +553,6 @@
 }
 
 
-- (NSSet*) cachedPathsToExclude {
-    NSMutableSet* result = [NSMutableSet set];
-    
-    for (Movie* movie in model.allBookmarkedMovies) {
-        [result addObject:[self reviewsFile:movie.canonicalTitle]];
-        [result addObject:[self reviewsHashFile:movie.canonicalTitle]];
-    }
-    
-    return result;
-}
-
-
 - (void) prioritizeMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
     [self ensureMovieMap:movies_];
     NSArray* arguments = [NSArray arrayWithObjects:movie, self.movieMap, nil];

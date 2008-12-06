@@ -360,19 +360,6 @@
 }
 
 
-- (NSSet*) cachedPathsToExclude {
-    NSMutableSet* result = [NSMutableSet set];
-    for (Movie* movie in model.allBookmarkedMovies) {
-        [result addObject:[self imdbFile:movie set:nil]];
-        [result addObject:[self detailsFile:movie set:nil]];
-        [result addObject:[self posterFile:movie set:nil]];
-        [result addObject:[self smallPosterFile:movie set:nil]];
-    }
-    
-    return result;
-}
-
-
 - (void) updateMoviesBackgroundEntryPoint {
     NSDate* lastUpdateDate = [FileUtilities modificationDate:[self indexFile]];
     if (lastUpdateDate != nil) {

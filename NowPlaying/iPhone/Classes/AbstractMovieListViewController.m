@@ -130,11 +130,10 @@
 - (void) sortMoviesByTitle {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
 
-    NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
     
     for (Movie* movie in sortedMovies) {
-        if (prioritizeBookmarks && [bookmarkedMovies containsObject:movie]) {
+        if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [sectionTitleToContentsMap addObject:movie forKey:[Application starString]];
             continue;
         }
@@ -171,8 +170,7 @@
 
 - (void) sortMoviesByScore {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByScore context:self.model];
-
-    NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
+    
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
     
     NSString* bookmarksString = [Application starString];
@@ -181,7 +179,7 @@
     self.sectionTitles = [NSMutableArray arrayWithObjects:bookmarksString, moviesString, nil];
     
     for (Movie* movie in sortedMovies) {
-        if (prioritizeBookmarks && [bookmarkedMovies containsObject:movie]) {
+        if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [sectionTitleToContentsMap addObject:movie forKey:bookmarksString];
         } else {
             [sectionTitleToContentsMap addObject:movie forKey:moviesString];
@@ -198,12 +196,11 @@
     [formatter setTimeStyle:kCFDateFormatterNoStyle];
 
     NSDate* today = [DateUtilities today];
-
-    NSSet* bookmarkedMovies = self.model.allBookmarkedMovies;
+    
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
     
     for (Movie* movie in sortedMovies) {
-        if (prioritizeBookmarks && [bookmarkedMovies containsObject:movie]) {
+        if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             NSString* starString = [Application starString];
             [sectionTitleToContentsMap addObject:movie forKey:starString];
             if (![sectionTitles containsObject:starString]) {

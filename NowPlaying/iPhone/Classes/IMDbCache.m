@@ -115,17 +115,6 @@
 }
 
 
-- (NSSet*) cachedPathsToExclude {
-    NSMutableSet* result = [NSMutableSet set];
-    
-    for (Movie* movie in model.allBookmarkedMovies) {
-        [result addObject:[self imdbFile:movie]];
-    }
-    
-    return result;
-}
-
-
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie;

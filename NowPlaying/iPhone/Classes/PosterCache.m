@@ -88,18 +88,6 @@
 }
 
 
-- (NSSet*) cachedPathsToExclude {
-    NSMutableSet* result = [NSMutableSet set];
-    
-    for (Movie* movie in model.allBookmarkedMovies) {
-        [result addObject:[self posterFilePath:movie]];
-        [result addObject:[self smallPosterFilePath:movie]];
-    }
-    
-    return result;
-}
-
-
 - (NSData*) downloadPosterWorker:(Movie*) movie
              postalCode:(NSString*) postalCode {
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];

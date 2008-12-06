@@ -193,7 +193,7 @@
         rating = movie.rating;		
     }
 
-    if ([owner sortingByTitle] || [model isBookmarkedUpcomingMovie:movie]) {
+    if ([owner sortingByTitle] || [model isBookmarked:movie]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
         if (!movie.isUnrated) {
@@ -221,7 +221,7 @@
 
 - (void) setMovie:(Movie*) movie_
             owner:(id) owner {
-    if ([model isBookmarkedUpcomingMovie:movie_]) {
+    if ([model isBookmarked:movie_]) {
         titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie_.displayTitle];
     } else {
         titleLabel.text = movie_.displayTitle;
