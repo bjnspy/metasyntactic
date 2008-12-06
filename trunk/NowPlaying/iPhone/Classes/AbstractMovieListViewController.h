@@ -33,5 +33,6 @@
 /* protected */
 - (NowPlayingModel*) model;
 - (NowPlayingController*) controller;
+- (void) sortMoviesByReleaseDate;
 
 @end

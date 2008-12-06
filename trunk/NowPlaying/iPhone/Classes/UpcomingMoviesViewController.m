@@ -70,8 +70,8 @@
     control.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
 
     [control addTarget:self
-                         action:@selector(onSortOrderChanged:)
-               forControlEvents:UIControlEventValueChanged];
+                action:@selector(onSortOrderChanged:)
+      forControlEvents:UIControlEventValueChanged];
 
     CGRect rect = control.frame;
     rect.size.width = 240;
