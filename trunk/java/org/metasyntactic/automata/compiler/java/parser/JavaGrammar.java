@@ -87,8 +87,12 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("ClassOrInterfaceType",
                        // Identifier  [TypeArguments] { . Identifier [TypeArguments]}
-                       delimitedList(sequence(identifier(), optional(variable("TypeArguments"))),
+                       delimitedList(variable("SingleClassOrInterfaceType"),
                                      token(DotSeparatorToken.instance))));
+
+    rules.add(new Rule("SingleClassOrInterfaceType",
+                       sequence(identifier(),
+                                optional(variable("TypeArguments")))));
 
     rules.add(new Rule("TypeArguments", sequence(token(LessThanOperatorToken.instance), delimitedList(
         variable("TypeArgument"), token(CommaSeparatorToken.instance)), token(GreaterThanOperatorToken.instance))));
