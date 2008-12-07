@@ -14,10 +14,7 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.ChoiceExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.SequenceExpression;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.VariableExpression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
 import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.collections.HashMultiMap;
@@ -141,17 +138,129 @@ public class GrammarNodeWriter<TTokenType> {
     Expression expression = rule.getExpression();
     if (expression instanceof SequenceExpression) {
       SequenceExpression se = (SequenceExpression)expression;
-      for (int i = 0; i < se.getChildNames().length; i++) {
-        write("Object get" + se.getChildNames()[i] + "();");
+      for (int i = 0; i < se.getChildren().length; i++) {
+        Expression childExpression = se.getChildren()[i];
+        if ((childExpression instanceof NotExpression)) {
+          continue;
+        }
+
+        write(getExpressionType(childExpression) + " get" + childExpression.accept(new DetermineNameVisitor()) + "();");
       }
+    } else if (expression instanceof ChoiceExpression) {
+    } else if (expression instanceof DelimitedSequenceExpression) {
+      DelimitedSequenceExpression dse = (DelimitedSequenceExpression)expression;
+
+      write("List<" + getExpressionType(dse.getElement()) + "> get" + dse.getElement().accept(new DetermineNameVisitor()) + "List();");
+    } else if (expression instanceof RepetitionExpression) {
+      RepetitionExpression re = (RepetitionExpression)expression;
+
+      write("List<" + getExpressionType(re.getChild()) + "> get" + re.getChild().accept(new DetermineNameVisitor()) + "List();");
+    } else if (expression instanceof TokenExpression) {
+      TokenExpression te = (TokenExpression)expression;
+      write(te.getToken().getClass().getSimpleName() + " get" + te.accept(new DetermineNameVisitor()) + "();");
+    } else {
+      throw new RuntimeException();
     }
 
 
     dedentAndWrite("}");
   }
 
+  private String getExpressionType(Expression expression) {
+    if (expression instanceof VariableExpression) {
+      return "I" + ((VariableExpression)expression).getVariable() + "Node";
+    } else if (expression instanceof RepetitionExpression) {
+      return "List<" + getExpressionType(((RepetitionExpression)expression).getChild()) + ">";
+    } else if (expression instanceof OptionalExpression) {
+      return getExpressionType(((OptionalExpression)expression).getChild());
+    } else if (expression instanceof TokenExpression) {
+      return ((TokenExpression)expression).getToken().getClass().getName();
+    } else if (expression instanceof TypeExpression) {
+      return ((TypeExpression)expression).getType().getName();
+    } else if (expression instanceof DelimitedSequenceExpression) {
+      return "List<" + getExpressionType(((DelimitedSequenceExpression)expression).getElement()) + ">";
+    } else if (expression instanceof OneOrMoreExpression) {
+      return "List<" + getExpressionType(((OneOrMoreExpression)expression).getChild()) + ">";
+    } else {
+      throw new RuntimeException();
+    }
+  }
+
+    private static String makeName(String s) {
+    return s;
+      //return s.substring(0, 1).toLowerCase() + s.substring(1);
+  }
+
+  private class DetermineNameVisitor implements ExpressionVisitor<Object,String> {
+    public String visit(EmptyExpression emptyExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public String visit(CharacterExpression characterExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public String visit(TerminalExpression terminalExpression) {
+      throw new RuntimeException("NYI");
+    }
+
+    public String visit(VariableExpression variableExpression) {
+      return makeName(variableExpression.getVariable());
+    }
+
+    public String visit(DelimitedSequenceExpression sequenceExpression) {
+      return sequenceExpression.getElement().accept(this) + "List";
+    }
+
+    public String visit(SequenceExpression sequenceExpression) {
+      throw new RuntimeException("Bad grammar!");
+    }
+
+    public String visit(ChoiceExpression choiceExpression) {
+      throw new RuntimeException("Bad grammar!");
+    }
+
+    public String visit(NotExpression notExpression) {
+      return "";
+    }
+
+    public String visit(RepetitionExpression repetitionExpression) {
+      return repetitionExpression.getChild().accept(this) + "List";
+    }
+
+    public String visit(FunctionExpression<Object> objectFunctionExpression) {
+      throw new RuntimeException("Bad grammar!");
+    }
+
+    public String visit(OneOrMoreExpression oneOrMoreExpression) {
+      return oneOrMoreExpression.getChild().accept(this) + "List";
+    }
+
+    public String visit(OptionalExpression optionalExpression) {
+      return "Optional" + optionalExpression.getChild().accept(this);
+    }
+
+    public String visit(TokenExpression tokenExpression) {
+      String s = tokenExpression.getToken().getClass().getSimpleName();
+      if (s.endsWith("Token")) {
+        s = s.substring(0, s.length() - "Token".length());
+      }
+      return makeName(s);
+    }
+
+    public String visit(TypeExpression typeExpression) {
+      String s = typeExpression.getType().getSimpleName();
+      if (s.endsWith("Token")) {
+        s = s.substring(0, s.length() - "Token".length());
+      }
+      return makeName(s);
+    }
+  }
+
   public static void main(String... args) {
     GrammarNodeWriter<JavaToken.Type> writer = new GrammarNodeWriter<JavaToken.Type>(JavaGrammar.instance, new PrintWriter(System.out, true));
     writer.write();
   }
+
+
 }
