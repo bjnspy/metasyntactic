@@ -42,4 +42,8 @@ public class HashMultiMap<K, V> implements MultiMap<K, V> {
   public boolean put(K key, V value) {
     return putAll(key, Collections.singleton(value));
   }
+
+  public String toString() {
+    return map.toString();
+  }
 }
