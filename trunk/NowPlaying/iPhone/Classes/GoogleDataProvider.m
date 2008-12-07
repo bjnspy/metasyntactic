@@ -57,36 +57,40 @@
     NSMutableDictionary* movieIdToMovieMap = [NSMutableDictionary dictionary];
 
     for (MovieProto* movieProto in movies) {
-        NSString* identifier = movieProto.identifier;
-        NSString* title = movieProto.title;
-        NSString* rating = movieProto.rawRating;
-        NSInteger length = movieProto.length;
-        NSString* synopsis = movieProto.description;
-        NSArray* genres =  [[movieProto.genre stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@"/"];
-        NSArray* directors = movieProto.directorList;
-        NSArray* cast = movieProto.castList;
-        NSString* releaseDateString = movieProto.releaseDate;
-        NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
-
-        NSString* imdbAddress = @"";
-        if (movieProto.iMDbUrl.length > 0) {
-           imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            NSString* identifier = movieProto.identifier;
+            NSString* title = movieProto.title;
+            NSString* rating = movieProto.rawRating;
+            NSInteger length = movieProto.length;
+            NSString* synopsis = movieProto.description;
+            NSArray* genres =  [[movieProto.genre stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@"/"];
+            NSArray* directors = movieProto.directorList;
+            NSArray* cast = movieProto.castList;
+            NSString* releaseDateString = movieProto.releaseDate;
+            NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
+            
+            NSString* imdbAddress = @"";
+            if (movieProto.iMDbUrl.length > 0) {
+                imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
+            }
+            
+            Movie* movie = [Movie movieWithIdentifier:identifier
+                                                title:title
+                                               rating:rating
+                                               length:length
+                                          releaseDate:releaseDate
+                                          imdbAddress:imdbAddress
+                                               poster:@""
+                                             synopsis:synopsis
+                                               studio:@""
+                                            directors:directors
+                                                 cast:cast
+                                               genres:genres];
+            
+            [movieIdToMovieMap setObject:movie forKey:identifier];
         }
-
-        Movie* movie = [Movie movieWithIdentifier:identifier
-                                            title:title
-                                           rating:rating
-                                           length:length
-                                      releaseDate:releaseDate
-                                      imdbAddress:imdbAddress
-                                           poster:@""
-                                         synopsis:synopsis
-                                           studio:@""
-                                        directors:directors
-                                             cast:cast
-                                           genres:genres];
-
-        [movieIdToMovieMap setObject:movie forKey:identifier];
+        [pool release];
     }
 
     return movieIdToMovieMap;
@@ -343,13 +347,17 @@
     NSMutableDictionary* synchronizationInformation = [NSMutableDictionary dictionary];
 
     for (TheaterListingsProto_TheaterAndMovieShowtimesProto* proto in theaterAndMovieShowtimes) {
-        [self processTheaterAndMovieShowtimes:proto
-                                     theaters:theaters
-                                 performances:performances
-                   synchronizationInformation:synchronizationInformation
-                          originatingLocation:originatingLocation
-                                 theaterNames:theaterNames
-                            movieIdToMovieMap:movieIdToMovieMap];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [self processTheaterAndMovieShowtimes:proto
+                                         theaters:theaters
+                                     performances:performances
+                       synchronizationInformation:synchronizationInformation
+                              originatingLocation:originatingLocation
+                                     theaterNames:theaterNames
+                                movieIdToMovieMap:movieIdToMovieMap];
+        }
+        [pool release];
     }
 
     return [NSArray arrayWithObjects:theaters, performances, synchronizationInformation, nil];

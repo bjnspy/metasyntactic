@@ -92,10 +92,11 @@
     return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
-
+/*
 - (NSString*) bookmarksFile {
     return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Bookmarks.plist"];
 }
+ */
 
 
 - (void) saveMovieArray:(NSArray*) array toFile:(NSString*) file {
@@ -197,8 +198,7 @@
 }
 
 
-- (NSMutableDictionary*) loadMovies:(NSString*) file {
-    NSArray* array = [FileUtilities readObject:file];
+- (NSMutableDictionary*) loadMovies:(NSArray*) array {
     if (array.count == 0) {
         return [NSMutableDictionary dictionary];
     }
@@ -213,7 +213,7 @@
 
 
 - (NSDictionary*) loadMovies {
-    return [self loadMovies:self.moviesFile];
+    return [self loadMovies:[FileUtilities readObject:self.moviesFile]];
 }
 
 
@@ -282,7 +282,7 @@
 
 
 - (NSMutableDictionary*) loadBookmarks {
-    return [self loadMovies:self.bookmarksFile];
+    return [self loadMovies:[model bookmarkedUpcoming]];
 }
 
 
@@ -296,7 +296,8 @@
 
 
 - (void) saveBookmarks {
-    [self saveMovieArray:self.bookmarks.allValues toFile:self.bookmarksFile];
+    [model setBookmarkedUpcoming:self.bookmarks.allValues];
+    //[self saveMovieArray:self.bookmarks.allValues toFile:self.bookmarksFile];
 }
 
 

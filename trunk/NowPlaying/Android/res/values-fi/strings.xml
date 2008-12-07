@@ -72,6 +72,7 @@
   <string name="less_than_one_string_away">Alle 1 %s</string>
   <string name="license">Lisenssi</string>
   <string name="loading_poster">Ladataan julistetta</string>
+  <string name="local_results_unavailable">Paikallisia tietoja ei saatavilla</string>
   <string name="localized_by">Lokalisoinnit:</string>
   <string name="location">Sijainti</string>
   <string name="map">Kartta</string>
@@ -126,6 +127,7 @@
   <string name="website">Websivu</string>
   <string name="written_by_cyrus_najmabadi">Tekijä: Cyrus Najmabadi</string>
   <string name="yesterday">Eilen</string>
+  <string name="your_strings_country_is_set_to_string_full_support">%ssi maa-asetus on: %s\n\nNow Playing tulee toimimaan myös suomalaisten teattereiden kanssa, ja osaa ohjelman ominaisuuksista voit käyttää jo nyt! Kun uudet toiminnallisuudet valmistuvat, päivityksistä ilmoitetaan automaattisesti.</string>
   <string name="kilometer">kilometri</string>
   <string name="kilometers">kilometriä</string>
   <string name="mile">maili</string>
