@@ -90,10 +90,11 @@
     return [[Application dataDirectory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
-
+/*
 - (NSString*) bookmarksFile {
     return [[Application dataDirectory] stringByAppendingPathComponent:@"Bookmarks.plist"];
 }
+ */
 
 
 - (NSString*) theatersFile {
@@ -158,7 +159,7 @@
 
 
 - (NSMutableDictionary*) loadBookmarks {
-    NSArray* movies = [self loadMovies:self.bookmarksFile];
+    NSArray* movies = [model bookmarkedMovies];
     if (movies.count == 0) {
         return [NSMutableDictionary dictionary];
     }
@@ -506,7 +507,8 @@
 
 
 - (void) saveBookmarks {
-    [self saveArray:self.bookmarks.allValues to:self.bookmarksFile];
+    [model setBookmarkedMovies:self.bookmarks.allValues];
+//    [self saveArray:self.bookmarks.allValues to:self.bookmarksFile];
 }
 
 

@@ -75,6 +75,10 @@ static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSeg
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
 static NSString* BOOKMARKED_TITLES                      = @"bookmarkedTitles";
+static NSString* BOOKMARKED_MOVIES                      = @"bookmarkedMovies";
+static NSString* BOOKMARKED_UPCOMING                    = @"bookmarkedUpcoming";
+static NSString* BOOKMARKED_DVD                         = @"bookmarkedDVD";
+static NSString* BOOKMARKED_BLURAY                      = @"bookmarkedBluray";
 static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
 static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
 static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray";
@@ -82,7 +86,7 @@ static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
 static NSString* PRIORITIZE_BOOKMARKS                   = @"prioritizeBookmarks";
-static NSString* RATINGS_PROVIDER_INDEX                 = @"scoreProviderIndex";
+static NSString* SCORE_PROVIDER_INDEX                   = @"scoreProviderIndex";
 static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
@@ -93,26 +97,30 @@ static NSString* RUN_COUNT                              = @"runCount";
 static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
 
 static NSString** KEYS[] = {
-    &VERSION,
-    &ALL_MOVIES_SELECTED_SEGMENT_INDEX,
-    &ALL_THEATERS_SELECTED_SEGMENT_INDEX,
-    &AUTO_UPDATE_LOCATION,
-    &BOOKMARKED_TITLES,
-    &DVD_MOVIES_SELECTED_SEGMENT_INDEX,
-    &DVD_MOVIES_HIDE_DVDS,
-    &DVD_MOVIES_HIDE_BLURAY,
-    &FAVORITE_THEATERS,
-    &NAVIGATION_STACK_TYPES,
-    &NAVIGATION_STACK_VALUES,
-    &PRIORITIZE_BOOKMARKS,
-    &RATINGS_PROVIDER_INDEX,
-    &SEARCH_DATE,
-    &SEARCH_RADIUS,
-    &SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
-    &UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
-    &USER_ADDRESS,
-    &USE_NORMAL_FONTS,
-    &RUN_COUNT,
+&VERSION,
+&ALL_MOVIES_SELECTED_SEGMENT_INDEX,
+&ALL_THEATERS_SELECTED_SEGMENT_INDEX,
+&AUTO_UPDATE_LOCATION,
+&BOOKMARKED_TITLES,
+&BOOKMARKED_MOVIES,
+&BOOKMARKED_UPCOMING,
+&BOOKMARKED_DVD,
+&BOOKMARKED_BLURAY,
+&DVD_MOVIES_SELECTED_SEGMENT_INDEX,
+&DVD_MOVIES_HIDE_DVDS,
+&DVD_MOVIES_HIDE_BLURAY,
+&FAVORITE_THEATERS,
+&NAVIGATION_STACK_TYPES,
+&NAVIGATION_STACK_VALUES,
+&PRIORITIZE_BOOKMARKS,
+&SCORE_PROVIDER_INDEX,
+&SEARCH_DATE,
+&SEARCH_RADIUS,
+&SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
+&UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
+&USER_ADDRESS,
+&USE_NORMAL_FONTS,
+&RUN_COUNT,
 };
 
 
@@ -200,15 +208,46 @@ static NSString** KEYS[] = {
 }
 
 
++ (void) saveMovies:(NSArray*) movies key:(NSString*) key {
+    NSMutableArray* encoded = [NSMutableArray array];
+    for (Movie* movie in movies) {
+        [encoded addObject:movie.dictionary];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:encoded forKey:key];
+}
+
+
+- (void) restoreMovieArray:(id) previousMovieArray key:(NSString*) key {
+    if (![previousMovieArray isKindOfClass:[NSArray array]]) {
+        return;
+    }
+    
+    NSMutableArray* movies = [NSMutableArray array];
+    for (NSDictionary* dictionary in previousMovieArray) {
+        if ([Movie canReadDictionary:dictionary]) {
+            [movies addObject:[Movie movieWithDictionary:dictionary]];
+        }
+    }
+    
+    [NowPlayingModel saveMovies:movies key:key];
+}
+
+
 - (void) restorePreviousUserAddress:(id) previousUserAddress
                        searchRadius:(id) previousSearchRadius
                  autoUpdateLocation:(id) previousAutoUpdateLocation
                 prioritizeBookmarks:(id) previousPrioritizeBookmarks
                      useNormalFonts:(id) previousUseNormalFonts
                    bookmarkedTitles:(id) previousBookmarkedTitles
+                   bookmarkedMovies:(id) previousBookmarkedMovies
+                 bookmarkedUpcoming:(id) previousBookmarkedUpcoming
+                      bookmarkedDVD:(id) previousBookmarkedDVD
+                   bookmarkedBluray:(id) previousBookmarkedBluray
                    favoriteTheaters:(id) previousFavoriteTheaters
                   dvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
-                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray {
+                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray
+                 scoreProviderIndex:(id) previousScoreProviderIndex {
     if ([previousUserAddress isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
     }
@@ -236,6 +275,10 @@ static NSString** KEYS[] = {
     if ([previousDvdMoviesHideBluray isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideBluray boolValue] forKey:DVD_MOVIES_HIDE_BLURAY];
     }
+    
+    if ([previousScoreProviderIndex isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setInteger:[previousScoreProviderIndex intValue] forKey:SCORE_PROVIDER_INDEX];
+    }
 
     if ([previousBookmarkedTitles isKindOfClass:[NSArray class]]) {
         NSMutableSet* bookmarkedTitles = [NSMutableSet set];
@@ -246,6 +289,11 @@ static NSString** KEYS[] = {
         }
         [NowPlayingModel saveBookmarkedTitles:bookmarkedTitles];
     }
+    
+    [self restoreMovieArray:previousBookmarkedMovies key:BOOKMARKED_MOVIES];
+    [self restoreMovieArray:previousBookmarkedUpcoming key:BOOKMARKED_UPCOMING];
+    [self restoreMovieArray:previousBookmarkedDVD key:BOOKMARKED_DVD];
+    [self restoreMovieArray:previousBookmarkedBluray key:BOOKMARKED_BLURAY];
 
     if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
         NSMutableArray* favoriteTheaters = [NSMutableArray array];
@@ -279,10 +327,15 @@ static NSString** KEYS[] = {
         id previousPrioritizeBookmarks = [[NSUserDefaults standardUserDefaults] objectForKey:PRIORITIZE_BOOKMARKS];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousBookmarkedTitles = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_TITLES];
+        id previousBookmarkedMovies = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_MOVIES];
+        id previousBookmarkedUpcoming = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_UPCOMING];
+        id previousBookmarkedDVD = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_DVD];
+        id previousBookmarkedBluray = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_BLURAY];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
         id previousDvdMoviesHideDVDs = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_DVDS];
         id previousDvdMoviesHideBluray = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_BLURAY];
-
+        id previousScoreProviderIndex = [[NSUserDefaults standardUserDefaults] objectForKey:SCORE_PROVIDER_INDEX];
+        
         for (int i = 0; i < ArrayLength(KEYS); i++) {
             NSString** key = KEYS[i];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
@@ -296,9 +349,14 @@ static NSString** KEYS[] = {
                      prioritizeBookmarks:previousPrioritizeBookmarks
                           useNormalFonts:previousUseNormalFonts
                         bookmarkedTitles:previousBookmarkedTitles
+                        bookmarkedMovies:previousBookmarkedMovies
+                      bookmarkedUpcoming:previousBookmarkedUpcoming
+                           bookmarkedDVD:previousBookmarkedDVD
+                        bookmarkedBluray:previousBookmarkedBluray
                         favoriteTheaters:previousFavoriteTheaters
                        dvdMoviesHideDVDs:previousDvdMoviesHideDVDs
-                     dvdMoviesHideBluray:previousDvdMoviesHideBluray];
+                     dvdMoviesHideBluray:previousDvdMoviesHideBluray
+                    scoreProviderIndex:previousScoreProviderIndex];
 
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
@@ -421,7 +479,7 @@ static NSString** KEYS[] = {
 
 
 - (NSInteger) scoreProviderIndexWorker {
-    NSNumber* result = [[NSUserDefaults standardUserDefaults] objectForKey:RATINGS_PROVIDER_INDEX];
+    NSNumber* result = [[NSUserDefaults standardUserDefaults] objectForKey:SCORE_PROVIDER_INDEX];
     if (result != nil) {
         return [result intValue];
     }
@@ -449,7 +507,7 @@ static NSString** KEYS[] = {
 
 - (void) setScoreProviderIndex:(NSInteger) index {
     cachedScoreProviderIndex = index;
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:SCORE_PROVIDER_INDEX];
     [self updateScoreCache];
 
     if (self.noScores && self.allMoviesSortingByScore) {
@@ -734,6 +792,60 @@ static NSString** KEYS[] = {
     [upcomingCache removeBookmark:movie.canonicalTitle];
     [dvdCache removeBookmark:movie.canonicalTitle];
     [blurayCache removeBookmark:movie.canonicalTitle];
+}
+
+
+- (NSArray*) bookmarkedItems:(NSString*) key {
+    NSArray* array = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (array.count == 0) {
+        return [NSArray array];
+    }
+    
+    NSMutableArray* result = [NSMutableArray array];
+    for (NSDictionary* dictionary in array) {
+        [result addObject:[Movie movieWithDictionary:dictionary]];
+    }
+    return result;
+}
+
+
+- (NSArray*) bookmarkedMovies {
+    return [self bookmarkedItems:BOOKMARKED_MOVIES];
+}
+
+
+- (NSArray*) bookmarkedUpcoming {
+    return [self bookmarkedItems:BOOKMARKED_UPCOMING];
+}
+
+
+- (NSArray*) bookmarkedDVD {
+    return [self bookmarkedItems:BOOKMARKED_DVD];
+}
+
+
+- (NSArray*) bookmarkedBluray {
+    return [self bookmarkedItems:BOOKMARKED_BLURAY];
+}
+
+
+- (void) setBookmarkedMovies:(NSArray*) array {
+    [NowPlayingModel saveMovies:array key:BOOKMARKED_MOVIES];
+}
+
+
+- (void) setBookmarkedUpcoming:(NSArray*) array {
+    [NowPlayingModel saveMovies:array key:BOOKMARKED_UPCOMING];
+}
+
+
+- (void) setBookmarkedDVD:(NSArray*) array {
+    [NowPlayingModel saveMovies:array key:BOOKMARKED_DVD];
+}
+
+
+- (void) setBookmarkedBluray:(NSArray*) array {
+    [NowPlayingModel saveMovies:array key:BOOKMARKED_BLURAY];
 }
 
 

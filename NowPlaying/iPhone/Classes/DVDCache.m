@@ -44,6 +44,11 @@
 }
 
 
+- (NSArray*) loadBookmarksArray {
+    return [model bookmarkedDVD];
+}
+
+
 - (NSString*) serverAddress {
     return [NSString stringWithFormat:@"http://%@.appspot.com/LookupDVDListings?q=dvd", [Application host]];
 }

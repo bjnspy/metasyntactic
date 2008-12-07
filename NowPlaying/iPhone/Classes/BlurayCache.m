@@ -15,6 +15,7 @@
 #import "BlurayCache.h"
 
 #import "Application.h"
+#import "NowPlayingModel.h"
 
 @implementation BlurayCache
 
@@ -33,6 +34,11 @@
 
 + (BlurayCache*) cacheWithModel:(NowPlayingModel*) model {
     return [[[BlurayCache alloc] initWithModel:model] autorelease];
+}
+
+
+- (NSArray*) loadBookmarksArray {
+    return [model bookmarkedBluray];
 }
 
 

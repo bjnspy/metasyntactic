@@ -93,11 +93,11 @@
     return [[self directory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
-
+/*
 - (NSString*) bookmarksFile {
     return [[self directory] stringByAppendingPathComponent:@"Bookmarks.plist"];
 }
-
+*/
 
 - (NSArray*) decodeMovieArray:(NSArray*) array {
     if (array == nil) {
@@ -145,8 +145,13 @@
 }
 
 
+- (NSArray*) loadBookmarksArray {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
 - (NSMutableDictionary*) loadBookmarks {
-    NSArray* movies = [self loadMovies:self.bookmarksFile];
+    NSArray* movies = [self loadBookmarksArray];
     if (movies.count == 0) {
         return [NSMutableDictionary dictionary];
     }
@@ -432,7 +437,8 @@
 
 
 - (void) saveBookmarks {
-    [self saveVideosArray:self.bookmarks.allValues toFile:self.bookmarksFile];
+    [model setBookmarkedDVD:self.bookmarks.allValues];
+    //[self saveVideosArray:self.bookmarks.allValues toFile:self.bookmarksFile];
 }
 
 

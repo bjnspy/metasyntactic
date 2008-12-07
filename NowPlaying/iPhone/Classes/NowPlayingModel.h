@@ -168,6 +168,15 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (void) addBookmark:(Movie*) movie;
 - (void) removeBookmark:(Movie*) movie;
 
+- (NSArray*) bookmarkedMovies;
+- (NSArray*) bookmarkedUpcoming;
+- (NSArray*) bookmarkedDVD;
+- (NSArray*) bookmarkedBluray;
+- (void) setBookmarkedMovies:(NSArray*) array;
+- (void) setBookmarkedUpcoming:(NSArray*) array;
+- (void) setBookmarkedDVD:(NSArray*) array;
+- (void) setBookmarkedBluray:(NSArray*) array;
+
 - (NSString*) noInformationFound;
 - (NSString*) feedbackUrl;
 
