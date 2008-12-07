@@ -73,10 +73,17 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("Type", choice(variable("ReferenceType"), variable("PrimitiveType"))));
 
-    rules.add(new Rule("ReferenceType", choice(sequence(variable("PrimitiveType"), oneOrMore(
-        sequence(token(LeftBracketSeparatorToken.instance), token(RightBracketSeparatorToken.instance)))), sequence(
-        variable("ClassOrInterfaceType"),
-        repetition(sequence(token(LeftBracketSeparatorToken.instance), token(RightBracketSeparatorToken.instance)))))));
+    rules.add(new Rule("ReferenceType",
+                       choice(variable("PrimitiveArrayReferenceType"),
+                              variable("ClassOrInterfaceReferenceType"))));
+
+    rules.add(new Rule("PrimitiveArrayReferenceType",
+                       sequence(variable("PrimitiveType"),
+                                oneOrMore(variable("BracketPair")))));
+
+    rules.add(new Rule("ClassOrInterfaceReferenceType",
+                       sequence(variable("ClassOrInterfaceType"),
+                                repetition(variable("BracketPair")))));
 
     rules.add(new Rule("ClassOrInterfaceType",
                        // Identifier  [TypeArguments] { . Identifier [TypeArguments]}
@@ -86,9 +93,28 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
     rules.add(new Rule("TypeArguments", sequence(token(LessThanOperatorToken.instance), delimitedList(
         variable("TypeArgument"), token(CommaSeparatorToken.instance)), token(GreaterThanOperatorToken.instance))));
 
-    rules.add(new Rule("TypeArgument", choice(variable("ReferenceType"), sequence(
-        token(QuestionMarkOperatorToken.instance), optional(sequence(
-        choice(token(ExtendsKeywordToken.instance), token(SuperKeywordToken.instance)), variable("ReferenceType")))))));
+    rules.add(new Rule("TypeArgument",
+                       choice(variable("ReferenceType"),
+                              variable("WildcardTypeArgument"))));
+
+    rules.add(new Rule("WildcardTypeArgument",
+                       choice(
+                           variable("ExtendsWildcardTypeArgument"),
+                           variable("SuperWildcardTypeArgument"),
+                           variable("OpenWildcardTypeArgument"))));
+
+    rules.add(new Rule("ExtendsWildcardTypeArgument",
+                       sequence(token(QuestionMarkOperatorToken.instance),
+                                token(ExtendsKeywordToken.instance),
+                                variable("ReferenceType"))));
+
+    rules.add(new Rule("SuperWildcardTypeArgument",
+                       sequence(token(QuestionMarkOperatorToken.instance),
+                                token(SuperKeywordToken.instance),
+                                variable("ReferenceType"))));
+
+    rules.add(new Rule("OpenWildcardTypeArgument",
+                       token(QuestionMarkOperatorToken.instance)));
 
     rules.add(new Rule("NonWildcardTypeArguments", sequence(token(LessThanOperatorToken.instance), delimitedList(
         variable("ReferenceType"), token(CommaSeparatorToken.instance)), token(GreaterThanOperatorToken.instance))));
@@ -155,21 +181,42 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
         variable("VariableDeclarator"), token(CommaSeparatorToken.instance)), token(
         SemicolonSeparatorToken.instance))));
 
-    rules.add(new Rule("VariableDeclarator", choice(sequence(variable("VariableDeclaratorId"),
-                                                             token(EqualsOperatorToken.instance), choice(
-        variable("Expression"), variable("ArrayInitializer"))), variable("VariableDeclaratorId"))));
+    rules.add(new Rule("VariableDeclarator",
+                       choice(variable("VariableDeclaratorIdAndAssignment"),
+                              variable("VariableDeclaratorId"))));
 
-    rules.add(new Rule("VariableDeclaratorId", sequence(identifier(), repetition(
-        sequence(token(LeftBracketSeparatorToken.instance), token(RightBracketSeparatorToken.instance))))));
+    rules.add(new Rule("VariableDeclaratorIdAndAssignment",
+                       sequence(variable("VariableDeclaratorId"),
+                                token(EqualsOperatorToken.instance),
+                                variable("VariableDeclaratorAssignment"))));
 
-    rules.add(new Rule("MethodDeclaration", sequence(variable("Modifiers"), optional(variable("TypeParameters")),
-                                                     variable("Type"), identifier(),
-                                                     token(LeftParenthesisSeparatorToken.instance),
-                                                     delimitedOptionalList(variable("FormalParameter"),
-                                                                           token(CommaSeparatorToken.instance)),
-                                                     token(RightParenthesisSeparatorToken.instance), repetition(
-        sequence(token(LeftBracketSeparatorToken.instance), token(RightBracketSeparatorToken.instance))), optional(
-        variable("Throws")), choice(variable("Block"), token(SemicolonSeparatorToken.instance)))));
+    rules.add(new Rule("VariableDeclaratorAssignment",
+                       choice(variable("Expression"), variable("ArrayInitializer"))));
+
+    rules.add(new Rule("VariableDeclaratorId",
+                       sequence(identifier(),
+                                repetition(variable("BracketPair")))));
+
+    rules.add(new Rule("BracketPair",
+                       sequence(token(LeftBracketSeparatorToken.instance),
+                                token(RightBracketSeparatorToken.instance))));
+
+    rules.add(new Rule("MethodDeclaration",
+                       sequence(variable("Modifiers"),
+                                optional(variable("TypeParameters")),
+                                variable("Type"),
+                                identifier(),
+                                token(LeftParenthesisSeparatorToken.instance),
+                                delimitedOptionalList(variable("FormalParameter"),
+                                                      token(CommaSeparatorToken.instance)),
+                                token(RightParenthesisSeparatorToken.instance),
+                                repetition(variable("BracketPair")),
+                                optional(variable("Throws")),
+                                variable("MethodBody"))));
+
+    rules.add(new Rule("MethodBody",
+                       choice(variable("Block"),
+                              token(SemicolonSeparatorToken.instance))));
 
     rules.add(new Rule("FormalParameter", sequence(variable("Modifiers"), variable("Type"),
                                                    optional(token(EllipsisSeparatorToken.instance)),
@@ -216,9 +263,20 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("Expression2", choice(variable("BinaryExpression"), variable("Expression3"))));
 
-    rules.add(new Rule("BinaryExpression", sequence(variable("Expression3"), oneOrMore(choice(
-        sequence(variable("InfixOperator"), variable("Expression3")),
-        sequence(token(InstanceofKeywordToken.instance), variable("Type")))))));
+    rules.add(new Rule("BinaryExpression",
+                       sequence(variable("Expression3"), oneOrMore(variable("BinaryExpressionRest")))));
+
+    rules.add(new Rule("BinaryExpressionRest",
+                       choice(variable("InfixOperatorBinaryExpressionRest"),
+                              variable("InstanceofOperatorBinaryExpressionRest"))));
+
+    rules.add(new Rule("InfixOperatorBinaryExpressionRest",
+                       sequence(variable("InfixOperator"),
+                                variable("Expression3"))));
+
+    rules.add(new Rule("InstanceofOperatorBinaryExpressionRest",
+                       sequence(token(InstanceofKeywordToken.instance),
+                                variable("Type"))));
 
     /*
         choice(
@@ -264,10 +322,21 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                                                 token(PlusOperatorToken.instance),
                                                 token(MinusOperatorToken.instance))));
 
-    rules.add(new Rule("PossibleCastExpression", sequence(token(LeftParenthesisSeparatorToken.instance),
-                                                          choice(variable("Type"), variable("Expression")),
-                                                          token(RightParenthesisSeparatorToken.instance),
-                                                          variable("Expression3"))));
+    rules.add(new Rule("PossibleCastExpression",
+                       choice(variable("PossibleCastExpression_Type"),
+                              variable("PossibleCastExpression_Expression"))));
+
+    rules.add(new Rule("PossibleCastExpression_Type",
+                       sequence(token(LeftParenthesisSeparatorToken.instance),
+                                variable("Type"),
+                                token(RightParenthesisSeparatorToken.instance),
+                                variable("Expression3"))));
+
+    rules.add(new Rule("PossibleCastExpression_Expression",
+                       sequence(token(LeftParenthesisSeparatorToken.instance),
+                                variable("Expression"),
+                                token(RightParenthesisSeparatorToken.instance),
+                                variable("Expression3"))));
 
     rules.add(new Rule("PrimaryExpression", sequence(variable("ValueExpression"), repetition(variable("Selector")),
                                                      optional(variable("PostfixOperator")))));
@@ -312,10 +381,19 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                                                             variable("ClassOrInterfaceType"), variable("Arguments"),
                                                             optional(variable("ClassBody")))));
 
-    rules.add(new Rule("ArrayCreationExpression", sequence(token(NewKeywordToken.instance), choice(
-        variable("ClassOrInterfaceType"), variable("PrimitiveType")), oneOrMore(sequence(
-        token(LeftBracketSeparatorToken.instance), optional(variable("Expression")),
-        token(RightBracketSeparatorToken.instance))), optional(variable("ArrayInitializer")))));
+    rules.add(new Rule("ArrayCreationExpression",
+                       sequence(token(NewKeywordToken.instance),
+                                variable("ArrayCreationType"),
+                                oneOrMore(variable("DimensionExpression")),
+                                optional(variable("ArrayInitializer")))));
+
+    rules.add(new Rule("ArrayCreationType",
+                       choice(variable("ClassOrInterfaceType"), variable("PrimitiveType"))));
+
+    rules.add(new Rule("DimensionExpression",
+                       sequence(token(LeftBracketSeparatorToken.instance),
+                                optional(variable("Expression")),
+                                token(RightBracketSeparatorToken.instance))));
   }
 
   private static void addStatements(Set<Rule> rules) {
@@ -352,12 +430,26 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
     rules.add(new Rule("IfStatement", sequence(token(IfKeywordToken.instance),
                                                token(LeftParenthesisSeparatorToken.instance), variable("Expression"),
                                                token(RightParenthesisSeparatorToken.instance), variable("Statement"),
-                                               optional(sequence(token(ElseKeywordToken.instance),
-                                                                 variable("Statement"))))));
+                                               optional(variable("ElseStatement")))));
 
-    rules.add(new Rule("AssertStatement", sequence(token(AssertKeywordToken.instance), variable("Expression"), optional(
-        sequence(token(ColonOperatorToken.instance), variable("Expression"))), token(
-        SemicolonSeparatorToken.instance))));
+    rules.add(new Rule("ElseStatement", sequence(token(ElseKeywordToken.instance),
+                                                 variable("Statement"))));
+
+    rules.add(new Rule("AssertStatement",
+                       choice(variable("MessageAssertStatement"),
+                              variable("SimpleAssertStatement"))));
+
+    rules.add(new Rule("MessageAssertStatement",
+                       sequence(token(AssertKeywordToken.instance),
+                                variable("Expression"),
+                                token(ColonOperatorToken.instance),
+                                variable("Expression"),
+                                token(SemicolonSeparatorToken.instance))));
+
+    rules.add(new Rule("SimpleAssertStatement",
+                       sequence(token(AssertKeywordToken.instance),
+                                variable("Expression"),
+                                token(SemicolonSeparatorToken.instance))));
 
     rules.add(new Rule("SwitchStatement", sequence(token(SwitchKeywordToken.instance),
                                                    token(LeftParenthesisSeparatorToken.instance),

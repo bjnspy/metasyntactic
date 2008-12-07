@@ -14,17 +14,20 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.ChoiceExpression;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.SequenceExpression;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.VariableExpression;
-import org.metasyntactic.collections.MultiMap;
+import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
+import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.collections.HashMultiMap;
+import org.metasyntactic.collections.MultiMap;
 
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.Collection;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class GrammarNodeWriter<TTokenType> {
@@ -39,6 +42,8 @@ public class GrammarNodeWriter<TTokenType> {
     this.writer = writer;
 
     processGrammar();
+
+    System.out.println(implementsMap);
   }
 
   private void processGrammar() {
@@ -52,19 +57,31 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private boolean processRule(Rule rule) {
+    boolean changed = false;
+    changed |= determineImplementsRelation(rule);
+
+    return changed;
+  }
+
+  private boolean determineImplementsRelation(Rule rule) {
     Expression expression = rule.getExpression();
 
     if (expression instanceof VariableExpression) {
-      VariableExpression ve = (VariableExpression)expression;
+      VariableExpression ve = (VariableExpression) expression;
       return implementsMap.put(ve.getVariable(), rule.getVariable());
+    } else if (expression instanceof ChoiceExpression) {
+
+      boolean changed = false;
+      for (Expression childExpression : ((ChoiceExpression) expression).getChildren()) {
+        if (childExpression instanceof VariableExpression) {
+          VariableExpression ve = (VariableExpression) childExpression;
+          changed |= implementsMap.put(ve.getVariable(), rule.getVariable());
+        }
+      }
+      return changed;
     }
 
     return false;
-  }
-
-  public void write() {
-    Set<Rule> alreadySeen = new LinkedHashSet<Rule>();
-    write(grammar.getStartRule(), alreadySeen);
   }
 
   public void write(String s) {
@@ -97,21 +114,44 @@ public class GrammarNodeWriter<TTokenType> {
     write(s);
   }
 
-  private void write(Rule rule, Set<Rule> alreadySeen) {
-    if (alreadySeen.contains(rule)) {
-      return;
+  public void write() {
+    for (Rule rule : grammar.getRules()) {
+      write(rule);
+    }
+  }
+
+  private void write(Rule rule) {
+    Collection<String> imp = implementsMap.get(rule.getVariable());
+
+    if (imp.isEmpty()) {
+      writeAndIndent("public interface I" + rule.getVariable() + "Node {");
+    } else {
+      String interfaces = "";
+      for (String i : imp) {
+        if (!interfaces.equals("")) {
+          interfaces += ", ";
+        }
+
+        interfaces += "I"+ i + "Node";
+      }
+      writeAndIndent("public interface I" + rule.getVariable() + "Node extends " + interfaces + " {");
     }
 
-    alreadySeen.add(rule);
 
-    Set<Rule> rulesToProcess = new LinkedHashSet<Rule>();
+    Expression expression = rule.getExpression();
+    if (expression instanceof SequenceExpression) {
+      SequenceExpression se = (SequenceExpression)expression;
+      for (int i = 0; i < se.getChildNames().length; i++) {
+        write("Object get" + se.getChildNames()[i] + "();");
+      }
+    }
 
-    writeAndIndent("public interface I" + rule.getVariable() + "Node extends INode {");
 
     dedentAndWrite("}");
+  }
 
-    for (Rule subRule : rulesToProcess) {
-      write(subRule, alreadySeen);
-    }
+  public static void main(String... args) {
+    GrammarNodeWriter<JavaToken.Type> writer = new GrammarNodeWriter<JavaToken.Type>(JavaGrammar.instance, new PrintWriter(System.out, true));
+    writer.write();
   }
 }

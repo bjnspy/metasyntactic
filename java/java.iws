@@ -16,25 +16,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OptionalExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DefaultExpressionVisitor.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DefaultExpressionVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/collections/MultiMap.java" afterPath="$PROJECT_DIR$/org/metasyntactic/collections/MultiMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/collections/HashMultiMap.java" afterPath="$PROJECT_DIR$/org/metasyntactic/collections/HashMultiMap.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RecursionExpressionVisitor.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RecursionExpressionVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratScanner.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratScanner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/EmptyExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/EmptyExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ExpressionVoidVisitor.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ExpressionVoidVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RepetitionExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RepetitionExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ExpressionVisitor.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ExpressionVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OneOrMoreExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OneOrMoreExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Grammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Grammar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/SequenceExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/SequenceExpression.java" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -168,66 +154,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PackratGrammar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="315" column="56" selection-start="10404" selection-end="10404" vertical-scroll-proportion="0.21159421">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecursionExpressionVisitor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RecursionExpressionVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="7" selection-start="242" selection-end="242" vertical-scroll-proportion="0.104347825">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractPackratParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="143" column="12" selection-start="3948" selection-end="3948" vertical-scroll-proportion="-1.3884058">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefaultExpressionVisitor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DefaultExpressionVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="12" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.4695652">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaParserGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="250" column="0" selection-start="11802" selection-end="11802" vertical-scroll-proportion="0.42028984">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Grammar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Grammar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="426" column="18" selection-start="12996" selection-end="12996" vertical-scroll-proportion="0.5072464">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Expression.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="26" selection-start="3441" selection-end="3441" vertical-scroll-proportion="0.4695652">
+            <state line="133" column="46" selection-start="4880" selection-end="4880" vertical-scroll-proportion="0.27459016">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -235,28 +165,86 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OptionalExpression.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="OptionalExpression.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OptionalExpression.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="2" selection-start="871" selection-end="871" vertical-scroll-proportion="0.17391305">
+            <state line="46" column="16" selection-start="1335" selection-end="1335" vertical-scroll-proportion="0.8360656">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmptyExpression.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/EmptyExpression.java">
+      <file leaf-file-name="GrammarNodeWriter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="9" selection-start="371" selection-end="371" vertical-scroll-proportion="0.17391305">
+            <state line="144" column="60" selection-start="4550" selection-end="4550" vertical-scroll-proportion="0.9767442">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SequenceExpression.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/SequenceExpression.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="114" column="43" selection-start="3132" selection-end="3132" vertical-scroll-proportion="-0.32786885">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PackratScanner.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratScanner.java">
+      <file leaf-file-name="TokenExpression.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TokenExpression.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="263" column="6" selection-start="8049" selection-end="8049" vertical-scroll-proportion="0.5768116">
+            <state line="12" column="11" selection-start="364" selection-end="364" vertical-scroll-proportion="0.29508197">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Token.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="7" selection-start="71" selection-end="71" vertical-scroll-proportion="0.04918033">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TerminalExpression.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TerminalExpression.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="13" selection-start="502" selection-end="502" vertical-scroll-proportion="0.31967214">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PrintWriter.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/PrintWriter.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="2" selection-start="548" selection-end="548" vertical-scroll-proportion="0.3319239">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaGrammar.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="230" column="6" selection-start="13168" selection-end="13168" vertical-scroll-proportion="0.14285715">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiMap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/collections/MultiMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="0" selection-start="697" selection-end="697" vertical-scroll-proportion="0.17213115">
               <folding />
             </state>
           </provider>
@@ -1092,7 +1080,7 @@
       </method>
     </configuration>
     <configuration default="false" name="Unnamed" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="org.metasyntactic.automata.compiler.java.parser.JavaGrammar" />
+      <option name="MAIN_CLASS_NAME" value="org.metasyntactic.automata.compiler.framework.parsers.packrat.GrammarNodeWriter" />
       <option name="VM_PARAMETERS" value="-Xmx512m" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -1215,13 +1203,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="22" width="1263" height="878" extended-state="0" />
+    <frame x="44" y="22" width="1396" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="7" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38385502" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22197476" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962743" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3245033" order="8" />
@@ -1233,7 +1221,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="8" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2781457" order="2" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2781457" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38543046" order="4" />
@@ -1307,95 +1295,30 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ChoiceExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="683" selection-end="683" vertical-scroll-proportion="0.41095892">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OneOrMoreExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="767" selection-end="767" vertical-scroll-proportion="0.9315069">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RepetitionExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="40" selection-start="908" selection-end="908" vertical-scroll-proportion="0.82191783">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="17" selection-start="2112" selection-end="2112" vertical-scroll-proportion="1.3424658">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ExpressionVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="53" selection-start="970" selection-end="970" vertical-scroll-proportion="0.8476821">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ExpressionVoidVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="84" selection-end="84" vertical-scroll-proportion="0.052980132">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="315" column="56" selection-start="10404" selection-end="10404" vertical-scroll-proportion="0.21159421">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RecursionExpressionVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="7" selection-start="242" selection-end="242" vertical-scroll-proportion="0.104347825">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratScanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="263" column="6" selection-start="8049" selection-end="8049" vertical-scroll-proportion="0.5768116">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="143" column="12" selection-start="3948" selection-end="3948" vertical-scroll-proportion="-1.3884058">
+        <state line="143" column="12" selection-start="3948" selection-end="3948" vertical-scroll-proportion="-2.02537">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DefaultExpressionVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="12" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.4695652">
+        <state line="37" column="12" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.68498945">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/EmptyExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="9" selection-start="371" selection-end="371" vertical-scroll-proportion="0.17391305">
+        <state line="10" column="9" selection-start="371" selection-end="371" vertical-scroll-proportion="0.25369978">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="250" column="0" selection-start="11802" selection-end="11802" vertical-scroll-proportion="0.42028984">
+        <state line="250" column="0" selection-start="11802" selection-end="11802" vertical-scroll-proportion="0.6131078">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1404,23 +1327,90 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Grammar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="426" column="18" selection-start="12996" selection-end="12996" vertical-scroll-proportion="0.5072464">
+        <state line="426" column="18" selection-start="12996" selection-end="12996" vertical-scroll-proportion="0.7399577">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/collections/HashMultiMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="26" selection-start="3441" selection-end="3441" vertical-scroll-proportion="0.4695652">
+        <state line="22" column="23" selection-start="866" selection-end="866" vertical-scroll-proportion="0.24590164">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/collections/MultiMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="697" selection-end="697" vertical-scroll-proportion="0.17213115">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OptionalExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="16" selection-start="1335" selection-end="1335" vertical-scroll-proportion="0.8360656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/PrintWriter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="2" selection-start="548" selection-end="548" vertical-scroll-proportion="0.3319239">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TerminalExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="502" selection-end="502" vertical-scroll-proportion="0.31967214">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="144" column="60" selection-start="4550" selection-end="4550" vertical-scroll-proportion="0.9767442">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OptionalExpression.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="2" selection-start="871" selection-end="871" vertical-scroll-proportion="0.17391305">
+        <state line="2" column="7" selection-start="71" selection-end="71" vertical-scroll-proportion="0.04918033">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TokenExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="11" selection-start="364" selection-end="364" vertical-scroll-proportion="0.29508197">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="46" selection-start="4880" selection-end="4880" vertical-scroll-proportion="0.27459016">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="230" column="6" selection-start="13168" selection-end="13168" vertical-scroll-proportion="0.14285715">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/SequenceExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="43" selection-start="3132" selection-end="3132" vertical-scroll-proportion="-0.32786885">
           <folding />
         </state>
       </provider>
