@@ -30,6 +30,8 @@ public interface ExpressionVisitor<TInput, TResult> {
 
   TResult visit(OneOrMoreExpression oneOrMoreExpression);
 
+  TResult visit(OptionalExpression optionalExpression);
+
   TResult visit(TokenExpression tokenExpression);
 
   TResult visit(TypeExpression typeExpression);

@@ -164,6 +164,10 @@ public class Grammar {
         return changed;
       }
 
+      public Boolean visit(OptionalExpression optionalExpression) {
+        return process(optionalExpression, optionalExpression.getChild());
+      }
+
       @Override public Boolean visit(NotExpression notExpression) {
         return acceptsAnyTokenExpression.add(notExpression);
       }
@@ -341,6 +345,10 @@ public class Grammar {
       }
     }
 
+    @Override public void visit(OptionalExpression optionalExpression) {
+      optionalExpression.getChild().accept(this);
+    }
+
     @Override public void visit(NotExpression notExpression) {
       notExpression.getChild().accept(this);
     }
@@ -411,6 +419,12 @@ public class Grammar {
       }
 
       return result;
+    }
+
+    @Override public Boolean visit(OptionalExpression optionalExpression) {
+      optionalExpression.getChild().accept(this);
+      nullableExpressions.add(optionalExpression);
+      return true;
     }
 
     @Override public Boolean visit(NotExpression notExpression) {

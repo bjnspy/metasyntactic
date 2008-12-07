@@ -38,4 +38,8 @@ public class HashMultiMap<K, V> implements MultiMap<K, V> {
 
     return collection.addAll(values);
   }
+
+  public boolean put(K key, V value) {
+    return putAll(key, Collections.singleton(value));
+  }
 }

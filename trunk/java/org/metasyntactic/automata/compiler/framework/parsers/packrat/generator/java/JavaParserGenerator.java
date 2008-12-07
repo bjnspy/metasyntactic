@@ -4,7 +4,7 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.generator.
 
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Grammar;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.empty;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.generator.ParserGenerator;
 import org.metasyntactic.automata.compiler.util.IndentingWriter;
 
@@ -56,50 +56,24 @@ public class JavaParserGenerator implements ParserGenerator {
     writer.writeLineAndIndent("public abstract class " + name + " {");
 
     writer.writeLine("  protected static class EvaluationResult {\n" +
-                     "public static final EvaluationResult failure = new EvaluationResult(false, 0);\n" +
-                     "\n" +
-                     "    private final boolean succeeded;\n" +
-                     "    private final int position;\n" +
-                     "    private final Object value;\n" +
-                     "\n" +
+                     "public static final EvaluationResult failure = new EvaluationResult(false, 0);\n" + "\n" +
+                     "    private final boolean succeeded;\n" + "    private final int position;\n" +
+                     "    private final Object value;\n" + "\n" +
                      "    public EvaluationResult(boolean succeeded, int position, Object value) {\n" +
-                     "      this.succeeded = succeeded;\n" +
-                     "      this.position = position;\n" +
-                     "      this.value = value;\n" +
-                     "    }\n" +
-                     "\n" +
+                     "      this.succeeded = succeeded;\n" + "      this.position = position;\n" +
+                     "      this.value = value;\n" + "    }\n" + "\n" +
                      "    public EvaluationResult(boolean succeeded, int position) {\n" +
-                     "      this(succeeded, position, null);\n" +
-                     "    }\n" +
-                     "\n" +
-                     "    public boolean isSucceeded() {\n" +
-                     "      return succeeded;\n" +
-                     "    }\n" +
-                     "\n" +
-                     "    public int getPosition() {\n" +
-                     "      return position;\n" +
-                     "    }\n" +
-                     "\n" +
-                     "    public Object getValue() {\n" +
-                     "      return value;\n" +
-                     "    }\n" +
-                     "\n" +
-                     "    @Override public String toString() {\n" +
-                     "      if (succeeded) {\n" +
+                     "      this(succeeded, position, null);\n" + "    }\n" + "\n" +
+                     "    public boolean isSucceeded() {\n" + "      return succeeded;\n" + "    }\n" + "\n" +
+                     "    public int getPosition() {\n" + "      return position;\n" + "    }\n" + "\n" +
+                     "    public Object getValue() {\n" + "      return value;\n" + "    }\n" + "\n" +
+                     "    @Override public String toString() {\n" + "      if (succeeded) {\n" +
                      "        return \"(Result succeeded \" + position + (value == null ? \")\" : value + \")\");\n" +
-                     "      } else {\n" +
-                     "        return \"(Result failed)\";\n" +
-                     "      }\n" +
-                     "    }\n" +
-                     "  }\n" +
+                     "      } else {\n" + "        return \"(Result failed)\";\n" + "      }\n" + "    }\n" + "  }\n" +
                      "\n" +
                      "  private static Map<Integer, EvaluationResult> initializeMap(Map<Integer,EvaluationResult> map) {\n" +
-                     "    if (map == null) {\n" +
-                     "      map = new HashMap<Integer,EvaluationResult>();\n" +
-                     "    }\n" +
-                     "    \n" +
-                     "    return map;\n" +
-                     "  }");
+                     "    if (map == null) {\n" + "      map = new HashMap<Integer,EvaluationResult>();\n" + "    }\n" +
+                     "    \n" + "    return map;\n" + "  }");
 
     writer.writeLine("protected final List<SourceToken<Token>> tokens;");
     writer.writeLine();
@@ -110,39 +84,20 @@ public class JavaParserGenerator implements ParserGenerator {
     writer.writeLine();
 
     writer.writeLine("  private static List<Object> trimList(ArrayList<Object> values) {\n" +
-                     "    if (values == null || values.isEmpty()) {\n" +
-                     "      return Collections.emptyList();\n" +
+                     "    if (values == null || values.isEmpty()) {\n" + "      return Collections.emptyList();\n" +
                      "    } else if (values.size() == 1) {\n" +
-                     "      return Collections.singletonList(values.get(0));\n" +
-                     "    } else {\n" +
-                     "      values.trimToSize();\n" +
-                     "      return values;\n" +
-                     "    }\n" +
-                     "  }\n" +
-                     "\n" +
+                     "      return Collections.singletonList(values.get(0));\n" + "    } else {\n" +
+                     "      values.trimToSize();\n" + "      return values;\n" + "    }\n" + "  }\n" + "\n" +
                      "  private ArrayList<Object> addValue(ArrayList<Object> values, EvaluationResult result) {\n" +
-                     "    Object value = result.getValue();\n" +
-                     "\n" +
-                     "    if (value != null) {\n" +
-                     "      if (values == null) {\n" +
-                     "        values = new ArrayList<Object>();\n" +
-                     "      }\n" +
-                     "\n" +
-                     "      values.add(value);\n" +
-                     "    }\n" +
-                     "\n" +
-                     "    return values;\n" +
-                     "  }\n" +
-                     "\n" +
+                     "    Object value = result.getValue();\n" + "\n" + "    if (value != null) {\n" +
+                     "      if (values == null) {\n" + "        values = new ArrayList<Object>();\n" + "      }\n" +
+                     "\n" + "      values.add(value);\n" + "    }\n" + "\n" + "    return values;\n" + "  }\n" + "\n" +
                      "  private EvaluationResult evaluateToken(int position, Token expected) {\n" +
                      "    if (position < tokens.size()) {\n" +
                      "      SourceToken<Token> token = tokens.get(position);\n" +
                      "      if (expected.equals(token.getToken())) {\n" +
-                     "        return new EvaluationResult(true, position + 1, token);\n" +
-                     "      }\n" +
-                     "    }\n" +
-                     "    return EvaluationResult.failure;\n" +
-                     "  }");
+                     "        return new EvaluationResult(true, position + 1, token);\n" + "      }\n" + "    }\n" +
+                     "    return EvaluationResult.failure;\n" + "  }");
 
     writer.writeLine();
 
@@ -189,10 +144,7 @@ public class JavaParserGenerator implements ParserGenerator {
     writer.writeLine("private Map<Integer,EvaluationResult> " + getMapName(rule) + ";");
 
     writer.writeLineAndIndent("private EvaluationResult parse" + rule.getVariable() + "(int position) {");
-    writer.writeLine("EvaluationResult result = (" +
-                     getMapName(rule) +
-                     " == null ? null : " +
-                     getMapName(rule) +
+    writer.writeLine("EvaluationResult result = (" + getMapName(rule) + " == null ? null : " + getMapName(rule) +
                      ".get(position));");
 
     writer.writeLineAndIndent("if (result == null) {");
@@ -212,7 +164,7 @@ public class JavaParserGenerator implements ParserGenerator {
       }
 
       @Override public String visit(VariableExpression expression) {
-        return "parse" + ((VariableExpression) expression).getVariable() + "(" + position + ")";
+        return "parse" + expression.getVariable() + "(" + position + ")";
       }
 
       @Override public String visit(EmptyExpression expression) {
@@ -284,12 +236,19 @@ public class JavaParserGenerator implements ParserGenerator {
         Expression[] children = choiceExpression.getChildren();
 
         for (int i = 0; i < children.length - 1; i++) {
-          writer.writeLine("if ((result = " +
-                           callExpression(children[i], "position") +
-                           ").isSucceeded()) { return result; }");
+          writer.writeLine(
+              "if ((result = " + callExpression(children[i], "position") + ").isSucceeded()) { return result; }");
         }
 
         writer.writeLine("return " + callExpression(children[children.length - 1], "position") + ";");
+      }
+
+      @Override public void visit(OptionalExpression optionalExpression) {
+        writer.writeLine("EvaluationResult result;");
+        writer.writeLine("if ((result = " + callExpression(optionalExpression.getChild(), "position") +
+                         ").isSucceeded()) { return result; }");
+
+        writer.writeLine("return " + callExpression(empty(), "position") + ";");
       }
 
       @Override public void visit(NotExpression notExpression) {
@@ -302,8 +261,8 @@ public class JavaParserGenerator implements ParserGenerator {
         writer.writeLine("ArrayList<Object> values = null;");
 
         writer.writeLineAndIndent("while (true) {");
-        writer.writeLine("EvaluationResult result = " + callExpression(repetitionExpression.getChild(),
-                                                                       "currentPosition") + ";");
+        writer.writeLine(
+            "EvaluationResult result = " + callExpression(repetitionExpression.getChild(), "currentPosition") + ";");
 
         writer.writeLineAndIndent("if (result.isSucceeded()) {");
         writer.writeLine("currentPosition = result.getPosition();");
@@ -316,9 +275,8 @@ public class JavaParserGenerator implements ParserGenerator {
 
       @Override public void visit(OneOrMoreExpression oneOrMoreExpression) {
         writer.writeLine("ArrayList<Object> values = null;");
-        writer.writeLine("EvaluationResult result = " +
-                         callExpression(oneOrMoreExpression.getChild(), "position") +
-                         ";");
+        writer.writeLine(
+            "EvaluationResult result = " + callExpression(oneOrMoreExpression.getChild(), "position") + ";");
         writer.writeLineAndIndent("if (!result.isSucceeded()) {");
         writer.writeLine("return EvaluationResult.failure;");
         writer.dedentAndWriteLine("}");

@@ -284,6 +284,10 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
       @Override public Boolean visit(TypeExpression typeExpression) {
         return expressionToFirstTokens.putAll(typeExpression, typeExpression.getTypes());
       }
+
+      @Override public Boolean visit(OptionalExpression optionalExpression) {
+        return process(optionalExpression, optionalExpression.getChild());
+      }
     });
   }
 
@@ -439,6 +443,10 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
     @Override public void visit(OneOrMoreExpression oneOrMoreExpression) {
       oneOrMoreExpression.getChild().accept(this);
     }
+
+    @Override public void visit(OptionalExpression optionalExpression) {
+      optionalExpression.getChild().accept(this);
+    }
   }
 
   private class NullableExpressionVisitor implements ExpressionVisitor<Object, Boolean> {
@@ -498,6 +506,11 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
       }
 
       return result;
+    }
+
+    public Boolean visit(OptionalExpression optionalExpression) {
+      nullableExpressions.add(optionalExpression);
+      return true;
     }
 
     @Override public Boolean visit(NotExpression notExpression) {
@@ -625,6 +638,10 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
       }
 
       return result;
+    }
+
+    public List<Integer> visit(OptionalExpression optionalExpression) {
+      return Collections.emptyList();
     }
 
     public List<Integer> visit(NotExpression notExpression) {
@@ -798,6 +815,10 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
         }
       }
       return result;
+    }
+
+    public List<Integer> visit(OptionalExpression optionalExpression) {
+      return null;
     }
 
     public List<Integer> visit(NotExpression notExpression) {

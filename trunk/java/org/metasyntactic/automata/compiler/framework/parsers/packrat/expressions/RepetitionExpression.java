@@ -42,7 +42,7 @@ public class RepetitionExpression extends Expression {
   }
 
   @Override public int hashCodeWorker() {
-    return child.hashCode();
+    return child.hashCode() + 1;
   }
 
   @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {

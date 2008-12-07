@@ -86,11 +86,7 @@ public abstract class Expression {
 
   /** @return a new parsing expression representing: subExpression? */
   public static Expression optional(final Expression subExpression) {
-    return new ChoiceExpression(subExpression, EmptyExpression.instance) {
-      @Override public String toString() {
-        return "(Optional " + subExpression + ")";
-      }
-    };
+    return new OptionalExpression(subExpression);
   }
 
   /** @return a new parsing expression representing: subExpression+ */

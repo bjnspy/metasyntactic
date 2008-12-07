@@ -40,6 +40,10 @@ public class RecursionExpressionVisitor implements ExpressionVoidVisitor {
     }
   }
 
+  @Override public void visit(OptionalExpression optionalExpression) {
+    optionalExpression.getChild().accept(this);
+  }
+
   @Override public void visit(NotExpression notExpression) {
     notExpression.getChild().accept(this);
   }

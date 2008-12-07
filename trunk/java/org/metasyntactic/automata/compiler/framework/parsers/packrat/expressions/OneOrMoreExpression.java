@@ -33,7 +33,7 @@ public class OneOrMoreExpression extends Expression {
   }
 
   @Override public int hashCodeWorker() {
-    return child.hashCode();
+    return child.hashCode() + 2;
   }
 
   @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
