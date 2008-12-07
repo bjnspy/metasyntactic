@@ -16,8 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,19 +90,6 @@
         <option name="CONDITION" value="variableExpression.getVariable().equals(&quot;Block&quot;)" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" line="168" class="org.metasyntactic.automata.compiler.framework.parsers.packrat.GrammarNodeWriter" package="org.metasyntactic.automata.compiler.framework.parsers.packrat">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
     </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
@@ -167,7 +155,7 @@
       <file leaf-file-name="GrammarNodeWriter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="224" column="16" selection-start="7254" selection-end="7254" vertical-scroll-proportion="0.9020045">
+            <state line="301" column="76" selection-start="9321" selection-end="9321" vertical-scroll-proportion="3.2702703">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -175,10 +163,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Nodes.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Nodes.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="42" selection-start="2345" selection-end="2345" vertical-scroll-proportion="0.7884187">
+            <state line="37" column="28" selection-start="1374" selection-end="1374" vertical-scroll-proportion="-10.201474">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -186,13 +174,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SequenceExpression.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/SequenceExpression.java">
+      <file leaf-file-name="SourceToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/SourceToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="3" selection-start="1967" selection-end="1967" vertical-scroll-proportion="1.3563474">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="8" column="13" selection-start="281" selection-end="281" vertical-scroll-proportion="-0.14987715">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -200,7 +186,7 @@
       <file leaf-file-name="TerminalExpression.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TerminalExpression.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="13" selection-start="502" selection-end="502" vertical-scroll-proportion="0.30066815">
+            <state line="13" column="13" selection-start="502" selection-end="502" vertical-scroll-proportion="0.33169532">
               <folding />
             </state>
           </provider>
@@ -209,16 +195,16 @@
       <file leaf-file-name="PrintWriter.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/PrintWriter.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="2" selection-start="548" selection-end="548" vertical-scroll-proportion="0.36175114">
+            <state line="17" column="2" selection-start="548" selection-end="548" vertical-scroll-proportion="0.4005102">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JavaGrammar.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JavaGrammar.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="865" column="23" selection-start="43509" selection-end="43509" vertical-scroll-proportion="-0.15196079">
+            <state line="317" column="20" selection-start="15730" selection-end="15731" vertical-scroll-proportion="0.75409836">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -229,7 +215,7 @@
       <file leaf-file-name="ThisKeywordToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThisKeywordToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="46" selection-start="166" selection-end="166" vertical-scroll-proportion="0.10690423">
+            <state line="4" column="46" selection-start="166" selection-end="166" vertical-scroll-proportion="0.11793612">
               <folding />
             </state>
           </provider>
@@ -238,7 +224,7 @@
       <file leaf-file-name="KeywordToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="50" selection-start="357" selection-end="357" vertical-scroll-proportion="0.10690423">
+            <state line="10" column="50" selection-start="357" selection-end="357" vertical-scroll-proportion="0.11793612">
               <folding />
             </state>
           </provider>
@@ -247,7 +233,7 @@
       <file leaf-file-name="JavaToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="46" selection-start="281" selection-end="281" vertical-scroll-proportion="0.026726058">
+            <state line="8" column="46" selection-start="281" selection-end="281" vertical-scroll-proportion="0.02948403">
               <folding />
             </state>
           </provider>
@@ -256,7 +242,7 @@
       <file leaf-file-name="Token.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="17" selection-start="81" selection-end="81" vertical-scroll-proportion="0.053452116">
+            <state line="2" column="17" selection-start="81" selection-end="81" vertical-scroll-proportion="0.05896806">
               <folding />
             </state>
           </provider>
@@ -1092,7 +1078,7 @@
       </method>
     </configuration>
     <configuration default="false" name="Unnamed" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" value="org.metasyntactic.automata.compiler.java.parser.JavaGrammar" />
+      <option name="MAIN_CLASS_NAME" value="org.metasyntactic.automata.compiler.framework.parsers.packrat.GrammarNodeWriter" />
       <option name="VM_PARAMETERS" value="-Xmx512m" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -1222,7 +1208,7 @@
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="7" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25612473" order="0" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" order="1" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962743" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3245033" order="8" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
@@ -1236,7 +1222,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2781457" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38543046" order="4" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38543046" order="4" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
@@ -1307,13 +1293,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Grammar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="426" column="18" selection-start="12996" selection-end="12996" vertical-scroll-proportion="0.7399577">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/collections/HashMultiMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="23" selection-start="866" selection-end="866" vertical-scroll-proportion="0.24590164">
@@ -1353,7 +1332,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/SequenceExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="3" selection-start="1967" selection-end="1967" vertical-scroll-proportion="1.3563474">
+        <state line="75" column="3" selection-start="1967" selection-end="1967" vertical-scroll-proportion="1.4963145">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1362,14 +1341,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TerminalExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="502" selection-end="502" vertical-scroll-proportion="0.30066815">
+        <state line="13" column="13" selection-start="502" selection-end="502" vertical-scroll-proportion="0.33169532">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/PrintWriter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="2" selection-start="548" selection-end="548" vertical-scroll-proportion="0.4005102">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="17" selection-start="81" selection-end="81" vertical-scroll-proportion="0.05896806">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="46" selection-start="281" selection-end="281" vertical-scroll-proportion="0.02948403">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="50" selection-start="357" selection-end="357" vertical-scroll-proportion="0.11793612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThisKeywordToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="46" selection-start="166" selection-end="166" vertical-scroll-proportion="0.11793612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/SourceToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="281" selection-end="281" vertical-scroll-proportion="-0.14987715">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="16" selection-start="7254" selection-end="7254" vertical-scroll-proportion="0.9020045">
+        <state line="301" column="76" selection-start="9321" selection-end="9321" vertical-scroll-proportion="3.2702703">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="317" column="20" selection-start="15730" selection-end="15731" vertical-scroll-proportion="0.75409836">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1378,51 +1408,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="42" selection-start="2345" selection-end="2345" vertical-scroll-proportion="0.7884187">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/io/PrintWriter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="2" selection-start="548" selection-end="548" vertical-scroll-proportion="0.36175114">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="17" selection-start="81" selection-end="81" vertical-scroll-proportion="0.053452116">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="46" selection-start="281" selection-end="281" vertical-scroll-proportion="0.026726058">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="50" selection-start="357" selection-end="357" vertical-scroll-proportion="0.10690423">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThisKeywordToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="46" selection-start="166" selection-end="166" vertical-scroll-proportion="0.10690423">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="865" column="23" selection-start="43509" selection-end="43509" vertical-scroll-proportion="-0.15196079">
+        <state line="37" column="28" selection-start="1374" selection-end="1374" vertical-scroll-proportion="-10.201474">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
