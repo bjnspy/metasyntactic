@@ -20,4 +20,6 @@ public interface MultiMap<K, V> {
   Collection<V> get(K key);
 
   boolean putAll(K key, Collection<? extends V> values);
+  
+  boolean put(K key, V value);
 }

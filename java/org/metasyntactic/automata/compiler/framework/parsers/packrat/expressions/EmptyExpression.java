@@ -8,7 +8,7 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.expression
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class EmptyExpression extends Expression {
-  static final EmptyExpression instance = new EmptyExpression();
+  public static final EmptyExpression instance = new EmptyExpression();
 
   private EmptyExpression() {
   }

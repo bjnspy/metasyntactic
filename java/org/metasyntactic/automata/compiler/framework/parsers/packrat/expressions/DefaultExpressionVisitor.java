@@ -35,6 +35,10 @@ public class DefaultExpressionVisitor<TInput, TResult> implements ExpressionVisi
     return defaultCase(expression);
   }
 
+  @Override public TResult visit(OptionalExpression expression) {
+    return defaultCase(expression);
+  }
+
   @Override public TResult visit(NotExpression expression) {
     return defaultCase(expression);
   }

@@ -23,6 +23,8 @@ public interface ExpressionVoidVisitor<TInput> {
 
   void visit(OneOrMoreExpression oneOrMoreExpression);
 
+  void visit(OptionalExpression optionalExpression);
+
   void visit(TokenExpression tokenExpression);
 
   void visit(TypeExpression typeExpression);

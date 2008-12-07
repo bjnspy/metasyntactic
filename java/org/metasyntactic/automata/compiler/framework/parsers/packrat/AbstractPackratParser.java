@@ -247,6 +247,15 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return EvaluationResult.failure;
     }
 
+    @Override public EvaluationResult visit(OptionalExpression optionalExpression) {
+      EvaluationResult result = evaluateExpression(position, optionalExpression.getChild());
+      if (result.isSuccess()) {
+        return result;
+      }
+
+      return new EvaluationResult(position, null);
+    }
+
     @Override public EvaluationResult visit(NotExpression notExpression) {
       EvaluationResult result = evaluateExpression(position, notExpression.getChild());
       if (result.isSuccess()) {
