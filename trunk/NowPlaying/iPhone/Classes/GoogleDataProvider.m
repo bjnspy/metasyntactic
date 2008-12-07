@@ -225,42 +225,57 @@
 }
 
 
-- (NSMutableDictionary*) processMovieAndShowtimesList:(NSArray*) movieAndShowtimesList
-                                    movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-
-    for (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* movieAndShowtimes in movieAndShowtimesList) {
-        NSString* movieId = movieAndShowtimes.movieIdentifier;
-        NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
-
-        NSMutableArray* performances = [NSMutableArray array];
-
-        NSArray* showtimes = movieAndShowtimes.showtimes.showtimesList;
-        NSArray* times = [self processTimes:showtimes];
-
+- (void) processMovieAndShowtimes:(TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto*) movieAndShowtimes
+                movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap
+                  performancesMap:(NSMutableDictionary*) performancesMap {
+    NSString* movieId = movieAndShowtimes.movieIdentifier;
+    NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
+    
+    NSMutableArray* performances = [NSMutableArray array];
+    
+    NSArray* showtimes = movieAndShowtimes.showtimes.showtimesList;
+    NSArray* times = [self processTimes:showtimes];
+    
+    if (showtimes.count == times.count) {
         for (NSInteger i = 0; i < showtimes.count; i++) {
             ShowtimeProto* showtime = [showtimes objectAtIndex:i];
             id time = [times objectAtIndex:i];
             if (time == [NSNull null]) {
                 continue;
             }
-
+            
             NSString* url = showtime.url;
-
+            
             if ([url hasPrefix:@"m="]) {
                 url = [NSString stringWithFormat:@"http://iphone.fandango.com/tms.asp?a=11586&%@", url];
             }
-
+            
             Performance* performance = [Performance performanceWithTime:time
                                                                     url:url];
-
+            
             [performances addObject:performance.dictionary];
         }
+        
+        [performancesMap setObject:performances forKey:movieTitle];
+    }
+}
 
-        [dictionary setObject:performances forKey:movieTitle];
+
+- (NSMutableDictionary*) processMovieAndShowtimesList:(NSArray*) movieAndShowtimesList
+                                    movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
+    NSMutableDictionary* performancesMap = [NSMutableDictionary dictionary];
+
+    for (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* movieAndShowtimes in movieAndShowtimesList) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [self processMovieAndShowtimes:movieAndShowtimes
+                         movieIdToMovieMap:movieIdToMovieMap
+                           performancesMap:performancesMap];
+        }
+        [pool release];
     }
 
-    return dictionary;
+    return performancesMap;
 }
 
 
