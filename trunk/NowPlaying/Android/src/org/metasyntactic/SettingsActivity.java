@@ -8,21 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.*;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.text.DateFormat;
@@ -48,7 +40,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 	next.setOnClickListener(new OnClickListener(){
 	  public void onClick(final View arg0) {
 		final String searchLocation = NowPlayingControllerWrapper.getUserLocation();
-		if (searchLocation!=null && searchLocation!=""){
+		if (!StringUtilities.isNullOrEmpty(searchLocation)) {
 		  final Intent intent = new Intent();
 		  intent.setClass(SettingsActivity.this,NowPlayingActivity.class);
 		  startActivity(intent);
@@ -344,13 +336,11 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   public Context getContext() {
-	// TODO Auto-generated method stub
-	return SettingsActivity.this;
+	  return SettingsActivity.this;
   }
 
   public void refresh() {
-	// TODO Auto-generated method stub
-	populateSettingsItems();
-	this.settingsAdapter.refresh();
+	  populateSettingsItems();
+	  this.settingsAdapter.refresh();
   }
 }

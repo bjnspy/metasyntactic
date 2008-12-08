@@ -373,7 +373,7 @@
 }
 
 
-- (NSArray*) extractReviews:(XmlElement*) element {
+- (NSMutableArray*) extractReviews:(XmlElement*) element {
     NSMutableArray* result = [NSMutableArray array];
     for (XmlElement* reviewElement in element.children) {
         NSString* text = [reviewElement attributeValue:@"text"];
@@ -399,7 +399,7 @@
 }
 
 
-- (NSArray*) downloadReviewContents:(Score*) score location:(Location*) location {
+- (NSMutableArray*) downloadReviewContents:(Score*) score location:(Location*) location {
     NSString* address = [self serverReviewsAddress:location score:score];
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
     if (data == nil) {
@@ -411,7 +411,7 @@
     if (element == nil) {
         // we got an empty string back.  record this so we don't try
         // downloading for another two days.
-        return [NSArray array];
+        return [NSMutableArray array];
     }
 
     return [self extractReviews:element];
@@ -451,7 +451,7 @@
         return;
     }
 
-    NSArray* reviews = [self downloadReviewContents:score location:location];
+    NSMutableArray* reviews = [self downloadReviewContents:score location:location];
     if (reviews == nil) {
         // didn't download.  just ignore it.
         return;
@@ -473,6 +473,7 @@
         }
     }
 
+    [reviews sortUsingSelector:@selector(compare:)];
     [self saveReviews:reviews hash:serverHash title:title];
 
     [NowPlayingAppDelegate minorRefresh];

@@ -91,4 +91,22 @@ property_definition(source);
     return dict;
 }
 
+
+- (NSComparisonResult) compare:(Review*) other {
+    if (score < other.score) {
+        return NSOrderedDescending;
+    } else if (score > other.score) {
+        return NSOrderedAscending;
+    } else {
+        NSInteger naturalSort = self - other;
+        if (naturalSort < 0) {
+            return NSOrderedAscending;
+        } else if (naturalSort > 0) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedSame;
+        }
+    }
+}
+
 @end

@@ -36,6 +36,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private boolean isGridSetup;
   private List<Movie> movies;
   private boolean activityAdded;
+
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -60,9 +61,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
+  /*
   public List<Movie> getMovies() {
     return this.movies;
   }
+  */
 
   public Context getContext() {
     return this;
@@ -139,7 +142,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     final int maxpagecount = (this.movies.size() - 1) / 9;
     this.grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View v, final int position, final long id) {
-        // TODO Auto-generated method stub
         Log.i("test", "item selected");
         NowPlayingActivity.this.selectedMovie = NowPlayingActivity.this.movies.get(position);
         int i = 0;
