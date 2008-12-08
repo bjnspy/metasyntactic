@@ -98,7 +98,6 @@
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (imdbAddress == nil) {
-        NSLog(@"", nil);
         return;
     }
 

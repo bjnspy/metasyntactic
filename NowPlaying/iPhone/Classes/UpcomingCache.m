@@ -468,7 +468,6 @@
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (imdbAddress == nil) {
-        NSLog(@"", nil);
         return;
     }
 
@@ -555,7 +554,6 @@
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (trailersString == nil) {
-        NSLog(@"", nil);
         return;
     }
 

@@ -49,8 +49,10 @@ public class NowPlayingControllerWrapper {
     GlobalActivityIndicator.addActivity(activity);
 
     if (activities.size() == 1) {
-      instance = new NowPlayingController(activity.getApplicationContext());
-      instance.startup();
+      if (instance == null) {
+        instance = new NowPlayingController(activity.getApplicationContext());
+        instance.startup();
+      }
     }
 
     restartLocationTracker();
@@ -62,8 +64,10 @@ public class NowPlayingControllerWrapper {
     activities.remove(activity);
 
     if (activities.size() == 0) {
-      instance.shutdown();
-      instance = null;
+      if (instance != null) {
+        instance.shutdown();
+        instance = null;
+      }
     }
 
     restartLocationTracker();
