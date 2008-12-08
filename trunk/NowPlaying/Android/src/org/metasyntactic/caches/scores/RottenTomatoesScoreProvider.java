@@ -15,6 +15,7 @@
 package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.children;
@@ -24,8 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
-  public RottenTomatoesScoreProvider(final ScoreCache scoreCache) {
-    super(scoreCache);
+  public RottenTomatoesScoreProvider(final NowPlayingModel model) {
+    super(model);
   }
 
   @Override

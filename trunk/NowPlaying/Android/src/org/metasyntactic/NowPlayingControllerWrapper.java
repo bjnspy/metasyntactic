@@ -16,6 +16,7 @@ package org.metasyntactic;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
@@ -50,6 +51,7 @@ public class NowPlayingControllerWrapper {
 
     if (activities.size() == 1) {
       if (instance == null) {
+        Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity created.  Starting controller");
         instance = new NowPlayingController(activity.getApplicationContext());
         instance.startup();
       }
@@ -65,6 +67,7 @@ public class NowPlayingControllerWrapper {
 
     if (activities.size() == 0) {
       if (instance != null) {
+        Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");
         instance.shutdown();
         instance = null;
       }

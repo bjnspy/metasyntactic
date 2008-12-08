@@ -34,7 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class NowPlayingModel {
-  private final static String version = "5";
+  private final static String version = "6";
   private final static String VERSION_KEY = "version";
   private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -53,10 +53,10 @@ public class NowPlayingModel {
   private final DataProvider dataProvider = new DataProvider(this);
   private final ScoreCache scoreCache = new ScoreCache(this);
   private final UserLocationCache userLocationCache = new UserLocationCache();
-  private final TrailerCache trailerCache = new TrailerCache();
-  private final UpcomingCache upcomingCache = new UpcomingCache();
+  private final TrailerCache trailerCache = new TrailerCache(this);
+  private final UpcomingCache upcomingCache = new UpcomingCache(this);
   private final PosterCache posterCache = new PosterCache(this);
-  private final IMDbCache imdbCache = new IMDbCache();
+  private final IMDbCache imdbCache = new IMDbCache(this);
 
   public NowPlayingModel(final Context applicationContext) {
     this.preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);

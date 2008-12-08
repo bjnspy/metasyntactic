@@ -32,11 +32,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class PosterCache extends AbstractCache {
-  private final NowPlayingModel model;
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
 
   public PosterCache(final NowPlayingModel model) {
-    this.model = model;
+    super(model);
   }
 
   private File posterFile(final Movie movie) {

@@ -12,33 +12,19 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.*;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.animation.AnimationUtils;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private GridView grid;
@@ -86,6 +72,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.progressbar_1);
@@ -93,12 +80,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
   protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
@@ -106,6 +95,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
     registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     if (this.isGridSetup) {
       NowPlayingActivity.this.grid.setVisibility(View.VISIBLE);
@@ -128,7 +118,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
           refresh();
         }
         final String userLocation = NowPlayingControllerWrapper.getUserLocation();
-        if (userLocation == null || userLocation == "") {
+        if (StringUtilities.isNullOrEmpty(userLocation)) {
           final Intent intent = new Intent();
           intent.setClass(NowPlayingActivity.this, SettingsActivity.class);
           startActivity(intent);

@@ -96,6 +96,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.progressbar_1);
@@ -112,20 +113,22 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
   protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(broadcastReceiver);
-    Log.i("NowPlayingActivity onPause", "receiver unregisterered");
     super.onPause();
   }
 
   @Override
   protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
     refresh();
     registerReceiver(this.broadcastReceiver, new IntentFilter(
         Application.NOW_PLAYING_CHANGED_INTENT));

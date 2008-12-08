@@ -15,6 +15,7 @@
 package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
@@ -26,6 +27,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class IMDbCache extends AbstractCache {
+  public IMDbCache(NowPlayingModel model) {
+    super(model);
+  }
+
   private String movieFileName(final Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }

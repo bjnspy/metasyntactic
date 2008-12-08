@@ -16,6 +16,7 @@ package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
@@ -28,6 +29,10 @@ import java.util.*;
 
 public class TrailerCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
+
+  public TrailerCache(NowPlayingModel model) {
+    super(model);
+  }
 
   private String trailerFileName(final Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());

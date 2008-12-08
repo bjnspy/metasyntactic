@@ -11,24 +11,14 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.util.Log;
+import android.view.*;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
-
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
@@ -56,6 +46,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
+
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.movieview);
@@ -130,20 +122,23 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
     registerReceiver(this.broadcastReceiver, new IntentFilter(
         Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
   protected void onPause() {
-    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(this.broadcastReceiver);
+    super.onPause();
   }
 
   @Override
