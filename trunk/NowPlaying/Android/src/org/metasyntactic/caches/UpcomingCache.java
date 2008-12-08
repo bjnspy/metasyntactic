@@ -70,13 +70,13 @@ public class UpcomingCache extends AbstractCache {
 
   public List<Movie> getMovies() {
     if (this.movies == null) {
-      Date today = new Date();
+      final Date today = new Date();
       List<Movie> list = FileUtilities.readPersistableList(Movie.reader, moviesFile());
       if (list == null) {
         list = Collections.emptyList();
       }
-      for (Iterator<Movie> i = list.iterator(); i.hasNext(); ) {
-        Movie movie = i.next();
+      for (final Iterator<Movie> i = list.iterator(); i.hasNext();) {
+        final Movie movie = i.next();
 
         if (movie.getReleaseDate() != null && movie.getReleaseDate().compareTo(today) < 0) {
           i.remove();
@@ -394,7 +394,14 @@ public class UpcomingCache extends AbstractCache {
   private void updateImdb(final Movie movie) {
     final File file = getIMDbFile(movie);
     if (file.exists()) {
-      return;
+      final String value = FileUtilities.readString(file);
+      if (value.length() > 0) {
+        return;
+      }
+
+      if (FileUtilities.daysSinceNow(file) < 3) {
+        return;
+      }
     }
 
     final String imdbAddress = NetworkUtilities.downloadString("http://" + Application.host +
@@ -427,11 +434,12 @@ public class UpcomingCache extends AbstractCache {
     this.prioritizedMovies.add(movie);
   }
 
-  protected void clearStaleDataBackgroundEntryPoint() {
-    clearDirectory(Application.upcomingCastDirectory);
-    clearDirectory(Application.upcomingImdbDirectory);
-    clearDirectory(Application.upcomingPostersDirectory);
-    clearDirectory(Application.upcomingSynopsesDirectory);
-    clearDirectory(Application.upcomingTrailersDirectory);
+  protected List<File> getCacheDirectories() {
+    return Arrays.asList(
+        Application.upcomingCastDirectory,
+        Application.upcomingImdbDirectory,
+        Application.upcomingPostersDirectory,
+        Application.upcomingSynopsesDirectory,
+        Application.upcomingTrailersDirectory);
   }
 }

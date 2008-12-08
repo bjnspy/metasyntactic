@@ -20,9 +20,9 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 public class IMDbCache extends AbstractCache {
@@ -49,7 +49,7 @@ public class IMDbCache extends AbstractCache {
 
   private void downloadImdbAddresses(final List<Movie> movies) {
     for (final Movie movie : movies) {
-      if (shutdown) {
+      if (this.shutdown) {
         break;
       }
 
@@ -60,18 +60,26 @@ public class IMDbCache extends AbstractCache {
 
       final File path = movieFilePath(movie);
       if (path.exists()) {
-        continue;
+        final String address = FileUtilities.readString(path);
+        if (address.length() > 0) {
+          continue;
+        }
+
+        if (FileUtilities.daysSinceNow(path) < 3) {
+           continue;
+        }
       }
 
       final String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" +
                          StringUtilities.urlEncode(movie.getCanonicalTitle());
 
       final String imdbAddress = NetworkUtilities.downloadString(url, false);
-
-      if (!isNullOrEmpty(imdbAddress)) {
-        FileUtilities.writeString(imdbAddress, movieFilePath(movie));
-        Application.refresh();
+      if (imdbAddress == null) {
+        continue;
       }
+
+      FileUtilities.writeString(imdbAddress, movieFilePath(movie));
+      Application.refresh();
     }
   }
 
@@ -79,7 +87,7 @@ public class IMDbCache extends AbstractCache {
     return FileUtilities.readString(movieFilePath(movie));
   }
 
-  protected void clearStaleDataBackgroundEntryPoint() {
-    clearDirectory(Application.imdbDirectory);
+  protected List<File> getCacheDirectories() {
+    return Collections.singletonList(Application.imdbDirectory);
   }
 }

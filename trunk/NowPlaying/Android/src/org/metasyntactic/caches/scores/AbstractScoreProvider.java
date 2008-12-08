@@ -466,7 +466,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     return FileUtilities.readPersistableList(Review.reader, reviewsFile(title));
   }
 
-  protected void clearStaleDataBackgroundEntryPoint() {
-    clearDirectory(reviewsDirectory);
+  protected List<File> getCacheDirectories() {
+    return Collections.singletonList(reviewsDirectory);
   }
 }

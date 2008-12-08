@@ -45,6 +45,9 @@ public class NetworkUtilities {
 
   public static String downloadString(final URL url, final boolean important) {
     final byte[] bytes = download(url, important);
+    if (bytes == null) {
+      return null;
+    }
 
     for (final String charset : charsets) {
       final String result = decode(bytes, charset);

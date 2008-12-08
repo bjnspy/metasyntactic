@@ -26,6 +26,7 @@ import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -119,8 +120,8 @@ public class PosterCache extends AbstractCache {
     return FandangoPosterDownloader.download(movie, postalCode);
   }
 
-  protected void clearStaleDataBackgroundEntryPoint() {
-    clearDirectory(Application.postersDirectory);
+  protected List<File> getCacheDirectories() {
+    return Collections.singletonList(Application.postersDirectory);
   }
 
   public byte[] getPoster(final Movie movie) {

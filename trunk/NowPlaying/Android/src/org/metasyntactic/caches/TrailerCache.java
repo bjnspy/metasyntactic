@@ -37,8 +37,8 @@ public class TrailerCache extends AbstractCache {
     return new File(Application.trailersDirectory, trailerFileName(movie));
   }
 
-  protected void clearStaleDataBackgroundEntryPoint() {
-    clearDirectory(Application.trailersDirectory);
+  protected List<File> getCacheDirectories() {
+    return Collections.singletonList(Application.trailersDirectory);
   }
 
   @SuppressWarnings("unchecked")

@@ -15,10 +15,10 @@
 package org.metasyntactic.caches;
 
 import org.metasyntactic.Constants;
-import org.metasyntactic.threading.ThreadingUtilities;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public abstract class AbstractCache {
@@ -26,17 +26,14 @@ public abstract class AbstractCache {
   protected boolean shutdown;
 
   public void clearStaleData() {
-    Runnable runnable = new Runnable() {
-      public void run() {
-        clearStaleDataBackgroundEntryPoint();
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Clear " + getClass().getSimpleName(), runnable, lock, false);
+    for (final File directory : getCacheDirectories()) {
+      clearDirectory(directory);
+    }
   }
 
-  protected abstract void clearStaleDataBackgroundEntryPoint();
+  protected abstract List<File> getCacheDirectories();
 
-  protected void clearDirectory(File directory) {
+  protected void clearDirectory(final File directory) {
     final long now = new Date().getTime();
 
     for (final File child : directory.listFiles()) {
@@ -52,6 +49,6 @@ public abstract class AbstractCache {
   }
 
   public void shutdown() {
-    shutdown = true;
+    this.shutdown = true;
   }
 }
