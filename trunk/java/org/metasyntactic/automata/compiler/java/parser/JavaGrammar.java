@@ -357,17 +357,23 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                               token(LessThanOrEqualsOperatorToken.instance),
                               token(GreaterThanOrEqualsOperatorToken.instance),
                               token(LeftShiftOperatorToken.instance),
-                              sequence(
-                                  token(GreaterThanOperatorToken.instance), token(GreaterThanOperatorToken.instance),
-                                  token(GreaterThanOperatorToken.instance)),
-                              sequence(token(GreaterThanOperatorToken.instance),
-                                       token(GreaterThanOperatorToken.instance)),
+                              variable("UnsignedRightShift"),
+                              variable("SignedRightShift"),
                               token(GreaterThanOperatorToken.instance),
                               token(PlusOperatorToken.instance),
                               token(MinusOperatorToken.instance),
                               token(TimesOperatorToken.instance),
                               token(DivideOperatorToken.instance),
                               token(ModulusOperatorToken.instance))));
+
+    rules.add(new Rule("UnsignedRightShift",
+                       sequence(token(GreaterThanOperatorToken.instance),
+                                token(GreaterThanOperatorToken.instance),
+                                token(GreaterThanOperatorToken.instance))));
+
+    rules.add(new Rule("SignedRightShift",
+                       sequence(token(GreaterThanOperatorToken.instance),
+                                token(GreaterThanOperatorToken.instance))));
 
     rules.add(new Rule("Expression3",
                        choice(variable("PrefixExpression"),
@@ -616,7 +622,10 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("ForInitializer",
                        choice(variable("LocalVariableDeclaration"),
-                              delimitedList(variable("Expression"), token(CommaSeparatorToken.instance)))));
+                              variable("DelimitedExpressionList"))));
+
+    rules.add(new Rule("DelimitedExpressionList",
+                       delimitedList(variable("Expression"), token(CommaSeparatorToken.instance))));
 
     rules.add(new Rule("ForUpdate",
                        delimitedList(variable("Expression"),
