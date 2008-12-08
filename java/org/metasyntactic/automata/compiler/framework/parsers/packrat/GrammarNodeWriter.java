@@ -33,6 +33,7 @@ public class GrammarNodeWriter<TTokenType> {
   private int indentLevel;
 
   private final MultiMap<String, String> implementsMap = new HashMultiMap<String, String>();
+  private final MultiMap<String, String> promotedTokens = new HashMultiMap<String, String>();
 
   public GrammarNodeWriter(PackratGrammar<TTokenType> grammar, PrintWriter writer) {
     this.grammar = grammar;
@@ -54,8 +55,32 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private boolean processRule(Rule rule) {
+    boolean changed = determineImplementsRelation(rule);
+    changed |= determinePromotedTokens(rule);
+
+    return changed;
+  }
+
+  private boolean determinePromotedTokens(Rule rule) {
+    Expression expression = rule.getExpression();
+
     boolean changed = false;
-    changed |= determineImplementsRelation(rule);
+    if (expression instanceof ChoiceExpression) {
+      ChoiceExpression ce = (ChoiceExpression) expression;
+
+      for (Expression child : ce.getChildren()) {
+        if (child instanceof TokenExpression) {
+          TokenExpression te = (TokenExpression) child;
+          changed |= promotedTokens.put(te.getToken().getClass().getSimpleName(), rule.getVariable());
+        } else if (child instanceof TypeExpression) {
+          TypeExpression te = (TypeExpression) child;
+          changed |= promotedTokens.put(te.getType().getSimpleName(), rule.getVariable());
+        } else if (child instanceof VariableExpression) {
+        } else {
+          throw new RuntimeException();
+        }
+      }
+    }
 
     return changed;
   }
@@ -120,6 +145,8 @@ public class GrammarNodeWriter<TTokenType> {
     writeVisitor();
     writeNode();
 
+    writePromotedTokenNodes();
+
     for (Rule rule : grammar.getRules()) {
       writeInterface(rule);
     }
@@ -127,6 +154,58 @@ public class GrammarNodeWriter<TTokenType> {
     for (Rule rule : grammar.getRules()) {
       writeClass(rule);
     }
+  }
+
+  private void writePromotedTokenNodes() {
+    for (String tokenName : promotedTokens.keySet()) {
+      writePromotedTokenNodes(tokenName);
+    }
+  }
+
+  private void writePromotedTokenNodes(String tokenName) {
+    writePromotedTokenNodeInterface(tokenName);
+    writePromotedTokenNodeClass(tokenName);
+  }
+
+  private void writePromotedTokenNodeClass(String tokenName) {
+    writeAndIndent("public class " + tokenName + "Node extends AbstractNode implements I" + tokenName + "Node {");
+    write("private final SourceToken<" + tokenName + "> token;");
+
+    writeAndIndent("public " + tokenName + "Node(SourceToken<" + tokenName + "> token) {");
+    write("this.token = token;");
+    dedentAndWrite("}");
+
+    writeAndIndent("public SourceToken<" + tokenName + "> getToken() {");
+    write("return token;");
+    dedentAndWrite("}");
+
+    writeAndIndent("public boolean equals(Object __other) {");
+    write("if (this == __other) { return true; }");
+    write("if (__other == null) { return false; }");
+    write("if (!(__other instanceof I" + tokenName + "Node)) { return false; }");
+    write("I" + tokenName + "Node __node = (I" + tokenName + "Node)__other;");
+    write("return equals(token, __node.getToken());");
+    dedentAndWrite("}");
+
+    writeAndIndent("protected int hashCodeWorker() {");
+    write("return token.hashCode();");
+    dedentAndWrite("}");
+
+    writeAndIndent("public void accept(INodeVisitor visitor) {");
+    write("visitor.visit(this);");
+    dedentAndWrite("}");
+
+    dedentAndWrite("}");
+  }
+
+  private void writePromotedTokenNodeInterface(String tokenName) {
+    String interfaces = "INode";
+    for (String iface : promotedTokens.get(tokenName)) {
+      interfaces += ", I" + iface + "Node";
+    }
+    writeAndIndent("public interface I" + tokenName + "Node extends " + interfaces + " {");
+    write("SourceToken<" + tokenName + "> getToken();");
+    dedentAndWrite("}");
   }
 
   class TypeAndName {
@@ -206,12 +285,16 @@ public class GrammarNodeWriter<TTokenType> {
     for (Rule rule : grammar.getRules()) {
       write("void visit(I" + rule.getVariable() + "Node node);");
     }
+    for (String tokenName : promotedTokens.keySet()) {
+      write("void visit(I" + tokenName + "Node node);");
+    }
     dedentAndWrite("}");
   }
 
   private void writeClass(Rule rule) {
     writeAndIndent(
-        "public class " + rule.getVariable() + "Node extends AbstractNode implements I" + rule.getVariable() + "Node {");
+        "public class " + rule.getVariable() + "Node extends AbstractNode implements I" + rule.getVariable() +
+        "Node {");
     writeClassFields(rule);
     writeClassConstructor(rule);
     writeGetters(rule);

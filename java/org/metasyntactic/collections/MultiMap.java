@@ -15,11 +15,14 @@
 package org.metasyntactic.collections;
 
 import java.util.Collection;
+import java.util.Set;
 
 public interface MultiMap<K, V> {
   Collection<V> get(K key);
 
   boolean putAll(K key, Collection<? extends V> values);
-  
+
   boolean put(K key, V value);
+
+  Set<K> keySet();
 }

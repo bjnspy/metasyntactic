@@ -43,6 +43,10 @@ public class HashMultiMap<K, V> implements MultiMap<K, V> {
     return putAll(key, Collections.singleton(value));
   }
 
+  public Set<K> keySet() {
+    return map.keySet();
+  }
+
   public String toString() {
     return map.toString();
   }

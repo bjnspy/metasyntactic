@@ -17,6 +17,7 @@ package org.metasyntactic.automata.compiler.java.parser;
 import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
 import org.metasyntactic.automata.compiler.java.scanner.IdentifierToken;
 import org.metasyntactic.automata.compiler.java.scanner.keywords.*;
+import org.metasyntactic.automata.compiler.java.scanner.literals.LiteralToken;
 import org.metasyntactic.automata.compiler.java.scanner.operators.*;
 import org.metasyntactic.automata.compiler.java.scanner.separators.*;
 
@@ -207,6 +208,8 @@ public class Nodes {
 
     void visit(IForInitializerNode node);
 
+    void visit(IDelimitedExpressionListNode node);
+
     void visit(IForUpdateNode node);
 
     void visit(IEnhancedForStatementNode node);
@@ -248,6 +251,10 @@ public class Nodes {
     void visit(IInstanceofOperatorBinaryExpressionRestNode node);
 
     void visit(IInfixOperatorNode node);
+
+    void visit(IUnsignedRightShiftNode node);
+
+    void visit(ISignedRightShiftNode node);
 
     void visit(IExpression3Node node);
 
@@ -296,6 +303,122 @@ public class Nodes {
     void visit(IArrayInitializerNode node);
 
     void visit(IVariableInitializerNode node);
+
+    void visit(IThisKeywordTokenNode node);
+
+    void visit(IVolatileKeywordTokenNode node);
+
+    void visit(ITimesEqualsOperatorTokenNode node);
+
+    void visit(IBitwiseNotOperatorTokenNode node);
+
+    void visit(IExclusiveOrEqualsOperatorTokenNode node);
+
+    void visit(IMinusEqualsOperatorTokenNode node);
+
+    void visit(INativeKeywordTokenNode node);
+
+    void visit(ILessThanOrEqualsOperatorTokenNode node);
+
+    void visit(IDivideOperatorTokenNode node);
+
+    void visit(IRightShiftEqualsOperatorTokenNode node);
+
+    void visit(ILongKeywordTokenNode node);
+
+    void visit(IIntKeywordTokenNode node);
+
+    void visit(ILessThanOperatorTokenNode node);
+
+    void visit(ILiteralTokenNode node);
+
+    void visit(ILogicalNotOperatorTokenNode node);
+
+    void visit(IIncrementOperatorTokenNode node);
+
+    void visit(IEqualsOperatorTokenNode node);
+
+    void visit(IStrictfpKeywordTokenNode node);
+
+    void visit(IBitwiseRightShiftEqualsOperatorTokenNode node);
+
+    void visit(IGreaterThanOrEqualsOperatorTokenNode node);
+
+    void visit(IIdentifierTokenNode node);
+
+    void visit(IProtectedKeywordTokenNode node);
+
+    void visit(ILogicalAndOperatorTokenNode node);
+
+    void visit(IPlusEqualsOperatorTokenNode node);
+
+    void visit(IEqualsEqualsOperatorTokenNode node);
+
+    void visit(IDoubleKeywordTokenNode node);
+
+    void visit(IModulusOperatorTokenNode node);
+
+    void visit(ILeftShiftEqualsOperatorTokenNode node);
+
+    void visit(IAndEqualsOperatorTokenNode node);
+
+    void visit(ISynchronizedKeywordTokenNode node);
+
+    void visit(ISemicolonSeparatorTokenNode node);
+
+    void visit(IAbstractKeywordTokenNode node);
+
+    void visit(ITimesOperatorTokenNode node);
+
+    void visit(ILogicalOrOperatorTokenNode node);
+
+    void visit(IPlusOperatorTokenNode node);
+
+    void visit(ITransientKeywordTokenNode node);
+
+    void visit(ISuperKeywordTokenNode node);
+
+    void visit(IOrEqualsOperatorTokenNode node);
+
+    void visit(IGreaterThanOperatorTokenNode node);
+
+    void visit(IByteKeywordTokenNode node);
+
+    void visit(IStaticKeywordTokenNode node);
+
+    void visit(IFloatKeywordTokenNode node);
+
+    void visit(IBitwiseAndOperatorTokenNode node);
+
+    void visit(IBitwiseOrOperatorTokenNode node);
+
+    void visit(IModulusEqualsOperatorTokenNode node);
+
+    void visit(IMinusOperatorTokenNode node);
+
+    void visit(IPrivateKeywordTokenNode node);
+
+    void visit(ICharKeywordTokenNode node);
+
+    void visit(IBooleanKeywordTokenNode node);
+
+    void visit(IFinalKeywordTokenNode node);
+
+    void visit(INotEqualsOperatorTokenNode node);
+
+    void visit(ILeftShiftOperatorTokenNode node);
+
+    void visit(IShortKeywordTokenNode node);
+
+    void visit(IBitwiseExclusiveOrOperatorTokenNode node);
+
+    void visit(IPublicKeywordTokenNode node);
+
+    void visit(IVoidKeywordTokenNode node);
+
+    void visit(IDecrementOperatorTokenNode node);
+
+    void visit(IDivideEqualsOperatorTokenNode node);
   }
 
   public abstract class AbstractNode implements INode {
@@ -312,6 +435,1865 @@ public class Nodes {
 
     protected boolean equals(Object o1, Object o2) {
       return o1 == null ? o2 == null : o1.equals(o2);
+    }
+  }
+
+  public interface IThisKeywordTokenNode extends INode, IValueExpressionNode {
+    SourceToken<ThisKeywordToken> getToken();
+  }
+
+  public class ThisKeywordTokenNode extends AbstractNode implements IThisKeywordTokenNode {
+    private final SourceToken<ThisKeywordToken> token;
+
+    public ThisKeywordTokenNode(SourceToken<ThisKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<ThisKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IThisKeywordTokenNode)) { return false; }
+      IThisKeywordTokenNode __node = (IThisKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IVolatileKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<VolatileKeywordToken> getToken();
+  }
+
+  public class VolatileKeywordTokenNode extends AbstractNode implements IVolatileKeywordTokenNode {
+    private final SourceToken<VolatileKeywordToken> token;
+
+    public VolatileKeywordTokenNode(SourceToken<VolatileKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<VolatileKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IVolatileKeywordTokenNode)) { return false; }
+      IVolatileKeywordTokenNode __node = (IVolatileKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ITimesEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<TimesEqualsOperatorToken> getToken();
+  }
+
+  public class TimesEqualsOperatorTokenNode extends AbstractNode implements ITimesEqualsOperatorTokenNode {
+    private final SourceToken<TimesEqualsOperatorToken> token;
+
+    public TimesEqualsOperatorTokenNode(SourceToken<TimesEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<TimesEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ITimesEqualsOperatorTokenNode)) { return false; }
+      ITimesEqualsOperatorTokenNode __node = (ITimesEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IBitwiseNotOperatorTokenNode extends INode, IPrefixOperatorNode {
+    SourceToken<BitwiseNotOperatorToken> getToken();
+  }
+
+  public class BitwiseNotOperatorTokenNode extends AbstractNode implements IBitwiseNotOperatorTokenNode {
+    private final SourceToken<BitwiseNotOperatorToken> token;
+
+    public BitwiseNotOperatorTokenNode(SourceToken<BitwiseNotOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<BitwiseNotOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IBitwiseNotOperatorTokenNode)) { return false; }
+      IBitwiseNotOperatorTokenNode __node = (IBitwiseNotOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IExclusiveOrEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<ExclusiveOrEqualsOperatorToken> getToken();
+  }
+
+  public class ExclusiveOrEqualsOperatorTokenNode extends AbstractNode implements IExclusiveOrEqualsOperatorTokenNode {
+    private final SourceToken<ExclusiveOrEqualsOperatorToken> token;
+
+    public ExclusiveOrEqualsOperatorTokenNode(SourceToken<ExclusiveOrEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<ExclusiveOrEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IExclusiveOrEqualsOperatorTokenNode)) { return false; }
+      IExclusiveOrEqualsOperatorTokenNode __node = (IExclusiveOrEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IMinusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<MinusEqualsOperatorToken> getToken();
+  }
+
+  public class MinusEqualsOperatorTokenNode extends AbstractNode implements IMinusEqualsOperatorTokenNode {
+    private final SourceToken<MinusEqualsOperatorToken> token;
+
+    public MinusEqualsOperatorTokenNode(SourceToken<MinusEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<MinusEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IMinusEqualsOperatorTokenNode)) { return false; }
+      IMinusEqualsOperatorTokenNode __node = (IMinusEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface INativeKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<NativeKeywordToken> getToken();
+  }
+
+  public class NativeKeywordTokenNode extends AbstractNode implements INativeKeywordTokenNode {
+    private final SourceToken<NativeKeywordToken> token;
+
+    public NativeKeywordTokenNode(SourceToken<NativeKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<NativeKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof INativeKeywordTokenNode)) { return false; }
+      INativeKeywordTokenNode __node = (INativeKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILessThanOrEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<LessThanOrEqualsOperatorToken> getToken();
+  }
+
+  public class LessThanOrEqualsOperatorTokenNode extends AbstractNode implements ILessThanOrEqualsOperatorTokenNode {
+    private final SourceToken<LessThanOrEqualsOperatorToken> token;
+
+    public LessThanOrEqualsOperatorTokenNode(SourceToken<LessThanOrEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LessThanOrEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILessThanOrEqualsOperatorTokenNode)) { return false; }
+      ILessThanOrEqualsOperatorTokenNode __node = (ILessThanOrEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IDivideOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<DivideOperatorToken> getToken();
+  }
+
+  public class DivideOperatorTokenNode extends AbstractNode implements IDivideOperatorTokenNode {
+    private final SourceToken<DivideOperatorToken> token;
+
+    public DivideOperatorTokenNode(SourceToken<DivideOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<DivideOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IDivideOperatorTokenNode)) { return false; }
+      IDivideOperatorTokenNode __node = (IDivideOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IRightShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<RightShiftEqualsOperatorToken> getToken();
+  }
+
+  public class RightShiftEqualsOperatorTokenNode extends AbstractNode implements IRightShiftEqualsOperatorTokenNode {
+    private final SourceToken<RightShiftEqualsOperatorToken> token;
+
+    public RightShiftEqualsOperatorTokenNode(SourceToken<RightShiftEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<RightShiftEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IRightShiftEqualsOperatorTokenNode)) { return false; }
+      IRightShiftEqualsOperatorTokenNode __node = (IRightShiftEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILongKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<LongKeywordToken> getToken();
+  }
+
+  public class LongKeywordTokenNode extends AbstractNode implements ILongKeywordTokenNode {
+    private final SourceToken<LongKeywordToken> token;
+
+    public LongKeywordTokenNode(SourceToken<LongKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LongKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILongKeywordTokenNode)) { return false; }
+      ILongKeywordTokenNode __node = (ILongKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IIntKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<IntKeywordToken> getToken();
+  }
+
+  public class IntKeywordTokenNode extends AbstractNode implements IIntKeywordTokenNode {
+    private final SourceToken<IntKeywordToken> token;
+
+    public IntKeywordTokenNode(SourceToken<IntKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<IntKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IIntKeywordTokenNode)) { return false; }
+      IIntKeywordTokenNode __node = (IIntKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILessThanOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<LessThanOperatorToken> getToken();
+  }
+
+  public class LessThanOperatorTokenNode extends AbstractNode implements ILessThanOperatorTokenNode {
+    private final SourceToken<LessThanOperatorToken> token;
+
+    public LessThanOperatorTokenNode(SourceToken<LessThanOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LessThanOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILessThanOperatorTokenNode)) { return false; }
+      ILessThanOperatorTokenNode __node = (ILessThanOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILiteralTokenNode extends INode, IValueExpressionNode {
+    SourceToken<LiteralToken> getToken();
+  }
+
+  public class LiteralTokenNode extends AbstractNode implements ILiteralTokenNode {
+    private final SourceToken<LiteralToken> token;
+
+    public LiteralTokenNode(SourceToken<LiteralToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LiteralToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILiteralTokenNode)) { return false; }
+      ILiteralTokenNode __node = (ILiteralTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILogicalNotOperatorTokenNode extends INode, IPrefixOperatorNode {
+    SourceToken<LogicalNotOperatorToken> getToken();
+  }
+
+  public class LogicalNotOperatorTokenNode extends AbstractNode implements ILogicalNotOperatorTokenNode {
+    private final SourceToken<LogicalNotOperatorToken> token;
+
+    public LogicalNotOperatorTokenNode(SourceToken<LogicalNotOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LogicalNotOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILogicalNotOperatorTokenNode)) { return false; }
+      ILogicalNotOperatorTokenNode __node = (ILogicalNotOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IIncrementOperatorTokenNode extends INode, IPostfixOperatorNode, IPrefixOperatorNode {
+    SourceToken<IncrementOperatorToken> getToken();
+  }
+
+  public class IncrementOperatorTokenNode extends AbstractNode implements IIncrementOperatorTokenNode {
+    private final SourceToken<IncrementOperatorToken> token;
+
+    public IncrementOperatorTokenNode(SourceToken<IncrementOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<IncrementOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IIncrementOperatorTokenNode)) { return false; }
+      IIncrementOperatorTokenNode __node = (IIncrementOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<EqualsOperatorToken> getToken();
+  }
+
+  public class EqualsOperatorTokenNode extends AbstractNode implements IEqualsOperatorTokenNode {
+    private final SourceToken<EqualsOperatorToken> token;
+
+    public EqualsOperatorTokenNode(SourceToken<EqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<EqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IEqualsOperatorTokenNode)) { return false; }
+      IEqualsOperatorTokenNode __node = (IEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IStrictfpKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<StrictfpKeywordToken> getToken();
+  }
+
+  public class StrictfpKeywordTokenNode extends AbstractNode implements IStrictfpKeywordTokenNode {
+    private final SourceToken<StrictfpKeywordToken> token;
+
+    public StrictfpKeywordTokenNode(SourceToken<StrictfpKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<StrictfpKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IStrictfpKeywordTokenNode)) { return false; }
+      IStrictfpKeywordTokenNode __node = (IStrictfpKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IBitwiseRightShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<BitwiseRightShiftEqualsOperatorToken> getToken();
+  }
+
+  public class BitwiseRightShiftEqualsOperatorTokenNode extends AbstractNode
+      implements IBitwiseRightShiftEqualsOperatorTokenNode {
+    private final SourceToken<BitwiseRightShiftEqualsOperatorToken> token;
+
+    public BitwiseRightShiftEqualsOperatorTokenNode(SourceToken<BitwiseRightShiftEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<BitwiseRightShiftEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IBitwiseRightShiftEqualsOperatorTokenNode)) { return false; }
+      IBitwiseRightShiftEqualsOperatorTokenNode __node = (IBitwiseRightShiftEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IGreaterThanOrEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<GreaterThanOrEqualsOperatorToken> getToken();
+  }
+
+  public class GreaterThanOrEqualsOperatorTokenNode extends AbstractNode
+      implements IGreaterThanOrEqualsOperatorTokenNode {
+    private final SourceToken<GreaterThanOrEqualsOperatorToken> token;
+
+    public GreaterThanOrEqualsOperatorTokenNode(SourceToken<GreaterThanOrEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<GreaterThanOrEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IGreaterThanOrEqualsOperatorTokenNode)) { return false; }
+      IGreaterThanOrEqualsOperatorTokenNode __node = (IGreaterThanOrEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IIdentifierTokenNode extends INode, IValueExpressionNode {
+    SourceToken<IdentifierToken> getToken();
+  }
+
+  public class IdentifierTokenNode extends AbstractNode implements IIdentifierTokenNode {
+    private final SourceToken<IdentifierToken> token;
+
+    public IdentifierTokenNode(SourceToken<IdentifierToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<IdentifierToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IIdentifierTokenNode)) { return false; }
+      IIdentifierTokenNode __node = (IIdentifierTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IProtectedKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<ProtectedKeywordToken> getToken();
+  }
+
+  public class ProtectedKeywordTokenNode extends AbstractNode implements IProtectedKeywordTokenNode {
+    private final SourceToken<ProtectedKeywordToken> token;
+
+    public ProtectedKeywordTokenNode(SourceToken<ProtectedKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<ProtectedKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IProtectedKeywordTokenNode)) { return false; }
+      IProtectedKeywordTokenNode __node = (IProtectedKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILogicalAndOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<LogicalAndOperatorToken> getToken();
+  }
+
+  public class LogicalAndOperatorTokenNode extends AbstractNode implements ILogicalAndOperatorTokenNode {
+    private final SourceToken<LogicalAndOperatorToken> token;
+
+    public LogicalAndOperatorTokenNode(SourceToken<LogicalAndOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LogicalAndOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILogicalAndOperatorTokenNode)) { return false; }
+      ILogicalAndOperatorTokenNode __node = (ILogicalAndOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IPlusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<PlusEqualsOperatorToken> getToken();
+  }
+
+  public class PlusEqualsOperatorTokenNode extends AbstractNode implements IPlusEqualsOperatorTokenNode {
+    private final SourceToken<PlusEqualsOperatorToken> token;
+
+    public PlusEqualsOperatorTokenNode(SourceToken<PlusEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<PlusEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IPlusEqualsOperatorTokenNode)) { return false; }
+      IPlusEqualsOperatorTokenNode __node = (IPlusEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IEqualsEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<EqualsEqualsOperatorToken> getToken();
+  }
+
+  public class EqualsEqualsOperatorTokenNode extends AbstractNode implements IEqualsEqualsOperatorTokenNode {
+    private final SourceToken<EqualsEqualsOperatorToken> token;
+
+    public EqualsEqualsOperatorTokenNode(SourceToken<EqualsEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<EqualsEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IEqualsEqualsOperatorTokenNode)) { return false; }
+      IEqualsEqualsOperatorTokenNode __node = (IEqualsEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IDoubleKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<DoubleKeywordToken> getToken();
+  }
+
+  public class DoubleKeywordTokenNode extends AbstractNode implements IDoubleKeywordTokenNode {
+    private final SourceToken<DoubleKeywordToken> token;
+
+    public DoubleKeywordTokenNode(SourceToken<DoubleKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<DoubleKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IDoubleKeywordTokenNode)) { return false; }
+      IDoubleKeywordTokenNode __node = (IDoubleKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IModulusOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<ModulusOperatorToken> getToken();
+  }
+
+  public class ModulusOperatorTokenNode extends AbstractNode implements IModulusOperatorTokenNode {
+    private final SourceToken<ModulusOperatorToken> token;
+
+    public ModulusOperatorTokenNode(SourceToken<ModulusOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<ModulusOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IModulusOperatorTokenNode)) { return false; }
+      IModulusOperatorTokenNode __node = (IModulusOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILeftShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<LeftShiftEqualsOperatorToken> getToken();
+  }
+
+  public class LeftShiftEqualsOperatorTokenNode extends AbstractNode implements ILeftShiftEqualsOperatorTokenNode {
+    private final SourceToken<LeftShiftEqualsOperatorToken> token;
+
+    public LeftShiftEqualsOperatorTokenNode(SourceToken<LeftShiftEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LeftShiftEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILeftShiftEqualsOperatorTokenNode)) { return false; }
+      ILeftShiftEqualsOperatorTokenNode __node = (ILeftShiftEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IAndEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<AndEqualsOperatorToken> getToken();
+  }
+
+  public class AndEqualsOperatorTokenNode extends AbstractNode implements IAndEqualsOperatorTokenNode {
+    private final SourceToken<AndEqualsOperatorToken> token;
+
+    public AndEqualsOperatorTokenNode(SourceToken<AndEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<AndEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IAndEqualsOperatorTokenNode)) { return false; }
+      IAndEqualsOperatorTokenNode __node = (IAndEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ISynchronizedKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<SynchronizedKeywordToken> getToken();
+  }
+
+  public class SynchronizedKeywordTokenNode extends AbstractNode implements ISynchronizedKeywordTokenNode {
+    private final SourceToken<SynchronizedKeywordToken> token;
+
+    public SynchronizedKeywordTokenNode(SourceToken<SynchronizedKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<SynchronizedKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ISynchronizedKeywordTokenNode)) { return false; }
+      ISynchronizedKeywordTokenNode __node = (ISynchronizedKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ISemicolonSeparatorTokenNode extends INode, ITypeDeclarationNode, IMethodBodyNode {
+    SourceToken<SemicolonSeparatorToken> getToken();
+  }
+
+  public class SemicolonSeparatorTokenNode extends AbstractNode implements ISemicolonSeparatorTokenNode {
+    private final SourceToken<SemicolonSeparatorToken> token;
+
+    public SemicolonSeparatorTokenNode(SourceToken<SemicolonSeparatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<SemicolonSeparatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ISemicolonSeparatorTokenNode)) { return false; }
+      ISemicolonSeparatorTokenNode __node = (ISemicolonSeparatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IAbstractKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<AbstractKeywordToken> getToken();
+  }
+
+  public class AbstractKeywordTokenNode extends AbstractNode implements IAbstractKeywordTokenNode {
+    private final SourceToken<AbstractKeywordToken> token;
+
+    public AbstractKeywordTokenNode(SourceToken<AbstractKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<AbstractKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IAbstractKeywordTokenNode)) { return false; }
+      IAbstractKeywordTokenNode __node = (IAbstractKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ITimesOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<TimesOperatorToken> getToken();
+  }
+
+  public class TimesOperatorTokenNode extends AbstractNode implements ITimesOperatorTokenNode {
+    private final SourceToken<TimesOperatorToken> token;
+
+    public TimesOperatorTokenNode(SourceToken<TimesOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<TimesOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ITimesOperatorTokenNode)) { return false; }
+      ITimesOperatorTokenNode __node = (ITimesOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILogicalOrOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<LogicalOrOperatorToken> getToken();
+  }
+
+  public class LogicalOrOperatorTokenNode extends AbstractNode implements ILogicalOrOperatorTokenNode {
+    private final SourceToken<LogicalOrOperatorToken> token;
+
+    public LogicalOrOperatorTokenNode(SourceToken<LogicalOrOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LogicalOrOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILogicalOrOperatorTokenNode)) { return false; }
+      ILogicalOrOperatorTokenNode __node = (ILogicalOrOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IPlusOperatorTokenNode extends INode, IPrefixOperatorNode, IInfixOperatorNode {
+    SourceToken<PlusOperatorToken> getToken();
+  }
+
+  public class PlusOperatorTokenNode extends AbstractNode implements IPlusOperatorTokenNode {
+    private final SourceToken<PlusOperatorToken> token;
+
+    public PlusOperatorTokenNode(SourceToken<PlusOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<PlusOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IPlusOperatorTokenNode)) { return false; }
+      IPlusOperatorTokenNode __node = (IPlusOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ITransientKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<TransientKeywordToken> getToken();
+  }
+
+  public class TransientKeywordTokenNode extends AbstractNode implements ITransientKeywordTokenNode {
+    private final SourceToken<TransientKeywordToken> token;
+
+    public TransientKeywordTokenNode(SourceToken<TransientKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<TransientKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ITransientKeywordTokenNode)) { return false; }
+      ITransientKeywordTokenNode __node = (ITransientKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ISuperKeywordTokenNode extends INode, IValueExpressionNode {
+    SourceToken<SuperKeywordToken> getToken();
+  }
+
+  public class SuperKeywordTokenNode extends AbstractNode implements ISuperKeywordTokenNode {
+    private final SourceToken<SuperKeywordToken> token;
+
+    public SuperKeywordTokenNode(SourceToken<SuperKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<SuperKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ISuperKeywordTokenNode)) { return false; }
+      ISuperKeywordTokenNode __node = (ISuperKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IOrEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<OrEqualsOperatorToken> getToken();
+  }
+
+  public class OrEqualsOperatorTokenNode extends AbstractNode implements IOrEqualsOperatorTokenNode {
+    private final SourceToken<OrEqualsOperatorToken> token;
+
+    public OrEqualsOperatorTokenNode(SourceToken<OrEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<OrEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IOrEqualsOperatorTokenNode)) { return false; }
+      IOrEqualsOperatorTokenNode __node = (IOrEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IGreaterThanOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<GreaterThanOperatorToken> getToken();
+  }
+
+  public class GreaterThanOperatorTokenNode extends AbstractNode implements IGreaterThanOperatorTokenNode {
+    private final SourceToken<GreaterThanOperatorToken> token;
+
+    public GreaterThanOperatorTokenNode(SourceToken<GreaterThanOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<GreaterThanOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IGreaterThanOperatorTokenNode)) { return false; }
+      IGreaterThanOperatorTokenNode __node = (IGreaterThanOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IByteKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<ByteKeywordToken> getToken();
+  }
+
+  public class ByteKeywordTokenNode extends AbstractNode implements IByteKeywordTokenNode {
+    private final SourceToken<ByteKeywordToken> token;
+
+    public ByteKeywordTokenNode(SourceToken<ByteKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<ByteKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IByteKeywordTokenNode)) { return false; }
+      IByteKeywordTokenNode __node = (IByteKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IStaticKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<StaticKeywordToken> getToken();
+  }
+
+  public class StaticKeywordTokenNode extends AbstractNode implements IStaticKeywordTokenNode {
+    private final SourceToken<StaticKeywordToken> token;
+
+    public StaticKeywordTokenNode(SourceToken<StaticKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<StaticKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IStaticKeywordTokenNode)) { return false; }
+      IStaticKeywordTokenNode __node = (IStaticKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IFloatKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<FloatKeywordToken> getToken();
+  }
+
+  public class FloatKeywordTokenNode extends AbstractNode implements IFloatKeywordTokenNode {
+    private final SourceToken<FloatKeywordToken> token;
+
+    public FloatKeywordTokenNode(SourceToken<FloatKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<FloatKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IFloatKeywordTokenNode)) { return false; }
+      IFloatKeywordTokenNode __node = (IFloatKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IBitwiseAndOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<BitwiseAndOperatorToken> getToken();
+  }
+
+  public class BitwiseAndOperatorTokenNode extends AbstractNode implements IBitwiseAndOperatorTokenNode {
+    private final SourceToken<BitwiseAndOperatorToken> token;
+
+    public BitwiseAndOperatorTokenNode(SourceToken<BitwiseAndOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<BitwiseAndOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IBitwiseAndOperatorTokenNode)) { return false; }
+      IBitwiseAndOperatorTokenNode __node = (IBitwiseAndOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IBitwiseOrOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<BitwiseOrOperatorToken> getToken();
+  }
+
+  public class BitwiseOrOperatorTokenNode extends AbstractNode implements IBitwiseOrOperatorTokenNode {
+    private final SourceToken<BitwiseOrOperatorToken> token;
+
+    public BitwiseOrOperatorTokenNode(SourceToken<BitwiseOrOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<BitwiseOrOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IBitwiseOrOperatorTokenNode)) { return false; }
+      IBitwiseOrOperatorTokenNode __node = (IBitwiseOrOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IModulusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<ModulusEqualsOperatorToken> getToken();
+  }
+
+  public class ModulusEqualsOperatorTokenNode extends AbstractNode implements IModulusEqualsOperatorTokenNode {
+    private final SourceToken<ModulusEqualsOperatorToken> token;
+
+    public ModulusEqualsOperatorTokenNode(SourceToken<ModulusEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<ModulusEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IModulusEqualsOperatorTokenNode)) { return false; }
+      IModulusEqualsOperatorTokenNode __node = (IModulusEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IMinusOperatorTokenNode extends INode, IPrefixOperatorNode, IInfixOperatorNode {
+    SourceToken<MinusOperatorToken> getToken();
+  }
+
+  public class MinusOperatorTokenNode extends AbstractNode implements IMinusOperatorTokenNode {
+    private final SourceToken<MinusOperatorToken> token;
+
+    public MinusOperatorTokenNode(SourceToken<MinusOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<MinusOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IMinusOperatorTokenNode)) { return false; }
+      IMinusOperatorTokenNode __node = (IMinusOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IPrivateKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<PrivateKeywordToken> getToken();
+  }
+
+  public class PrivateKeywordTokenNode extends AbstractNode implements IPrivateKeywordTokenNode {
+    private final SourceToken<PrivateKeywordToken> token;
+
+    public PrivateKeywordTokenNode(SourceToken<PrivateKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<PrivateKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IPrivateKeywordTokenNode)) { return false; }
+      IPrivateKeywordTokenNode __node = (IPrivateKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ICharKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<CharKeywordToken> getToken();
+  }
+
+  public class CharKeywordTokenNode extends AbstractNode implements ICharKeywordTokenNode {
+    private final SourceToken<CharKeywordToken> token;
+
+    public CharKeywordTokenNode(SourceToken<CharKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<CharKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ICharKeywordTokenNode)) { return false; }
+      ICharKeywordTokenNode __node = (ICharKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IBooleanKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<BooleanKeywordToken> getToken();
+  }
+
+  public class BooleanKeywordTokenNode extends AbstractNode implements IBooleanKeywordTokenNode {
+    private final SourceToken<BooleanKeywordToken> token;
+
+    public BooleanKeywordTokenNode(SourceToken<BooleanKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<BooleanKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IBooleanKeywordTokenNode)) { return false; }
+      IBooleanKeywordTokenNode __node = (IBooleanKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IFinalKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<FinalKeywordToken> getToken();
+  }
+
+  public class FinalKeywordTokenNode extends AbstractNode implements IFinalKeywordTokenNode {
+    private final SourceToken<FinalKeywordToken> token;
+
+    public FinalKeywordTokenNode(SourceToken<FinalKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<FinalKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IFinalKeywordTokenNode)) { return false; }
+      IFinalKeywordTokenNode __node = (IFinalKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface INotEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<NotEqualsOperatorToken> getToken();
+  }
+
+  public class NotEqualsOperatorTokenNode extends AbstractNode implements INotEqualsOperatorTokenNode {
+    private final SourceToken<NotEqualsOperatorToken> token;
+
+    public NotEqualsOperatorTokenNode(SourceToken<NotEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<NotEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof INotEqualsOperatorTokenNode)) { return false; }
+      INotEqualsOperatorTokenNode __node = (INotEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface ILeftShiftOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<LeftShiftOperatorToken> getToken();
+  }
+
+  public class LeftShiftOperatorTokenNode extends AbstractNode implements ILeftShiftOperatorTokenNode {
+    private final SourceToken<LeftShiftOperatorToken> token;
+
+    public LeftShiftOperatorTokenNode(SourceToken<LeftShiftOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<LeftShiftOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ILeftShiftOperatorTokenNode)) { return false; }
+      ILeftShiftOperatorTokenNode __node = (ILeftShiftOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IShortKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<ShortKeywordToken> getToken();
+  }
+
+  public class ShortKeywordTokenNode extends AbstractNode implements IShortKeywordTokenNode {
+    private final SourceToken<ShortKeywordToken> token;
+
+    public ShortKeywordTokenNode(SourceToken<ShortKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<ShortKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IShortKeywordTokenNode)) { return false; }
+      IShortKeywordTokenNode __node = (IShortKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IBitwiseExclusiveOrOperatorTokenNode extends INode, IInfixOperatorNode {
+    SourceToken<BitwiseExclusiveOrOperatorToken> getToken();
+  }
+
+  public class BitwiseExclusiveOrOperatorTokenNode extends AbstractNode
+      implements IBitwiseExclusiveOrOperatorTokenNode {
+    private final SourceToken<BitwiseExclusiveOrOperatorToken> token;
+
+    public BitwiseExclusiveOrOperatorTokenNode(SourceToken<BitwiseExclusiveOrOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<BitwiseExclusiveOrOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IBitwiseExclusiveOrOperatorTokenNode)) { return false; }
+      IBitwiseExclusiveOrOperatorTokenNode __node = (IBitwiseExclusiveOrOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IPublicKeywordTokenNode extends INode, IModifierNode {
+    SourceToken<PublicKeywordToken> getToken();
+  }
+
+  public class PublicKeywordTokenNode extends AbstractNode implements IPublicKeywordTokenNode {
+    private final SourceToken<PublicKeywordToken> token;
+
+    public PublicKeywordTokenNode(SourceToken<PublicKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<PublicKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IPublicKeywordTokenNode)) { return false; }
+      IPublicKeywordTokenNode __node = (IPublicKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IVoidKeywordTokenNode extends INode, IPrimitiveTypeNode {
+    SourceToken<VoidKeywordToken> getToken();
+  }
+
+  public class VoidKeywordTokenNode extends AbstractNode implements IVoidKeywordTokenNode {
+    private final SourceToken<VoidKeywordToken> token;
+
+    public VoidKeywordTokenNode(SourceToken<VoidKeywordToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<VoidKeywordToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IVoidKeywordTokenNode)) { return false; }
+      IVoidKeywordTokenNode __node = (IVoidKeywordTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IDecrementOperatorTokenNode extends INode, IPostfixOperatorNode, IPrefixOperatorNode {
+    SourceToken<DecrementOperatorToken> getToken();
+  }
+
+  public class DecrementOperatorTokenNode extends AbstractNode implements IDecrementOperatorTokenNode {
+    private final SourceToken<DecrementOperatorToken> token;
+
+    public DecrementOperatorTokenNode(SourceToken<DecrementOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<DecrementOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IDecrementOperatorTokenNode)) { return false; }
+      IDecrementOperatorTokenNode __node = (IDecrementOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public interface IDivideEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+    SourceToken<DivideEqualsOperatorToken> getToken();
+  }
+
+  public class DivideEqualsOperatorTokenNode extends AbstractNode implements IDivideEqualsOperatorTokenNode {
+    private final SourceToken<DivideEqualsOperatorToken> token;
+
+    public DivideEqualsOperatorTokenNode(SourceToken<DivideEqualsOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<DivideEqualsOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IDivideEqualsOperatorTokenNode)) { return false; }
+      IDivideEqualsOperatorTokenNode __node = (IDivideEqualsOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
     }
   }
 
@@ -986,6 +2968,10 @@ public class Nodes {
   public interface IForInitializerNode extends INode {
   }
 
+  public interface IDelimitedExpressionListNode extends INode, IForInitializerNode {
+    List<IExpressionNode> getExpressionList();
+  }
+
   public interface IForUpdateNode extends INode {
     List<IExpressionNode> getExpressionList();
   }
@@ -1137,6 +3123,20 @@ public class Nodes {
   }
 
   public interface IInfixOperatorNode extends INode {
+  }
+
+  public interface IUnsignedRightShiftNode extends INode, IInfixOperatorNode {
+    SourceToken<GreaterThanOperatorToken> getGreaterThanOperator();
+
+    SourceToken<GreaterThanOperatorToken> getGreaterThanOperator2();
+
+    SourceToken<GreaterThanOperatorToken> getGreaterThanOperator3();
+  }
+
+  public interface ISignedRightShiftNode extends INode, IInfixOperatorNode {
+    SourceToken<GreaterThanOperatorToken> getGreaterThanOperator();
+
+    SourceToken<GreaterThanOperatorToken> getGreaterThanOperator2();
   }
 
   public interface IExpression3Node extends INode, IExpression2Node {
@@ -5426,6 +7426,38 @@ public class Nodes {
     }
   }
 
+  public class DelimitedExpressionListNode extends AbstractNode implements IDelimitedExpressionListNode {
+    private final List<IExpressionNode> expressionList;
+
+    public DelimitedExpressionListNode(
+        List<IExpressionNode> expressionList) {
+      this.expressionList = expressionList;
+    }
+
+    public List<IExpressionNode> getExpressionList() {
+      return expressionList;
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IDelimitedExpressionListNode)) { return false; }
+      IDelimitedExpressionListNode __node = (IDelimitedExpressionListNode) __other;
+      if (!equals(expressionList, __node.getExpressionList())) { return false; }
+      return true;
+    }
+
+    protected int hashCodeWorker() {
+      int hash = 0;
+      hash = 31 * hash + (expressionList == null ? 0 : expressionList.hashCode());
+      return hash;
+    }
+  }
+
   public class ForUpdateNode extends AbstractNode implements IForUpdateNode {
     private final List<IExpressionNode> expressionList;
 
@@ -6369,6 +8401,97 @@ public class Nodes {
 
     protected int hashCodeWorker() {
       int hash = 0;
+      return hash;
+    }
+  }
+
+  public class UnsignedRightShiftNode extends AbstractNode implements IUnsignedRightShiftNode {
+    private final SourceToken<GreaterThanOperatorToken> greaterThanOperator;
+    private final SourceToken<GreaterThanOperatorToken> greaterThanOperator2;
+    private final SourceToken<GreaterThanOperatorToken> greaterThanOperator3;
+
+    public UnsignedRightShiftNode(
+        SourceToken<GreaterThanOperatorToken> greaterThanOperator,
+        SourceToken<GreaterThanOperatorToken> greaterThanOperator2,
+        SourceToken<GreaterThanOperatorToken> greaterThanOperator3) {
+      this.greaterThanOperator = greaterThanOperator;
+      this.greaterThanOperator2 = greaterThanOperator2;
+      this.greaterThanOperator3 = greaterThanOperator3;
+    }
+
+    public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator() {
+      return greaterThanOperator;
+    }
+
+    public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator2() {
+      return greaterThanOperator2;
+    }
+
+    public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator3() {
+      return greaterThanOperator3;
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IUnsignedRightShiftNode)) { return false; }
+      IUnsignedRightShiftNode __node = (IUnsignedRightShiftNode) __other;
+      if (!equals(greaterThanOperator, __node.getGreaterThanOperator())) { return false; }
+      if (!equals(greaterThanOperator2, __node.getGreaterThanOperator2())) { return false; }
+      if (!equals(greaterThanOperator3, __node.getGreaterThanOperator3())) { return false; }
+      return true;
+    }
+
+    protected int hashCodeWorker() {
+      int hash = 0;
+      hash = 31 * hash + (greaterThanOperator == null ? 0 : greaterThanOperator.hashCode());
+      hash = 31 * hash + (greaterThanOperator2 == null ? 0 : greaterThanOperator2.hashCode());
+      hash = 31 * hash + (greaterThanOperator3 == null ? 0 : greaterThanOperator3.hashCode());
+      return hash;
+    }
+  }
+
+  public class SignedRightShiftNode extends AbstractNode implements ISignedRightShiftNode {
+    private final SourceToken<GreaterThanOperatorToken> greaterThanOperator;
+    private final SourceToken<GreaterThanOperatorToken> greaterThanOperator2;
+
+    public SignedRightShiftNode(
+        SourceToken<GreaterThanOperatorToken> greaterThanOperator,
+        SourceToken<GreaterThanOperatorToken> greaterThanOperator2) {
+      this.greaterThanOperator = greaterThanOperator;
+      this.greaterThanOperator2 = greaterThanOperator2;
+    }
+
+    public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator() {
+      return greaterThanOperator;
+    }
+
+    public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator2() {
+      return greaterThanOperator2;
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof ISignedRightShiftNode)) { return false; }
+      ISignedRightShiftNode __node = (ISignedRightShiftNode) __other;
+      if (!equals(greaterThanOperator, __node.getGreaterThanOperator())) { return false; }
+      if (!equals(greaterThanOperator2, __node.getGreaterThanOperator2())) { return false; }
+      return true;
+    }
+
+    protected int hashCodeWorker() {
+      int hash = 0;
+      hash = 31 * hash + (greaterThanOperator == null ? 0 : greaterThanOperator.hashCode());
+      hash = 31 * hash + (greaterThanOperator2 == null ? 0 : greaterThanOperator2.hashCode());
       return hash;
     }
   }
