@@ -94,7 +94,7 @@
 
     valueLabel.frame = valueFrame;
 
-    CGRect separatorFrame = CGRectMake(1, -1, self.contentView.frame.size.width - 2, 1);
+    CGRect separatorFrame = CGRectMake(0, -1, self.contentView.frame.size.width, 1);
     separatorLine.frame = separatorFrame;
 }
 

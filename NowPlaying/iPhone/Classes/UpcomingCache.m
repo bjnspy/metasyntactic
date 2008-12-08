@@ -92,12 +92,6 @@
     return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
-/*
-- (NSString*) bookmarksFile {
-    return [[Application upcomingDirectory] stringByAppendingPathComponent:@"Bookmarks.plist"];
-}
- */
-
 
 - (void) saveMovieArray:(NSArray*) array toFile:(NSString*) file {
     NSMutableArray* encodedMovies = [NSMutableArray array];
@@ -198,22 +192,19 @@
 }
 
 
-- (NSMutableDictionary*) loadMovies:(NSArray*) array {
+- (NSDictionary*) loadMovies {
+    NSArray* array = [FileUtilities readObject:self.moviesFile];
     if (array.count == 0) {
-        return [NSMutableDictionary dictionary];
+        return [NSDictionary dictionary];
     }
-
+    
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (NSDictionary* dictionary in array) {
         Movie* movie = [Movie movieWithDictionary:dictionary];
         [result setObject:movie forKey:movie.canonicalTitle];
     }
+    
     return result;
-}
-
-
-- (NSDictionary*) loadMovies {
-    return [self loadMovies:[FileUtilities readObject:self.moviesFile]];
 }
 
 
@@ -282,7 +273,17 @@
 
 
 - (NSMutableDictionary*) loadBookmarks {
-    return [self loadMovies:[model bookmarkedUpcoming]];
+    NSArray* movies = [model bookmarkedUpcoming];
+    if (movies.count == 0) {
+        return [NSMutableDictionary dictionary];
+    }
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    for (Movie* movie in movies) {
+        [result setObject:movie forKey:movie.canonicalTitle];
+    }
+    
+    return result;
 }
 
 
@@ -297,7 +298,6 @@
 
 - (void) saveBookmarks {
     [model setBookmarkedUpcoming:self.bookmarks.allValues];
-    //[self saveMovieArray:self.bookmarks.allValues toFile:self.bookmarksFile];
 }
 
 
@@ -468,6 +468,7 @@
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (imdbAddress == nil) {
+        NSLog(@"", nil);
         return;
     }
 
@@ -625,32 +626,6 @@
 - (void) prioritizeMovie:(Movie*) movie {
     [prioritizedMovies addObject:movie];
 }
-
-/*
-- (NSArray*) upcomingMovies {
-    if (recentMovies == nil) {
-        NSMutableArray* result = [NSMutableArray array];
-        NSDate* now = [NSDate date];
-
-        for (Movie* movie in self.allMovies.allValues) {
-            if (![model isBookmarked:movie] &&
-                [now compare:movie.releaseDate] == NSOrderedDescending) {
-                continue;
-            }
-
-            [result addObject:movie];
-        }
-
-        self.recentMovies = result;
-    }
-
-    if (recentMovies == nil) {
-        return [NSArray array];
-    }
-
-    return recentMovies;
-}
- */
 
 
 - (NSDate*) releaseDateForMovie:(Movie*) movie {

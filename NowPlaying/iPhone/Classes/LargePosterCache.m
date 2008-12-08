@@ -22,7 +22,6 @@
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
-#import "ThreadingUtilities.h"
 
 @interface LargePosterCache()
 @property (retain) NSDictionary* indexData;

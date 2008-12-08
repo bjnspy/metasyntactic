@@ -89,7 +89,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         self.localizers = dictionary;
 
         self.languages = [localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL];
-
     }
 
     return self;

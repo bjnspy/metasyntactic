@@ -15,7 +15,6 @@
 #import "AbstractCache.h"
 
 #import "FileUtilities.h"
-#import "ThreadingUtilities.h"
 
 @interface AbstractCache()
 @property (retain) NowPlayingModel* model;

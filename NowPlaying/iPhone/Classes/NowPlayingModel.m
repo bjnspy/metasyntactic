@@ -41,7 +41,6 @@
 #import "ScoreCache.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
-#import "ThreadingUtilities.h"
 #import "TicketsViewController.h"
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
@@ -67,7 +66,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"2.5.0";
-static NSString* persistenceVersion = @"17";
+static NSString* persistenceVersion = @"18";
 
 static NSString* VERSION = @"version";
 
@@ -236,18 +235,18 @@ static NSString** KEYS[] = {
 
 - (void) restorePreviousUserAddress:(id) previousUserAddress
                        searchRadius:(id) previousSearchRadius
+                 scoreProviderIndex:(id) previousScoreProviderIndex 
                  autoUpdateLocation:(id) previousAutoUpdateLocation
                 prioritizeBookmarks:(id) previousPrioritizeBookmarks
                      useNormalFonts:(id) previousUseNormalFonts
+                   favoriteTheaters:(id) previousFavoriteTheaters
                    bookmarkedTitles:(id) previousBookmarkedTitles
                    bookmarkedMovies:(id) previousBookmarkedMovies
                  bookmarkedUpcoming:(id) previousBookmarkedUpcoming
                       bookmarkedDVD:(id) previousBookmarkedDVD
                    bookmarkedBluray:(id) previousBookmarkedBluray
-                   favoriteTheaters:(id) previousFavoriteTheaters
                   dvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
-                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray
-                 scoreProviderIndex:(id) previousScoreProviderIndex {
+                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray {
     if ([previousUserAddress isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
     }
@@ -345,18 +344,18 @@ static NSString** KEYS[] = {
 
         [self restorePreviousUserAddress:previousUserAddress
                             searchRadius:previousSearchRadius
+                      scoreProviderIndex:previousScoreProviderIndex
                       autoUpdateLocation:previousAutoUpdateLocation
                      prioritizeBookmarks:previousPrioritizeBookmarks
                           useNormalFonts:previousUseNormalFonts
+                        favoriteTheaters:previousFavoriteTheaters
                         bookmarkedTitles:previousBookmarkedTitles
                         bookmarkedMovies:previousBookmarkedMovies
                       bookmarkedUpcoming:previousBookmarkedUpcoming
                            bookmarkedDVD:previousBookmarkedDVD
                         bookmarkedBluray:previousBookmarkedBluray
-                        favoriteTheaters:previousFavoriteTheaters
                        dvdMoviesHideDVDs:previousDvdMoviesHideDVDs
-                     dvdMoviesHideBluray:previousDvdMoviesHideBluray
-                    scoreProviderIndex:previousScoreProviderIndex];
+                     dvdMoviesHideBluray:previousDvdMoviesHideBluray];
 
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
