@@ -155,7 +155,7 @@
       <file leaf-file-name="GrammarNodeWriter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="232" column="24" selection-start="7280" selection-end="7280" vertical-scroll-proportion="0.5695538">
+            <state line="127" column="17" selection-start="3630" selection-end="3630" vertical-scroll-proportion="0.4593176">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -166,7 +166,7 @@
       <file leaf-file-name="Nodes.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2821" column="49" selection-start="102070" selection-end="102070" vertical-scroll-proportion="5.6707616">
+            <state line="5791" column="0" selection-start="210325" selection-end="210325" vertical-scroll-proportion="0.29238328">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1399,7 +1399,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="232" column="24" selection-start="7280" selection-end="7280" vertical-scroll-proportion="0.5695538">
+        <state line="127" column="17" selection-start="3630" selection-end="3630" vertical-scroll-proportion="0.4593176">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1408,7 +1408,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2821" column="49" selection-start="102070" selection-end="102070" vertical-scroll-proportion="5.6707616">
+        <state line="5791" column="0" selection-start="210325" selection-end="210325" vertical-scroll-proportion="0.29238328">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

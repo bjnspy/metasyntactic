@@ -121,7 +121,11 @@ public class GrammarNodeWriter<TTokenType> {
     writeNode();
 
     for (Rule rule : grammar.getRules()) {
-      write(rule);
+      writeInterface(rule);
+    }
+
+    for (Rule rule : grammar.getRules()) {
+      writeClass(rule);
     }
   }
 
@@ -183,9 +187,9 @@ public class GrammarNodeWriter<TTokenType> {
 
   private void writeNode() {
     writeAndIndent("public abstract class AbstractNode implements INode {");
-    write("private int hashCode;");
+    write("private int hashCode = -1;");
     writeAndIndent("public int hashCode() {");
-    writeAndIndent("if (hashCode == 0) {");
+    writeAndIndent("if (hashCode == -1) {");
     write("hashCode = hashCodeWorker();");
     dedentAndWrite("}");
     write("return hashCode;");
@@ -203,11 +207,6 @@ public class GrammarNodeWriter<TTokenType> {
       write("void visit(I" + rule.getVariable() + "Node node);");
     }
     dedentAndWrite("}");
-  }
-
-  private void write(Rule rule) {
-    writeInterface(rule);
-    writeClass(rule);
   }
 
   private void writeClass(Rule rule) {
