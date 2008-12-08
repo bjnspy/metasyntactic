@@ -14,10 +14,13 @@
 
 package org.metasyntactic.providers;
 
+import android.content.Context;
+import android.content.Intent;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.*;
 import org.metasyntactic.protobuf.NowPlaying;
@@ -82,6 +85,10 @@ public class DataProvider {
 
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
+        final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+        if (context != null) {
+          context.sendBroadcast(new Intent(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
+        }
         model.updateSecondaryCaches();
       }
     });

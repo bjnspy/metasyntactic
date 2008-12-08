@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-  public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
-  public final static String NOW_PLAYING_POSTERS_READY = "NowPlayingPostersReady";
+  public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
+  public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
 
   public final static String host =
       /*
@@ -63,8 +63,10 @@ public class Application {
     final Runnable runnable = new Runnable() {
       public void run() {
         if (NowPlayingControllerWrapper.isRunning()) {
-          final Context context = NowPlayingControllerWrapper.getApplicationContext();
-          context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
+          final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+          if (context != null) {
+            context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
+          }
         }
       }
     };

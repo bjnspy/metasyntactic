@@ -76,9 +76,14 @@
 }
 
 
-- (void) setRottenTomatoesImage:(NSInteger) score {
+- (void) clearScoreLabel {
     scoreLabel.text = nil;
     scoreLabel.frame = CGRectZero;
+}
+
+
+- (void) setRottenTomatoesImage:(NSInteger) score {
+    [self clearScoreLabel];
 
     if (score >= 60) {
         self.image = [ImageCache freshImage];
@@ -96,8 +101,7 @@
     } else if (score > 60 && score <= 100) {
         self.image = [ImageCache greenRatingImage];
     } else {
-        scoreLabel.text = nil;
-        scoreLabel.frame = CGRectZero;
+        [self clearScoreLabel];
         self.image = [ImageCache unknownRatingImage];
     }
 
@@ -116,6 +120,11 @@
 }
 
 
+- (void) setGoogleImage:(NSInteger) score {
+    [self setBasicSquareImage:(score == 0 ? -1 : score)];
+}
+
+
 - (void) setReviewImage:(Review*) review {
     int score = review.score;
 
@@ -124,7 +133,7 @@
     } else if (model.metacriticScores) {
         [self setBasicSquareImage:score];
     } else if (model.googleScores) {
-        [self setBasicSquareImage:score];
+        [self setGoogleImage:score];
     }
 }
 
