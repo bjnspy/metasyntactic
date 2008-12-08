@@ -16,6 +16,7 @@ package org.metasyntactic.caches.scores;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.protobuf.NowPlaying;
@@ -32,8 +33,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class GoogleScoreProvider extends AbstractScoreProvider {
-  public GoogleScoreProvider(final ScoreCache scoreCache) {
-    super(scoreCache);
+  public GoogleScoreProvider(final NowPlayingModel model) {
+    super(model);
   }
 
   @Override

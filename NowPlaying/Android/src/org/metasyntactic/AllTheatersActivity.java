@@ -69,23 +69,27 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     setupView();
   }
 
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(broadcastReceiver);
     super.onPause();
   }
 
   protected void onResume() {
-    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
   private void setupView() {
@@ -110,7 +114,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     menu.add(0, MENU_SORT, 0, R.string.menu_theater_sort).setIcon(android.R.drawable.star_on);
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(

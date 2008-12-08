@@ -14,7 +14,9 @@
 
 package org.metasyntactic.caches;
 
+import android.util.Log;
 import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingModel;
 
 import java.io.File;
 import java.util.Date;
@@ -23,7 +25,12 @@ import java.util.List;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public abstract class AbstractCache {
   protected final Object lock = new Object();
+  protected final NowPlayingModel model;
   protected boolean shutdown;
+
+  protected AbstractCache(NowPlayingModel model) {
+    this.model = model;
+  }
 
   public void clearStaleData() {
     for (final File directory : getCacheDirectories()) {
@@ -49,6 +56,7 @@ public abstract class AbstractCache {
   }
 
   public void shutdown() {
+    Log.i(getClass().getSimpleName(), "Received shutdown notification");
     this.shutdown = true;
   }
 }

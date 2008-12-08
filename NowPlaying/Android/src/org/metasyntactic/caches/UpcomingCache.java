@@ -16,6 +16,7 @@ package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.providers.DataProvider;
@@ -40,6 +41,10 @@ public class UpcomingCache extends AbstractCache {
   private List<Movie> movies;
   private Map<String, String> studioKeys;
   private Map<String, String> titleKeys;
+
+  public UpcomingCache(NowPlayingModel model) {
+    super(model);
+  }
 
   private File hashFile() {
     return new File(Application.upcomingDirectory, "Hash");
@@ -112,6 +117,10 @@ public class UpcomingCache extends AbstractCache {
   }
 
   public void update() {
+    if (isNullOrEmpty(model.getUserAddress())) {
+        return;
+    }
+
     updateDetails();
     updateIndex();
   }

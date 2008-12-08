@@ -14,14 +14,15 @@
 
 package org.metasyntactic.caches.scores;
 
+import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Score;
 
 import java.util.Collections;
 import java.util.Map;
 
 public class NoneScoreProvider extends AbstractScoreProvider {
-  public NoneScoreProvider(final ScoreCache scoreCache) {
-    super(scoreCache);
+  public NoneScoreProvider(final NowPlayingModel model) {
+    super(model);
   }
 
   protected String getProviderName() {

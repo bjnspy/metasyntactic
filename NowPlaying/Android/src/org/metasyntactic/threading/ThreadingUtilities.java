@@ -17,8 +17,10 @@ package org.metasyntactic.threading;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
+import android.util.Log;
 import org.metasyntactic.ui.GlobalActivityIndicator;
-import org.metasyntactic.utilities.ExceptionUtilities;
+
+import java.util.Date;
 
 public class ThreadingUtilities {
   public static boolean isMainThread() {
@@ -45,9 +47,11 @@ public class ThreadingUtilities {
         Looper.prepare();
         synchronized (lock) {
           try {
+            Log.i(getClass().getSimpleName(), "Starting '" + name + "' thread at " + new Date());
             GlobalActivityIndicator.addBackgroundTask(visible);
             runnable.run();
           } finally {
+            Log.i(getClass().getSimpleName(), "Stopping '" + name + "' thread at " + new Date());
             GlobalActivityIndicator.removeBackgroundTask(visible);
           }
         }

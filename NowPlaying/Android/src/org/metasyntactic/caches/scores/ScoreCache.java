@@ -22,15 +22,19 @@ import org.metasyntactic.data.Score;
 import java.util.List;
 
 public class ScoreCache {
-  private final ScoreProvider rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(this);
-  private final ScoreProvider metacriticScoreProvider = new MetacriticScoreProvider(this);
-  private final ScoreProvider googleScoreProvider = new GoogleScoreProvider(this);
-  private final ScoreProvider noneScoreProvider = new NoneScoreProvider(this);
+  private final ScoreProvider rottenTomatoesScoreProvider;
+  private final ScoreProvider metacriticScoreProvider;
+  private final ScoreProvider googleScoreProvider;
+  private final ScoreProvider noneScoreProvider;
 
   private final NowPlayingModel model;
 
   public ScoreCache(final NowPlayingModel model) {
     this.model = model;
+    rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(model);
+    metacriticScoreProvider = new MetacriticScoreProvider(model);
+    googleScoreProvider = new GoogleScoreProvider(model);
+    noneScoreProvider = new NoneScoreProvider(model);
   }
 
   public void shutdown() {
@@ -67,10 +71,6 @@ public class ScoreCache {
 
   public void update() {
     getCurrentScoreProvider().update();
-  }
-
-  NowPlayingModel getModel() {
-    return this.model;
   }
 
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {

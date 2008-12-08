@@ -48,8 +48,6 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
   }
 
-  private final ScoreCache parentCache;
-
   private Map<String, Score> scores;
   private String hash;
 
@@ -62,8 +60,8 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   private final File providerDirectory = new File(Application.scoresDirectory, getProviderName());
   private final File reviewsDirectory = new File(Application.reviewsDirectory, getProviderName());
 
-  public AbstractScoreProvider(final ScoreCache parentCache) {
-    this.parentCache = parentCache;
+  public AbstractScoreProvider(final NowPlayingModel model) {
+    super(model);
 
     createDirectory();
   }
@@ -76,7 +74,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   protected abstract String getProviderName();
 
   protected NowPlayingModel getModel() {
-    return this.parentCache.getModel();
+    return model;
   }
 
   private File scoresFile() {
