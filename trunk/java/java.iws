@@ -155,7 +155,7 @@
       <file leaf-file-name="GrammarNodeWriter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="301" column="76" selection-start="9321" selection-end="9321" vertical-scroll-proportion="3.2702703">
+            <state line="232" column="24" selection-start="7280" selection-end="7280" vertical-scroll-proportion="0.5695538">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -166,7 +166,7 @@
       <file leaf-file-name="Nodes.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="28" selection-start="1374" selection-end="1374" vertical-scroll-proportion="-10.201474">
+            <state line="2821" column="49" selection-start="102070" selection-end="102070" vertical-scroll-proportion="5.6707616">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -177,7 +177,7 @@
       <file leaf-file-name="SourceToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/SourceToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="281" selection-end="281" vertical-scroll-proportion="-0.14987715">
+            <state line="8" column="13" selection-start="281" selection-end="281" vertical-scroll-proportion="0.05159705">
               <folding />
             </state>
           </provider>
@@ -1383,17 +1383,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/SourceToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="281" selection-end="281" vertical-scroll-proportion="-0.14987715">
+        <state line="8" column="13" selection-start="281" selection-end="281" vertical-scroll-proportion="0.05159705">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="301" column="76" selection-start="9321" selection-end="9321" vertical-scroll-proportion="3.2702703">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1406,9 +1397,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="232" column="24" selection-start="7280" selection-end="7280" vertical-scroll-proportion="0.5695538">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="28" selection-start="1374" selection-end="1374" vertical-scroll-proportion="-10.201474">
+        <state line="2821" column="49" selection-start="102070" selection-end="102070" vertical-scroll-proportion="5.6707616">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
