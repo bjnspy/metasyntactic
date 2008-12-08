@@ -15,14 +15,7 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/collections/HashMultiMap.java" afterPath="$PROJECT_DIR$/org/metasyntactic/collections/HashMultiMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/collections/MultiMap.java" afterPath="$PROJECT_DIR$/org/metasyntactic/collections/MultiMap.java" />
-    </list>
+    <list default="true" name="Default" comment="" />
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
   </component>
@@ -1213,7 +1206,7 @@
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="7" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25612473" order="0" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="1" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962743" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3245033" order="8" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
@@ -1227,7 +1220,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2781457" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38543046" order="4" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38543046" order="4" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
