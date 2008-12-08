@@ -118,6 +118,7 @@ public class GrammarNodeWriter<TTokenType> {
   public void write() {
     writeINode();
     writeVisitor();
+    writeNode();
 
     for (Rule rule : grammar.getRules()) {
       write(rule);
@@ -165,7 +166,8 @@ public class GrammarNodeWriter<TTokenType> {
                                                                                    "List"));
     } else if (expression instanceof TokenExpression) {
       TokenExpression te = (TokenExpression) expression;
-      result.add(new TypeAndName("SourceToken<" + te.getToken().getClass().getSimpleName() + ">", getExpressionName(te)));
+      result.add(
+          new TypeAndName("SourceToken<" + te.getToken().getClass().getSimpleName() + ">", getExpressionName(te)));
     } else {
       throw new RuntimeException();
     }
@@ -176,6 +178,22 @@ public class GrammarNodeWriter<TTokenType> {
   private void writeINode() {
     writeAndIndent("public interface INode {");
     write("void accept(INodeVisitor visitor);");
+    dedentAndWrite("}");
+  }
+
+  private void writeNode() {
+    writeAndIndent("public abstract class AbstractNode implements INode {");
+    write("private int hashCode;");
+    writeAndIndent("public int hashCode() {");
+    writeAndIndent("if (hashCode == 0) {");
+    write("hashCode = hashCodeWorker();");
+    dedentAndWrite("}");
+    write("return hashCode;");
+    dedentAndWrite("}");
+    write("protected abstract int hashCodeWorker();");
+    writeAndIndent("protected boolean equals(Object o1, Object o2) {");
+    write("return o1 == null ? o2 == null : o1.equals(o2);");
+    dedentAndWrite("}");
     dedentAndWrite("}");
   }
 
@@ -193,12 +211,40 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private void writeClass(Rule rule) {
-    writeAndIndent("public class " + rule.getVariable() + "Node implements I" + rule.getVariable() + "Node {");
+    writeAndIndent(
+        "public class " + rule.getVariable() + "Node extends AbstractNode implements I" + rule.getVariable() + "Node {");
     writeClassFields(rule);
     writeClassConstructor(rule);
     writeGetters(rule);
     writeAccept(rule);
+    writeEquals(rule);
+    writeHashCode(rule);
 
+    dedentAndWrite("}");
+  }
+
+  private void writeHashCode(Rule rule) {
+    writeAndIndent("protected int hashCodeWorker() {");
+    write("int hash = 0;");
+    for (TypeAndName tan : getMembers(rule)) {
+      write("hash = 31*hash + (" + camelCase(tan.name) + " == null ? 0 : " + camelCase(tan.name) + ".hashCode());");
+    }
+    write("return hash;");
+    dedentAndWrite("}");
+  }
+
+  private void writeEquals(Rule rule) {
+    writeAndIndent("public boolean equals(Object __other) {");
+    write("if (this == __other) { return true; }");
+    write("if (__other == null) { return false; }");
+    write("if (!(__other instanceof I" + rule.getVariable() + "Node)) { return false; }");
+    write("I" + rule.getVariable() + "Node __node = (I" + rule.getVariable() + "Node)__other;");
+
+    for (TypeAndName tan : getMembers(rule)) {
+      write("if (!equals(" + camelCase(tan.name) + ", __node.get" + tan.name + "())) { return false; }");
+    }
+
+    write("return true;");
     dedentAndWrite("}");
   }
 
