@@ -46,12 +46,7 @@ public class ThreadingUtilities {
         synchronized (lock) {
           try {
             GlobalActivityIndicator.addBackgroundTask(visible);
-            try {
-              runnable.run();
-            } catch (final RuntimeException e) {
-              ExceptionUtilities.log(ThreadingUtilities.class, "performOnBackgroundThreadWorker", e);
-              throw e;
-            }
+            runnable.run();
           } finally {
             GlobalActivityIndicator.removeBackgroundTask(visible);
           }
@@ -59,7 +54,7 @@ public class ThreadingUtilities {
       }
     };
 
-    t.setPriority(visible ? (Thread.MIN_PRIORITY + 1): Thread.MIN_PRIORITY);
+    t.setPriority(visible ? Thread.MIN_PRIORITY + 1: Thread.MIN_PRIORITY);
 
     t.start();
   }

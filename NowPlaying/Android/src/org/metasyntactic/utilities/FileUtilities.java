@@ -18,6 +18,8 @@ import org.metasyntactic.Application;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
+import org.metasyntactic.time.Days;
+
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullCollection;
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
 
@@ -26,6 +28,13 @@ import java.util.*;
 
 public class FileUtilities {
   private FileUtilities() {
+  }
+
+  public static int daysSinceNow(final File file) {
+    final Date today = DateUtilities.getToday();
+    final Date releaseDate = new Date(file.lastModified());
+
+    return Days.daysBetween(today, releaseDate);
   }
 
   public static String sanitizeFileName(final String name) {
