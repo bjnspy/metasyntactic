@@ -22,6 +22,7 @@
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"
 #import "Utilities.h"
+#import "WebViewController.h"
 
 @interface ReviewsViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -99,6 +100,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    [self majorRefresh];
 }
 
 
@@ -168,7 +170,10 @@
     if (indexPath.section < reviews.count) {
         Review* review = [reviews objectAtIndex:indexPath.section];
         if (review.link) {
-            [Application openBrowser:review.link];
+            WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:navigationController
+                                                                                             address:review.link] autorelease];
+            [navigationController pushViewController:controller animated:YES];
+//            [Application openBrowser:review.link];
         }
     } else {
         if (self.model.rottenTomatoesScores) {
