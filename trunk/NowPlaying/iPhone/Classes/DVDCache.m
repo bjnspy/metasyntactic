@@ -19,7 +19,6 @@
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "PointerSet.h"
-#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 

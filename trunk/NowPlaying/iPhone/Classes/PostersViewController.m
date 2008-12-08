@@ -21,7 +21,6 @@
 #import "NowPlayingModel.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
-#import "ThreadingUtilities.h"
 
 @interface PostersViewController()
 @property (assign) AbstractNavigationController* navigationController;

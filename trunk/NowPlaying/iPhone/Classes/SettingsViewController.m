@@ -31,7 +31,6 @@
 #import "SettingCell.h"
 #import "SettingsNavigationController.h"
 #import "TextFieldEditorViewController.h"
-#import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 

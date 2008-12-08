@@ -74,6 +74,7 @@
 + (BOOL) isSupportedCountry {
     NSSet* supportedCountries = [NSSet setWithObjects:
                                  @"AU", // Australia
+                                 @"AT", // Austria
                                  @"BE", // Belgium
                                  @"BR", // Brazil
                                  @"CA", // Canada
@@ -88,6 +89,7 @@
                                  @"NL", // The Netherlands
                                  @"PL", // Poland
                                  @"US", // United States
+                                 @"SG", // Singapore
                                  @"TR", // Turkey
                                  nil];
 

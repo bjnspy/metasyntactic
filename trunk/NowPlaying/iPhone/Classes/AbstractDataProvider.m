@@ -508,7 +508,6 @@
 
 - (void) saveBookmarks {
     [model setBookmarkedMovies:self.bookmarks.allValues];
-//    [self saveArray:self.bookmarks.allValues to:self.bookmarksFile];
 }
 
 
