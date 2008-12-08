@@ -44,43 +44,45 @@ public class IMDbCache extends AbstractCache {
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
-    downloadImdbAddresses(movies);
+    downloadIMDbAddresses(movies);
   }
 
-  private void downloadImdbAddresses(final List<Movie> movies) {
+  private void downloadIMDbAddresses(final List<Movie> movies) {
     for (final Movie movie : movies) {
       if (this.shutdown) {
         break;
       }
-
-      // Nothing to do if we already have a valid imdb address
-      if (!StringUtilities.isNullOrEmpty(movie.getIMDbAddress())) {
-        continue;
-      }
-
-      final File path = movieFilePath(movie);
-      if (path.exists()) {
-        final String address = FileUtilities.readString(path);
-        if (address.length() > 0) {
-          continue;
-        }
-
-        if (FileUtilities.daysSinceNow(path) < 3) {
-           continue;
-        }
-      }
-
-      final String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" +
-                         StringUtilities.urlEncode(movie.getCanonicalTitle());
-
-      final String imdbAddress = NetworkUtilities.downloadString(url, false);
-      if (imdbAddress == null) {
-        continue;
-      }
-
-      FileUtilities.writeString(imdbAddress, movieFilePath(movie));
-      Application.refresh();
+      downloadIMDbAddress(movie);
     }
+  }
+
+  private void downloadIMDbAddress(Movie movie) {// Nothing to do if we already have a valid imdb address
+    if (!StringUtilities.isNullOrEmpty(movie.getIMDbAddress())) {
+      return;
+    }
+
+    final File path = movieFilePath(movie);
+    if (path.exists()) {
+      final String address = FileUtilities.readString(path);
+      if (address.length() > 0) {
+        return;
+      }
+
+      if (FileUtilities.daysSinceNow(path) < 3) {
+        return;
+      }
+    }
+
+    final String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" +
+                       StringUtilities.urlEncode(movie.getCanonicalTitle());
+
+    final String imdbAddress = NetworkUtilities.downloadString(url, false);
+    if (imdbAddress == null) {
+      return;
+    }
+
+    FileUtilities.writeString(imdbAddress, movieFilePath(movie));
+    Application.refresh();
   }
 
   public String getIMDbAddress(final Movie movie) {
