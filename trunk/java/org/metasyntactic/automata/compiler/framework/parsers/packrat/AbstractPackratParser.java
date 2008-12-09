@@ -78,7 +78,9 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       Token token = input.get(position).getToken();
       String variable = rule.getVariable();
 
-      if (!grammar.isNullable(variable) && !grammar.acceptsAnyToken(variable) && !grammar.isFirstToken(variable,
+      if (!grammar.isNullable(variable) &&
+          !grammar.acceptsAnyToken(variable) &&
+          !grammar.isFirstToken(variable,
                                                                                                        token)) {
         return false;
       }

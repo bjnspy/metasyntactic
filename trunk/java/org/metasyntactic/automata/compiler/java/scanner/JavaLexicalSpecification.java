@@ -347,7 +347,7 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
     return writer.toString();
   }
 
-  protected JavaToken.Type getTokenFromTerminal(int type) {
+  public JavaToken.Type getTokenFromTerminal(int type) {
     return JavaToken.Type.values()[type];
   }
 

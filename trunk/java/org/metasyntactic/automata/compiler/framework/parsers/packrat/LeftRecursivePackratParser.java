@@ -184,7 +184,7 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     Grammar g = new PackratGrammar<JavaToken.Type>(new Rule("x", variable("expr")), new Rule("expr", choice(sequence(
         variable("x"), token(MinusOperatorToken.instance), type(IdentifierToken.class)), type(
         IdentifierToken.class)))) {
-      protected JavaToken.Type getTokenFromTerminal(int type) {
+      public JavaToken.Type getTokenFromTerminal(int type) {
         return JavaToken.Type.values()[type];
       }
 
