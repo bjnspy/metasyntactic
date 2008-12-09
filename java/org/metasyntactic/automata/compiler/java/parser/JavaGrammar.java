@@ -967,7 +967,6 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
       }
     }
 
-/*
     {
       long start = System.currentTimeMillis();
       JavaGeneratedParser parser = new JavaGeneratedParser((List) analyzedTokens);
@@ -978,9 +977,10 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
       if (result == null) {
         System.out.println("Couldn't parse: " + file);
+        return;
       }
     }
-*/
+
     System.out.println("Parsed: " + file);
   }
 
@@ -1034,7 +1034,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
   }
   */
 
-  protected JavaToken.Type getTokenFromTerminal(int type) {
+  public JavaToken.Type getTokenFromTerminal(int type) {
     return JavaToken.Type.values()[type];
   }
 

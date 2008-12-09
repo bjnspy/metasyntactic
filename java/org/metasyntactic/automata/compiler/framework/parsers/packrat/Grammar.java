@@ -2,21 +2,14 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
-import org.metasyntactic.collections.HashMultiMap;
-import org.metasyntactic.collections.MultiMap;
-import org.metasyntactic.common.base.Preconditions;
-
-import java.util.*;
-
 /**
  * Formally, a parsing expression grammar consists of: <ul> <li>A finite set N of nonterminal symbols.</li> <li>A finite
  * set ? of terminal symbols that is disjoint from N.</li> <li>A finite set P of parsing rules.</li> <li>A distinguished
  * variable S; the start rule for the grammar.  It must be an element of N.</li> </ul>
  *
- * @author cyrusn@google.com (Cyrus Najmabadi)
+ * @author cyrusn@google.c om (Cyrus Najmabadi)
  */
+/*
 public class Grammar {
   private final Set<Rule> rules;
   private final Rule startRule;
@@ -464,3 +457,4 @@ public class Grammar {
     }
   }
 }
+*/

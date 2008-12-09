@@ -212,7 +212,7 @@ public class PythonLexicalSpecification extends PackratGrammar<PythonToken.Type>
     rules.add(new Rule("HexDigit", choice(variable("Digit"), range('a', 'f'), range('A', 'F'))));
   }
 
-  protected PythonToken.Type getTokenFromTerminal(int type) {
+  public PythonToken.Type getTokenFromTerminal(int type) {
     return PythonToken.Type.values()[type];
   }
 

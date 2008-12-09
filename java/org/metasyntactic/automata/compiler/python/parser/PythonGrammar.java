@@ -415,7 +415,7 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
   public static void main(String... args) {
   }
 
-  protected PythonToken.Type getTokenFromTerminal(int type) {
+  public PythonToken.Type getTokenFromTerminal(int type) {
     return PythonToken.Type.values()[type];
   }
 

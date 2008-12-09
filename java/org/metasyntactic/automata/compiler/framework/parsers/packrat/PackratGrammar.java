@@ -105,7 +105,7 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
     */
   }
 
-  protected abstract TTokenType getTokenFromTerminal(int terminal);
+  public abstract TTokenType getTokenFromTerminal(int terminal);
 
   protected abstract Set<Integer> getTerminalsWorker();
 
@@ -159,6 +159,10 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
   public boolean isFirstToken(String variable, Token token) {
     Collection<Integer> types = firstMap.get(variable);
     return types.contains(token.getType());
+  }
+
+  public Collection<Integer> getFirstTokens(String variable) {
+    return firstMap.get(variable);
   }
 
   private void createSets() {
