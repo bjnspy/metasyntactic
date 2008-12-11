@@ -323,8 +323,8 @@
     if (performance.url.length == 0) {
         return;
     }
-
-    [Application openBrowser:performance.url];
+    
+    [navigationController pushBrowser:performance.url animated:YES];
 }
 
 

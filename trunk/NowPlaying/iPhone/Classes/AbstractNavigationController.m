@@ -24,6 +24,7 @@
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
+#import "WebViewController.h"
 
 @interface AbstractNavigationController()
 @property (assign) ApplicationTabBarController* tabBarController;
@@ -157,7 +158,7 @@
             [self pushTheaterDetails:theater animated:NO];
         } else if (type == Reviews) {
             Movie* movie = [self movieForTitle:value];
-            [self pushReviewsView:movie animated:NO];
+            [self pushReviews:movie animated:NO];
         } else if (type == Tickets) {
             Movie* movie = [self movieForTitle:[value objectAtIndex:0]];
             Theater* theater = [self theaterForName:[value objectAtIndex:1]];
@@ -169,7 +170,7 @@
 }
 
 
-- (void) pushReviewsView:(Movie*) movie animated:(BOOL) animated {
+- (void) pushReviews:(Movie*) movie animated:(BOOL) animated {
     ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
                                                                                                movie:movie] autorelease];
 
@@ -259,6 +260,13 @@
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
     [self presentModalViewController:postersViewController animated:YES];
+}
+
+
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
+    WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:self
+                                                                                     address:address] autorelease];
+    [self pushViewController:controller animated:animated];
 }
 
 @end

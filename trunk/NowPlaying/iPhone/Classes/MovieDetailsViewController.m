@@ -742,17 +742,17 @@
 
 
 - (void) readReviews {
-    [navigationController pushReviewsView:movie animated:YES];
+    [navigationController pushReviews:movie animated:YES];
 }
 
 
 - (void) visitIMDb {
-    [Application openBrowser:imdbAddress];
+    [navigationController pushBrowser:imdbAddress animated:YES];
 }
 
 
 - (void) visitWebsite {
-    [Application openBrowser:dvd.url];
+    [navigationController pushBrowser:dvd.url animated:YES];
 }
 
 
