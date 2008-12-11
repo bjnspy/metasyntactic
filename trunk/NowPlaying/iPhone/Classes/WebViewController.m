@@ -217,14 +217,7 @@
 
 
 - (void) webView:(UIWebView*) webView_ didFailLoadWithError:(NSError*) error {
-        NSString* errorString = [NSString stringWithFormat:NSLocalizedString(@"Could not open web page: %@\n\nPlease try again in Safari.", nil), error.localizedDescription];
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                         message:errorString
-                                                        delegate:nil
-                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                               otherButtonTitles:nil] autorelease];
-
-        [alert show];
+    [self webViewDidFinishLoad:webView_];
 }
 
 
