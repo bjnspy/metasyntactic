@@ -11,7 +11,11 @@ public class TrueBooleanLiteralToken extends BooleanLiteralToken {
     super("true");
   }
 
-   public Boolean getValue() {
+  public Boolean getValue() {
     return true;
+  }
+
+  protected Type getTokenType() {
+    return Type.TrueBooleanLiteral;
   }
 }

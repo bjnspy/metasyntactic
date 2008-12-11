@@ -11,7 +11,11 @@ public class IntegerLiteralToken extends LiteralToken<Long> {
     super(text);
   }
 
-   public Long getValue() {
+  public Long getValue() {
     throw new UnimplementedException();
+  }
+
+  protected Type getTokenType() {
+    return Type.IntegerLiteral;
   }
 }

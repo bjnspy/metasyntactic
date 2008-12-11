@@ -14,4 +14,8 @@ public class NullLiteralToken extends LiteralToken<Object> {
    public Object getValue() {
     return null;
   }
+
+  protected Type getTokenType() {
+    return Type.NullLiteral;
+  }
 }
