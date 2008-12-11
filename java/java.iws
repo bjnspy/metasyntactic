@@ -16,9 +16,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FalseBooleanLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FalseBooleanLiteralToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/IntegerLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/IntegerLiteralToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FloatingPointLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FloatingPointLiteralToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Metasyntactic.iml" afterPath="$PROJECT_DIR$/Metasyntactic.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/StringLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/StringLiteralToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/TrueBooleanLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/TrueBooleanLiteralToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/NullLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/NullLiteralToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/CharacterLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/CharacterLiteralToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/QuickQueue.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/QuickQueue.java" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -152,142 +160,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MultiMap.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/collections/MultiMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="17" selection-start="702" selection-end="702" vertical-scroll-proportion="0.16">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Nodes.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2823" column="26" selection-start="87541" selection-end="87541" vertical-scroll-proportion="0.027586207">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PackratGrammar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="330" column="62" selection-start="10771" selection-end="10771" vertical-scroll-proportion="3.8239608">
-              <folding>
-                <marker date="1229036352000" expanded="true" signature="4100:4159" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="4349:4519" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="4560:4636" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="5014:5068" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="5120:5172" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="5234:5339" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="5402:5442" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="5472:5526" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="5561:6218" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="6411:9747" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="6493:9741" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="6556:6587" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="6658:6689" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="6758:6789" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="6858:7051" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="7120:7265" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="7364:7620" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="7698:7991" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="8060:8349" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="8414:8613" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="8672:8742" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="8815:8903" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="8980:9055" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="9126:9212" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="9275:9422" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="9483:9582" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="9651:9735" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="9785:10109" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="10151:10229" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="10269:10657" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="10368:10645" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="10428:10637" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="10707:10835" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="10915:11142" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="11174:11226" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="11257:11284" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="11325:11374" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="11411:11739" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="11766:11886" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="11916:12202" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="12284:13885" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="12395:12438" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="12886:12977" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="13050:13109" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="13173:13236" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="13296:13403" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="13457:13509" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="13577:13636" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="13702:13760" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="13824:13881" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="14036:14110" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="14177:14204" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="14273:14300" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="14367:14551" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="14627:14693" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="14760:15046" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="15109:15390" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="15456:15533" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="15590:15662" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="15733:15812" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="15887:16042" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="16111:16279" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="16340:16367" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Automata.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/client/Automata.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="4" selection-start="546" selection-end="546" vertical-scroll-proportion="0.50666666">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Automata.gwt.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/Automata.gwt.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.718894">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LineIterable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/LineIterable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="2" selection-start="472" selection-end="472" vertical-scroll-proportion="0.41379312">
-              <folding>
-                <marker date="1229036352000" expanded="true" signature="684:853" placeholder="{...}" />
-                <marker date="1229036352000" expanded="true" signature="883:913" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractSpan.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/AbstractSpan.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="2" selection-start="171" selection-end="171" vertical-scroll-proportion="0.13333334">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DelimiterToken.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DelimiterToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="0" selection-start="2140" selection-end="2140" vertical-scroll-proportion="0.4413793">
+            <state line="58" column="31" selection-start="2129" selection-end="2129" vertical-scroll-proportion="0.41379312">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -295,19 +171,82 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JavaGrammar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
+      <file leaf-file-name="LiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="892" column="40" selection-start="44405" selection-end="44405" vertical-scroll-proportion="0.55632186">
+            <state line="8" column="22" selection-start="281" selection-end="281" vertical-scroll-proportion="0.11034483">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArrayDeque.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/util/ArrayDeque.class">
+      <file leaf-file-name="NullLiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/NullLiteralToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="9" selection-start="739" selection-end="739" vertical-scroll-proportion="0.49655172">
+            <state line="15" column="3" selection-start="460" selection-end="528" vertical-scroll-proportion="0.41379312">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StringLiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/StringLiteralToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="29" selection-start="558" selection-end="558" vertical-scroll-proportion="0.49655172">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrueBooleanLiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/TrueBooleanLiteralToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="35" selection-start="558" selection-end="558" vertical-scroll-proportion="0.49655172">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuickQueue.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/QuickQueue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="0" selection-start="516" selection-end="516" vertical-scroll-proportion="0.53333336">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="20" selection-start="580" selection-end="580" vertical-scroll-proportion="0.56">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FalseBooleanLiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FalseBooleanLiteralToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="35" selection-start="565" selection-end="565" vertical-scroll-proportion="0.49655172">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FloatingPointLiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FloatingPointLiteralToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="3" selection-start="584" selection-end="584" vertical-scroll-proportion="0.5241379">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntegerLiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/IntegerLiteralToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="30" selection-start="556" selection-end="556" vertical-scroll-proportion="0.49655172">
               <folding />
             </state>
           </provider>
@@ -617,6 +556,202 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="Metasyntactic" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner/literals" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
     </subPane>
@@ -1024,156 +1159,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2905" column="59" selection-start="102376" selection-end="102376" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGeneratedParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="373" selection-end="373" vertical-scroll-proportion="0.18723404">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="22" selection-start="281" selection-end="281" vertical-scroll-proportion="0.017391304">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="13" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.017391304">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/collections/HashMultiMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="46" selection-start="751" selection-end="751" vertical-scroll-proportion="0.11914894">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="372" selection-end="372" vertical-scroll-proportion="0.13333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/collections/MultiMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="17" selection-start="702" selection-end="702" vertical-scroll-proportion="0.16">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/util/ArrayDeque.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="9" selection-start="739" selection-end="739" vertical-scroll-proportion="0.49655172">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2823" column="26" selection-start="87541" selection-end="87541" vertical-scroll-proportion="0.027586207">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="892" column="40" selection-start="44405" selection-end="44405" vertical-scroll-proportion="0.55632186">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="330" column="62" selection-start="10771" selection-end="10771" vertical-scroll-proportion="3.8239608">
-          <folding>
-            <marker date="1229036352000" expanded="true" signature="4100:4159" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="4349:4519" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="4560:4636" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="5014:5068" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="5120:5172" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="5234:5339" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="5402:5442" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="5472:5526" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="5561:6218" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="6411:9747" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="6493:9741" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="6556:6587" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="6658:6689" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="6758:6789" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="6858:7051" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="7120:7265" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="7364:7620" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="7698:7991" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="8060:8349" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="8414:8613" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="8672:8742" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="8815:8903" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="8980:9055" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="9126:9212" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="9275:9422" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="9483:9582" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="9651:9735" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="9785:10109" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="10151:10229" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="10269:10657" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="10368:10645" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="10428:10637" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="10707:10835" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="10915:11142" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="11174:11226" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="11257:11284" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="11325:11374" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="11411:11739" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="11766:11886" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="11916:12202" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="12284:13885" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="12395:12438" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="12886:12977" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="13050:13109" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="13173:13236" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="13296:13403" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="13457:13509" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="13577:13636" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="13702:13760" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="13824:13881" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="14036:14110" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="14177:14204" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="14273:14300" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="14367:14551" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="14627:14693" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="14760:15046" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="15109:15390" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="15456:15533" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="15590:15662" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="15733:15812" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="15887:16042" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="16111:16279" placeholder="{...}" />
-            <marker date="1229036352000" expanded="true" signature="16340:16367" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/client/Automata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="4" selection-start="546" selection-end="546" vertical-scroll-proportion="0.50666666">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/Automata.gwt.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="0" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.718894">
@@ -1198,12 +1183,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TypeExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="25" selection-start="764" selection-end="764" vertical-scroll-proportion="0.5241379">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/BooleanLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="3" selection-start="360" selection-end="360" vertical-scroll-proportion="0.24827586">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/CharacterLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="3" selection-start="505" selection-end="578" vertical-scroll-proportion="0.41379312">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="20" selection-start="580" selection-end="580" vertical-scroll-proportion="0.56">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FalseBooleanLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="35" selection-start="565" selection-end="565" vertical-scroll-proportion="0.49655172">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FloatingPointLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="3" selection-start="584" selection-end="584" vertical-scroll-proportion="0.5241379">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/IntegerLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="30" selection-start="556" selection-end="556" vertical-scroll-proportion="0.49655172">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="0" selection-start="2140" selection-end="2140" vertical-scroll-proportion="0.4413793">
+        <state line="58" column="31" selection-start="2129" selection-end="2129" vertical-scroll-proportion="0.41379312">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="22" selection-start="281" selection-end="281" vertical-scroll-proportion="0.11034483">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/NullLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="3" selection-start="460" selection-end="528" vertical-scroll-proportion="0.41379312">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/StringLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="29" selection-start="558" selection-end="558" vertical-scroll-proportion="0.49655172">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/TrueBooleanLiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="35" selection-start="558" selection-end="558" vertical-scroll-proportion="0.49655172">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/QuickQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="516" selection-end="516" vertical-scroll-proportion="0.53333336">
+          <folding />
         </state>
       </provider>
     </entry>

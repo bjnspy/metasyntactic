@@ -14,4 +14,8 @@ public class CharacterLiteralToken extends LiteralToken<Character> {
    public Character getValue() {
     throw new UnimplementedException();
   }
+
+  protected Type getTokenType() {
+    return Type.CharacterLiteral;
+  }
 }

@@ -14,4 +14,8 @@ public class StringLiteralToken extends LiteralToken<String> {
    public String getValue() {
     throw new UnimplementedException();
   }
+
+  protected Type getTokenType() {
+    return Type.StringLiteral;
+  }
 }

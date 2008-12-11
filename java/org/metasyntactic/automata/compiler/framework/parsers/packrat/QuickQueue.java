@@ -1,7 +1,5 @@
 package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import java.util.Arrays;
-
 /**
  * Implementation of a Queue designed to have as little overhead as possible.
  *
@@ -17,7 +15,9 @@ public class QuickQueue<T> {
 
   public void offer(T value) {
     if (size == array.length) {
-      array = Arrays.copyOf(array, size * 2);
+      T[] copy = (T[])new Object[size * 2];
+      System.arraycopy(array, 0, copy, 0, array.length);
+      array = copy;
     }
 
     array[size++] = value;

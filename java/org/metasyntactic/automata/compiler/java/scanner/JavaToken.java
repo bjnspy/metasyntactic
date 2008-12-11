@@ -9,40 +9,20 @@ import java.util.Set;
 public abstract class JavaToken implements Token {
   private final String text;
 
-  /*
-  private static Set<Class<? extends Token>> tokenClasses;
-
-  public static Set<Class<? extends Token>> getTokenClasses() {
-    if (tokenClasses == null) {
-      tokenClasses = new LinkedHashSet<Class<? extends Token>>();
-
-      tokenClasses.addAll(KeywordToken.getTokenClasses());
-      tokenClasses.addAll(OperatorToken.getTokenClasses());
-      tokenClasses.addAll(SeparatorToken.getTokenClasses());
-      tokenClasses.addAll(LiteralToken.getTokenClasses());
-      tokenClasses.add(CommentToken.class);
-      tokenClasses.add(IdentifierToken.class);
-      tokenClasses.add(WhitespaceToken.class);
-    }
-
-    return tokenClasses;
-  }
-  */
-
   protected JavaToken(String text) {
     Preconditions.checkNotNull(text);
     this.text = text;
   }
 
-   public String getText() {
+  public String getText() {
     return text;
   }
 
-   public String toString() {
+  public String toString() {
     return getText();
   }
 
-   public boolean equals(Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -59,11 +39,11 @@ public abstract class JavaToken implements Token {
     return true;
   }
 
-   public int hashCode() {
+  public int hashCode() {
     return text.hashCode();
   }
 
-   public int getType() {
+  public int getType() {
     return getTokenType().ordinal();
   }
 
@@ -91,7 +71,7 @@ public abstract class JavaToken implements Token {
       for (JavaToken.Type type : JavaToken.Type.values()) {
         if (type.ordinal() >= Type.AbstractKeyword.ordinal() &&
             type.ordinal() <= Type.WhileKeyword.ordinal()) {
-            result.add(type.ordinal());
+          result.add(type.ordinal());
         }
       }
       keywordValues = result;

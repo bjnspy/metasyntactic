@@ -14,4 +14,8 @@ public class FalseBooleanLiteralToken extends BooleanLiteralToken {
    public Boolean getValue() {
     return false;
   }
+
+  protected Type getTokenType() {
+    return Type.FalseBooleanLiteral;
+  }
 }

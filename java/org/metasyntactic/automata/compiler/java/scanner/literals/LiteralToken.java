@@ -28,37 +28,4 @@ public abstract class LiteralToken<T> extends JavaToken {
   }
 
   public abstract T getValue();
-
-  /*
-   protected Type getTokenType() {
-    return type();
-  }
-
-  public static int typeValue() {
-    return type().ordinal();
-  }
-
-  private static Type type() {
-    return Type.Literal;
-  }
-  */
-
-  private Type type;
-
-  protected Type getTokenType() {
-    if (type == null) {
-      String name = this.getClass().getSimpleName();
-      name = name.substring(0, name.length() - "Token".length());
-
-      try {
-        type = (Type) Type.class.getField(name).get(null);
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e);
-      } catch (NoSuchFieldException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    return type;
-  }
 }

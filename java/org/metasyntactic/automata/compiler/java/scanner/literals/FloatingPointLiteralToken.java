@@ -14,4 +14,8 @@ public class FloatingPointLiteralToken extends LiteralToken<Double> {
    public Double getValue() {
     throw new UnimplementedException();
   }
+
+  protected Type getTokenType() {
+    return Type.FloatingPointLiteral;
+  }
 }
