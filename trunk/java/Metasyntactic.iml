@@ -3,10 +3,13 @@
   <component name="FacetManager">
     <facet type="gwt" name="GWT">
       <configuration>
-        <setting name="gwtSdkUrl" value="" />
+        <setting name="gwtSdkUrl" value="file://$MODULE_DIR$/../../../gwt-mac-1.5.3" />
         <setting name="gwtScriptOutputStyle" value="DETAILED" />
         <setting name="runGwtCompilerOnMake" value="true" />
         <setting name="compilerMaxHeapSize" value="128" />
+        <packaging>
+          <module name="org.metasyntactic.automata.Automata" path="/org.metasyntactic.automata.Automata" />
+        </packaging>
       </configuration>
     </facet>
     <facet type="web" name="Web">

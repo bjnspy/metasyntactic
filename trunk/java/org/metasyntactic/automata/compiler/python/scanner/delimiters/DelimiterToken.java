@@ -15,33 +15,33 @@ public class DelimiterToken extends PythonToken {
   private static final Map<String, DelimiterToken> map = new LinkedHashMap<String, DelimiterToken>();
 
   static {
-    Class[] classes = new Class[]{
-        LeftParenthesisDelimiterToken.class,
-        RightParenthesisDelimiterToken.class,
-        LeftBracketDelimiterToken.class,
-        RightBracketDelimiterToken.class,
-        LeftCurlyDelimiterToken.class,
-        RightCurlyDelimiterToken.class,
-        AtDelimiterToken.class,
-        CommaDelimiterToken.class,
-        ColonDelimiterToken.class,
-        AndEqualsDelimiterToken.class,
-        BackQuoteDelimiterToken.class,
-        DivideEqualsDelimiterToken.class,
-        DotDelimiterToken.class,
-        EllipsisDelimiterToken.class,
-        EqualsDelimiterToken.class,
-        ExclusiveOrEqualsDelimiterToken.class,
-        ExponentEqualsDelimiterToken.class,
-        LeftShiftEqualsDelimiterToken.class,
-        MinusEqualsDelimiterToken.class,
-        ModulusEqualsDelimiterToken.class,
-        OrEqualsDelimiterToken.class,
-        PlusEqualsDelimiterToken.class,
-        RightShiftEqualsDelimiterToken.class,
-        SemicolonDelimiterToken.class,
-        TimesEqualsDelimiterToken.class,
-        TruncateDivideEqualsDelimiterToken.class
+    DelimiterToken[] tokens = new DelimiterToken[]{
+        LeftParenthesisDelimiterToken.instance,
+        RightParenthesisDelimiterToken.instance,
+        LeftBracketDelimiterToken.instance,
+        RightBracketDelimiterToken.instance,
+        LeftCurlyDelimiterToken.instance,
+        RightCurlyDelimiterToken.instance,
+        AtDelimiterToken.instance,
+        CommaDelimiterToken.instance,
+        ColonDelimiterToken.instance,
+        AndEqualsDelimiterToken.instance,
+        BackQuoteDelimiterToken.instance,
+        DivideEqualsDelimiterToken.instance,
+        DotDelimiterToken.instance,
+        EllipsisDelimiterToken.instance,
+        EqualsDelimiterToken.instance,
+        ExclusiveOrEqualsDelimiterToken.instance,
+        ExponentEqualsDelimiterToken.instance,
+        LeftShiftEqualsDelimiterToken.instance,
+        MinusEqualsDelimiterToken.instance,
+        ModulusEqualsDelimiterToken.instance,
+        OrEqualsDelimiterToken.instance,
+        PlusEqualsDelimiterToken.instance,
+        RightShiftEqualsDelimiterToken.instance,
+        SemicolonDelimiterToken.instance,
+        TimesEqualsDelimiterToken.instance,
+        TruncateDivideEqualsDelimiterToken.instance
     };
 /*
 
@@ -52,29 +52,22 @@ public class DelimiterToken extends PythonToken {
  */
     List<String> delimiters = Arrays.asList(getDelimiters());
 
-    if (classes.length != delimiters.size()) {
+    if (tokens.length != delimiters.size()) {
       throw new IllegalStateException();
     }
 
-    for (Class clazz : classes) {
-      try {
-        DelimiterToken token = (DelimiterToken) clazz.getField("instance").get(null);
-        String delimiter = token.getText();
+    for (DelimiterToken token : tokens) {
+      String delimiter = token.getText();
 
-        if (!delimiters.contains(delimiter)) {
-          throw new IllegalStateException();
-        }
-
-        if (map.containsKey(delimiter)) {
-          throw new IllegalStateException();
-        }
-
-        map.put(delimiter, token);
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e);
-      } catch (NoSuchFieldException e) {
-        throw new RuntimeException(e);
+      if (!delimiters.contains(delimiter)) {
+        throw new IllegalStateException();
       }
+
+      if (map.containsKey(delimiter)) {
+        throw new IllegalStateException();
+      }
+
+      map.put(delimiter, token);
     }
   }
 
@@ -123,7 +116,7 @@ public class DelimiterToken extends PythonToken {
     return token;
   }
 
-   public Type getTokenType() {
+  public Type getTokenType() {
     return Type.Delimiter;
   }
 }
