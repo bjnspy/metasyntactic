@@ -69,12 +69,16 @@
   <string name="both">Both</string>
   <!--Call-->
   <string name="call">Call</string>
+  <!--Cancel-->
+  <string name="cancel">Cancel</string>
   <!--Cast:-->
   <string name="cast">Cast:</string>
   <!--Change date-->
   <string name="change_date">Change date</string>
   <!--City/State or Postal Code-->
   <string name="citystate_or_postal_code">City/State or Postal Code</string>
+  <!--ComiXology-->
+  <string name="comixology">ComiXology</string>
   <!--Could not find location.-->
   <string name="could_not_find_location_dot">Could not find location.</string>
   <!--DVD-->
@@ -95,8 +99,6 @@
   <string name="downloading_data">Downloading data</string>
   <!--Downloading poster-->
   <string name="downloading_poster">Downloading poster</string>
-  <!--E-mail-->
-  <string name="email">E-mail</string>
   <!--E-mail listings-->
   <string name="email_listings">E-mail listings</string>
   <!--Favorites-->
@@ -129,6 +131,8 @@
   <string name="less_than_one_string_away">Less than 1 %s away</string>
   <!--License-->
   <string name="license">License</string>
+  <!--Loading-->
+  <string name="loading">Loading</string>
   <!--Loading poster-->
   <string name="loading_poster">Loading poster</string>
   <!--Local results unavailable-->
@@ -145,12 +149,20 @@
   <string name="movie_reviews_provided_by">Movie reviews provided by:</string>
   <!--Movies-->
   <string name="movies">Movies</string>
+  <!--My other applications-->
+  <string name="my_other_applications">My other applications</string>
   <!--Name-->
   <string name="name">Name</string>
   <!--Network unavailable-->
   <string name="network_unavailable">Network unavailable</string>
   <!--No information found-->
   <string name="no_information_found">No information found</string>
+  <!--No listings found at '%@' on %@-->
+  <string name="no_listings_found_at_string_on_string">No listings found at '%s' on %s</string>
+  <!--No listings found for '%@' at '%@' on %@-->
+  <string name="no_listings_found_for_string_at_string_on_string">No listings found for '%s' at '%s' on %s</string>
+  <!--No listings found for '%@' on %@-->
+  <string name="no_listings_found_for_string_on_string">No listings found for '%s' on %s</string>
   <!--No more show times available today.-->
   <string name="no_more_show_times_available_today_dot">No more show times available today.</string>
   <!--No results found for '%@'-->
@@ -169,6 +181,8 @@
   <string name="play_trailer">Play trailer</string>
   <!--Please enter your location-->
   <string name="please_enter_your_location">Please enter your location</string>
+  <!--Prioritize Bookmarks-->
+  <string name="prioritize_bookmarks">Prioritize Bookmarks</string>
   <!--Project website-->
   <string name="project_website">Project website</string>
   <!--Rated %@-->
@@ -191,6 +205,8 @@
   <string name="reviews">Reviews</string>
   <!--Running time:-->
   <string name="running_time">Running time:</string>
+  <!--Safari-->
+  <string name="safari">Safari</string>
   <!--Score-->
   <string name="score">Score</string>
   <!--Search Date-->
@@ -231,6 +247,8 @@
   <string name="unrated">Unrated</string>
   <!--Upcoming-->
   <string name="upcoming">Upcoming</string>
+  <!--Updating Listings-->
+  <string name="updating_listings">Updating Listings</string>
   <!--Use Small Fonts-->
   <string name="use_small_fonts">Use Small Fonts</string>
   <!--Visit IMDb-->

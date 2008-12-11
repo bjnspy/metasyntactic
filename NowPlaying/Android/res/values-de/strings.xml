@@ -73,6 +73,7 @@
   <string name="less_than_one_string_away">mehr als 1 %s entfernt</string>
   <string name="license">Lizenz</string>
   <string name="loading_poster"> Poster wird geladen</string>
+  <string name="local_results_unavailable">keine lokalen Ergebnisse verfügbar</string>
   <string name="localized_by">Übersetzung:</string>
   <string name="location">Ort</string>
   <string name="map">Karte</string>
@@ -127,6 +128,7 @@
   <string name="website">Website</string>
   <string name="written_by_cyrus_najmabadi">von Cyrus Najmabadi</string>
   <string name="yesterday">Gestern</string>
+  <string name="your_strings_country_is_set_to_string_full_support">Sie haben %s\n\n als Land für Ihr %s gewählt. Now Playing wird demnächst für Ihr Land vollständig verfügbar sein, Sie können viele Funktionen aber bereits jetzt nutzen! Sobald mehr Funktionen für Ihr Land verfügbar sind, werden Sie automatisch benachrichtigt</string>
   <string name="kilometer">Kilometer</string>
   <string name="kilometers">Kilometer</string>
   <string name="mile">Meile</string>
