@@ -212,7 +212,7 @@ static NSString** KEYS[] = {
     for (Movie* movie in movies) {
         [encoded addObject:movie.dictionary];
     }
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:encoded forKey:key];
 }
 
@@ -221,21 +221,21 @@ static NSString** KEYS[] = {
     if (![previousMovieArray isKindOfClass:[NSArray array]]) {
         return;
     }
-    
+
     NSMutableArray* movies = [NSMutableArray array];
     for (NSDictionary* dictionary in previousMovieArray) {
         if ([Movie canReadDictionary:dictionary]) {
             [movies addObject:[Movie movieWithDictionary:dictionary]];
         }
     }
-    
+
     [NowPlayingModel saveMovies:movies key:key];
 }
 
 
 - (void) restorePreviousUserAddress:(id) previousUserAddress
                        searchRadius:(id) previousSearchRadius
-                 scoreProviderIndex:(id) previousScoreProviderIndex 
+                 scoreProviderIndex:(id) previousScoreProviderIndex
                  autoUpdateLocation:(id) previousAutoUpdateLocation
                 prioritizeBookmarks:(id) previousPrioritizeBookmarks
                      useNormalFonts:(id) previousUseNormalFonts
@@ -274,7 +274,7 @@ static NSString** KEYS[] = {
     if ([previousDvdMoviesHideBluray isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideBluray boolValue] forKey:DVD_MOVIES_HIDE_BLURAY];
     }
-    
+
     if ([previousScoreProviderIndex isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setInteger:[previousScoreProviderIndex intValue] forKey:SCORE_PROVIDER_INDEX];
     }
@@ -288,7 +288,7 @@ static NSString** KEYS[] = {
         }
         [NowPlayingModel saveBookmarkedTitles:bookmarkedTitles];
     }
-    
+
     [self restoreMovieArray:previousBookmarkedMovies key:BOOKMARKED_MOVIES];
     [self restoreMovieArray:previousBookmarkedUpcoming key:BOOKMARKED_UPCOMING];
     [self restoreMovieArray:previousBookmarkedDVD key:BOOKMARKED_DVD];
@@ -334,7 +334,7 @@ static NSString** KEYS[] = {
         id previousDvdMoviesHideDVDs = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_DVDS];
         id previousDvdMoviesHideBluray = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_BLURAY];
         id previousScoreProviderIndex = [[NSUserDefaults standardUserDefaults] objectForKey:SCORE_PROVIDER_INDEX];
-        
+
         for (int i = 0; i < ArrayLength(KEYS); i++) {
             NSString** key = KEYS[i];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
@@ -799,7 +799,7 @@ static NSString** KEYS[] = {
     if (array.count == 0) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dictionary in array) {
         [result addObject:[Movie movieWithDictionary:dictionary]];

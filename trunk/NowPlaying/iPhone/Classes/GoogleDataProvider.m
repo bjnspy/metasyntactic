@@ -69,12 +69,12 @@
             NSArray* cast = movieProto.castList;
             NSString* releaseDateString = movieProto.releaseDate;
             NSDate* releaseDate = [DateUtilities parseIS08601Date:releaseDateString];
-            
+
             NSString* imdbAddress = @"";
             if (movieProto.iMDbUrl.length > 0) {
                 imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
             }
-            
+
             Movie* movie = [Movie movieWithIdentifier:identifier
                                                 title:title
                                                rating:rating
@@ -87,7 +87,7 @@
                                             directors:directors
                                                  cast:cast
                                                genres:genres];
-            
+
             [movieIdToMovieMap setObject:movie forKey:identifier];
         }
         [pool release];
@@ -234,12 +234,12 @@
                   performancesMap:(NSMutableDictionary*) performancesMap {
     NSString* movieId = movieAndShowtimes.movieIdentifier;
     NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
-    
+
     NSMutableArray* performances = [NSMutableArray array];
-    
+
     NSArray* showtimes = movieAndShowtimes.showtimes.showtimesList;
     NSArray* times = [self processTimes:showtimes];
-    
+
     if (showtimes.count == times.count) {
         for (NSInteger i = 0; i < showtimes.count; i++) {
             ShowtimeProto* showtime = [showtimes objectAtIndex:i];
@@ -247,19 +247,19 @@
             if (time == [NSNull null]) {
                 continue;
             }
-            
+
             NSString* url = showtime.url;
-            
+
             if ([url hasPrefix:@"m="]) {
                 url = [NSString stringWithFormat:@"http://iphone.fandango.com/tms.asp?a=11586&%@", url];
             }
-            
+
             Performance* performance = [Performance performanceWithTime:time
                                                                     url:url];
-            
+
             [performances addObject:performance.dictionary];
         }
-        
+
         [performancesMap setObject:performances forKey:movieTitle];
     }
 }
