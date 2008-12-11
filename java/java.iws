@@ -16,86 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/LiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/IntegerLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/IntegerLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/WhitespaceToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/WhitespaceToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/IdentifierToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/IdentifierToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/VariableExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/VariableExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/common/base/Pair.java" afterPath="$PROJECT_DIR$/org/metasyntactic/common/base/Pair.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/IdentifierToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/IdentifierToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Source.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Source.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TypeExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TypeExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/ErrorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/ErrorToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/CommentToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/CommentToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonScanner.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonScanner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/FloatingPointLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/FloatingPointLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/CharacterLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/CharacterLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/SimpleSpan.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/SimpleSpan.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/WhitespaceToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/WhitespaceToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGeneratedParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGeneratedParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OptionalExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OptionalExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/LeftRecursivePackratParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/LeftRecursivePackratParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/StringLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/StringLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/ImaginaryNumberLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/ImaginaryNumberLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/FunctionExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/FunctionExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/SequenceExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/SequenceExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/SourceToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/SourceToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FalseBooleanLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FalseBooleanLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/keywords/KeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/keywords/KeywordToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/IndentToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/IndentToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/CommentToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/CommentToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RecursionExpressionVisitor.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RecursionExpressionVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/EmptyExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/EmptyExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/LiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/LiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/IndentingWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/IndentingWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Position.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/Position.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TerminalExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TerminalExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Metasyntactic.iml" afterPath="$PROJECT_DIR$/Metasyntactic.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TokenExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TokenExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/CharacterExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/CharacterExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/NewlineToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/NewlineToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/DedentToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/DedentToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.ipr" afterPath="$PROJECT_DIR$/java.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/StringLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/StringLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/Some.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/Some.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Rule.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Rule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/EvaluationResult.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/EvaluationResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ChoiceExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/ChoiceExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratScanner.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratScanner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RepetitionExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/RepetitionExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratGrammar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/TrueBooleanLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/TrueBooleanLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/None.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/None.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OneOrMoreExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/OneOrMoreExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/Tuple3.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/Tuple3.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DefaultExpressionVisitor.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DefaultExpressionVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/NullLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/NullLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/IntegerLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/IntegerLiteralToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/LineContinuationToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/LineContinuationToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/NotExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/NotExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DelimitedSequenceExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DelimitedSequenceExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/AbstractSpan.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/AbstractSpan.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FloatingPointLiteralToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/literals/FloatingPointLiteralToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/LineIterable.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/LineIterable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/StringList.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/StringList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/ErrorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/ErrorToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaScanner.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaScanner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Grammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/Grammar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/common/base/Functions.java" afterPath="$PROJECT_DIR$/org/metasyntactic/common/base/Functions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Metasyntactic.iml" afterPath="$PROJECT_DIR$/Metasyntactic.iml" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -334,7 +257,7 @@
       <file leaf-file-name="Automata.gwt.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/Automata.gwt.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="1002" selection-end="1002" vertical-scroll-proportion="0.69124424">
+            <state line="26" column="0" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.718894">
               <folding />
             </state>
           </provider>
@@ -352,11 +275,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractSpan.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AbstractSpan.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/AbstractSpan.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="5" column="2" selection-start="171" selection-end="171" vertical-scroll-proportion="0.13333334">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DelimiterToken.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="0" selection-start="2140" selection-end="2140" vertical-scroll-proportion="0.4413793">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -374,15 +308,6 @@
         <entry file="jar:///System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar!/java/util/ArrayDeque.class">
           <provider selected="true" editor-type-id="text-editor">
             <state line="19" column="9" selection-start="739" selection-end="739" vertical-scroll-proportion="0.49655172">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="13" selection-start="372" selection-end="372" vertical-scroll-proportion="0.13333334">
               <folding />
             </state>
           </provider>
@@ -1008,13 +933,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="22" width="1238" height="878" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="7" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35407907" order="0" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847682" order="1" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847682" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962743" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3231788" order="8" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
@@ -1099,13 +1024,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="27" selection-start="5799" selection-end="5799" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2905" column="59" selection-start="102376" selection-end="102376" vertical-scroll-proportion="0.0">
@@ -1258,7 +1176,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/Automata.gwt.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="1002" selection-end="1002" vertical-scroll-proportion="0.69124424">
+        <state line="26" column="0" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.718894">
           <folding />
         </state>
       </provider>
@@ -1277,6 +1195,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="2" selection-start="171" selection-end="171" vertical-scroll-proportion="0.13333334">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="0" selection-start="2140" selection-end="2140" vertical-scroll-proportion="0.4413793">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
