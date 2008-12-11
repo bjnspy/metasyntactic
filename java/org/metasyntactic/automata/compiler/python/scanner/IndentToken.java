@@ -7,11 +7,11 @@ public class IndentToken extends PythonToken {
     super("");
   }
 
-  @Override public Type getTokenType() {
+   public Type getTokenType() {
     return Type.Indent;
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "Indent";
   }
 }

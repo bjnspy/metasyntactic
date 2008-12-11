@@ -11,7 +11,7 @@ public class NullLiteralToken extends LiteralToken<Object> {
     super("null");
   }
 
-  @Override public Object getValue() {
+   public Object getValue() {
     return null;
   }
 }

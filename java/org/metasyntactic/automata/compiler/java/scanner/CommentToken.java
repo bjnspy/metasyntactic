@@ -9,7 +9,7 @@ public class CommentToken extends JavaToken {
     super(text);
   }
 
-  @Override protected Type getTokenType() {
+   protected Type getTokenType() {
     return Type.Comment;
   }
 }

@@ -5,7 +5,7 @@ public class ErrorToken extends PythonToken {
     super(text);
   }
 
-  @Override public Type getTokenType() {
+   public Type getTokenType() {
     return Type.Error;
   }
 }

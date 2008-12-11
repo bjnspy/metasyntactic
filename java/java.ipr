@@ -272,6 +272,14 @@
         <root url="jar:///Projects/commons-collections-3.2.1/commons-collections-3.2.1-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="gwt">
+      <CLASSES>
+        <root url="file:///Projects/gwt-mac-1.5.3" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+      <jarDirectory url="file:///Projects/gwt-mac-1.5.3" recursive="false" />
+    </library>
   </component>
 </project>
 

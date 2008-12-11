@@ -12,11 +12,11 @@ public class StringList extends AbstractList<Character> {
     this.string = string;
   }
 
-  @Override public Character get(int i) {
+   public Character get(int i) {
     return string.charAt(i);
   }
 
-  @Override public int size() {
+   public int size() {
     return string.length();
   }
 }

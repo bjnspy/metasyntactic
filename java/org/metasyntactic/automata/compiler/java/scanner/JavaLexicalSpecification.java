@@ -43,7 +43,7 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
 
   public static Rule KEYWORD_OR_IDENTIFIER_RULE = new Rule("Identifier", new FunctionExpression<Source>(
       "keywordOrIdentifier") {
-    @Override public EvaluationResult apply(Source input, int position) {
+     public EvaluationResult apply(Source input, int position) {
       String text = input.getText();
 
       if (position < text.length()) {
@@ -63,15 +63,15 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
       return EvaluationResult.failure;
     }
 
-    @Override public boolean isNullable() {
+     public boolean isNullable() {
       return false;
     }
 
-    @Override public List<Integer> getShortestDerivableTokenStream() {
+     public List<Integer> getShortestDerivableTokenStream() {
       return Collections.singletonList(IdentifierToken.getTypeValue());
     }
 
-    @Override public List<Integer> getShortestPrefix(int token) {
+     public List<Integer> getShortestPrefix(int token) {
       if (token == JavaToken.Type.Identifier.ordinal()) {
         return Collections.emptyList();
       } else if (JavaToken.getKeywordValues().contains(token)) {

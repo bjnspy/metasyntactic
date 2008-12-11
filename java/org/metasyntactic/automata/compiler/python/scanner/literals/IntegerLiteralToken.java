@@ -11,7 +11,7 @@ public class IntegerLiteralToken extends LiteralToken<Long> {
     super(text);
   }
 
-  @Override public Long getValue() {
+   public Long getValue() {
     throw new UnimplementedException();
   }
 }

@@ -102,11 +102,11 @@ public class Source {
       this.end = end;
     }
 
-    @Override public Position getStartPosition() {
+     public Position getStartPosition() {
       return getPosition(start);
     }
 
-    @Override public Position getEndPosition() {
+     public Position getEndPosition() {
       return getPosition(end);
     }
   }

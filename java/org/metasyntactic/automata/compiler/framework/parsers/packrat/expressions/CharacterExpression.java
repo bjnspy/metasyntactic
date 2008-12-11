@@ -14,7 +14,7 @@ public class CharacterExpression extends Expression {
     return character;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -27,19 +27,19 @@ public class CharacterExpression extends Expression {
     return this.character == that.character;
   }
 
-  @Override public int hashCodeWorker() {
+   public int hashCodeWorker() {
     return character;
   }
 
-  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
+   public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 
-  @Override public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
+   public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
     visitor.visit(this);
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "'" + character + "'";
   }
 }

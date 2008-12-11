@@ -11,7 +11,7 @@ public class ImaginaryNumberLiteralToken extends LiteralToken<Double> {
     super(text);
   }
 
-  @Override public Double getValue() {
+   public Double getValue() {
     throw new UnimplementedException();
   }
 }

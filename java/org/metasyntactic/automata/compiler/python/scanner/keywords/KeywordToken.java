@@ -97,7 +97,7 @@ public abstract class KeywordToken extends PythonToken {
     };
   }
 
-  @Override public Type getTokenType() {
+   public Type getTokenType() {
     return Type.Keyword;
   }
 }

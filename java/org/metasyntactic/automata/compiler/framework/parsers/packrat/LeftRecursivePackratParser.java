@@ -30,12 +30,12 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     super(grammar, tokens, actions);
   }
 
-  @Override protected EvaluationResult evaluateExpression(int position, Expression expression) {
+   protected EvaluationResult evaluateExpression(int position, Expression expression) {
     furtherstPosition = Math.max(position, furtherstPosition);
     return expression.accept(new EvaluationExpressionVisitor(position));
   }
 
-  @Override protected EvaluationResult evaluateRule(int position, Rule rule) {
+   protected EvaluationResult evaluateRule(int position, Rule rule) {
     EvaluationResult memoEntry = recall(position, rule);
 
     if (memoEntry == null) {
@@ -174,7 +174,7 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     }
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     return (o instanceof LeftRecursivePackratParser) && super.equals(o);
   }
 

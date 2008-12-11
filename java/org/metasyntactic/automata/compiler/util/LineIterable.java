@@ -16,12 +16,12 @@ public class LineIterable implements Iterable<String> {
     this.text = text;
   }
 
-  @Override public Iterator<String> iterator() {
+   public Iterator<String> iterator() {
     final LineNumberReader in = new LineNumberReader(new StringReader(text));
     return new Iterator<String>() {
       private String next;
 
-      @Override public boolean hasNext() {
+       public boolean hasNext() {
         try {
           next = in.readLine();
         } catch (IOException e) {
@@ -30,11 +30,11 @@ public class LineIterable implements Iterable<String> {
         return next != null;
       }
 
-      @Override public String next() {
+       public String next() {
         return next;
       }
 
-      @Override public void remove() {
+       public void remove() {
         throw new UnsupportedOperationException();
       }
     };

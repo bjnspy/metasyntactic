@@ -43,7 +43,7 @@ public class VariableExpression extends Expression {
     return cachedRule;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -60,19 +60,19 @@ public class VariableExpression extends Expression {
     return true;
   }
 
-  @Override public int hashCodeWorker() {
+   public int hashCodeWorker() {
     return variable.hashCode();
   }
 
-  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
+   public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 
-  @Override public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
+   public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
     visitor.visit(this);
   }
 
-  @Override public String toString() {
+   public String toString() {
     return getVariable();
   }
 }

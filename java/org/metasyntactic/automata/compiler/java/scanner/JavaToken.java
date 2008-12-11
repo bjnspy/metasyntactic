@@ -34,15 +34,15 @@ public abstract class JavaToken implements Token {
     this.text = text;
   }
 
-  @Override public String getText() {
+   public String getText() {
     return text;
   }
 
-  @Override public String toString() {
+   public String toString() {
     return getText();
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -59,11 +59,11 @@ public abstract class JavaToken implements Token {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     return text.hashCode();
   }
 
-  @Override public int getType() {
+   public int getType() {
     return getTokenType().ordinal();
   }
 

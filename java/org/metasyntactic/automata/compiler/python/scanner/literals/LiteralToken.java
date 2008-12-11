@@ -13,7 +13,7 @@ public abstract class LiteralToken<T> extends PythonToken {
 
   public abstract T getValue();
 
-  @Override public Type getTokenType() {
+   public Type getTokenType() {
     return Type.Literal;
   }
 

@@ -15,11 +15,11 @@ public abstract class PythonToken implements Token {
     this.text = text;
   }
 
-  @Override public String getText() {
+   public String getText() {
     return text;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -36,15 +36,15 @@ public abstract class PythonToken implements Token {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     return text.hashCode();
   }
 
-  @Override public String toString() {
+   public String toString() {
     return getText();
   }
 
-  @Override public int getType() {
+   public int getType() {
     return getTokenType().ordinal();
   }
 

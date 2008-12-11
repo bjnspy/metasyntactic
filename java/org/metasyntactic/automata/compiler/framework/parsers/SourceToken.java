@@ -25,7 +25,7 @@ public class SourceToken<T extends Token> {
     return span;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -45,14 +45,14 @@ public class SourceToken<T extends Token> {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     int result;
     result = token.hashCode();
     result = 31 * result + span.hashCode();
     return result;
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "(SourceToken " + getToken() + ")";
   }
 }

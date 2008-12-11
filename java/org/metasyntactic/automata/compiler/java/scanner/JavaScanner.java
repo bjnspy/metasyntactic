@@ -23,7 +23,7 @@ public class JavaScanner extends PackratScanner<JavaToken> {
 
     actions.put(JavaLexicalSpecification.KEYWORD_OR_IDENTIFIER_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                  @Override
+
                   public Object apply(Object argument1, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
 
@@ -43,7 +43,7 @@ public class JavaScanner extends PackratScanner<JavaToken> {
 
     actions.put(JavaLexicalSpecification.SEPARATOR_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                  @Override
+
                   public Object apply(Object argument1, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
                     return makeToken(SeparatorToken.getSeparatorToken(text), source, start, end);
@@ -52,7 +52,7 @@ public class JavaScanner extends PackratScanner<JavaToken> {
 
     actions.put(JavaLexicalSpecification.OPERATOR_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                  @Override
+
                   public Object apply(Object argument1, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
                     return makeToken(OperatorToken.getOperatorToken(text), source, start, end);
@@ -77,7 +77,7 @@ public class JavaScanner extends PackratScanner<JavaToken> {
     }
 
     actions.put(rule.getVariable(), new Function4<Object, Source, Integer, Integer, Object>() {
-      @Override
+
       public Object apply(Object argument1, Source source, Integer start, Integer end) {
         String text = source.getText().substring(start, end);
         try {

@@ -11,7 +11,7 @@ public class FalseBooleanLiteralToken extends BooleanLiteralToken {
     super("false");
   }
 
-  @Override public Boolean getValue() {
+   public Boolean getValue() {
     return false;
   }
 }

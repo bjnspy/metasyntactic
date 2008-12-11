@@ -94,19 +94,19 @@ public class Grammar {
                                    final MultiMap<Expression, Integer> expressionToFirstTokens) {
 
     return rule.getExpression().accept(new ExpressionVisitor<Object, Boolean>() {
-      @Override public Boolean visit(EmptyExpression emptyExpression) {
+       public Boolean visit(EmptyExpression emptyExpression) {
         return false;
       }
 
-      @Override public Boolean visit(CharacterExpression characterExpression) {
+       public Boolean visit(CharacterExpression characterExpression) {
         return false;
       }
 
-      @Override public Boolean visit(TerminalExpression terminalExpression) {
+       public Boolean visit(TerminalExpression terminalExpression) {
         return false;
       }
 
-      @Override public Boolean visit(VariableExpression variableExpression) {
+       public Boolean visit(VariableExpression variableExpression) {
         Rule rule = getRule(variableExpression.getVariable());
         Expression child = rule.getExpression();
 
@@ -125,7 +125,7 @@ public class Grammar {
         return changed;
       }
 
-      @Override public Boolean visit(DelimitedSequenceExpression sequenceExpression) {
+       public Boolean visit(DelimitedSequenceExpression sequenceExpression) {
         boolean changed = process(sequenceExpression, sequenceExpression.getElement());
         if (nullableExpressions.contains(sequenceExpression.getElement())) {
           changed |= process(sequenceExpression, sequenceExpression.getDelimiter());
@@ -133,7 +133,7 @@ public class Grammar {
         return changed;
       }
 
-      @Override public Boolean visit(SequenceExpression sequenceExpression) {
+       public Boolean visit(SequenceExpression sequenceExpression) {
         boolean changed = false;
 
         for (Expression child : sequenceExpression.getChildren()) {
@@ -147,7 +147,7 @@ public class Grammar {
         return changed;
       }
 
-      @Override public Boolean visit(ChoiceExpression choiceExpression) {
+       public Boolean visit(ChoiceExpression choiceExpression) {
         boolean changed = false;
 
         for (Expression child : choiceExpression.getChildren()) {
@@ -161,28 +161,28 @@ public class Grammar {
         return process(optionalExpression, optionalExpression.getChild());
       }
 
-      @Override public Boolean visit(NotExpression notExpression) {
+       public Boolean visit(NotExpression notExpression) {
         return acceptsAnyTokenExpression.add(notExpression);
       }
 
-      @Override public Boolean visit(RepetitionExpression repetitionExpression) {
+       public Boolean visit(RepetitionExpression repetitionExpression) {
         return process(repetitionExpression, repetitionExpression.getChild());
       }
 
-      @Override public Boolean visit(FunctionExpression<Object> functionExpression) {
+       public Boolean visit(FunctionExpression<Object> functionExpression) {
         return acceptsAnyTokenExpression.add(functionExpression);
       }
 
-      @Override public Boolean visit(OneOrMoreExpression oneOrMoreExpression) {
+       public Boolean visit(OneOrMoreExpression oneOrMoreExpression) {
         return process(oneOrMoreExpression, oneOrMoreExpression.getChild());
       }
 
-      @Override public Boolean visit(TokenExpression tokenExpression) {
+       public Boolean visit(TokenExpression tokenExpression) {
         return expressionToFirstTokens.putAll(tokenExpression, Collections.singleton(
             tokenExpression.getToken().getType()));
       }
 
-      @Override public Boolean visit(TypeExpression typeExpression) {
+       public Boolean visit(TypeExpression typeExpression) {
         return expressionToFirstTokens.putAll(typeExpression, typeExpression.getTypes());
       }
     });
@@ -211,7 +211,7 @@ public class Grammar {
   private void checkRules() {
     for (Rule rule : rules) {
       rule.getExpression().accept(new RecursionExpressionVisitor() {
-        @Override public void visit(VariableExpression expression) {
+         public void visit(VariableExpression expression) {
           if (!map.containsKey(expression.getVariable())) {
             throw new IllegalArgumentException("No rule found with the variable: " + expression.getVariable());
           }
@@ -266,7 +266,7 @@ public class Grammar {
     return map.keySet();
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -279,14 +279,14 @@ public class Grammar {
     return rules.equals(grammar.rules) && startRule.equals(grammar.startRule);
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     int result;
     result = rules.hashCode();
     result = 31 * result + startRule.hashCode();
     return result;
   }
 
-  @Override public String toString() {
+   public String toString() {
     StringBuilder builder = new StringBuilder("(Grammar ");
     builder.append(getStartRule());
     builder.append(" (");
@@ -308,68 +308,68 @@ public class Grammar {
       this.rulesStack = rulesStack;
     }
 
-    @Override public void visit(EmptyExpression emptyExpression) { }
+     public void visit(EmptyExpression emptyExpression) { }
 
-    @Override public void visit(CharacterExpression characterExpression) { }
+     public void visit(CharacterExpression characterExpression) { }
 
-    @Override public void visit(TerminalExpression terminalExpression) { }
+     public void visit(TerminalExpression terminalExpression) { }
 
-    @Override public void visit(FunctionExpression functionExpression) { }
+     public void visit(FunctionExpression functionExpression) { }
 
-    @Override public void visit(TokenExpression tokenExpression) { }
+     public void visit(TokenExpression tokenExpression) { }
 
-    @Override public void visit(TypeExpression typeExpression) { }
+     public void visit(TypeExpression typeExpression) { }
 
-    @Override public void visit(VariableExpression variableExpression) {
+     public void visit(VariableExpression variableExpression) {
       checkForLeftRecursion(getRule(variableExpression.getVariable()), rulesStack);
     }
 
-    @Override public void visit(DelimitedSequenceExpression sequenceExpression) {
+     public void visit(DelimitedSequenceExpression sequenceExpression) {
       sequenceExpression.getElement().accept(this);
     }
 
-    @Override public void visit(SequenceExpression sequenceExpression) {
+     public void visit(SequenceExpression sequenceExpression) {
       sequenceExpression.getChildren()[0].accept(this);
     }
 
-    @Override public void visit(ChoiceExpression choiceExpression) {
+     public void visit(ChoiceExpression choiceExpression) {
       for (Expression child : choiceExpression.getChildren()) {
         child.accept(this);
       }
     }
 
-    @Override public void visit(OptionalExpression optionalExpression) {
+     public void visit(OptionalExpression optionalExpression) {
       optionalExpression.getChild().accept(this);
     }
 
-    @Override public void visit(NotExpression notExpression) {
+     public void visit(NotExpression notExpression) {
       notExpression.getChild().accept(this);
     }
 
-    @Override public void visit(RepetitionExpression repetitionExpression) {
+     public void visit(RepetitionExpression repetitionExpression) {
       repetitionExpression.getChild().accept(this);
     }
 
-    @Override public void visit(OneOrMoreExpression oneOrMoreExpression) {
+     public void visit(OneOrMoreExpression oneOrMoreExpression) {
       oneOrMoreExpression.getChild().accept(this);
     }
   }
 
   private class NullableExpressionVisitor implements ExpressionVisitor<Object, Boolean> {
-    @Override public Boolean visit(EmptyExpression emptyExpression) {
+     public Boolean visit(EmptyExpression emptyExpression) {
       nullableExpressions.add(emptyExpression);
       return true;
     }
 
-    @Override public Boolean visit(TerminalExpression terminalExpression) {
+     public Boolean visit(TerminalExpression terminalExpression) {
       return false;
     }
 
-    @Override public Boolean visit(CharacterExpression characterExpression) {
+     public Boolean visit(CharacterExpression characterExpression) {
       return false;
     }
 
-    @Override public Boolean visit(VariableExpression variableExpression) {
+     public Boolean visit(VariableExpression variableExpression) {
       if (nullableVariables.contains(variableExpression.getVariable())) {
         nullableExpressions.add(variableExpression);
         return true;
@@ -378,11 +378,11 @@ public class Grammar {
       return false;
     }
 
-    @Override public Boolean visit(DelimitedSequenceExpression sequenceExpression) {
+     public Boolean visit(DelimitedSequenceExpression sequenceExpression) {
       return sequenceExpression.getElement().accept(this);
     }
 
-    @Override public Boolean visit(SequenceExpression sequenceExpression) {
+     public Boolean visit(SequenceExpression sequenceExpression) {
       boolean result = true;
 
       for (Expression child : sequenceExpression.getChildren()) {
@@ -398,7 +398,7 @@ public class Grammar {
       return result;
     }
 
-    @Override public Boolean visit(ChoiceExpression choiceExpression) {
+     public Boolean visit(ChoiceExpression choiceExpression) {
       boolean result = false;
 
       for (Expression child : choiceExpression.getChildren()) {
@@ -414,23 +414,23 @@ public class Grammar {
       return result;
     }
 
-    @Override public Boolean visit(OptionalExpression optionalExpression) {
+     public Boolean visit(OptionalExpression optionalExpression) {
       optionalExpression.getChild().accept(this);
       nullableExpressions.add(optionalExpression);
       return true;
     }
 
-    @Override public Boolean visit(NotExpression notExpression) {
+     public Boolean visit(NotExpression notExpression) {
       nullableExpressions.add(notExpression);
       return true;
     }
 
-    @Override public Boolean visit(RepetitionExpression repetitionExpression) {
+     public Boolean visit(RepetitionExpression repetitionExpression) {
       nullableExpressions.add(repetitionExpression);
       return true;
     }
 
-    @Override public Boolean visit(FunctionExpression<Object> functionExpression) {
+     public Boolean visit(FunctionExpression<Object> functionExpression) {
       if (functionExpression.isNullable()) {
         nullableExpressions.add(functionExpression);
         return true;
@@ -439,7 +439,7 @@ public class Grammar {
       return false;
     }
 
-    @Override public Boolean visit(OneOrMoreExpression oneOrMoreExpression) {
+     public Boolean visit(OneOrMoreExpression oneOrMoreExpression) {
       if (oneOrMoreExpression.getChild().accept(this)) {
         nullableExpressions.add(oneOrMoreExpression);
         return true;
@@ -448,11 +448,11 @@ public class Grammar {
       return false;
     }
 
-    @Override public Boolean visit(TokenExpression tokenExpression) {
+     public Boolean visit(TokenExpression tokenExpression) {
       return false;
     }
 
-    @Override public Boolean visit(TypeExpression typeExpression) {
+     public Boolean visit(TypeExpression typeExpression) {
       return false;
     }
   }

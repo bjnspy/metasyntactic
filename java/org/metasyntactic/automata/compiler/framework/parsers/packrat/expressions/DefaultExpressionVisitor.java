@@ -7,59 +7,59 @@ public class DefaultExpressionVisitor<TInput, TResult> implements ExpressionVisi
     return null;
   }
 
-  @Override public TResult visit(EmptyExpression expression) {
+   public TResult visit(EmptyExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(CharacterExpression expression) {
+   public TResult visit(CharacterExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(TerminalExpression expression) {
+   public TResult visit(TerminalExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(VariableExpression expression) {
+   public TResult visit(VariableExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(DelimitedSequenceExpression sequenceExpression) {
+   public TResult visit(DelimitedSequenceExpression sequenceExpression) {
     return defaultCase(sequenceExpression);
   }
 
-  @Override public TResult visit(SequenceExpression expression) {
+   public TResult visit(SequenceExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(ChoiceExpression expression) {
+   public TResult visit(ChoiceExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(OptionalExpression expression) {
+   public TResult visit(OptionalExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(NotExpression expression) {
+   public TResult visit(NotExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(RepetitionExpression expression) {
+   public TResult visit(RepetitionExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(FunctionExpression<TInput> expression) {
+   public TResult visit(FunctionExpression<TInput> expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(OneOrMoreExpression expression) {
+   public TResult visit(OneOrMoreExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(TokenExpression expression) {
+   public TResult visit(TokenExpression expression) {
     return defaultCase(expression);
   }
 
-  @Override public TResult visit(TypeExpression expression) {
+   public TResult visit(TypeExpression expression) {
     return defaultCase(expression);
   }
 }

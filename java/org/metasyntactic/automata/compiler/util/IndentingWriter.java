@@ -76,7 +76,7 @@ public class IndentingWriter extends Writer {
     }
   }
 
-  @Override public void write(char cbuf[], int off, int len) throws IOException {
+   public void write(char cbuf[], int off, int len) throws IOException {
     for (int i = 0; i < len; i++) {
       final char c = cbuf[i + off];
       if (c == '\r' || c == '\n') {
@@ -96,11 +96,11 @@ public class IndentingWriter extends Writer {
     }
   }
 
-  @Override public void flush() throws IOException {
+   public void flush() throws IOException {
     writer.flush();
   }
 
-  @Override public void close() throws IOException {
+   public void close() throws IOException {
     writer.close();
   }
 }

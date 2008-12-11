@@ -34,7 +34,7 @@ public class Rule {
     return expression;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -54,14 +54,14 @@ public class Rule {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     int result;
     result = variable.hashCode();
     result = 31 * result + expression.hashCode();
     return result;
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "(Rule " + getVariable() + " -> " + getExpression() + ")";
   }
 

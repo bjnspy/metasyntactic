@@ -22,7 +22,7 @@ public class Tuple3<A, B, C> extends Pair<A, B> {
     return third;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -42,7 +42,7 @@ public class Tuple3<A, B, C> extends Pair<A, B> {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     int result = super.hashCode();
     result = 31 * result + (third != null ? third.hashCode() : 0);
     return result;

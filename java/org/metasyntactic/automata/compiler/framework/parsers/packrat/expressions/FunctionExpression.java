@@ -20,12 +20,12 @@ public abstract class FunctionExpression<T> extends Expression {
 
   public abstract EvaluationResult apply(T input, int position);
 
-  @SuppressWarnings("unchecked") @Override public <TInput, TResult> TResult accept(
+  @SuppressWarnings("unchecked")  public <TInput, TResult> TResult accept(
       ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit((FunctionExpression<TInput>) this);
   }
 
-  @SuppressWarnings("unchecked") @Override public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
+  @SuppressWarnings("unchecked")  public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
     visitor.visit((FunctionExpression<TInput>) this);
   }
 
@@ -39,7 +39,7 @@ public abstract class FunctionExpression<T> extends Expression {
     return name;
   }
 
-  @Override protected int hashCodeWorker() {
+   protected int hashCodeWorker() {
     return System.identityHashCode(this);
   }
 }

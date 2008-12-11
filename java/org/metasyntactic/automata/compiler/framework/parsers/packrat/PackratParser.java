@@ -24,7 +24,7 @@ public class PackratParser<T extends Token> extends AbstractPackratParser<T> {
     this(grammar, input, ActionMap.EMPTY_MAP);
   }
 
-  @Override
+
   public boolean equals(Object o) {
     return (o instanceof PackratParser) && super.equals(o);
   }
@@ -64,7 +64,7 @@ public class PackratParser<T extends Token> extends AbstractPackratParser<T> {
 
   private final QuickQueue<EvaluationExpressionVisitor> visitors = new QuickQueue<EvaluationExpressionVisitor>();
 
-  @Override protected EvaluationResult evaluateExpression(final int position, final Expression expression) {
+   protected EvaluationResult evaluateExpression(final int position, final Expression expression) {
     furtherstPosition = Math.max(position, furtherstPosition);
 
     EvaluationExpressionVisitor visitor = visitors.poll();

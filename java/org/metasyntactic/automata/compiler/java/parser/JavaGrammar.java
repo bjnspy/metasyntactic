@@ -171,7 +171,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("Arguments",
                        sequence(token(LeftParenthesisSeparatorToken.instance),
-                                delimitedOptionalList(variable("Expression"), token(CommaSeparatorToken.instance)),
+                                optional(variable("DelimitedExpressionList")),
                                 token(RightParenthesisSeparatorToken.instance))));
   }
 
@@ -616,7 +616,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                                 token(SemicolonSeparatorToken.instance),
                                 optional(variable("Expression")),
                                 token(SemicolonSeparatorToken.instance),
-                                optional(variable("ForUpdate")),
+                                optional(variable("DelimitedExpressionList")),
                                 token(RightParenthesisSeparatorToken.instance),
                                 variable("Statement"))));
 
@@ -625,11 +625,9 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                               variable("DelimitedExpressionList"))));
 
     rules.add(new Rule("DelimitedExpressionList",
-                       delimitedList(variable("Expression"), token(CommaSeparatorToken.instance))));
-
-    rules.add(new Rule("ForUpdate",
                        delimitedList(variable("Expression"),
                                      token(CommaSeparatorToken.instance))));
+
 
     rules.add(new Rule("EnhancedForStatement",
                        sequence(token(ForKeywordToken.instance),
@@ -952,7 +950,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
     }
 
     List<SourceToken<JavaToken>> analyzedTokens = new JavaLexicalAnalyzer().analyze(tokens);
-
+/*
     {
       long start = System.currentTimeMillis();
       JavaParser parser = new JavaParser(analyzedTokens);
@@ -966,7 +964,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
         return;
       }
     }
-
+*/
     {
       long start = System.currentTimeMillis();
       JavaGeneratedParser parser = new JavaGeneratedParser((List) analyzedTokens);

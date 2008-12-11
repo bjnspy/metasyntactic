@@ -80,6 +80,12 @@ public class GrammarNodeWriter<TTokenType> {
           throw new RuntimeException();
         }
       }
+    } else if (expression instanceof TokenExpression) {
+      TokenExpression te = (TokenExpression) expression;
+      changed |= promotedTokens.put(te.getToken().getClass().getSimpleName(), null);
+    } else if (expression instanceof TypeExpression) {
+      TypeExpression te = (TypeExpression) expression;
+      changed |= promotedTokens.put(te.getType().getSimpleName(), null);
     }
 
     return changed;
@@ -168,7 +174,8 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private void writePromotedTokenNodeClass(String tokenName) {
-    writeAndIndent("public class " + tokenName + "Node extends AbstractNode implements I" + tokenName + "Node {");
+    writeAndIndent(
+        "public static class " + tokenName + "Node extends AbstractNode implements I" + tokenName + "Node {");
     write("private final SourceToken<" + tokenName + "> token;");
 
     writeAndIndent("public " + tokenName + "Node(SourceToken<" + tokenName + "> token) {");
@@ -201,9 +208,11 @@ public class GrammarNodeWriter<TTokenType> {
   private void writePromotedTokenNodeInterface(String tokenName) {
     String interfaces = "INode";
     for (String iface : promotedTokens.get(tokenName)) {
-      interfaces += ", I" + iface + "Node";
+      if (iface != null) {
+        interfaces += ", I" + iface + "Node";
+      }
     }
-    writeAndIndent("public interface I" + tokenName + "Node extends " + interfaces + " {");
+    writeAndIndent("public static interface I" + tokenName + "Node extends " + interfaces + " {");
     write("SourceToken<" + tokenName + "> getToken();");
     dedentAndWrite("}");
   }
@@ -240,8 +249,11 @@ public class GrammarNodeWriter<TTokenType> {
     } else if (expression instanceof ChoiceExpression) {
     } else if (expression instanceof DelimitedSequenceExpression) {
       DelimitedSequenceExpression dse = (DelimitedSequenceExpression) expression;
-      result.add(new TypeAndName("List<" + getExpressionType(dse.getElement()) + ">",
-                                 getExpressionName(dse.getElement()) + "List"));
+      result.add(new TypeAndName(
+          "DelimitedList<" +
+          getExpressionType(dse.getElement()) + ", " +
+          getExpressionType(dse.getDelimiter()) + ">",
+          getExpressionName(dse.getElement()) + "List"));
     } else if (expression instanceof RepetitionExpression) {
       RepetitionExpression re = (RepetitionExpression) expression;
 
@@ -259,13 +271,13 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private void writeINode() {
-    writeAndIndent("public interface INode {");
+    writeAndIndent("public static interface INode {");
     write("void accept(INodeVisitor visitor);");
     dedentAndWrite("}");
   }
 
   private void writeNode() {
-    writeAndIndent("public abstract class AbstractNode implements INode {");
+    writeAndIndent("public static abstract class AbstractNode implements INode {");
     write("private int hashCode = -1;");
     writeAndIndent("public int hashCode() {");
     writeAndIndent("if (hashCode == -1) {");
@@ -281,7 +293,7 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private void writeVisitor() {
-    writeAndIndent("public interface INodeVisitor {");
+    writeAndIndent("public static interface INodeVisitor {");
     for (Rule rule : grammar.getRules()) {
       write("void visit(I" + rule.getVariable() + "Node node);");
     }
@@ -293,7 +305,7 @@ public class GrammarNodeWriter<TTokenType> {
 
   private void writeClass(Rule rule) {
     writeAndIndent(
-        "public class " + rule.getVariable() + "Node extends AbstractNode implements I" + rule.getVariable() +
+        "public static class " + rule.getVariable() + "Node extends AbstractNode implements I" + rule.getVariable() +
         "Node {");
     writeClassFields(rule);
     writeClassConstructor(rule);
@@ -388,7 +400,7 @@ public class GrammarNodeWriter<TTokenType> {
       interfaces += ", ";
       interfaces += "I" + i + "Node";
     }
-    writeAndIndent("public interface I" + rule.getVariable() + "Node extends " + interfaces + " {");
+    writeAndIndent("public static interface I" + rule.getVariable() + "Node extends " + interfaces + " {");
 
     for (TypeAndName tan : getMembers(rule)) {
       write(tan.type + " get" + tan.name + "();");
@@ -407,7 +419,9 @@ public class GrammarNodeWriter<TTokenType> {
     }
 
     public String visit(DelimitedSequenceExpression sequenceExpression) {
-      return "List<" + getExpressionType(sequenceExpression.getElement()) + ">";
+      return "DelimitedList<" +
+             getExpressionType(sequenceExpression.getElement()) + ", " +
+             getExpressionType(sequenceExpression.getDelimiter()) + ">";
     }
 
     public String visit(RepetitionExpression repetitionExpression) {
