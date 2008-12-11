@@ -170,18 +170,15 @@
     if (indexPath.section < reviews.count) {
         Review* review = [reviews objectAtIndex:indexPath.section];
         if (review.link) {
-            WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:navigationController
-                                                                                             address:review.link] autorelease];
-            [navigationController pushViewController:controller animated:YES];
-//            [Application openBrowser:review.link];
+            [navigationController pushBrowser:review.link animated:YES];
         }
     } else {
         if (self.model.rottenTomatoesScores) {
-            [Application openBrowser:@"http://www.rottentomatoes.com"];
+            [navigationController pushBrowser:@"http://www.rottentomatoes.com" animated:YES];
         } else if (self.model.metacriticScores) {
-            [Application openBrowser:@"http://www.metacritic.com"];
+            [navigationController pushBrowser:@"http://www.metacritic.com" animated:YES];
         } else if (self.model.googleScores) {
-            [Application openBrowser:@"http://www.google.com/movies"];
+            [navigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
         }
     }
 }

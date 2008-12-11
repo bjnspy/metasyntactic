@@ -358,7 +358,7 @@
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
 
     if (lastLookupDate != nil) {
-        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
         }
     }

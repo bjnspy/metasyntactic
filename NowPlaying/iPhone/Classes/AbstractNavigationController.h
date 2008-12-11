@@ -41,7 +41,8 @@
 
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated;
 - (void) pushMovieDetails:(Movie*) movie animated:(BOOL) animated;
-- (void) pushReviewsView:(Movie*) movie animated:(BOOL) animated;
+- (void) pushReviews:(Movie*) movie animated:(BOOL) animated;
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
 
 - (void) navigateToLastViewedPage;
 

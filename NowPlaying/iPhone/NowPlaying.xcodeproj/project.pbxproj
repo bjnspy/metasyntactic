@@ -73,6 +73,8 @@
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
+		746A1BDE0EF1950B00CF38C9 /* Navigate-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */; };
+		746A1BDF0EF1950B00CF38C9 /* Navigate-Forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */; };
 		74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
 		747406260EC6468F00625001 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 7474061E0EC6468F00625001 /* xmlparse.c */; };
 		747406270EC6468F00625001 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 7474061F0EC6468F00625001 /* xmlrole.c */; };
@@ -383,6 +385,8 @@
 		746A02040DC819430079D89B /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
 		746A02140DC81A1A0079D89B /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Back.png"; path = "Resources/Navigate-Back.png"; sourceTree = "<group>"; };
+		746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Forward.png"; path = "Resources/Navigate-Forward.png"; sourceTree = "<group>"; };
 		74737BE50E2D8BA300C37E4B /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		74737BE60E2D8BA300C37E4B /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
 		747406120EC6468F00625001 /* amigaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = amigaconfig.h; path = External/Expat/amigaconfig.h; sourceTree = SOURCE_ROOT; };
@@ -787,6 +791,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */,
+				746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */,
 				745F37570EE99B4500636D8E /* Bookmark-Active.png */,
 				745F37580EE99B4500636D8E /* Bookmark-Inactive.png */,
 				74EC993D0EE5FCFA004E044E /* FlipUp-Highlighted.png */,
@@ -1557,6 +1563,8 @@
 				74EC993E0EE5FCFA004E044E /* FlipUp-Highlighted.png in Resources */,
 				745F37590EE99B4600636D8E /* Bookmark-Active.png in Resources */,
 				745F375A0EE99B4600636D8E /* Bookmark-Inactive.png in Resources */,
+				746A1BDE0EF1950B00CF38C9 /* Navigate-Back.png in Resources */,
+				746A1BDF0EF1950B00CF38C9 /* Navigate-Forward.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
