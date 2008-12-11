@@ -61,7 +61,7 @@ static NowPlayingAppDelegate* appDelegate = nil;
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     appDelegate = self;
-    
+
     self.model = [NowPlayingModel model];
     self.controller = [NowPlayingController controllerWithAppDelegate:self];
 

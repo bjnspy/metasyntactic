@@ -197,13 +197,13 @@
     if (array.count == 0) {
         return [NSDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (NSDictionary* dictionary in array) {
         Movie* movie = [Movie movieWithDictionary:dictionary];
         [result setObject:movie forKey:movie.canonicalTitle];
     }
-    
+
     return result;
 }
 
@@ -277,12 +277,12 @@
     if (movies.count == 0) {
         return [NSMutableDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (Movie* movie in movies) {
         [result setObject:movie forKey:movie.canonicalTitle];
     }
-    
+
     return result;
 }
 
