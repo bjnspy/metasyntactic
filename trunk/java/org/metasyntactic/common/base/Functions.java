@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class Functions {
   private static Function<Object, Object> IDENTITY_FUNCTION = new Function<Object, Object>() {
-    @Override public Object apply(Object argument) {
+     public Object apply(Object argument) {
       return argument;
     }
   };
@@ -19,7 +19,7 @@ public class Functions {
 
   public static <K, V> Function<K, V> forMap(final Map<K, V> map) {
     return new Function<K, V>() {
-      @Override public V apply(K argument) {
+       public V apply(K argument) {
         return map.get(argument);
       }
     };

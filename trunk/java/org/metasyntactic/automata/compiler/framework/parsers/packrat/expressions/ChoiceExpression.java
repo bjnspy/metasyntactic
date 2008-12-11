@@ -33,7 +33,7 @@ public class ChoiceExpression extends Expression {
     return children;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -46,19 +46,19 @@ public class ChoiceExpression extends Expression {
     return Arrays.equals(children, that.children);
   }
 
-  @Override public int hashCodeWorker() {
+   public int hashCodeWorker() {
     return Arrays.hashCode(children);
   }
 
-  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
+   public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 
-  @Override public void accept(ExpressionVoidVisitor visitor) {
+   public void accept(ExpressionVoidVisitor visitor) {
     visitor.visit(this);
   }
 
-  @Override public String toString() {
+   public String toString() {
     StringBuilder builder = new StringBuilder();
 
     builder.append("(Choice");

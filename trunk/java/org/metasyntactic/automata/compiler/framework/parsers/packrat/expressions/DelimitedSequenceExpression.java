@@ -34,7 +34,7 @@ public class DelimitedSequenceExpression extends Expression {
     return allowsTrailingDelimiter;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -57,7 +57,7 @@ public class DelimitedSequenceExpression extends Expression {
     return true;
   }
 
-  @Override protected int hashCodeWorker() {
+   protected int hashCodeWorker() {
     int result = 0;
     result = 31 * result + element.hashCode();
     result = 31 * result + delimiter.hashCode();
@@ -65,7 +65,7 @@ public class DelimitedSequenceExpression extends Expression {
     return result;
   }
 
-  @Override public String toString() {
+   public String toString() {
     StringBuilder builder = new StringBuilder("(DelimitedSequence");
 
     builder.append(" ");
@@ -81,11 +81,11 @@ public class DelimitedSequenceExpression extends Expression {
     return builder.toString();
   }
 
-  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
+   public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 
-  @Override public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
+   public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
     visitor.visit(this);
   }
 }

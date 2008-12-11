@@ -28,7 +28,7 @@ public abstract class Expression {
 
   private int hashCode;
 
-  @Override public int hashCode() {
+   public int hashCode() {
     if (hashCode == 0) {
       hashCode = hashCodeWorker();
     }
@@ -106,7 +106,7 @@ public abstract class Expression {
 
   public static Expression choice(String... children) {
     Arrays.sort(children, new Comparator<String>() {
-      @Override public int compare(String s1, String s2) {
+       public int compare(String s1, String s2) {
         if (s1.startsWith(s2)) {
           return -1;
         } else if (s2.startsWith(s1)) {
@@ -157,7 +157,7 @@ public abstract class Expression {
 
   private final static Expression ANY_TOKEN_EXPRESSION = new FunctionExpression<List<SourceToken<? extends Token>>>(
       "anyToken") {
-    @Override public EvaluationResult apply(List<SourceToken<? extends Token>> tokens, int position) {
+     public EvaluationResult apply(List<SourceToken<? extends Token>> tokens, int position) {
       if (position >= tokens.size()) {
         return EvaluationResult.failure;
       } else {
@@ -165,25 +165,25 @@ public abstract class Expression {
       }
     }
 
-    @Override public String toString() {
+     public String toString() {
       return ".";
     }
 
-    @Override public boolean isNullable() {
+     public boolean isNullable() {
       return false;
     }
 
-    @Override public List<Integer> getShortestDerivableTokenStream() {
+     public List<Integer> getShortestDerivableTokenStream() {
       throw new RuntimeException("NYI");
     }
 
-    @Override public List<Integer> getShortestPrefix(int token) {
+     public List<Integer> getShortestPrefix(int token) {
       return Collections.emptyList();
     }
   };
 
   private final static Expression ANY_CHARACTER_EXPRESSION = new FunctionExpression<Source>("anyCharacter") {
-    @Override public EvaluationResult apply(Source input, int position) {
+     public EvaluationResult apply(Source input, int position) {
       String text = input.getText();
 
       if (position >= text.length()) {
@@ -193,19 +193,19 @@ public abstract class Expression {
       }
     }
 
-    @Override public String toString() {
+     public String toString() {
       return ".";
     }
 
-    @Override public boolean isNullable() {
+     public boolean isNullable() {
       return false;
     }
 
-    @Override public List<Integer> getShortestDerivableTokenStream() {
+     public List<Integer> getShortestDerivableTokenStream() {
       throw new RuntimeException("NYI");
     }
 
-    @Override public List<Integer> getShortestPrefix(int token) {
+     public List<Integer> getShortestPrefix(int token) {
       throw new RuntimeException("NYI");
     }
 
@@ -224,7 +224,7 @@ public abstract class Expression {
     Preconditions.checkArgument(startInclusive <= endInclusive);
 
     return new FunctionExpression<Source>("range") {
-      @Override public EvaluationResult apply(Source input, int position) {
+       public EvaluationResult apply(Source input, int position) {
         String text = input.getText();
 
         if (position < text.length()) {
@@ -238,19 +238,19 @@ public abstract class Expression {
         return EvaluationResult.failure;
       }
 
-      @Override public String toString() {
+       public String toString() {
         return "[" + startInclusive + "-" + endInclusive + "]";
       }
 
-      @Override public boolean isNullable() {
+       public boolean isNullable() {
         return false;
       }
 
-      @Override public List<Integer> getShortestDerivableTokenStream() {
+       public List<Integer> getShortestDerivableTokenStream() {
       throw new RuntimeException("NYI");
       }
 
-      @Override public List<Integer> getShortestPrefix(int token) {
+       public List<Integer> getShortestPrefix(int token) {
       throw new RuntimeException("NYI");
       }
     };

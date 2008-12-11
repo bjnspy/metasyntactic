@@ -15,11 +15,11 @@ public class SimpleSpan extends AbstractSpan implements Span {
     this.endPosition = endPosition;
   }
 
-  @Override public Position getStartPosition() {
+   public Position getStartPosition() {
     return startPosition;
   }
 
-  @Override public Position getEndPosition() {
+   public Position getEndPosition() {
     return endPosition;
   }
 }

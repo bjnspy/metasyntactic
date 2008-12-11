@@ -28,7 +28,7 @@ public class PythonScanner extends PackratScanner<PythonToken> {
   static {
     actions.put(PythonLexicalSpecification.KEYWORD_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                  @Override public Object apply(Object o, Source source, Integer start, Integer end) {
+                   public Object apply(Object o, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
                     return makeToken(KeywordToken.getKeywordToken(text), source, start, end);
                   }
@@ -36,7 +36,7 @@ public class PythonScanner extends PackratScanner<PythonToken> {
 
     actions.put(PythonLexicalSpecification.DELIMITER_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                  @Override public Object apply(Object o, Source source, Integer start, Integer end) {
+                   public Object apply(Object o, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
                     return makeToken(DelimiterToken.getDelimiterToken(text), source, start, end);
                   }
@@ -44,7 +44,7 @@ public class PythonScanner extends PackratScanner<PythonToken> {
 
     actions.put(PythonLexicalSpecification.OPERATOR_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                  @Override public Object apply(Object o, Source source, Integer start, Integer end) {
+                   public Object apply(Object o, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
                     return makeToken(OperatorToken.getOperatorToken(text), source, start, end);
                   }
@@ -52,7 +52,7 @@ public class PythonScanner extends PackratScanner<PythonToken> {
 
     actions.put(PythonLexicalSpecification.LINE_CONTINUATION_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                  @Override public Object apply(Object o, Source source, Integer start, Integer end) {
+                   public Object apply(Object o, Source source, Integer start, Integer end) {
                     return makeToken(LineContinuationToken.instance, source, start, end);
                   }
                 });
@@ -77,7 +77,7 @@ public class PythonScanner extends PackratScanner<PythonToken> {
     }
 
     actions.put(rule.getVariable(), new Function4<Object, Source, Integer, Integer, Object>() {
-      @Override
+
       public Object apply(Object argument1, Source source, Integer start, Integer end) {
         String text = source.getText().substring(start, end);
         try {

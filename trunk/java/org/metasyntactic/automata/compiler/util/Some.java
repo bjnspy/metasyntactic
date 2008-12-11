@@ -14,7 +14,7 @@ public class Some<T> implements Optional<T> {
     this.value = value;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -31,19 +31,19 @@ public class Some<T> implements Optional<T> {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     return (value != null ? value.hashCode() : 0);
   }
 
-  @Override public boolean hasValue() {
+   public boolean hasValue() {
     return true;
   }
 
-  @Override public T value() {
+   public T value() {
     return value;
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "(Some " + value + ")";
   }
 }

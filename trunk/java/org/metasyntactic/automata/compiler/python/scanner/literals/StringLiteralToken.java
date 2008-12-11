@@ -11,7 +11,7 @@ public class StringLiteralToken extends LiteralToken<String> {
     super(text);
   }
 
-  @Override public String getValue() {
+   public String getValue() {
     throw new UnimplementedException();
   }
 }

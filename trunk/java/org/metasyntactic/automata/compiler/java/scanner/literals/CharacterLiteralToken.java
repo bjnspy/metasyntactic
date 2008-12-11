@@ -11,7 +11,7 @@ public class CharacterLiteralToken extends LiteralToken<Character> {
     super(text);
   }
 
-  @Override public Character getValue() {
+   public Character getValue() {
     throw new UnimplementedException();
   }
 }

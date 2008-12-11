@@ -37,7 +37,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
     return lexicalSpecification;
   }
 
-  @Override
+
   public boolean equals(Object o) {
     if (this == o) {
       return true;
@@ -61,7 +61,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     int result;
     result = input.hashCode();
     result = 31 * result + lexicalSpecification.hashCode();
@@ -69,7 +69,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
     return result;
   }
 
-  @Override public List<SourceToken<T>> scan() {
+   public List<SourceToken<T>> scan() {
     return scan(0);
   }
 
@@ -166,11 +166,11 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
     public EvaluationExpressionVisitor() {
     }
 
-    @Override public EvaluationResult visit(EmptyExpression emptyExpression) {
+     public EvaluationResult visit(EmptyExpression emptyExpression) {
       return new EvaluationResult(position, null);
     }
 
-    @Override public EvaluationResult visit(CharacterExpression characterExpression) {
+     public EvaluationResult visit(CharacterExpression characterExpression) {
       final String text = input.getText();
 
       if (position < text.length()) {
@@ -183,7 +183,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
       return EvaluationResult.failure;
     }
 
-    @Override public EvaluationResult visit(TerminalExpression terminalExpression) {
+     public EvaluationResult visit(TerminalExpression terminalExpression) {
       final String terminal = terminalExpression.getTerminal();
       final String text = input.getText();
 
@@ -200,16 +200,16 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
       return new EvaluationResult(position + terminal.length(), terminal);
     }
 
-    @Override public EvaluationResult visit(VariableExpression variableExpression) {
+     public EvaluationResult visit(VariableExpression variableExpression) {
       Rule rule = variableExpression.getRule(lexicalSpecification);
       return evaluateRule(position, rule);
     }
 
-    @Override public EvaluationResult visit(DelimitedSequenceExpression sequenceExpression) {
+     public EvaluationResult visit(DelimitedSequenceExpression sequenceExpression) {
       throw new RuntimeException("Not yet implemented.");
     }
 
-    @Override public EvaluationResult visit(SequenceExpression sequenceExpression) {
+     public EvaluationResult visit(SequenceExpression sequenceExpression) {
       int currentPosition = position;
       ArrayList<Object> values = null;
 
@@ -226,7 +226,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
       return new EvaluationResult(currentPosition, trimList(values));
     }
 
-    @Override public EvaluationResult visit(OneOrMoreExpression oneOrMoreExpression) {
+     public EvaluationResult visit(OneOrMoreExpression oneOrMoreExpression) {
       ArrayList<Object> values = null;
 
       EvaluationResult result = evaluateExpression(position, oneOrMoreExpression.getChild());
@@ -245,7 +245,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
       }
     }
 
-    @Override public EvaluationResult visit(ChoiceExpression choiceExpression) {
+     public EvaluationResult visit(ChoiceExpression choiceExpression) {
       for (Expression child : choiceExpression.getChildren()) {
         EvaluationResult result = evaluateExpression(position, child);
         if (result.isSuccess()) {
@@ -256,16 +256,16 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
       return EvaluationResult.failure;
     }
 
-    @Override public EvaluationResult visit(OptionalExpression optionalExpression) {
+     public EvaluationResult visit(OptionalExpression optionalExpression) {
       EvaluationResult result = evaluateExpression(position, optionalExpression.getChild());
       if (result.isSuccess()) {
         return result;
       }
-      
+
       return new EvaluationResult(position, null);
     }
 
-    @Override public EvaluationResult visit(NotExpression notExpression) {
+     public EvaluationResult visit(NotExpression notExpression) {
       EvaluationResult result = evaluateExpression(position, notExpression.getChild());
       if (result.isSuccess()) {
         return EvaluationResult.failure;
@@ -274,7 +274,7 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
       }
     }
 
-    @Override public EvaluationResult visit(RepetitionExpression repetitionExpression) {
+     public EvaluationResult visit(RepetitionExpression repetitionExpression) {
       int currentPosition = position;
       ArrayList<Object> values = null;
 
@@ -290,15 +290,15 @@ public class PackratScanner<T extends Token> implements Scanner<T> {
       }
     }
 
-    @Override public EvaluationResult visit(FunctionExpression<Source> functionExpression) {
+     public EvaluationResult visit(FunctionExpression<Source> functionExpression) {
       return functionExpression.apply(input, position);
     }
 
-    @Override public EvaluationResult visit(TokenExpression tokenExpression) {
+     public EvaluationResult visit(TokenExpression tokenExpression) {
       throw new UnsupportedOperationException();
     }
 
-    @Override public EvaluationResult visit(TypeExpression typeExpression) {
+     public EvaluationResult visit(TypeExpression typeExpression) {
       throw new UnsupportedOperationException();
     }
   }

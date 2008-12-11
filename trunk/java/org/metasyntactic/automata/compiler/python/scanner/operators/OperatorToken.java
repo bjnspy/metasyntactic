@@ -86,7 +86,7 @@ public class OperatorToken extends PythonToken {
     return token;
   }
 
-  @Override public Type getTokenType() {
+   public Type getTokenType() {
     return Type.Operator;
   }
 }

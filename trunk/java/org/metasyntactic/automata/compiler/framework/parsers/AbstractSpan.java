@@ -3,7 +3,7 @@
 package org.metasyntactic.automata.compiler.framework.parsers;
 
 public abstract class AbstractSpan implements Span {
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -23,14 +23,14 @@ public abstract class AbstractSpan implements Span {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     int result;
     result = getStartPosition().hashCode();
     result = 31 * result + getEndPosition().hashCode();
     return result;
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "(Span " + getStartPosition() + " " + getEndPosition() + ")";
   }
 }

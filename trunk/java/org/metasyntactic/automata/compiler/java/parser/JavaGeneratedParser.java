@@ -17,7 +17,7 @@ public class JavaGeneratedParser extends AbstractJavaGeneratedParser {
     super(tokens);
   }
 
-  @Override protected EvaluationResult anyToken(int position) {
+   protected EvaluationResult anyToken(int position) {
     if (position >= tokens.size()) {
       return EvaluationResult.failure;
     } else {

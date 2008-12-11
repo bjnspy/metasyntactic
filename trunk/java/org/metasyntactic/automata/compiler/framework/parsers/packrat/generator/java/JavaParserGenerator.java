@@ -5,7 +5,6 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.generator.
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
-import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.empty;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.generator.ParserGenerator;
 import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
@@ -15,6 +14,8 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * TODO(cyrusn): javadoc
@@ -35,7 +36,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
     this.namespace = namespace;
   }
 
-  @Override public String generate() {
+   public String generate() {
     try {
       generateWorker();
     } catch (IOException e) {
@@ -54,16 +55,20 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
                      "import org.metasyntactic.automata.compiler.java.scanner.keywords.*;\n" +
                      "import org.metasyntactic.automata.compiler.java.scanner.literals.*;\n" +
                      "import org.metasyntactic.automata.compiler.java.scanner.operators.*;\n" +
-                     "import org.metasyntactic.automata.compiler.java.scanner.separators.*;");
+                     "import org.metasyntactic.automata.compiler.java.scanner.separators.*;\n" +
+                     "import static org.metasyntactic.automata.compiler.java.parser.Nodes.*;\n" +
+                     "import org.metasyntactic.automata.compiler.util.ArrayDelimitedList;\n" +
+                     "import org.metasyntactic.automata.compiler.util.DelimitedList;");
     writer.writeLine();
     writer.writeLineAndIndent("public abstract class " + name + " {");
 
-    writer.writeLine("protected static class EvaluationResult {\n" +
+    writer.writeLine("protected static class EvaluationResult<T> {\n" +
                      "  public static final EvaluationResult failure = new EvaluationResult(false, 0);\n" + "\n" +
+                     "  public static <T> EvaluationResult<T> failure() { return failure; }\n" +
                      "  public final boolean succeeded;\n" +
-                     "  private final int position;\n" +
-                     "  private final Object value;\n" + "\n" +
-                     "  public EvaluationResult(boolean succeeded, int position, Object value) {\n" +
+                     "  public final int position;\n" +
+                     "  public final T value;\n" + "\n" +
+                     "  public EvaluationResult(boolean succeeded, int position, T value) {\n" +
                      "    this.succeeded = succeeded;\n" +
                      "    this.position = position;\n" +
                      "    this.value = value;\n" +
@@ -71,9 +76,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
                      "  public EvaluationResult(boolean succeeded, int position) {\n" +
                      "    this(succeeded, position, null);\n" +
                      "  }\n" + "\n" +
-                     "  public int getPosition() {\n" + "      return position;\n" + "    }\n" + "\n" +
-                     "  public Object getValue() {\n" + "      return value;\n" + "    }\n" + "\n" +
-                     "  @Override public String toString() {\n" +
+                     "   public String toString() {\n" +
                      "    if (succeeded) {\n" +
                      "      return \"(Result succeeded \" + position + (value == null ? \")\" : value + \")\");\n" +
                      "    } else {\n" +
@@ -82,9 +85,9 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
                      "  }\n" +
                      "}\n" +
                      "\n" +
-                     "private static Map<Integer, EvaluationResult> initializeMap(Map<Integer,EvaluationResult> map) {\n" +
+                     "private static <T> Map<Integer, EvaluationResult<? extends T>> initializeMap(Map<Integer,EvaluationResult<? extends T>> map) {\n" +
                      "  if (map == null) {\n" +
-                     "    map = new HashMap<Integer,EvaluationResult>();\n" +
+                     "    map = new HashMap<Integer,EvaluationResult<? extends T>>();\n" +
                      "  }\n" +
                      "\n" +
                      "  return map;\n" +
@@ -98,29 +101,37 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
     writer.dedentAndWriteLine("}");
     writer.writeLine();
 
-    writer.writeLine("  private static List<Object> trimList(ArrayList<Object> values) {\n" +
-                     "    if (values == null || values.isEmpty()) {\n" +
-                     "      return Collections.emptyList();\n" +
-                     "    } else if (values.size() == 1) {\n" +
-                     "      return Collections.singletonList(values.get(0));\n" + "    } else {\n" +
-                     "      values.trimToSize();\n" + "      return values;\n" + "    }\n" + "  }\n" + "\n" +
-                     "  private ArrayList<Object> addValue(ArrayList<Object> values, EvaluationResult result) {\n" +
-                     "    Object value = result.getValue();\n" + "\n" + "    if (value != null) {\n" +
-                     "      if (values == null) {\n" + "        values = new ArrayList<Object>();\n" + "      }\n" +
-                     "\n" + "      values.add(value);\n" + "    }\n" + "\n" + "    return values;\n" + "  }\n" + "\n" +
-                     "  private EvaluationResult evaluateToken(int position, Token expected) {\n" +
-                     "    if (position < tokens.size()) {\n" +
-                     "      SourceToken<Token> token = tokens.get(position);\n" +
-                     "      if (expected.equals(token.getToken())) {\n" +
-                     "        return new EvaluationResult(true, position + 1, token);\n" + "      }\n" + "    }\n" +
-                     "    return EvaluationResult.failure;\n" + "  }");
+    writer.writeLine("private static <T> List<T> trimList(ArrayList<T> values) {\n" +
+                     "  if (values == null || values.isEmpty()) {\n" +
+                     "    return Collections.emptyList();\n" +
+                     "  } else if (values.size() == 1) {\n" +
+                     "    return Collections.singletonList(values.get(0));\n" +
+                     "  } else {\n" +
+                     "    values.trimToSize();\n" +
+                     "    return values;\n" +
+                     "  }\n" +
+                     "}\n" +
+                     "\n" +
+                     "private <T> ArrayList<T> addValue(ArrayList<T> values, T value) {\n" +
+                     "  if (value != null) {\n" +
+                     "    if (values == null) {\n" +
+                     "      values = new ArrayList<T>();\n" +
+                     "    }\n" +
+                     "\n" +
+                     "    values.add(value);\n" +
+                     "  }\n" +
+                     "\n" +
+                     "  return values;\n" +
+                     "}\n" +
+                     "\n");
 
     writer.writeLine();
 
-    writer.writeLineAndIndent("public Object parse() {");
-    writer.writeLine("EvaluationResult result = parse" + grammar.getStartRule().getVariable() + "(0);");
+    writer.writeLineAndIndent("public " + getNodeName(grammar.getStartRule()) + " parse() {");
+    writer.writeLine("EvaluationResult<? extends " + getNodeName(grammar.getStartRule()) + "> result = parse" +
+                     grammar.getStartRule().getVariable() + "(0);");
     writer.writeLineAndIndent("if (result.succeeded) {");
-    writer.writeLine("return result.getValue();");
+    writer.writeLine("return result.value;");
     writer.dedentWriteLineAndIndent("} else {");
     writer.writeLine("return null;");
     writer.dedentAndWriteLine("}");
@@ -130,11 +141,13 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
       writeCheckTokenMethod(rule);
     }
 
+    writeBoxTokenMethods();
+
     for (Rule rule : grammar.getRules()) {
       createExpressionNames(rule.getVariable(), rule.getExpression());
     }
 
-    for (Expression expression : expressionMap.keySet()) {
+    for (Expression expression : expressionNamesMap.keySet()) {
       writeEvaluateMethod(expression);
     }
 
@@ -147,6 +160,49 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
     }
 
     writer.dedentAndWriteLine("}");
+  }
+
+  private void writeBoxTokenMethods() {
+    Set<String> tokens = new TreeSet<String>();
+
+    for (Rule rule : grammar.getRules()) {
+      Expression expression = rule.getExpression();
+      if (expression instanceof ChoiceExpression) {
+        ChoiceExpression ce = (ChoiceExpression) expression;
+
+        for (Expression child : ce.getChildren()) {
+          if (child instanceof TokenExpression) {
+            TokenExpression te = (TokenExpression) child;
+            tokens.add(te.getToken().getClass().getSimpleName());
+          } else if (child instanceof TypeExpression) {
+            TypeExpression te = (TypeExpression) child;
+            tokens.add(te.getType().getSimpleName());
+          } else if (child instanceof VariableExpression) {
+          } else {
+            throw new RuntimeException();
+          }
+        }
+      } else if (expression instanceof TokenExpression) {
+        TokenExpression te = (TokenExpression) expression;
+        tokens.add(te.getToken().getClass().getSimpleName());
+      } else if (expression instanceof TypeExpression) {
+        TypeExpression te = (TypeExpression) expression;
+        tokens.add(te.getType().getSimpleName());
+      }
+    }
+
+    for (String token : tokens) {
+      writer.writeLineAndIndent("private EvaluationResult<I" + token + "Node> box" + token +
+                                "(EvaluationResult<? extends SourceToken<" + token + ">> result) {");
+      writer.writeLine("if (!result.succeeded) { return EvaluationResult.failure(); }");
+      writer.writeLine("return new EvaluationResult<I" + token + "Node>(true, result.position, new " + token +
+                       "Node(result.value));");
+      writer.dedentAndWriteLine("}");
+    }
+  }
+
+  public String getNodeName(Rule rule) {
+    return "I" + rule.getVariable() + "Node";
   }
 
   private boolean canCheckFirstToken(Rule rule) {
@@ -175,7 +231,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
 
   private void writeFunctions(Rule rule) {
     rule.getExpression().accept(new RecursionExpressionVisitor() {
-      @Override public void visit(FunctionExpression expression) {
+       public void visit(FunctionExpression expression) {
         writer.writeLine();
         writer.writeLine("protected abstract EvaluationResult " + expression.getName() + "(int position);");
       }
@@ -183,12 +239,73 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
   }
 
   private void writeParseMethod(Rule rule) throws IOException {
+    Expression expression = rule.getExpression();
+
+    if (expression instanceof TokenExpression || expression instanceof TypeExpression) {
+      writeTokenParseMethod(rule);
+    } else {
+      writeNormalParseMethod(rule);
+    }
+  }
+
+  private void writeTokenParseMethod(Rule rule) throws IOException {
     writer.writeLine();
 
-    writer.writeLine("private Map<Integer,EvaluationResult> " + getMapName(rule) + ";");
+    Expression expression = rule.getExpression();
+    String tokenType = "";
+    if (expression instanceof TokenExpression) {
+      tokenType = "SourceToken<" + ((TokenExpression) expression).getToken().getClass().getSimpleName() + ">";
+    } else {
+      tokenType = "SourceToken<" + ((TypeExpression) expression).getType().getSimpleName() + ">";
+    }
 
-    writer.writeLineAndIndent("private EvaluationResult parse" + rule.getVariable() + "(int position) {");
-    writer.writeLine("EvaluationResult result = (" + getMapName(rule) + " == null ? null : " + getMapName(rule) +
+    String interfaceName = getNodeName(rule);
+    String className = interfaceName.substring(1);
+
+    writer.writeLine(
+        "private Map<Integer,EvaluationResult<? extends " + interfaceName + ">> " + getMapName(rule) + ";");
+
+    writer.writeLineAndIndent(
+        "private EvaluationResult<? extends " + interfaceName + "> parse" + rule.getVariable() +
+        "(int position) {");
+    writer.writeLine("EvaluationResult<? extends " + interfaceName + "> result = (" + getMapName(rule) +
+                     " == null ? null : " + getMapName(rule) +
+                     ".get(position));");
+
+    writer.writeLineAndIndent("if (result == null) {");
+
+    writer.writeLine("EvaluationResult<? extends " + tokenType + "> subresult = EvaluationResult.failure();");
+    writer.writeLine("subresult = " + callExpression(rule.getExpression(), "position") + ";");
+
+    writer.writeLineAndIndent("if (subresult.succeeded) {");
+    writer.writeLine("result = new EvaluationResult<" + interfaceName +
+                     ">(true, subresult.position, new " + className + "(subresult.value));");
+
+    writer.dedentWriteLineAndIndent("} else {");
+    writer.writeLine("result = EvaluationResult.failure();");
+    writer.dedentAndWriteLine("}");
+
+    writer.writeLine(getMapName(rule) + " = initializeMap(" + getMapName(rule) + ");");
+    writer.writeLine(getMapName(rule) + ".put(position, result);");
+    writer.dedentAndWriteLine("}");
+
+    writer.writeLine("return result;");
+    writer.dedentAndWriteLine("}");
+  }
+
+  private void writeNormalParseMethod(Rule rule) throws IOException {
+    writer.writeLine();
+
+    String interfaceName = getNodeName(rule);
+
+    writer.writeLine(
+        "private Map<Integer,EvaluationResult<? extends " + interfaceName + ">> " + getMapName(rule) + ";");
+
+    writer.writeLineAndIndent(
+        "private EvaluationResult<? extends " + interfaceName + "> parse" + rule.getVariable() +
+        "(int position) {");
+    writer.writeLine("EvaluationResult<? extends " + interfaceName + "> result = (" + getMapName(rule) +
+                     " == null ? null : " + getMapName(rule) +
                      ".get(position));");
 
     writer.writeLineAndIndent("if (result == null) {");
@@ -196,11 +313,12 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
       writer.writeLineAndIndent("if (checkToken_" + rule.getVariable() + "(position)) {");
       writer.writeLine("result = " + callExpression(rule.getExpression(), "position") + ";");
       writer.dedentWriteLineAndIndent("} else {");
-      writer.writeLine("result = EvaluationResult.failure;");
+      writer.writeLine("result = EvaluationResult.failure();");
       writer.dedentAndWriteLine("}");
     } else {
       writer.writeLine("result = " + callExpression(rule.getExpression(), "position") + ";");
     }
+
     writer.writeLine(getMapName(rule) + " = initializeMap(" + getMapName(rule) + ");");
     writer.writeLine(getMapName(rule) + ".put(position, result);");
     writer.dedentAndWriteLine("}");
@@ -210,90 +328,140 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
   }
 
   private String callExpression(Expression expr, final String position) {
+    return callExpression(expr, position, true);
+  }
+
+  private String callExpression(Expression expr, final String position, final boolean allowRawTokens) {
     return expr.accept(new DefaultExpressionVisitor<Object, String>() {
-      @Override protected String defaultCase(Expression expression) {
-        return "evaluate" + expressionMap.get(expression) + "(" + position + ")";
+       protected String defaultCase(Expression expression) {
+        return "evaluate" + expressionNamesMap.get(expression) + "(" + position + ")";
       }
 
-      @Override public String visit(VariableExpression expression) {
+       public String visit(VariableExpression expression) {
         return "parse" + expression.getVariable() + "(" + position + ")";
       }
 
-      @Override public String visit(EmptyExpression expression) {
+       public String visit(EmptyExpression expression) {
         return "new EvaluationResult(true, " + position + ")";
       }
 
-      @Override public String visit(TokenExpression expression) {
-        return "evaluateToken(" + position + ", " + expression.getToken().getClass().getSimpleName() + ".instance)";
+      public String visit(TokenExpression expression) {
+        if (allowRawTokens) {
+          return defaultCase(expression);
+        } else {
+          return "box" + expression.getToken().getClass().getSimpleName() +
+                 "(" + defaultCase(expression) + ")";
+        }
       }
 
-      @Override public String visit(FunctionExpression<Object> expression) {
+      public String visit(TypeExpression expression) {
+        if (allowRawTokens) {
+          return defaultCase(expression);
+        } else {
+          return "box" + expression.getType().getSimpleName() +
+                 "(" + defaultCase(expression) + ")";
+        }
+      }
+
+       public String visit(FunctionExpression<Object> expression) {
         return expression.getName() + "(" + position + ")";
       }
     });
   }
 
   private void writeEvaluateMethod(Expression expression) throws IOException {
-    writer.writeLineAndIndent("private EvaluationResult evaluate" + expressionMap.get(expression) + "(int position) {");
+    final String interfaceType = getExpressionType(expression);
+    final String classType = interfaceType.substring(1);
+
+    writer.writeLineAndIndent(
+        "@SuppressWarnings(\"unchecked\")\n" +
+        "private EvaluationResult<? extends " + interfaceType + "> evaluate" +
+        expressionNamesMap.get(expression) + "(int position) {");
 
     expression.accept(new ExpressionVoidVisitor() {
-      @Override public void visit(EmptyExpression emptyExpression) {
+       public void visit(EmptyExpression emptyExpression) {
         throw new UnsupportedOperationException();
       }
 
-      @Override public void visit(CharacterExpression characterExpression) {
+       public void visit(CharacterExpression characterExpression) {
         throw new UnsupportedOperationException();
       }
 
-      @Override public void visit(TerminalExpression terminalExpression) {
+       public void visit(TerminalExpression terminalExpression) {
         throw new UnsupportedOperationException();
       }
 
-      @Override public void visit(VariableExpression variableExpression) {
+       public void visit(VariableExpression variableExpression) {
         throw new UnsupportedOperationException();
       }
 
-      @Override public void visit(FunctionExpression objectFunctionExpression) {
+       public void visit(FunctionExpression objectFunctionExpression) {
         throw new UnsupportedOperationException();
       }
 
-      @Override public void visit(SequenceExpression sequenceExpression) {
-        writer.writeLine("ArrayList<Object> values = null;");
-        writer.writeLine();
-
+       public void visit(SequenceExpression sequenceExpression) {
         Expression[] children = sequenceExpression.getChildren();
 
-        writer.writeLine("EvaluationResult result = " + callExpression(children[0], "position") + ";");
-        writer.writeLine("if (!result.succeeded) { return EvaluationResult.failure; }");
-        writer.writeLine("values = addValue(values, result);");
+        writer.writeLine("EvaluationResult<? extends " + getExpressionType(children[0]) + "> result_" + 0 + " = " +
+                         callExpression(children[0], "position") + ";");
+        writer.writeLine("if (!result_" + 0 + ".succeeded) { return EvaluationResult.failure(); }");
         writer.writeLine();
 
         for (int i = 1; i < children.length; i++) {
-          writer.writeLine("result = " + callExpression(children[i], "result.getPosition()") + ";");
-          writer.writeLine("if (!result.succeeded) { return EvaluationResult.failure; }");
-          writer.writeLine("values = addValue(values, result);");
+          writer.writeLine("EvaluationResult<? extends " + getExpressionType(children[i]) + "> result_" + i + " = " +
+                           callExpression(children[i], "result_" + (i - 1) + ".position") + ";");
+          writer.writeLine("if (!result_" + i + ".succeeded) { return EvaluationResult.failure(); }");
           writer.writeLine();
         }
 
-        writer.writeLine("return new EvaluationResult(true, result.getPosition(), trimList(values));");
+        String arguments = "";
+        for (int i = 0; i < children.length; i++) {
+          if (children[i] instanceof NotExpression) {
+            continue;
+          }
+
+          if (!"".equals(arguments)) {
+            arguments += ", ";
+          }
+          arguments += "result_" + i + ".value";
+        }
+
+        writer.writeLine(interfaceType + " node = new " + classType + "(" + arguments + ");");
+        writer.writeLine("return new EvaluationResult<" + interfaceType + ">(true, result_" + (children.length - 1) +
+                         ".position, node);");
       }
 
-      @Override public void visit(DelimitedSequenceExpression sequenceExpression) {
-        writer.writeLine("ArrayList<Object> elements = null;");
-        writer.writeLine("ArrayList<Object> delimiters = null;");
+       public void visit(DelimitedSequenceExpression sequenceExpression) {
+        boolean rhs = isRHSOfRule(sequenceExpression);
+        String thisType = getExpressionType(sequenceExpression);
+        String elementType = getExpressionType(sequenceExpression.getElement());
+        String delimiterType = getExpressionType(sequenceExpression.getDelimiter());
+
+        writer.writeLine("ArrayList<" + elementType + "> elements = null;");
+        writer.writeLine("ArrayList<" + delimiterType + " > delimiters = null;");
 
         writer.writeLine(
-            "EvaluationResult result = " + callExpression(sequenceExpression.getElement(), "position") + ";");
-        writer.writeLine("if (!result.succeeded) { return EvaluationResult.failure; }");
-        writer.writeLine("elements = addValue(elements, result);");
+            "EvaluationResult<? extends " + elementType + "> result = " +
+            callExpression(sequenceExpression.getElement(), "position") + ";");
+        writer.writeLine("if (!result.succeeded) { return EvaluationResult.failure(); }");
+        writer.writeLine("elements = addValue(elements, result.value);");
         writer.writeLineAndIndent("while (true) {");
         writer.writeLine("int currentPosition = result.position;");
         writer.writeLine();
-        writer.writeLine("EvaluationResult delimiterResult = " +
+        writer.writeLine("EvaluationResult<? extends " + delimiterType + "> delimiterResult = " +
                          callExpression(sequenceExpression.getDelimiter(), "currentPosition") + ";");
         writer.writeLineAndIndent("if (!delimiterResult.succeeded) {");
-        writer.writeLine(
-            "return new EvaluationResult(true, currentPosition, Arrays.asList(trimList(elements), trimList(delimiters)));");
+
+        if (rhs) {
+          writer.writeLine(
+              "return new EvaluationResult<" + thisType + ">(true, currentPosition, new " + classType +
+              "(new ArrayDelimitedList<" +
+              elementType + ", " + delimiterType + ">(trimList(elements), trimList(delimiters))));");
+        } else {
+          writer.writeLine(
+              "return new EvaluationResult<" + thisType + ">(true, currentPosition, new ArrayDelimitedList<" +
+              elementType + ", " + delimiterType + ">(trimList(elements), trimList(delimiters)));");
+        }
         writer.dedentAndWriteLine("}");
         writer.writeLine();
         writer.writeLine(
@@ -301,188 +469,277 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         writer.writeLineAndIndent("if (!result.succeeded) {");
         if (sequenceExpression.allowsTrailingDelimiter()) {
           // accept the last delimiter.
-          writer.writeLine("delimiters = addValue(delimiters, delimiterResult)");
+          writer.writeLine("delimiters = addValue(delimiters, delimiterResult.value)");
         }
-        writer.writeLine(
-            "return new EvaluationResult(true, currentPosition, Arrays.asList(trimList(elements), trimList(delimiters)));");
+
+        if (rhs) {
+          writer.writeLine(
+              "return new EvaluationResult<" + thisType + ">(true, currentPosition, new " + classType +
+              "(new ArrayDelimitedList<" +
+              elementType + ", " + delimiterType + ">(trimList(elements), trimList(delimiters))));");
+        } else {
+          writer.writeLine(
+              "return new EvaluationResult<" + thisType + ">(true, currentPosition, new ArrayDelimitedList<" +
+              elementType + ", " + delimiterType + ">(trimList(elements), trimList(delimiters)));");
+        }
+
         writer.dedentAndWriteLine("}");
-        writer.writeLine("elements = addValue(elements, result);");
+        writer.writeLine("elements = addValue(elements, result.value);");
         writer.dedentAndWriteLine("}");
-
-        /*
-           EvaluationResult delimiterResult = evaluateExpression(currentPosition, sequenceExpression.getDelimiter());
-        if (delimiterResult.isFailure()) {
-          return new EvaluationResult(currentPosition, Arrays.asList(trimList(elements), trimList(delimiters)));
-        }
-
-        result = evaluateExpression(delimiterResult.position, sequenceExpression.getElement());
-        if (result.isFailure()) {
-          if (sequenceExpression.allowsTrailingDelimiter()) {
-            // accept the last delimiter.
-            delimiters = addValue(delimiters, delimiterResult);
-          }
-
-          return new EvaluationResult(currentPosition, Arrays.asList(trimList(elements), trimList(delimiters)));
-        }
-
-        elements = addValue(elements, result);
-      }
-         */
       }
 
-      @Override public void visit(ChoiceExpression choiceExpression) {
-        writer.writeLine("EvaluationResult result;");
+       public void visit(ChoiceExpression choiceExpression) {
+        String thisType = getExpressionType(choiceExpression);
+        writer.writeLine("EvaluationResult<? extends " + thisType + "> result;");
 
         Expression[] children = choiceExpression.getChildren();
 
         for (int i = 0; i < children.length - 1; i++) {
           writer.writeLine(
-              "if ((result = " + callExpression(children[i], "position") + ").succeeded) { return result; }");
+              "if ((result = " + callExpression(children[i], "position", false) + ").succeeded) { return result; }");
         }
 
-        writer.writeLine("return " + callExpression(children[children.length - 1], "position") + ";");
+        writer.writeLine("return " + callExpression(children[children.length - 1], "position", false) + ";");
       }
 
-      @Override public void visit(OptionalExpression optionalExpression) {
-        writer.writeLine("EvaluationResult result;");
+       public void visit(OptionalExpression optionalExpression) {
+        String thisType = getExpressionType(optionalExpression);
+        writer.writeLine("EvaluationResult<? extends " + thisType + "> result;");
         writer.writeLine("if ((result = " + callExpression(optionalExpression.getChild(), "position") +
                          ").succeeded) { return result; }");
 
-        writer.writeLine("return " + callExpression(empty(), "position") + ";");
+        writer.writeLine("return new EvaluationResult<" + thisType + ">(true, position, null);");
+        //writer.writeLine("return " + callExpression(empty(), "position") + ";");
       }
 
-      @Override public void visit(NotExpression notExpression) {
-        writer.writeLine("EvaluationResult result = " + callExpression(notExpression.getChild(), "position") + ";");
-        writer.writeLine("return new EvaluationResult(!result.succeeded, position);");
+       public void visit(NotExpression notExpression) {
+        String thisType = getExpressionType(notExpression);
+        writer.writeLine("EvaluationResult<? extends " + thisType + "> result = " +
+                         callExpression(notExpression.getChild(), "position") + ";");
+        writer.writeLine("return new EvaluationResult<" + thisType + ">(!result.succeeded, position);");
       }
 
-      @Override public void visit(RepetitionExpression repetitionExpression) {
+       public void visit(RepetitionExpression repetitionExpression) {
+        boolean isRHS = isRHSOfRule(repetitionExpression);
+        String thisType = getExpressionType(repetitionExpression);
+        String childType = getExpressionType(repetitionExpression.getChild());
+
         writer.writeLine("int currentPosition = position;");
-        writer.writeLine("ArrayList<Object> values = null;");
+        writer.writeLine("ArrayList<" + childType + "> values = null;");
 
         writer.writeLineAndIndent("while (true) {");
         writer.writeLine(
-            "EvaluationResult result = " + callExpression(repetitionExpression.getChild(), "currentPosition") + ";");
+            "EvaluationResult<? extends " + childType + "> result = " +
+            callExpression(repetitionExpression.getChild(), "currentPosition") + ";");
 
         writer.writeLineAndIndent("if (result.succeeded) {");
-        writer.writeLine("currentPosition = result.getPosition();");
-        writer.writeLine("values = addValue(values, result);");
+        writer.writeLine("currentPosition = result.position;");
+        writer.writeLine("values = addValue(values, result.value);");
         writer.dedentWriteLineAndIndent("} else {");
-        writer.writeLine("return new EvaluationResult(true, currentPosition, trimList(values));");
+        if (isRHS) {
+          writer.writeLine("return new EvaluationResult<" + thisType + ">(true, currentPosition, new " +
+                           thisType.substring(1) + "(trimList(values)));");
+        } else {
+          writer.writeLine("return new EvaluationResult<" + thisType + ">(true, currentPosition, trimList(values));");
+        }
         writer.dedentAndWriteLine("}");
         writer.dedentAndWriteLine("}");
       }
 
-      @Override public void visit(OneOrMoreExpression oneOrMoreExpression) {
-        writer.writeLine("ArrayList<Object> values = null;");
+       public void visit(OneOrMoreExpression oneOrMoreExpression) {
+        String thisType = getExpressionType(oneOrMoreExpression);
+        String childType = getExpressionType(oneOrMoreExpression.getChild());
+
+        writer.writeLine("ArrayList<" + childType + "> values = null;");
         writer.writeLine(
-            "EvaluationResult result = " + callExpression(oneOrMoreExpression.getChild(), "position") + ";");
+            "EvaluationResult<? extends " + childType + "> result = " +
+            callExpression(oneOrMoreExpression.getChild(), "position") + ";");
         writer.writeLineAndIndent("if (!result.succeeded) {");
-        writer.writeLine("return EvaluationResult.failure;");
+        writer.writeLine("return EvaluationResult.failure();");
         writer.dedentAndWriteLine("}");
 
         writer.writeLineAndIndent("while (true) {");
-        writer.writeLine("int currentPosition = result.getPosition();");
-        writer.writeLine("values = addValue(values, result);");
+        writer.writeLine("int currentPosition = result.position;");
+        writer.writeLine("values = addValue(values, result.value);");
         writer.writeLine("result = " + callExpression(oneOrMoreExpression.getChild(), "currentPosition") + ";");
         writer.writeLineAndIndent("if (!result.succeeded) {");
-        writer.writeLine("return new EvaluationResult(true, currentPosition, trimList(values));");
+        writer.writeLine("return new EvaluationResult<" + thisType + ">(true, currentPosition, trimList(values));");
         writer.dedentAndWriteLine("}");
         writer.dedentAndWriteLine("}");
       }
 
-      @Override public void visit(TokenExpression tokenExpression) {
+       public void visit(TokenExpression tokenExpression) {
+        String thisType = getExpressionType(tokenExpression);
+
         writer.writeLineAndIndent("if (position < tokens.size()) {");
-        writer.writeLine("SourceToken<Token> token = tokens.get(position);");
+        writer.writeLine("SourceToken token = tokens.get(position);");
 
         writer.writeLineAndIndent("if (" + tokenExpression.getToken().getClass()
             .getSimpleName() + ".instance.equals(token.getToken())) {");
-        writer.writeLine("return new EvaluationResult(true, position + 1, token);");
+        writer.writeLine("return new EvaluationResult<" + thisType + ">(true, position + 1, token);");
         writer.dedentAndWriteLine("}");
         writer.dedentAndWriteLine("}");
 
-        writer.writeLine("return EvaluationResult.failure;");
+        writer.writeLine("return EvaluationResult.failure();");
       }
 
-      @Override public void visit(TypeExpression typeExpression) {
+       public void visit(TypeExpression typeExpression) {
+        String thisType = getExpressionType(typeExpression);
+
         writer.writeLineAndIndent("if (position < tokens.size()) {");
-        writer.writeLine("SourceToken<Token> token = tokens.get(position);");
+        writer.writeLine("SourceToken token = tokens.get(position);");
 
         writer.writeLine("Class<? extends Token> actualType = token.getToken().getClass();");
 
         writer.writeLineAndIndent("if (" + typeExpression.getType()
             .getSimpleName() + ".class.isAssignableFrom(actualType)) {");
-        writer.writeLine("return new EvaluationResult(true, position + 1, token);");
+        writer.writeLine("return new EvaluationResult<" + thisType + ">(true, position + 1, token);");
         writer.dedentAndWriteLine("}");
         writer.dedentAndWriteLine("}");
 
-        writer.writeLine("return EvaluationResult.failure;");
+        writer.writeLine("return EvaluationResult.failure();");
       }
     });
 
     writer.dedentAndWriteLine("}");
   }
 
+  private boolean isRHSOfRule(Expression expression) {
+    for (Rule rule : grammar.getRules()) {
+      if (rule.getExpression() == expression) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  private String getExpressionType(Expression expr) {
+    Rule r2 = null;
+    for (Rule r : grammar.getRules()) {
+      if (r.getExpression() == expr) {
+        r2 = r;
+        break;
+      }
+    }
+
+    final Rule rule = r2;
+
+    if (rule != null) {
+      return "I" + rule.getVariable() + "Node";
+    }
+
+    return expr.accept(new DefaultExpressionVisitor<Object, String>() {
+      public String visit(OptionalExpression expression) {
+        return expression.getChild().accept(this);
+      }
+
+      public String visit(ChoiceExpression expression) {
+        return "I" + rule.getVariable() + "Node";
+      }
+
+      public String visit(SequenceExpression expression) {
+        return "I" + rule.getVariable() + "Node";
+      }
+
+      public String visit(DelimitedSequenceExpression sequenceExpression) {
+        return "DelimitedList<" +
+               sequenceExpression.getElement().accept(this) + ", " +
+               sequenceExpression.getDelimiter().accept(this) + ">";
+      }
+
+      public String visit(VariableExpression expression) {
+        return "I" + expression.getVariable() + "Node";
+      }
+
+      public String visit(RepetitionExpression expression) {
+        return "List<" + expression.getChild().accept(this) + ">";
+      }
+
+      public String visit(OneOrMoreExpression expression) {
+        return "List<" + expression.getChild().accept(this) + ">";
+      }
+
+      public String visit(TokenExpression expression) {
+        return "SourceToken<" + expression.getToken().getClass().getSimpleName() + ">";
+      }
+
+      public String visit(TypeExpression expression) {
+        return "SourceToken<" + expression.getType().getSimpleName() + ">";
+      }
+
+      public String visit(NotExpression expression) {
+        return expression.getChild().accept(this);
+      }
+
+      public String visit(FunctionExpression<Object> objectFunctionExpression) {
+        return "Object";
+      }
+    });
+  }
+
   private void createExpressionNames(final String variable, Expression expr) {
     expr.accept(new RecursionExpressionVisitor() {
-
-      @Override public void visit(TerminalExpression expression) {
+       public void visit(TerminalExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-      @Override public void visit(VariableExpression expression) {}
+       public void visit(VariableExpression expression) {}
 
-      @Override public void visit(TokenExpression expression) {}
+       public void visit(EmptyExpression expression) {}
 
-      @Override public void visit(EmptyExpression expression) {}
+       public void visit(FunctionExpression expression) { }
 
-      @Override public void visit(FunctionExpression expression) { }
-
-      @Override public void visit(SequenceExpression expression) {
+       public void visit(SequenceExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-      @Override public void visit(DelimitedSequenceExpression expression) {
+       public void visit(DelimitedSequenceExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-      @Override public void visit(ChoiceExpression expression) {
+       public void visit(ChoiceExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-      @Override public void visit(OptionalExpression expression) {
+       public void visit(OptionalExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-      @Override public void visit(NotExpression expression) {
+       public void visit(NotExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-      @Override public void visit(RepetitionExpression expression) {
+       public void visit(RepetitionExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-      @Override public void visit(OneOrMoreExpression expression) {
+       public void visit(OneOrMoreExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-      @Override public void visit(TypeExpression expression) {
+       public void visit(TokenExpression expression) {
         super.visit(expression);
-        getExpressionId(variable, expression);
+        expressionNamesMap.put(expression, expression.getToken().getClass().getSimpleName());
+      }
+
+       public void visit(TypeExpression expression) {
+        super.visit(expression);
+        expressionNamesMap.put(expression, expression.getType().getSimpleName());
       }
     });
   }
 
   private String getExpressionId(String variable, Expression expression) {
-    String id = expressionMap.get(expression);
+    String id = expressionNamesMap.get(expression);
 
     if (id == null) {
       String prefix = variable + "Expression_";
@@ -490,15 +747,15 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
 
       do {
         id = prefix + index++;
-      } while (expressionMap.containsValue(id));
+      } while (expressionNamesMap.containsValue(id));
 
-      expressionMap.put(expression, id);
+      expressionNamesMap.put(expression, id);
     }
 
     return id;
   }
 
-  private Map<Expression, String> expressionMap = new LinkedHashMap<Expression, String>();
+  private Map<Expression, String> expressionNamesMap = new LinkedHashMap<Expression, String>();
 
   private static String getMapName(Rule rule) {
     return rule.getVariable() + "Map";

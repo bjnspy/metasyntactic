@@ -5,50 +5,50 @@ package org.metasyntactic.automata.compiler.framework.parsers.packrat.expression
  * Settings | File Templates.
  */
 public class RecursionExpressionVisitor implements ExpressionVoidVisitor {
-  @Override public void visit(EmptyExpression emptyExpression) { }
+   public void visit(EmptyExpression emptyExpression) { }
 
-  @Override public void visit(CharacterExpression characterExpression) { }
+   public void visit(CharacterExpression characterExpression) { }
 
-  @Override public void visit(TerminalExpression terminalExpression) { }
+   public void visit(TerminalExpression terminalExpression) { }
 
-  @Override public void visit(VariableExpression variableExpression) { }
+   public void visit(VariableExpression variableExpression) { }
 
-  @Override public void visit(FunctionExpression functionExpression) { }
+   public void visit(FunctionExpression functionExpression) { }
 
-  @Override public void visit(TokenExpression tokenExpression) { }
+   public void visit(TokenExpression tokenExpression) { }
 
-  @Override public void visit(TypeExpression typeExpression) { }
+   public void visit(TypeExpression typeExpression) { }
 
-  @Override public void visit(DelimitedSequenceExpression sequenceExpression) {
+   public void visit(DelimitedSequenceExpression sequenceExpression) {
     sequenceExpression.getElement().accept(this);
     sequenceExpression.getDelimiter().accept(this);
   }
 
-  @Override public void visit(SequenceExpression sequenceExpression) {
+   public void visit(SequenceExpression sequenceExpression) {
     for (Expression child : sequenceExpression.getChildren()) {
       child.accept(this);
     }
   }
 
-  @Override public void visit(OneOrMoreExpression oneOrMoreExpression) {
+   public void visit(OneOrMoreExpression oneOrMoreExpression) {
     oneOrMoreExpression.getChild().accept(this);
   }
 
-  @Override public void visit(ChoiceExpression choiceExpression) {
+   public void visit(ChoiceExpression choiceExpression) {
     for (Expression child : choiceExpression.getChildren()) {
       child.accept(this);
     }
   }
 
-  @Override public void visit(OptionalExpression optionalExpression) {
+   public void visit(OptionalExpression optionalExpression) {
     optionalExpression.getChild().accept(this);
   }
 
-  @Override public void visit(NotExpression notExpression) {
+   public void visit(NotExpression notExpression) {
     notExpression.getChild().accept(this);
   }
 
-  @Override public void visit(RepetitionExpression repetitionExpression) {
+   public void visit(RepetitionExpression repetitionExpression) {
     repetitionExpression.getChild().accept(this);
   }
 }

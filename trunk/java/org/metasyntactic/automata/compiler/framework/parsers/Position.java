@@ -26,7 +26,7 @@ public class Position {
     return character;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -46,14 +46,14 @@ public class Position {
     return true;
   }
 
-  @Override public int hashCode() {
+   public int hashCode() {
     int result;
     result = line;
     result = 31 * result + character;
     return result;
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "(" + line + ", " + character + ")";
   }
 }

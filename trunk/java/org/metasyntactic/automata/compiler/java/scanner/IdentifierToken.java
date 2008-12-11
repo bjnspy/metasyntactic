@@ -5,7 +5,7 @@ public class IdentifierToken extends JavaToken {
     super(text);
   }
 
-  @Override protected Type getTokenType() {
+   protected Type getTokenType() {
     return type();
   }
 

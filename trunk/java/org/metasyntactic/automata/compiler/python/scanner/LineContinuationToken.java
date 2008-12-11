@@ -7,7 +7,7 @@ public class LineContinuationToken extends PythonToken {
     super("\\");
   }
 
-  @Override public Type getTokenType() {
+   public Type getTokenType() {
     return Type.LineContinuation;
   }
 }

@@ -7,11 +7,11 @@ public class DedentToken extends PythonToken {
     super("");
   }
 
-  @Override public Type getTokenType() {
+   public Type getTokenType() {
     return Type.Dedent;
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "Dedent";
   }
 }

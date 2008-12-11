@@ -30,7 +30,7 @@ public abstract class LiteralToken<T> extends JavaToken {
   public abstract T getValue();
 
   /*
-  @Override protected Type getTokenType() {
+   protected Type getTokenType() {
     return type();
   }
 

@@ -18,11 +18,11 @@ public class None<T> implements Optional<T> {
   private None() {
   }
 
-  @Override public boolean hasValue() {
+   public boolean hasValue() {
     return false;
   }
 
-  @Override public T value() {
+   public T value() {
     throw new UnsupportedOperationException();
   }
 }

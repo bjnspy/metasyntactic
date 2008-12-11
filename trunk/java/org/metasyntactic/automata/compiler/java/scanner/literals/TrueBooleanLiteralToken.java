@@ -11,7 +11,7 @@ public class TrueBooleanLiteralToken extends BooleanLiteralToken {
     super("true");
   }
 
-  @Override public Boolean getValue() {
+   public Boolean getValue() {
     return true;
   }
 }

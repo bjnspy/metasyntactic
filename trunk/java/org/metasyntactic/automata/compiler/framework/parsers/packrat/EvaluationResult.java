@@ -17,7 +17,7 @@ public class EvaluationResult {
     this.answer = answer;
   }
 
-  @Override public String toString() {
+   public String toString() {
     if (this.isFailure()) {
       return "(Result failed)";
     } else {

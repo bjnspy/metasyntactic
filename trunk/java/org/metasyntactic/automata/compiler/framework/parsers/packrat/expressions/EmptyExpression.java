@@ -13,19 +13,19 @@ public class EmptyExpression extends Expression {
   private EmptyExpression() {
   }
 
-  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
+   public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 
-  @Override public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
+   public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
     visitor.visit(this);
   }
 
-  @Override protected int hashCodeWorker() {
+   protected int hashCodeWorker() {
     return System.identityHashCode(this);
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "?";
   }
 }

@@ -17,7 +17,7 @@ public class Pair<A, B> {
     return second;
   }
 
-  @Override
+
   public boolean equals(Object o) {
     if (this == o) {
       return true;
@@ -38,7 +38,7 @@ public class Pair<A, B> {
     return true;
   }
 
-  @Override
+
   public int hashCode() {
     int result;
     result = (first != null ? first.hashCode() : 0);
@@ -46,7 +46,7 @@ public class Pair<A, B> {
     return result;
   }
 
-  @Override
+
   public String toString() {
     return "(Pair " + getFirst() + " " + getSecond() + ")";
   }

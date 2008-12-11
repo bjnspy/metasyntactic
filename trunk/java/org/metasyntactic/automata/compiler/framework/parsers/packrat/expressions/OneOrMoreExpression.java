@@ -15,7 +15,7 @@ public class OneOrMoreExpression extends Expression {
     return child;
   }
 
-  @Override public boolean equals(Object o) {
+   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -32,19 +32,19 @@ public class OneOrMoreExpression extends Expression {
     return true;
   }
 
-  @Override public int hashCodeWorker() {
+   public int hashCodeWorker() {
     return child.hashCode() + 2;
   }
 
-  @Override public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
+   public <TInput, TResult> TResult accept(ExpressionVisitor<TInput, TResult> visitor) {
     return visitor.visit(this);
   }
 
-  @Override public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
+   public <TInput> void accept(ExpressionVoidVisitor<TInput> visitor) {
     visitor.visit(this);
   }
 
-  @Override public String toString() {
+   public String toString() {
     return "(OneOrMore " + child + ")";
   }
 }

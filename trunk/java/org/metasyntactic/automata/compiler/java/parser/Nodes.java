@@ -20,16 +20,17 @@ import org.metasyntactic.automata.compiler.java.scanner.keywords.*;
 import org.metasyntactic.automata.compiler.java.scanner.literals.LiteralToken;
 import org.metasyntactic.automata.compiler.java.scanner.operators.*;
 import org.metasyntactic.automata.compiler.java.scanner.separators.*;
+import org.metasyntactic.automata.compiler.util.DelimitedList;
 
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Nodes {
-  public interface INode {
+  public static interface INode {
     void accept(INodeVisitor visitor);
   }
 
-  public interface INodeVisitor {
+  public static interface INodeVisitor {
     void visit(ICompilationUnitNode node);
 
     void visit(IPackageDeclarationNode node);
@@ -210,8 +211,6 @@ public class Nodes {
 
     void visit(IDelimitedExpressionListNode node);
 
-    void visit(IForUpdateNode node);
-
     void visit(IEnhancedForStatementNode node);
 
     void visit(IBreakStatementNode node);
@@ -352,6 +351,8 @@ public class Nodes {
 
     void visit(IPlusEqualsOperatorTokenNode node);
 
+    void visit(IQuestionMarkOperatorTokenNode node);
+
     void visit(IEqualsEqualsOperatorTokenNode node);
 
     void visit(IDoubleKeywordTokenNode node);
@@ -421,7 +422,7 @@ public class Nodes {
     void visit(IDivideEqualsOperatorTokenNode node);
   }
 
-  public abstract class AbstractNode implements INode {
+  public static abstract class AbstractNode implements INode {
     private int hashCode = -1;
 
     public int hashCode() {
@@ -438,11 +439,11 @@ public class Nodes {
     }
   }
 
-  public interface IThisKeywordTokenNode extends INode, IValueExpressionNode {
+  public static interface IThisKeywordTokenNode extends INode, IValueExpressionNode {
     SourceToken<ThisKeywordToken> getToken();
   }
 
-  public class ThisKeywordTokenNode extends AbstractNode implements IThisKeywordTokenNode {
+  public static class ThisKeywordTokenNode extends AbstractNode implements IThisKeywordTokenNode {
     private final SourceToken<ThisKeywordToken> token;
 
     public ThisKeywordTokenNode(SourceToken<ThisKeywordToken> token) {
@@ -470,11 +471,11 @@ public class Nodes {
     }
   }
 
-  public interface IVolatileKeywordTokenNode extends INode, IModifierNode {
+  public static interface IVolatileKeywordTokenNode extends INode, IModifierNode {
     SourceToken<VolatileKeywordToken> getToken();
   }
 
-  public class VolatileKeywordTokenNode extends AbstractNode implements IVolatileKeywordTokenNode {
+  public static class VolatileKeywordTokenNode extends AbstractNode implements IVolatileKeywordTokenNode {
     private final SourceToken<VolatileKeywordToken> token;
 
     public VolatileKeywordTokenNode(SourceToken<VolatileKeywordToken> token) {
@@ -502,11 +503,11 @@ public class Nodes {
     }
   }
 
-  public interface ITimesEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface ITimesEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<TimesEqualsOperatorToken> getToken();
   }
 
-  public class TimesEqualsOperatorTokenNode extends AbstractNode implements ITimesEqualsOperatorTokenNode {
+  public static class TimesEqualsOperatorTokenNode extends AbstractNode implements ITimesEqualsOperatorTokenNode {
     private final SourceToken<TimesEqualsOperatorToken> token;
 
     public TimesEqualsOperatorTokenNode(SourceToken<TimesEqualsOperatorToken> token) {
@@ -534,11 +535,11 @@ public class Nodes {
     }
   }
 
-  public interface IBitwiseNotOperatorTokenNode extends INode, IPrefixOperatorNode {
+  public static interface IBitwiseNotOperatorTokenNode extends INode, IPrefixOperatorNode {
     SourceToken<BitwiseNotOperatorToken> getToken();
   }
 
-  public class BitwiseNotOperatorTokenNode extends AbstractNode implements IBitwiseNotOperatorTokenNode {
+  public static class BitwiseNotOperatorTokenNode extends AbstractNode implements IBitwiseNotOperatorTokenNode {
     private final SourceToken<BitwiseNotOperatorToken> token;
 
     public BitwiseNotOperatorTokenNode(SourceToken<BitwiseNotOperatorToken> token) {
@@ -566,11 +567,12 @@ public class Nodes {
     }
   }
 
-  public interface IExclusiveOrEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IExclusiveOrEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<ExclusiveOrEqualsOperatorToken> getToken();
   }
 
-  public class ExclusiveOrEqualsOperatorTokenNode extends AbstractNode implements IExclusiveOrEqualsOperatorTokenNode {
+  public static class ExclusiveOrEqualsOperatorTokenNode extends AbstractNode
+      implements IExclusiveOrEqualsOperatorTokenNode {
     private final SourceToken<ExclusiveOrEqualsOperatorToken> token;
 
     public ExclusiveOrEqualsOperatorTokenNode(SourceToken<ExclusiveOrEqualsOperatorToken> token) {
@@ -598,11 +600,11 @@ public class Nodes {
     }
   }
 
-  public interface IMinusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IMinusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<MinusEqualsOperatorToken> getToken();
   }
 
-  public class MinusEqualsOperatorTokenNode extends AbstractNode implements IMinusEqualsOperatorTokenNode {
+  public static class MinusEqualsOperatorTokenNode extends AbstractNode implements IMinusEqualsOperatorTokenNode {
     private final SourceToken<MinusEqualsOperatorToken> token;
 
     public MinusEqualsOperatorTokenNode(SourceToken<MinusEqualsOperatorToken> token) {
@@ -630,11 +632,11 @@ public class Nodes {
     }
   }
 
-  public interface INativeKeywordTokenNode extends INode, IModifierNode {
+  public static interface INativeKeywordTokenNode extends INode, IModifierNode {
     SourceToken<NativeKeywordToken> getToken();
   }
 
-  public class NativeKeywordTokenNode extends AbstractNode implements INativeKeywordTokenNode {
+  public static class NativeKeywordTokenNode extends AbstractNode implements INativeKeywordTokenNode {
     private final SourceToken<NativeKeywordToken> token;
 
     public NativeKeywordTokenNode(SourceToken<NativeKeywordToken> token) {
@@ -662,11 +664,12 @@ public class Nodes {
     }
   }
 
-  public interface ILessThanOrEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface ILessThanOrEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<LessThanOrEqualsOperatorToken> getToken();
   }
 
-  public class LessThanOrEqualsOperatorTokenNode extends AbstractNode implements ILessThanOrEqualsOperatorTokenNode {
+  public static class LessThanOrEqualsOperatorTokenNode extends AbstractNode
+      implements ILessThanOrEqualsOperatorTokenNode {
     private final SourceToken<LessThanOrEqualsOperatorToken> token;
 
     public LessThanOrEqualsOperatorTokenNode(SourceToken<LessThanOrEqualsOperatorToken> token) {
@@ -694,11 +697,11 @@ public class Nodes {
     }
   }
 
-  public interface IDivideOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface IDivideOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<DivideOperatorToken> getToken();
   }
 
-  public class DivideOperatorTokenNode extends AbstractNode implements IDivideOperatorTokenNode {
+  public static class DivideOperatorTokenNode extends AbstractNode implements IDivideOperatorTokenNode {
     private final SourceToken<DivideOperatorToken> token;
 
     public DivideOperatorTokenNode(SourceToken<DivideOperatorToken> token) {
@@ -726,11 +729,12 @@ public class Nodes {
     }
   }
 
-  public interface IRightShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IRightShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<RightShiftEqualsOperatorToken> getToken();
   }
 
-  public class RightShiftEqualsOperatorTokenNode extends AbstractNode implements IRightShiftEqualsOperatorTokenNode {
+  public static class RightShiftEqualsOperatorTokenNode extends AbstractNode
+      implements IRightShiftEqualsOperatorTokenNode {
     private final SourceToken<RightShiftEqualsOperatorToken> token;
 
     public RightShiftEqualsOperatorTokenNode(SourceToken<RightShiftEqualsOperatorToken> token) {
@@ -758,11 +762,11 @@ public class Nodes {
     }
   }
 
-  public interface ILongKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface ILongKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<LongKeywordToken> getToken();
   }
 
-  public class LongKeywordTokenNode extends AbstractNode implements ILongKeywordTokenNode {
+  public static class LongKeywordTokenNode extends AbstractNode implements ILongKeywordTokenNode {
     private final SourceToken<LongKeywordToken> token;
 
     public LongKeywordTokenNode(SourceToken<LongKeywordToken> token) {
@@ -790,11 +794,11 @@ public class Nodes {
     }
   }
 
-  public interface IIntKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface IIntKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<IntKeywordToken> getToken();
   }
 
-  public class IntKeywordTokenNode extends AbstractNode implements IIntKeywordTokenNode {
+  public static class IntKeywordTokenNode extends AbstractNode implements IIntKeywordTokenNode {
     private final SourceToken<IntKeywordToken> token;
 
     public IntKeywordTokenNode(SourceToken<IntKeywordToken> token) {
@@ -822,11 +826,11 @@ public class Nodes {
     }
   }
 
-  public interface ILessThanOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface ILessThanOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<LessThanOperatorToken> getToken();
   }
 
-  public class LessThanOperatorTokenNode extends AbstractNode implements ILessThanOperatorTokenNode {
+  public static class LessThanOperatorTokenNode extends AbstractNode implements ILessThanOperatorTokenNode {
     private final SourceToken<LessThanOperatorToken> token;
 
     public LessThanOperatorTokenNode(SourceToken<LessThanOperatorToken> token) {
@@ -854,11 +858,11 @@ public class Nodes {
     }
   }
 
-  public interface ILiteralTokenNode extends INode, IValueExpressionNode {
+  public static interface ILiteralTokenNode extends INode, IValueExpressionNode {
     SourceToken<LiteralToken> getToken();
   }
 
-  public class LiteralTokenNode extends AbstractNode implements ILiteralTokenNode {
+  public static class LiteralTokenNode extends AbstractNode implements ILiteralTokenNode {
     private final SourceToken<LiteralToken> token;
 
     public LiteralTokenNode(SourceToken<LiteralToken> token) {
@@ -886,11 +890,11 @@ public class Nodes {
     }
   }
 
-  public interface ILogicalNotOperatorTokenNode extends INode, IPrefixOperatorNode {
+  public static interface ILogicalNotOperatorTokenNode extends INode, IPrefixOperatorNode {
     SourceToken<LogicalNotOperatorToken> getToken();
   }
 
-  public class LogicalNotOperatorTokenNode extends AbstractNode implements ILogicalNotOperatorTokenNode {
+  public static class LogicalNotOperatorTokenNode extends AbstractNode implements ILogicalNotOperatorTokenNode {
     private final SourceToken<LogicalNotOperatorToken> token;
 
     public LogicalNotOperatorTokenNode(SourceToken<LogicalNotOperatorToken> token) {
@@ -918,11 +922,11 @@ public class Nodes {
     }
   }
 
-  public interface IIncrementOperatorTokenNode extends INode, IPostfixOperatorNode, IPrefixOperatorNode {
+  public static interface IIncrementOperatorTokenNode extends INode, IPostfixOperatorNode, IPrefixOperatorNode {
     SourceToken<IncrementOperatorToken> getToken();
   }
 
-  public class IncrementOperatorTokenNode extends AbstractNode implements IIncrementOperatorTokenNode {
+  public static class IncrementOperatorTokenNode extends AbstractNode implements IIncrementOperatorTokenNode {
     private final SourceToken<IncrementOperatorToken> token;
 
     public IncrementOperatorTokenNode(SourceToken<IncrementOperatorToken> token) {
@@ -950,11 +954,11 @@ public class Nodes {
     }
   }
 
-  public interface IEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<EqualsOperatorToken> getToken();
   }
 
-  public class EqualsOperatorTokenNode extends AbstractNode implements IEqualsOperatorTokenNode {
+  public static class EqualsOperatorTokenNode extends AbstractNode implements IEqualsOperatorTokenNode {
     private final SourceToken<EqualsOperatorToken> token;
 
     public EqualsOperatorTokenNode(SourceToken<EqualsOperatorToken> token) {
@@ -982,11 +986,11 @@ public class Nodes {
     }
   }
 
-  public interface IStrictfpKeywordTokenNode extends INode, IModifierNode {
+  public static interface IStrictfpKeywordTokenNode extends INode, IModifierNode {
     SourceToken<StrictfpKeywordToken> getToken();
   }
 
-  public class StrictfpKeywordTokenNode extends AbstractNode implements IStrictfpKeywordTokenNode {
+  public static class StrictfpKeywordTokenNode extends AbstractNode implements IStrictfpKeywordTokenNode {
     private final SourceToken<StrictfpKeywordToken> token;
 
     public StrictfpKeywordTokenNode(SourceToken<StrictfpKeywordToken> token) {
@@ -1014,11 +1018,11 @@ public class Nodes {
     }
   }
 
-  public interface IBitwiseRightShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IBitwiseRightShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<BitwiseRightShiftEqualsOperatorToken> getToken();
   }
 
-  public class BitwiseRightShiftEqualsOperatorTokenNode extends AbstractNode
+  public static class BitwiseRightShiftEqualsOperatorTokenNode extends AbstractNode
       implements IBitwiseRightShiftEqualsOperatorTokenNode {
     private final SourceToken<BitwiseRightShiftEqualsOperatorToken> token;
 
@@ -1047,11 +1051,11 @@ public class Nodes {
     }
   }
 
-  public interface IGreaterThanOrEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface IGreaterThanOrEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<GreaterThanOrEqualsOperatorToken> getToken();
   }
 
-  public class GreaterThanOrEqualsOperatorTokenNode extends AbstractNode
+  public static class GreaterThanOrEqualsOperatorTokenNode extends AbstractNode
       implements IGreaterThanOrEqualsOperatorTokenNode {
     private final SourceToken<GreaterThanOrEqualsOperatorToken> token;
 
@@ -1080,11 +1084,11 @@ public class Nodes {
     }
   }
 
-  public interface IIdentifierTokenNode extends INode, IValueExpressionNode {
+  public static interface IIdentifierTokenNode extends INode, IValueExpressionNode {
     SourceToken<IdentifierToken> getToken();
   }
 
-  public class IdentifierTokenNode extends AbstractNode implements IIdentifierTokenNode {
+  public static class IdentifierTokenNode extends AbstractNode implements IIdentifierTokenNode {
     private final SourceToken<IdentifierToken> token;
 
     public IdentifierTokenNode(SourceToken<IdentifierToken> token) {
@@ -1112,11 +1116,11 @@ public class Nodes {
     }
   }
 
-  public interface IProtectedKeywordTokenNode extends INode, IModifierNode {
+  public static interface IProtectedKeywordTokenNode extends INode, IModifierNode {
     SourceToken<ProtectedKeywordToken> getToken();
   }
 
-  public class ProtectedKeywordTokenNode extends AbstractNode implements IProtectedKeywordTokenNode {
+  public static class ProtectedKeywordTokenNode extends AbstractNode implements IProtectedKeywordTokenNode {
     private final SourceToken<ProtectedKeywordToken> token;
 
     public ProtectedKeywordTokenNode(SourceToken<ProtectedKeywordToken> token) {
@@ -1144,11 +1148,11 @@ public class Nodes {
     }
   }
 
-  public interface ILogicalAndOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface ILogicalAndOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<LogicalAndOperatorToken> getToken();
   }
 
-  public class LogicalAndOperatorTokenNode extends AbstractNode implements ILogicalAndOperatorTokenNode {
+  public static class LogicalAndOperatorTokenNode extends AbstractNode implements ILogicalAndOperatorTokenNode {
     private final SourceToken<LogicalAndOperatorToken> token;
 
     public LogicalAndOperatorTokenNode(SourceToken<LogicalAndOperatorToken> token) {
@@ -1176,11 +1180,11 @@ public class Nodes {
     }
   }
 
-  public interface IPlusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IPlusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<PlusEqualsOperatorToken> getToken();
   }
 
-  public class PlusEqualsOperatorTokenNode extends AbstractNode implements IPlusEqualsOperatorTokenNode {
+  public static class PlusEqualsOperatorTokenNode extends AbstractNode implements IPlusEqualsOperatorTokenNode {
     private final SourceToken<PlusEqualsOperatorToken> token;
 
     public PlusEqualsOperatorTokenNode(SourceToken<PlusEqualsOperatorToken> token) {
@@ -1208,11 +1212,43 @@ public class Nodes {
     }
   }
 
-  public interface IEqualsEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface IQuestionMarkOperatorTokenNode extends INode {
+    SourceToken<QuestionMarkOperatorToken> getToken();
+  }
+
+  public static class QuestionMarkOperatorTokenNode extends AbstractNode implements IQuestionMarkOperatorTokenNode {
+    private final SourceToken<QuestionMarkOperatorToken> token;
+
+    public QuestionMarkOperatorTokenNode(SourceToken<QuestionMarkOperatorToken> token) {
+      this.token = token;
+    }
+
+    public SourceToken<QuestionMarkOperatorToken> getToken() {
+      return token;
+    }
+
+    public boolean equals(Object __other) {
+      if (this == __other) { return true; }
+      if (__other == null) { return false; }
+      if (!(__other instanceof IQuestionMarkOperatorTokenNode)) { return false; }
+      IQuestionMarkOperatorTokenNode __node = (IQuestionMarkOperatorTokenNode) __other;
+      return equals(token, __node.getToken());
+    }
+
+    protected int hashCodeWorker() {
+      return token.hashCode();
+    }
+
+    public void accept(INodeVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
+
+  public static interface IEqualsEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<EqualsEqualsOperatorToken> getToken();
   }
 
-  public class EqualsEqualsOperatorTokenNode extends AbstractNode implements IEqualsEqualsOperatorTokenNode {
+  public static class EqualsEqualsOperatorTokenNode extends AbstractNode implements IEqualsEqualsOperatorTokenNode {
     private final SourceToken<EqualsEqualsOperatorToken> token;
 
     public EqualsEqualsOperatorTokenNode(SourceToken<EqualsEqualsOperatorToken> token) {
@@ -1240,11 +1276,11 @@ public class Nodes {
     }
   }
 
-  public interface IDoubleKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface IDoubleKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<DoubleKeywordToken> getToken();
   }
 
-  public class DoubleKeywordTokenNode extends AbstractNode implements IDoubleKeywordTokenNode {
+  public static class DoubleKeywordTokenNode extends AbstractNode implements IDoubleKeywordTokenNode {
     private final SourceToken<DoubleKeywordToken> token;
 
     public DoubleKeywordTokenNode(SourceToken<DoubleKeywordToken> token) {
@@ -1272,11 +1308,11 @@ public class Nodes {
     }
   }
 
-  public interface IModulusOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface IModulusOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<ModulusOperatorToken> getToken();
   }
 
-  public class ModulusOperatorTokenNode extends AbstractNode implements IModulusOperatorTokenNode {
+  public static class ModulusOperatorTokenNode extends AbstractNode implements IModulusOperatorTokenNode {
     private final SourceToken<ModulusOperatorToken> token;
 
     public ModulusOperatorTokenNode(SourceToken<ModulusOperatorToken> token) {
@@ -1304,11 +1340,12 @@ public class Nodes {
     }
   }
 
-  public interface ILeftShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface ILeftShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<LeftShiftEqualsOperatorToken> getToken();
   }
 
-  public class LeftShiftEqualsOperatorTokenNode extends AbstractNode implements ILeftShiftEqualsOperatorTokenNode {
+  public static class LeftShiftEqualsOperatorTokenNode extends AbstractNode
+      implements ILeftShiftEqualsOperatorTokenNode {
     private final SourceToken<LeftShiftEqualsOperatorToken> token;
 
     public LeftShiftEqualsOperatorTokenNode(SourceToken<LeftShiftEqualsOperatorToken> token) {
@@ -1336,11 +1373,11 @@ public class Nodes {
     }
   }
 
-  public interface IAndEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IAndEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<AndEqualsOperatorToken> getToken();
   }
 
-  public class AndEqualsOperatorTokenNode extends AbstractNode implements IAndEqualsOperatorTokenNode {
+  public static class AndEqualsOperatorTokenNode extends AbstractNode implements IAndEqualsOperatorTokenNode {
     private final SourceToken<AndEqualsOperatorToken> token;
 
     public AndEqualsOperatorTokenNode(SourceToken<AndEqualsOperatorToken> token) {
@@ -1368,11 +1405,11 @@ public class Nodes {
     }
   }
 
-  public interface ISynchronizedKeywordTokenNode extends INode, IModifierNode {
+  public static interface ISynchronizedKeywordTokenNode extends INode, IModifierNode {
     SourceToken<SynchronizedKeywordToken> getToken();
   }
 
-  public class SynchronizedKeywordTokenNode extends AbstractNode implements ISynchronizedKeywordTokenNode {
+  public static class SynchronizedKeywordTokenNode extends AbstractNode implements ISynchronizedKeywordTokenNode {
     private final SourceToken<SynchronizedKeywordToken> token;
 
     public SynchronizedKeywordTokenNode(SourceToken<SynchronizedKeywordToken> token) {
@@ -1400,11 +1437,11 @@ public class Nodes {
     }
   }
 
-  public interface ISemicolonSeparatorTokenNode extends INode, ITypeDeclarationNode, IMethodBodyNode {
+  public static interface ISemicolonSeparatorTokenNode extends INode, ITypeDeclarationNode, IMethodBodyNode {
     SourceToken<SemicolonSeparatorToken> getToken();
   }
 
-  public class SemicolonSeparatorTokenNode extends AbstractNode implements ISemicolonSeparatorTokenNode {
+  public static class SemicolonSeparatorTokenNode extends AbstractNode implements ISemicolonSeparatorTokenNode {
     private final SourceToken<SemicolonSeparatorToken> token;
 
     public SemicolonSeparatorTokenNode(SourceToken<SemicolonSeparatorToken> token) {
@@ -1432,11 +1469,11 @@ public class Nodes {
     }
   }
 
-  public interface IAbstractKeywordTokenNode extends INode, IModifierNode {
+  public static interface IAbstractKeywordTokenNode extends INode, IModifierNode {
     SourceToken<AbstractKeywordToken> getToken();
   }
 
-  public class AbstractKeywordTokenNode extends AbstractNode implements IAbstractKeywordTokenNode {
+  public static class AbstractKeywordTokenNode extends AbstractNode implements IAbstractKeywordTokenNode {
     private final SourceToken<AbstractKeywordToken> token;
 
     public AbstractKeywordTokenNode(SourceToken<AbstractKeywordToken> token) {
@@ -1464,11 +1501,11 @@ public class Nodes {
     }
   }
 
-  public interface ITimesOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface ITimesOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<TimesOperatorToken> getToken();
   }
 
-  public class TimesOperatorTokenNode extends AbstractNode implements ITimesOperatorTokenNode {
+  public static class TimesOperatorTokenNode extends AbstractNode implements ITimesOperatorTokenNode {
     private final SourceToken<TimesOperatorToken> token;
 
     public TimesOperatorTokenNode(SourceToken<TimesOperatorToken> token) {
@@ -1496,11 +1533,11 @@ public class Nodes {
     }
   }
 
-  public interface ILogicalOrOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface ILogicalOrOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<LogicalOrOperatorToken> getToken();
   }
 
-  public class LogicalOrOperatorTokenNode extends AbstractNode implements ILogicalOrOperatorTokenNode {
+  public static class LogicalOrOperatorTokenNode extends AbstractNode implements ILogicalOrOperatorTokenNode {
     private final SourceToken<LogicalOrOperatorToken> token;
 
     public LogicalOrOperatorTokenNode(SourceToken<LogicalOrOperatorToken> token) {
@@ -1528,11 +1565,11 @@ public class Nodes {
     }
   }
 
-  public interface IPlusOperatorTokenNode extends INode, IPrefixOperatorNode, IInfixOperatorNode {
+  public static interface IPlusOperatorTokenNode extends INode, IPrefixOperatorNode, IInfixOperatorNode {
     SourceToken<PlusOperatorToken> getToken();
   }
 
-  public class PlusOperatorTokenNode extends AbstractNode implements IPlusOperatorTokenNode {
+  public static class PlusOperatorTokenNode extends AbstractNode implements IPlusOperatorTokenNode {
     private final SourceToken<PlusOperatorToken> token;
 
     public PlusOperatorTokenNode(SourceToken<PlusOperatorToken> token) {
@@ -1560,11 +1597,11 @@ public class Nodes {
     }
   }
 
-  public interface ITransientKeywordTokenNode extends INode, IModifierNode {
+  public static interface ITransientKeywordTokenNode extends INode, IModifierNode {
     SourceToken<TransientKeywordToken> getToken();
   }
 
-  public class TransientKeywordTokenNode extends AbstractNode implements ITransientKeywordTokenNode {
+  public static class TransientKeywordTokenNode extends AbstractNode implements ITransientKeywordTokenNode {
     private final SourceToken<TransientKeywordToken> token;
 
     public TransientKeywordTokenNode(SourceToken<TransientKeywordToken> token) {
@@ -1592,11 +1629,11 @@ public class Nodes {
     }
   }
 
-  public interface ISuperKeywordTokenNode extends INode, IValueExpressionNode {
+  public static interface ISuperKeywordTokenNode extends INode, IValueExpressionNode {
     SourceToken<SuperKeywordToken> getToken();
   }
 
-  public class SuperKeywordTokenNode extends AbstractNode implements ISuperKeywordTokenNode {
+  public static class SuperKeywordTokenNode extends AbstractNode implements ISuperKeywordTokenNode {
     private final SourceToken<SuperKeywordToken> token;
 
     public SuperKeywordTokenNode(SourceToken<SuperKeywordToken> token) {
@@ -1624,11 +1661,11 @@ public class Nodes {
     }
   }
 
-  public interface IOrEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IOrEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<OrEqualsOperatorToken> getToken();
   }
 
-  public class OrEqualsOperatorTokenNode extends AbstractNode implements IOrEqualsOperatorTokenNode {
+  public static class OrEqualsOperatorTokenNode extends AbstractNode implements IOrEqualsOperatorTokenNode {
     private final SourceToken<OrEqualsOperatorToken> token;
 
     public OrEqualsOperatorTokenNode(SourceToken<OrEqualsOperatorToken> token) {
@@ -1656,11 +1693,11 @@ public class Nodes {
     }
   }
 
-  public interface IGreaterThanOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface IGreaterThanOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<GreaterThanOperatorToken> getToken();
   }
 
-  public class GreaterThanOperatorTokenNode extends AbstractNode implements IGreaterThanOperatorTokenNode {
+  public static class GreaterThanOperatorTokenNode extends AbstractNode implements IGreaterThanOperatorTokenNode {
     private final SourceToken<GreaterThanOperatorToken> token;
 
     public GreaterThanOperatorTokenNode(SourceToken<GreaterThanOperatorToken> token) {
@@ -1688,11 +1725,11 @@ public class Nodes {
     }
   }
 
-  public interface IByteKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface IByteKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<ByteKeywordToken> getToken();
   }
 
-  public class ByteKeywordTokenNode extends AbstractNode implements IByteKeywordTokenNode {
+  public static class ByteKeywordTokenNode extends AbstractNode implements IByteKeywordTokenNode {
     private final SourceToken<ByteKeywordToken> token;
 
     public ByteKeywordTokenNode(SourceToken<ByteKeywordToken> token) {
@@ -1720,11 +1757,11 @@ public class Nodes {
     }
   }
 
-  public interface IStaticKeywordTokenNode extends INode, IModifierNode {
+  public static interface IStaticKeywordTokenNode extends INode, IModifierNode {
     SourceToken<StaticKeywordToken> getToken();
   }
 
-  public class StaticKeywordTokenNode extends AbstractNode implements IStaticKeywordTokenNode {
+  public static class StaticKeywordTokenNode extends AbstractNode implements IStaticKeywordTokenNode {
     private final SourceToken<StaticKeywordToken> token;
 
     public StaticKeywordTokenNode(SourceToken<StaticKeywordToken> token) {
@@ -1752,11 +1789,11 @@ public class Nodes {
     }
   }
 
-  public interface IFloatKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface IFloatKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<FloatKeywordToken> getToken();
   }
 
-  public class FloatKeywordTokenNode extends AbstractNode implements IFloatKeywordTokenNode {
+  public static class FloatKeywordTokenNode extends AbstractNode implements IFloatKeywordTokenNode {
     private final SourceToken<FloatKeywordToken> token;
 
     public FloatKeywordTokenNode(SourceToken<FloatKeywordToken> token) {
@@ -1784,11 +1821,11 @@ public class Nodes {
     }
   }
 
-  public interface IBitwiseAndOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface IBitwiseAndOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<BitwiseAndOperatorToken> getToken();
   }
 
-  public class BitwiseAndOperatorTokenNode extends AbstractNode implements IBitwiseAndOperatorTokenNode {
+  public static class BitwiseAndOperatorTokenNode extends AbstractNode implements IBitwiseAndOperatorTokenNode {
     private final SourceToken<BitwiseAndOperatorToken> token;
 
     public BitwiseAndOperatorTokenNode(SourceToken<BitwiseAndOperatorToken> token) {
@@ -1816,11 +1853,11 @@ public class Nodes {
     }
   }
 
-  public interface IBitwiseOrOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface IBitwiseOrOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<BitwiseOrOperatorToken> getToken();
   }
 
-  public class BitwiseOrOperatorTokenNode extends AbstractNode implements IBitwiseOrOperatorTokenNode {
+  public static class BitwiseOrOperatorTokenNode extends AbstractNode implements IBitwiseOrOperatorTokenNode {
     private final SourceToken<BitwiseOrOperatorToken> token;
 
     public BitwiseOrOperatorTokenNode(SourceToken<BitwiseOrOperatorToken> token) {
@@ -1848,11 +1885,11 @@ public class Nodes {
     }
   }
 
-  public interface IModulusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IModulusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<ModulusEqualsOperatorToken> getToken();
   }
 
-  public class ModulusEqualsOperatorTokenNode extends AbstractNode implements IModulusEqualsOperatorTokenNode {
+  public static class ModulusEqualsOperatorTokenNode extends AbstractNode implements IModulusEqualsOperatorTokenNode {
     private final SourceToken<ModulusEqualsOperatorToken> token;
 
     public ModulusEqualsOperatorTokenNode(SourceToken<ModulusEqualsOperatorToken> token) {
@@ -1880,11 +1917,11 @@ public class Nodes {
     }
   }
 
-  public interface IMinusOperatorTokenNode extends INode, IPrefixOperatorNode, IInfixOperatorNode {
+  public static interface IMinusOperatorTokenNode extends INode, IPrefixOperatorNode, IInfixOperatorNode {
     SourceToken<MinusOperatorToken> getToken();
   }
 
-  public class MinusOperatorTokenNode extends AbstractNode implements IMinusOperatorTokenNode {
+  public static class MinusOperatorTokenNode extends AbstractNode implements IMinusOperatorTokenNode {
     private final SourceToken<MinusOperatorToken> token;
 
     public MinusOperatorTokenNode(SourceToken<MinusOperatorToken> token) {
@@ -1912,11 +1949,11 @@ public class Nodes {
     }
   }
 
-  public interface IPrivateKeywordTokenNode extends INode, IModifierNode {
+  public static interface IPrivateKeywordTokenNode extends INode, IModifierNode {
     SourceToken<PrivateKeywordToken> getToken();
   }
 
-  public class PrivateKeywordTokenNode extends AbstractNode implements IPrivateKeywordTokenNode {
+  public static class PrivateKeywordTokenNode extends AbstractNode implements IPrivateKeywordTokenNode {
     private final SourceToken<PrivateKeywordToken> token;
 
     public PrivateKeywordTokenNode(SourceToken<PrivateKeywordToken> token) {
@@ -1944,11 +1981,11 @@ public class Nodes {
     }
   }
 
-  public interface ICharKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface ICharKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<CharKeywordToken> getToken();
   }
 
-  public class CharKeywordTokenNode extends AbstractNode implements ICharKeywordTokenNode {
+  public static class CharKeywordTokenNode extends AbstractNode implements ICharKeywordTokenNode {
     private final SourceToken<CharKeywordToken> token;
 
     public CharKeywordTokenNode(SourceToken<CharKeywordToken> token) {
@@ -1976,11 +2013,11 @@ public class Nodes {
     }
   }
 
-  public interface IBooleanKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface IBooleanKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<BooleanKeywordToken> getToken();
   }
 
-  public class BooleanKeywordTokenNode extends AbstractNode implements IBooleanKeywordTokenNode {
+  public static class BooleanKeywordTokenNode extends AbstractNode implements IBooleanKeywordTokenNode {
     private final SourceToken<BooleanKeywordToken> token;
 
     public BooleanKeywordTokenNode(SourceToken<BooleanKeywordToken> token) {
@@ -2008,11 +2045,11 @@ public class Nodes {
     }
   }
 
-  public interface IFinalKeywordTokenNode extends INode, IModifierNode {
+  public static interface IFinalKeywordTokenNode extends INode, IModifierNode {
     SourceToken<FinalKeywordToken> getToken();
   }
 
-  public class FinalKeywordTokenNode extends AbstractNode implements IFinalKeywordTokenNode {
+  public static class FinalKeywordTokenNode extends AbstractNode implements IFinalKeywordTokenNode {
     private final SourceToken<FinalKeywordToken> token;
 
     public FinalKeywordTokenNode(SourceToken<FinalKeywordToken> token) {
@@ -2040,11 +2077,11 @@ public class Nodes {
     }
   }
 
-  public interface INotEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface INotEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<NotEqualsOperatorToken> getToken();
   }
 
-  public class NotEqualsOperatorTokenNode extends AbstractNode implements INotEqualsOperatorTokenNode {
+  public static class NotEqualsOperatorTokenNode extends AbstractNode implements INotEqualsOperatorTokenNode {
     private final SourceToken<NotEqualsOperatorToken> token;
 
     public NotEqualsOperatorTokenNode(SourceToken<NotEqualsOperatorToken> token) {
@@ -2072,11 +2109,11 @@ public class Nodes {
     }
   }
 
-  public interface ILeftShiftOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface ILeftShiftOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<LeftShiftOperatorToken> getToken();
   }
 
-  public class LeftShiftOperatorTokenNode extends AbstractNode implements ILeftShiftOperatorTokenNode {
+  public static class LeftShiftOperatorTokenNode extends AbstractNode implements ILeftShiftOperatorTokenNode {
     private final SourceToken<LeftShiftOperatorToken> token;
 
     public LeftShiftOperatorTokenNode(SourceToken<LeftShiftOperatorToken> token) {
@@ -2104,11 +2141,11 @@ public class Nodes {
     }
   }
 
-  public interface IShortKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface IShortKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<ShortKeywordToken> getToken();
   }
 
-  public class ShortKeywordTokenNode extends AbstractNode implements IShortKeywordTokenNode {
+  public static class ShortKeywordTokenNode extends AbstractNode implements IShortKeywordTokenNode {
     private final SourceToken<ShortKeywordToken> token;
 
     public ShortKeywordTokenNode(SourceToken<ShortKeywordToken> token) {
@@ -2136,11 +2173,11 @@ public class Nodes {
     }
   }
 
-  public interface IBitwiseExclusiveOrOperatorTokenNode extends INode, IInfixOperatorNode {
+  public static interface IBitwiseExclusiveOrOperatorTokenNode extends INode, IInfixOperatorNode {
     SourceToken<BitwiseExclusiveOrOperatorToken> getToken();
   }
 
-  public class BitwiseExclusiveOrOperatorTokenNode extends AbstractNode
+  public static class BitwiseExclusiveOrOperatorTokenNode extends AbstractNode
       implements IBitwiseExclusiveOrOperatorTokenNode {
     private final SourceToken<BitwiseExclusiveOrOperatorToken> token;
 
@@ -2169,11 +2206,11 @@ public class Nodes {
     }
   }
 
-  public interface IPublicKeywordTokenNode extends INode, IModifierNode {
+  public static interface IPublicKeywordTokenNode extends INode, IModifierNode {
     SourceToken<PublicKeywordToken> getToken();
   }
 
-  public class PublicKeywordTokenNode extends AbstractNode implements IPublicKeywordTokenNode {
+  public static class PublicKeywordTokenNode extends AbstractNode implements IPublicKeywordTokenNode {
     private final SourceToken<PublicKeywordToken> token;
 
     public PublicKeywordTokenNode(SourceToken<PublicKeywordToken> token) {
@@ -2201,11 +2238,11 @@ public class Nodes {
     }
   }
 
-  public interface IVoidKeywordTokenNode extends INode, IPrimitiveTypeNode {
+  public static interface IVoidKeywordTokenNode extends INode, IPrimitiveTypeNode {
     SourceToken<VoidKeywordToken> getToken();
   }
 
-  public class VoidKeywordTokenNode extends AbstractNode implements IVoidKeywordTokenNode {
+  public static class VoidKeywordTokenNode extends AbstractNode implements IVoidKeywordTokenNode {
     private final SourceToken<VoidKeywordToken> token;
 
     public VoidKeywordTokenNode(SourceToken<VoidKeywordToken> token) {
@@ -2233,11 +2270,11 @@ public class Nodes {
     }
   }
 
-  public interface IDecrementOperatorTokenNode extends INode, IPostfixOperatorNode, IPrefixOperatorNode {
+  public static interface IDecrementOperatorTokenNode extends INode, IPostfixOperatorNode, IPrefixOperatorNode {
     SourceToken<DecrementOperatorToken> getToken();
   }
 
-  public class DecrementOperatorTokenNode extends AbstractNode implements IDecrementOperatorTokenNode {
+  public static class DecrementOperatorTokenNode extends AbstractNode implements IDecrementOperatorTokenNode {
     private final SourceToken<DecrementOperatorToken> token;
 
     public DecrementOperatorTokenNode(SourceToken<DecrementOperatorToken> token) {
@@ -2265,11 +2302,11 @@ public class Nodes {
     }
   }
 
-  public interface IDivideEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
+  public static interface IDivideEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
     SourceToken<DivideEqualsOperatorToken> getToken();
   }
 
-  public class DivideEqualsOperatorTokenNode extends AbstractNode implements IDivideEqualsOperatorTokenNode {
+  public static class DivideEqualsOperatorTokenNode extends AbstractNode implements IDivideEqualsOperatorTokenNode {
     private final SourceToken<DivideEqualsOperatorToken> token;
 
     public DivideEqualsOperatorTokenNode(SourceToken<DivideEqualsOperatorToken> token) {
@@ -2297,7 +2334,7 @@ public class Nodes {
     }
   }
 
-  public interface ICompilationUnitNode extends INode {
+  public static interface ICompilationUnitNode extends INode {
     IPackageDeclarationNode getOptionalPackageDeclaration();
 
     List<IImportDeclarationNode> getImportDeclarationList();
@@ -2305,7 +2342,7 @@ public class Nodes {
     List<ITypeDeclarationNode> getTypeDeclarationList();
   }
 
-  public interface IPackageDeclarationNode extends INode {
+  public static interface IPackageDeclarationNode extends INode {
     List<IAnnotationNode> getAnnotationList();
 
     SourceToken<PackageKeywordToken> getPackageKeyword();
@@ -2315,14 +2352,14 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface IQualifiedIdentifierNode extends INode {
-    List<SourceToken<IdentifierToken>> getIdentifierList();
+  public static interface IQualifiedIdentifierNode extends INode {
+    DelimitedList<SourceToken<IdentifierToken>, SourceToken<DotSeparatorToken>> getIdentifierList();
   }
 
-  public interface IImportDeclarationNode extends INode {
+  public static interface IImportDeclarationNode extends INode {
   }
 
-  public interface ISingleTypeImportDeclarationNode extends INode, IImportDeclarationNode {
+  public static interface ISingleTypeImportDeclarationNode extends INode, IImportDeclarationNode {
     SourceToken<ImportKeywordToken> getImportKeyword();
 
     IQualifiedIdentifierNode getQualifiedIdentifier();
@@ -2330,7 +2367,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface ITypeImportOnDemandDeclarationNode extends INode, IImportDeclarationNode {
+  public static interface ITypeImportOnDemandDeclarationNode extends INode, IImportDeclarationNode {
     SourceToken<ImportKeywordToken> getImportKeyword();
 
     IQualifiedIdentifierNode getQualifiedIdentifier();
@@ -2342,7 +2379,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface ISingleStaticImportDeclarationNode extends INode, IImportDeclarationNode {
+  public static interface ISingleStaticImportDeclarationNode extends INode, IImportDeclarationNode {
     SourceToken<ImportKeywordToken> getImportKeyword();
 
     SourceToken<StaticKeywordToken> getStaticKeyword();
@@ -2352,7 +2389,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface IStaticImportOnDemandDeclarationNode extends INode, IImportDeclarationNode {
+  public static interface IStaticImportOnDemandDeclarationNode extends INode, IImportDeclarationNode {
     SourceToken<ImportKeywordToken> getImportKeyword();
 
     SourceToken<StaticKeywordToken> getStaticKeyword();
@@ -2366,13 +2403,13 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface ITypeDeclarationNode extends INode, IClassOrInterfaceMemberDeclarationNode {
+  public static interface ITypeDeclarationNode extends INode, IClassOrInterfaceMemberDeclarationNode {
   }
 
-  public interface IClassDeclarationNode extends INode, IBlockStatementNode, ITypeDeclarationNode {
+  public static interface IClassDeclarationNode extends INode, IBlockStatementNode, ITypeDeclarationNode {
   }
 
-  public interface INormalClassDeclarationNode extends INode, IClassDeclarationNode {
+  public static interface INormalClassDeclarationNode extends INode, IClassDeclarationNode {
     IModifiersNode getModifiers();
 
     SourceToken<ClassKeywordToken> getClassKeyword();
@@ -2388,26 +2425,26 @@ public class Nodes {
     IClassBodyNode getClassBody();
   }
 
-  public interface IModifiersNode extends INode {
+  public static interface IModifiersNode extends INode {
     List<IModifierNode> getModifierList();
   }
 
-  public interface IModifierNode extends INode {
+  public static interface IModifierNode extends INode {
   }
 
-  public interface ISuperNode extends INode {
+  public static interface ISuperNode extends INode {
     SourceToken<ExtendsKeywordToken> getExtendsKeyword();
 
     IClassOrInterfaceTypeNode getClassOrInterfaceType();
   }
 
-  public interface IInterfacesNode extends INode {
+  public static interface IInterfacesNode extends INode {
     SourceToken<ImplementsKeywordToken> getImplementsKeyword();
 
-    List<IClassOrInterfaceTypeNode> getClassOrInterfaceTypeList();
+    DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList();
   }
 
-  public interface IClassBodyNode extends INode {
+  public static interface IClassBodyNode extends INode {
     SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
 
     List<IClassBodyDeclarationNode> getClassBodyDeclarationList();
@@ -2415,19 +2452,19 @@ public class Nodes {
     SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
   }
 
-  public interface IClassBodyDeclarationNode extends INode {
+  public static interface IClassBodyDeclarationNode extends INode {
   }
 
-  public interface IStaticInitializerNode extends INode, IClassBodyDeclarationNode {
+  public static interface IStaticInitializerNode extends INode, IClassBodyDeclarationNode {
     SourceToken<StaticKeywordToken> getStaticKeyword();
 
     IBlockNode getBlock();
   }
 
-  public interface IInterfaceDeclarationNode extends INode, ITypeDeclarationNode {
+  public static interface IInterfaceDeclarationNode extends INode, ITypeDeclarationNode {
   }
 
-  public interface INormalInterfaceDeclarationNode extends INode, IInterfaceDeclarationNode {
+  public static interface INormalInterfaceDeclarationNode extends INode, IInterfaceDeclarationNode {
     IModifiersNode getModifiers();
 
     SourceToken<InterfaceKeywordToken> getInterfaceKeyword();
@@ -2441,13 +2478,13 @@ public class Nodes {
     IClassOrInterfaceBodyNode getClassOrInterfaceBody();
   }
 
-  public interface IExtendsInterfacesNode extends INode {
+  public static interface IExtendsInterfacesNode extends INode {
     SourceToken<ExtendsKeywordToken> getExtendsKeyword();
 
-    List<IClassOrInterfaceTypeNode> getClassOrInterfaceTypeList();
+    DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList();
   }
 
-  public interface IClassOrInterfaceBodyNode extends INode {
+  public static interface IClassOrInterfaceBodyNode extends INode {
     SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
 
     List<IClassOrInterfaceMemberDeclarationNode> getClassOrInterfaceMemberDeclarationList();
@@ -2455,7 +2492,7 @@ public class Nodes {
     SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
   }
 
-  public interface IEnumDeclarationNode extends INode, IClassDeclarationNode {
+  public static interface IEnumDeclarationNode extends INode, IClassDeclarationNode {
     IModifiersNode getModifiers();
 
     SourceToken<EnumKeywordToken> getEnumKeyword();
@@ -2467,10 +2504,10 @@ public class Nodes {
     IEnumBodyNode getEnumBody();
   }
 
-  public interface IEnumBodyNode extends INode {
+  public static interface IEnumBodyNode extends INode {
     SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
 
-    List<IEnumConstantNode> getOptionalEnumConstantList();
+    DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>> getOptionalEnumConstantList();
 
     SourceToken<CommaSeparatorToken> getOptionalCommaSeparator();
 
@@ -2481,7 +2518,7 @@ public class Nodes {
     SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
   }
 
-  public interface IEnumConstantNode extends INode {
+  public static interface IEnumConstantNode extends INode {
     List<IAnnotationNode> getAnnotationList();
 
     SourceToken<IdentifierToken> getIdentifier();
@@ -2491,15 +2528,15 @@ public class Nodes {
     IClassOrInterfaceBodyNode getOptionalClassOrInterfaceBody();
   }
 
-  public interface IArgumentsNode extends INode {
+  public static interface IArgumentsNode extends INode {
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
 
-    List<IExpressionNode> getOptionalExpressionList();
+    IDelimitedExpressionListNode getOptionalDelimitedExpressionList();
 
     SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator();
   }
 
-  public interface IAnnotationDeclarationNode extends INode, IInterfaceDeclarationNode {
+  public static interface IAnnotationDeclarationNode extends INode, IInterfaceDeclarationNode {
     IModifiersNode getModifiers();
 
     SourceToken<AtSeparatorToken> getAtSeparator();
@@ -2511,7 +2548,7 @@ public class Nodes {
     IAnnotationBodyNode getAnnotationBody();
   }
 
-  public interface IAnnotationBodyNode extends INode {
+  public static interface IAnnotationBodyNode extends INode {
     SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
 
     List<IAnnotationElementDeclarationNode> getAnnotationElementDeclarationList();
@@ -2519,10 +2556,10 @@ public class Nodes {
     SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
   }
 
-  public interface IAnnotationElementDeclarationNode extends INode {
+  public static interface IAnnotationElementDeclarationNode extends INode {
   }
 
-  public interface IAnnotationDefaultDeclarationNode extends INode, IAnnotationElementDeclarationNode {
+  public static interface IAnnotationDefaultDeclarationNode extends INode, IAnnotationElementDeclarationNode {
     IModifiersNode getModifiers();
 
     ITypeNode getType();
@@ -2538,11 +2575,11 @@ public class Nodes {
     IElementValueNode getElementValue();
   }
 
-  public interface IClassOrInterfaceMemberDeclarationNode
+  public static interface IClassOrInterfaceMemberDeclarationNode
       extends INode, IClassBodyDeclarationNode, IAnnotationElementDeclarationNode {
   }
 
-  public interface IConstructorDeclarationNode extends INode, IClassBodyDeclarationNode {
+  public static interface IConstructorDeclarationNode extends INode, IClassBodyDeclarationNode {
     IModifiersNode getModifiers();
 
     ITypeParametersNode getOptionalTypeParameters();
@@ -2551,7 +2588,7 @@ public class Nodes {
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
 
-    List<IFormalParameterNode> getOptionalFormalParameterList();
+    DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>> getOptionalFormalParameterList();
 
     SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator();
 
@@ -2560,20 +2597,20 @@ public class Nodes {
     IBlockNode getBlock();
   }
 
-  public interface IFieldDeclarationNode extends INode, IClassOrInterfaceMemberDeclarationNode {
+  public static interface IFieldDeclarationNode extends INode, IClassOrInterfaceMemberDeclarationNode {
     IModifiersNode getModifiers();
 
     ITypeNode getType();
 
-    List<IVariableDeclaratorNode> getVariableDeclaratorList();
+    DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> getVariableDeclaratorList();
 
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface IVariableDeclaratorNode extends INode {
+  public static interface IVariableDeclaratorNode extends INode {
   }
 
-  public interface IVariableDeclaratorIdAndAssignmentNode extends INode, IVariableDeclaratorNode {
+  public static interface IVariableDeclaratorIdAndAssignmentNode extends INode, IVariableDeclaratorNode {
     IVariableDeclaratorIdNode getVariableDeclaratorId();
 
     SourceToken<EqualsOperatorToken> getEqualsOperator();
@@ -2581,22 +2618,22 @@ public class Nodes {
     IVariableDeclaratorAssignmentNode getVariableDeclaratorAssignment();
   }
 
-  public interface IVariableDeclaratorAssignmentNode extends INode {
+  public static interface IVariableDeclaratorAssignmentNode extends INode {
   }
 
-  public interface IVariableDeclaratorIdNode extends INode, IVariableDeclaratorNode {
+  public static interface IVariableDeclaratorIdNode extends INode, IVariableDeclaratorNode {
     SourceToken<IdentifierToken> getIdentifier();
 
     List<IBracketPairNode> getBracketPairList();
   }
 
-  public interface IBracketPairNode extends INode {
+  public static interface IBracketPairNode extends INode {
     SourceToken<LeftBracketSeparatorToken> getLeftBracketSeparator();
 
     SourceToken<RightBracketSeparatorToken> getRightBracketSeparator();
   }
 
-  public interface IMethodDeclarationNode extends INode, IClassOrInterfaceMemberDeclarationNode {
+  public static interface IMethodDeclarationNode extends INode, IClassOrInterfaceMemberDeclarationNode {
     IModifiersNode getModifiers();
 
     ITypeParametersNode getOptionalTypeParameters();
@@ -2607,7 +2644,7 @@ public class Nodes {
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
 
-    List<IFormalParameterNode> getOptionalFormalParameterList();
+    DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>> getOptionalFormalParameterList();
 
     SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator();
 
@@ -2618,10 +2655,10 @@ public class Nodes {
     IMethodBodyNode getMethodBody();
   }
 
-  public interface IMethodBodyNode extends INode {
+  public static interface IMethodBodyNode extends INode {
   }
 
-  public interface IFormalParameterNode extends INode {
+  public static interface IFormalParameterNode extends INode {
     IModifiersNode getModifiers();
 
     ITypeNode getType();
@@ -2631,75 +2668,75 @@ public class Nodes {
     IVariableDeclaratorIdNode getVariableDeclaratorId();
   }
 
-  public interface IThrowsNode extends INode {
+  public static interface IThrowsNode extends INode {
     SourceToken<ThrowsKeywordToken> getThrowsKeyword();
 
-    List<IClassOrInterfaceTypeNode> getClassOrInterfaceTypeList();
+    DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList();
   }
 
-  public interface ITypeParametersNode extends INode {
+  public static interface ITypeParametersNode extends INode {
     SourceToken<LessThanOperatorToken> getLessThanOperator();
 
-    List<ITypeParameterNode> getTypeParameterList();
+    DelimitedList<ITypeParameterNode, SourceToken<CommaSeparatorToken>> getTypeParameterList();
 
     SourceToken<GreaterThanOperatorToken> getGreaterThanOperator();
   }
 
-  public interface ITypeParameterNode extends INode {
+  public static interface ITypeParameterNode extends INode {
     SourceToken<IdentifierToken> getIdentifier();
 
     ITypeBoundNode getOptionalTypeBound();
   }
 
-  public interface ITypeBoundNode extends INode {
+  public static interface ITypeBoundNode extends INode {
     SourceToken<ExtendsKeywordToken> getExtendsKeyword();
 
-    List<IClassOrInterfaceTypeNode> getClassOrInterfaceTypeList();
+    DelimitedList<IClassOrInterfaceTypeNode, SourceToken<BitwiseAndOperatorToken>> getClassOrInterfaceTypeList();
   }
 
-  public interface ITypeNode extends INode {
+  public static interface ITypeNode extends INode {
   }
 
-  public interface IReferenceTypeNode extends INode, ITypeArgumentNode, ITypeNode {
+  public static interface IReferenceTypeNode extends INode, ITypeArgumentNode, ITypeNode {
   }
 
-  public interface IPrimitiveArrayReferenceTypeNode extends INode, IReferenceTypeNode {
+  public static interface IPrimitiveArrayReferenceTypeNode extends INode, IReferenceTypeNode {
     IPrimitiveTypeNode getPrimitiveType();
 
     List<IBracketPairNode> getBracketPairList();
   }
 
-  public interface IClassOrInterfaceReferenceTypeNode extends INode, IReferenceTypeNode {
+  public static interface IClassOrInterfaceReferenceTypeNode extends INode, IReferenceTypeNode {
     IClassOrInterfaceTypeNode getClassOrInterfaceType();
 
     List<IBracketPairNode> getBracketPairList();
   }
 
-  public interface IClassOrInterfaceTypeNode extends INode, IArrayCreationTypeNode {
-    List<ISingleClassOrInterfaceTypeNode> getSingleClassOrInterfaceTypeList();
+  public static interface IClassOrInterfaceTypeNode extends INode, IArrayCreationTypeNode {
+    DelimitedList<ISingleClassOrInterfaceTypeNode, SourceToken<DotSeparatorToken>> getSingleClassOrInterfaceTypeList();
   }
 
-  public interface ISingleClassOrInterfaceTypeNode extends INode {
+  public static interface ISingleClassOrInterfaceTypeNode extends INode {
     SourceToken<IdentifierToken> getIdentifier();
 
     ITypeArgumentsNode getOptionalTypeArguments();
   }
 
-  public interface ITypeArgumentsNode extends INode {
+  public static interface ITypeArgumentsNode extends INode {
     SourceToken<LessThanOperatorToken> getLessThanOperator();
 
-    List<ITypeArgumentNode> getTypeArgumentList();
+    DelimitedList<ITypeArgumentNode, SourceToken<CommaSeparatorToken>> getTypeArgumentList();
 
     SourceToken<GreaterThanOperatorToken> getGreaterThanOperator();
   }
 
-  public interface ITypeArgumentNode extends INode {
+  public static interface ITypeArgumentNode extends INode {
   }
 
-  public interface IWildcardTypeArgumentNode extends INode, ITypeArgumentNode {
+  public static interface IWildcardTypeArgumentNode extends INode, ITypeArgumentNode {
   }
 
-  public interface IExtendsWildcardTypeArgumentNode extends INode, IWildcardTypeArgumentNode {
+  public static interface IExtendsWildcardTypeArgumentNode extends INode, IWildcardTypeArgumentNode {
     SourceToken<QuestionMarkOperatorToken> getQuestionMarkOperator();
 
     SourceToken<ExtendsKeywordToken> getExtendsKeyword();
@@ -2707,7 +2744,7 @@ public class Nodes {
     IReferenceTypeNode getReferenceType();
   }
 
-  public interface ISuperWildcardTypeArgumentNode extends INode, IWildcardTypeArgumentNode {
+  public static interface ISuperWildcardTypeArgumentNode extends INode, IWildcardTypeArgumentNode {
     SourceToken<QuestionMarkOperatorToken> getQuestionMarkOperator();
 
     SourceToken<SuperKeywordToken> getSuperKeyword();
@@ -2715,37 +2752,37 @@ public class Nodes {
     IReferenceTypeNode getReferenceType();
   }
 
-  public interface IOpenWildcardTypeArgumentNode extends INode, IWildcardTypeArgumentNode {
+  public static interface IOpenWildcardTypeArgumentNode extends INode, IWildcardTypeArgumentNode {
     SourceToken<QuestionMarkOperatorToken> getQuestionMarkOperator();
   }
 
-  public interface INonWildcardTypeArgumentsNode extends INode {
+  public static interface INonWildcardTypeArgumentsNode extends INode {
     SourceToken<LessThanOperatorToken> getLessThanOperator();
 
-    List<IReferenceTypeNode> getReferenceTypeList();
+    DelimitedList<IReferenceTypeNode, SourceToken<CommaSeparatorToken>> getReferenceTypeList();
 
     SourceToken<GreaterThanOperatorToken> getGreaterThanOperator();
   }
 
-  public interface IPrimitiveTypeNode extends INode, IArrayCreationTypeNode, ITypeNode {
+  public static interface IPrimitiveTypeNode extends INode, IArrayCreationTypeNode, ITypeNode {
   }
 
-  public interface IAnnotationNode extends INode, IElementValueNode, IModifierNode {
+  public static interface IAnnotationNode extends INode, IElementValueNode, IModifierNode {
   }
 
-  public interface INormalAnnotationNode extends INode, IAnnotationNode {
+  public static interface INormalAnnotationNode extends INode, IAnnotationNode {
     SourceToken<AtSeparatorToken> getAtSeparator();
 
     IQualifiedIdentifierNode getQualifiedIdentifier();
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
 
-    List<IElementValuePairNode> getOptionalElementValuePairList();
+    DelimitedList<IElementValuePairNode, SourceToken<CommaSeparatorToken>> getOptionalElementValuePairList();
 
     SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator();
   }
 
-  public interface IElementValuePairNode extends INode {
+  public static interface IElementValuePairNode extends INode {
     SourceToken<IdentifierToken> getIdentifier();
 
     SourceToken<EqualsOperatorToken> getEqualsOperator();
@@ -2753,7 +2790,7 @@ public class Nodes {
     IElementValueNode getElementValue();
   }
 
-  public interface ISingleElementAnnotationNode extends INode, IAnnotationNode {
+  public static interface ISingleElementAnnotationNode extends INode, IAnnotationNode {
     SourceToken<AtSeparatorToken> getAtSeparator();
 
     IQualifiedIdentifierNode getQualifiedIdentifier();
@@ -2765,26 +2802,26 @@ public class Nodes {
     SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator();
   }
 
-  public interface IMarkerAnnotationNode extends INode, IAnnotationNode {
+  public static interface IMarkerAnnotationNode extends INode, IAnnotationNode {
     SourceToken<AtSeparatorToken> getAtSeparator();
 
     IQualifiedIdentifierNode getQualifiedIdentifier();
   }
 
-  public interface IElementValueNode extends INode {
+  public static interface IElementValueNode extends INode {
   }
 
-  public interface IElementValueArrayInitializerNode extends INode, IElementValueNode {
+  public static interface IElementValueArrayInitializerNode extends INode, IElementValueNode {
     SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
 
-    List<IElementValueNode> getOptionalElementValueList();
+    DelimitedList<IElementValueNode, SourceToken<CommaSeparatorToken>> getOptionalElementValueList();
 
     SourceToken<CommaSeparatorToken> getOptionalCommaSeparator();
 
     SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
   }
 
-  public interface IBlockNode extends INode, IClassBodyDeclarationNode, IStatementNode, IMethodBodyNode {
+  public static interface IBlockNode extends INode, IClassBodyDeclarationNode, IStatementNode, IMethodBodyNode {
     SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
 
     List<IBlockStatementNode> getBlockStatementList();
@@ -2792,31 +2829,31 @@ public class Nodes {
     SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
   }
 
-  public interface IBlockStatementNode extends INode {
+  public static interface IBlockStatementNode extends INode {
   }
 
-  public interface ILocalVariableDeclarationStatementNode extends INode, IBlockStatementNode {
+  public static interface ILocalVariableDeclarationStatementNode extends INode, IBlockStatementNode {
     ILocalVariableDeclarationNode getLocalVariableDeclaration();
 
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface ILocalVariableDeclarationNode extends INode, IForInitializerNode {
+  public static interface ILocalVariableDeclarationNode extends INode, IForInitializerNode {
     IModifiersNode getModifiers();
 
     ITypeNode getType();
 
-    List<IVariableDeclaratorNode> getVariableDeclaratorList();
+    DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> getVariableDeclaratorList();
   }
 
-  public interface IStatementNode extends INode, IBlockStatementNode {
+  public static interface IStatementNode extends INode, IBlockStatementNode {
   }
 
-  public interface IEmptyStatementNode extends INode, IStatementNode {
+  public static interface IEmptyStatementNode extends INode, IStatementNode {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface ILabeledStatementNode extends INode, IStatementNode {
+  public static interface ILabeledStatementNode extends INode, IStatementNode {
     SourceToken<IdentifierToken> getIdentifier();
 
     SourceToken<ColonOperatorToken> getColonOperator();
@@ -2824,13 +2861,13 @@ public class Nodes {
     IStatementNode getStatement();
   }
 
-  public interface IExpressionStatementNode extends INode, IStatementNode {
+  public static interface IExpressionStatementNode extends INode, IStatementNode {
     IExpressionNode getExpression();
 
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface IIfStatementNode extends INode, IStatementNode {
+  public static interface IIfStatementNode extends INode, IStatementNode {
     SourceToken<IfKeywordToken> getIfKeyword();
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
@@ -2844,16 +2881,16 @@ public class Nodes {
     IElseStatementNode getOptionalElseStatement();
   }
 
-  public interface IElseStatementNode extends INode {
+  public static interface IElseStatementNode extends INode {
     SourceToken<ElseKeywordToken> getElseKeyword();
 
     IStatementNode getStatement();
   }
 
-  public interface IAssertStatementNode extends INode, IStatementNode {
+  public static interface IAssertStatementNode extends INode, IStatementNode {
   }
 
-  public interface IMessageAssertStatementNode extends INode, IAssertStatementNode {
+  public static interface IMessageAssertStatementNode extends INode, IAssertStatementNode {
     SourceToken<AssertKeywordToken> getAssertKeyword();
 
     IExpressionNode getExpression();
@@ -2865,7 +2902,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface ISimpleAssertStatementNode extends INode, IAssertStatementNode {
+  public static interface ISimpleAssertStatementNode extends INode, IAssertStatementNode {
     SourceToken<AssertKeywordToken> getAssertKeyword();
 
     IExpressionNode getExpression();
@@ -2873,7 +2910,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface ISwitchStatementNode extends INode, IStatementNode {
+  public static interface ISwitchStatementNode extends INode, IStatementNode {
     SourceToken<SwitchKeywordToken> getSwitchKeyword();
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
@@ -2891,16 +2928,16 @@ public class Nodes {
     SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
   }
 
-  public interface ISwitchBlockStatementGroupNode extends INode {
+  public static interface ISwitchBlockStatementGroupNode extends INode {
     List<ISwitchLabelNode> getSwitchLabelList();
 
     List<IBlockStatementNode> getBlockStatementList();
   }
 
-  public interface ISwitchLabelNode extends INode {
+  public static interface ISwitchLabelNode extends INode {
   }
 
-  public interface ICaseSwitchLabelNode extends INode, ISwitchLabelNode {
+  public static interface ICaseSwitchLabelNode extends INode, ISwitchLabelNode {
     SourceToken<CaseKeywordToken> getCaseKeyword();
 
     IExpressionNode getExpression();
@@ -2908,13 +2945,13 @@ public class Nodes {
     SourceToken<ColonOperatorToken> getColonOperator();
   }
 
-  public interface IDefaultSwitchLabelNode extends INode, ISwitchLabelNode {
+  public static interface IDefaultSwitchLabelNode extends INode, ISwitchLabelNode {
     SourceToken<DefaultKeywordToken> getDefaultKeyword();
 
     SourceToken<ColonOperatorToken> getColonOperator();
   }
 
-  public interface IWhileStatementNode extends INode, IStatementNode {
+  public static interface IWhileStatementNode extends INode, IStatementNode {
     SourceToken<WhileKeywordToken> getWhileKeyword();
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
@@ -2926,7 +2963,7 @@ public class Nodes {
     IStatementNode getStatement();
   }
 
-  public interface IDoStatementNode extends INode, IStatementNode {
+  public static interface IDoStatementNode extends INode, IStatementNode {
     SourceToken<DoKeywordToken> getDoKeyword();
 
     IStatementNode getStatement();
@@ -2942,10 +2979,10 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface IForStatementNode extends INode, IStatementNode {
+  public static interface IForStatementNode extends INode, IStatementNode {
   }
 
-  public interface IBasicForStatementNode extends INode, IForStatementNode {
+  public static interface IBasicForStatementNode extends INode, IForStatementNode {
     SourceToken<ForKeywordToken> getForKeyword();
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
@@ -2958,25 +2995,21 @@ public class Nodes {
 
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator2();
 
-    IForUpdateNode getOptionalForUpdate();
+    IDelimitedExpressionListNode getOptionalDelimitedExpressionList();
 
     SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator();
 
     IStatementNode getStatement();
   }
 
-  public interface IForInitializerNode extends INode {
+  public static interface IForInitializerNode extends INode {
   }
 
-  public interface IDelimitedExpressionListNode extends INode, IForInitializerNode {
-    List<IExpressionNode> getExpressionList();
+  public static interface IDelimitedExpressionListNode extends INode, IForInitializerNode {
+    DelimitedList<IExpressionNode, SourceToken<CommaSeparatorToken>> getExpressionList();
   }
 
-  public interface IForUpdateNode extends INode {
-    List<IExpressionNode> getExpressionList();
-  }
-
-  public interface IEnhancedForStatementNode extends INode, IForStatementNode {
+  public static interface IEnhancedForStatementNode extends INode, IForStatementNode {
     SourceToken<ForKeywordToken> getForKeyword();
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
@@ -2996,7 +3029,7 @@ public class Nodes {
     IStatementNode getStatement();
   }
 
-  public interface IBreakStatementNode extends INode, IStatementNode {
+  public static interface IBreakStatementNode extends INode, IStatementNode {
     SourceToken<BreakKeywordToken> getBreakKeyword();
 
     SourceToken<IdentifierToken> getOptionalIdentifier();
@@ -3004,7 +3037,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface IContinueStatementNode extends INode, IStatementNode {
+  public static interface IContinueStatementNode extends INode, IStatementNode {
     SourceToken<ContinueKeywordToken> getContinueKeyword();
 
     SourceToken<IdentifierToken> getOptionalIdentifier();
@@ -3012,7 +3045,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface IReturnStatementNode extends INode, IStatementNode {
+  public static interface IReturnStatementNode extends INode, IStatementNode {
     SourceToken<ReturnKeywordToken> getReturnKeyword();
 
     IExpressionNode getOptionalExpression();
@@ -3020,7 +3053,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface IThrowStatementNode extends INode, IStatementNode {
+  public static interface IThrowStatementNode extends INode, IStatementNode {
     SourceToken<ThrowKeywordToken> getThrowKeyword();
 
     IExpressionNode getOptionalExpression();
@@ -3028,7 +3061,7 @@ public class Nodes {
     SourceToken<SemicolonSeparatorToken> getSemicolonSeparator();
   }
 
-  public interface ISynchronizedStatementNode extends INode, IStatementNode {
+  public static interface ISynchronizedStatementNode extends INode, IStatementNode {
     SourceToken<SynchronizedKeywordToken> getSynchronizedKeyword();
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
@@ -3040,10 +3073,10 @@ public class Nodes {
     IBlockNode getBlock();
   }
 
-  public interface ITryStatementNode extends INode, IStatementNode {
+  public static interface ITryStatementNode extends INode, IStatementNode {
   }
 
-  public interface ITryStatementWithFinallyNode extends INode, ITryStatementNode {
+  public static interface ITryStatementWithFinallyNode extends INode, ITryStatementNode {
     SourceToken<TryKeywordToken> getTryKeyword();
 
     IBlockNode getBlock();
@@ -3055,7 +3088,7 @@ public class Nodes {
     IBlockNode getBlock2();
   }
 
-  public interface ITryStatementWithoutFinallyNode extends INode, ITryStatementNode {
+  public static interface ITryStatementWithoutFinallyNode extends INode, ITryStatementNode {
     SourceToken<TryKeywordToken> getTryKeyword();
 
     IBlockNode getBlock();
@@ -3063,7 +3096,7 @@ public class Nodes {
     List<ICatchClauseNode> getCatchClauseList();
   }
 
-  public interface ICatchClauseNode extends INode {
+  public static interface ICatchClauseNode extends INode {
     SourceToken<CatchKeywordToken> getCatchKeyword();
 
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
@@ -3075,18 +3108,18 @@ public class Nodes {
     IBlockNode getBlock();
   }
 
-  public interface IExpressionNode
+  public static interface IExpressionNode
       extends INode, IElementValueNode, IVariableInitializerNode, IVariableDeclaratorAssignmentNode {
-    List<IExpression1Node> getExpression1List();
+    DelimitedList<IExpression1Node, IAssignmentOperatorNode> getExpression1List();
   }
 
-  public interface IAssignmentOperatorNode extends INode {
+  public static interface IAssignmentOperatorNode extends INode {
   }
 
-  public interface IExpression1Node extends INode {
+  public static interface IExpression1Node extends INode {
   }
 
-  public interface ITernaryExpressionNode extends INode, IExpression1Node {
+  public static interface ITernaryExpressionNode extends INode, IExpression1Node {
     IExpression2Node getExpression2();
 
     SourceToken<QuestionMarkOperatorToken> getQuestionMarkOperator();
@@ -3098,34 +3131,34 @@ public class Nodes {
     IExpression1Node getExpression1();
   }
 
-  public interface IExpression2Node extends INode, IExpression1Node {
+  public static interface IExpression2Node extends INode, IExpression1Node {
   }
 
-  public interface IBinaryExpressionNode extends INode, IExpression2Node {
+  public static interface IBinaryExpressionNode extends INode, IExpression2Node {
     IExpression3Node getExpression3();
 
     List<IBinaryExpressionRestNode> getBinaryExpressionRestList();
   }
 
-  public interface IBinaryExpressionRestNode extends INode {
+  public static interface IBinaryExpressionRestNode extends INode {
   }
 
-  public interface IInfixOperatorBinaryExpressionRestNode extends INode, IBinaryExpressionRestNode {
+  public static interface IInfixOperatorBinaryExpressionRestNode extends INode, IBinaryExpressionRestNode {
     IInfixOperatorNode getInfixOperator();
 
     IExpression3Node getExpression3();
   }
 
-  public interface IInstanceofOperatorBinaryExpressionRestNode extends INode, IBinaryExpressionRestNode {
+  public static interface IInstanceofOperatorBinaryExpressionRestNode extends INode, IBinaryExpressionRestNode {
     SourceToken<InstanceofKeywordToken> getInstanceofKeyword();
 
     ITypeNode getType();
   }
 
-  public interface IInfixOperatorNode extends INode {
+  public static interface IInfixOperatorNode extends INode {
   }
 
-  public interface IUnsignedRightShiftNode extends INode, IInfixOperatorNode {
+  public static interface IUnsignedRightShiftNode extends INode, IInfixOperatorNode {
     SourceToken<GreaterThanOperatorToken> getGreaterThanOperator();
 
     SourceToken<GreaterThanOperatorToken> getGreaterThanOperator2();
@@ -3133,28 +3166,28 @@ public class Nodes {
     SourceToken<GreaterThanOperatorToken> getGreaterThanOperator3();
   }
 
-  public interface ISignedRightShiftNode extends INode, IInfixOperatorNode {
+  public static interface ISignedRightShiftNode extends INode, IInfixOperatorNode {
     SourceToken<GreaterThanOperatorToken> getGreaterThanOperator();
 
     SourceToken<GreaterThanOperatorToken> getGreaterThanOperator2();
   }
 
-  public interface IExpression3Node extends INode, IExpression2Node {
+  public static interface IExpression3Node extends INode, IExpression2Node {
   }
 
-  public interface IPrefixExpressionNode extends INode, IExpression3Node {
+  public static interface IPrefixExpressionNode extends INode, IExpression3Node {
     IPrefixOperatorNode getPrefixOperator();
 
     IExpression3Node getExpression3();
   }
 
-  public interface IPrefixOperatorNode extends INode {
+  public static interface IPrefixOperatorNode extends INode {
   }
 
-  public interface IPossibleCastExpressionNode extends INode, IExpression3Node {
+  public static interface IPossibleCastExpressionNode extends INode, IExpression3Node {
   }
 
-  public interface IPossibleCastExpression_TypeNode extends INode, IPossibleCastExpressionNode {
+  public static interface IPossibleCastExpression_TypeNode extends INode, IPossibleCastExpressionNode {
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
 
     ITypeNode getType();
@@ -3164,7 +3197,7 @@ public class Nodes {
     IExpression3Node getExpression3();
   }
 
-  public interface IPossibleCastExpression_ExpressionNode extends INode, IPossibleCastExpressionNode {
+  public static interface IPossibleCastExpression_ExpressionNode extends INode, IPossibleCastExpressionNode {
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
 
     IExpressionNode getExpression();
@@ -3174,7 +3207,7 @@ public class Nodes {
     IExpression3Node getExpression3();
   }
 
-  public interface IPrimaryExpressionNode extends INode, IExpression3Node {
+  public static interface IPrimaryExpressionNode extends INode, IExpression3Node {
     IValueExpressionNode getValueExpression();
 
     List<ISelectorNode> getSelectorList();
@@ -3182,13 +3215,13 @@ public class Nodes {
     IPostfixOperatorNode getOptionalPostfixOperator();
   }
 
-  public interface IPostfixOperatorNode extends INode {
+  public static interface IPostfixOperatorNode extends INode {
   }
 
-  public interface IValueExpressionNode extends INode {
+  public static interface IValueExpressionNode extends INode {
   }
 
-  public interface IClassAccessNode extends INode, IValueExpressionNode {
+  public static interface IClassAccessNode extends INode, IValueExpressionNode {
     ITypeNode getType();
 
     SourceToken<DotSeparatorToken> getDotSeparator();
@@ -3196,16 +3229,16 @@ public class Nodes {
     SourceToken<ClassKeywordToken> getClassKeyword();
   }
 
-  public interface ISelectorNode extends INode {
+  public static interface ISelectorNode extends INode {
   }
 
-  public interface IDotSelectorNode extends INode, ISelectorNode {
+  public static interface IDotSelectorNode extends INode, ISelectorNode {
     SourceToken<DotSeparatorToken> getDotSeparator();
 
     IValueExpressionNode getValueExpression();
   }
 
-  public interface IArraySelectorNode extends INode, ISelectorNode {
+  public static interface IArraySelectorNode extends INode, ISelectorNode {
     SourceToken<LeftBracketSeparatorToken> getLeftBracketSeparator();
 
     IExpressionNode getExpression();
@@ -3213,7 +3246,7 @@ public class Nodes {
     SourceToken<RightBracketSeparatorToken> getRightBracketSeparator();
   }
 
-  public interface IParenthesizedExpressionNode extends INode, IValueExpressionNode {
+  public static interface IParenthesizedExpressionNode extends INode, IValueExpressionNode {
     SourceToken<LeftParenthesisSeparatorToken> getLeftParenthesisSeparator();
 
     IExpressionNode getExpression();
@@ -3221,7 +3254,7 @@ public class Nodes {
     SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator();
   }
 
-  public interface IMethodInvocationNode extends INode, IValueExpressionNode {
+  public static interface IMethodInvocationNode extends INode, IValueExpressionNode {
     INonWildcardTypeArgumentsNode getOptionalNonWildcardTypeArguments();
 
     SourceToken<IdentifierToken> getIdentifier();
@@ -3229,22 +3262,22 @@ public class Nodes {
     IArgumentsNode getArguments();
   }
 
-  public interface IThisConstructorInvocationNode extends INode, IValueExpressionNode {
+  public static interface IThisConstructorInvocationNode extends INode, IValueExpressionNode {
     SourceToken<ThisKeywordToken> getThisKeyword();
 
     IArgumentsNode getArguments();
   }
 
-  public interface ISuperConstructorInvocationNode extends INode, IValueExpressionNode {
+  public static interface ISuperConstructorInvocationNode extends INode, IValueExpressionNode {
     SourceToken<SuperKeywordToken> getSuperKeyword();
 
     IArgumentsNode getArguments();
   }
 
-  public interface ICreationExpressionNode extends INode, IValueExpressionNode {
+  public static interface ICreationExpressionNode extends INode, IValueExpressionNode {
   }
 
-  public interface IObjectCreationExpressionNode extends INode, ICreationExpressionNode {
+  public static interface IObjectCreationExpressionNode extends INode, ICreationExpressionNode {
     SourceToken<NewKeywordToken> getNewKeyword();
 
     INonWildcardTypeArgumentsNode getOptionalNonWildcardTypeArguments();
@@ -3256,7 +3289,7 @@ public class Nodes {
     IClassBodyNode getOptionalClassBody();
   }
 
-  public interface IArrayCreationExpressionNode extends INode, ICreationExpressionNode {
+  public static interface IArrayCreationExpressionNode extends INode, ICreationExpressionNode {
     SourceToken<NewKeywordToken> getNewKeyword();
 
     IArrayCreationTypeNode getArrayCreationType();
@@ -3266,10 +3299,10 @@ public class Nodes {
     IArrayInitializerNode getOptionalArrayInitializer();
   }
 
-  public interface IArrayCreationTypeNode extends INode {
+  public static interface IArrayCreationTypeNode extends INode {
   }
 
-  public interface IDimensionExpressionNode extends INode {
+  public static interface IDimensionExpressionNode extends INode {
     SourceToken<LeftBracketSeparatorToken> getLeftBracketSeparator();
 
     IExpressionNode getOptionalExpression();
@@ -3277,20 +3310,21 @@ public class Nodes {
     SourceToken<RightBracketSeparatorToken> getRightBracketSeparator();
   }
 
-  public interface IArrayInitializerNode extends INode, IVariableInitializerNode, IVariableDeclaratorAssignmentNode {
+  public static interface IArrayInitializerNode
+      extends INode, IVariableInitializerNode, IVariableDeclaratorAssignmentNode {
     SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
 
-    List<IVariableInitializerNode> getOptionalVariableInitializerList();
+    DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>> getOptionalVariableInitializerList();
 
     SourceToken<CommaSeparatorToken> getOptionalCommaSeparator();
 
     SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
   }
 
-  public interface IVariableInitializerNode extends INode {
+  public static interface IVariableInitializerNode extends INode {
   }
 
-  public class CompilationUnitNode extends AbstractNode implements ICompilationUnitNode {
+  public static class CompilationUnitNode extends AbstractNode implements ICompilationUnitNode {
     private final IPackageDeclarationNode optionalPackageDeclaration;
     private final List<IImportDeclarationNode> importDeclarationList;
     private final List<ITypeDeclarationNode> typeDeclarationList;
@@ -3340,7 +3374,7 @@ public class Nodes {
     }
   }
 
-  public class PackageDeclarationNode extends AbstractNode implements IPackageDeclarationNode {
+  public static class PackageDeclarationNode extends AbstractNode implements IPackageDeclarationNode {
     private final List<IAnnotationNode> annotationList;
     private final SourceToken<PackageKeywordToken> packageKeyword;
     private final IQualifiedIdentifierNode qualifiedIdentifier;
@@ -3399,15 +3433,15 @@ public class Nodes {
     }
   }
 
-  public class QualifiedIdentifierNode extends AbstractNode implements IQualifiedIdentifierNode {
-    private final List<SourceToken<IdentifierToken>> identifierList;
+  public static class QualifiedIdentifierNode extends AbstractNode implements IQualifiedIdentifierNode {
+    private final DelimitedList<SourceToken<IdentifierToken>, SourceToken<DotSeparatorToken>> identifierList;
 
     public QualifiedIdentifierNode(
-        List<SourceToken<IdentifierToken>> identifierList) {
+        DelimitedList<SourceToken<IdentifierToken>, SourceToken<DotSeparatorToken>> identifierList) {
       this.identifierList = identifierList;
     }
 
-    public List<SourceToken<IdentifierToken>> getIdentifierList() {
+    public DelimitedList<SourceToken<IdentifierToken>, SourceToken<DotSeparatorToken>> getIdentifierList() {
       return identifierList;
     }
 
@@ -3431,7 +3465,7 @@ public class Nodes {
     }
   }
 
-  public class ImportDeclarationNode extends AbstractNode implements IImportDeclarationNode {
+  public static class ImportDeclarationNode extends AbstractNode implements IImportDeclarationNode {
     public ImportDeclarationNode() {
     }
 
@@ -3453,7 +3487,7 @@ public class Nodes {
     }
   }
 
-  public class SingleTypeImportDeclarationNode extends AbstractNode implements ISingleTypeImportDeclarationNode {
+  public static class SingleTypeImportDeclarationNode extends AbstractNode implements ISingleTypeImportDeclarationNode {
     private final SourceToken<ImportKeywordToken> importKeyword;
     private final IQualifiedIdentifierNode qualifiedIdentifier;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
@@ -3503,7 +3537,8 @@ public class Nodes {
     }
   }
 
-  public class TypeImportOnDemandDeclarationNode extends AbstractNode implements ITypeImportOnDemandDeclarationNode {
+  public static class TypeImportOnDemandDeclarationNode extends AbstractNode
+      implements ITypeImportOnDemandDeclarationNode {
     private final SourceToken<ImportKeywordToken> importKeyword;
     private final IQualifiedIdentifierNode qualifiedIdentifier;
     private final SourceToken<DotSeparatorToken> dotSeparator;
@@ -3571,7 +3606,8 @@ public class Nodes {
     }
   }
 
-  public class SingleStaticImportDeclarationNode extends AbstractNode implements ISingleStaticImportDeclarationNode {
+  public static class SingleStaticImportDeclarationNode extends AbstractNode
+      implements ISingleStaticImportDeclarationNode {
     private final SourceToken<ImportKeywordToken> importKeyword;
     private final SourceToken<StaticKeywordToken> staticKeyword;
     private final IQualifiedIdentifierNode qualifiedIdentifier;
@@ -3630,7 +3666,7 @@ public class Nodes {
     }
   }
 
-  public class StaticImportOnDemandDeclarationNode extends AbstractNode
+  public static class StaticImportOnDemandDeclarationNode extends AbstractNode
       implements IStaticImportOnDemandDeclarationNode {
     private final SourceToken<ImportKeywordToken> importKeyword;
     private final SourceToken<StaticKeywordToken> staticKeyword;
@@ -3708,7 +3744,7 @@ public class Nodes {
     }
   }
 
-  public class TypeDeclarationNode extends AbstractNode implements ITypeDeclarationNode {
+  public static class TypeDeclarationNode extends AbstractNode implements ITypeDeclarationNode {
     public TypeDeclarationNode() {
     }
 
@@ -3730,7 +3766,7 @@ public class Nodes {
     }
   }
 
-  public class ClassDeclarationNode extends AbstractNode implements IClassDeclarationNode {
+  public static class ClassDeclarationNode extends AbstractNode implements IClassDeclarationNode {
     public ClassDeclarationNode() {
     }
 
@@ -3752,7 +3788,7 @@ public class Nodes {
     }
   }
 
-  public class NormalClassDeclarationNode extends AbstractNode implements INormalClassDeclarationNode {
+  public static class NormalClassDeclarationNode extends AbstractNode implements INormalClassDeclarationNode {
     private final IModifiersNode modifiers;
     private final SourceToken<ClassKeywordToken> classKeyword;
     private final SourceToken<IdentifierToken> identifier;
@@ -3838,7 +3874,7 @@ public class Nodes {
     }
   }
 
-  public class ModifiersNode extends AbstractNode implements IModifiersNode {
+  public static class ModifiersNode extends AbstractNode implements IModifiersNode {
     private final List<IModifierNode> modifierList;
 
     public ModifiersNode(
@@ -3870,7 +3906,7 @@ public class Nodes {
     }
   }
 
-  public class ModifierNode extends AbstractNode implements IModifierNode {
+  public static class ModifierNode extends AbstractNode implements IModifierNode {
     public ModifierNode() {
     }
 
@@ -3892,7 +3928,7 @@ public class Nodes {
     }
   }
 
-  public class SuperNode extends AbstractNode implements ISuperNode {
+  public static class SuperNode extends AbstractNode implements ISuperNode {
     private final SourceToken<ExtendsKeywordToken> extendsKeyword;
     private final IClassOrInterfaceTypeNode classOrInterfaceType;
 
@@ -3933,13 +3969,13 @@ public class Nodes {
     }
   }
 
-  public class InterfacesNode extends AbstractNode implements IInterfacesNode {
+  public static class InterfacesNode extends AbstractNode implements IInterfacesNode {
     private final SourceToken<ImplementsKeywordToken> implementsKeyword;
-    private final List<IClassOrInterfaceTypeNode> classOrInterfaceTypeList;
+    private final DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> classOrInterfaceTypeList;
 
     public InterfacesNode(
         SourceToken<ImplementsKeywordToken> implementsKeyword,
-        List<IClassOrInterfaceTypeNode> classOrInterfaceTypeList) {
+        DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> classOrInterfaceTypeList) {
       this.implementsKeyword = implementsKeyword;
       this.classOrInterfaceTypeList = classOrInterfaceTypeList;
     }
@@ -3948,7 +3984,7 @@ public class Nodes {
       return implementsKeyword;
     }
 
-    public List<IClassOrInterfaceTypeNode> getClassOrInterfaceTypeList() {
+    public DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList() {
       return classOrInterfaceTypeList;
     }
 
@@ -3974,7 +4010,7 @@ public class Nodes {
     }
   }
 
-  public class ClassBodyNode extends AbstractNode implements IClassBodyNode {
+  public static class ClassBodyNode extends AbstractNode implements IClassBodyNode {
     private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
     private final List<IClassBodyDeclarationNode> classBodyDeclarationList;
     private final SourceToken<RightCurlySeparatorToken> rightCurlySeparator;
@@ -4024,7 +4060,7 @@ public class Nodes {
     }
   }
 
-  public class ClassBodyDeclarationNode extends AbstractNode implements IClassBodyDeclarationNode {
+  public static class ClassBodyDeclarationNode extends AbstractNode implements IClassBodyDeclarationNode {
     public ClassBodyDeclarationNode() {
     }
 
@@ -4046,7 +4082,7 @@ public class Nodes {
     }
   }
 
-  public class StaticInitializerNode extends AbstractNode implements IStaticInitializerNode {
+  public static class StaticInitializerNode extends AbstractNode implements IStaticInitializerNode {
     private final SourceToken<StaticKeywordToken> staticKeyword;
     private final IBlockNode block;
 
@@ -4087,7 +4123,7 @@ public class Nodes {
     }
   }
 
-  public class InterfaceDeclarationNode extends AbstractNode implements IInterfaceDeclarationNode {
+  public static class InterfaceDeclarationNode extends AbstractNode implements IInterfaceDeclarationNode {
     public InterfaceDeclarationNode() {
     }
 
@@ -4109,7 +4145,7 @@ public class Nodes {
     }
   }
 
-  public class NormalInterfaceDeclarationNode extends AbstractNode implements INormalInterfaceDeclarationNode {
+  public static class NormalInterfaceDeclarationNode extends AbstractNode implements INormalInterfaceDeclarationNode {
     private final IModifiersNode modifiers;
     private final SourceToken<InterfaceKeywordToken> interfaceKeyword;
     private final SourceToken<IdentifierToken> identifier;
@@ -4186,13 +4222,13 @@ public class Nodes {
     }
   }
 
-  public class ExtendsInterfacesNode extends AbstractNode implements IExtendsInterfacesNode {
+  public static class ExtendsInterfacesNode extends AbstractNode implements IExtendsInterfacesNode {
     private final SourceToken<ExtendsKeywordToken> extendsKeyword;
-    private final List<IClassOrInterfaceTypeNode> classOrInterfaceTypeList;
+    private final DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> classOrInterfaceTypeList;
 
     public ExtendsInterfacesNode(
         SourceToken<ExtendsKeywordToken> extendsKeyword,
-        List<IClassOrInterfaceTypeNode> classOrInterfaceTypeList) {
+        DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> classOrInterfaceTypeList) {
       this.extendsKeyword = extendsKeyword;
       this.classOrInterfaceTypeList = classOrInterfaceTypeList;
     }
@@ -4201,7 +4237,7 @@ public class Nodes {
       return extendsKeyword;
     }
 
-    public List<IClassOrInterfaceTypeNode> getClassOrInterfaceTypeList() {
+    public DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList() {
       return classOrInterfaceTypeList;
     }
 
@@ -4227,7 +4263,7 @@ public class Nodes {
     }
   }
 
-  public class ClassOrInterfaceBodyNode extends AbstractNode implements IClassOrInterfaceBodyNode {
+  public static class ClassOrInterfaceBodyNode extends AbstractNode implements IClassOrInterfaceBodyNode {
     private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
     private final List<IClassOrInterfaceMemberDeclarationNode> classOrInterfaceMemberDeclarationList;
     private final SourceToken<RightCurlySeparatorToken> rightCurlySeparator;
@@ -4280,7 +4316,7 @@ public class Nodes {
     }
   }
 
-  public class EnumDeclarationNode extends AbstractNode implements IEnumDeclarationNode {
+  public static class EnumDeclarationNode extends AbstractNode implements IEnumDeclarationNode {
     private final IModifiersNode modifiers;
     private final SourceToken<EnumKeywordToken> enumKeyword;
     private final SourceToken<IdentifierToken> identifier;
@@ -4348,9 +4384,9 @@ public class Nodes {
     }
   }
 
-  public class EnumBodyNode extends AbstractNode implements IEnumBodyNode {
+  public static class EnumBodyNode extends AbstractNode implements IEnumBodyNode {
     private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
-    private final List<IEnumConstantNode> optionalEnumConstantList;
+    private final DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>> optionalEnumConstantList;
     private final SourceToken<CommaSeparatorToken> optionalCommaSeparator;
     private final SourceToken<SemicolonSeparatorToken> optionalSemicolonSeparator;
     private final List<IClassBodyDeclarationNode> classBodyDeclarationList;
@@ -4358,7 +4394,7 @@ public class Nodes {
 
     public EnumBodyNode(
         SourceToken<LeftCurlySeparatorToken> leftCurlySeparator,
-        List<IEnumConstantNode> optionalEnumConstantList,
+        DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>> optionalEnumConstantList,
         SourceToken<CommaSeparatorToken> optionalCommaSeparator,
         SourceToken<SemicolonSeparatorToken> optionalSemicolonSeparator,
         List<IClassBodyDeclarationNode> classBodyDeclarationList,
@@ -4375,7 +4411,7 @@ public class Nodes {
       return leftCurlySeparator;
     }
 
-    public List<IEnumConstantNode> getOptionalEnumConstantList() {
+    public DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>> getOptionalEnumConstantList() {
       return optionalEnumConstantList;
     }
 
@@ -4425,7 +4461,7 @@ public class Nodes {
     }
   }
 
-  public class EnumConstantNode extends AbstractNode implements IEnumConstantNode {
+  public static class EnumConstantNode extends AbstractNode implements IEnumConstantNode {
     private final List<IAnnotationNode> annotationList;
     private final SourceToken<IdentifierToken> identifier;
     private final IArgumentsNode optionalArguments;
@@ -4484,17 +4520,17 @@ public class Nodes {
     }
   }
 
-  public class ArgumentsNode extends AbstractNode implements IArgumentsNode {
+  public static class ArgumentsNode extends AbstractNode implements IArgumentsNode {
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
-    private final List<IExpressionNode> optionalExpressionList;
+    private final IDelimitedExpressionListNode optionalDelimitedExpressionList;
     private final SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator;
 
     public ArgumentsNode(
         SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator,
-        List<IExpressionNode> optionalExpressionList,
+        IDelimitedExpressionListNode optionalDelimitedExpressionList,
         SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator) {
       this.leftParenthesisSeparator = leftParenthesisSeparator;
-      this.optionalExpressionList = optionalExpressionList;
+      this.optionalDelimitedExpressionList = optionalDelimitedExpressionList;
       this.rightParenthesisSeparator = rightParenthesisSeparator;
     }
 
@@ -4502,8 +4538,8 @@ public class Nodes {
       return leftParenthesisSeparator;
     }
 
-    public List<IExpressionNode> getOptionalExpressionList() {
-      return optionalExpressionList;
+    public IDelimitedExpressionListNode getOptionalDelimitedExpressionList() {
+      return optionalDelimitedExpressionList;
     }
 
     public SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator() {
@@ -4520,7 +4556,7 @@ public class Nodes {
       if (!(__other instanceof IArgumentsNode)) { return false; }
       IArgumentsNode __node = (IArgumentsNode) __other;
       if (!equals(leftParenthesisSeparator, __node.getLeftParenthesisSeparator())) { return false; }
-      if (!equals(optionalExpressionList, __node.getOptionalExpressionList())) { return false; }
+      if (!equals(optionalDelimitedExpressionList, __node.getOptionalDelimitedExpressionList())) { return false; }
       if (!equals(rightParenthesisSeparator, __node.getRightParenthesisSeparator())) { return false; }
       return true;
     }
@@ -4528,13 +4564,13 @@ public class Nodes {
     protected int hashCodeWorker() {
       int hash = 0;
       hash = 31 * hash + (leftParenthesisSeparator == null ? 0 : leftParenthesisSeparator.hashCode());
-      hash = 31 * hash + (optionalExpressionList == null ? 0 : optionalExpressionList.hashCode());
+      hash = 31 * hash + (optionalDelimitedExpressionList == null ? 0 : optionalDelimitedExpressionList.hashCode());
       hash = 31 * hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
       return hash;
     }
   }
 
-  public class AnnotationDeclarationNode extends AbstractNode implements IAnnotationDeclarationNode {
+  public static class AnnotationDeclarationNode extends AbstractNode implements IAnnotationDeclarationNode {
     private final IModifiersNode modifiers;
     private final SourceToken<AtSeparatorToken> atSeparator;
     private final SourceToken<InterfaceKeywordToken> interfaceKeyword;
@@ -4602,7 +4638,7 @@ public class Nodes {
     }
   }
 
-  public class AnnotationBodyNode extends AbstractNode implements IAnnotationBodyNode {
+  public static class AnnotationBodyNode extends AbstractNode implements IAnnotationBodyNode {
     private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
     private final List<IAnnotationElementDeclarationNode> annotationElementDeclarationList;
     private final SourceToken<RightCurlySeparatorToken> rightCurlySeparator;
@@ -4652,7 +4688,8 @@ public class Nodes {
     }
   }
 
-  public class AnnotationElementDeclarationNode extends AbstractNode implements IAnnotationElementDeclarationNode {
+  public static class AnnotationElementDeclarationNode extends AbstractNode
+      implements IAnnotationElementDeclarationNode {
     public AnnotationElementDeclarationNode() {
     }
 
@@ -4674,7 +4711,8 @@ public class Nodes {
     }
   }
 
-  public class AnnotationDefaultDeclarationNode extends AbstractNode implements IAnnotationDefaultDeclarationNode {
+  public static class AnnotationDefaultDeclarationNode extends AbstractNode
+      implements IAnnotationDefaultDeclarationNode {
     private final IModifiersNode modifiers;
     private final ITypeNode type;
     private final SourceToken<IdentifierToken> identifier;
@@ -4760,7 +4798,7 @@ public class Nodes {
     }
   }
 
-  public class ClassOrInterfaceMemberDeclarationNode extends AbstractNode
+  public static class ClassOrInterfaceMemberDeclarationNode extends AbstractNode
       implements IClassOrInterfaceMemberDeclarationNode {
     public ClassOrInterfaceMemberDeclarationNode() {
     }
@@ -4783,12 +4821,12 @@ public class Nodes {
     }
   }
 
-  public class ConstructorDeclarationNode extends AbstractNode implements IConstructorDeclarationNode {
+  public static class ConstructorDeclarationNode extends AbstractNode implements IConstructorDeclarationNode {
     private final IModifiersNode modifiers;
     private final ITypeParametersNode optionalTypeParameters;
     private final SourceToken<IdentifierToken> identifier;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
-    private final List<IFormalParameterNode> optionalFormalParameterList;
+    private final DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>> optionalFormalParameterList;
     private final SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator;
     private final IThrowsNode optionalThrows;
     private final IBlockNode block;
@@ -4798,7 +4836,7 @@ public class Nodes {
         ITypeParametersNode optionalTypeParameters,
         SourceToken<IdentifierToken> identifier,
         SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator,
-        List<IFormalParameterNode> optionalFormalParameterList,
+        DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>> optionalFormalParameterList,
         SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator,
         IThrowsNode optionalThrows,
         IBlockNode block) {
@@ -4828,7 +4866,7 @@ public class Nodes {
       return leftParenthesisSeparator;
     }
 
-    public List<IFormalParameterNode> getOptionalFormalParameterList() {
+    public DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>> getOptionalFormalParameterList() {
       return optionalFormalParameterList;
     }
 
@@ -4878,16 +4916,16 @@ public class Nodes {
     }
   }
 
-  public class FieldDeclarationNode extends AbstractNode implements IFieldDeclarationNode {
+  public static class FieldDeclarationNode extends AbstractNode implements IFieldDeclarationNode {
     private final IModifiersNode modifiers;
     private final ITypeNode type;
-    private final List<IVariableDeclaratorNode> variableDeclaratorList;
+    private final DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> variableDeclaratorList;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
 
     public FieldDeclarationNode(
         IModifiersNode modifiers,
         ITypeNode type,
-        List<IVariableDeclaratorNode> variableDeclaratorList,
+        DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> variableDeclaratorList,
         SourceToken<SemicolonSeparatorToken> semicolonSeparator) {
       this.modifiers = modifiers;
       this.type = type;
@@ -4903,7 +4941,7 @@ public class Nodes {
       return type;
     }
 
-    public List<IVariableDeclaratorNode> getVariableDeclaratorList() {
+    public DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> getVariableDeclaratorList() {
       return variableDeclaratorList;
     }
 
@@ -4937,7 +4975,7 @@ public class Nodes {
     }
   }
 
-  public class VariableDeclaratorNode extends AbstractNode implements IVariableDeclaratorNode {
+  public static class VariableDeclaratorNode extends AbstractNode implements IVariableDeclaratorNode {
     public VariableDeclaratorNode() {
     }
 
@@ -4959,7 +4997,7 @@ public class Nodes {
     }
   }
 
-  public class VariableDeclaratorIdAndAssignmentNode extends AbstractNode
+  public static class VariableDeclaratorIdAndAssignmentNode extends AbstractNode
       implements IVariableDeclaratorIdAndAssignmentNode {
     private final IVariableDeclaratorIdNode variableDeclaratorId;
     private final SourceToken<EqualsOperatorToken> equalsOperator;
@@ -5010,7 +5048,8 @@ public class Nodes {
     }
   }
 
-  public class VariableDeclaratorAssignmentNode extends AbstractNode implements IVariableDeclaratorAssignmentNode {
+  public static class VariableDeclaratorAssignmentNode extends AbstractNode
+      implements IVariableDeclaratorAssignmentNode {
     public VariableDeclaratorAssignmentNode() {
     }
 
@@ -5032,7 +5071,7 @@ public class Nodes {
     }
   }
 
-  public class VariableDeclaratorIdNode extends AbstractNode implements IVariableDeclaratorIdNode {
+  public static class VariableDeclaratorIdNode extends AbstractNode implements IVariableDeclaratorIdNode {
     private final SourceToken<IdentifierToken> identifier;
     private final List<IBracketPairNode> bracketPairList;
 
@@ -5073,7 +5112,7 @@ public class Nodes {
     }
   }
 
-  public class BracketPairNode extends AbstractNode implements IBracketPairNode {
+  public static class BracketPairNode extends AbstractNode implements IBracketPairNode {
     private final SourceToken<LeftBracketSeparatorToken> leftBracketSeparator;
     private final SourceToken<RightBracketSeparatorToken> rightBracketSeparator;
 
@@ -5114,13 +5153,13 @@ public class Nodes {
     }
   }
 
-  public class MethodDeclarationNode extends AbstractNode implements IMethodDeclarationNode {
+  public static class MethodDeclarationNode extends AbstractNode implements IMethodDeclarationNode {
     private final IModifiersNode modifiers;
     private final ITypeParametersNode optionalTypeParameters;
     private final ITypeNode type;
     private final SourceToken<IdentifierToken> identifier;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
-    private final List<IFormalParameterNode> optionalFormalParameterList;
+    private final DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>> optionalFormalParameterList;
     private final SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator;
     private final List<IBracketPairNode> bracketPairList;
     private final IThrowsNode optionalThrows;
@@ -5132,7 +5171,7 @@ public class Nodes {
         ITypeNode type,
         SourceToken<IdentifierToken> identifier,
         SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator,
-        List<IFormalParameterNode> optionalFormalParameterList,
+        DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>> optionalFormalParameterList,
         SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator,
         List<IBracketPairNode> bracketPairList,
         IThrowsNode optionalThrows,
@@ -5169,7 +5208,7 @@ public class Nodes {
       return leftParenthesisSeparator;
     }
 
-    public List<IFormalParameterNode> getOptionalFormalParameterList() {
+    public DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>> getOptionalFormalParameterList() {
       return optionalFormalParameterList;
     }
 
@@ -5227,7 +5266,7 @@ public class Nodes {
     }
   }
 
-  public class MethodBodyNode extends AbstractNode implements IMethodBodyNode {
+  public static class MethodBodyNode extends AbstractNode implements IMethodBodyNode {
     public MethodBodyNode() {
     }
 
@@ -5249,7 +5288,7 @@ public class Nodes {
     }
   }
 
-  public class FormalParameterNode extends AbstractNode implements IFormalParameterNode {
+  public static class FormalParameterNode extends AbstractNode implements IFormalParameterNode {
     private final IModifiersNode modifiers;
     private final ITypeNode type;
     private final SourceToken<EllipsisSeparatorToken> optionalEllipsisSeparator;
@@ -5308,13 +5347,13 @@ public class Nodes {
     }
   }
 
-  public class ThrowsNode extends AbstractNode implements IThrowsNode {
+  public static class ThrowsNode extends AbstractNode implements IThrowsNode {
     private final SourceToken<ThrowsKeywordToken> throwsKeyword;
-    private final List<IClassOrInterfaceTypeNode> classOrInterfaceTypeList;
+    private final DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> classOrInterfaceTypeList;
 
     public ThrowsNode(
         SourceToken<ThrowsKeywordToken> throwsKeyword,
-        List<IClassOrInterfaceTypeNode> classOrInterfaceTypeList) {
+        DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> classOrInterfaceTypeList) {
       this.throwsKeyword = throwsKeyword;
       this.classOrInterfaceTypeList = classOrInterfaceTypeList;
     }
@@ -5323,7 +5362,7 @@ public class Nodes {
       return throwsKeyword;
     }
 
-    public List<IClassOrInterfaceTypeNode> getClassOrInterfaceTypeList() {
+    public DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList() {
       return classOrInterfaceTypeList;
     }
 
@@ -5349,14 +5388,14 @@ public class Nodes {
     }
   }
 
-  public class TypeParametersNode extends AbstractNode implements ITypeParametersNode {
+  public static class TypeParametersNode extends AbstractNode implements ITypeParametersNode {
     private final SourceToken<LessThanOperatorToken> lessThanOperator;
-    private final List<ITypeParameterNode> typeParameterList;
+    private final DelimitedList<ITypeParameterNode, SourceToken<CommaSeparatorToken>> typeParameterList;
     private final SourceToken<GreaterThanOperatorToken> greaterThanOperator;
 
     public TypeParametersNode(
         SourceToken<LessThanOperatorToken> lessThanOperator,
-        List<ITypeParameterNode> typeParameterList,
+        DelimitedList<ITypeParameterNode, SourceToken<CommaSeparatorToken>> typeParameterList,
         SourceToken<GreaterThanOperatorToken> greaterThanOperator) {
       this.lessThanOperator = lessThanOperator;
       this.typeParameterList = typeParameterList;
@@ -5367,7 +5406,7 @@ public class Nodes {
       return lessThanOperator;
     }
 
-    public List<ITypeParameterNode> getTypeParameterList() {
+    public DelimitedList<ITypeParameterNode, SourceToken<CommaSeparatorToken>> getTypeParameterList() {
       return typeParameterList;
     }
 
@@ -5399,7 +5438,7 @@ public class Nodes {
     }
   }
 
-  public class TypeParameterNode extends AbstractNode implements ITypeParameterNode {
+  public static class TypeParameterNode extends AbstractNode implements ITypeParameterNode {
     private final SourceToken<IdentifierToken> identifier;
     private final ITypeBoundNode optionalTypeBound;
 
@@ -5440,13 +5479,13 @@ public class Nodes {
     }
   }
 
-  public class TypeBoundNode extends AbstractNode implements ITypeBoundNode {
+  public static class TypeBoundNode extends AbstractNode implements ITypeBoundNode {
     private final SourceToken<ExtendsKeywordToken> extendsKeyword;
-    private final List<IClassOrInterfaceTypeNode> classOrInterfaceTypeList;
+    private final DelimitedList<IClassOrInterfaceTypeNode, SourceToken<BitwiseAndOperatorToken>> classOrInterfaceTypeList;
 
     public TypeBoundNode(
         SourceToken<ExtendsKeywordToken> extendsKeyword,
-        List<IClassOrInterfaceTypeNode> classOrInterfaceTypeList) {
+        DelimitedList<IClassOrInterfaceTypeNode, SourceToken<BitwiseAndOperatorToken>> classOrInterfaceTypeList) {
       this.extendsKeyword = extendsKeyword;
       this.classOrInterfaceTypeList = classOrInterfaceTypeList;
     }
@@ -5455,7 +5494,7 @@ public class Nodes {
       return extendsKeyword;
     }
 
-    public List<IClassOrInterfaceTypeNode> getClassOrInterfaceTypeList() {
+    public DelimitedList<IClassOrInterfaceTypeNode, SourceToken<BitwiseAndOperatorToken>> getClassOrInterfaceTypeList() {
       return classOrInterfaceTypeList;
     }
 
@@ -5481,7 +5520,7 @@ public class Nodes {
     }
   }
 
-  public class TypeNode extends AbstractNode implements ITypeNode {
+  public static class TypeNode extends AbstractNode implements ITypeNode {
     public TypeNode() {
     }
 
@@ -5503,7 +5542,7 @@ public class Nodes {
     }
   }
 
-  public class ReferenceTypeNode extends AbstractNode implements IReferenceTypeNode {
+  public static class ReferenceTypeNode extends AbstractNode implements IReferenceTypeNode {
     public ReferenceTypeNode() {
     }
 
@@ -5525,7 +5564,7 @@ public class Nodes {
     }
   }
 
-  public class PrimitiveArrayReferenceTypeNode extends AbstractNode implements IPrimitiveArrayReferenceTypeNode {
+  public static class PrimitiveArrayReferenceTypeNode extends AbstractNode implements IPrimitiveArrayReferenceTypeNode {
     private final IPrimitiveTypeNode primitiveType;
     private final List<IBracketPairNode> bracketPairList;
 
@@ -5566,7 +5605,8 @@ public class Nodes {
     }
   }
 
-  public class ClassOrInterfaceReferenceTypeNode extends AbstractNode implements IClassOrInterfaceReferenceTypeNode {
+  public static class ClassOrInterfaceReferenceTypeNode extends AbstractNode
+      implements IClassOrInterfaceReferenceTypeNode {
     private final IClassOrInterfaceTypeNode classOrInterfaceType;
     private final List<IBracketPairNode> bracketPairList;
 
@@ -5607,15 +5647,15 @@ public class Nodes {
     }
   }
 
-  public class ClassOrInterfaceTypeNode extends AbstractNode implements IClassOrInterfaceTypeNode {
-    private final List<ISingleClassOrInterfaceTypeNode> singleClassOrInterfaceTypeList;
+  public static class ClassOrInterfaceTypeNode extends AbstractNode implements IClassOrInterfaceTypeNode {
+    private final DelimitedList<ISingleClassOrInterfaceTypeNode, SourceToken<DotSeparatorToken>> singleClassOrInterfaceTypeList;
 
     public ClassOrInterfaceTypeNode(
-        List<ISingleClassOrInterfaceTypeNode> singleClassOrInterfaceTypeList) {
+        DelimitedList<ISingleClassOrInterfaceTypeNode, SourceToken<DotSeparatorToken>> singleClassOrInterfaceTypeList) {
       this.singleClassOrInterfaceTypeList = singleClassOrInterfaceTypeList;
     }
 
-    public List<ISingleClassOrInterfaceTypeNode> getSingleClassOrInterfaceTypeList() {
+    public DelimitedList<ISingleClassOrInterfaceTypeNode, SourceToken<DotSeparatorToken>> getSingleClassOrInterfaceTypeList() {
       return singleClassOrInterfaceTypeList;
     }
 
@@ -5639,7 +5679,7 @@ public class Nodes {
     }
   }
 
-  public class SingleClassOrInterfaceTypeNode extends AbstractNode implements ISingleClassOrInterfaceTypeNode {
+  public static class SingleClassOrInterfaceTypeNode extends AbstractNode implements ISingleClassOrInterfaceTypeNode {
     private final SourceToken<IdentifierToken> identifier;
     private final ITypeArgumentsNode optionalTypeArguments;
 
@@ -5680,14 +5720,14 @@ public class Nodes {
     }
   }
 
-  public class TypeArgumentsNode extends AbstractNode implements ITypeArgumentsNode {
+  public static class TypeArgumentsNode extends AbstractNode implements ITypeArgumentsNode {
     private final SourceToken<LessThanOperatorToken> lessThanOperator;
-    private final List<ITypeArgumentNode> typeArgumentList;
+    private final DelimitedList<ITypeArgumentNode, SourceToken<CommaSeparatorToken>> typeArgumentList;
     private final SourceToken<GreaterThanOperatorToken> greaterThanOperator;
 
     public TypeArgumentsNode(
         SourceToken<LessThanOperatorToken> lessThanOperator,
-        List<ITypeArgumentNode> typeArgumentList,
+        DelimitedList<ITypeArgumentNode, SourceToken<CommaSeparatorToken>> typeArgumentList,
         SourceToken<GreaterThanOperatorToken> greaterThanOperator) {
       this.lessThanOperator = lessThanOperator;
       this.typeArgumentList = typeArgumentList;
@@ -5698,7 +5738,7 @@ public class Nodes {
       return lessThanOperator;
     }
 
-    public List<ITypeArgumentNode> getTypeArgumentList() {
+    public DelimitedList<ITypeArgumentNode, SourceToken<CommaSeparatorToken>> getTypeArgumentList() {
       return typeArgumentList;
     }
 
@@ -5730,7 +5770,7 @@ public class Nodes {
     }
   }
 
-  public class TypeArgumentNode extends AbstractNode implements ITypeArgumentNode {
+  public static class TypeArgumentNode extends AbstractNode implements ITypeArgumentNode {
     public TypeArgumentNode() {
     }
 
@@ -5752,7 +5792,7 @@ public class Nodes {
     }
   }
 
-  public class WildcardTypeArgumentNode extends AbstractNode implements IWildcardTypeArgumentNode {
+  public static class WildcardTypeArgumentNode extends AbstractNode implements IWildcardTypeArgumentNode {
     public WildcardTypeArgumentNode() {
     }
 
@@ -5774,7 +5814,7 @@ public class Nodes {
     }
   }
 
-  public class ExtendsWildcardTypeArgumentNode extends AbstractNode implements IExtendsWildcardTypeArgumentNode {
+  public static class ExtendsWildcardTypeArgumentNode extends AbstractNode implements IExtendsWildcardTypeArgumentNode {
     private final SourceToken<QuestionMarkOperatorToken> questionMarkOperator;
     private final SourceToken<ExtendsKeywordToken> extendsKeyword;
     private final IReferenceTypeNode referenceType;
@@ -5824,7 +5864,7 @@ public class Nodes {
     }
   }
 
-  public class SuperWildcardTypeArgumentNode extends AbstractNode implements ISuperWildcardTypeArgumentNode {
+  public static class SuperWildcardTypeArgumentNode extends AbstractNode implements ISuperWildcardTypeArgumentNode {
     private final SourceToken<QuestionMarkOperatorToken> questionMarkOperator;
     private final SourceToken<SuperKeywordToken> superKeyword;
     private final IReferenceTypeNode referenceType;
@@ -5874,7 +5914,7 @@ public class Nodes {
     }
   }
 
-  public class OpenWildcardTypeArgumentNode extends AbstractNode implements IOpenWildcardTypeArgumentNode {
+  public static class OpenWildcardTypeArgumentNode extends AbstractNode implements IOpenWildcardTypeArgumentNode {
     private final SourceToken<QuestionMarkOperatorToken> questionMarkOperator;
 
     public OpenWildcardTypeArgumentNode(
@@ -5906,14 +5946,14 @@ public class Nodes {
     }
   }
 
-  public class NonWildcardTypeArgumentsNode extends AbstractNode implements INonWildcardTypeArgumentsNode {
+  public static class NonWildcardTypeArgumentsNode extends AbstractNode implements INonWildcardTypeArgumentsNode {
     private final SourceToken<LessThanOperatorToken> lessThanOperator;
-    private final List<IReferenceTypeNode> referenceTypeList;
+    private final DelimitedList<IReferenceTypeNode, SourceToken<CommaSeparatorToken>> referenceTypeList;
     private final SourceToken<GreaterThanOperatorToken> greaterThanOperator;
 
     public NonWildcardTypeArgumentsNode(
         SourceToken<LessThanOperatorToken> lessThanOperator,
-        List<IReferenceTypeNode> referenceTypeList,
+        DelimitedList<IReferenceTypeNode, SourceToken<CommaSeparatorToken>> referenceTypeList,
         SourceToken<GreaterThanOperatorToken> greaterThanOperator) {
       this.lessThanOperator = lessThanOperator;
       this.referenceTypeList = referenceTypeList;
@@ -5924,7 +5964,7 @@ public class Nodes {
       return lessThanOperator;
     }
 
-    public List<IReferenceTypeNode> getReferenceTypeList() {
+    public DelimitedList<IReferenceTypeNode, SourceToken<CommaSeparatorToken>> getReferenceTypeList() {
       return referenceTypeList;
     }
 
@@ -5956,7 +5996,7 @@ public class Nodes {
     }
   }
 
-  public class PrimitiveTypeNode extends AbstractNode implements IPrimitiveTypeNode {
+  public static class PrimitiveTypeNode extends AbstractNode implements IPrimitiveTypeNode {
     public PrimitiveTypeNode() {
     }
 
@@ -5978,7 +6018,7 @@ public class Nodes {
     }
   }
 
-  public class AnnotationNode extends AbstractNode implements IAnnotationNode {
+  public static class AnnotationNode extends AbstractNode implements IAnnotationNode {
     public AnnotationNode() {
     }
 
@@ -6000,18 +6040,18 @@ public class Nodes {
     }
   }
 
-  public class NormalAnnotationNode extends AbstractNode implements INormalAnnotationNode {
+  public static class NormalAnnotationNode extends AbstractNode implements INormalAnnotationNode {
     private final SourceToken<AtSeparatorToken> atSeparator;
     private final IQualifiedIdentifierNode qualifiedIdentifier;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
-    private final List<IElementValuePairNode> optionalElementValuePairList;
+    private final DelimitedList<IElementValuePairNode, SourceToken<CommaSeparatorToken>> optionalElementValuePairList;
     private final SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator;
 
     public NormalAnnotationNode(
         SourceToken<AtSeparatorToken> atSeparator,
         IQualifiedIdentifierNode qualifiedIdentifier,
         SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator,
-        List<IElementValuePairNode> optionalElementValuePairList,
+        DelimitedList<IElementValuePairNode, SourceToken<CommaSeparatorToken>> optionalElementValuePairList,
         SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator) {
       this.atSeparator = atSeparator;
       this.qualifiedIdentifier = qualifiedIdentifier;
@@ -6032,7 +6072,7 @@ public class Nodes {
       return leftParenthesisSeparator;
     }
 
-    public List<IElementValuePairNode> getOptionalElementValuePairList() {
+    public DelimitedList<IElementValuePairNode, SourceToken<CommaSeparatorToken>> getOptionalElementValuePairList() {
       return optionalElementValuePairList;
     }
 
@@ -6068,7 +6108,7 @@ public class Nodes {
     }
   }
 
-  public class ElementValuePairNode extends AbstractNode implements IElementValuePairNode {
+  public static class ElementValuePairNode extends AbstractNode implements IElementValuePairNode {
     private final SourceToken<IdentifierToken> identifier;
     private final SourceToken<EqualsOperatorToken> equalsOperator;
     private final IElementValueNode elementValue;
@@ -6118,7 +6158,7 @@ public class Nodes {
     }
   }
 
-  public class SingleElementAnnotationNode extends AbstractNode implements ISingleElementAnnotationNode {
+  public static class SingleElementAnnotationNode extends AbstractNode implements ISingleElementAnnotationNode {
     private final SourceToken<AtSeparatorToken> atSeparator;
     private final IQualifiedIdentifierNode qualifiedIdentifier;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
@@ -6186,7 +6226,7 @@ public class Nodes {
     }
   }
 
-  public class MarkerAnnotationNode extends AbstractNode implements IMarkerAnnotationNode {
+  public static class MarkerAnnotationNode extends AbstractNode implements IMarkerAnnotationNode {
     private final SourceToken<AtSeparatorToken> atSeparator;
     private final IQualifiedIdentifierNode qualifiedIdentifier;
 
@@ -6227,7 +6267,7 @@ public class Nodes {
     }
   }
 
-  public class ElementValueNode extends AbstractNode implements IElementValueNode {
+  public static class ElementValueNode extends AbstractNode implements IElementValueNode {
     public ElementValueNode() {
     }
 
@@ -6249,15 +6289,16 @@ public class Nodes {
     }
   }
 
-  public class ElementValueArrayInitializerNode extends AbstractNode implements IElementValueArrayInitializerNode {
+  public static class ElementValueArrayInitializerNode extends AbstractNode
+      implements IElementValueArrayInitializerNode {
     private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
-    private final List<IElementValueNode> optionalElementValueList;
+    private final DelimitedList<IElementValueNode, SourceToken<CommaSeparatorToken>> optionalElementValueList;
     private final SourceToken<CommaSeparatorToken> optionalCommaSeparator;
     private final SourceToken<RightCurlySeparatorToken> rightCurlySeparator;
 
     public ElementValueArrayInitializerNode(
         SourceToken<LeftCurlySeparatorToken> leftCurlySeparator,
-        List<IElementValueNode> optionalElementValueList,
+        DelimitedList<IElementValueNode, SourceToken<CommaSeparatorToken>> optionalElementValueList,
         SourceToken<CommaSeparatorToken> optionalCommaSeparator,
         SourceToken<RightCurlySeparatorToken> rightCurlySeparator) {
       this.leftCurlySeparator = leftCurlySeparator;
@@ -6270,7 +6311,7 @@ public class Nodes {
       return leftCurlySeparator;
     }
 
-    public List<IElementValueNode> getOptionalElementValueList() {
+    public DelimitedList<IElementValueNode, SourceToken<CommaSeparatorToken>> getOptionalElementValueList() {
       return optionalElementValueList;
     }
 
@@ -6308,7 +6349,7 @@ public class Nodes {
     }
   }
 
-  public class BlockNode extends AbstractNode implements IBlockNode {
+  public static class BlockNode extends AbstractNode implements IBlockNode {
     private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
     private final List<IBlockStatementNode> blockStatementList;
     private final SourceToken<RightCurlySeparatorToken> rightCurlySeparator;
@@ -6358,7 +6399,7 @@ public class Nodes {
     }
   }
 
-  public class BlockStatementNode extends AbstractNode implements IBlockStatementNode {
+  public static class BlockStatementNode extends AbstractNode implements IBlockStatementNode {
     public BlockStatementNode() {
     }
 
@@ -6380,7 +6421,7 @@ public class Nodes {
     }
   }
 
-  public class LocalVariableDeclarationStatementNode extends AbstractNode
+  public static class LocalVariableDeclarationStatementNode extends AbstractNode
       implements ILocalVariableDeclarationStatementNode {
     private final ILocalVariableDeclarationNode localVariableDeclaration;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
@@ -6422,15 +6463,15 @@ public class Nodes {
     }
   }
 
-  public class LocalVariableDeclarationNode extends AbstractNode implements ILocalVariableDeclarationNode {
+  public static class LocalVariableDeclarationNode extends AbstractNode implements ILocalVariableDeclarationNode {
     private final IModifiersNode modifiers;
     private final ITypeNode type;
-    private final List<IVariableDeclaratorNode> variableDeclaratorList;
+    private final DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> variableDeclaratorList;
 
     public LocalVariableDeclarationNode(
         IModifiersNode modifiers,
         ITypeNode type,
-        List<IVariableDeclaratorNode> variableDeclaratorList) {
+        DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> variableDeclaratorList) {
       this.modifiers = modifiers;
       this.type = type;
       this.variableDeclaratorList = variableDeclaratorList;
@@ -6444,7 +6485,7 @@ public class Nodes {
       return type;
     }
 
-    public List<IVariableDeclaratorNode> getVariableDeclaratorList() {
+    public DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> getVariableDeclaratorList() {
       return variableDeclaratorList;
     }
 
@@ -6472,7 +6513,7 @@ public class Nodes {
     }
   }
 
-  public class StatementNode extends AbstractNode implements IStatementNode {
+  public static class StatementNode extends AbstractNode implements IStatementNode {
     public StatementNode() {
     }
 
@@ -6494,7 +6535,7 @@ public class Nodes {
     }
   }
 
-  public class EmptyStatementNode extends AbstractNode implements IEmptyStatementNode {
+  public static class EmptyStatementNode extends AbstractNode implements IEmptyStatementNode {
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
 
     public EmptyStatementNode(
@@ -6526,7 +6567,7 @@ public class Nodes {
     }
   }
 
-  public class LabeledStatementNode extends AbstractNode implements ILabeledStatementNode {
+  public static class LabeledStatementNode extends AbstractNode implements ILabeledStatementNode {
     private final SourceToken<IdentifierToken> identifier;
     private final SourceToken<ColonOperatorToken> colonOperator;
     private final IStatementNode statement;
@@ -6576,7 +6617,7 @@ public class Nodes {
     }
   }
 
-  public class ExpressionStatementNode extends AbstractNode implements IExpressionStatementNode {
+  public static class ExpressionStatementNode extends AbstractNode implements IExpressionStatementNode {
     private final IExpressionNode expression;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
 
@@ -6617,7 +6658,7 @@ public class Nodes {
     }
   }
 
-  public class IfStatementNode extends AbstractNode implements IIfStatementNode {
+  public static class IfStatementNode extends AbstractNode implements IIfStatementNode {
     private final SourceToken<IfKeywordToken> ifKeyword;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IExpressionNode expression;
@@ -6694,7 +6735,7 @@ public class Nodes {
     }
   }
 
-  public class ElseStatementNode extends AbstractNode implements IElseStatementNode {
+  public static class ElseStatementNode extends AbstractNode implements IElseStatementNode {
     private final SourceToken<ElseKeywordToken> elseKeyword;
     private final IStatementNode statement;
 
@@ -6735,7 +6776,7 @@ public class Nodes {
     }
   }
 
-  public class AssertStatementNode extends AbstractNode implements IAssertStatementNode {
+  public static class AssertStatementNode extends AbstractNode implements IAssertStatementNode {
     public AssertStatementNode() {
     }
 
@@ -6757,7 +6798,7 @@ public class Nodes {
     }
   }
 
-  public class MessageAssertStatementNode extends AbstractNode implements IMessageAssertStatementNode {
+  public static class MessageAssertStatementNode extends AbstractNode implements IMessageAssertStatementNode {
     private final SourceToken<AssertKeywordToken> assertKeyword;
     private final IExpressionNode expression;
     private final SourceToken<ColonOperatorToken> colonOperator;
@@ -6825,7 +6866,7 @@ public class Nodes {
     }
   }
 
-  public class SimpleAssertStatementNode extends AbstractNode implements ISimpleAssertStatementNode {
+  public static class SimpleAssertStatementNode extends AbstractNode implements ISimpleAssertStatementNode {
     private final SourceToken<AssertKeywordToken> assertKeyword;
     private final IExpressionNode expression;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
@@ -6875,7 +6916,7 @@ public class Nodes {
     }
   }
 
-  public class SwitchStatementNode extends AbstractNode implements ISwitchStatementNode {
+  public static class SwitchStatementNode extends AbstractNode implements ISwitchStatementNode {
     private final SourceToken<SwitchKeywordToken> switchKeyword;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IExpressionNode expression;
@@ -6970,7 +7011,7 @@ public class Nodes {
     }
   }
 
-  public class SwitchBlockStatementGroupNode extends AbstractNode implements ISwitchBlockStatementGroupNode {
+  public static class SwitchBlockStatementGroupNode extends AbstractNode implements ISwitchBlockStatementGroupNode {
     private final List<ISwitchLabelNode> switchLabelList;
     private final List<IBlockStatementNode> blockStatementList;
 
@@ -7011,7 +7052,7 @@ public class Nodes {
     }
   }
 
-  public class SwitchLabelNode extends AbstractNode implements ISwitchLabelNode {
+  public static class SwitchLabelNode extends AbstractNode implements ISwitchLabelNode {
     public SwitchLabelNode() {
     }
 
@@ -7033,7 +7074,7 @@ public class Nodes {
     }
   }
 
-  public class CaseSwitchLabelNode extends AbstractNode implements ICaseSwitchLabelNode {
+  public static class CaseSwitchLabelNode extends AbstractNode implements ICaseSwitchLabelNode {
     private final SourceToken<CaseKeywordToken> caseKeyword;
     private final IExpressionNode expression;
     private final SourceToken<ColonOperatorToken> colonOperator;
@@ -7083,7 +7124,7 @@ public class Nodes {
     }
   }
 
-  public class DefaultSwitchLabelNode extends AbstractNode implements IDefaultSwitchLabelNode {
+  public static class DefaultSwitchLabelNode extends AbstractNode implements IDefaultSwitchLabelNode {
     private final SourceToken<DefaultKeywordToken> defaultKeyword;
     private final SourceToken<ColonOperatorToken> colonOperator;
 
@@ -7124,7 +7165,7 @@ public class Nodes {
     }
   }
 
-  public class WhileStatementNode extends AbstractNode implements IWhileStatementNode {
+  public static class WhileStatementNode extends AbstractNode implements IWhileStatementNode {
     private final SourceToken<WhileKeywordToken> whileKeyword;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IExpressionNode expression;
@@ -7192,7 +7233,7 @@ public class Nodes {
     }
   }
 
-  public class DoStatementNode extends AbstractNode implements IDoStatementNode {
+  public static class DoStatementNode extends AbstractNode implements IDoStatementNode {
     private final SourceToken<DoKeywordToken> doKeyword;
     private final IStatementNode statement;
     private final SourceToken<WhileKeywordToken> whileKeyword;
@@ -7278,7 +7319,7 @@ public class Nodes {
     }
   }
 
-  public class ForStatementNode extends AbstractNode implements IForStatementNode {
+  public static class ForStatementNode extends AbstractNode implements IForStatementNode {
     public ForStatementNode() {
     }
 
@@ -7300,14 +7341,14 @@ public class Nodes {
     }
   }
 
-  public class BasicForStatementNode extends AbstractNode implements IBasicForStatementNode {
+  public static class BasicForStatementNode extends AbstractNode implements IBasicForStatementNode {
     private final SourceToken<ForKeywordToken> forKeyword;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IForInitializerNode optionalForInitializer;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
     private final IExpressionNode optionalExpression;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator2;
-    private final IForUpdateNode optionalForUpdate;
+    private final IDelimitedExpressionListNode optionalDelimitedExpressionList;
     private final SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator;
     private final IStatementNode statement;
 
@@ -7318,7 +7359,7 @@ public class Nodes {
         SourceToken<SemicolonSeparatorToken> semicolonSeparator,
         IExpressionNode optionalExpression,
         SourceToken<SemicolonSeparatorToken> semicolonSeparator2,
-        IForUpdateNode optionalForUpdate,
+        IDelimitedExpressionListNode optionalDelimitedExpressionList,
         SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator,
         IStatementNode statement) {
       this.forKeyword = forKeyword;
@@ -7327,7 +7368,7 @@ public class Nodes {
       this.semicolonSeparator = semicolonSeparator;
       this.optionalExpression = optionalExpression;
       this.semicolonSeparator2 = semicolonSeparator2;
-      this.optionalForUpdate = optionalForUpdate;
+      this.optionalDelimitedExpressionList = optionalDelimitedExpressionList;
       this.rightParenthesisSeparator = rightParenthesisSeparator;
       this.statement = statement;
     }
@@ -7356,8 +7397,8 @@ public class Nodes {
       return semicolonSeparator2;
     }
 
-    public IForUpdateNode getOptionalForUpdate() {
-      return optionalForUpdate;
+    public IDelimitedExpressionListNode getOptionalDelimitedExpressionList() {
+      return optionalDelimitedExpressionList;
     }
 
     public SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator() {
@@ -7383,7 +7424,7 @@ public class Nodes {
       if (!equals(semicolonSeparator, __node.getSemicolonSeparator())) { return false; }
       if (!equals(optionalExpression, __node.getOptionalExpression())) { return false; }
       if (!equals(semicolonSeparator2, __node.getSemicolonSeparator2())) { return false; }
-      if (!equals(optionalForUpdate, __node.getOptionalForUpdate())) { return false; }
+      if (!equals(optionalDelimitedExpressionList, __node.getOptionalDelimitedExpressionList())) { return false; }
       if (!equals(rightParenthesisSeparator, __node.getRightParenthesisSeparator())) { return false; }
       if (!equals(statement, __node.getStatement())) { return false; }
       return true;
@@ -7397,14 +7438,14 @@ public class Nodes {
       hash = 31 * hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
       hash = 31 * hash + (optionalExpression == null ? 0 : optionalExpression.hashCode());
       hash = 31 * hash + (semicolonSeparator2 == null ? 0 : semicolonSeparator2.hashCode());
-      hash = 31 * hash + (optionalForUpdate == null ? 0 : optionalForUpdate.hashCode());
+      hash = 31 * hash + (optionalDelimitedExpressionList == null ? 0 : optionalDelimitedExpressionList.hashCode());
       hash = 31 * hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
       hash = 31 * hash + (statement == null ? 0 : statement.hashCode());
       return hash;
     }
   }
 
-  public class ForInitializerNode extends AbstractNode implements IForInitializerNode {
+  public static class ForInitializerNode extends AbstractNode implements IForInitializerNode {
     public ForInitializerNode() {
     }
 
@@ -7426,15 +7467,15 @@ public class Nodes {
     }
   }
 
-  public class DelimitedExpressionListNode extends AbstractNode implements IDelimitedExpressionListNode {
-    private final List<IExpressionNode> expressionList;
+  public static class DelimitedExpressionListNode extends AbstractNode implements IDelimitedExpressionListNode {
+    private final DelimitedList<IExpressionNode, SourceToken<CommaSeparatorToken>> expressionList;
 
     public DelimitedExpressionListNode(
-        List<IExpressionNode> expressionList) {
+        DelimitedList<IExpressionNode, SourceToken<CommaSeparatorToken>> expressionList) {
       this.expressionList = expressionList;
     }
 
-    public List<IExpressionNode> getExpressionList() {
+    public DelimitedList<IExpressionNode, SourceToken<CommaSeparatorToken>> getExpressionList() {
       return expressionList;
     }
 
@@ -7458,39 +7499,7 @@ public class Nodes {
     }
   }
 
-  public class ForUpdateNode extends AbstractNode implements IForUpdateNode {
-    private final List<IExpressionNode> expressionList;
-
-    public ForUpdateNode(
-        List<IExpressionNode> expressionList) {
-      this.expressionList = expressionList;
-    }
-
-    public List<IExpressionNode> getExpressionList() {
-      return expressionList;
-    }
-
-    public void accept(INodeVisitor visitor) {
-      visitor.visit(this);
-    }
-
-    public boolean equals(Object __other) {
-      if (this == __other) { return true; }
-      if (__other == null) { return false; }
-      if (!(__other instanceof IForUpdateNode)) { return false; }
-      IForUpdateNode __node = (IForUpdateNode) __other;
-      if (!equals(expressionList, __node.getExpressionList())) { return false; }
-      return true;
-    }
-
-    protected int hashCodeWorker() {
-      int hash = 0;
-      hash = 31 * hash + (expressionList == null ? 0 : expressionList.hashCode());
-      return hash;
-    }
-  }
-
-  public class EnhancedForStatementNode extends AbstractNode implements IEnhancedForStatementNode {
+  public static class EnhancedForStatementNode extends AbstractNode implements IEnhancedForStatementNode {
     private final SourceToken<ForKeywordToken> forKeyword;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IModifiersNode modifiers;
@@ -7594,7 +7603,7 @@ public class Nodes {
     }
   }
 
-  public class BreakStatementNode extends AbstractNode implements IBreakStatementNode {
+  public static class BreakStatementNode extends AbstractNode implements IBreakStatementNode {
     private final SourceToken<BreakKeywordToken> breakKeyword;
     private final SourceToken<IdentifierToken> optionalIdentifier;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
@@ -7644,7 +7653,7 @@ public class Nodes {
     }
   }
 
-  public class ContinueStatementNode extends AbstractNode implements IContinueStatementNode {
+  public static class ContinueStatementNode extends AbstractNode implements IContinueStatementNode {
     private final SourceToken<ContinueKeywordToken> continueKeyword;
     private final SourceToken<IdentifierToken> optionalIdentifier;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
@@ -7694,7 +7703,7 @@ public class Nodes {
     }
   }
 
-  public class ReturnStatementNode extends AbstractNode implements IReturnStatementNode {
+  public static class ReturnStatementNode extends AbstractNode implements IReturnStatementNode {
     private final SourceToken<ReturnKeywordToken> returnKeyword;
     private final IExpressionNode optionalExpression;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
@@ -7744,7 +7753,7 @@ public class Nodes {
     }
   }
 
-  public class ThrowStatementNode extends AbstractNode implements IThrowStatementNode {
+  public static class ThrowStatementNode extends AbstractNode implements IThrowStatementNode {
     private final SourceToken<ThrowKeywordToken> throwKeyword;
     private final IExpressionNode optionalExpression;
     private final SourceToken<SemicolonSeparatorToken> semicolonSeparator;
@@ -7794,7 +7803,7 @@ public class Nodes {
     }
   }
 
-  public class SynchronizedStatementNode extends AbstractNode implements ISynchronizedStatementNode {
+  public static class SynchronizedStatementNode extends AbstractNode implements ISynchronizedStatementNode {
     private final SourceToken<SynchronizedKeywordToken> synchronizedKeyword;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IExpressionNode expression;
@@ -7862,7 +7871,7 @@ public class Nodes {
     }
   }
 
-  public class TryStatementNode extends AbstractNode implements ITryStatementNode {
+  public static class TryStatementNode extends AbstractNode implements ITryStatementNode {
     public TryStatementNode() {
     }
 
@@ -7884,7 +7893,7 @@ public class Nodes {
     }
   }
 
-  public class TryStatementWithFinallyNode extends AbstractNode implements ITryStatementWithFinallyNode {
+  public static class TryStatementWithFinallyNode extends AbstractNode implements ITryStatementWithFinallyNode {
     private final SourceToken<TryKeywordToken> tryKeyword;
     private final IBlockNode block;
     private final List<ICatchClauseNode> catchClauseList;
@@ -7952,7 +7961,7 @@ public class Nodes {
     }
   }
 
-  public class TryStatementWithoutFinallyNode extends AbstractNode implements ITryStatementWithoutFinallyNode {
+  public static class TryStatementWithoutFinallyNode extends AbstractNode implements ITryStatementWithoutFinallyNode {
     private final SourceToken<TryKeywordToken> tryKeyword;
     private final IBlockNode block;
     private final List<ICatchClauseNode> catchClauseList;
@@ -8002,7 +8011,7 @@ public class Nodes {
     }
   }
 
-  public class CatchClauseNode extends AbstractNode implements ICatchClauseNode {
+  public static class CatchClauseNode extends AbstractNode implements ICatchClauseNode {
     private final SourceToken<CatchKeywordToken> catchKeyword;
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IFormalParameterNode formalParameter;
@@ -8070,15 +8079,15 @@ public class Nodes {
     }
   }
 
-  public class ExpressionNode extends AbstractNode implements IExpressionNode {
-    private final List<IExpression1Node> expression1List;
+  public static class ExpressionNode extends AbstractNode implements IExpressionNode {
+    private final DelimitedList<IExpression1Node, IAssignmentOperatorNode> expression1List;
 
     public ExpressionNode(
-        List<IExpression1Node> expression1List) {
+        DelimitedList<IExpression1Node, IAssignmentOperatorNode> expression1List) {
       this.expression1List = expression1List;
     }
 
-    public List<IExpression1Node> getExpression1List() {
+    public DelimitedList<IExpression1Node, IAssignmentOperatorNode> getExpression1List() {
       return expression1List;
     }
 
@@ -8102,7 +8111,7 @@ public class Nodes {
     }
   }
 
-  public class AssignmentOperatorNode extends AbstractNode implements IAssignmentOperatorNode {
+  public static class AssignmentOperatorNode extends AbstractNode implements IAssignmentOperatorNode {
     public AssignmentOperatorNode() {
     }
 
@@ -8124,7 +8133,7 @@ public class Nodes {
     }
   }
 
-  public class Expression1Node extends AbstractNode implements IExpression1Node {
+  public static class Expression1Node extends AbstractNode implements IExpression1Node {
     public Expression1Node() {
     }
 
@@ -8146,7 +8155,7 @@ public class Nodes {
     }
   }
 
-  public class TernaryExpressionNode extends AbstractNode implements ITernaryExpressionNode {
+  public static class TernaryExpressionNode extends AbstractNode implements ITernaryExpressionNode {
     private final IExpression2Node expression2;
     private final SourceToken<QuestionMarkOperatorToken> questionMarkOperator;
     private final IExpressionNode expression;
@@ -8214,7 +8223,7 @@ public class Nodes {
     }
   }
 
-  public class Expression2Node extends AbstractNode implements IExpression2Node {
+  public static class Expression2Node extends AbstractNode implements IExpression2Node {
     public Expression2Node() {
     }
 
@@ -8236,7 +8245,7 @@ public class Nodes {
     }
   }
 
-  public class BinaryExpressionNode extends AbstractNode implements IBinaryExpressionNode {
+  public static class BinaryExpressionNode extends AbstractNode implements IBinaryExpressionNode {
     private final IExpression3Node expression3;
     private final List<IBinaryExpressionRestNode> binaryExpressionRestList;
 
@@ -8277,7 +8286,7 @@ public class Nodes {
     }
   }
 
-  public class BinaryExpressionRestNode extends AbstractNode implements IBinaryExpressionRestNode {
+  public static class BinaryExpressionRestNode extends AbstractNode implements IBinaryExpressionRestNode {
     public BinaryExpressionRestNode() {
     }
 
@@ -8299,7 +8308,7 @@ public class Nodes {
     }
   }
 
-  public class InfixOperatorBinaryExpressionRestNode extends AbstractNode
+  public static class InfixOperatorBinaryExpressionRestNode extends AbstractNode
       implements IInfixOperatorBinaryExpressionRestNode {
     private final IInfixOperatorNode infixOperator;
     private final IExpression3Node expression3;
@@ -8341,7 +8350,7 @@ public class Nodes {
     }
   }
 
-  public class InstanceofOperatorBinaryExpressionRestNode extends AbstractNode
+  public static class InstanceofOperatorBinaryExpressionRestNode extends AbstractNode
       implements IInstanceofOperatorBinaryExpressionRestNode {
     private final SourceToken<InstanceofKeywordToken> instanceofKeyword;
     private final ITypeNode type;
@@ -8383,7 +8392,7 @@ public class Nodes {
     }
   }
 
-  public class InfixOperatorNode extends AbstractNode implements IInfixOperatorNode {
+  public static class InfixOperatorNode extends AbstractNode implements IInfixOperatorNode {
     public InfixOperatorNode() {
     }
 
@@ -8405,7 +8414,7 @@ public class Nodes {
     }
   }
 
-  public class UnsignedRightShiftNode extends AbstractNode implements IUnsignedRightShiftNode {
+  public static class UnsignedRightShiftNode extends AbstractNode implements IUnsignedRightShiftNode {
     private final SourceToken<GreaterThanOperatorToken> greaterThanOperator;
     private final SourceToken<GreaterThanOperatorToken> greaterThanOperator2;
     private final SourceToken<GreaterThanOperatorToken> greaterThanOperator3;
@@ -8455,7 +8464,7 @@ public class Nodes {
     }
   }
 
-  public class SignedRightShiftNode extends AbstractNode implements ISignedRightShiftNode {
+  public static class SignedRightShiftNode extends AbstractNode implements ISignedRightShiftNode {
     private final SourceToken<GreaterThanOperatorToken> greaterThanOperator;
     private final SourceToken<GreaterThanOperatorToken> greaterThanOperator2;
 
@@ -8496,7 +8505,7 @@ public class Nodes {
     }
   }
 
-  public class Expression3Node extends AbstractNode implements IExpression3Node {
+  public static class Expression3Node extends AbstractNode implements IExpression3Node {
     public Expression3Node() {
     }
 
@@ -8518,7 +8527,7 @@ public class Nodes {
     }
   }
 
-  public class PrefixExpressionNode extends AbstractNode implements IPrefixExpressionNode {
+  public static class PrefixExpressionNode extends AbstractNode implements IPrefixExpressionNode {
     private final IPrefixOperatorNode prefixOperator;
     private final IExpression3Node expression3;
 
@@ -8559,7 +8568,7 @@ public class Nodes {
     }
   }
 
-  public class PrefixOperatorNode extends AbstractNode implements IPrefixOperatorNode {
+  public static class PrefixOperatorNode extends AbstractNode implements IPrefixOperatorNode {
     public PrefixOperatorNode() {
     }
 
@@ -8581,7 +8590,7 @@ public class Nodes {
     }
   }
 
-  public class PossibleCastExpressionNode extends AbstractNode implements IPossibleCastExpressionNode {
+  public static class PossibleCastExpressionNode extends AbstractNode implements IPossibleCastExpressionNode {
     public PossibleCastExpressionNode() {
     }
 
@@ -8603,7 +8612,7 @@ public class Nodes {
     }
   }
 
-  public class PossibleCastExpression_TypeNode extends AbstractNode implements IPossibleCastExpression_TypeNode {
+  public static class PossibleCastExpression_TypeNode extends AbstractNode implements IPossibleCastExpression_TypeNode {
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final ITypeNode type;
     private final SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator;
@@ -8662,7 +8671,7 @@ public class Nodes {
     }
   }
 
-  public class PossibleCastExpression_ExpressionNode extends AbstractNode
+  public static class PossibleCastExpression_ExpressionNode extends AbstractNode
       implements IPossibleCastExpression_ExpressionNode {
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IExpressionNode expression;
@@ -8722,7 +8731,7 @@ public class Nodes {
     }
   }
 
-  public class PrimaryExpressionNode extends AbstractNode implements IPrimaryExpressionNode {
+  public static class PrimaryExpressionNode extends AbstractNode implements IPrimaryExpressionNode {
     private final IValueExpressionNode valueExpression;
     private final List<ISelectorNode> selectorList;
     private final IPostfixOperatorNode optionalPostfixOperator;
@@ -8772,7 +8781,7 @@ public class Nodes {
     }
   }
 
-  public class PostfixOperatorNode extends AbstractNode implements IPostfixOperatorNode {
+  public static class PostfixOperatorNode extends AbstractNode implements IPostfixOperatorNode {
     public PostfixOperatorNode() {
     }
 
@@ -8794,7 +8803,7 @@ public class Nodes {
     }
   }
 
-  public class ValueExpressionNode extends AbstractNode implements IValueExpressionNode {
+  public static class ValueExpressionNode extends AbstractNode implements IValueExpressionNode {
     public ValueExpressionNode() {
     }
 
@@ -8816,7 +8825,7 @@ public class Nodes {
     }
   }
 
-  public class ClassAccessNode extends AbstractNode implements IClassAccessNode {
+  public static class ClassAccessNode extends AbstractNode implements IClassAccessNode {
     private final ITypeNode type;
     private final SourceToken<DotSeparatorToken> dotSeparator;
     private final SourceToken<ClassKeywordToken> classKeyword;
@@ -8866,7 +8875,7 @@ public class Nodes {
     }
   }
 
-  public class SelectorNode extends AbstractNode implements ISelectorNode {
+  public static class SelectorNode extends AbstractNode implements ISelectorNode {
     public SelectorNode() {
     }
 
@@ -8888,7 +8897,7 @@ public class Nodes {
     }
   }
 
-  public class DotSelectorNode extends AbstractNode implements IDotSelectorNode {
+  public static class DotSelectorNode extends AbstractNode implements IDotSelectorNode {
     private final SourceToken<DotSeparatorToken> dotSeparator;
     private final IValueExpressionNode valueExpression;
 
@@ -8929,7 +8938,7 @@ public class Nodes {
     }
   }
 
-  public class ArraySelectorNode extends AbstractNode implements IArraySelectorNode {
+  public static class ArraySelectorNode extends AbstractNode implements IArraySelectorNode {
     private final SourceToken<LeftBracketSeparatorToken> leftBracketSeparator;
     private final IExpressionNode expression;
     private final SourceToken<RightBracketSeparatorToken> rightBracketSeparator;
@@ -8979,7 +8988,7 @@ public class Nodes {
     }
   }
 
-  public class ParenthesizedExpressionNode extends AbstractNode implements IParenthesizedExpressionNode {
+  public static class ParenthesizedExpressionNode extends AbstractNode implements IParenthesizedExpressionNode {
     private final SourceToken<LeftParenthesisSeparatorToken> leftParenthesisSeparator;
     private final IExpressionNode expression;
     private final SourceToken<RightParenthesisSeparatorToken> rightParenthesisSeparator;
@@ -9029,7 +9038,7 @@ public class Nodes {
     }
   }
 
-  public class MethodInvocationNode extends AbstractNode implements IMethodInvocationNode {
+  public static class MethodInvocationNode extends AbstractNode implements IMethodInvocationNode {
     private final INonWildcardTypeArgumentsNode optionalNonWildcardTypeArguments;
     private final SourceToken<IdentifierToken> identifier;
     private final IArgumentsNode arguments;
@@ -9079,7 +9088,7 @@ public class Nodes {
     }
   }
 
-  public class ThisConstructorInvocationNode extends AbstractNode implements IThisConstructorInvocationNode {
+  public static class ThisConstructorInvocationNode extends AbstractNode implements IThisConstructorInvocationNode {
     private final SourceToken<ThisKeywordToken> thisKeyword;
     private final IArgumentsNode arguments;
 
@@ -9120,7 +9129,7 @@ public class Nodes {
     }
   }
 
-  public class SuperConstructorInvocationNode extends AbstractNode implements ISuperConstructorInvocationNode {
+  public static class SuperConstructorInvocationNode extends AbstractNode implements ISuperConstructorInvocationNode {
     private final SourceToken<SuperKeywordToken> superKeyword;
     private final IArgumentsNode arguments;
 
@@ -9161,7 +9170,7 @@ public class Nodes {
     }
   }
 
-  public class CreationExpressionNode extends AbstractNode implements ICreationExpressionNode {
+  public static class CreationExpressionNode extends AbstractNode implements ICreationExpressionNode {
     public CreationExpressionNode() {
     }
 
@@ -9183,7 +9192,7 @@ public class Nodes {
     }
   }
 
-  public class ObjectCreationExpressionNode extends AbstractNode implements IObjectCreationExpressionNode {
+  public static class ObjectCreationExpressionNode extends AbstractNode implements IObjectCreationExpressionNode {
     private final SourceToken<NewKeywordToken> newKeyword;
     private final INonWildcardTypeArgumentsNode optionalNonWildcardTypeArguments;
     private final IClassOrInterfaceTypeNode classOrInterfaceType;
@@ -9251,7 +9260,7 @@ public class Nodes {
     }
   }
 
-  public class ArrayCreationExpressionNode extends AbstractNode implements IArrayCreationExpressionNode {
+  public static class ArrayCreationExpressionNode extends AbstractNode implements IArrayCreationExpressionNode {
     private final SourceToken<NewKeywordToken> newKeyword;
     private final IArrayCreationTypeNode arrayCreationType;
     private final List<IDimensionExpressionNode> dimensionExpressionList;
@@ -9310,7 +9319,7 @@ public class Nodes {
     }
   }
 
-  public class ArrayCreationTypeNode extends AbstractNode implements IArrayCreationTypeNode {
+  public static class ArrayCreationTypeNode extends AbstractNode implements IArrayCreationTypeNode {
     public ArrayCreationTypeNode() {
     }
 
@@ -9332,7 +9341,7 @@ public class Nodes {
     }
   }
 
-  public class DimensionExpressionNode extends AbstractNode implements IDimensionExpressionNode {
+  public static class DimensionExpressionNode extends AbstractNode implements IDimensionExpressionNode {
     private final SourceToken<LeftBracketSeparatorToken> leftBracketSeparator;
     private final IExpressionNode optionalExpression;
     private final SourceToken<RightBracketSeparatorToken> rightBracketSeparator;
@@ -9382,15 +9391,15 @@ public class Nodes {
     }
   }
 
-  public class ArrayInitializerNode extends AbstractNode implements IArrayInitializerNode {
+  public static class ArrayInitializerNode extends AbstractNode implements IArrayInitializerNode {
     private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
-    private final List<IVariableInitializerNode> optionalVariableInitializerList;
+    private final DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>> optionalVariableInitializerList;
     private final SourceToken<CommaSeparatorToken> optionalCommaSeparator;
     private final SourceToken<RightCurlySeparatorToken> rightCurlySeparator;
 
     public ArrayInitializerNode(
         SourceToken<LeftCurlySeparatorToken> leftCurlySeparator,
-        List<IVariableInitializerNode> optionalVariableInitializerList,
+        DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>> optionalVariableInitializerList,
         SourceToken<CommaSeparatorToken> optionalCommaSeparator,
         SourceToken<RightCurlySeparatorToken> rightCurlySeparator) {
       this.leftCurlySeparator = leftCurlySeparator;
@@ -9403,7 +9412,7 @@ public class Nodes {
       return leftCurlySeparator;
     }
 
-    public List<IVariableInitializerNode> getOptionalVariableInitializerList() {
+    public DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>> getOptionalVariableInitializerList() {
       return optionalVariableInitializerList;
     }
 
@@ -9441,7 +9450,7 @@ public class Nodes {
     }
   }
 
-  public class VariableInitializerNode extends AbstractNode implements IVariableInitializerNode {
+  public static class VariableInitializerNode extends AbstractNode implements IVariableInitializerNode {
     public VariableInitializerNode() {
     }
 

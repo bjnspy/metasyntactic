@@ -5,7 +5,7 @@ public class WhitespaceToken extends JavaToken {
     super(text);
   }
 
-  @Override protected Type getTokenType() {
+   protected Type getTokenType() {
     return Type.Whitespace;
   }
 }
