@@ -14,6 +14,7 @@ import org.metasyntactic.automata.compiler.java.scanner.keywords.*;
 import org.metasyntactic.automata.compiler.java.scanner.literals.LiteralToken;
 import org.metasyntactic.automata.compiler.java.scanner.operators.*;
 import org.metasyntactic.automata.compiler.java.scanner.separators.*;
+import static org.metasyntactic.utilities.ReflectionUtilities.getSimpleName;
 
 import java.io.*;
 import java.util.LinkedHashSet;
@@ -272,6 +273,10 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                                 delimitedList(variable("ClassOrInterfaceType"), token(CommaSeparatorToken.instance)))));
   }
 
+  private static Expression literal() {
+    return type(getSimpleName(LiteralToken.class), LiteralToken.getLiteralValues());
+  }
+
   private static void addExpressions(Set<Rule> rules) {
     rules.add(new Rule("Expression",
                        delimitedList(variable("Expression1"), variable("AssignmentOperator"))));
@@ -425,7 +430,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                               token(ThisKeywordToken.instance),
                               token(SuperKeywordToken.instance),
                               variable("ClassAccess"),
-                              type(LiteralToken.class),
+                              literal(),
                               identifier(),
                               variable("CreationExpression"))));
 
@@ -692,7 +697,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
   }
 
   private static Expression identifier() {
-    return type(IdentifierToken.class);
+    return type(getSimpleName(IdentifierToken.class), IdentifierToken.getTypeValue());
   }
 
   private static void addInterfaceDeclaration(Set<Rule> rules) {

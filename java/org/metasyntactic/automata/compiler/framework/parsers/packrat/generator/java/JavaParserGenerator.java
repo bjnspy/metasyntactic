@@ -9,6 +9,7 @@ import org.metasyntactic.automata.compiler.framework.parsers.packrat.generator.P
 import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.automata.compiler.util.IndentingWriter;
+import static org.metasyntactic.utilities.ReflectionUtilities.getSimpleName;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -36,7 +37,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
     this.namespace = namespace;
   }
 
-   public String generate() {
+  public String generate() {
     try {
       generateWorker();
     } catch (IOException e) {
@@ -173,10 +174,10 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         for (Expression child : ce.getChildren()) {
           if (child instanceof TokenExpression) {
             TokenExpression te = (TokenExpression) child;
-            tokens.add(te.getToken().getClass().getSimpleName());
+            tokens.add(getSimpleName(te.getToken().getClass()));
           } else if (child instanceof TypeExpression) {
             TypeExpression te = (TypeExpression) child;
-            tokens.add(te.getType().getSimpleName());
+            tokens.add(te.getName());
           } else if (child instanceof VariableExpression) {
           } else {
             throw new RuntimeException();
@@ -184,10 +185,10 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         }
       } else if (expression instanceof TokenExpression) {
         TokenExpression te = (TokenExpression) expression;
-        tokens.add(te.getToken().getClass().getSimpleName());
+        tokens.add(getSimpleName(te.getToken().getClass()));
       } else if (expression instanceof TypeExpression) {
         TypeExpression te = (TypeExpression) expression;
-        tokens.add(te.getType().getSimpleName());
+        tokens.add(te.getName());
       }
     }
 
@@ -231,7 +232,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
 
   private void writeFunctions(Rule rule) {
     rule.getExpression().accept(new RecursionExpressionVisitor() {
-       public void visit(FunctionExpression expression) {
+      public void visit(FunctionExpression expression) {
         writer.writeLine();
         writer.writeLine("protected abstract EvaluationResult " + expression.getName() + "(int position);");
       }
@@ -254,9 +255,9 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
     Expression expression = rule.getExpression();
     String tokenType = "";
     if (expression instanceof TokenExpression) {
-      tokenType = "SourceToken<" + ((TokenExpression) expression).getToken().getClass().getSimpleName() + ">";
+      tokenType = "SourceToken<" + getSimpleName(((TokenExpression) expression).getToken().getClass()) + ">";
     } else {
-      tokenType = "SourceToken<" + ((TypeExpression) expression).getType().getSimpleName() + ">";
+      tokenType = "SourceToken<" + ((TypeExpression) expression).getName() + ">";
     }
 
     String interfaceName = getNodeName(rule);
@@ -333,15 +334,15 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
 
   private String callExpression(Expression expr, final String position, final boolean allowRawTokens) {
     return expr.accept(new DefaultExpressionVisitor<Object, String>() {
-       protected String defaultCase(Expression expression) {
+      protected String defaultCase(Expression expression) {
         return "evaluate" + expressionNamesMap.get(expression) + "(" + position + ")";
       }
 
-       public String visit(VariableExpression expression) {
+      public String visit(VariableExpression expression) {
         return "parse" + expression.getVariable() + "(" + position + ")";
       }
 
-       public String visit(EmptyExpression expression) {
+      public String visit(EmptyExpression expression) {
         return "new EvaluationResult(true, " + position + ")";
       }
 
@@ -349,7 +350,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         if (allowRawTokens) {
           return defaultCase(expression);
         } else {
-          return "box" + expression.getToken().getClass().getSimpleName() +
+          return "box" + getSimpleName(expression.getToken().getClass()) +
                  "(" + defaultCase(expression) + ")";
         }
       }
@@ -358,12 +359,12 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         if (allowRawTokens) {
           return defaultCase(expression);
         } else {
-          return "box" + expression.getType().getSimpleName() +
+          return "box" + expression.getName() +
                  "(" + defaultCase(expression) + ")";
         }
       }
 
-       public String visit(FunctionExpression<Object> expression) {
+      public String visit(FunctionExpression<Object> expression) {
         return expression.getName() + "(" + position + ")";
       }
     });
@@ -379,27 +380,27 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         expressionNamesMap.get(expression) + "(int position) {");
 
     expression.accept(new ExpressionVoidVisitor() {
-       public void visit(EmptyExpression emptyExpression) {
+      public void visit(EmptyExpression emptyExpression) {
         throw new UnsupportedOperationException();
       }
 
-       public void visit(CharacterExpression characterExpression) {
+      public void visit(CharacterExpression characterExpression) {
         throw new UnsupportedOperationException();
       }
 
-       public void visit(TerminalExpression terminalExpression) {
+      public void visit(TerminalExpression terminalExpression) {
         throw new UnsupportedOperationException();
       }
 
-       public void visit(VariableExpression variableExpression) {
+      public void visit(VariableExpression variableExpression) {
         throw new UnsupportedOperationException();
       }
 
-       public void visit(FunctionExpression objectFunctionExpression) {
+      public void visit(FunctionExpression objectFunctionExpression) {
         throw new UnsupportedOperationException();
       }
 
-       public void visit(SequenceExpression sequenceExpression) {
+      public void visit(SequenceExpression sequenceExpression) {
         Expression[] children = sequenceExpression.getChildren();
 
         writer.writeLine("EvaluationResult<? extends " + getExpressionType(children[0]) + "> result_" + 0 + " = " +
@@ -431,7 +432,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
                          ".position, node);");
       }
 
-       public void visit(DelimitedSequenceExpression sequenceExpression) {
+      public void visit(DelimitedSequenceExpression sequenceExpression) {
         boolean rhs = isRHSOfRule(sequenceExpression);
         String thisType = getExpressionType(sequenceExpression);
         String elementType = getExpressionType(sequenceExpression.getElement());
@@ -488,7 +489,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         writer.dedentAndWriteLine("}");
       }
 
-       public void visit(ChoiceExpression choiceExpression) {
+      public void visit(ChoiceExpression choiceExpression) {
         String thisType = getExpressionType(choiceExpression);
         writer.writeLine("EvaluationResult<? extends " + thisType + "> result;");
 
@@ -502,7 +503,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         writer.writeLine("return " + callExpression(children[children.length - 1], "position", false) + ";");
       }
 
-       public void visit(OptionalExpression optionalExpression) {
+      public void visit(OptionalExpression optionalExpression) {
         String thisType = getExpressionType(optionalExpression);
         writer.writeLine("EvaluationResult<? extends " + thisType + "> result;");
         writer.writeLine("if ((result = " + callExpression(optionalExpression.getChild(), "position") +
@@ -512,14 +513,14 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         //writer.writeLine("return " + callExpression(empty(), "position") + ";");
       }
 
-       public void visit(NotExpression notExpression) {
+      public void visit(NotExpression notExpression) {
         String thisType = getExpressionType(notExpression);
         writer.writeLine("EvaluationResult<? extends " + thisType + "> result = " +
                          callExpression(notExpression.getChild(), "position") + ";");
         writer.writeLine("return new EvaluationResult<" + thisType + ">(!result.succeeded, position);");
       }
 
-       public void visit(RepetitionExpression repetitionExpression) {
+      public void visit(RepetitionExpression repetitionExpression) {
         boolean isRHS = isRHSOfRule(repetitionExpression);
         String thisType = getExpressionType(repetitionExpression);
         String childType = getExpressionType(repetitionExpression.getChild());
@@ -546,7 +547,7 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         writer.dedentAndWriteLine("}");
       }
 
-       public void visit(OneOrMoreExpression oneOrMoreExpression) {
+      public void visit(OneOrMoreExpression oneOrMoreExpression) {
         String thisType = getExpressionType(oneOrMoreExpression);
         String childType = getExpressionType(oneOrMoreExpression.getChild());
 
@@ -568,14 +569,14 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         writer.dedentAndWriteLine("}");
       }
 
-       public void visit(TokenExpression tokenExpression) {
+      public void visit(TokenExpression tokenExpression) {
         String thisType = getExpressionType(tokenExpression);
 
         writer.writeLineAndIndent("if (position < tokens.size()) {");
         writer.writeLine("SourceToken token = tokens.get(position);");
 
-        writer.writeLineAndIndent("if (" + tokenExpression.getToken().getClass()
-            .getSimpleName() + ".instance.equals(token.getToken())) {");
+        writer.writeLineAndIndent("if (" + getSimpleName(tokenExpression.getToken().getClass()) +
+                                  ".instance.equals(token.getToken())) {");
         writer.writeLine("return new EvaluationResult<" + thisType + ">(true, position + 1, token);");
         writer.dedentAndWriteLine("}");
         writer.dedentAndWriteLine("}");
@@ -583,17 +584,19 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         writer.writeLine("return EvaluationResult.failure();");
       }
 
-       public void visit(TypeExpression typeExpression) {
+      public void visit(TypeExpression typeExpression) {
         String thisType = getExpressionType(typeExpression);
 
         writer.writeLineAndIndent("if (position < tokens.size()) {");
         writer.writeLine("SourceToken token = tokens.get(position);");
 
-        writer.writeLine("Class<? extends Token> actualType = token.getToken().getClass();");
-
-        writer.writeLineAndIndent("if (" + typeExpression.getType()
-            .getSimpleName() + ".class.isAssignableFrom(actualType)) {");
+        writer.writeLineAndIndent("switch (token.getToken().getType()) {");
+        for (Integer i : typeExpression.getTypes()) {
+          writer.writeLine("case " + i + ":");
+        }
+        writer.indent();
         writer.writeLine("return new EvaluationResult<" + thisType + ">(true, position + 1, token);");
+        writer.dedent();
         writer.dedentAndWriteLine("}");
         writer.dedentAndWriteLine("}");
 
@@ -661,11 +664,11 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
       }
 
       public String visit(TokenExpression expression) {
-        return "SourceToken<" + expression.getToken().getClass().getSimpleName() + ">";
+        return "SourceToken<" + getSimpleName(expression.getToken().getClass()) + ">";
       }
 
       public String visit(TypeExpression expression) {
-        return "SourceToken<" + expression.getType().getSimpleName() + ">";
+        return "SourceToken<" + expression.getName() + ">";
       }
 
       public String visit(NotExpression expression) {
@@ -680,60 +683,60 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
 
   private void createExpressionNames(final String variable, Expression expr) {
     expr.accept(new RecursionExpressionVisitor() {
-       public void visit(TerminalExpression expression) {
+      public void visit(TerminalExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-       public void visit(VariableExpression expression) {}
+      public void visit(VariableExpression expression) {}
 
-       public void visit(EmptyExpression expression) {}
+      public void visit(EmptyExpression expression) {}
 
-       public void visit(FunctionExpression expression) { }
+      public void visit(FunctionExpression expression) { }
 
-       public void visit(SequenceExpression expression) {
+      public void visit(SequenceExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-       public void visit(DelimitedSequenceExpression expression) {
+      public void visit(DelimitedSequenceExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-       public void visit(ChoiceExpression expression) {
+      public void visit(ChoiceExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-       public void visit(OptionalExpression expression) {
+      public void visit(OptionalExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-       public void visit(NotExpression expression) {
+      public void visit(NotExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-       public void visit(RepetitionExpression expression) {
+      public void visit(RepetitionExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-       public void visit(OneOrMoreExpression expression) {
+      public void visit(OneOrMoreExpression expression) {
         super.visit(expression);
         getExpressionId(variable, expression);
       }
 
-       public void visit(TokenExpression expression) {
+      public void visit(TokenExpression expression) {
         super.visit(expression);
-        expressionNamesMap.put(expression, expression.getToken().getClass().getSimpleName());
+        expressionNamesMap.put(expression, getSimpleName(expression.getToken().getClass()));
       }
 
-       public void visit(TypeExpression expression) {
+      public void visit(TypeExpression expression) {
         super.visit(expression);
-        expressionNamesMap.put(expression, expression.getType().getSimpleName());
+        expressionNamesMap.put(expression, expression.getName());
       }
     });
   }

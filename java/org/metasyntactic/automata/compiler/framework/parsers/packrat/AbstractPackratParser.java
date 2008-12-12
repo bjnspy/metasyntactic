@@ -317,10 +317,8 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       if (position < input.size()) {
         SourceToken<T> token = input.get(position);
 
-        Class<? extends Token> expectedType = typeExpression.getType();
-        Class<? extends Token> actualType = token.getToken().getClass();
-
-        if (expectedType.isAssignableFrom(actualType)) {
+        Set<Integer> types = typeExpression.getTypes();
+        if (types.contains(token.getToken().getType())) {
           return new EvaluationResult(position + 1, token);
         }
       }

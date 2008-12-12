@@ -5,7 +5,7 @@ public class IdentifierToken extends PythonToken {
     super(text);
   }
 
-   public Type getTokenType() {
+  public Type getTokenType() {
     return Type.Identifier;
   }
 

@@ -14,15 +14,13 @@
 
 package org.metasyntactic.utilities;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ReflectionUtilities {
   private ReflectionUtilities() {
 
   }
 
+/*
   public static boolean hasField(Class clazz, String name) {
     for (Field field : clazz.getFields()) {
       if (name.equals(field.getName())) {
@@ -41,5 +39,16 @@ public class ReflectionUtilities {
     }
 
     return false;
+  }
+  */
+
+  public static String getSimpleName(Class c) {
+    String value = c.getName();
+    int dot = value.lastIndexOf('.');
+    if (dot > 0) {
+      return value.substring(dot + 1);
+    }
+
+    return value;
   }
 }
