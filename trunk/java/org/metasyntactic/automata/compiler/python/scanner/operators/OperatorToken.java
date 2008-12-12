@@ -15,54 +15,47 @@ public class OperatorToken extends PythonToken {
   private static final Map<String, OperatorToken> map = new LinkedHashMap<String, OperatorToken>();
 
   static {
-    Class[] classes = new Class[]{
-        AndOperatorToken.class,
-        BitwiseNotOperatorToken.class,
-        DivideOperatorToken.class,
-        EqualsEqualsOperatorToken.class,
-        ExclusiveOrOperatorToken.class,
-        ExponentOperatorToken.class,
-        GreaterThanOperatorToken.class,
-        GreaterThanOrEqualsOperatorToken.class,
-        LeftShiftOperatorToken.class,
-        RightShiftOperatorToken.class,
-        LessThanGreaterThanOperatorToken.class,
-        LessThanOperatorToken.class,
-        LessThanOrEqualsOperatorToken.class,
-        MinusOperatorToken.class,
-        ModulusOperatorToken.class,
-        NotEqualsOperatorToken.class,
-        OrOperatorToken.class,
-        PlusOperatorToken.class,
-        TimesOperatorToken.class,
-        TruncatingDivideOperatorToken.class
+    OperatorToken[] tokens = new OperatorToken[]{
+        AndOperatorToken.instance,
+        BitwiseNotOperatorToken.instance,
+        DivideOperatorToken.instance,
+        EqualsEqualsOperatorToken.instance,
+        ExclusiveOrOperatorToken.instance,
+        ExponentOperatorToken.instance,
+        GreaterThanOperatorToken.instance,
+        GreaterThanOrEqualsOperatorToken.instance,
+        LeftShiftOperatorToken.instance,
+        RightShiftOperatorToken.instance,
+        LessThanGreaterThanOperatorToken.instance,
+        LessThanOperatorToken.instance,
+        LessThanOrEqualsOperatorToken.instance,
+        MinusOperatorToken.instance,
+        ModulusOperatorToken.instance,
+        NotEqualsOperatorToken.instance,
+        OrOperatorToken.instance,
+        PlusOperatorToken.instance,
+        TimesOperatorToken.instance,
+        TruncatingDivideOperatorToken.instance
     };
 
     List<String> operators = Arrays.asList(getOperators());
 
-    if (classes.length != operators.size()) {
+    if (tokens.length != operators.size()) {
       throw new IllegalStateException();
     }
 
-    for (Class clazz : classes) {
-      try {
-        OperatorToken token = (OperatorToken) clazz.getField("instance").get(null);
-        String operator = token.getText();
+    for (OperatorToken token : tokens) {
+      String operator = token.getText();
 
-        if (!operators.contains(operator)) {
-          throw new IllegalStateException();
-        }
-
-        if (map.containsKey(operator)) {
-          throw new IllegalStateException();
-        }
-
-        map.put(operator, token);
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e);
-      } catch (NoSuchFieldException e) {
-        throw new RuntimeException(e);
+      if (!operators.contains(operator)) {
+        throw new IllegalStateException();
       }
+
+      if (map.containsKey(operator)) {
+        throw new IllegalStateException();
+      }
+
+      map.put(operator, token);
     }
   }
 
@@ -86,7 +79,7 @@ public class OperatorToken extends PythonToken {
     return token;
   }
 
-   public Type getTokenType() {
+  public Type getTokenType() {
     return Type.Operator;
   }
 }
