@@ -15,7 +15,13 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" name="Default" comment="" />
+    <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/keywords/KeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/keywords/KeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SemicolonSeparatorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SemicolonSeparatorToken.java" />
+    </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
   </component>
@@ -148,51 +154,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CommaSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/CommaSeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="31" selection-start="329" selection-end="329" vertical-scroll-proportion="0.24489796">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DotSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/DotSeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="29" selection-start="319" selection-end="319" vertical-scroll-proportion="0.24489796">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EllipsisSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/EllipsisSeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="34" selection-start="346" selection-end="346" vertical-scroll-proportion="0.24489796">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeftBracketSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/LeftBracketSeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="37" selection-start="359" selection-end="359" vertical-scroll-proportion="0.24489796">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeftCurlySeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/LeftCurlySeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="35" selection-start="349" selection-end="349" vertical-scroll-proportion="0.24489796">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LeftParenthesisSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/LeftParenthesisSeparatorToken.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -229,10 +190,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SemicolonSeparatorToken.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SemicolonSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SemicolonSeparatorToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="280" selection-end="280" vertical-scroll-proportion="0.22040816">
+            <state line="12" column="1" selection-start="355" selection-end="355" vertical-scroll-proportion="0.29387754">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GrammarNodeWriter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="508" column="41" selection-start="16620" selection-end="16620" vertical-scroll-proportion="0.43875277">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/keywords/KeywordToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="0" selection-start="1731" selection-end="1731" vertical-scroll-proportion="0.050526317">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LiteralToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/LiteralToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="22" selection-start="315" selection-end="315" vertical-scroll-proportion="0.20210527">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OperatorToken.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="13" selection-start="410" selection-end="410" vertical-scroll-proportion="0.32842106">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DelimiterToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="13" selection-start="411" selection-end="411" vertical-scroll-proportion="-1.88">
               <folding />
             </state>
           </provider>
@@ -656,7 +666,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/python" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -690,175 +700,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/python" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Metasyntactic" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner/separators" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Metasyntactic" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner/operators" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Metasyntactic" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner/keywords" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Metasyntactic" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/parser" />
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/python/scanner" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -1353,12 +1199,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="22" width="1238" height="878" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="7" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35407907" order="0" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35407907" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847682" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962743" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3231788" order="8" />
@@ -1444,43 +1290,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/QuestionMarkOperatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="36" selection-start="356" selection-end="356" vertical-scroll-proportion="0.24489796">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/RightShiftEqualsOperatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="40" selection-start="378" selection-end="378" vertical-scroll-proportion="0.25263157">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/TimesEqualsOperatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="35" selection-start="352" selection-end="352" vertical-scroll-proportion="0.24489796">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/operators/TimesOperatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="29" selection-start="321" selection-end="321" vertical-scroll-proportion="0.24489796">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SeparatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="3" selection-start="2000" selection-end="2000" vertical-scroll-proportion="0.8231579">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/AtSeparatorToken.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="28" selection-start="366" selection-end="366" vertical-scroll-proportion="0.29387754">
@@ -1553,8 +1362,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SemicolonSeparatorToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="280" selection-end="280" vertical-scroll-proportion="0.22040816">
+        <state line="12" column="1" selection-start="355" selection-end="355" vertical-scroll-proportion="0.29387754">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/delimiters/DelimiterToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="411" selection-end="411" vertical-scroll-proportion="-1.88">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="508" column="41" selection-start="16620" selection-end="16620" vertical-scroll-proportion="0.43875277">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/keywords/KeywordToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="1731" selection-end="1731" vertical-scroll-proportion="0.050526317">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/LiteralToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="22" selection-start="315" selection-end="315" vertical-scroll-proportion="0.20210527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="410" selection-end="410" vertical-scroll-proportion="0.32842106">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -10,40 +10,45 @@ import java.util.Map;
  * Settings | File Templates.
  */
 public abstract class KeywordToken extends PythonToken {
-  static {
-    /*
-    for (String keyword : getKeywords()) {
-      String className = Character.toUpperCase(keyword.charAt(0)) + keyword.substring(1) + "KeywordToken";
-      System.out.println("public class " + className + " extends KeywordToken {");
-      System.out.println("  public static final " + className + " instance = new " + className + "();");
-      System.out.println();
-      System.out.println("  private " + className + "() {");
-      System.out.println("    super(\"" + keyword + "\");");
-      System.out.println("  }");
-      System.out.println("}");
-    }
-    */
-  }
-
   private final static Map<String, KeywordToken> map = new HashMap<String, KeywordToken>();
 
   static {
-    for (String keyword : getKeywords()) {
-      String className = Character.toUpperCase(keyword.charAt(0)) + keyword.substring(1) + "KeywordToken";
+    KeywordToken[] tokens = new KeywordToken[]{
+        AndKeywordToken.instance,
+        DelKeywordToken.instance,
+        FromKeywordToken.instance,
+        NotKeywordToken.instance,
+        WhileKeywordToken.instance,
+        AsKeywordToken.instance,
+        ElifKeywordToken.instance,
+        GlobalKeywordToken.instance,
+        OrKeywordToken.instance,
+        WithKeywordToken.instance,
+        AssertKeywordToken.instance,
+        ElseKeywordToken.instance,
+        IfKeywordToken.instance,
+        PassKeywordToken.instance,
+        YieldKeywordToken.instance,
+        BreakKeywordToken.instance,
+        ExceptKeywordToken.instance,
+        ImportKeywordToken.instance,
+        PrintKeywordToken.instance,
+        ClassKeywordToken.instance,
+        ExecKeywordToken.instance,
+        InKeywordToken.instance,
+        RaiseKeywordToken.instance,
+        ContinueKeywordToken.instance,
+        FinallyKeywordToken.instance,
+        IsKeywordToken.instance,
+        ReturnKeywordToken.instance,
+        DefKeywordToken.instance,
+        ForKeywordToken.instance,
+        LambdaKeywordToken.instance,
+        TryKeywordToken.instance
+    };
 
-      try {
-        Class clazz = Class.forName(KeywordToken.class.getPackage().getName() + "." + className);
-
-        KeywordToken token = (KeywordToken) clazz.getField("instance").get(null);
-
-        map.put(keyword, token);
-      } catch (ClassNotFoundException e) {
-        throw new RuntimeException(e);
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e);
-      } catch (NoSuchFieldException e) {
-        throw new RuntimeException(e);
-      }
+    for (KeywordToken token : tokens) {
+      map.put(token.getText(), token);
     }
   }
 
@@ -97,7 +102,7 @@ public abstract class KeywordToken extends PythonToken {
     };
   }
 
-   public Type getTokenType() {
+  public Type getTokenType() {
     return Type.Keyword;
   }
 }

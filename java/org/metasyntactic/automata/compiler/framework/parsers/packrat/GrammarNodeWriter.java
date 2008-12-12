@@ -83,7 +83,7 @@ public class GrammarNodeWriter<TTokenType> {
       }
     } else if (expression instanceof TokenExpression) {
       TokenExpression te = (TokenExpression) expression;
-      changed |= promotedTokens.put(te.getToken().getClass().getSimpleName(), null);
+      changed |= promotedTokens.put(getSimpleName(te.getToken().getClass()), null);
     } else if (expression instanceof TypeExpression) {
       TypeExpression te = (TypeExpression) expression;
       changed |= promotedTokens.put(te.getName(), null);
@@ -499,7 +499,7 @@ public class GrammarNodeWriter<TTokenType> {
     }
 
     public String visit(TokenExpression tokenExpression) {
-      String s = tokenExpression.getToken().getClass().getSimpleName();
+      String s = getSimpleName(tokenExpression.getToken().getClass());
       if (s.endsWith("Token")) {
         s = s.substring(0, s.length() - "Token".length());
       }

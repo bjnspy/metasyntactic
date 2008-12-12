@@ -11,4 +11,3 @@ public class SemicolonSeparatorToken extends SeparatorToken {
     return Type.SemicolonSeparator;
   }
 }
-
