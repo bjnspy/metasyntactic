@@ -6,8 +6,6 @@ import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGram
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.generator.ParserGenerator;
-import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
-import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.automata.compiler.util.IndentingWriter;
 import static org.metasyntactic.utilities.ReflectionUtilities.getSimpleName;
 
@@ -464,13 +462,17 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
               elementType + ", " + delimiterType + ">(trimList(elements), trimList(delimiters)));");
         }
         writer.dedentAndWriteLine("}");
+
         writer.writeLine();
         writer.writeLine(
             "result = " + callExpression(sequenceExpression.getElement(), "delimiterResult.position") + ";");
+
         writer.writeLineAndIndent("if (!result.succeeded) {");
+
         if (sequenceExpression.allowsTrailingDelimiter()) {
           // accept the last delimiter.
-          writer.writeLine("delimiters = addValue(delimiters, delimiterResult.value)");
+          writer.writeLine("delimiters = addValue(delimiters, delimiterResult.value);");
+          writer.writeLine("currentPosition = delimiterResult.position;");
         }
 
         if (rhs) {
@@ -485,6 +487,8 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
         }
 
         writer.dedentAndWriteLine("}");
+
+        writer.writeLine("delimiters = addValue(delimiters, delimiterResult.value);");
         writer.writeLine("elements = addValue(elements, result.value);");
         writer.dedentAndWriteLine("}");
       }
@@ -761,14 +765,10 @@ public class JavaParserGenerator<TTokenType> implements ParserGenerator {
   private Map<Expression, String> expressionNamesMap = new LinkedHashMap<Expression, String>();
 
   private static String getMapName(Rule rule) {
-    return rule.getVariable() + "Map";
+    return camelCase(rule.getVariable()) + "Map";
   }
 
-  public static void main(String... args) {
-    JavaParserGenerator generator = new JavaParserGenerator<JavaToken.Type>(JavaGrammar.instance,
-                                                                            "AbstractJavaGeneratedParser",
-                                                                            "org.metasyntactic.automata.compiler.java.parser");
-    String result = generator.generate();
-    System.out.println(result);
+  private static String camelCase(String name) {
+    return name.substring(0, 1).toLowerCase() + name.substring(1);
   }
 }

@@ -36,7 +36,6 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
     return grammar;
   }
 
-
   public boolean equals(Object o) {
     if (this == o) {
       return true;
@@ -50,14 +49,14 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
     return actions.equals(parser.actions) && grammar.equals(parser.grammar);
   }
 
-   public int hashCode() {
+  public int hashCode() {
     int result;
     result = grammar.hashCode();
     result = 31 * result + actions.hashCode();
     return result;
   }
 
-   public Object parse() {
+  public Object parse() {
     return parse(0);
   }
 
@@ -81,7 +80,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       if (!grammar.isNullable(variable) &&
           !grammar.acceptsAnyToken(variable) &&
           !grammar.isFirstToken(variable,
-                                                                                                       token)) {
+                                token)) {
         return false;
       }
     }
@@ -111,7 +110,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       this.position = position;
     }
 
-     public boolean equals(Object o) {
+    public boolean equals(Object o) {
       if (this == o) {
         return true;
       }
@@ -131,14 +130,14 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return true;
     }
 
-     public int hashCode() {
+    public int hashCode() {
       int result;
       result = rule.hashCode();
       result = 31 * result + position;
       return result;
     }
 
-     public String toString() {
+    public String toString() {
       return "(Key " + rule + " " + position + ")";
     }
   }
@@ -153,24 +152,24 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       this.position = position;
     }
 
-     public EvaluationResult visit(EmptyExpression emptyExpression) {
+    public EvaluationResult visit(EmptyExpression emptyExpression) {
       return new EvaluationResult(position, null);
     }
 
-     public EvaluationResult visit(TerminalExpression terminalExpression) {
+    public EvaluationResult visit(TerminalExpression terminalExpression) {
       throw new UnsupportedOperationException();
     }
 
-     public EvaluationResult visit(CharacterExpression characterExpression) {
+    public EvaluationResult visit(CharacterExpression characterExpression) {
       throw new UnsupportedOperationException();
     }
 
-     public EvaluationResult visit(VariableExpression variableExpression) {
+    public EvaluationResult visit(VariableExpression variableExpression) {
       Rule rule = variableExpression.getRule(grammar);
       return evaluateRule(position, rule);
     }
 
-     public EvaluationResult visit(DelimitedSequenceExpression sequenceExpression) {
+    public EvaluationResult visit(DelimitedSequenceExpression sequenceExpression) {
       ArrayList<Object> elements = null;
       ArrayList<Object> delimiters = null;
 
@@ -193,16 +192,19 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
           if (sequenceExpression.allowsTrailingDelimiter()) {
             // accept the last delimiter.
             delimiters = addValue(delimiters, delimiterResult);
+            return new EvaluationResult(delimiterResult.position, Arrays.asList(trimList(elements), trimList(delimiters)));
+          } else {
+            // don't accept the last delimiter
+            return new EvaluationResult(currentPosition, Arrays.asList(trimList(elements), trimList(delimiters)));
           }
-
-          return new EvaluationResult(currentPosition, Arrays.asList(trimList(elements), trimList(delimiters)));
         }
 
+        delimiters = addValue(delimiters, delimiterResult);
         elements = addValue(elements, result);
       }
     }
 
-     public EvaluationResult visit(SequenceExpression sequenceExpression) {
+    public EvaluationResult visit(SequenceExpression sequenceExpression) {
       int currentPosition = position;
       ArrayList<Object> values = null;
 
@@ -219,7 +221,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return new EvaluationResult(currentPosition, trimList(values));
     }
 
-     public EvaluationResult visit(OneOrMoreExpression oneOrMoreExpression) {
+    public EvaluationResult visit(OneOrMoreExpression oneOrMoreExpression) {
       EvaluationResult result = evaluateExpression(position, oneOrMoreExpression.getChild());
       if (result.isFailure()) {
         return EvaluationResult.failure;
@@ -238,7 +240,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       }
     }
 
-     public EvaluationResult visit(ChoiceExpression choiceExpression) {
+    public EvaluationResult visit(ChoiceExpression choiceExpression) {
       for (Expression child : choiceExpression.getChildren()) {
         EvaluationResult result = evaluateExpression(position, child);
         if (result.isSuccess()) {
@@ -249,7 +251,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return EvaluationResult.failure;
     }
 
-     public EvaluationResult visit(OptionalExpression optionalExpression) {
+    public EvaluationResult visit(OptionalExpression optionalExpression) {
       EvaluationResult result = evaluateExpression(position, optionalExpression.getChild());
       if (result.isSuccess()) {
         return result;
@@ -258,7 +260,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return new EvaluationResult(position, null);
     }
 
-     public EvaluationResult visit(NotExpression notExpression) {
+    public EvaluationResult visit(NotExpression notExpression) {
       EvaluationResult result = evaluateExpression(position, notExpression.getChild());
       if (result.isSuccess()) {
         return EvaluationResult.failure;
@@ -267,7 +269,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       }
     }
 
-     public EvaluationResult visit(RepetitionExpression repetitionExpression) {
+    public EvaluationResult visit(RepetitionExpression repetitionExpression) {
       int currentPosition = position;
       ArrayList<Object> values = null;
 
@@ -297,11 +299,11 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return values;
     }
 
-     public EvaluationResult visit(FunctionExpression<List<SourceToken<T>>> functionExpression) {
+    public EvaluationResult visit(FunctionExpression<List<SourceToken<T>>> functionExpression) {
       return functionExpression.apply(input, position);
     }
 
-     public EvaluationResult visit(TokenExpression tokenExpression) {
+    public EvaluationResult visit(TokenExpression tokenExpression) {
       if (position < input.size()) {
         SourceToken<T> token = input.get(position);
 
@@ -313,7 +315,7 @@ public abstract class AbstractPackratParser<T extends Token> implements Parser {
       return EvaluationResult.failure;
     }
 
-     public EvaluationResult visit(TypeExpression typeExpression) {
+    public EvaluationResult visit(TypeExpression typeExpression) {
       if (position < input.size()) {
         SourceToken<T> token = input.get(position);
 

@@ -22,33 +22,38 @@ import org.metasyntactic.automata.compiler.java.scanner.operators.*;
 import org.metasyntactic.automata.compiler.java.scanner.separators.*;
 import org.metasyntactic.automata.compiler.util.DelimitedList;
 
-import java.util.List;
+import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Nodes {
+private static List<Object> trimList(List<Object> list) {
+  if (list.isEmpty()) {
+    return Collections.emptyList();
+  }
+  if (list.size() == 1) {
+    return Collections.singletonList(list.get(0));
+  }
+  return Collections.unmodifiableList(list);
+}
 public static interface INode {
+  String getName();
   void accept(INodeVisitor visitor);
+  List<Object> getChildren();
 }
 public static interface INodeVisitor {
   void visit(ICompilationUnitNode node);
   void visit(IPackageDeclarationNode node);
   void visit(IQualifiedIdentifierNode node);
-  void visit(IImportDeclarationNode node);
   void visit(ISingleTypeImportDeclarationNode node);
   void visit(ITypeImportOnDemandDeclarationNode node);
   void visit(ISingleStaticImportDeclarationNode node);
   void visit(IStaticImportOnDemandDeclarationNode node);
-  void visit(ITypeDeclarationNode node);
-  void visit(IClassDeclarationNode node);
   void visit(INormalClassDeclarationNode node);
   void visit(IModifiersNode node);
-  void visit(IModifierNode node);
   void visit(ISuperNode node);
   void visit(IInterfacesNode node);
   void visit(IClassBodyNode node);
-  void visit(IClassBodyDeclarationNode node);
   void visit(IStaticInitializerNode node);
-  void visit(IInterfaceDeclarationNode node);
   void visit(INormalInterfaceDeclarationNode node);
   void visit(IExtendsInterfacesNode node);
   void visit(IClassOrInterfaceBodyNode node);
@@ -58,67 +63,49 @@ public static interface INodeVisitor {
   void visit(IArgumentsNode node);
   void visit(IAnnotationDeclarationNode node);
   void visit(IAnnotationBodyNode node);
-  void visit(IAnnotationElementDeclarationNode node);
   void visit(IAnnotationDefaultDeclarationNode node);
-  void visit(IClassOrInterfaceMemberDeclarationNode node);
   void visit(IConstructorDeclarationNode node);
   void visit(IFieldDeclarationNode node);
-  void visit(IVariableDeclaratorNode node);
   void visit(IVariableDeclaratorIdAndAssignmentNode node);
-  void visit(IVariableDeclaratorAssignmentNode node);
   void visit(IVariableDeclaratorIdNode node);
   void visit(IBracketPairNode node);
   void visit(IMethodDeclarationNode node);
-  void visit(IMethodBodyNode node);
   void visit(IFormalParameterNode node);
   void visit(IThrowsNode node);
   void visit(ITypeParametersNode node);
   void visit(ITypeParameterNode node);
   void visit(ITypeBoundNode node);
-  void visit(ITypeNode node);
-  void visit(IReferenceTypeNode node);
   void visit(IPrimitiveArrayReferenceTypeNode node);
   void visit(IClassOrInterfaceReferenceTypeNode node);
   void visit(IClassOrInterfaceTypeNode node);
   void visit(ISingleClassOrInterfaceTypeNode node);
   void visit(ITypeArgumentsNode node);
-  void visit(ITypeArgumentNode node);
-  void visit(IWildcardTypeArgumentNode node);
   void visit(IExtendsWildcardTypeArgumentNode node);
   void visit(ISuperWildcardTypeArgumentNode node);
   void visit(IOpenWildcardTypeArgumentNode node);
   void visit(INonWildcardTypeArgumentsNode node);
-  void visit(IPrimitiveTypeNode node);
-  void visit(IAnnotationNode node);
   void visit(INormalAnnotationNode node);
   void visit(IElementValuePairNode node);
   void visit(ISingleElementAnnotationNode node);
   void visit(IMarkerAnnotationNode node);
-  void visit(IElementValueNode node);
   void visit(IElementValueArrayInitializerNode node);
   void visit(IBlockNode node);
-  void visit(IBlockStatementNode node);
   void visit(ILocalVariableDeclarationStatementNode node);
   void visit(ILocalVariableDeclarationNode node);
-  void visit(IStatementNode node);
   void visit(IEmptyStatementNode node);
   void visit(ILabeledStatementNode node);
   void visit(IExpressionStatementNode node);
   void visit(IIfStatementNode node);
   void visit(IElseStatementNode node);
-  void visit(IAssertStatementNode node);
   void visit(IMessageAssertStatementNode node);
   void visit(ISimpleAssertStatementNode node);
   void visit(ISwitchStatementNode node);
   void visit(ISwitchBlockStatementGroupNode node);
-  void visit(ISwitchLabelNode node);
   void visit(ICaseSwitchLabelNode node);
   void visit(IDefaultSwitchLabelNode node);
   void visit(IWhileStatementNode node);
   void visit(IDoStatementNode node);
-  void visit(IForStatementNode node);
   void visit(IBasicForStatementNode node);
-  void visit(IForInitializerNode node);
   void visit(IDelimitedExpressionListNode node);
   void visit(IEnhancedForStatementNode node);
   void visit(IBreakStatementNode node);
@@ -126,46 +113,31 @@ public static interface INodeVisitor {
   void visit(IReturnStatementNode node);
   void visit(IThrowStatementNode node);
   void visit(ISynchronizedStatementNode node);
-  void visit(ITryStatementNode node);
   void visit(ITryStatementWithFinallyNode node);
   void visit(ITryStatementWithoutFinallyNode node);
   void visit(ICatchClauseNode node);
   void visit(IExpressionNode node);
-  void visit(IAssignmentOperatorNode node);
-  void visit(IExpression1Node node);
   void visit(ITernaryExpressionNode node);
-  void visit(IExpression2Node node);
   void visit(IBinaryExpressionNode node);
-  void visit(IBinaryExpressionRestNode node);
   void visit(IInfixOperatorBinaryExpressionRestNode node);
   void visit(IInstanceofOperatorBinaryExpressionRestNode node);
-  void visit(IInfixOperatorNode node);
   void visit(IUnsignedRightShiftNode node);
   void visit(ISignedRightShiftNode node);
-  void visit(IExpression3Node node);
   void visit(IPrefixExpressionNode node);
-  void visit(IPrefixOperatorNode node);
-  void visit(IPossibleCastExpressionNode node);
   void visit(IPossibleCastExpression_TypeNode node);
   void visit(IPossibleCastExpression_ExpressionNode node);
   void visit(IPrimaryExpressionNode node);
-  void visit(IPostfixOperatorNode node);
-  void visit(IValueExpressionNode node);
   void visit(IClassAccessNode node);
-  void visit(ISelectorNode node);
   void visit(IDotSelectorNode node);
   void visit(IArraySelectorNode node);
   void visit(IParenthesizedExpressionNode node);
   void visit(IMethodInvocationNode node);
   void visit(IThisConstructorInvocationNode node);
   void visit(ISuperConstructorInvocationNode node);
-  void visit(ICreationExpressionNode node);
   void visit(IObjectCreationExpressionNode node);
   void visit(IArrayCreationExpressionNode node);
-  void visit(IArrayCreationTypeNode node);
   void visit(IDimensionExpressionNode node);
   void visit(IArrayInitializerNode node);
-  void visit(IVariableInitializerNode node);
   void visit(IThisKeywordTokenNode node);
   void visit(IVolatileKeywordTokenNode node);
   void visit(ITimesEqualsOperatorTokenNode node);
@@ -227,6 +199,14 @@ public static interface INodeVisitor {
   void visit(IDivideEqualsOperatorTokenNode node);
 }
 public static abstract class AbstractNode implements INode {
+  private List<Object> children;
+  public List<Object> getChildren() {
+    if (children == null) {
+      children = getChildrenWorker();
+    }
+    return children;
+  }
+  protected abstract List<Object> getChildrenWorker();
   private int hashCode = -1;
   public int hashCode() {
     if (hashCode == -1) {
@@ -237,6 +217,9 @@ public static abstract class AbstractNode implements INode {
   protected abstract int hashCodeWorker();
   protected boolean equals(Object o1, Object o2) {
     return o1 == null ? o2 == null : o1.equals(o2);
+  }
+  public String toString() {
+    return getName();
   }
 }
 public static interface IThisKeywordTokenNode extends INode, IValueExpressionNode {
@@ -249,6 +232,9 @@ public static class ThisKeywordTokenNode extends AbstractNode implements IThisKe
   }
   public SourceToken<ThisKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -263,6 +249,9 @@ public static class ThisKeywordTokenNode extends AbstractNode implements IThisKe
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IVolatileKeywordTokenNode extends INode, IModifierNode {
   SourceToken<VolatileKeywordToken> getToken();
@@ -274,6 +263,9 @@ public static class VolatileKeywordTokenNode extends AbstractNode implements IVo
   }
   public SourceToken<VolatileKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -288,6 +280,9 @@ public static class VolatileKeywordTokenNode extends AbstractNode implements IVo
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ITimesEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<TimesEqualsOperatorToken> getToken();
@@ -299,6 +294,9 @@ public static class TimesEqualsOperatorTokenNode extends AbstractNode implements
   }
   public SourceToken<TimesEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -313,6 +311,9 @@ public static class TimesEqualsOperatorTokenNode extends AbstractNode implements
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IBitwiseNotOperatorTokenNode extends INode, IPrefixOperatorNode {
   SourceToken<BitwiseNotOperatorToken> getToken();
@@ -324,6 +325,9 @@ public static class BitwiseNotOperatorTokenNode extends AbstractNode implements 
   }
   public SourceToken<BitwiseNotOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -338,6 +342,9 @@ public static class BitwiseNotOperatorTokenNode extends AbstractNode implements 
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IExclusiveOrEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<ExclusiveOrEqualsOperatorToken> getToken();
@@ -349,6 +356,9 @@ public static class ExclusiveOrEqualsOperatorTokenNode extends AbstractNode impl
   }
   public SourceToken<ExclusiveOrEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -363,6 +373,9 @@ public static class ExclusiveOrEqualsOperatorTokenNode extends AbstractNode impl
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IMinusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<MinusEqualsOperatorToken> getToken();
@@ -374,6 +387,9 @@ public static class MinusEqualsOperatorTokenNode extends AbstractNode implements
   }
   public SourceToken<MinusEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -388,6 +404,9 @@ public static class MinusEqualsOperatorTokenNode extends AbstractNode implements
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface INativeKeywordTokenNode extends INode, IModifierNode {
   SourceToken<NativeKeywordToken> getToken();
@@ -399,6 +418,9 @@ public static class NativeKeywordTokenNode extends AbstractNode implements INati
   }
   public SourceToken<NativeKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -413,6 +435,9 @@ public static class NativeKeywordTokenNode extends AbstractNode implements INati
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILessThanOrEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<LessThanOrEqualsOperatorToken> getToken();
@@ -424,6 +449,9 @@ public static class LessThanOrEqualsOperatorTokenNode extends AbstractNode imple
   }
   public SourceToken<LessThanOrEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -438,6 +466,9 @@ public static class LessThanOrEqualsOperatorTokenNode extends AbstractNode imple
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IDivideOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<DivideOperatorToken> getToken();
@@ -449,6 +480,9 @@ public static class DivideOperatorTokenNode extends AbstractNode implements IDiv
   }
   public SourceToken<DivideOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -463,6 +497,9 @@ public static class DivideOperatorTokenNode extends AbstractNode implements IDiv
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IRightShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<RightShiftEqualsOperatorToken> getToken();
@@ -474,6 +511,9 @@ public static class RightShiftEqualsOperatorTokenNode extends AbstractNode imple
   }
   public SourceToken<RightShiftEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -488,6 +528,9 @@ public static class RightShiftEqualsOperatorTokenNode extends AbstractNode imple
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILongKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<LongKeywordToken> getToken();
@@ -499,6 +542,9 @@ public static class LongKeywordTokenNode extends AbstractNode implements ILongKe
   }
   public SourceToken<LongKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -513,6 +559,9 @@ public static class LongKeywordTokenNode extends AbstractNode implements ILongKe
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IIntKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<IntKeywordToken> getToken();
@@ -524,6 +573,9 @@ public static class IntKeywordTokenNode extends AbstractNode implements IIntKeyw
   }
   public SourceToken<IntKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -538,6 +590,9 @@ public static class IntKeywordTokenNode extends AbstractNode implements IIntKeyw
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILessThanOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<LessThanOperatorToken> getToken();
@@ -549,6 +604,9 @@ public static class LessThanOperatorTokenNode extends AbstractNode implements IL
   }
   public SourceToken<LessThanOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -563,6 +621,9 @@ public static class LessThanOperatorTokenNode extends AbstractNode implements IL
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILiteralTokenNode extends INode, IValueExpressionNode {
   SourceToken<LiteralToken> getToken();
@@ -574,6 +635,9 @@ public static class LiteralTokenNode extends AbstractNode implements ILiteralTok
   }
   public SourceToken<LiteralToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -588,6 +652,9 @@ public static class LiteralTokenNode extends AbstractNode implements ILiteralTok
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILogicalNotOperatorTokenNode extends INode, IPrefixOperatorNode {
   SourceToken<LogicalNotOperatorToken> getToken();
@@ -599,6 +666,9 @@ public static class LogicalNotOperatorTokenNode extends AbstractNode implements 
   }
   public SourceToken<LogicalNotOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -613,6 +683,9 @@ public static class LogicalNotOperatorTokenNode extends AbstractNode implements 
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IIncrementOperatorTokenNode extends INode, IPostfixOperatorNode, IPrefixOperatorNode {
   SourceToken<IncrementOperatorToken> getToken();
@@ -624,6 +697,9 @@ public static class IncrementOperatorTokenNode extends AbstractNode implements I
   }
   public SourceToken<IncrementOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -638,6 +714,9 @@ public static class IncrementOperatorTokenNode extends AbstractNode implements I
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<EqualsOperatorToken> getToken();
@@ -649,6 +728,9 @@ public static class EqualsOperatorTokenNode extends AbstractNode implements IEqu
   }
   public SourceToken<EqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -663,6 +745,9 @@ public static class EqualsOperatorTokenNode extends AbstractNode implements IEqu
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IStrictfpKeywordTokenNode extends INode, IModifierNode {
   SourceToken<StrictfpKeywordToken> getToken();
@@ -674,6 +759,9 @@ public static class StrictfpKeywordTokenNode extends AbstractNode implements ISt
   }
   public SourceToken<StrictfpKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -688,6 +776,9 @@ public static class StrictfpKeywordTokenNode extends AbstractNode implements ISt
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IBitwiseRightShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<BitwiseRightShiftEqualsOperatorToken> getToken();
@@ -699,6 +790,9 @@ public static class BitwiseRightShiftEqualsOperatorTokenNode extends AbstractNod
   }
   public SourceToken<BitwiseRightShiftEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -713,6 +807,9 @@ public static class BitwiseRightShiftEqualsOperatorTokenNode extends AbstractNod
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IGreaterThanOrEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<GreaterThanOrEqualsOperatorToken> getToken();
@@ -724,6 +821,9 @@ public static class GreaterThanOrEqualsOperatorTokenNode extends AbstractNode im
   }
   public SourceToken<GreaterThanOrEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -738,6 +838,9 @@ public static class GreaterThanOrEqualsOperatorTokenNode extends AbstractNode im
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IIdentifierTokenNode extends INode, IValueExpressionNode {
   SourceToken<IdentifierToken> getToken();
@@ -749,6 +852,9 @@ public static class IdentifierTokenNode extends AbstractNode implements IIdentif
   }
   public SourceToken<IdentifierToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -763,6 +869,9 @@ public static class IdentifierTokenNode extends AbstractNode implements IIdentif
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IProtectedKeywordTokenNode extends INode, IModifierNode {
   SourceToken<ProtectedKeywordToken> getToken();
@@ -774,6 +883,9 @@ public static class ProtectedKeywordTokenNode extends AbstractNode implements IP
   }
   public SourceToken<ProtectedKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -788,6 +900,9 @@ public static class ProtectedKeywordTokenNode extends AbstractNode implements IP
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILogicalAndOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<LogicalAndOperatorToken> getToken();
@@ -799,6 +914,9 @@ public static class LogicalAndOperatorTokenNode extends AbstractNode implements 
   }
   public SourceToken<LogicalAndOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -813,6 +931,9 @@ public static class LogicalAndOperatorTokenNode extends AbstractNode implements 
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IPlusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<PlusEqualsOperatorToken> getToken();
@@ -824,6 +945,9 @@ public static class PlusEqualsOperatorTokenNode extends AbstractNode implements 
   }
   public SourceToken<PlusEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -838,6 +962,9 @@ public static class PlusEqualsOperatorTokenNode extends AbstractNode implements 
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IQuestionMarkOperatorTokenNode extends INode {
   SourceToken<QuestionMarkOperatorToken> getToken();
@@ -849,6 +976,9 @@ public static class QuestionMarkOperatorTokenNode extends AbstractNode implement
   }
   public SourceToken<QuestionMarkOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -863,6 +993,9 @@ public static class QuestionMarkOperatorTokenNode extends AbstractNode implement
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IEqualsEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<EqualsEqualsOperatorToken> getToken();
@@ -874,6 +1007,9 @@ public static class EqualsEqualsOperatorTokenNode extends AbstractNode implement
   }
   public SourceToken<EqualsEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -888,6 +1024,9 @@ public static class EqualsEqualsOperatorTokenNode extends AbstractNode implement
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IDoubleKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<DoubleKeywordToken> getToken();
@@ -899,6 +1038,9 @@ public static class DoubleKeywordTokenNode extends AbstractNode implements IDoub
   }
   public SourceToken<DoubleKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -913,6 +1055,9 @@ public static class DoubleKeywordTokenNode extends AbstractNode implements IDoub
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IModulusOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<ModulusOperatorToken> getToken();
@@ -924,6 +1069,9 @@ public static class ModulusOperatorTokenNode extends AbstractNode implements IMo
   }
   public SourceToken<ModulusOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -938,6 +1086,9 @@ public static class ModulusOperatorTokenNode extends AbstractNode implements IMo
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILeftShiftEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<LeftShiftEqualsOperatorToken> getToken();
@@ -949,6 +1100,9 @@ public static class LeftShiftEqualsOperatorTokenNode extends AbstractNode implem
   }
   public SourceToken<LeftShiftEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -963,6 +1117,9 @@ public static class LeftShiftEqualsOperatorTokenNode extends AbstractNode implem
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IAndEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<AndEqualsOperatorToken> getToken();
@@ -974,6 +1131,9 @@ public static class AndEqualsOperatorTokenNode extends AbstractNode implements I
   }
   public SourceToken<AndEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -988,6 +1148,9 @@ public static class AndEqualsOperatorTokenNode extends AbstractNode implements I
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ISynchronizedKeywordTokenNode extends INode, IModifierNode {
   SourceToken<SynchronizedKeywordToken> getToken();
@@ -999,6 +1162,9 @@ public static class SynchronizedKeywordTokenNode extends AbstractNode implements
   }
   public SourceToken<SynchronizedKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1013,6 +1179,9 @@ public static class SynchronizedKeywordTokenNode extends AbstractNode implements
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ISemicolonSeparatorTokenNode extends INode, ITypeDeclarationNode, IMethodBodyNode {
   SourceToken<SemicolonSeparatorToken> getToken();
@@ -1024,6 +1193,9 @@ public static class SemicolonSeparatorTokenNode extends AbstractNode implements 
   }
   public SourceToken<SemicolonSeparatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1038,6 +1210,9 @@ public static class SemicolonSeparatorTokenNode extends AbstractNode implements 
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IAbstractKeywordTokenNode extends INode, IModifierNode {
   SourceToken<AbstractKeywordToken> getToken();
@@ -1049,6 +1224,9 @@ public static class AbstractKeywordTokenNode extends AbstractNode implements IAb
   }
   public SourceToken<AbstractKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1063,6 +1241,9 @@ public static class AbstractKeywordTokenNode extends AbstractNode implements IAb
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ITimesOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<TimesOperatorToken> getToken();
@@ -1074,6 +1255,9 @@ public static class TimesOperatorTokenNode extends AbstractNode implements ITime
   }
   public SourceToken<TimesOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1088,6 +1272,9 @@ public static class TimesOperatorTokenNode extends AbstractNode implements ITime
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILogicalOrOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<LogicalOrOperatorToken> getToken();
@@ -1099,6 +1286,9 @@ public static class LogicalOrOperatorTokenNode extends AbstractNode implements I
   }
   public SourceToken<LogicalOrOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1113,6 +1303,9 @@ public static class LogicalOrOperatorTokenNode extends AbstractNode implements I
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IPlusOperatorTokenNode extends INode, IPrefixOperatorNode, IInfixOperatorNode {
   SourceToken<PlusOperatorToken> getToken();
@@ -1124,6 +1317,9 @@ public static class PlusOperatorTokenNode extends AbstractNode implements IPlusO
   }
   public SourceToken<PlusOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1138,6 +1334,9 @@ public static class PlusOperatorTokenNode extends AbstractNode implements IPlusO
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ITransientKeywordTokenNode extends INode, IModifierNode {
   SourceToken<TransientKeywordToken> getToken();
@@ -1149,6 +1348,9 @@ public static class TransientKeywordTokenNode extends AbstractNode implements IT
   }
   public SourceToken<TransientKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1163,6 +1365,9 @@ public static class TransientKeywordTokenNode extends AbstractNode implements IT
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ISuperKeywordTokenNode extends INode, IValueExpressionNode {
   SourceToken<SuperKeywordToken> getToken();
@@ -1174,6 +1379,9 @@ public static class SuperKeywordTokenNode extends AbstractNode implements ISuper
   }
   public SourceToken<SuperKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1188,6 +1396,9 @@ public static class SuperKeywordTokenNode extends AbstractNode implements ISuper
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IOrEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<OrEqualsOperatorToken> getToken();
@@ -1199,6 +1410,9 @@ public static class OrEqualsOperatorTokenNode extends AbstractNode implements IO
   }
   public SourceToken<OrEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1213,6 +1427,9 @@ public static class OrEqualsOperatorTokenNode extends AbstractNode implements IO
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IGreaterThanOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<GreaterThanOperatorToken> getToken();
@@ -1224,6 +1441,9 @@ public static class GreaterThanOperatorTokenNode extends AbstractNode implements
   }
   public SourceToken<GreaterThanOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1238,6 +1458,9 @@ public static class GreaterThanOperatorTokenNode extends AbstractNode implements
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IByteKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<ByteKeywordToken> getToken();
@@ -1249,6 +1472,9 @@ public static class ByteKeywordTokenNode extends AbstractNode implements IByteKe
   }
   public SourceToken<ByteKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1263,6 +1489,9 @@ public static class ByteKeywordTokenNode extends AbstractNode implements IByteKe
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IStaticKeywordTokenNode extends INode, IModifierNode {
   SourceToken<StaticKeywordToken> getToken();
@@ -1274,6 +1503,9 @@ public static class StaticKeywordTokenNode extends AbstractNode implements IStat
   }
   public SourceToken<StaticKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1288,6 +1520,9 @@ public static class StaticKeywordTokenNode extends AbstractNode implements IStat
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IFloatKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<FloatKeywordToken> getToken();
@@ -1299,6 +1534,9 @@ public static class FloatKeywordTokenNode extends AbstractNode implements IFloat
   }
   public SourceToken<FloatKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1313,6 +1551,9 @@ public static class FloatKeywordTokenNode extends AbstractNode implements IFloat
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IBitwiseAndOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<BitwiseAndOperatorToken> getToken();
@@ -1324,6 +1565,9 @@ public static class BitwiseAndOperatorTokenNode extends AbstractNode implements 
   }
   public SourceToken<BitwiseAndOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1338,6 +1582,9 @@ public static class BitwiseAndOperatorTokenNode extends AbstractNode implements 
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IBitwiseOrOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<BitwiseOrOperatorToken> getToken();
@@ -1349,6 +1596,9 @@ public static class BitwiseOrOperatorTokenNode extends AbstractNode implements I
   }
   public SourceToken<BitwiseOrOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1363,6 +1613,9 @@ public static class BitwiseOrOperatorTokenNode extends AbstractNode implements I
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IModulusEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<ModulusEqualsOperatorToken> getToken();
@@ -1374,6 +1627,9 @@ public static class ModulusEqualsOperatorTokenNode extends AbstractNode implemen
   }
   public SourceToken<ModulusEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1388,6 +1644,9 @@ public static class ModulusEqualsOperatorTokenNode extends AbstractNode implemen
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IMinusOperatorTokenNode extends INode, IPrefixOperatorNode, IInfixOperatorNode {
   SourceToken<MinusOperatorToken> getToken();
@@ -1399,6 +1658,9 @@ public static class MinusOperatorTokenNode extends AbstractNode implements IMinu
   }
   public SourceToken<MinusOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1413,6 +1675,9 @@ public static class MinusOperatorTokenNode extends AbstractNode implements IMinu
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IPrivateKeywordTokenNode extends INode, IModifierNode {
   SourceToken<PrivateKeywordToken> getToken();
@@ -1424,6 +1689,9 @@ public static class PrivateKeywordTokenNode extends AbstractNode implements IPri
   }
   public SourceToken<PrivateKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1438,6 +1706,9 @@ public static class PrivateKeywordTokenNode extends AbstractNode implements IPri
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ICharKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<CharKeywordToken> getToken();
@@ -1449,6 +1720,9 @@ public static class CharKeywordTokenNode extends AbstractNode implements ICharKe
   }
   public SourceToken<CharKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1463,6 +1737,9 @@ public static class CharKeywordTokenNode extends AbstractNode implements ICharKe
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IBooleanKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<BooleanKeywordToken> getToken();
@@ -1474,6 +1751,9 @@ public static class BooleanKeywordTokenNode extends AbstractNode implements IBoo
   }
   public SourceToken<BooleanKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1488,6 +1768,9 @@ public static class BooleanKeywordTokenNode extends AbstractNode implements IBoo
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IFinalKeywordTokenNode extends INode, IModifierNode {
   SourceToken<FinalKeywordToken> getToken();
@@ -1499,6 +1782,9 @@ public static class FinalKeywordTokenNode extends AbstractNode implements IFinal
   }
   public SourceToken<FinalKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1513,6 +1799,9 @@ public static class FinalKeywordTokenNode extends AbstractNode implements IFinal
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface INotEqualsOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<NotEqualsOperatorToken> getToken();
@@ -1524,6 +1813,9 @@ public static class NotEqualsOperatorTokenNode extends AbstractNode implements I
   }
   public SourceToken<NotEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1538,6 +1830,9 @@ public static class NotEqualsOperatorTokenNode extends AbstractNode implements I
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface ILeftShiftOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<LeftShiftOperatorToken> getToken();
@@ -1549,6 +1844,9 @@ public static class LeftShiftOperatorTokenNode extends AbstractNode implements I
   }
   public SourceToken<LeftShiftOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1563,6 +1861,9 @@ public static class LeftShiftOperatorTokenNode extends AbstractNode implements I
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IShortKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<ShortKeywordToken> getToken();
@@ -1574,6 +1875,9 @@ public static class ShortKeywordTokenNode extends AbstractNode implements IShort
   }
   public SourceToken<ShortKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1588,6 +1892,9 @@ public static class ShortKeywordTokenNode extends AbstractNode implements IShort
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IBitwiseExclusiveOrOperatorTokenNode extends INode, IInfixOperatorNode {
   SourceToken<BitwiseExclusiveOrOperatorToken> getToken();
@@ -1599,6 +1906,9 @@ public static class BitwiseExclusiveOrOperatorTokenNode extends AbstractNode imp
   }
   public SourceToken<BitwiseExclusiveOrOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1613,6 +1923,9 @@ public static class BitwiseExclusiveOrOperatorTokenNode extends AbstractNode imp
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IPublicKeywordTokenNode extends INode, IModifierNode {
   SourceToken<PublicKeywordToken> getToken();
@@ -1624,6 +1937,9 @@ public static class PublicKeywordTokenNode extends AbstractNode implements IPubl
   }
   public SourceToken<PublicKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1638,6 +1954,9 @@ public static class PublicKeywordTokenNode extends AbstractNode implements IPubl
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IVoidKeywordTokenNode extends INode, IPrimitiveTypeNode {
   SourceToken<VoidKeywordToken> getToken();
@@ -1649,6 +1968,9 @@ public static class VoidKeywordTokenNode extends AbstractNode implements IVoidKe
   }
   public SourceToken<VoidKeywordToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1663,6 +1985,9 @@ public static class VoidKeywordTokenNode extends AbstractNode implements IVoidKe
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IDecrementOperatorTokenNode extends INode, IPostfixOperatorNode, IPrefixOperatorNode {
   SourceToken<DecrementOperatorToken> getToken();
@@ -1674,6 +1999,9 @@ public static class DecrementOperatorTokenNode extends AbstractNode implements I
   }
   public SourceToken<DecrementOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1688,6 +2016,9 @@ public static class DecrementOperatorTokenNode extends AbstractNode implements I
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
+  public String getName() {
+    return token.toString();
+  }
 }
 public static interface IDivideEqualsOperatorTokenNode extends INode, IAssignmentOperatorNode {
   SourceToken<DivideEqualsOperatorToken> getToken();
@@ -1699,6 +2030,9 @@ public static class DivideEqualsOperatorTokenNode extends AbstractNode implement
   }
   public SourceToken<DivideEqualsOperatorToken> getToken() {
     return token;
+  }
+  protected List<Object> getChildrenWorker() {
+    return Collections.<Object>singletonList(token);
   }
   public boolean equals(Object __other) {
     if (this == __other) { return true; }
@@ -1712,6 +2046,9 @@ public static class DivideEqualsOperatorTokenNode extends AbstractNode implement
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
+  }
+  public String getName() {
+    return token.toString();
   }
 }
 public static interface ICompilationUnitNode extends INode {
@@ -1822,7 +2159,6 @@ public static interface IEnumDeclarationNode extends INode, IClassDeclarationNod
 public static interface IEnumBodyNode extends INode {
   SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
   DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>> getOptionalEnumConstantList();
-  SourceToken<CommaSeparatorToken> getOptionalCommaSeparator();
   SourceToken<SemicolonSeparatorToken> getOptionalSemicolonSeparator();
   List<IClassBodyDeclarationNode> getClassBodyDeclarationList();
   SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
@@ -2319,7 +2655,6 @@ public static interface IDimensionExpressionNode extends INode {
 public static interface IArrayInitializerNode extends INode, IVariableInitializerNode, IVariableDeclaratorAssignmentNode {
   SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator();
   DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>> getOptionalVariableInitializerList();
-  SourceToken<CommaSeparatorToken> getOptionalCommaSeparator();
   SourceToken<RightCurlySeparatorToken> getRightCurlySeparator();
 }
 public static interface IVariableInitializerNode extends INode {
@@ -2345,6 +2680,19 @@ public static class CompilationUnitNode extends AbstractNode implements ICompila
   public List<ITypeDeclarationNode> getTypeDeclarationList() {
     return typeDeclarationList;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (optionalPackageDeclaration != null) {
+      list.add(optionalPackageDeclaration);
+    }
+    if (importDeclarationList != null) {
+      list.addAll(importDeclarationList);
+    }
+    if (typeDeclarationList != null) {
+      list.addAll(typeDeclarationList);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -2364,6 +2712,9 @@ public static class CompilationUnitNode extends AbstractNode implements ICompila
     hash = 31*hash + (importDeclarationList == null ? 0 : importDeclarationList.hashCode());
     hash = 31*hash + (typeDeclarationList == null ? 0 : typeDeclarationList.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "ICompilationUnitNode";
   }
 }
 public static class PackageDeclarationNode extends AbstractNode implements IPackageDeclarationNode {
@@ -2393,6 +2744,22 @@ public static class PackageDeclarationNode extends AbstractNode implements IPack
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (annotationList != null) {
+      list.addAll(annotationList);
+    }
+    if (packageKeyword != null) {
+      list.add(packageKeyword);
+    }
+    if (qualifiedIdentifier != null) {
+      list.add(qualifiedIdentifier);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -2415,6 +2782,9 @@ public static class PackageDeclarationNode extends AbstractNode implements IPack
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IPackageDeclarationNode";
+  }
 }
 public static class QualifiedIdentifierNode extends AbstractNode implements IQualifiedIdentifierNode {
   private final DelimitedList<SourceToken<IdentifierToken>, SourceToken<DotSeparatorToken>> identifierList;
@@ -2424,6 +2794,13 @@ public static class QualifiedIdentifierNode extends AbstractNode implements IQua
   }
   public DelimitedList<SourceToken<IdentifierToken>, SourceToken<DotSeparatorToken>> getIdentifierList() {
     return identifierList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (identifierList != null) {
+      identifierList.addTo(list);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -2441,23 +2818,8 @@ public static class QualifiedIdentifierNode extends AbstractNode implements IQua
     hash = 31*hash + (identifierList == null ? 0 : identifierList.hashCode());
     return hash;
   }
-}
-public static class ImportDeclarationNode extends AbstractNode implements IImportDeclarationNode {
-  public ImportDeclarationNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IImportDeclarationNode)) { return false; }
-    IImportDeclarationNode __node = (IImportDeclarationNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IQualifiedIdentifierNode";
   }
 }
 public static class SingleTypeImportDeclarationNode extends AbstractNode implements ISingleTypeImportDeclarationNode {
@@ -2481,6 +2843,19 @@ public static class SingleTypeImportDeclarationNode extends AbstractNode impleme
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (importKeyword != null) {
+      list.add(importKeyword);
+    }
+    if (qualifiedIdentifier != null) {
+      list.add(qualifiedIdentifier);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -2500,6 +2875,9 @@ public static class SingleTypeImportDeclarationNode extends AbstractNode impleme
     hash = 31*hash + (qualifiedIdentifier == null ? 0 : qualifiedIdentifier.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "ISingleTypeImportDeclarationNode";
   }
 }
 public static class TypeImportOnDemandDeclarationNode extends AbstractNode implements ITypeImportOnDemandDeclarationNode {
@@ -2535,6 +2913,25 @@ public static class TypeImportOnDemandDeclarationNode extends AbstractNode imple
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (importKeyword != null) {
+      list.add(importKeyword);
+    }
+    if (qualifiedIdentifier != null) {
+      list.add(qualifiedIdentifier);
+    }
+    if (dotSeparator != null) {
+      list.add(dotSeparator);
+    }
+    if (timesOperator != null) {
+      list.add(timesOperator);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -2558,6 +2955,9 @@ public static class TypeImportOnDemandDeclarationNode extends AbstractNode imple
     hash = 31*hash + (timesOperator == null ? 0 : timesOperator.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "ITypeImportOnDemandDeclarationNode";
   }
 }
 public static class SingleStaticImportDeclarationNode extends AbstractNode implements ISingleStaticImportDeclarationNode {
@@ -2587,6 +2987,22 @@ public static class SingleStaticImportDeclarationNode extends AbstractNode imple
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (importKeyword != null) {
+      list.add(importKeyword);
+    }
+    if (staticKeyword != null) {
+      list.add(staticKeyword);
+    }
+    if (qualifiedIdentifier != null) {
+      list.add(qualifiedIdentifier);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -2608,6 +3024,9 @@ public static class SingleStaticImportDeclarationNode extends AbstractNode imple
     hash = 31*hash + (qualifiedIdentifier == null ? 0 : qualifiedIdentifier.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "ISingleStaticImportDeclarationNode";
   }
 }
 public static class StaticImportOnDemandDeclarationNode extends AbstractNode implements IStaticImportOnDemandDeclarationNode {
@@ -2649,6 +3068,28 @@ public static class StaticImportOnDemandDeclarationNode extends AbstractNode imp
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (importKeyword != null) {
+      list.add(importKeyword);
+    }
+    if (staticKeyword != null) {
+      list.add(staticKeyword);
+    }
+    if (qualifiedIdentifier != null) {
+      list.add(qualifiedIdentifier);
+    }
+    if (dotSeparator != null) {
+      list.add(dotSeparator);
+    }
+    if (timesOperator != null) {
+      list.add(timesOperator);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -2675,41 +3116,8 @@ public static class StaticImportOnDemandDeclarationNode extends AbstractNode imp
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
   }
-}
-public static class TypeDeclarationNode extends AbstractNode implements ITypeDeclarationNode {
-  public TypeDeclarationNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof ITypeDeclarationNode)) { return false; }
-    ITypeDeclarationNode __node = (ITypeDeclarationNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
-  }
-}
-public static class ClassDeclarationNode extends AbstractNode implements IClassDeclarationNode {
-  public ClassDeclarationNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IClassDeclarationNode)) { return false; }
-    IClassDeclarationNode __node = (IClassDeclarationNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IStaticImportOnDemandDeclarationNode";
   }
 }
 public static class NormalClassDeclarationNode extends AbstractNode implements INormalClassDeclarationNode {
@@ -2757,6 +3165,31 @@ public static class NormalClassDeclarationNode extends AbstractNode implements I
   public IClassBodyNode getClassBody() {
     return classBody;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (classKeyword != null) {
+      list.add(classKeyword);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (optionalTypeParameters != null) {
+      list.add(optionalTypeParameters);
+    }
+    if (optionalSuper != null) {
+      list.add(optionalSuper);
+    }
+    if (optionalInterfaces != null) {
+      list.add(optionalInterfaces);
+    }
+    if (classBody != null) {
+      list.add(classBody);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -2785,6 +3218,9 @@ public static class NormalClassDeclarationNode extends AbstractNode implements I
     hash = 31*hash + (classBody == null ? 0 : classBody.hashCode());
     return hash;
   }
+  public String getName() {
+    return "INormalClassDeclarationNode";
+  }
 }
 public static class ModifiersNode extends AbstractNode implements IModifiersNode {
   private final List<IModifierNode> modifierList;
@@ -2794,6 +3230,13 @@ public static class ModifiersNode extends AbstractNode implements IModifiersNode
   }
   public List<IModifierNode> getModifierList() {
     return modifierList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifierList != null) {
+      list.addAll(modifierList);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -2811,23 +3254,8 @@ public static class ModifiersNode extends AbstractNode implements IModifiersNode
     hash = 31*hash + (modifierList == null ? 0 : modifierList.hashCode());
     return hash;
   }
-}
-public static class ModifierNode extends AbstractNode implements IModifierNode {
-  public ModifierNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IModifierNode)) { return false; }
-    IModifierNode __node = (IModifierNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IModifiersNode";
   }
 }
 public static class SuperNode extends AbstractNode implements ISuperNode {
@@ -2844,6 +3272,16 @@ public static class SuperNode extends AbstractNode implements ISuperNode {
   }
   public IClassOrInterfaceTypeNode getClassOrInterfaceType() {
     return classOrInterfaceType;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (extendsKeyword != null) {
+      list.add(extendsKeyword);
+    }
+    if (classOrInterfaceType != null) {
+      list.add(classOrInterfaceType);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -2863,6 +3301,9 @@ public static class SuperNode extends AbstractNode implements ISuperNode {
     hash = 31*hash + (classOrInterfaceType == null ? 0 : classOrInterfaceType.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ISuperNode";
+  }
 }
 public static class InterfacesNode extends AbstractNode implements IInterfacesNode {
   private final SourceToken<ImplementsKeywordToken> implementsKeyword;
@@ -2878,6 +3319,16 @@ public static class InterfacesNode extends AbstractNode implements IInterfacesNo
   }
   public DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList() {
     return classOrInterfaceTypeList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (implementsKeyword != null) {
+      list.add(implementsKeyword);
+    }
+    if (classOrInterfaceTypeList != null) {
+      classOrInterfaceTypeList.addTo(list);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -2896,6 +3347,9 @@ public static class InterfacesNode extends AbstractNode implements IInterfacesNo
     hash = 31*hash + (implementsKeyword == null ? 0 : implementsKeyword.hashCode());
     hash = 31*hash + (classOrInterfaceTypeList == null ? 0 : classOrInterfaceTypeList.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IInterfacesNode";
   }
 }
 public static class ClassBodyNode extends AbstractNode implements IClassBodyNode {
@@ -2919,6 +3373,19 @@ public static class ClassBodyNode extends AbstractNode implements IClassBodyNode
   public SourceToken<RightCurlySeparatorToken> getRightCurlySeparator() {
     return rightCurlySeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftCurlySeparator != null) {
+      list.add(leftCurlySeparator);
+    }
+    if (classBodyDeclarationList != null) {
+      list.addAll(classBodyDeclarationList);
+    }
+    if (rightCurlySeparator != null) {
+      list.add(rightCurlySeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -2939,23 +3406,8 @@ public static class ClassBodyNode extends AbstractNode implements IClassBodyNode
     hash = 31*hash + (rightCurlySeparator == null ? 0 : rightCurlySeparator.hashCode());
     return hash;
   }
-}
-public static class ClassBodyDeclarationNode extends AbstractNode implements IClassBodyDeclarationNode {
-  public ClassBodyDeclarationNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IClassBodyDeclarationNode)) { return false; }
-    IClassBodyDeclarationNode __node = (IClassBodyDeclarationNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IClassBodyNode";
   }
 }
 public static class StaticInitializerNode extends AbstractNode implements IStaticInitializerNode {
@@ -2972,6 +3424,16 @@ public static class StaticInitializerNode extends AbstractNode implements IStati
   }
   public IBlockNode getBlock() {
     return block;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (staticKeyword != null) {
+      list.add(staticKeyword);
+    }
+    if (block != null) {
+      list.add(block);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -2991,23 +3453,8 @@ public static class StaticInitializerNode extends AbstractNode implements IStati
     hash = 31*hash + (block == null ? 0 : block.hashCode());
     return hash;
   }
-}
-public static class InterfaceDeclarationNode extends AbstractNode implements IInterfaceDeclarationNode {
-  public InterfaceDeclarationNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IInterfaceDeclarationNode)) { return false; }
-    IInterfaceDeclarationNode __node = (IInterfaceDeclarationNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IStaticInitializerNode";
   }
 }
 public static class NormalInterfaceDeclarationNode extends AbstractNode implements INormalInterfaceDeclarationNode {
@@ -3049,6 +3496,28 @@ public static class NormalInterfaceDeclarationNode extends AbstractNode implemen
   public IClassOrInterfaceBodyNode getClassOrInterfaceBody() {
     return classOrInterfaceBody;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (interfaceKeyword != null) {
+      list.add(interfaceKeyword);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (optionalTypeParameters != null) {
+      list.add(optionalTypeParameters);
+    }
+    if (optionalExtendsInterfaces != null) {
+      list.add(optionalExtendsInterfaces);
+    }
+    if (classOrInterfaceBody != null) {
+      list.add(classOrInterfaceBody);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3075,6 +3544,9 @@ public static class NormalInterfaceDeclarationNode extends AbstractNode implemen
     hash = 31*hash + (classOrInterfaceBody == null ? 0 : classOrInterfaceBody.hashCode());
     return hash;
   }
+  public String getName() {
+    return "INormalInterfaceDeclarationNode";
+  }
 }
 public static class ExtendsInterfacesNode extends AbstractNode implements IExtendsInterfacesNode {
   private final SourceToken<ExtendsKeywordToken> extendsKeyword;
@@ -3090,6 +3562,16 @@ public static class ExtendsInterfacesNode extends AbstractNode implements IExten
   }
   public DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList() {
     return classOrInterfaceTypeList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (extendsKeyword != null) {
+      list.add(extendsKeyword);
+    }
+    if (classOrInterfaceTypeList != null) {
+      classOrInterfaceTypeList.addTo(list);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -3108,6 +3590,9 @@ public static class ExtendsInterfacesNode extends AbstractNode implements IExten
     hash = 31*hash + (extendsKeyword == null ? 0 : extendsKeyword.hashCode());
     hash = 31*hash + (classOrInterfaceTypeList == null ? 0 : classOrInterfaceTypeList.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IExtendsInterfacesNode";
   }
 }
 public static class ClassOrInterfaceBodyNode extends AbstractNode implements IClassOrInterfaceBodyNode {
@@ -3131,6 +3616,19 @@ public static class ClassOrInterfaceBodyNode extends AbstractNode implements ICl
   public SourceToken<RightCurlySeparatorToken> getRightCurlySeparator() {
     return rightCurlySeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftCurlySeparator != null) {
+      list.add(leftCurlySeparator);
+    }
+    if (classOrInterfaceMemberDeclarationList != null) {
+      list.addAll(classOrInterfaceMemberDeclarationList);
+    }
+    if (rightCurlySeparator != null) {
+      list.add(rightCurlySeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3150,6 +3648,9 @@ public static class ClassOrInterfaceBodyNode extends AbstractNode implements ICl
     hash = 31*hash + (classOrInterfaceMemberDeclarationList == null ? 0 : classOrInterfaceMemberDeclarationList.hashCode());
     hash = 31*hash + (rightCurlySeparator == null ? 0 : rightCurlySeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IClassOrInterfaceBodyNode";
   }
 }
 public static class EnumDeclarationNode extends AbstractNode implements IEnumDeclarationNode {
@@ -3185,6 +3686,25 @@ public static class EnumDeclarationNode extends AbstractNode implements IEnumDec
   public IEnumBodyNode getEnumBody() {
     return enumBody;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (enumKeyword != null) {
+      list.add(enumKeyword);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (optionalInterfaces != null) {
+      list.add(optionalInterfaces);
+    }
+    if (enumBody != null) {
+      list.add(enumBody);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3209,24 +3729,24 @@ public static class EnumDeclarationNode extends AbstractNode implements IEnumDec
     hash = 31*hash + (enumBody == null ? 0 : enumBody.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IEnumDeclarationNode";
+  }
 }
 public static class EnumBodyNode extends AbstractNode implements IEnumBodyNode {
   private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
   private final DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>> optionalEnumConstantList;
-  private final SourceToken<CommaSeparatorToken> optionalCommaSeparator;
   private final SourceToken<SemicolonSeparatorToken> optionalSemicolonSeparator;
   private final List<IClassBodyDeclarationNode> classBodyDeclarationList;
   private final SourceToken<RightCurlySeparatorToken> rightCurlySeparator;
   public EnumBodyNode(
     SourceToken<LeftCurlySeparatorToken> leftCurlySeparator,
     DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>> optionalEnumConstantList,
-    SourceToken<CommaSeparatorToken> optionalCommaSeparator,
     SourceToken<SemicolonSeparatorToken> optionalSemicolonSeparator,
     List<IClassBodyDeclarationNode> classBodyDeclarationList,
     SourceToken<RightCurlySeparatorToken> rightCurlySeparator) {
       this.leftCurlySeparator = leftCurlySeparator;
       this.optionalEnumConstantList = optionalEnumConstantList;
-      this.optionalCommaSeparator = optionalCommaSeparator;
       this.optionalSemicolonSeparator = optionalSemicolonSeparator;
       this.classBodyDeclarationList = classBodyDeclarationList;
       this.rightCurlySeparator = rightCurlySeparator;
@@ -3237,9 +3757,6 @@ public static class EnumBodyNode extends AbstractNode implements IEnumBodyNode {
   public DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>> getOptionalEnumConstantList() {
     return optionalEnumConstantList;
   }
-  public SourceToken<CommaSeparatorToken> getOptionalCommaSeparator() {
-    return optionalCommaSeparator;
-  }
   public SourceToken<SemicolonSeparatorToken> getOptionalSemicolonSeparator() {
     return optionalSemicolonSeparator;
   }
@@ -3248,6 +3765,25 @@ public static class EnumBodyNode extends AbstractNode implements IEnumBodyNode {
   }
   public SourceToken<RightCurlySeparatorToken> getRightCurlySeparator() {
     return rightCurlySeparator;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftCurlySeparator != null) {
+      list.add(leftCurlySeparator);
+    }
+    if (optionalEnumConstantList != null) {
+      optionalEnumConstantList.addTo(list);
+    }
+    if (optionalSemicolonSeparator != null) {
+      list.add(optionalSemicolonSeparator);
+    }
+    if (classBodyDeclarationList != null) {
+      list.addAll(classBodyDeclarationList);
+    }
+    if (rightCurlySeparator != null) {
+      list.add(rightCurlySeparator);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -3259,7 +3795,6 @@ public static class EnumBodyNode extends AbstractNode implements IEnumBodyNode {
     IEnumBodyNode __node = (IEnumBodyNode)__other;
     if (!equals(leftCurlySeparator, __node.getLeftCurlySeparator())) { return false; }
     if (!equals(optionalEnumConstantList, __node.getOptionalEnumConstantList())) { return false; }
-    if (!equals(optionalCommaSeparator, __node.getOptionalCommaSeparator())) { return false; }
     if (!equals(optionalSemicolonSeparator, __node.getOptionalSemicolonSeparator())) { return false; }
     if (!equals(classBodyDeclarationList, __node.getClassBodyDeclarationList())) { return false; }
     if (!equals(rightCurlySeparator, __node.getRightCurlySeparator())) { return false; }
@@ -3269,11 +3804,13 @@ public static class EnumBodyNode extends AbstractNode implements IEnumBodyNode {
     int hash = 0;
     hash = 31*hash + (leftCurlySeparator == null ? 0 : leftCurlySeparator.hashCode());
     hash = 31*hash + (optionalEnumConstantList == null ? 0 : optionalEnumConstantList.hashCode());
-    hash = 31*hash + (optionalCommaSeparator == null ? 0 : optionalCommaSeparator.hashCode());
     hash = 31*hash + (optionalSemicolonSeparator == null ? 0 : optionalSemicolonSeparator.hashCode());
     hash = 31*hash + (classBodyDeclarationList == null ? 0 : classBodyDeclarationList.hashCode());
     hash = 31*hash + (rightCurlySeparator == null ? 0 : rightCurlySeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IEnumBodyNode";
   }
 }
 public static class EnumConstantNode extends AbstractNode implements IEnumConstantNode {
@@ -3303,6 +3840,22 @@ public static class EnumConstantNode extends AbstractNode implements IEnumConsta
   public IClassOrInterfaceBodyNode getOptionalClassOrInterfaceBody() {
     return optionalClassOrInterfaceBody;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (annotationList != null) {
+      list.addAll(annotationList);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (optionalArguments != null) {
+      list.add(optionalArguments);
+    }
+    if (optionalClassOrInterfaceBody != null) {
+      list.add(optionalClassOrInterfaceBody);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3324,6 +3877,9 @@ public static class EnumConstantNode extends AbstractNode implements IEnumConsta
     hash = 31*hash + (optionalArguments == null ? 0 : optionalArguments.hashCode());
     hash = 31*hash + (optionalClassOrInterfaceBody == null ? 0 : optionalClassOrInterfaceBody.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IEnumConstantNode";
   }
 }
 public static class ArgumentsNode extends AbstractNode implements IArgumentsNode {
@@ -3347,6 +3903,19 @@ public static class ArgumentsNode extends AbstractNode implements IArgumentsNode
   public SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator() {
     return rightParenthesisSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (optionalDelimitedExpressionList != null) {
+      list.add(optionalDelimitedExpressionList);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3366,6 +3935,9 @@ public static class ArgumentsNode extends AbstractNode implements IArgumentsNode
     hash = 31*hash + (optionalDelimitedExpressionList == null ? 0 : optionalDelimitedExpressionList.hashCode());
     hash = 31*hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IArgumentsNode";
   }
 }
 public static class AnnotationDeclarationNode extends AbstractNode implements IAnnotationDeclarationNode {
@@ -3401,6 +3973,25 @@ public static class AnnotationDeclarationNode extends AbstractNode implements IA
   public IAnnotationBodyNode getAnnotationBody() {
     return annotationBody;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (atSeparator != null) {
+      list.add(atSeparator);
+    }
+    if (interfaceKeyword != null) {
+      list.add(interfaceKeyword);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (annotationBody != null) {
+      list.add(annotationBody);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3425,6 +4016,9 @@ public static class AnnotationDeclarationNode extends AbstractNode implements IA
     hash = 31*hash + (annotationBody == null ? 0 : annotationBody.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IAnnotationDeclarationNode";
+  }
 }
 public static class AnnotationBodyNode extends AbstractNode implements IAnnotationBodyNode {
   private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
@@ -3447,6 +4041,19 @@ public static class AnnotationBodyNode extends AbstractNode implements IAnnotati
   public SourceToken<RightCurlySeparatorToken> getRightCurlySeparator() {
     return rightCurlySeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftCurlySeparator != null) {
+      list.add(leftCurlySeparator);
+    }
+    if (annotationElementDeclarationList != null) {
+      list.addAll(annotationElementDeclarationList);
+    }
+    if (rightCurlySeparator != null) {
+      list.add(rightCurlySeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3467,23 +4074,8 @@ public static class AnnotationBodyNode extends AbstractNode implements IAnnotati
     hash = 31*hash + (rightCurlySeparator == null ? 0 : rightCurlySeparator.hashCode());
     return hash;
   }
-}
-public static class AnnotationElementDeclarationNode extends AbstractNode implements IAnnotationElementDeclarationNode {
-  public AnnotationElementDeclarationNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IAnnotationElementDeclarationNode)) { return false; }
-    IAnnotationElementDeclarationNode __node = (IAnnotationElementDeclarationNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IAnnotationBodyNode";
   }
 }
 public static class AnnotationDefaultDeclarationNode extends AbstractNode implements IAnnotationDefaultDeclarationNode {
@@ -3531,6 +4123,31 @@ public static class AnnotationDefaultDeclarationNode extends AbstractNode implem
   public IElementValueNode getElementValue() {
     return elementValue;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (type != null) {
+      list.add(type);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (defaultKeyword != null) {
+      list.add(defaultKeyword);
+    }
+    if (elementValue != null) {
+      list.add(elementValue);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3559,23 +4176,8 @@ public static class AnnotationDefaultDeclarationNode extends AbstractNode implem
     hash = 31*hash + (elementValue == null ? 0 : elementValue.hashCode());
     return hash;
   }
-}
-public static class ClassOrInterfaceMemberDeclarationNode extends AbstractNode implements IClassOrInterfaceMemberDeclarationNode {
-  public ClassOrInterfaceMemberDeclarationNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IClassOrInterfaceMemberDeclarationNode)) { return false; }
-    IClassOrInterfaceMemberDeclarationNode __node = (IClassOrInterfaceMemberDeclarationNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IAnnotationDefaultDeclarationNode";
   }
 }
 public static class ConstructorDeclarationNode extends AbstractNode implements IConstructorDeclarationNode {
@@ -3629,6 +4231,34 @@ public static class ConstructorDeclarationNode extends AbstractNode implements I
   public IBlockNode getBlock() {
     return block;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (optionalTypeParameters != null) {
+      list.add(optionalTypeParameters);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (optionalFormalParameterList != null) {
+      optionalFormalParameterList.addTo(list);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (optionalThrows != null) {
+      list.add(optionalThrows);
+    }
+    if (block != null) {
+      list.add(block);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3659,6 +4289,9 @@ public static class ConstructorDeclarationNode extends AbstractNode implements I
     hash = 31*hash + (block == null ? 0 : block.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IConstructorDeclarationNode";
+  }
 }
 public static class FieldDeclarationNode extends AbstractNode implements IFieldDeclarationNode {
   private final IModifiersNode modifiers;
@@ -3687,6 +4320,22 @@ public static class FieldDeclarationNode extends AbstractNode implements IFieldD
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (type != null) {
+      list.add(type);
+    }
+    if (variableDeclaratorList != null) {
+      variableDeclaratorList.addTo(list);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3709,23 +4358,8 @@ public static class FieldDeclarationNode extends AbstractNode implements IFieldD
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
   }
-}
-public static class VariableDeclaratorNode extends AbstractNode implements IVariableDeclaratorNode {
-  public VariableDeclaratorNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IVariableDeclaratorNode)) { return false; }
-    IVariableDeclaratorNode __node = (IVariableDeclaratorNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IFieldDeclarationNode";
   }
 }
 public static class VariableDeclaratorIdAndAssignmentNode extends AbstractNode implements IVariableDeclaratorIdAndAssignmentNode {
@@ -3749,6 +4383,19 @@ public static class VariableDeclaratorIdAndAssignmentNode extends AbstractNode i
   public IVariableDeclaratorAssignmentNode getVariableDeclaratorAssignment() {
     return variableDeclaratorAssignment;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (variableDeclaratorId != null) {
+      list.add(variableDeclaratorId);
+    }
+    if (equalsOperator != null) {
+      list.add(equalsOperator);
+    }
+    if (variableDeclaratorAssignment != null) {
+      list.add(variableDeclaratorAssignment);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3769,23 +4416,8 @@ public static class VariableDeclaratorIdAndAssignmentNode extends AbstractNode i
     hash = 31*hash + (variableDeclaratorAssignment == null ? 0 : variableDeclaratorAssignment.hashCode());
     return hash;
   }
-}
-public static class VariableDeclaratorAssignmentNode extends AbstractNode implements IVariableDeclaratorAssignmentNode {
-  public VariableDeclaratorAssignmentNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IVariableDeclaratorAssignmentNode)) { return false; }
-    IVariableDeclaratorAssignmentNode __node = (IVariableDeclaratorAssignmentNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IVariableDeclaratorIdAndAssignmentNode";
   }
 }
 public static class VariableDeclaratorIdNode extends AbstractNode implements IVariableDeclaratorIdNode {
@@ -3802,6 +4434,16 @@ public static class VariableDeclaratorIdNode extends AbstractNode implements IVa
   }
   public List<IBracketPairNode> getBracketPairList() {
     return bracketPairList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (bracketPairList != null) {
+      list.addAll(bracketPairList);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -3821,6 +4463,9 @@ public static class VariableDeclaratorIdNode extends AbstractNode implements IVa
     hash = 31*hash + (bracketPairList == null ? 0 : bracketPairList.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IVariableDeclaratorIdNode";
+  }
 }
 public static class BracketPairNode extends AbstractNode implements IBracketPairNode {
   private final SourceToken<LeftBracketSeparatorToken> leftBracketSeparator;
@@ -3836,6 +4481,16 @@ public static class BracketPairNode extends AbstractNode implements IBracketPair
   }
   public SourceToken<RightBracketSeparatorToken> getRightBracketSeparator() {
     return rightBracketSeparator;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftBracketSeparator != null) {
+      list.add(leftBracketSeparator);
+    }
+    if (rightBracketSeparator != null) {
+      list.add(rightBracketSeparator);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -3854,6 +4509,9 @@ public static class BracketPairNode extends AbstractNode implements IBracketPair
     hash = 31*hash + (leftBracketSeparator == null ? 0 : leftBracketSeparator.hashCode());
     hash = 31*hash + (rightBracketSeparator == null ? 0 : rightBracketSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IBracketPairNode";
   }
 }
 public static class MethodDeclarationNode extends AbstractNode implements IMethodDeclarationNode {
@@ -3919,6 +4577,40 @@ public static class MethodDeclarationNode extends AbstractNode implements IMetho
   public IMethodBodyNode getMethodBody() {
     return methodBody;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (optionalTypeParameters != null) {
+      list.add(optionalTypeParameters);
+    }
+    if (type != null) {
+      list.add(type);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (optionalFormalParameterList != null) {
+      optionalFormalParameterList.addTo(list);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (bracketPairList != null) {
+      list.addAll(bracketPairList);
+    }
+    if (optionalThrows != null) {
+      list.add(optionalThrows);
+    }
+    if (methodBody != null) {
+      list.add(methodBody);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -3953,23 +4645,8 @@ public static class MethodDeclarationNode extends AbstractNode implements IMetho
     hash = 31*hash + (methodBody == null ? 0 : methodBody.hashCode());
     return hash;
   }
-}
-public static class MethodBodyNode extends AbstractNode implements IMethodBodyNode {
-  public MethodBodyNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IMethodBodyNode)) { return false; }
-    IMethodBodyNode __node = (IMethodBodyNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IMethodDeclarationNode";
   }
 }
 public static class FormalParameterNode extends AbstractNode implements IFormalParameterNode {
@@ -3999,6 +4676,22 @@ public static class FormalParameterNode extends AbstractNode implements IFormalP
   public IVariableDeclaratorIdNode getVariableDeclaratorId() {
     return variableDeclaratorId;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (type != null) {
+      list.add(type);
+    }
+    if (optionalEllipsisSeparator != null) {
+      list.add(optionalEllipsisSeparator);
+    }
+    if (variableDeclaratorId != null) {
+      list.add(variableDeclaratorId);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4021,6 +4714,9 @@ public static class FormalParameterNode extends AbstractNode implements IFormalP
     hash = 31*hash + (variableDeclaratorId == null ? 0 : variableDeclaratorId.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IFormalParameterNode";
+  }
 }
 public static class ThrowsNode extends AbstractNode implements IThrowsNode {
   private final SourceToken<ThrowsKeywordToken> throwsKeyword;
@@ -4036,6 +4732,16 @@ public static class ThrowsNode extends AbstractNode implements IThrowsNode {
   }
   public DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>> getClassOrInterfaceTypeList() {
     return classOrInterfaceTypeList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (throwsKeyword != null) {
+      list.add(throwsKeyword);
+    }
+    if (classOrInterfaceTypeList != null) {
+      classOrInterfaceTypeList.addTo(list);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4054,6 +4760,9 @@ public static class ThrowsNode extends AbstractNode implements IThrowsNode {
     hash = 31*hash + (throwsKeyword == null ? 0 : throwsKeyword.hashCode());
     hash = 31*hash + (classOrInterfaceTypeList == null ? 0 : classOrInterfaceTypeList.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IThrowsNode";
   }
 }
 public static class TypeParametersNode extends AbstractNode implements ITypeParametersNode {
@@ -4077,6 +4786,19 @@ public static class TypeParametersNode extends AbstractNode implements ITypePara
   public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator() {
     return greaterThanOperator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (lessThanOperator != null) {
+      list.add(lessThanOperator);
+    }
+    if (typeParameterList != null) {
+      typeParameterList.addTo(list);
+    }
+    if (greaterThanOperator != null) {
+      list.add(greaterThanOperator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4097,6 +4819,9 @@ public static class TypeParametersNode extends AbstractNode implements ITypePara
     hash = 31*hash + (greaterThanOperator == null ? 0 : greaterThanOperator.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ITypeParametersNode";
+  }
 }
 public static class TypeParameterNode extends AbstractNode implements ITypeParameterNode {
   private final SourceToken<IdentifierToken> identifier;
@@ -4112,6 +4837,16 @@ public static class TypeParameterNode extends AbstractNode implements ITypeParam
   }
   public ITypeBoundNode getOptionalTypeBound() {
     return optionalTypeBound;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (optionalTypeBound != null) {
+      list.add(optionalTypeBound);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4131,6 +4866,9 @@ public static class TypeParameterNode extends AbstractNode implements ITypeParam
     hash = 31*hash + (optionalTypeBound == null ? 0 : optionalTypeBound.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ITypeParameterNode";
+  }
 }
 public static class TypeBoundNode extends AbstractNode implements ITypeBoundNode {
   private final SourceToken<ExtendsKeywordToken> extendsKeyword;
@@ -4146,6 +4884,16 @@ public static class TypeBoundNode extends AbstractNode implements ITypeBoundNode
   }
   public DelimitedList<IClassOrInterfaceTypeNode, SourceToken<BitwiseAndOperatorToken>> getClassOrInterfaceTypeList() {
     return classOrInterfaceTypeList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (extendsKeyword != null) {
+      list.add(extendsKeyword);
+    }
+    if (classOrInterfaceTypeList != null) {
+      classOrInterfaceTypeList.addTo(list);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4165,41 +4913,8 @@ public static class TypeBoundNode extends AbstractNode implements ITypeBoundNode
     hash = 31*hash + (classOrInterfaceTypeList == null ? 0 : classOrInterfaceTypeList.hashCode());
     return hash;
   }
-}
-public static class TypeNode extends AbstractNode implements ITypeNode {
-  public TypeNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof ITypeNode)) { return false; }
-    ITypeNode __node = (ITypeNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
-  }
-}
-public static class ReferenceTypeNode extends AbstractNode implements IReferenceTypeNode {
-  public ReferenceTypeNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IReferenceTypeNode)) { return false; }
-    IReferenceTypeNode __node = (IReferenceTypeNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "ITypeBoundNode";
   }
 }
 public static class PrimitiveArrayReferenceTypeNode extends AbstractNode implements IPrimitiveArrayReferenceTypeNode {
@@ -4216,6 +4931,16 @@ public static class PrimitiveArrayReferenceTypeNode extends AbstractNode impleme
   }
   public List<IBracketPairNode> getBracketPairList() {
     return bracketPairList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (primitiveType != null) {
+      list.add(primitiveType);
+    }
+    if (bracketPairList != null) {
+      list.addAll(bracketPairList);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4235,6 +4960,9 @@ public static class PrimitiveArrayReferenceTypeNode extends AbstractNode impleme
     hash = 31*hash + (bracketPairList == null ? 0 : bracketPairList.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IPrimitiveArrayReferenceTypeNode";
+  }
 }
 public static class ClassOrInterfaceReferenceTypeNode extends AbstractNode implements IClassOrInterfaceReferenceTypeNode {
   private final IClassOrInterfaceTypeNode classOrInterfaceType;
@@ -4250,6 +4978,16 @@ public static class ClassOrInterfaceReferenceTypeNode extends AbstractNode imple
   }
   public List<IBracketPairNode> getBracketPairList() {
     return bracketPairList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (classOrInterfaceType != null) {
+      list.add(classOrInterfaceType);
+    }
+    if (bracketPairList != null) {
+      list.addAll(bracketPairList);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4269,6 +5007,9 @@ public static class ClassOrInterfaceReferenceTypeNode extends AbstractNode imple
     hash = 31*hash + (bracketPairList == null ? 0 : bracketPairList.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IClassOrInterfaceReferenceTypeNode";
+  }
 }
 public static class ClassOrInterfaceTypeNode extends AbstractNode implements IClassOrInterfaceTypeNode {
   private final DelimitedList<ISingleClassOrInterfaceTypeNode, SourceToken<DotSeparatorToken>> singleClassOrInterfaceTypeList;
@@ -4278,6 +5019,13 @@ public static class ClassOrInterfaceTypeNode extends AbstractNode implements ICl
   }
   public DelimitedList<ISingleClassOrInterfaceTypeNode, SourceToken<DotSeparatorToken>> getSingleClassOrInterfaceTypeList() {
     return singleClassOrInterfaceTypeList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (singleClassOrInterfaceTypeList != null) {
+      singleClassOrInterfaceTypeList.addTo(list);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4295,6 +5043,9 @@ public static class ClassOrInterfaceTypeNode extends AbstractNode implements ICl
     hash = 31*hash + (singleClassOrInterfaceTypeList == null ? 0 : singleClassOrInterfaceTypeList.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IClassOrInterfaceTypeNode";
+  }
 }
 public static class SingleClassOrInterfaceTypeNode extends AbstractNode implements ISingleClassOrInterfaceTypeNode {
   private final SourceToken<IdentifierToken> identifier;
@@ -4310,6 +5061,16 @@ public static class SingleClassOrInterfaceTypeNode extends AbstractNode implemen
   }
   public ITypeArgumentsNode getOptionalTypeArguments() {
     return optionalTypeArguments;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (optionalTypeArguments != null) {
+      list.add(optionalTypeArguments);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4328,6 +5089,9 @@ public static class SingleClassOrInterfaceTypeNode extends AbstractNode implemen
     hash = 31*hash + (identifier == null ? 0 : identifier.hashCode());
     hash = 31*hash + (optionalTypeArguments == null ? 0 : optionalTypeArguments.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "ISingleClassOrInterfaceTypeNode";
   }
 }
 public static class TypeArgumentsNode extends AbstractNode implements ITypeArgumentsNode {
@@ -4351,6 +5115,19 @@ public static class TypeArgumentsNode extends AbstractNode implements ITypeArgum
   public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator() {
     return greaterThanOperator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (lessThanOperator != null) {
+      list.add(lessThanOperator);
+    }
+    if (typeArgumentList != null) {
+      typeArgumentList.addTo(list);
+    }
+    if (greaterThanOperator != null) {
+      list.add(greaterThanOperator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4371,41 +5148,8 @@ public static class TypeArgumentsNode extends AbstractNode implements ITypeArgum
     hash = 31*hash + (greaterThanOperator == null ? 0 : greaterThanOperator.hashCode());
     return hash;
   }
-}
-public static class TypeArgumentNode extends AbstractNode implements ITypeArgumentNode {
-  public TypeArgumentNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof ITypeArgumentNode)) { return false; }
-    ITypeArgumentNode __node = (ITypeArgumentNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
-  }
-}
-public static class WildcardTypeArgumentNode extends AbstractNode implements IWildcardTypeArgumentNode {
-  public WildcardTypeArgumentNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IWildcardTypeArgumentNode)) { return false; }
-    IWildcardTypeArgumentNode __node = (IWildcardTypeArgumentNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "ITypeArgumentsNode";
   }
 }
 public static class ExtendsWildcardTypeArgumentNode extends AbstractNode implements IExtendsWildcardTypeArgumentNode {
@@ -4429,6 +5173,19 @@ public static class ExtendsWildcardTypeArgumentNode extends AbstractNode impleme
   public IReferenceTypeNode getReferenceType() {
     return referenceType;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (questionMarkOperator != null) {
+      list.add(questionMarkOperator);
+    }
+    if (extendsKeyword != null) {
+      list.add(extendsKeyword);
+    }
+    if (referenceType != null) {
+      list.add(referenceType);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4448,6 +5205,9 @@ public static class ExtendsWildcardTypeArgumentNode extends AbstractNode impleme
     hash = 31*hash + (extendsKeyword == null ? 0 : extendsKeyword.hashCode());
     hash = 31*hash + (referenceType == null ? 0 : referenceType.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IExtendsWildcardTypeArgumentNode";
   }
 }
 public static class SuperWildcardTypeArgumentNode extends AbstractNode implements ISuperWildcardTypeArgumentNode {
@@ -4471,6 +5231,19 @@ public static class SuperWildcardTypeArgumentNode extends AbstractNode implement
   public IReferenceTypeNode getReferenceType() {
     return referenceType;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (questionMarkOperator != null) {
+      list.add(questionMarkOperator);
+    }
+    if (superKeyword != null) {
+      list.add(superKeyword);
+    }
+    if (referenceType != null) {
+      list.add(referenceType);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4491,6 +5264,9 @@ public static class SuperWildcardTypeArgumentNode extends AbstractNode implement
     hash = 31*hash + (referenceType == null ? 0 : referenceType.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ISuperWildcardTypeArgumentNode";
+  }
 }
 public static class OpenWildcardTypeArgumentNode extends AbstractNode implements IOpenWildcardTypeArgumentNode {
   private final SourceToken<QuestionMarkOperatorToken> questionMarkOperator;
@@ -4500,6 +5276,12 @@ public static class OpenWildcardTypeArgumentNode extends AbstractNode implements
   }
   public SourceToken<QuestionMarkOperatorToken> getQuestionMarkOperator() {
     return questionMarkOperator;
+  }
+  protected List<Object> getChildrenWorker() {
+    if (questionMarkOperator != null) {
+      return Collections.<Object>singletonList(questionMarkOperator);
+    }
+    return Collections.emptyList();
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4516,6 +5298,9 @@ public static class OpenWildcardTypeArgumentNode extends AbstractNode implements
     int hash = 0;
     hash = 31*hash + (questionMarkOperator == null ? 0 : questionMarkOperator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IOpenWildcardTypeArgumentNode";
   }
 }
 public static class NonWildcardTypeArgumentsNode extends AbstractNode implements INonWildcardTypeArgumentsNode {
@@ -4539,6 +5324,19 @@ public static class NonWildcardTypeArgumentsNode extends AbstractNode implements
   public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator() {
     return greaterThanOperator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (lessThanOperator != null) {
+      list.add(lessThanOperator);
+    }
+    if (referenceTypeList != null) {
+      referenceTypeList.addTo(list);
+    }
+    if (greaterThanOperator != null) {
+      list.add(greaterThanOperator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4559,41 +5357,8 @@ public static class NonWildcardTypeArgumentsNode extends AbstractNode implements
     hash = 31*hash + (greaterThanOperator == null ? 0 : greaterThanOperator.hashCode());
     return hash;
   }
-}
-public static class PrimitiveTypeNode extends AbstractNode implements IPrimitiveTypeNode {
-  public PrimitiveTypeNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IPrimitiveTypeNode)) { return false; }
-    IPrimitiveTypeNode __node = (IPrimitiveTypeNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
-  }
-}
-public static class AnnotationNode extends AbstractNode implements IAnnotationNode {
-  public AnnotationNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IAnnotationNode)) { return false; }
-    IAnnotationNode __node = (IAnnotationNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "INonWildcardTypeArgumentsNode";
   }
 }
 public static class NormalAnnotationNode extends AbstractNode implements INormalAnnotationNode {
@@ -4629,6 +5394,25 @@ public static class NormalAnnotationNode extends AbstractNode implements INormal
   public SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator() {
     return rightParenthesisSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (atSeparator != null) {
+      list.add(atSeparator);
+    }
+    if (qualifiedIdentifier != null) {
+      list.add(qualifiedIdentifier);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (optionalElementValuePairList != null) {
+      optionalElementValuePairList.addTo(list);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4653,6 +5437,9 @@ public static class NormalAnnotationNode extends AbstractNode implements INormal
     hash = 31*hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
     return hash;
   }
+  public String getName() {
+    return "INormalAnnotationNode";
+  }
 }
 public static class ElementValuePairNode extends AbstractNode implements IElementValuePairNode {
   private final SourceToken<IdentifierToken> identifier;
@@ -4675,6 +5462,19 @@ public static class ElementValuePairNode extends AbstractNode implements IElemen
   public IElementValueNode getElementValue() {
     return elementValue;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (equalsOperator != null) {
+      list.add(equalsOperator);
+    }
+    if (elementValue != null) {
+      list.add(elementValue);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4694,6 +5494,9 @@ public static class ElementValuePairNode extends AbstractNode implements IElemen
     hash = 31*hash + (equalsOperator == null ? 0 : equalsOperator.hashCode());
     hash = 31*hash + (elementValue == null ? 0 : elementValue.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IElementValuePairNode";
   }
 }
 public static class SingleElementAnnotationNode extends AbstractNode implements ISingleElementAnnotationNode {
@@ -4729,6 +5532,25 @@ public static class SingleElementAnnotationNode extends AbstractNode implements 
   public SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator() {
     return rightParenthesisSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (atSeparator != null) {
+      list.add(atSeparator);
+    }
+    if (qualifiedIdentifier != null) {
+      list.add(qualifiedIdentifier);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (elementValue != null) {
+      list.add(elementValue);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4753,6 +5575,9 @@ public static class SingleElementAnnotationNode extends AbstractNode implements 
     hash = 31*hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ISingleElementAnnotationNode";
+  }
 }
 public static class MarkerAnnotationNode extends AbstractNode implements IMarkerAnnotationNode {
   private final SourceToken<AtSeparatorToken> atSeparator;
@@ -4768,6 +5593,16 @@ public static class MarkerAnnotationNode extends AbstractNode implements IMarker
   }
   public IQualifiedIdentifierNode getQualifiedIdentifier() {
     return qualifiedIdentifier;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (atSeparator != null) {
+      list.add(atSeparator);
+    }
+    if (qualifiedIdentifier != null) {
+      list.add(qualifiedIdentifier);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4787,23 +5622,8 @@ public static class MarkerAnnotationNode extends AbstractNode implements IMarker
     hash = 31*hash + (qualifiedIdentifier == null ? 0 : qualifiedIdentifier.hashCode());
     return hash;
   }
-}
-public static class ElementValueNode extends AbstractNode implements IElementValueNode {
-  public ElementValueNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IElementValueNode)) { return false; }
-    IElementValueNode __node = (IElementValueNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IMarkerAnnotationNode";
   }
 }
 public static class ElementValueArrayInitializerNode extends AbstractNode implements IElementValueArrayInitializerNode {
@@ -4833,6 +5653,22 @@ public static class ElementValueArrayInitializerNode extends AbstractNode implem
   public SourceToken<RightCurlySeparatorToken> getRightCurlySeparator() {
     return rightCurlySeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftCurlySeparator != null) {
+      list.add(leftCurlySeparator);
+    }
+    if (optionalElementValueList != null) {
+      optionalElementValueList.addTo(list);
+    }
+    if (optionalCommaSeparator != null) {
+      list.add(optionalCommaSeparator);
+    }
+    if (rightCurlySeparator != null) {
+      list.add(rightCurlySeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4854,6 +5690,9 @@ public static class ElementValueArrayInitializerNode extends AbstractNode implem
     hash = 31*hash + (optionalCommaSeparator == null ? 0 : optionalCommaSeparator.hashCode());
     hash = 31*hash + (rightCurlySeparator == null ? 0 : rightCurlySeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IElementValueArrayInitializerNode";
   }
 }
 public static class BlockNode extends AbstractNode implements IBlockNode {
@@ -4877,6 +5716,19 @@ public static class BlockNode extends AbstractNode implements IBlockNode {
   public SourceToken<RightCurlySeparatorToken> getRightCurlySeparator() {
     return rightCurlySeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftCurlySeparator != null) {
+      list.add(leftCurlySeparator);
+    }
+    if (blockStatementList != null) {
+      list.addAll(blockStatementList);
+    }
+    if (rightCurlySeparator != null) {
+      list.add(rightCurlySeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4897,23 +5749,8 @@ public static class BlockNode extends AbstractNode implements IBlockNode {
     hash = 31*hash + (rightCurlySeparator == null ? 0 : rightCurlySeparator.hashCode());
     return hash;
   }
-}
-public static class BlockStatementNode extends AbstractNode implements IBlockStatementNode {
-  public BlockStatementNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IBlockStatementNode)) { return false; }
-    IBlockStatementNode __node = (IBlockStatementNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IBlockNode";
   }
 }
 public static class LocalVariableDeclarationStatementNode extends AbstractNode implements ILocalVariableDeclarationStatementNode {
@@ -4930,6 +5767,16 @@ public static class LocalVariableDeclarationStatementNode extends AbstractNode i
   }
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (localVariableDeclaration != null) {
+      list.add(localVariableDeclaration);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -4948,6 +5795,9 @@ public static class LocalVariableDeclarationStatementNode extends AbstractNode i
     hash = 31*hash + (localVariableDeclaration == null ? 0 : localVariableDeclaration.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "ILocalVariableDeclarationStatementNode";
   }
 }
 public static class LocalVariableDeclarationNode extends AbstractNode implements ILocalVariableDeclarationNode {
@@ -4971,6 +5821,19 @@ public static class LocalVariableDeclarationNode extends AbstractNode implements
   public DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>> getVariableDeclaratorList() {
     return variableDeclaratorList;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (type != null) {
+      list.add(type);
+    }
+    if (variableDeclaratorList != null) {
+      variableDeclaratorList.addTo(list);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -4991,23 +5854,8 @@ public static class LocalVariableDeclarationNode extends AbstractNode implements
     hash = 31*hash + (variableDeclaratorList == null ? 0 : variableDeclaratorList.hashCode());
     return hash;
   }
-}
-public static class StatementNode extends AbstractNode implements IStatementNode {
-  public StatementNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IStatementNode)) { return false; }
-    IStatementNode __node = (IStatementNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "ILocalVariableDeclarationNode";
   }
 }
 public static class EmptyStatementNode extends AbstractNode implements IEmptyStatementNode {
@@ -5018,6 +5866,12 @@ public static class EmptyStatementNode extends AbstractNode implements IEmptySta
   }
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
+  }
+  protected List<Object> getChildrenWorker() {
+    if (semicolonSeparator != null) {
+      return Collections.<Object>singletonList(semicolonSeparator);
+    }
+    return Collections.emptyList();
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -5034,6 +5888,9 @@ public static class EmptyStatementNode extends AbstractNode implements IEmptySta
     int hash = 0;
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IEmptyStatementNode";
   }
 }
 public static class LabeledStatementNode extends AbstractNode implements ILabeledStatementNode {
@@ -5057,6 +5914,19 @@ public static class LabeledStatementNode extends AbstractNode implements ILabele
   public IStatementNode getStatement() {
     return statement;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (colonOperator != null) {
+      list.add(colonOperator);
+    }
+    if (statement != null) {
+      list.add(statement);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5077,6 +5947,9 @@ public static class LabeledStatementNode extends AbstractNode implements ILabele
     hash = 31*hash + (statement == null ? 0 : statement.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ILabeledStatementNode";
+  }
 }
 public static class ExpressionStatementNode extends AbstractNode implements IExpressionStatementNode {
   private final IExpressionNode expression;
@@ -5092,6 +5965,16 @@ public static class ExpressionStatementNode extends AbstractNode implements IExp
   }
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -5110,6 +5993,9 @@ public static class ExpressionStatementNode extends AbstractNode implements IExp
     hash = 31*hash + (expression == null ? 0 : expression.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IExpressionStatementNode";
   }
 }
 public static class IfStatementNode extends AbstractNode implements IIfStatementNode {
@@ -5151,6 +6037,28 @@ public static class IfStatementNode extends AbstractNode implements IIfStatement
   public IElseStatementNode getOptionalElseStatement() {
     return optionalElseStatement;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (ifKeyword != null) {
+      list.add(ifKeyword);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (statement != null) {
+      list.add(statement);
+    }
+    if (optionalElseStatement != null) {
+      list.add(optionalElseStatement);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5177,6 +6085,9 @@ public static class IfStatementNode extends AbstractNode implements IIfStatement
     hash = 31*hash + (optionalElseStatement == null ? 0 : optionalElseStatement.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IIfStatementNode";
+  }
 }
 public static class ElseStatementNode extends AbstractNode implements IElseStatementNode {
   private final SourceToken<ElseKeywordToken> elseKeyword;
@@ -5192,6 +6103,16 @@ public static class ElseStatementNode extends AbstractNode implements IElseState
   }
   public IStatementNode getStatement() {
     return statement;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (elseKeyword != null) {
+      list.add(elseKeyword);
+    }
+    if (statement != null) {
+      list.add(statement);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -5211,23 +6132,8 @@ public static class ElseStatementNode extends AbstractNode implements IElseState
     hash = 31*hash + (statement == null ? 0 : statement.hashCode());
     return hash;
   }
-}
-public static class AssertStatementNode extends AbstractNode implements IAssertStatementNode {
-  public AssertStatementNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IAssertStatementNode)) { return false; }
-    IAssertStatementNode __node = (IAssertStatementNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IElseStatementNode";
   }
 }
 public static class MessageAssertStatementNode extends AbstractNode implements IMessageAssertStatementNode {
@@ -5263,6 +6169,25 @@ public static class MessageAssertStatementNode extends AbstractNode implements I
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (assertKeyword != null) {
+      list.add(assertKeyword);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (colonOperator != null) {
+      list.add(colonOperator);
+    }
+    if (expression2 != null) {
+      list.add(expression2);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5287,6 +6212,9 @@ public static class MessageAssertStatementNode extends AbstractNode implements I
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IMessageAssertStatementNode";
+  }
 }
 public static class SimpleAssertStatementNode extends AbstractNode implements ISimpleAssertStatementNode {
   private final SourceToken<AssertKeywordToken> assertKeyword;
@@ -5309,6 +6237,19 @@ public static class SimpleAssertStatementNode extends AbstractNode implements IS
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (assertKeyword != null) {
+      list.add(assertKeyword);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5328,6 +6269,9 @@ public static class SimpleAssertStatementNode extends AbstractNode implements IS
     hash = 31*hash + (expression == null ? 0 : expression.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "ISimpleAssertStatementNode";
   }
 }
 public static class SwitchStatementNode extends AbstractNode implements ISwitchStatementNode {
@@ -5381,6 +6325,34 @@ public static class SwitchStatementNode extends AbstractNode implements ISwitchS
   public SourceToken<RightCurlySeparatorToken> getRightCurlySeparator() {
     return rightCurlySeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (switchKeyword != null) {
+      list.add(switchKeyword);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (leftCurlySeparator != null) {
+      list.add(leftCurlySeparator);
+    }
+    if (switchBlockStatementGroupList != null) {
+      list.addAll(switchBlockStatementGroupList);
+    }
+    if (switchLabelList != null) {
+      list.addAll(switchLabelList);
+    }
+    if (rightCurlySeparator != null) {
+      list.add(rightCurlySeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5411,6 +6383,9 @@ public static class SwitchStatementNode extends AbstractNode implements ISwitchS
     hash = 31*hash + (rightCurlySeparator == null ? 0 : rightCurlySeparator.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ISwitchStatementNode";
+  }
 }
 public static class SwitchBlockStatementGroupNode extends AbstractNode implements ISwitchBlockStatementGroupNode {
   private final List<ISwitchLabelNode> switchLabelList;
@@ -5426,6 +6401,16 @@ public static class SwitchBlockStatementGroupNode extends AbstractNode implement
   }
   public List<IBlockStatementNode> getBlockStatementList() {
     return blockStatementList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (switchLabelList != null) {
+      list.addAll(switchLabelList);
+    }
+    if (blockStatementList != null) {
+      list.addAll(blockStatementList);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -5445,23 +6430,8 @@ public static class SwitchBlockStatementGroupNode extends AbstractNode implement
     hash = 31*hash + (blockStatementList == null ? 0 : blockStatementList.hashCode());
     return hash;
   }
-}
-public static class SwitchLabelNode extends AbstractNode implements ISwitchLabelNode {
-  public SwitchLabelNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof ISwitchLabelNode)) { return false; }
-    ISwitchLabelNode __node = (ISwitchLabelNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "ISwitchBlockStatementGroupNode";
   }
 }
 public static class CaseSwitchLabelNode extends AbstractNode implements ICaseSwitchLabelNode {
@@ -5485,6 +6455,19 @@ public static class CaseSwitchLabelNode extends AbstractNode implements ICaseSwi
   public SourceToken<ColonOperatorToken> getColonOperator() {
     return colonOperator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (caseKeyword != null) {
+      list.add(caseKeyword);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (colonOperator != null) {
+      list.add(colonOperator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5505,6 +6488,9 @@ public static class CaseSwitchLabelNode extends AbstractNode implements ICaseSwi
     hash = 31*hash + (colonOperator == null ? 0 : colonOperator.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ICaseSwitchLabelNode";
+  }
 }
 public static class DefaultSwitchLabelNode extends AbstractNode implements IDefaultSwitchLabelNode {
   private final SourceToken<DefaultKeywordToken> defaultKeyword;
@@ -5520,6 +6506,16 @@ public static class DefaultSwitchLabelNode extends AbstractNode implements IDefa
   }
   public SourceToken<ColonOperatorToken> getColonOperator() {
     return colonOperator;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (defaultKeyword != null) {
+      list.add(defaultKeyword);
+    }
+    if (colonOperator != null) {
+      list.add(colonOperator);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -5538,6 +6534,9 @@ public static class DefaultSwitchLabelNode extends AbstractNode implements IDefa
     hash = 31*hash + (defaultKeyword == null ? 0 : defaultKeyword.hashCode());
     hash = 31*hash + (colonOperator == null ? 0 : colonOperator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IDefaultSwitchLabelNode";
   }
 }
 public static class WhileStatementNode extends AbstractNode implements IWhileStatementNode {
@@ -5573,6 +6572,25 @@ public static class WhileStatementNode extends AbstractNode implements IWhileSta
   public IStatementNode getStatement() {
     return statement;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (whileKeyword != null) {
+      list.add(whileKeyword);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (statement != null) {
+      list.add(statement);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5596,6 +6614,9 @@ public static class WhileStatementNode extends AbstractNode implements IWhileSta
     hash = 31*hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
     hash = 31*hash + (statement == null ? 0 : statement.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IWhileStatementNode";
   }
 }
 public static class DoStatementNode extends AbstractNode implements IDoStatementNode {
@@ -5643,6 +6664,31 @@ public static class DoStatementNode extends AbstractNode implements IDoStatement
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (doKeyword != null) {
+      list.add(doKeyword);
+    }
+    if (statement != null) {
+      list.add(statement);
+    }
+    if (whileKeyword != null) {
+      list.add(whileKeyword);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5671,23 +6717,8 @@ public static class DoStatementNode extends AbstractNode implements IDoStatement
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
   }
-}
-public static class ForStatementNode extends AbstractNode implements IForStatementNode {
-  public ForStatementNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IForStatementNode)) { return false; }
-    IForStatementNode __node = (IForStatementNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IDoStatementNode";
   }
 }
 public static class BasicForStatementNode extends AbstractNode implements IBasicForStatementNode {
@@ -5747,6 +6778,37 @@ public static class BasicForStatementNode extends AbstractNode implements IBasic
   public IStatementNode getStatement() {
     return statement;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (forKeyword != null) {
+      list.add(forKeyword);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (optionalForInitializer != null) {
+      list.add(optionalForInitializer);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    if (optionalExpression != null) {
+      list.add(optionalExpression);
+    }
+    if (semicolonSeparator2 != null) {
+      list.add(semicolonSeparator2);
+    }
+    if (optionalDelimitedExpressionList != null) {
+      list.add(optionalDelimitedExpressionList);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (statement != null) {
+      list.add(statement);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5779,23 +6841,8 @@ public static class BasicForStatementNode extends AbstractNode implements IBasic
     hash = 31*hash + (statement == null ? 0 : statement.hashCode());
     return hash;
   }
-}
-public static class ForInitializerNode extends AbstractNode implements IForInitializerNode {
-  public ForInitializerNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IForInitializerNode)) { return false; }
-    IForInitializerNode __node = (IForInitializerNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IBasicForStatementNode";
   }
 }
 public static class DelimitedExpressionListNode extends AbstractNode implements IDelimitedExpressionListNode {
@@ -5806,6 +6853,13 @@ public static class DelimitedExpressionListNode extends AbstractNode implements 
   }
   public DelimitedList<IExpressionNode, SourceToken<CommaSeparatorToken>> getExpressionList() {
     return expressionList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (expressionList != null) {
+      expressionList.addTo(list);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -5822,6 +6876,9 @@ public static class DelimitedExpressionListNode extends AbstractNode implements 
     int hash = 0;
     hash = 31*hash + (expressionList == null ? 0 : expressionList.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IDelimitedExpressionListNode";
   }
 }
 public static class EnhancedForStatementNode extends AbstractNode implements IEnhancedForStatementNode {
@@ -5881,6 +6938,37 @@ public static class EnhancedForStatementNode extends AbstractNode implements IEn
   public IStatementNode getStatement() {
     return statement;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (forKeyword != null) {
+      list.add(forKeyword);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (modifiers != null) {
+      list.add(modifiers);
+    }
+    if (type != null) {
+      list.add(type);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (colonOperator != null) {
+      list.add(colonOperator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (statement != null) {
+      list.add(statement);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5913,6 +7001,9 @@ public static class EnhancedForStatementNode extends AbstractNode implements IEn
     hash = 31*hash + (statement == null ? 0 : statement.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IEnhancedForStatementNode";
+  }
 }
 public static class BreakStatementNode extends AbstractNode implements IBreakStatementNode {
   private final SourceToken<BreakKeywordToken> breakKeyword;
@@ -5935,6 +7026,19 @@ public static class BreakStatementNode extends AbstractNode implements IBreakSta
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (breakKeyword != null) {
+      list.add(breakKeyword);
+    }
+    if (optionalIdentifier != null) {
+      list.add(optionalIdentifier);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5954,6 +7058,9 @@ public static class BreakStatementNode extends AbstractNode implements IBreakSta
     hash = 31*hash + (optionalIdentifier == null ? 0 : optionalIdentifier.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IBreakStatementNode";
   }
 }
 public static class ContinueStatementNode extends AbstractNode implements IContinueStatementNode {
@@ -5977,6 +7084,19 @@ public static class ContinueStatementNode extends AbstractNode implements IConti
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (continueKeyword != null) {
+      list.add(continueKeyword);
+    }
+    if (optionalIdentifier != null) {
+      list.add(optionalIdentifier);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -5996,6 +7116,9 @@ public static class ContinueStatementNode extends AbstractNode implements IConti
     hash = 31*hash + (optionalIdentifier == null ? 0 : optionalIdentifier.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IContinueStatementNode";
   }
 }
 public static class ReturnStatementNode extends AbstractNode implements IReturnStatementNode {
@@ -6019,6 +7142,19 @@ public static class ReturnStatementNode extends AbstractNode implements IReturnS
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (returnKeyword != null) {
+      list.add(returnKeyword);
+    }
+    if (optionalExpression != null) {
+      list.add(optionalExpression);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6038,6 +7174,9 @@ public static class ReturnStatementNode extends AbstractNode implements IReturnS
     hash = 31*hash + (optionalExpression == null ? 0 : optionalExpression.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IReturnStatementNode";
   }
 }
 public static class ThrowStatementNode extends AbstractNode implements IThrowStatementNode {
@@ -6061,6 +7200,19 @@ public static class ThrowStatementNode extends AbstractNode implements IThrowSta
   public SourceToken<SemicolonSeparatorToken> getSemicolonSeparator() {
     return semicolonSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (throwKeyword != null) {
+      list.add(throwKeyword);
+    }
+    if (optionalExpression != null) {
+      list.add(optionalExpression);
+    }
+    if (semicolonSeparator != null) {
+      list.add(semicolonSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6080,6 +7232,9 @@ public static class ThrowStatementNode extends AbstractNode implements IThrowSta
     hash = 31*hash + (optionalExpression == null ? 0 : optionalExpression.hashCode());
     hash = 31*hash + (semicolonSeparator == null ? 0 : semicolonSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IThrowStatementNode";
   }
 }
 public static class SynchronizedStatementNode extends AbstractNode implements ISynchronizedStatementNode {
@@ -6115,6 +7270,25 @@ public static class SynchronizedStatementNode extends AbstractNode implements IS
   public IBlockNode getBlock() {
     return block;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (synchronizedKeyword != null) {
+      list.add(synchronizedKeyword);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (block != null) {
+      list.add(block);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6139,23 +7313,8 @@ public static class SynchronizedStatementNode extends AbstractNode implements IS
     hash = 31*hash + (block == null ? 0 : block.hashCode());
     return hash;
   }
-}
-public static class TryStatementNode extends AbstractNode implements ITryStatementNode {
-  public TryStatementNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof ITryStatementNode)) { return false; }
-    ITryStatementNode __node = (ITryStatementNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "ISynchronizedStatementNode";
   }
 }
 public static class TryStatementWithFinallyNode extends AbstractNode implements ITryStatementWithFinallyNode {
@@ -6191,6 +7350,25 @@ public static class TryStatementWithFinallyNode extends AbstractNode implements 
   public IBlockNode getBlock2() {
     return block2;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (tryKeyword != null) {
+      list.add(tryKeyword);
+    }
+    if (block != null) {
+      list.add(block);
+    }
+    if (catchClauseList != null) {
+      list.addAll(catchClauseList);
+    }
+    if (finallyKeyword != null) {
+      list.add(finallyKeyword);
+    }
+    if (block2 != null) {
+      list.add(block2);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6215,6 +7393,9 @@ public static class TryStatementWithFinallyNode extends AbstractNode implements 
     hash = 31*hash + (block2 == null ? 0 : block2.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ITryStatementWithFinallyNode";
+  }
 }
 public static class TryStatementWithoutFinallyNode extends AbstractNode implements ITryStatementWithoutFinallyNode {
   private final SourceToken<TryKeywordToken> tryKeyword;
@@ -6237,6 +7418,19 @@ public static class TryStatementWithoutFinallyNode extends AbstractNode implemen
   public List<ICatchClauseNode> getCatchClauseList() {
     return catchClauseList;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (tryKeyword != null) {
+      list.add(tryKeyword);
+    }
+    if (block != null) {
+      list.add(block);
+    }
+    if (catchClauseList != null) {
+      list.addAll(catchClauseList);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6256,6 +7450,9 @@ public static class TryStatementWithoutFinallyNode extends AbstractNode implemen
     hash = 31*hash + (block == null ? 0 : block.hashCode());
     hash = 31*hash + (catchClauseList == null ? 0 : catchClauseList.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "ITryStatementWithoutFinallyNode";
   }
 }
 public static class CatchClauseNode extends AbstractNode implements ICatchClauseNode {
@@ -6291,6 +7488,25 @@ public static class CatchClauseNode extends AbstractNode implements ICatchClause
   public IBlockNode getBlock() {
     return block;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (catchKeyword != null) {
+      list.add(catchKeyword);
+    }
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (formalParameter != null) {
+      list.add(formalParameter);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (block != null) {
+      list.add(block);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6315,6 +7531,9 @@ public static class CatchClauseNode extends AbstractNode implements ICatchClause
     hash = 31*hash + (block == null ? 0 : block.hashCode());
     return hash;
   }
+  public String getName() {
+    return "ICatchClauseNode";
+  }
 }
 public static class ExpressionNode extends AbstractNode implements IExpressionNode {
   private final DelimitedList<IExpression1Node, IAssignmentOperatorNode> expression1List;
@@ -6324,6 +7543,13 @@ public static class ExpressionNode extends AbstractNode implements IExpressionNo
   }
   public DelimitedList<IExpression1Node, IAssignmentOperatorNode> getExpression1List() {
     return expression1List;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (expression1List != null) {
+      expression1List.addTo(list);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -6341,41 +7567,8 @@ public static class ExpressionNode extends AbstractNode implements IExpressionNo
     hash = 31*hash + (expression1List == null ? 0 : expression1List.hashCode());
     return hash;
   }
-}
-public static class AssignmentOperatorNode extends AbstractNode implements IAssignmentOperatorNode {
-  public AssignmentOperatorNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IAssignmentOperatorNode)) { return false; }
-    IAssignmentOperatorNode __node = (IAssignmentOperatorNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
-  }
-}
-public static class Expression1Node extends AbstractNode implements IExpression1Node {
-  public Expression1Node() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IExpression1Node)) { return false; }
-    IExpression1Node __node = (IExpression1Node)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IExpressionNode";
   }
 }
 public static class TernaryExpressionNode extends AbstractNode implements ITernaryExpressionNode {
@@ -6411,6 +7604,25 @@ public static class TernaryExpressionNode extends AbstractNode implements ITerna
   public IExpression1Node getExpression1() {
     return expression1;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (expression2 != null) {
+      list.add(expression2);
+    }
+    if (questionMarkOperator != null) {
+      list.add(questionMarkOperator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (colonOperator != null) {
+      list.add(colonOperator);
+    }
+    if (expression1 != null) {
+      list.add(expression1);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6435,23 +7647,8 @@ public static class TernaryExpressionNode extends AbstractNode implements ITerna
     hash = 31*hash + (expression1 == null ? 0 : expression1.hashCode());
     return hash;
   }
-}
-public static class Expression2Node extends AbstractNode implements IExpression2Node {
-  public Expression2Node() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IExpression2Node)) { return false; }
-    IExpression2Node __node = (IExpression2Node)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "ITernaryExpressionNode";
   }
 }
 public static class BinaryExpressionNode extends AbstractNode implements IBinaryExpressionNode {
@@ -6468,6 +7665,16 @@ public static class BinaryExpressionNode extends AbstractNode implements IBinary
   }
   public List<IBinaryExpressionRestNode> getBinaryExpressionRestList() {
     return binaryExpressionRestList;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (expression3 != null) {
+      list.add(expression3);
+    }
+    if (binaryExpressionRestList != null) {
+      list.addAll(binaryExpressionRestList);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -6487,23 +7694,8 @@ public static class BinaryExpressionNode extends AbstractNode implements IBinary
     hash = 31*hash + (binaryExpressionRestList == null ? 0 : binaryExpressionRestList.hashCode());
     return hash;
   }
-}
-public static class BinaryExpressionRestNode extends AbstractNode implements IBinaryExpressionRestNode {
-  public BinaryExpressionRestNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IBinaryExpressionRestNode)) { return false; }
-    IBinaryExpressionRestNode __node = (IBinaryExpressionRestNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IBinaryExpressionNode";
   }
 }
 public static class InfixOperatorBinaryExpressionRestNode extends AbstractNode implements IInfixOperatorBinaryExpressionRestNode {
@@ -6520,6 +7712,16 @@ public static class InfixOperatorBinaryExpressionRestNode extends AbstractNode i
   }
   public IExpression3Node getExpression3() {
     return expression3;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (infixOperator != null) {
+      list.add(infixOperator);
+    }
+    if (expression3 != null) {
+      list.add(expression3);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -6539,6 +7741,9 @@ public static class InfixOperatorBinaryExpressionRestNode extends AbstractNode i
     hash = 31*hash + (expression3 == null ? 0 : expression3.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IInfixOperatorBinaryExpressionRestNode";
+  }
 }
 public static class InstanceofOperatorBinaryExpressionRestNode extends AbstractNode implements IInstanceofOperatorBinaryExpressionRestNode {
   private final SourceToken<InstanceofKeywordToken> instanceofKeyword;
@@ -6554,6 +7759,16 @@ public static class InstanceofOperatorBinaryExpressionRestNode extends AbstractN
   }
   public ITypeNode getType() {
     return type;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (instanceofKeyword != null) {
+      list.add(instanceofKeyword);
+    }
+    if (type != null) {
+      list.add(type);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -6573,23 +7788,8 @@ public static class InstanceofOperatorBinaryExpressionRestNode extends AbstractN
     hash = 31*hash + (type == null ? 0 : type.hashCode());
     return hash;
   }
-}
-public static class InfixOperatorNode extends AbstractNode implements IInfixOperatorNode {
-  public InfixOperatorNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IInfixOperatorNode)) { return false; }
-    IInfixOperatorNode __node = (IInfixOperatorNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IInstanceofOperatorBinaryExpressionRestNode";
   }
 }
 public static class UnsignedRightShiftNode extends AbstractNode implements IUnsignedRightShiftNode {
@@ -6613,6 +7813,19 @@ public static class UnsignedRightShiftNode extends AbstractNode implements IUnsi
   public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator3() {
     return greaterThanOperator3;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (greaterThanOperator != null) {
+      list.add(greaterThanOperator);
+    }
+    if (greaterThanOperator2 != null) {
+      list.add(greaterThanOperator2);
+    }
+    if (greaterThanOperator3 != null) {
+      list.add(greaterThanOperator3);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6633,6 +7846,9 @@ public static class UnsignedRightShiftNode extends AbstractNode implements IUnsi
     hash = 31*hash + (greaterThanOperator3 == null ? 0 : greaterThanOperator3.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IUnsignedRightShiftNode";
+  }
 }
 public static class SignedRightShiftNode extends AbstractNode implements ISignedRightShiftNode {
   private final SourceToken<GreaterThanOperatorToken> greaterThanOperator;
@@ -6648,6 +7864,16 @@ public static class SignedRightShiftNode extends AbstractNode implements ISigned
   }
   public SourceToken<GreaterThanOperatorToken> getGreaterThanOperator2() {
     return greaterThanOperator2;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (greaterThanOperator != null) {
+      list.add(greaterThanOperator);
+    }
+    if (greaterThanOperator2 != null) {
+      list.add(greaterThanOperator2);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -6667,23 +7893,8 @@ public static class SignedRightShiftNode extends AbstractNode implements ISigned
     hash = 31*hash + (greaterThanOperator2 == null ? 0 : greaterThanOperator2.hashCode());
     return hash;
   }
-}
-public static class Expression3Node extends AbstractNode implements IExpression3Node {
-  public Expression3Node() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IExpression3Node)) { return false; }
-    IExpression3Node __node = (IExpression3Node)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "ISignedRightShiftNode";
   }
 }
 public static class PrefixExpressionNode extends AbstractNode implements IPrefixExpressionNode {
@@ -6700,6 +7911,16 @@ public static class PrefixExpressionNode extends AbstractNode implements IPrefix
   }
   public IExpression3Node getExpression3() {
     return expression3;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (prefixOperator != null) {
+      list.add(prefixOperator);
+    }
+    if (expression3 != null) {
+      list.add(expression3);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -6719,41 +7940,8 @@ public static class PrefixExpressionNode extends AbstractNode implements IPrefix
     hash = 31*hash + (expression3 == null ? 0 : expression3.hashCode());
     return hash;
   }
-}
-public static class PrefixOperatorNode extends AbstractNode implements IPrefixOperatorNode {
-  public PrefixOperatorNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IPrefixOperatorNode)) { return false; }
-    IPrefixOperatorNode __node = (IPrefixOperatorNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
-  }
-}
-public static class PossibleCastExpressionNode extends AbstractNode implements IPossibleCastExpressionNode {
-  public PossibleCastExpressionNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IPossibleCastExpressionNode)) { return false; }
-    IPossibleCastExpressionNode __node = (IPossibleCastExpressionNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IPrefixExpressionNode";
   }
 }
 public static class PossibleCastExpression_TypeNode extends AbstractNode implements IPossibleCastExpression_TypeNode {
@@ -6783,6 +7971,22 @@ public static class PossibleCastExpression_TypeNode extends AbstractNode impleme
   public IExpression3Node getExpression3() {
     return expression3;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (type != null) {
+      list.add(type);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (expression3 != null) {
+      list.add(expression3);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6804,6 +8008,9 @@ public static class PossibleCastExpression_TypeNode extends AbstractNode impleme
     hash = 31*hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
     hash = 31*hash + (expression3 == null ? 0 : expression3.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IPossibleCastExpression_TypeNode";
   }
 }
 public static class PossibleCastExpression_ExpressionNode extends AbstractNode implements IPossibleCastExpression_ExpressionNode {
@@ -6833,6 +8040,22 @@ public static class PossibleCastExpression_ExpressionNode extends AbstractNode i
   public IExpression3Node getExpression3() {
     return expression3;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    if (expression3 != null) {
+      list.add(expression3);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6854,6 +8077,9 @@ public static class PossibleCastExpression_ExpressionNode extends AbstractNode i
     hash = 31*hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
     hash = 31*hash + (expression3 == null ? 0 : expression3.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IPossibleCastExpression_ExpressionNode";
   }
 }
 public static class PrimaryExpressionNode extends AbstractNode implements IPrimaryExpressionNode {
@@ -6877,6 +8103,19 @@ public static class PrimaryExpressionNode extends AbstractNode implements IPrima
   public IPostfixOperatorNode getOptionalPostfixOperator() {
     return optionalPostfixOperator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (valueExpression != null) {
+      list.add(valueExpression);
+    }
+    if (selectorList != null) {
+      list.addAll(selectorList);
+    }
+    if (optionalPostfixOperator != null) {
+      list.add(optionalPostfixOperator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6897,41 +8136,8 @@ public static class PrimaryExpressionNode extends AbstractNode implements IPrima
     hash = 31*hash + (optionalPostfixOperator == null ? 0 : optionalPostfixOperator.hashCode());
     return hash;
   }
-}
-public static class PostfixOperatorNode extends AbstractNode implements IPostfixOperatorNode {
-  public PostfixOperatorNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IPostfixOperatorNode)) { return false; }
-    IPostfixOperatorNode __node = (IPostfixOperatorNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
-  }
-}
-public static class ValueExpressionNode extends AbstractNode implements IValueExpressionNode {
-  public ValueExpressionNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IValueExpressionNode)) { return false; }
-    IValueExpressionNode __node = (IValueExpressionNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IPrimaryExpressionNode";
   }
 }
 public static class ClassAccessNode extends AbstractNode implements IClassAccessNode {
@@ -6955,6 +8161,19 @@ public static class ClassAccessNode extends AbstractNode implements IClassAccess
   public SourceToken<ClassKeywordToken> getClassKeyword() {
     return classKeyword;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (type != null) {
+      list.add(type);
+    }
+    if (dotSeparator != null) {
+      list.add(dotSeparator);
+    }
+    if (classKeyword != null) {
+      list.add(classKeyword);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -6975,23 +8194,8 @@ public static class ClassAccessNode extends AbstractNode implements IClassAccess
     hash = 31*hash + (classKeyword == null ? 0 : classKeyword.hashCode());
     return hash;
   }
-}
-public static class SelectorNode extends AbstractNode implements ISelectorNode {
-  public SelectorNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof ISelectorNode)) { return false; }
-    ISelectorNode __node = (ISelectorNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IClassAccessNode";
   }
 }
 public static class DotSelectorNode extends AbstractNode implements IDotSelectorNode {
@@ -7008,6 +8212,16 @@ public static class DotSelectorNode extends AbstractNode implements IDotSelector
   }
   public IValueExpressionNode getValueExpression() {
     return valueExpression;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (dotSeparator != null) {
+      list.add(dotSeparator);
+    }
+    if (valueExpression != null) {
+      list.add(valueExpression);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -7026,6 +8240,9 @@ public static class DotSelectorNode extends AbstractNode implements IDotSelector
     hash = 31*hash + (dotSeparator == null ? 0 : dotSeparator.hashCode());
     hash = 31*hash + (valueExpression == null ? 0 : valueExpression.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IDotSelectorNode";
   }
 }
 public static class ArraySelectorNode extends AbstractNode implements IArraySelectorNode {
@@ -7049,6 +8266,19 @@ public static class ArraySelectorNode extends AbstractNode implements IArraySele
   public SourceToken<RightBracketSeparatorToken> getRightBracketSeparator() {
     return rightBracketSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftBracketSeparator != null) {
+      list.add(leftBracketSeparator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightBracketSeparator != null) {
+      list.add(rightBracketSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -7068,6 +8298,9 @@ public static class ArraySelectorNode extends AbstractNode implements IArraySele
     hash = 31*hash + (expression == null ? 0 : expression.hashCode());
     hash = 31*hash + (rightBracketSeparator == null ? 0 : rightBracketSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IArraySelectorNode";
   }
 }
 public static class ParenthesizedExpressionNode extends AbstractNode implements IParenthesizedExpressionNode {
@@ -7091,6 +8324,19 @@ public static class ParenthesizedExpressionNode extends AbstractNode implements 
   public SourceToken<RightParenthesisSeparatorToken> getRightParenthesisSeparator() {
     return rightParenthesisSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftParenthesisSeparator != null) {
+      list.add(leftParenthesisSeparator);
+    }
+    if (expression != null) {
+      list.add(expression);
+    }
+    if (rightParenthesisSeparator != null) {
+      list.add(rightParenthesisSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -7110,6 +8356,9 @@ public static class ParenthesizedExpressionNode extends AbstractNode implements 
     hash = 31*hash + (expression == null ? 0 : expression.hashCode());
     hash = 31*hash + (rightParenthesisSeparator == null ? 0 : rightParenthesisSeparator.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IParenthesizedExpressionNode";
   }
 }
 public static class MethodInvocationNode extends AbstractNode implements IMethodInvocationNode {
@@ -7133,6 +8382,19 @@ public static class MethodInvocationNode extends AbstractNode implements IMethod
   public IArgumentsNode getArguments() {
     return arguments;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (optionalNonWildcardTypeArguments != null) {
+      list.add(optionalNonWildcardTypeArguments);
+    }
+    if (identifier != null) {
+      list.add(identifier);
+    }
+    if (arguments != null) {
+      list.add(arguments);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -7153,6 +8415,9 @@ public static class MethodInvocationNode extends AbstractNode implements IMethod
     hash = 31*hash + (arguments == null ? 0 : arguments.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IMethodInvocationNode";
+  }
 }
 public static class ThisConstructorInvocationNode extends AbstractNode implements IThisConstructorInvocationNode {
   private final SourceToken<ThisKeywordToken> thisKeyword;
@@ -7168,6 +8433,16 @@ public static class ThisConstructorInvocationNode extends AbstractNode implement
   }
   public IArgumentsNode getArguments() {
     return arguments;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (thisKeyword != null) {
+      list.add(thisKeyword);
+    }
+    if (arguments != null) {
+      list.add(arguments);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -7187,6 +8462,9 @@ public static class ThisConstructorInvocationNode extends AbstractNode implement
     hash = 31*hash + (arguments == null ? 0 : arguments.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IThisConstructorInvocationNode";
+  }
 }
 public static class SuperConstructorInvocationNode extends AbstractNode implements ISuperConstructorInvocationNode {
   private final SourceToken<SuperKeywordToken> superKeyword;
@@ -7202,6 +8480,16 @@ public static class SuperConstructorInvocationNode extends AbstractNode implemen
   }
   public IArgumentsNode getArguments() {
     return arguments;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (superKeyword != null) {
+      list.add(superKeyword);
+    }
+    if (arguments != null) {
+      list.add(arguments);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -7221,23 +8509,8 @@ public static class SuperConstructorInvocationNode extends AbstractNode implemen
     hash = 31*hash + (arguments == null ? 0 : arguments.hashCode());
     return hash;
   }
-}
-public static class CreationExpressionNode extends AbstractNode implements ICreationExpressionNode {
-  public CreationExpressionNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof ICreationExpressionNode)) { return false; }
-    ICreationExpressionNode __node = (ICreationExpressionNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "ISuperConstructorInvocationNode";
   }
 }
 public static class ObjectCreationExpressionNode extends AbstractNode implements IObjectCreationExpressionNode {
@@ -7273,6 +8546,25 @@ public static class ObjectCreationExpressionNode extends AbstractNode implements
   public IClassBodyNode getOptionalClassBody() {
     return optionalClassBody;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (newKeyword != null) {
+      list.add(newKeyword);
+    }
+    if (optionalNonWildcardTypeArguments != null) {
+      list.add(optionalNonWildcardTypeArguments);
+    }
+    if (classOrInterfaceType != null) {
+      list.add(classOrInterfaceType);
+    }
+    if (arguments != null) {
+      list.add(arguments);
+    }
+    if (optionalClassBody != null) {
+      list.add(optionalClassBody);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -7296,6 +8588,9 @@ public static class ObjectCreationExpressionNode extends AbstractNode implements
     hash = 31*hash + (arguments == null ? 0 : arguments.hashCode());
     hash = 31*hash + (optionalClassBody == null ? 0 : optionalClassBody.hashCode());
     return hash;
+  }
+  public String getName() {
+    return "IObjectCreationExpressionNode";
   }
 }
 public static class ArrayCreationExpressionNode extends AbstractNode implements IArrayCreationExpressionNode {
@@ -7325,6 +8620,22 @@ public static class ArrayCreationExpressionNode extends AbstractNode implements 
   public IArrayInitializerNode getOptionalArrayInitializer() {
     return optionalArrayInitializer;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (newKeyword != null) {
+      list.add(newKeyword);
+    }
+    if (arrayCreationType != null) {
+      list.add(arrayCreationType);
+    }
+    if (dimensionExpressionList != null) {
+      list.addAll(dimensionExpressionList);
+    }
+    if (optionalArrayInitializer != null) {
+      list.add(optionalArrayInitializer);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -7347,23 +8658,8 @@ public static class ArrayCreationExpressionNode extends AbstractNode implements 
     hash = 31*hash + (optionalArrayInitializer == null ? 0 : optionalArrayInitializer.hashCode());
     return hash;
   }
-}
-public static class ArrayCreationTypeNode extends AbstractNode implements IArrayCreationTypeNode {
-  public ArrayCreationTypeNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IArrayCreationTypeNode)) { return false; }
-    IArrayCreationTypeNode __node = (IArrayCreationTypeNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IArrayCreationExpressionNode";
   }
 }
 public static class DimensionExpressionNode extends AbstractNode implements IDimensionExpressionNode {
@@ -7387,6 +8683,19 @@ public static class DimensionExpressionNode extends AbstractNode implements IDim
   public SourceToken<RightBracketSeparatorToken> getRightBracketSeparator() {
     return rightBracketSeparator;
   }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftBracketSeparator != null) {
+      list.add(leftBracketSeparator);
+    }
+    if (optionalExpression != null) {
+      list.add(optionalExpression);
+    }
+    if (rightBracketSeparator != null) {
+      list.add(rightBracketSeparator);
+    }
+    return trimList(list);
+  }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
   }
@@ -7407,20 +8716,20 @@ public static class DimensionExpressionNode extends AbstractNode implements IDim
     hash = 31*hash + (rightBracketSeparator == null ? 0 : rightBracketSeparator.hashCode());
     return hash;
   }
+  public String getName() {
+    return "IDimensionExpressionNode";
+  }
 }
 public static class ArrayInitializerNode extends AbstractNode implements IArrayInitializerNode {
   private final SourceToken<LeftCurlySeparatorToken> leftCurlySeparator;
   private final DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>> optionalVariableInitializerList;
-  private final SourceToken<CommaSeparatorToken> optionalCommaSeparator;
   private final SourceToken<RightCurlySeparatorToken> rightCurlySeparator;
   public ArrayInitializerNode(
     SourceToken<LeftCurlySeparatorToken> leftCurlySeparator,
     DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>> optionalVariableInitializerList,
-    SourceToken<CommaSeparatorToken> optionalCommaSeparator,
     SourceToken<RightCurlySeparatorToken> rightCurlySeparator) {
       this.leftCurlySeparator = leftCurlySeparator;
       this.optionalVariableInitializerList = optionalVariableInitializerList;
-      this.optionalCommaSeparator = optionalCommaSeparator;
       this.rightCurlySeparator = rightCurlySeparator;
   }
   public SourceToken<LeftCurlySeparatorToken> getLeftCurlySeparator() {
@@ -7429,11 +8738,21 @@ public static class ArrayInitializerNode extends AbstractNode implements IArrayI
   public DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>> getOptionalVariableInitializerList() {
     return optionalVariableInitializerList;
   }
-  public SourceToken<CommaSeparatorToken> getOptionalCommaSeparator() {
-    return optionalCommaSeparator;
-  }
   public SourceToken<RightCurlySeparatorToken> getRightCurlySeparator() {
     return rightCurlySeparator;
+  }
+  protected List<Object> getChildrenWorker() {
+    List<Object> list = new ArrayList<Object>();
+    if (leftCurlySeparator != null) {
+      list.add(leftCurlySeparator);
+    }
+    if (optionalVariableInitializerList != null) {
+      optionalVariableInitializerList.addTo(list);
+    }
+    if (rightCurlySeparator != null) {
+      list.add(rightCurlySeparator);
+    }
+    return trimList(list);
   }
   public void accept(INodeVisitor visitor) {
     visitor.visit(this);
@@ -7445,7 +8764,6 @@ public static class ArrayInitializerNode extends AbstractNode implements IArrayI
     IArrayInitializerNode __node = (IArrayInitializerNode)__other;
     if (!equals(leftCurlySeparator, __node.getLeftCurlySeparator())) { return false; }
     if (!equals(optionalVariableInitializerList, __node.getOptionalVariableInitializerList())) { return false; }
-    if (!equals(optionalCommaSeparator, __node.getOptionalCommaSeparator())) { return false; }
     if (!equals(rightCurlySeparator, __node.getRightCurlySeparator())) { return false; }
     return true;
   }
@@ -7453,27 +8771,11 @@ public static class ArrayInitializerNode extends AbstractNode implements IArrayI
     int hash = 0;
     hash = 31*hash + (leftCurlySeparator == null ? 0 : leftCurlySeparator.hashCode());
     hash = 31*hash + (optionalVariableInitializerList == null ? 0 : optionalVariableInitializerList.hashCode());
-    hash = 31*hash + (optionalCommaSeparator == null ? 0 : optionalCommaSeparator.hashCode());
     hash = 31*hash + (rightCurlySeparator == null ? 0 : rightCurlySeparator.hashCode());
     return hash;
   }
-}
-public static class VariableInitializerNode extends AbstractNode implements IVariableInitializerNode {
-  public VariableInitializerNode() {
-  }
-  public void accept(INodeVisitor visitor) {
-    visitor.visit(this);
-  }
-  public boolean equals(Object __other) {
-    if (this == __other) { return true; }
-    if (__other == null) { return false; }
-    if (!(__other instanceof IVariableInitializerNode)) { return false; }
-    IVariableInitializerNode __node = (IVariableInitializerNode)__other;
-    return true;
-  }
-  protected int hashCodeWorker() {
-    int hash = 0;
-    return hash;
+  public String getName() {
+    return "IArrayInitializerNode";
   }
 }
 }

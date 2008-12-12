@@ -143,6 +143,10 @@ public abstract class Expression {
     return new DelimitedSequenceExpression(expression, delimeter);
   }
 
+  public static Expression delimitedList(Expression expression, Expression delimeter, boolean allowsTrailingDelimiter) {
+    return new DelimitedSequenceExpression(expression, delimeter, allowsTrailingDelimiter);
+  }
+
   public static Expression anyCharacter() {
     return ANY_CHARACTER_EXPRESSION;
   }
