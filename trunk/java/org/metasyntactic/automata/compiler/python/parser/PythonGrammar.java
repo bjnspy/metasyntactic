@@ -2,33 +2,47 @@ package org.metasyntactic.automata.compiler.python.parser;
 
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
+import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
 import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
 import org.metasyntactic.automata.compiler.python.scanner.*;
 import org.metasyntactic.automata.compiler.python.scanner.delimiters.*;
 import org.metasyntactic.automata.compiler.python.scanner.keywords.*;
 import org.metasyntactic.automata.compiler.python.scanner.literals.LiteralToken;
 import org.metasyntactic.automata.compiler.python.scanner.operators.*;
+import static org.metasyntactic.utilities.ReflectionUtilities.getSimpleName;
 
 import java.util.LinkedHashSet;
-import java.util.Set;
 import java.util.List;
+import java.util.Set;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
   private final static Rule pythonStartRule;
   private final static Set<Rule> pythonRules;
 
+  private static Expression newline() {
+    return type(getSimpleName(NewlineToken.class), NewlineToken.typeValue());
+  }
+
+  private static Expression identifier() {
+    return type(getSimpleName(IdentifierToken.class), IdentifierToken.typeValue());
+  }
+
+  private static Expression literal() {
+    return type(getSimpleName(LiteralToken.class), LiteralToken.typeValue());
+  }
+
   static {
     DelimiterToken.getDelimiters();
     OperatorToken.getOperators();
     KeywordToken.getKeywords();
 
-    pythonStartRule = new Rule("Input", repetition(choice(type(NewlineToken.class), variable("Statement"))));
+    pythonStartRule = new Rule("Input", repetition(choice(newline(), variable("Statement"))));
 
     pythonRules = new LinkedHashSet<Rule>();
     pythonRules.add(pythonStartRule);
 
-    pythonRules.add(new Rule("Statement", choice(sequence(variable("StatementList"), type(NewlineToken.class)),
+    pythonRules.add(new Rule("Statement", choice(sequence(variable("StatementList"), newline()),
                                                  variable("CompoundStatement"))));
 
     pythonRules.add(new Rule("StatementList", sequence(variable("SimpleStatement"), repetition(sequence(token(
@@ -89,31 +103,38 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
     pythonRules.add(new Rule("BreakStatement", token(BreakKeywordToken.instance)));
     pythonRules.add(new Rule("ContinueStatement", token(ContinueKeywordToken.instance)));
 
-    pythonRules.add(new Rule("ImportStatement", choice(sequence(token(ImportKeywordToken.instance), variable("Module"),
-                                                                optional(sequence(token(AsKeywordToken.instance), type(
-                                                                    IdentifierToken.class))), repetition(sequence(token(
-        CommaDelimiterToken.instance), variable("Module"), optional(sequence(token(AsKeywordToken.instance), type(
-        IdentifierToken.class)))))), sequence(token(FromKeywordToken.instance), variable("RelativeModule"), token(
-        ImportKeywordToken.instance), type(IdentifierToken.class), optional(sequence(token(AsKeywordToken.instance),
-                                                                                     type(IdentifierToken.class))),
-                                      repetition(sequence(token(CommaDelimiterToken.instance), type(
-                                          IdentifierToken.class), optional(sequence(token(AsKeywordToken.instance),
-                                                                                    type(IdentifierToken.class)))))),
-                                     sequence(token(FromKeywordToken.instance), variable("RelativeModule"), token(
-                                         ImportKeywordToken.instance), token(LeftParenthesisDelimiterToken.instance),
-                                                                       type(IdentifierToken.class), optional(sequence(
-                                         token(AsKeywordToken.instance), type(IdentifierToken.class))), repetition(
-                                         sequence(token(CommaDelimiterToken.instance), type(IdentifierToken.class),
-                                                  optional(sequence(token(AsKeywordToken.instance), type(
-                                                      IdentifierToken.class))))), optional(token(
-                                         CommaDelimiterToken.instance)), token(
-                                         RightParenthesisDelimiterToken.instance)), sequence(token(
-        FromKeywordToken.instance), variable("Module"), token(ImportKeywordToken.instance), token(
-        TimesOperatorToken.instance)))));
+    pythonRules.add(new Rule("ImportStatement",
+                             choice(sequence(token(ImportKeywordToken.instance), variable("Module"),
+                                             optional(sequence(token(AsKeywordToken.instance), identifier())),
+                                             repetition(sequence(token(
+                                                 CommaDelimiterToken.instance), variable("Module"), optional(
+                                                 sequence(token(AsKeywordToken.instance),
+                                                          identifier()))))),
+                                    sequence(token(FromKeywordToken.instance), variable("RelativeModule"), token(
+                                        ImportKeywordToken.instance), identifier(),
+                                                                      optional(sequence(token(AsKeywordToken.instance),
+                                                                                        identifier())),
+                                                                      repetition(sequence(
+                                                                          token(CommaDelimiterToken.instance),
+                                                                          identifier(), optional(
+                                                                          sequence(token(AsKeywordToken.instance),
+                                                                                   identifier()))))),
+                                    sequence(token(FromKeywordToken.instance), variable("RelativeModule"), token(
+                                        ImportKeywordToken.instance), token(LeftParenthesisDelimiterToken.instance),
+                                                                      identifier(), optional(sequence(
+                                        token(AsKeywordToken.instance), identifier())), repetition(
+                                        sequence(token(CommaDelimiterToken.instance), identifier(),
+                                                 optional(sequence(token(AsKeywordToken.instance),
+                                                                   identifier())))), optional(token(
+                                        CommaDelimiterToken.instance)), token(
+                                        RightParenthesisDelimiterToken.instance)), sequence(token(
+                                 FromKeywordToken.instance), variable("Module"), token(ImportKeywordToken.instance),
+                                                             token(
+                                                                 TimesOperatorToken.instance)))));
 
-    pythonRules.add(new Rule("GlobalStatement", sequence(token(GlobalKeywordToken.instance), type(
-        IdentifierToken.class), repetition(sequence(token(CommaDelimiterToken.instance), type(
-        IdentifierToken.class))))));
+    pythonRules.add(new Rule("GlobalStatement", sequence(token(GlobalKeywordToken.instance),
+                                                         identifier(), repetition(
+        sequence(token(CommaDelimiterToken.instance), identifier())))));
 
     pythonRules.add(new Rule("ExecuteStatement", sequence(token(ExecKeywordToken.instance), variable("OrExpression"),
                                                           optional(sequence(token(InKeywordToken.instance), variable(
@@ -161,11 +182,11 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
         "Suite"))));
 
     pythonRules.add(new Rule("FunctionDefinition", sequence(optional(variable("Decorators")), token(
-        DefKeywordToken.instance), type(IdentifierToken.class), token(LeftParenthesisDelimiterToken.instance), optional(
+        DefKeywordToken.instance), identifier(), token(LeftParenthesisDelimiterToken.instance), optional(
         variable("ParameterList")), token(RightParenthesisDelimiterToken.instance), token(ColonDelimiterToken.instance),
                                     variable("Suite"))));
 
-    pythonRules.add(new Rule("ClassDefinition", sequence(token(ClassKeywordToken.instance), type(IdentifierToken.class),
+    pythonRules.add(new Rule("ClassDefinition", sequence(token(ClassKeywordToken.instance), identifier(),
                                                          optional(variable("Inheritance")), token(
         ColonDelimiterToken.instance), variable("Suite"))));
 
@@ -183,10 +204,10 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
     pythonRules.add(new Rule("Target", choice(variable("Slicing"), variable("Subscription"), variable(
         "AttributeReference"), sequence(token(LeftParenthesisDelimiterToken.instance), variable("TargetList"), token(
         RightParenthesisDelimiterToken.instance)), sequence(token(LeftBracketDelimiterToken.instance), variable(
-        "TargetList"), token(RightBracketDelimiterToken.instance)), type(IdentifierToken.class))));
+        "TargetList"), token(RightBracketDelimiterToken.instance)), identifier())));
 
-    pythonRules.add(new Rule("Module", sequence(repetition(sequence(type(IdentifierToken.class), token(
-        CommaDelimiterToken.instance))), type(IdentifierToken.class))));
+    pythonRules.add(new Rule("Module", sequence(repetition(sequence(identifier(), token(
+        CommaDelimiterToken.instance))), identifier())));
 
     pythonRules.add(new Rule("RelativeModule", choice(sequence(repetition(token(DotDelimiterToken.instance)), variable(
         "Module")), oneOrMore(token(DotDelimiterToken.instance)))));
@@ -226,8 +247,7 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
     pythonRules.add(new Rule("Primary", choice(variable("Atom"), variable("AttributeReference"), variable(
         "Subscription"), variable("Slicing"), variable("Call"))));
 
-    pythonRules.add(new Rule("Atom", choice(variable("Enclosure"), type(LiteralToken.class), type(
-        IdentifierToken.class))));
+    pythonRules.add(new Rule("Atom", choice(variable("Enclosure"), literal(), identifier())));
 
     pythonRules.add(new Rule("Call", sequence(variable("Primary"), token(LeftParenthesisDelimiterToken.instance),
                                               optional(choice(sequence(variable("ArgumentList"), token(
@@ -312,7 +332,7 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
     pythonRules.add(new Rule("KeywordArguments", sequence(variable("KeywordItem"), repetition(sequence(token(
         CommaDelimiterToken.instance), variable("KeywordItem"))))));
 
-    pythonRules.add(new Rule("KeywordItem", sequence(type(IdentifierToken.class), token(EqualsDelimiterToken.instance),
+    pythonRules.add(new Rule("KeywordItem", sequence(identifier(), token(EqualsDelimiterToken.instance),
                                                      variable("Expression"))));
 
     pythonRules.add(new Rule("GeneratorExpression", sequence(token(LeftParenthesisDelimiterToken.instance), variable(
@@ -363,26 +383,29 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
 
     pythonRules.add(new Rule("ParameterList", sequence(choice(sequence(variable("ParameterDefinition"), repetition(
         sequence(token(CommaDelimiterToken.instance), variable("ParameterDefinition"))), optional(sequence(token(
-        CommaDelimiterToken.instance), token(TimesOperatorToken.instance), type(IdentifierToken.class))), optional(
-        sequence(token(CommaDelimiterToken.instance), token(ExponentOperatorToken.instance), type(
-            IdentifierToken.class)))), sequence(token(TimesOperatorToken.instance), type(IdentifierToken.class),
-                                                optional(sequence(token(CommaDelimiterToken.instance), token(
-                                                    ExponentOperatorToken.instance), type(IdentifierToken.class)))),
-                                       sequence(token(ExponentOperatorToken.instance), type(IdentifierToken.class))),
+        CommaDelimiterToken.instance), token(TimesOperatorToken.instance), identifier())), optional(
+        sequence(token(CommaDelimiterToken.instance), token(ExponentOperatorToken.instance), identifier()))),
+                                                              sequence(token(TimesOperatorToken.instance), identifier(),
+                                                                       optional(sequence(
+                                                                           token(CommaDelimiterToken.instance), token(
+                                                                           ExponentOperatorToken.instance),
+                                                                           identifier()))),
+                                                              sequence(token(ExponentOperatorToken.instance),
+                                                                       identifier())),
                                                        optional(token(CommaDelimiterToken.instance)))));
 
     pythonRules.add(new Rule("ParameterDefinition", choice(sequence(variable("Parameter"), token(
         EqualsDelimiterToken.instance), variable("Expression")), variable("Parameter"))));
 
-    pythonRules.add(new Rule("Parameter", choice(type(IdentifierToken.class), sequence(token(
+    pythonRules.add(new Rule("Parameter", choice(identifier(), sequence(token(
         LeftParenthesisDelimiterToken.instance), variable("Sublist"), token(
         RightParenthesisDelimiterToken.instance)))));
 
     pythonRules.add(new Rule("Sublist", sequence(variable("Parameter"), repetition(sequence(token(
         CommaDelimiterToken.instance), variable("Parameter"))), optional(token(CommaDelimiterToken.instance)))));
 
-    pythonRules.add(new Rule("DottedName", sequence(type(IdentifierToken.class), repetition(sequence(token(
-        DotDelimiterToken.instance), type(IdentifierToken.class))))));
+    pythonRules.add(new Rule("DottedName", sequence(identifier(), repetition(sequence(token(
+        DotDelimiterToken.instance), identifier())))));
 
     pythonRules.add(new Rule("Inheritance", sequence(token(LeftParenthesisDelimiterToken.instance), optional(variable(
         "ExpressionList")), token(RightParenthesisDelimiterToken.instance))));
@@ -391,18 +414,17 @@ public class PythonGrammar extends PackratGrammar<PythonToken.Type> {
 
     pythonRules.add(new Rule("Decorator", sequence(token(AtDelimiterToken.instance), variable("DottedName"), optional(
         sequence(token(LeftParenthesisDelimiterToken.instance), optional(sequence(variable("ArgumentList"), optional(
-            token(CommaDelimiterToken.instance)))), token(RightParenthesisDelimiterToken.instance))), type(
-        NewlineToken.class))));
+            token(CommaDelimiterToken.instance)))), token(RightParenthesisDelimiterToken.instance))), newline())));
 
     pythonRules.add(new Rule("Subscription", sequence(variable("Primary"), token(LeftBracketDelimiterToken.instance),
                                                       variable("ExpressionList"), token(
         RightBracketDelimiterToken.instance))));
 
     pythonRules.add(new Rule("AttributeReference", sequence(variable("Primary"), token(DotDelimiterToken.instance),
-                                                            type(IdentifierToken.class))));
+                                                            identifier())));
 
-    pythonRules.add(new Rule("Suite", choice(sequence(variable("StatementList"), type(NewlineToken.class)), sequence(
-        type(NewlineToken.class), token(IndentToken.instance), oneOrMore(variable("Statement")), token(
+    pythonRules.add(new Rule("Suite", choice(sequence(variable("StatementList"), newline()), sequence(
+        newline(), token(IndentToken.instance), oneOrMore(variable("Statement")), token(
         DedentToken.instance)))));
   }
 

@@ -19,6 +19,7 @@ import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.collections.HashMultiMap;
 import org.metasyntactic.collections.MultiMap;
+import static org.metasyntactic.utilities.ReflectionUtilities.getSimpleName;
 
 import java.io.IOException;
 import java.io.LineNumberReader;
@@ -71,10 +72,10 @@ public class GrammarNodeWriter<TTokenType> {
       for (Expression child : ce.getChildren()) {
         if (child instanceof TokenExpression) {
           TokenExpression te = (TokenExpression) child;
-          changed |= promotedTokens.put(te.getToken().getClass().getSimpleName(), rule.getVariable());
+          changed |= promotedTokens.put(getSimpleName(te.getToken().getClass()), rule.getVariable());
         } else if (child instanceof TypeExpression) {
           TypeExpression te = (TypeExpression) child;
-          changed |= promotedTokens.put(te.getType().getSimpleName(), rule.getVariable());
+          changed |= promotedTokens.put(te.getName(), rule.getVariable());
         } else if (child instanceof VariableExpression) {
         } else {
           throw new RuntimeException();
@@ -85,7 +86,7 @@ public class GrammarNodeWriter<TTokenType> {
       changed |= promotedTokens.put(te.getToken().getClass().getSimpleName(), null);
     } else if (expression instanceof TypeExpression) {
       TypeExpression te = (TypeExpression) expression;
-      changed |= promotedTokens.put(te.getType().getSimpleName(), null);
+      changed |= promotedTokens.put(te.getName(), null);
     }
 
     return changed;
@@ -262,7 +263,7 @@ public class GrammarNodeWriter<TTokenType> {
     } else if (expression instanceof TokenExpression) {
       TokenExpression te = (TokenExpression) expression;
       result.add(
-          new TypeAndName("SourceToken<" + te.getToken().getClass().getSimpleName() + ">", getExpressionName(te)));
+          new TypeAndName("SourceToken<" + getSimpleName(te.getToken().getClass()) + ">", getExpressionName(te)));
     } else {
       throw new RuntimeException();
     }
@@ -437,11 +438,11 @@ public class GrammarNodeWriter<TTokenType> {
     }
 
     public String visit(TokenExpression tokenExpression) {
-      return "SourceToken<" + tokenExpression.getToken().getClass().getSimpleName() + ">";
+      return "SourceToken<" + getSimpleName(tokenExpression.getToken().getClass()) + ">";
     }
 
     public String visit(TypeExpression typeExpression) {
-      return "SourceToken<" + typeExpression.getType().getSimpleName() + ">";
+      return "SourceToken<" + typeExpression.getName() + ">";
     }
   }
 
@@ -506,7 +507,7 @@ public class GrammarNodeWriter<TTokenType> {
     }
 
     public String visit(TypeExpression typeExpression) {
-      String s = typeExpression.getType().getSimpleName();
+      String s = typeExpression.getName();
       if (s.endsWith("Token")) {
         s = s.substring(0, s.length() - "Token".length());
       }

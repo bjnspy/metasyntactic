@@ -80,6 +80,23 @@ public abstract class JavaToken implements Token {
     return keywordValues;
   }
 
+  private static Set<Integer> literalValues;
+
+  public static Set<Integer> getLiteralValues() {
+    if (literalValues == null) {
+      Set<Integer> result = new LinkedHashSet<Integer>();
+      for (JavaToken.Type type : JavaToken.Type.values()) {
+        if (type.ordinal() >= Type.CharacterLiteral.ordinal() &&
+            type.ordinal() <= Type.TrueBooleanLiteral.ordinal()) {
+          result.add(type.ordinal());
+        }
+      }
+      literalValues = result;
+    }
+
+    return literalValues;
+  }
+
   public static enum Type {
     Identifier,
     Comment,

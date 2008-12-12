@@ -2,14 +2,10 @@
 
 package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
-import org.metasyntactic.automata.compiler.framework.parsers.*;
-import org.metasyntactic.automata.compiler.framework.parsers.Grammar;
+import org.metasyntactic.automata.compiler.framework.parsers.ActionMap;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
-import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
-import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
-import org.metasyntactic.automata.compiler.java.scanner.IdentifierToken;
-import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
-import org.metasyntactic.automata.compiler.java.scanner.operators.MinusOperatorToken;
 
 import java.util.*;
 
@@ -30,12 +26,12 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     super(grammar, tokens, actions);
   }
 
-   protected EvaluationResult evaluateExpression(int position, Expression expression) {
+  protected EvaluationResult evaluateExpression(int position, Expression expression) {
     furtherstPosition = Math.max(position, furtherstPosition);
     return expression.accept(new EvaluationExpressionVisitor(position));
   }
 
-   protected EvaluationResult evaluateRule(int position, Rule rule) {
+  protected EvaluationResult evaluateRule(int position, Rule rule) {
     EvaluationResult memoEntry = recall(position, rule);
 
     if (memoEntry == null) {
@@ -174,40 +170,11 @@ public class LeftRecursivePackratParser<T extends Token> extends AbstractPackrat
     }
   }
 
-   public boolean equals(Object o) {
+  public boolean equals(Object o) {
     return (o instanceof LeftRecursivePackratParser) && super.equals(o);
   }
 
   public static void main(String... args) {
-    Object o1 = JavaGrammar.instance;
 
-    Grammar g = new PackratGrammar<JavaToken.Type>(new Rule("x", variable("expr")), new Rule("expr", choice(sequence(
-        variable("x"), token(MinusOperatorToken.instance), type(IdentifierToken.class)), type(
-        IdentifierToken.class)))) {
-      public JavaToken.Type getTokenFromTerminal(int type) {
-        return JavaToken.Type.values()[type];
-      }
-
-      protected Set<Integer> getTerminalsWorker() {
-        return JavaToken.getValues();
-      }
-
-      protected double prefixCost(List<Integer> tokens) {
-        return tokens.size();
-      }
-    };
-//        new Rule("num", character("5")));
-
-    Span s = new SimpleSpan(new Position(0, 0), new Position(0, 0));
-    System.out.println(g);
-    Parser p = g.createParser(Arrays.asList(new SourceToken<JavaToken>(new IdentifierToken("1"), s),
-                                            new SourceToken<JavaToken>(MinusOperatorToken.instance, s),
-                                            new SourceToken<JavaToken>(new IdentifierToken("2"), s),
-                                            new SourceToken<JavaToken>(MinusOperatorToken.instance, s),
-                                            new SourceToken<JavaToken>(new IdentifierToken("3"), s)));
-
-    Object o = p.parse();
-
-    System.out.println();
   }
 }

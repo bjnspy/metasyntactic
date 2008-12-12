@@ -1,17 +1,15 @@
 package org.metasyntactic.automata.compiler.java.parser;
 
-import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
-import static org.metasyntactic.automata.compiler.java.parser.Nodes.*;
-import org.metasyntactic.automata.compiler.java.scanner.IdentifierToken;
+import java.util.*;
+import org.metasyntactic.automata.compiler.framework.parsers.*;
+import org.metasyntactic.automata.compiler.java.scanner.*;
 import org.metasyntactic.automata.compiler.java.scanner.keywords.*;
-import org.metasyntactic.automata.compiler.java.scanner.literals.LiteralToken;
+import org.metasyntactic.automata.compiler.java.scanner.literals.*;
 import org.metasyntactic.automata.compiler.java.scanner.operators.*;
 import org.metasyntactic.automata.compiler.java.scanner.separators.*;
+import static org.metasyntactic.automata.compiler.java.parser.Nodes.*;
 import org.metasyntactic.automata.compiler.util.ArrayDelimitedList;
 import org.metasyntactic.automata.compiler.util.DelimitedList;
-
-import java.util.*;
 
 public abstract class AbstractJavaGeneratedParser {
   protected static class EvaluationResult<T> {
@@ -76,6 +74,8 @@ public abstract class AbstractJavaGeneratedParser {
 
     return values;
   }
+
+
 
   public ICompilationUnitNode parse() {
     EvaluationResult<? extends ICompilationUnitNode> result = parseCompilationUnit(0);
@@ -2974,9 +2974,9 @@ public abstract class AbstractJavaGeneratedParser {
   private EvaluationResult<? extends SourceToken<IdentifierToken>> evaluateIdentifierToken(int position) {
     if (position < tokens.size()) {
       SourceToken token = tokens.get(position);
-      Class<? extends Token> actualType = token.getToken().getClass();
-      if (IdentifierToken.class.isAssignableFrom(actualType)) {
-        return new EvaluationResult<SourceToken<IdentifierToken>>(true, position + 1, token);
+      switch (token.getToken().getType()) {
+        case 0:
+          return new EvaluationResult<SourceToken<IdentifierToken>>(true, position + 1, token);
       }
     }
     return EvaluationResult.failure();
@@ -6083,13 +6083,20 @@ public abstract class AbstractJavaGeneratedParser {
     }
     return EvaluationResult.failure();
   }
+
   @SuppressWarnings("unchecked")
   private EvaluationResult<? extends SourceToken<LiteralToken>> evaluateLiteralToken(int position) {
     if (position < tokens.size()) {
       SourceToken token = tokens.get(position);
-      Class<? extends Token> actualType = token.getToken().getClass();
-      if (LiteralToken.class.isAssignableFrom(actualType)) {
-        return new EvaluationResult<SourceToken<LiteralToken>>(true, position + 1, token);
+      switch (token.getToken().getType()) {
+        case 54:
+        case 55:
+        case 56:
+        case 57:
+        case 58:
+        case 59:
+        case 60:
+          return new EvaluationResult<SourceToken<LiteralToken>>(true, position + 1, token);
       }
     }
     return EvaluationResult.failure();

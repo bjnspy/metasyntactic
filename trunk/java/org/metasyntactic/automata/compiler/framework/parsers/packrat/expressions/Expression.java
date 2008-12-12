@@ -55,8 +55,12 @@ public abstract class Expression {
     return new TokenExpression(token);
   }
 
-  public static Expression type(Class<? extends Token> clazz) {
-    return new TypeExpression(clazz);
+  public static Expression type(String name, Integer... types) {
+    return new TypeExpression(name, types);
+  }
+
+  public static Expression type(String name, Set<Integer> types) {
+    return new TypeExpression(name, types);
   }
 
   /** @return the atomic parsing expression consisting of the supplied variable. */
