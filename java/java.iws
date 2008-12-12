@@ -16,22 +16,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DefaultExpressionVisitor.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DefaultExpressionVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/DelimitedList.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/DelimitedList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/metasyntactic/programs/ParseJavaFilesProgram.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/metasyntactic/programs/JavaParserGeneratorProgram.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/metasyntactic/programs/GrammarNodeWriterProgram.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/org/metasyntactic/programs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/ArrayDelimitedList.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/ArrayDelimitedList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,7 +62,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" line="88" class="org.metasyntactic.automata.compiler.java.scanner.JavaLexicalSpecification$1" package="org.metasyntactic.automata.compiler.java.scanner">
+      <breakpoint url="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" line="88" class="Class at JavaLexicalSpecification.java:88" package="org.metasyntactic.automata.compiler.java.scanner">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -204,15 +189,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AbstractPackratParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="187" column="9" selection-start="5424" selection-end="5424" vertical-scroll-proportion="0.31753555">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="JavaParserGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -227,16 +203,16 @@
       <file leaf-file-name="ParseJavaFilesProgram.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/programs/ParseJavaFilesProgram.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="0" selection-start="3614" selection-end="3614" vertical-scroll-proportion="0.29464287">
+            <state line="88" column="22" selection-start="3014" selection-end="3014" vertical-scroll-proportion="0.84151787">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractJavaGeneratedParser.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
+      <file leaf-file-name="Metasyntactic.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/client/Metasyntactic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6334" column="135" selection-start="304692" selection-end="304692" vertical-scroll-proportion="-0.0023696683">
+            <state line="48" column="20" selection-start="1762" selection-end="1762" vertical-scroll-proportion="0.3325893">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -244,56 +220,67 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JavaGrammar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
+      <file leaf-file-name="TextArea.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextArea.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="48" selection-start="2277" selection-end="2277" vertical-scroll-proportion="0.63033175">
+            <state line="5" column="67" selection-start="221" selection-end="221" vertical-scroll-proportion="0.10714286">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Expression.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java">
+      <file leaf-file-name="TextBoxBase.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextBoxBase.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="32" selection-start="5364" selection-end="5364" vertical-scroll-proportion="0.359375">
+            <state line="5" column="65" selection-start="219" selection-end="219" vertical-scroll-proportion="0.10714286">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DelimitedSequenceExpression.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/DelimitedSequenceExpression.java">
+      <file leaf-file-name="FocusWidget.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/FocusWidget.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="9" selection-start="537" selection-end="537" vertical-scroll-proportion="0.3325893">
+            <state line="5" column="74" selection-start="228" selection-end="228" vertical-scroll-proportion="0.10714286">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JavaParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaParser.java">
+      <file leaf-file-name="Widget.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/Widget.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="38" selection-start="397" selection-end="397" vertical-scroll-proportion="0.12958963">
+            <state line="5" column="64" selection-start="218" selection-end="218" vertical-scroll-proportion="0.10714286">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PackratParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratParser.java">
+      <file leaf-file-name="UIObject.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/UIObject.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="57" selection-start="655" selection-end="655" vertical-scroll-proportion="0.25118482">
+            <state line="116" column="51" selection-start="5407" selection-end="5407" vertical-scroll-proportion="0.78571427">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JavaLexicalAnalyzer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalAnalyzer.java">
+      <file leaf-file-name="HasDirection.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/i18n/client/HasDirection.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="334" selection-end="334" vertical-scroll-proportion="0.29464287">
+            <state line="5" column="17" selection-start="168" selection-end="168" vertical-scroll-proportion="0.10714286">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractJavaGeneratedParser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6334" column="135" selection-start="304692" selection-end="304692" vertical-scroll-proportion="-0.0023696683">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1373,7 +1360,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="42" y="22" width="1199" height="878" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -1393,7 +1380,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37880793" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3112583" order="4" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3112583" order="4" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
@@ -1464,61 +1451,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/ArrayDelimitedList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="3" selection-start="1426" selection-end="1426" vertical-scroll-proportion="0.9370277">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/util/DelimitedList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="850" selection-end="850" vertical-scroll-proportion="0.34951457">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/client/Metasyntactic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="13" selection-start="2197" selection-end="2197" vertical-scroll-proportion="0.77078086">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8779" column="1" selection-start="352320" selection-end="352320" vertical-scroll-proportion="1.3459716">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="438" column="42" selection-start="14254" selection-end="14254" vertical-scroll-proportion="-7.2985783">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGeneratedParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="51" selection-start="411" selection-end="411" vertical-scroll-proportion="0.28509718">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="334" selection-end="334" vertical-scroll-proportion="0.29464287">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="38" selection-start="397" selection-end="397" vertical-scroll-proportion="0.12958963">
@@ -1570,16 +1502,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6334" column="135" selection-start="304692" selection-end="304692" vertical-scroll-proportion="-0.0023696683">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/programs/ParseJavaFilesProgram.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="0" selection-start="3614" selection-end="3614" vertical-scroll-proportion="0.29464287">
+        <state line="88" column="22" selection-start="3014" selection-end="3014" vertical-scroll-proportion="0.84151787">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/i18n/client/HasDirection.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6334" column="135" selection-start="304692" selection-end="304692" vertical-scroll-proportion="-0.0023696683">
+        <state line="5" column="17" selection-start="168" selection-end="168" vertical-scroll-proportion="0.10714286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextArea.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="67" selection-start="221" selection-end="221" vertical-scroll-proportion="0.10714286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextBoxBase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="65" selection-start="219" selection-end="219" vertical-scroll-proportion="0.10714286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/FocusWidget.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="74" selection-start="228" selection-end="228" vertical-scroll-proportion="0.10714286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/Widget.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="64" selection-start="218" selection-end="218" vertical-scroll-proportion="0.10714286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/UIObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="51" selection-start="5407" selection-end="5407" vertical-scroll-proportion="0.78571427">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/client/Metasyntactic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="20" selection-start="1762" selection-end="1762" vertical-scroll-proportion="0.3325893">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
