@@ -1,7 +1,5 @@
 package org.metasyntactic.automata.compiler.python.scanner;
 
-import org.metasyntactic.automata.compiler.framework.parsers.Source;
-import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
 import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
@@ -9,7 +7,6 @@ import org.metasyntactic.automata.compiler.python.scanner.delimiters.DelimiterTo
 import org.metasyntactic.automata.compiler.python.scanner.keywords.KeywordToken;
 import org.metasyntactic.automata.compiler.python.scanner.operators.OperatorToken;
 
-import java.io.*;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;

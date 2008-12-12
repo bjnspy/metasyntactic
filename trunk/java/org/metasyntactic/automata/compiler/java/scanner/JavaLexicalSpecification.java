@@ -44,6 +44,16 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
                         repetition(variable("StringCharacter")),
                         terminal("\"")));
 
+  private static boolean isJavaIdentifierStart(char c) {
+    // can't use Character.isJavaIdentifierStart in GWT
+    return Character.isLetter(c) || c == '$' || c == '_';
+  }
+
+  private static boolean isJavaIdentifierPart(char c) {
+    // can't use Character.isJavaIdentifierPart in GWT
+    return isJavaIdentifierStart(c) || Character.isDigit(c);
+  }
+
   public static Rule KEYWORD_OR_IDENTIFIER_RULE =
       new Rule("Identifier",
                new FunctionExpression<Source>("keywordOrIdentifier") {
@@ -53,11 +63,11 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
                    if (position < text.length()) {
                      char firstChar = text.charAt(position);
 
-                     if (Character.isJavaIdentifierStart(firstChar)) {
+                     if (isJavaIdentifierStart(firstChar)) {
                        for (int i = position + 1; i < text.length(); i++) {
                          char c = text.charAt(i);
 
-                         if (!Character.isJavaIdentifierPart(c)) {
+                         if (!isJavaIdentifierPart(c)) {
                            return new EvaluationResult(i, null);
                          }
                        }
