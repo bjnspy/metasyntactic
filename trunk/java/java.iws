@@ -16,11 +16,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/keywords/KeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/keywords/KeywordToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SemicolonSeparatorToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SemicolonSeparatorToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonScanner.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonScanner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaScanner.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaScanner.java" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -154,42 +153,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LeftParenthesisSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/LeftParenthesisSeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="41" selection-start="379" selection-end="379" vertical-scroll-proportion="0.25263157">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RightBracketSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/RightBracketSeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="38" selection-start="364" selection-end="364" vertical-scroll-proportion="0.25263157">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RightCurlySeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/RightCurlySeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="36" selection-start="354" selection-end="354" vertical-scroll-proportion="0.24489796">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RightParenthesisSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/RightParenthesisSeparatorToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="42" selection-start="384" selection-end="384" vertical-scroll-proportion="0.25263157">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SemicolonSeparatorToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/SemicolonSeparatorToken.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -228,10 +191,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OperatorToken.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="OperatorToken.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="13" column="13" selection-start="410" selection-end="410" vertical-scroll-proportion="0.32842106">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaScanner.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaScanner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="107" column="7" selection-start="5007" selection-end="5007" vertical-scroll-proportion="0.36842105">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaLexicalSpecification.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="285" column="35" selection-start="11863" selection-end="11863" vertical-scroll-proportion="0.7978947">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PackratScanner.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratScanner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="13" selection-start="666" selection-end="666" vertical-scroll-proportion="0.101052634">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PythonScanner.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonScanner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="101" column="41" selection-start="5013" selection-end="5013" vertical-scroll-proportion="0.84842104">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1199,12 +1204,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="22" width="1238" height="878" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="7" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35407907" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35407907" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847682" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962743" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3231788" order="8" />
@@ -1290,34 +1295,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/AtSeparatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="28" selection-start="366" selection-end="366" vertical-scroll-proportion="0.29387754">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/CommaSeparatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="31" selection-start="329" selection-end="329" vertical-scroll-proportion="0.24489796">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/DotSeparatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="29" selection-start="319" selection-end="319" vertical-scroll-proportion="0.24489796">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/EllipsisSeparatorToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="34" selection-start="346" selection-end="346" vertical-scroll-proportion="0.24489796">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/separators/LeftBracketSeparatorToken.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="37" selection-start="359" selection-end="359" vertical-scroll-proportion="0.24489796">
@@ -1400,6 +1377,40 @@
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/operators/OperatorToken.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="13" selection-start="410" selection-end="410" vertical-scroll-proportion="0.32842106">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaScanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="7" selection-start="5007" selection-end="5007" vertical-scroll-proportion="0.36842105">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaLexicalSpecification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="285" column="35" selection-start="11863" selection-end="11863" vertical-scroll-proportion="0.7978947">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/PackratScanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="13" selection-start="666" selection-end="666" vertical-scroll-proportion="0.101052634">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonScanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="41" selection-start="5013" selection-end="5013" vertical-scroll-proportion="0.84842104">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

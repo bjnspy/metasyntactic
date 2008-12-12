@@ -1,7 +1,6 @@
 package org.metasyntactic.automata.compiler.java.scanner;
 
 import org.metasyntactic.automata.compiler.framework.parsers.Source;
-import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.EvaluationResult;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
@@ -11,7 +10,6 @@ import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions
 import org.metasyntactic.automata.compiler.java.scanner.operators.OperatorToken;
 import org.metasyntactic.automata.compiler.java.scanner.separators.SeparatorToken;
 
-import java.io.*;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -21,9 +19,11 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
   private final static Rule javaStartRule;
   private final static Set<Rule> javaRules;
 
-  public static Rule WHITESPACE_RULE = new Rule("Whitespace", choice(oneOrMore(choice(terminal(" "), terminal("\t"),
-                                                                                      terminal("\f"))), variable(
-      "NewLine")));
+  public static Rule WHITESPACE_RULE =
+      new Rule("Whitespace",
+               choice(oneOrMore(choice(terminal(" "), terminal("\t"),
+                                       terminal("\f"))), variable(
+                   "NewLine")));
 
   public static Rule COMMENT_RULE = new Rule("Comment", choice(variable("TraditionalComment"), variable(
       "EndOfLineComment")));
@@ -43,7 +43,7 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
 
   public static Rule KEYWORD_OR_IDENTIFIER_RULE = new Rule("Identifier", new FunctionExpression<Source>(
       "keywordOrIdentifier") {
-     public EvaluationResult apply(Source input, int position) {
+    public EvaluationResult apply(Source input, int position) {
       String text = input.getText();
 
       if (position < text.length()) {
@@ -63,15 +63,15 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
       return EvaluationResult.failure;
     }
 
-     public boolean isNullable() {
+    public boolean isNullable() {
       return false;
     }
 
-     public List<Integer> getShortestDerivableTokenStream() {
+    public List<Integer> getShortestDerivableTokenStream() {
       return Collections.singletonList(IdentifierToken.getTypeValue());
     }
 
-     public List<Integer> getShortestPrefix(int token) {
+    public List<Integer> getShortestPrefix(int token) {
       if (token == JavaToken.Type.Identifier.ordinal()) {
         return Collections.emptyList();
       } else if (JavaToken.getKeywordValues().contains(token)) {
@@ -232,6 +232,7 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("IntegerTypeSuffix", choice("l", "L")));
   }
+  /*
 
   static long totalTime = 0;
   static long fileSize = 0;
@@ -244,41 +245,7 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
     System.out.println(fileCount + " files");
     System.out.println(fileSize + " bytes");
     System.out.println(totalTime + " ms");
-    /*
-    File file = new File("/projects/src/cyrusn-appdev-blaze2/google3/experimental/users/cyrusn/java/com/google/automata/compiler/java/scanner/JavaLexicalSpecification.java");
 
-    StringWriter writer = new StringWriter();
-    Reader in = new FileReader(file);
-
-    int c;
-    while ((c = in.read()) != -1) {
-      writer.write(c);
-    }
-
-    String s = writer.toString();
-
-    long count = 100;
-
-    System.out.println(new Date());
-    long start = System.currentTimeMillis();
-    //JavaScanner scanner = ;
-
-    for (long i = 0; i < count; i++) {
-      Optional<List<SourceToken<JavaToken>>> o = new JavaScanner().scan(new Source(s));
-
-      //for (SourceToken<JavaToken> token : o.value()) {
-        //System.out.println(token);
-      //}
-    }
-
-    long diff = System.currentTimeMillis() - start;
-    double avgMS = (double)diff / (double)count;
-
-    System.out.println(new Date());
-
-    System.out.println(s.length() + " bytes/" + avgMS + " ms");
-    System.out.println((double)s.length() / avgMS);
-    */
   }
 
   private static void scan(File directory) throws IOException {
@@ -346,7 +313,7 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
     in.close();
     return writer.toString();
   }
-
+*/
   public JavaToken.Type getTokenFromTerminal(int type) {
     return JavaToken.Type.values()[type];
   }

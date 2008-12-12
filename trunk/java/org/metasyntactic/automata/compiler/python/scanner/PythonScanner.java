@@ -28,7 +28,7 @@ public class PythonScanner extends PackratScanner<PythonToken> {
   static {
     actions.put(PythonLexicalSpecification.KEYWORD_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                   public Object apply(Object o, Source source, Integer start, Integer end) {
+                  public Object apply(Object o, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
                     return makeToken(KeywordToken.getKeywordToken(text), source, start, end);
                   }
@@ -36,7 +36,7 @@ public class PythonScanner extends PackratScanner<PythonToken> {
 
     actions.put(PythonLexicalSpecification.DELIMITER_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                   public Object apply(Object o, Source source, Integer start, Integer end) {
+                  public Object apply(Object o, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
                     return makeToken(DelimiterToken.getDelimiterToken(text), source, start, end);
                   }
@@ -44,7 +44,7 @@ public class PythonScanner extends PackratScanner<PythonToken> {
 
     actions.put(PythonLexicalSpecification.OPERATOR_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                   public Object apply(Object o, Source source, Integer start, Integer end) {
+                  public Object apply(Object o, Source source, Integer start, Integer end) {
                     String text = source.getText().substring(start, end);
                     return makeToken(OperatorToken.getOperatorToken(text), source, start, end);
                   }
@@ -52,23 +52,73 @@ public class PythonScanner extends PackratScanner<PythonToken> {
 
     actions.put(PythonLexicalSpecification.LINE_CONTINUATION_RULE.getVariable(),
                 new Function4<Object, Source, Integer, Integer, Object>() {
-                   public Object apply(Object o, Source source, Integer start, Integer end) {
+                  public Object apply(Object o, Source source, Integer start, Integer end) {
                     return makeToken(LineContinuationToken.instance, source, start, end);
                   }
                 });
 
-    addAction(PythonLexicalSpecification.COMMENT_RULE, CommentToken.class);
-    addAction(PythonLexicalSpecification.FLOATING_POINT_LITERAL_RULE, FloatingPointLiteralToken.class);
-    addAction(PythonLexicalSpecification.IMAGINARY_NUMBER_LITERAL_RULE, ImaginaryNumberLiteralToken.class);
-    addAction(PythonLexicalSpecification.IDENTIFIER_RULE, IdentifierToken.class);
-    addAction(PythonLexicalSpecification.INTEGER_LITERAL_RULE, IntegerLiteralToken.class);
-    addAction(PythonLexicalSpecification.ERROR_RULE, ErrorToken.class);
-    addAction(PythonLexicalSpecification.NEWLINE_RULE, NewlineToken.class);
-    addAction(PythonLexicalSpecification.STRING_LITERAL_RULE, StringLiteralToken.class);
-    addAction(PythonLexicalSpecification.WHITESPACE_RULE, WhitespaceToken.class);
+    addAction(PythonLexicalSpecification.COMMENT_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new CommentToken(text);
+      }
+    });
+    addAction(PythonLexicalSpecification.FLOATING_POINT_LITERAL_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new FloatingPointLiteralToken(text);
+      }
+    });
+    addAction(PythonLexicalSpecification.IMAGINARY_NUMBER_LITERAL_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new ImaginaryNumberLiteralToken(text);
+      }
+    });
+    addAction(PythonLexicalSpecification.IDENTIFIER_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new IdentifierToken(text);
+      }
+    });
+    addAction(PythonLexicalSpecification.INTEGER_LITERAL_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new IntegerLiteralToken(text);
+      }
+    });
+    addAction(PythonLexicalSpecification.ERROR_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new ErrorToken(text);
+      }
+    });
+    addAction(PythonLexicalSpecification.NEWLINE_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new NewlineToken(text);
+      }
+    });
+    addAction(PythonLexicalSpecification.STRING_LITERAL_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new StringLiteralToken(text);
+      }
+    });
+    addAction(PythonLexicalSpecification.WHITESPACE_RULE, new TokenCreator() {
+      public PythonToken create(String text) {
+        return new WhitespaceToken(text);
+      }
+    });
   }
 
-  private static void addAction(Rule rule, Class<? extends PythonToken> tokenClass) {
+  private interface TokenCreator {
+    PythonToken create(String text);
+  }
+
+  private static void addAction(Rule rule, final TokenCreator creator) {
+    actions.put(rule.getVariable(), new Function4<Object, Source, Integer, Integer, Object>() {
+      public Object apply(Object argument1, Source source, Integer start, Integer end) {
+        String text = source.getText().substring(start, end);
+        PythonToken token = creator.create(text);
+        return makeToken(token, source, start, end);
+      }
+    });
+  }
+
+  private static void addAction1(Rule rule, Class<? extends PythonToken> tokenClass) {
     final Constructor<? extends PythonToken> constructor;
     try {
       constructor = tokenClass.getConstructor(String.class);

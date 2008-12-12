@@ -11,8 +11,6 @@ import org.metasyntactic.automata.compiler.java.scanner.operators.OperatorToken;
 import org.metasyntactic.automata.compiler.java.scanner.separators.SeparatorToken;
 import org.metasyntactic.automata.compiler.util.Function4;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class JavaScanner extends PackratScanner<JavaToken> {
@@ -59,37 +57,53 @@ public class JavaScanner extends PackratScanner<JavaToken> {
                   }
                 });
 
-    addAction(JavaLexicalSpecification.WHITESPACE_RULE, WhitespaceToken.class);
-    addAction(JavaLexicalSpecification.CHARACTER_LITERAL_RULE, CharacterLiteralToken.class);
-    addAction(JavaLexicalSpecification.COMMENT_RULE, CommentToken.class);
-    addAction(JavaLexicalSpecification.FLOATING_POINT_LITERAL_RULE, FloatingPointLiteralToken.class);
-    addAction(JavaLexicalSpecification.INTEGER_LITERAL_RULE, IntegerLiteralToken.class);
-    addAction(JavaLexicalSpecification.ERROR_RULE, ErrorToken.class);
-    addAction(JavaLexicalSpecification.STRING_LITERAL_RULE, StringLiteralToken.class);
+    addAction(JavaLexicalSpecification.WHITESPACE_RULE, new TokenCreator() {
+      public JavaToken create(String text) {
+        return new WhitespaceToken(text);
+      }
+    });
+    addAction(JavaLexicalSpecification.CHARACTER_LITERAL_RULE, new TokenCreator() {
+      public JavaToken create(String text) {
+        return new CharacterLiteralToken(text);
+      }
+    });
+    addAction(JavaLexicalSpecification.COMMENT_RULE, new TokenCreator() {
+      public JavaToken create(String text) {
+        return new CommentToken(text);
+      }
+    });
+    addAction(JavaLexicalSpecification.FLOATING_POINT_LITERAL_RULE, new TokenCreator() {
+      public JavaToken create(String text) {
+        return new FloatingPointLiteralToken(text);
+      }
+    });
+    addAction(JavaLexicalSpecification.INTEGER_LITERAL_RULE, new TokenCreator() {
+      public JavaToken create(String text) {
+        return new IntegerLiteralToken(text);
+      }
+    });
+    addAction(JavaLexicalSpecification.ERROR_RULE, new TokenCreator() {
+      public JavaToken create(String text) {
+        return new ErrorToken(text);
+      }
+    });
+    addAction(JavaLexicalSpecification.STRING_LITERAL_RULE, new TokenCreator() {
+      public JavaToken create(String text) {
+        return new StringLiteralToken(text);
+      }
+    });
   }
 
-  private static void addAction(Rule rule, Class<? extends JavaToken> tokenClass) {
-    final Constructor<? extends JavaToken> constructor;
-    try {
-      constructor = tokenClass.getConstructor(String.class);
-    } catch (NoSuchMethodException e) {
-      throw new RuntimeException(e);
-    }
+  private interface TokenCreator {
+    JavaToken create(String text);
+  }
 
+  private static void addAction(Rule rule, final TokenCreator creator) {
     actions.put(rule.getVariable(), new Function4<Object, Source, Integer, Integer, Object>() {
-
       public Object apply(Object argument1, Source source, Integer start, Integer end) {
         String text = source.getText().substring(start, end);
-        try {
-          JavaToken token = constructor.newInstance(text);
-          return makeToken(token, source, start, end);
-        } catch (InstantiationException e) {
-          throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-          throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-          throw new RuntimeException(e);
-        }
+        JavaToken token = creator.create(text);
+        return makeToken(token, source, start, end);
       }
     });
   }
