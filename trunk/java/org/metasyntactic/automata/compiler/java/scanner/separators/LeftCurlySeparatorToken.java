@@ -6,4 +6,8 @@ public class LeftCurlySeparatorToken extends SeparatorToken {
   private LeftCurlySeparatorToken() {
     super("{");
   }
+
+  protected Type getTokenType() {
+    return Type.LeftCurlySeparator;
+  }
 }

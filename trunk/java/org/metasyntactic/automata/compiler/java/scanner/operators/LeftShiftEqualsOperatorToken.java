@@ -6,4 +6,8 @@ public class LeftShiftEqualsOperatorToken extends OperatorToken {
   private LeftShiftEqualsOperatorToken() {
     super("<<=");
   }
+
+  protected Type getTokenType() {
+    return Type.LeftShiftEqualsOperator;
+  }
 }

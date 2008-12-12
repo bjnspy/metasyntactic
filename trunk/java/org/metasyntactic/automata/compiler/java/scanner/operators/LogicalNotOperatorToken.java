@@ -6,4 +6,8 @@ public class LogicalNotOperatorToken extends OperatorToken {
   private LogicalNotOperatorToken() {
     super("!");
   }
+
+  protected Type getTokenType() {
+    return Type.LogicalNotOperator;
+  }
 }

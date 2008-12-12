@@ -6,4 +6,8 @@ public class DivideOperatorToken extends OperatorToken {
   private DivideOperatorToken() {
     super("/");
   }
+
+  protected Type getTokenType() {
+    return Type.DivideOperator;
+  }
 }

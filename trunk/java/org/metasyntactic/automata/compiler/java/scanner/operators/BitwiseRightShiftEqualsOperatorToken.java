@@ -6,4 +6,8 @@ public class BitwiseRightShiftEqualsOperatorToken extends OperatorToken {
   private BitwiseRightShiftEqualsOperatorToken() {
     super(">>>=");
   }
+
+  protected Type getTokenType() {
+    return Type.BitwiseRightShiftEqualsOperator;
+  }
 }

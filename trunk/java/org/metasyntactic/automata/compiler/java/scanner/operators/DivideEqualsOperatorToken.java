@@ -6,4 +6,8 @@ public class DivideEqualsOperatorToken extends OperatorToken {
   private DivideEqualsOperatorToken() {
     super("/=");
   }
+
+  protected Type getTokenType() {
+    return Type.DivideEqualsOperator;
+  }
 }

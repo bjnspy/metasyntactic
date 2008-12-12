@@ -6,5 +6,9 @@ public class SemicolonSeparatorToken extends SeparatorToken {
   private SemicolonSeparatorToken() {
     super(";");
   }
+
+  protected Type getTokenType() {
+    return Type.SemicolonSeparator;
+  }
 }
 

@@ -6,4 +6,8 @@ public class CommaSeparatorToken extends SeparatorToken {
   private CommaSeparatorToken() {
     super(",");
   }
+
+  protected Type getTokenType() {
+    return Type.CommaSeparator;
+  }
 }

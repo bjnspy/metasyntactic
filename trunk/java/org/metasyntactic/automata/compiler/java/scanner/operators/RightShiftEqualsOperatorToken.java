@@ -6,4 +6,8 @@ public class RightShiftEqualsOperatorToken extends OperatorToken {
   private RightShiftEqualsOperatorToken() {
     super(">>=");
   }
+
+  protected Type getTokenType() {
+    return Type.RightShiftEqualsOperator;
+  }
 }
