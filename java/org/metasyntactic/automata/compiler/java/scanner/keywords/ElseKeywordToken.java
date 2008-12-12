@@ -8,4 +8,8 @@ public class ElseKeywordToken extends KeywordToken {
   private ElseKeywordToken() {
     super("else");
   }
+
+  protected Type getTokenType() {
+    return Type.ElseKeyword;
+  }
 }

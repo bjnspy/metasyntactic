@@ -8,4 +8,8 @@ public class ImplementsKeywordToken extends KeywordToken {
   private ImplementsKeywordToken() {
     super("implements");
   }
+
+  protected Type getTokenType() {
+    return Type.ImplementsKeyword;
+  }
 }

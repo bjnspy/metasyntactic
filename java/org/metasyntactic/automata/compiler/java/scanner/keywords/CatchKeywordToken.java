@@ -8,4 +8,8 @@ public class CatchKeywordToken extends KeywordToken {
   private CatchKeywordToken() {
     super("catch");
   }
+
+  protected Type getTokenType() {
+    return Type.CatchKeyword;
+  }
 }

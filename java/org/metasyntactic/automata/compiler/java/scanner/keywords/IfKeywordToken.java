@@ -8,4 +8,8 @@ public class IfKeywordToken extends KeywordToken {
   private IfKeywordToken() {
     super("if");
   }
+
+  protected Type getTokenType() {
+    return Type.IfKeyword;
+  }
 }

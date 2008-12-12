@@ -8,4 +8,8 @@ public class TryKeywordToken extends KeywordToken {
   private TryKeywordToken() {
     super("try");
   }
+
+  protected Type getTokenType() {
+    return Type.TryKeyword;
+  }
 }

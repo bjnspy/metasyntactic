@@ -8,4 +8,8 @@ public class SwitchKeywordToken extends KeywordToken {
   private SwitchKeywordToken() {
     super("switch");
   }
+
+  protected Type getTokenType() {
+    return Type.SwitchKeyword;
+  }
 }

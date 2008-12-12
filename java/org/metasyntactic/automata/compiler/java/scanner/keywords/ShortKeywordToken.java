@@ -8,4 +8,8 @@ public class ShortKeywordToken extends KeywordToken {
   private ShortKeywordToken() {
     super("short");
   }
+
+  protected Type getTokenType() {
+    return Type.ShortKeyword;
+  }
 }

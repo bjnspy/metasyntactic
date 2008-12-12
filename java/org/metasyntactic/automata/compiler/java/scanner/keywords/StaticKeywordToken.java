@@ -8,4 +8,8 @@ public class StaticKeywordToken extends KeywordToken {
   private StaticKeywordToken() {
     super("static");
   }
+
+  protected Type getTokenType() {
+    return Type.StaticKeyword;
+  }
 }

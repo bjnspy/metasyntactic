@@ -16,21 +16,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/IdentifierToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/IdentifierToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/LeftRecursivePackratParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/LeftRecursivePackratParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/AbstractPackratParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TypeExpression.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/TypeExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/utilities/ReflectionUtilities.java" afterPath="$PROJECT_DIR$/org/metasyntactic/utilities/ReflectionUtilities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ElseKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ElseKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SuperKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SuperKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/EnumKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/EnumKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThisKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThisKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/PackageKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/PackageKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/LongKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/LongKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/CaseKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/CaseKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/TransientKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/TransientKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/FinalKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/FinalKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/NewKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/NewKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ClassKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ClassKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/StaticKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/StaticKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/CharKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/CharKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/VoidKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/VoidKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/InterfaceKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/InterfaceKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/StrictfpKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/StrictfpKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/TryKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/TryKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/GotoKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/GotoKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/CatchKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/CatchKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/AbstractKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/AbstractKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ProtectedKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ProtectedKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ByteKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ByteKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/FinallyKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/FinallyKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ImportKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ImportKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/PublicKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/PublicKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/PrivateKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/PrivateKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThrowsKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThrowsKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/FloatKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/FloatKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SynchronizedKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SynchronizedKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/NativeKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/NativeKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/WhileKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/WhileKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ForKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ForKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/InstanceofKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/InstanceofKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/DefaultKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/DefaultKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ImplementsKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ImplementsKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThrowKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThrowKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/KeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/VolatileKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/VolatileKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/IfKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/IfKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ContinueKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ContinueKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ExtendsKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ExtendsKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/AssertKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/AssertKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/DoubleKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/DoubleKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ReturnKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ReturnKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ShortKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ShortKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/BreakKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/BreakKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SwitchKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SwitchKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/DoKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/DoKeywordToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java.iws" afterPath="$PROJECT_DIR$/java.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/parser/PythonGrammar.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/parser/PythonGrammar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Metasyntactic.iml" afterPath="$PROJECT_DIR$/Metasyntactic.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/BooleanKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/BooleanKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ConstKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ConstKeywordToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/IntKeywordToken.java" afterPath="$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/IntKeywordToken.java" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -164,99 +201,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JavaParserGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
+      <file leaf-file-name="SwitchKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SwitchKeywordToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="584" column="7" selection-start="25811" selection-end="25811" vertical-scroll-proportion="0.2863158">
+            <state line="12" column="29" selection-start="376" selection-end="376" vertical-scroll-proportion="0.29387754">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractJavaGeneratedParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
+      <file leaf-file-name="SynchronizedKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SynchronizedKeywordToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.053452116">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaGeneratedParser.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGeneratedParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="373" selection-end="373" vertical-scroll-proportion="0.34285715">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaToken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="21" selection-start="2328" selection-end="2328" vertical-scroll-proportion="-0.1755102">
+            <state line="12" column="35" selection-start="412" selection-end="412" vertical-scroll-proportion="0.29387754">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PythonGrammar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/parser/PythonGrammar.java">
+      <file leaf-file-name="ThisKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThisKeywordToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="3" selection-start="1392" selection-end="1392" vertical-scroll-proportion="0.43157893">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaGrammar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="699" column="0" selection-start="35078" selection-end="35078" vertical-scroll-proportion="0.30526316">
+            <state line="12" column="27" selection-start="364" selection-end="364" vertical-scroll-proportion="0.29387754">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LeftRecursivePackratParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/LeftRecursivePackratParser.java">
+      <file leaf-file-name="ThrowKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThrowKeywordToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="8" selection-start="4495" selection-end="4495" vertical-scroll-proportion="3.3347368">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GrammarNodeWriter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="265" column="0" selection-start="8846" selection-end="8846" vertical-scroll-proportion="3.8147368">
+            <state line="12" column="28" selection-start="370" selection-end="370" vertical-scroll-proportion="0.29387754">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Nodes.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
+      <file leaf-file-name="ThrowsKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThrowsKeywordToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="203" column="42" selection-start="9038" selection-end="9038" vertical-scroll-proportion="0.4463158">
+            <state line="12" column="29" selection-start="376" selection-end="376" vertical-scroll-proportion="0.29387754">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParserGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/ParserGenerator.java">
+      <file leaf-file-name="TransientKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/TransientKeywordToken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="17" selection-start="234" selection-end="234" vertical-scroll-proportion="0.22040816">
+            <state line="9" column="3" selection-start="326" selection-end="399" vertical-scroll-proportion="0.22040816">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TryKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/TryKeywordToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="26" selection-start="358" selection-end="358" vertical-scroll-proportion="0.29387754">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VoidKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/VoidKeywordToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="27" selection-start="364" selection-end="364" vertical-scroll-proportion="0.29387754">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VolatileKeywordToken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/VolatileKeywordToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="31" selection-start="388" selection-end="388" vertical-scroll-proportion="0.29387754">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WhileKeywordToken.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/WhileKeywordToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="308" selection-end="308" vertical-scroll-proportion="0.26938775">
               <folding />
             </state>
           </provider>
@@ -681,6 +710,86 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Projects/metasyntactic/trunk/java/org/metasyntactic/automata/compiler/java/scanner/keywords" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -1213,7 +1322,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="22" width="1238" height="878" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -1230,7 +1339,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="8" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2754967" order="2" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2754967" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3112583" order="4" />
@@ -1304,123 +1413,115 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/NewlineToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/PublicKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="20" selection-start="250" selection-end="250" vertical-scroll-proportion="0.29333332">
+        <state line="12" column="29" selection-start="376" selection-end="376" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/IdentifierToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ReturnKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="20" selection-start="258" selection-end="258" vertical-scroll-proportion="0.2907489">
+        <state line="12" column="29" selection-start="376" selection-end="376" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/PythonToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ShortKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="4" selection-start="1155" selection-end="1155" vertical-scroll-proportion="1.025057">
+        <state line="12" column="28" selection-start="370" selection-end="370" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/scanner/literals/LiteralToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/StaticKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="19" selection-start="628" selection-end="628" vertical-scroll-proportion="0.64285713">
+        <state line="12" column="29" selection-start="376" selection-end="376" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/expressions/Expression.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/StrictfpKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="57" selection-start="2418" selection-end="2418" vertical-scroll-proportion="0.44191343">
+        <state line="12" column="31" selection-start="388" selection-end="388" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/IdentifierToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SuperKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="20" selection-start="249" selection-end="249" vertical-scroll-proportion="0.26938775">
+        <state line="12" column="28" selection-start="370" selection-end="370" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/LeftRecursivePackratParser.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SwitchKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="8" selection-start="4495" selection-end="4495" vertical-scroll-proportion="3.3347368">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGrammar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="699" column="0" selection-start="35078" selection-end="35078" vertical-scroll-proportion="0.30526316">
+        <state line="12" column="29" selection-start="376" selection-end="376" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/python/parser/PythonGrammar.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/SynchronizedKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="3" selection-start="1392" selection-end="1392" vertical-scroll-proportion="0.43157893">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="0" selection-start="8846" selection-end="8846" vertical-scroll-proportion="3.8147368">
+        <state line="12" column="35" selection-start="412" selection-end="412" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThisKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="203" column="42" selection-start="9038" selection-end="9038" vertical-scroll-proportion="0.4463158">
+        <state line="12" column="27" selection-start="364" selection-end="364" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/ParserGenerator.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThrowKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="234" selection-end="234" vertical-scroll-proportion="0.22040816">
+        <state line="12" column="28" selection-start="370" selection-end="370" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/ThrowsKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="584" column="7" selection-start="25811" selection-end="25811" vertical-scroll-proportion="0.2863158">
+        <state line="12" column="29" selection-start="376" selection-end="376" vertical-scroll-proportion="0.29387754">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/JavaToken.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/TransientKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="21" selection-start="2328" selection-end="2328" vertical-scroll-proportion="-0.1755102">
+        <state line="9" column="3" selection-start="326" selection-end="399" vertical-scroll-proportion="0.22040816">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/TryKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.053452116">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="12" column="26" selection-start="358" selection-end="358" vertical-scroll-proportion="0.29387754">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/JavaGeneratedParser.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/VoidKeywordToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="373" selection-end="373" vertical-scroll-proportion="0.34285715">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="12" column="27" selection-start="364" selection-end="364" vertical-scroll-proportion="0.29387754">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/VolatileKeywordToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="31" selection-start="388" selection-end="388" vertical-scroll-proportion="0.29387754">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/scanner/keywords/WhileKeywordToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="308" selection-end="308" vertical-scroll-proportion="0.26938775">
+          <folding />
         </state>
       </provider>
     </entry>

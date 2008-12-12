@@ -8,4 +8,8 @@ public class StrictfpKeywordToken extends KeywordToken {
   private StrictfpKeywordToken() {
     super("strictfp");
   }
+
+  protected Type getTokenType() {
+    return Type.StrictfpKeyword;
+  }
 }

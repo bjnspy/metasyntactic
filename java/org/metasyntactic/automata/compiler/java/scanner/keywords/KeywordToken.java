@@ -1,42 +1,74 @@
 package org.metasyntactic.automata.compiler.java.scanner.keywords;
 
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public abstract class KeywordToken extends JavaToken {
   private final static Map<String, KeywordToken> map = new HashMap<String, KeywordToken>();
-  private final static Set<Class<? extends Token>> tokenClasses = new LinkedHashSet<Class<? extends Token>>();
 
   static {
-    if (true) {
-      for (String keyword : getKeywords()) {
-        String className = Character.toUpperCase(keyword.charAt(0)) + keyword.substring(1) + "KeywordToken";
+    KeywordToken[] tokens = new KeywordToken[]{
+        AbstractKeywordToken.instance,
+        ContinueKeywordToken.instance,
+        ForKeywordToken.instance,
+        NewKeywordToken.instance,
+        SwitchKeywordToken.instance,
+        AssertKeywordToken.instance,
+        DefaultKeywordToken.instance,
+        IfKeywordToken.instance,
+        PackageKeywordToken.instance,
+        SynchronizedKeywordToken.instance,
+        BooleanKeywordToken.instance,
+        DoKeywordToken.instance,
+        GotoKeywordToken.instance,
+        PrivateKeywordToken.instance,
+        ThisKeywordToken.instance,
+        BreakKeywordToken.instance,
+        DoubleKeywordToken.instance,
+        ImplementsKeywordToken.instance,
+        ProtectedKeywordToken.instance,
+        ThrowKeywordToken.instance,
+        ByteKeywordToken.instance,
+        ElseKeywordToken.instance,
+        ImportKeywordToken.instance,
+        PublicKeywordToken.instance,
+        ThrowsKeywordToken.instance,
+        CaseKeywordToken.instance,
+        EnumKeywordToken.instance,
+        InstanceofKeywordToken.instance,
+        ReturnKeywordToken.instance,
+        TransientKeywordToken.instance,
+        CatchKeywordToken.instance,
+        ExtendsKeywordToken.instance,
+        IntKeywordToken.instance,
+        ShortKeywordToken.instance,
+        TryKeywordToken.instance,
+        CharKeywordToken.instance,
+        FinalKeywordToken.instance,
+        InterfaceKeywordToken.instance,
+        StaticKeywordToken.instance,
+        VoidKeywordToken.instance,
+        ClassKeywordToken.instance,
+        FinallyKeywordToken.instance,
+        LongKeywordToken.instance,
+        StrictfpKeywordToken.instance,
+        VolatileKeywordToken.instance,
+        ConstKeywordToken.instance,
+        FloatKeywordToken.instance,
+        NativeKeywordToken.instance,
+        SuperKeywordToken.instance,
+        WhileKeywordToken.instance
+    };
 
-        try {
-          Class clazz = Class.forName(KeywordToken.class.getPackage().getName() + "." + className);
-
-          KeywordToken token = (KeywordToken) clazz.getField("instance").get(null);
-
-          map.put(keyword, token);
-          tokenClasses.add(clazz);
-        } catch (ClassNotFoundException e) {
-          throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-          throw new RuntimeException(e);
-        } catch (NoSuchFieldException e) {
-          throw new RuntimeException(e);
-        }
-      }
+    Set<String> keywords = new LinkedHashSet<String>(Arrays.asList(getKeywords()));
+    if (keywords.size() != tokens.length) {
+      throw new IllegalStateException();
     }
-  }
 
-  public static Set<Class<? extends Token>> getTokenClasses() {
-    return tokenClasses;
+    for (KeywordToken token : tokens) {
+      map.put(token.getText(), token);
+    }
   }
 
   protected KeywordToken(String text) {
@@ -106,24 +138,5 @@ public abstract class KeywordToken extends JavaToken {
         "super",
         "while"
     };
-  }
-
-  private Type type;
-
-  protected Type getTokenType() {
-    if (type == null) {
-      String name = this.getClass().getSimpleName();
-      name = name.substring(0, name.length() - "Token".length());
-
-      try {
-        type = (Type) Type.class.getField(name).get(null);
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e);
-      } catch (NoSuchFieldException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    return type;
   }
 }

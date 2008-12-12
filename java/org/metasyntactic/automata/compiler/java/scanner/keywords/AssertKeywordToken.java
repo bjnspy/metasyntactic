@@ -8,4 +8,8 @@ public class AssertKeywordToken extends KeywordToken {
   private AssertKeywordToken() {
     super("assert");
   }
+
+  protected Type getTokenType() {
+    return Type.AssertKeyword;
+  }
 }

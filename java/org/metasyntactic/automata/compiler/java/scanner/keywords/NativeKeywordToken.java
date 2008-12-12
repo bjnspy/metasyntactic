@@ -8,4 +8,8 @@ public class NativeKeywordToken extends KeywordToken {
   private NativeKeywordToken() {
     super("native");
   }
+
+  protected Type getTokenType() {
+    return Type.NativeKeyword;
+  }
 }

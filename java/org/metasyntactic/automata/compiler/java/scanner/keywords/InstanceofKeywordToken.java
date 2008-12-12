@@ -8,4 +8,8 @@ public class InstanceofKeywordToken extends KeywordToken {
   private InstanceofKeywordToken() {
     super("instanceof");
   }
+
+  protected Type getTokenType() {
+    return Type.InstanceofKeyword;
+  }
 }

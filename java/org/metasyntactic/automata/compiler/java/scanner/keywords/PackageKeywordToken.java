@@ -8,4 +8,8 @@ public class PackageKeywordToken extends KeywordToken {
   private PackageKeywordToken() {
     super("package");
   }
+
+  protected Type getTokenType() {
+    return Type.PackageKeyword;
+  }
 }

@@ -8,4 +8,8 @@ public class SynchronizedKeywordToken extends KeywordToken {
   private SynchronizedKeywordToken() {
     super("synchronized");
   }
+
+  protected Type getTokenType() {
+    return Type.SynchronizedKeyword;
+  }
 }

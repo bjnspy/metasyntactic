@@ -8,4 +8,8 @@ public class VolatileKeywordToken extends KeywordToken {
   private VolatileKeywordToken() {
     super("volatile");
   }
+
+  protected Type getTokenType() {
+    return Type.VolatileKeyword;
+  }
 }

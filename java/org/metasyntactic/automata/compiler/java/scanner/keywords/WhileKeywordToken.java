@@ -8,4 +8,8 @@ public class WhileKeywordToken extends KeywordToken {
   private WhileKeywordToken() {
     super("while");
   }
+
+  protected Type getTokenType() {
+    return Type.WhileKeyword;
+  }
 }
