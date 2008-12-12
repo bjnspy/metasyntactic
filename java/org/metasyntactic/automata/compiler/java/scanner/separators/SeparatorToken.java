@@ -1,9 +1,11 @@
 package org.metasyntactic.automata.compiler.java.scanner.separators;
 
-import org.metasyntactic.automata.compiler.framework.parsers.Token;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA. User: cyrusn Date: Jun 22, 2008 Time: 6:59:45 PM To change this template use File |
@@ -11,55 +13,41 @@ import java.util.*;
  */
 public abstract class SeparatorToken extends JavaToken {
   private final static Map<String, SeparatorToken> map = new LinkedHashMap<String, SeparatorToken>();
-  public final static Set<Class<? extends Token>> tokenClasses = new LinkedHashSet<Class<? extends Token>>();
 
   static {
-    Class[] classes = new Class[]{
-        AtSeparatorToken.class,
-        LeftParenthesisSeparatorToken.class,
-        RightParenthesisSeparatorToken.class,
-        LeftBracketSeparatorToken.class,
-        RightBracketSeparatorToken.class,
-        LeftCurlySeparatorToken.class,
-        RightCurlySeparatorToken.class,
-        SemicolonSeparatorToken.class,
-        CommaSeparatorToken.class,
-        DotSeparatorToken.class,
-        EllipsisSeparatorToken.class
+    SeparatorToken[] tokens = new SeparatorToken[]{
+        AtSeparatorToken.instance,
+        LeftParenthesisSeparatorToken.instance,
+        RightParenthesisSeparatorToken.instance,
+        LeftBracketSeparatorToken.instance,
+        RightBracketSeparatorToken.instance,
+        LeftCurlySeparatorToken.instance,
+        RightCurlySeparatorToken.instance,
+        SemicolonSeparatorToken.instance,
+        CommaSeparatorToken.instance,
+        DotSeparatorToken.instance,
+        EllipsisSeparatorToken.instance
     };
 
     List<String> separators = Arrays.asList(getSeparators());
 
-    if (classes.length != separators.size()) {
+    if (tokens.length != separators.size()) {
       throw new IllegalStateException();
     }
 
-    for (Class clazz : classes) {
-      try {
-        SeparatorToken token = (SeparatorToken) clazz.getField("instance").get(null);
-        String separator = token.getText();
+    for (SeparatorToken token : tokens) {
+      String separator = token.getText();
 
-        if (!separators.contains(separator)) {
-          throw new IllegalStateException();
-        }
-
-        if (map.containsKey(separator)) {
-          throw new IllegalStateException();
-        }
-
-        map.put(separator, token);
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e);
-      } catch (NoSuchFieldException e) {
-        throw new RuntimeException(e);
+      if (!separators.contains(separator)) {
+        throw new IllegalStateException();
       }
+
+      if (map.containsKey(separator)) {
+        throw new IllegalStateException();
+      }
+
+      map.put(separator, token);
     }
-
-    tokenClasses.addAll(Arrays.<Class<? extends Token>>asList(classes));
-  }
-
-  public static Set<Class<? extends Token>> getTokenClasses() {
-    return tokenClasses;
   }
 
   protected SeparatorToken(String text) {
@@ -80,24 +68,5 @@ public abstract class SeparatorToken extends JavaToken {
     }
 
     return token;
-  }
-
-  private Type type;
-
-  protected Type getTokenType() {
-    if (type == null) {
-      String name = this.getClass().getSimpleName();
-      name = name.substring(0, name.length() - "Token".length());
-
-      try {
-        type = (Type) Type.class.getField(name).get(null);
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e);
-      } catch (NoSuchFieldException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    return type;
   }
 }

@@ -6,4 +6,8 @@ public class ModulusOperatorToken extends OperatorToken {
   private ModulusOperatorToken() {
     super("%");
   }
+
+  protected Type getTokenType() {
+    return Type.ModulusOperator;
+  }
 }

@@ -6,4 +6,8 @@ public class NotEqualsOperatorToken extends OperatorToken {
   private NotEqualsOperatorToken() {
     super("!=");
   }
+
+  protected Type getTokenType() {
+    return Type.NotEqualsOperator;
+  }
 }

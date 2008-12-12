@@ -6,4 +6,8 @@ public class BitwiseExclusiveOrOperatorToken extends OperatorToken {
   private BitwiseExclusiveOrOperatorToken() {
     super("^");
   }
+
+  protected Type getTokenType() {
+    return Type.BitwiseExclusiveOrOperator;
+  }
 }

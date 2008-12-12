@@ -6,4 +6,8 @@ public class BitwiseOrOperatorToken extends OperatorToken {
   private BitwiseOrOperatorToken() {
     super("|");
   }
+
+  protected Type getTokenType() {
+    return Type.BitwiseOrOperator;
+  }
 }

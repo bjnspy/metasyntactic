@@ -6,4 +6,8 @@ public class LogicalOrOperatorToken extends OperatorToken {
   private LogicalOrOperatorToken() {
     super("||");
   }
+
+  protected Type getTokenType() {
+    return Type.LogicalOrOperator;
+  }
 }

@@ -6,4 +6,8 @@ public class LeftBracketSeparatorToken extends SeparatorToken {
   private LeftBracketSeparatorToken() {
     super("[");
   }
+
+  protected Type getTokenType() {
+    return Type.LeftBracketSeparator;
+  }
 }

@@ -6,4 +6,8 @@ public class QuestionMarkOperatorToken extends OperatorToken {
   private QuestionMarkOperatorToken() {
     super("?");
   }
+
+  protected Type getTokenType() {
+    return Type.QuestionMarkOperator;
+  }
 }

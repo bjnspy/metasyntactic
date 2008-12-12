@@ -6,4 +6,8 @@ public class OrEqualsOperatorToken extends OperatorToken {
   private OrEqualsOperatorToken() {
     super("|=");
   }
+
+  protected Type getTokenType() {
+    return Type.OrEqualsOperator;
+  }
 }

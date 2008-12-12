@@ -6,4 +6,8 @@ public class ColonOperatorToken extends OperatorToken {
   private ColonOperatorToken() {
     super(":");
   }
+
+  protected Type getTokenType() {
+    return Type.ColonOperator;
+  }
 }

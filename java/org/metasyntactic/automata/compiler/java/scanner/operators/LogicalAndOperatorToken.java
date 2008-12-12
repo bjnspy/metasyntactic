@@ -6,4 +6,8 @@ public class LogicalAndOperatorToken extends OperatorToken {
   private LogicalAndOperatorToken() {
     super("&&");
   }
+
+  protected Type getTokenType() {
+    return Type.LogicalAndOperator;
+  }
 }

@@ -6,4 +6,8 @@ public class DecrementOperatorToken extends OperatorToken {
   private DecrementOperatorToken() {
     super("--");
   }
+
+  protected Type getTokenType() {
+    return Type.DecrementOperator;
+  }
 }

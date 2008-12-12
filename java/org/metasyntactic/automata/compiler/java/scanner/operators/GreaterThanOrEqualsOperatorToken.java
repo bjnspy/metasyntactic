@@ -6,4 +6,8 @@ public class GreaterThanOrEqualsOperatorToken extends OperatorToken {
   private GreaterThanOrEqualsOperatorToken() {
     super(">=");
   }
+
+  protected Type getTokenType() {
+    return Type.GreaterThanOrEqualsOperator;
+  }
 }

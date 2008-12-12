@@ -6,4 +6,8 @@ public class ExclusiveOrEqualsOperatorToken extends OperatorToken {
   private ExclusiveOrEqualsOperatorToken() {
     super("^=");
   }
+
+  protected Type getTokenType() {
+    return Type.ExclusiveOrEqualsOperator;
+  }
 }

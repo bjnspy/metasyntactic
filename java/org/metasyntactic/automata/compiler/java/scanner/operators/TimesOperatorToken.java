@@ -6,4 +6,8 @@ public class TimesOperatorToken extends OperatorToken {
   private TimesOperatorToken() {
     super("*");
   }
+
+  protected Type getTokenType() {
+    return Type.TimesOperator;
+  }
 }

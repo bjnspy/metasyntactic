@@ -6,4 +6,8 @@ public class MinusEqualsOperatorToken extends OperatorToken {
   private MinusEqualsOperatorToken() {
     super("-=");
   }
+
+  protected Type getTokenType() {
+    return Type.MinusEqualsOperator;
+  }
 }

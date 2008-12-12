@@ -6,4 +6,8 @@ public class DotSeparatorToken extends SeparatorToken {
   private DotSeparatorToken() {
     super(".");
   }
+
+  protected Type getTokenType() {
+    return Type.DotSeparator;
+  }
 }

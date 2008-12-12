@@ -6,4 +6,8 @@ public class BitwiseNotOperatorToken extends OperatorToken {
   private BitwiseNotOperatorToken() {
     super("~");
   }
+
+  protected Type getTokenType() {
+    return Type.BitwiseNotOperator;
+  }
 }

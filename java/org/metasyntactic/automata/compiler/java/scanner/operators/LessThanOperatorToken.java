@@ -6,4 +6,8 @@ public class LessThanOperatorToken extends OperatorToken {
   private LessThanOperatorToken() {
     super("<");
   }
+
+  protected Type getTokenType() {
+    return Type.LessThanOperator;
+  }
 }

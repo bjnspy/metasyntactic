@@ -8,4 +8,8 @@ public class AtSeparatorToken extends SeparatorToken {
   private AtSeparatorToken() {
     super("@");
   }
+
+  protected Type getTokenType() {
+    return Type.AtSeparator;
+  }
 }

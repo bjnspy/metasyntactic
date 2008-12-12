@@ -6,4 +6,8 @@ public class AndEqualsOperatorToken extends OperatorToken {
   private AndEqualsOperatorToken() {
     super("&=");
   }
+
+  protected Type getTokenType() {
+    return Type.AndEqualsOperator;
+  }
 }

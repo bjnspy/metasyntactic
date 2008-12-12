@@ -6,4 +6,8 @@ public class EqualsEqualsOperatorToken extends OperatorToken {
   private EqualsEqualsOperatorToken() {
     super("==");
   }
+
+  protected Type getTokenType() {
+    return Type.EqualsEqualsOperator;
+  }
 }

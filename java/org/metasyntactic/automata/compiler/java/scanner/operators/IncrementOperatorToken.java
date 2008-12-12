@@ -6,4 +6,8 @@ public class IncrementOperatorToken extends OperatorToken {
   private IncrementOperatorToken() {
     super("++");
   }
+
+  protected Type getTokenType() {
+    return Type.IncrementOperator;
+  }
 }

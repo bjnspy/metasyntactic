@@ -6,4 +6,8 @@ public class RightParenthesisSeparatorToken extends SeparatorToken {
   private RightParenthesisSeparatorToken() {
     super(")");
   }
+
+  protected Type getTokenType() {
+    return Type.RightParenthesisSeparator;
+  }
 }

@@ -6,4 +6,8 @@ public class EllipsisSeparatorToken extends SeparatorToken {
   private EllipsisSeparatorToken() {
     super("...");
   }
+
+  protected Type getTokenType() {
+    return Type.EllipsisSeparator;
+  }
 }
