@@ -8,4 +8,8 @@ public class EnumKeywordToken extends KeywordToken {
   private EnumKeywordToken() {
     super("enum");
   }
+
+  protected Type getTokenType() {
+    return Type.EnumKeyword;
+  }
 }

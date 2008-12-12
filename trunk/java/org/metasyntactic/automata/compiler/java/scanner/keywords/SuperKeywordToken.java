@@ -8,4 +8,8 @@ public class SuperKeywordToken extends KeywordToken {
   private SuperKeywordToken() {
     super("super");
   }
+
+  protected Type getTokenType() {
+    return Type.SuperKeyword;
+  }
 }

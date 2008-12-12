@@ -8,4 +8,8 @@ public class DefaultKeywordToken extends KeywordToken {
   private DefaultKeywordToken() {
     super("default");
   }
+
+  protected Type getTokenType() {
+    return Type.DefaultKeyword;
+  }
 }

@@ -8,4 +8,8 @@ public class BreakKeywordToken extends KeywordToken {
   private BreakKeywordToken() {
     super("break");
   }
+
+  protected Type getTokenType() {
+    return Type.BreakKeyword;
+  }
 }

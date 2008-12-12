@@ -8,4 +8,8 @@ public class ConstKeywordToken extends KeywordToken {
   private ConstKeywordToken() {
     super("const");
   }
+
+  protected Type getTokenType() {
+    return Type.ConstKeyword;
+  }
 }

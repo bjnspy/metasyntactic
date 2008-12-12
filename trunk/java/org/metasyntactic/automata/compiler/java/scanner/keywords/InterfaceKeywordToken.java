@@ -8,4 +8,8 @@ public class InterfaceKeywordToken extends KeywordToken {
   private InterfaceKeywordToken() {
     super("interface");
   }
+
+  protected Type getTokenType() {
+    return Type.InterfaceKeyword;
+  }
 }

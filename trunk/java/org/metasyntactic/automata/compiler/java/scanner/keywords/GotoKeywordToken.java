@@ -8,4 +8,8 @@ public class GotoKeywordToken extends KeywordToken {
   private GotoKeywordToken() {
     super("goto");
   }
+
+  protected Type getTokenType() {
+    return Type.GotoKeyword;
+  }
 }

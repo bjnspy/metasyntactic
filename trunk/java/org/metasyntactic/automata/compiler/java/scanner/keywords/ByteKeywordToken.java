@@ -8,4 +8,8 @@ public class ByteKeywordToken extends KeywordToken {
   private ByteKeywordToken() {
     super("byte");
   }
+
+  protected Type getTokenType() {
+    return Type.ByteKeyword;
+  }
 }

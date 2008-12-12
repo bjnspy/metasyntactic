@@ -8,4 +8,8 @@ public class ThrowsKeywordToken extends KeywordToken {
   private ThrowsKeywordToken() {
     super("throws");
   }
+
+  protected Type getTokenType() {
+    return Type.ThrowsKeyword;
+  }
 }

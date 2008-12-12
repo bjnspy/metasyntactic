@@ -8,4 +8,8 @@ public class IntKeywordToken extends KeywordToken {
   private IntKeywordToken() {
     super("int");
   }
+
+  protected Type getTokenType() {
+    return Type.IntKeyword;
+  }
 }

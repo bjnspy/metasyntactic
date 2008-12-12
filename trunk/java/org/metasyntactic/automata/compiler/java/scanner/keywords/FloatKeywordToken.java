@@ -8,4 +8,8 @@ public class FloatKeywordToken extends KeywordToken {
   private FloatKeywordToken() {
     super("float");
   }
+
+  protected Type getTokenType() {
+    return Type.FloatKeyword;
+  }
 }

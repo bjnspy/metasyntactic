@@ -8,4 +8,8 @@ public class CharKeywordToken extends KeywordToken {
   private CharKeywordToken() {
     super("char");
   }
+
+  protected Type getTokenType() {
+    return Type.CharKeyword;
+  }
 }

@@ -8,4 +8,8 @@ public class ContinueKeywordToken extends KeywordToken {
   private ContinueKeywordToken() {
     super("continue");
   }
+
+  protected Type getTokenType() {
+    return Type.ContinueKeyword;
+  }
 }

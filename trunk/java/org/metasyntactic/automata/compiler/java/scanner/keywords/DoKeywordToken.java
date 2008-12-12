@@ -8,4 +8,8 @@ public class DoKeywordToken extends KeywordToken {
   private DoKeywordToken() {
     super("do");
   }
+
+  protected Type getTokenType() {
+    return Type.DoKeyword;
+  }
 }

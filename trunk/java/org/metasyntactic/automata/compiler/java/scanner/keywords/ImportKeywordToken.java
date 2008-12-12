@@ -8,4 +8,8 @@ public class ImportKeywordToken extends KeywordToken {
   private ImportKeywordToken() {
     super("import");
   }
+
+  protected Type getTokenType() {
+    return Type.ImportKeyword;
+  }
 }

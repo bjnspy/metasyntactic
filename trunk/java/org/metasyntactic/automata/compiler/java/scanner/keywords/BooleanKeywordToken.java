@@ -8,4 +8,8 @@ public class BooleanKeywordToken extends KeywordToken {
   private BooleanKeywordToken() {
     super("boolean");
   }
+
+  protected Type getTokenType() {
+    return Type.BooleanKeyword;
+  }
 }

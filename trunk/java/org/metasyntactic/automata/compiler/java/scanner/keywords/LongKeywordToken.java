@@ -8,4 +8,8 @@ public class LongKeywordToken extends KeywordToken {
   private LongKeywordToken() {
     super("long");
   }
+
+  protected Type getTokenType() {
+    return Type.LongKeyword;
+  }
 }

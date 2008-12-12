@@ -8,4 +8,8 @@ public class ForKeywordToken extends KeywordToken {
   private ForKeywordToken() {
     super("for");
   }
+
+  protected Type getTokenType() {
+    return Type.ForKeyword;
+  }
 }

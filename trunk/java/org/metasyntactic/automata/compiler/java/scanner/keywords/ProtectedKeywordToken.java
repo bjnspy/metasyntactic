@@ -8,4 +8,8 @@ public class ProtectedKeywordToken extends KeywordToken {
   private ProtectedKeywordToken() {
     super("protected");
   }
+
+  protected Type getTokenType() {
+    return Type.ProtectedKeyword;
+  }
 }

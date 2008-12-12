@@ -8,4 +8,8 @@ public class AbstractKeywordToken extends KeywordToken {
   private AbstractKeywordToken() {
     super("abstract");
   }
+
+  protected Type getTokenType() {
+    return Type.AbstractKeyword;
+  }
 }

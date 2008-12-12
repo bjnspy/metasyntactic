@@ -8,4 +8,8 @@ public class ReturnKeywordToken extends KeywordToken {
   private ReturnKeywordToken() {
     super("return");
   }
+
+  protected Type getTokenType() {
+    return Type.ReturnKeyword;
+  }
 }

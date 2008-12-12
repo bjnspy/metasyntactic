@@ -8,4 +8,8 @@ public class TransientKeywordToken extends KeywordToken {
   private TransientKeywordToken() {
     super("transient");
   }
+
+  protected Type getTokenType() {
+    return Type.TransientKeyword;
+  }
 }

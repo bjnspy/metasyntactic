@@ -8,4 +8,8 @@ public class PrivateKeywordToken extends KeywordToken {
   private PrivateKeywordToken() {
     super("private");
   }
+
+  protected Type getTokenType() {
+    return Type.PrivateKeyword;
+  }
 }

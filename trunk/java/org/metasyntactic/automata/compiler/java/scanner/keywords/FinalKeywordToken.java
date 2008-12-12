@@ -8,4 +8,8 @@ public class FinalKeywordToken extends KeywordToken {
   private FinalKeywordToken() {
     super("final");
   }
+
+  protected Type getTokenType() {
+    return Type.FinalKeyword;
+  }
 }

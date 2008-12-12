@@ -8,4 +8,8 @@ public class NewKeywordToken extends KeywordToken {
   private NewKeywordToken() {
     super("new");
   }
+
+  protected Type getTokenType() {
+    return Type.NewKeyword;
+  }
 }

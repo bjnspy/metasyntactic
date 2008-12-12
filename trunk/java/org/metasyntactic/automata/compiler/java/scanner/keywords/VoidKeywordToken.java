@@ -8,4 +8,8 @@ public class VoidKeywordToken extends KeywordToken {
   private VoidKeywordToken() {
     super("void");
   }
+
+  protected Type getTokenType() {
+    return Type.VoidKeyword;
+  }
 }

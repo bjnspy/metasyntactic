@@ -8,4 +8,8 @@ public class DoubleKeywordToken extends KeywordToken {
   private DoubleKeywordToken() {
     super("double");
   }
+
+  protected Type getTokenType() {
+    return Type.DoubleKeyword;
+  }
 }

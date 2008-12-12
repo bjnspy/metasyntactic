@@ -8,4 +8,8 @@ public class CaseKeywordToken extends KeywordToken {
   private CaseKeywordToken() {
     super("case");
   }
+
+  protected Type getTokenType() {
+    return Type.CaseKeyword;
+  }
 }
