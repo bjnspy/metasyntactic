@@ -33,4 +33,13 @@ public class ArrayDelimitedList<TExpression, TDelimiter> implements DelimitedLis
   public List<TDelimiter> getDelimiters() {
     return delimiters;
   }
+
+  public void addTo(List<Object> list) {
+    for (int i = 0; i < elements.size(); i++) {
+      list.add(elements.get(i));
+      if (i < delimiters.size()) {
+        list.add(delimiters.get(i));
+      }
+    }
+  }
 }

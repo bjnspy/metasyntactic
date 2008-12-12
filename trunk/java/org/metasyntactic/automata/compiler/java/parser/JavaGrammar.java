@@ -54,9 +54,9 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
   private static void addArrays(Set<Rule> rules) {
     rules.add(new Rule("ArrayInitializer",
                        sequence(token(LeftCurlySeparatorToken.instance),
-                                delimitedOptionalList(variable("VariableInitializer"),
-                                                      token(CommaSeparatorToken.instance)),
-                                optional(token(CommaSeparatorToken.instance)),
+                                optionalDelimitedList(variable("VariableInitializer"),
+                                                      token(CommaSeparatorToken.instance),
+                                                      true),
                                 token(RightCurlySeparatorToken.instance))));
 
     rules.add(new Rule("VariableInitializer", choice(variable("ArrayInitializer"), variable("Expression"))));
@@ -153,8 +153,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("EnumBody",
                        sequence(token(LeftCurlySeparatorToken.instance),
-                                delimitedOptionalList(variable("EnumConstant"), token(CommaSeparatorToken.instance)),
-                                optional(token(CommaSeparatorToken.instance)),
+                                optionalDelimitedList(variable("EnumConstant"), token(CommaSeparatorToken.instance), true),
                                 optional(token(SemicolonSeparatorToken.instance)),
                                 repetition(variable("ClassBodyDeclaration")),
                                 token(RightCurlySeparatorToken.instance))));
@@ -209,7 +208,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                                 optional(variable("TypeParameters")),
                                 identifier(),
                                 token(LeftParenthesisSeparatorToken.instance),
-                                delimitedOptionalList(variable("FormalParameter"), token(CommaSeparatorToken.instance)),
+                                optionalDelimitedList(variable("FormalParameter"), token(CommaSeparatorToken.instance)),
                                 token(RightParenthesisSeparatorToken.instance),
                                 optional(variable("Throws")),
                                 variable("Block"))));
@@ -247,7 +246,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                                 variable("Type"),
                                 identifier(),
                                 token(LeftParenthesisSeparatorToken.instance),
-                                delimitedOptionalList(variable("FormalParameter"), token(CommaSeparatorToken.instance)),
+                                optionalDelimitedList(variable("FormalParameter"), token(CommaSeparatorToken.instance)),
                                 token(RightParenthesisSeparatorToken.instance),
                                 repetition(variable("BracketPair")),
                                 optional(variable("Throws")),
@@ -333,17 +332,6 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
     rules.add(new Rule("InstanceofOperatorBinaryExpressionRest",
                        sequence(token(InstanceofKeywordToken.instance),
                                 variable("Type"))));
-
-    /*
-        choice(
-            sequence(
-                variable("Expression3"),
-                token(InstanceofKeywordToken.instance),
-                variable("Type")
-            ),
-            delimitedList(variable("Expression3"), choice(variable("InfixOperator"), va)
-        )));
-        */
 
     rules.add(new Rule("InfixOperator",
                        choice(token(LogicalOrOperatorToken.instance),
@@ -768,22 +756,13 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                                 variable("Block"))));
   }
 
-  private static Expression delimitedOptionalList(Expression element, Expression delimiter) {
+  private static Expression optionalDelimitedList(Expression element, Expression delimiter) {
     return optional(delimitedList(element, delimiter));
   }
 
-  /*
-  private static Expression delimitedList(Expression element, Expression delimiter) {
-    return delimite
-    return sequence(
-        element,
-        repetition(sequence(
-            delimiter,
-            element
-        ))
-    );
+  private static Expression optionalDelimitedList(Expression element, Expression delimiter, boolean allowsTrailingDelimiter) {
+    return optional(delimitedList(element, delimiter, allowsTrailingDelimiter));
   }
-  */
 
   private static void addCompilationUnit(Set<Rule> rules) {
     rules.add(new Rule("PackageDeclaration",
@@ -843,7 +822,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
                        sequence(token(AtSeparatorToken.instance),
                                 variable("QualifiedIdentifier"),
                                 token(LeftParenthesisSeparatorToken.instance),
-                                delimitedOptionalList(variable("ElementValuePair"),
+                                optionalDelimitedList(variable("ElementValuePair"),
                                                       token(CommaSeparatorToken.instance)),
                                 token(RightParenthesisSeparatorToken.instance))));
 
@@ -871,8 +850,9 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("ElementValueArrayInitializer",
                        sequence(token(LeftCurlySeparatorToken.instance),
-                                delimitedOptionalList(variable("ElementValue"), token(
-                                    CommaSeparatorToken.instance)),
+                                optionalDelimitedList(variable("ElementValue"),
+                                                      token(CommaSeparatorToken.instance),
+                                                      true),
                                 optional(token(CommaSeparatorToken.instance)),
                                 token(RightCurlySeparatorToken.instance))));
   }
@@ -882,120 +862,6 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
   private JavaGrammar() {
     super(javaStartRule, javaRules);
   }
-/*
-  static long totalInterpreterTime;
-  static long totalParserTime;
-  static long totalLexTime;
-  static long totalFiles;
-  static long totalFileSize;
-
-  public static void main(String... args) throws IOException {
-    System.out.println(JavaGrammar.instance);
-
-    if (true) {
-      //  return;
-    }
-
-    if (false) {
-    } else {
-      //File start = new File("/home/cyrusn/Desktop/classes");
-      File start = new File("/Projects/jdk/Projects/j2se/src/share/classes/");
-      Set<String> files = new LinkedHashSet<String>();
-      collectFiles(start, files);
-
-      for (String file : files) {
-        processFile(new File(file));
-      }
-
-      System.out.println("Total ITime: " + totalInterpreterTime);
-      System.out.println("Total PTime: " + totalParserTime);
-      System.out.println("Total LTime: " + totalLexTime);
-      System.out.println("Total Files: " + totalFiles);
-      System.out.println("Total Size : " + totalFileSize);
-    }
-  }
-
-  private static void collectFiles(File start, Set<String> files) {
-    for (File file : start.listFiles()) {
-      if (file.isDirectory()) {
-        collectFiles(file, files);
-      } else if (file.getName().endsWith(".java")) {
-        files.add(file.getPath());
-      }
-    }
-  }
-
-  private static void processFile(File file) throws IOException {
-    if (file.getName().contains("X-")) {
-      return;
-    }
-
-    totalFiles++;
-    totalFileSize += file.length();
-
-    String input = readFile(file);
-
-    List<SourceToken<JavaToken>> tokens;
-    {
-      long start = System.currentTimeMillis();
-      tokens = new JavaScanner(new Source(input)).scan();
-      long diff = System.currentTimeMillis() - start;
-
-      totalLexTime += diff;
-
-      if (tokens == null) {
-        System.out.println("Couldn't lex: " + file);
-        return;
-      }
-    }
-
-    List<SourceToken<JavaToken>> analyzedTokens = new JavaLexicalAnalyzer().analyze(tokens);
-    {
-      long start = System.currentTimeMillis();
-      JavaParser parser = new JavaParser(analyzedTokens);
-      Object result = parser.parse();
-      long diff = System.currentTimeMillis() - start;
-
-      totalInterpreterTime += diff;
-
-      if (result == null) {
-        System.out.println("Couldn't parse: " + file);
-        return;
-      }
-    }
-
-    {
-      long start = System.currentTimeMillis();
-      JavaGeneratedParser parser = new JavaGeneratedParser((List) analyzedTokens);
-      Object result = parser.parse();
-      long diff = System.currentTimeMillis() - start;
-
-      totalParserTime += diff;
-
-      if (result == null) {
-        System.out.println("Couldn't parse: " + file);
-        return;
-      }
-    }
-
-    System.out.println("Parsed: " + file);
-  }
-
-  public static String readFile(File file) throws IOException {
-    Reader in = new BufferedReader(new FileReader(file));
-
-    StringBuilder sb = new StringBuilder();
-    char[] chars = new char[1 << 16];
-    int length;
-
-    while ((length = in.read(chars)) > 0) {
-      sb.append(chars, 0, length);
-    }
-
-    in.close();
-    return sb.toString();
-  }
-*/
 
   public JavaToken.Type getTokenFromTerminal(int type) {
     return JavaToken.Type.values()[type];

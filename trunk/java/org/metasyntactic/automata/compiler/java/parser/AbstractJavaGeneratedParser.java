@@ -3010,6 +3010,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<IQualifiedIdentifierNode>(true, currentPosition, new QualifiedIdentifierNode(new ArrayDelimitedList<SourceToken<IdentifierToken>, SourceToken<DotSeparatorToken>>(trimList(elements), trimList(delimiters))));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -3382,6 +3383,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<DelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<IClassOrInterfaceTypeNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -3594,8 +3596,11 @@ public abstract class AbstractJavaGeneratedParser {
 
       result = parseEnumConstant(delimiterResult.position);
       if (!result.succeeded) {
+        delimiters = addValue(delimiters, delimiterResult.value);
+        currentPosition = delimiterResult.position;
         return new EvaluationResult<DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -3606,39 +3611,30 @@ public abstract class AbstractJavaGeneratedParser {
     return new EvaluationResult<DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>>>(true, position, null);
   }
   @SuppressWarnings("unchecked")
-  private EvaluationResult<? extends SourceToken<CommaSeparatorToken>> evaluateEnumBodyExpression_2(int position) {
-    EvaluationResult<? extends SourceToken<CommaSeparatorToken>> result;
-    if ((result = evaluateCommaSeparatorToken(position)).succeeded) { return result; }
-    return new EvaluationResult<SourceToken<CommaSeparatorToken>>(true, position, null);
-  }
-  @SuppressWarnings("unchecked")
-  private EvaluationResult<? extends SourceToken<SemicolonSeparatorToken>> evaluateEnumBodyExpression_3(int position) {
+  private EvaluationResult<? extends SourceToken<SemicolonSeparatorToken>> evaluateEnumBodyExpression_2(int position) {
     EvaluationResult<? extends SourceToken<SemicolonSeparatorToken>> result;
     if ((result = evaluateSemicolonSeparatorToken(position)).succeeded) { return result; }
     return new EvaluationResult<SourceToken<SemicolonSeparatorToken>>(true, position, null);
   }
   @SuppressWarnings("unchecked")
-  private EvaluationResult<? extends IEnumBodyNode> evaluateEnumBodyExpression_4(int position) {
+  private EvaluationResult<? extends IEnumBodyNode> evaluateEnumBodyExpression_3(int position) {
     EvaluationResult<? extends SourceToken<LeftCurlySeparatorToken>> result_0 = evaluateLeftCurlySeparatorToken(position);
     if (!result_0.succeeded) { return EvaluationResult.failure(); }
 
     EvaluationResult<? extends DelimitedList<IEnumConstantNode, SourceToken<CommaSeparatorToken>>> result_1 = evaluateEnumBodyExpression_1(result_0.position);
     if (!result_1.succeeded) { return EvaluationResult.failure(); }
 
-    EvaluationResult<? extends SourceToken<CommaSeparatorToken>> result_2 = evaluateEnumBodyExpression_2(result_1.position);
+    EvaluationResult<? extends SourceToken<SemicolonSeparatorToken>> result_2 = evaluateEnumBodyExpression_2(result_1.position);
     if (!result_2.succeeded) { return EvaluationResult.failure(); }
 
-    EvaluationResult<? extends SourceToken<SemicolonSeparatorToken>> result_3 = evaluateEnumBodyExpression_3(result_2.position);
+    EvaluationResult<? extends List<IClassBodyDeclarationNode>> result_3 = evaluateClassBodyExpression_0(result_2.position);
     if (!result_3.succeeded) { return EvaluationResult.failure(); }
 
-    EvaluationResult<? extends List<IClassBodyDeclarationNode>> result_4 = evaluateClassBodyExpression_0(result_3.position);
+    EvaluationResult<? extends SourceToken<RightCurlySeparatorToken>> result_4 = evaluateRightCurlySeparatorToken(result_3.position);
     if (!result_4.succeeded) { return EvaluationResult.failure(); }
 
-    EvaluationResult<? extends SourceToken<RightCurlySeparatorToken>> result_5 = evaluateRightCurlySeparatorToken(result_4.position);
-    if (!result_5.succeeded) { return EvaluationResult.failure(); }
-
-    IEnumBodyNode node = new EnumBodyNode(result_0.value, result_1.value, result_2.value, result_3.value, result_4.value, result_5.value);
-    return new EvaluationResult<IEnumBodyNode>(true, result_5.position, node);
+    IEnumBodyNode node = new EnumBodyNode(result_0.value, result_1.value, result_2.value, result_3.value, result_4.value);
+    return new EvaluationResult<IEnumBodyNode>(true, result_4.position, node);
   }
   @SuppressWarnings("unchecked")
   private EvaluationResult<? extends IArgumentsNode> evaluateEnumConstantExpression_0(int position) {
@@ -3835,6 +3831,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<DelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<IFormalParameterNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -3898,6 +3895,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<DelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<IVariableDeclaratorNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -4134,6 +4132,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<DelimitedList<ITypeParameterNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<ITypeParameterNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -4207,6 +4206,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<DelimitedList<IClassOrInterfaceTypeNode, SourceToken<BitwiseAndOperatorToken>>>(true, currentPosition, new ArrayDelimitedList<IClassOrInterfaceTypeNode, SourceToken<BitwiseAndOperatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -4290,6 +4290,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<IClassOrInterfaceTypeNode>(true, currentPosition, new ClassOrInterfaceTypeNode(new ArrayDelimitedList<ISingleClassOrInterfaceTypeNode, SourceToken<DotSeparatorToken>>(trimList(elements), trimList(delimiters))));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -4329,6 +4330,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<DelimitedList<ITypeArgumentNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<ITypeArgumentNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -4426,6 +4428,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<DelimitedList<IReferenceTypeNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<IReferenceTypeNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -4572,6 +4575,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<DelimitedList<IElementValuePairNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<IElementValuePairNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -4670,8 +4674,11 @@ public abstract class AbstractJavaGeneratedParser {
 
       result = parseElementValue(delimiterResult.position);
       if (!result.succeeded) {
+        delimiters = addValue(delimiters, delimiterResult.value);
+        currentPosition = delimiterResult.position;
         return new EvaluationResult<DelimitedList<IElementValueNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<IElementValueNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -4682,14 +4689,20 @@ public abstract class AbstractJavaGeneratedParser {
     return new EvaluationResult<DelimitedList<IElementValueNode, SourceToken<CommaSeparatorToken>>>(true, position, null);
   }
   @SuppressWarnings("unchecked")
-  private EvaluationResult<? extends IElementValueArrayInitializerNode> evaluateElementValueArrayInitializerExpression_2(int position) {
+  private EvaluationResult<? extends SourceToken<CommaSeparatorToken>> evaluateElementValueArrayInitializerExpression_2(int position) {
+    EvaluationResult<? extends SourceToken<CommaSeparatorToken>> result;
+    if ((result = evaluateCommaSeparatorToken(position)).succeeded) { return result; }
+    return new EvaluationResult<SourceToken<CommaSeparatorToken>>(true, position, null);
+  }
+  @SuppressWarnings("unchecked")
+  private EvaluationResult<? extends IElementValueArrayInitializerNode> evaluateElementValueArrayInitializerExpression_3(int position) {
     EvaluationResult<? extends SourceToken<LeftCurlySeparatorToken>> result_0 = evaluateLeftCurlySeparatorToken(position);
     if (!result_0.succeeded) { return EvaluationResult.failure(); }
 
     EvaluationResult<? extends DelimitedList<IElementValueNode, SourceToken<CommaSeparatorToken>>> result_1 = evaluateElementValueArrayInitializerExpression_1(result_0.position);
     if (!result_1.succeeded) { return EvaluationResult.failure(); }
 
-    EvaluationResult<? extends SourceToken<CommaSeparatorToken>> result_2 = evaluateEnumBodyExpression_2(result_1.position);
+    EvaluationResult<? extends SourceToken<CommaSeparatorToken>> result_2 = evaluateElementValueArrayInitializerExpression_2(result_1.position);
     if (!result_2.succeeded) { return EvaluationResult.failure(); }
 
     EvaluationResult<? extends SourceToken<RightCurlySeparatorToken>> result_3 = evaluateRightCurlySeparatorToken(result_2.position);
@@ -5225,6 +5238,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<IDelimitedExpressionListNode>(true, currentPosition, new DelimitedExpressionListNode(new ArrayDelimitedList<IExpressionNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters))));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -5521,6 +5535,7 @@ public abstract class AbstractJavaGeneratedParser {
       if (!result.succeeded) {
         return new EvaluationResult<IExpressionNode>(true, currentPosition, new ExpressionNode(new ArrayDelimitedList<IExpression1Node, IAssignmentOperatorNode>(trimList(elements), trimList(delimiters))));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -6083,7 +6098,6 @@ public abstract class AbstractJavaGeneratedParser {
     }
     return EvaluationResult.failure();
   }
-
   @SuppressWarnings("unchecked")
   private EvaluationResult<? extends SourceToken<LiteralToken>> evaluateLiteralToken(int position) {
     if (position < tokens.size()) {
@@ -6334,8 +6348,11 @@ public abstract class AbstractJavaGeneratedParser {
 
       result = parseVariableInitializer(delimiterResult.position);
       if (!result.succeeded) {
+        delimiters = addValue(delimiters, delimiterResult.value);
+        currentPosition = delimiterResult.position;
         return new EvaluationResult<DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>>>(true, currentPosition, new ArrayDelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>>(trimList(elements), trimList(delimiters)));
       }
+      delimiters = addValue(delimiters, delimiterResult.value);
       elements = addValue(elements, result.value);
     }
   }
@@ -6353,14 +6370,11 @@ public abstract class AbstractJavaGeneratedParser {
     EvaluationResult<? extends DelimitedList<IVariableInitializerNode, SourceToken<CommaSeparatorToken>>> result_1 = evaluateArrayInitializerExpression_1(result_0.position);
     if (!result_1.succeeded) { return EvaluationResult.failure(); }
 
-    EvaluationResult<? extends SourceToken<CommaSeparatorToken>> result_2 = evaluateEnumBodyExpression_2(result_1.position);
+    EvaluationResult<? extends SourceToken<RightCurlySeparatorToken>> result_2 = evaluateRightCurlySeparatorToken(result_1.position);
     if (!result_2.succeeded) { return EvaluationResult.failure(); }
 
-    EvaluationResult<? extends SourceToken<RightCurlySeparatorToken>> result_3 = evaluateRightCurlySeparatorToken(result_2.position);
-    if (!result_3.succeeded) { return EvaluationResult.failure(); }
-
-    IArrayInitializerNode node = new ArrayInitializerNode(result_0.value, result_1.value, result_2.value, result_3.value);
-    return new EvaluationResult<IArrayInitializerNode>(true, result_3.position, node);
+    IArrayInitializerNode node = new ArrayInitializerNode(result_0.value, result_1.value, result_2.value);
+    return new EvaluationResult<IArrayInitializerNode>(true, result_2.position, node);
   }
   @SuppressWarnings("unchecked")
   private EvaluationResult<? extends IVariableInitializerNode> evaluateVariableInitializerExpression_0(int position) {
@@ -6369,841 +6383,841 @@ public abstract class AbstractJavaGeneratedParser {
     return parseExpression(position);
   }
 
-  private Map<Integer,EvaluationResult<? extends ICompilationUnitNode>> CompilationUnitMap;
+  private Map<Integer,EvaluationResult<? extends ICompilationUnitNode>> compilationUnitMap;
   private EvaluationResult<? extends ICompilationUnitNode> parseCompilationUnit(int position) {
-    EvaluationResult<? extends ICompilationUnitNode> result = (CompilationUnitMap == null ? null : CompilationUnitMap.get(position));
+    EvaluationResult<? extends ICompilationUnitNode> result = (compilationUnitMap == null ? null : compilationUnitMap.get(position));
     if (result == null) {
       result = evaluateCompilationUnitExpression_4(position);
-      CompilationUnitMap = initializeMap(CompilationUnitMap);
-      CompilationUnitMap.put(position, result);
+      compilationUnitMap = initializeMap(compilationUnitMap);
+      compilationUnitMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPackageDeclarationNode>> PackageDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IPackageDeclarationNode>> packageDeclarationMap;
   private EvaluationResult<? extends IPackageDeclarationNode> parsePackageDeclaration(int position) {
-    EvaluationResult<? extends IPackageDeclarationNode> result = (PackageDeclarationMap == null ? null : PackageDeclarationMap.get(position));
+    EvaluationResult<? extends IPackageDeclarationNode> result = (packageDeclarationMap == null ? null : packageDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_PackageDeclaration(position)) {
         result = evaluatePackageDeclarationExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PackageDeclarationMap = initializeMap(PackageDeclarationMap);
-      PackageDeclarationMap.put(position, result);
+      packageDeclarationMap = initializeMap(packageDeclarationMap);
+      packageDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IQualifiedIdentifierNode>> QualifiedIdentifierMap;
+  private Map<Integer,EvaluationResult<? extends IQualifiedIdentifierNode>> qualifiedIdentifierMap;
   private EvaluationResult<? extends IQualifiedIdentifierNode> parseQualifiedIdentifier(int position) {
-    EvaluationResult<? extends IQualifiedIdentifierNode> result = (QualifiedIdentifierMap == null ? null : QualifiedIdentifierMap.get(position));
+    EvaluationResult<? extends IQualifiedIdentifierNode> result = (qualifiedIdentifierMap == null ? null : qualifiedIdentifierMap.get(position));
     if (result == null) {
       if (checkToken_QualifiedIdentifier(position)) {
         result = evaluateQualifiedIdentifierExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      QualifiedIdentifierMap = initializeMap(QualifiedIdentifierMap);
-      QualifiedIdentifierMap.put(position, result);
+      qualifiedIdentifierMap = initializeMap(qualifiedIdentifierMap);
+      qualifiedIdentifierMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IImportDeclarationNode>> ImportDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IImportDeclarationNode>> importDeclarationMap;
   private EvaluationResult<? extends IImportDeclarationNode> parseImportDeclaration(int position) {
-    EvaluationResult<? extends IImportDeclarationNode> result = (ImportDeclarationMap == null ? null : ImportDeclarationMap.get(position));
+    EvaluationResult<? extends IImportDeclarationNode> result = (importDeclarationMap == null ? null : importDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_ImportDeclaration(position)) {
         result = evaluateImportDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ImportDeclarationMap = initializeMap(ImportDeclarationMap);
-      ImportDeclarationMap.put(position, result);
+      importDeclarationMap = initializeMap(importDeclarationMap);
+      importDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISingleTypeImportDeclarationNode>> SingleTypeImportDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends ISingleTypeImportDeclarationNode>> singleTypeImportDeclarationMap;
   private EvaluationResult<? extends ISingleTypeImportDeclarationNode> parseSingleTypeImportDeclaration(int position) {
-    EvaluationResult<? extends ISingleTypeImportDeclarationNode> result = (SingleTypeImportDeclarationMap == null ? null : SingleTypeImportDeclarationMap.get(position));
+    EvaluationResult<? extends ISingleTypeImportDeclarationNode> result = (singleTypeImportDeclarationMap == null ? null : singleTypeImportDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_SingleTypeImportDeclaration(position)) {
         result = evaluateSingleTypeImportDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SingleTypeImportDeclarationMap = initializeMap(SingleTypeImportDeclarationMap);
-      SingleTypeImportDeclarationMap.put(position, result);
+      singleTypeImportDeclarationMap = initializeMap(singleTypeImportDeclarationMap);
+      singleTypeImportDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITypeImportOnDemandDeclarationNode>> TypeImportOnDemandDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends ITypeImportOnDemandDeclarationNode>> typeImportOnDemandDeclarationMap;
   private EvaluationResult<? extends ITypeImportOnDemandDeclarationNode> parseTypeImportOnDemandDeclaration(int position) {
-    EvaluationResult<? extends ITypeImportOnDemandDeclarationNode> result = (TypeImportOnDemandDeclarationMap == null ? null : TypeImportOnDemandDeclarationMap.get(position));
+    EvaluationResult<? extends ITypeImportOnDemandDeclarationNode> result = (typeImportOnDemandDeclarationMap == null ? null : typeImportOnDemandDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_TypeImportOnDemandDeclaration(position)) {
         result = evaluateTypeImportOnDemandDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TypeImportOnDemandDeclarationMap = initializeMap(TypeImportOnDemandDeclarationMap);
-      TypeImportOnDemandDeclarationMap.put(position, result);
+      typeImportOnDemandDeclarationMap = initializeMap(typeImportOnDemandDeclarationMap);
+      typeImportOnDemandDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISingleStaticImportDeclarationNode>> SingleStaticImportDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends ISingleStaticImportDeclarationNode>> singleStaticImportDeclarationMap;
   private EvaluationResult<? extends ISingleStaticImportDeclarationNode> parseSingleStaticImportDeclaration(int position) {
-    EvaluationResult<? extends ISingleStaticImportDeclarationNode> result = (SingleStaticImportDeclarationMap == null ? null : SingleStaticImportDeclarationMap.get(position));
+    EvaluationResult<? extends ISingleStaticImportDeclarationNode> result = (singleStaticImportDeclarationMap == null ? null : singleStaticImportDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_SingleStaticImportDeclaration(position)) {
         result = evaluateSingleStaticImportDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SingleStaticImportDeclarationMap = initializeMap(SingleStaticImportDeclarationMap);
-      SingleStaticImportDeclarationMap.put(position, result);
+      singleStaticImportDeclarationMap = initializeMap(singleStaticImportDeclarationMap);
+      singleStaticImportDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IStaticImportOnDemandDeclarationNode>> StaticImportOnDemandDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IStaticImportOnDemandDeclarationNode>> staticImportOnDemandDeclarationMap;
   private EvaluationResult<? extends IStaticImportOnDemandDeclarationNode> parseStaticImportOnDemandDeclaration(int position) {
-    EvaluationResult<? extends IStaticImportOnDemandDeclarationNode> result = (StaticImportOnDemandDeclarationMap == null ? null : StaticImportOnDemandDeclarationMap.get(position));
+    EvaluationResult<? extends IStaticImportOnDemandDeclarationNode> result = (staticImportOnDemandDeclarationMap == null ? null : staticImportOnDemandDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_StaticImportOnDemandDeclaration(position)) {
         result = evaluateStaticImportOnDemandDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      StaticImportOnDemandDeclarationMap = initializeMap(StaticImportOnDemandDeclarationMap);
-      StaticImportOnDemandDeclarationMap.put(position, result);
+      staticImportOnDemandDeclarationMap = initializeMap(staticImportOnDemandDeclarationMap);
+      staticImportOnDemandDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITypeDeclarationNode>> TypeDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends ITypeDeclarationNode>> typeDeclarationMap;
   private EvaluationResult<? extends ITypeDeclarationNode> parseTypeDeclaration(int position) {
-    EvaluationResult<? extends ITypeDeclarationNode> result = (TypeDeclarationMap == null ? null : TypeDeclarationMap.get(position));
+    EvaluationResult<? extends ITypeDeclarationNode> result = (typeDeclarationMap == null ? null : typeDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_TypeDeclaration(position)) {
         result = evaluateTypeDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TypeDeclarationMap = initializeMap(TypeDeclarationMap);
-      TypeDeclarationMap.put(position, result);
+      typeDeclarationMap = initializeMap(typeDeclarationMap);
+      typeDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IClassDeclarationNode>> ClassDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IClassDeclarationNode>> classDeclarationMap;
   private EvaluationResult<? extends IClassDeclarationNode> parseClassDeclaration(int position) {
-    EvaluationResult<? extends IClassDeclarationNode> result = (ClassDeclarationMap == null ? null : ClassDeclarationMap.get(position));
+    EvaluationResult<? extends IClassDeclarationNode> result = (classDeclarationMap == null ? null : classDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_ClassDeclaration(position)) {
         result = evaluateClassDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ClassDeclarationMap = initializeMap(ClassDeclarationMap);
-      ClassDeclarationMap.put(position, result);
+      classDeclarationMap = initializeMap(classDeclarationMap);
+      classDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends INormalClassDeclarationNode>> NormalClassDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends INormalClassDeclarationNode>> normalClassDeclarationMap;
   private EvaluationResult<? extends INormalClassDeclarationNode> parseNormalClassDeclaration(int position) {
-    EvaluationResult<? extends INormalClassDeclarationNode> result = (NormalClassDeclarationMap == null ? null : NormalClassDeclarationMap.get(position));
+    EvaluationResult<? extends INormalClassDeclarationNode> result = (normalClassDeclarationMap == null ? null : normalClassDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_NormalClassDeclaration(position)) {
         result = evaluateNormalClassDeclarationExpression_3(position);
       } else {
         result = EvaluationResult.failure();
       }
-      NormalClassDeclarationMap = initializeMap(NormalClassDeclarationMap);
-      NormalClassDeclarationMap.put(position, result);
+      normalClassDeclarationMap = initializeMap(normalClassDeclarationMap);
+      normalClassDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IModifiersNode>> ModifiersMap;
+  private Map<Integer,EvaluationResult<? extends IModifiersNode>> modifiersMap;
   private EvaluationResult<? extends IModifiersNode> parseModifiers(int position) {
-    EvaluationResult<? extends IModifiersNode> result = (ModifiersMap == null ? null : ModifiersMap.get(position));
+    EvaluationResult<? extends IModifiersNode> result = (modifiersMap == null ? null : modifiersMap.get(position));
     if (result == null) {
       result = evaluateModifiersExpression_0(position);
-      ModifiersMap = initializeMap(ModifiersMap);
-      ModifiersMap.put(position, result);
+      modifiersMap = initializeMap(modifiersMap);
+      modifiersMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IModifierNode>> ModifierMap;
+  private Map<Integer,EvaluationResult<? extends IModifierNode>> modifierMap;
   private EvaluationResult<? extends IModifierNode> parseModifier(int position) {
-    EvaluationResult<? extends IModifierNode> result = (ModifierMap == null ? null : ModifierMap.get(position));
+    EvaluationResult<? extends IModifierNode> result = (modifierMap == null ? null : modifierMap.get(position));
     if (result == null) {
       if (checkToken_Modifier(position)) {
         result = evaluateModifierExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ModifierMap = initializeMap(ModifierMap);
-      ModifierMap.put(position, result);
+      modifierMap = initializeMap(modifierMap);
+      modifierMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISuperNode>> SuperMap;
+  private Map<Integer,EvaluationResult<? extends ISuperNode>> superMap;
   private EvaluationResult<? extends ISuperNode> parseSuper(int position) {
-    EvaluationResult<? extends ISuperNode> result = (SuperMap == null ? null : SuperMap.get(position));
+    EvaluationResult<? extends ISuperNode> result = (superMap == null ? null : superMap.get(position));
     if (result == null) {
       if (checkToken_Super(position)) {
         result = evaluateSuperExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SuperMap = initializeMap(SuperMap);
-      SuperMap.put(position, result);
+      superMap = initializeMap(superMap);
+      superMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IInterfacesNode>> InterfacesMap;
+  private Map<Integer,EvaluationResult<? extends IInterfacesNode>> interfacesMap;
   private EvaluationResult<? extends IInterfacesNode> parseInterfaces(int position) {
-    EvaluationResult<? extends IInterfacesNode> result = (InterfacesMap == null ? null : InterfacesMap.get(position));
+    EvaluationResult<? extends IInterfacesNode> result = (interfacesMap == null ? null : interfacesMap.get(position));
     if (result == null) {
       if (checkToken_Interfaces(position)) {
         result = evaluateInterfacesExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      InterfacesMap = initializeMap(InterfacesMap);
-      InterfacesMap.put(position, result);
+      interfacesMap = initializeMap(interfacesMap);
+      interfacesMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IClassBodyNode>> ClassBodyMap;
+  private Map<Integer,EvaluationResult<? extends IClassBodyNode>> classBodyMap;
   private EvaluationResult<? extends IClassBodyNode> parseClassBody(int position) {
-    EvaluationResult<? extends IClassBodyNode> result = (ClassBodyMap == null ? null : ClassBodyMap.get(position));
+    EvaluationResult<? extends IClassBodyNode> result = (classBodyMap == null ? null : classBodyMap.get(position));
     if (result == null) {
       if (checkToken_ClassBody(position)) {
         result = evaluateClassBodyExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ClassBodyMap = initializeMap(ClassBodyMap);
-      ClassBodyMap.put(position, result);
+      classBodyMap = initializeMap(classBodyMap);
+      classBodyMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IClassBodyDeclarationNode>> ClassBodyDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IClassBodyDeclarationNode>> classBodyDeclarationMap;
   private EvaluationResult<? extends IClassBodyDeclarationNode> parseClassBodyDeclaration(int position) {
-    EvaluationResult<? extends IClassBodyDeclarationNode> result = (ClassBodyDeclarationMap == null ? null : ClassBodyDeclarationMap.get(position));
+    EvaluationResult<? extends IClassBodyDeclarationNode> result = (classBodyDeclarationMap == null ? null : classBodyDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_ClassBodyDeclaration(position)) {
         result = evaluateClassBodyDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ClassBodyDeclarationMap = initializeMap(ClassBodyDeclarationMap);
-      ClassBodyDeclarationMap.put(position, result);
+      classBodyDeclarationMap = initializeMap(classBodyDeclarationMap);
+      classBodyDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IStaticInitializerNode>> StaticInitializerMap;
+  private Map<Integer,EvaluationResult<? extends IStaticInitializerNode>> staticInitializerMap;
   private EvaluationResult<? extends IStaticInitializerNode> parseStaticInitializer(int position) {
-    EvaluationResult<? extends IStaticInitializerNode> result = (StaticInitializerMap == null ? null : StaticInitializerMap.get(position));
+    EvaluationResult<? extends IStaticInitializerNode> result = (staticInitializerMap == null ? null : staticInitializerMap.get(position));
     if (result == null) {
       if (checkToken_StaticInitializer(position)) {
         result = evaluateStaticInitializerExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      StaticInitializerMap = initializeMap(StaticInitializerMap);
-      StaticInitializerMap.put(position, result);
+      staticInitializerMap = initializeMap(staticInitializerMap);
+      staticInitializerMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IInterfaceDeclarationNode>> InterfaceDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IInterfaceDeclarationNode>> interfaceDeclarationMap;
   private EvaluationResult<? extends IInterfaceDeclarationNode> parseInterfaceDeclaration(int position) {
-    EvaluationResult<? extends IInterfaceDeclarationNode> result = (InterfaceDeclarationMap == null ? null : InterfaceDeclarationMap.get(position));
+    EvaluationResult<? extends IInterfaceDeclarationNode> result = (interfaceDeclarationMap == null ? null : interfaceDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_InterfaceDeclaration(position)) {
         result = evaluateInterfaceDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      InterfaceDeclarationMap = initializeMap(InterfaceDeclarationMap);
-      InterfaceDeclarationMap.put(position, result);
+      interfaceDeclarationMap = initializeMap(interfaceDeclarationMap);
+      interfaceDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends INormalInterfaceDeclarationNode>> NormalInterfaceDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends INormalInterfaceDeclarationNode>> normalInterfaceDeclarationMap;
   private EvaluationResult<? extends INormalInterfaceDeclarationNode> parseNormalInterfaceDeclaration(int position) {
-    EvaluationResult<? extends INormalInterfaceDeclarationNode> result = (NormalInterfaceDeclarationMap == null ? null : NormalInterfaceDeclarationMap.get(position));
+    EvaluationResult<? extends INormalInterfaceDeclarationNode> result = (normalInterfaceDeclarationMap == null ? null : normalInterfaceDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_NormalInterfaceDeclaration(position)) {
         result = evaluateNormalInterfaceDeclarationExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      NormalInterfaceDeclarationMap = initializeMap(NormalInterfaceDeclarationMap);
-      NormalInterfaceDeclarationMap.put(position, result);
+      normalInterfaceDeclarationMap = initializeMap(normalInterfaceDeclarationMap);
+      normalInterfaceDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IExtendsInterfacesNode>> ExtendsInterfacesMap;
+  private Map<Integer,EvaluationResult<? extends IExtendsInterfacesNode>> extendsInterfacesMap;
   private EvaluationResult<? extends IExtendsInterfacesNode> parseExtendsInterfaces(int position) {
-    EvaluationResult<? extends IExtendsInterfacesNode> result = (ExtendsInterfacesMap == null ? null : ExtendsInterfacesMap.get(position));
+    EvaluationResult<? extends IExtendsInterfacesNode> result = (extendsInterfacesMap == null ? null : extendsInterfacesMap.get(position));
     if (result == null) {
       if (checkToken_ExtendsInterfaces(position)) {
         result = evaluateExtendsInterfacesExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ExtendsInterfacesMap = initializeMap(ExtendsInterfacesMap);
-      ExtendsInterfacesMap.put(position, result);
+      extendsInterfacesMap = initializeMap(extendsInterfacesMap);
+      extendsInterfacesMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IClassOrInterfaceBodyNode>> ClassOrInterfaceBodyMap;
+  private Map<Integer,EvaluationResult<? extends IClassOrInterfaceBodyNode>> classOrInterfaceBodyMap;
   private EvaluationResult<? extends IClassOrInterfaceBodyNode> parseClassOrInterfaceBody(int position) {
-    EvaluationResult<? extends IClassOrInterfaceBodyNode> result = (ClassOrInterfaceBodyMap == null ? null : ClassOrInterfaceBodyMap.get(position));
+    EvaluationResult<? extends IClassOrInterfaceBodyNode> result = (classOrInterfaceBodyMap == null ? null : classOrInterfaceBodyMap.get(position));
     if (result == null) {
       if (checkToken_ClassOrInterfaceBody(position)) {
         result = evaluateClassOrInterfaceBodyExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ClassOrInterfaceBodyMap = initializeMap(ClassOrInterfaceBodyMap);
-      ClassOrInterfaceBodyMap.put(position, result);
+      classOrInterfaceBodyMap = initializeMap(classOrInterfaceBodyMap);
+      classOrInterfaceBodyMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IEnumDeclarationNode>> EnumDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IEnumDeclarationNode>> enumDeclarationMap;
   private EvaluationResult<? extends IEnumDeclarationNode> parseEnumDeclaration(int position) {
-    EvaluationResult<? extends IEnumDeclarationNode> result = (EnumDeclarationMap == null ? null : EnumDeclarationMap.get(position));
+    EvaluationResult<? extends IEnumDeclarationNode> result = (enumDeclarationMap == null ? null : enumDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_EnumDeclaration(position)) {
         result = evaluateEnumDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      EnumDeclarationMap = initializeMap(EnumDeclarationMap);
-      EnumDeclarationMap.put(position, result);
+      enumDeclarationMap = initializeMap(enumDeclarationMap);
+      enumDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IEnumBodyNode>> EnumBodyMap;
+  private Map<Integer,EvaluationResult<? extends IEnumBodyNode>> enumBodyMap;
   private EvaluationResult<? extends IEnumBodyNode> parseEnumBody(int position) {
-    EvaluationResult<? extends IEnumBodyNode> result = (EnumBodyMap == null ? null : EnumBodyMap.get(position));
+    EvaluationResult<? extends IEnumBodyNode> result = (enumBodyMap == null ? null : enumBodyMap.get(position));
     if (result == null) {
       if (checkToken_EnumBody(position)) {
-        result = evaluateEnumBodyExpression_4(position);
+        result = evaluateEnumBodyExpression_3(position);
       } else {
         result = EvaluationResult.failure();
       }
-      EnumBodyMap = initializeMap(EnumBodyMap);
-      EnumBodyMap.put(position, result);
+      enumBodyMap = initializeMap(enumBodyMap);
+      enumBodyMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IEnumConstantNode>> EnumConstantMap;
+  private Map<Integer,EvaluationResult<? extends IEnumConstantNode>> enumConstantMap;
   private EvaluationResult<? extends IEnumConstantNode> parseEnumConstant(int position) {
-    EvaluationResult<? extends IEnumConstantNode> result = (EnumConstantMap == null ? null : EnumConstantMap.get(position));
+    EvaluationResult<? extends IEnumConstantNode> result = (enumConstantMap == null ? null : enumConstantMap.get(position));
     if (result == null) {
       if (checkToken_EnumConstant(position)) {
         result = evaluateEnumConstantExpression_2(position);
       } else {
         result = EvaluationResult.failure();
       }
-      EnumConstantMap = initializeMap(EnumConstantMap);
-      EnumConstantMap.put(position, result);
+      enumConstantMap = initializeMap(enumConstantMap);
+      enumConstantMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IArgumentsNode>> ArgumentsMap;
+  private Map<Integer,EvaluationResult<? extends IArgumentsNode>> argumentsMap;
   private EvaluationResult<? extends IArgumentsNode> parseArguments(int position) {
-    EvaluationResult<? extends IArgumentsNode> result = (ArgumentsMap == null ? null : ArgumentsMap.get(position));
+    EvaluationResult<? extends IArgumentsNode> result = (argumentsMap == null ? null : argumentsMap.get(position));
     if (result == null) {
       if (checkToken_Arguments(position)) {
         result = evaluateArgumentsExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ArgumentsMap = initializeMap(ArgumentsMap);
-      ArgumentsMap.put(position, result);
+      argumentsMap = initializeMap(argumentsMap);
+      argumentsMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IAnnotationDeclarationNode>> AnnotationDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IAnnotationDeclarationNode>> annotationDeclarationMap;
   private EvaluationResult<? extends IAnnotationDeclarationNode> parseAnnotationDeclaration(int position) {
-    EvaluationResult<? extends IAnnotationDeclarationNode> result = (AnnotationDeclarationMap == null ? null : AnnotationDeclarationMap.get(position));
+    EvaluationResult<? extends IAnnotationDeclarationNode> result = (annotationDeclarationMap == null ? null : annotationDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_AnnotationDeclaration(position)) {
         result = evaluateAnnotationDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      AnnotationDeclarationMap = initializeMap(AnnotationDeclarationMap);
-      AnnotationDeclarationMap.put(position, result);
+      annotationDeclarationMap = initializeMap(annotationDeclarationMap);
+      annotationDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IAnnotationBodyNode>> AnnotationBodyMap;
+  private Map<Integer,EvaluationResult<? extends IAnnotationBodyNode>> annotationBodyMap;
   private EvaluationResult<? extends IAnnotationBodyNode> parseAnnotationBody(int position) {
-    EvaluationResult<? extends IAnnotationBodyNode> result = (AnnotationBodyMap == null ? null : AnnotationBodyMap.get(position));
+    EvaluationResult<? extends IAnnotationBodyNode> result = (annotationBodyMap == null ? null : annotationBodyMap.get(position));
     if (result == null) {
       if (checkToken_AnnotationBody(position)) {
         result = evaluateAnnotationBodyExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      AnnotationBodyMap = initializeMap(AnnotationBodyMap);
-      AnnotationBodyMap.put(position, result);
+      annotationBodyMap = initializeMap(annotationBodyMap);
+      annotationBodyMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IAnnotationElementDeclarationNode>> AnnotationElementDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IAnnotationElementDeclarationNode>> annotationElementDeclarationMap;
   private EvaluationResult<? extends IAnnotationElementDeclarationNode> parseAnnotationElementDeclaration(int position) {
-    EvaluationResult<? extends IAnnotationElementDeclarationNode> result = (AnnotationElementDeclarationMap == null ? null : AnnotationElementDeclarationMap.get(position));
+    EvaluationResult<? extends IAnnotationElementDeclarationNode> result = (annotationElementDeclarationMap == null ? null : annotationElementDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_AnnotationElementDeclaration(position)) {
         result = evaluateAnnotationElementDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      AnnotationElementDeclarationMap = initializeMap(AnnotationElementDeclarationMap);
-      AnnotationElementDeclarationMap.put(position, result);
+      annotationElementDeclarationMap = initializeMap(annotationElementDeclarationMap);
+      annotationElementDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IAnnotationDefaultDeclarationNode>> AnnotationDefaultDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IAnnotationDefaultDeclarationNode>> annotationDefaultDeclarationMap;
   private EvaluationResult<? extends IAnnotationDefaultDeclarationNode> parseAnnotationDefaultDeclaration(int position) {
-    EvaluationResult<? extends IAnnotationDefaultDeclarationNode> result = (AnnotationDefaultDeclarationMap == null ? null : AnnotationDefaultDeclarationMap.get(position));
+    EvaluationResult<? extends IAnnotationDefaultDeclarationNode> result = (annotationDefaultDeclarationMap == null ? null : annotationDefaultDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_AnnotationDefaultDeclaration(position)) {
         result = evaluateAnnotationDefaultDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      AnnotationDefaultDeclarationMap = initializeMap(AnnotationDefaultDeclarationMap);
-      AnnotationDefaultDeclarationMap.put(position, result);
+      annotationDefaultDeclarationMap = initializeMap(annotationDefaultDeclarationMap);
+      annotationDefaultDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IClassOrInterfaceMemberDeclarationNode>> ClassOrInterfaceMemberDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IClassOrInterfaceMemberDeclarationNode>> classOrInterfaceMemberDeclarationMap;
   private EvaluationResult<? extends IClassOrInterfaceMemberDeclarationNode> parseClassOrInterfaceMemberDeclaration(int position) {
-    EvaluationResult<? extends IClassOrInterfaceMemberDeclarationNode> result = (ClassOrInterfaceMemberDeclarationMap == null ? null : ClassOrInterfaceMemberDeclarationMap.get(position));
+    EvaluationResult<? extends IClassOrInterfaceMemberDeclarationNode> result = (classOrInterfaceMemberDeclarationMap == null ? null : classOrInterfaceMemberDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_ClassOrInterfaceMemberDeclaration(position)) {
         result = evaluateClassOrInterfaceMemberDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ClassOrInterfaceMemberDeclarationMap = initializeMap(ClassOrInterfaceMemberDeclarationMap);
-      ClassOrInterfaceMemberDeclarationMap.put(position, result);
+      classOrInterfaceMemberDeclarationMap = initializeMap(classOrInterfaceMemberDeclarationMap);
+      classOrInterfaceMemberDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IConstructorDeclarationNode>> ConstructorDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IConstructorDeclarationNode>> constructorDeclarationMap;
   private EvaluationResult<? extends IConstructorDeclarationNode> parseConstructorDeclaration(int position) {
-    EvaluationResult<? extends IConstructorDeclarationNode> result = (ConstructorDeclarationMap == null ? null : ConstructorDeclarationMap.get(position));
+    EvaluationResult<? extends IConstructorDeclarationNode> result = (constructorDeclarationMap == null ? null : constructorDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_ConstructorDeclaration(position)) {
         result = evaluateConstructorDeclarationExpression_3(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ConstructorDeclarationMap = initializeMap(ConstructorDeclarationMap);
-      ConstructorDeclarationMap.put(position, result);
+      constructorDeclarationMap = initializeMap(constructorDeclarationMap);
+      constructorDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IFieldDeclarationNode>> FieldDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IFieldDeclarationNode>> fieldDeclarationMap;
   private EvaluationResult<? extends IFieldDeclarationNode> parseFieldDeclaration(int position) {
-    EvaluationResult<? extends IFieldDeclarationNode> result = (FieldDeclarationMap == null ? null : FieldDeclarationMap.get(position));
+    EvaluationResult<? extends IFieldDeclarationNode> result = (fieldDeclarationMap == null ? null : fieldDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_FieldDeclaration(position)) {
         result = evaluateFieldDeclarationExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      FieldDeclarationMap = initializeMap(FieldDeclarationMap);
-      FieldDeclarationMap.put(position, result);
+      fieldDeclarationMap = initializeMap(fieldDeclarationMap);
+      fieldDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IVariableDeclaratorNode>> VariableDeclaratorMap;
+  private Map<Integer,EvaluationResult<? extends IVariableDeclaratorNode>> variableDeclaratorMap;
   private EvaluationResult<? extends IVariableDeclaratorNode> parseVariableDeclarator(int position) {
-    EvaluationResult<? extends IVariableDeclaratorNode> result = (VariableDeclaratorMap == null ? null : VariableDeclaratorMap.get(position));
+    EvaluationResult<? extends IVariableDeclaratorNode> result = (variableDeclaratorMap == null ? null : variableDeclaratorMap.get(position));
     if (result == null) {
       if (checkToken_VariableDeclarator(position)) {
         result = evaluateVariableDeclaratorExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      VariableDeclaratorMap = initializeMap(VariableDeclaratorMap);
-      VariableDeclaratorMap.put(position, result);
+      variableDeclaratorMap = initializeMap(variableDeclaratorMap);
+      variableDeclaratorMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IVariableDeclaratorIdAndAssignmentNode>> VariableDeclaratorIdAndAssignmentMap;
+  private Map<Integer,EvaluationResult<? extends IVariableDeclaratorIdAndAssignmentNode>> variableDeclaratorIdAndAssignmentMap;
   private EvaluationResult<? extends IVariableDeclaratorIdAndAssignmentNode> parseVariableDeclaratorIdAndAssignment(int position) {
-    EvaluationResult<? extends IVariableDeclaratorIdAndAssignmentNode> result = (VariableDeclaratorIdAndAssignmentMap == null ? null : VariableDeclaratorIdAndAssignmentMap.get(position));
+    EvaluationResult<? extends IVariableDeclaratorIdAndAssignmentNode> result = (variableDeclaratorIdAndAssignmentMap == null ? null : variableDeclaratorIdAndAssignmentMap.get(position));
     if (result == null) {
       if (checkToken_VariableDeclaratorIdAndAssignment(position)) {
         result = evaluateVariableDeclaratorIdAndAssignmentExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      VariableDeclaratorIdAndAssignmentMap = initializeMap(VariableDeclaratorIdAndAssignmentMap);
-      VariableDeclaratorIdAndAssignmentMap.put(position, result);
+      variableDeclaratorIdAndAssignmentMap = initializeMap(variableDeclaratorIdAndAssignmentMap);
+      variableDeclaratorIdAndAssignmentMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IVariableDeclaratorAssignmentNode>> VariableDeclaratorAssignmentMap;
+  private Map<Integer,EvaluationResult<? extends IVariableDeclaratorAssignmentNode>> variableDeclaratorAssignmentMap;
   private EvaluationResult<? extends IVariableDeclaratorAssignmentNode> parseVariableDeclaratorAssignment(int position) {
-    EvaluationResult<? extends IVariableDeclaratorAssignmentNode> result = (VariableDeclaratorAssignmentMap == null ? null : VariableDeclaratorAssignmentMap.get(position));
+    EvaluationResult<? extends IVariableDeclaratorAssignmentNode> result = (variableDeclaratorAssignmentMap == null ? null : variableDeclaratorAssignmentMap.get(position));
     if (result == null) {
       if (checkToken_VariableDeclaratorAssignment(position)) {
         result = evaluateVariableDeclaratorAssignmentExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      VariableDeclaratorAssignmentMap = initializeMap(VariableDeclaratorAssignmentMap);
-      VariableDeclaratorAssignmentMap.put(position, result);
+      variableDeclaratorAssignmentMap = initializeMap(variableDeclaratorAssignmentMap);
+      variableDeclaratorAssignmentMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IVariableDeclaratorIdNode>> VariableDeclaratorIdMap;
+  private Map<Integer,EvaluationResult<? extends IVariableDeclaratorIdNode>> variableDeclaratorIdMap;
   private EvaluationResult<? extends IVariableDeclaratorIdNode> parseVariableDeclaratorId(int position) {
-    EvaluationResult<? extends IVariableDeclaratorIdNode> result = (VariableDeclaratorIdMap == null ? null : VariableDeclaratorIdMap.get(position));
+    EvaluationResult<? extends IVariableDeclaratorIdNode> result = (variableDeclaratorIdMap == null ? null : variableDeclaratorIdMap.get(position));
     if (result == null) {
       if (checkToken_VariableDeclaratorId(position)) {
         result = evaluateVariableDeclaratorIdExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      VariableDeclaratorIdMap = initializeMap(VariableDeclaratorIdMap);
-      VariableDeclaratorIdMap.put(position, result);
+      variableDeclaratorIdMap = initializeMap(variableDeclaratorIdMap);
+      variableDeclaratorIdMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IBracketPairNode>> BracketPairMap;
+  private Map<Integer,EvaluationResult<? extends IBracketPairNode>> bracketPairMap;
   private EvaluationResult<? extends IBracketPairNode> parseBracketPair(int position) {
-    EvaluationResult<? extends IBracketPairNode> result = (BracketPairMap == null ? null : BracketPairMap.get(position));
+    EvaluationResult<? extends IBracketPairNode> result = (bracketPairMap == null ? null : bracketPairMap.get(position));
     if (result == null) {
       if (checkToken_BracketPair(position)) {
         result = evaluateBracketPairExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      BracketPairMap = initializeMap(BracketPairMap);
-      BracketPairMap.put(position, result);
+      bracketPairMap = initializeMap(bracketPairMap);
+      bracketPairMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IMethodDeclarationNode>> MethodDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends IMethodDeclarationNode>> methodDeclarationMap;
   private EvaluationResult<? extends IMethodDeclarationNode> parseMethodDeclaration(int position) {
-    EvaluationResult<? extends IMethodDeclarationNode> result = (MethodDeclarationMap == null ? null : MethodDeclarationMap.get(position));
+    EvaluationResult<? extends IMethodDeclarationNode> result = (methodDeclarationMap == null ? null : methodDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_MethodDeclaration(position)) {
         result = evaluateMethodDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      MethodDeclarationMap = initializeMap(MethodDeclarationMap);
-      MethodDeclarationMap.put(position, result);
+      methodDeclarationMap = initializeMap(methodDeclarationMap);
+      methodDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IMethodBodyNode>> MethodBodyMap;
+  private Map<Integer,EvaluationResult<? extends IMethodBodyNode>> methodBodyMap;
   private EvaluationResult<? extends IMethodBodyNode> parseMethodBody(int position) {
-    EvaluationResult<? extends IMethodBodyNode> result = (MethodBodyMap == null ? null : MethodBodyMap.get(position));
+    EvaluationResult<? extends IMethodBodyNode> result = (methodBodyMap == null ? null : methodBodyMap.get(position));
     if (result == null) {
       if (checkToken_MethodBody(position)) {
         result = evaluateMethodBodyExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      MethodBodyMap = initializeMap(MethodBodyMap);
-      MethodBodyMap.put(position, result);
+      methodBodyMap = initializeMap(methodBodyMap);
+      methodBodyMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IFormalParameterNode>> FormalParameterMap;
+  private Map<Integer,EvaluationResult<? extends IFormalParameterNode>> formalParameterMap;
   private EvaluationResult<? extends IFormalParameterNode> parseFormalParameter(int position) {
-    EvaluationResult<? extends IFormalParameterNode> result = (FormalParameterMap == null ? null : FormalParameterMap.get(position));
+    EvaluationResult<? extends IFormalParameterNode> result = (formalParameterMap == null ? null : formalParameterMap.get(position));
     if (result == null) {
       if (checkToken_FormalParameter(position)) {
         result = evaluateFormalParameterExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      FormalParameterMap = initializeMap(FormalParameterMap);
-      FormalParameterMap.put(position, result);
+      formalParameterMap = initializeMap(formalParameterMap);
+      formalParameterMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IThrowsNode>> ThrowsMap;
+  private Map<Integer,EvaluationResult<? extends IThrowsNode>> throwsMap;
   private EvaluationResult<? extends IThrowsNode> parseThrows(int position) {
-    EvaluationResult<? extends IThrowsNode> result = (ThrowsMap == null ? null : ThrowsMap.get(position));
+    EvaluationResult<? extends IThrowsNode> result = (throwsMap == null ? null : throwsMap.get(position));
     if (result == null) {
       if (checkToken_Throws(position)) {
         result = evaluateThrowsExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ThrowsMap = initializeMap(ThrowsMap);
-      ThrowsMap.put(position, result);
+      throwsMap = initializeMap(throwsMap);
+      throwsMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITypeParametersNode>> TypeParametersMap;
+  private Map<Integer,EvaluationResult<? extends ITypeParametersNode>> typeParametersMap;
   private EvaluationResult<? extends ITypeParametersNode> parseTypeParameters(int position) {
-    EvaluationResult<? extends ITypeParametersNode> result = (TypeParametersMap == null ? null : TypeParametersMap.get(position));
+    EvaluationResult<? extends ITypeParametersNode> result = (typeParametersMap == null ? null : typeParametersMap.get(position));
     if (result == null) {
       if (checkToken_TypeParameters(position)) {
         result = evaluateTypeParametersExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TypeParametersMap = initializeMap(TypeParametersMap);
-      TypeParametersMap.put(position, result);
+      typeParametersMap = initializeMap(typeParametersMap);
+      typeParametersMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITypeParameterNode>> TypeParameterMap;
+  private Map<Integer,EvaluationResult<? extends ITypeParameterNode>> typeParameterMap;
   private EvaluationResult<? extends ITypeParameterNode> parseTypeParameter(int position) {
-    EvaluationResult<? extends ITypeParameterNode> result = (TypeParameterMap == null ? null : TypeParameterMap.get(position));
+    EvaluationResult<? extends ITypeParameterNode> result = (typeParameterMap == null ? null : typeParameterMap.get(position));
     if (result == null) {
       if (checkToken_TypeParameter(position)) {
         result = evaluateTypeParameterExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TypeParameterMap = initializeMap(TypeParameterMap);
-      TypeParameterMap.put(position, result);
+      typeParameterMap = initializeMap(typeParameterMap);
+      typeParameterMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITypeBoundNode>> TypeBoundMap;
+  private Map<Integer,EvaluationResult<? extends ITypeBoundNode>> typeBoundMap;
   private EvaluationResult<? extends ITypeBoundNode> parseTypeBound(int position) {
-    EvaluationResult<? extends ITypeBoundNode> result = (TypeBoundMap == null ? null : TypeBoundMap.get(position));
+    EvaluationResult<? extends ITypeBoundNode> result = (typeBoundMap == null ? null : typeBoundMap.get(position));
     if (result == null) {
       if (checkToken_TypeBound(position)) {
         result = evaluateTypeBoundExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TypeBoundMap = initializeMap(TypeBoundMap);
-      TypeBoundMap.put(position, result);
+      typeBoundMap = initializeMap(typeBoundMap);
+      typeBoundMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITypeNode>> TypeMap;
+  private Map<Integer,EvaluationResult<? extends ITypeNode>> typeMap;
   private EvaluationResult<? extends ITypeNode> parseType(int position) {
-    EvaluationResult<? extends ITypeNode> result = (TypeMap == null ? null : TypeMap.get(position));
+    EvaluationResult<? extends ITypeNode> result = (typeMap == null ? null : typeMap.get(position));
     if (result == null) {
       if (checkToken_Type(position)) {
         result = evaluateTypeExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TypeMap = initializeMap(TypeMap);
-      TypeMap.put(position, result);
+      typeMap = initializeMap(typeMap);
+      typeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IReferenceTypeNode>> ReferenceTypeMap;
+  private Map<Integer,EvaluationResult<? extends IReferenceTypeNode>> referenceTypeMap;
   private EvaluationResult<? extends IReferenceTypeNode> parseReferenceType(int position) {
-    EvaluationResult<? extends IReferenceTypeNode> result = (ReferenceTypeMap == null ? null : ReferenceTypeMap.get(position));
+    EvaluationResult<? extends IReferenceTypeNode> result = (referenceTypeMap == null ? null : referenceTypeMap.get(position));
     if (result == null) {
       if (checkToken_ReferenceType(position)) {
         result = evaluateReferenceTypeExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ReferenceTypeMap = initializeMap(ReferenceTypeMap);
-      ReferenceTypeMap.put(position, result);
+      referenceTypeMap = initializeMap(referenceTypeMap);
+      referenceTypeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPrimitiveArrayReferenceTypeNode>> PrimitiveArrayReferenceTypeMap;
+  private Map<Integer,EvaluationResult<? extends IPrimitiveArrayReferenceTypeNode>> primitiveArrayReferenceTypeMap;
   private EvaluationResult<? extends IPrimitiveArrayReferenceTypeNode> parsePrimitiveArrayReferenceType(int position) {
-    EvaluationResult<? extends IPrimitiveArrayReferenceTypeNode> result = (PrimitiveArrayReferenceTypeMap == null ? null : PrimitiveArrayReferenceTypeMap.get(position));
+    EvaluationResult<? extends IPrimitiveArrayReferenceTypeNode> result = (primitiveArrayReferenceTypeMap == null ? null : primitiveArrayReferenceTypeMap.get(position));
     if (result == null) {
       if (checkToken_PrimitiveArrayReferenceType(position)) {
         result = evaluatePrimitiveArrayReferenceTypeExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PrimitiveArrayReferenceTypeMap = initializeMap(PrimitiveArrayReferenceTypeMap);
-      PrimitiveArrayReferenceTypeMap.put(position, result);
+      primitiveArrayReferenceTypeMap = initializeMap(primitiveArrayReferenceTypeMap);
+      primitiveArrayReferenceTypeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IClassOrInterfaceReferenceTypeNode>> ClassOrInterfaceReferenceTypeMap;
+  private Map<Integer,EvaluationResult<? extends IClassOrInterfaceReferenceTypeNode>> classOrInterfaceReferenceTypeMap;
   private EvaluationResult<? extends IClassOrInterfaceReferenceTypeNode> parseClassOrInterfaceReferenceType(int position) {
-    EvaluationResult<? extends IClassOrInterfaceReferenceTypeNode> result = (ClassOrInterfaceReferenceTypeMap == null ? null : ClassOrInterfaceReferenceTypeMap.get(position));
+    EvaluationResult<? extends IClassOrInterfaceReferenceTypeNode> result = (classOrInterfaceReferenceTypeMap == null ? null : classOrInterfaceReferenceTypeMap.get(position));
     if (result == null) {
       if (checkToken_ClassOrInterfaceReferenceType(position)) {
         result = evaluateClassOrInterfaceReferenceTypeExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ClassOrInterfaceReferenceTypeMap = initializeMap(ClassOrInterfaceReferenceTypeMap);
-      ClassOrInterfaceReferenceTypeMap.put(position, result);
+      classOrInterfaceReferenceTypeMap = initializeMap(classOrInterfaceReferenceTypeMap);
+      classOrInterfaceReferenceTypeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IClassOrInterfaceTypeNode>> ClassOrInterfaceTypeMap;
+  private Map<Integer,EvaluationResult<? extends IClassOrInterfaceTypeNode>> classOrInterfaceTypeMap;
   private EvaluationResult<? extends IClassOrInterfaceTypeNode> parseClassOrInterfaceType(int position) {
-    EvaluationResult<? extends IClassOrInterfaceTypeNode> result = (ClassOrInterfaceTypeMap == null ? null : ClassOrInterfaceTypeMap.get(position));
+    EvaluationResult<? extends IClassOrInterfaceTypeNode> result = (classOrInterfaceTypeMap == null ? null : classOrInterfaceTypeMap.get(position));
     if (result == null) {
       if (checkToken_ClassOrInterfaceType(position)) {
         result = evaluateClassOrInterfaceTypeExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ClassOrInterfaceTypeMap = initializeMap(ClassOrInterfaceTypeMap);
-      ClassOrInterfaceTypeMap.put(position, result);
+      classOrInterfaceTypeMap = initializeMap(classOrInterfaceTypeMap);
+      classOrInterfaceTypeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISingleClassOrInterfaceTypeNode>> SingleClassOrInterfaceTypeMap;
+  private Map<Integer,EvaluationResult<? extends ISingleClassOrInterfaceTypeNode>> singleClassOrInterfaceTypeMap;
   private EvaluationResult<? extends ISingleClassOrInterfaceTypeNode> parseSingleClassOrInterfaceType(int position) {
-    EvaluationResult<? extends ISingleClassOrInterfaceTypeNode> result = (SingleClassOrInterfaceTypeMap == null ? null : SingleClassOrInterfaceTypeMap.get(position));
+    EvaluationResult<? extends ISingleClassOrInterfaceTypeNode> result = (singleClassOrInterfaceTypeMap == null ? null : singleClassOrInterfaceTypeMap.get(position));
     if (result == null) {
       if (checkToken_SingleClassOrInterfaceType(position)) {
         result = evaluateSingleClassOrInterfaceTypeExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SingleClassOrInterfaceTypeMap = initializeMap(SingleClassOrInterfaceTypeMap);
-      SingleClassOrInterfaceTypeMap.put(position, result);
+      singleClassOrInterfaceTypeMap = initializeMap(singleClassOrInterfaceTypeMap);
+      singleClassOrInterfaceTypeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITypeArgumentsNode>> TypeArgumentsMap;
+  private Map<Integer,EvaluationResult<? extends ITypeArgumentsNode>> typeArgumentsMap;
   private EvaluationResult<? extends ITypeArgumentsNode> parseTypeArguments(int position) {
-    EvaluationResult<? extends ITypeArgumentsNode> result = (TypeArgumentsMap == null ? null : TypeArgumentsMap.get(position));
+    EvaluationResult<? extends ITypeArgumentsNode> result = (typeArgumentsMap == null ? null : typeArgumentsMap.get(position));
     if (result == null) {
       if (checkToken_TypeArguments(position)) {
         result = evaluateTypeArgumentsExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TypeArgumentsMap = initializeMap(TypeArgumentsMap);
-      TypeArgumentsMap.put(position, result);
+      typeArgumentsMap = initializeMap(typeArgumentsMap);
+      typeArgumentsMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITypeArgumentNode>> TypeArgumentMap;
+  private Map<Integer,EvaluationResult<? extends ITypeArgumentNode>> typeArgumentMap;
   private EvaluationResult<? extends ITypeArgumentNode> parseTypeArgument(int position) {
-    EvaluationResult<? extends ITypeArgumentNode> result = (TypeArgumentMap == null ? null : TypeArgumentMap.get(position));
+    EvaluationResult<? extends ITypeArgumentNode> result = (typeArgumentMap == null ? null : typeArgumentMap.get(position));
     if (result == null) {
       if (checkToken_TypeArgument(position)) {
         result = evaluateTypeArgumentExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TypeArgumentMap = initializeMap(TypeArgumentMap);
-      TypeArgumentMap.put(position, result);
+      typeArgumentMap = initializeMap(typeArgumentMap);
+      typeArgumentMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IWildcardTypeArgumentNode>> WildcardTypeArgumentMap;
+  private Map<Integer,EvaluationResult<? extends IWildcardTypeArgumentNode>> wildcardTypeArgumentMap;
   private EvaluationResult<? extends IWildcardTypeArgumentNode> parseWildcardTypeArgument(int position) {
-    EvaluationResult<? extends IWildcardTypeArgumentNode> result = (WildcardTypeArgumentMap == null ? null : WildcardTypeArgumentMap.get(position));
+    EvaluationResult<? extends IWildcardTypeArgumentNode> result = (wildcardTypeArgumentMap == null ? null : wildcardTypeArgumentMap.get(position));
     if (result == null) {
       if (checkToken_WildcardTypeArgument(position)) {
         result = evaluateWildcardTypeArgumentExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      WildcardTypeArgumentMap = initializeMap(WildcardTypeArgumentMap);
-      WildcardTypeArgumentMap.put(position, result);
+      wildcardTypeArgumentMap = initializeMap(wildcardTypeArgumentMap);
+      wildcardTypeArgumentMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IExtendsWildcardTypeArgumentNode>> ExtendsWildcardTypeArgumentMap;
+  private Map<Integer,EvaluationResult<? extends IExtendsWildcardTypeArgumentNode>> extendsWildcardTypeArgumentMap;
   private EvaluationResult<? extends IExtendsWildcardTypeArgumentNode> parseExtendsWildcardTypeArgument(int position) {
-    EvaluationResult<? extends IExtendsWildcardTypeArgumentNode> result = (ExtendsWildcardTypeArgumentMap == null ? null : ExtendsWildcardTypeArgumentMap.get(position));
+    EvaluationResult<? extends IExtendsWildcardTypeArgumentNode> result = (extendsWildcardTypeArgumentMap == null ? null : extendsWildcardTypeArgumentMap.get(position));
     if (result == null) {
       if (checkToken_ExtendsWildcardTypeArgument(position)) {
         result = evaluateExtendsWildcardTypeArgumentExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ExtendsWildcardTypeArgumentMap = initializeMap(ExtendsWildcardTypeArgumentMap);
-      ExtendsWildcardTypeArgumentMap.put(position, result);
+      extendsWildcardTypeArgumentMap = initializeMap(extendsWildcardTypeArgumentMap);
+      extendsWildcardTypeArgumentMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISuperWildcardTypeArgumentNode>> SuperWildcardTypeArgumentMap;
+  private Map<Integer,EvaluationResult<? extends ISuperWildcardTypeArgumentNode>> superWildcardTypeArgumentMap;
   private EvaluationResult<? extends ISuperWildcardTypeArgumentNode> parseSuperWildcardTypeArgument(int position) {
-    EvaluationResult<? extends ISuperWildcardTypeArgumentNode> result = (SuperWildcardTypeArgumentMap == null ? null : SuperWildcardTypeArgumentMap.get(position));
+    EvaluationResult<? extends ISuperWildcardTypeArgumentNode> result = (superWildcardTypeArgumentMap == null ? null : superWildcardTypeArgumentMap.get(position));
     if (result == null) {
       if (checkToken_SuperWildcardTypeArgument(position)) {
         result = evaluateSuperWildcardTypeArgumentExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SuperWildcardTypeArgumentMap = initializeMap(SuperWildcardTypeArgumentMap);
-      SuperWildcardTypeArgumentMap.put(position, result);
+      superWildcardTypeArgumentMap = initializeMap(superWildcardTypeArgumentMap);
+      superWildcardTypeArgumentMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IOpenWildcardTypeArgumentNode>> OpenWildcardTypeArgumentMap;
+  private Map<Integer,EvaluationResult<? extends IOpenWildcardTypeArgumentNode>> openWildcardTypeArgumentMap;
   private EvaluationResult<? extends IOpenWildcardTypeArgumentNode> parseOpenWildcardTypeArgument(int position) {
-    EvaluationResult<? extends IOpenWildcardTypeArgumentNode> result = (OpenWildcardTypeArgumentMap == null ? null : OpenWildcardTypeArgumentMap.get(position));
+    EvaluationResult<? extends IOpenWildcardTypeArgumentNode> result = (openWildcardTypeArgumentMap == null ? null : openWildcardTypeArgumentMap.get(position));
     if (result == null) {
       EvaluationResult<? extends SourceToken<QuestionMarkOperatorToken>> subresult = EvaluationResult.failure();
       subresult = evaluateQuestionMarkOperatorToken(position);
@@ -7212,225 +7226,225 @@ public abstract class AbstractJavaGeneratedParser {
       } else {
         result = EvaluationResult.failure();
       }
-      OpenWildcardTypeArgumentMap = initializeMap(OpenWildcardTypeArgumentMap);
-      OpenWildcardTypeArgumentMap.put(position, result);
+      openWildcardTypeArgumentMap = initializeMap(openWildcardTypeArgumentMap);
+      openWildcardTypeArgumentMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends INonWildcardTypeArgumentsNode>> NonWildcardTypeArgumentsMap;
+  private Map<Integer,EvaluationResult<? extends INonWildcardTypeArgumentsNode>> nonWildcardTypeArgumentsMap;
   private EvaluationResult<? extends INonWildcardTypeArgumentsNode> parseNonWildcardTypeArguments(int position) {
-    EvaluationResult<? extends INonWildcardTypeArgumentsNode> result = (NonWildcardTypeArgumentsMap == null ? null : NonWildcardTypeArgumentsMap.get(position));
+    EvaluationResult<? extends INonWildcardTypeArgumentsNode> result = (nonWildcardTypeArgumentsMap == null ? null : nonWildcardTypeArgumentsMap.get(position));
     if (result == null) {
       if (checkToken_NonWildcardTypeArguments(position)) {
         result = evaluateNonWildcardTypeArgumentsExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      NonWildcardTypeArgumentsMap = initializeMap(NonWildcardTypeArgumentsMap);
-      NonWildcardTypeArgumentsMap.put(position, result);
+      nonWildcardTypeArgumentsMap = initializeMap(nonWildcardTypeArgumentsMap);
+      nonWildcardTypeArgumentsMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPrimitiveTypeNode>> PrimitiveTypeMap;
+  private Map<Integer,EvaluationResult<? extends IPrimitiveTypeNode>> primitiveTypeMap;
   private EvaluationResult<? extends IPrimitiveTypeNode> parsePrimitiveType(int position) {
-    EvaluationResult<? extends IPrimitiveTypeNode> result = (PrimitiveTypeMap == null ? null : PrimitiveTypeMap.get(position));
+    EvaluationResult<? extends IPrimitiveTypeNode> result = (primitiveTypeMap == null ? null : primitiveTypeMap.get(position));
     if (result == null) {
       if (checkToken_PrimitiveType(position)) {
         result = evaluatePrimitiveTypeExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PrimitiveTypeMap = initializeMap(PrimitiveTypeMap);
-      PrimitiveTypeMap.put(position, result);
+      primitiveTypeMap = initializeMap(primitiveTypeMap);
+      primitiveTypeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IAnnotationNode>> AnnotationMap;
+  private Map<Integer,EvaluationResult<? extends IAnnotationNode>> annotationMap;
   private EvaluationResult<? extends IAnnotationNode> parseAnnotation(int position) {
-    EvaluationResult<? extends IAnnotationNode> result = (AnnotationMap == null ? null : AnnotationMap.get(position));
+    EvaluationResult<? extends IAnnotationNode> result = (annotationMap == null ? null : annotationMap.get(position));
     if (result == null) {
       if (checkToken_Annotation(position)) {
         result = evaluateAnnotationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      AnnotationMap = initializeMap(AnnotationMap);
-      AnnotationMap.put(position, result);
+      annotationMap = initializeMap(annotationMap);
+      annotationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends INormalAnnotationNode>> NormalAnnotationMap;
+  private Map<Integer,EvaluationResult<? extends INormalAnnotationNode>> normalAnnotationMap;
   private EvaluationResult<? extends INormalAnnotationNode> parseNormalAnnotation(int position) {
-    EvaluationResult<? extends INormalAnnotationNode> result = (NormalAnnotationMap == null ? null : NormalAnnotationMap.get(position));
+    EvaluationResult<? extends INormalAnnotationNode> result = (normalAnnotationMap == null ? null : normalAnnotationMap.get(position));
     if (result == null) {
       if (checkToken_NormalAnnotation(position)) {
         result = evaluateNormalAnnotationExpression_2(position);
       } else {
         result = EvaluationResult.failure();
       }
-      NormalAnnotationMap = initializeMap(NormalAnnotationMap);
-      NormalAnnotationMap.put(position, result);
+      normalAnnotationMap = initializeMap(normalAnnotationMap);
+      normalAnnotationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IElementValuePairNode>> ElementValuePairMap;
+  private Map<Integer,EvaluationResult<? extends IElementValuePairNode>> elementValuePairMap;
   private EvaluationResult<? extends IElementValuePairNode> parseElementValuePair(int position) {
-    EvaluationResult<? extends IElementValuePairNode> result = (ElementValuePairMap == null ? null : ElementValuePairMap.get(position));
+    EvaluationResult<? extends IElementValuePairNode> result = (elementValuePairMap == null ? null : elementValuePairMap.get(position));
     if (result == null) {
       if (checkToken_ElementValuePair(position)) {
         result = evaluateElementValuePairExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ElementValuePairMap = initializeMap(ElementValuePairMap);
-      ElementValuePairMap.put(position, result);
+      elementValuePairMap = initializeMap(elementValuePairMap);
+      elementValuePairMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISingleElementAnnotationNode>> SingleElementAnnotationMap;
+  private Map<Integer,EvaluationResult<? extends ISingleElementAnnotationNode>> singleElementAnnotationMap;
   private EvaluationResult<? extends ISingleElementAnnotationNode> parseSingleElementAnnotation(int position) {
-    EvaluationResult<? extends ISingleElementAnnotationNode> result = (SingleElementAnnotationMap == null ? null : SingleElementAnnotationMap.get(position));
+    EvaluationResult<? extends ISingleElementAnnotationNode> result = (singleElementAnnotationMap == null ? null : singleElementAnnotationMap.get(position));
     if (result == null) {
       if (checkToken_SingleElementAnnotation(position)) {
         result = evaluateSingleElementAnnotationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SingleElementAnnotationMap = initializeMap(SingleElementAnnotationMap);
-      SingleElementAnnotationMap.put(position, result);
+      singleElementAnnotationMap = initializeMap(singleElementAnnotationMap);
+      singleElementAnnotationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IMarkerAnnotationNode>> MarkerAnnotationMap;
+  private Map<Integer,EvaluationResult<? extends IMarkerAnnotationNode>> markerAnnotationMap;
   private EvaluationResult<? extends IMarkerAnnotationNode> parseMarkerAnnotation(int position) {
-    EvaluationResult<? extends IMarkerAnnotationNode> result = (MarkerAnnotationMap == null ? null : MarkerAnnotationMap.get(position));
+    EvaluationResult<? extends IMarkerAnnotationNode> result = (markerAnnotationMap == null ? null : markerAnnotationMap.get(position));
     if (result == null) {
       if (checkToken_MarkerAnnotation(position)) {
         result = evaluateMarkerAnnotationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      MarkerAnnotationMap = initializeMap(MarkerAnnotationMap);
-      MarkerAnnotationMap.put(position, result);
+      markerAnnotationMap = initializeMap(markerAnnotationMap);
+      markerAnnotationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IElementValueNode>> ElementValueMap;
+  private Map<Integer,EvaluationResult<? extends IElementValueNode>> elementValueMap;
   private EvaluationResult<? extends IElementValueNode> parseElementValue(int position) {
-    EvaluationResult<? extends IElementValueNode> result = (ElementValueMap == null ? null : ElementValueMap.get(position));
+    EvaluationResult<? extends IElementValueNode> result = (elementValueMap == null ? null : elementValueMap.get(position));
     if (result == null) {
       if (checkToken_ElementValue(position)) {
         result = evaluateElementValueExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ElementValueMap = initializeMap(ElementValueMap);
-      ElementValueMap.put(position, result);
+      elementValueMap = initializeMap(elementValueMap);
+      elementValueMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IElementValueArrayInitializerNode>> ElementValueArrayInitializerMap;
+  private Map<Integer,EvaluationResult<? extends IElementValueArrayInitializerNode>> elementValueArrayInitializerMap;
   private EvaluationResult<? extends IElementValueArrayInitializerNode> parseElementValueArrayInitializer(int position) {
-    EvaluationResult<? extends IElementValueArrayInitializerNode> result = (ElementValueArrayInitializerMap == null ? null : ElementValueArrayInitializerMap.get(position));
+    EvaluationResult<? extends IElementValueArrayInitializerNode> result = (elementValueArrayInitializerMap == null ? null : elementValueArrayInitializerMap.get(position));
     if (result == null) {
       if (checkToken_ElementValueArrayInitializer(position)) {
-        result = evaluateElementValueArrayInitializerExpression_2(position);
+        result = evaluateElementValueArrayInitializerExpression_3(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ElementValueArrayInitializerMap = initializeMap(ElementValueArrayInitializerMap);
-      ElementValueArrayInitializerMap.put(position, result);
+      elementValueArrayInitializerMap = initializeMap(elementValueArrayInitializerMap);
+      elementValueArrayInitializerMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IBlockNode>> BlockMap;
+  private Map<Integer,EvaluationResult<? extends IBlockNode>> blockMap;
   private EvaluationResult<? extends IBlockNode> parseBlock(int position) {
-    EvaluationResult<? extends IBlockNode> result = (BlockMap == null ? null : BlockMap.get(position));
+    EvaluationResult<? extends IBlockNode> result = (blockMap == null ? null : blockMap.get(position));
     if (result == null) {
       if (checkToken_Block(position)) {
         result = evaluateBlockExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      BlockMap = initializeMap(BlockMap);
-      BlockMap.put(position, result);
+      blockMap = initializeMap(blockMap);
+      blockMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IBlockStatementNode>> BlockStatementMap;
+  private Map<Integer,EvaluationResult<? extends IBlockStatementNode>> blockStatementMap;
   private EvaluationResult<? extends IBlockStatementNode> parseBlockStatement(int position) {
-    EvaluationResult<? extends IBlockStatementNode> result = (BlockStatementMap == null ? null : BlockStatementMap.get(position));
+    EvaluationResult<? extends IBlockStatementNode> result = (blockStatementMap == null ? null : blockStatementMap.get(position));
     if (result == null) {
       if (checkToken_BlockStatement(position)) {
         result = evaluateBlockStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      BlockStatementMap = initializeMap(BlockStatementMap);
-      BlockStatementMap.put(position, result);
+      blockStatementMap = initializeMap(blockStatementMap);
+      blockStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ILocalVariableDeclarationStatementNode>> LocalVariableDeclarationStatementMap;
+  private Map<Integer,EvaluationResult<? extends ILocalVariableDeclarationStatementNode>> localVariableDeclarationStatementMap;
   private EvaluationResult<? extends ILocalVariableDeclarationStatementNode> parseLocalVariableDeclarationStatement(int position) {
-    EvaluationResult<? extends ILocalVariableDeclarationStatementNode> result = (LocalVariableDeclarationStatementMap == null ? null : LocalVariableDeclarationStatementMap.get(position));
+    EvaluationResult<? extends ILocalVariableDeclarationStatementNode> result = (localVariableDeclarationStatementMap == null ? null : localVariableDeclarationStatementMap.get(position));
     if (result == null) {
       if (checkToken_LocalVariableDeclarationStatement(position)) {
         result = evaluateLocalVariableDeclarationStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      LocalVariableDeclarationStatementMap = initializeMap(LocalVariableDeclarationStatementMap);
-      LocalVariableDeclarationStatementMap.put(position, result);
+      localVariableDeclarationStatementMap = initializeMap(localVariableDeclarationStatementMap);
+      localVariableDeclarationStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ILocalVariableDeclarationNode>> LocalVariableDeclarationMap;
+  private Map<Integer,EvaluationResult<? extends ILocalVariableDeclarationNode>> localVariableDeclarationMap;
   private EvaluationResult<? extends ILocalVariableDeclarationNode> parseLocalVariableDeclaration(int position) {
-    EvaluationResult<? extends ILocalVariableDeclarationNode> result = (LocalVariableDeclarationMap == null ? null : LocalVariableDeclarationMap.get(position));
+    EvaluationResult<? extends ILocalVariableDeclarationNode> result = (localVariableDeclarationMap == null ? null : localVariableDeclarationMap.get(position));
     if (result == null) {
       if (checkToken_LocalVariableDeclaration(position)) {
         result = evaluateLocalVariableDeclarationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      LocalVariableDeclarationMap = initializeMap(LocalVariableDeclarationMap);
-      LocalVariableDeclarationMap.put(position, result);
+      localVariableDeclarationMap = initializeMap(localVariableDeclarationMap);
+      localVariableDeclarationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IStatementNode>> StatementMap;
+  private Map<Integer,EvaluationResult<? extends IStatementNode>> statementMap;
   private EvaluationResult<? extends IStatementNode> parseStatement(int position) {
-    EvaluationResult<? extends IStatementNode> result = (StatementMap == null ? null : StatementMap.get(position));
+    EvaluationResult<? extends IStatementNode> result = (statementMap == null ? null : statementMap.get(position));
     if (result == null) {
       if (checkToken_Statement(position)) {
         result = evaluateStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      StatementMap = initializeMap(StatementMap);
-      StatementMap.put(position, result);
+      statementMap = initializeMap(statementMap);
+      statementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IEmptyStatementNode>> EmptyStatementMap;
+  private Map<Integer,EvaluationResult<? extends IEmptyStatementNode>> emptyStatementMap;
   private EvaluationResult<? extends IEmptyStatementNode> parseEmptyStatement(int position) {
-    EvaluationResult<? extends IEmptyStatementNode> result = (EmptyStatementMap == null ? null : EmptyStatementMap.get(position));
+    EvaluationResult<? extends IEmptyStatementNode> result = (emptyStatementMap == null ? null : emptyStatementMap.get(position));
     if (result == null) {
       EvaluationResult<? extends SourceToken<SemicolonSeparatorToken>> subresult = EvaluationResult.failure();
       subresult = evaluateSemicolonSeparatorToken(position);
@@ -7439,968 +7453,968 @@ public abstract class AbstractJavaGeneratedParser {
       } else {
         result = EvaluationResult.failure();
       }
-      EmptyStatementMap = initializeMap(EmptyStatementMap);
-      EmptyStatementMap.put(position, result);
+      emptyStatementMap = initializeMap(emptyStatementMap);
+      emptyStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ILabeledStatementNode>> LabeledStatementMap;
+  private Map<Integer,EvaluationResult<? extends ILabeledStatementNode>> labeledStatementMap;
   private EvaluationResult<? extends ILabeledStatementNode> parseLabeledStatement(int position) {
-    EvaluationResult<? extends ILabeledStatementNode> result = (LabeledStatementMap == null ? null : LabeledStatementMap.get(position));
+    EvaluationResult<? extends ILabeledStatementNode> result = (labeledStatementMap == null ? null : labeledStatementMap.get(position));
     if (result == null) {
       if (checkToken_LabeledStatement(position)) {
         result = evaluateLabeledStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      LabeledStatementMap = initializeMap(LabeledStatementMap);
-      LabeledStatementMap.put(position, result);
+      labeledStatementMap = initializeMap(labeledStatementMap);
+      labeledStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IExpressionStatementNode>> ExpressionStatementMap;
+  private Map<Integer,EvaluationResult<? extends IExpressionStatementNode>> expressionStatementMap;
   private EvaluationResult<? extends IExpressionStatementNode> parseExpressionStatement(int position) {
-    EvaluationResult<? extends IExpressionStatementNode> result = (ExpressionStatementMap == null ? null : ExpressionStatementMap.get(position));
+    EvaluationResult<? extends IExpressionStatementNode> result = (expressionStatementMap == null ? null : expressionStatementMap.get(position));
     if (result == null) {
       if (checkToken_ExpressionStatement(position)) {
         result = evaluateExpressionStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ExpressionStatementMap = initializeMap(ExpressionStatementMap);
-      ExpressionStatementMap.put(position, result);
+      expressionStatementMap = initializeMap(expressionStatementMap);
+      expressionStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IIfStatementNode>> IfStatementMap;
+  private Map<Integer,EvaluationResult<? extends IIfStatementNode>> ifStatementMap;
   private EvaluationResult<? extends IIfStatementNode> parseIfStatement(int position) {
-    EvaluationResult<? extends IIfStatementNode> result = (IfStatementMap == null ? null : IfStatementMap.get(position));
+    EvaluationResult<? extends IIfStatementNode> result = (ifStatementMap == null ? null : ifStatementMap.get(position));
     if (result == null) {
       if (checkToken_IfStatement(position)) {
         result = evaluateIfStatementExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      IfStatementMap = initializeMap(IfStatementMap);
-      IfStatementMap.put(position, result);
+      ifStatementMap = initializeMap(ifStatementMap);
+      ifStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IElseStatementNode>> ElseStatementMap;
+  private Map<Integer,EvaluationResult<? extends IElseStatementNode>> elseStatementMap;
   private EvaluationResult<? extends IElseStatementNode> parseElseStatement(int position) {
-    EvaluationResult<? extends IElseStatementNode> result = (ElseStatementMap == null ? null : ElseStatementMap.get(position));
+    EvaluationResult<? extends IElseStatementNode> result = (elseStatementMap == null ? null : elseStatementMap.get(position));
     if (result == null) {
       if (checkToken_ElseStatement(position)) {
         result = evaluateElseStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ElseStatementMap = initializeMap(ElseStatementMap);
-      ElseStatementMap.put(position, result);
+      elseStatementMap = initializeMap(elseStatementMap);
+      elseStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IAssertStatementNode>> AssertStatementMap;
+  private Map<Integer,EvaluationResult<? extends IAssertStatementNode>> assertStatementMap;
   private EvaluationResult<? extends IAssertStatementNode> parseAssertStatement(int position) {
-    EvaluationResult<? extends IAssertStatementNode> result = (AssertStatementMap == null ? null : AssertStatementMap.get(position));
+    EvaluationResult<? extends IAssertStatementNode> result = (assertStatementMap == null ? null : assertStatementMap.get(position));
     if (result == null) {
       if (checkToken_AssertStatement(position)) {
         result = evaluateAssertStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      AssertStatementMap = initializeMap(AssertStatementMap);
-      AssertStatementMap.put(position, result);
+      assertStatementMap = initializeMap(assertStatementMap);
+      assertStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IMessageAssertStatementNode>> MessageAssertStatementMap;
+  private Map<Integer,EvaluationResult<? extends IMessageAssertStatementNode>> messageAssertStatementMap;
   private EvaluationResult<? extends IMessageAssertStatementNode> parseMessageAssertStatement(int position) {
-    EvaluationResult<? extends IMessageAssertStatementNode> result = (MessageAssertStatementMap == null ? null : MessageAssertStatementMap.get(position));
+    EvaluationResult<? extends IMessageAssertStatementNode> result = (messageAssertStatementMap == null ? null : messageAssertStatementMap.get(position));
     if (result == null) {
       if (checkToken_MessageAssertStatement(position)) {
         result = evaluateMessageAssertStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      MessageAssertStatementMap = initializeMap(MessageAssertStatementMap);
-      MessageAssertStatementMap.put(position, result);
+      messageAssertStatementMap = initializeMap(messageAssertStatementMap);
+      messageAssertStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISimpleAssertStatementNode>> SimpleAssertStatementMap;
+  private Map<Integer,EvaluationResult<? extends ISimpleAssertStatementNode>> simpleAssertStatementMap;
   private EvaluationResult<? extends ISimpleAssertStatementNode> parseSimpleAssertStatement(int position) {
-    EvaluationResult<? extends ISimpleAssertStatementNode> result = (SimpleAssertStatementMap == null ? null : SimpleAssertStatementMap.get(position));
+    EvaluationResult<? extends ISimpleAssertStatementNode> result = (simpleAssertStatementMap == null ? null : simpleAssertStatementMap.get(position));
     if (result == null) {
       if (checkToken_SimpleAssertStatement(position)) {
         result = evaluateSimpleAssertStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SimpleAssertStatementMap = initializeMap(SimpleAssertStatementMap);
-      SimpleAssertStatementMap.put(position, result);
+      simpleAssertStatementMap = initializeMap(simpleAssertStatementMap);
+      simpleAssertStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISwitchStatementNode>> SwitchStatementMap;
+  private Map<Integer,EvaluationResult<? extends ISwitchStatementNode>> switchStatementMap;
   private EvaluationResult<? extends ISwitchStatementNode> parseSwitchStatement(int position) {
-    EvaluationResult<? extends ISwitchStatementNode> result = (SwitchStatementMap == null ? null : SwitchStatementMap.get(position));
+    EvaluationResult<? extends ISwitchStatementNode> result = (switchStatementMap == null ? null : switchStatementMap.get(position));
     if (result == null) {
       if (checkToken_SwitchStatement(position)) {
         result = evaluateSwitchStatementExpression_2(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SwitchStatementMap = initializeMap(SwitchStatementMap);
-      SwitchStatementMap.put(position, result);
+      switchStatementMap = initializeMap(switchStatementMap);
+      switchStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISwitchBlockStatementGroupNode>> SwitchBlockStatementGroupMap;
+  private Map<Integer,EvaluationResult<? extends ISwitchBlockStatementGroupNode>> switchBlockStatementGroupMap;
   private EvaluationResult<? extends ISwitchBlockStatementGroupNode> parseSwitchBlockStatementGroup(int position) {
-    EvaluationResult<? extends ISwitchBlockStatementGroupNode> result = (SwitchBlockStatementGroupMap == null ? null : SwitchBlockStatementGroupMap.get(position));
+    EvaluationResult<? extends ISwitchBlockStatementGroupNode> result = (switchBlockStatementGroupMap == null ? null : switchBlockStatementGroupMap.get(position));
     if (result == null) {
       if (checkToken_SwitchBlockStatementGroup(position)) {
         result = evaluateSwitchBlockStatementGroupExpression_2(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SwitchBlockStatementGroupMap = initializeMap(SwitchBlockStatementGroupMap);
-      SwitchBlockStatementGroupMap.put(position, result);
+      switchBlockStatementGroupMap = initializeMap(switchBlockStatementGroupMap);
+      switchBlockStatementGroupMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISwitchLabelNode>> SwitchLabelMap;
+  private Map<Integer,EvaluationResult<? extends ISwitchLabelNode>> switchLabelMap;
   private EvaluationResult<? extends ISwitchLabelNode> parseSwitchLabel(int position) {
-    EvaluationResult<? extends ISwitchLabelNode> result = (SwitchLabelMap == null ? null : SwitchLabelMap.get(position));
+    EvaluationResult<? extends ISwitchLabelNode> result = (switchLabelMap == null ? null : switchLabelMap.get(position));
     if (result == null) {
       if (checkToken_SwitchLabel(position)) {
         result = evaluateSwitchLabelExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SwitchLabelMap = initializeMap(SwitchLabelMap);
-      SwitchLabelMap.put(position, result);
+      switchLabelMap = initializeMap(switchLabelMap);
+      switchLabelMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ICaseSwitchLabelNode>> CaseSwitchLabelMap;
+  private Map<Integer,EvaluationResult<? extends ICaseSwitchLabelNode>> caseSwitchLabelMap;
   private EvaluationResult<? extends ICaseSwitchLabelNode> parseCaseSwitchLabel(int position) {
-    EvaluationResult<? extends ICaseSwitchLabelNode> result = (CaseSwitchLabelMap == null ? null : CaseSwitchLabelMap.get(position));
+    EvaluationResult<? extends ICaseSwitchLabelNode> result = (caseSwitchLabelMap == null ? null : caseSwitchLabelMap.get(position));
     if (result == null) {
       if (checkToken_CaseSwitchLabel(position)) {
         result = evaluateCaseSwitchLabelExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      CaseSwitchLabelMap = initializeMap(CaseSwitchLabelMap);
-      CaseSwitchLabelMap.put(position, result);
+      caseSwitchLabelMap = initializeMap(caseSwitchLabelMap);
+      caseSwitchLabelMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IDefaultSwitchLabelNode>> DefaultSwitchLabelMap;
+  private Map<Integer,EvaluationResult<? extends IDefaultSwitchLabelNode>> defaultSwitchLabelMap;
   private EvaluationResult<? extends IDefaultSwitchLabelNode> parseDefaultSwitchLabel(int position) {
-    EvaluationResult<? extends IDefaultSwitchLabelNode> result = (DefaultSwitchLabelMap == null ? null : DefaultSwitchLabelMap.get(position));
+    EvaluationResult<? extends IDefaultSwitchLabelNode> result = (defaultSwitchLabelMap == null ? null : defaultSwitchLabelMap.get(position));
     if (result == null) {
       if (checkToken_DefaultSwitchLabel(position)) {
         result = evaluateDefaultSwitchLabelExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      DefaultSwitchLabelMap = initializeMap(DefaultSwitchLabelMap);
-      DefaultSwitchLabelMap.put(position, result);
+      defaultSwitchLabelMap = initializeMap(defaultSwitchLabelMap);
+      defaultSwitchLabelMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IWhileStatementNode>> WhileStatementMap;
+  private Map<Integer,EvaluationResult<? extends IWhileStatementNode>> whileStatementMap;
   private EvaluationResult<? extends IWhileStatementNode> parseWhileStatement(int position) {
-    EvaluationResult<? extends IWhileStatementNode> result = (WhileStatementMap == null ? null : WhileStatementMap.get(position));
+    EvaluationResult<? extends IWhileStatementNode> result = (whileStatementMap == null ? null : whileStatementMap.get(position));
     if (result == null) {
       if (checkToken_WhileStatement(position)) {
         result = evaluateWhileStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      WhileStatementMap = initializeMap(WhileStatementMap);
-      WhileStatementMap.put(position, result);
+      whileStatementMap = initializeMap(whileStatementMap);
+      whileStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IDoStatementNode>> DoStatementMap;
+  private Map<Integer,EvaluationResult<? extends IDoStatementNode>> doStatementMap;
   private EvaluationResult<? extends IDoStatementNode> parseDoStatement(int position) {
-    EvaluationResult<? extends IDoStatementNode> result = (DoStatementMap == null ? null : DoStatementMap.get(position));
+    EvaluationResult<? extends IDoStatementNode> result = (doStatementMap == null ? null : doStatementMap.get(position));
     if (result == null) {
       if (checkToken_DoStatement(position)) {
         result = evaluateDoStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      DoStatementMap = initializeMap(DoStatementMap);
-      DoStatementMap.put(position, result);
+      doStatementMap = initializeMap(doStatementMap);
+      doStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IForStatementNode>> ForStatementMap;
+  private Map<Integer,EvaluationResult<? extends IForStatementNode>> forStatementMap;
   private EvaluationResult<? extends IForStatementNode> parseForStatement(int position) {
-    EvaluationResult<? extends IForStatementNode> result = (ForStatementMap == null ? null : ForStatementMap.get(position));
+    EvaluationResult<? extends IForStatementNode> result = (forStatementMap == null ? null : forStatementMap.get(position));
     if (result == null) {
       if (checkToken_ForStatement(position)) {
         result = evaluateForStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ForStatementMap = initializeMap(ForStatementMap);
-      ForStatementMap.put(position, result);
+      forStatementMap = initializeMap(forStatementMap);
+      forStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IBasicForStatementNode>> BasicForStatementMap;
+  private Map<Integer,EvaluationResult<? extends IBasicForStatementNode>> basicForStatementMap;
   private EvaluationResult<? extends IBasicForStatementNode> parseBasicForStatement(int position) {
-    EvaluationResult<? extends IBasicForStatementNode> result = (BasicForStatementMap == null ? null : BasicForStatementMap.get(position));
+    EvaluationResult<? extends IBasicForStatementNode> result = (basicForStatementMap == null ? null : basicForStatementMap.get(position));
     if (result == null) {
       if (checkToken_BasicForStatement(position)) {
         result = evaluateBasicForStatementExpression_2(position);
       } else {
         result = EvaluationResult.failure();
       }
-      BasicForStatementMap = initializeMap(BasicForStatementMap);
-      BasicForStatementMap.put(position, result);
+      basicForStatementMap = initializeMap(basicForStatementMap);
+      basicForStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IForInitializerNode>> ForInitializerMap;
+  private Map<Integer,EvaluationResult<? extends IForInitializerNode>> forInitializerMap;
   private EvaluationResult<? extends IForInitializerNode> parseForInitializer(int position) {
-    EvaluationResult<? extends IForInitializerNode> result = (ForInitializerMap == null ? null : ForInitializerMap.get(position));
+    EvaluationResult<? extends IForInitializerNode> result = (forInitializerMap == null ? null : forInitializerMap.get(position));
     if (result == null) {
       if (checkToken_ForInitializer(position)) {
         result = evaluateForInitializerExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ForInitializerMap = initializeMap(ForInitializerMap);
-      ForInitializerMap.put(position, result);
+      forInitializerMap = initializeMap(forInitializerMap);
+      forInitializerMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IDelimitedExpressionListNode>> DelimitedExpressionListMap;
+  private Map<Integer,EvaluationResult<? extends IDelimitedExpressionListNode>> delimitedExpressionListMap;
   private EvaluationResult<? extends IDelimitedExpressionListNode> parseDelimitedExpressionList(int position) {
-    EvaluationResult<? extends IDelimitedExpressionListNode> result = (DelimitedExpressionListMap == null ? null : DelimitedExpressionListMap.get(position));
+    EvaluationResult<? extends IDelimitedExpressionListNode> result = (delimitedExpressionListMap == null ? null : delimitedExpressionListMap.get(position));
     if (result == null) {
       if (checkToken_DelimitedExpressionList(position)) {
         result = evaluateDelimitedExpressionListExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      DelimitedExpressionListMap = initializeMap(DelimitedExpressionListMap);
-      DelimitedExpressionListMap.put(position, result);
+      delimitedExpressionListMap = initializeMap(delimitedExpressionListMap);
+      delimitedExpressionListMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IEnhancedForStatementNode>> EnhancedForStatementMap;
+  private Map<Integer,EvaluationResult<? extends IEnhancedForStatementNode>> enhancedForStatementMap;
   private EvaluationResult<? extends IEnhancedForStatementNode> parseEnhancedForStatement(int position) {
-    EvaluationResult<? extends IEnhancedForStatementNode> result = (EnhancedForStatementMap == null ? null : EnhancedForStatementMap.get(position));
+    EvaluationResult<? extends IEnhancedForStatementNode> result = (enhancedForStatementMap == null ? null : enhancedForStatementMap.get(position));
     if (result == null) {
       if (checkToken_EnhancedForStatement(position)) {
         result = evaluateEnhancedForStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      EnhancedForStatementMap = initializeMap(EnhancedForStatementMap);
-      EnhancedForStatementMap.put(position, result);
+      enhancedForStatementMap = initializeMap(enhancedForStatementMap);
+      enhancedForStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IBreakStatementNode>> BreakStatementMap;
+  private Map<Integer,EvaluationResult<? extends IBreakStatementNode>> breakStatementMap;
   private EvaluationResult<? extends IBreakStatementNode> parseBreakStatement(int position) {
-    EvaluationResult<? extends IBreakStatementNode> result = (BreakStatementMap == null ? null : BreakStatementMap.get(position));
+    EvaluationResult<? extends IBreakStatementNode> result = (breakStatementMap == null ? null : breakStatementMap.get(position));
     if (result == null) {
       if (checkToken_BreakStatement(position)) {
         result = evaluateBreakStatementExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      BreakStatementMap = initializeMap(BreakStatementMap);
-      BreakStatementMap.put(position, result);
+      breakStatementMap = initializeMap(breakStatementMap);
+      breakStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IContinueStatementNode>> ContinueStatementMap;
+  private Map<Integer,EvaluationResult<? extends IContinueStatementNode>> continueStatementMap;
   private EvaluationResult<? extends IContinueStatementNode> parseContinueStatement(int position) {
-    EvaluationResult<? extends IContinueStatementNode> result = (ContinueStatementMap == null ? null : ContinueStatementMap.get(position));
+    EvaluationResult<? extends IContinueStatementNode> result = (continueStatementMap == null ? null : continueStatementMap.get(position));
     if (result == null) {
       if (checkToken_ContinueStatement(position)) {
         result = evaluateContinueStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ContinueStatementMap = initializeMap(ContinueStatementMap);
-      ContinueStatementMap.put(position, result);
+      continueStatementMap = initializeMap(continueStatementMap);
+      continueStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IReturnStatementNode>> ReturnStatementMap;
+  private Map<Integer,EvaluationResult<? extends IReturnStatementNode>> returnStatementMap;
   private EvaluationResult<? extends IReturnStatementNode> parseReturnStatement(int position) {
-    EvaluationResult<? extends IReturnStatementNode> result = (ReturnStatementMap == null ? null : ReturnStatementMap.get(position));
+    EvaluationResult<? extends IReturnStatementNode> result = (returnStatementMap == null ? null : returnStatementMap.get(position));
     if (result == null) {
       if (checkToken_ReturnStatement(position)) {
         result = evaluateReturnStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ReturnStatementMap = initializeMap(ReturnStatementMap);
-      ReturnStatementMap.put(position, result);
+      returnStatementMap = initializeMap(returnStatementMap);
+      returnStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IThrowStatementNode>> ThrowStatementMap;
+  private Map<Integer,EvaluationResult<? extends IThrowStatementNode>> throwStatementMap;
   private EvaluationResult<? extends IThrowStatementNode> parseThrowStatement(int position) {
-    EvaluationResult<? extends IThrowStatementNode> result = (ThrowStatementMap == null ? null : ThrowStatementMap.get(position));
+    EvaluationResult<? extends IThrowStatementNode> result = (throwStatementMap == null ? null : throwStatementMap.get(position));
     if (result == null) {
       if (checkToken_ThrowStatement(position)) {
         result = evaluateThrowStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ThrowStatementMap = initializeMap(ThrowStatementMap);
-      ThrowStatementMap.put(position, result);
+      throwStatementMap = initializeMap(throwStatementMap);
+      throwStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISynchronizedStatementNode>> SynchronizedStatementMap;
+  private Map<Integer,EvaluationResult<? extends ISynchronizedStatementNode>> synchronizedStatementMap;
   private EvaluationResult<? extends ISynchronizedStatementNode> parseSynchronizedStatement(int position) {
-    EvaluationResult<? extends ISynchronizedStatementNode> result = (SynchronizedStatementMap == null ? null : SynchronizedStatementMap.get(position));
+    EvaluationResult<? extends ISynchronizedStatementNode> result = (synchronizedStatementMap == null ? null : synchronizedStatementMap.get(position));
     if (result == null) {
       if (checkToken_SynchronizedStatement(position)) {
         result = evaluateSynchronizedStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SynchronizedStatementMap = initializeMap(SynchronizedStatementMap);
-      SynchronizedStatementMap.put(position, result);
+      synchronizedStatementMap = initializeMap(synchronizedStatementMap);
+      synchronizedStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITryStatementNode>> TryStatementMap;
+  private Map<Integer,EvaluationResult<? extends ITryStatementNode>> tryStatementMap;
   private EvaluationResult<? extends ITryStatementNode> parseTryStatement(int position) {
-    EvaluationResult<? extends ITryStatementNode> result = (TryStatementMap == null ? null : TryStatementMap.get(position));
+    EvaluationResult<? extends ITryStatementNode> result = (tryStatementMap == null ? null : tryStatementMap.get(position));
     if (result == null) {
       if (checkToken_TryStatement(position)) {
         result = evaluateTryStatementExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TryStatementMap = initializeMap(TryStatementMap);
-      TryStatementMap.put(position, result);
+      tryStatementMap = initializeMap(tryStatementMap);
+      tryStatementMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITryStatementWithFinallyNode>> TryStatementWithFinallyMap;
+  private Map<Integer,EvaluationResult<? extends ITryStatementWithFinallyNode>> tryStatementWithFinallyMap;
   private EvaluationResult<? extends ITryStatementWithFinallyNode> parseTryStatementWithFinally(int position) {
-    EvaluationResult<? extends ITryStatementWithFinallyNode> result = (TryStatementWithFinallyMap == null ? null : TryStatementWithFinallyMap.get(position));
+    EvaluationResult<? extends ITryStatementWithFinallyNode> result = (tryStatementWithFinallyMap == null ? null : tryStatementWithFinallyMap.get(position));
     if (result == null) {
       if (checkToken_TryStatementWithFinally(position)) {
         result = evaluateTryStatementWithFinallyExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TryStatementWithFinallyMap = initializeMap(TryStatementWithFinallyMap);
-      TryStatementWithFinallyMap.put(position, result);
+      tryStatementWithFinallyMap = initializeMap(tryStatementWithFinallyMap);
+      tryStatementWithFinallyMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITryStatementWithoutFinallyNode>> TryStatementWithoutFinallyMap;
+  private Map<Integer,EvaluationResult<? extends ITryStatementWithoutFinallyNode>> tryStatementWithoutFinallyMap;
   private EvaluationResult<? extends ITryStatementWithoutFinallyNode> parseTryStatementWithoutFinally(int position) {
-    EvaluationResult<? extends ITryStatementWithoutFinallyNode> result = (TryStatementWithoutFinallyMap == null ? null : TryStatementWithoutFinallyMap.get(position));
+    EvaluationResult<? extends ITryStatementWithoutFinallyNode> result = (tryStatementWithoutFinallyMap == null ? null : tryStatementWithoutFinallyMap.get(position));
     if (result == null) {
       if (checkToken_TryStatementWithoutFinally(position)) {
         result = evaluateTryStatementWithoutFinallyExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TryStatementWithoutFinallyMap = initializeMap(TryStatementWithoutFinallyMap);
-      TryStatementWithoutFinallyMap.put(position, result);
+      tryStatementWithoutFinallyMap = initializeMap(tryStatementWithoutFinallyMap);
+      tryStatementWithoutFinallyMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ICatchClauseNode>> CatchClauseMap;
+  private Map<Integer,EvaluationResult<? extends ICatchClauseNode>> catchClauseMap;
   private EvaluationResult<? extends ICatchClauseNode> parseCatchClause(int position) {
-    EvaluationResult<? extends ICatchClauseNode> result = (CatchClauseMap == null ? null : CatchClauseMap.get(position));
+    EvaluationResult<? extends ICatchClauseNode> result = (catchClauseMap == null ? null : catchClauseMap.get(position));
     if (result == null) {
       if (checkToken_CatchClause(position)) {
         result = evaluateCatchClauseExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      CatchClauseMap = initializeMap(CatchClauseMap);
-      CatchClauseMap.put(position, result);
+      catchClauseMap = initializeMap(catchClauseMap);
+      catchClauseMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IExpressionNode>> ExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IExpressionNode>> expressionMap;
   private EvaluationResult<? extends IExpressionNode> parseExpression(int position) {
-    EvaluationResult<? extends IExpressionNode> result = (ExpressionMap == null ? null : ExpressionMap.get(position));
+    EvaluationResult<? extends IExpressionNode> result = (expressionMap == null ? null : expressionMap.get(position));
     if (result == null) {
       if (checkToken_Expression(position)) {
         result = evaluateExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ExpressionMap = initializeMap(ExpressionMap);
-      ExpressionMap.put(position, result);
+      expressionMap = initializeMap(expressionMap);
+      expressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IAssignmentOperatorNode>> AssignmentOperatorMap;
+  private Map<Integer,EvaluationResult<? extends IAssignmentOperatorNode>> assignmentOperatorMap;
   private EvaluationResult<? extends IAssignmentOperatorNode> parseAssignmentOperator(int position) {
-    EvaluationResult<? extends IAssignmentOperatorNode> result = (AssignmentOperatorMap == null ? null : AssignmentOperatorMap.get(position));
+    EvaluationResult<? extends IAssignmentOperatorNode> result = (assignmentOperatorMap == null ? null : assignmentOperatorMap.get(position));
     if (result == null) {
       if (checkToken_AssignmentOperator(position)) {
         result = evaluateAssignmentOperatorExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      AssignmentOperatorMap = initializeMap(AssignmentOperatorMap);
-      AssignmentOperatorMap.put(position, result);
+      assignmentOperatorMap = initializeMap(assignmentOperatorMap);
+      assignmentOperatorMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IExpression1Node>> Expression1Map;
+  private Map<Integer,EvaluationResult<? extends IExpression1Node>> expression1Map;
   private EvaluationResult<? extends IExpression1Node> parseExpression1(int position) {
-    EvaluationResult<? extends IExpression1Node> result = (Expression1Map == null ? null : Expression1Map.get(position));
+    EvaluationResult<? extends IExpression1Node> result = (expression1Map == null ? null : expression1Map.get(position));
     if (result == null) {
       if (checkToken_Expression1(position)) {
         result = evaluateExpression1Expression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      Expression1Map = initializeMap(Expression1Map);
-      Expression1Map.put(position, result);
+      expression1Map = initializeMap(expression1Map);
+      expression1Map.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ITernaryExpressionNode>> TernaryExpressionMap;
+  private Map<Integer,EvaluationResult<? extends ITernaryExpressionNode>> ternaryExpressionMap;
   private EvaluationResult<? extends ITernaryExpressionNode> parseTernaryExpression(int position) {
-    EvaluationResult<? extends ITernaryExpressionNode> result = (TernaryExpressionMap == null ? null : TernaryExpressionMap.get(position));
+    EvaluationResult<? extends ITernaryExpressionNode> result = (ternaryExpressionMap == null ? null : ternaryExpressionMap.get(position));
     if (result == null) {
       if (checkToken_TernaryExpression(position)) {
         result = evaluateTernaryExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      TernaryExpressionMap = initializeMap(TernaryExpressionMap);
-      TernaryExpressionMap.put(position, result);
+      ternaryExpressionMap = initializeMap(ternaryExpressionMap);
+      ternaryExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IExpression2Node>> Expression2Map;
+  private Map<Integer,EvaluationResult<? extends IExpression2Node>> expression2Map;
   private EvaluationResult<? extends IExpression2Node> parseExpression2(int position) {
-    EvaluationResult<? extends IExpression2Node> result = (Expression2Map == null ? null : Expression2Map.get(position));
+    EvaluationResult<? extends IExpression2Node> result = (expression2Map == null ? null : expression2Map.get(position));
     if (result == null) {
       if (checkToken_Expression2(position)) {
         result = evaluateExpression2Expression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      Expression2Map = initializeMap(Expression2Map);
-      Expression2Map.put(position, result);
+      expression2Map = initializeMap(expression2Map);
+      expression2Map.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IBinaryExpressionNode>> BinaryExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IBinaryExpressionNode>> binaryExpressionMap;
   private EvaluationResult<? extends IBinaryExpressionNode> parseBinaryExpression(int position) {
-    EvaluationResult<? extends IBinaryExpressionNode> result = (BinaryExpressionMap == null ? null : BinaryExpressionMap.get(position));
+    EvaluationResult<? extends IBinaryExpressionNode> result = (binaryExpressionMap == null ? null : binaryExpressionMap.get(position));
     if (result == null) {
       if (checkToken_BinaryExpression(position)) {
         result = evaluateBinaryExpressionExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      BinaryExpressionMap = initializeMap(BinaryExpressionMap);
-      BinaryExpressionMap.put(position, result);
+      binaryExpressionMap = initializeMap(binaryExpressionMap);
+      binaryExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IBinaryExpressionRestNode>> BinaryExpressionRestMap;
+  private Map<Integer,EvaluationResult<? extends IBinaryExpressionRestNode>> binaryExpressionRestMap;
   private EvaluationResult<? extends IBinaryExpressionRestNode> parseBinaryExpressionRest(int position) {
-    EvaluationResult<? extends IBinaryExpressionRestNode> result = (BinaryExpressionRestMap == null ? null : BinaryExpressionRestMap.get(position));
+    EvaluationResult<? extends IBinaryExpressionRestNode> result = (binaryExpressionRestMap == null ? null : binaryExpressionRestMap.get(position));
     if (result == null) {
       if (checkToken_BinaryExpressionRest(position)) {
         result = evaluateBinaryExpressionRestExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      BinaryExpressionRestMap = initializeMap(BinaryExpressionRestMap);
-      BinaryExpressionRestMap.put(position, result);
+      binaryExpressionRestMap = initializeMap(binaryExpressionRestMap);
+      binaryExpressionRestMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IInfixOperatorBinaryExpressionRestNode>> InfixOperatorBinaryExpressionRestMap;
+  private Map<Integer,EvaluationResult<? extends IInfixOperatorBinaryExpressionRestNode>> infixOperatorBinaryExpressionRestMap;
   private EvaluationResult<? extends IInfixOperatorBinaryExpressionRestNode> parseInfixOperatorBinaryExpressionRest(int position) {
-    EvaluationResult<? extends IInfixOperatorBinaryExpressionRestNode> result = (InfixOperatorBinaryExpressionRestMap == null ? null : InfixOperatorBinaryExpressionRestMap.get(position));
+    EvaluationResult<? extends IInfixOperatorBinaryExpressionRestNode> result = (infixOperatorBinaryExpressionRestMap == null ? null : infixOperatorBinaryExpressionRestMap.get(position));
     if (result == null) {
       if (checkToken_InfixOperatorBinaryExpressionRest(position)) {
         result = evaluateInfixOperatorBinaryExpressionRestExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      InfixOperatorBinaryExpressionRestMap = initializeMap(InfixOperatorBinaryExpressionRestMap);
-      InfixOperatorBinaryExpressionRestMap.put(position, result);
+      infixOperatorBinaryExpressionRestMap = initializeMap(infixOperatorBinaryExpressionRestMap);
+      infixOperatorBinaryExpressionRestMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IInstanceofOperatorBinaryExpressionRestNode>> InstanceofOperatorBinaryExpressionRestMap;
+  private Map<Integer,EvaluationResult<? extends IInstanceofOperatorBinaryExpressionRestNode>> instanceofOperatorBinaryExpressionRestMap;
   private EvaluationResult<? extends IInstanceofOperatorBinaryExpressionRestNode> parseInstanceofOperatorBinaryExpressionRest(int position) {
-    EvaluationResult<? extends IInstanceofOperatorBinaryExpressionRestNode> result = (InstanceofOperatorBinaryExpressionRestMap == null ? null : InstanceofOperatorBinaryExpressionRestMap.get(position));
+    EvaluationResult<? extends IInstanceofOperatorBinaryExpressionRestNode> result = (instanceofOperatorBinaryExpressionRestMap == null ? null : instanceofOperatorBinaryExpressionRestMap.get(position));
     if (result == null) {
       if (checkToken_InstanceofOperatorBinaryExpressionRest(position)) {
         result = evaluateInstanceofOperatorBinaryExpressionRestExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      InstanceofOperatorBinaryExpressionRestMap = initializeMap(InstanceofOperatorBinaryExpressionRestMap);
-      InstanceofOperatorBinaryExpressionRestMap.put(position, result);
+      instanceofOperatorBinaryExpressionRestMap = initializeMap(instanceofOperatorBinaryExpressionRestMap);
+      instanceofOperatorBinaryExpressionRestMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IInfixOperatorNode>> InfixOperatorMap;
+  private Map<Integer,EvaluationResult<? extends IInfixOperatorNode>> infixOperatorMap;
   private EvaluationResult<? extends IInfixOperatorNode> parseInfixOperator(int position) {
-    EvaluationResult<? extends IInfixOperatorNode> result = (InfixOperatorMap == null ? null : InfixOperatorMap.get(position));
+    EvaluationResult<? extends IInfixOperatorNode> result = (infixOperatorMap == null ? null : infixOperatorMap.get(position));
     if (result == null) {
       if (checkToken_InfixOperator(position)) {
         result = evaluateInfixOperatorExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      InfixOperatorMap = initializeMap(InfixOperatorMap);
-      InfixOperatorMap.put(position, result);
+      infixOperatorMap = initializeMap(infixOperatorMap);
+      infixOperatorMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IUnsignedRightShiftNode>> UnsignedRightShiftMap;
+  private Map<Integer,EvaluationResult<? extends IUnsignedRightShiftNode>> unsignedRightShiftMap;
   private EvaluationResult<? extends IUnsignedRightShiftNode> parseUnsignedRightShift(int position) {
-    EvaluationResult<? extends IUnsignedRightShiftNode> result = (UnsignedRightShiftMap == null ? null : UnsignedRightShiftMap.get(position));
+    EvaluationResult<? extends IUnsignedRightShiftNode> result = (unsignedRightShiftMap == null ? null : unsignedRightShiftMap.get(position));
     if (result == null) {
       if (checkToken_UnsignedRightShift(position)) {
         result = evaluateUnsignedRightShiftExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      UnsignedRightShiftMap = initializeMap(UnsignedRightShiftMap);
-      UnsignedRightShiftMap.put(position, result);
+      unsignedRightShiftMap = initializeMap(unsignedRightShiftMap);
+      unsignedRightShiftMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISignedRightShiftNode>> SignedRightShiftMap;
+  private Map<Integer,EvaluationResult<? extends ISignedRightShiftNode>> signedRightShiftMap;
   private EvaluationResult<? extends ISignedRightShiftNode> parseSignedRightShift(int position) {
-    EvaluationResult<? extends ISignedRightShiftNode> result = (SignedRightShiftMap == null ? null : SignedRightShiftMap.get(position));
+    EvaluationResult<? extends ISignedRightShiftNode> result = (signedRightShiftMap == null ? null : signedRightShiftMap.get(position));
     if (result == null) {
       if (checkToken_SignedRightShift(position)) {
         result = evaluateSignedRightShiftExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SignedRightShiftMap = initializeMap(SignedRightShiftMap);
-      SignedRightShiftMap.put(position, result);
+      signedRightShiftMap = initializeMap(signedRightShiftMap);
+      signedRightShiftMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IExpression3Node>> Expression3Map;
+  private Map<Integer,EvaluationResult<? extends IExpression3Node>> expression3Map;
   private EvaluationResult<? extends IExpression3Node> parseExpression3(int position) {
-    EvaluationResult<? extends IExpression3Node> result = (Expression3Map == null ? null : Expression3Map.get(position));
+    EvaluationResult<? extends IExpression3Node> result = (expression3Map == null ? null : expression3Map.get(position));
     if (result == null) {
       if (checkToken_Expression3(position)) {
         result = evaluateExpression3Expression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      Expression3Map = initializeMap(Expression3Map);
-      Expression3Map.put(position, result);
+      expression3Map = initializeMap(expression3Map);
+      expression3Map.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPrefixExpressionNode>> PrefixExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IPrefixExpressionNode>> prefixExpressionMap;
   private EvaluationResult<? extends IPrefixExpressionNode> parsePrefixExpression(int position) {
-    EvaluationResult<? extends IPrefixExpressionNode> result = (PrefixExpressionMap == null ? null : PrefixExpressionMap.get(position));
+    EvaluationResult<? extends IPrefixExpressionNode> result = (prefixExpressionMap == null ? null : prefixExpressionMap.get(position));
     if (result == null) {
       if (checkToken_PrefixExpression(position)) {
         result = evaluatePrefixExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PrefixExpressionMap = initializeMap(PrefixExpressionMap);
-      PrefixExpressionMap.put(position, result);
+      prefixExpressionMap = initializeMap(prefixExpressionMap);
+      prefixExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPrefixOperatorNode>> PrefixOperatorMap;
+  private Map<Integer,EvaluationResult<? extends IPrefixOperatorNode>> prefixOperatorMap;
   private EvaluationResult<? extends IPrefixOperatorNode> parsePrefixOperator(int position) {
-    EvaluationResult<? extends IPrefixOperatorNode> result = (PrefixOperatorMap == null ? null : PrefixOperatorMap.get(position));
+    EvaluationResult<? extends IPrefixOperatorNode> result = (prefixOperatorMap == null ? null : prefixOperatorMap.get(position));
     if (result == null) {
       if (checkToken_PrefixOperator(position)) {
         result = evaluatePrefixOperatorExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PrefixOperatorMap = initializeMap(PrefixOperatorMap);
-      PrefixOperatorMap.put(position, result);
+      prefixOperatorMap = initializeMap(prefixOperatorMap);
+      prefixOperatorMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPossibleCastExpressionNode>> PossibleCastExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IPossibleCastExpressionNode>> possibleCastExpressionMap;
   private EvaluationResult<? extends IPossibleCastExpressionNode> parsePossibleCastExpression(int position) {
-    EvaluationResult<? extends IPossibleCastExpressionNode> result = (PossibleCastExpressionMap == null ? null : PossibleCastExpressionMap.get(position));
+    EvaluationResult<? extends IPossibleCastExpressionNode> result = (possibleCastExpressionMap == null ? null : possibleCastExpressionMap.get(position));
     if (result == null) {
       if (checkToken_PossibleCastExpression(position)) {
         result = evaluatePossibleCastExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PossibleCastExpressionMap = initializeMap(PossibleCastExpressionMap);
-      PossibleCastExpressionMap.put(position, result);
+      possibleCastExpressionMap = initializeMap(possibleCastExpressionMap);
+      possibleCastExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPossibleCastExpression_TypeNode>> PossibleCastExpression_TypeMap;
+  private Map<Integer,EvaluationResult<? extends IPossibleCastExpression_TypeNode>> possibleCastExpression_TypeMap;
   private EvaluationResult<? extends IPossibleCastExpression_TypeNode> parsePossibleCastExpression_Type(int position) {
-    EvaluationResult<? extends IPossibleCastExpression_TypeNode> result = (PossibleCastExpression_TypeMap == null ? null : PossibleCastExpression_TypeMap.get(position));
+    EvaluationResult<? extends IPossibleCastExpression_TypeNode> result = (possibleCastExpression_TypeMap == null ? null : possibleCastExpression_TypeMap.get(position));
     if (result == null) {
       if (checkToken_PossibleCastExpression_Type(position)) {
         result = evaluatePossibleCastExpression_TypeExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PossibleCastExpression_TypeMap = initializeMap(PossibleCastExpression_TypeMap);
-      PossibleCastExpression_TypeMap.put(position, result);
+      possibleCastExpression_TypeMap = initializeMap(possibleCastExpression_TypeMap);
+      possibleCastExpression_TypeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPossibleCastExpression_ExpressionNode>> PossibleCastExpression_ExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IPossibleCastExpression_ExpressionNode>> possibleCastExpression_ExpressionMap;
   private EvaluationResult<? extends IPossibleCastExpression_ExpressionNode> parsePossibleCastExpression_Expression(int position) {
-    EvaluationResult<? extends IPossibleCastExpression_ExpressionNode> result = (PossibleCastExpression_ExpressionMap == null ? null : PossibleCastExpression_ExpressionMap.get(position));
+    EvaluationResult<? extends IPossibleCastExpression_ExpressionNode> result = (possibleCastExpression_ExpressionMap == null ? null : possibleCastExpression_ExpressionMap.get(position));
     if (result == null) {
       if (checkToken_PossibleCastExpression_Expression(position)) {
         result = evaluatePossibleCastExpression_ExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PossibleCastExpression_ExpressionMap = initializeMap(PossibleCastExpression_ExpressionMap);
-      PossibleCastExpression_ExpressionMap.put(position, result);
+      possibleCastExpression_ExpressionMap = initializeMap(possibleCastExpression_ExpressionMap);
+      possibleCastExpression_ExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPrimaryExpressionNode>> PrimaryExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IPrimaryExpressionNode>> primaryExpressionMap;
   private EvaluationResult<? extends IPrimaryExpressionNode> parsePrimaryExpression(int position) {
-    EvaluationResult<? extends IPrimaryExpressionNode> result = (PrimaryExpressionMap == null ? null : PrimaryExpressionMap.get(position));
+    EvaluationResult<? extends IPrimaryExpressionNode> result = (primaryExpressionMap == null ? null : primaryExpressionMap.get(position));
     if (result == null) {
       if (checkToken_PrimaryExpression(position)) {
         result = evaluatePrimaryExpressionExpression_2(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PrimaryExpressionMap = initializeMap(PrimaryExpressionMap);
-      PrimaryExpressionMap.put(position, result);
+      primaryExpressionMap = initializeMap(primaryExpressionMap);
+      primaryExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IPostfixOperatorNode>> PostfixOperatorMap;
+  private Map<Integer,EvaluationResult<? extends IPostfixOperatorNode>> postfixOperatorMap;
   private EvaluationResult<? extends IPostfixOperatorNode> parsePostfixOperator(int position) {
-    EvaluationResult<? extends IPostfixOperatorNode> result = (PostfixOperatorMap == null ? null : PostfixOperatorMap.get(position));
+    EvaluationResult<? extends IPostfixOperatorNode> result = (postfixOperatorMap == null ? null : postfixOperatorMap.get(position));
     if (result == null) {
       if (checkToken_PostfixOperator(position)) {
         result = evaluatePostfixOperatorExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      PostfixOperatorMap = initializeMap(PostfixOperatorMap);
-      PostfixOperatorMap.put(position, result);
+      postfixOperatorMap = initializeMap(postfixOperatorMap);
+      postfixOperatorMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IValueExpressionNode>> ValueExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IValueExpressionNode>> valueExpressionMap;
   private EvaluationResult<? extends IValueExpressionNode> parseValueExpression(int position) {
-    EvaluationResult<? extends IValueExpressionNode> result = (ValueExpressionMap == null ? null : ValueExpressionMap.get(position));
+    EvaluationResult<? extends IValueExpressionNode> result = (valueExpressionMap == null ? null : valueExpressionMap.get(position));
     if (result == null) {
       if (checkToken_ValueExpression(position)) {
         result = evaluateValueExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ValueExpressionMap = initializeMap(ValueExpressionMap);
-      ValueExpressionMap.put(position, result);
+      valueExpressionMap = initializeMap(valueExpressionMap);
+      valueExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IClassAccessNode>> ClassAccessMap;
+  private Map<Integer,EvaluationResult<? extends IClassAccessNode>> classAccessMap;
   private EvaluationResult<? extends IClassAccessNode> parseClassAccess(int position) {
-    EvaluationResult<? extends IClassAccessNode> result = (ClassAccessMap == null ? null : ClassAccessMap.get(position));
+    EvaluationResult<? extends IClassAccessNode> result = (classAccessMap == null ? null : classAccessMap.get(position));
     if (result == null) {
       if (checkToken_ClassAccess(position)) {
         result = evaluateClassAccessExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ClassAccessMap = initializeMap(ClassAccessMap);
-      ClassAccessMap.put(position, result);
+      classAccessMap = initializeMap(classAccessMap);
+      classAccessMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISelectorNode>> SelectorMap;
+  private Map<Integer,EvaluationResult<? extends ISelectorNode>> selectorMap;
   private EvaluationResult<? extends ISelectorNode> parseSelector(int position) {
-    EvaluationResult<? extends ISelectorNode> result = (SelectorMap == null ? null : SelectorMap.get(position));
+    EvaluationResult<? extends ISelectorNode> result = (selectorMap == null ? null : selectorMap.get(position));
     if (result == null) {
       if (checkToken_Selector(position)) {
         result = evaluateSelectorExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SelectorMap = initializeMap(SelectorMap);
-      SelectorMap.put(position, result);
+      selectorMap = initializeMap(selectorMap);
+      selectorMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IDotSelectorNode>> DotSelectorMap;
+  private Map<Integer,EvaluationResult<? extends IDotSelectorNode>> dotSelectorMap;
   private EvaluationResult<? extends IDotSelectorNode> parseDotSelector(int position) {
-    EvaluationResult<? extends IDotSelectorNode> result = (DotSelectorMap == null ? null : DotSelectorMap.get(position));
+    EvaluationResult<? extends IDotSelectorNode> result = (dotSelectorMap == null ? null : dotSelectorMap.get(position));
     if (result == null) {
       if (checkToken_DotSelector(position)) {
         result = evaluateDotSelectorExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      DotSelectorMap = initializeMap(DotSelectorMap);
-      DotSelectorMap.put(position, result);
+      dotSelectorMap = initializeMap(dotSelectorMap);
+      dotSelectorMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IArraySelectorNode>> ArraySelectorMap;
+  private Map<Integer,EvaluationResult<? extends IArraySelectorNode>> arraySelectorMap;
   private EvaluationResult<? extends IArraySelectorNode> parseArraySelector(int position) {
-    EvaluationResult<? extends IArraySelectorNode> result = (ArraySelectorMap == null ? null : ArraySelectorMap.get(position));
+    EvaluationResult<? extends IArraySelectorNode> result = (arraySelectorMap == null ? null : arraySelectorMap.get(position));
     if (result == null) {
       if (checkToken_ArraySelector(position)) {
         result = evaluateArraySelectorExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ArraySelectorMap = initializeMap(ArraySelectorMap);
-      ArraySelectorMap.put(position, result);
+      arraySelectorMap = initializeMap(arraySelectorMap);
+      arraySelectorMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IParenthesizedExpressionNode>> ParenthesizedExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IParenthesizedExpressionNode>> parenthesizedExpressionMap;
   private EvaluationResult<? extends IParenthesizedExpressionNode> parseParenthesizedExpression(int position) {
-    EvaluationResult<? extends IParenthesizedExpressionNode> result = (ParenthesizedExpressionMap == null ? null : ParenthesizedExpressionMap.get(position));
+    EvaluationResult<? extends IParenthesizedExpressionNode> result = (parenthesizedExpressionMap == null ? null : parenthesizedExpressionMap.get(position));
     if (result == null) {
       if (checkToken_ParenthesizedExpression(position)) {
         result = evaluateParenthesizedExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ParenthesizedExpressionMap = initializeMap(ParenthesizedExpressionMap);
-      ParenthesizedExpressionMap.put(position, result);
+      parenthesizedExpressionMap = initializeMap(parenthesizedExpressionMap);
+      parenthesizedExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IMethodInvocationNode>> MethodInvocationMap;
+  private Map<Integer,EvaluationResult<? extends IMethodInvocationNode>> methodInvocationMap;
   private EvaluationResult<? extends IMethodInvocationNode> parseMethodInvocation(int position) {
-    EvaluationResult<? extends IMethodInvocationNode> result = (MethodInvocationMap == null ? null : MethodInvocationMap.get(position));
+    EvaluationResult<? extends IMethodInvocationNode> result = (methodInvocationMap == null ? null : methodInvocationMap.get(position));
     if (result == null) {
       if (checkToken_MethodInvocation(position)) {
         result = evaluateMethodInvocationExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      MethodInvocationMap = initializeMap(MethodInvocationMap);
-      MethodInvocationMap.put(position, result);
+      methodInvocationMap = initializeMap(methodInvocationMap);
+      methodInvocationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IThisConstructorInvocationNode>> ThisConstructorInvocationMap;
+  private Map<Integer,EvaluationResult<? extends IThisConstructorInvocationNode>> thisConstructorInvocationMap;
   private EvaluationResult<? extends IThisConstructorInvocationNode> parseThisConstructorInvocation(int position) {
-    EvaluationResult<? extends IThisConstructorInvocationNode> result = (ThisConstructorInvocationMap == null ? null : ThisConstructorInvocationMap.get(position));
+    EvaluationResult<? extends IThisConstructorInvocationNode> result = (thisConstructorInvocationMap == null ? null : thisConstructorInvocationMap.get(position));
     if (result == null) {
       if (checkToken_ThisConstructorInvocation(position)) {
         result = evaluateThisConstructorInvocationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ThisConstructorInvocationMap = initializeMap(ThisConstructorInvocationMap);
-      ThisConstructorInvocationMap.put(position, result);
+      thisConstructorInvocationMap = initializeMap(thisConstructorInvocationMap);
+      thisConstructorInvocationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ISuperConstructorInvocationNode>> SuperConstructorInvocationMap;
+  private Map<Integer,EvaluationResult<? extends ISuperConstructorInvocationNode>> superConstructorInvocationMap;
   private EvaluationResult<? extends ISuperConstructorInvocationNode> parseSuperConstructorInvocation(int position) {
-    EvaluationResult<? extends ISuperConstructorInvocationNode> result = (SuperConstructorInvocationMap == null ? null : SuperConstructorInvocationMap.get(position));
+    EvaluationResult<? extends ISuperConstructorInvocationNode> result = (superConstructorInvocationMap == null ? null : superConstructorInvocationMap.get(position));
     if (result == null) {
       if (checkToken_SuperConstructorInvocation(position)) {
         result = evaluateSuperConstructorInvocationExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      SuperConstructorInvocationMap = initializeMap(SuperConstructorInvocationMap);
-      SuperConstructorInvocationMap.put(position, result);
+      superConstructorInvocationMap = initializeMap(superConstructorInvocationMap);
+      superConstructorInvocationMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends ICreationExpressionNode>> CreationExpressionMap;
+  private Map<Integer,EvaluationResult<? extends ICreationExpressionNode>> creationExpressionMap;
   private EvaluationResult<? extends ICreationExpressionNode> parseCreationExpression(int position) {
-    EvaluationResult<? extends ICreationExpressionNode> result = (CreationExpressionMap == null ? null : CreationExpressionMap.get(position));
+    EvaluationResult<? extends ICreationExpressionNode> result = (creationExpressionMap == null ? null : creationExpressionMap.get(position));
     if (result == null) {
       if (checkToken_CreationExpression(position)) {
         result = evaluateCreationExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      CreationExpressionMap = initializeMap(CreationExpressionMap);
-      CreationExpressionMap.put(position, result);
+      creationExpressionMap = initializeMap(creationExpressionMap);
+      creationExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IObjectCreationExpressionNode>> ObjectCreationExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IObjectCreationExpressionNode>> objectCreationExpressionMap;
   private EvaluationResult<? extends IObjectCreationExpressionNode> parseObjectCreationExpression(int position) {
-    EvaluationResult<? extends IObjectCreationExpressionNode> result = (ObjectCreationExpressionMap == null ? null : ObjectCreationExpressionMap.get(position));
+    EvaluationResult<? extends IObjectCreationExpressionNode> result = (objectCreationExpressionMap == null ? null : objectCreationExpressionMap.get(position));
     if (result == null) {
       if (checkToken_ObjectCreationExpression(position)) {
         result = evaluateObjectCreationExpressionExpression_1(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ObjectCreationExpressionMap = initializeMap(ObjectCreationExpressionMap);
-      ObjectCreationExpressionMap.put(position, result);
+      objectCreationExpressionMap = initializeMap(objectCreationExpressionMap);
+      objectCreationExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IArrayCreationExpressionNode>> ArrayCreationExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IArrayCreationExpressionNode>> arrayCreationExpressionMap;
   private EvaluationResult<? extends IArrayCreationExpressionNode> parseArrayCreationExpression(int position) {
-    EvaluationResult<? extends IArrayCreationExpressionNode> result = (ArrayCreationExpressionMap == null ? null : ArrayCreationExpressionMap.get(position));
+    EvaluationResult<? extends IArrayCreationExpressionNode> result = (arrayCreationExpressionMap == null ? null : arrayCreationExpressionMap.get(position));
     if (result == null) {
       if (checkToken_ArrayCreationExpression(position)) {
         result = evaluateArrayCreationExpressionExpression_2(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ArrayCreationExpressionMap = initializeMap(ArrayCreationExpressionMap);
-      ArrayCreationExpressionMap.put(position, result);
+      arrayCreationExpressionMap = initializeMap(arrayCreationExpressionMap);
+      arrayCreationExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IArrayCreationTypeNode>> ArrayCreationTypeMap;
+  private Map<Integer,EvaluationResult<? extends IArrayCreationTypeNode>> arrayCreationTypeMap;
   private EvaluationResult<? extends IArrayCreationTypeNode> parseArrayCreationType(int position) {
-    EvaluationResult<? extends IArrayCreationTypeNode> result = (ArrayCreationTypeMap == null ? null : ArrayCreationTypeMap.get(position));
+    EvaluationResult<? extends IArrayCreationTypeNode> result = (arrayCreationTypeMap == null ? null : arrayCreationTypeMap.get(position));
     if (result == null) {
       if (checkToken_ArrayCreationType(position)) {
         result = evaluateArrayCreationTypeExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ArrayCreationTypeMap = initializeMap(ArrayCreationTypeMap);
-      ArrayCreationTypeMap.put(position, result);
+      arrayCreationTypeMap = initializeMap(arrayCreationTypeMap);
+      arrayCreationTypeMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IDimensionExpressionNode>> DimensionExpressionMap;
+  private Map<Integer,EvaluationResult<? extends IDimensionExpressionNode>> dimensionExpressionMap;
   private EvaluationResult<? extends IDimensionExpressionNode> parseDimensionExpression(int position) {
-    EvaluationResult<? extends IDimensionExpressionNode> result = (DimensionExpressionMap == null ? null : DimensionExpressionMap.get(position));
+    EvaluationResult<? extends IDimensionExpressionNode> result = (dimensionExpressionMap == null ? null : dimensionExpressionMap.get(position));
     if (result == null) {
       if (checkToken_DimensionExpression(position)) {
         result = evaluateDimensionExpressionExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      DimensionExpressionMap = initializeMap(DimensionExpressionMap);
-      DimensionExpressionMap.put(position, result);
+      dimensionExpressionMap = initializeMap(dimensionExpressionMap);
+      dimensionExpressionMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IArrayInitializerNode>> ArrayInitializerMap;
+  private Map<Integer,EvaluationResult<? extends IArrayInitializerNode>> arrayInitializerMap;
   private EvaluationResult<? extends IArrayInitializerNode> parseArrayInitializer(int position) {
-    EvaluationResult<? extends IArrayInitializerNode> result = (ArrayInitializerMap == null ? null : ArrayInitializerMap.get(position));
+    EvaluationResult<? extends IArrayInitializerNode> result = (arrayInitializerMap == null ? null : arrayInitializerMap.get(position));
     if (result == null) {
       if (checkToken_ArrayInitializer(position)) {
         result = evaluateArrayInitializerExpression_2(position);
       } else {
         result = EvaluationResult.failure();
       }
-      ArrayInitializerMap = initializeMap(ArrayInitializerMap);
-      ArrayInitializerMap.put(position, result);
+      arrayInitializerMap = initializeMap(arrayInitializerMap);
+      arrayInitializerMap.put(position, result);
     }
     return result;
   }
 
-  private Map<Integer,EvaluationResult<? extends IVariableInitializerNode>> VariableInitializerMap;
+  private Map<Integer,EvaluationResult<? extends IVariableInitializerNode>> variableInitializerMap;
   private EvaluationResult<? extends IVariableInitializerNode> parseVariableInitializer(int position) {
-    EvaluationResult<? extends IVariableInitializerNode> result = (VariableInitializerMap == null ? null : VariableInitializerMap.get(position));
+    EvaluationResult<? extends IVariableInitializerNode> result = (variableInitializerMap == null ? null : variableInitializerMap.get(position));
     if (result == null) {
       if (checkToken_VariableInitializer(position)) {
         result = evaluateVariableInitializerExpression_0(position);
       } else {
         result = EvaluationResult.failure();
       }
-      VariableInitializerMap = initializeMap(VariableInitializerMap);
-      VariableInitializerMap.put(position, result);
+      variableInitializerMap = initializeMap(variableInitializerMap);
+      variableInitializerMap.put(position, result);
     }
     return result;
   }

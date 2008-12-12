@@ -15,8 +15,6 @@
 package org.metasyntactic.automata.compiler.framework.parsers.packrat;
 
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.*;
-import org.metasyntactic.automata.compiler.java.parser.JavaGrammar;
-import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.collections.HashMultiMap;
 import org.metasyntactic.collections.MultiMap;
 import static org.metasyntactic.utilities.ReflectionUtilities.getSimpleName;
@@ -138,7 +136,9 @@ public class GrammarNodeWriter<TTokenType> {
     indent();
   }
 
-  private void indent() {indentLevel++;}
+  private void indent() {
+    indentLevel++;
+  }
 
   private void dedentAndWrite(String s) {
     dedent();
@@ -148,8 +148,10 @@ public class GrammarNodeWriter<TTokenType> {
   private void dedent() {indentLevel--;}
 
   public void write() {
+    writeFunctions();
     writeINode();
     writeVisitor();
+    //writeTransformer();
     writeNode();
 
     writePromotedTokenNodes();
@@ -161,6 +163,22 @@ public class GrammarNodeWriter<TTokenType> {
     for (Rule rule : grammar.getRules()) {
       writeClass(rule);
     }
+  }
+
+  private void writeFunctions() {
+    writeAndIndent("private static List<Object> trimList(List<Object> list) {");
+
+    writeAndIndent("if (list.isEmpty()) {");
+    write("return Collections.emptyList();");
+    dedentAndWrite("}");
+
+    writeAndIndent("if (list.size() == 1) {");
+    write("return Collections.singletonList(list.get(0));");
+    dedentAndWrite("}");
+
+    write("return Collections.unmodifiableList(list);");
+
+    dedentAndWrite("}");
   }
 
   private void writePromotedTokenNodes() {
@@ -187,6 +205,10 @@ public class GrammarNodeWriter<TTokenType> {
     write("return token;");
     dedentAndWrite("}");
 
+    writeAndIndent("protected List<Object> getChildrenWorker() {");
+    write("return Collections.<Object>singletonList(token);");
+    dedentAndWrite("}");
+
     writeAndIndent("public boolean equals(Object __other) {");
     write("if (this == __other) { return true; }");
     write("if (__other == null) { return false; }");
@@ -201,6 +223,10 @@ public class GrammarNodeWriter<TTokenType> {
 
     writeAndIndent("public void accept(INodeVisitor visitor) {");
     write("visitor.visit(this);");
+    dedentAndWrite("}");
+
+    writeAndIndent("public String getName() {");
+    write("return token.toString();");
     dedentAndWrite("}");
 
     dedentAndWrite("}");
@@ -218,18 +244,36 @@ public class GrammarNodeWriter<TTokenType> {
     dedentAndWrite("}");
   }
 
-  class TypeAndName {
+  class Member {
     String type;
     String name;
+    boolean isToken;
+    boolean isList;
+    boolean isDelimitedList;
 
-    TypeAndName(String type, String name) {
+    Member(String type, String name, boolean isToken, boolean isList, boolean isDelimitedList) {
       this.type = type;
       this.name = name;
+      this.isToken = isToken;
+      this.isList = isList;
+      this.isDelimitedList = isDelimitedList;
     }
   }
 
-  List<TypeAndName> getMembers(Rule rule) {
-    List<TypeAndName> result = new ArrayList<TypeAndName>();
+  private List<Member> getNodeMembers(Rule rule) {
+    List<Member> members = getMembers(rule);
+    List<Member> result = new ArrayList<Member>();
+
+    for (Member member : members) {
+      if (!member.isToken) {
+        result.add(member);
+      }
+    }
+    return result;
+  }
+
+  List<Member> getMembers(Rule rule) {
+    List<Member> result = new ArrayList<Member>();
 
     Expression expression = rule.getExpression();
     if (expression instanceof SequenceExpression) {
@@ -245,25 +289,28 @@ public class GrammarNodeWriter<TTokenType> {
         String name = getExpressionName(childExpression, usedNames);
         usedNames.add(name);
 
-        result.add(new TypeAndName(getExpressionType(childExpression), name));
+        result.add(new Member(getExpressionType(childExpression), name, isTokenType(childExpression),
+                              isListType(childExpression), isDelimitedListType(childExpression)));
       }
     } else if (expression instanceof ChoiceExpression) {
     } else if (expression instanceof DelimitedSequenceExpression) {
       DelimitedSequenceExpression dse = (DelimitedSequenceExpression) expression;
-      result.add(new TypeAndName(
+      result.add(new Member(
           "DelimitedList<" +
           getExpressionType(dse.getElement()) + ", " +
           getExpressionType(dse.getDelimiter()) + ">",
-          getExpressionName(dse.getElement()) + "List"));
+          getExpressionName(dse.getElement()) + "List", isTokenType(dse.getElement()), false, true));
     } else if (expression instanceof RepetitionExpression) {
       RepetitionExpression re = (RepetitionExpression) expression;
 
-      result.add(new TypeAndName("List<" + getExpressionType(re.getChild()) + ">", getExpressionName(re.getChild()) +
-                                                                                   "List"));
+      result.add(new Member("List<" + getExpressionType(re.getChild()) + ">", getExpressionName(re.getChild()) +
+                                                                              "List", isTokenType(re.getChild()), true,
+                                                                                      false));
     } else if (expression instanceof TokenExpression) {
       TokenExpression te = (TokenExpression) expression;
       result.add(
-          new TypeAndName("SourceToken<" + getSimpleName(te.getToken().getClass()) + ">", getExpressionName(te)));
+          new Member("SourceToken<" + getSimpleName(te.getToken().getClass()) + ">", getExpressionName(te), true, false,
+                     false));
     } else {
       throw new RuntimeException();
     }
@@ -271,14 +318,90 @@ public class GrammarNodeWriter<TTokenType> {
     return result;
   }
 
+  private boolean isDelimitedListType(Expression expression) {
+    return expression.accept(new DefaultExpressionVisitor<Object, Boolean>() {
+      protected Boolean defaultCase(Expression expression) {
+        return false;
+      }
+
+      public Boolean visit(OptionalExpression expression) {
+        return expression.getChild().accept(this);
+      }
+
+      public Boolean visit(DelimitedSequenceExpression expression) {
+        return true;
+      }
+    });
+  }
+
+  private boolean isListType(Expression expression) {
+    return expression.accept(new DefaultExpressionVisitor<Object, Boolean>() {
+      protected Boolean defaultCase(Expression expression) {
+        return false;
+      }
+
+      public Boolean visit(OneOrMoreExpression expression) {
+        return true;
+      }
+
+      public Boolean visit(OptionalExpression expression) {
+        return expression.getChild().accept(this);
+      }
+
+      public Boolean visit(RepetitionExpression expression) {
+        return true;
+      }
+    });
+  }
+
+  private boolean isTokenType(Expression expression) {
+    return expression.accept(new DefaultExpressionVisitor<Object, Boolean>() {
+      protected Boolean defaultCase(Expression expression) {
+        return false;
+      }
+
+      public Boolean visit(OptionalExpression expression) {
+        return expression.getChild().accept(this);
+      }
+
+      public Boolean visit(TypeExpression expression) {
+        return true;
+      }
+
+      public Boolean visit(TokenExpression expression) {
+        return true;
+      }
+
+      public Boolean visit(RepetitionExpression expression) {
+        return expression.getChild().accept(this);
+      }
+
+      public Boolean visit(OneOrMoreExpression expression) {
+        return expression.getChild().accept(this);
+      }
+    });
+  }
+
   private void writeINode() {
     writeAndIndent("public static interface INode {");
+    write("String getName();");
     write("void accept(INodeVisitor visitor);");
+    write("List<Object> getChildren();");
     dedentAndWrite("}");
   }
 
   private void writeNode() {
     writeAndIndent("public static abstract class AbstractNode implements INode {");
+
+    write("private List<Object> children;");
+    writeAndIndent("public List<Object> getChildren() {");
+    writeAndIndent("if (children == null) {");
+    write("children = getChildrenWorker();");
+    dedentAndWrite("}");
+    write("return children;");
+    dedentAndWrite("}");
+    write("protected abstract List<Object> getChildrenWorker();");
+
     write("private int hashCode = -1;");
     writeAndIndent("public int hashCode() {");
     writeAndIndent("if (hashCode == -1) {");
@@ -287,16 +410,76 @@ public class GrammarNodeWriter<TTokenType> {
     write("return hashCode;");
     dedentAndWrite("}");
     write("protected abstract int hashCodeWorker();");
+
     writeAndIndent("protected boolean equals(Object o1, Object o2) {");
     write("return o1 == null ? o2 == null : o1.equals(o2);");
     dedentAndWrite("}");
+
+    writeAndIndent("public String toString() {");
+    write("return getName();");
+    dedentAndWrite("}");
+
+    dedentAndWrite("}");
+  }
+
+  private void writeTransformer() {
+    writeAndIndent("public static interface INodeTransformer {");
+    for (Rule rule : grammar.getRules()) {
+      write("I" + rule.getVariable() + "Node transform(I" + rule.getVariable() + "Node node);");
+    }
+    dedentAndWrite("}");
+
+    writeAndIndent("public static class NodeTransformer implements INodeTransformer {");
+    for (Rule rule : grammar.getRules()) {
+      List<Member> members = getMembers(rule);
+
+      writeAndIndent("public I" + rule.getVariable() + "Node transform(I" + rule.getVariable() + "Node node) {");
+      for (Member member : members) {
+        if (!member.isToken) {
+          write(member.type + " " + camelCase(member.name) + " = node.get" + member.name + "().accept(this);");
+        }
+      }
+
+      String check = "";
+      for (Member member : members) {
+        if (!member.isToken) {
+          if (!check.equals("")) {
+            check += " && \n    ";
+          }
+
+          check += camelCase(member.name) + " == node.get" + member.name + "()";
+        }
+      }
+
+      writeAndIndent("if (" + check + ") {");
+      write("return node;");
+      dedentAndWrite("}");
+
+      String arguments = "";
+      for (Member member : members) {
+        if (!arguments.equals("")) {
+          arguments += ", ";
+        }
+
+        if (member.isToken) {
+          arguments += "node.get" + member.name + "()";
+        } else {
+          arguments += camelCase(member.name);
+        }
+      }
+
+      write("return new " + rule.getVariable() + "Node(" + arguments + ");");
+      dedentAndWrite("}");
+    }
     dedentAndWrite("}");
   }
 
   private void writeVisitor() {
     writeAndIndent("public static interface INodeVisitor {");
     for (Rule rule : grammar.getRules()) {
-      write("void visit(I" + rule.getVariable() + "Node node);");
+      if (getMembers(rule).size() > 0) {
+        write("void visit(I" + rule.getVariable() + "Node node);");
+      }
     }
     for (String tokenName : promotedTokens.keySet()) {
       write("void visit(I" + tokenName + "Node node);");
@@ -305,23 +488,63 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private void writeClass(Rule rule) {
-    writeAndIndent(
-        "public static class " + rule.getVariable() + "Node extends AbstractNode implements I" + rule.getVariable() +
-        "Node {");
-    writeClassFields(rule);
-    writeClassConstructor(rule);
-    writeGetters(rule);
-    writeAccept(rule);
-    writeEquals(rule);
-    writeHashCode(rule);
+    if (getMembers(rule).size() > 0) {
+      writeAndIndent(
+          "public static class " + rule.getVariable() + "Node extends AbstractNode implements I" + rule.getVariable() +
+          "Node {");
+      writeClassFields(rule);
+      writeClassConstructor(rule);
+      writeGetters(rule);
+      writeGetChildren(rule);
+      writeAccept(rule);
+      writeEquals(rule);
+      writeHashCode(rule);
+      writeToString(rule);
 
+      dedentAndWrite("}");
+    }
+  }
+
+  private void writeToString(Rule rule) {
+    writeAndIndent("public String getName() {");
+    write("return \"I" + rule.getVariable() + "Node\";");
+    dedentAndWrite("}");
+  }
+
+  private void writeGetChildren(Rule rule) {
+    writeAndIndent("protected List<Object> getChildrenWorker() {");
+    List<Member> members = getMembers(rule);
+    if (members.isEmpty()) {
+      write("return Collections.emptyList();");
+    } else if (members.size() == 1 && !members.get(0).isList && !members.get(0).isDelimitedList) {
+      writeAndIndent("if (" + camelCase(members.get(0).name) + " != null) {");
+      write("return Collections.<Object>singletonList(" + camelCase(members.get(0).name) + ");");
+      dedentAndWrite("}");
+      write("return Collections.emptyList();");
+    } else {
+      write("List<Object> list = new ArrayList<Object>();");
+
+      for (Member member : members) {
+          writeAndIndent("if (" + camelCase(member.name) + " != null) {");
+        if (member.isList) {
+          write("list.addAll(" + camelCase(member.name) + ");");
+        } else if (member.isDelimitedList) {
+          write(camelCase(member.name) + ".addTo(list);");
+        } else {
+          write("list.add(" + camelCase(member.name) + ");");
+        }
+        dedentAndWrite("}");
+      }
+
+      write("return trimList(list);");
+    }
     dedentAndWrite("}");
   }
 
   private void writeHashCode(Rule rule) {
     writeAndIndent("protected int hashCodeWorker() {");
     write("int hash = 0;");
-    for (TypeAndName tan : getMembers(rule)) {
+    for (Member tan : getMembers(rule)) {
       write("hash = 31*hash + (" + camelCase(tan.name) + " == null ? 0 : " + camelCase(tan.name) + ".hashCode());");
     }
     write("return hash;");
@@ -333,9 +556,10 @@ public class GrammarNodeWriter<TTokenType> {
     write("if (this == __other) { return true; }");
     write("if (__other == null) { return false; }");
     write("if (!(__other instanceof I" + rule.getVariable() + "Node)) { return false; }");
+
     write("I" + rule.getVariable() + "Node __node = (I" + rule.getVariable() + "Node)__other;");
 
-    for (TypeAndName tan : getMembers(rule)) {
+    for (Member tan : getMembers(rule)) {
       write("if (!equals(" + camelCase(tan.name) + ", __node.get" + tan.name + "())) { return false; }");
     }
 
@@ -347,10 +571,13 @@ public class GrammarNodeWriter<TTokenType> {
     writeAndIndent("public void accept(INodeVisitor visitor) {");
     write("visitor.visit(this);");
     dedentAndWrite("}");
+    //writeAndIndent("public I" + rule.getVariable() + "Node accept(INodeTransformer transformer) {");
+    //write("return transformer.transform(this);");
+    //dedentAndWrite("}");
   }
 
   private void writeGetters(Rule rule) {
-    for (TypeAndName tan : getMembers(rule)) {
+    for (Member tan : getMembers(rule)) {
       writeAndIndent("public " + tan.type + " get" + tan.name + "() {");
       write("return " + camelCase(tan.name) + ";");
       dedentAndWrite("}");
@@ -358,7 +585,7 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private void writeClassConstructor(Rule rule) {
-    List<TypeAndName> members = getMembers(rule);
+    List<Member> members = getMembers(rule);
 
     if (members.isEmpty()) {
       writeAndIndent("public " + rule.getVariable() + "Node() {");
@@ -367,7 +594,7 @@ public class GrammarNodeWriter<TTokenType> {
     }
 
     for (int i = 0; i < members.size(); i++) {
-      TypeAndName tan = members.get(i);
+      Member tan = members.get(i);
       boolean last = i == members.size() - 1;
 
       write(tan.type + " " + camelCase(tan.name) + (last ? ") {" : ","));
@@ -375,7 +602,7 @@ public class GrammarNodeWriter<TTokenType> {
 
     indent();
 
-    for (TypeAndName tan : members) {
+    for (Member tan : members) {
       write("this." + camelCase(tan.name) + " = " + camelCase(tan.name) + ";");
     }
 
@@ -384,7 +611,7 @@ public class GrammarNodeWriter<TTokenType> {
   }
 
   private void writeClassFields(Rule rule) {
-    for (TypeAndName tan : getMembers(rule)) {
+    for (Member tan : getMembers(rule)) {
       write("private final " + tan.type + " " + camelCase(tan.name) + ";");
     }
   }
@@ -403,7 +630,7 @@ public class GrammarNodeWriter<TTokenType> {
     }
     writeAndIndent("public static interface I" + rule.getVariable() + "Node extends " + interfaces + " {");
 
-    for (TypeAndName tan : getMembers(rule)) {
+    for (Member tan : getMembers(rule)) {
       write(tan.type + " get" + tan.name + "();");
     }
 
@@ -513,11 +740,5 @@ public class GrammarNodeWriter<TTokenType> {
       }
       return makeName(s);
     }
-  }
-
-  public static void main(String... args) {
-    GrammarNodeWriter<JavaToken.Type> writer = new GrammarNodeWriter<JavaToken.Type>(JavaGrammar.instance,
-                                                                                     new PrintWriter(System.out, true));
-    writer.write();
   }
 }

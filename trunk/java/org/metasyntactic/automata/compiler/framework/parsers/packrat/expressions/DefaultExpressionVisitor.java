@@ -23,8 +23,8 @@ public class DefaultExpressionVisitor<TInput, TResult> implements ExpressionVisi
     return defaultCase(expression);
   }
 
-   public TResult visit(DelimitedSequenceExpression sequenceExpression) {
-    return defaultCase(sequenceExpression);
+   public TResult visit(DelimitedSequenceExpression expression) {
+    return defaultCase(expression);
   }
 
    public TResult visit(SequenceExpression expression) {

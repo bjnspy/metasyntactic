@@ -21,4 +21,6 @@ public interface DelimitedList<TExpression, TDelimiter> {
   List<TExpression> getElements();
 
   List<TDelimiter> getDelimiters();
+
+  void addTo(List<Object> list);
 }
