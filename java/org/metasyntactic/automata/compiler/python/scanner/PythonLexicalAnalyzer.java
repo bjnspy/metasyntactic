@@ -2,13 +2,15 @@
 
 package org.metasyntactic.automata.compiler.python.scanner;
 
-import org.metasyntactic.automata.compiler.framework.parsers.*;
-import org.metasyntactic.automata.compiler.framework.parsers.packrat.AbstractPackratParser;
-import org.metasyntactic.automata.compiler.python.parser.PythonGrammar;
+import org.metasyntactic.automata.compiler.framework.parsers.SimpleSpan;
+import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
+import org.metasyntactic.automata.compiler.framework.parsers.Span;
+import org.metasyntactic.automata.compiler.framework.parsers.SyntaxException;
 import org.metasyntactic.automata.compiler.python.scanner.delimiters.*;
 
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * TODO(cyrusn): javadoc
@@ -100,8 +102,8 @@ public class PythonLexicalAnalyzer {
     // token is generated for each number remaining on the stack that is larger
     // than zero.
     List<SourceToken<PythonToken>> result = new ArrayList<SourceToken<PythonToken>>();
-    Queue<Integer> stack = Collections.asLifoQueue(new ArrayDeque<Integer>());
-    stack.add(0);
+    Stack<Integer> stack = new Stack<Integer>();
+    stack.push(0);
 
     boolean afterNewLine = true;
 
@@ -130,7 +132,7 @@ public class PythonLexicalAnalyzer {
             result.add(new SourceToken<PythonToken>(IndentToken.instance, span));
           } else {
             while (stack.peek() > currentIndent) {
-              stack.remove();
+              stack.pop();
               result.add(new SourceToken<PythonToken>(DedentToken.instance, span));
             }
 
@@ -149,7 +151,7 @@ public class PythonLexicalAnalyzer {
     SourceToken<PythonToken> lastToken = tokens.get(tokens.size() - 1);
     Span span = new SimpleSpan(lastToken.getSpan().getEndPosition(), lastToken.getSpan().getEndPosition());
 
-    while (stack.poll() != 0) {
+    while (stack.pop() != 0) {
       result.add(new SourceToken<PythonToken>(DedentToken.instance, span));
     }
 
@@ -250,15 +252,15 @@ public class PythonLexicalAnalyzer {
   }
 
   private static boolean isNewLine(PythonToken token) {
-    return NewlineToken.class.isAssignableFrom(token.getClass());
+    return token.getTokenType() == PythonToken.Type.Newline;
   }
 
   private static boolean isComment(PythonToken token) {
-    return CommentToken.class.isAssignableFrom(token.getClass());
+    return token.getTokenType() == PythonToken.Type.Comment;
   }
 
   private static boolean isWhitespace(PythonToken token) {
-    return WhitespaceToken.class.isAssignableFrom(token.getClass());
+    return token.getTokenType() == PythonToken.Type.Whitespace;
   }
 
   private static List<SourceToken<PythonToken>> processExplicitLineJoins(List<SourceToken<PythonToken>> tokens) {
@@ -300,7 +302,7 @@ public class PythonLexicalAnalyzer {
   static long totalLexTime;
   static long totalFiles;
   static long totalFileSize;
-
+/*
   public static void main(String... args) throws IOException {
     //System.out.println(JavaGrammar.instance);
 
@@ -404,4 +406,5 @@ public class PythonLexicalAnalyzer {
     in.close();
     return sb.toString();
   }
+  */
 }

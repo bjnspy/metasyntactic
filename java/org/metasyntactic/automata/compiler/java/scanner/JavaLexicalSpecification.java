@@ -38,49 +38,53 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
       choice("'", "\\", "\r", "\n", "\r\n")), anyCharacter()), terminal("'")), sequence(terminal("'"), variable(
       "EscapeSequence"), anyCharacter()), terminal("'")));
 
-  public static Rule STRING_LITERAL_RULE = new Rule("StringLiteral", sequence(terminal("\""), repetition(variable(
-      "StringCharacter")), terminal("\"")));
+  public static Rule STRING_LITERAL_RULE =
+      new Rule("StringLiteral",
+               sequence(terminal("\""),
+                        repetition(variable("StringCharacter")),
+                        terminal("\"")));
 
-  public static Rule KEYWORD_OR_IDENTIFIER_RULE = new Rule("Identifier", new FunctionExpression<Source>(
-      "keywordOrIdentifier") {
-    public EvaluationResult apply(Source input, int position) {
-      String text = input.getText();
+  public static Rule KEYWORD_OR_IDENTIFIER_RULE =
+      new Rule("Identifier",
+               new FunctionExpression<Source>("keywordOrIdentifier") {
+                 public EvaluationResult apply(Source input, int position) {
+                   String text = input.getText();
 
-      if (position < text.length()) {
-        char firstChar = text.charAt(position);
+                   if (position < text.length()) {
+                     char firstChar = text.charAt(position);
 
-        if (Character.isJavaIdentifierStart(firstChar)) {
-          for (int i = position + 1; i < text.length(); i++) {
-            char c = text.charAt(i);
+                     if (Character.isJavaIdentifierStart(firstChar)) {
+                       for (int i = position + 1; i < text.length(); i++) {
+                         char c = text.charAt(i);
 
-            if (!Character.isJavaIdentifierPart(c)) {
-              return new EvaluationResult(i, null);
-            }
-          }
-        }
-      }
+                         if (!Character.isJavaIdentifierPart(c)) {
+                           return new EvaluationResult(i, null);
+                         }
+                       }
+                     }
+                   }
 
-      return EvaluationResult.failure;
-    }
+                   return EvaluationResult.failure;
+                 }
 
-    public boolean isNullable() {
-      return false;
-    }
+                 public boolean isNullable() {
+                   return false;
+                 }
 
-    public List<Integer> getShortestDerivableTokenStream() {
-      return Collections.singletonList(IdentifierToken.getTypeValue());
-    }
+                 public List<Integer> getShortestDerivableTokenStream() {
+                   return Collections.singletonList(IdentifierToken.getTypeValue());
+                 }
 
-    public List<Integer> getShortestPrefix(int token) {
-      if (token == JavaToken.Type.Identifier.ordinal()) {
-        return Collections.emptyList();
-      } else if (JavaToken.getKeywordValues().contains(token)) {
-        return Collections.emptyList();
-      }
+                 public List<Integer> getShortestPrefix(int token) {
+                   if (token == JavaToken.Type.Identifier.ordinal()) {
+                     return Collections.emptyList();
+                   } else if (JavaToken.getKeywordValues().contains(token)) {
+                     return Collections.emptyList();
+                   }
 
-      return null;
-    }
-  });
+                   return null;
+                 }
+               });
 
   public static Rule OPERATOR_RULE = new Rule("Operator", choice(OperatorToken.getOperators()));
 
@@ -232,88 +236,89 @@ public class JavaLexicalSpecification extends PackratGrammar<JavaToken.Type> {
 
     rules.add(new Rule("IntegerTypeSuffix", choice("l", "L")));
   }
+
   /*
 
-  static long totalTime = 0;
-  static long fileSize = 0;
-  static long fileCount = 0;
+    static long totalTime = 0;
+    static long fileSize = 0;
+    static long fileCount = 0;
 
-  public static void main(String... args) throws IOException {
-    //File directory = new File("/home/cyrusn/Desktop/classes");
-    File directory = new File("/projects/src/cyrusn-appdev-blaze2/READONLY/google3/java");
-    scan(directory);
-    System.out.println(fileCount + " files");
-    System.out.println(fileSize + " bytes");
-    System.out.println(totalTime + " ms");
+    public static void main(String... args) throws IOException {
+      //File directory = new File("/home/cyrusn/Desktop/classes");
+      File directory = new File("/projects/src/cyrusn-appdev-blaze2/READONLY/google3/java");
+      scan(directory);
+      System.out.println(fileCount + " files");
+      System.out.println(fileSize + " bytes");
+      System.out.println(totalTime + " ms");
 
-  }
-
-  private static void scan(File directory) throws IOException {
-    System.out.println("Recursing into: " + directory);
-    if (directory == null) {
-      return;
     }
-    try {
-      for (File child : directory.listFiles()) {
-        if (restrictedFile(child)) {
-          continue;
-        }
-        if (child.isDirectory()) {
-          scan(child);
-        } else if (child.getName().endsWith(".java")) {
-          System.out.println("Scanning: " + child);
 
-          String s = readFile(child);
+    private static void scan(File directory) throws IOException {
+      System.out.println("Recursing into: " + directory);
+      if (directory == null) {
+        return;
+      }
+      try {
+        for (File child : directory.listFiles()) {
+          if (restrictedFile(child)) {
+            continue;
+          }
+          if (child.isDirectory()) {
+            scan(child);
+          } else if (child.getName().endsWith(".java")) {
+            System.out.println("Scanning: " + child);
 
-          long start = System.currentTimeMillis();
-          List<SourceToken<JavaToken>> tokens = new JavaScanner(new Source(s)).scan();
-          long diff = System.currentTimeMillis() - start;
+            String s = readFile(child);
 
-          totalTime += diff;
-          fileSize += child.length();
-          fileCount++;
+            long start = System.currentTimeMillis();
+            List<SourceToken<JavaToken>> tokens = new JavaScanner(new Source(s)).scan();
+            long diff = System.currentTimeMillis() - start;
 
-          System.out.println(((double) fileSize / (double) totalTime) + " kps");
-          System.out.println(fileCount + " files");
-          System.out.println(fileSize + " bytes");
-          System.out.println(totalTime + " ms");
+            totalTime += diff;
+            fileSize += child.length();
+            fileCount++;
 
-          if (tokens == null) {
-            System.out.println("Couldn't understand: " + child);
-          } else {
-            for (SourceToken<JavaToken> token : tokens) {
-              if (token.getToken() instanceof ErrorToken) {
-                System.out.println("Couldn't understand: " + token + " " + token.getSpan());
-                System.out.println("");
+            System.out.println(((double) fileSize / (double) totalTime) + " kps");
+            System.out.println(fileCount + " files");
+            System.out.println(fileSize + " bytes");
+            System.out.println(totalTime + " ms");
+
+            if (tokens == null) {
+              System.out.println("Couldn't understand: " + child);
+            } else {
+              for (SourceToken<JavaToken> token : tokens) {
+                if (token.getToken() instanceof ErrorToken) {
+                  System.out.println("Couldn't understand: " + token + " " + token.getSpan());
+                  System.out.println("");
+                }
               }
             }
           }
         }
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  private static boolean restrictedFile(File child) {
-    return child.getName().contains("X-") ||
-           child.getPath().contains("auto-videos/AdSense") ||
-           child.getPath().contains("Eng/podcast-test");
-  }
-
-  private static String readFile(File file) throws IOException {
-    StringWriter writer = new StringWriter();
-    Reader in = new FileReader(file);
-
-    int c;
-    while ((c = in.read()) != -1) {
-      writer.write(c);
     }
 
-    in.close();
-    return writer.toString();
-  }
-*/
+    private static boolean restrictedFile(File child) {
+      return child.getName().contains("X-") ||
+             child.getPath().contains("auto-videos/AdSense") ||
+             child.getPath().contains("Eng/podcast-test");
+    }
+
+    private static String readFile(File file) throws IOException {
+      StringWriter writer = new StringWriter();
+      Reader in = new FileReader(file);
+
+      int c;
+      while ((c = in.read()) != -1) {
+        writer.write(c);
+      }
+
+      in.close();
+      return writer.toString();
+    }
+  */
   public JavaToken.Type getTokenFromTerminal(int type) {
     return JavaToken.Type.values()[type];
   }

@@ -328,21 +328,21 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
   }
 
   private void checkForLeftRecursion(Rule rule) {
-    Queue<Rule> rulesStack = Collections.asLifoQueue(new ArrayDeque<Rule>());
+    Stack<Rule> rulesStack = new Stack<Rule>();
     checkForLeftRecursion(rule, rulesStack);
   }
 
-  private void checkForLeftRecursion(Rule rule, final Queue<Rule> rulesStack) {
+  private void checkForLeftRecursion(Rule rule, final Stack<Rule> rulesStack) {
     if (rulesStack.contains(rule)) {
       leftRecursive = true;
       return;
     }
 
-    rulesStack.offer(rule);
+    rulesStack.push(rule);
 
     rule.getExpression().accept(new LeftRecursionExpressionVisitor(rulesStack));
 
-    rulesStack.remove();
+    rulesStack.pop();
   }
 
   public Set<Rule> getRules() {
@@ -400,9 +400,9 @@ public abstract class PackratGrammar<TTokenType> implements Grammar {
   }
 
   private class LeftRecursionExpressionVisitor implements ExpressionVoidVisitor {
-    private final Queue<Rule> rulesStack;
+    private final Stack<Rule> rulesStack;
 
-    public LeftRecursionExpressionVisitor(Queue<Rule> rulesStack) {
+    public LeftRecursionExpressionVisitor(Stack<Rule> rulesStack) {
       this.rulesStack = rulesStack;
     }
 

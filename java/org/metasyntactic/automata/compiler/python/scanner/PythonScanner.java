@@ -13,8 +13,6 @@ import org.metasyntactic.automata.compiler.python.scanner.literals.StringLiteral
 import org.metasyntactic.automata.compiler.python.scanner.operators.OperatorToken;
 import org.metasyntactic.automata.compiler.util.Function4;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
@@ -114,32 +112,6 @@ public class PythonScanner extends PackratScanner<PythonToken> {
         String text = source.getText().substring(start, end);
         PythonToken token = creator.create(text);
         return makeToken(token, source, start, end);
-      }
-    });
-  }
-
-  private static void addAction1(Rule rule, Class<? extends PythonToken> tokenClass) {
-    final Constructor<? extends PythonToken> constructor;
-    try {
-      constructor = tokenClass.getConstructor(String.class);
-    } catch (NoSuchMethodException e) {
-      throw new RuntimeException(e);
-    }
-
-    actions.put(rule.getVariable(), new Function4<Object, Source, Integer, Integer, Object>() {
-
-      public Object apply(Object argument1, Source source, Integer start, Integer end) {
-        String text = source.getText().substring(start, end);
-        try {
-          PythonToken token = constructor.newInstance(text);
-          return makeToken(token, source, start, end);
-        } catch (InstantiationException e) {
-          throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-          throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-          throw new RuntimeException(e);
-        }
       }
     });
   }

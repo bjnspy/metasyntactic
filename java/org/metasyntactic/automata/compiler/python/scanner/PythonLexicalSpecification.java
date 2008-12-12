@@ -228,6 +228,7 @@ public class PythonLexicalSpecification extends PackratGrammar<PythonToken.Type>
     return result;
   }
 
+  /*
   static long totalTime = 0;
   static long fileSize = 0;
   static long fileCount = 0;
@@ -281,4 +282,5 @@ public class PythonLexicalSpecification extends PackratGrammar<PythonToken.Type>
     in.close();
     return writer.toString();
   }
+  */
 }

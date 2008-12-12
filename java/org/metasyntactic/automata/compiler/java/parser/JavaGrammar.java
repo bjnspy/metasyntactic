@@ -1,14 +1,10 @@
 package org.metasyntactic.automata.compiler.java.parser;
 
-import org.metasyntactic.automata.compiler.framework.parsers.Source;
-import org.metasyntactic.automata.compiler.framework.parsers.SourceToken;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.PackratGrammar;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.Rule;
 import org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression;
 import static org.metasyntactic.automata.compiler.framework.parsers.packrat.expressions.Expression.*;
 import org.metasyntactic.automata.compiler.java.scanner.IdentifierToken;
-import org.metasyntactic.automata.compiler.java.scanner.JavaLexicalAnalyzer;
-import org.metasyntactic.automata.compiler.java.scanner.JavaScanner;
 import org.metasyntactic.automata.compiler.java.scanner.JavaToken;
 import org.metasyntactic.automata.compiler.java.scanner.keywords.*;
 import org.metasyntactic.automata.compiler.java.scanner.literals.LiteralToken;
@@ -16,7 +12,6 @@ import org.metasyntactic.automata.compiler.java.scanner.operators.*;
 import org.metasyntactic.automata.compiler.java.scanner.separators.*;
 import static org.metasyntactic.utilities.ReflectionUtilities.getSimpleName;
 
-import java.io.*;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -887,7 +882,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
   private JavaGrammar() {
     super(javaStartRule, javaRules);
   }
-
+/*
   static long totalInterpreterTime;
   static long totalParserTime;
   static long totalLexTime;
@@ -955,7 +950,6 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
     }
 
     List<SourceToken<JavaToken>> analyzedTokens = new JavaLexicalAnalyzer().analyze(tokens);
-/*
     {
       long start = System.currentTimeMillis();
       JavaParser parser = new JavaParser(analyzedTokens);
@@ -969,7 +963,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
         return;
       }
     }
-*/
+
     {
       long start = System.currentTimeMillis();
       JavaGeneratedParser parser = new JavaGeneratedParser((List) analyzedTokens);
@@ -1001,41 +995,7 @@ public class JavaGrammar extends PackratGrammar<JavaToken.Type> {
     in.close();
     return sb.toString();
   }
-
-  /*
-    private Map<Expression, Map<Class<? extends Token>, List<Token>>> prefixMap;
-
-  public List<Token> shortestPrefix(String variable, Class<? extends Token> clazz) {
-    computePrefixMap();
-
-    Map<Class<? extends Token>, List<Token>> tempMap = prefixMap.get(getVariableToRuleMap().get(variable).getExpression());
-    if (tempMap == null) {
-      return null;
-    }
-
-    return tempMap.get(clazz);
-  }
-
-
-  private void computePrefixMap() {
-    if (prefixMap != null) {
-      return;
-    }
-
-    prefixMap = new LinkedHashMap<Expression, Map<Class<? extends Token>, List<Token>>>();
-
-    boolean changed;
-    do {
-      changed = false;
-
-      for (Rule rule : getRules()) {
-        for (Class<? extends Token> clazz : JavaToken.getTokenClasses()) {
-
-        }
-      }
-    } while (changed);
-  }
-  */
+*/
 
   public JavaToken.Type getTokenFromTerminal(int type) {
     return JavaToken.Type.values()[type];
