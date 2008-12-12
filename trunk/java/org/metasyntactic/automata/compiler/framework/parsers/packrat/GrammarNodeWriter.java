@@ -226,7 +226,7 @@ public class GrammarNodeWriter<TTokenType> {
     dedentAndWrite("}");
 
     writeAndIndent("public String getName() {");
-    write("return token.toString();");
+    write("return \"I" + tokenName + "Node\";");
     dedentAndWrite("}");
 
     dedentAndWrite("}");
