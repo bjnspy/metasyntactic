@@ -17,6 +17,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
+#import <Security/Security.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
 #import <netinet/in.h>
@@ -25,4 +26,8 @@
 #import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
 #import "expat.h"
+#import "evp.h"
+#import "err.h"
+#import "hmac.h"
+#import "bio.h"
 #endif
