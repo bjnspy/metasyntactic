@@ -51,6 +51,7 @@ enum ViewControllerType {
 @property (readonly, retain) ScoreCache* scoreCache;
 @property (readonly, retain) TrailerCache* trailerCache;
 @property (readonly, retain) UpcomingCache* upcomingCache;
+@property (readonly, retain) NetflixCache* netflixCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (NowPlayingModel*) model;
