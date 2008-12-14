@@ -66,10 +66,10 @@
 }
 
 
-- (id) initWithURL:(NSURL *)aUrl
-          consumer:(OAConsumer *)aConsumer
-             token:(OAToken *)aToken
-             realm:(NSString *)aRealm {
+- (id) initWithURL:(NSURL*)aUrl
+          consumer:(OAConsumer*)aConsumer
+             token:(OAToken*)aToken
+             realm:(NSString*)aRealm {
     if ([super initWithURL:aUrl
                cachePolicy:NSURLRequestReloadIgnoringCacheData
            timeoutInterval:10.0]) {
@@ -93,7 +93,7 @@
         
         CFUUIDRef uuid = CFUUIDCreate(NULL);
         CFStringRef string = CFUUIDCreateString(NULL, uuid);
-        self.nonce = (NSString *)string;
+        self.nonce = (NSString*)string;
         CFRelease(uuid);
     }
     

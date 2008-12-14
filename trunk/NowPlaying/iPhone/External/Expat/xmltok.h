@@ -135,13 +135,13 @@ struct encoding {
   SCANNER literalScanners[XML_N_LITERAL_TYPES];
   int (PTRCALL *sameName)(const ENCODING *,
                           const char *,
-                          const char *);
+                          const char*);
   int (PTRCALL *nameMatchesAscii)(const ENCODING *,
                                   const char *,
                                   const char *,
-                                  const char *);
-  int (PTRFASTCALL *nameLength)(const ENCODING *, const char *);
-  const char *(PTRFASTCALL *skipS)(const ENCODING *, const char *);
+                                  const char*);
+  int (PTRFASTCALL *nameLength)(const ENCODING *, const char*);
+  const char *(PTRFASTCALL *skipS)(const ENCODING *, const char*);
   int (PTRCALL *getAtts)(const ENCODING *enc,
                          const char *ptr,
                          int attsMax,
@@ -149,11 +149,11 @@ struct encoding {
   int (PTRFASTCALL *charRefNumber)(const ENCODING *enc, const char *ptr);
   int (PTRCALL *predefinedEntityName)(const ENCODING *,
                                       const char *,
-                                      const char *);
+                                      const char*);
   void (PTRCALL *updatePosition)(const ENCODING *,
                                  const char *ptr,
                                  const char *end,
-                                 POSITION *);
+                                 POSITION*);
   int (PTRCALL *isPublicId)(const ENCODING *enc,
                             const char *ptr,
                             const char *end,

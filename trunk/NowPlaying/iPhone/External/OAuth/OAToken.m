@@ -68,7 +68,7 @@
 }
 
 
-- (id) initWithHTTPResponseBody:(NSString *)body {
+- (id) initWithHTTPResponseBody:(NSString*)body {
     if (self = [super init]) {
         NSArray *pairs = [body componentsSeparatedByString:@"&"];
         
@@ -100,7 +100,7 @@
 }
 
 /*
-- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider {
+- (id)initWithKeychainUsingAppName:(NSString*)name serviceProviderName:(NSString*)provider {
     [super init];
     SecKeychainItemRef item;
     NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
@@ -162,12 +162,12 @@
 }
 */
 
-//- (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider {
+//- (int)storeInDefaultKeychainWithAppName:(NSString*)name serviceProviderName:(NSString*)provider {
 //    return [self storeInKeychain:NULL appName:name serviceProviderName:provider];
 //}
 
 /*
-- (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString *)name serviceProviderName:(NSString *)provider {
+- (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString*)name serviceProviderName:(NSString*)provider {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:kSecClassGenericPassword forKey:kSecClass];
     

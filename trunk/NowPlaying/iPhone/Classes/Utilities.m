@@ -28,7 +28,7 @@
 
 
 + (id) findSmallestElementInArray:(NSArray*) array
-                    usingFunction:(NSInteger(*)(id, id, void *)) comparator
+                    usingFunction:(NSInteger(*)(id, id, void*)) comparator
                           context:(void*) context {
     if (array.count == 0) {
         return nil;

@@ -33,9 +33,9 @@
 @property (readonly, copy) NSString *secret;
 
 //- (id) initWithKey:(NSString*) key secret:(NSString*) secret;
-//- (id)initWithUserDefaultsUsingServiceProviderName:(NSString *)provider prefix:(NSString *)prefix;
+//- (id)initWithUserDefaultsUsingServiceProviderName:(NSString*)provider prefix:(NSString*)prefix;
 //- (id) initWithHTTPResponseBody:(NSString*) body;
-//- (int)storeInUserDefaultsWithServiceProviderName:(NSString *)provider prefix:(NSString *)prefix;
+//- (int)storeInUserDefaultsWithServiceProviderName:(NSString*)provider prefix:(NSString*)prefix;
 
 + (OAToken*) tokenWithKey:(NSString*) key secret:(NSString*) secret;
 + (OAToken*) tokenWithHTTPResponseBody:(NSString*) body;

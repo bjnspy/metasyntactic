@@ -99,9 +99,9 @@ typedef struct prolog_state {
 #endif /* XML_DTD */
 } PROLOG_STATE;
 
-void XmlPrologStateInit(PROLOG_STATE *);
+void XmlPrologStateInit(PROLOG_STATE*);
 #ifdef XML_DTD
-void XmlPrologStateInitExternalEntity(PROLOG_STATE *);
+void XmlPrologStateInitExternalEntity(PROLOG_STATE*);
 #endif /* XML_DTD */
 
 #define XmlTokenRole(state, tok, ptr, end, enc) \

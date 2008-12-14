@@ -30,7 +30,7 @@
 
 @implementation OAHMAC_SHA1SignatureProvider
 
-- (NSString *)name {
+- (NSString*)name {
     return @"HMAC-SHA1";
 }
 
