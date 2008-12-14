@@ -85,11 +85,11 @@ enum {
 };
 
 typedef struct prolog_state {
-  int (PTRCALL *handler) (struct prolog_state *state,
+  int (PTRCALL* handler) (struct prolog_state* state,
                           int tok,
-                          const char *ptr,
-                          const char *end,
-                          const ENCODING *enc);
+                          const char* ptr,
+                          const char* end,
+                          const ENCODING* enc);
   unsigned level;
   int role_none;
 #ifdef XML_DTD

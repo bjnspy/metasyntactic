@@ -29,8 +29,8 @@
 #import "OAToken.h"
 
 @interface OAToken()
-@property (copy) NSString *key;
-@property (copy) NSString *secret;
+@property (copy) NSString* key;
+@property (copy) NSString* secret;
 @end
 
 
@@ -70,13 +70,13 @@
 
 - (id) initWithHTTPResponseBody:(NSString*)body {
     if (self = [super init]) {
-        NSArray *pairs = [body componentsSeparatedByString:@"&"];
+        NSArray* pairs = [body componentsSeparatedByString:@"&"];
         
         // Converted for loop to be Obj-c 1.x compliant
         int count, i;
         count = [pairs count];
         for (i = 0; i < count; i++) {
-            NSString *pair = [pairs objectAtIndex:i];
+            NSString* pair = [pairs objectAtIndex:i];
             NSArray  *elements = [pair componentsSeparatedByString:@"="];
             if ( [[elements objectAtIndex:0] isEqualToString:@"oauth_token"]) {
                 [self setKey:[elements objectAtIndex:1]];
@@ -103,7 +103,7 @@
 - (id)initWithKeychainUsingAppName:(NSString*)name serviceProviderName:(NSString*)provider {
     [super init];
     SecKeychainItemRef item;
-    NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
+    NSString* serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
     OSStatus status = SecKeychainFindGenericPassword(NULL,
                                                      strlen([serviceName UTF8String]),
                                                      [serviceName UTF8String],
@@ -118,7 +118,7 @@
     
     // from Advanced Mac OS X Programming, ch. 16
     UInt32 length;
-    char *password;
+    char* password;
     SecKeychainAttribute attributes[8];
     SecKeychainAttributeList list;
     
@@ -172,7 +172,7 @@
     [dictionary setObject:kSecClassGenericPassword forKey:kSecClass];
     
     
-    UInt32 serviceNameLength, const char *serviceName, UInt32 accountNameLength, const char *accountName, UInt32 passwordLength, const void *passwordData,
+    UInt32 serviceNameLength, const char* serviceName, UInt32 accountNameLength, const char* accountName, UInt32 passwordLength, const void* passwordData,
     
     OSStatus status = SecItemAdd(
     

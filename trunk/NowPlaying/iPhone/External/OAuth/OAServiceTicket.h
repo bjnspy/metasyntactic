@@ -27,13 +27,13 @@
 
 @interface OAServiceTicket : NSObject {
 @private
-    OAMutableURLRequest *request;
-    NSURLResponse *response;
+    OAMutableURLRequest* request;
+    NSURLResponse* response;
     BOOL didSucceed;
 }
 
-@property (readonly, retain) OAMutableURLRequest *request;
-@property (readonly, retain) NSURLResponse *response;
+@property (readonly, retain) OAMutableURLRequest* request;
+@property (readonly, retain) NSURLResponse* response;
 @property (readonly) BOOL didSucceed;
 
 + (OAServiceTicket*) ticketWithRequest:(OAMutableURLRequest*) request response:(NSURLResponse*) response didSucceed:(BOOL) success;

@@ -25,12 +25,12 @@
 
 @interface OAToken : NSObject {
 @protected
-    NSString *key;
-    NSString *secret;
+    NSString* key;
+    NSString* secret;
 }
 
-@property (readonly, copy) NSString *key;
-@property (readonly, copy) NSString *secret;
+@property (readonly, copy) NSString* key;
+@property (readonly, copy) NSString* secret;
 
 //- (id) initWithKey:(NSString*) key secret:(NSString*) secret;
 //- (id)initWithUserDefaultsUsingServiceProviderName:(NSString*)provider prefix:(NSString*)prefix;

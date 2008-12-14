@@ -105,8 +105,8 @@ void endElementHandler(void* userData,
 }
 
 
-void characterDataHandler(void *userData,
-                          const XML_Char *s,
+void characterDataHandler(void* userData,
+                          const XML_Char* s,
                           int len) {
     XmlParser* parser = userData;
     if (s != NULL) {

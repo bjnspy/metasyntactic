@@ -25,12 +25,12 @@
 
 @interface OAConsumer : NSObject {
 @private
-    NSString *key;
-    NSString *secret;
+    NSString* key;
+    NSString* secret;
 }
 
-@property (readonly, copy) NSString *key;
-@property (readonly, copy) NSString *secret;
+@property (readonly, copy) NSString* key;
+@property (readonly, copy) NSString* secret;
 
 + (OAConsumer*) consumerWithKey:(NSString*) key secret:(NSString*) secret;
 

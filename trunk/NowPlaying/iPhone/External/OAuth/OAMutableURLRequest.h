@@ -28,12 +28,12 @@
 
 @interface OAMutableURLRequest : NSMutableURLRequest {
 @private
-    OAConsumer *consumer;
-    OAToken *token;
-    NSString *realm;
-    NSString *signature;
-    NSString *nonce;
-    NSString *timestamp;
+    OAConsumer* consumer;
+    OAToken* token;
+    NSString* realm;
+    NSString* signature;
+    NSString* nonce;
+    NSString* timestamp;
 }
 
 - (id) initWithURL:(NSURL*)aUrl

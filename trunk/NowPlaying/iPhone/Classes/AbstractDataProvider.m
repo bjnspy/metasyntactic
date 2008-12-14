@@ -421,7 +421,7 @@
     //   b) we do not find data for a theater that should be showing up
     //   c) they're close enough to their last search
     // then we want to give them the old information we have for that
-    // theater *as well as* a warning to let them know that it may be
+    // theater* as well as* a warning to let them know that it may be
     // out of date.
     //
     // This is to deal with the case where the user is confused because
