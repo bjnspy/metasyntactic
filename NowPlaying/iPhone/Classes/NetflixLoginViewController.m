@@ -209,8 +209,9 @@
                                            otherButtonTitles:nil] autorelease];
     
     [alert show];
-    
+
     [activityIndicator stopAnimating];
+    [button removeFromSuperview];
     statusLabel.text = NSLocalizedString(@"Error occurred", nil);
 }
 

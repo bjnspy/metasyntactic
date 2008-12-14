@@ -140,8 +140,14 @@
 }
 
 
+- (void) spawnNetflixThread {
+    [self.model.netflixCache update];
+}
+
+
 - (void) start {
     [self spawnDetermineLocationThread];
+    [self spawnNetflixThread];
 }
 
 
@@ -230,12 +236,13 @@
     [self.model setNetflixEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];
     [NowPlayingAppDelegate majorRefresh:YES];
+    [self spawnNetflixThread];
 }
 
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
     [self.model setNetflixKey:key secret:secret userId:userId];
-    [self spawnDataProviderLookupThread];
+    [self spawnNetflixThread];
 }
 
 @end

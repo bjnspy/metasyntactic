@@ -109,7 +109,7 @@
     return [[[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:token realm:realm] autorelease];
 }
 
-
+/*
 + (OAMutableURLRequest*) requestWithURL:(NSURL*)url
                                consumer:(OAConsumer*)consumer
                                   token:(OAToken*)token
@@ -124,12 +124,13 @@
     
     return request;
 }
+ */
 
 
 - (NSString*) _signatureBaseString {
     // OAuth Spec, Section 9.1.1 "Normalize Request Parameters"
     // build a sorted array of both request parameters and OAuth header parameters
-    NSMutableArray* parameterPairs = [[NSMutableArray alloc] initWithCapacity:(6 + [[self parameters] count])]; // 6 being the number of OAuth params in the Signature Base String
+    NSMutableArray* parameterPairs = [NSMutableArray array];
     
     [parameterPairs addObject:[[OARequestParameter parameterWithName:@"oauth_consumer_key" value:consumer.key] URLEncodedNameValuePair]];
     [parameterPairs addObject:[[OARequestParameter parameterWithName:@"oauth_signature_method" value:@"HMAC-SHA1"] URLEncodedNameValuePair]];

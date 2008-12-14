@@ -10,6 +10,7 @@
 
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
+#import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixNavigationController.h"
 #import "NowPlayingModel.h"
@@ -138,7 +139,7 @@
     } else if (row == 1) {
         cell.text = NSLocalizedString(@"Browse", nil);
     } else if (row == 2) {
-        cell.text = NSLocalizedString(@"My Queue", nil);
+        cell.text = NSLocalizedString(@"Queues", nil);
     } else if (row == 3) {
         cell.text = NSLocalizedString(@"Recommendations", nil);
     } else if (row == 4) {
@@ -198,8 +199,16 @@
 }
 
 
+- (void) didSelectQueuesRow {
+    NetflixFeedsViewController* controller = [[[NetflixFeedsViewController alloc] initWithNavigationController:navigationController] autorelease];
+    [navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
-    if (row == 5) {
+    if (row == 2) {
+        [self didSelectQueuesRow];
+    } else if (row == 5) {
         [self didSelectLogoutRow];
     }
 }

@@ -205,11 +205,6 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) updateNetflixCache {
-    [netflixCache update];
-}
-
-
 + (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
     NSMutableArray* result = [NSMutableArray array];
     for (FavoriteTheater* theater in favoriteTheaters) {
@@ -471,7 +466,6 @@ static NSString** KEYS[] = {
 
     SEL selectors[] = {
         @selector(updateScoreCache),
-        @selector(updateNetflixCache),
         @selector(updatePosterCache),
         @selector(updateTrailerCache),
         @selector(updateIMDbCache),
@@ -512,6 +506,10 @@ static NSString** KEYS[] = {
 
 - (void) setNetflixEnabled:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:NETFLIX_ENABLED];
+
+    if (!value) {
+        [self setNetflixKey:nil secret:nil userId:nil];
+    }
 }
 
 
