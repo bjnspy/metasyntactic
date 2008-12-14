@@ -60,6 +60,10 @@ enum ViewControllerType {
 
 - (BOOL) netflixEnabled;
 - (void) setNetflixEnabled:(BOOL) enabled;
+- (NSString*) netflixKey;
+- (void) setNetflixKey:(NSString*) netflixKey;
+- (NSString*) netflixSecret;
+- (void) setNetflixSecret:(NSString*) netflixSecret;
 
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;

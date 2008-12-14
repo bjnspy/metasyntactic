@@ -57,6 +57,7 @@
 
 - (void) dealloc {
     self.consumer = nil;
+    self.token = nil;
     self.realm = nil;
     self.signature = nil;
     self.nonce = nil;
@@ -66,15 +67,15 @@
 }
 
 
-- (id) initWithURL:(NSURL*)aUrl
-          consumer:(OAConsumer*)aConsumer
+- (id) initWithURL:(NSURL*) url
+          consumer:(OAConsumer*) consumer_
              token:(OAToken*)aToken
              realm:(NSString*)aRealm {
-    if ([super initWithURL:aUrl
+    if ([super initWithURL:url
                cachePolicy:NSURLRequestReloadIgnoringCacheData
-           timeoutInterval:10.0]) {
+           timeoutInterval:60.0]) {
         
-        self.consumer = aConsumer;
+        self.consumer = consumer_;
         
         // empty token for Unauthorized Request Token transaction
         if (aToken == nil) {
@@ -102,13 +103,13 @@
 
 // Setting a timestamp and nonce to known
 // values can be helpful for testing
-- (id) initWithURL:(NSURL*) aUrl
+- (id) initWithURL:(NSURL*) url
           consumer:(OAConsumer*) aConsumer
              token:(OAToken*) aToken
              realm:(NSString*) aRealm
              nonce:(NSString*) aNonce
          timestamp:(NSString*) aTimestamp {
-    if (self = [self initWithURL:aUrl
+    if (self = [self initWithURL:url
                         consumer:aConsumer
                            token:aToken
                            realm:aRealm]) {
@@ -161,10 +162,10 @@
     // set OAuth headers
     
     NSString* oauthToken;
-    if ([token.key isEqualToString:@""]) {
+    if (token.key.length == 0) {
         oauthToken = @""; // not used on Request Token transactions
     } else {
-        oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", [token.key encodedURLParameterString]];
+        oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", token.key.encodedURLParameterString];
     }
     
     NSString* oauthHeader = [NSString stringWithFormat:@"OAuth realm=\"%@\", oauth_consumer_key=\"%@\", %@oauth_signature_method=\"%@\", oauth_signature=\"%@\", oauth_timestamp=\"%@\", oauth_nonce=\"%@\", oauth_version=\"1.0\"",
