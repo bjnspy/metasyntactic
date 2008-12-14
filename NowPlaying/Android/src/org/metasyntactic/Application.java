@@ -47,6 +47,7 @@ public class Application {
   public static final File reviewsDirectory = new File(applicationDirectory, "Reviews");
   public static final File imdbDirectory = new File(applicationDirectory, "IMDb");
   public static final File postersDirectory = new File(applicationDirectory, "Posters");
+  public static final File postersLargeDirectory = new File(postersDirectory, "Large");
 
   public static final File upcomingDirectory = new File(applicationDirectory, "Upcoming");
   public static final File upcomingCastDirectory = new File(upcomingDirectory, "Cast");

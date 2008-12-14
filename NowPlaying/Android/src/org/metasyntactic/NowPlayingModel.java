@@ -21,6 +21,7 @@ import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.posters.PosterCache;
+import org.metasyntactic.caches.posters.LargePosterCache;
 import org.metasyntactic.caches.scores.ScoreCache;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
@@ -56,6 +57,7 @@ public class NowPlayingModel {
   private final TrailerCache trailerCache = new TrailerCache(this);
   private final UpcomingCache upcomingCache = new UpcomingCache(this);
   private final PosterCache posterCache = new PosterCache(this);
+  private final LargePosterCache largePosterCache = new LargePosterCache(this);
   private final IMDbCache imdbCache = new IMDbCache(this);
 
   public NowPlayingModel(final Context applicationContext) {
@@ -73,6 +75,7 @@ public class NowPlayingModel {
     }
 
     if (version % 20 == 0) {
+      this.largePosterCache.clearStaleData();
       this.upcomingCache.clearStaleData();
       this.trailerCache.clearStaleData();
       this.posterCache.clearStaleData();
@@ -99,6 +102,7 @@ public class NowPlayingModel {
 
   public void shutdown() {
     this.dataProvider.shutdown();
+    this.largePosterCache.shutdown();
     this.upcomingCache.shutdown();
     this.trailerCache.shutdown();
     this.posterCache.shutdown();
@@ -410,5 +414,9 @@ public class NowPlayingModel {
 
   public List<Movie> getUpcomingMovies() {
     return this.upcomingCache.getMovies();
+  }
+
+  public LargePosterCache getLargePosterCache() {
+    return largePosterCache;
   }
 }

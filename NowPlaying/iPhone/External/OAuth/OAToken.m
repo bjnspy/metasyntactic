@@ -70,6 +70,7 @@
     return self;
 }
 
+/*
 - (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider {
     [super init];
     SecKeychainItemRef item;
@@ -130,13 +131,14 @@
     
     return self;
 }
+ */
 
 #pragma mark Keychain
 
+/*
 - (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider {
     return [self storeInKeychain:NULL appName:name serviceProviderName:provider];
 }
-
 - (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString *)name serviceProviderName:(NSString *)provider {
 	OSStatus status = SecKeychainAddGenericPassword(keychain,                                     
                                                     [name length] + [provider length] + 9, 
@@ -149,7 +151,7 @@
                                                     );
 	return status;
 }
-
+*/
 #pragma mark properties
 
 - (NSString *)key

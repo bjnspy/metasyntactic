@@ -59,11 +59,11 @@
 #ifndef HEADER_STORE_H
 #define HEADER_STORE_H
 
-#include <openssl/ossl_typ.h>
+#include "ossl_typ.h"
 #ifndef OPENSSL_NO_DEPRECATED
-#include <openssl/evp.h>
-#include <openssl/bn.h>
-#include <openssl/x509.h>
+#include "evp.h"
+#include "bn.h"
+#include "x509.h"
 #endif
 
 #ifdef  __cplusplus

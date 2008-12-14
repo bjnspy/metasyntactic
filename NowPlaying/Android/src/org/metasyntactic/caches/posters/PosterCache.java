@@ -102,6 +102,8 @@ public class PosterCache extends AbstractCache {
       return data;
     }
 
+    data = model.getLargePosterCache().downloadFirstPoster(movie);
+
     return null;
   }
 

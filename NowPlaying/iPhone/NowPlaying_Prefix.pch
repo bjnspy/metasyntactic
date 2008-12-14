@@ -13,6 +13,9 @@
 //limitations under the License.
 
 #ifdef __OBJC__
+#define OPENSSL_NO_INLINE_ASM
+#define OPENSSL_NO_ASM
+
 #import <CoreFoundation/CoreFoundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>

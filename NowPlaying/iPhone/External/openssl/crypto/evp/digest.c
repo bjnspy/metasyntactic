@@ -111,10 +111,10 @@
 
 #include <stdio.h>
 #include "cryptlib.h"
-#include <openssl/objects.h>
-#include <openssl/evp.h>
+#include "objects.h"
+#include "evp.h"
 #ifndef OPENSSL_NO_ENGINE
-#include <openssl/engine.h>
+#include "engine.h"
 #endif
 
 void EVP_MD_CTX_init(EVP_MD_CTX *ctx)

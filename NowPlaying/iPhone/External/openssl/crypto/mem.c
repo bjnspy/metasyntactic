@@ -58,7 +58,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <openssl/crypto.h>
+#include "crypto.h"
 #include "cryptlib.h"
 
 
@@ -338,7 +338,7 @@ void *CRYPTO_realloc(void *str, int num, const char *file, int line)
 	return ret;
 	}
 
-void *CRYPTO_realloc_clean(void *str, int old_len, int num, const char *file,
+extern void *CRYPTO_realloc_clean(void *str, int old_len, int num, const char *file,
 			   int line)
 	{
 	void *ret = NULL;
