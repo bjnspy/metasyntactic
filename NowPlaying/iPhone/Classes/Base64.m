@@ -27,7 +27,7 @@
             }
         }
         
-        NSInteger index = 4 * i / 3;
+        NSInteger index = (i / 3) * 4;
         output[index + 0] =                    table[(value >> 18) & 0x3F];
         output[index + 1] =                    table[(value >> 12) & 0x3F];
         output[index + 2] = (i + 1) < length ? table[(value >> 6)  & 0x3F] : '=';
