@@ -22,12 +22,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "OARequestParameter.h"
-#import "NSURL+Base.h"
-
 @interface NSMutableURLRequest (OAParameterAdditions)
 
-- (NSArray *)parameters;
-- (void)setParameters:(NSArray *)parameters;
+- (NSArray*) parameters;
+- (void) setParameters:(NSArray*) parameters;
 
 @end

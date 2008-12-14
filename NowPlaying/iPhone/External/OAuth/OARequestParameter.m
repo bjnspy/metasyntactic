@@ -22,57 +22,55 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
 
 
 #import "OARequestParameter.h"
+#import "NSString+URLEncoding.h"
 
+@interface OARequestParameter()
+@property (copy) NSString *name;
+@property (copy) NSString *value;
+@end
 
 @implementation OARequestParameter
-//@synthesize name, value;
 
-- (id)initWithName:(NSString *)aName value:(NSString *)aValue {
-    [super init];
-    [self setName:aName];
-    [self setValue:aValue];
+@synthesize name, value;
+
+- (void) dealloc {
+    self.name = nil;
+    self.value = nil;
+    
+    [super dealloc];
+}
+
+
+- (id) initWithName:(NSString *)aName value:(NSString *)aValue {
+    if (self = [super init]) {
+        self.name = aName;
+        self.value = aValue;
+    }
+    
     return self;
 }
 
-- (NSString *)URLEncodedName {
-    return [[self name] encodedURLParameterString];
+
++ (OARequestParameter*) parameterWithName:(NSString*) name value:(NSString*) value {
+    return [[[OARequestParameter alloc] initWithName:name value:value] autorelease];
 }
 
-- (NSString *)URLEncodedValue {
-    return [[self value] encodedURLParameterString];
+
+- (NSString*) URLEncodedName {
+    return [self.name encodedURLParameterString];
 }
 
-- (NSString *)URLEncodedNameValuePair {
-    return [NSString stringWithFormat:@"%@=%@", [self URLEncodedName], [self URLEncodedValue]];
+
+- (NSString*) URLEncodedValue {
+    return [self.value encodedURLParameterString];
 }
 
-#pragma mark properties
 
-- (NSString *)name
-{
-    return name;
-}
-- (void)setName:(NSString *)aName
-{
-    [aName retain];
-    [name release];
-    name = aName;
-}
-
-- (NSString *)value
-{
-    return value;
-}
-- (void)setValue:(NSString *)aValue 
-{
-    [aValue retain];
-    [value release];
-    value = aValue;
+- (NSString*) URLEncodedNameValuePair {
+    return [NSString stringWithFormat:@"%@=%@", self.URLEncodedName, self.URLEncodedValue];
 }
 
 @end

@@ -16,6 +16,7 @@
 
 #import "DVDNavigationController.h"
 #import "MoviesNavigationController.h"
+#import "NetflixNavigationController.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "SettingsNavigationController.h"
@@ -28,6 +29,7 @@
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
 @property (retain) DVDNavigationController* dvdNavigationController;
+@property (retain) NetflixNavigationController* netflixNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
 @property (retain) NSDate* lastRefreshDate;
 @end
@@ -39,6 +41,7 @@
 @synthesize theatersNavigationController;
 @synthesize upcomingMoviesNavigationController;
 @synthesize dvdNavigationController;
+@synthesize netflixNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
 @synthesize lastRefreshDate;
@@ -48,6 +51,7 @@
     self.theatersNavigationController = nil;
     self.upcomingMoviesNavigationController = nil;
     self.dvdNavigationController = nil;
+    self.netflixNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
     self.lastRefreshDate = nil;
@@ -65,17 +69,10 @@
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.dvdNavigationController = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
-        //self.numbersNavigationController   = [[[NumbersNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.netflixNavigationController = [[[NetflixNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
 
-        self.viewControllers =
-        [NSArray arrayWithObjects:
-         moviesNavigationController,
-         theatersNavigationController,
-         upcomingMoviesNavigationController,
-         //numbersNavigationController,
-         dvdNavigationController,
-         settingsNavigationController, nil];
+        [self resetTabs:NO];
 
         if (self.model.userAddress.length == 0) {
             self.selectedViewController = settingsNavigationController;
@@ -165,6 +162,31 @@
 
 - (AbstractNavigationController*) selectedNavigationController {
     return (id)self.selectedViewController;
+}
+
+
+- (void) resetTabs:(BOOL) animated {
+    NSArray* controllers;
+    
+    if (self.model.netflixEnabled) {
+        controllers =
+        [NSArray arrayWithObjects:
+         moviesNavigationController,
+         theatersNavigationController,
+         upcomingMoviesNavigationController,
+         netflixNavigationController,
+         settingsNavigationController, nil];
+    } else {
+        controllers =
+        [NSArray arrayWithObjects:
+         moviesNavigationController,
+         theatersNavigationController,
+         upcomingMoviesNavigationController,
+         dvdNavigationController,
+         settingsNavigationController, nil];
+    }
+    
+    [self setViewControllers:controllers animated:animated];
 }
 
 @end

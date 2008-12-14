@@ -94,6 +94,7 @@ static NSString* USER_ADDRESS                           = @"userLocation";
 static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
 static NSString* RUN_COUNT                              = @"runCount";
 static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
+static NSString* NETFLIX_ENABLED                        = @"netflixEnabled";
 
 static NSString** KEYS[] = {
 &VERSION,
@@ -120,6 +121,7 @@ static NSString** KEYS[] = {
 &USER_ADDRESS,
 &USE_NORMAL_FONTS,
 &RUN_COUNT,
+&NETFLIX_ENABLED,
 };
 
 
@@ -246,7 +248,8 @@ static NSString** KEYS[] = {
                       bookmarkedDVD:(id) previousBookmarkedDVD
                    bookmarkedBluray:(id) previousBookmarkedBluray
                   dvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
-                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray {
+                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray 
+                     netflixEnabled:(id) previousNetflixEnabled {
     if ([previousUserAddress isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
     }
@@ -277,6 +280,10 @@ static NSString** KEYS[] = {
 
     if ([previousScoreProviderIndex isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setInteger:[previousScoreProviderIndex intValue] forKey:SCORE_PROVIDER_INDEX];
+    }
+    
+    if ([previousNetflixEnabled isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setBool:[previousNetflixEnabled boolValue] forKey:NETFLIX_ENABLED];
     }
 
     if ([previousBookmarkedTitles isKindOfClass:[NSArray class]]) {
@@ -334,6 +341,7 @@ static NSString** KEYS[] = {
         id previousDvdMoviesHideDVDs = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_DVDS];
         id previousDvdMoviesHideBluray = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_BLURAY];
         id previousScoreProviderIndex = [[NSUserDefaults standardUserDefaults] objectForKey:SCORE_PROVIDER_INDEX];
+        id previousNetflixEnabled = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_ENABLED];
 
         for (int i = 0; i < ArrayLength(KEYS); i++) {
             NSString** key = KEYS[i];
@@ -355,7 +363,8 @@ static NSString** KEYS[] = {
                            bookmarkedDVD:previousBookmarkedDVD
                         bookmarkedBluray:previousBookmarkedBluray
                        dvdMoviesHideDVDs:previousDvdMoviesHideDVDs
-                     dvdMoviesHideBluray:previousDvdMoviesHideBluray];
+                     dvdMoviesHideBluray:previousDvdMoviesHideBluray
+                          netflixEnabled:previousNetflixEnabled];
 
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
@@ -474,6 +483,16 @@ static NSString** KEYS[] = {
 
 - (id<DataProvider>) dataProvider {
     return dataProvider;
+}
+
+
+- (BOOL) netflixEnabled {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_ENABLED];
+}
+
+
+- (void) setNetflixEnabled:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:value forKey:NETFLIX_ENABLED];
 }
 
 

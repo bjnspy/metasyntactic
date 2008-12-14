@@ -23,8 +23,6 @@
 //  THE SOFTWARE.
 
 @protocol OASignatureProviding
-
-- (NSString *)name;
-- (NSString *)signClearText:(NSString *)text withSecret:(NSString *)secret;
-
+- (NSString*) name;
+- (NSString*) signClearText:(NSString*) text withSecret:(NSString*) secret;
 @end

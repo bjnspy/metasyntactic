@@ -33,6 +33,7 @@
 - (void) setSearchRadius:(NSInteger) radius;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (void) setAutoUpdateLocation:(BOOL) value;
+- (void) setNetflixEnabled:(BOOL) value;
 
 + (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
 

@@ -22,46 +22,38 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
-
 
 #import "OAConsumer.h"
 
+@interface OAConsumer()
+@property (copy) NSString *key;
+@property (copy) NSString *secret;
+@end
 
 @implementation OAConsumer
-//@synthesize key, secret;
 
-#pragma mark init
+@synthesize key, secret;
 
-- (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret {
-	[super init];
-	[self setKey:aKey];
-	[self setSecret:aSecret];
-	return self;
+- (void) dealloc {
+    self.key = nil;
+    self.secret = nil;
+    
+    [super dealloc];
 }
 
-#pragma mark properties
 
-- (NSString *)key
-{
-    return key;
-}
-- (void)setKey:(NSString *)aKey
-{
-    [aKey retain];
-    [key release];
-    key = aKey;
+- (id) initWithKey:(NSString*) key_ secret:(NSString*) secret_ {
+    if (self = [super init]) {
+	self.key = key_;
+	self.secret = secret_;
+    }
+    
+    return self;
 }
 
-- (NSString *)secret
-{
-    return secret;
+
++ (OAConsumer*) consumerWithKey:(NSString*) key secret:(NSString*) secret {
+    return [[[OAConsumer alloc] initWithKey:key secret:secret] autorelease];
 }
-- (void)setSecret:(NSString *)aSecret 
-{
-    [aSecret retain];
-    [secret release];
-    secret = aSecret;
-}
+
 @end

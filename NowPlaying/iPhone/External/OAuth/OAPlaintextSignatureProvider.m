@@ -33,7 +33,7 @@
     return @"PLAINTEXT";
 }
 
-- (NSString *)signClearText:(NSString *)text withSecret:(NSString *)secret {
+- (NSString*) signClearText:(NSString*) text withSecret:(NSString *)secret {
     return secret;
 }
 

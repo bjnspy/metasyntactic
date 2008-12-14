@@ -65,6 +65,8 @@
 @class MoviesNavigationController;
 @class MovieTitleCell;
 @class MultiDictionary;
+@class NetflixNavigationController;
+@class NetflixViewController;
 @class NetworkUtilities;
 @class NonClippingView;
 @class NoneScoreProvider;

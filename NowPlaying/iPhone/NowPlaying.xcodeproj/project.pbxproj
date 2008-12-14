@@ -45,7 +45,6 @@
 		742ED8110EF45BC0000D5245 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7ED0EF45BC0000D5245 /* OADataFetcher.m */; };
 		742ED8130EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7F10EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m */; };
 		742ED8150EF45BC0000D5245 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7F50EF45BC0000D5245 /* OAMutableURLRequest.m */; };
-		742ED8170EF45BC0000D5245 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7F90EF45BC0000D5245 /* OAPlaintextSignatureProvider.m */; };
 		742ED8190EF45BC0000D5245 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7FD0EF45BC0000D5245 /* OARequestParameter.m */; };
 		742ED81B0EF45BC0000D5245 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED8010EF45BC0000D5245 /* OAServiceTicket.m */; };
 		742ED81C0EF45BC0000D5245 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED8040EF45BC0000D5245 /* OAToken.m */; };
@@ -158,6 +157,7 @@
 		74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */; };
 		74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */; };
 		74E0300F0EF4A7E900B2D2BA /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E0300E0EF4A7E900B2D2BA /* Base64.m */; };
+		74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
 		74E17A490E949D0A00F8D0D3 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E179F80E949D0900F8D0D3 /* AbstractMessage.m */; };
 		74E17A4A0E949D0A00F8D0D3 /* AbstractMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E179FA0E949D0900F8D0D3 /* AbstractMessage_Builder.m */; };
 		74E17A4B0E949D0A00F8D0D3 /* CodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E179FC0E949D0900F8D0D3 /* CodedInputStream.m */; };
@@ -333,13 +333,10 @@
 		742ED7F10EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAHMAC_SHA1SignatureProvider.m; path = External/OAuth/OAHMAC_SHA1SignatureProvider.m; sourceTree = SOURCE_ROOT; };
 		742ED7F40EF45BC0000D5245 /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAMutableURLRequest.h; path = External/OAuth/OAMutableURLRequest.h; sourceTree = SOURCE_ROOT; };
 		742ED7F50EF45BC0000D5245 /* OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAMutableURLRequest.m; path = External/OAuth/OAMutableURLRequest.m; sourceTree = SOURCE_ROOT; };
-		742ED7F80EF45BC0000D5245 /* OAPlaintextSignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAPlaintextSignatureProvider.h; path = External/OAuth/OAPlaintextSignatureProvider.h; sourceTree = SOURCE_ROOT; };
-		742ED7F90EF45BC0000D5245 /* OAPlaintextSignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAPlaintextSignatureProvider.m; path = External/OAuth/OAPlaintextSignatureProvider.m; sourceTree = SOURCE_ROOT; };
 		742ED7FC0EF45BC0000D5245 /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OARequestParameter.h; path = External/OAuth/OARequestParameter.h; sourceTree = SOURCE_ROOT; };
 		742ED7FD0EF45BC0000D5245 /* OARequestParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OARequestParameter.m; path = External/OAuth/OARequestParameter.m; sourceTree = SOURCE_ROOT; };
 		742ED8000EF45BC0000D5245 /* OAServiceTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAServiceTicket.h; path = External/OAuth/OAServiceTicket.h; sourceTree = SOURCE_ROOT; };
 		742ED8010EF45BC0000D5245 /* OAServiceTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAServiceTicket.m; path = External/OAuth/OAServiceTicket.m; sourceTree = SOURCE_ROOT; };
-		742ED8020EF45BC0000D5245 /* OASignatureProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OASignatureProviding.h; path = External/OAuth/OASignatureProviding.h; sourceTree = SOURCE_ROOT; };
 		742ED8030EF45BC0000D5245 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAToken.h; path = External/OAuth/OAToken.h; sourceTree = SOURCE_ROOT; };
 		742ED8040EF45BC0000D5245 /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAToken.m; path = External/OAuth/OAToken.m; sourceTree = SOURCE_ROOT; };
 		742ED8070EF45BC0000D5245 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumer.h; path = External/OAuth/OAuthConsumer.h; sourceTree = SOURCE_ROOT; };
@@ -574,6 +571,8 @@
 		74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDatePickerViewController.m; sourceTree = "<group>"; };
 		74E0300D0EF4A7E900B2D2BA /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		74E0300E0EF4A7E900B2D2BA /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNavigationController.h; sourceTree = "<group>"; };
+		74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNavigationController.m; sourceTree = "<group>"; };
 		74E179F70E949D0900F8D0D3 /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage.h; sourceTree = "<group>"; };
 		74E179F80E949D0900F8D0D3 /* AbstractMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMessage.m; sourceTree = "<group>"; };
 		74E179F90E949D0900F8D0D3 /* AbstractMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage_Builder.h; sourceTree = "<group>"; };
@@ -987,13 +986,10 @@
 				742ED7F10EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m */,
 				742ED7F40EF45BC0000D5245 /* OAMutableURLRequest.h */,
 				742ED7F50EF45BC0000D5245 /* OAMutableURLRequest.m */,
-				742ED7F80EF45BC0000D5245 /* OAPlaintextSignatureProvider.h */,
-				742ED7F90EF45BC0000D5245 /* OAPlaintextSignatureProvider.m */,
 				742ED7FC0EF45BC0000D5245 /* OARequestParameter.h */,
 				742ED7FD0EF45BC0000D5245 /* OARequestParameter.m */,
 				742ED8000EF45BC0000D5245 /* OAServiceTicket.h */,
 				742ED8010EF45BC0000D5245 /* OAServiceTicket.m */,
-				742ED8020EF45BC0000D5245 /* OASignatureProviding.h */,
 				742ED8030EF45BC0000D5245 /* OAToken.h */,
 				742ED8040EF45BC0000D5245 /* OAToken.m */,
 				742ED8070EF45BC0000D5245 /* OAuthConsumer.h */,
@@ -1062,6 +1058,8 @@
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
 				747AB7AC0EB95750002438D0 /* DVDNavigationController.h */,
 				747AB7AD0EB95750002438D0 /* DVDNavigationController.m */,
+				74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */,
+				74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -1074,6 +1072,7 @@
 				74A863F00E64F247003A2249 /* Upcoming */,
 				74A863F10E64F24E003A2249 /* Numbers */,
 				747AB7A80EB956C2002438D0 /* DVD */,
+				74E031770EF4C5D000B2D2BA /* Netflix */,
 				744245BA0E89DA0F00ACDBCF /* Search */,
 				74A863F20E64F255003A2249 /* Settings */,
 				74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */,
@@ -1333,6 +1332,13 @@
 				74D6F2BD0DCC176D0097A984 /* XmlElement.m */,
 			);
 			name = Xml;
+			sourceTree = "<group>";
+		};
+		74E031770EF4C5D000B2D2BA /* Netflix */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Netflix;
 			sourceTree = "<group>";
 		};
 		74E179F60E949D0900F8D0D3 /* Classes */ = {
@@ -1832,11 +1838,11 @@
 				742ED8110EF45BC0000D5245 /* OADataFetcher.m in Sources */,
 				742ED8130EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				742ED8150EF45BC0000D5245 /* OAMutableURLRequest.m in Sources */,
-				742ED8170EF45BC0000D5245 /* OAPlaintextSignatureProvider.m in Sources */,
 				742ED8190EF45BC0000D5245 /* OARequestParameter.m in Sources */,
 				742ED81B0EF45BC0000D5245 /* OAServiceTicket.m in Sources */,
 				742ED81C0EF45BC0000D5245 /* OAToken.m in Sources */,
 				74E0300F0EF4A7E900B2D2BA /* Base64.m in Sources */,
+				74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

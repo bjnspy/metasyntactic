@@ -23,7 +23,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import <OAuthConsumer/OAToken.h>
 #import <OAuthConsumer/OAConsumer.h>
 #import <OAuthConsumer/OAMutableURLRequest.h>
@@ -32,7 +32,6 @@
 #import <OAuthConsumer/NSURL+Base.h>
 #import <OAuthConsumer/OASignatureProviding.h>
 #import <OAuthConsumer/OAHMAC_SHA1SignatureProvider.h>
-#import <OAuthConsumer/OAPlaintextSignatureProvider.h>
 #import <OAuthConsumer/OARequestParameter.h>
 #import <OAuthConsumer/OAServiceTicket.h>
 #import <OAuthConsumer/OADataFetcher.h>

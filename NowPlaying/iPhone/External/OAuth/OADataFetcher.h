@@ -23,22 +23,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "OAMutableURLRequest.h"
-#import "OAServiceTicket.h"
-
+@class OAMutableURLRequest;
 
 @interface OADataFetcher : NSObject {
-@private
-    OAMutableURLRequest *request;
-    NSURLResponse *response;
-    NSURLConnection *connection;
-    NSError *error;
-    NSData *responseData;
-    id delegate;
-    SEL didFinishSelector;
-    SEL didFailSelector;
 }
 
-- (void)fetchDataWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
++ (void) fetchDataWithRequest:(OAMutableURLRequest*) request
+                     delegate:(id) delegate
+            didFinishSelector:(SEL) didFinishSelector
+              didFailSelector:(SEL) didFailSelector;
 
 @end
