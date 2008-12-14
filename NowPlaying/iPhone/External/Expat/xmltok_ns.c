@@ -20,7 +20,7 @@ NS(XmlGetUtf16InternalEncoding)(void)
   return &ns(internal_big2_encoding).enc;
 #else
   const short n = 1;
-  return (*(const char *)&n
+  return (*(const char*)&n
           ? &ns(internal_little2_encoding).enc
           : &ns(internal_big2_encoding).enc);
 #endif
@@ -40,7 +40,7 @@ static int PTRCALL
 NS(initScanProlog)(const ENCODING *enc, const char *ptr, const char *end,
                    const char **nextTokPtr)
 {
-  return initScan(NS(encodings), (const INIT_ENCODING *)enc,
+  return initScan(NS(encodings), (const INIT_ENCODING*)enc,
                   XML_PROLOG_STATE, ptr, end, nextTokPtr);
 }
 
@@ -48,7 +48,7 @@ static int PTRCALL
 NS(initScanContent)(const ENCODING *enc, const char *ptr, const char *end,
                     const char **nextTokPtr)
 {
-  return initScan(NS(encodings), (const INIT_ENCODING *)enc,
+  return initScan(NS(encodings), (const INIT_ENCODING*)enc,
                   XML_CONTENT_STATE, ptr, end, nextTokPtr);
 }
 

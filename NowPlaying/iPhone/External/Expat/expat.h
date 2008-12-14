@@ -722,7 +722,7 @@ XML_UseForeignDTD(XML_Parser parser, XML_Bool useDTD);
 XMLPARSEAPI(enum XML_Status)
 XML_SetBase(XML_Parser parser, const XML_Char *base);
 
-XMLPARSEAPI(const XML_Char *)
+XMLPARSEAPI(const XML_Char*)
 XML_GetBase(XML_Parser parser);
 
 /* Returns the number of the attribute/value pairs passed in last call
@@ -754,7 +754,7 @@ XML_GetIdAttributeIndex(XML_Parser parser);
 XMLPARSEAPI(enum XML_Status)
 XML_Parse(XML_Parser parser, const char *s, int len, int isFinal);
 
-XMLPARSEAPI(void *)
+XMLPARSEAPI(void*)
 XML_GetBuffer(XML_Parser parser, int len);
 
 XMLPARSEAPI(enum XML_Status)
@@ -925,7 +925,7 @@ XML_GetCurrentByteCount(XML_Parser parser);
    NOTE: The character pointer returned should not be used outside
    the handler that makes the call.
 */
-XMLPARSEAPI(const char *)
+XMLPARSEAPI(const char*)
 XML_GetInputContext(XML_Parser parser,
                     int *offset,
                     int *size);
@@ -940,10 +940,10 @@ XMLPARSEAPI(void)
 XML_FreeContentModel(XML_Parser parser, XML_Content *model);
 
 /* Exposing the memory handling functions used in Expat */
-XMLPARSEAPI(void *)
+XMLPARSEAPI(void*)
 XML_MemMalloc(XML_Parser parser, size_t size);
 
-XMLPARSEAPI(void *)
+XMLPARSEAPI(void*)
 XML_MemRealloc(XML_Parser parser, void *ptr, size_t size);
 
 XMLPARSEAPI(void)
@@ -954,11 +954,11 @@ XMLPARSEAPI(void)
 XML_ParserFree(XML_Parser parser);
 
 /* Returns a string describing the error. */
-XMLPARSEAPI(const XML_LChar *)
+XMLPARSEAPI(const XML_LChar*)
 XML_ErrorString(enum XML_Error code);
 
 /* Return a string containing the version number of this expat */
-XMLPARSEAPI(const XML_LChar *)
+XMLPARSEAPI(const XML_LChar*)
 XML_ExpatVersion(void);
 
 typedef struct {
@@ -994,7 +994,7 @@ typedef struct {
   long int              value;
 } XML_Feature;
 
-XMLPARSEAPI(const XML_Feature *)
+XMLPARSEAPI(const XML_Feature*)
 XML_GetFeatureList(void);
 
 
