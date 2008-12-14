@@ -26,6 +26,7 @@
 
 #import "OAHMAC_SHA1SignatureProvider.h"
 
+#import "Base64.h"
 
 @implementation OAHMAC_SHA1SignatureProvider
 
@@ -37,45 +38,14 @@
     NSData* secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
     NSData* clearTextData = [text dataUsingEncoding:NSUTF8StringEncoding];
     
-    unsigned char digest[CC_SHA1_DIGEST_LENGTH] = {0};
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH] = {0};
     
     CCHmacContext hmacContext;
     CCHmacInit(&hmacContext, kCCHmacAlgSHA1, secretData.bytes, secretData.length);
     CCHmacUpdate(&hmacContext, clearTextData.bytes, clearTextData.length);
     CCHmacFinal(&hmacContext, digest);
     
-    //NSString* result = [NSString base64
-                        
-    /*
-    //HMAC-SHA1
-    HMAC_CTX hmacContext;
-    unsigned char result[EVP_MAX_MD_SIZE];
-    unsigned int resultLength;
-    
-    HMAC_CTX_init(&hmacContext);
-    HMAC_Init(&hmacContext, [secretData bytes], [secretData length], EVP_sha1());
-    HMAC_Update(&hmacContext, [clearTextData bytes], [clearTextData length]);
-    HMAC_Final(&hmacContext, result, &resultLength);
-    
-    //Base64 Encoding
-    char *base64Result;
-    
-    BIO *bio = BIO_new(BIO_s_mem());
-    BIO *b64Filter = BIO_new(BIO_f_base64());
-    bio = BIO_push(b64Filter, bio);
-    BIO_write(bio, result, resultLength);
-    BIO_flush(bio);
-    
-    long base64ResultLength = BIO_get_mem_data(bio, &base64Result);
-    base64Result[base64ResultLength-1] = '\0'; // -1 is used to remove the "courtesy" newline added by this library
-    
-    NSString *base64EncodedResult = [NSString stringWithCString:base64Result encoding:NSUTF8StringEncoding];
-    
-    BIO_free_all(bio);
-    HMAC_CTX_cleanup(&hmacContext);
-    
-    return base64EncodedResult;
-     */
+    return [Base64 encode:[NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH]];
 }
 
 @end

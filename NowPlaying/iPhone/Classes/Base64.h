@@ -11,5 +11,6 @@
 }
 
 + (NSString*) encode:(NSData*) rawBytes;
++ (NSString*) encode:(const uint8_t*) rawBytes length:(NSInteger) length;
 
 @end
