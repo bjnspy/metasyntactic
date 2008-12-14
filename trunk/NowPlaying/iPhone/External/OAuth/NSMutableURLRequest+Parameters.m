@@ -21,69 +21,64 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
 
 
 #import "NSMutableURLRequest+Parameters.h"
 
+#import "OARequestParameter.h"
+#import "NSURL+Base.h"
 
 @implementation NSMutableURLRequest (OAParameterAdditions)
 
-- (NSArray *)parameters {
-    NSString *encodedParameters;
+- (NSArray*) parameters {
+    NSString* encodedParameters;
     
-    if ([[self HTTPMethod] isEqualToString:@"GET"] || [[self HTTPMethod] isEqualToString:@"DELETE"]) {
-        encodedParameters = [[self URL] query];
+    if ([self.HTTPMethod isEqualToString:@"GET"] ||
+        [self.HTTPMethod isEqualToString:@"DELETE"]) {
+        encodedParameters = self.URL.query;
     } else {
         // POST, PUT
-        encodedParameters = [[NSString alloc] initWithData:[self HTTPBody] encoding:NSASCIIStringEncoding];
+        encodedParameters = [[[NSString alloc] initWithData:self.HTTPBody
+                                                   encoding:NSASCIIStringEncoding] autorelease];
     }
     
-    if ((encodedParameters == nil) || ([encodedParameters isEqualToString:@""])) {
+    if (encodedParameters.length == 0) {
         return nil;
     }
     
-    NSArray *encodedParameterPairs = [encodedParameters componentsSeparatedByString:@"&"];
-    NSMutableArray *requestParameters = [[NSMutableArray alloc] initWithCapacity:16];
-    
-    // Converted for loop to be Obj-c 1.x compliant
-    int count, i;
-    count = [encodedParameterPairs count];
-    for ( i=0; i < count; i++ ) {
-        NSString *encodedPair = [encodedParameterPairs objectAtIndex:i];
-        NSArray  *encodedPairElements = [encodedPair componentsSeparatedByString:@"="];
-        OARequestParameter *parameter = [[OARequestParameter alloc] initWithName:[[encodedPairElements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-                                                                           value:[[encodedPairElements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSArray* encodedParameterPairs = [encodedParameters componentsSeparatedByString:@"&"];
+    NSMutableArray* requestParameters = [NSMutableArray array];
+
+    for (NSString* encodedPair in encodedParameterPairs) {
+        NSArray* encodedPairElements = [encodedPair componentsSeparatedByString:@"="];
+        OARequestParameter* parameter = [OARequestParameter parameterWithName:[[encodedPairElements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                                                        value:[[encodedPairElements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [requestParameters addObject:parameter];
     }
     
     return requestParameters;
 }
 
-- (void)setParameters:(NSArray *)parameters {
-    NSMutableString *encodedParameterPairs = [[NSMutableString alloc] initWithCapacity:256];
+- (void) setParameters:(NSArray*) parameters {
+    NSMutableString *encodedParameterPairs = [NSMutableString string];
     
-    // Converted for loop to be Obj-c 1.x compliant
-    int count, i, position = 1;
-    count = [parameters count];
-    for ( i=0; i < count; i++ ) {
-        OARequestParameter *requestParameter = [parameters objectAtIndex:i];
+    int position = 1;
+    for (OARequestParameter* requestParameter in parameters) {
         [encodedParameterPairs appendString:[requestParameter URLEncodedNameValuePair]];
-        if (position < [parameters count]) {
+        if (position < parameters.count) {
             [encodedParameterPairs appendString:@"&"];
         }
         position++;
-        
     }
     
-    if ([[self HTTPMethod] isEqualToString:@"GET"] || [[self HTTPMethod] isEqualToString:@"DELETE"]) {
-        [self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [[self URL] URLStringWithoutQuery], encodedParameterPairs]]];
+    if ([self.HTTPMethod isEqualToString:@"GET"] ||
+        [self.HTTPMethod isEqualToString:@"DELETE"]) {
+        [self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [self.URL URLStringWithoutQuery], encodedParameterPairs]]];
     } else {
         // POST, PUT
         NSData *postData = [encodedParameterPairs dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         [self setHTTPBody:postData];
-        [self setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
+        [self setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
         [self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     }
 }

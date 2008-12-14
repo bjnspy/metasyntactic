@@ -87,7 +87,7 @@
 
 
 - (void) majorRefresh {
-    self.tableView.rowHeight = 43;
+    self.tableView.rowHeight = 38;
     [self.tableView reloadData];
 }
 
@@ -100,7 +100,7 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 7;
+        return 8;
     } else {
         return 1;
     }
@@ -164,7 +164,7 @@
         [cell setKey:key value:value hideSeparator:NO];
 
         return cell;
-    } else if (row >= 4 && row <= 6) {
+    } else if (row >= 4 && row <= 7) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -179,10 +179,14 @@
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
         } else if (row == 5) {
+            text = NSLocalizedString(@"Netflix", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
+            on = self.model.netflixEnabled;
+            selector = @selector(onNetflixEnabledChanged:);
+        } else if (row == 6) {
             text = NSLocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.prioritizeBookmarks;
             selector = @selector(onPrioritizeBookmarksChanged:);
-        } else if (row == 6) {
+        } else if (row == 7) {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
@@ -206,6 +210,11 @@
     } else {
         return [self cellForFooterRow:indexPath.row];
     }
+}
+
+
+- (void) onNetflixEnabledChanged:(id) sender {
+    [self.controller setNetflixEnabled:!self.model.netflixEnabled];
 }
 
 
@@ -259,7 +268,7 @@
 }
 
 
-- (void) didSelectFooterRow:(NSInteger) row {
+- (void) didSelectCreditsRow:(NSInteger) row {
     CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
     [navigationController pushViewController:controller animated:YES];
 }
@@ -320,7 +329,7 @@
     if (indexPath.section == 0) {
         [self didSelectSettingsRow:indexPath.row];
     } else if (indexPath.section == 1) {
-        [self didSelectFooterRow:indexPath.row];
+        [self didSelectCreditsRow:indexPath.row];
     }
 }
 

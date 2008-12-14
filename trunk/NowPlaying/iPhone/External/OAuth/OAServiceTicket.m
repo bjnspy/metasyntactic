@@ -22,39 +22,46 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
 
 
 #import "OAServiceTicket.h"
+#import "OAMutableURLRequest.h"
 
+@interface OAServiceTicket()
+@property (retain) OAMutableURLRequest *request;
+@property (retain) NSURLResponse *response;
+@property BOOL didSucceed;
+@end
 
 @implementation OAServiceTicket
-//@synthesize request, response, didSucceed;
 
-- (id)initWithRequest:(OAMutableURLRequest *)aRequest response:(NSURLResponse *)aResponse didSucceed:(BOOL)success {
-    [super init];
-    request = aRequest;
-    response = aResponse;
-    didSucceed = success;
+@synthesize request, response, didSucceed;
+
+- (void) dealloc {
+    self.request = nil;
+    self.response = nil;
+
+    [super dealloc];
+}
+
+
+- (id) initWithRequest:(OAMutableURLRequest*) aRequest 
+              response:(NSURLResponse*) aResponse
+            didSucceed:(BOOL)success {
+    if (self = [super init]) {
+        self.request = aRequest;
+        self.response = aResponse;
+        self.didSucceed = success;
+    }
+
     return self;
 }
 
-#pragma mark properties
 
-- (OAMutableURLRequest *)request
-{
-    return request;
-}
-
-- (NSURLResponse *)response
-{
-    return response;
-}
-
-- (BOOL)didSucceed
-{
-    return didSucceed;
++ (OAServiceTicket*) ticketWithRequest:(OAMutableURLRequest*) request
+                              response:(NSURLResponse*) response
+                            didSucceed:(BOOL) success {
+    return [[[OAServiceTicket alloc] initWithRequest:request response:response didSucceed:success] autorelease];
 }
 
 @end

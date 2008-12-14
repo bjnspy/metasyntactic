@@ -22,30 +22,22 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
-
-
 
 @interface OAToken : NSObject {
 @protected
-	NSString *key;
-	NSString *secret;
+    NSString *key;
+    NSString *secret;
 }
-// Obj-c 1.x does not support the @property feature -- GFF
-//@property(copy, readwrite) NSString *key;
-//@property(copy, readwrite) NSString *secret;
 
-- (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret;
-//- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider;
-- (id)initWithHTTPResponseBody:(NSString *)body;
-//- (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider;
-//- (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString *)name serviceProviderName:(NSString *)provider;
+@property (readonly, copy) NSString *key;
+@property (readonly, copy) NSString *secret;
 
-// Obj-c 1.x requires explicit property methods
-- (NSString *)key;
-- (void)setKey:(NSString *)aKey;
-- (NSString *)secret;
-- (void)setSecret:(NSString *)aSecret;
+//- (id) initWithKey:(NSString*) key secret:(NSString*) secret;
+//- (id)initWithUserDefaultsUsingServiceProviderName:(NSString *)provider prefix:(NSString *)prefix;
+//- (id) initWithHTTPResponseBody:(NSString*) body;
+//- (int)storeInUserDefaultsWithServiceProviderName:(NSString *)provider prefix:(NSString *)prefix;
+
++ (OAToken*) tokenWithKey:(NSString*) key secret:(NSString*) secret;
++ (OAToken*) tokenWithHTTPResponseBody:(NSString*) body;
 
 @end

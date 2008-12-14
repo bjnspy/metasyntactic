@@ -23,8 +23,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+@interface OAHMAC_SHA1SignatureProvider : NSObject
 
-#import "OASignatureProviding.h"
+- (NSString*) name;
+- (NSString*) signClearText:(NSString*) text
+                 withSecret:(NSString*) secret;
 
-@interface OAHMAC_SHA1SignatureProvider : NSObject <OASignatureProviding>
 @end

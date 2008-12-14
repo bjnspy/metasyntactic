@@ -22,23 +22,16 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
 
 @interface OAConsumer : NSObject {
-@protected
-	NSString *key;
-	NSString *secret;
+@private
+    NSString *key;
+    NSString *secret;
 }
-// Obj-c 1.x does not support the @property feature -- GFF
-//@property(copy, readwrite) NSString *key;
-//@property(copy, readwrite) NSString *secret;
 
-- (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret;
+@property (readonly, copy) NSString *key;
+@property (readonly, copy) NSString *secret;
 
-- (NSString *)key;
-- (void)setKey:(NSString *)aKey;
-- (NSString *)secret;
-- (void)setSecret:(NSString *)aSecret;
++ (OAConsumer*) consumerWithKey:(NSString*) key secret:(NSString*) secret;
 
 @end

@@ -22,12 +22,8 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
 
-
-#import "OAMutableURLRequest.h"
-
+@class OAMutableURLRequest;
 
 @interface OAServiceTicket : NSObject {
 @private
@@ -35,16 +31,11 @@
     NSURLResponse *response;
     BOOL didSucceed;
 }
-// Obj-c 1.x does not support the @property feature -- GFF
-//@property(readonly) OAMutableURLRequest *request;
-//@property(readonly) NSURLResponse *response;
-//@property(readonly) BOOL didSucceed;
 
-- (id)initWithRequest:(OAMutableURLRequest *)aRequest response:(NSURLResponse *)aResponse didSucceed:(BOOL)success;
+@property (readonly, retain) OAMutableURLRequest *request;
+@property (readonly, retain) NSURLResponse *response;
+@property (readonly) BOOL didSucceed;
 
-// Obj-c 1.x requires explicit property methods
-- (OAMutableURLRequest *)request;
-- (NSURLResponse *)response;
-- (BOOL)didSucceed;
++ (OAServiceTicket*) ticketWithRequest:(OAMutableURLRequest*) request response:(NSURLResponse*) response didSucceed:(BOOL) success;
 
 @end

@@ -22,31 +22,20 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
-
-
-#import "NSString+URLEncoding.h"
-
 
 @interface OARequestParameter : NSObject {
 @protected
-    NSString *name;
-    NSString *value;
+    NSString* name;
+    NSString* value;
 }
-// Obj-c 1.x does not support the @property feature -- GFF
-//@property(copy, readwrite) NSString *name;
-//@property(copy, readwrite) NSString *value;
 
-- (id)initWithName:(NSString *)aName value:(NSString *)aValue;
-- (NSString *)URLEncodedName;
-- (NSString *)URLEncodedValue;
-- (NSString *)URLEncodedNameValuePair;
+@property (readonly, copy) NSString* name;
+@property (readonly, copy) NSString* value;
 
-// Obj-c 1.x needs explicit property methods
-- (NSString *)name;
-- (void)setName:(NSString *)aName;
-- (NSString *)value;
-- (void)setValue:(NSString *)aValue;
++ (OARequestParameter*) parameterWithName:(NSString*) name value:(NSString*) value;
+
+- (NSString*) URLEncodedName;
+- (NSString*) URLEncodedValue;
+- (NSString*) URLEncodedNameValuePair;
 
 @end

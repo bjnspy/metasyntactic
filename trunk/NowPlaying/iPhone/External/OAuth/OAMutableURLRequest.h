@@ -22,52 +22,34 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
-//  Back-ported to obj-c 1.x by George Fletcher
 
-
-#import "OAConsumer.h"
-#import "OAToken.h"
-#import "OAHMAC_SHA1SignatureProvider.h"
-#import "OASignatureProviding.h"
-#import "NSMutableURLRequest+Parameters.h"
-#import "NSURL+Base.h"
-
+@class OAConsumer;
+@class OAToken;
 
 @interface OAMutableURLRequest : NSMutableURLRequest {
-@protected
+@private
     OAConsumer *consumer;
     OAToken *token;
     NSString *realm;
     NSString *signature;
-    id<OASignatureProviding> signatureProvider;
     NSString *nonce;
     NSString *timestamp;
 }
-// Obj-c 1.x does not support the @property feature -- GFF
-//@property(readonly) NSString *signature;
-//@property(readonly) NSString *nonce;
 
-- (id)initWithURL:(NSURL *)aUrl
-		 consumer:(OAConsumer *)aConsumer
-			token:(OAToken *)aToken
-            realm:(NSString *)aRealm
-signatureProvider:(id<OASignatureProviding, NSObject>)aProvider;
+- (id) initWithURL:(NSURL *)aUrl
+          consumer:(OAConsumer *)aConsumer
+             token:(OAToken *)aToken
+             realm:(NSString *)aRealm;
 
-- (id)initWithURL:(NSURL *)aUrl
-		 consumer:(OAConsumer *)aConsumer
-			token:(OAToken *)aToken
-            realm:(NSString *)aRealm
-signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
-            nonce:(NSString *)aNonce
-        timestamp:(NSString *)aTimestamp;
+
+- (id) initWithURL:(NSURL *)aUrl
+          consumer:(OAConsumer *)aConsumer
+             token:(OAToken *)aToken
+             realm:(NSString *)aRealm
+             nonce:(NSString *)aNonce
+         timestamp:(NSString *)aTimestamp;
+
 
 - (void)prepare;
-
-// Added Obj-c 1.x property methods
-- (NSString *)nonce;
-- (void)setNonce:(NSString *)aKey;
-- (NSString *)signature;
-- (void)setSignature:(NSString *)aSecret;
 
 @end

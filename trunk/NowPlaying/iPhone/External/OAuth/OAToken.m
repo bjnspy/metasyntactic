@@ -28,61 +28,90 @@
 
 #import "OAToken.h"
 
+@interface OAToken()
+@property (copy) NSString *key;
+@property (copy) NSString *secret;
+@end
+
 
 @implementation OAToken
 
-//@synthesize key, secret;
+@synthesize key;
+@synthesize secret;
 
-#pragma mark init
+- (void) dealloc {
+    self.key = nil;
+    self.secret = nil;
+    
+    [super dealloc];
+}
 
-- (id)init {
-    [super init];
-    [self setKey:@""];
-    [self setSecret:@""];
+
+- (id) init {
+    if (self = [super init]) {
+        self.key = @"";
+        self.secret = @"";
+    }
+    
     return self;
 }
 
-- (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret {
-	[super init];
-	[self setKey:aKey];
-    [self setSecret:aSecret];
-	return self;
+
+- (id) initWithKey:(NSString*) aKey
+            secret:(NSString*) aSecret {
+    if (self = [super init]) {
+        self.key = aKey;
+        self.secret = aSecret;
+    }
+    
+    return self;
 }
 
-- (id)initWithHTTPResponseBody:(NSString *)body {
-    [super init];
-    NSArray *pairs = [body componentsSeparatedByString:@"&"];
-    
-    // Converted for loop to be Obj-c 1.x compliant
-    int count, i;
-    count = [pairs count];
-    for (i=0; i < count; i++) {
-        NSString *pair = [pairs objectAtIndex:i];
-        NSArray  *elements = [pair componentsSeparatedByString:@"="];
-        if ( [[elements objectAtIndex:0] isEqualToString:@"oauth_token"]) {
-            [self setKey:[elements objectAtIndex:1]];
-        }
-        else if ([[elements objectAtIndex:0] isEqualToString:@"oauth_token_secret"]) {
-            [self setSecret:[elements objectAtIndex:1]];
+
+- (id) initWithHTTPResponseBody:(NSString *)body {
+    if (self = [super init]) {
+        NSArray *pairs = [body componentsSeparatedByString:@"&"];
+        
+        // Converted for loop to be Obj-c 1.x compliant
+        int count, i;
+        count = [pairs count];
+        for (i = 0; i < count; i++) {
+            NSString *pair = [pairs objectAtIndex:i];
+            NSArray  *elements = [pair componentsSeparatedByString:@"="];
+            if ( [[elements objectAtIndex:0] isEqualToString:@"oauth_token"]) {
+                [self setKey:[elements objectAtIndex:1]];
+            } else if ([[elements objectAtIndex:0] isEqualToString:@"oauth_token_secret"]) {
+                [self setSecret:[elements objectAtIndex:1]];
+            }
         }
     }
     
     return self;
 }
 
+
++ (OAToken*) tokenWithKey:(NSString*) key secret:(NSString*) secret {
+    return [[[OAToken alloc] initWithKey:key secret:secret] autorelease];
+}
+
+
++ (OAToken*) tokenWithHTTPResponseBody:(NSString*) body {
+    return [[[OAToken alloc] initWithHTTPResponseBody:body] autorelease];
+}
+
 /*
 - (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider {
     [super init];
     SecKeychainItemRef item;
-	NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
-	OSStatus status = SecKeychainFindGenericPassword(NULL,
-                                                strlen([serviceName UTF8String]),
-                                                [serviceName UTF8String],
-                                                0,
-                                                NULL,
-                                                NULL,
-                                                NULL,
-                                                &item);
+    NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
+    OSStatus status = SecKeychainFindGenericPassword(NULL,
+                                                     strlen([serviceName UTF8String]),
+                                                     [serviceName UTF8String],
+                                                     0,
+                                                     NULL,
+                                                     NULL,
+                                                     NULL,
+                                                     &item);
     if (status != noErr) {
         return nil;
     }
@@ -92,7 +121,7 @@
     char *password;
     SecKeychainAttribute attributes[8];
     SecKeychainAttributeList list;
-	
+    
     attributes[0].tag = kSecAccountItemAttr;
     attributes[1].tag = kSecDescriptionItemAttr;
     attributes[2].tag = kSecLabelItemAttr;
@@ -105,7 +134,7 @@
     
     if (status == noErr) {
         [self setKey:[NSString stringWithCString:list.attr[0].data
-                                        length:list.attr[0].length]];
+                                          length:list.attr[0].length]];
         if (password != NULL) {
             char passwordBuffer[1024];
             
@@ -115,14 +144,14 @@
             strncpy(passwordBuffer, password, length);
             
             passwordBuffer[length] = '\0';
-			[self setSecret:[NSString stringWithCString:passwordBuffer]];
+            [self setSecret:[NSString stringWithCString:passwordBuffer]];
         }
         
         SecKeychainItemFreeContent(&list, password);
         
     } else {
-		// TODO find out why this always works in i386 and always fails on ppc
-		NSLog(@"Error from SecKeychainItemCopyContent: %d", status);
+        // TODO find out why this always works in i386 and always fails on ppc
+        NSLog(@"Error from SecKeychainItemCopyContent: %d", status);
         return nil;
     }
     
@@ -131,16 +160,23 @@
     
     return self;
 }
- */
+*/
 
-#pragma mark Keychain
+//- (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider {
+//    return [self storeInKeychain:NULL appName:name serviceProviderName:provider];
+//}
 
 /*
-- (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider {
-    return [self storeInKeychain:NULL appName:name serviceProviderName:provider];
-}
 - (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString *)name serviceProviderName:(NSString *)provider {
-	OSStatus status = SecKeychainAddGenericPassword(keychain,                                     
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    [dictionary setObject:kSecClassGenericPassword forKey:kSecClass];
+    
+    
+    UInt32 serviceNameLength, const char *serviceName, UInt32 accountNameLength, const char *accountName, UInt32 passwordLength, const void *passwordData,
+    
+    OSStatus status = SecItemAdd(
+    
+    OSStatus status = SecKeychainAddGenericPassword(keychain,                                     
                                                     [name length] + [provider length] + 9, 
                                                     [[NSString stringWithFormat:@"%@::OAuth::%@", name, provider] UTF8String],
                                                     [[self key] length],                        
@@ -149,31 +185,8 @@
                                                     [[self secret] UTF8String],
                                                     NULL
                                                     );
-	return status;
+    return status;
 }
+
 */
-#pragma mark properties
-
-- (NSString *)key
-{
-    return key;
-}
-- (void)setKey:(NSString *)aKey
-{
-    [aKey retain];
-    [key release];
-    key = aKey;
-}
-
-- (NSString *)secret
-{
-    return secret;
-}
-- (void)setSecret:(NSString *)aSecret 
-{
-    [aSecret retain];
-    [secret release];
-    secret = aSecret;
-}
-
 @end

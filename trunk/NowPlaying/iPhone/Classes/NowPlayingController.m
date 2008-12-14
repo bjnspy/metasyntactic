@@ -226,4 +226,11 @@
     [locationManager autoUpdateLocation];
 }
 
+
+- (void) setNetflixEnabled:(BOOL) value {
+    [self.model setNetflixEnabled:value];
+    [appDelegate.tabBarController resetTabs:YES];
+    [NowPlayingAppDelegate majorRefresh:YES];
+}
+
 @end

@@ -58,6 +58,9 @@ enum ViewControllerType {
 
 - (void) update;
 
+- (BOOL) netflixEnabled;
+- (void) setNetflixEnabled:(BOOL) enabled;
+
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesScores;

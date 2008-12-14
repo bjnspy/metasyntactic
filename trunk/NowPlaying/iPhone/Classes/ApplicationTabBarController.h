@@ -17,7 +17,9 @@
     NowPlayingAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
-    UpcomingMoviesNavigationController* upcomingMoviesNavigationController;    DVDNavigationController* dvdNavigationController;
+    UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
+    DVDNavigationController* dvdNavigationController;
+    NetflixNavigationController* netflixNavigationController;
     SettingsNavigationController* settingsNavigationController;
 
     NSDate* lastRefreshDate;
@@ -39,5 +41,7 @@
 - (void) switchToDVD;
 
 - (AbstractNavigationController*) selectedNavigationController;
+
+- (void) resetTabs:(BOOL) animated;
 
 @end

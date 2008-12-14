@@ -34,7 +34,9 @@
     return @"HMAC-SHA1";
 }
 
-- (NSString*) signClearText:(NSString*) text withSecret:(NSString*) secret {
+
+- (NSString*) signClearText:(NSString*) text
+                 withSecret:(NSString*) secret {
     NSData* secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
     NSData* clearTextData = [text dataUsingEncoding:NSUTF8StringEncoding];
     
