@@ -13,10 +13,8 @@
 //limitations under the License.
 
 #ifdef __OBJC__
-#define OPENSSL_NO_INLINE_ASM
-#define OPENSSL_NO_ASM
-
 #import <CoreFoundation/CoreFoundation.h>
+#import <CommonCrypto/CommonHMAC.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
@@ -29,8 +27,4 @@
 #import "ProtocolBuffers.h"
 #import "TargetConditionals.h"
 #import "expat.h"
-#import "evp.h"
-#import "err.h"
-#import "hmac.h"
-#import "bio.h"
 #endif
