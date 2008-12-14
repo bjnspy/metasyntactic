@@ -27,10 +27,12 @@
 @protected
     NSString* key;
     NSString* secret;
+    NSDictionary* fields;
 }
 
 @property (readonly, copy) NSString* key;
 @property (readonly, copy) NSString* secret;
+@property (readonly, retain) NSDictionary* fields;
 
 //- (id) initWithKey:(NSString*) key secret:(NSString*) secret;
 //- (id)initWithUserDefaultsUsingServiceProviderName:(NSString*)provider prefix:(NSString*)prefix;

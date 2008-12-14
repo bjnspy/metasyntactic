@@ -30,6 +30,7 @@ enum ViewControllerType {
     ScoreCache* scoreCache;
     TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
+    NetflixCache* netflixCache;
 
     NSInteger searchRadius;
 
@@ -61,9 +62,9 @@ enum ViewControllerType {
 - (BOOL) netflixEnabled;
 - (void) setNetflixEnabled:(BOOL) enabled;
 - (NSString*) netflixKey;
-- (void) setNetflixKey:(NSString*) netflixKey;
 - (NSString*) netflixSecret;
-- (void) setNetflixSecret:(NSString*) netflixSecret;
+- (NSString*) netflixUserId;
+- (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 
 - (NSInteger) scoreProviderIndex;
 - (void) setScoreProviderIndex:(NSInteger) index;

@@ -95,8 +95,7 @@
 
 
 - (void) spawnDataProviderLookupThread {
-    if (self.model.userAddress.length == 0 ||
-        [self tooSoon:[self.model.dataProvider lastLookupDate]]) {
+    if ([self tooSoon:[self.model.dataProvider lastLookupDate]]) {
         [self.model performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
     } else {
         [self.model.dataProvider update:self.model.searchDate delegate:self context:nil];
@@ -231,6 +230,12 @@
     [self.model setNetflixEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];
     [NowPlayingAppDelegate majorRefresh:YES];
+}
+
+
+- (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
+    [self.model setNetflixKey:key secret:secret userId:userId];
+    [self spawnDataProviderLookupThread];
 }
 
 @end

@@ -31,6 +31,7 @@
 @interface OAToken()
 @property (copy) NSString* key;
 @property (copy) NSString* secret;
+@property (retain) NSDictionary* fields;
 @end
 
 
@@ -38,10 +39,12 @@
 
 @synthesize key;
 @synthesize secret;
+@synthesize fields;
 
 - (void) dealloc {
     self.key = nil;
     self.secret = nil;
+    self.fields = nil;
     
     [super dealloc];
 }
@@ -71,18 +74,26 @@
 - (id) initWithHTTPResponseBody:(NSString*)body {
     if (self = [super init]) {
         NSArray* pairs = [body componentsSeparatedByString:@"&"];
+        NSMutableDictionary* map = [NSMutableDictionary dictionary];
         
         for (NSString* pair in pairs) {
             NSArray* elements = [pair componentsSeparatedByString:@"="];
             
             if (elements.count >= 2) {
-                if ([[elements objectAtIndex:0] isEqual:@"oauth_token"]) {
-                    [self setKey:[elements objectAtIndex:1]];
-                } else if ([[elements objectAtIndex:0] isEqual:@"oauth_token_secret"]) {
-                    [self setSecret:[elements objectAtIndex:1]];
+                NSString* urlKey = [elements objectAtIndex:0];
+                NSString* value = [elements objectAtIndex:1];
+                
+                if ([urlKey isEqual:@"oauth_token"]) {
+                    [self setKey:value];
+                } else if ([urlKey isEqual:@"oauth_token_secret"]) {
+                    [self setSecret:value];
                 }
+
+                [map setObject:value forKey:urlKey];
             }
         }
+        
+        self.fields = map;
     }
     
     return self;

@@ -101,23 +101,28 @@
     return self;
 }
 
-// Setting a timestamp and nonce to known
-// values can be helpful for testing
-- (id) initWithURL:(NSURL*) url
-          consumer:(OAConsumer*) aConsumer
-             token:(OAToken*) aToken
-             realm:(NSString*) aRealm
-             nonce:(NSString*) aNonce
-         timestamp:(NSString*) aTimestamp {
-    if (self = [self initWithURL:url
-                        consumer:aConsumer
-                           token:aToken
-                           realm:aRealm]) {
-        self.nonce = aNonce;
-        self.timestamp = aTimestamp;
-    }
+
++ (OAMutableURLRequest*) requestWithURL:(NSURL*) url
+                               consumer:(OAConsumer*) consumer
+                                  token:(OAToken*) token
+                                  realm:(NSString*) realm {
+    return [[[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:token realm:realm] autorelease];
+}
+
+
++ (OAMutableURLRequest*) requestWithURL:(NSURL*)url
+                               consumer:(OAConsumer*)consumer
+                                  token:(OAToken*)token
+                                  realm:(NSString*)realm
+                                  nonce:(NSString*)nonce
+                              timestamp:(NSString*)timestamp {
+    OAMutableURLRequest* request =
+    [OAMutableURLRequest requestWithURL:url consumer:consumer token:token realm:realm];
+
+    request.nonce = nonce;
+    request.timestamp = timestamp;
     
-    return self;
+    return request;
 }
 
 

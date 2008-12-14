@@ -34,6 +34,7 @@
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (void) setAutoUpdateLocation:(BOOL) value;
 - (void) setNetflixEnabled:(BOOL) value;
+- (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 
 + (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
 
