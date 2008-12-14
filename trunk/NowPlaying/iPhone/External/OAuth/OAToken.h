@@ -37,10 +37,10 @@
 //@property(copy, readwrite) NSString *secret;
 
 - (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret;
-- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider;
+//- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider;
 - (id)initWithHTTPResponseBody:(NSString *)body;
-- (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider;
-- (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString *)name serviceProviderName:(NSString *)provider;
+//- (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider;
+//- (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString *)name serviceProviderName:(NSString *)provider;
 
 // Obj-c 1.x requires explicit property methods
 - (NSString *)key;

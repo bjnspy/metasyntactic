@@ -61,11 +61,11 @@
 
 #ifndef OPENSSL_NO_SHA
 
-#include <openssl/evp.h>
-#include <openssl/objects.h>
-#include <openssl/x509.h>
+#include "evp.h"
+#include "objects.h"
+#include "x509.h"
 #ifndef OPENSSL_NO_RSA
-#include <openssl/rsa.h>
+#include "rsa.h"
 #endif
 
 static int init(EVP_MD_CTX *ctx)
