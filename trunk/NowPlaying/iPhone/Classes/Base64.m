@@ -17,7 +17,7 @@
     NSMutableData* data = [NSMutableData dataWithLength:((length + 2) / 3) * 4];
     uint8_t* output = (uint8_t*)data.mutableBytes;
     
-    for (NSInteger i = 0, index = 0; i < length; i += 3, index += 4) {
+    for (NSInteger i = 0; i < length; i += 3) {
         NSInteger val = 0;
         for (NSInteger j = i; j < (i + 3); j++) {
             val <<= 8;
@@ -27,15 +27,17 @@
             }
         }
         
-        output[index + 3] = (i + 2) < length ? table[(val >> 0) & 0x3F] : '=';
-        output[index + 2] = (i + 1) < length ? table[(val >> 6) & 0x3F] : '=';
-        output[index + 1] =                    table[(val >> 12) & 0x3F];
+        NSInteger index = 4 * i / 3;
         output[index + 0] =                    table[(val >> 18) & 0x3F];
+        output[index + 1] =                    table[(val >> 12) & 0x3F];
+        output[index + 2] = (i + 1) < length ? table[(val >> 6)  & 0x3F] : '=';
+        output[index + 3] = (i + 2) < length ? table[(val >> 0)  & 0x3F] : '=';
     }
 
     return [[[NSString alloc] initWithData:data
                                   encoding:NSASCIIStringEncoding] autorelease]; 
 }
+
 
 + (NSString*) encode:(NSData*) rawBytes {
     return [Base64 encode:(const uint8_t*)rawBytes.bytes length:rawBytes.length];
