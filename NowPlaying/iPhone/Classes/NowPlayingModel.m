@@ -1164,7 +1164,7 @@ static NSString** KEYS[] = {
 }
 
 
-NSInteger compareMoviesByScore(id t1, id t2, void *context) {
+NSInteger compareMoviesByScore(id t1, id t2, void* context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
@@ -1186,7 +1186,7 @@ NSInteger compareMoviesByScore(id t1, id t2, void *context) {
 }
 
 
-NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void *context) {
+NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void* context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
@@ -1212,12 +1212,12 @@ NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void *context) {
 }
 
 
-NSInteger compareMoviesByReleaseDateAscending(id t1, id t2, void *context) {
+NSInteger compareMoviesByReleaseDateAscending(id t1, id t2, void* context) {
     return -compareMoviesByReleaseDateDescending(t1, t2, context);
 }
 
 
-NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
+NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
@@ -1240,7 +1240,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
 }
 
 
-NSInteger compareTheatersByName(id t1, id t2, void *context) {
+NSInteger compareTheatersByName(id t1, id t2, void* context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }
@@ -1252,7 +1252,7 @@ NSInteger compareTheatersByName(id t1, id t2, void *context) {
 }
 
 
-NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
+NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     if (t1 == t2) {
         return NSOrderedSame;
     }

@@ -37,9 +37,9 @@
               didFailSelector:(SEL) didFailSelector {
     [request prepare];
     
-    NSURLResponse *response;
-    NSError *error;
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+    NSURLResponse* response;
+    NSError* error;
+    NSData* responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&response
                                                              error:&error];
     
@@ -52,7 +52,7 @@
                        withObject:ticket
                        withObject:error];
     } else {
-        OAServiceTicket *ticket = 
+        OAServiceTicket* ticket = 
         [OAServiceTicket ticketWithRequest:request
                                   response:response
                                 didSucceed:[(NSHTTPURLResponse*)response statusCode] < 400];

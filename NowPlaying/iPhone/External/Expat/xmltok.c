@@ -122,19 +122,19 @@
     ((*p) == 0xF4 ? (p)[1] > 0x8F : ((p)[1] & 0xC0) == 0xC0)))
 
 static int PTRFASTCALL
-isNever(const ENCODING *enc, const char *p)
+isNever(const ENCODING* enc, const char* p)
 {
   return 0;
 }
 
 static int PTRFASTCALL
-utf8_isName2(const ENCODING *enc, const char *p)
+utf8_isName2(const ENCODING* enc, const char* p)
 {
   return UTF8_GET_NAMING2(namePages, (const unsigned char*)p);
 }
 
 static int PTRFASTCALL
-utf8_isName3(const ENCODING *enc, const char *p)
+utf8_isName3(const ENCODING* enc, const char* p)
 {
   return UTF8_GET_NAMING3(namePages, (const unsigned char*)p);
 }
@@ -142,13 +142,13 @@ utf8_isName3(const ENCODING *enc, const char *p)
 #define utf8_isName4 isNever
 
 static int PTRFASTCALL
-utf8_isNmstrt2(const ENCODING *enc, const char *p)
+utf8_isNmstrt2(const ENCODING* enc, const char* p)
 {
   return UTF8_GET_NAMING2(nmstrtPages, (const unsigned char*)p);
 }
 
 static int PTRFASTCALL
-utf8_isNmstrt3(const ENCODING *enc, const char *p)
+utf8_isNmstrt3(const ENCODING* enc, const char* p)
 {
   return UTF8_GET_NAMING3(nmstrtPages, (const unsigned char*)p);
 }
@@ -156,19 +156,19 @@ utf8_isNmstrt3(const ENCODING *enc, const char *p)
 #define utf8_isNmstrt4 isNever
 
 static int PTRFASTCALL
-utf8_isInvalid2(const ENCODING *enc, const char *p)
+utf8_isInvalid2(const ENCODING* enc, const char* p)
 {
   return UTF8_INVALID2((const unsigned char*)p);
 }
 
 static int PTRFASTCALL
-utf8_isInvalid3(const ENCODING *enc, const char *p)
+utf8_isInvalid3(const ENCODING* enc, const char* p)
 {
   return UTF8_INVALID3((const unsigned char*)p);
 }
 
 static int PTRFASTCALL
-utf8_isInvalid4(const ENCODING *enc, const char *p)
+utf8_isInvalid4(const ENCODING* enc, const char* p)
 {
   return UTF8_INVALID4((const unsigned char*)p);
 }
@@ -177,21 +177,21 @@ struct normal_encoding {
   ENCODING enc;
   unsigned char type[256];
 #ifdef XML_MIN_SIZE
-  int (PTRFASTCALL *byteType)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isNameMin)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isNmstrtMin)(const ENCODING *, const char*);
-  int (PTRFASTCALL *byteToAscii)(const ENCODING *, const char*);
-  int (PTRCALL *charMatches)(const ENCODING *, const char *, int);
+  int (PTRFASTCALL* byteType)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isNameMin)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isNmstrtMin)(const ENCODING *, const char*);
+  int (PTRFASTCALL* byteToAscii)(const ENCODING *, const char*);
+  int (PTRCALL* charMatches)(const ENCODING *, const char *, int);
 #endif /* XML_MIN_SIZE */
-  int (PTRFASTCALL *isName2)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isName3)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isName4)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isNmstrt2)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isNmstrt3)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isNmstrt4)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isInvalid2)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isInvalid3)(const ENCODING *, const char*);
-  int (PTRFASTCALL *isInvalid4)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isName2)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isName3)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isName4)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isNmstrt2)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isNmstrt3)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isNmstrt4)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isInvalid2)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isInvalid3)(const ENCODING *, const char*);
+  int (PTRFASTCALL* isInvalid4)(const ENCODING *, const char*);
 };
 
 #define AS_NORMAL_ENCODING(enc)   ((const struct normal_encoding*) (enc))
@@ -244,7 +244,7 @@ static int FASTCALL checkCharRefNumber(int);
 
 #ifdef XML_MIN_SIZE
 static int PTRFASTCALL
-sb_byteType(const ENCODING *enc, const char *p)
+sb_byteType(const ENCODING* enc, const char* p)
 {
   return SB_BYTE_TYPE(enc, p);
 }
@@ -258,9 +258,9 @@ sb_byteType(const ENCODING *enc, const char *p)
 #define BYTE_TO_ASCII(enc, p) \
  (AS_NORMAL_ENCODING(enc)->byteToAscii(enc, p))
 static int PTRFASTCALL
-sb_byteToAscii(const ENCODING *enc, const char *p)
+sb_byteToAscii(const ENCODING* enc, const char* p)
 {
-  return *p;
+  return* p;
 }
 #else
 #define BYTE_TO_ASCII(enc, p) (*(p))
@@ -287,9 +287,9 @@ sb_byteToAscii(const ENCODING *enc, const char *p)
 #define CHAR_MATCHES(enc, p, c) \
  (AS_NORMAL_ENCODING(enc)->charMatches(enc, p, c))
 static int PTRCALL
-sb_charMatches(const ENCODING *enc, const char *p, int c)
+sb_charMatches(const ENCODING* enc, const char* p, int c)
 {
-  return *p == c;
+  return* p == c;
 }
 #else
 /* c is an ASCII character */
@@ -319,12 +319,12 @@ enum {  /* UTF8_cvalN is value of masked first byte of N byte sequence */
 };
 
 static void PTRCALL
-utf8_toUtf8(const ENCODING *enc,
-            const char **fromP, const char *fromLim,
-            char **toP, const char *toLim)
+utf8_toUtf8(const ENCODING* enc,
+            const char **fromP, const char* fromLim,
+            char **toP, const char* toLim)
 {
-  char *to;
-  const char *from;
+  char* to;
+  const char* from;
   if (fromLim - *fromP > toLim - *toP) {
     /* Avoid copying partial characters. */
     for (fromLim = *fromP + (toLim - *toP); fromLim > *fromP; fromLim--)
@@ -338,12 +338,12 @@ utf8_toUtf8(const ENCODING *enc,
 }
 
 static void PTRCALL
-utf8_toUtf16(const ENCODING *enc,
-             const char **fromP, const char *fromLim,
-             unsigned short **toP, const unsigned short *toLim)
+utf8_toUtf16(const ENCODING* enc,
+             const char **fromP, const char* fromLim,
+             unsigned short **toP, const unsigned short* toLim)
 {
-  unsigned short *to = *toP;
-  const char *from = *fromP;
+  unsigned short* to = *toP;
+  const char* from = *fromP;
   while (from != fromLim && to != toLim) {
     switch (((struct normal_encoding*)enc)->type[(unsigned char)*from]) {
     case BT_LEAD2:
@@ -426,9 +426,9 @@ static const struct normal_encoding internal_utf8_encoding = {
 };
 
 static void PTRCALL
-latin1_toUtf8(const ENCODING *enc,
-              const char **fromP, const char *fromLim,
-              char **toP, const char *toLim)
+latin1_toUtf8(const ENCODING* enc,
+              const char **fromP, const char* fromLim,
+              char **toP, const char* toLim)
 {
   for (;;) {
     unsigned char c;
@@ -451,9 +451,9 @@ latin1_toUtf8(const ENCODING *enc,
 }
 
 static void PTRCALL
-latin1_toUtf16(const ENCODING *enc,
-               const char **fromP, const char *fromLim,
-               unsigned short **toP, const unsigned short *toLim)
+latin1_toUtf16(const ENCODING* enc,
+               const char **fromP, const char* fromLim,
+               unsigned short **toP, const unsigned short* toLim)
 {
   while (*fromP != fromLim && *toP != toLim)
     *(*toP)++ = (unsigned char)*(*fromP)++;
@@ -484,9 +484,9 @@ static const struct normal_encoding latin1_encoding = {
 };
 
 static void PTRCALL
-ascii_toUtf8(const ENCODING *enc,
-             const char **fromP, const char *fromLim,
-             char **toP, const char *toLim)
+ascii_toUtf8(const ENCODING* enc,
+             const char **fromP, const char* fromLim,
+             char **toP, const char* toLim)
 {
   while (*fromP != fromLim && *toP != toLim)
     *(*toP)++ = *(*fromP)++;
@@ -537,11 +537,11 @@ unicode_byte_type(char hi, char lo)
 
 #define DEFINE_UTF16_TO_UTF8(E) \
 static void  PTRCALL \
-E ## toUtf8(const ENCODING *enc, \
-            const char **fromP, const char *fromLim, \
-            char **toP, const char *toLim) \
+E ## toUtf8(const ENCODING* enc, \
+            const char **fromP, const char* fromLim, \
+            char **toP, const char* toLim) \
 { \
-  const char *from; \
+  const char* from; \
   for (from = *fromP; from != fromLim; from += 2) { \
     int plane; \
     unsigned char lo2; \
@@ -600,9 +600,9 @@ E ## toUtf8(const ENCODING *enc, \
 
 #define DEFINE_UTF16_TO_UTF16(E) \
 static void  PTRCALL \
-E ## toUtf16(const ENCODING *enc, \
-             const char **fromP, const char *fromLim, \
-             unsigned short **toP, const unsigned short *toLim) \
+E ## toUtf16(const ENCODING* enc, \
+             const char **fromP, const char* fromLim, \
+             unsigned short **toP, const unsigned short* toLim) \
 { \
   /* Avoid copying first half only of surrogate */ \
   if (fromLim - *fromP > ((toLim - *toP) << 1) \
@@ -650,31 +650,31 @@ DEFINE_UTF16_TO_UTF16(big2_)
 #ifdef XML_MIN_SIZE
 
 static int PTRFASTCALL
-little2_byteType(const ENCODING *enc, const char *p)
+little2_byteType(const ENCODING* enc, const char* p)
 {
   return LITTLE2_BYTE_TYPE(enc, p);
 }
 
 static int PTRFASTCALL
-little2_byteToAscii(const ENCODING *enc, const char *p)
+little2_byteToAscii(const ENCODING* enc, const char* p)
 {
   return LITTLE2_BYTE_TO_ASCII(enc, p);
 }
 
 static int PTRCALL
-little2_charMatches(const ENCODING *enc, const char *p, int c)
+little2_charMatches(const ENCODING* enc, const char* p, int c)
 {
   return LITTLE2_CHAR_MATCHES(enc, p, c);
 }
 
 static int PTRFASTCALL
-little2_isNameMin(const ENCODING *enc, const char *p)
+little2_isNameMin(const ENCODING* enc, const char* p)
 {
   return LITTLE2_IS_NAME_CHAR_MINBPC(enc, p);
 }
 
 static int PTRFASTCALL
-little2_isNmstrtMin(const ENCODING *enc, const char *p)
+little2_isNmstrtMin(const ENCODING* enc, const char* p)
 {
   return LITTLE2_IS_NMSTRT_CHAR_MINBPC(enc, p);
 }
@@ -791,31 +791,31 @@ static const struct normal_encoding internal_little2_encoding = {
 #ifdef XML_MIN_SIZE
 
 static int PTRFASTCALL
-big2_byteType(const ENCODING *enc, const char *p)
+big2_byteType(const ENCODING* enc, const char* p)
 {
   return BIG2_BYTE_TYPE(enc, p);
 }
 
 static int PTRFASTCALL
-big2_byteToAscii(const ENCODING *enc, const char *p)
+big2_byteToAscii(const ENCODING* enc, const char* p)
 {
   return BIG2_BYTE_TO_ASCII(enc, p);
 }
 
 static int PTRCALL
-big2_charMatches(const ENCODING *enc, const char *p, int c)
+big2_charMatches(const ENCODING* enc, const char* p, int c)
 {
   return BIG2_CHAR_MATCHES(enc, p, c);
 }
 
 static int PTRFASTCALL
-big2_isNameMin(const ENCODING *enc, const char *p)
+big2_isNameMin(const ENCODING* enc, const char* p)
 {
   return BIG2_IS_NAME_CHAR_MINBPC(enc, p);
 }
 
 static int PTRFASTCALL
-big2_isNmstrtMin(const ENCODING *enc, const char *p)
+big2_isNmstrtMin(const ENCODING* enc, const char* p)
 {
   return BIG2_IS_NMSTRT_CHAR_MINBPC(enc, p);
 }
@@ -920,7 +920,7 @@ static const struct normal_encoding internal_big2_encoding = {
 #undef PREFIX
 
 static int FASTCALL
-streqci(const char *s1, const char *s2)
+streqci(const char* s1, const char* s2)
 {
   for (;;) {
     char c1 = *s1++;
@@ -938,17 +938,17 @@ streqci(const char *s1, const char *s2)
 }
 
 static void PTRCALL
-initUpdatePosition(const ENCODING *enc, const char *ptr,
-                   const char *end, POSITION *pos)
+initUpdatePosition(const ENCODING* enc, const char* ptr,
+                   const char* end, POSITION* pos)
 {
   normal_updatePosition(&utf8_encoding.enc, ptr, end, pos);
 }
 
 static int
-toAscii(const ENCODING *enc, const char *ptr, const char *end)
+toAscii(const ENCODING* enc, const char* ptr, const char* end)
 {
   char buf[1];
-  char *p = buf;
+  char* p = buf;
   XmlUtf8Convert(enc, &ptr, end, &p, p + 1);
   if (p == buf)
     return -1;
@@ -973,9 +973,9 @@ isSpace(int c)
    followed by name=val.
 */
 static int
-parsePseudoAttribute(const ENCODING *enc,
-                     const char *ptr,
-                     const char *end,
+parsePseudoAttribute(const ENCODING* enc,
+                     const char* ptr,
+                     const char* end,
                      const char **namePtr,
                      const char **nameEndPtr,
                      const char **valPtr,
@@ -1083,19 +1083,19 @@ doParseXmlDecl(const ENCODING *(*encodingFinder)(const ENCODING *,
                                                  const char *,
                                                  const char*),
                int isGeneralTextEntity,
-               const ENCODING *enc,
-               const char *ptr,
-               const char *end,
+               const ENCODING* enc,
+               const char* ptr,
+               const char* end,
                const char **badPtr,
                const char **versionPtr,
                const char **versionEndPtr,
                const char **encodingName,
                const ENCODING **encoding,
-               int *standalone)
+               int* standalone)
 {
-  const char *val = NULL;
-  const char *name = NULL;
-  const char *nameEnd = NULL;
+  const char* val = NULL;
+  const char* name = NULL;
+  const char* nameEnd = NULL;
   ptr += 5 * enc->minBytesPerChar;
   end -= 2 * enc->minBytesPerChar;
   if (!parsePseudoAttribute(enc, ptr, end, &name, &nameEnd, &val, &ptr)
@@ -1190,7 +1190,7 @@ checkCharRefNumber(int result)
 }
 
 int FASTCALL
-XmlUtf8Encode(int c, char *buf)
+XmlUtf8Encode(int c, char* buf)
 {
   enum {
     /* minN is minimum legal resulting value for N byte sequence */
@@ -1227,7 +1227,7 @@ XmlUtf8Encode(int c, char *buf)
 }
 
 int FASTCALL
-XmlUtf16Encode(int charNum, unsigned short *buf)
+XmlUtf16Encode(int charNum, unsigned short* buf)
 {
   if (charNum < 0)
     return 0;
@@ -1247,7 +1247,7 @@ XmlUtf16Encode(int charNum, unsigned short *buf)
 struct unknown_encoding {
   struct normal_encoding normal;
   CONVERTER convert;
-  void *userData;
+  void* userData;
   unsigned short utf16[256];
   char utf8[256][4];
 };
@@ -1261,9 +1261,9 @@ XmlSizeOfUnknownEncoding(void)
 }
 
 static int PTRFASTCALL
-unknown_isName(const ENCODING *enc, const char *p)
+unknown_isName(const ENCODING* enc, const char* p)
 {
-  const struct unknown_encoding *uenc = AS_UNKNOWN_ENCODING(enc);
+  const struct unknown_encoding* uenc = AS_UNKNOWN_ENCODING(enc);
   int c = uenc->convert(uenc->userData, p);
   if (c & ~0xFFFF)
     return 0;
@@ -1271,9 +1271,9 @@ unknown_isName(const ENCODING *enc, const char *p)
 }
 
 static int PTRFASTCALL
-unknown_isNmstrt(const ENCODING *enc, const char *p)
+unknown_isNmstrt(const ENCODING* enc, const char* p)
 {
-  const struct unknown_encoding *uenc = AS_UNKNOWN_ENCODING(enc);
+  const struct unknown_encoding* uenc = AS_UNKNOWN_ENCODING(enc);
   int c = uenc->convert(uenc->userData, p);
   if (c & ~0xFFFF)
     return 0;
@@ -1281,22 +1281,22 @@ unknown_isNmstrt(const ENCODING *enc, const char *p)
 }
 
 static int PTRFASTCALL
-unknown_isInvalid(const ENCODING *enc, const char *p)
+unknown_isInvalid(const ENCODING* enc, const char* p)
 {
-  const struct unknown_encoding *uenc = AS_UNKNOWN_ENCODING(enc);
+  const struct unknown_encoding* uenc = AS_UNKNOWN_ENCODING(enc);
   int c = uenc->convert(uenc->userData, p);
   return (c & ~0xFFFF) || checkCharRefNumber(c) < 0;
 }
 
 static void PTRCALL
-unknown_toUtf8(const ENCODING *enc,
-               const char **fromP, const char *fromLim,
-               char **toP, const char *toLim)
+unknown_toUtf8(const ENCODING* enc,
+               const char **fromP, const char* fromLim,
+               char **toP, const char* toLim)
 {
-  const struct unknown_encoding *uenc = AS_UNKNOWN_ENCODING(enc);
+  const struct unknown_encoding* uenc = AS_UNKNOWN_ENCODING(enc);
   char buf[XML_UTF8_ENCODE_MAX];
   for (;;) {
-    const char *utf8;
+    const char* utf8;
     int n;
     if (*fromP == fromLim)
       break;
@@ -1323,11 +1323,11 @@ unknown_toUtf8(const ENCODING *enc,
 }
 
 static void PTRCALL
-unknown_toUtf16(const ENCODING *enc,
-                const char **fromP, const char *fromLim,
-                unsigned short **toP, const unsigned short *toLim)
+unknown_toUtf16(const ENCODING* enc,
+                const char **fromP, const char* fromLim,
+                unsigned short **toP, const unsigned short* toLim)
 {
-  const struct unknown_encoding *uenc = AS_UNKNOWN_ENCODING(enc);
+  const struct unknown_encoding* uenc = AS_UNKNOWN_ENCODING(enc);
   while (*fromP != fromLim && *toP != toLim) {
     unsigned short c = uenc->utf16[(unsigned char)**fromP];
     if (c == 0) {
@@ -1343,13 +1343,13 @@ unknown_toUtf16(const ENCODING *enc,
 }
 
 ENCODING *
-XmlInitUnknownEncoding(void *mem,
-                       int *table,
+XmlInitUnknownEncoding(void* mem,
+                       int* table,
                        CONVERTER convert,
-                       void *userData)
+                       void* userData)
 {
   int i;
-  struct unknown_encoding *e = (struct unknown_encoding*)mem;
+  struct unknown_encoding* e = (struct unknown_encoding*)mem;
   for (i = 0; i < (int)sizeof(struct normal_encoding); i++)
     ((char*)mem)[i] = ((char*)&latin1_encoding)[i];
   for (i = 0; i < 128; i++)
@@ -1459,7 +1459,7 @@ static const char KW_UTF_16LE[] = {
 };
 
 static int FASTCALL
-getEncodingIndex(const char *name)
+getEncodingIndex(const char* name)
 {
   static const char * const encodingNames[] = {
     KW_ISO_8859_1,
@@ -1494,11 +1494,11 @@ getEncodingIndex(const char *name)
 
 
 static int
-initScan(const ENCODING * const *encodingTable,
-         const INIT_ENCODING *enc,
+initScan(const ENCODING * const* encodingTable,
+         const INIT_ENCODING* enc,
          int state,
-         const char *ptr,
-         const char *end,
+         const char* ptr,
+         const char* end,
          const char **nextTokPtr)
 {
   const ENCODING **encPtr;
@@ -1637,12 +1637,12 @@ initScan(const ENCODING * const *encodingTable,
 #undef ns
 
 ENCODING *
-XmlInitUnknownEncodingNS(void *mem,
-                         int *table,
+XmlInitUnknownEncodingNS(void* mem,
+                         int* table,
                          CONVERTER convert,
-                         void *userData)
+                         void* userData)
 {
-  ENCODING *enc = XmlInitUnknownEncoding(mem, table, convert, userData);
+  ENCODING* enc = XmlInitUnknownEncoding(mem, table, convert, userData);
   if (enc)
     ((struct normal_encoding*)enc)->type[ASCII_COLON] = BT_COLON;
   return enc;

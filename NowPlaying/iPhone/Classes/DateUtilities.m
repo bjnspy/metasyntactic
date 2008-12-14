@@ -82,7 +82,7 @@ static BOOL use24HourTime;
         }
 
         {
-            NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+            NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
             [formatter setTimeStyle:NSDateFormatterLongStyle];
             use24HourTime = [[formatter dateFormat] rangeOfString:@"H"].length != 0;
         }

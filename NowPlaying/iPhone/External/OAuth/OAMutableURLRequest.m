@@ -37,12 +37,12 @@
 #import "NSURL+Base.h"
 
 @interface OAMutableURLRequest()
-@property (retain) OAConsumer *consumer;
-@property (retain) OAToken *token;
-@property (copy) NSString *realm;
-@property (copy) NSString *signature;
-@property (copy) NSString *nonce;
-@property (copy) NSString *timestamp;
+@property (retain) OAConsumer* consumer;
+@property (retain) OAToken* token;
+@property (copy) NSString* realm;
+@property (copy) NSString* signature;
+@property (copy) NSString* nonce;
+@property (copy) NSString* timestamp;
 @end
 
 @implementation OAMutableURLRequest
@@ -167,7 +167,7 @@
         oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", [token.key encodedURLParameterString]];
     }
     
-    NSString *oauthHeader = [NSString stringWithFormat:@"OAuth realm=\"%@\", oauth_consumer_key=\"%@\", %@oauth_signature_method=\"%@\", oauth_signature=\"%@\", oauth_timestamp=\"%@\", oauth_nonce=\"%@\", oauth_version=\"1.0\"",
+    NSString* oauthHeader = [NSString stringWithFormat:@"OAuth realm=\"%@\", oauth_consumer_key=\"%@\", %@oauth_signature_method=\"%@\", oauth_signature=\"%@\", oauth_timestamp=\"%@\", oauth_nonce=\"%@\", oauth_version=\"1.0\"",
                              realm.encodedURLParameterString,
                              consumer.key.encodedURLParameterString,
                              oauthToken,

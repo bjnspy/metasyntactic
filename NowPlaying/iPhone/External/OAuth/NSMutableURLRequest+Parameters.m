@@ -60,7 +60,7 @@
 }
 
 - (void) setParameters:(NSArray*) parameters {
-    NSMutableString *encodedParameterPairs = [NSMutableString string];
+    NSMutableString* encodedParameterPairs = [NSMutableString string];
     
     int position = 1;
     for (OARequestParameter* requestParameter in parameters) {
@@ -76,7 +76,7 @@
         [self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [self.URL URLStringWithoutQuery], encodedParameterPairs]]];
     } else {
         // POST, PUT
-        NSData *postData = [encodedParameterPairs dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        NSData* postData = [encodedParameterPairs dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         [self setHTTPBody:postData];
         [self setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
         [self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];

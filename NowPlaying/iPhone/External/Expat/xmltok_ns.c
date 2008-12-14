@@ -37,7 +37,7 @@ static const ENCODING * const NS(encodings)[] = {
 };
 
 static int PTRCALL
-NS(initScanProlog)(const ENCODING *enc, const char *ptr, const char *end,
+NS(initScanProlog)(const ENCODING* enc, const char* ptr, const char* end,
                    const char **nextTokPtr)
 {
   return initScan(NS(encodings), (const INIT_ENCODING*)enc,
@@ -45,7 +45,7 @@ NS(initScanProlog)(const ENCODING *enc, const char *ptr, const char *end,
 }
 
 static int PTRCALL
-NS(initScanContent)(const ENCODING *enc, const char *ptr, const char *end,
+NS(initScanContent)(const ENCODING* enc, const char* ptr, const char* end,
                     const char **nextTokPtr)
 {
   return initScan(NS(encodings), (const INIT_ENCODING*)enc,
@@ -53,8 +53,8 @@ NS(initScanContent)(const ENCODING *enc, const char *ptr, const char *end,
 }
 
 int
-NS(XmlInitEncoding)(INIT_ENCODING *p, const ENCODING **encPtr,
-                    const char *name)
+NS(XmlInitEncoding)(INIT_ENCODING* p, const ENCODING **encPtr,
+                    const char* name)
 {
   int i = getEncodingIndex(name);
   if (i == UNKNOWN_ENC)
@@ -69,11 +69,11 @@ NS(XmlInitEncoding)(INIT_ENCODING *p, const ENCODING **encPtr,
 }
 
 static const ENCODING *
-NS(findEncoding)(const ENCODING *enc, const char *ptr, const char *end)
+NS(findEncoding)(const ENCODING* enc, const char* ptr, const char* end)
 {
 #define ENCODING_MAX 128
   char buf[ENCODING_MAX];
-  char *p = buf;
+  char* p = buf;
   int i;
   XmlUtf8Convert(enc, &ptr, end, &p, p + ENCODING_MAX - 1);
   if (ptr != end)
@@ -89,15 +89,15 @@ NS(findEncoding)(const ENCODING *enc, const char *ptr, const char *end)
 
 int
 NS(XmlParseXmlDecl)(int isGeneralTextEntity,
-                    const ENCODING *enc,
-                    const char *ptr,
-                    const char *end,
+                    const ENCODING* enc,
+                    const char* ptr,
+                    const char* end,
                     const char **badPtr,
                     const char **versionPtr,
                     const char **versionEndPtr,
                     const char **encodingName,
                     const ENCODING **encoding,
-                    int *standalone)
+                    int* standalone)
 {
   return doParseXmlDecl(NS(findEncoding),
                         isGeneralTextEntity,

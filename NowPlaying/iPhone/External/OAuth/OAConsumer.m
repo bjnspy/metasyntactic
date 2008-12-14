@@ -26,8 +26,8 @@
 #import "OAConsumer.h"
 
 @interface OAConsumer()
-@property (copy) NSString *key;
-@property (copy) NSString *secret;
+@property (copy) NSString* key;
+@property (copy) NSString* secret;
 @end
 
 @implementation OAConsumer

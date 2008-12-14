@@ -28,8 +28,8 @@
 #import "OAMutableURLRequest.h"
 
 @interface OAServiceTicket()
-@property (retain) OAMutableURLRequest *request;
-@property (retain) NSURLResponse *response;
+@property (retain) OAMutableURLRequest* request;
+@property (retain) NSURLResponse* response;
 @property BOOL didSucceed;
 @end
 
