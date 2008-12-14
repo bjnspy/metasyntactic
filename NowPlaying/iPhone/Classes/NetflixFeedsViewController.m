@@ -11,7 +11,9 @@
 #import "AbstractNavigationController.h"
 #import "AutoResizingCell.h"
 #import "Feed.h"
+#import "GlobalActivityIndicator.h"
 #import "NetflixCache.h"
+#import "NetflixQueueViewController.h"
 #import "NowPlayingModel.h"
 
 @interface NetflixFeedsViewController()
@@ -135,6 +137,8 @@
     }
     
     Feed* feed = [feeds objectAtIndex:indexPath.row];
+    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController feed:feed] autorelease];
+    [navigationController pushViewController:controller animated:YES];
 }
 
 @end
