@@ -95,6 +95,9 @@ static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
 static NSString* RUN_COUNT                              = @"runCount";
 static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
 static NSString* NETFLIX_ENABLED                        = @"netflixEnabled";
+static NSString* NETFLIX_KEY                            = @"netflixKey";
+static NSString* NETFLIX_SECRET                         = @"netflixSecret";
+
 
 static NSString** KEYS[] = {
 &VERSION,
@@ -122,6 +125,8 @@ static NSString** KEYS[] = {
 &USE_NORMAL_FONTS,
 &RUN_COUNT,
 &NETFLIX_ENABLED,
+&NETFLIX_KEY,
+&NETFLIX_SECRET
 };
 
 
@@ -493,6 +498,26 @@ static NSString** KEYS[] = {
 
 - (void) setNetflixEnabled:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:NETFLIX_ENABLED];
+}
+
+
+- (NSString*) netflixKey {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_KEY];
+}
+
+
+- (void) setNetflixKey:(NSString*) netflixKey {
+    [[NSUserDefaults standardUserDefaults] setObject:netflixKey forKey:netflixKey];
+}
+
+
+- (NSString*) netflixSecret {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_SECRET];
+}
+
+
+- (void) setNetflixSecret:(NSString*) netflixSecret {
+    [[NSUserDefaults standardUserDefaults] setObject:netflixSecret forKey:NETFLIX_SECRET];
 }
 
 

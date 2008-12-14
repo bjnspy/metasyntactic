@@ -72,16 +72,15 @@
     if (self = [super init]) {
         NSArray* pairs = [body componentsSeparatedByString:@"&"];
         
-        // Converted for loop to be Obj-c 1.x compliant
-        int count, i;
-        count = [pairs count];
-        for (i = 0; i < count; i++) {
-            NSString* pair = [pairs objectAtIndex:i];
-            NSArray  *elements = [pair componentsSeparatedByString:@"="];
-            if ( [[elements objectAtIndex:0] isEqualToString:@"oauth_token"]) {
-                [self setKey:[elements objectAtIndex:1]];
-            } else if ([[elements objectAtIndex:0] isEqualToString:@"oauth_token_secret"]) {
-                [self setSecret:[elements objectAtIndex:1]];
+        for (NSString* pair in pairs) {
+            NSArray* elements = [pair componentsSeparatedByString:@"="];
+            
+            if (elements.count >= 2) {
+                if ([[elements objectAtIndex:0] isEqual:@"oauth_token"]) {
+                    [self setKey:[elements objectAtIndex:1]];
+                } else if ([[elements objectAtIndex:0] isEqual:@"oauth_token_secret"]) {
+                    [self setSecret:[elements objectAtIndex:1]];
+                }
             }
         }
     }
