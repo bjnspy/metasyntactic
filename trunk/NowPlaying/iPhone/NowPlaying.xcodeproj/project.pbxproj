@@ -17,6 +17,7 @@
 		7400EE8B0EF57C1100058CDD /* NetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EE8A0EF57C1100058CDD /* NetflixCache.m */; };
 		7400EFD20EF5935700058CDD /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EFD10EF5935700058CDD /* Feed.m */; };
 		7400EFEF0EF59D7800058CDD /* NetflixFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */; };
+		7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */; };
 		740224550E53F323006C58A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
 		740244300E77926C00ECE1B4 /* DownDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442E0E77926C00ECE1B4 /* DownDisclosureTriangle.png */; };
 		740244310E77926C00ECE1B4 /* RightDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */; };
@@ -282,6 +283,8 @@
 		7400EFD10EF5935700058CDD /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		7400EFED0EF59D7800058CDD /* NetflixFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixFeedsViewController.h; sourceTree = "<group>"; };
 		7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixFeedsViewController.m; sourceTree = "<group>"; };
+		7400F19B0EF5AF1700058CDD /* NetflixQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixQueueViewController.h; sourceTree = "<group>"; };
+		7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixQueueViewController.m; sourceTree = "<group>"; };
 		740224570E53F342006C58A2 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		740224580E53F346006C58A2 /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		740224590E53F351006C58A2 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -377,6 +380,7 @@
 		744247050E89F7C300ACDBCF /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
 		744247060E89F7C300ACDBCF /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
 		744247400E89FCE900ACDBCF /* SearchEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngineDelegate.h; sourceTree = "<group>"; };
+		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74447C320DC83C2000CC146C /* MoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesNavigationController.h; sourceTree = "<group>"; };
 		74447C330DC83C2000CC146C /* MoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesNavigationController.m; sourceTree = "<group>"; };
 		74447C350DC83D0900CC146C /* ApplicationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTabBarController.h; sourceTree = "<group>"; };
@@ -1360,6 +1364,8 @@
 				7400EB630EF4E8E700058CDD /* NetflixLoginViewController.m */,
 				7400EFED0EF59D7800058CDD /* NetflixFeedsViewController.h */,
 				7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */,
+				7400F19B0EF5AF1700058CDD /* NetflixQueueViewController.h */,
+				7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
@@ -1873,6 +1879,7 @@
 				7400EE8B0EF57C1100058CDD /* NetflixCache.m in Sources */,
 				7400EFD20EF5935700058CDD /* Feed.m in Sources */,
 				7400EFEF0EF59D7800058CDD /* NetflixFeedsViewController.m in Sources */,
+				7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1902,6 +1909,7 @@
 				745E21430E59637300105751 /* ru */,
 				745E21440E59638200105751 /* sk */,
 				745E21470E5963A200105751 /* tr */,
+				744292EC0EF5C98500BE2B67 /* hu */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

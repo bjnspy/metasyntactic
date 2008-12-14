@@ -9,6 +9,7 @@
 @interface NetflixFeedsViewController : UITableViewController {
 @private
     AbstractNavigationController* navigationController;
+    
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

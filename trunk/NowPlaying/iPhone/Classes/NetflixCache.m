@@ -211,11 +211,6 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (void) downloadQueue {
-    NSString* address = [NSString stringWithFormat:@""];
-}
-
-
 - (void) saveFeeds:(NSArray*) feeds {
     NSMutableArray* result = [NSMutableArray array];
     
@@ -227,8 +222,24 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (void) downloadQueues:(NSArray*) feeds {
+- (void) downloadQueue:(Feed*) feed {
+    NSString* address = feed.url;
     
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
+                                                           important:YES];
+    
+    NSLog(@"%@", element);
+}
+
+
+- (void) downloadQueues:(NSArray*) feeds {
+    for (Feed* feed in feeds) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [self downloadQueue:feed];
+        }
+        [pool release];
+    }
 }
 
 
