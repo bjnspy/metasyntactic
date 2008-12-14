@@ -32,13 +32,10 @@
             four_bytes = YES;
         }
         
-        ((uint8_t*)out.mutableBytes)[index + 3] = table[(four_bytes ? (val & 0x3F) : 64)];
-        val >>= 6;
-        ((uint8_t*)out.mutableBytes)[index + 2] = table[(three_bytes ? (val & 0x3F) : 64)];
-        val >>= 6;
-        ((uint8_t*)out.mutableBytes)[index + 1] = table[val & 0x3F];
-        val >>= 6;
-        ((uint8_t*)out.mutableBytes)[index + 0] = table[val & 0x3F];
+        ((uint8_t*)out.mutableBytes)[index + 3] = four_bytes  ? table[(val >> 0) & 0x3F] : '=';
+        ((uint8_t*)out.mutableBytes)[index + 2] = three_bytes ? table[(val >> 6) & 0x3F] : '=';
+        ((uint8_t*)out.mutableBytes)[index + 1] =               table[(val >> 12) & 0x3F];
+        ((uint8_t*)out.mutableBytes)[index + 0] =               table[(val >> 18) & 0x3F];
     }
 
     return [[[NSString alloc] initWithData:out encoding:NSASCIIStringEncoding] autorelease]; 
