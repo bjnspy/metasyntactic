@@ -33,10 +33,20 @@
     return @"HMAC-SHA1";
 }
 
-- (NSString *)signClearText:(NSString *)text withSecret:(NSString *)secret {
-    NSData *secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *clearTextData = [text dataUsingEncoding:NSUTF8StringEncoding];
-
+- (NSString*) signClearText:(NSString*) text withSecret:(NSString*) secret {
+    NSData* secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* clearTextData = [text dataUsingEncoding:NSUTF8StringEncoding];
+    
+    unsigned char digest[CC_SHA1_DIGEST_LENGTH] = {0};
+    
+    CCHmacContext hmacContext;
+    CCHmacInit(&hmacContext, kCCHmacAlgSHA1, secretData.bytes, secretData.length);
+    CCHmacUpdate(&hmacContext, clearTextData.bytes, clearTextData.length);
+    CCHmacFinal(&hmacContext, digest);
+    
+    //NSString* result = [NSString base64
+                        
+    /*
     //HMAC-SHA1
     HMAC_CTX hmacContext;
     unsigned char result[EVP_MAX_MD_SIZE];
@@ -65,6 +75,7 @@
     HMAC_CTX_cleanup(&hmacContext);
     
     return base64EncodedResult;
+     */
 }
 
 @end
