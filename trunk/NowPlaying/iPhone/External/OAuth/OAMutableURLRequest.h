@@ -36,18 +36,18 @@
     NSString* timestamp;
 }
 
-- (id) initWithURL:(NSURL*)aUrl
-          consumer:(OAConsumer*)aConsumer
-             token:(OAToken*)aToken
-             realm:(NSString*)aRealm;
++ (OAMutableURLRequest*) requestWithURL:(NSURL*)aUrl
+                               consumer:(OAConsumer*)aConsumer
+                                  token:(OAToken*)aToken
+                                  realm:(NSString*)aRealm;
 
 
-- (id) initWithURL:(NSURL*)aUrl
-          consumer:(OAConsumer*)aConsumer
-             token:(OAToken*)aToken
-             realm:(NSString*)aRealm
-             nonce:(NSString*)aNonce
-         timestamp:(NSString*)aTimestamp;
++ (OAMutableURLRequest*) requestWithURL:(NSURL*)aUrl
+                               consumer:(OAConsumer*)aConsumer
+                                  token:(OAToken*)aToken
+                                  realm:(NSString*)aRealm
+                                  nonce:(NSString*)aNonce
+                              timestamp:(NSString*)aTimestamp;
 
 
 - (void)prepare;

@@ -14,9 +14,11 @@
     UIActivityIndicatorView* activityView;
     UILabel* label;
     NSString* address;
+    BOOL showSafariButton;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                            address:(NSString*) address;
+                            address:(NSString*) address
+                   showSafariButton:(BOOL) showSafariButton;
 
 @end

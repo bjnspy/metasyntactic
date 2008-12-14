@@ -43,6 +43,7 @@
 - (void) pushMovieDetails:(Movie*) movie animated:(BOOL) animated;
 - (void) pushReviews:(Movie*) movie animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
+- (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated;
 
 - (void) navigateToLastViewedPage;
 

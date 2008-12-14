@@ -48,6 +48,8 @@ static NSString* blurayDetailsDirectory = nil;
 static NSString* blurayIMDbDirectory = nil;
 static NSString* blurayPostersDirectory = nil;
 
+static NSString* netflixDirectory = nil;
+
 /*
 static NSString* numbersDirectory = nil;
 static NSString* numbersBudgetsDirectory = nil;
@@ -74,6 +76,7 @@ static NSString** directories[] = {
     &blurayDetailsDirectory,
     &blurayIMDbDirectory,
     &blurayPostersDirectory,
+    &netflixDirectory,
 /*
     &numbersDirectory,
     &numbersBudgetsDirectory,
@@ -208,7 +211,9 @@ static DifferenceEngine* differenceEngine = nil;
             blurayDetailsDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Details"] retain];
             blurayIMDbDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
             blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-
+            
+            netflixDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
+            
             upcomingDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
             upcomingIMDbDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
@@ -223,8 +228,22 @@ static DifferenceEngine* differenceEngine = nil;
 
 
 + (void) resetDirectories {
-    [self deleteDirectories];
-    [self createDirectories];
+    [gate lock];
+    {
+        [self deleteDirectories];
+        [self createDirectories];
+    }
+    [gate unlock];
+}
+
+
++ (void) resetNetflixDirectories {
+    [gate lock];
+    {
+        [FileUtilities removeItem:netflixDirectory];
+        [self createDirectories];
+    }
+    [gate unlock];
 }
 
 
@@ -305,6 +324,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) blurayPostersDirectory {
     return blurayPostersDirectory;
+}
+
+
++ (NSString*) netflixDirectory {
+    return netflixDirectory;
 }
 
 

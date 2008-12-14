@@ -263,10 +263,16 @@
 }
 
 
-- (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
+- (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated {
     WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:self
-                                                                                     address:address] autorelease];
+                                                                                     address:address
+                                                                            showSafariButton:showSafariButton] autorelease];
     [self pushViewController:controller animated:animated];
+}
+
+
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
+    [self pushBrowser:address showSafariButton:YES animated:animated];
 }
 
 @end

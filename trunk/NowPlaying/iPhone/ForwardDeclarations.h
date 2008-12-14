@@ -19,6 +19,8 @@
 @protocol TappableLabelDelegate;
 @protocol TappableScrollViewDelegate;
 
+@class OAToken;
+
 @class AbstractDataProvider;
 @class AbstractNavigationController;
 @class ActionsView;
@@ -65,6 +67,7 @@
 @class MoviesNavigationController;
 @class MovieTitleCell;
 @class MultiDictionary;
+@class NetflixCache;
 @class NetflixNavigationController;
 @class NetflixViewController;
 @class NetworkUtilities;

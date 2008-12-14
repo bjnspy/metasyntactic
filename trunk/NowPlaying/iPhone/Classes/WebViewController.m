@@ -47,10 +47,12 @@
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                            address:(NSString*) address_ {
+                            address:(NSString*) address_
+                   showSafariButton:(BOOL) showSafariButton_ {
     if (self = [super init]) {
         self.navigationController = navigationController_;
         self.address = address_;
+        showSafariButton = showSafariButton_;
     }
 
     return self;
@@ -140,10 +142,13 @@
 - (void) loadView {
     [super loadView];
 
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Safari", nil)
-                                                                               style:UIBarButtonItemStyleDone
-                                                                              target:self
-                                                                              action:@selector(open:)] autorelease];
+    if (showSafariButton) {
+        self.navigationItem.rightBarButtonItem = 
+        [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Safari", nil)
+                                          style:UIBarButtonItemStyleDone
+                                         target:self
+                                         action:@selector(open:)] autorelease];
+    }
 
     [self setupTitleView];
     [self setupToolbar];

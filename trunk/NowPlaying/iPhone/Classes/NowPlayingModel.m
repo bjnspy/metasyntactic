@@ -33,6 +33,7 @@
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
+#import "NetflixCache.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "PosterCache.h"
@@ -58,6 +59,7 @@
 @property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
+@property (retain) NetflixCache* netflixCache;
 @property (retain) NSMutableSet* bookmarkedTitlesData;
 @property (retain) NSMutableDictionary* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
@@ -97,6 +99,7 @@ static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
 static NSString* NETFLIX_ENABLED                        = @"netflixEnabled";
 static NSString* NETFLIX_KEY                            = @"netflixKey";
 static NSString* NETFLIX_SECRET                         = @"netflixSecret";
+static NSString* NETFLIX_USER_ID                        = @"netflixUserId";
 
 
 static NSString** KEYS[] = {
@@ -126,7 +129,8 @@ static NSString** KEYS[] = {
 &RUN_COUNT,
 &NETFLIX_ENABLED,
 &NETFLIX_KEY,
-&NETFLIX_SECRET
+&NETFLIX_SECRET,
+&NETFLIX_USER_ID
 };
 
 
@@ -143,6 +147,7 @@ static NSString** KEYS[] = {
 @synthesize scoreCache;
 @synthesize trailerCache;
 @synthesize upcomingCache;
+@synthesize netflixCache;
 
 - (void) dealloc {
     self.dataProvider = nil;
@@ -158,6 +163,7 @@ static NSString** KEYS[] = {
     self.scoreCache = nil;
     self.trailerCache = nil;
     self.upcomingCache = nil;
+    self.netflixCache = nil;
 
     [super dealloc];
 }
@@ -196,6 +202,11 @@ static NSString** KEYS[] = {
 
 - (void) updateTrailerCache {
     [trailerCache update:self.movies];
+}
+
+
+- (void) updateNetflixCache {
+    [netflixCache update];
 }
 
 
@@ -388,6 +399,7 @@ static NSString** KEYS[] = {
 
     if (runCount % 20 == 0) {
         [userLocationCache clearStaleData];
+        [netflixCache clearStaleData];
         [largePosterCache clearStaleData];
         [imdbCache clearStaleData];
         [trailerCache clearStaleData];
@@ -442,6 +454,7 @@ static NSString** KEYS[] = {
         self.posterCache = [PosterCache cacheWithModel:self];
         self.scoreCache = [ScoreCache cacheWithModel:self];
         self.upcomingCache = [UpcomingCache cacheWithModel:self];
+        self.netflixCache = [NetflixCache cacheWithModel:self];
 
         [self clearCaches];
 
@@ -458,6 +471,7 @@ static NSString** KEYS[] = {
 
     SEL selectors[] = {
         @selector(updateScoreCache),
+        @selector(updateNetflixCache),
         @selector(updatePosterCache),
         @selector(updateTrailerCache),
         @selector(updateIMDbCache),
@@ -506,18 +520,20 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) setNetflixKey:(NSString*) netflixKey {
-    [[NSUserDefaults standardUserDefaults] setObject:netflixKey forKey:netflixKey];
-}
-
-
 - (NSString*) netflixSecret {
     return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_SECRET];
 }
 
 
-- (void) setNetflixSecret:(NSString*) netflixSecret {
-    [[NSUserDefaults standardUserDefaults] setObject:netflixSecret forKey:NETFLIX_SECRET];
+-(NSString*) netflixUserId {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_USER_ID];
+}
+
+
+- (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
+    [[NSUserDefaults standardUserDefaults] setObject:userId forKey:NETFLIX_USER_ID];
+    [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];    
+    [[NSUserDefaults standardUserDefaults] setObject:key forKey:NETFLIX_KEY];
 }
 
 

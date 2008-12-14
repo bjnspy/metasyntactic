@@ -45,6 +45,8 @@
 + (NSString*) blurayIMDbDirectory;
 + (NSString*) blurayPostersDirectory;
 
++ (NSString*) netflixDirectory;
+
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;
 + (NSString*) upcomingIMDbDirectory;
@@ -53,6 +55,7 @@
 + (NSString*) upcomingTrailersDirectory;
 
 + (void) resetDirectories;
++ (void) resetNetflixDirectories;
 
 + (NSString*) uniqueTemporaryDirectory;
 
