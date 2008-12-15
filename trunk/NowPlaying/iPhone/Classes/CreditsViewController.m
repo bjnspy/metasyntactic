@@ -230,7 +230,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             cell.text = NSLocalizedString(@"Project website", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
-        cell.text = NSLocalizedString(@"ComiXology", nil);
+        cell.text = @"ComiXology";
     } else if (section == GraphicsBySection) {
         cell.text = NSLocalizedString(@"Website", nil);
     } else if (section == GeolocationServicesBySection) {
