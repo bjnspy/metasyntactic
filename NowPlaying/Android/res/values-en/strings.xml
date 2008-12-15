@@ -77,8 +77,6 @@
   <string name="change_date">Change date</string>
   <!--City/State or Postal Code-->
   <string name="citystate_or_postal_code">City/State or Postal Code</string>
-  <!--ComiXology-->
-  <string name="comixology">ComiXology</string>
   <!--Could not find location.-->
   <string name="could_not_find_location_dot">Could not find location.</string>
   <!--DVD-->
