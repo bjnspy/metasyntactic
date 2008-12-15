@@ -22,6 +22,7 @@
     UIBarButtonItem* buttonItem;
 
     BOOL running;
+    BOOL firstTime;
 }
 
 + (LocationManager*) managerWithController:(NowPlayingController*) controller;

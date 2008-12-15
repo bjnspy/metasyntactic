@@ -76,6 +76,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         [dictionary setObject:@"J-P. Helisten"      forKey:@"fi"];
         [dictionary setObject:@"Jonathan Grenier"   forKey:@"fr"];
         [dictionary setObject:@"Dani Valevski"      forKey:@"he"];
+        [dictionary setObject:@"Steve Horvath"      forKey:@"hu"];
         [dictionary setObject:@"Santiago Navonne"   forKey:@"it"];
         [dictionary setObject:@"Leo Yamamoto"       forKey:@"ja"];
         [dictionary setObject:@"André van Haren"    forKey:@"nl"];

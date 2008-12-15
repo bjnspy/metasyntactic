@@ -65,6 +65,7 @@
                                                            target:self
                                                            action:@selector(onButtonTapped:)] autorelease];
 
+        firstTime = YES;
         [self autoUpdateLocation];
     }
 
@@ -156,10 +157,10 @@
 - (void) locationManager:(CLLocationManager*) manager
      didUpdateToLocation:(CLLocation*) newLocation
             fromLocation:(CLLocation*) oldLocation {
+    NSLog(@"Location found! Timestamp: %@. Accuracy: %f", newLocation.timestamp, newLocation.horizontalAccuracy);
     if (newLocation != nil) {
-        if (ABS(newLocation.timestamp.timeIntervalSinceNow) < 10) {
+        if (ABS(newLocation.timestamp.timeIntervalSinceNow) < ONE_MINUTE) {
             [locationManager stopUpdatingLocation];
-
             [ThreadingUtilities performSelector:@selector(findLocationBackgroundEntryPoint:)
                                        onTarget:self
                        inBackgroundWithArgument:newLocation
