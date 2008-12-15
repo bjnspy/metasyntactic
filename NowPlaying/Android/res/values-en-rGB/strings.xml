@@ -42,6 +42,7 @@
   <string name="bookmarks">Bookmarks</string>
   <string name="both">Both</string>
   <string name="call">Call</string>
+  <string name="cancel">Cancel</string>
   <string name="cast">Cast:</string>
   <string name="change_date">Change date</string>
   <string name="citystate_or_postal_code">City/State or Postal Code</string>
@@ -72,6 +73,7 @@
   <string name="less_than_number_string_away">Less than %d %s away</string>
   <string name="less_than_one_string_away">Less than 1 %s away</string>
   <string name="license">Licence</string>
+  <string name="loading">Loading</string>
   <string name="loading_poster">Loading poster</string>
   <string name="local_results_unavailable">Local results unavailable</string>
   <string name="localized_by">Localised by:</string>
@@ -80,9 +82,13 @@
   <string name="movie_details_provided_by">Film details provided by:</string>
   <string name="movie_reviews_provided_by">Film reviews provided by:</string>
   <string name="movies">Films</string>
+  <string name="my_other_applications">My other applications</string>
   <string name="name">Name</string>
   <string name="network_unavailable">Network unavailable</string>
   <string name="no_information_found">No information found</string>
+  <string name="no_listings_found_at_string_on_string">No listings found at '%s' on %s</string>
+  <string name="no_listings_found_for_string_at_string_on_string">No listings found for '%s' at '%s' on %s</string>
+  <string name="no_listings_found_for_string_on_string">No listings found for '%s' on %s</string>
   <string name="no_more_show_times_available_today_dot">No more show times available today.</string>
   <string name="no_results_found_for_string">No results found for '%s'</string>
   <string name="no_synopsis_available_dot">No synopsis available.</string>
@@ -92,6 +98,7 @@
   <string name="order_tickets_for_string">Order tickets for %s</string>
   <string name="play_trailer">Play trailer</string>
   <string name="please_enter_your_location">Please enter your location</string>
+  <string name="prioritize_bookmarks">Prioritize Bookmarks</string>
   <string name="project_website">Project website</string>
   <string name="rated_string">Rated %s</string>
   <string name="rated">Rated:</string>
@@ -103,6 +110,7 @@
   <string name="release_string">Release: %s</string>
   <string name="reviews">Reviews</string>
   <string name="running_time">Running time:</string>
+  <string name="safari">Safari</string>
   <string name="score">Score</string>
   <string name="search_date">Search Date</string>
   <string name="search_distance">Search Distance</string>
@@ -123,6 +131,7 @@
   <string name="unknown_release_date">Unknown release date</string>
   <string name="unrated">Unrated</string>
   <string name="upcoming">Upcoming</string>
+  <string name="updating_listings">Updating Listings</string>
   <string name="use_small_fonts">Use Small Fonts</string>
   <string name="visit_imdb">Visit IMDb</string>
   <string name="website">Website</string>
