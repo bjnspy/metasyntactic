@@ -182,6 +182,9 @@ public final class R {
         /** Call
          */
         public static final int call=0x7f06002a;
+        /** Cancel
+         */
+        public static final int cancel=0x7f060086;
         /** Cast:
          */
         public static final int cast=0x7f06002b;
@@ -227,8 +230,6 @@ public final class R {
         /** DVD/Blu-ray details provided by:
          */
         public static final int dvdbluray_details_provided_by=0x7f060031;
-        /** E-mail
-         */
         public static final int email=0x7f060038;
         /** E-mail listings
          */
@@ -284,6 +285,9 @@ public final class R {
         /** License
          */
         public static final int license=0x7f060048;
+        /** Loading
+         */
+        public static final int loading=0x7f060087;
         /** Loading poster
          */
         public static final int loading_poster=0x7f060049;
@@ -326,6 +330,9 @@ public final class R {
         public static final int movies=0x7f06004f;
         public static final int moviesIconLabel=0x7f060000;
         public static final int movies_select_sort_title=0x7f06000e;
+        /** My other applications
+         */
+        public static final int my_other_applications=0x7f060088;
         /** Name
          */
         public static final int name=0x7f060050;
@@ -335,6 +342,15 @@ public final class R {
         /** No information found
          */
         public static final int no_information_found=0x7f060052;
+        /** No listings found at '%@' on %@
+         */
+        public static final int no_listings_found_at_string_on_string=0x7f060089;
+        /** No listings found for '%@' at '%@' on %@
+         */
+        public static final int no_listings_found_for_string_at_string_on_string=0x7f06008a;
+        /** No listings found for '%@' on %@
+         */
+        public static final int no_listings_found_for_string_on_string=0x7f06008b;
         /** No more show times available today.
          */
         public static final int no_more_show_times_available_today_dot=0x7f060053;
@@ -410,6 +426,9 @@ public final class R {
         /** Please enter your location
          */
         public static final int please_enter_your_location=0x7f06005b;
+        /** Prioritize Bookmarks
+         */
+        public static final int prioritize_bookmarks=0x7f06008c;
         /** Project website
          */
         public static final int project_website=0x7f06005c;
@@ -443,6 +462,9 @@ public final class R {
         /** Running time:
          */
         public static final int running_time=0x7f060066;
+        /** Safari
+         */
+        public static final int safari=0x7f06008d;
         /** Score
          */
         public static final int score=0x7f060067;
@@ -515,6 +537,9 @@ public final class R {
          */
         public static final int upcoming=0x7f06007a;
         public static final int upcomingIconLabel=0x7f060001;
+        /** Updating Listings
+         */
+        public static final int updating_listings=0x7f06008e;
         /** Use Small Fonts
          */
         public static final int use_small_fonts=0x7f06007b;

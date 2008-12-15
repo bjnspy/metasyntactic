@@ -26,9 +26,11 @@ import org.metasyntactic.utilities.difference.EditDistance;
 import java.io.File;
 import java.util.*;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
+/**
+ * @author cyrusn@google.com (Cyrus Najmabadi)
+ */
 public class LargePosterCache extends AbstractCache {
-  private Map<String,List<String>> index;
+  private Map<String, List<String>> index;
 
   public LargePosterCache(NowPlayingModel model) {
     super(model);
@@ -48,7 +50,8 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private File posterFile(Movie movie, int index) {
-    
+    return new File(Application.postersLargeDirectory,
+                    FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + "-" + index + ".jpg"));
   }
 
   private void downloadPosterForMovie(Movie movie, List<String> urls, int index) {
@@ -56,20 +59,16 @@ public class LargePosterCache extends AbstractCache {
       return;
     }
 
-    File path = posterFile(movie, index);
-    if (path.exists()) {
+    File file = posterFile(movie, index);
+    if (file.exists()) {
       return;
     }
 
-
-    /*
-        NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]
-                                                     important:NO];
-    if (data != nil) {
-        [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
-        [NowPlayingAppDelegate minorRefresh];
+    byte[] bytes = NetworkUtilities.download(urls.get(index), false);
+    if (bytes != null) {
+      FileUtilities.writeBytes(bytes, file);
+      Application.refresh();
     }
-     */
   }
 
   private List<String> getPosterUrls(Movie movie) {
@@ -99,7 +98,7 @@ public class LargePosterCache extends AbstractCache {
       return;
     }
 
-    Map<String,List<String>> map = new LinkedHashMap<String, List<String>>();
+    Map<String, List<String>> map = new LinkedHashMap<String, List<String>>();
 
     for (String row : rows.split("\n")) {
       String[] columns = row.split("\t");
@@ -115,5 +114,9 @@ public class LargePosterCache extends AbstractCache {
       FileUtilities.writeStringToListOfStrings(map, indexFile);
       this.index = map;
     }
+  }
+
+  public byte[] getPoster(Movie movie) {
+    return FileUtilities.readBytes(posterFile(movie, 0));
   }
 }
