@@ -19,7 +19,6 @@ import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.time.Days;
-
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullCollection;
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
 
@@ -349,6 +348,50 @@ public class FileUtilities {
       for (final Map.Entry<String, List<T>> e : map.entrySet()) {
         out.writeString(e.getKey());
         out.writePersistableCollection(e.getValue());
+      }
+
+      out.flush();
+      out.close();
+
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (final IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static Map<String, List<String>> readStringToListOfStrings(final File file) {
+    if (!file.exists()) {
+      return Collections.emptyMap();
+    }
+
+    try {
+      final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+      final int size = in.readInt();
+
+      final Map<String, List<String>> result = new HashMap<String, List<String>>(size);
+      for (int i = 0; i < size; i++) {
+        final String key = in.readString();
+        final List<String> value = in.readStringList();
+        result.put(key, value);
+      }
+
+      in.close();
+      return result;
+    } catch (final IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static void writeStringToListOfStrings(Map<String, List<String>> map, File file) {
+    try {
+      map = nonNullMap(map);
+      final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
+      final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+
+      out.writeInt(map.size());
+      for (final Map.Entry<String, List<String>> e : map.entrySet()) {
+        out.writeString(e.getKey());
+        out.writeStringCollection(e.getValue());
       }
 
       out.flush();

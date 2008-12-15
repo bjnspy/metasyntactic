@@ -18,13 +18,13 @@ import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.utilities.difference.EditDistance;
 
 import java.io.File;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class LargePosterCache extends AbstractCache {
@@ -38,15 +38,38 @@ public class LargePosterCache extends AbstractCache {
     return Collections.singletonList(Application.postersLargeDirectory);
   }
 
-  public byte[] downloadFirstPoster(Movie movie) {
-    /*
+  public File getIndexFile() {
+    return new File(Application.postersLargeDirectory, "Index");
+  }
 
-    NSArray* urls = [self posterUrls:movie];
-    [self downloadPosterForMovie:movie urls:urls index:0];
-     */
-
+  public void downloadFirstPoster(Movie movie) {
     List<String> urls = getPosterUrls(movie);
-    return downloadPosterForMovie(movie, urls, 0);
+    downloadPosterForMovie(movie, urls, 0);
+  }
+
+  private File posterFile(Movie movie, int index) {
+    
+  }
+
+  private void downloadPosterForMovie(Movie movie, List<String> urls, int index) {
+    if (urls == null || index < 0 || index > urls.size()) {
+      return;
+    }
+
+    File path = posterFile(movie, index);
+    if (path.exists()) {
+      return;
+    }
+
+
+    /*
+        NSData* data = [NetworkUtilities dataWithContentsOfAddress:[urls objectAtIndex:index]
+                                                     important:NO];
+    if (data != nil) {
+        [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
+        [NowPlayingAppDelegate minorRefresh];
+    }
+     */
   }
 
   private List<String> getPosterUrls(Movie movie) {
@@ -58,21 +81,39 @@ public class LargePosterCache extends AbstractCache {
       }
 
       return index.get(result);
-      /*
-          [self ensureIndex];
+    }
+  }
 
-    NSDictionary* index = self.index;
+  private void ensureIndex() {
+    File indexFile = getIndexFile();
 
-    DifferenceEngine* engine = [DifferenceEngine engine];
-    NSString* title = [engine findClosestMatch:movie.canonicalTitle inArray:index.allKeys];
-
-    if (title.length == 0) {
-        return [NSArray array];
+    if (indexFile.exists()) {
+      if (FileUtilities.daysSinceNow(getIndexFile()) < 7) {
+        return;
+      }
     }
 
-    NSArray* urls = [index objectForKey:title];
-    return urls;
-       */
+    String address = "http://" + Application.host + ".appspot.com/LookupPosterListings?provider=imp";
+    String rows = NetworkUtilities.downloadString(address, false);
+    if (isNullOrEmpty(rows)) {
+      return;
+    }
+
+    Map<String,List<String>> map = new LinkedHashMap<String, List<String>>();
+
+    for (String row : rows.split("\n")) {
+      String[] columns = row.split("\t");
+      if (columns.length < 2) {
+        continue;
+      }
+
+      List<String> posters = Arrays.asList(columns).subList(1, columns.length);
+      map.put(columns[0], posters);
+    }
+
+    if (map.size() > 0) {
+      FileUtilities.writeStringToListOfStrings(map, indexFile);
+      this.index = map;
     }
   }
 }
