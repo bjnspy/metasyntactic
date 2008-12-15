@@ -331,6 +331,10 @@ public class NowPlayingModel {
     if (bytes != null) {
       return bytes;
     }
+    bytes = this.largePosterCache.getPoster(movie);
+    if (bytes != null) {
+      return bytes;
+    }
     return EMPTY_BYTES;
   }
 

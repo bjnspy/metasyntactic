@@ -12,7 +12,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="AndroidLibrary" level="application" />
     <orderEntry type="library" name="CommonCollections" level="project" />
-    <orderEntryProperties />
+    <orderEntry type="library" name="Android" level="project" />
   </component>
 </module>
 
