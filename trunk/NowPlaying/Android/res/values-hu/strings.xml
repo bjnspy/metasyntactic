@@ -42,7 +42,7 @@
   <string name="bookmarks">Könyvjelzők</string>
   <string name="both">Mindkettö</string>
   <string name="call">Hivás</string>
-  <string name="cast">Szereplők:</string>
+  <string name="cast">Fő szereplők:</string>
   <string name="change_date">Változás időpont</string>
   <string name="citystate_or_postal_code">Város/Megye vagy Irányítószám</string>
   <string name="could_not_find_location_dot">Nem találta a helyet.</string>

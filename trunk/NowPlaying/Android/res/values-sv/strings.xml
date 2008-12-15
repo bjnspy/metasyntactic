@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    Copyright 2008 Cyrus Najmabadi
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources>
+  <string name="dollarstring_dot_string_string_discs_dot">$%s. %s - %s skivor.</string>
+  <string name="dollarstring_dot_string_one_disc_dot">$%s. %s - 1 skiva.</string>
+  <string name="string_string">%s och %s</string>
+  <string name="string_no_online_ticketing">%s (Ej möjligt att köpa biljett online)</string>
+  <string name="string_dot_string">%s. %s</string>
+  <string name="number_string">%d %s</string>
+  <string name="number_hours">%d timmar</string>
+  <string name="number_minutes">%d minuter</string>
+  <string name="number_months_ago">%d månader sedan</string>
+  <string name="number_of_number">%d av %2%d</string>
+  <string name="number_theaters_outside_search_area">%d biografer utanför sökområdet</string>
+  <string name="number_weeks_ago">%d veckor sedan</string>
+  <string name="number_years_ago">%d år sedan</string>
+  <string name="one_hour">1 timme</string>
+  <string name="one_kilometer">1 kilometer</string>
+  <string name="one_mile">1 mile</string>
+  <string name="one_minute">1 minut</string>
+  <string name="one_month_ago">1 månad sedan</string>
+  <string name="one_theater_outside_search_area">1 biograf utanför sökområdet</string>
+  <string name="one_week_ago">1 vecka sedan</string>
+  <string name="one_year_ago">1 år sedan</string>
+  <string name="about">Om</string>
+  <string name="autoupdate_location">Auto-uppdatera position</string>
+  <string name="bluray">Blu-ray</string>
+  <string name="bookmarks">Bokmärken</string>
+  <string name="both">Båda</string>
+  <string name="call">Ring</string>
+  <string name="cancel">Avbryt</string>
+  <string name="cast">Rollbesättning:</string>
+  <string name="change_date">Ändrat den</string>
+  <string name="citystate_or_postal_code">Ort eller postnummer</string>
+  <string name="could_not_find_location_dot">Det gick inte att hitta positionen.</string>
+  <string name="dvd">DVD</string>
+  <string name="dvdbluray">DVD/Blu-ray</string>
+  <string name="dvdbluray_details_provided_by">Informationen om DVD/Blu-ray kommer från:</string>
+  <string name="data_for_future_dates_may_be_incomplete_dot_reset">Informationen om kommande datum kan var ofullständig. Ställ tillbaka sökdatumet till dagens datum för att se den kompletta listan.</string>
+  <string name="director">Regissör:</string>
+  <string name="directors">Regissörer:</string>
+  <string name="distance">Avstånd</string>
+  <string name="downloading_data">Laddar ned data</string>
+  <string name="downloading_poster">Laddar ned bild</string>
+  <string name="email_listings">E-posta listan</string>
+  <string name="favorites">Favoriter</string>
+  <string name="format">Format:</string>
+  <string name="genre">Genre:</string>
+  <string name="geolocation_services_provided_by">Geolocation-tjänsterna kommer från:</string>
+  <string name="graphics_by_jeffrey_nee">Illustrationer av Jeffrey Nee</string>
+  <string name="last_friday">I fredags</string>
+  <string name="last_monday">I måndags</string>
+  <string name="last_saturday">I lördags</string>
+  <string name="last_sunday">I söndags</string>
+  <string name="last_thursday">I torsdags</string>
+  <string name="last_tuesday">I tisdags</string>
+  <string name="last_wednesday">I onsdags</string>
+  <string name="less_than_number_string_away">Mindre än %d %s bort</string>
+  <string name="less_than_one_string_away">Mindre än 1 %s bort</string>
+  <string name="license">Licens</string>
+  <string name="loading">Laddar</string>
+  <string name="loading_poster">Laddar bild</string>
+  <string name="local_results_unavailable">Lokala resultat ej tillgängliga</string>
+  <string name="localized_by">Upphittad av:</string>
+  <string name="location">Position</string>
+  <string name="map">Visa karta</string>
+  <string name="movie_details_provided_by">Informationen om filmen kommer från:</string>
+  <string name="movie_reviews_provided_by">Filmrecensionerna kommer från:</string>
+  <string name="movies">Filmer</string>
+  <string name="my_other_applications">Mina andra program</string>
+  <string name="name">Namn</string>
+  <string name="network_unavailable">Nätverket inte tillgängligt</string>
+  <string name="no_information_found">Kunde inte hitta någon information</string>
+  <string name="no_listings_found_at_string_on_string">Kunde inte hitta någon information om '%s' den %s</string>
+  <string name="no_listings_found_for_string_at_string_on_string">Kunde inte hitta någon information om '%s' på '%s' den %s</string>
+  <string name="no_listings_found_for_string_on_string">Kunde inte hitta någon information om '%s' den %s</string>
+  <string name="no_more_show_times_available_today_dot">Det finns inga fler visningar tillgängliga idag.</string>
+  <string name="no_results_found_for_string">Kunde inte hitta någon information om '%s'</string>
+  <string name="no_synopsis_available_dot">Det finns ingen sammanfattning.</string>
+  <string name="none">Inga</string>
+  <string name="not_yet_rated">Ej betygsatt</string>
+  <string name="ok">OK</string>
+  <string name="order_tickets_for_string">Beställ biljetter till %s</string>
+  <string name="play_trailer">Spela trailer</string>
+  <string name="please_enter_your_location">Ange din position</string>
+  <string name="prioritize_bookmarks">Prioritera bokmärken</string>
+  <string name="project_website">Websajt för projektet</string>
+  <string name="rated_string">Åldersgräns %s</string>
+  <string name="rated">Åldersgräns:</string>
+  <string name="read_reviews">Läs recensioner</string>
+  <string name="really_close_by">Nära</string>
+  <string name="really_far_away">Långt bort</string>
+  <string name="release">Premiär</string>
+  <string name="release_date">Premiärdatum:</string>
+  <string name="release_string">Premiär: %s</string>
+  <string name="reviews">Recensioner</string>
+  <string name="running_time">Speltid:</string>
+  <string name="safari">Safari</string>
+  <string name="score">Betyg</string>
+  <string name="search_date">Sökdatum</string>
+  <string name="search_distance">Sökavstånd</string>
+  <string name="send_feedback">Skicka kommentarer</string>
+  <string name="settings">Inställningar</string>
+  <string name="show_number_hidden_theaters">Visa %d dolda biografer</string>
+  <string name="show_one_hidden_theater">Visa 1 dold biograf</string>
+  <string name="show_times_retrieved_on_string_dot">Visningstider hämtade den %s.</string>
+  <string name="studio">Studio:</string>
+  <string name="theater_last_reported_show_times_on_string_dot">Biografen rapporterade visningstider senast den \n%s.</string>
+  <string name="theater_providers_often_limit_the_maximum_search">Biograferna begränsar ofta maximalt sökavstånd, och därför kan vissa biografer saknas i sökresultatet även om sökavståndet är långt.</string>
+  <string name="theaters">Biografer</string>
+  <string name="this_theater_has_not_yet_reported_its_show_times">Denna biograf har inte rapporterat visningstider ännu. När tiderna blir tillgängliga kommer %s att hämta dem automatiskt.</string>
+  <string name="ticket_sales_provided_by">Biljettförsäljningen kommer från:</string>
+  <string name="title">Titel</string>
+  <string name="today">Idag</string>
+  <string name="unknown_distance">Avstånd okänt</string>
+  <string name="unknown_release_date">Premiärdatum okänt</string>
+  <string name="unrated">Ej betygsatt</string>
+  <string name="upcoming">Kommande</string>
+  <string name="updating_listings">Uppdaterar lista</string>
+  <string name="use_small_fonts">Liten text</string>
+  <string name="visit_imdb">Besök IMDb</string>
+  <string name="website">Websajt</string>
+  <string name="written_by_cyrus_najmabadi">Skriven av Cyrus Najmabadi</string>
+  <string name="yesterday">Igår</string>
+  <string name="your_onedollars_country_is_set_to_2dollar_full">Your %s's country is set to: %s\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
+  <string name="kilometer">kilometer</string>
+  <string name="kilometers">kilometer</string>
+  <string name="mile">mile</string>
+  <string name="miles">miles</string>
+</resources>
