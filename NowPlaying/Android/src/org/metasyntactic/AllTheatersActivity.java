@@ -41,11 +41,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
   };
   // Define comparators for theater listings sort.
-  private final Comparator<Theater> TITLE_ORDER = new Comparator<Theater>() {
-    public int compare(final Theater m1, final Theater m2) {
-      return m1.getName().compareTo(m2.getName());
-    }
-  };
+
   private final Comparator<Theater> DISTANCE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
       final Double dist_m1 = AllTheatersActivity.this.userLocation.distanceTo(m1.getLocation());
@@ -56,7 +52,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   // The order of items in this array should match the
   // entries_theater_sort_preference array in res/values/arrays.xml
   @SuppressWarnings("unchecked")
-  private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(this.TITLE_ORDER,
+  private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(Theater.TITLE_ORDER,
                                                                         this.DISTANCE_ORDER);
 
   @Override

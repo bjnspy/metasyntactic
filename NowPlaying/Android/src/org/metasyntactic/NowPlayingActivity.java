@@ -19,12 +19,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private GridView grid;
@@ -189,47 +191,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     });
   }
 
-  private final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
-    public int compare(final Movie m1, final Movie m2) {
-      return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
-    }
-  };
-  private final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
-    public int compare(final Movie m1, final Movie m2) {
-      final Calendar c1 = Calendar.getInstance();
-      c1.set(1900, 11, 11);
-      Date d1 = c1.getTime();
-      Date d2 = c1.getTime();
-      if (m1.getReleaseDate() != null) {
-        d1 = m1.getReleaseDate();
-      }
-      if (m2.getReleaseDate() != null) {
-        d2 = m2.getReleaseDate();
-      }
-      return d2.compareTo(d1);
-    }
-  };
-  private final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
-    public int compare(final Movie m1, final Movie m2) {
-      int value1 = 0;
-      int value2 = 0;
-      final Score s1 = NowPlayingControllerWrapper.getScore(m1);
-      final Score s2 = NowPlayingControllerWrapper.getScore(m2);
-      if (s1 != null) {
-        value1 = s1.getScoreValue();
-      }
-      if (s2 != null) {
-        value2 = s2.getScoreValue();
-      }
-      if (value1 == value2) {
-        return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
-      } else {
-        return value2 - value1;
-      }
-    }
-  };
-  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER,
-                                                                          RELEASE_ORDER, SCORE_ORDER);
+  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER,
+                                                                          Movie.RELEASE_ORDER,
+                                                                          Movie.SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
