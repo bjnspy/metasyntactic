@@ -11,33 +11,17 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.*;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
+import android.view.animation.AnimationUtils;
+import android.widget.*;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private static final int MENU_SORT = 1;
@@ -60,7 +44,9 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   };
 
-  /** Updates display of the list of movies. */
+  /**
+   * Updates display of the list of movies.
+   */
   public void refresh() {
     final List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
@@ -92,7 +78,9 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     return this;
   }
 
-  /** Called when the activity is first created. */
+  /**
+   * Called when the activity is first created.
+   */
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -165,7 +153,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       public void onAnimationEnd(final Animation animation) {
         UpcomingMoviesActivity.this.grid.setVisibility(View.GONE);
         UpcomingMoviesActivity.this.intent.putExtra("movie",
-            (Parcelable) UpcomingMoviesActivity.this.selectedMovie);
+                                                    (Parcelable) UpcomingMoviesActivity.this.selectedMovie);
         startActivity(UpcomingMoviesActivity.this.intent);
       }
 
@@ -217,7 +205,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   };
   public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER,
-      RELEASE_ORDER, SCORE_ORDER);
+                                                                          RELEASE_ORDER, SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
@@ -243,7 +231,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         // views
         // we want to bind data to.
         holder = new ViewHolder((TextView) convertView.findViewById(R.id.title),
-            (ImageView) convertView.findViewById(R.id.poster));
+                                (ImageView) convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
@@ -251,7 +239,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         holder = (ViewHolder) convertView.getTag();
       }
       final Movie movie = UpcomingMoviesActivity.this.movies.get(position
-          % UpcomingMoviesActivity.this.movies.size());
+                                                                 % UpcomingMoviesActivity.this.movies.size());
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       Log.i("NowPlayingActivity getview", "trying to show posters");
@@ -299,7 +287,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
     public final Object getItem(final int position) {
       return UpcomingMoviesActivity.this.movies.get(position
-          % UpcomingMoviesActivity.this.movies.size());
+                                                    % UpcomingMoviesActivity.this.movies.size());
     }
 
     public final long getItemId(final int position) {
@@ -316,7 +304,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
+        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
@@ -338,5 +326,4 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
     return false;
   }
-
 }

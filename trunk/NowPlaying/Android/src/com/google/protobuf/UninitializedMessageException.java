@@ -63,7 +63,9 @@ public class UninitializedMessageException extends RuntimeException {
     return new InvalidProtocolBufferException(getMessage());
   }
 
-  /** Construct the description string for this exception. */
+  /**
+   * Construct the description string for this exception.
+   */
   private static String buildDescription(final List<String> missingFields) {
     final StringBuilder description = new StringBuilder("Message missing required fields: ");
     boolean first = true;
@@ -78,14 +80,18 @@ public class UninitializedMessageException extends RuntimeException {
     return description.toString();
   }
 
-  /** Populates {@code this.missingFields} with the full "path" of each missing required field in the given message. */
+  /**
+   * Populates {@code this.missingFields} with the full "path" of each missing required field in the given message.
+   */
   private static List<String> findMissingFields(final Message message) {
     final List<String> results = new ArrayList<String>();
     findMissingFields(message, "", results);
     return results;
   }
 
-  /** Recursive helper implementing {@link #findMissingFields(Message)}. */
+  /**
+   * Recursive helper implementing {@link #findMissingFields(Message)}.
+   */
   @SuppressWarnings("unchecked")
   private static void findMissingFields(final Message message, final String prefix, final List<String> results) {
     for (final FieldDescriptor field : message.getDescriptorForType().getFields()) {

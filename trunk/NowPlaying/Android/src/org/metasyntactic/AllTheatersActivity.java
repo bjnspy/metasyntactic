@@ -10,16 +10,11 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.threading.ThreadingUtilities;
@@ -27,13 +22,11 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
-/** @author mjoshi@google.com (Megha Joshi) */
+/**
+ * @author mjoshi@google.com (Megha Joshi)
+ */
 public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
@@ -64,7 +57,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   // entries_theater_sort_preference array in res/values/arrays.xml
   @SuppressWarnings("unchecked")
   private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(this.TITLE_ORDER,
-      this.DISTANCE_ORDER);
+                                                                        this.DISTANCE_ORDER);
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -114,7 +107,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     menu.add(0, MENU_SORT, 0, R.string.menu_theater_sort).setIcon(android.R.drawable.star_on);
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
+        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
@@ -145,7 +138,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     return false;
   }
 
-
   private class TheatersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
@@ -165,8 +157,9 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       // views we want to bind data to.
       final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
           .findViewById(R.id.header), (TextView) convertView.findViewById(R.id.address),
-          (TextView) convertView.findViewById(R.id.title), (ImageView) convertView
-              .findViewById(R.id.divider));
+                                                         (TextView) convertView.findViewById(R.id.title),
+                                                         (ImageView) convertView
+                                                             .findViewById(R.id.divider));
       // Bind the data efficiently with the holder.
       final Theater theater = AllTheatersActivity.this.theaters.get(position);
       final String headerText = MovieViewUtilities.getTheaterHeader(
@@ -197,7 +190,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       private final ImageView divider;
 
       private MovieViewHolder(final TextView header, final TextView address, final TextView title,
-          final ImageView divider) {
+                              final ImageView divider) {
         this.header = header;
         this.address = address;
         this.title = title;

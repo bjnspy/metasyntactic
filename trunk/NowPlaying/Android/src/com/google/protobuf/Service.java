@@ -25,7 +25,9 @@ package com.google.protobuf;
  * @author kenton@google.com Kenton Varda
  */
 public interface Service {
-  /** Get the {@code ServiceDescriptor} describing this service and its methods. */
+  /**
+   * Get the {@code ServiceDescriptor} describing this service and its methods.
+   */
   Descriptors.ServiceDescriptor getDescriptorForType();
 
   /**

@@ -89,13 +89,19 @@ public interface Message {
    */
   Object getRepeatedField(Descriptors.FieldDescriptor field, int index);
 
-  /** Get the {@link UnknownFieldSet} for this message. */
+  /**
+   * Get the {@link UnknownFieldSet} for this message.
+   */
   UnknownFieldSet getUnknownFields();
 
-  /** Returns true if all required fields in the message and all embedded messages are set, false otherwise. */
+  /**
+   * Returns true if all required fields in the message and all embedded messages are set, false otherwise.
+   */
   boolean isInitialized();
 
-  /** Serializes the message and writes it to {@code output}.  This does not flush or close the stream. */
+  /**
+   * Serializes the message and writes it to {@code output}.  This does not flush or close the stream.
+   */
   void writeTo(CodedOutputStream output) throws IOException;
 
   /**
@@ -113,7 +119,6 @@ public interface Message {
    * fields.
    *
    * @param other object to be compared for equality with this message
-   *
    * @return <tt>true</tt> if the specified object is equal to this message
    */
   boolean equals(Object other);
@@ -124,7 +129,6 @@ public interface Message {
    * values.
    *
    * @return the hash code value for this message
-   *
    * @see Map#hashCode()
    */
   int hashCode();
@@ -159,12 +163,18 @@ public interface Message {
   // =================================================================
   // Builders
 
-  /** Constructs a new builder for a message of the same type as this message. */
+  /**
+   * Constructs a new builder for a message of the same type as this message.
+   */
   Builder newBuilderForType();
 
-  /** Abstract interface implemented by Protocol Message builders. */
+  /**
+   * Abstract interface implemented by Protocol Message builders.
+   */
   public static interface Builder extends Cloneable {
-    /** Resets all fields to their default values. */
+    /**
+     * Resets all fields to their default values.
+     */
     Builder clear();
 
     /**
@@ -205,7 +215,9 @@ public interface Message {
      */
     Builder clone();
 
-    /** Returns true if all required fields in the message and all embedded messages are set, false otherwise. */
+    /**
+     * Returns true if all required fields in the message and all embedded messages are set, false otherwise.
+     */
     boolean isInitialized();
 
     /**
@@ -233,10 +245,14 @@ public interface Message {
      */
     Builder mergeFrom(CodedInputStream input, ExtensionRegistry extensionRegistry) throws IOException;
 
-    /** Get the message's type's descriptor. See {@link Message#getDescriptorForType()}. */
+    /**
+     * Get the message's type's descriptor. See {@link Message#getDescriptorForType()}.
+     */
     Descriptors.Descriptor getDescriptorForType();
 
-    /** Get the message's type's default instance. See {@link Message#getDefaultInstanceForType()}. */
+    /**
+     * Get the message's type's default instance. See {@link Message#getDefaultInstanceForType()}.
+     */
     Message getDefaultInstanceForType();
 
     /**
@@ -251,10 +267,14 @@ public interface Message {
      */
     Builder newBuilderForField(Descriptors.FieldDescriptor field);
 
-    /** Like {@link Message#hasField(Descriptors.FieldDescriptor)} */
+    /**
+     * Like {@link Message#hasField(Descriptors.FieldDescriptor)}
+     */
     boolean hasField(Descriptors.FieldDescriptor field);
 
-    /** Like {@link Message#getField(Descriptors.FieldDescriptor)} */
+    /**
+     * Like {@link Message#getField(Descriptors.FieldDescriptor)}
+     */
     Object getField(Descriptors.FieldDescriptor field);
 
     /**
@@ -269,10 +289,14 @@ public interface Message {
      */
     Builder clearField(Descriptors.FieldDescriptor field);
 
-    /** Like {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)} */
+    /**
+     * Like {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)}
+     */
     int getRepeatedFieldCount(Descriptors.FieldDescriptor field);
 
-    /** Like {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)} */
+    /**
+     * Like {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)}
+     */
     Object getRepeatedField(Descriptors.FieldDescriptor field, int index);
 
     /**
@@ -292,13 +316,19 @@ public interface Message {
      */
     Builder addRepeatedField(Descriptors.FieldDescriptor field, Object value);
 
-    /** Get the {@link UnknownFieldSet} for this message. */
+    /**
+     * Get the {@link UnknownFieldSet} for this message.
+     */
     UnknownFieldSet getUnknownFields();
 
-    /** Set the {@link UnknownFieldSet} for this message. */
+    /**
+     * Set the {@link UnknownFieldSet} for this message.
+     */
     Builder setUnknownFields(UnknownFieldSet unknownFields);
 
-    /** Merge some unknown fields into the {@link UnknownFieldSet} for this message. */
+    /**
+     * Merge some unknown fields into the {@link UnknownFieldSet} for this message.
+     */
     Builder mergeUnknownFields(UnknownFieldSet unknownFields);
 
     // ---------------------------------------------------------------

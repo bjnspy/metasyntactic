@@ -44,7 +44,9 @@ public interface RpcController {
    */
   boolean failed();
 
-  /** If {@code failed()} is {@code true}, returns a human-readable description of the error. */
+  /**
+   * If {@code failed()} is {@code true}, returns a human-readable description of the error.
+   */
   String errorText();
 
   /**

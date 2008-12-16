@@ -20,7 +20,9 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.Gallery;
 
-/** A gallery of the different styles of buttons. */
+/**
+ * A gallery of the different styles of buttons.
+ */
 public class CustomGallery extends Gallery {
   public CustomGallery(final Context context) {
     super(context);

@@ -69,28 +69,40 @@ import java.util.Map;
  * @author kenton@google.com Kenton Varda
  */
 public final class ExtensionRegistry {
-  /** Construct a new, empty instance. */
+  /**
+   * Construct a new, empty instance.
+   */
   public static ExtensionRegistry newInstance() {
     return new ExtensionRegistry(new HashMap<String, ExtensionInfo>(), new HashMap<DescriptorIntPair, ExtensionInfo>());
   }
 
-  /** Get the unmodifiable singleton empty instance. */
+  /**
+   * Get the unmodifiable singleton empty instance.
+   */
   public static ExtensionRegistry getEmptyRegistry() {
     return EMPTY;
   }
 
-  /** Returns an unmodifiable view of the registry. */
+  /**
+   * Returns an unmodifiable view of the registry.
+   */
   public ExtensionRegistry getUnmodifiable() {
     return new ExtensionRegistry(Collections.unmodifiableMap(this.extensionsByName), Collections.unmodifiableMap(
         this.extensionsByNumber));
   }
 
-  /** A (Descriptor, Message) pair, returned by lookup methods. */
+  /**
+   * A (Descriptor, Message) pair, returned by lookup methods.
+   */
   public static final class ExtensionInfo {
-    /** The extension's descriptor. */
+    /**
+     * The extension's descriptor.
+     */
     public final FieldDescriptor descriptor;
 
-    /** A default instance of the extension's type, if it has a message type. Otherwise, {@code null}. */
+    /**
+     * A default instance of the extension's type, if it has a message type. Otherwise, {@code null}.
+     */
     public final Message defaultInstance;
 
     private ExtensionInfo(final FieldDescriptor descriptor) {
@@ -123,7 +135,9 @@ public final class ExtensionRegistry {
     return this.extensionsByNumber.get(new DescriptorIntPair(containingType, fieldNumber));
   }
 
-  /** Add an extension from a generated file to the registry. */
+  /**
+   * Add an extension from a generated file to the registry.
+   */
   public void add(final GeneratedMessage.GeneratedExtension<?, ?> extension) {
     if (extension.getDescriptor().getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
       add(new ExtensionInfo(extension.getDescriptor(), extension.getMessageDefaultInstance()));
@@ -132,7 +146,9 @@ public final class ExtensionRegistry {
     }
   }
 
-  /** Add a non-message-type extension to the registry by descriptor. */
+  /**
+   * Add a non-message-type extension to the registry by descriptor.
+   */
   public void add(final FieldDescriptor type) {
     if (type.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
       throw new IllegalArgumentException("ExtensionRegistry.add() must be provided a default instance when " +
@@ -141,7 +157,9 @@ public final class ExtensionRegistry {
     add(new ExtensionInfo(type, null));
   }
 
-  /** Add a message-type extension to the registry by descriptor. */
+  /**
+   * Add a message-type extension to the registry by descriptor.
+   */
   public void add(final FieldDescriptor type, final Message defaultInstance) {
     if (type.getJavaType() != FieldDescriptor.JavaType.MESSAGE) {
       throw new IllegalArgumentException(
@@ -180,10 +198,10 @@ public final class ExtensionRegistry {
     if (field.getContainingType()
         .getOptions()
         .getMessageSetWireFormat() &&
-                                   field.getType() == FieldDescriptor.Type.MESSAGE &&
-                                   field.isOptional() &&
-                                   field.getExtensionScope() == field
-                                       .getMessageType()) {
+        field.getType() == FieldDescriptor.Type.MESSAGE &&
+        field.isOptional() &&
+        field.getExtensionScope() == field
+            .getMessageType()) {
       // This is an extension of a MessageSet type defined within the extension
       // type's own scope.  For backwards-compatibility, allow it to be looked
       // up by type name.
@@ -191,7 +209,9 @@ public final class ExtensionRegistry {
     }
   }
 
-  /** A (GenericDescriptor, int) pair, used as a map key. */
+  /**
+   * A (GenericDescriptor, int) pair, used as a map key.
+   */
   private static final class DescriptorIntPair {
     final Descriptor descriptor;
     final int number;

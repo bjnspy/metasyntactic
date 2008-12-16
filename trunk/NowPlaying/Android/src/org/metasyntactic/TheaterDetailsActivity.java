@@ -6,12 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,13 +16,14 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TheaterDetailsActivity extends ListActivity {
-  /** Called when the activity is first created. */
+  /**
+   * Called when the activity is first created.
+   */
   private Theater theater;
   private List<Movie> movies = new ArrayList<Movie>();
 
@@ -37,7 +34,6 @@ public class TheaterDetailsActivity extends ListActivity {
     setContentView(R.layout.theaterdetails);
     this.theater = getIntent().getExtras().getParcelable("theater");
     bindView();
-    
   }
 
   @Override
@@ -71,9 +67,9 @@ public class TheaterDetailsActivity extends ListActivity {
     final ImageView mapIcon = (ImageView) findViewById(R.id.mapicon);
     final ImageView phoneIcon = (ImageView) findViewById(R.id.phoneicon);
     final Intent mapIntent = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
-        + address));
+                                                                                + address));
     final Intent callIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
-        + this.theater.getPhoneNumber()));
+                                                                                 + this.theater.getPhoneNumber()));
     mapIcon.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(mapIntent);
@@ -157,12 +153,12 @@ public class TheaterDetailsActivity extends ListActivity {
       notifyDataSetChanged();
     }
   }
-  
+
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
@@ -175,7 +171,7 @@ public class TheaterDetailsActivity extends ListActivity {
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-   
+
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(TheaterDetailsActivity.this, AllTheatersActivity.class);
@@ -184,5 +180,4 @@ public class TheaterDetailsActivity extends ListActivity {
     }
     return false;
   }
-
 }

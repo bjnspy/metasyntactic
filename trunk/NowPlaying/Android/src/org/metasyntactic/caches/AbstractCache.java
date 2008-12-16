@@ -22,7 +22,9 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
+/**
+ * @author cyrusn@google.com (Cyrus Najmabadi)
+ */
 public abstract class AbstractCache {
   protected final Object lock = new Object();
   protected final NowPlayingModel model;

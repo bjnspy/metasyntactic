@@ -22,7 +22,8 @@ package com.google.protobuf;
  * @author kenton@google.com Kenton Varda
  */
 public final class RpcUtil {
-  private RpcUtil() {}
+  private RpcUtil() {
+  }
 
   /**
    * Take an {@code RcpCallabck<Message>} and convert it to an {@code RpcCallback} accepting a specific message type.
@@ -98,7 +99,9 @@ public final class RpcUtil {
     };
   }
 
-  /** Exception thrown when a one-time callback is called more than once. */
+  /**
+   * Exception thrown when a one-time callback is called more than once.
+   */
   public static final class AlreadyCalledException extends RuntimeException {
     private static final long serialVersionUID = 4206383824743069120L;
 

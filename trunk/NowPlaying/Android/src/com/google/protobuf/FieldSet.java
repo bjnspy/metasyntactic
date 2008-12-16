@@ -32,7 +32,9 @@ import java.util.*;
 final class FieldSet {
   private Map<FieldDescriptor, Object> fields;
 
-  /** Construct a new FieldSet. */
+  /**
+   * Construct a new FieldSet.
+   */
   private FieldSet() {
     // Use a TreeMap because fields need to be in canonical order when
     // serializing.
@@ -47,19 +49,25 @@ final class FieldSet {
     this.fields = fields;
   }
 
-  /** Construct a new FieldSet. */
+  /**
+   * Construct a new FieldSet.
+   */
   public static FieldSet newFieldSet() {
     return new FieldSet();
   }
 
-  /** Get an immutable empty FieldSet. */
+  /**
+   * Get an immutable empty FieldSet.
+   */
   public static FieldSet emptySet() {
     return DEFAULT_INSTANCE;
   }
 
   private static final FieldSet DEFAULT_INSTANCE = new FieldSet(Collections.<FieldDescriptor, Object>emptyMap());
 
-  /** Make this FieldSet immutable from this point forward. */
+  /**
+   * Make this FieldSet immutable from this point forward.
+   */
   @SuppressWarnings("unchecked")
   public void makeImmutable() {
     for (final Map.Entry<FieldDescriptor, Object> entry : this.fields.entrySet()) {
@@ -73,12 +81,16 @@ final class FieldSet {
 
   // =================================================================
 
-  /** See {@link Message.Builder#clear()}. */
+  /**
+   * See {@link Message.Builder#clear()}.
+   */
   public void clear() {
     this.fields.clear();
   }
 
-  /** See {@link Message#getAllFields()}. */
+  /**
+   * See {@link Message#getAllFields()}.
+   */
   public Map<Descriptors.FieldDescriptor, Object> getAllFields() {
     return Collections.unmodifiableMap(this.fields);
   }
@@ -91,7 +103,9 @@ final class FieldSet {
     return this.fields.entrySet().iterator();
   }
 
-  /** See {@link Message#hasField(Descriptors.FieldDescriptor)}. */
+  /**
+   * See {@link Message#hasField(Descriptors.FieldDescriptor)}.
+   */
   public boolean hasField(final Descriptors.FieldDescriptor field) {
     if (field.isRepeated()) {
       throw new IllegalArgumentException("hasField() can only be called on non-repeated fields.");
@@ -121,7 +135,9 @@ final class FieldSet {
     }
   }
 
-  /** See {@link Message.Builder#setField(Descriptors.FieldDescriptor,Object)}. */
+  /**
+   * See {@link Message.Builder#setField(Descriptors.FieldDescriptor,Object)}.
+   */
   @SuppressWarnings("unchecked")
   public void setField(final Descriptors.FieldDescriptor field, Object value) {
     if (field.isRepeated()) {
@@ -144,12 +160,16 @@ final class FieldSet {
     this.fields.put(field, value);
   }
 
-  /** See {@link Message.Builder#clearField(Descriptors.FieldDescriptor)}. */
+  /**
+   * See {@link Message.Builder#clearField(Descriptors.FieldDescriptor)}.
+   */
   public void clearField(final Descriptors.FieldDescriptor field) {
     this.fields.remove(field);
   }
 
-  /** See {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)}. */
+  /**
+   * See {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)}.
+   */
   @SuppressWarnings("unchecked")
   public int getRepeatedFieldCount(final Descriptors.FieldDescriptor field) {
     if (!field.isRepeated()) {
@@ -159,7 +179,9 @@ final class FieldSet {
     return ((List<Object>) getField(field)).size();
   }
 
-  /** See {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)}. */
+  /**
+   * See {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)}.
+   */
   @SuppressWarnings("unchecked")
   public Object getRepeatedField(final Descriptors.FieldDescriptor field, final int index) {
     if (!field.isRepeated()) {
@@ -169,7 +191,9 @@ final class FieldSet {
     return ((List<Object>) getField(field)).get(index);
   }
 
-  /** See {@link Message.Builder#setRepeatedField(Descriptors.FieldDescriptor,int,Object)}. */
+  /**
+   * See {@link Message.Builder#setRepeatedField(Descriptors.FieldDescriptor,int,Object)}.
+   */
   @SuppressWarnings("unchecked")
   public void setRepeatedField(final Descriptors.FieldDescriptor field, final int index, final Object value) {
     if (!field.isRepeated()) {
@@ -186,7 +210,9 @@ final class FieldSet {
     list.set(index, value);
   }
 
-  /** See {@link Message.Builder#addRepeatedField(Descriptors.FieldDescriptor,Object)}. */
+  /**
+   * See {@link Message.Builder#addRepeatedField(Descriptors.FieldDescriptor,Object)}.
+   */
   @SuppressWarnings("unchecked")
   public void addRepeatedField(final Descriptors.FieldDescriptor field, final Object value) {
     if (!field.isRepeated()) {
@@ -253,12 +279,12 @@ final class FieldSet {
           "Message type \"" +
           field.getContainingType()
               .getFullName() +
-                             "\", field \"" +
-                             (field.isExtension() ? field.getFullName() : field.getName()) +
-                             "\", value was type \"" +
-                             value.getClass()
-                                 .getName() +
-                                            "\".");
+          "\", field \"" +
+          (field.isExtension() ? field.getFullName() : field.getName()) +
+          "\", value was type \"" +
+          value.getClass()
+              .getName() +
+          "\".");
     }
   }
 
@@ -292,7 +318,9 @@ final class FieldSet {
     return true;
   }
 
-  /** Like {@link #isInitialized()}, but also checks for the presence of all required fields in the given type. */
+  /**
+   * Like {@link #isInitialized()}, but also checks for the presence of all required fields in the given type.
+   */
   public boolean isInitialized(final Descriptor type) {
     // Check that all required fields are present.
     for (final FieldDescriptor field : type.getFields()) {
@@ -307,7 +335,9 @@ final class FieldSet {
     return isInitialized();
   }
 
-  /** See {@link Message.Builder#mergeFrom(Message)}. */
+  /**
+   * See {@link Message.Builder#mergeFrom(Message)}.
+   */
   @SuppressWarnings("unchecked")
   public void mergeFrom(final Message other) {
     // Note:  We don't attempt to verify that other's fields have valid
@@ -344,7 +374,9 @@ final class FieldSet {
     }
   }
 
-  /** Like {@link #mergeFrom(Message)}, but merges from another {@link FieldSet}. */
+  /**
+   * Like {@link #mergeFrom(Message)}, but merges from another {@link FieldSet}.
+   */
   @SuppressWarnings("unchecked")
   public void mergeFrom(final FieldSet other) {
     for (final Map.Entry<FieldDescriptor, Object> entry : other.fields.entrySet()) {
@@ -403,7 +435,6 @@ final class FieldSet {
    * a single field.
    *
    * @param tag The tag, which should have already been read.
-   *
    * @return {@code true} unless the tag is an end-group tag.
    */
   public static boolean mergeFieldFrom(final CodedInputStream input, final UnknownFieldSet.Builder unknownFields,
@@ -494,7 +525,9 @@ final class FieldSet {
     return true;
   }
 
-  /** Called by {@code #mergeFieldFrom()} to parse a MessageSet extension. */
+  /**
+   * Called by {@code #mergeFieldFrom()} to parse a MessageSet extension.
+   */
   private static void mergeMessageSetExtensionFromCodedStream(final CodedInputStream input,
                                                               final UnknownFieldSet.Builder unknownFields,
                                                               final ExtensionRegistry extensionRegistry,
@@ -587,14 +620,18 @@ final class FieldSet {
     }
   }
 
-  /** See {@link Message#writeTo(CodedOutputStream)}. */
+  /**
+   * See {@link Message#writeTo(CodedOutputStream)}.
+   */
   public void writeTo(final CodedOutputStream output) throws java.io.IOException {
     for (final Map.Entry<FieldDescriptor, Object> entry : this.fields.entrySet()) {
       writeField(entry.getKey(), entry.getValue(), output);
     }
   }
 
-  /** Write a single field. */
+  /**
+   * Write a single field.
+   */
   @SuppressWarnings("unchecked")
   public void writeField(final FieldDescriptor field, final Object value, final CodedOutputStream output)
       throws java.io.IOException {
@@ -611,7 +648,9 @@ final class FieldSet {
     }
   }
 
-  /** See {@link Message#getSerializedSize()}.  It's up to the caller to cache the resulting size if desired. */
+  /**
+   * See {@link Message#getSerializedSize()}.  It's up to the caller to cache the resulting size if desired.
+   */
   @SuppressWarnings("unchecked")
   public int getSerializedSize() {
     int size = 0;

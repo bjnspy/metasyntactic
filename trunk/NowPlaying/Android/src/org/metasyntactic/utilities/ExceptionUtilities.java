@@ -14,13 +14,11 @@
 
 package org.metasyntactic.utilities;
 
-import android.util.Log;
-
 public class ExceptionUtilities {
   private ExceptionUtilities() {
   }
 
   public static void log(final Class<?> clazz, final String method, final Exception e) {
-  //  Log.e(clazz.getName(), method, e);
+    //  Log.e(clazz.getName(), method, e);
   }
 }

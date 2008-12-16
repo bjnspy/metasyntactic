@@ -32,7 +32,7 @@ public class Performance implements Parcelable, Persistable {
 
   static {
     DateFormatSymbols symbols = format.getDateFormatSymbols();
-    symbols.setAmPmStrings(new String[] {"am", "pm"});
+    symbols.setAmPmStrings(new String[]{"am", "pm"});
     format.setDateFormatSymbols(symbols);
   }
 

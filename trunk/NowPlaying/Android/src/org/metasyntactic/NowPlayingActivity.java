@@ -44,7 +44,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
 
-  /** Updates display of the list of movies. */
+  /**
+   * Updates display of the list of movies.
+   */
   public void refresh() {
     this.movies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
@@ -71,7 +73,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     return this;
   }
 
-  /** Called when the activity is first created. */
+  /**
+   * Called when the activity is first created.
+   */
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -173,7 +177,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       public void onAnimationEnd(final Animation animation) {
         NowPlayingActivity.this.grid.setVisibility(View.GONE);
         NowPlayingActivity.this.intent.putExtra("movie",
-            (Parcelable) NowPlayingActivity.this.selectedMovie);
+                                                (Parcelable) NowPlayingActivity.this.selectedMovie);
         startActivity(NowPlayingActivity.this.intent);
       }
 
@@ -225,7 +229,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
   public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER,
-      RELEASE_ORDER, SCORE_ORDER);
+                                                                          RELEASE_ORDER, SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
@@ -249,7 +253,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
         holder = new ViewHolder((TextView) convertView.findViewById(R.id.title),
-            (ImageView) convertView.findViewById(R.id.poster));
+                                (ImageView) convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
@@ -257,7 +261,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         holder = (ViewHolder) convertView.getTag();
       }
       final Movie movie = NowPlayingActivity.this.movies.get(position
-          % NowPlayingActivity.this.movies.size());
+                                                             % NowPlayingActivity.this.movies.size());
       NowPlayingControllerWrapper.prioritizeMovie(movie);
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);

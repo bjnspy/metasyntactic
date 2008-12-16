@@ -29,7 +29,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
+/**
+ * @author cyrusn@google.com (Cyrus Najmabadi)
+ */
 public class NowPlayingControllerWrapper {
 
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();

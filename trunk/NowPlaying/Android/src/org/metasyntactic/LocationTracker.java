@@ -23,7 +23,9 @@ import org.metasyntactic.data.Location;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.LocationUtilities;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
+/**
+ * @author cyrusn@google.com (Cyrus Najmabadi)
+ */
 public class LocationTracker implements LocationListener {
   private final NowPlayingController controller;
   private final LocationManager locationManager;

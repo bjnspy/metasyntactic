@@ -6,16 +6,11 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
@@ -26,7 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 public class MovieDetailsActivity extends ListActivity {
-  /** Called when the activity is first created. */
+  /**
+   * Called when the activity is first created.
+   */
   private final List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
   private Movie movie;
 
@@ -61,7 +58,8 @@ public class MovieDetailsActivity extends ListActivity {
     {
       // Add Rating
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.rated),
-          MovieViewUtilities.formatRatings(this.movie.getRating(), res));
+                                                          MovieViewUtilities.formatRatings(this.movie.getRating(),
+                                                                                           res));
       this.movieDetailEntries.add(entry);
     }
     {
@@ -70,25 +68,26 @@ public class MovieDetailsActivity extends ListActivity {
       final String releaseDateString = releaseDate == null ? res
           .getString(R.string.unknown_release_date) : releaseDate.toString();
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date),
-          releaseDateString);
+                                                          releaseDateString);
       this.movieDetailEntries.add(entry);
     }
     {
       // Add length
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.running_time),
-          MovieViewUtilities.formatLength(this.movie.getLength(), res));
+                                                          MovieViewUtilities.formatLength(this.movie.getLength(), res));
       this.movieDetailEntries.add(entry);
     }
     {
       // Add cast
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast),
-          MovieViewUtilities.formatListToString(this.movie.getCast()));
+                                                          MovieViewUtilities.formatListToString(this.movie.getCast()));
       this.movieDetailEntries.add(entry);
     }
     {
       // Add cast
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director),
-          MovieViewUtilities.formatListToString(this.movie.getDirectors()));
+                                                          MovieViewUtilities.formatListToString(
+                                                              this.movie.getDirectors()));
       this.movieDetailEntries.add(entry);
     }
   }
@@ -117,7 +116,7 @@ public class MovieDetailsActivity extends ListActivity {
       // children views we want to bind data to.
       final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
           .findViewById(R.id.name), (TextView) convertView.findViewById(R.id.value),
-          (ImageView) convertView.findViewById(R.id.divider));
+                                                         (ImageView) convertView.findViewById(R.id.divider));
       final MovieDetailEntry entry = MovieDetailsActivity.this.movieDetailEntries.get(position);
       holder.name.setText(entry.name);
       holder.value.setText(entry.value);
@@ -196,55 +195,55 @@ public class MovieDetailsActivity extends ListActivity {
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
     switch (item.getItemId()) {
-    case MovieViewUtilities.MENU_IMDB:
-      String imdb_url = null;
-      imdb_url = NowPlayingControllerWrapper.getIMDbAddress(MovieDetailsActivity.this.movie);
-      if (imdb_url != null) {
-        final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
-        startActivity(intent);
-      } else {
-        Toast.makeText(MovieDetailsActivity.this,
-            "This movie's IMDB information is not available.", Toast.LENGTH_SHORT).show();
-      }
-      break;
-    case MovieViewUtilities.MENU_TRAILERS:
-      final String trailer_url = NowPlayingControllerWrapper
-          .getTrailer(MovieDetailsActivity.this.movie);
-      if (!StringUtilities.isNullOrEmpty(trailer_url)) {
-        final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
-        startActivity(intent);
-      } else {
-        Toast.makeText(MovieDetailsActivity.this, "This movie's trailers are not available.",
-            Toast.LENGTH_SHORT).show();
-      }
-      break;
-    case MovieViewUtilities.MENU_REVIEWS:
-      // doing this as the getReviews() throws NPE instead null return.
-      ArrayList<Review> reviews = new ArrayList<Review>();
-      if (NowPlayingControllerWrapper.getScore(MovieDetailsActivity.this.movie) != null) {
-        reviews = new ArrayList<Review>(NowPlayingControllerWrapper
-            .getReviews(MovieDetailsActivity.this.movie));
-      }
-      if (reviews.size() > 0) {
+      case MovieViewUtilities.MENU_IMDB:
+        String imdb_url = null;
+        imdb_url = NowPlayingControllerWrapper.getIMDbAddress(MovieDetailsActivity.this.movie);
+        if (imdb_url != null) {
+          final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
+          startActivity(intent);
+        } else {
+          Toast.makeText(MovieDetailsActivity.this,
+                         "This movie's IMDB information is not available.", Toast.LENGTH_SHORT).show();
+        }
+        break;
+      case MovieViewUtilities.MENU_TRAILERS:
+        final String trailer_url = NowPlayingControllerWrapper
+            .getTrailer(MovieDetailsActivity.this.movie);
+        if (!StringUtilities.isNullOrEmpty(trailer_url)) {
+          final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
+          startActivity(intent);
+        } else {
+          Toast.makeText(MovieDetailsActivity.this, "This movie's trailers are not available.",
+                         Toast.LENGTH_SHORT).show();
+        }
+        break;
+      case MovieViewUtilities.MENU_REVIEWS:
+        // doing this as the getReviews() throws NPE instead null return.
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        if (NowPlayingControllerWrapper.getScore(MovieDetailsActivity.this.movie) != null) {
+          reviews = new ArrayList<Review>(NowPlayingControllerWrapper
+              .getReviews(MovieDetailsActivity.this.movie));
+        }
+        if (reviews.size() > 0) {
+          final Intent intent = new Intent();
+          intent.putParcelableArrayListExtra("reviews", reviews);
+          intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
+          startActivity(intent);
+        } else {
+          Toast.makeText(MovieDetailsActivity.this, "This movie's reviews are not yet available.",
+                         Toast.LENGTH_SHORT).show();
+        }
+        break;
+      case MovieViewUtilities.MENU_SHOWTIMES:
+        final Intent intent_showtimes = new Intent();
+        intent_showtimes.setClass(MovieDetailsActivity.this, ShowtimesActivity.class);
+        intent_showtimes.putExtra("movie", (Parcelable) MovieDetailsActivity.this.movie);
+        startActivity(intent_showtimes);
+        break;
+      case MovieViewUtilities.MENU_THEATER:
         final Intent intent = new Intent();
-        intent.putParcelableArrayListExtra("reviews", reviews);
-        intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
+        intent.setClass(MovieDetailsActivity.this, AllTheatersActivity.class);
         startActivity(intent);
-      } else {
-        Toast.makeText(MovieDetailsActivity.this, "This movie's reviews are not yet available.",
-            Toast.LENGTH_SHORT).show();
-      }
-      break;
-    case MovieViewUtilities.MENU_SHOWTIMES:
-      final Intent intent_showtimes = new Intent();
-      intent_showtimes.setClass(MovieDetailsActivity.this, ShowtimesActivity.class);
-      intent_showtimes.putExtra("movie", (Parcelable) MovieDetailsActivity.this.movie);
-      startActivity(intent_showtimes);
-      break;
-    case MovieViewUtilities.MENU_THEATER:
-      final Intent intent = new Intent();
-      intent.setClass(MovieDetailsActivity.this, AllTheatersActivity.class);
-      startActivity(intent);
     }
     return false;
   }

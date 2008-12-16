@@ -6,15 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.*;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.util.List;
 
@@ -39,7 +34,7 @@ public class AllReviewsActivity extends ListActivity {
       startActivity(intent);
     } else {
       Toast.makeText(AllReviewsActivity.this, "This review article is not available.",
-          Toast.LENGTH_SHORT).show();
+                     Toast.LENGTH_SHORT).show();
     }
     super.onListItemClick(l, v, position, id);
   }
@@ -69,7 +64,7 @@ public class AllReviewsActivity extends ListActivity {
       MovieViewHolder holder;
       convertView = this.inflater.inflate(R.layout.reviewview, null);
       holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score),
-          (TextView) convertView.findViewById(R.id.author), (TextView) convertView
+                                   (TextView) convertView.findViewById(R.id.author), (TextView) convertView
               .findViewById(R.id.source), (TextView) convertView.findViewById(R.id.desc));
       convertView.setTag(holder);
       final Review review = AllReviewsActivity.this.reviews.get(position);
@@ -87,7 +82,7 @@ public class AllReviewsActivity extends ListActivity {
       private final TextView description;
 
       private MovieViewHolder(ImageView score, TextView author, TextView source,
-          TextView description) {
+                              TextView description) {
         this.score = score;
         this.author = author;
         this.source = source;
@@ -99,12 +94,12 @@ public class AllReviewsActivity extends ListActivity {
       return AllReviewsActivity.this.reviews.size();
     }
   }
-  
+
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.movies).setIntent(
-            new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');    
+        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
         R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
@@ -117,7 +112,7 @@ public class AllReviewsActivity extends ListActivity {
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-    
+
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(AllReviewsActivity.this, AllTheatersActivity.class);
@@ -126,5 +121,4 @@ public class AllReviewsActivity extends ListActivity {
     }
     return false;
   }
-
 }

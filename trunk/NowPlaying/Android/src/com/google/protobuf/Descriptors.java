@@ -32,44 +32,70 @@ import java.util.*;
  * @author kenton@google.com Kenton Varda
  */
 public final class Descriptors {
-  /** Describes a {@code .proto} file, including everything defined within. */
+  /**
+   * Describes a {@code .proto} file, including everything defined within.
+   */
   public static final class FileDescriptor {
-    /** Convert the descriptor to its protocol message representation. */
-    public FileDescriptorProto toProto() { return this.proto; }
+    /**
+     * Convert the descriptor to its protocol message representation.
+     */
+    public FileDescriptorProto toProto() {
+      return this.proto;
+    }
 
-    /** Get the file name. */
-    public String getName() { return this.proto.getName(); }
+    /**
+     * Get the file name.
+     */
+    public String getName() {
+      return this.proto.getName();
+    }
 
     /**
      * Get the proto package name.  This is the package name given by the {@code package} statement in the {@code
      * .proto} file, which differs from the Java package.
      */
-    public String getPackage() { return this.proto.getPackage(); }
+    public String getPackage() {
+      return this.proto.getPackage();
+    }
 
-    /** Get the {@code FileOptions}, defined in {@code descriptor.proto}. */
-    public FileOptions getOptions() { return this.proto.getOptions(); }
+    /**
+     * Get the {@code FileOptions}, defined in {@code descriptor.proto}.
+     */
+    public FileOptions getOptions() {
+      return this.proto.getOptions();
+    }
 
-    /** Get a list of top-level message types declared in this file. */
+    /**
+     * Get a list of top-level message types declared in this file.
+     */
     public List<Descriptor> getMessageTypes() {
       return Collections.unmodifiableList(Arrays.asList(this.messageTypes));
     }
 
-    /** Get a list of top-level enum types declared in this file. */
+    /**
+     * Get a list of top-level enum types declared in this file.
+     */
     public List<EnumDescriptor> getEnumTypes() {
       return Collections.unmodifiableList(Arrays.asList(this.enumTypes));
     }
 
-    /** Get a list of top-level services declared in this file. */
+    /**
+     * Get a list of top-level services declared in this file.
+     */
     public List<ServiceDescriptor> getServices() {
       return Collections.unmodifiableList(Arrays.asList(this.services));
     }
 
-    /** Get a list of top-level extensions declared in this file. */
+    /**
+     * Get a list of top-level extensions declared in this file.
+     */
     public List<FieldDescriptor> getExtensions() {
       return Collections.unmodifiableList(Arrays.asList(this.extensions));
     }
 
-    /** Get a list of this file's dependencies (imports). */
+    /**
+     * Get a list of this file's dependencies (imports).
+     */
     public List<FileDescriptor> getDependencies() {
       return Collections.unmodifiableList(Arrays.asList(this.dependencies));
     }
@@ -78,7 +104,6 @@ public final class Descriptors {
      * Find a message type in the file by name.  Does not find nested types.
      *
      * @param name The unqualified type name to look for.
-     *
      * @return The message type's descriptor, or {@code null} if not found.
      */
     public Descriptor findMessageTypeByName(String name) {
@@ -102,7 +127,6 @@ public final class Descriptors {
      * Find an enum type in the file by name.  Does not find nested types.
      *
      * @param name The unqualified type name to look for.
-     *
      * @return The enum type's descriptor, or {@code null} if not found.
      */
     public EnumDescriptor findEnumTypeByName(String name) {
@@ -126,7 +150,6 @@ public final class Descriptors {
      * Find a service type in the file by name.
      *
      * @param name The unqualified type name to look for.
-     *
      * @return The service type's descriptor, or {@code null} if not found.
      */
     public ServiceDescriptor findServiceByName(String name) {
@@ -150,7 +173,6 @@ public final class Descriptors {
      * Find an extension in the file by name.  Does not find extensions nested inside message types.
      *
      * @param name The unqualified extension name to look for.
-     *
      * @return The extension's descriptor, or {@code null} if not found.
      */
     public FieldDescriptor findExtensionByName(String name) {
@@ -174,7 +196,6 @@ public final class Descriptors {
      * @param proto        The protocol message form of the FileDescriptor.
      * @param dependencies {@code FileDescriptor}s corresponding to all of the file's dependencies, in the exact order
      *                     listed in {@code proto}.
-     *
      * @throws DescriptorValidationException {@code proto} is not a valid descriptor.  This can occur for a number of
      *                                       reasons, e.g. because a field has an undefined type or because two messages
      *                                       were defined with the same name.
@@ -270,7 +291,9 @@ public final class Descriptors {
       }
     }
 
-    /** Look up and cross-link all field types, etc. */
+    /**
+     * Look up and cross-link all field types, etc.
+     */
     private void crossLink() throws DescriptorValidationException {
       for (final Descriptor messageType : this.messageTypes) {
         messageType.crossLink();
@@ -288,7 +311,9 @@ public final class Descriptors {
 
   // =================================================================
 
-  /** Describes a message type. */
+  /**
+   * Describes a message type.
+   */
   public static final class Descriptor implements GenericDescriptor {
     /**
      * Get the index of this descriptor within its parent.  In other words, given a {@link FileDescriptor} {@code file},
@@ -303,13 +328,23 @@ public final class Descriptors {
      *     messageType.getNestedType(i).getIndex() == i
      * </pre>
      */
-    public int getIndex() { return this.index; }
+    public int getIndex() {
+      return this.index;
+    }
 
-    /** Convert the descriptor to its protocol message representation. */
-    public DescriptorProto toProto() { return this.proto; }
+    /**
+     * Convert the descriptor to its protocol message representation.
+     */
+    public DescriptorProto toProto() {
+      return this.proto;
+    }
 
-    /** Get the type's unqualified name. */
-    public String getName() { return this.proto.getName(); }
+    /**
+     * Get the type's unqualified name.
+     */
+    public String getName() {
+      return this.proto.getName();
+    }
 
     /**
      * Get the type's fully-qualified name, within the proto language's namespace.  This differs from the Java name. For
@@ -321,38 +356,62 @@ public final class Descriptors {
      * </pre>
      * {@code Baz}'s full name is "foo.bar.Baz".
      */
-    public String getFullName() { return this.fullName; }
+    public String getFullName() {
+      return this.fullName;
+    }
 
-    /** Get the {@link FileDescriptor} containing this descriptor. */
-    public FileDescriptor getFile() { return this.file; }
+    /**
+     * Get the {@link FileDescriptor} containing this descriptor.
+     */
+    public FileDescriptor getFile() {
+      return this.file;
+    }
 
-    /** If this is a nested type, get the outer descriptor, otherwise null. */
-    public Descriptor getContainingType() { return this.containingType; }
+    /**
+     * If this is a nested type, get the outer descriptor, otherwise null.
+     */
+    public Descriptor getContainingType() {
+      return this.containingType;
+    }
 
-    /** Get the {@code MessageOptions}, defined in {@code descriptor.proto}. */
-    public MessageOptions getOptions() { return this.proto.getOptions(); }
+    /**
+     * Get the {@code MessageOptions}, defined in {@code descriptor.proto}.
+     */
+    public MessageOptions getOptions() {
+      return this.proto.getOptions();
+    }
 
-    /** Get a list of this message type's fields. */
+    /**
+     * Get a list of this message type's fields.
+     */
     public List<FieldDescriptor> getFields() {
       return Collections.unmodifiableList(Arrays.asList(this.fields));
     }
 
-    /** Get a list of this message type's extensions. */
+    /**
+     * Get a list of this message type's extensions.
+     */
     public List<FieldDescriptor> getExtensions() {
       return Collections.unmodifiableList(Arrays.asList(this.extensions));
     }
 
-    /** Get a list of message types nested within this one. */
+    /**
+     * Get a list of message types nested within this one.
+     */
     public List<Descriptor> getNestedTypes() {
       return Collections.unmodifiableList(Arrays.asList(this.nestedTypes));
     }
 
-    /** Get a list of enum types nested within this one. */
+    /**
+     * Get a list of enum types nested within this one.
+     */
     public List<EnumDescriptor> getEnumTypes() {
       return Collections.unmodifiableList(Arrays.asList(this.enumTypes));
     }
 
-    /** Determines if the given field number is an extension. */
+    /**
+     * Determines if the given field number is an extension.
+     */
     public boolean isExtensionNumber(final int number) {
       for (final DescriptorProto.ExtensionRange range : this.proto.getExtensionRangeList()) {
         if (range.getStart() <= number && number < range.getEnd()) {
@@ -366,7 +425,6 @@ public final class Descriptors {
      * Finds a field by name.
      *
      * @param name The unqualified name of the field (e.g. "foo").
-     *
      * @return The field's descriptor, or {@code null} if not found.
      */
     public FieldDescriptor findFieldByName(final String name) {
@@ -382,7 +440,6 @@ public final class Descriptors {
      * Finds a field by field number.
      *
      * @param number The field number within this message type.
-     *
      * @return The field's descriptor, or {@code null} if not found.
      */
     public FieldDescriptor findFieldByNumber(final int number) {
@@ -393,7 +450,6 @@ public final class Descriptors {
      * Finds a nested message type by name.
      *
      * @param name The unqualified name of the nested type (e.g. "Foo").
-     *
      * @return The types's descriptor, or {@code null} if not found.
      */
     public Descriptor findNestedTypeByName(final String name) {
@@ -409,7 +465,6 @@ public final class Descriptors {
      * Finds a nested enum type by name.
      *
      * @param name The unqualified name of the nested type (e.g. "Foo").
-     *
      * @return The types's descriptor, or {@code null} if not found.
      */
     public EnumDescriptor findEnumTypeByName(final String name) {
@@ -462,7 +517,9 @@ public final class Descriptors {
       file.pool.addSymbol(this);
     }
 
-    /** Look up and cross-link all field types, etc. */
+    /**
+     * Look up and cross-link all field types, etc.
+     */
     private void crossLink() throws DescriptorValidationException {
       for (final Descriptor nestedType : this.nestedTypes) {
         nestedType.crossLink();
@@ -480,60 +537,98 @@ public final class Descriptors {
 
   // =================================================================
 
-  /** Describes a field of a message type. */
+  /**
+   * Describes a field of a message type.
+   */
   public static final class FieldDescriptor implements GenericDescriptor, Comparable<FieldDescriptor> {
     /**
      * Get the index of this descriptor within its parent.
      *
      * @see Descriptors.Descriptor#getIndex()
      */
-    public int getIndex() { return this.index; }
+    public int getIndex() {
+      return this.index;
+    }
 
-    /** Convert the descriptor to its protocol message representation. */
-    public FieldDescriptorProto toProto() { return this.proto; }
+    /**
+     * Convert the descriptor to its protocol message representation.
+     */
+    public FieldDescriptorProto toProto() {
+      return this.proto;
+    }
 
-    /** Get the field's unqualified name. */
-    public String getName() { return this.proto.getName(); }
+    /**
+     * Get the field's unqualified name.
+     */
+    public String getName() {
+      return this.proto.getName();
+    }
 
-    /** Get the field's number. */
-    public int getNumber() { return this.proto.getNumber(); }
+    /**
+     * Get the field's number.
+     */
+    public int getNumber() {
+      return this.proto.getNumber();
+    }
 
     /**
      * Get the field's fully-qualified name.
      *
      * @see Descriptors.Descriptor#getFullName()
      */
-    public String getFullName() { return this.fullName; }
+    public String getFullName() {
+      return this.fullName;
+    }
 
     /**
      * Get the field's java type.  This is just for convenience.  Every {@code FieldDescriptorProto.Type} maps to
      * exactly one Java type.
      */
-    public JavaType getJavaType() { return this.type.getJavaType(); }
+    public JavaType getJavaType() {
+      return this.type.getJavaType();
+    }
 
-    /** Get the {@code FileDescriptor} containing this descriptor. */
-    public FileDescriptor getFile() { return this.file; }
+    /**
+     * Get the {@code FileDescriptor} containing this descriptor.
+     */
+    public FileDescriptor getFile() {
+      return this.file;
+    }
 
-    /** Get the field's declared type. */
-    public Type getType() { return this.type; }
+    /**
+     * Get the field's declared type.
+     */
+    public Type getType() {
+      return this.type;
+    }
 
-    /** Is this field declared required? */
+    /**
+     * Is this field declared required?
+     */
     public boolean isRequired() {
       return this.proto.getLabel() == FieldDescriptorProto.Label.LABEL_REQUIRED;
     }
 
-    /** Is this field declared optional? */
+    /**
+     * Is this field declared optional?
+     */
     public boolean isOptional() {
       return this.proto.getLabel() == FieldDescriptorProto.Label.LABEL_OPTIONAL;
     }
 
-    /** Is this field declared repeated? */
+    /**
+     * Is this field declared repeated?
+     */
     public boolean isRepeated() {
       return this.proto.getLabel() == FieldDescriptorProto.Label.LABEL_REPEATED;
     }
 
-    /** Returns true if the field had an explicitly-defined default value. */
-    public boolean hasDefaultValue() { return this.proto.hasDefaultValue(); }
+    /**
+     * Returns true if the field had an explicitly-defined default value.
+     */
+    public boolean hasDefaultValue() {
+      return this.proto.hasDefaultValue();
+    }
 
     /**
      * Returns the field's default value.  Valid for all types except for messages and groups.  For all other types, the
@@ -547,17 +642,27 @@ public final class Descriptors {
       return this.defaultValue;
     }
 
-    /** Get the {@code FieldOptions}, defined in {@code descriptor.proto}. */
-    public FieldOptions getOptions() { return this.proto.getOptions(); }
+    /**
+     * Get the {@code FieldOptions}, defined in {@code descriptor.proto}.
+     */
+    public FieldOptions getOptions() {
+      return this.proto.getOptions();
+    }
 
-    /** Is this field an extension? */
-    public boolean isExtension() { return this.proto.hasExtendee(); }
+    /**
+     * Is this field an extension?
+     */
+    public boolean isExtension() {
+      return this.proto.hasExtendee();
+    }
 
     /**
      * Get the field's containing type. For extensions, this is the type being extended, not the location where the
      * extension was defined.  See {@link #getExtensionScope()}.
      */
-    public Descriptor getContainingType() { return this.containingType; }
+    public Descriptor getContainingType() {
+      return this.containingType;
+    }
 
     /**
      * For extensions defined nested within message types, gets the outer type.  Not valid for non-extension fields. For
@@ -585,7 +690,9 @@ public final class Descriptors {
       return this.extensionScope;
     }
 
-    /** For embedded message and group fields, gets the field's type. */
+    /**
+     * For embedded message and group fields, gets the field's type.
+     */
     public Descriptor getMessageType() {
       if (getJavaType() != JavaType.MESSAGE) {
         throw new UnsupportedOperationException("This field is not of message type.");
@@ -593,7 +700,9 @@ public final class Descriptors {
       return this.messageType;
     }
 
-    /** For enum fields, gets the field's type. */
+    /**
+     * For enum fields, gets the field's type.
+     */
     public EnumDescriptor getEnumType() {
       if (getJavaType() != JavaType.ENUM) {
         throw new UnsupportedOperationException("This field is not of enum type.");
@@ -663,9 +772,13 @@ public final class Descriptors {
       private FieldDescriptorProto.Type proto;
       private JavaType javaType;
 
-      public FieldDescriptorProto.Type toProto() { return this.proto; }
+      public FieldDescriptorProto.Type toProto() {
+        return this.proto;
+      }
 
-      public JavaType getJavaType() { return this.javaType; }
+      public JavaType getJavaType() {
+        return this.javaType;
+      }
 
       public static Type valueOf(final FieldDescriptorProto.Type type) {
         return values()[type.getNumber() - 1];
@@ -738,7 +851,9 @@ public final class Descriptors {
       file.pool.addSymbol(this);
     }
 
-    /** Look up and cross-link all field types, etc. */
+    /**
+     * Look up and cross-link all field types, etc.
+     */
     private void crossLink() throws DescriptorValidationException {
       if (this.proto.hasExtendee()) {
         final GenericDescriptor extendee = this.file.pool.lookupSymbol(this.proto.getExtendee(), this);
@@ -859,7 +974,7 @@ public final class Descriptors {
                                                                                                       "Could not parse default value: \"" +
                                                                                                       this.proto
                                                                                                           .getDefaultValue() +
-                                                                                                                             "\"");
+                                                                                                      "\"");
           validationException.initCause(e);
           throw validationException;
         }
@@ -902,38 +1017,66 @@ public final class Descriptors {
 
   // =================================================================
 
-  /** Describes an enum type. */
+  /**
+   * Describes an enum type.
+   */
   public static final class EnumDescriptor implements GenericDescriptor {
     /**
      * Get the index of this descriptor within its parent.
      *
      * @see Descriptors.Descriptor#getIndex()
      */
-    public int getIndex() { return this.index; }
+    public int getIndex() {
+      return this.index;
+    }
 
-    /** Convert the descriptor to its protocol message representation. */
-    public EnumDescriptorProto toProto() { return this.proto; }
+    /**
+     * Convert the descriptor to its protocol message representation.
+     */
+    public EnumDescriptorProto toProto() {
+      return this.proto;
+    }
 
-    /** Get the type's unqualified name. */
-    public String getName() { return this.proto.getName(); }
+    /**
+     * Get the type's unqualified name.
+     */
+    public String getName() {
+      return this.proto.getName();
+    }
 
     /**
      * Get the type's fully-qualified name.
      *
      * @see Descriptors.Descriptor#getFullName()
      */
-    public String getFullName() { return this.fullName; }
+    public String getFullName() {
+      return this.fullName;
+    }
 
-    /** Get the {@link FileDescriptor} containing this descriptor. */
-    public FileDescriptor getFile() { return this.file; }
+    /**
+     * Get the {@link FileDescriptor} containing this descriptor.
+     */
+    public FileDescriptor getFile() {
+      return this.file;
+    }
 
-    /** If this is a nested type, get the outer descriptor, otherwise null. */
-    public Descriptor getContainingType() { return this.containingType; }
+    /**
+     * If this is a nested type, get the outer descriptor, otherwise null.
+     */
+    public Descriptor getContainingType() {
+      return this.containingType;
+    }
 
-    /** Get the {@code EnumOptions}, defined in {@code descriptor.proto}. */
-    public EnumOptions getOptions() { return this.proto.getOptions(); }
+    /**
+     * Get the {@code EnumOptions}, defined in {@code descriptor.proto}.
+     */
+    public EnumOptions getOptions() {
+      return this.proto.getOptions();
+    }
 
-    /** Get a list of defined values for this enum. */
+    /**
+     * Get a list of defined values for this enum.
+     */
     public List<EnumValueDescriptor> getValues() {
       return Collections.unmodifiableList(Arrays.asList(this.values));
     }
@@ -942,7 +1085,6 @@ public final class Descriptors {
      * Find an enum value by name.
      *
      * @param name The unqualified name of the value (e.g. "FOO").
-     *
      * @return the value's decsriptor, or {@code null} if not found.
      */
     public EnumValueDescriptor findValueByName(final String name) {
@@ -959,7 +1101,6 @@ public final class Descriptors {
      * with that number.
      *
      * @param number The value's number.
-     *
      * @return the value's decsriptor, or {@code null} if not found.
      */
     public EnumValueDescriptor findValueByNumber(final int number) {
@@ -1009,32 +1150,60 @@ public final class Descriptors {
      *
      * @see Descriptors.Descriptor#getIndex()
      */
-    public int getIndex() { return this.index; }
+    public int getIndex() {
+      return this.index;
+    }
 
-    /** Convert the descriptor to its protocol message representation. */
-    public EnumValueDescriptorProto toProto() { return this.proto; }
+    /**
+     * Convert the descriptor to its protocol message representation.
+     */
+    public EnumValueDescriptorProto toProto() {
+      return this.proto;
+    }
 
-    /** Get the value's unqualified name. */
-    public String getName() { return this.proto.getName(); }
+    /**
+     * Get the value's unqualified name.
+     */
+    public String getName() {
+      return this.proto.getName();
+    }
 
-    /** Get the value's number. */
-    public int getNumber() { return this.proto.getNumber(); }
+    /**
+     * Get the value's number.
+     */
+    public int getNumber() {
+      return this.proto.getNumber();
+    }
 
     /**
      * Get the value's fully-qualified name.
      *
      * @see Descriptors.Descriptor#getFullName()
      */
-    public String getFullName() { return this.fullName; }
+    public String getFullName() {
+      return this.fullName;
+    }
 
-    /** Get the {@link FileDescriptor} containing this descriptor. */
-    public FileDescriptor getFile() { return this.file; }
+    /**
+     * Get the {@link FileDescriptor} containing this descriptor.
+     */
+    public FileDescriptor getFile() {
+      return this.file;
+    }
 
-    /** Get the value's enum type. */
-    public EnumDescriptor getType() { return this.type; }
+    /**
+     * Get the value's enum type.
+     */
+    public EnumDescriptor getType() {
+      return this.type;
+    }
 
-    /** Get the {@code EnumValueOptions}, defined in {@code descriptor.proto}. */
-    public EnumValueOptions getOptions() { return this.proto.getOptions(); }
+    /**
+     * Get the {@code EnumValueOptions}, defined in {@code descriptor.proto}.
+     */
+    public EnumValueOptions getOptions() {
+      return this.proto.getOptions();
+    }
 
     private final int index;
     private final EnumValueDescriptorProto proto;
@@ -1058,31 +1227,57 @@ public final class Descriptors {
 
   // =================================================================
 
-  /** Describes a service type. */
+  /**
+   * Describes a service type.
+   */
   public static final class ServiceDescriptor implements GenericDescriptor {
-    /** Get the index of this descriptor within its parent. * @see Descriptors.Descriptor#getIndex() */
-    public int getIndex() { return this.index; }
+    /**
+     * Get the index of this descriptor within its parent. * @see Descriptors.Descriptor#getIndex()
+     */
+    public int getIndex() {
+      return this.index;
+    }
 
-    /** Convert the descriptor to its protocol message representation. */
-    public ServiceDescriptorProto toProto() { return this.proto; }
+    /**
+     * Convert the descriptor to its protocol message representation.
+     */
+    public ServiceDescriptorProto toProto() {
+      return this.proto;
+    }
 
-    /** Get the type's unqualified name. */
-    public String getName() { return this.proto.getName(); }
+    /**
+     * Get the type's unqualified name.
+     */
+    public String getName() {
+      return this.proto.getName();
+    }
 
     /**
      * Get the type's fully-qualified name.
      *
      * @see Descriptors.Descriptor#getFullName()
      */
-    public String getFullName() { return this.fullName; }
+    public String getFullName() {
+      return this.fullName;
+    }
 
-    /** Get the {@link FileDescriptor} containing this descriptor. */
-    public FileDescriptor getFile() { return this.file; }
+    /**
+     * Get the {@link FileDescriptor} containing this descriptor.
+     */
+    public FileDescriptor getFile() {
+      return this.file;
+    }
 
-    /** Get the {@code ServiceOptions}, defined in {@code descriptor.proto}. */
-    public ServiceOptions getOptions() { return this.proto.getOptions(); }
+    /**
+     * Get the {@code ServiceOptions}, defined in {@code descriptor.proto}.
+     */
+    public ServiceOptions getOptions() {
+      return this.proto.getOptions();
+    }
 
-    /** Get a list of methods for this service. */
+    /**
+     * Get a list of methods for this service.
+     */
     public List<MethodDescriptor> getMethods() {
       return Collections.unmodifiableList(Arrays.asList(this.methods));
     }
@@ -1091,7 +1286,6 @@ public final class Descriptors {
      * Find a method by name.
      *
      * @param name The unqualified name of the method (e.g. "Foo").
-     *
      * @return the method's decsriptor, or {@code null} if not found.
      */
     public MethodDescriptor findMethodByName(final String name) {
@@ -1133,38 +1327,74 @@ public final class Descriptors {
 
   // =================================================================
 
-  /** Describes one method within a service type. */
+  /**
+   * Describes one method within a service type.
+   */
   public static final class MethodDescriptor implements GenericDescriptor {
-    /** Get the index of this descriptor within its parent. * @see Descriptors.Descriptor#getIndex() */
-    public int getIndex() { return this.index; }
+    /**
+     * Get the index of this descriptor within its parent. * @see Descriptors.Descriptor#getIndex()
+     */
+    public int getIndex() {
+      return this.index;
+    }
 
-    /** Convert the descriptor to its protocol message representation. */
-    public MethodDescriptorProto toProto() { return this.proto; }
+    /**
+     * Convert the descriptor to its protocol message representation.
+     */
+    public MethodDescriptorProto toProto() {
+      return this.proto;
+    }
 
-    /** Get the method's unqualified name. */
-    public String getName() { return this.proto.getName(); }
+    /**
+     * Get the method's unqualified name.
+     */
+    public String getName() {
+      return this.proto.getName();
+    }
 
     /**
      * Get the method's fully-qualified name.
      *
      * @see Descriptors.Descriptor#getFullName()
      */
-    public String getFullName() { return this.fullName; }
+    public String getFullName() {
+      return this.fullName;
+    }
 
-    /** Get the {@link FileDescriptor} containing this descriptor. */
-    public FileDescriptor getFile() { return this.file; }
+    /**
+     * Get the {@link FileDescriptor} containing this descriptor.
+     */
+    public FileDescriptor getFile() {
+      return this.file;
+    }
 
-    /** Get the method's service type. */
-    public ServiceDescriptor getService() { return this.service; }
+    /**
+     * Get the method's service type.
+     */
+    public ServiceDescriptor getService() {
+      return this.service;
+    }
 
-    /** Get the method's input type. */
-    public Descriptor getInputType() { return this.inputType; }
+    /**
+     * Get the method's input type.
+     */
+    public Descriptor getInputType() {
+      return this.inputType;
+    }
 
-    /** Get the method's output type. */
-    public Descriptor getOutputType() { return this.outputType; }
+    /**
+     * Get the method's output type.
+     */
+    public Descriptor getOutputType() {
+      return this.outputType;
+    }
 
-    /** Get the {@code MethodOptions}, defined in {@code descriptor.proto}. */
-    public MethodOptions getOptions() { return this.proto.getOptions(); }
+    /**
+     * Get the {@code MethodOptions}, defined in {@code descriptor.proto}.
+     */
+    public MethodOptions getOptions() {
+      return this.proto.getOptions();
+    }
 
     private final int index;
     private final MethodDescriptorProto proto;
@@ -1217,7 +1447,9 @@ public final class Descriptors {
 
   // =================================================================
 
-  /** All descriptors except {@code FileDescriptor} implement this to make {@code DescriptorPool}'s life easier. */
+  /**
+   * All descriptors except {@code FileDescriptor} implement this to make {@code DescriptorPool}'s life easier.
+   */
   private static interface GenericDescriptor {
     Message toProto();
 
@@ -1228,18 +1460,32 @@ public final class Descriptors {
     FileDescriptor getFile();
   }
 
-  /** Thrown when building descriptors fails because the source DescriptorProtos are not valid. */
+  /**
+   * Thrown when building descriptors fails because the source DescriptorProtos are not valid.
+   */
   public static class DescriptorValidationException extends Exception {
     private static final long serialVersionUID = 2131682639153503919L;
 
-    /** Gets the full name of the descriptor where the error occurred. */
-    public String getProblemSymbolName() { return this.name; }
+    /**
+     * Gets the full name of the descriptor where the error occurred.
+     */
+    public String getProblemSymbolName() {
+      return this.name;
+    }
 
-    /** Gets the the protocol message representation of the invalid descriptor. */
-    public Message getProblemProto() { return this.proto; }
+    /**
+     * Gets the the protocol message representation of the invalid descriptor.
+     */
+    public Message getProblemProto() {
+      return this.proto;
+    }
 
-    /** Gets a human-readable description of the error. */
-    public String getDescription() { return this.description; }
+    /**
+     * Gets a human-readable description of the error.
+     */
+    public String getDescription() {
+      return this.description;
+    }
 
     private final String name;
     private final Message proto;
@@ -1270,7 +1516,9 @@ public final class Descriptors {
 
   // =================================================================
 
-  /** A private helper class which contains lookup tables containing all the descriptors defined in a particular file. */
+  /**
+   * A private helper class which contains lookup tables containing all the descriptors defined in a particular file.
+   */
   private static final class DescriptorPool {
     DescriptorPool(final FileDescriptor[] dependencies) {
       this.dependencies = new DescriptorPool[dependencies.length];
@@ -1297,7 +1545,9 @@ public final class Descriptors {
     final Map<DescriptorIntPair, FieldDescriptor> fieldsByNumber = new HashMap<DescriptorIntPair, FieldDescriptor>();
     final Map<DescriptorIntPair, EnumValueDescriptor> enumValuesByNumber = new HashMap<DescriptorIntPair, EnumValueDescriptor>();
 
-    /** Find a generic descriptor by fully-qualified name. */
+    /**
+     * Find a generic descriptor by fully-qualified name.
+     */
     GenericDescriptor findSymbol(final String fullName) {
       GenericDescriptor result = this.descriptorsByName.get(fullName);
       if (result != null) {
@@ -1380,7 +1630,9 @@ public final class Descriptors {
       }
     }
 
-    /** Adds a symbol to the symbol table.  If a symbol with the same name already exists, throws an error. */
+    /**
+     * Adds a symbol to the symbol table.  If a symbol with the same name already exists, throws an error.
+     */
     void addSymbol(final GenericDescriptor descriptor) throws DescriptorValidationException {
       validateSymbolName(descriptor);
 
@@ -1414,13 +1666,21 @@ public final class Descriptors {
      * define, say, a message type that has the same name as an existing package.
      */
     static final class PackageDescriptor implements GenericDescriptor {
-      public Message toProto() { return this.file.toProto(); }
+      public Message toProto() {
+        return this.file.toProto();
+      }
 
-      public String getName() { return this.name; }
+      public String getName() {
+        return this.name;
+      }
 
-      public String getFullName() { return this.fullName; }
+      public String getFullName() {
+        return this.fullName;
+      }
 
-      public FileDescriptor getFile() { return this.file; }
+      public FileDescriptor getFile() {
+        return this.file;
+      }
 
       PackageDescriptor(final String name, final String fullName, final FileDescriptor file) {
         this.file = file;
@@ -1459,12 +1719,14 @@ public final class Descriptors {
                                                         old
                                                             .getFile()
                                                             .getName() +
-                                                                       "\".");
+                                                        "\".");
         }
       }
     }
 
-    /** A (GenericDescriptor, int) pair, used as a map key. */
+    /**
+     * A (GenericDescriptor, int) pair, used as a map key.
+     */
     static final class DescriptorIntPair {
       final GenericDescriptor descriptor;
       final int number;
@@ -1502,9 +1764,9 @@ public final class Descriptors {
                                                        field
                                                            .getContainingType()
                                                            .getFullName() +
-                                                                          "\" by field \"" +
-                                                                          old.getName() +
-                                                                          "\".");
+                                                       "\" by field \"" +
+                                                       old.getName() +
+                                                       "\".");
       }
     }
 
