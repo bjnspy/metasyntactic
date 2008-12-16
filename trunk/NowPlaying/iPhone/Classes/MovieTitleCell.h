@@ -21,10 +21,10 @@
     UILabel* ratingLabel;
 }
 
-- (id)      initWithFrame:(CGRect) frame
-          reuseIdentifier:(NSString*) reuseIdentifier
-                    model:(NowPlayingModel*) model
-                    style:(UITableViewStyle) style;
+- (id) initWithFrame:(CGRect) frame
+     reuseIdentifier:(NSString*) reuseIdentifier
+               model:(NowPlayingModel*) model
+               style:(UITableViewStyle) style;
 
 - (void) setMovie:(Movie*) movie owner:(id) owner;
 
