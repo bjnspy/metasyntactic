@@ -19,7 +19,10 @@
     BOOL upArrowTapped;
     
     NSMutableArray* mutableMovies;
+    PointerSet* reorderedMovies;
     
+    NSMutableArray* mutableSaved;
+
     BOOL readonlyMode;
 }
 
