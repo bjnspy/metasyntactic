@@ -451,4 +451,8 @@ public class UpcomingCache extends AbstractCache {
         Application.upcomingSynopsesDirectory,
         Application.upcomingTrailersDirectory);
   }
+
+  public List<String> getCast(Movie movie) {
+    return FileUtilities.readStringList(getCastFile(movie));
+  }
 }

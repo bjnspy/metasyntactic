@@ -86,7 +86,7 @@ public class SearchEngine {
     final List<String> strings = new ArrayList<String>();
     strings.add(movie.getCanonicalTitle());
     strings.addAll(movie.getDirectors());
-    strings.addAll(movie.getCast());
+    strings.addAll(model.getCast(movie));
     strings.addAll(movie.getGenres());
     return listMatches(strings);
   }
@@ -172,7 +172,6 @@ public class SearchEngine {
       this.currentlyExecutingRequest = null;
     }
   }
-
 
   public void submitRequest(final String string) {
     synchronized (gate) {

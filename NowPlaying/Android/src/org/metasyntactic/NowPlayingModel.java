@@ -320,6 +320,14 @@ public class NowPlayingModel {
     return this.scoreCache.getReviews(getMovies(), movie);
   }
 
+  public List<String> getCast(final Movie movie) {
+    if (!movie.getCast().isEmpty()) {
+      return movie.getCast();
+    }
+
+    return upcomingCache.getCast(movie);
+  }
+
   private final static byte[] EMPTY_BYTES = new byte[0];
 
   public byte[] getPoster(final Movie movie) {
