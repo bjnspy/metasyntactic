@@ -15,6 +15,7 @@
 #import "NetflixCache.h"
 #import "NetflixMovieTitleCell.h"
 #import "NowPlayingModel.h"
+#import "PointerSet.h"
 #import "Queue.h"
 #import "TappableImageView.h"
 #import "ViewControllerUtilities.h"
@@ -24,6 +25,8 @@
 @property (retain) Feed* feed;
 @property (retain) Queue* queue;
 @property (retain) NSMutableArray* mutableMovies;
+@property (retain) NSMutableArray* mutableSaved;
+@property (retain) PointerSet* reorderedMovies;
 @property (retain) UIBarButtonItem* backButton;
 @end
 
@@ -34,6 +37,8 @@
 @synthesize feed;
 @synthesize queue;
 @synthesize mutableMovies;
+@synthesize mutableSaved;
+@synthesize reorderedMovies;
 @synthesize backButton;
 
 - (void) dealloc {
@@ -41,6 +46,8 @@
     self.feed = nil;
     self.queue = nil;
     self.mutableMovies = nil;
+    self.mutableSaved = nil;
+    self.reorderedMovies = nil;
     self.backButton = nil;
 
     [super dealloc];
@@ -55,7 +62,17 @@
 - (void) setupButtons {
     if (readonlyMode) {
         [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-        [self.navigationItem setRightBarButtonItem:nil animated:YES];
+        
+        UIActivityIndicatorView* activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        CGRect frame = activityIndicatorView.frame;
+        frame.size.width += 4;
+        [activityIndicatorView startAnimating];
+        
+        UIView* activityView = [[UIView alloc] initWithFrame:frame];
+        [activityView addSubview:activityIndicatorView];
+        
+        UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
+        [self.navigationItem setRightBarButtonItem:right animated:YES];
         [self.navigationItem setHidesBackButton:YES animated:YES];
     } else {
         [self.navigationItem setHidesBackButton:NO animated:NO];
@@ -102,11 +119,14 @@
 
 
 - (void) setupTitle {
-    id argument = (queue == nil ? (id)NSLocalizedString(@"downloading", nil) : (id)[NSNumber numberWithInt:queue.movies.count]);
-    NSString* title = [NSString stringWithFormat:feed.title, argument];
-    
     UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-    label.text = title;
+    if (readonlyMode) {
+        label.text = NSLocalizedString(@"Please Wait", nil);
+    } else {
+        id argument = (queue == nil ? (id)NSLocalizedString(@"downloading", nil) : (id)[NSNumber numberWithInt:queue.movies.count]);
+        label.text = [NSString stringWithFormat:feed.title, argument];
+    }
+    
     self.navigationItem.titleView = label;
 }
 
@@ -114,6 +134,7 @@
 - (void) initializeData {
     self.queue = [self.model.netflixCache queueForFeed:feed];
     self.mutableMovies = [NSMutableArray arrayWithArray:queue.movies];
+    self.mutableSaved = [NSMutableArray arrayWithArray:queue.saved];
     [self setupTitle];
     [self setupButtons];
 }
@@ -146,20 +167,30 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section {
-    return mutableMovies.count;
+    if (section == 0) {
+        return mutableMovies.count;
+    } else {
+        return mutableSaved.count;
+    }
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (mutableMovies.count == 0) {
-        return [self.model.netflixCache noInformationFound];
+    if (mutableMovies.count == 0 && mutableSaved.count == 0) {
+        if (section == 0) {
+            return [self.model.netflixCache noInformationFound];
+        }
+    } else if (mutableMovies.count > 0 && section == 0) {
+        return NSLocalizedString(@"Queue", nil);
+    } else if (mutableSaved.count > 0 && section == 1) {
+        return NSLocalizedString(@"Saved", nil);
     }
     
     return nil;
@@ -175,9 +206,9 @@
 
 
 - (void) setAccessoryForCell:(UITableViewCell*) cell
-                       atRow:(NSInteger) row {
+                 atIndexPath:(NSIndexPath*) path {
     if (self.isEditable) {
-        if (row == 0) {
+        if (path.section == 1 || path.row == 0) {
             cell.accessoryView = nil;
         } else {
             cell.accessoryView = [self tappableArrow];
@@ -186,9 +217,17 @@
 }
 
 
+- (BOOL) indexPathOutOfBounds:(NSIndexPath*) path {
+    return path.row < 0 ||
+    (path.section == 0 && path.row >= mutableMovies.count) ||
+    (path.section == 1 && path.row >= mutableSaved.count);
+}
+
+
 // Customize the appearance of table view cells.
-- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {    
-    if (indexPath.row < 0 || indexPath.row >= mutableMovies.count) {
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    if ([self indexPathOutOfBounds:indexPath]) {
         return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     }
     
@@ -202,9 +241,15 @@
                                                        style:UITableViewStylePlain] autorelease];
     }
     
-    [self setAccessoryForCell:cell atRow:indexPath.row];
+    [self setAccessoryForCell:cell atIndexPath:indexPath];
     
-    Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
+    Movie* movie;
+    if (indexPath.section == 0) {
+        movie = [mutableMovies objectAtIndex:indexPath.row];
+    } else {
+        movie = [mutableSaved objectAtIndex:indexPath.row];
+    }
+    
     [cell setMovie:movie owner:self];
     
     return cell;
@@ -214,14 +259,27 @@
 - (void) resetVisibleAccessories {
     for (NSIndexPath* path in self.tableView.indexPathsForVisibleRows) {
         UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:path];
-        [self setAccessoryForCell:cell atRow:path.row];
+        [self setAccessoryForCell:cell atIndexPath:path];
     }
 }
 
 
-- (void) upArrowTappedForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (void) enterReadonlyMode {
     readonlyMode = YES;
     [self setupButtons];
+    [self setupTitle];
+}
+
+
+- (void) exitReadonlyMode {
+    readonlyMode = NO;
+    [self setupButtons];
+    [self setupTitle];
+}
+
+
+- (void) upArrowTappedForRowAtIndexPath:(NSIndexPath*) indexPath {
+    [self enterReadonlyMode];
     
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
@@ -254,8 +312,7 @@
     
     [self resetVisibleAccessories];
     
-    readonlyMode = NO;
-    [self setupButtons];
+    [self exitReadonlyMode];
 }
 
 
@@ -270,8 +327,8 @@
                                            otherButtonTitles:nil] autorelease];
     
     [alert show];
-    readonlyMode = NO;
-    [self setupButtons];
+
+    [self exitReadonlyMode];
     
     // make sure we're in a good state.
     [self majorRefresh];
@@ -295,15 +352,22 @@
 
 
 
-- (BOOL) tableView:(UITableView*) tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {    
+- (BOOL)          tableView:(UITableView*) tableView
+      canEditRowAtIndexPath:(NSIndexPath*) indexPath {    
     return YES;
+}
+
+
+- (BOOL)          tableView:(UITableView*) tableView
+      canMoveRowAtIndexPath:(NSIndexPath*) indexPath {
+    return indexPath.section == 0;
 }
 
 
 // Override to support editing the table view.
 - (void)       tableView:(UITableView*) tableView
       commitEditingStyle:(UITableViewCellEditingStyle) editingStyle
-       forRowAtIndexPath:(NSIndexPath *)indexPath {
+       forRowAtIndexPath:(NSIndexPath*) indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 
@@ -322,15 +386,13 @@
     Movie* movie = [mutableMovies objectAtIndex:from];
     [mutableMovies removeObjectAtIndex:from];
     [mutableMovies insertObject:movie atIndex:to];
-}
-
-
-- (BOOL) tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    
+    [reorderedMovies addObject:movie];
 }
 
 
 - (void) onEdit:(id) sender {
+    self.reorderedMovies = [NSMutableSet set];
     [self.tableView setEditing:YES animated:YES];
     [self setupButtons];
 }
@@ -349,9 +411,13 @@
 }
 
 
-- (NSIndexPath*)                     tableView:(UITableView*)tableView
+- (NSIndexPath*)                     tableView:(UITableView*) tableView
       targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath*) sourceIndexPath
                            toProposedIndexPath:(NSIndexPath*) proposedDestinationIndexPath {
+    if (proposedDestinationIndexPath.section == 1) {
+        return [NSIndexPath indexPathForRow:(mutableMovies.count - 1) inSection:0];
+    }
+    
     return proposedDestinationIndexPath;
 }
 

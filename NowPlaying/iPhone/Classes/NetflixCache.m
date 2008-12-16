@@ -210,12 +210,14 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (Movie*) processItem:(XmlElement*) element {
+- (void) processItem:(XmlElement*) element
+              movies:(NSMutableArray*) movies
+               saved:(NSMutableArray*) saved {
     if (![@"queue_item" isEqual:element.name] &&
         ![@"rental_history_item" isEqual:element.name] &&
         ![@"at_home_item" isEqual:element.name] &&
         ![@"recommendation" isEqual:element.name]) {
-        return nil;
+        return;
     }
     
     NSString* identifier = nil;
@@ -224,6 +226,7 @@ static NSSet* allowableFeeds = nil;
     NSString* poster = nil;
     NSString* rating = nil;
     NSArray* genres = nil;
+    BOOL save = NO;
     
     for (XmlElement* child in element.children) {
         if ([@"id" isEqual:child.name]) {
@@ -252,6 +255,8 @@ static NSSet* allowableFeeds = nil;
                 rating = [child attributeValue:@"label"];
             } else if ([@"http://api.netflix.com/categories/genres" isEqual:scheme]) {
                 genres = [NSArray arrayWithObject:[child attributeValue:@"label"]];
+            } else if ([@"http://api.netflix.com/categories/queue_availability" isEqual:scheme]) {
+                save = [[child attributeValue:@"label"] isEqual:@"saved"];
             }
         }
     }
@@ -285,7 +290,11 @@ static NSSet* allowableFeeds = nil;
                                          cast:nil
                                        genres:genres];
                 
-    return movie;
+    if (save) {
+        [saved addObject:movie];
+    } else {
+        [movies addObject:movie];
+    }
 }
 
 
@@ -309,19 +318,17 @@ static NSSet* allowableFeeds = nil;
     NSString* etag = [[element element:@"etag"] text];
     
     NSMutableArray* movies = [NSMutableArray array];
+    NSMutableArray* saved = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            Movie* movie = [self processItem:child];
-            if (movie != nil) {
-                [movies addObject:movie];
-            }
+            [self processItem:child movies:movies saved:saved];
         }
         [pool release];
     }
     
-    if (movies.count > 0) {
-        Queue* queue = [Queue queueWithFeedKey:feed.key etag:etag movies:movies];
+    if (movies.count > 0 || saved.count > 0) {
+        Queue* queue = [Queue queueWithFeedKey:feed.key etag:etag movies:movies saved:saved];
         [self saveQueue:queue feed:feed];
         [self performSelectorOnMainThread:@selector(reportQueue:)
                                withObject:[NSArray arrayWithObjects:feed, queue, nil]
@@ -451,7 +458,7 @@ static NSSet* allowableFeeds = nil;
     [movies removeObjectIdenticalTo:movie];
     [movies insertObject:movie atIndex:0];
     
-    Queue* finalQueue = [Queue queueWithFeedKey:queue.feedKey etag:etag movies:movies];
+    Queue* finalQueue = [Queue queueWithFeedKey:queue.feedKey etag:etag movies:movies saved:queue.saved];
     [self saveQueue:finalQueue feed:feed];
     
     NSArray* finalArguments = [NSArray arrayWithObjects:movie, finalQueue, feed, delegate, nil];
