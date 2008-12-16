@@ -36,9 +36,7 @@ static NSSet* allowableFeeds = nil;
     if (self == [NetflixCache class]) {
         allowableFeeds = [[NSSet setWithObjects:
                           @"http://schemas.netflix.com/feed.queues.disc",
-                          @"http://schemas.netflix.com/feed.queues.disc.recent",
                           @"http://schemas.netflix.com/feed.queues.instant",
-                          @"http://schemas.netflix.com/feed.queues.instant.recent",
                           @"http://schemas.netflix.com/feed.at_home",
                           @"http://schemas.netflix.com/feed.rental_history.watched",
                           @"http://schemas.netflix.com/feed.rental_history.returned",
@@ -346,6 +344,7 @@ static NSSet* allowableFeeds = nil;
     NSArray* queue = [arguments objectAtIndex:1];
     
     [queues setObject:queue forKey:feed.key];
+    [NowPlayingAppDelegate majorRefresh];
 }
 
 
@@ -396,7 +395,7 @@ static NSSet* allowableFeeds = nil;
         }
     }
     
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [NowPlayingAppDelegate majorRefresh];
 }
 
 @end

@@ -167,7 +167,7 @@
 
 - (void) resetTabs:(BOOL) animated {
     NSArray* controllers;
-    
+        
     if (self.model.netflixEnabled) {
         controllers =
         [NSArray arrayWithObjects:
@@ -186,7 +186,7 @@
          settingsNavigationController, nil];
     }
     
-    [self setViewControllers:controllers animated:animated];
+    [self setViewControllers:controllers animated:NO];
 }
 
 @end
