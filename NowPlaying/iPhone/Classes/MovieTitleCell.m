@@ -161,11 +161,16 @@
 }
 
 
+- (BOOL) noScores {
+    return model.noScores;
+}
+
+
 - (void) layoutSubviews {
     [super layoutSubviews];
 
     CGRect frame;
-    if (model.noScores) {
+    if (self.noScores) {
         frame = CGRectMake(10, 25, 0, 14);
     } else {
         frame = CGRectMake(50, 25, 0, 14);
