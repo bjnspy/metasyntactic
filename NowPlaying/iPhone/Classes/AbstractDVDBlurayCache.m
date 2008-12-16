@@ -93,29 +93,10 @@
     return [[self directory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
-/*
-- (NSString*) bookmarksFile {
-    return [[self directory] stringByAppendingPathComponent:@"Bookmarks.plist"];
-}
-*/
-
-- (NSArray*) decodeMovieArray:(NSArray*) array {
-    if (array == nil) {
-        return [NSArray array];
-    }
-
-    NSMutableArray* result = [NSMutableArray array];
-    for (NSDictionary* dictionary in array) {
-        [result addObject:[Movie movieWithDictionary:dictionary]];
-    }
-
-    return result;
-}
-
 
 - (NSArray*) loadMovies:(NSString*) file {
     NSArray* encodedMovies = [FileUtilities readObject:file];
-    return [self decodeMovieArray:encodedMovies];
+    return [Movie decodeArray:encodedMovies];
 }
 
 
@@ -377,15 +358,6 @@
 }
 
 
-- (void) saveVideosArray:(NSArray*) videos toFile:(NSString*) file {
-    NSMutableArray* encoded = [NSMutableArray array];
-    for (Movie* video in videos) {
-        [encoded addObject:video.dictionary];
-    }
-    [FileUtilities writeObject:encoded toFile:file];
-}
-
-
 - (void) saveData:(NSDictionary*) dictionary {
     NSArray* videos = dictionary.allKeys;
 
@@ -395,7 +367,7 @@
     }
 
     // do this last.  it signifies that we're done
-    [self saveVideosArray:videos toFile:self.moviesFile];
+    [FileUtilities writeObject:[Movie encodeArray:videos] toFile:self.moviesFile];
 }
 
 

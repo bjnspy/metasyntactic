@@ -11,11 +11,6 @@
 #import "GlobalActivityIndicator.h"
 #import "NetflixNavigationController.h"
 #import "NowPlayingModel.h"
-#import "OAConsumer.h"
-#import "OADataFetcher.h"
-#import "OAMutableURLRequest.h"
-#import "OAServiceTicket.h"
-#import "OAToken.h"
 #import "ThreadingUtilities.h"
 
 @interface NetflixLoginViewController()
@@ -174,7 +169,7 @@
                                                                  realm:nil]; // use the default method, HMAC-SHA1
     
     [request setHTTPMethod:@"POST"];
-    
+
     [OADataFetcher fetchDataWithRequest:request
                                delegate:self
                       didFinishSelector:@selector(requestAuthorizationToken:didFinishWithData:)

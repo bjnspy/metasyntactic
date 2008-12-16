@@ -22,6 +22,7 @@
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
 #import <netinet/in.h>
+#import "OAuthConsumer.h"
 #import "ForwardDeclarations.h"
 #import "Macros.h"
 #import "ProtocolBuffers.h"

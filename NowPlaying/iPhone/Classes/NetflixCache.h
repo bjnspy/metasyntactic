@@ -22,4 +22,9 @@
 
 - (NSString*) noInformationFound;
 
+- (void) moveMovie:(Movie*) movie 
+      toTopOfQueue:(Queue*) queue
+          fromFeed:(Feed*) feed
+          delegate:(id<NetflixReorderQueueDelegate>) delegate;
+
 @end

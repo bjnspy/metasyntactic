@@ -8,17 +8,23 @@
 
 @interface Queue : NSObject {
 @private
+    NSString* feedKey;
     NSString* etag;
     NSArray* movies;
 }
 
+@property (readonly, copy) NSString* feedKey;
 @property (readonly, copy) NSString* etag;
 @property (readonly, retain) NSArray* movies;
 
 + (Queue*) queueWithDictionary:(NSDictionary*) dictionary;
-+ (Queue*) queueWithETag:(NSString*) etag
-                  movies:(NSArray*) movies;
++ (Queue*) queueWithFeedKey:(NSString*) feedKey
+                       etag:(NSString*) etag
+                     movies:(NSArray*) movies;
 
 - (NSDictionary*) dictionary;
+
+- (BOOL) isDVDQueue;
+- (BOOL) isInstantQueue;
 
 @end
