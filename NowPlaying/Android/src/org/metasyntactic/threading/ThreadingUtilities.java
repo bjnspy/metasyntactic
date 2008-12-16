@@ -23,7 +23,7 @@ import java.util.Date;
 
 public class ThreadingUtilities {
   public static boolean isMainThread() {
-    return Looper.getMainLooper() == Looper.myLooper();
+    return Looper.getMainLooper().equals(Looper.myLooper());
   }
 
   public static boolean isBackgroundThread() {

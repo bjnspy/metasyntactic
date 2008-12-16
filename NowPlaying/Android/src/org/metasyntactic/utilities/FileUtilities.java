@@ -36,9 +36,9 @@ public class FileUtilities {
   }
 
   public static String sanitizeFileName(final String name) {
-    final StringBuilder result = new StringBuilder();
+    final StringBuilder result = new StringBuilder(name.length() * 2);
     for (final char c : name.toCharArray()) {
-      if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9' || c == ' ' || c == '-' || c == '.') {
+      if (isLegalCharacter(c)) {
         result.append(c);
       } else {
         result.append('-');
@@ -47,6 +47,10 @@ public class FileUtilities {
       }
     }
     return result.toString();
+  }
+
+  private static boolean isLegalCharacter(final char c) {
+    return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9' || c == ' ' || c == '-' || c == '.';
   }
 
   public static Map<String, Date> readStringToDateMap(final File file) {
@@ -377,7 +381,7 @@ public class FileUtilities {
     }
   }
 
-  public static void writeStringToListOfStrings(Map<String, List<String>> map, File file) {
+  public static void writeStringToListOfStrings(Map<String, List<String>> map, final File file) {
     try {
       map = nonNullMap(map);
       final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);

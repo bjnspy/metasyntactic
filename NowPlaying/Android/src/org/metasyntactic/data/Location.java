@@ -35,7 +35,7 @@ public class Location implements Parcelable, Persistable {
   private final String postalCode;
   private final String country;
 
-  public void persistTo(PersistableOutputStream out) throws IOException {
+  public void persistTo(final PersistableOutputStream out) throws IOException {
     out.writeDouble(latitude);
     out.writeDouble(longitude);
     out.writeString(address);
@@ -46,19 +46,19 @@ public class Location implements Parcelable, Persistable {
   }
 
   public static final Reader<Location> reader = new AbstractPersistable.AbstractReader<Location>() {
-    public Location read(PersistableInputStream in) throws IOException {
-      double latitude = in.readDouble();
-      double longitude = in.readDouble();
-      String address = in.readString();
-      String city = in.readString();
-      String state = in.readString();
-      String postalCode = in.readString();
-      String country = in.readString();
+    public Location read(final PersistableInputStream in) throws IOException {
+      final double latitude = in.readDouble();
+      final double longitude = in.readDouble();
+      final String address = in.readString();
+      final String city = in.readString();
+      final String state = in.readString();
+      final String postalCode = in.readString();
+      final String country = in.readString();
       return new Location(latitude, longitude, address, city, state, postalCode, country);
     }
   };
 
-  public Location(double latitude, double longitude, String address, String city, String state, String postalCode, String country) {
+  public Location(final double latitude, final double longitude, final String address, final String city, final String state, final String postalCode, final String country) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.address = nonNullString(address);
@@ -104,19 +104,19 @@ public class Location implements Parcelable, Persistable {
     if (city.length() > 0 || state.length() > 0 || postalCode.length() > 0) {
       if (city.length() > 0) {
         if (state.length() > 0 || postalCode.length() > 0) {
-          return city + ", " + state + " " + postalCode;
+          return city + ", " + state + ' ' + postalCode;
         } else {
           return city;
         }
       } else {
-        return state + " " + postalCode;
+        return state + ' ' + postalCode;
       }
     }
 
     return "";
   }
 
-  public static String country(Location location) {
+  public static String country(final Location location) {
     if (location == null) {
       return null;
     }
@@ -128,24 +128,24 @@ public class Location implements Parcelable, Persistable {
   private final static double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
   private final static double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
 
-  public double distanceTo(Location to) {
+  public double distanceTo(final Location to) {
 
     if (to == null) {
       return UNKNOWN_DISTANCE;
     }
 
-    double lat1 = (this.latitude / 180) * Math.PI;
-    double lng1 = (this.longitude / 180) * Math.PI;
-    double lat2 = (to.latitude / 180) * Math.PI;
-    double lng2 = (to.longitude / 180) * Math.PI;
+    final double lat1 = (this.latitude / 180) * PI;
+    final double lng1 = (this.longitude / 180) * PI;
+    final double lat2 = (to.latitude / 180) * PI;
+    final double lng2 = (to.longitude / 180) * PI;
 
     double diff = lng1 - lng2;
 
     if (diff < 0) {
       diff = -diff;
     }
-    if (diff > Math.PI) {
-      diff = 2 * Math.PI;
+    if (diff > PI) {
+      diff = 2 * PI;
     }
 
     double distance = acos(sin(lat2) * sin(lat1) + cos(lat2) * cos(lat1) * cos(diff));
@@ -167,7 +167,7 @@ public class Location implements Parcelable, Persistable {
     return 0;
   }
 
-  public void writeToParcel(Parcel dest, int flags) {
+  public void writeToParcel(final Parcel dest, final int flags) {
     dest.writeDouble(latitude);
     dest.writeDouble(longitude);
     dest.writeString(address);
@@ -177,19 +177,19 @@ public class Location implements Parcelable, Persistable {
     dest.writeString(country);
   }
 
-  public static final Parcelable.Creator<Location> CREATOR = new Parcelable.Creator<Location>() {
-    public Location createFromParcel(Parcel source) {
-      double latitude = source.readDouble();
-      double longitude = source.readDouble();
-      String address = source.readString();
-      String city = source.readString();
-      String state = source.readString();
-      String postalCode = source.readString();
-      String country = source.readString();
+  public static final Creator<Location> CREATOR = new Creator<Location>() {
+    public Location createFromParcel(final Parcel source) {
+      final double latitude = source.readDouble();
+      final double longitude = source.readDouble();
+      final String address = source.readString();
+      final String city = source.readString();
+      final String state = source.readString();
+      final String postalCode = source.readString();
+      final String country = source.readString();
       return new Location(latitude, longitude, address, city, state, postalCode, country);
     }
 
-    public Location[] newArray(int size) {
+    public Location[] newArray(final int size) {
       return new Location[size];
     }
   };

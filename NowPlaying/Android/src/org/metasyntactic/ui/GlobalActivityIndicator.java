@@ -25,7 +25,7 @@ public class GlobalActivityIndicator {
   private static final Object lock = new Object();
   private static int totalBackgroundTaskCount;
   private static int visibleBackgroundTaskCount;
-  private static Set<Activity> activities = new LinkedHashSet<Activity>();
+  private static final Set<Activity> activities = new LinkedHashSet<Activity>();
 
   private GlobalActivityIndicator() {
   }

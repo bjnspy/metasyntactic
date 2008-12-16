@@ -30,7 +30,7 @@ public class Performance implements Parcelable, Persistable {
   private final static SimpleDateFormat format = new SimpleDateFormat("h:mma");
 
   static {
-    DateFormatSymbols symbols = format.getDateFormatSymbols();
+    final DateFormatSymbols symbols = format.getDateFormatSymbols();
     symbols.setAmPmStrings(new String[]{"am", "pm"});
     format.setDateFormatSymbols(symbols);
   }
@@ -38,21 +38,21 @@ public class Performance implements Parcelable, Persistable {
   private final Date time;
   private final String url;
 
-  public void persistTo(PersistableOutputStream out) throws IOException {
+  public void persistTo(final PersistableOutputStream out) throws IOException {
     out.writeDate(time);
     out.writeString(url);
   }
 
   public static final Reader<Performance> reader = new AbstractPersistable.AbstractReader<Performance>() {
-    public Performance read(PersistableInputStream in) throws IOException {
-      Date time = in.readDate();
-      String url = in.readString();
+    public Performance read(final PersistableInputStream in) throws IOException {
+      final Date time = in.readDate();
+      final String url = in.readString();
 
       return new Performance(time, url);
     }
   };
 
-  public Performance(Date time, String url) {
+  public Performance(final Date time, final String url) {
     this.time = time;
     this.url = url;
   }
@@ -73,19 +73,19 @@ public class Performance implements Parcelable, Persistable {
     return 0;
   }
 
-  public void writeToParcel(Parcel dest, int flags) {
+  public void writeToParcel(final Parcel dest, final int flags) {
     dest.writeValue(time);
     dest.writeString(url);
   }
 
-  public static final Parcelable.Creator<Performance> CREATOR = new Parcelable.Creator<Performance>() {
-    public Performance createFromParcel(Parcel source) {
-      Date time = (Date) source.readValue(Date.class.getClassLoader());
-      String url = source.readString();
+  public static final Creator<Performance> CREATOR = new Creator<Performance>() {
+    public Performance createFromParcel(final Parcel source) {
+      final Date time = (Date) source.readValue(Date.class.getClassLoader());
+      final String url = source.readString();
       return new Performance(time, url);
     }
 
-    public Performance[] newArray(int size) {
+    public Performance[] newArray(final int size) {
       return new Performance[size];
     }
   };

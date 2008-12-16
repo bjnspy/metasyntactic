@@ -68,7 +68,7 @@ public class NowPlayingController {
     }
   }
 
-  private void reportUnknownLocation() {
+  private static void reportUnknownLocation() {
     final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
     if (context == null) {
       return;

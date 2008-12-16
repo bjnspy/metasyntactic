@@ -128,7 +128,8 @@ public class DataProvider {
     saveResult(result);
   }
 
-  private void addMissingData(LookupResult result, Location location, List<Movie> currentMovies, List<Theater> currentTheaters) {
+  private void addMissingData(final LookupResult result, final Location location, final List<Movie> currentMovies,
+                              final List<Theater> currentTheaters) {
     // Ok.  so if:
     //   a) the user is doing their main search
     //   b) we do not find data for a theater that should be showing up
@@ -140,15 +141,15 @@ public class DataProvider {
     // This is to deal with the case where the user is confused because
     // a theater they care about has been filtered out because it didn't
     // report showtimes.
-    Set<String> existingMovieTitles = new LinkedHashSet<String>();
-    for (Movie movie : result.movies) {
+    final Set<String> existingMovieTitles = new LinkedHashSet<String>();
+    for (final Movie movie : result.movies) {
       existingMovieTitles.add(movie.getCanonicalTitle());
     }
 
-    Set<Theater> missingTheaters = new LinkedHashSet<Theater>(currentTheaters);
+    final Set<Theater> missingTheaters = new LinkedHashSet<Theater>(currentTheaters);
     missingTheaters.removeAll(result.theaters);
 
-    for (Theater theater : missingTheaters) {
+    for (final Theater theater : missingTheaters) {
       if (theater.getLocation().distanceTo(location) > 50) {
         // Not close enough.  Consider this a brand new search in a new
         // location.  Don't include this old theaters.
@@ -157,12 +158,12 @@ public class DataProvider {
 
       // no showtime information available.  fallback to anything we've
       // stored (but warn the user).
-      Map<String, List<Performance>> oldPerformances = lookupTheaterPerformances(theater);
+      final Map<String, List<Performance>> oldPerformances = lookupTheaterPerformances(theater);
       if (isEmpty(oldPerformances)) {
         continue;
       }
 
-      Date syncDate = this.synchronizationDateForTheater(theater.getName());
+      final Date syncDate = this.synchronizationDateForTheater(theater.getName());
       if (Math.abs(syncDate.getTime() - new Date().getTime()) > Constants.FOUR_WEEKS) {
         continue;
       }
@@ -218,16 +219,17 @@ public class DataProvider {
     }
   }
 
-  private void addMissingMovies(Map<String, List<Performance>> performances, LookupResult result, Set<String> existingMovieTitles, List<Movie> currentMovies) {
+  private void addMissingMovies(final Map<String, List<Performance>> performances, final LookupResult result,
+                                final Set<String> existingMovieTitles, final List<Movie> currentMovies) {
     if (isEmpty(performances)) {
       return;
     }
 
-    for (String movieTitle : performances.keySet()) {
+    for (final String movieTitle : performances.keySet()) {
       if (!existingMovieTitles.contains(movieTitle)) {
         existingMovieTitles.add(movieTitle);
 
-        for (Movie movie : currentMovies) {
+        for (final Movie movie : currentMovies) {
           if (movie.getCanonicalTitle().equals(movieTitle)) {
             result.movies.add(movie);
             break;
@@ -321,7 +323,9 @@ public class DataProvider {
     return movieIdToMovieMap;
   }
 
-  private Map<String, List<Performance>> processMovieAndShowtimesList(final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList, final Map<String, Movie> movieIdToMovieMap) {
+  private Map<String, List<Performance>> processMovieAndShowtimesList(
+      final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList,
+      final Map<String, Movie> movieIdToMovieMap) {
     final Map<String, List<Performance>> result = new HashMap<String, List<Performance>>();
 
     for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto movieAndShowtimes : movieAndShowtimesList) {
@@ -330,11 +334,11 @@ public class DataProvider {
 
       final List<Performance> performances = new ArrayList<Performance>();
 
-      List<Date> times = processTimes(movieAndShowtimes.getShowtimes().getShowtimesList());
-      List<NowPlaying.ShowtimeProto> showtimes = movieAndShowtimes.getShowtimes().getShowtimesList();
+      final List<Date> times = processTimes(movieAndShowtimes.getShowtimes().getShowtimesList());
+      final List<NowPlaying.ShowtimeProto> showtimes = movieAndShowtimes.getShowtimes().getShowtimesList();
 
       for (int i = 0; i < showtimes.size(); i++) {
-        Date time = times.get(i);
+        final Date time = times.get(i);
         if (time == null) {
           continue;
         }
@@ -354,13 +358,13 @@ public class DataProvider {
     return result;
   }
 
-  private boolean hasTimeSuffix(String time) {
+  private boolean hasTimeSuffix(final String time) {
     return time.endsWith("am") || time.endsWith("pm");
   }
 
-  private boolean is24HourTime(List<NowPlaying.ShowtimeProto> showtimes) {
-    for (NowPlaying.ShowtimeProto proto : showtimes) {
-      String time = proto.getTime();
+  private boolean is24HourTime(final List<NowPlaying.ShowtimeProto> showtimes) {
+    for (final NowPlaying.ShowtimeProto proto : showtimes) {
+      final String time = proto.getTime();
       if (time.length() != 5 || time.indexOf(":") != 2) {
         return false;
       }
@@ -369,8 +373,8 @@ public class DataProvider {
     return true;
   }
 
-  private boolean is12HourTime(List<NowPlaying.ShowtimeProto> showtimes) {
-    for (NowPlaying.ShowtimeProto proto : showtimes) {
+  private boolean is12HourTime(final List<NowPlaying.ShowtimeProto> showtimes) {
+    for (final NowPlaying.ShowtimeProto proto : showtimes) {
       if (!proto.getTime().contains(":")) {
         return false;
       }
@@ -379,16 +383,16 @@ public class DataProvider {
     return true;
   }
 
-  private List<Date> process24HourTimes(List<NowPlaying.ShowtimeProto> showtimes) {
-    List<Date> result = new ArrayList<Date>();
+  private List<Date> process24HourTimes(final List<NowPlaying.ShowtimeProto> showtimes) {
+    final List<Date> result = new ArrayList<Date>();
 
-    for (NowPlaying.ShowtimeProto proto : showtimes) {
+    for (final NowPlaying.ShowtimeProto proto : showtimes) {
       try {
-        String time = proto.getTime();
-        int hour = Integer.parseInt(time.substring(0, 2));
-        int minute = Integer.parseInt(time.substring(3));
+        final String time = proto.getTime();
+        final int hour = Integer.parseInt(time.substring(0, 2));
+        final int minute = Integer.parseInt(time.substring(3));
 
-        Calendar calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
 
@@ -403,8 +407,8 @@ public class DataProvider {
 
   private final SimpleDateFormat format = new SimpleDateFormat("h:mm a");
 
-  private List<Date> process12HourTimes(List<NowPlaying.ShowtimeProto> showtimes) {
-    List<Date> reverseArray = new ArrayList<Date>();
+  private List<Date> process12HourTimes(final List<NowPlaying.ShowtimeProto> showtimes) {
+    final List<Date> reverseArray = new ArrayList<Date>();
 
     boolean isPM = true;
     for (int i = showtimes.size() - 1; i >= 0; i--) {
@@ -422,7 +426,7 @@ public class DataProvider {
       }
 
       try {
-        Date date = format.parse(time);
+        final Date date = format.parse(time);
         reverseArray.add(date);
       } catch (ParseException e) {
         reverseArray.add(null);
@@ -433,7 +437,7 @@ public class DataProvider {
     return reverseArray;
   }
 
-  private List<Date> processTimes(List<NowPlaying.ShowtimeProto> showtimes) {
+  private List<Date> processTimes(final List<NowPlaying.ShowtimeProto> showtimes) {
     if (showtimes.size() == 0) {
       return Collections.emptyList();
     }
@@ -445,7 +449,11 @@ public class DataProvider {
     }
   }
 
-  private void processTheaterAndMovieShowtimes(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto theaterAndMovieShowtimes, final List<Theater> theaters, final Map<String, Map<String, List<Performance>>> performances, final Map<String, Date> synchronizationData, final Location originatingLocation, final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
+  private void processTheaterAndMovieShowtimes(
+      final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto theaterAndMovieShowtimes,
+      final List<Theater> theaters, final Map<String, Map<String, List<Performance>>> performances,
+      final Map<String, Date> synchronizationData, final Location originatingLocation,
+      final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
     final NowPlaying.TheaterProto theater = theaterAndMovieShowtimes.getTheater();
     final String name = theater.getName();
     if (isNullOrEmpty(name)) {
@@ -494,7 +502,10 @@ public class DataProvider {
                              new HashSet<String>(movieToShowtimesMap.keySet())));
   }
 
-  private LookupResult processTheaterAndMovieShowtimes(final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes, final Location originatingLocation, final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
+  private LookupResult processTheaterAndMovieShowtimes(
+      final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes,
+      final Location originatingLocation, final Collection<String> theaterNames,
+      final Map<String, Movie> movieIdToMovieMap) {
 
     final List<Theater> theaters = new ArrayList<Theater>();
 
@@ -510,7 +521,9 @@ public class DataProvider {
     return new LookupResult(null, theaters, performances, synchronizationData);
   }
 
-  private LookupResult processTheaterListings(final NowPlaying.TheaterListingsProto element, final Location originatingLocation, final Collection<String> theaterNames) {
+  private LookupResult processTheaterListings(final NowPlaying.TheaterListingsProto element,
+                                              final Location originatingLocation,
+                                              final Collection<String> theaterNames) {
     final List<NowPlaying.MovieProto> movieProtos = element.getMoviesList();
     final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList();
     final Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);

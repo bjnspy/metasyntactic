@@ -29,24 +29,24 @@ import java.util.*;
 public class TrailerCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
 
-  public TrailerCache(NowPlayingModel model) {
+  public TrailerCache(final NowPlayingModel model) {
     super(model);
   }
 
-  private String trailerFileName(final Movie movie) {
+  private static String trailerFileName(final Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }
 
-  private File trailerFilePath(final Movie movie) {
+  private static File trailerFilePath(final Movie movie) {
     return new File(Application.trailersDirectory, trailerFileName(movie));
   }
 
-  protected List<File> getCacheDirectories() {
+  @Override protected List<File> getCacheDirectories() {
     return Collections.singletonList(Application.trailersDirectory);
   }
 
   @SuppressWarnings("unchecked")
-  private List<List<Movie>> getOrderedMovies(final List<Movie> movies) {
+  private static List<List<Movie>> getOrderedMovies(final List<Movie> movies) {
     final List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
     final List<Movie> moviesWithTrailers = new ArrayList<Movie>();
 
@@ -54,15 +54,15 @@ public class TrailerCache extends AbstractCache {
 
     for (final Movie movie : movies) {
       final File file = trailerFilePath(movie);
-      if (!file.exists()) {
-        moviesWithoutTrailers.add(movie);
-      } else {
+      if (file.exists()) {
         final long writeTime = file.lastModified();
         final long span = Math.abs(writeTime - now);
 
         if (span > 2 * Constants.ONE_DAY) {
           moviesWithTrailers.add(movie);
         }
+      } else {
+        moviesWithoutTrailers.add(movie);
       }
     }
 
@@ -94,7 +94,7 @@ public class TrailerCache extends AbstractCache {
     }
   }
 
-  private void downloadMovieTrailer(final Movie movie, final Map<String, List<String>> index) {
+  private static void downloadMovieTrailer(final Movie movie, final Map<String, List<String>> index) {
     if (movie == null) {
       return;
     }
@@ -133,7 +133,7 @@ public class TrailerCache extends AbstractCache {
     } while (movie != null && !this.shutdown);
   }
 
-  private Map<String, List<String>> generateIndex(final String indexText) {
+  private static Map<String, List<String>> generateIndex(final String indexText) {
     final Map<String, List<String>> index = new HashMap<String, List<String>>();
 
     for (final String row : indexText.split("\n")) {
@@ -152,7 +152,7 @@ public class TrailerCache extends AbstractCache {
     return index;
   }
 
-  public String getTrailer(final Movie movie) {
+  public static String getTrailer(final Movie movie) {
     return FileUtilities.readString(trailerFilePath(movie));
   }
 

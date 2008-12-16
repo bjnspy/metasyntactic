@@ -26,15 +26,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class IMDbCache extends AbstractCache {
-  public IMDbCache(NowPlayingModel model) {
+  public IMDbCache(final NowPlayingModel model) {
     super(model);
   }
 
-  private String movieFileName(final Movie movie) {
+  private static String movieFileName(final Movie movie) {
     return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }
 
-  private File movieFilePath(final Movie movie) {
+  private static File movieFilePath(final Movie movie) {
     return new File(Application.imdbDirectory, movieFileName(movie));
   }
 
@@ -60,7 +60,7 @@ public class IMDbCache extends AbstractCache {
     }
   }
 
-  private void downloadIMDbAddress(Movie movie) {// Nothing to do if we already have a valid imdb address
+  private static void downloadIMDbAddress(final Movie movie) {// Nothing to do if we already have a valid imdb address
     if (!StringUtilities.isNullOrEmpty(movie.getIMDbAddress())) {
       return;
     }
@@ -89,11 +89,11 @@ public class IMDbCache extends AbstractCache {
     Application.refresh();
   }
 
-  public String getIMDbAddress(final Movie movie) {
+  public static String getIMDbAddress(final Movie movie) {
     return FileUtilities.readString(movieFilePath(movie));
   }
 
-  protected List<File> getCacheDirectories() {
+  @Override protected List<File> getCacheDirectories() {
     return Collections.singletonList(Application.imdbDirectory);
   }
 }

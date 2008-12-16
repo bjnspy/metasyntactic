@@ -32,10 +32,10 @@ public class AddressLocationCache {
 
     for (final Theater theater : theaters) {
       double d;
-      if (location != null) {
-        d = location.distanceTo(theater.getLocation());
-      } else {
+      if (location == null) {
         d = Location.UNKNOWN_DISTANCE;
+      } else {
+        d = location.distanceTo(theater.getLocation());
       }
 
       map.put(theater, d);

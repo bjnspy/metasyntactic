@@ -24,13 +24,13 @@ import java.io.IOException;
 
 public class Score implements Parcelable, Persistable, Comparable<Score> {
   private static final long serialVersionUID = -22337839093764822L;
-  private String canonicalTitle;
-  private String synopsis;
-  private String value;
-  private String provider;
-  private String identifier;
+  private final String canonicalTitle;
+  private final String synopsis;
+  private final String value;
+  private final String provider;
+  private final String identifier;
 
-  public void persistTo(PersistableOutputStream out) throws IOException {
+  public void persistTo(final PersistableOutputStream out) throws IOException {
     out.writeString(canonicalTitle);
     out.writeString(synopsis);
     out.writeString(value);
@@ -39,18 +39,18 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
   }
 
   public static final Reader<Score> reader = new AbstractPersistable.AbstractReader<Score>() {
-    public Score read(PersistableInputStream in) throws IOException {
-      String canonicalTitle = in.readString();
-      String synopsis = in.readString();
-      String value = in.readString();
-      String provider = in.readString();
-      String identifier = in.readString();
+    public Score read(final PersistableInputStream in) throws IOException {
+      final String canonicalTitle = in.readString();
+      final String synopsis = in.readString();
+      final String value = in.readString();
+      final String provider = in.readString();
+      final String identifier = in.readString();
 
       return new Score(canonicalTitle, synopsis, value, provider, identifier);
     }
   };
 
-  private Score(String canonicalTitle, String synopsis, String value, String provider, String identifier, boolean dummy) {
+  private Score(final String canonicalTitle, final String synopsis, final String value, final String provider, final String identifier, final boolean ignored) {
     this.canonicalTitle = canonicalTitle;
     this.synopsis = synopsis;
     this.value = value;
@@ -58,7 +58,7 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
     this.identifier = identifier;
   }
 
-  public Score(String title, String synopsis, String value, String provider, String identifier) {
+  public Score(final String title, final String synopsis, final String value, final String provider, final String identifier) {
     this(Movie.makeCanonical(title), synopsis, value, provider, identifier, true);
   }
 
@@ -81,7 +81,7 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
   public int getScoreValue() {
     try {
       return Integer.parseInt(getValue());
-    } catch (NumberFormatException e) {
+    } catch (NumberFormatException ignored) {
       return -1;
     }
   }
@@ -94,7 +94,7 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
     return 0;
   }
 
-  public void writeToParcel(Parcel parcel, int i) {
+  public void writeToParcel(final Parcel parcel, final int i) {
     parcel.writeString(canonicalTitle);
     parcel.writeString(synopsis);
     parcel.writeString(value);
@@ -102,23 +102,23 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
     parcel.writeString(identifier);
   }
 
-  public static final Parcelable.Creator<Score> CREATOR = new Parcelable.Creator<Score>() {
-    public Score createFromParcel(Parcel source) {
-      String canonicalTitle = source.readString();
-      String synopsis = source.readString();
-      String score = source.readString();
-      String provider = source.readString();
-      String identifier = source.readString();
+  public static final Creator<Score> CREATOR = new Creator<Score>() {
+    public Score createFromParcel(final Parcel source) {
+      final String canonicalTitle = source.readString();
+      final String synopsis = source.readString();
+      final String score = source.readString();
+      final String provider = source.readString();
+      final String identifier = source.readString();
 
       return new Score(canonicalTitle, synopsis, score, provider, identifier);
     }
 
-    public Score[] newArray(int size) {
+    public Score[] newArray(final int size) {
       return new Score[size];
     }
   };
 
-  public int compareTo(Score score) {
+  public int compareTo(final Score score) {
     return getCanonicalTitle().compareTo(score.getCanonicalTitle());
   }
 }

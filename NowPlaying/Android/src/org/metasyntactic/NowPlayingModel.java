@@ -62,7 +62,6 @@ public class NowPlayingModel {
     this.preferences = applicationContext.getSharedPreferences(NowPlayingModel.class.getName(), 0);
     loadData();
     clearCaches();
-    initializeTestValues();
   }
 
   private void clearCaches() {
@@ -124,13 +123,6 @@ public class NowPlayingModel {
     this.imdbCache.update(getMovies());
   }
 
-  private void initializeTestValues() {
-    if (true) {
-      return;
-    }
-    setUserAddress("10009");
-  }
-
   public UserLocationCache getUserLocationCache() {
     return this.userLocationCache;
   }
@@ -172,7 +164,7 @@ public class NowPlayingModel {
         return DateUtilities.getToday();
       }
       final DateFormat format = new SimpleDateFormat();
-      Date result = null;
+      Date result;
       try {
         result = format.parse(value);
       } catch (final ParseException e) {
@@ -305,8 +297,8 @@ public class NowPlayingModel {
     return Collections.emptyList();
   }
 
-  public String getTrailer(final Movie movie) {
-    return this.trailerCache.getTrailer(movie);
+  public static String getTrailer(final Movie movie) {
+    return TrailerCache.getTrailer(movie);
   }
 
   public Score getScore(final Movie movie) {
@@ -317,12 +309,12 @@ public class NowPlayingModel {
     return this.scoreCache.getReviews(getMovies(), movie);
   }
 
-  public List<String> getCast(final Movie movie) {
+  public static List<String> getCast(final Movie movie) {
     if (!movie.getCast().isEmpty()) {
       return movie.getCast();
     }
 
-    return upcomingCache.getCast(movie);
+    return UpcomingCache.getCast(movie);
   }
 
   private final static byte[] EMPTY_BYTES = new byte[0];
@@ -332,7 +324,7 @@ public class NowPlayingModel {
     if (bytes != null) {
       return bytes;
     }
-    bytes = this.upcomingCache.getPoster(movie);
+    bytes = UpcomingCache.getPoster(movie);
     if (bytes != null) {
       return bytes;
     }
@@ -353,7 +345,7 @@ public class NowPlayingModel {
       if (score != null && !isNullOrEmpty(score.getSynopsis())) {
         options.add(score.getSynopsis());
       }
-      final String synopsis = this.upcomingCache.getSynopsis(movie);
+      final String synopsis = UpcomingCache.getSynopsis(movie);
       if (!isNullOrEmpty(synopsis)) {
         options.add(synopsis);
       }
@@ -367,18 +359,18 @@ public class NowPlayingModel {
     return bestOption;
   }
 
-  public String getIMDbAddress(final Movie movie) {
+  public static String getIMDbAddress(final Movie movie) {
     String result = movie.getIMDbAddress();
     if (!isNullOrEmpty(result)) {
       return result;
     }
 
-    result = this.imdbCache.getIMDbAddress(movie);
+    result = IMDbCache.getIMDbAddress(movie);
     if (!isNullOrEmpty(result)) {
       return result;
     }
 
-    result = this.upcomingCache.getIMDbAddress(movie);
+    result = UpcomingCache.getIMDbAddress(movie);
     if (!isNullOrEmpty(result)) {
       return result;
     }
