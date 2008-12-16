@@ -9,8 +9,10 @@
 #import "Queue.h"
 
 #import "Movie.h"
+#import "Utilities.h"
 
 @interface Queue()
+@property (copy) NSString* feedKey;
 @property (copy) NSString* etag;
 @property (retain) NSArray* movies;
 @end
@@ -18,10 +20,12 @@
 
 @implementation Queue
 
+property_definition(feedKey);
 property_definition(etag);
 property_definition(movies);
 
 - (void) dealloc {
+    self.feedKey = nil;
     self.etag = nil;
     self.movies = nil;
 
@@ -29,10 +33,12 @@ property_definition(movies);
 }
 
 
-- (id) initWithETag:(NSString*) etag_
+- (id) initWithFeedKey:(NSString*) feedKey_
+                  etag:(NSString*) etag_
                   movies:(NSArray*) movies_ {
     if (self = [super init]) {
-        self.etag = etag_;
+        self.feedKey = feedKey_;
+        self.etag = [Utilities nonNilString:etag_];
         self.movies = movies_;
     }
     
@@ -40,23 +46,36 @@ property_definition(movies);
 }
 
 
-+ (Queue*) queueWithETag:(NSString*) etag
++ (Queue*) queueWithFeedKey:(NSString*) feedKey
+                       etag:(NSString*) etag
                   movies:(NSArray*) movies {
-    return [[[Queue alloc] initWithETag:etag movies:movies] autorelease];
+    return [[[Queue alloc] initWithFeedKey:feedKey etag:etag movies:movies] autorelease];
 }
 
 
 + (Queue*) queueWithDictionary:(NSDictionary*) dictionary {
-    return [Queue queueWithETag:[dictionary objectForKey:etag_key]
-                         movies:[Movie decodeArray:[dictionary objectForKey:movies_key]]];
+    return [Queue queueWithFeedKey:[dictionary objectForKey:feedKey_key]
+                              etag:[dictionary objectForKey:etag_key]
+                            movies:[Movie decodeArray:[dictionary objectForKey:movies_key]]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    [result setObject:feedKey forKey:feedKey_key];
     [result setObject:etag forKey:etag_key];
     [result setObject:[Movie encodeArray:movies] forKey:movies_key];
     return result;
+}
+
+
+- (BOOL) isDVDQueue {
+    return [@"http://schemas.netflix.com/feed.queues.disc" isEqual:feedKey];
+}
+
+
+- (BOOL) isInstantQueue {
+    return [@"http://schemas.netflix.com/feed.queues.instant" isEqual:feedKey];
 }
 
 

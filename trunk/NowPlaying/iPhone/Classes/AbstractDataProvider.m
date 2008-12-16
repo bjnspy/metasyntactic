@@ -129,18 +129,7 @@
 
 - (NSArray*) loadMovies:(NSString*) file {
     NSArray* array = [FileUtilities readObject:file];
-    if (array == nil) {
-        return [NSArray array];
-    }
-
-    NSMutableArray* decodedMovies = [NSMutableArray array];
-
-    for (int i = 0; i < array.count; i++) {
-        Movie* movie = [Movie movieWithDictionary:[array objectAtIndex:i]];
-        [decodedMovies addObject:movie];
-    }
-
-    return decodedMovies;
+    return [Movie decodeArray:array];
 }
 
 
@@ -232,7 +221,7 @@
     [FileUtilities removeItem:self.performancesDirectory];
     [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
 
-    [self saveArray:result.movies to:self.moviesFile];
+    [FileUtilities writeObject:[Movie encodeArray:result.movies] toFile:self.moviesFile];
     [self saveArray:result.theaters to:self.theatersFile];
 
     [FileUtilities writeObject:result.synchronizationInformation toFile:self.synchronizationInformationFile];

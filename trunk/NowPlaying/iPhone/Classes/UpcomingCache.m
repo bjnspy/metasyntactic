@@ -93,16 +93,6 @@
 }
 
 
-- (void) saveMovieArray:(NSArray*) array toFile:(NSString*) file {
-    NSMutableArray* encodedMovies = [NSMutableArray array];
-    for (Movie* movie in array) {
-        [encodedMovies addObject:movie.dictionary];
-    }
-
-    [FileUtilities writeObject:encodedMovies toFile:file];
-}
-
-
 - (void) writeData:(NSString*) hash
             movies:(NSArray*) movies
         studioKeys:(NSDictionary*) studioKeys
@@ -110,7 +100,7 @@
     [FileUtilities writeObject:studioKeys toFile:self.studiosFile];
     [FileUtilities writeObject:titleKeys toFile:self.titlesFile];
 
-    [self saveMovieArray:movies toFile:self.moviesFile];
+    [FileUtilities writeObject:[Movie encodeArray:movies] toFile:self.moviesFile];
 
     // do this last, it signifies that we're done.
     [FileUtilities writeObject:hash toFile:self.hashFile];

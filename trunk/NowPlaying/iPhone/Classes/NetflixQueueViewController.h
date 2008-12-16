@@ -6,18 +6,21 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+#import "NetflixReorderQueueDelegate.h"
 #import "TappableImageViewDelegate.h"
 
-@interface NetflixQueueViewController : UITableViewController<TappableImageViewDelegate> {
+@interface NetflixQueueViewController : UITableViewController<TappableImageViewDelegate, NetflixReorderQueueDelegate> {
 @private
     AbstractNavigationController* navigationController;
     Feed* feed;
-    NSArray* movies;
+    Queue* queue;
     
     UIBarButtonItem* backButton;
     BOOL upArrowTapped;
     
-    NSArray* originalMovies;
+    NSMutableArray* mutableMovies;
+    
+    BOOL readonlyMode;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController feed:(Feed*) feed;

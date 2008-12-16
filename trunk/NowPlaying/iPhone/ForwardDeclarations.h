@@ -14,6 +14,7 @@
 
 @protocol DataProvider;
 @protocol DataProviderUpdateDelegate;
+@protocol NetflixReorderQueueDelegate;
 @protocol ScoreProvider;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
