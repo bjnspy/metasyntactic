@@ -11,7 +11,7 @@
 @interface NetflixCache : AbstractCache {
 @private
     NSArray* feedsData;
-    NSMutableDictionary* queuesData;
+    NSMutableDictionary* queues;
 }
 
 + (NetflixCache*) cacheWithModel:(NowPlayingModel*) model;

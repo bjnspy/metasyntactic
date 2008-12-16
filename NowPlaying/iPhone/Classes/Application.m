@@ -49,6 +49,7 @@ static NSString* blurayIMDbDirectory = nil;
 static NSString* blurayPostersDirectory = nil;
 
 static NSString* netflixDirectory = nil;
+static NSString* netflixQueuesDirectory = nil;
 
 /*
 static NSString* numbersDirectory = nil;
@@ -77,6 +78,7 @@ static NSString** directories[] = {
     &blurayIMDbDirectory,
     &blurayPostersDirectory,
     &netflixDirectory,
+    &netflixQueuesDirectory,
 /*
     &numbersDirectory,
     &numbersBudgetsDirectory,
@@ -213,6 +215,7 @@ static DifferenceEngine* differenceEngine = nil;
             blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];
             
             netflixDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
+            netflixQueuesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Queues"] retain];
             
             upcomingDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
@@ -329,6 +332,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixDirectory {
     return netflixDirectory;
+}
+
+
++ (NSString*) netflixQueuesDirectory {
+    return netflixQueuesDirectory;
 }
 
 
