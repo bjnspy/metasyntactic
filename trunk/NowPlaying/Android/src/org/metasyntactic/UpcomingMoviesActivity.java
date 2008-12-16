@@ -85,12 +85,12 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.progressbar_1);
-    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+    final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
     linearLayout.forceLayout();
     NowPlayingControllerWrapper.addActivity(this);
-    String userLocation = NowPlayingControllerWrapper.getUserLocation();
+    final String userLocation = NowPlayingControllerWrapper.getUserLocation();
     if (userLocation == null || userLocation == "") {
-      Intent intent = new Intent();
+      final Intent intent = new Intent();
       intent.setClass(this, SettingsActivity.class);
       startActivity(intent);
     }
@@ -140,8 +140,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     this.postersAdapter = new PostersAdapter();
     this.grid.setAdapter(this.postersAdapter);
     this.intent = new Intent();
-    this.intent.setClass(UpcomingMoviesActivity.this, AllMoviesActivity.class);
-    this.animation = AnimationUtils.loadAnimation(UpcomingMoviesActivity.this, R.anim.fade_reverse);
+    this.intent.setClass(this, AllMoviesActivity.class);
+    this.animation = AnimationUtils.loadAnimation(this, R.anim.fade_reverse);
     this.animation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
         UpcomingMoviesActivity.this.grid.setVisibility(View.GONE);
@@ -179,16 +179,18 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   };
   private final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
-      int value1 = 0;
-      int value2 = 0;
       final Score s1 = NowPlayingControllerWrapper.getScore(m1);
       final Score s2 = NowPlayingControllerWrapper.getScore(m2);
+
+      int value1 = 0;
       if (s1 != null) {
         value1 = s1.getScoreValue();
       }
+      int value2 = 0;
       if (s2 != null) {
         value2 = s2.getScoreValue();
       }
+
       if (value1 == value2) {
         return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
       } else {
@@ -201,14 +203,13 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private class PostersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public PostersAdapter() {
+    private PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(UpcomingMoviesActivity.this);
     }
 
     public View getView(final int position, View convertView, final ViewGroup parent) {
       // to findViewById() on each row.
-      final ViewHolder holder;
       final int pagecount = position / 9;
       Log.i("getView", String.valueOf(pagecount));
       // When convertView is not null, we can reuse it directly, there is
@@ -216,6 +217,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       // to reinflate it. We only inflate a new View when the convertView
       // supplied
       // by ListView is null.
+      final ViewHolder holder;
       if (convertView == null) {
         convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
@@ -267,10 +269,10 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
 
     public int getCount() {
-      if (UpcomingMoviesActivity.this.movies != null) {
-        return Math.min(100, UpcomingMoviesActivity.this.movies.size());
-      } else {
+      if (UpcomingMoviesActivity.this.movies == null) {
         return 0;
+      } else {
+        return Math.min(100, UpcomingMoviesActivity.this.movies.size());
       }
     }
 
@@ -302,7 +304,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
-      intent.setClass(UpcomingMoviesActivity.this, AllTheatersActivity.class);
+      intent.setClass(this, AllTheatersActivity.class);
       startActivity(intent);
       return true;
     }

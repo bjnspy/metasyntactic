@@ -40,16 +40,16 @@ public class MovieDetailsActivity extends ListActivity {
   }
 
   private void populateMovieDetailEntries() {
-    final Resources res = MovieDetailsActivity.this.getResources();
+    final Resources res = this.getResources();
     // TODO move strings to res/strings.xml
     // Add title and synopsis
     {
       final String synopsis = this.movie.getSynopsis();
       String value;
-      if (!StringUtilities.isNullOrEmpty(synopsis)) {
-        value = synopsis;
-      } else {
+      if (StringUtilities.isNullOrEmpty(synopsis)) {
         value = res.getString(R.string.no_synopsis_available_dot);
+      } else {
+        value = synopsis;
       }
       final MovieDetailEntry entry = new MovieDetailEntry(this.movie.getDisplayTitle(), value);
       this.movieDetailEntries.add(entry);
@@ -98,7 +98,7 @@ public class MovieDetailsActivity extends ListActivity {
   private class MovieAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public MovieAdapter() {
+    private MovieAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(MovieDetailsActivity.this);
     }
@@ -157,7 +157,7 @@ public class MovieDetailsActivity extends ListActivity {
     }
   }
 
-  private class MovieDetailEntry {
+  private static class MovieDetailEntry {
     private final String name;
     private final String value;
 
@@ -187,51 +187,50 @@ public class MovieDetailsActivity extends ListActivity {
   @Override public boolean onOptionsItemSelected(final MenuItem item) {
     switch (item.getItemId()) {
       case MovieViewUtilities.MENU_IMDB:
-        String imdb_url = null;
-        imdb_url = NowPlayingControllerWrapper.getIMDbAddress(MovieDetailsActivity.this.movie);
+        String imdb_url = NowPlayingControllerWrapper.getIMDbAddress(this.movie);
         if (imdb_url != null) {
           final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this, "This movie's IMDB information is not available.",
+          Toast.makeText(this, "This movie's IMDB information is not available.",
                          Toast.LENGTH_SHORT).show();
         }
         break;
       case MovieViewUtilities.MENU_TRAILERS:
-        final String trailer_url = NowPlayingControllerWrapper.getTrailer(MovieDetailsActivity.this.movie);
+        final String trailer_url = NowPlayingControllerWrapper.getTrailer(this.movie);
         if (!StringUtilities.isNullOrEmpty(trailer_url)) {
           final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this, "This movie's trailers are not available.",
+          Toast.makeText(this, "This movie's trailers are not available.",
                          Toast.LENGTH_SHORT).show();
         }
         break;
       case MovieViewUtilities.MENU_REVIEWS:
         // doing this as the getReviews() throws NPE instead null return.
         ArrayList<Review> reviews = new ArrayList<Review>();
-        if (NowPlayingControllerWrapper.getScore(MovieDetailsActivity.this.movie) != null) {
-          reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(MovieDetailsActivity.this.movie));
+        if (NowPlayingControllerWrapper.getScore(this.movie) != null) {
+          reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(this.movie));
         }
-        if (reviews.size() > 0) {
+        if (!reviews.isEmpty()) {
           final Intent intent = new Intent();
           intent.putParcelableArrayListExtra("reviews", reviews);
-          intent.setClass(MovieDetailsActivity.this, AllReviewsActivity.class);
+          intent.setClass(this, AllReviewsActivity.class);
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this, "This movie's reviews are not yet available.",
+          Toast.makeText(this, "This movie's reviews are not yet available.",
                          Toast.LENGTH_SHORT).show();
         }
         break;
       case MovieViewUtilities.MENU_SHOWTIMES:
         final Intent intent_showtimes = new Intent();
-        intent_showtimes.setClass(MovieDetailsActivity.this, ShowtimesActivity.class);
-        intent_showtimes.putExtra("movie", (Parcelable) MovieDetailsActivity.this.movie);
+        intent_showtimes.setClass(this, ShowtimesActivity.class);
+        intent_showtimes.putExtra("movie", (Parcelable) this.movie);
         startActivity(intent_showtimes);
         break;
       case MovieViewUtilities.MENU_THEATER:
         final Intent intent = new Intent();
-        intent.setClass(MovieDetailsActivity.this, AllTheatersActivity.class);
+        intent.setClass(this, AllTheatersActivity.class);
         startActivity(intent);
     }
     return false;
