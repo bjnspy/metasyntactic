@@ -84,6 +84,7 @@
 @class PostersViewController;
 @class PriorityMutex;
 @class Pulser;
+@class Queue;
 @class RefreshableTableViewController;
 @class Review;
 @class ReviewBodyCell;

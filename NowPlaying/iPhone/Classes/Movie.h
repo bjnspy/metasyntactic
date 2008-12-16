@@ -72,4 +72,7 @@
 + (NSString*) makeCanonical:(NSString*) title;
 + (NSString*) makeDisplay:(NSString*) title;
 
++ (NSArray*) encodeArray:(NSArray*) array;
++ (NSArray*) decodeArray:(NSArray*) array;
+
 @end

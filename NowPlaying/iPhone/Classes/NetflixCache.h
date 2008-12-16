@@ -18,7 +18,7 @@
 
 - (void) update;
 - (NSArray*) feeds;
-- (NSArray*) queueForFeed:(Feed*) feed;
+- (Queue*) queueForFeed:(Feed*) feed;
 
 - (NSString*) noInformationFound;
 

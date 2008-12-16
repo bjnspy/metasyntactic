@@ -15,6 +15,7 @@
 #import "NetflixCache.h"
 #import "NetflixQueueViewController.h"
 #import "NowPlayingModel.h"
+#import "Queue.h"
 
 @interface NetflixFeedsViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -119,9 +120,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         Feed* feed = [feeds objectAtIndex:indexPath.row];
-        NSArray* queue = [self.model.netflixCache queueForFeed:feed];
+        Queue* queue = [self.model.netflixCache queueForFeed:feed];
         
-        id argument = (queue == nil ? (id)NSLocalizedString(@"downloading", nil) : (id)[NSNumber numberWithInt:queue.count]);
+        id argument = (queue == nil ? (id)NSLocalizedString(@"downloading", nil) : (id)[NSNumber numberWithInt:queue.movies.count]);
         cell.text = [NSString stringWithFormat:feed.title, argument];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
