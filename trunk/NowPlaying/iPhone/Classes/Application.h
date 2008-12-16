@@ -46,6 +46,7 @@
 + (NSString*) blurayPostersDirectory;
 
 + (NSString*) netflixDirectory;
++ (NSString*) netflixQueuesDirectory;
 
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;

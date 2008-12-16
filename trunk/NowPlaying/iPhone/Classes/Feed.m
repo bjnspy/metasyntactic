@@ -58,12 +58,8 @@ property_definition(name);
 - (NSString*) title {
     if ([key isEqual:@"http://schemas.netflix.com/feed.queues.disc"]) {
         return NSLocalizedString(@"DVDs (%@)", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.queues.disc.recent"]) {
-        return NSLocalizedString(@"DVDs - Recently Added (%@)", nil);
     } else if ([key isEqual:@"http://schemas.netflix.com/feed.queues.instant"]) {
         return NSLocalizedString(@"Instant (%@)", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.queues.instant.recent"]) {
-        return NSLocalizedString(@"Instant - Recently Added (%@)", nil);
     } else if ([key isEqual:@"http://schemas.netflix.com/feed.at_home"]) {
         return NSLocalizedString(@"At Home (%@)", nil);
     } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history.watched"]) {
