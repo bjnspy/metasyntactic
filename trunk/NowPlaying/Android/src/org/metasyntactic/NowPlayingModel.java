@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic;
 
 import android.content.Context;
@@ -29,9 +28,9 @@ import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.text.DateFormat;
 import java.util.*;
 
 public class NowPlayingModel {
@@ -47,7 +46,6 @@ public class NowPlayingModel {
   private final static String SCORE_TYPE_KEY = "scoreType";
   private final static String AUTO_UPDATED_ENABLED_KEY = "autoUpdateEnabled";
   private final static String CLEAR_CACHE_KEY = "clearCache";
-
   // SharedPreferences is not threadsafe. so we need to lock when using it
   private final Object preferencesLock = new Object();
   private final SharedPreferences preferences;
@@ -250,8 +248,7 @@ public class NowPlayingModel {
 
   public int getUpcomingMoviesSelectedSortIndex() {
     synchronized (this.preferencesLock) {
-      return this.preferences
-          .getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
+      return this.preferences.getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
     }
   }
 

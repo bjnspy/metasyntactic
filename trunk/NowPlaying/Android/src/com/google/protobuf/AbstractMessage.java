@@ -148,8 +148,7 @@ public abstract class AbstractMessage implements Message {
     return size;
   }
 
-  @Override
-  public boolean equals(final Object other) {
+  @Override   public boolean equals(final Object other) {
     if (other == this) {
       return true;
     }
@@ -163,8 +162,7 @@ public abstract class AbstractMessage implements Message {
     return getAllFields().equals(otherMessage.getAllFields());
   }
 
-  @Override
-  public int hashCode() {
+  @Override   public int hashCode() {
     int hash = 41;
     hash = 19 * hash + getDescriptorForType().hashCode();
     hash = 53 * hash + getAllFields().hashCode();

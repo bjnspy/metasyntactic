@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic.utilities;
 
 import android.content.res.Resources;
@@ -37,14 +36,12 @@ public class MovieViewUtilities {
   public static final int MENU_REVIEWS = 7;
   public static final int MENU_IMDB = 8;
   public static final int MENU_SHOWTIMES = 9;
-
   // Constants for movies sort
   private final static int MovieTitle = 0;
   private final static int Release = 1;
   // constants for Theaters sort
   private final static int TheaterName = 0;
   private final static int Distance = 1;
-
   private static String currentHeader;
 
   private MovieViewUtilities() {
@@ -173,8 +170,7 @@ public class MovieViewUtilities {
     return null;
   }
 
-  public static String getTheaterHeader(final List<Theater> theaters, final int position, final int sortIndex,
-                                        final Address address) {
+  public static String getTheaterHeader(final List<Theater> theaters, final int position, final int sortIndex, final Address address) {
     switch (sortIndex) {
       case TheaterName:
         if (position == 0) {

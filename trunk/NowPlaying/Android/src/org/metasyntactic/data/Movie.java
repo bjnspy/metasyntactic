@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.data;
 
 import android.os.Parcel;
@@ -78,9 +77,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     }
   };
 
-  private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, int length,
-                String imdbAddress, Date releaseDate, String poster, String synopsis, String studio,
-                List<String> directors, List<String> cast, List<String> genres) {
+  private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, int length, String imdbAddress, Date releaseDate, String poster, String synopsis, String studio, List<String> directors, List<String> cast, List<String> genres) {
     this.identifier = identifier;
     this.canonicalTitle = canonicalTitle;
     this.rating = rating;
@@ -96,9 +93,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     this.displayTitle = displayTitle;
   }
 
-  public Movie(String identifier, String title, String rating, int length, String imdbAddress, Date releaseDate,
-               String poster, String synopsis, String studio, List<String> directors, List<String> cast,
-               List<String> genres) {
+  public Movie(String identifier, String title, String rating, int length, String imdbAddress, Date releaseDate, String poster, String synopsis, String studio, List<String> directors, List<String> cast, List<String> genres) {
     this(identifier, makeCanonical(title), makeDisplay(title), rating, length, imdbAddress, releaseDate, poster,
          synopsis, studio, directors, cast, genres);
   }
@@ -180,34 +175,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   private static String[] suffixArticles;
 
   static {
-    String[] articles = new String[]{
-        "Der",
-        "Das",
-        "Ein",
-        "Eine",
-        "The",
-        "A",
-        "An",
-        "La",
-        "Las",
-        "Le",
-        "Les",
-        "Los",
-        "El",
-        "Un",
-        "Une",
-        "Una",
-        "Il",
-        "O",
-        "Het",
-        "De",
-        "Os",
-        "Az",
-        "Den",
-        "Al",
-        "En",
-        "L'"
-    };
+    String[] articles = new String[]{"Der", "Das", "Ein", "Eine", "The", "A", "An", "La", "Las", "Le", "Les", "Los", "El", "Un", "Une", "Una", "Il", "O", "Het", "De", "Os", "Az", "Den", "Al", "En", "L'"};
 
     prefixArticles = new String[articles.length];
     suffixArticles = new String[articles.length];

@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.Application;
@@ -50,13 +49,10 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
 
   private Map<String, Score> scores;
   private String hash;
-
   private final Object movieMapLock = new Object();
   private final BoundedPrioritySet<MovieAndMap> prioritizedMovies = new BoundedPrioritySet<MovieAndMap>(9);
-
   private List<Movie> movies;
   private Map<String, String> movieMap_doNotAccessDirectly;
-
   private final File providerDirectory = new File(Application.scoresDirectory, getProviderName());
   private final File reviewsDirectory = new File(Application.reviewsDirectory, getProviderName());
 
@@ -323,8 +319,8 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   private void downloadReviews(final Set<Score> scores, final Map<String, Score> scoresMap) {
-    final Location location = getModel().getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserAddress());
+    final Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+        getModel().getUserAddress());
 
     if (location == null) {
       return;
@@ -370,11 +366,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
       country = location.getCountry();
     }
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country +
-                           "&language=" + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "" +
-                           "&provider=" + score.getProvider() + "&latitude=" +
-                           (int) (location.getLatitude() * 1000000) + "&longitude=" +
-                           (int) (location.getLongitude() * 1000000);
+    final String address = "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "" + "&provider=" + score.getProvider() + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
 
     return address;
   }

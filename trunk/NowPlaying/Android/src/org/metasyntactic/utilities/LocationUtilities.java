@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.utilities;
 
 import org.metasyntactic.data.Location;
@@ -25,11 +24,7 @@ public class LocationUtilities {
   }
 
   private static Location findLocationWithGeonames(final double latitude, final double longitude) {
-    final String url = "http://ws.geonames.org/findNearbyPostalCodes?lat=" +
-                       latitude +
-                       "&lng=" +
-                       longitude +
-                       "&maxRows=1";
+    final String url = "http://ws.geonames.org/findNearbyPostalCodes?lat=" + latitude + "&lng=" + longitude + "&maxRows=1";
 
     final Element geonamesElement = NetworkUtilities.downloadXml(url, true);
     final Element codeElement = element(geonamesElement, "code");
@@ -51,11 +46,7 @@ public class LocationUtilities {
   }
 
   private static Location findLocationWithGeocoder(final double latitude, final double longitude) {
-    final String url = "http://geocoder.ca/?latt=" +
-                       latitude +
-                       "&longt=" +
-                       longitude +
-                       "&geoit=xml&reverse=Reverse+GeoCode+it";
+    final String url = "http://geocoder.ca/?latt=" + latitude + "&longt=" + longitude + "&geoit=xml&reverse=Reverse+GeoCode+it";
 
     final Element geodataElement = NetworkUtilities.downloadXml(url, true);
     final String postalCode = text(element(geodataElement, "postal"));

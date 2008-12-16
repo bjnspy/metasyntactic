@@ -35,13 +35,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   private Location userLocation;
   private Address userAddress;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
   // Define comparators for theater listings sort.
-
   private final Comparator<Theater> DISTANCE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
       final Double dist_m1 = AllTheatersActivity.this.userLocation.distanceTo(m1.getLocation());
@@ -52,11 +50,9 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   // The order of items in this array should match the
   // entries_theater_sort_preference array in res/values/arrays.xml
   @SuppressWarnings("unchecked")
-  private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(Theater.TITLE_ORDER,
-                                                                        this.DISTANCE_ORDER);
+  private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(Theater.TITLE_ORDER, this.DISTANCE_ORDER);
 
-  @Override
-  protected void onCreate(final Bundle savedInstanceState) {
+  @Override protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
@@ -89,39 +85,34 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     } catch (final IOException e) {
       throw new RuntimeException(e);
     }
-    this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress
-        .getLongitude(), null, null, null, null, null);
-    Collections.sort(this.theaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper
-        .getAllTheatersSelectedSortIndex()));
+    this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress.getLongitude(), null, null, null,
+                                     null, null);
+    Collections.sort(this.theaters,
+                     this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     // Set up Movies adapter
     this.adapter = new TheatersAdapter();
     setListAdapter(this.adapter);
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MENU_SORT, 0, R.string.menu_theater_sort).setIcon(android.R.drawable.star_on);
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
-        R.drawable.movies).setIntent(
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
         new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
-        R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
-        R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
         new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
           R.string.theaters_select_sort_title).setKey(
           NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT).setEntries(
-          R.array.entries_theaters_sort_preference).setPositiveButton(android.R.string.ok)
-          .setNegativeButton(android.R.string.cancel);
+          R.array.entries_theaters_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
+          android.R.string.cancel);
       builder.show();
       return true;
     }
@@ -151,16 +142,15 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       // Creates a MovieViewHolder and store references to the
       // children
       // views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
-          .findViewById(R.id.header), (TextView) convertView.findViewById(R.id.address),
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.header),
+                                                         (TextView) convertView.findViewById(R.id.address),
                                                          (TextView) convertView.findViewById(R.id.title),
-                                                         (ImageView) convertView
-                                                             .findViewById(R.id.divider));
+                                                         (ImageView) convertView.findViewById(R.id.divider));
       // Bind the data efficiently with the holder.
       final Theater theater = AllTheatersActivity.this.theaters.get(position);
-      final String headerText = MovieViewUtilities.getTheaterHeader(
-          AllTheatersActivity.this.theaters, position, NowPlayingControllerWrapper
-              .getAllTheatersSelectedSortIndex(), AllTheatersActivity.this.userAddress);
+      final String headerText = MovieViewUtilities.getTheaterHeader(AllTheatersActivity.this.theaters, position,
+                                                                    NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex(),
+                                                                    AllTheatersActivity.this.userAddress);
       if (headerText != null) {
         holder.header.setVisibility(1);
         holder.header.setText(headerText);
@@ -185,8 +175,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       private final TextView title;
       private final ImageView divider;
 
-      private MovieViewHolder(final TextView header, final TextView address, final TextView title,
-                              final ImageView divider) {
+      private MovieViewHolder(final TextView header, final TextView address, final TextView title, final ImageView divider) {
         this.header = header;
         this.address = address;
         this.title = title;
@@ -219,13 +208,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       return;
     }
     final List<Theater> theaters = NowPlayingControllerWrapper.getTheaters();
-    Collections.sort(theaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper
-        .getAllTheatersSelectedSortIndex()));
+    Collections.sort(theaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     this.adapter.refreshTheaters(theaters);
   }
 
-  @Override
-  protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
+  @Override protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
     final Theater theater = this.theaters.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, TheaterDetailsActivity.class);

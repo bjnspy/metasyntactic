@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.data.Movie;
@@ -23,7 +22,6 @@ import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.w3c.dom.Element;
 
 public class ImdbPosterDownloader {
-
   public static byte[] download(final Movie movie) {
     return NetworkUtilities.download(getImageUrl(getImdbId(movie)), false);
   }

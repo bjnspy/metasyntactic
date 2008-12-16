@@ -114,8 +114,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
       return internalGetResult().internalGetFieldAccessorTable();
     }
 
-    @Override
-    public BuilderType mergeFrom(final Message other) {
+    @Override     public BuilderType mergeFrom(final Message other) {
       if (other.getDescriptorForType() != internalGetFieldAccessorTable().descriptor) {
         throw new IllegalArgumentException("Message type mismatch.");
       }
@@ -206,8 +205,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
       return (BuilderType) this;
     }
 
-    @Override
-    public final BuilderType mergeUnknownFields(final UnknownFieldSet unknownFields) {
+    @Override     public final BuilderType mergeUnknownFields(final UnknownFieldSet unknownFields) {
       final GeneratedMessage result = internalGetResult();
       result.unknownFields = UnknownFieldSet.newBuilder(result.unknownFields)
           .mergeFrom(unknownFields)
@@ -382,15 +380,13 @@ public abstract class GeneratedMessage extends AbstractMessage {
     // ---------------------------------------------------------------
     // Reflection
 
-    @Override
-    public Map<Descriptors.FieldDescriptor, Object> getAllFields() {
+    @Override     public Map<Descriptors.FieldDescriptor, Object> getAllFields() {
       final Map<FieldDescriptor, Object> result = super.getAllFieldsMutable();
       result.putAll(this.extensions.getAllFields());
       return Collections.unmodifiableMap(result);
     }
 
-    @Override
-    public boolean hasField(final FieldDescriptor field) {
+    @Override     public boolean hasField(final FieldDescriptor field) {
       if (field.isExtension()) {
         verifyContainingType(field);
         return this.extensions.hasField(field);
@@ -399,8 +395,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    @Override
-    public Object getField(final FieldDescriptor field) {
+    @Override     public Object getField(final FieldDescriptor field) {
       if (field.isExtension()) {
         verifyContainingType(field);
         final Object value = this.extensions.getField(field);
@@ -416,8 +411,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    @Override
-    public int getRepeatedFieldCount(final FieldDescriptor field) {
+    @Override     public int getRepeatedFieldCount(final FieldDescriptor field) {
       if (field.isExtension()) {
         verifyContainingType(field);
         return this.extensions.getRepeatedFieldCount(field);
@@ -426,8 +420,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    @Override
-    public Object getRepeatedField(final FieldDescriptor field, final int index) {
+    @Override     public Object getRepeatedField(final FieldDescriptor field, final int index) {
       if (field.isExtension()) {
         verifyContainingType(field);
         return this.extensions.getRepeatedField(field, index);
@@ -483,8 +476,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
     protected ExtendableBuilder() {
     }
 
-    @Override
-    protected abstract ExtendableMessage<MessageType> internalGetResult();
+    @Override     protected abstract ExtendableMessage<MessageType> internalGetResult();
 
     /**
      * Check if a singular extension is present.
@@ -563,8 +555,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
      *
      * @return {@code true} unless the tag is an end-group tag.
      */
-    @Override
-    protected boolean parseUnknownField(final CodedInputStream input, final UnknownFieldSet.Builder unknownFields,
+    @Override     protected boolean parseUnknownField(final CodedInputStream input, final UnknownFieldSet.Builder unknownFields,
                                         final ExtensionRegistry extensionRegistry, final int tag) throws IOException {
       internalGetResult();
       return FieldSet.mergeFieldFrom(input, unknownFields, extensionRegistry, this, tag);
@@ -576,8 +567,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
     // We don't have to override the get*() methods here because they already
     // just forward to the underlying message.
 
-    @Override
-    public BuilderType setField(final FieldDescriptor field, final Object value) {
+    @Override     public BuilderType setField(final FieldDescriptor field, final Object value) {
       if (field.isExtension()) {
         final ExtendableMessage<MessageType> message = internalGetResult();
         message.verifyContainingType(field);
@@ -588,8 +578,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    @Override
-    public BuilderType clearField(final Descriptors.FieldDescriptor field) {
+    @Override     public BuilderType clearField(final Descriptors.FieldDescriptor field) {
       if (field.isExtension()) {
         final ExtendableMessage<MessageType> message = internalGetResult();
         message.verifyContainingType(field);
@@ -600,8 +589,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    @Override
-    public BuilderType setRepeatedField(final Descriptors.FieldDescriptor field, final int index, final Object value) {
+    @Override     public BuilderType setRepeatedField(final Descriptors.FieldDescriptor field, final int index, final Object value) {
       if (field.isExtension()) {
         final ExtendableMessage<MessageType> message = internalGetResult();
         message.verifyContainingType(field);
@@ -612,8 +600,7 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    @Override
-    public BuilderType addRepeatedField(final Descriptors.FieldDescriptor field, final Object value) {
+    @Override     public BuilderType addRepeatedField(final Descriptors.FieldDescriptor field, final Object value) {
       if (field.isExtension()) {
         final ExtendableMessage<MessageType> message = internalGetResult();
         message.verifyContainingType(field);
@@ -1071,13 +1058,11 @@ public abstract class GeneratedMessage extends AbstractMessage {
       private final Method valueOfMethod;
       private final Method getValueDescriptorMethod;
 
-      @Override
-      public Object get(final GeneratedMessage message) {
+      @Override       public Object get(final GeneratedMessage message) {
         return invokeOrDie(this.getValueDescriptorMethod, super.get(message));
       }
 
-      @Override
-      public void set(final GeneratedMessage.Builder builder, final Object value) {
+      @Override       public void set(final GeneratedMessage.Builder builder, final Object value) {
         super.set(builder, invokeOrDie(this.valueOfMethod, null, value));
       }
     }
@@ -1104,18 +1089,15 @@ public abstract class GeneratedMessage extends AbstractMessage {
         return Collections.unmodifiableList(newList);
       }
 
-      @Override
-      public Object getRepeated(final GeneratedMessage message, final int index) {
+      @Override       public Object getRepeated(final GeneratedMessage message, final int index) {
         return invokeOrDie(this.getValueDescriptorMethod, super.getRepeated(message, index));
       }
 
-      @Override
-      public void setRepeated(final GeneratedMessage.Builder builder, final int index, final Object value) {
+      @Override       public void setRepeated(final GeneratedMessage.Builder builder, final int index, final Object value) {
         super.setRepeated(builder, index, invokeOrDie(this.valueOfMethod, null, value));
       }
 
-      @Override
-      public void addRepeated(final GeneratedMessage.Builder builder, final Object value) {
+      @Override       public void addRepeated(final GeneratedMessage.Builder builder, final Object value) {
         super.addRepeated(builder, invokeOrDie(this.valueOfMethod, null, value));
       }
     }
@@ -1147,13 +1129,11 @@ public abstract class GeneratedMessage extends AbstractMessage {
         }
       }
 
-      @Override
-      public void set(final GeneratedMessage.Builder builder, final Object value) {
+      @Override       public void set(final GeneratedMessage.Builder builder, final Object value) {
         super.set(builder, coerceType(value));
       }
 
-      @Override
-      public Message.Builder newBuilder() {
+      @Override       public Message.Builder newBuilder() {
         return (Message.Builder) invokeOrDie(this.newBuilderMethod, null);
       }
     }
@@ -1183,18 +1163,15 @@ public abstract class GeneratedMessage extends AbstractMessage {
         }
       }
 
-      @Override
-      public void setRepeated(final GeneratedMessage.Builder builder, final int index, final Object value) {
+      @Override       public void setRepeated(final GeneratedMessage.Builder builder, final int index, final Object value) {
         super.setRepeated(builder, index, coerceType(value));
       }
 
-      @Override
-      public void addRepeated(final GeneratedMessage.Builder builder, final Object value) {
+      @Override       public void addRepeated(final GeneratedMessage.Builder builder, final Object value) {
         super.addRepeated(builder, coerceType(value));
       }
 
-      @Override
-      public Message.Builder newBuilder() {
+      @Override       public Message.Builder newBuilder() {
         return (Message.Builder) invokeOrDie(this.newBuilderMethod, null);
       }
     }

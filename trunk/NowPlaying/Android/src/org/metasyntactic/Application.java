@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic;
 
 import android.content.Context;
@@ -28,14 +27,12 @@ import java.util.List;
 public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
   public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
-
   public final static String host =
       /*
       "metaboxoffice6";
   /*/
       "metaboxoffice2";
   //*/
-
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
   public static final File dataDirectory = new File(applicationDirectory, "Data");
@@ -48,14 +45,12 @@ public class Application {
   public static final File imdbDirectory = new File(applicationDirectory, "IMDb");
   public static final File postersDirectory = new File(applicationDirectory, "Posters");
   public static final File postersLargeDirectory = new File(postersDirectory, "Large");
-
   public static final File upcomingDirectory = new File(applicationDirectory, "Upcoming");
   public static final File upcomingCastDirectory = new File(upcomingDirectory, "Cast");
   public static final File upcomingImdbDirectory = new File(upcomingDirectory, "IMDb");
   public static final File upcomingPostersDirectory = new File(upcomingDirectory, "Posters");
   public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
-
   private static Pulser pulser;
 
   static {

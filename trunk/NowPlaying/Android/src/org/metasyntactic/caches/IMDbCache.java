@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
@@ -78,8 +77,8 @@ public class IMDbCache extends AbstractCache {
       }
     }
 
-    final String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" +
-                       StringUtilities.urlEncode(movie.getCanonicalTitle());
+    final String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
+        movie.getCanonicalTitle());
 
     final String imdbAddress = NetworkUtilities.downloadString(url, false);
     if (imdbAddress == null) {

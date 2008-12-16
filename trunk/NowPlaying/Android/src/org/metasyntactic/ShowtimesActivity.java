@@ -26,8 +26,7 @@ public class ShowtimesActivity extends ListActivity {
     NAME_SHOWTIMES, ADDRESS, PHONE
   }
 
-  @Override
-  protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
+  @Override protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
     final Intent intent = new Intent();
     intent.setClass(ShowtimesActivity.this, ShowtimesDetailsActivity.class);
     intent.putExtra("movie", (Parcelable) movie);
@@ -36,16 +35,14 @@ public class ShowtimesActivity extends ListActivity {
     super.onListItemClick(l, v, position, id);
   }
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.theaters_movie);
     this.movie = getIntent().getExtras().getParcelable("movie");
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -57,8 +54,7 @@ public class ShowtimesActivity extends ListActivity {
     this.theaters = NowPlayingControllerWrapper.getTheatersShowingMovie(this.movie);
   }
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     bindView();
     // populateTheaterDetailItems();
@@ -76,8 +72,8 @@ public class ShowtimesActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
-          .findViewById(R.id.label), (TextView) convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder(
+          (TextView) convertView.findViewById(R.id.label), (TextView) convertView.findViewById(R.id.data));
       final Theater theater = ShowtimesActivity.this.theaters.get(position);
       holder.label.setText(theater.getName());
       final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
@@ -147,22 +143,18 @@ public class ShowtimesActivity extends ListActivity {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies)
-        .setIntent(new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
-        R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
-        R.drawable.upcoming);
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
+        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
-        .setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(ShowtimesActivity.this, AllTheatersActivity.class);

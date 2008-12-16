@@ -172,13 +172,11 @@ public final class DynamicMessage extends AbstractMessage {
     return this.unknownFields;
   }
 
-  @Override
-  public boolean isInitialized() {
+  @Override   public boolean isInitialized() {
     return this.fields.isInitialized(this.type);
   }
 
-  @Override
-  public void writeTo(final CodedOutputStream output) throws IOException {
+  @Override   public void writeTo(final CodedOutputStream output) throws IOException {
     this.fields.writeTo(output);
     if (this.type.getOptions().getMessageSetWireFormat()) {
       this.unknownFields.writeAsMessageSetTo(output);
@@ -187,8 +185,7 @@ public final class DynamicMessage extends AbstractMessage {
     }
   }
 
-  @Override
-  public int getSerializedSize() {
+  @Override   public int getSerializedSize() {
     int size = this.memoizedSize;
     if (size != -1) {
       return size;
@@ -240,14 +237,12 @@ public final class DynamicMessage extends AbstractMessage {
     // ---------------------------------------------------------------
     // Implementation of Message.Builder interface.
 
-    @Override
-    public Builder clear() {
+    @Override     public Builder clear() {
       this.fields.clear();
       return this;
     }
 
-    @Override
-    public Builder mergeFrom(final Message other) {
+    @Override     public Builder mergeFrom(final Message other) {
       if (other.getDescriptorForType() != this.type) {
         throw new IllegalArgumentException("mergeFrom(Message) can only merge messages of the same type.");
       }
@@ -283,8 +278,7 @@ public final class DynamicMessage extends AbstractMessage {
       return result;
     }
 
-    @Override
-    public Builder clone() {
+    @Override     public Builder clone() {
       final Builder result = new Builder(this.type);
       result.fields.mergeFrom(this.fields);
       return result;
@@ -294,8 +288,7 @@ public final class DynamicMessage extends AbstractMessage {
       return this.fields.isInitialized(this.type);
     }
 
-    @Override
-    public Builder mergeFrom(final CodedInputStream input, final ExtensionRegistry extensionRegistry)
+    @Override     public Builder mergeFrom(final CodedInputStream input, final ExtensionRegistry extensionRegistry)
         throws IOException {
       final UnknownFieldSet.Builder unknownFieldsBuilder = UnknownFieldSet.newBuilder(this.unknownFields);
       FieldSet.mergeFrom(input, unknownFieldsBuilder, extensionRegistry, this);
@@ -382,8 +375,7 @@ public final class DynamicMessage extends AbstractMessage {
       return this;
     }
 
-    @Override
-    public Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
+    @Override     public Builder mergeUnknownFields(final UnknownFieldSet unknownFields) {
       this.unknownFields = UnknownFieldSet.newBuilder(this.unknownFields)
           .mergeFrom(unknownFields)
           .build();

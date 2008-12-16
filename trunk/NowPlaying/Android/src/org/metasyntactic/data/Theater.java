@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.data;
 
 import android.os.Parcel;
@@ -33,7 +32,6 @@ public class Theater implements Parcelable, Persistable {
   private final String name;
   private final String address;
   private final String phoneNumber;
-
   private final Location location;
   private final Location originatingLocation;
   private final Set<String> movieTitles;
@@ -62,8 +60,7 @@ public class Theater implements Parcelable, Persistable {
     }
   };
 
-  public Theater(final String identifier, final String name, final String address, final String phoneNumber, final Location location,
-                 final Location originatingLocation, final Set<String> movieTitles) {
+  public Theater(final String identifier, final String name, final String address, final String phoneNumber, final Location location, final Location originatingLocation, final Set<String> movieTitles) {
     this.identifier = identifier;
     this.name = nonNullString(name);
     this.address = nonNullString(address);
@@ -73,8 +70,7 @@ public class Theater implements Parcelable, Persistable {
     this.movieTitles = movieTitles;
   }
 
-  @Override
-  public boolean equals(final Object o) {
+  @Override public boolean equals(final Object o) {
     if (this == o) {
       return true;
     }
@@ -91,8 +87,7 @@ public class Theater implements Parcelable, Persistable {
     return true;
   }
 
-  @Override
-  public int hashCode() {
+  @Override public int hashCode() {
     return identifier != null ? identifier.hashCode() : 0;
   }
 

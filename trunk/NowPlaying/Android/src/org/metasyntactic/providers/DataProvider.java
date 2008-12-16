@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.providers;
 
 import android.content.Context;
@@ -41,7 +40,6 @@ import java.util.*;
 public class DataProvider {
   private final Object lock = new Object();
   private final NowPlayingModel model;
-
   private List<Movie> movies;
   private List<Theater> theaters;
   private Map<String, Date> synchronizationData;
@@ -130,8 +128,7 @@ public class DataProvider {
     saveResult(result);
   }
 
-  private void addMissingData(LookupResult result, Location location, List<Movie> currentMovies,
-                              List<Theater> currentTheaters) {
+  private void addMissingData(LookupResult result, Location location, List<Movie> currentMovies, List<Theater> currentTheaters) {
     // Ok.  so if:
     //   a) the user is doing their main search
     //   b) we do not find data for a theater that should be showing up
@@ -221,8 +218,7 @@ public class DataProvider {
     }
   }
 
-  private void addMissingMovies(Map<String, List<Performance>> performances, LookupResult result,
-                                Set<String> existingMovieTitles, List<Movie> currentMovies) {
+  private void addMissingMovies(Map<String, List<Performance>> performances, LookupResult result, Set<String> existingMovieTitles, List<Movie> currentMovies) {
     if (isEmpty(performances)) {
       return;
     }
@@ -263,17 +259,13 @@ public class DataProvider {
       return null;
     }
 
-    final String country = isNullOrEmpty(location.getCountry())
-                           ? Locale.getDefault().getCountry()
-                           : location.getCountry();
+    final String country = isNullOrEmpty(
+        location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
     int days = Days.daysBetween(DateUtilities.getToday(), this.model.getSearchDate());
 
     days = min(max(days, 0), 7);
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country +
-                           "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" +
-                           "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" +
-                           (int) (location.getLongitude() * 1000000);
+    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
 
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
@@ -329,9 +321,7 @@ public class DataProvider {
     return movieIdToMovieMap;
   }
 
-  private Map<String, List<Performance>> processMovieAndShowtimesList(
-      final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList,
-      final Map<String, Movie> movieIdToMovieMap) {
+  private Map<String, List<Performance>> processMovieAndShowtimesList(final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList, final Map<String, Movie> movieIdToMovieMap) {
     final Map<String, List<Performance>> result = new HashMap<String, List<Performance>>();
 
     for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto movieAndShowtimes : movieAndShowtimesList) {
@@ -455,11 +445,7 @@ public class DataProvider {
     }
   }
 
-  private void processTheaterAndMovieShowtimes(
-      final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto theaterAndMovieShowtimes,
-      final List<Theater> theaters, final Map<String, Map<String, List<Performance>>> performances,
-      final Map<String, Date> synchronizationData, final Location originatingLocation,
-      final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
+  private void processTheaterAndMovieShowtimes(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto theaterAndMovieShowtimes, final List<Theater> theaters, final Map<String, Map<String, List<Performance>>> performances, final Map<String, Date> synchronizationData, final Location originatingLocation, final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
     final NowPlaying.TheaterProto theater = theaterAndMovieShowtimes.getTheater();
     final String name = theater.getName();
     if (isNullOrEmpty(name)) {
@@ -508,10 +494,7 @@ public class DataProvider {
                              new HashSet<String>(movieToShowtimesMap.keySet())));
   }
 
-  private LookupResult processTheaterAndMovieShowtimes(
-      final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes,
-      final Location originatingLocation, final Collection<String> theaterNames,
-      final Map<String, Movie> movieIdToMovieMap) {
+  private LookupResult processTheaterAndMovieShowtimes(final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes, final Location originatingLocation, final Collection<String> theaterNames, final Map<String, Movie> movieIdToMovieMap) {
 
     final List<Theater> theaters = new ArrayList<Theater>();
 
@@ -527,12 +510,9 @@ public class DataProvider {
     return new LookupResult(null, theaters, performances, synchronizationData);
   }
 
-  private LookupResult processTheaterListings(final NowPlaying.TheaterListingsProto element,
-                                              final Location originatingLocation,
-                                              final Collection<String> theaterNames) {
+  private LookupResult processTheaterListings(final NowPlaying.TheaterListingsProto element, final Location originatingLocation, final Collection<String> theaterNames) {
     final List<NowPlaying.MovieProto> movieProtos = element.getMoviesList();
-    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element
-        .getTheaterAndMovieShowtimesList();
+    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList();
     final Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);
 
     final LookupResult result = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes, originatingLocation,

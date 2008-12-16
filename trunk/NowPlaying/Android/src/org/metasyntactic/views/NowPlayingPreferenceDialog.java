@@ -45,8 +45,7 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-  public NowPlayingPreferenceDialog setNegativeButton(final int textId,
-                                                      final OnClickListener listener) {
+  public NowPlayingPreferenceDialog setNegativeButton(final int textId, final OnClickListener listener) {
     this.builder.setNegativeButton(textId, listener);
     return this;
   }
@@ -72,8 +71,7 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem,
-                                                          final OnClickListener listener) {
+  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem, final OnClickListener listener) {
     this.builder.setSingleChoiceItems(items, checkedItem, listener);
     return this;
   }

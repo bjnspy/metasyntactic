@@ -43,8 +43,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
     NowPlayingControllerWrapper controller;
     private final BroadcastReceiver broadcastReceiver =
         new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
+            @Override             public void onReceive(Context context, Intent intent) {
 
                 refresh();
 
@@ -99,8 +98,7 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
 
 
     *//** Called when the activity is first created. *//*
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    @Override     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         boolean bindResult =
@@ -156,22 +154,19 @@ public class NowPlayingActivity_old extends TabActivity implements INowPlaying {
     }
 
 
-    @Override
-    protected void onDestroy() {
+    @Override     protected void onDestroy() {
         unbindService(serviceConnection);
         super.onDestroy();
     }
 
 
-    @Override
-    protected void onResume() {
+    @Override     protected void onResume() {
         super.onResume();
         registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     }
 
 
-    @Override
-    protected void onPause() {
+    @Override     protected void onPause() {
         unregisterReceiver(broadcastReceiver);
         super.onPause();
     }

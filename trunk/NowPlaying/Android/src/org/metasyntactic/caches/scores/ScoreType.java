@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.caches.scores;
 
 import android.os.Parcel;
@@ -46,8 +45,7 @@ public abstract class ScoreType implements Parcelable {
     parcel.writeInt(getIndex());
   }
 
-  @Override
-  public String toString() {
+  @Override public String toString() {
     return findField().getName();
   }
 
@@ -105,13 +103,10 @@ public abstract class ScoreType implements Parcelable {
 
   public static final ScoreType RottenTomatoes = new ScoreType() {
   };
-
   public static final ScoreType Metacritic = new ScoreType() {
   };
-
   public static final ScoreType Google = new ScoreType() {
   };
-
   public static final ScoreType None = new ScoreType() {
   };
 }

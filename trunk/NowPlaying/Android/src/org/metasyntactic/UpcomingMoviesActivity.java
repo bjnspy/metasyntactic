@@ -49,8 +49,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   public void refresh() {
     final List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
-    final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
-        .getAllMoviesSelectedSortIndex());
+    final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(tmpMovies, comparator);
     this.movies = new ArrayList<Movie>();
     this.movies.addAll(tmpMovies);
@@ -80,8 +79,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   /**
    * Called when the activity is first created.
    */
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     // Request the progress bar to be shown in the title
@@ -98,27 +96,23 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
-  @Override
-  protected void onPause() {
+  @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(broadcastReceiver);
     super.onPause();
   }
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
     refresh();
-    registerReceiver(this.broadcastReceiver, new IntentFilter(
-        Application.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     if (this.movies != null && this.movies.size() > 0) {
       setup();
       this.isGridSetup = true;
@@ -151,8 +145,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     this.animation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
         UpcomingMoviesActivity.this.grid.setVisibility(View.GONE);
-        UpcomingMoviesActivity.this.intent.putExtra("movie",
-                                                    (Parcelable) UpcomingMoviesActivity.this.selectedMovie);
+        UpcomingMoviesActivity.this.intent.putExtra("movie", (Parcelable) UpcomingMoviesActivity.this.selectedMovie);
         startActivity(UpcomingMoviesActivity.this.intent);
       }
 
@@ -203,8 +196,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       }
     }
   };
-  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER,
-                                                                          RELEASE_ORDER, SCORE_ORDER);
+  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(TITLE_ORDER, RELEASE_ORDER, SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
@@ -237,8 +229,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         // and the ImageView.
         holder = (ViewHolder) convertView.getTag();
       }
-      final Movie movie = UpcomingMoviesActivity.this.movies.get(position
-                                                                 % UpcomingMoviesActivity.this.movies.size());
+      final Movie movie = UpcomingMoviesActivity.this.movies.get(position % UpcomingMoviesActivity.this.movies.size());
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       Log.i("NowPlayingActivity getview", "trying to show posters");
@@ -261,8 +252,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
           }
         }
       });
-      holder.title.setBackgroundDrawable(getResources()
-          .getDrawable(R.drawable.gallery_background_1));
+      holder.title.setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       return convertView;
     }
 
@@ -285,8 +275,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
 
     public final Object getItem(final int position) {
-      return UpcomingMoviesActivity.this.movies.get(position
-                                                    % UpcomingMoviesActivity.this.movies.size());
+      return UpcomingMoviesActivity.this.movies.get(position % UpcomingMoviesActivity.this.movies.size());
     }
 
     public long getItemId(final int position) {
@@ -299,23 +288,18 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
-        R.drawable.movies).setIntent(
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
         new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
-        R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
-        R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
         new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(UpcomingMoviesActivity.this, AllTheatersActivity.class);

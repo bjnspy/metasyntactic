@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic;
 
 import android.app.AlertDialog;
@@ -75,12 +74,11 @@ public class NowPlayingController {
       return;
     }
 
-    new AlertDialog.Builder(context)
-        .setMessage(R.string.could_not_find_location_dot)
-        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-          public void onClick(final DialogInterface dialogInterface, final int i) {
-          }
-        }).show();
+    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot).setPositiveButton(R.string.ok,
+                                                                                                        new DialogInterface.OnClickListener() {
+                                                                                                          public void onClick(final DialogInterface dialogInterface, final int i) {
+                                                                                                          }
+                                                                                                        }).show();
   }
 
   public String getUserAddress() {

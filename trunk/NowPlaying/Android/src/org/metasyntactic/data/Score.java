@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.data;
 
 import android.os.Parcel;
@@ -51,8 +50,7 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
     }
   };
 
-  private Score(String canonicalTitle, String synopsis, String value, String provider, String identifier,
-                boolean dummy) {
+  private Score(String canonicalTitle, String synopsis, String value, String provider, String identifier, boolean dummy) {
     this.canonicalTitle = canonicalTitle;
     this.synopsis = synopsis;
     this.value = value;

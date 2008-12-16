@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.Application;
@@ -29,20 +28,16 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
     super(model);
   }
 
-  @Override
-  protected String getProviderName() {
+  @Override protected String getProviderName() {
     return "RottenTomatoes";
   }
 
-  @Override
-  protected String lookupServerHash() {
-    final String address = "http://" + Application
-        .host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
+  @Override protected String lookupServerHash() {
+    final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
-  @Override
-  protected Map<String, Score> lookupServerScores() {
+  @Override protected Map<String, Score> lookupServerScores() {
     final Element resultElement = NetworkUtilities.downloadXml(
         "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml", true);
     if (resultElement != null) {

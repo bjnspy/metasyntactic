@@ -26,8 +26,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     NAME_SHOWTIMES, ADDRESS, PHONE
   }
 
-  @Override
-  protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
+  @Override protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
     final Intent intent = this.detailItems.get(position).getIntent();
     if (intent != null) {
       startActivity(intent);
@@ -35,8 +34,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     super.onListItemClick(l, v, position, id);
   }
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.showtimedetails);
@@ -44,8 +42,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     this.theater = getIntent().getExtras().getParcelable("theater");
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -65,8 +62,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     this.detailItems.add(entry1);
   }
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     populateTheaterDetailItem();
     final TheaterAdapter theaterAdapter = new TheaterAdapter();
@@ -85,16 +81,15 @@ public class ShowtimesDetailsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.showtimes_item, null);
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
-          .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
-                                                                           (TextView) convertView.findViewById(
-                                                                               R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder(
+          (TextView) convertView.findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
+          (TextView) convertView.findViewById(R.id.data));
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       switch (ShowtimesDetailsActivity.this.detailItems.get(position).getType()) {
         case NAME_SHOWTIMES:
           holder.label.setText("Showtimes for " + movie.getDisplayTitle());
-          final List<Performance> list = NowPlayingControllerWrapper
-              .getPerformancesForMovieAtTheater(ShowtimesDetailsActivity.this.movie, theater);
+          final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
+              ShowtimesDetailsActivity.this.movie, theater);
           holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_email));
           String performance = "";
           if (list != null) {
@@ -105,8 +100,8 @@ public class ShowtimesDetailsActivity extends ListActivity {
             holder.data.setText(performance);
             final String addr = "user@example.com";
             final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
-            intent1.putExtra("subject", "ShowTimes for "
-                                        + ShowtimesDetailsActivity.this.movie.getDisplayTitle() + " at " + theater.getName());
+            intent1.putExtra("subject",
+                             "ShowTimes for " + ShowtimesDetailsActivity.this.movie.getDisplayTitle() + " at " + theater.getName());
             intent1.putExtra("body", performance);
             ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent1);
           } else {
@@ -117,8 +112,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
           holder.data.setText(theater.getPhoneNumber());
           holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_call));
           holder.label.setText("Phone");
-          final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
-                                                                                    + theater.getPhoneNumber()));
+          final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:" + theater.getPhoneNumber()));
           ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent2);
           break;
         case ADDRESS:
@@ -126,8 +120,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
           holder.data.setText(address);
           holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_map));
           holder.label.setText("Address");
-          final Intent intent3 = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
-                                                                                    + address));
+          final Intent intent3 = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q=" + address));
           ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent3);
       }
       return convertView;
@@ -142,8 +135,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
       private final ImageView icon;
       private final TextView data;
 
-      private TheaterDetailsViewHolder(final TextView label, final ImageView icon,
-                                       final TextView data) {
+      private TheaterDetailsViewHolder(final TextView label, final ImageView icon, final TextView data) {
         this.label = label;
         this.icon = icon;
         this.data = data;
@@ -188,22 +180,18 @@ public class ShowtimesDetailsActivity extends ListActivity {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies)
-        .setIntent(new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
-        R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
-        R.drawable.upcoming);
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
+        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
-        .setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(this, AllTheatersActivity.class);

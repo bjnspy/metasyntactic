@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
@@ -150,8 +149,8 @@ public class UserLocationCache {
   }
 
   private Location downloadAddressLocationFromWebServiceWorker(final String address) {
-    final String escapedAddress =
-        "http://" + Application.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(address);
+    final String escapedAddress = "http://" + Application.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(
+        address);
 
     final Element element = NetworkUtilities.downloadXml(escapedAddress, true);
 
