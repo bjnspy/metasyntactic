@@ -19,6 +19,7 @@
 #import "OAConsumer.h"
 #import "OAMutableURLRequest.h"
 #import "OAToken.h"
+#import "Queue.h"
 #import "ThreadingUtilities.h"
 #import "XmlElement.h"
 
@@ -121,23 +122,18 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (NSArray*) loadQueue:(Feed*) feed {
-    NSArray* array = [FileUtilities readObject:[self queueFile:feed]];
-    if (array.count == 0) {
-        return [NSArray array];
+- (Queue*) loadQueue:(Feed*) feed {
+    NSDictionary* dictionary = [FileUtilities readObject:[self queueFile:feed]];
+    if (dictionary.count == 0) {
+        return nil;
     }
     
-    NSMutableArray* result = [NSMutableArray array];        
-    for (NSDictionary* encodedMovie in array) {
-        [result addObject:[Movie movieWithDictionary:encodedMovie]];
-    }
-    
-    return result;
+    return [Queue queueWithDictionary:dictionary];
 }
 
 
-- (NSArray*) queueForFeed:(Feed*) feed {
-    NSArray* queue = [queues objectForKey:feed.key];
+- (Queue*) queueForFeed:(Feed*) feed {
+    Queue* queue = [queues objectForKey:feed.key];
     if (queue == nil) {
         queue = [self loadQueue:feed];
         [queues setObject:queue forKey:feed.key];
@@ -295,14 +291,8 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (void) saveQueue:(NSArray*) queue feed:(Feed*) feed {
-    NSMutableArray* encoded = [NSMutableArray array];
-    
-    for (Movie* movie in queue) {
-        [encoded addObject:movie.dictionary];
-    }
-    
-    [FileUtilities writeObject:encoded toFile:[self queueFile:feed]];
+- (void) saveQueue:(Queue*) queue feed:(Feed*) feed {
+    [FileUtilities writeObject:queue.dictionary toFile:[self queueFile:feed]];
 }
 
 
@@ -318,19 +308,22 @@ static NSSet* allowableFeeds = nil;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
                                                            important:YES];
     
-    NSMutableArray* queue = [NSMutableArray array];
+    NSString* etag = [[element element:@"etag"] text];
+    
+    NSMutableArray* movies = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             Movie* movie = [self processItem:child];
-            if (movie != nil) {
-                [queue addObject:movie];
+            if (movies != nil) {
+                [movies addObject:movie];
             }
         }
         [pool release];
     }
     
-    if (queue.count > 0) {
+    if (movies.count > 0) {
+        Queue* queue = [Queue queueWithETag:etag movies:movies];
         [self saveQueue:queue feed:feed];
         [self performSelectorOnMainThread:@selector(reportQueue:)
                                withObject:[NSArray arrayWithObjects:feed, queue, nil]
@@ -341,7 +334,7 @@ static NSSet* allowableFeeds = nil;
 
 - (void) reportQueue:(NSArray*) arguments {
     Feed* feed = [arguments objectAtIndex:0];
-    NSArray* queue = [arguments objectAtIndex:1];
+    Queue* queue = [arguments objectAtIndex:1];
     
     [queues setObject:queue forKey:feed.key];
     [NowPlayingAppDelegate majorRefresh];
