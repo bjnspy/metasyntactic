@@ -44,7 +44,7 @@
   <string name="call">Ring</string>
   <string name="cancel">Avbryt</string>
   <string name="cast">Rollbesättning:</string>
-  <string name="change_date">Ändrat den</string>
+  <string name="change_date">Ändra datum</string>
   <string name="citystate_or_postal_code">Ort eller postnummer</string>
   <string name="could_not_find_location_dot">Det gick inte att hitta positionen.</string>
   <string name="dvd">DVD</string>
@@ -75,7 +75,7 @@
   <string name="loading">Laddar</string>
   <string name="loading_poster">Laddar bild</string>
   <string name="local_results_unavailable">Lokala resultat ej tillgängliga</string>
-  <string name="localized_by">Upphittad av:</string>
+  <string name="localized_by">Anpassad av:</string>
   <string name="location">Position</string>
   <string name="map">Visa karta</string>
   <string name="movie_details_provided_by">Informationen om filmen kommer från:</string>
@@ -136,7 +136,7 @@
   <string name="website">Websajt</string>
   <string name="written_by_cyrus_najmabadi">Skriven av Cyrus Najmabadi</string>
   <string name="yesterday">Igår</string>
-  <string name="your_onedollars_country_is_set_to_2dollar_full">Your %s's country is set to: %s\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
+  <string name="your_strings_country_is_set_to_string_full_support">Du har i din %s angett att ditt land är: %s\n\n. Snart kommer fullt stöd för Now Playing till ditt land, men flera av funktionerna kan användas redan idag! När fler funktioner blir tillgängliga kommer du automatiskt att bli underrättad.</string>
   <string name="kilometer">kilometer</string>
   <string name="kilometers">kilometer</string>
   <string name="mile">mile</string>
