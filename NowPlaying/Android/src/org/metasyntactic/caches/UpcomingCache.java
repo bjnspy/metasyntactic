@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
@@ -33,10 +32,8 @@ import java.util.*;
 
 public class UpcomingCache extends AbstractCache {
   private static int identifier;
-
   private final SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
-
   private String hash;
   private List<Movie> movies;
   private Map<String, String> studioKeys;
@@ -196,8 +193,7 @@ public class UpcomingCache extends AbstractCache {
     LogUtilities.logTime(DataProvider.class, "Update Index - Save Results", start);
   }
 
-  private void reportResults(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys,
-                             final Map<String, String> titleKeys) {
+  private void reportResults(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     final Runnable runnable = new Runnable() {
       public void run() {
         reportResultsOnMainThread(serverHash, movies, studioKeys, titleKeys);
@@ -206,8 +202,7 @@ public class UpcomingCache extends AbstractCache {
     ThreadingUtilities.performOnMainThread(runnable);
   }
 
-  private void reportResultsOnMainThread(final String serverHash, final List<Movie> movies,
-                                         final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void reportResultsOnMainThread(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     this.hash = serverHash;
     this.movies = movies;
     this.studioKeys = studioKeys;
@@ -216,8 +211,7 @@ public class UpcomingCache extends AbstractCache {
     updateDetails();
   }
 
-  private void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios,
-                           final Map<String, String> titles) {
+  private void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios, final Map<String, String> titles) {
     FileUtilities.writePersistableCollection(movies, moviesFile());
     FileUtilities.writeStringToStringMap(studios, studiosFile());
     FileUtilities.writeStringToStringMap(titles, titlesFile());
@@ -227,15 +221,13 @@ public class UpcomingCache extends AbstractCache {
     FileUtilities.writeString(serverHash, hashFile());
   }
 
-  private void processResultElement(final Element resultElement, final List<Movie> movies,
-                                    final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void processResultElement(final Element resultElement, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     for (final Element movieElement : children(resultElement)) {
       processMovieElement(movieElement, movies, studioKeys, titleKeys);
     }
   }
 
-  private void processMovieElement(final Element movieElement, final List<Movie> movies,
-                                   final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void processMovieElement(final Element movieElement, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     Date releaseDate = null;
     try {
       releaseDate = this.formatter.parse(movieElement.getAttribute("date"));
@@ -268,15 +260,13 @@ public class UpcomingCache extends AbstractCache {
     return result;
   }
 
-  private void updateDetailsBackgroundEntryPoint(final List<Movie> movies, final Map<String, String> studioKeys,
-                                                 final Map<String, String> titleKeys) {
+  private void updateDetailsBackgroundEntryPoint(final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     final long start = System.currentTimeMillis();
     updateDetailsBackgroundEntryPointWorker(movies, studioKeys, titleKeys);
     LogUtilities.logTime(UpcomingCache.class, "Update Details", start);
   }
 
-  private void updateDetailsBackgroundEntryPointWorker(final List<Movie> movies, final Map<String, String> studioKeys,
-                                                       final Map<String, String> titleKeys) {
+  private void updateDetailsBackgroundEntryPointWorker(final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     if (movies.isEmpty()) {
       return;
     }
@@ -352,8 +342,9 @@ public class UpcomingCache extends AbstractCache {
       }
     }
 
-    final String result = NetworkUtilities.downloadString("http://" + Application
-        .host + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey, false);
+    final String result = NetworkUtilities.downloadString(
+        "http://" + Application.host + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey,
+        false);
 
     if (isNullOrEmpty(result)) {
       return;
@@ -413,10 +404,9 @@ public class UpcomingCache extends AbstractCache {
       }
     }
 
-    final String imdbAddress = NetworkUtilities.downloadString("http://" + Application.host +
-                                                               ".appspot.com/LookupIMDbListings?q=" +
-                                                               StringUtilities.urlEncode(movie.getCanonicalTitle()),
-                                                               false);
+    final String imdbAddress = NetworkUtilities.downloadString(
+        "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
+            movie.getCanonicalTitle()), false);
 
     if (isNullOrEmpty(imdbAddress)) {
       return;
@@ -444,12 +434,9 @@ public class UpcomingCache extends AbstractCache {
   }
 
   protected List<File> getCacheDirectories() {
-    return Arrays.asList(
-        Application.upcomingCastDirectory,
-        Application.upcomingImdbDirectory,
-        Application.upcomingPostersDirectory,
-        Application.upcomingSynopsesDirectory,
-        Application.upcomingTrailersDirectory);
+    return Arrays.asList(Application.upcomingCastDirectory, Application.upcomingImdbDirectory,
+                         Application.upcomingPostersDirectory, Application.upcomingSynopsesDirectory,
+                         Application.upcomingTrailersDirectory);
   }
 
   public List<String> getCast(Movie movie) {

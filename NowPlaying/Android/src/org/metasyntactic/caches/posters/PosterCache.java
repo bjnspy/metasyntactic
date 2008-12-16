@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic.caches.posters;
 
 import org.metasyntactic.Application;
@@ -108,8 +107,8 @@ public class PosterCache extends AbstractCache {
   }
 
   private byte[] downloadPosterFromFandango(final Movie movie) {
-    final Location location = this.model.getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
+    final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+        this.model.getUserAddress());
 
     final String country = location == null ? "" : location.getCountry();
     String postalCode = location == null ? "10009" : location.getPostalCode();

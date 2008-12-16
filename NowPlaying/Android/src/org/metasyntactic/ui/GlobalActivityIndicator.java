@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.ui;
 
 import android.app.Activity;
@@ -26,7 +25,6 @@ public class GlobalActivityIndicator {
   private static final Object lock = new Object();
   private static int totalBackgroundTaskCount;
   private static int visibleBackgroundTaskCount;
-
   private static Set<Activity> activities = new LinkedHashSet<Activity>();
 
   private GlobalActivityIndicator() {

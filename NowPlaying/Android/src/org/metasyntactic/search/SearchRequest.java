@@ -13,9 +13,9 @@
 // limitations under the License.
 package org.metasyntactic.search;
 
+import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
-import org.metasyntactic.NowPlayingModel;
 import static org.metasyntactic.utilities.StringUtilities.toASCII;
 
 import java.util.List;
@@ -24,7 +24,6 @@ public class SearchRequest {
   private final int requestId;
   private final String value;
   private String lowercaseValue;
-
   private final List<Movie> movies;
   private final List<Theater> theaters;
   private final List<Movie> upcomingMovies;

@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.providers;
 
 import org.metasyntactic.data.FavoriteTheater;
@@ -26,16 +25,12 @@ import java.util.Map;
 public class LookupResult {
   public List<Movie> movies;
   public List<Theater> theaters;
-
   // theater name -> movie name -> [ { showtime, showid } ]
   public Map<String, Map<String, List<Performance>>> performances;
-
   // theater name -> date
   public Map<String, Date> synchronizationData;
 
-  public LookupResult(final List<Movie> movies, final List<Theater> theaters,
-                      final Map<String, Map<String, List<Performance>>> performances,
-                      final Map<String, Date> synchronizationData) {
+  public LookupResult(final List<Movie> movies, final List<Theater> theaters, final Map<String, Map<String, List<Performance>>> performances, final Map<String, Date> synchronizationData) {
     this.movies = movies;
     this.theaters = theaters;
     this.performances = performances;

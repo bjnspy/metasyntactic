@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
@@ -111,8 +110,7 @@ public class TrailerCache extends AbstractCache {
     final String studio = studioAndLocation.get(0);
     final String location = studioAndLocation.get(1);
 
-    final String url = "http://" + Application
-        .host + ".appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
+    final String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
     final String trailersString = NetworkUtilities.downloadString(url, false);
 
     if (trailersString == null) {

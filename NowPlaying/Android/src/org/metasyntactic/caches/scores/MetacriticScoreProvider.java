@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.Application;
@@ -29,20 +28,16 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
     super(model);
   }
 
-  @Override
-  protected String getProviderName() {
+  @Override protected String getProviderName() {
     return "Metacritic";
   }
 
-  @Override
-  protected String lookupServerHash() {
-    final String address = "http://" + Application
-        .host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
+  @Override protected String lookupServerHash() {
+    final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
-  @Override
-  protected Map<String, Score> lookupServerScores() {
+  @Override protected Map<String, Score> lookupServerScores() {
 
     final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml";
     final Element resultElement = NetworkUtilities.downloadXml(address, true);

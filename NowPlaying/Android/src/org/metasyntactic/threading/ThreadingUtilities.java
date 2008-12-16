@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.threading;
 
 import android.os.Handler;
@@ -39,11 +38,9 @@ public class ThreadingUtilities {
     }
   }
 
-  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock,
-                                               final boolean visible) {
+  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock, final boolean visible) {
     final Thread t = new HandlerThread(name) {
-      @Override
-      public void run() {
+      @Override public void run() {
         Looper.prepare();
         synchronized (lock) {
           try {

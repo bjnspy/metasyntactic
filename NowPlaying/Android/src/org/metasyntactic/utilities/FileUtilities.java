@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.utilities;
 
 import org.metasyntactic.Application;
@@ -140,8 +139,7 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> Map<String, T> readStringToPersistableMap(final Persistable.Reader<T> reader,
-                                                                                  final File file) {
+  public static <T extends Persistable> Map<String, T> readStringToPersistableMap(final Persistable.Reader<T> reader, final File file) {
     if (!file.exists()) {
       return Collections.emptyMap();
     }
@@ -275,8 +273,7 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> List<T> readPersistableList(final Persistable.Reader<T> reader,
-                                                                    final File file) {
+  public static <T extends Persistable> List<T> readPersistableList(final Persistable.Reader<T> reader, final File file) {
     if (!file.exists()) {
       return Collections.emptyList();
     }
@@ -313,8 +310,7 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> Map<String, List<T>> readStringToListOfPersistables(
-      final Persistable.Reader<T> reader, final File file) {
+  public static <T extends Persistable> Map<String, List<T>> readStringToListOfPersistables(final Persistable.Reader<T> reader, final File file) {
     if (!file.exists()) {
       return Collections.emptyMap();
     }
@@ -337,8 +333,7 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> void writeStringToListOfPersistables(Map<String, List<T>> map,
-                                                                             final File file) {
+  public static <T extends Persistable> void writeStringToListOfPersistables(Map<String, List<T>> map, final File file) {
     try {
       map = nonNullMap(map);
       final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);

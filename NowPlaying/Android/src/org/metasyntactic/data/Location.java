@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.data;
 
 import android.os.Parcel;
@@ -59,8 +58,7 @@ public class Location implements Parcelable, Persistable {
     }
   };
 
-  public Location(double latitude, double longitude, String address, String city, String state, String postalCode,
-                  String country) {
+  public Location(double latitude, double longitude, String address, String city, String state, String postalCode, String country) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.address = nonNullString(address);

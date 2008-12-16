@@ -21,7 +21,6 @@ import java.util.List;
 public class SearchResult {
   private final int requestId;
   private final String value;
-
   private final List<Movie> movies;
   private final List<Theater> theaters;
   private final List<Movie> upcomingMovies;

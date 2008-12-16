@@ -50,8 +50,7 @@ public class AllMoviesActivity_old extends ListActivity {
 
 
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override   protected void onCreate(Bundle savedInstanceState) {
     // TODO Auto-generated method stub
     super.onCreate(savedInstanceState);
     activity = (NowPlayingActivity_old) getParent();
@@ -61,8 +60,7 @@ public class AllMoviesActivity_old extends ListActivity {
     setListAdapter(adapter);
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
+  @Override   public boolean onCreateOptionsMenu(Menu menu) {
 
     menu.add(0, MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
 
@@ -75,8 +73,7 @@ public class AllMoviesActivity_old extends ListActivity {
     return activity;
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
+  @Override   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == MENU_SORT) {
       NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this.activity)
 .setTitle(R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.Preference_keys.MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference).show();

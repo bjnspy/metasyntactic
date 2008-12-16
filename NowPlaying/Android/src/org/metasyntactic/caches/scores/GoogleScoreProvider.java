@@ -11,7 +11,6 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-
 package org.metasyntactic.caches.scores;
 
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -37,58 +36,38 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     super(model);
   }
 
-  @Override
-  protected String getProviderName() {
+  @Override protected String getProviderName() {
     return "Google";
   }
 
   private String getUrl() {
-    final Location location = getModel().getUserLocationCache()
-        .downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserAddress());
+    final Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+        getModel().getUserAddress());
 
     if (isNullOrEmpty(location.getPostalCode())) {
       return null;
     }
 
-    final String country = isNullOrEmpty(location.getCountry())
-                           ? Locale.getDefault().getCountry()
-                           : location.getCountry();
+    final String country = isNullOrEmpty(
+        location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
 
     //Debug.startMethodTracing("getUrlDaysBetween", 1 << 24);
     int days = Days.daysBetween(new Date(), getModel().getSearchDate());
     //Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 
-    final String address = "http://" +
-                           Application
-                               .host +
-                           ".appspot.com/LookupTheaterListings2?country=" +
-                           country +
-                           "&language=" +
-                           Locale
-                               .getDefault()
-                               .getLanguage() +
-                           "&day=" +
-                           days +
-                           "&format=pb" +
-                           "&latitude=" +
-                           (int) (location.getLatitude() * 1000000) +
-                           "&longitude=" +
-                           (int) (location
-                               .getLongitude() * 1000000);
+    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
 
     return address;
   }
 
-  @Override
-  protected String lookupServerHash() {
+  @Override protected String lookupServerHash() {
     String address = getUrl();
     address += "&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
-  @Override
-  protected Map<String, Score> lookupServerScores() {
+  @Override protected Map<String, Score> lookupServerScores() {
     final String address = getUrl();
     final byte[] data = NetworkUtilities.download(address, true);
 

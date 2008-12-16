@@ -38,8 +38,7 @@ public class Pulser {
       return;
     }
     final Date now = new Date();
-    final Date nextViablePulseTime = new Date(this.lastPulseTime.getTime()
-                                              + 1000 * this.pulseIntervalSeconds);
+    final Date nextViablePulseTime = new Date(this.lastPulseTime.getTime() + 1000 * this.pulseIntervalSeconds);
     if (now.before(nextViablePulseTime)) {
       // too soon since the last pulse. wait until later.
       // Log.i(Pulser.class.getName(), "Pulse at " + date + "too soon since last
@@ -49,16 +48,14 @@ public class Pulser {
           tryPulse(date);
         }
       };
-      if (!new Handler().postDelayed(tryPulseLater,
-                                     this.pulseIntervalSeconds * 1000)) {
+      if (!new Handler().postDelayed(tryPulseLater, this.pulseIntervalSeconds * 1000)) {
         throw new RuntimeException();
       }
       return;
     }
     // ok, actually pulse.
     this.lastPulseTime = now;
-    Log.i(Pulser.class.getName(), "Pulse at " + date + " being performed at "
-                                  + this.lastPulseTime);
+    Log.i(Pulser.class.getName(), "Pulse at " + date + " being performed at " + this.lastPulseTime);
     this.runnable.run();
   }
 

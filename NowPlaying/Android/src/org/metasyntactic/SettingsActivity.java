@@ -31,8 +31,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   private int month;
   private int day;
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.settings);
@@ -51,23 +50,18 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     });
   }
 
-  @Override
-  protected void onListItemClick(final ListView listView, final View v,
-                                 final int position, final long id) {
+  @Override protected void onListItemClick(final ListView listView, final View v, final int position, final long id) {
     NowPlayingPreferenceDialog dialog = null;
     switch (this.detailItems.get(position).getKey()) {
 
       case LOCATION:
         final LayoutInflater factory = LayoutInflater.from(this);
-        final View textEntryView = factory.inflate(
-            R.layout.alert_dialog_text_entry, null);
+        final View textEntryView = factory.inflate(R.layout.alert_dialog_text_entry, null);
         // The order in which the methods on the NowPlayingPreferenceDialog object are called
         // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(this).setTitle(
-            this.detailItems.get(position).getLabel()).setKey(
-            this.detailItems.get(position).getKey()).setTextView(textEntryView)
-            .setPositiveButton(R.string.ok).setNegativeButton(
-                android.R.string.cancel);
+        dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(position).getLabel()).setKey(
+            this.detailItems.get(position).getKey()).setTextView(textEntryView).setPositiveButton(
+            R.string.ok).setNegativeButton(android.R.string.cancel);
         break;
 
       case SEARCH_DISTANCE:
@@ -75,10 +69,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         // The order in which the methods on the NowPlayingPreferenceDialog object are called
         // should not be changed.
 
-        final String[] distanceValues = this.getResources()
-            .getStringArray(R.array.entries_search_distance_preference);
-        dialog = new NowPlayingPreferenceDialog(this).setTitle(
-            this.detailItems.get(position).getLabel()).setKey(
+        final String[] distanceValues = this.getResources().getStringArray(R.array.entries_search_distance_preference);
+        dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(position).getLabel()).setKey(
             this.detailItems.get(position).getKey()).setItems(distanceValues);
         break;
 
@@ -86,11 +78,10 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
         // The order in which the methods on the NowPlayingPreferenceDialog object are called
         // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(this).setTitle(
-            this.detailItems.get(position).getLabel()).setKey(
+        dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(position).getLabel()).setKey(
             this.detailItems.get(position).getKey()).setEntries(
-            R.array.entries_reviews_provider_preference).setPositiveButton(
-            android.R.string.ok).setNegativeButton(android.R.string.cancel);
+            R.array.entries_reviews_provider_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
+            android.R.string.cancel);
 
         break;
 
@@ -98,19 +89,17 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
         // The order in which the methods on the NowPlayingPreferenceDialog object are called
         // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(this).setTitle(
-            this.detailItems.get(position).getLabel()).setKey(
+        dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(position).getLabel()).setKey(
             this.detailItems.get(position).getKey()).setEntries(
-            R.array.entries_auto_update_preference).setPositiveButton(
-            android.R.string.ok).setNegativeButton(android.R.string.cancel);
+            R.array.entries_auto_update_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
+            android.R.string.cancel);
 
         break;
 
       case SEARCH_DATE:
 
         final DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-          public void onDateSet(final DatePicker view, final int year, final int monthOfYear,
-                                final int dayOfMonth) {
+          public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
             SettingsActivity.this.year = year;
             SettingsActivity.this.month = monthOfYear;
             SettingsActivity.this.day = dayOfMonth;
@@ -138,8 +127,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     super.onListItemClick(listView, v, position, id);
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -160,8 +148,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     } else {
       settings.setData("Unknown");
     }
-    settings
-        .setKey(NowPlayingPreferenceDialog.PreferenceKeys.AUTO_UPDATE_LOCATION);
+    settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.AUTO_UPDATE_LOCATION);
     this.detailItems.add(settings);
     // location
     settings = new SettingsItem();
@@ -212,8 +199,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     this.detailItems.add(settings);
   }
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     populateSettingsItems();
     this.settingsAdapter = new SettingsAdapter();
@@ -228,22 +214,19 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       this.inflater = LayoutInflater.from(SettingsActivity.this);
     }
 
-    public View getView(final int position, View convertView,
-                        final ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.settings_item, null);
 
-      final SettingsViewHolder holder = new SettingsViewHolder(
-          (TextView) convertView.findViewById(R.id.label),
-          (ImageView) convertView.findViewById(R.id.icon),
-          (TextView) convertView.findViewById(R.id.data),
-          (CheckBox) convertView.findViewById(R.id.check));
+      final SettingsViewHolder holder = new SettingsViewHolder((TextView) convertView.findViewById(R.id.label),
+                                                               (ImageView) convertView.findViewById(R.id.icon),
+                                                               (TextView) convertView.findViewById(R.id.data),
+                                                               (CheckBox) convertView.findViewById(R.id.check));
 
       if (position == 0) {
         holder.check.setVisibility(View.VISIBLE);
         holder.icon.setVisibility(View.GONE);
         holder.check.setChecked(NowPlayingControllerWrapper.isAutoUpdateEnabled());
         holder.check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
           public void onCheckedChanged(final CompoundButton arg0, final boolean checked) {
             Log.i("test", String.valueOf(checked));
             NowPlayingControllerWrapper.setAutoUpdateEnabled(checked);
@@ -253,8 +236,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
           }
         });
       }
-      final SettingsItem settingsItem = SettingsActivity.this.detailItems
-          .get(position);
+      final SettingsItem settingsItem = SettingsActivity.this.detailItems.get(position);
       holder.data.setText(settingsItem.getData());
 
       holder.label.setText(settingsItem.getLabel());

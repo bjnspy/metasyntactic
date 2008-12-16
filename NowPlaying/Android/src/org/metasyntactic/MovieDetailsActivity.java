@@ -27,8 +27,7 @@ public class MovieDetailsActivity extends ListActivity {
   private final List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
   private Movie movie;
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.moviedetails);
@@ -65,10 +64,9 @@ public class MovieDetailsActivity extends ListActivity {
     {
       // Add release Date
       final Date releaseDate = this.movie.getReleaseDate();
-      final String releaseDateString = releaseDate == null ? res
-          .getString(R.string.unknown_release_date) : releaseDate.toString();
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date),
-                                                          releaseDateString);
+      final String releaseDateString = releaseDate == null ? res.getString(
+          R.string.unknown_release_date) : releaseDate.toString();
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date), releaseDateString);
       this.movieDetailEntries.add(entry);
     }
     {
@@ -92,8 +90,7 @@ public class MovieDetailsActivity extends ListActivity {
     }
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -114,8 +111,8 @@ public class MovieDetailsActivity extends ListActivity {
       convertView = this.inflater.inflate(R.layout.moviedetails_item, null);
       // Creates a MovieViewHolder and store references to the
       // children views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
-          .findViewById(R.id.name), (TextView) convertView.findViewById(R.id.value),
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.name),
+                                                         (TextView) convertView.findViewById(R.id.value),
                                                          (ImageView) convertView.findViewById(R.id.divider));
       final MovieDetailEntry entry = MovieDetailsActivity.this.movieDetailEntries.get(position);
       holder.name.setText(entry.name);
@@ -170,30 +167,24 @@ public class MovieDetailsActivity extends ListActivity {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_SHOWTIMES, 0, R.string.menu_showtimes).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
-        .setAlphabeticShortcut('s');
-    menu.add(0, MovieViewUtilities.MENU_TRAILERS, 0, R.string.menu_trailers).setIcon(
-        R.drawable.movies).setIntent(new Intent(this, NowPlayingActivity.class))
-        .setAlphabeticShortcut('t');
-    menu.add(0, MovieViewUtilities.MENU_REVIEWS, 0, R.string.menu_reviews).setIcon(
-        R.drawable.theatres);
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    menu.add(0, MovieViewUtilities.MENU_TRAILERS, 0, R.string.menu_trailers).setIcon(R.drawable.movies).setIntent(
+        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('t');
+    menu.add(0, MovieViewUtilities.MENU_REVIEWS, 0, R.string.menu_reviews).setIcon(R.drawable.theatres);
     menu.add(0, MovieViewUtilities.MENU_IMDB, 0, R.string.menu_imdb).setIcon(R.drawable.upcoming);
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies)
-        .setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
-        R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
-        R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
+        new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
     switch (item.getItemId()) {
       case MovieViewUtilities.MENU_IMDB:
         String imdb_url = null;
@@ -202,13 +193,12 @@ public class MovieDetailsActivity extends ListActivity {
           final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
           startActivity(intent);
         } else {
-          Toast.makeText(MovieDetailsActivity.this,
-                         "This movie's IMDB information is not available.", Toast.LENGTH_SHORT).show();
+          Toast.makeText(MovieDetailsActivity.this, "This movie's IMDB information is not available.",
+                         Toast.LENGTH_SHORT).show();
         }
         break;
       case MovieViewUtilities.MENU_TRAILERS:
-        final String trailer_url = NowPlayingControllerWrapper
-            .getTrailer(MovieDetailsActivity.this.movie);
+        final String trailer_url = NowPlayingControllerWrapper.getTrailer(MovieDetailsActivity.this.movie);
         if (!StringUtilities.isNullOrEmpty(trailer_url)) {
           final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
           startActivity(intent);
@@ -221,8 +211,7 @@ public class MovieDetailsActivity extends ListActivity {
         // doing this as the getReviews() throws NPE instead null return.
         ArrayList<Review> reviews = new ArrayList<Review>();
         if (NowPlayingControllerWrapper.getScore(MovieDetailsActivity.this.movie) != null) {
-          reviews = new ArrayList<Review>(NowPlayingControllerWrapper
-              .getReviews(MovieDetailsActivity.this.movie));
+          reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(MovieDetailsActivity.this.movie));
         }
         if (reviews.size() > 0) {
           final Intent intent = new Intent();

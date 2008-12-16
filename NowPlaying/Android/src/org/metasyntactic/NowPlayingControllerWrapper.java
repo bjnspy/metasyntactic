@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package org.metasyntactic;
 
 import android.app.Activity;
@@ -33,10 +32,8 @@ import java.util.Set;
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class NowPlayingControllerWrapper {
-
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
   private static NowPlayingController instance;
-
   private static LocationTracker locationTracker;
 
   static {

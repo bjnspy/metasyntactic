@@ -36,15 +36,13 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
   private int selection;
   private DetailAdapter detailAdapter;
   private ThumbnailAdapter thumbnailAdapter;
-  private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
 
@@ -67,14 +65,12 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     thumbnail.setSoundEffectsEnabled(true);
     // thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
     final OnItemSelectedListener listener = new OnItemSelectedListener() {
-      public void onItemSelected(final AdapterView<?> arg0, final View arg1, final int position,
-                                 final long id) {
+      public void onItemSelected(final AdapterView<?> arg0, final View arg1, final int position, final long id) {
         if (thumbnail.getSelectedItemPosition() != position) {
           thumbnail.setSelection(position);
         }
         AllMoviesActivity.this.selection = position;
-        final Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this,
-                                                                 R.anim.slide_left);
+        final Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this, R.anim.slide_left);
         arg1.setAnimation(animation);
       }
 
@@ -83,13 +79,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     };
     detail.setOnItemSelectedListener(listener);
     final OnItemClickListener thumblistener = new OnItemClickListener() {
-      public void onItemClick(final AdapterView<?> arg0, final View arg1, final int position,
-                              final long id) {
+      public void onItemClick(final AdapterView<?> arg0, final View arg1, final int position, final long id) {
         if (detail.getSelectedItemPosition() != position) {
           detail.setSelection(position);
         }
-        final Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this,
-                                                                 R.anim.fade_gallery_item);
+        final Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this, R.anim.fade_gallery_item);
         arg1.setAnimation(animation);
       }
     };
@@ -119,52 +113,42 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     });
   }
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
-    registerReceiver(this.broadcastReceiver, new IntentFilter(
-        Application.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
-  @Override
-  protected void onPause() {
+  @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
-        android.R.drawable.star_on);
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies)
-        .setIntent(new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
-        R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
-        R.drawable.upcoming);
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_movie_sort).setIcon(android.R.drawable.star_on);
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
+        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
-        .setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(
-          AllMoviesActivity.this).setTitle(R.string.movies_select_sort_title).setKey(
-          NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
-          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
-          .setNegativeButton(android.R.string.cancel);
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(AllMoviesActivity.this).setTitle(
+          R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
+          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
+          android.R.string.cancel);
       builder.show();
       return true;
     }
@@ -201,10 +185,12 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       if (convertView == null) {
         convertView = this.inflater.inflate(R.layout.moviesummary, null);
         holder = new MovieViewHolder((Button) convertView.findViewById(R.id.score),
-                                     (TextView) convertView.findViewById(R.id.title), (TextView) convertView
-                .findViewById(R.id.rating), (TextView) convertView.findViewById(R.id.length),
-                                     (TextView) convertView.findViewById(R.id.genre), (ImageView) convertView
-                .findViewById(R.id.poster), (TextView) convertView.findViewById(R.id.scoreLabel),
+                                     (TextView) convertView.findViewById(R.id.title),
+                                     (TextView) convertView.findViewById(R.id.rating),
+                                     (TextView) convertView.findViewById(R.id.length),
+                                     (TextView) convertView.findViewById(R.id.genre),
+                                     (ImageView) convertView.findViewById(R.id.poster),
+                                     (TextView) convertView.findViewById(R.id.scoreLabel),
                                      (TextView) convertView.findViewById(R.id.cast));
         convertView.setTag(holder);
       } else {
@@ -219,10 +205,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
         holder.poster.setBackgroundResource(R.drawable.image_frame);
       }
       holder.title.setText(movie.getDisplayTitle());
-      final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), getContext()
-          .getResources());
-      final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), getContext()
-          .getResources());
+      final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), getContext().getResources());
+      final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), getContext().getResources());
       holder.rating.setText(rating.toString());
       holder.length.setText(length.toString());
       holder.genre.setText(MovieViewUtilities.formatListToString(movie.getGenres()));
@@ -236,8 +220,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       } else {
       }
       final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
-      holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue,
-                                                                                scoreType, res));
+      holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
       if (scoreValue != -1) {
         holder.scoreLbl.setText(String.valueOf(scoreValue) + "%");
       } else {
@@ -256,8 +239,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       private final TextView scoreLbl;
       private final TextView cast;
 
-      private MovieViewHolder(Button score, TextView title, TextView rating, TextView length,
-                              TextView genre, ImageView poster, TextView scoreLbl, TextView cast) {
+      private MovieViewHolder(Button score, TextView title, TextView rating, TextView length, TextView genre, ImageView poster, TextView scoreLbl, TextView cast) {
         this.score = score;
         this.title = title;
         this.rating = rating;
@@ -300,8 +282,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       layout.setOrientation(LinearLayout.VERTICAL);
       final ImageView i = new ImageView(AllMoviesActivity.this);
       final TypedArray a = obtainStyledAttributes(android.R.styleable.Theme);
-      final int galleryItemBackground = a.getResourceId(
-          android.R.styleable.Theme_galleryItemBackground, 0);
+      final int galleryItemBackground = a.getResourceId(android.R.styleable.Theme_galleryItemBackground, 0);
       a.recycle();
       i.setBackgroundResource(galleryItemBackground);
       final Movie movie = movies.get(position % movies.size());
@@ -331,8 +312,8 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
 
   public void refresh() {
     movies = NowPlayingControllerWrapper.getMovies();
-    final Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER
-        .get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
+    final Comparator<Movie> comparator = NowPlayingActivity.MOVIE_ORDER.get(
+        NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     if (detailAdapter != null && thumbnailAdapter != null) {
       detailAdapter.refreshMovies();

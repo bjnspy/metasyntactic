@@ -27,14 +27,11 @@ public class SearchEngine {
   // only accessed from the main thread.  needs no lock.
   private final NowPlayingModel model;
   private final SearchEngineDelegate delegate;
-
   // accessed from both threads.  needs lock
   private int currentRequestId;
   private SearchRequest nextSearchRequest;
-
   // only accessed from the background thread.  needs no lock
   private SearchRequest currentlyExecutingRequest;
-
   private final Object gate = new Object();
 
   public SearchEngine(final NowPlayingModel model, final SearchEngineDelegate delegate) {

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.metasyntactic.views;
 
 import android.content.Context;
@@ -40,8 +39,7 @@ public class CustomGridView extends GridView {
     setFocusableInTouchMode(true);
   }
 
-  /* @Override
-  protected void onScrollChanged(final int l, final int t, final int oldl, final int oldt) {
+  /* @Override   protected void onScrollChanged(final int l, final int t, final int oldl, final int oldt) {
     super.onScrollChanged(l / 20, t / 20, oldl, oldt);
   }*/
 }

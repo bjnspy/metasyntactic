@@ -153,8 +153,7 @@ public final class ByteString {
   // =================================================================
   // equals() and hashCode()
 
-  @Override
-  public boolean equals(final Object o) {
+  @Override   public boolean equals(final Object o) {
     if (o == this) {
       return true;
     }
@@ -182,8 +181,7 @@ public final class ByteString {
 
   volatile int hash = 0;
 
-  @Override
-  public int hashCode() {
+  @Override   public int hashCode() {
     int h = this.hash;
 
     if (h == 0) {
