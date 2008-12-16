@@ -23,7 +23,7 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 
 import java.util.*;
 
-public class UpcomingMoviesActivity extends Activity implements INowPlaying {
+public class UpcomingMoviesActivity extends Activity {
   private static final int MENU_SORT = 1;
   private static final int MENU_THEATER = 2;
   private static final int MENU_UPCOMING = 3;
@@ -70,10 +70,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   public List<Movie> getMovies() {
     return this.movies;
-  }
-
-  public Context getContext() {
-    return this;
   }
 
   /**

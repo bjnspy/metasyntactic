@@ -24,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class SettingsActivity extends ListActivity implements INowPlaying {
+public class SettingsActivity extends ListActivity {
   private List<Theater> theaters;
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
@@ -303,10 +303,6 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     public void setData(final String data) {
       this.data = data;
     }
-  }
-
-  public Context getContext() {
-    return this;
   }
 
   public void refresh() {

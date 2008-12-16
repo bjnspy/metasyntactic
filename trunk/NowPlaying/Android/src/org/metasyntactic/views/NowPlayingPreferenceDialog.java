@@ -8,9 +8,9 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
-import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.R;
+import org.metasyntactic.Application;
 import org.metasyntactic.caches.scores.ScoreType;
 
 import java.util.Arrays;
@@ -21,13 +21,12 @@ public class NowPlayingPreferenceDialog {
   private PreferenceKeys prefKey;
   private int intValue;
   private TextView textView;
-  private final INowPlaying nowPlaying;
+  private final Context context;
   DialogInterface.OnClickListener positiveButtonListener;
 
-  public NowPlayingPreferenceDialog(final INowPlaying nowPlaying) {
-    final Context context = nowPlaying.getContext();
+  public NowPlayingPreferenceDialog(final Context context) {
     this.builder = new AlertDialog.Builder(context);
-    this.nowPlaying = nowPlaying;
+    this.context = context;
   }
 
   public NowPlayingPreferenceDialog create() {
@@ -65,7 +64,7 @@ public class NowPlayingPreferenceDialog {
     this.positiveButtonListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(NowPlayingPreferenceDialog.this.intValue);
-        NowPlayingPreferenceDialog.this.nowPlaying.refresh();
+        Application.refresh(true);
       }
     };
     return this;
@@ -80,7 +79,7 @@ public class NowPlayingPreferenceDialog {
     final DialogInterface.OnClickListener listItemListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(Integer.parseInt(distanceValues[which]));
-        NowPlayingPreferenceDialog.this.nowPlaying.refresh();
+        Application.refresh(true);
       }
     };
     this.builder.setItems(distanceValues, listItemListener);
@@ -176,10 +175,10 @@ public class NowPlayingPreferenceDialog {
     this.textView = (TextView) textEntryView.findViewById(R.id.dialogEdit);
     this.textView.setText(getStringPreferenceValue());
     this.builder.setView(textEntryView);
-    this.positiveButtonListener = new DialogInterface.OnClickListener() {
+    this.positiveButtonListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setStringPreferenceValue(NowPlayingPreferenceDialog.this.textView.getText().toString());
-        NowPlayingPreferenceDialog.this.nowPlaying.refresh();
+        Application.refresh(true);
       }
     };
     return this;

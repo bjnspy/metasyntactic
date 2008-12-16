@@ -27,7 +27,7 @@ import java.util.*;
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class AllTheatersActivity extends ListActivity implements INowPlaying {
+public class AllTheatersActivity extends ListActivity {
   public static final int MENU_SORT = 1;
   public static final int MENU_SETTINGS = 2;
   private TheatersAdapter adapter;
@@ -191,10 +191,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     public long getItemId(final int position) {
       return position;
     }
-  }
-
-  public Context getContext() {
-    return this;
   }
 
   public void refresh() {
