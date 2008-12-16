@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class NowPlayingActivity extends Activity implements INowPlaying {
+public class NowPlayingActivity extends Activity {
   private GridView grid;
   private Intent intent;
   private Animation animation;
@@ -67,10 +67,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     return this.movies;
   }
   */
-
-  public Context getContext() {
-    return this;
-  }
 
   /**
    * Called when the activity is first created.
