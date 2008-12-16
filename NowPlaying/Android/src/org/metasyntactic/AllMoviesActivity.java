@@ -68,13 +68,13 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     // thumbnail.setSelection((detail.getSelectedItemPosition() + 1));
     final OnItemSelectedListener listener = new OnItemSelectedListener() {
       public void onItemSelected(final AdapterView<?> arg0, final View arg1, final int position,
-          final long id) {
+                                 final long id) {
         if (thumbnail.getSelectedItemPosition() != position) {
           thumbnail.setSelection(position);
         }
         AllMoviesActivity.this.selection = position;
         final Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this,
-            R.anim.slide_left);
+                                                                 R.anim.slide_left);
         arg1.setAnimation(animation);
       }
 
@@ -84,12 +84,12 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
     detail.setOnItemSelectedListener(listener);
     final OnItemClickListener thumblistener = new OnItemClickListener() {
       public void onItemClick(final AdapterView<?> arg0, final View arg1, final int position,
-          final long id) {
+                              final long id) {
         if (detail.getSelectedItemPosition() != position) {
           detail.setSelection(position);
         }
         final Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this,
-            R.anim.fade_gallery_item);
+                                                                 R.anim.fade_gallery_item);
         arg1.setAnimation(animation);
       }
     };
@@ -201,11 +201,11 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       if (convertView == null) {
         convertView = this.inflater.inflate(R.layout.moviesummary, null);
         holder = new MovieViewHolder((Button) convertView.findViewById(R.id.score),
-            (TextView) convertView.findViewById(R.id.title), (TextView) convertView
+                                     (TextView) convertView.findViewById(R.id.title), (TextView) convertView
                 .findViewById(R.id.rating), (TextView) convertView.findViewById(R.id.length),
-            (TextView) convertView.findViewById(R.id.genre), (ImageView) convertView
+                                     (TextView) convertView.findViewById(R.id.genre), (ImageView) convertView
                 .findViewById(R.id.poster), (TextView) convertView.findViewById(R.id.scoreLabel),
-            (TextView) convertView.findViewById(R.id.cast));
+                                     (TextView) convertView.findViewById(R.id.cast));
         convertView.setTag(holder);
       } else {
         holder = (MovieViewHolder) convertView.getTag();
@@ -237,7 +237,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       }
       final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
       holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue,
-          scoreType, res));
+                                                                                scoreType, res));
       if (scoreValue != -1) {
         holder.scoreLbl.setText(String.valueOf(scoreValue) + "%");
       } else {
@@ -257,7 +257,7 @@ public class AllMoviesActivity extends Activity implements INowPlaying {
       private final TextView cast;
 
       private MovieViewHolder(Button score, TextView title, TextView rating, TextView length,
-          TextView genre, ImageView poster, TextView scoreLbl, TextView cast) {
+                              TextView genre, ImageView poster, TextView scoreLbl, TextView cast) {
         this.score = score;
         this.title = title;
         this.rating = rating;

@@ -21,7 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
+/**
+ * @author cyrusn@google.com (Cyrus Najmabadi)
+ */
 public class AddressLocationCache {
   private AddressLocationCache() {
   }

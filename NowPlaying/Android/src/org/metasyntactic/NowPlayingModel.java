@@ -20,23 +20,23 @@ import org.metasyntactic.caches.IMDbCache;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.caches.posters.PosterCache;
 import org.metasyntactic.caches.posters.LargePosterCache;
+import org.metasyntactic.caches.posters.PosterCache;
 import org.metasyntactic.caches.scores.ScoreCache;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.*;
 
 public class NowPlayingModel {
-  private final static String version = "7";
-  private final static String VERSION_KEY = "version";
+  private final static String VERSION = "7";
+  private final static String VERSION_KEY = "VERSION";
   private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";
   private final static String SEARCH_DISTANCE_KEY = "searchDistance";
@@ -68,7 +68,7 @@ public class NowPlayingModel {
   }
 
   private void clearCaches() {
-    int version;
+    final int version;
     synchronized (this.preferencesLock) {
       version = this.preferences.getInt(CLEAR_CACHE_KEY, 1);
       this.preferences.edit().putInt(CLEAR_CACHE_KEY, version + 1).commit();
@@ -86,10 +86,10 @@ public class NowPlayingModel {
 
   private void loadData() {
     final String lastVersion = this.preferences.getString(VERSION_KEY, "");
-    if (!lastVersion.equals(version)) {
+    if (!lastVersion.equals(VERSION)) {
       final SharedPreferences.Editor editor = this.preferences.edit();
       editor.clear();
-      editor.putString(VERSION_KEY, version);
+      editor.putString(VERSION_KEY, VERSION);
       editor.commit();
       Application.reset();
       this.scoreCache.createDirectories();
@@ -173,7 +173,7 @@ public class NowPlayingModel {
       if ("".equals(value)) {
         return DateUtilities.getToday();
       }
-      final SimpleDateFormat format = new SimpleDateFormat();
+      final DateFormat format = new SimpleDateFormat();
       Date result = null;
       try {
         result = format.parse(value);
@@ -190,7 +190,7 @@ public class NowPlayingModel {
 
   public void setSearchDate(final Date searchDate) {
     synchronized (this.preferencesLock) {
-      final SimpleDateFormat format = new SimpleDateFormat();
+      final DateFormat format = new SimpleDateFormat();
       final String result = format.format(searchDate);
       final SharedPreferences.Editor editor = this.preferences.edit();
       editor.putString(SEARCH_DATE_KEY, result);
@@ -339,7 +339,7 @@ public class NowPlayingModel {
   }
 
   public String getSynopsis(final Movie movie) {
-    final List<String> options = new ArrayList<String>();
+    final Collection<String> options = new ArrayList<String>();
     if (!isNullOrEmpty(movie.getSynopsis())) {
       options.add(movie.getSynopsis());
     }
@@ -364,17 +364,17 @@ public class NowPlayingModel {
 
   public String getIMDbAddress(final Movie movie) {
     String result = movie.getIMDbAddress();
-    if (!StringUtilities.isNullOrEmpty(result)) {
+    if (!isNullOrEmpty(result)) {
       return result;
     }
 
     result = this.imdbCache.getIMDbAddress(movie);
-    if (!StringUtilities.isNullOrEmpty(result)) {
+    if (!isNullOrEmpty(result)) {
       return result;
     }
 
     result = this.upcomingCache.getIMDbAddress(movie);
-    if (!StringUtilities.isNullOrEmpty(result)) {
+    if (!isNullOrEmpty(result)) {
       return result;
     }
 
@@ -421,6 +421,6 @@ public class NowPlayingModel {
   }
 
   public LargePosterCache getLargePosterCache() {
-    return largePosterCache;
+    return this.largePosterCache;
   }
 }

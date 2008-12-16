@@ -48,13 +48,17 @@ public final class TextFormat {
     print(message, generator);
   }
 
-  /** Outputs a textual representation of {@code fields} to {@code output}. */
+  /**
+   * Outputs a textual representation of {@code fields} to {@code output}.
+   */
   public static void print(final UnknownFieldSet fields, final Appendable output) throws IOException {
     final TextGenerator generator = new TextGenerator(output);
     printUnknownFields(fields, generator);
   }
 
-  /** Like {@code print()}, but writes directly to a {@code String} and returns it. */
+  /**
+   * Like {@code print()}, but writes directly to a {@code String} and returns it.
+   */
   public static String printToString(final Message message) {
     try {
       final StringBuilder text = new StringBuilder();
@@ -65,7 +69,9 @@ public final class TextFormat {
     }
   }
 
-  /** Like {@code print()}, but writes directly to a {@code String} and returns it. */
+  /**
+   * Like {@code print()}, but writes directly to a {@code String} and returns it.
+   */
   public static String printToString(final UnknownFieldSet fields) {
     try {
       final StringBuilder text = new StringBuilder();
@@ -105,8 +111,8 @@ public final class TextFormat {
       if (field.getContainingType()
           .getOptions()
           .getMessageSetWireFormat() && field.getType() == FieldDescriptor.Type.MESSAGE && field.isOptional()
-                                     // object equality
-                                     && field.getExtensionScope() == field.getMessageType()) {
+          // object equality
+          && field.getExtensionScope() == field.getMessageType()) {
         generator.print(field.getMessageType().getFullName());
       } else {
         generator.print(field.getFullName());
@@ -228,7 +234,9 @@ public final class TextFormat {
     }
   }
 
-  /** Convert an unsigned 32-bit integer to a string. */
+  /**
+   * Convert an unsigned 32-bit integer to a string.
+   */
   private static String unsignedToString(final int value) {
     if (value >= 0) {
       return Integer.toString(value);
@@ -237,7 +245,9 @@ public final class TextFormat {
     }
   }
 
-  /** Convert an unsigned 64-bit integer to a string. */
+  /**
+   * Convert an unsigned 64-bit integer to a string.
+   */
   private static String unsignedToString(final long value) {
     if (value >= 0) {
       return Long.toString(value);
@@ -249,7 +259,9 @@ public final class TextFormat {
     }
   }
 
-  /** An inner class for writing text to the output stream. */
+  /**
+   * An inner class for writing text to the output stream.
+   */
   static private final class TextGenerator {
 
     Appendable output;
@@ -268,7 +280,9 @@ public final class TextFormat {
       this.indent.append("  ");
     }
 
-    /** Reduces the current indent level by two spaces, or crashes if the indent level is zero. */
+    /**
+     * Reduces the current indent level by two spaces, or crashes if the indent level is zero.
+     */
     public void outdent() {
       final int length = this.indent.length();
       if (length == 0) {
@@ -277,7 +291,9 @@ public final class TextFormat {
       this.indent.delete(length - 2, length);
     }
 
-    /** Print text to the output stream. */
+    /**
+     * Print text to the output stream.
+     */
     public void print(final CharSequence text) throws IOException {
       final int size = text.length();
       int pos = 0;
@@ -358,7 +374,9 @@ public final class TextFormat {
     private static Pattern FLOAT_INFINITY = Pattern.compile("-?inf(inity)?f?", Pattern.CASE_INSENSITIVE);
     private static Pattern FLOAT_NAN = Pattern.compile("nanf?", Pattern.CASE_INSENSITIVE);
 
-    /** Construct a tokenizer that parses tokens from the given text. */
+    /**
+     * Construct a tokenizer that parses tokens from the given text.
+     */
     public Tokenizer(final CharSequence text) {
       this.text = text;
       this.matcher = WHITESPACE.matcher(text);
@@ -366,12 +384,16 @@ public final class TextFormat {
       nextToken();
     }
 
-    /** Are we at the end of the input? */
+    /**
+     * Are we at the end of the input?
+     */
     public boolean atEnd() {
       return this.currentToken.length() == 0;
     }
 
-    /** Advance to the next token. */
+    /**
+     * Advance to the next token.
+     */
     public void nextToken() {
       this.previousLine = this.line;
       this.previousColumn = this.column;
@@ -406,7 +428,9 @@ public final class TextFormat {
       }
     }
 
-    /** Skip over any whitespace so that the matcher region starts at the next token. */
+    /**
+     * Skip over any whitespace so that the matcher region starts at the next token.
+     */
     private void skipWhitespace() {
       this.matcher.usePattern(WHITESPACE);
       if (this.matcher.lookingAt()) {
@@ -427,14 +451,18 @@ public final class TextFormat {
       }
     }
 
-    /** If the next token exactly matches {@code token}, consume it.  Otherwise, throw a {@link ParseException}. */
+    /**
+     * If the next token exactly matches {@code token}, consume it.  Otherwise, throw a {@link ParseException}.
+     */
     public void consume(final String token) throws ParseException {
       if (!tryConsume(token)) {
         throw parseException("Expected \"" + token + "\".");
       }
     }
 
-    /** Returns {@code true} if the next token is an integer, but does not consume it. */
+    /**
+     * Returns {@code true} if the next token is an integer, but does not consume it.
+     */
     public boolean lookingAtInteger() {
       if (this.currentToken.length() == 0) {
         return false;
@@ -444,7 +472,9 @@ public final class TextFormat {
       return '0' <= c && c <= '9' || c == '-' || c == '+';
     }
 
-    /** If the next token is an identifier, consume it and return its value. Otherwise, throw a {@link ParseException}. */
+    /**
+     * If the next token is an identifier, consume it and return its value. Otherwise, throw a {@link ParseException}.
+     */
     public String consumeIdentifier() throws ParseException {
       for (int i = 0; i < this.currentToken.length(); i++) {
         final char c = this.currentToken.charAt(i);
@@ -516,7 +546,9 @@ public final class TextFormat {
       }
     }
 
-    /** If the next token is a double, consume it and return its value. Otherwise, throw a {@link ParseException}. */
+    /**
+     * If the next token is a double, consume it and return its value. Otherwise, throw a {@link ParseException}.
+     */
     public double consumeDouble() throws ParseException {
       // We need to parse infinity and nan separately because
       // Double.parseDouble() does not accept "inf", "infinity", or "nan".
@@ -538,7 +570,9 @@ public final class TextFormat {
       }
     }
 
-    /** If the next token is a float, consume it and return its value. Otherwise, throw a {@link ParseException}. */
+    /**
+     * If the next token is a float, consume it and return its value. Otherwise, throw a {@link ParseException}.
+     */
     public float consumeFloat() throws ParseException {
       // We need to parse infinity and nan separately because
       // Float.parseFloat() does not accept "inf", "infinity", or "nan".
@@ -560,7 +594,9 @@ public final class TextFormat {
       }
     }
 
-    /** If the next token is a boolean, consume it and return its value. Otherwise, throw a {@link ParseException}. */
+    /**
+     * If the next token is a boolean, consume it and return its value. Otherwise, throw a {@link ParseException}.
+     */
     public boolean consumeBoolean() throws ParseException {
       if (this.currentToken.equals("true")) {
         nextToken();
@@ -640,7 +676,9 @@ public final class TextFormat {
     }
   }
 
-  /** Thrown when parsing an invalid text format message. */
+  /**
+   * Thrown when parsing an invalid text format message.
+   */
   public static class ParseException extends IOException {
     private static final long serialVersionUID = -2415844419546702530L;
 
@@ -649,12 +687,16 @@ public final class TextFormat {
     }
   }
 
-  /** Parse a text-format message from {@code input} and merge the contents into {@code builder}. */
+  /**
+   * Parse a text-format message from {@code input} and merge the contents into {@code builder}.
+   */
   public static void merge(final Readable input, final Message.Builder builder) throws ParseException, IOException {
     merge(input, ExtensionRegistry.getEmptyRegistry(), builder);
   }
 
-  /** Parse a text-format message from {@code input} and merge the contents into {@code builder}. */
+  /**
+   * Parse a text-format message from {@code input} and merge the contents into {@code builder}.
+   */
   public static void merge(final CharSequence input, final Message.Builder builder) throws ParseException {
     merge(input, ExtensionRegistry.getEmptyRegistry(), builder);
   }
@@ -707,7 +749,9 @@ public final class TextFormat {
     }
   }
 
-  /** Parse a single field from {@code tokenizer} and merge it into {@code builder}. */
+  /**
+   * Parse a single field from {@code tokenizer} and merge it into {@code builder}.
+   */
   private static void mergeField(final Tokenizer tokenizer, final ExtensionRegistry extensionRegistry,
                                  final Message.Builder builder) throws ParseException {
     FieldDescriptor field;
@@ -1053,12 +1097,16 @@ public final class TextFormat {
     return unescapeBytes(input).toStringUtf8();
   }
 
-  /** Is this an octal digit? */
+  /**
+   * Is this an octal digit?
+   */
   private static boolean isOctal(final char c) {
     return '0' <= c && c <= '7';
   }
 
-  /** Is this a hex digit? */
+  /**
+   * Is this a hex digit?
+   */
   private static boolean isHex(final char c) {
     return '0' <= c && c <= '9' || 'a' <= c && c <= 'f' || 'A' <= c && c <= 'F';
   }

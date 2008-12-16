@@ -26,7 +26,9 @@ import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
+/**
+ * @author cyrusn@google.com (Cyrus Najmabadi)
+ */
 public class NetworkUtilities {
   private static PriorityMutex mutex = new PriorityMutex();
 

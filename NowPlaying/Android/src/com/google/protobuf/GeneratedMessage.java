@@ -32,7 +32,8 @@ import java.util.*;
  * @author kenton@google.com Kenton Varda
  */
 public abstract class GeneratedMessage extends AbstractMessage {
-  protected GeneratedMessage() {}
+  protected GeneratedMessage() {
+  }
 
   private UnknownFieldSet unknownFields = UnknownFieldSet.getDefaultInstance();
 
@@ -46,7 +47,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
     return internalGetFieldAccessorTable().descriptor;
   }
 
-  /** Internal helper which returns a mutable map. */
+  /**
+   * Internal helper which returns a mutable map.
+   */
   @SuppressWarnings("unchecked")
   private final Map<FieldDescriptor, Object> getAllFieldsMutable() {
     final TreeMap<FieldDescriptor, Object> result = new TreeMap<FieldDescriptor, Object>();
@@ -94,7 +97,8 @@ public abstract class GeneratedMessage extends AbstractMessage {
 
   @SuppressWarnings("unchecked")
   public abstract static class Builder<BuilderType extends Builder> extends AbstractMessage.Builder<BuilderType> {
-    protected Builder() {}
+    protected Builder() {
+    }
 
     /**
      * Get the message being built.  We don't just pass this to the constructor because it becomes null when build() is
@@ -274,7 +278,8 @@ public abstract class GeneratedMessage extends AbstractMessage {
   @SuppressWarnings("unchecked")
   public abstract static class ExtendableMessage<
       MessageType extends ExtendableMessage> extends GeneratedMessage {
-    protected ExtendableMessage() {}
+    protected ExtendableMessage() {
+    }
 
     private final FieldSet extensions = FieldSet.newFieldSet();
 
@@ -287,19 +292,25 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    /** Check if a singular extension is present. */
+    /**
+     * Check if a singular extension is present.
+     */
     public final boolean hasExtension(final GeneratedExtension<MessageType, ?> extension) {
       verifyExtensionContainingType(extension);
       return this.extensions.hasField(extension.getDescriptor());
     }
 
-    /** Get the number of elements in a repeated extension. */
+    /**
+     * Get the number of elements in a repeated extension.
+     */
     public final <Type> int getExtensionCount(final GeneratedExtension<MessageType, List<Type>> extension) {
       verifyExtensionContainingType(extension);
       return this.extensions.getRepeatedFieldCount(extension.getDescriptor());
     }
 
-    /** Get the value of an extension. */
+    /**
+     * Get the value of an extension.
+     */
     public final <Type> Type getExtension(final GeneratedExtension<MessageType, Type> extension) {
       verifyExtensionContainingType(extension);
       final Object value = this.extensions.getField(extension.getDescriptor());
@@ -310,7 +321,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    /** Get one element of a repeated extension. */
+    /**
+     * Get one element of a repeated extension.
+     */
     public final <Type> Type getExtension(final GeneratedExtension<MessageType, List<Type>> extension,
                                           final int index) {
       verifyExtensionContainingType(extension);
@@ -318,7 +331,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
                                                                                           index));
     }
 
-    /** Called by subclasses to check if all extensions are initialized. */
+    /**
+     * Called by subclasses to check if all extensions are initialized.
+     */
     protected boolean extensionsAreInitialized() {
       return this.extensions.isInitialized();
     }
@@ -357,7 +372,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
       return new ExtensionWriter();
     }
 
-    /** Called by subclasses to compute the size of extensions. */
+    /**
+     * Called by subclasses to compute the size of extensions.
+     */
     protected int extensionsSerializedSize() {
       return this.extensions.getSerializedSize();
     }
@@ -463,33 +480,44 @@ public abstract class GeneratedMessage extends AbstractMessage {
   public abstract static class ExtendableBuilder<
       MessageType extends ExtendableMessage, BuilderType extends ExtendableBuilder>
       extends GeneratedMessage.Builder<BuilderType> {
-    protected ExtendableBuilder() {}
+    protected ExtendableBuilder() {
+    }
 
     @Override
     protected abstract ExtendableMessage<MessageType> internalGetResult();
 
-    /** Check if a singular extension is present. */
+    /**
+     * Check if a singular extension is present.
+     */
     public final boolean hasExtension(final GeneratedExtension<MessageType, ?> extension) {
       return internalGetResult().hasExtension(extension);
     }
 
-    /** Get the number of elements in a repeated extension. */
+    /**
+     * Get the number of elements in a repeated extension.
+     */
     public final <Type> int getExtensionCount(final GeneratedExtension<MessageType, List<Type>> extension) {
       return internalGetResult().getExtensionCount(extension);
     }
 
-    /** Get the value of an extension. */
+    /**
+     * Get the value of an extension.
+     */
     public final <Type> Type getExtension(final GeneratedExtension<MessageType, Type> extension) {
       return internalGetResult().getExtension(extension);
     }
 
-    /** Get one element of a repeated extension. */
+    /**
+     * Get one element of a repeated extension.
+     */
     public final <Type> Type getExtension(final GeneratedExtension<MessageType, List<Type>> extension,
                                           final int index) {
       return internalGetResult().getExtension(extension, index);
     }
 
-    /** Set the value of an extension. */
+    /**
+     * Set the value of an extension.
+     */
     public final <Type> BuilderType setExtension(final GeneratedExtension<MessageType, Type> extension,
                                                  final Type value) {
       final ExtendableMessage<MessageType> message = internalGetResult();
@@ -498,7 +526,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
       return (BuilderType) this;
     }
 
-    /** Set the value of one element of a repeated extension. */
+    /**
+     * Set the value of one element of a repeated extension.
+     */
     public final <Type> BuilderType setExtension(final GeneratedExtension<MessageType, List<Type>> extension,
                                                  final int index, final Type value) {
       final ExtendableMessage<MessageType> message = internalGetResult();
@@ -507,7 +537,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
       return (BuilderType) this;
     }
 
-    /** Append a value to a repeated extension. */
+    /**
+     * Append a value to a repeated extension.
+     */
     public final <Type> BuilderType addExtension(final GeneratedExtension<MessageType, List<Type>> extension,
                                                  final Type value) {
       final ExtendableMessage<MessageType> message = internalGetResult();
@@ -516,7 +548,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
       return (BuilderType) this;
     }
 
-    /** Clear an extension. */
+    /**
+     * Clear an extension.
+     */
     public final <Type> BuilderType clearExtension(final GeneratedExtension<MessageType, ?> extension) {
       final ExtendableMessage<MessageType> message = internalGetResult();
       message.verifyExtensionContainingType(extension);
@@ -593,7 +627,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
 
   // -----------------------------------------------------------------
 
-  /** For use by generated code only. */
+  /**
+   * For use by generated code only.
+   */
   public static <ContainingType extends Message, Type> GeneratedExtension<ContainingType, Type> newGeneratedExtension(
       final FieldDescriptor descriptor, final Class<Type> type) {
     if (descriptor.isRepeated()) {
@@ -602,7 +638,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
     return new GeneratedExtension<ContainingType, Type>(descriptor, type);
   }
 
-  /** For use by generated code only. */
+  /**
+   * For use by generated code only.
+   */
   public static <ContainingType extends Message, Type> GeneratedExtension<ContainingType, List<Type>> newRepeatedGeneratedExtension(
       final FieldDescriptor descriptor, final Class<Type> type) {
     if (!descriptor.isRepeated()) {
@@ -674,9 +712,13 @@ public abstract class GeneratedMessage extends AbstractMessage {
     private final Method enumGetValueDescriptor;
     private final Message messageDefaultInstance;
 
-    public FieldDescriptor getDescriptor() { return this.descriptor; }
+    public FieldDescriptor getDescriptor() {
+      return this.descriptor;
+    }
 
-    /** If the extension is an embedded message or group, returns the default instance of the message. */
+    /**
+     * If the extension is an embedded message or group, returns the default instance of the message.
+     */
     public Message getMessageDefaultInstance() {
       return this.messageDefaultInstance;
     }
@@ -704,7 +746,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    /** Like {@link #fromReflectionType(Object)}, but if the type is a repeated type, this converts a single element. */
+    /**
+     * Like {@link #fromReflectionType(Object)}, but if the type is a repeated type, this converts a single element.
+     */
     private Object singularFromReflectionType(final Object value) {
       switch (this.descriptor.getJavaType()) {
         case MESSAGE:
@@ -749,7 +793,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
       }
     }
 
-    /** Like {@link #toReflectionType(Object)}, but if the type is a repeated type, this converts a single element. */
+    /**
+     * Like {@link #toReflectionType(Object)}, but if the type is a repeated type, this converts a single element.
+     */
     private Object singularToReflectionType(final Object value) {
       switch (this.descriptor.getJavaType()) {
         case ENUM:
@@ -762,7 +808,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
 
   // =================================================================
 
-  /** Calls Class.getMethod and throws a RuntimeException if it fails. */
+  /**
+   * Calls Class.getMethod and throws a RuntimeException if it fails.
+   */
   @SuppressWarnings("unchecked")
   private static Method getMethodOrDie(final Class clazz, final String name, final Class... params) {
     try {
@@ -773,7 +821,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
     }
   }
 
-  /** Calls invoke and throws a RuntimeException if it fails. */
+  /**
+   * Calls invoke and throws a RuntimeException if it fails.
+   */
   private static Object invokeOrDie(final Method method, final Object object, final Object... params) {
     try {
       return method.invoke(object, params);
@@ -838,7 +888,9 @@ public abstract class GeneratedMessage extends AbstractMessage {
     private final Descriptor descriptor;
     private final FieldAccessor[] fields;
 
-    /** Get the FieldAccessor for a particular field. */
+    /**
+     * Get the FieldAccessor for a particular field.
+     */
     private FieldAccessor getField(final FieldDescriptor field) {
       if (field.getContainingType() != this.descriptor) {
         throw new IllegalArgumentException("FieldDescriptor does not match message type.");

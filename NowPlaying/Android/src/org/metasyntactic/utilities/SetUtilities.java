@@ -16,7 +16,9 @@ package org.metasyntactic.utilities;
 
 import java.util.Set;
 
-/** @author cyrusn@google.com (Cyrus Najmabadi) */
+/**
+ * @author cyrusn@google.com (Cyrus Najmabadi)
+ */
 public class SetUtilities {
   private SetUtilities() {
   }

@@ -62,20 +62,20 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     final String address = "http://" +
                            Application
                                .host +
-                                     ".appspot.com/LookupTheaterListings2?country=" +
-                                     country +
-                                     "&language=" +
-                                     Locale
-                                         .getDefault()
-                                         .getLanguage() +
-                                                        "&day=" +
-                                                        days +
-                                                        "&format=pb" +
-                                                        "&latitude=" +
-                                                        (int) (location.getLatitude() * 1000000) +
-                                                        "&longitude=" +
-                                                        (int) (location
-                                                            .getLongitude() * 1000000);
+                           ".appspot.com/LookupTheaterListings2?country=" +
+                           country +
+                           "&language=" +
+                           Locale
+                               .getDefault()
+                               .getLanguage() +
+                           "&day=" +
+                           days +
+                           "&format=pb" +
+                           "&latitude=" +
+                           (int) (location.getLatitude() * 1000000) +
+                           "&longitude=" +
+                           (int) (location
+                               .getLongitude() * 1000000);
 
     return address;
   }

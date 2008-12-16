@@ -4536,28 +4536,28 @@ public final class NowPlaying {
       .get(2);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_MovieProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_MovieProto_descriptor, new java.lang.String[]{
-      "Identifier",
-      "Title",
-      "Length",
-      "Language",
-      "Genre",
-      "Description",
-      "RawRating",
-      "Score",
-      "IMDbUrl",
-      "Director",
-      "Cast",
-      "Dubbed",
-      "Subtitled",
-      "ReleaseDate",
-  }, NowPlaying.MovieProto.class, NowPlaying.MovieProto.Builder.class);
+          "Identifier",
+          "Title",
+          "Length",
+          "Language",
+          "Genre",
+          "Description",
+          "RawRating",
+          "Score",
+          "IMDbUrl",
+          "Director",
+          "Cast",
+          "Dubbed",
+          "Subtitled",
+          "ReleaseDate",
+      }, NowPlaying.MovieProto.class, NowPlaying.MovieProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterProto_descriptor = getDescriptor()
       .getMessageTypes()
       .get(3);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_TheaterProto_descriptor, new java.lang.String[]{
-      "Identifier", "Name", "StreetAddress", "City", "State", "PostalCode", "Country", "Phone", "Latitude", "Longitude",
-  }, NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
+          "Identifier", "Name", "StreetAddress", "City", "State", "PostalCode", "Country", "Phone", "Latitude", "Longitude",
+      }, NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_descriptor = getDescriptor()
       .getMessageTypes()
       .get(4);

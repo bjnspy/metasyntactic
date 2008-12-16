@@ -118,7 +118,7 @@ public class UpcomingCache extends AbstractCache {
 
   public void update() {
     if (isNullOrEmpty(model.getUserAddress())) {
-        return;
+      return;
     }
 
     updateDetails();

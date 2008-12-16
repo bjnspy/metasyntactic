@@ -147,7 +147,9 @@ public class Application {
   public static void refresh(final boolean force) {
     if (ThreadingUtilities.isBackgroundThread()) {
       final Runnable runnable = new Runnable() {
-        public void run() { refresh(force); }
+        public void run() {
+          refresh(force);
+        }
       };
       ThreadingUtilities.performOnMainThread(runnable);
       return;

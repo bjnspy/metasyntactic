@@ -3,7 +3,8 @@
 package com.google.protobuf;
 
 public final class DescriptorProtos {
-  private DescriptorProtos() {}
+  private DescriptorProtos() {
+  }
 
   public static com.google.protobuf.Descriptors.FileDescriptor getDescriptor() {
     return descriptor;
@@ -91,7 +92,8 @@ public final class DescriptorProtos {
 
   public static final class FileDescriptorSet extends com.google.protobuf.GeneratedMessage {
     // Use FileDescriptorSet.newBuilder() to construct.
-    private FileDescriptorSet() {}
+    private FileDescriptorSet() {
+    }
 
     private static final FileDescriptorSet defaultInstance = new FileDescriptorSet();
 
@@ -120,7 +122,9 @@ public final class DescriptorProtos {
       return this.file_;
     }
 
-    public int getFileCount() { return this.file_.size(); }
+    public int getFileCount() {
+      return this.file_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.FileDescriptorProto getFile(final int index) {
       return this.file_.get(index);
@@ -203,9 +207,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FileDescriptorSet prototype) {
       return new Builder().mergeFrom(prototype);
@@ -213,7 +221,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FileDescriptorSet.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.FileDescriptorSet result = new com.google.protobuf.DescriptorProtos.FileDescriptorSet();
 
@@ -381,7 +390,8 @@ public final class DescriptorProtos {
 
   public static final class FileDescriptorProto extends com.google.protobuf.GeneratedMessage {
     // Use FileDescriptorProto.newBuilder() to construct.
-    private FileDescriptorProto() {}
+    private FileDescriptorProto() {
+    }
 
     private static final FileDescriptorProto defaultInstance = new FileDescriptorProto();
 
@@ -405,17 +415,25 @@ public final class DescriptorProtos {
     private boolean hasName;
     private java.lang.String name_ = "";
 
-    public boolean hasName() { return this.hasName; }
+    public boolean hasName() {
+      return this.hasName;
+    }
 
-    public java.lang.String getName() { return this.name_; }
+    public java.lang.String getName() {
+      return this.name_;
+    }
 
     // optional string package = 2;
     private boolean hasPackage;
     private java.lang.String package_ = "";
 
-    public boolean hasPackage() { return this.hasPackage; }
+    public boolean hasPackage() {
+      return this.hasPackage;
+    }
 
-    public java.lang.String getPackage() { return this.package_; }
+    public java.lang.String getPackage() {
+      return this.package_;
+    }
 
     // repeated string dependency = 3;
     private java.util.List<java.lang.String> dependency_ = java.util.Collections.emptyList();
@@ -424,7 +442,9 @@ public final class DescriptorProtos {
       return this.dependency_;
     }
 
-    public int getDependencyCount() { return this.dependency_.size(); }
+    public int getDependencyCount() {
+      return this.dependency_.size();
+    }
 
     public java.lang.String getDependency(final int index) {
       return this.dependency_.get(index);
@@ -439,7 +459,9 @@ public final class DescriptorProtos {
       return this.messageType_;
     }
 
-    public int getMessageTypeCount() { return this.messageType_.size(); }
+    public int getMessageTypeCount() {
+      return this.messageType_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.DescriptorProto getMessageType(final int index) {
       return this.messageType_.get(index);
@@ -454,7 +476,9 @@ public final class DescriptorProtos {
       return this.enumType_;
     }
 
-    public int getEnumTypeCount() { return this.enumType_.size(); }
+    public int getEnumTypeCount() {
+      return this.enumType_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(final int index) {
       return this.enumType_.get(index);
@@ -469,7 +493,9 @@ public final class DescriptorProtos {
       return this.service_;
     }
 
-    public int getServiceCount() { return this.service_.size(); }
+    public int getServiceCount() {
+      return this.service_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.ServiceDescriptorProto getService(final int index) {
       return this.service_.get(index);
@@ -484,7 +510,9 @@ public final class DescriptorProtos {
       return this.extension_;
     }
 
-    public int getExtensionCount() { return this.extension_.size(); }
+    public int getExtensionCount() {
+      return this.extension_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(final int index) {
       return this.extension_.get(index);
@@ -498,9 +526,13 @@ public final class DescriptorProtos {
         .FileOptions
         .getDefaultInstance();
 
-    public boolean hasOptions() { return this.hasOptions; }
+    public boolean hasOptions() {
+      return this.hasOptions;
+    }
 
-    public com.google.protobuf.DescriptorProtos.FileOptions getOptions() { return this.options_; }
+    public com.google.protobuf.DescriptorProtos.FileOptions getOptions() {
+      return this.options_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -628,9 +660,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FileDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
@@ -638,7 +674,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FileDescriptorProto.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.FileDescriptorProto result = new com.google.protobuf.DescriptorProtos.FileDescriptorProto();
 
@@ -1203,7 +1240,8 @@ public final class DescriptorProtos {
 
   public static final class DescriptorProto extends com.google.protobuf.GeneratedMessage {
     // Use DescriptorProto.newBuilder() to construct.
-    private DescriptorProto() {}
+    private DescriptorProto() {
+    }
 
     private static final DescriptorProto defaultInstance = new DescriptorProto();
 
@@ -1225,7 +1263,8 @@ public final class DescriptorProtos {
 
     public static final class ExtensionRange extends com.google.protobuf.GeneratedMessage {
       // Use ExtensionRange.newBuilder() to construct.
-      private ExtensionRange() {}
+      private ExtensionRange() {
+      }
 
       private static final ExtensionRange defaultInstance = new ExtensionRange();
 
@@ -1249,17 +1288,25 @@ public final class DescriptorProtos {
       private boolean hasStart;
       private int start_ = 0;
 
-      public boolean hasStart() { return this.hasStart; }
+      public boolean hasStart() {
+        return this.hasStart;
+      }
 
-      public int getStart() { return this.start_; }
+      public int getStart() {
+        return this.start_;
+      }
 
       // optional int32 end = 2;
       private boolean hasEnd;
       private int end_ = 0;
 
-      public boolean hasEnd() { return this.hasEnd; }
+      public boolean hasEnd() {
+        return this.hasEnd;
+      }
 
-      public int getEnd() { return this.end_; }
+      public int getEnd() {
+        return this.end_;
+      }
 
       public final boolean isInitialized() {
         return true;
@@ -1345,9 +1392,13 @@ public final class DescriptorProtos {
             .buildParsed();
       }
 
-      public static Builder newBuilder() { return new Builder(); }
+      public static Builder newBuilder() {
+        return new Builder();
+      }
 
-      public Builder newBuilderForType() { return new Builder(); }
+      public Builder newBuilderForType() {
+        return new Builder();
+      }
 
       public static Builder newBuilder(
           final com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange prototype) {
@@ -1356,7 +1407,8 @@ public final class DescriptorProtos {
 
       public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
         // Construct using com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange.newBuilder()
-        private Builder() {}
+        private Builder() {
+        }
 
         com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange result = new com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange();
 
@@ -1509,9 +1561,13 @@ public final class DescriptorProtos {
     private boolean hasName;
     private java.lang.String name_ = "";
 
-    public boolean hasName() { return this.hasName; }
+    public boolean hasName() {
+      return this.hasName;
+    }
 
-    public java.lang.String getName() { return this.name_; }
+    public java.lang.String getName() {
+      return this.name_;
+    }
 
     // repeated .google.protobuf.FieldDescriptorProto field = 2;
     private java.util.List<com.google.protobuf.DescriptorProtos.FieldDescriptorProto> field_ = java.util
@@ -1522,7 +1578,9 @@ public final class DescriptorProtos {
       return this.field_;
     }
 
-    public int getFieldCount() { return this.field_.size(); }
+    public int getFieldCount() {
+      return this.field_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getField(final int index) {
       return this.field_.get(index);
@@ -1537,7 +1595,9 @@ public final class DescriptorProtos {
       return this.extension_;
     }
 
-    public int getExtensionCount() { return this.extension_.size(); }
+    public int getExtensionCount() {
+      return this.extension_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.FieldDescriptorProto getExtension(final int index) {
       return this.extension_.get(index);
@@ -1552,7 +1612,9 @@ public final class DescriptorProtos {
       return this.nestedType_;
     }
 
-    public int getNestedTypeCount() { return this.nestedType_.size(); }
+    public int getNestedTypeCount() {
+      return this.nestedType_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.DescriptorProto getNestedType(final int index) {
       return this.nestedType_.get(index);
@@ -1567,7 +1629,9 @@ public final class DescriptorProtos {
       return this.enumType_;
     }
 
-    public int getEnumTypeCount() { return this.enumType_.size(); }
+    public int getEnumTypeCount() {
+      return this.enumType_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.EnumDescriptorProto getEnumType(final int index) {
       return this.enumType_.get(index);
@@ -1582,7 +1646,9 @@ public final class DescriptorProtos {
       return this.extensionRange_;
     }
 
-    public int getExtensionRangeCount() { return this.extensionRange_.size(); }
+    public int getExtensionRangeCount() {
+      return this.extensionRange_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.DescriptorProto.ExtensionRange getExtensionRange(final int index) {
       return this.extensionRange_.get(index);
@@ -1596,9 +1662,13 @@ public final class DescriptorProtos {
         .MessageOptions
         .getDefaultInstance();
 
-    public boolean hasOptions() { return this.hasOptions; }
+    public boolean hasOptions() {
+      return this.hasOptions;
+    }
 
-    public com.google.protobuf.DescriptorProtos.MessageOptions getOptions() { return this.options_; }
+    public com.google.protobuf.DescriptorProtos.MessageOptions getOptions() {
+      return this.options_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -1719,9 +1789,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.DescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
@@ -1729,7 +1803,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.DescriptorProto.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.DescriptorProto result = new com.google.protobuf.DescriptorProtos.DescriptorProto();
 
@@ -2288,7 +2363,8 @@ public final class DescriptorProtos {
 
   public static final class FieldDescriptorProto extends com.google.protobuf.GeneratedMessage {
     // Use FieldDescriptorProto.newBuilder() to construct.
-    private FieldDescriptorProto() {}
+    private FieldDescriptorProto() {
+    }
 
     private static final FieldDescriptorProto defaultInstance = new FieldDescriptorProto();
 
@@ -2328,7 +2404,9 @@ public final class DescriptorProtos {
       TYPE_SINT32(16, 17),
       TYPE_SINT64(17, 18),;
 
-      public final int getNumber() { return this.value; }
+      public final int getNumber() {
+        return this.value;
+      }
 
       public static Type valueOf(final int value) {
         switch (value) {
@@ -2427,7 +2505,9 @@ public final class DescriptorProtos {
       LABEL_REQUIRED(1, 2),
       LABEL_REPEATED(2, 3),;
 
-      public final int getNumber() { return this.value; }
+      public final int getNumber() {
+        return this.value;
+      }
 
       public static Label valueOf(final int value) {
         switch (value) {
@@ -2476,57 +2556,85 @@ public final class DescriptorProtos {
     private boolean hasName;
     private java.lang.String name_ = "";
 
-    public boolean hasName() { return this.hasName; }
+    public boolean hasName() {
+      return this.hasName;
+    }
 
-    public java.lang.String getName() { return this.name_; }
+    public java.lang.String getName() {
+      return this.name_;
+    }
 
     // optional int32 number = 3;
     private boolean hasNumber;
     private int number_ = 0;
 
-    public boolean hasNumber() { return this.hasNumber; }
+    public boolean hasNumber() {
+      return this.hasNumber;
+    }
 
-    public int getNumber() { return this.number_; }
+    public int getNumber() {
+      return this.number_;
+    }
 
     // optional .google.protobuf.FieldDescriptorProto.Label label = 4;
     private boolean hasLabel;
     private com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label label_ = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label.LABEL_OPTIONAL;
 
-    public boolean hasLabel() { return this.hasLabel; }
+    public boolean hasLabel() {
+      return this.hasLabel;
+    }
 
-    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label getLabel() { return this.label_; }
+    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Label getLabel() {
+      return this.label_;
+    }
 
     // optional .google.protobuf.FieldDescriptorProto.Type type = 5;
     private boolean hasType;
     private com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type type_ = com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.TYPE_DOUBLE;
 
-    public boolean hasType() { return this.hasType; }
+    public boolean hasType() {
+      return this.hasType;
+    }
 
-    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type getType() { return this.type_; }
+    public com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type getType() {
+      return this.type_;
+    }
 
     // optional string type_name = 6;
     private boolean hasTypeName;
     private java.lang.String typeName_ = "";
 
-    public boolean hasTypeName() { return this.hasTypeName; }
+    public boolean hasTypeName() {
+      return this.hasTypeName;
+    }
 
-    public java.lang.String getTypeName() { return this.typeName_; }
+    public java.lang.String getTypeName() {
+      return this.typeName_;
+    }
 
     // optional string extendee = 2;
     private boolean hasExtendee;
     private java.lang.String extendee_ = "";
 
-    public boolean hasExtendee() { return this.hasExtendee; }
+    public boolean hasExtendee() {
+      return this.hasExtendee;
+    }
 
-    public java.lang.String getExtendee() { return this.extendee_; }
+    public java.lang.String getExtendee() {
+      return this.extendee_;
+    }
 
     // optional string default_value = 7;
     private boolean hasDefaultValue;
     private java.lang.String defaultValue_ = "";
 
-    public boolean hasDefaultValue() { return this.hasDefaultValue; }
+    public boolean hasDefaultValue() {
+      return this.hasDefaultValue;
+    }
 
-    public java.lang.String getDefaultValue() { return this.defaultValue_; }
+    public java.lang.String getDefaultValue() {
+      return this.defaultValue_;
+    }
 
     // optional .google.protobuf.FieldOptions options = 8;
     private boolean hasOptions;
@@ -2536,9 +2644,13 @@ public final class DescriptorProtos {
         .FieldOptions
         .getDefaultInstance();
 
-    public boolean hasOptions() { return this.hasOptions; }
+    public boolean hasOptions() {
+      return this.hasOptions;
+    }
 
-    public com.google.protobuf.DescriptorProtos.FieldOptions getOptions() { return this.options_; }
+    public com.google.protobuf.DescriptorProtos.FieldOptions getOptions() {
+      return this.options_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -2666,9 +2778,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FieldDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
@@ -2676,7 +2792,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FieldDescriptorProto.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.FieldDescriptorProto result = new com.google.protobuf.DescriptorProtos.FieldDescriptorProto();
 
@@ -3052,7 +3169,8 @@ public final class DescriptorProtos {
 
   public static final class EnumDescriptorProto extends com.google.protobuf.GeneratedMessage {
     // Use EnumDescriptorProto.newBuilder() to construct.
-    private EnumDescriptorProto() {}
+    private EnumDescriptorProto() {
+    }
 
     private static final EnumDescriptorProto defaultInstance = new EnumDescriptorProto();
 
@@ -3076,9 +3194,13 @@ public final class DescriptorProtos {
     private boolean hasName;
     private java.lang.String name_ = "";
 
-    public boolean hasName() { return this.hasName; }
+    public boolean hasName() {
+      return this.hasName;
+    }
 
-    public java.lang.String getName() { return this.name_; }
+    public java.lang.String getName() {
+      return this.name_;
+    }
 
     // repeated .google.protobuf.EnumValueDescriptorProto value = 2;
     private java.util.List<com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto> value_ = java.util
@@ -3089,7 +3211,9 @@ public final class DescriptorProtos {
       return this.value_;
     }
 
-    public int getValueCount() { return this.value_.size(); }
+    public int getValueCount() {
+      return this.value_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto getValue(final int index) {
       return this.value_.get(index);
@@ -3103,9 +3227,13 @@ public final class DescriptorProtos {
         .EnumOptions
         .getDefaultInstance();
 
-    public boolean hasOptions() { return this.hasOptions; }
+    public boolean hasOptions() {
+      return this.hasOptions;
+    }
 
-    public com.google.protobuf.DescriptorProtos.EnumOptions getOptions() { return this.options_; }
+    public com.google.protobuf.DescriptorProtos.EnumOptions getOptions() {
+      return this.options_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -3198,9 +3326,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.EnumDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
@@ -3208,7 +3340,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.EnumDescriptorProto.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.EnumDescriptorProto result = new com.google.protobuf.DescriptorProtos.EnumDescriptorProto();
 
@@ -3469,7 +3602,8 @@ public final class DescriptorProtos {
 
   public static final class EnumValueDescriptorProto extends com.google.protobuf.GeneratedMessage {
     // Use EnumValueDescriptorProto.newBuilder() to construct.
-    private EnumValueDescriptorProto() {}
+    private EnumValueDescriptorProto() {
+    }
 
     private static final EnumValueDescriptorProto defaultInstance = new EnumValueDescriptorProto();
 
@@ -3493,17 +3627,25 @@ public final class DescriptorProtos {
     private boolean hasName;
     private java.lang.String name_ = "";
 
-    public boolean hasName() { return this.hasName; }
+    public boolean hasName() {
+      return this.hasName;
+    }
 
-    public java.lang.String getName() { return this.name_; }
+    public java.lang.String getName() {
+      return this.name_;
+    }
 
     // optional int32 number = 2;
     private boolean hasNumber;
     private int number_ = 0;
 
-    public boolean hasNumber() { return this.hasNumber; }
+    public boolean hasNumber() {
+      return this.hasNumber;
+    }
 
-    public int getNumber() { return this.number_; }
+    public int getNumber() {
+      return this.number_;
+    }
 
     // optional .google.protobuf.EnumValueOptions options = 3;
     private boolean hasOptions;
@@ -3513,9 +3655,13 @@ public final class DescriptorProtos {
         .EnumValueOptions
         .getDefaultInstance();
 
-    public boolean hasOptions() { return this.hasOptions; }
+    public boolean hasOptions() {
+      return this.hasOptions;
+    }
 
-    public com.google.protobuf.DescriptorProtos.EnumValueOptions getOptions() { return this.options_; }
+    public com.google.protobuf.DescriptorProtos.EnumValueOptions getOptions() {
+      return this.options_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -3608,9 +3754,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
@@ -3618,7 +3768,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto result = new com.google.protobuf.DescriptorProtos.EnumValueDescriptorProto();
 
@@ -3832,7 +3983,8 @@ public final class DescriptorProtos {
 
   public static final class ServiceDescriptorProto extends com.google.protobuf.GeneratedMessage {
     // Use ServiceDescriptorProto.newBuilder() to construct.
-    private ServiceDescriptorProto() {}
+    private ServiceDescriptorProto() {
+    }
 
     private static final ServiceDescriptorProto defaultInstance = new ServiceDescriptorProto();
 
@@ -3856,9 +4008,13 @@ public final class DescriptorProtos {
     private boolean hasName;
     private java.lang.String name_ = "";
 
-    public boolean hasName() { return this.hasName; }
+    public boolean hasName() {
+      return this.hasName;
+    }
 
-    public java.lang.String getName() { return this.name_; }
+    public java.lang.String getName() {
+      return this.name_;
+    }
 
     // repeated .google.protobuf.MethodDescriptorProto method = 2;
     private java.util.List<com.google.protobuf.DescriptorProtos.MethodDescriptorProto> method_ = java.util
@@ -3869,7 +4025,9 @@ public final class DescriptorProtos {
       return this.method_;
     }
 
-    public int getMethodCount() { return this.method_.size(); }
+    public int getMethodCount() {
+      return this.method_.size();
+    }
 
     public com.google.protobuf.DescriptorProtos.MethodDescriptorProto getMethod(final int index) {
       return this.method_.get(index);
@@ -3883,9 +4041,13 @@ public final class DescriptorProtos {
         .ServiceOptions
         .getDefaultInstance();
 
-    public boolean hasOptions() { return this.hasOptions; }
+    public boolean hasOptions() {
+      return this.hasOptions;
+    }
 
-    public com.google.protobuf.DescriptorProtos.ServiceOptions getOptions() { return this.options_; }
+    public com.google.protobuf.DescriptorProtos.ServiceOptions getOptions() {
+      return this.options_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -3978,9 +4140,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.ServiceDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
@@ -3988,7 +4154,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.ServiceDescriptorProto.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.ServiceDescriptorProto result = new com.google.protobuf.DescriptorProtos.ServiceDescriptorProto();
 
@@ -4249,7 +4416,8 @@ public final class DescriptorProtos {
 
   public static final class MethodDescriptorProto extends com.google.protobuf.GeneratedMessage {
     // Use MethodDescriptorProto.newBuilder() to construct.
-    private MethodDescriptorProto() {}
+    private MethodDescriptorProto() {
+    }
 
     private static final MethodDescriptorProto defaultInstance = new MethodDescriptorProto();
 
@@ -4273,25 +4441,37 @@ public final class DescriptorProtos {
     private boolean hasName;
     private java.lang.String name_ = "";
 
-    public boolean hasName() { return this.hasName; }
+    public boolean hasName() {
+      return this.hasName;
+    }
 
-    public java.lang.String getName() { return this.name_; }
+    public java.lang.String getName() {
+      return this.name_;
+    }
 
     // optional string input_type = 2;
     private boolean hasInputType;
     private java.lang.String inputType_ = "";
 
-    public boolean hasInputType() { return this.hasInputType; }
+    public boolean hasInputType() {
+      return this.hasInputType;
+    }
 
-    public java.lang.String getInputType() { return this.inputType_; }
+    public java.lang.String getInputType() {
+      return this.inputType_;
+    }
 
     // optional string output_type = 3;
     private boolean hasOutputType;
     private java.lang.String outputType_ = "";
 
-    public boolean hasOutputType() { return this.hasOutputType; }
+    public boolean hasOutputType() {
+      return this.hasOutputType;
+    }
 
-    public java.lang.String getOutputType() { return this.outputType_; }
+    public java.lang.String getOutputType() {
+      return this.outputType_;
+    }
 
     // optional .google.protobuf.MethodOptions options = 4;
     private boolean hasOptions;
@@ -4301,9 +4481,13 @@ public final class DescriptorProtos {
         .MethodOptions
         .getDefaultInstance();
 
-    public boolean hasOptions() { return this.hasOptions; }
+    public boolean hasOptions() {
+      return this.hasOptions;
+    }
 
-    public com.google.protobuf.DescriptorProtos.MethodOptions getOptions() { return this.options_; }
+    public com.google.protobuf.DescriptorProtos.MethodOptions getOptions() {
+      return this.options_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -4403,9 +4587,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.MethodDescriptorProto prototype) {
       return new Builder().mergeFrom(prototype);
@@ -4413,7 +4601,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.MethodDescriptorProto.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.MethodDescriptorProto result = new com.google.protobuf.DescriptorProtos.MethodDescriptorProto();
 
@@ -4655,7 +4844,8 @@ public final class DescriptorProtos {
 
   public static final class FileOptions extends com.google.protobuf.GeneratedMessage {
     // Use FileOptions.newBuilder() to construct.
-    private FileOptions() {}
+    private FileOptions() {
+    }
 
     private static final FileOptions defaultInstance = new FileOptions();
 
@@ -4679,7 +4869,9 @@ public final class DescriptorProtos {
       SPEED(0, 1),
       CODE_SIZE(1, 2),;
 
-      public final int getNumber() { return this.value; }
+      public final int getNumber() {
+        return this.value;
+      }
 
       public static OptimizeMode valueOf(final int value) {
         switch (value) {
@@ -4726,49 +4918,73 @@ public final class DescriptorProtos {
     private boolean hasJavaPackage;
     private java.lang.String javaPackage_ = "";
 
-    public boolean hasJavaPackage() { return this.hasJavaPackage; }
+    public boolean hasJavaPackage() {
+      return this.hasJavaPackage;
+    }
 
-    public java.lang.String getJavaPackage() { return this.javaPackage_; }
+    public java.lang.String getJavaPackage() {
+      return this.javaPackage_;
+    }
 
     // optional string java_outer_classname = 8;
     private boolean hasJavaOuterClassname;
     private java.lang.String javaOuterClassname_ = "";
 
-    public boolean hasJavaOuterClassname() { return this.hasJavaOuterClassname; }
+    public boolean hasJavaOuterClassname() {
+      return this.hasJavaOuterClassname;
+    }
 
-    public java.lang.String getJavaOuterClassname() { return this.javaOuterClassname_; }
+    public java.lang.String getJavaOuterClassname() {
+      return this.javaOuterClassname_;
+    }
 
     // optional bool java_multiple_files = 10 [default = false];
     private boolean hasJavaMultipleFiles;
     private boolean javaMultipleFiles_ = false;
 
-    public boolean hasJavaMultipleFiles() { return this.hasJavaMultipleFiles; }
+    public boolean hasJavaMultipleFiles() {
+      return this.hasJavaMultipleFiles;
+    }
 
-    public boolean getJavaMultipleFiles() { return this.javaMultipleFiles_; }
+    public boolean getJavaMultipleFiles() {
+      return this.javaMultipleFiles_;
+    }
 
     // optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = CODE_SIZE];
     private boolean hasOptimizeFor;
     private com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode optimizeFor_ = com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode.CODE_SIZE;
 
-    public boolean hasOptimizeFor() { return this.hasOptimizeFor; }
+    public boolean hasOptimizeFor() {
+      return this.hasOptimizeFor;
+    }
 
-    public com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode getOptimizeFor() { return this.optimizeFor_; }
+    public com.google.protobuf.DescriptorProtos.FileOptions.OptimizeMode getOptimizeFor() {
+      return this.optimizeFor_;
+    }
 
     // optional string objectivec_package = 11;
     private boolean hasObjectivecPackage;
     private java.lang.String objectivecPackage_ = "";
 
-    public boolean hasObjectivecPackage() { return this.hasObjectivecPackage; }
+    public boolean hasObjectivecPackage() {
+      return this.hasObjectivecPackage;
+    }
 
-    public java.lang.String getObjectivecPackage() { return this.objectivecPackage_; }
+    public java.lang.String getObjectivecPackage() {
+      return this.objectivecPackage_;
+    }
 
     // optional string objectivec_class_prefix = 12;
     private boolean hasObjectivecClassPrefix;
     private java.lang.String objectivecClassPrefix_ = "";
 
-    public boolean hasObjectivecClassPrefix() { return this.hasObjectivecClassPrefix; }
+    public boolean hasObjectivecClassPrefix() {
+      return this.hasObjectivecClassPrefix;
+    }
 
-    public java.lang.String getObjectivecClassPrefix() { return this.objectivecClassPrefix_; }
+    public java.lang.String getObjectivecClassPrefix() {
+      return this.objectivecClassPrefix_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -4882,9 +5098,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FileOptions prototype) {
       return new Builder().mergeFrom(prototype);
@@ -4892,7 +5112,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FileOptions.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.FileOptions result = new com.google.protobuf.DescriptorProtos.FileOptions();
 
@@ -5166,7 +5387,8 @@ public final class DescriptorProtos {
 
   public static final class MessageOptions extends com.google.protobuf.GeneratedMessage {
     // Use MessageOptions.newBuilder() to construct.
-    private MessageOptions() {}
+    private MessageOptions() {
+    }
 
     private static final MessageOptions defaultInstance = new MessageOptions();
 
@@ -5190,9 +5412,13 @@ public final class DescriptorProtos {
     private boolean hasMessageSetWireFormat;
     private boolean messageSetWireFormat_ = false;
 
-    public boolean hasMessageSetWireFormat() { return this.hasMessageSetWireFormat; }
+    public boolean hasMessageSetWireFormat() {
+      return this.hasMessageSetWireFormat;
+    }
 
-    public boolean getMessageSetWireFormat() { return this.messageSetWireFormat_; }
+    public boolean getMessageSetWireFormat() {
+      return this.messageSetWireFormat_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -5271,9 +5497,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.MessageOptions prototype) {
       return new Builder().mergeFrom(prototype);
@@ -5281,7 +5511,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.MessageOptions.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.MessageOptions result = new com.google.protobuf.DescriptorProtos.MessageOptions();
 
@@ -5404,7 +5635,8 @@ public final class DescriptorProtos {
 
   public static final class FieldOptions extends com.google.protobuf.GeneratedMessage {
     // Use FieldOptions.newBuilder() to construct.
-    private FieldOptions() {}
+    private FieldOptions() {
+    }
 
     private static final FieldOptions defaultInstance = new FieldOptions();
 
@@ -5428,7 +5660,9 @@ public final class DescriptorProtos {
       CORD(0, 1),
       STRING_PIECE(1, 2),;
 
-      public final int getNumber() { return this.value; }
+      public final int getNumber() {
+        return this.value;
+      }
 
       public static CType valueOf(final int value) {
         switch (value) {
@@ -5475,17 +5709,25 @@ public final class DescriptorProtos {
     private boolean hasCtype;
     private com.google.protobuf.DescriptorProtos.FieldOptions.CType ctype_ = com.google.protobuf.DescriptorProtos.FieldOptions.CType.CORD;
 
-    public boolean hasCtype() { return this.hasCtype; }
+    public boolean hasCtype() {
+      return this.hasCtype;
+    }
 
-    public com.google.protobuf.DescriptorProtos.FieldOptions.CType getCtype() { return this.ctype_; }
+    public com.google.protobuf.DescriptorProtos.FieldOptions.CType getCtype() {
+      return this.ctype_;
+    }
 
     // optional string experimental_map_key = 9;
     private boolean hasExperimentalMapKey;
     private java.lang.String experimentalMapKey_ = "";
 
-    public boolean hasExperimentalMapKey() { return this.hasExperimentalMapKey; }
+    public boolean hasExperimentalMapKey() {
+      return this.hasExperimentalMapKey;
+    }
 
-    public java.lang.String getExperimentalMapKey() { return this.experimentalMapKey_; }
+    public java.lang.String getExperimentalMapKey() {
+      return this.experimentalMapKey_;
+    }
 
     public final boolean isInitialized() {
       return true;
@@ -5571,9 +5813,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.FieldOptions prototype) {
       return new Builder().mergeFrom(prototype);
@@ -5581,7 +5827,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.FieldOptions.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.FieldOptions result = new com.google.protobuf.DescriptorProtos.FieldOptions();
 
@@ -5743,7 +5990,8 @@ public final class DescriptorProtos {
 
   public static final class EnumOptions extends com.google.protobuf.GeneratedMessage {
     // Use EnumOptions.newBuilder() to construct.
-    private EnumOptions() {}
+    private EnumOptions() {
+    }
 
     private static final EnumOptions defaultInstance = new EnumOptions();
 
@@ -5833,9 +6081,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.EnumOptions prototype) {
       return new Builder().mergeFrom(prototype);
@@ -5843,7 +6095,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.EnumOptions.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.EnumOptions result = new com.google.protobuf.DescriptorProtos.EnumOptions();
 
@@ -5938,7 +6191,8 @@ public final class DescriptorProtos {
 
   public static final class EnumValueOptions extends com.google.protobuf.GeneratedMessage {
     // Use EnumValueOptions.newBuilder() to construct.
-    private EnumValueOptions() {}
+    private EnumValueOptions() {
+    }
 
     private static final EnumValueOptions defaultInstance = new EnumValueOptions();
 
@@ -6028,9 +6282,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.EnumValueOptions prototype) {
       return new Builder().mergeFrom(prototype);
@@ -6038,7 +6296,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.EnumValueOptions.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.EnumValueOptions result = new com.google.protobuf.DescriptorProtos.EnumValueOptions();
 
@@ -6133,7 +6392,8 @@ public final class DescriptorProtos {
 
   public static final class ServiceOptions extends com.google.protobuf.GeneratedMessage {
     // Use ServiceOptions.newBuilder() to construct.
-    private ServiceOptions() {}
+    private ServiceOptions() {
+    }
 
     private static final ServiceOptions defaultInstance = new ServiceOptions();
 
@@ -6223,9 +6483,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.ServiceOptions prototype) {
       return new Builder().mergeFrom(prototype);
@@ -6233,7 +6497,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.ServiceOptions.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.ServiceOptions result = new com.google.protobuf.DescriptorProtos.ServiceOptions();
 
@@ -6328,7 +6593,8 @@ public final class DescriptorProtos {
 
   public static final class MethodOptions extends com.google.protobuf.GeneratedMessage {
     // Use MethodOptions.newBuilder() to construct.
-    private MethodOptions() {}
+    private MethodOptions() {
+    }
 
     private static final MethodOptions defaultInstance = new MethodOptions();
 
@@ -6418,9 +6684,13 @@ public final class DescriptorProtos {
           .buildParsed();
     }
 
-    public static Builder newBuilder() { return new Builder(); }
+    public static Builder newBuilder() {
+      return new Builder();
+    }
 
-    public Builder newBuilderForType() { return new Builder(); }
+    public Builder newBuilderForType() {
+      return new Builder();
+    }
 
     public static Builder newBuilder(final com.google.protobuf.DescriptorProtos.MethodOptions prototype) {
       return new Builder().mergeFrom(prototype);
@@ -6428,7 +6698,8 @@ public final class DescriptorProtos {
 
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
       // Construct using com.google.protobuf.DescriptorProtos.MethodOptions.newBuilder()
-      private Builder() {}
+      private Builder() {
+      }
 
       com.google.protobuf.DescriptorProtos.MethodOptions result = new com.google.protobuf.DescriptorProtos.MethodOptions();
 
@@ -6533,9 +6804,9 @@ public final class DescriptorProtos {
       .get(1);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_google_protobuf_FileDescriptorProto_descriptor, new java.lang.String[]{
-      "Name", "Package", "Dependency", "MessageType", "EnumType", "Service", "Extension", "Options",
-  }, com.google.protobuf.DescriptorProtos.FileDescriptorProto.class,
-     com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder.class);
+          "Name", "Package", "Dependency", "MessageType", "EnumType", "Service", "Extension", "Options",
+      }, com.google.protobuf.DescriptorProtos.FileDescriptorProto.class,
+      com.google.protobuf.DescriptorProtos.FileDescriptorProto.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_DescriptorProto_descriptor = getDescriptor()
       .getMessageTypes()
       .get(2);
@@ -6597,14 +6868,14 @@ public final class DescriptorProtos {
       .get(8);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_google_protobuf_FileOptions_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_google_protobuf_FileOptions_descriptor, new java.lang.String[]{
-      "JavaPackage",
-      "JavaOuterClassname",
-      "JavaMultipleFiles",
-      "OptimizeFor",
-      "ObjectivecPackage",
-      "ObjectivecClassPrefix",
-  }, com.google.protobuf.DescriptorProtos.FileOptions.class,
-     com.google.protobuf.DescriptorProtos.FileOptions.Builder.class);
+          "JavaPackage",
+          "JavaOuterClassname",
+          "JavaMultipleFiles",
+          "OptimizeFor",
+          "ObjectivecPackage",
+          "ObjectivecClassPrefix",
+      }, com.google.protobuf.DescriptorProtos.FileOptions.class,
+      com.google.protobuf.DescriptorProtos.FileOptions.Builder.class);
   private static final com.google.protobuf.Descriptors.Descriptor internal_static_google_protobuf_MessageOptions_descriptor = getDescriptor()
       .getMessageTypes()
       .get(9);

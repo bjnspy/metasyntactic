@@ -32,12 +32,16 @@ import java.util.List;
  * @author kenton@google.com Kenton Varda
  */
 public final class CodedInputStream {
-  /** Create a new CodedInputStream wrapping the given InputStream. */
+  /**
+   * Create a new CodedInputStream wrapping the given InputStream.
+   */
   public static CodedInputStream newInstance(final InputStream input) {
     return new CodedInputStream(input);
   }
 
-  /** Create a new CodedInputStream wrapping the given byte array. */
+  /**
+   * Create a new CodedInputStream wrapping the given byte array.
+   */
   public static CodedInputStream newInstance(final byte[] buf) {
     return new CodedInputStream(buf);
   }
@@ -120,47 +124,65 @@ public final class CodedInputStream {
 
   // -----------------------------------------------------------------
 
-  /** Read a {@code double} field value from the stream. */
+  /**
+   * Read a {@code double} field value from the stream.
+   */
   public double readDouble() throws IOException {
     return Double.longBitsToDouble(readRawLittleEndian64());
   }
 
-  /** Read a {@code float} field value from the stream. */
+  /**
+   * Read a {@code float} field value from the stream.
+   */
   public float readFloat() throws IOException {
     return Float.intBitsToFloat(readRawLittleEndian32());
   }
 
-  /** Read a {@code uint64} field value from the stream. */
+  /**
+   * Read a {@code uint64} field value from the stream.
+   */
   public long readUInt64() throws IOException {
     return readRawVarint64();
   }
 
-  /** Read an {@code int64} field value from the stream. */
+  /**
+   * Read an {@code int64} field value from the stream.
+   */
   public long readInt64() throws IOException {
     return readRawVarint64();
   }
 
-  /** Read an {@code int32} field value from the stream. */
+  /**
+   * Read an {@code int32} field value from the stream.
+   */
   public int readInt32() throws IOException {
     return readRawVarint32();
   }
 
-  /** Read a {@code fixed64} field value from the stream. */
+  /**
+   * Read a {@code fixed64} field value from the stream.
+   */
   public long readFixed64() throws IOException {
     return readRawLittleEndian64();
   }
 
-  /** Read a {@code fixed32} field value from the stream. */
+  /**
+   * Read a {@code fixed32} field value from the stream.
+   */
   public int readFixed32() throws IOException {
     return readRawLittleEndian32();
   }
 
-  /** Read a {@code bool} field value from the stream. */
+  /**
+   * Read a {@code bool} field value from the stream.
+   */
   public boolean readBool() throws IOException {
     return readRawVarint32() != 0;
   }
 
-  /** Read a {@code string} field value from the stream. */
+  /**
+   * Read a {@code string} field value from the stream.
+   */
   public String readString() throws IOException {
     final int size = readRawVarint32();
     if (size < this.bufferSize - this.bufferPos && size > 0) {
@@ -175,7 +197,9 @@ public final class CodedInputStream {
     }
   }
 
-  /** Read a {@code group} field value from the stream. */
+  /**
+   * Read a {@code group} field value from the stream.
+   */
   public void readGroup(final int fieldNumber, final Message.Builder builder, final ExtensionRegistry extensionRegistry)
       throws IOException {
     if (this.recursionDepth >= this.recursionLimit) {
@@ -187,7 +211,9 @@ public final class CodedInputStream {
     --this.recursionDepth;
   }
 
-  /** Reads a {@code group} field value from the stream and merges it into the given {@link UnknownFieldSet}. */
+  /**
+   * Reads a {@code group} field value from the stream and merges it into the given {@link UnknownFieldSet}.
+   */
   public void readUnknownGroup(final int fieldNumber, final UnknownFieldSet.Builder builder) throws IOException {
     if (this.recursionDepth >= this.recursionLimit) {
       throw InvalidProtocolBufferException.recursionLimitExceeded();
@@ -198,7 +224,9 @@ public final class CodedInputStream {
     --this.recursionDepth;
   }
 
-  /** Read an embedded message field value from the stream. */
+  /**
+   * Read an embedded message field value from the stream.
+   */
   public void readMessage(final Message.Builder builder, final ExtensionRegistry extensionRegistry) throws IOException {
     final int length = readRawVarint32();
     if (this.recursionDepth >= this.recursionLimit) {
@@ -212,7 +240,9 @@ public final class CodedInputStream {
     popLimit(oldLimit);
   }
 
-  /** Read a {@code bytes} field value from the stream. */
+  /**
+   * Read a {@code bytes} field value from the stream.
+   */
   public ByteString readBytes() throws IOException {
     final int size = readRawVarint32();
     if (size < this.bufferSize - this.bufferPos && size > 0) {
@@ -227,7 +257,9 @@ public final class CodedInputStream {
     }
   }
 
-  /** Read a {@code uint32} field value from the stream. */
+  /**
+   * Read a {@code uint32} field value from the stream.
+   */
   public int readUInt32() throws IOException {
     return readRawVarint32();
   }
@@ -240,22 +272,30 @@ public final class CodedInputStream {
     return readRawVarint32();
   }
 
-  /** Read an {@code sfixed32} field value from the stream. */
+  /**
+   * Read an {@code sfixed32} field value from the stream.
+   */
   public int readSFixed32() throws IOException {
     return readRawLittleEndian32();
   }
 
-  /** Read an {@code sfixed64} field value from the stream. */
+  /**
+   * Read an {@code sfixed64} field value from the stream.
+   */
   public long readSFixed64() throws IOException {
     return readRawLittleEndian64();
   }
 
-  /** Read an {@code sint32} field value from the stream. */
+  /**
+   * Read an {@code sint32} field value from the stream.
+   */
   public int readSInt32() throws IOException {
     return decodeZigZag32(readRawVarint32());
   }
 
-  /** Read an {@code sint64} field value from the stream. */
+  /**
+   * Read an {@code sint64} field value from the stream.
+   */
   public long readSInt64() throws IOException {
     return decodeZigZag64(readRawVarint64());
   }
@@ -264,7 +304,6 @@ public final class CodedInputStream {
    * Read a field of any primitive type.  Enums, groups, and embedded messages are not handled by this method.
    *
    * @param type Declared type of the field.
-   *
    * @return An object representing the field's value, of the exact type which would be returned by {@link
    *         Message#getField(Descriptors.FieldDescriptor)} for this field.
    */
@@ -316,7 +355,9 @@ public final class CodedInputStream {
 
   // =================================================================
 
-  /** Read a raw Varint from the stream.  If larger than 32 bits, discard the upper bits. */
+  /**
+   * Read a raw Varint from the stream.  If larger than 32 bits, discard the upper bits.
+   */
   public int readRawVarint32() throws IOException {
     byte tmp = readRawByte();
     if (tmp >= 0) {
@@ -351,7 +392,9 @@ public final class CodedInputStream {
     return result;
   }
 
-  /** Read a raw Varint from the stream. */
+  /**
+   * Read a raw Varint from the stream.
+   */
   public long readRawVarint64() throws IOException {
     int shift = 0;
     long result = 0;
@@ -366,7 +409,9 @@ public final class CodedInputStream {
     throw InvalidProtocolBufferException.malformedVarint();
   }
 
-  /** Read a 32-bit little-endian integer from the stream. */
+  /**
+   * Read a 32-bit little-endian integer from the stream.
+   */
   public int readRawLittleEndian32() throws IOException {
     final byte b1 = readRawByte();
     final byte b2 = readRawByte();
@@ -375,7 +420,9 @@ public final class CodedInputStream {
     return b1 & 0xff | (b2 & 0xff) << 8 | (b3 & 0xff) << 16 | (b4 & 0xff) << 24;
   }
 
-  /** Read a 64-bit little-endian integer from the stream. */
+  /**
+   * Read a 64-bit little-endian integer from the stream.
+   */
   public long readRawLittleEndian64() throws IOException {
     final byte b1 = readRawByte();
     final byte b2 = readRawByte();
@@ -401,7 +448,6 @@ public final class CodedInputStream {
    * 10 bytes on the wire.)
    *
    * @param n An unsigned 32-bit integer, stored in a signed int because Java has no explicit unsigned support.
-   *
    * @return A signed 32-bit integer.
    */
   public static int decodeZigZag32(final int n) {
@@ -414,7 +460,6 @@ public final class CodedInputStream {
    * 10 bytes on the wire.)
    *
    * @param n An unsigned 64-bit integer, stored in a signed int because Java has no explicit unsigned support.
-   *
    * @return A signed 64-bit integer.
    */
   public static long decodeZigZag64(final long n) {
@@ -436,14 +481,20 @@ public final class CodedInputStream {
    */
   private int totalBytesRetired = 0;
 
-  /** The absolute position of the end of the current message. */
+  /**
+   * The absolute position of the end of the current message.
+   */
   private int currentLimit = Integer.MAX_VALUE;
 
-  /** See setRecursionLimit() */
+  /**
+   * See setRecursionLimit()
+   */
   private int recursionDepth = 0;
   private int recursionLimit = DEFAULT_RECURSION_LIMIT;
 
-  /** See setSizeLimit() */
+  /**
+   * See setSizeLimit()
+   */
   private int sizeLimit = DEFAULT_SIZE_LIMIT;
 
   private static final int DEFAULT_RECURSION_LIMIT = 64;

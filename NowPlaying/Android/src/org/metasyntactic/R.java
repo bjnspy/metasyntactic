@@ -555,6 +555,7 @@ public final class R {
         /** Yesterday
          */
         public static final int yesterday=0x7f06007f;
+        public static final int your_onedollars_country_is_set_to_2dollar_full=0x7f06008f;
         /** Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.
          */
         public static final int your_strings_country_is_set_to_string_full_support=0x7f060080;
