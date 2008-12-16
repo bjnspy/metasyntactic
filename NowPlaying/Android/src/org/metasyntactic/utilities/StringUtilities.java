@@ -16,7 +16,6 @@ package org.metasyntactic.utilities;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.Normalizer;
 
 public class StringUtilities {
   private StringUtilities() {
@@ -47,6 +46,7 @@ public class StringUtilities {
   }
 
   public static String toASCII(final String s) {
-    return Normalizer.normalize(s, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+    return s;
+    //return Normalizer.normalize(s, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
   }
 }
