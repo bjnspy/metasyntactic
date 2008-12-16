@@ -20,9 +20,9 @@ import java.util.List;
 public class ShowtimesDetailsActivity extends ListActivity {
   private Theater theater;
   private Movie movie;
-  private List<TheaterDetailItem> detailItems = new ArrayList<TheaterDetailItem>();
+  private final List<TheaterDetailItem> detailItems = new ArrayList<TheaterDetailItem>();
 
-  enum TheaterDetailItemType {
+  private enum TheaterDetailItemType {
     NAME_SHOWTIMES, ADDRESS, PHONE
   }
 
@@ -71,14 +71,14 @@ public class ShowtimesDetailsActivity extends ListActivity {
     populateTheaterDetailItem();
     final TheaterAdapter theaterAdapter = new TheaterAdapter();
     setListAdapter(theaterAdapter);
-    TextView theaterTxt = (TextView) findViewById(R.id.theater);
+    final TextView theaterTxt = (TextView) findViewById(R.id.theater);
     theaterTxt.setText(theater.getName());
   }
 
   private class TheaterAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public TheaterAdapter() {
+    private TheaterAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(ShowtimesDetailsActivity.this);
     }
@@ -167,7 +167,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     }
   }
 
-  private class TheaterDetailItem {
+  private static class TheaterDetailItem {
     private TheaterDetailItemType type;
     private Intent intent;
 
@@ -206,7 +206,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
-      intent.setClass(ShowtimesDetailsActivity.this, AllTheatersActivity.class);
+      intent.setClass(this, AllTheatersActivity.class);
       startActivity(intent);
       return true;
     }

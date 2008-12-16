@@ -37,13 +37,13 @@ public class TheaterDetailsActivity extends ListActivity {
   }
 
   @Override
-  protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
+  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final Movie movie = this.movies.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, MovieDetailsActivity.class);
     intent.putExtra("movie", (Parcelable) movie);
     startActivity(intent);
-    super.onListItemClick(l, v, position, id);
+    super.onListItemClick(listView, view, position, id);
   }
 
   @Override
@@ -90,14 +90,13 @@ public class TheaterDetailsActivity extends ListActivity {
         startActivity(callIntent);
       }
     });
-    MoviesAdapter moviesAdapter = new MoviesAdapter();
-    setListAdapter(moviesAdapter);
+    setListAdapter(new MoviesAdapter());
   }
 
   private class MoviesAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public MoviesAdapter() {
+    private MoviesAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(TheaterDetailsActivity.this);
     }
@@ -171,10 +170,9 @@ public class TheaterDetailsActivity extends ListActivity {
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
-      intent.setClass(TheaterDetailsActivity.this, AllTheatersActivity.class);
+      intent.setClass(this, AllTheatersActivity.class);
       startActivity(intent);
       return true;
     }
