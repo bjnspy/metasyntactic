@@ -38,8 +38,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private boolean isGridSetup;
   private List<Movie> movies;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
@@ -50,7 +49,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   public void refresh() {
     final List<Movie> tmpMovies = NowPlayingControllerWrapper.getMovies();
     // sort movies according to the default sort preference.
-    final Comparator<Movie> comparator = this.MOVIE_ORDER.get(NowPlayingControllerWrapper
+    final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
     Collections.sort(tmpMovies, comparator);
     this.movies = new ArrayList<Movie>();
@@ -61,7 +60,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       }
       this.isPrioritized = true;
     }
-    if (this.movies.size() > 0 && !this.isGridSetup) {
+    if (!this.movies.isEmpty() && !this.isGridSetup) {
       setup();
       this.isGridSetup = true;
     }
@@ -277,7 +276,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       }
     }
 
-    public final int getCount() {
+    public int getCount() {
       if (UpcomingMoviesActivity.this.movies != null) {
         return Math.min(100, UpcomingMoviesActivity.this.movies.size());
       } else {
@@ -290,7 +289,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
                                                     % UpcomingMoviesActivity.this.movies.size());
     }
 
-    public final long getItemId(final int position) {
+    public long getItemId(final int position) {
       return position;
     }
 
@@ -317,7 +316,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
       intent.setClass(UpcomingMoviesActivity.this, AllTheatersActivity.class);

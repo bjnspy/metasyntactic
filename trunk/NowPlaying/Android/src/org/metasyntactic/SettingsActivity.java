@@ -52,7 +52,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   @Override
-  protected void onListItemClick(final ListView l, final View v,
+  protected void onListItemClick(final ListView listView, final View v,
                                  final int position, final long id) {
     NowPlayingPreferenceDialog dialog = null;
     switch (this.detailItems.get(position).getKey()) {
@@ -63,7 +63,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
             R.layout.alert_dialog_text_entry, null);
         // The order in which the methods on the NowPlayingPreferenceDialog object are called
         // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(SettingsActivity.this).setTitle(
+        dialog = new NowPlayingPreferenceDialog(this).setTitle(
             this.detailItems.get(position).getLabel()).setKey(
             this.detailItems.get(position).getKey()).setTextView(textEntryView)
             .setPositiveButton(R.string.ok).setNegativeButton(
@@ -75,9 +75,9 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         // The order in which the methods on the NowPlayingPreferenceDialog object are called
         // should not be changed.
 
-        final String[] distanceValues = SettingsActivity.this.getResources()
+        final String[] distanceValues = this.getResources()
             .getStringArray(R.array.entries_search_distance_preference);
-        dialog = new NowPlayingPreferenceDialog(SettingsActivity.this).setTitle(
+        dialog = new NowPlayingPreferenceDialog(this).setTitle(
             this.detailItems.get(position).getLabel()).setKey(
             this.detailItems.get(position).getKey()).setItems(distanceValues);
         break;
@@ -86,7 +86,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
         // The order in which the methods on the NowPlayingPreferenceDialog object are called
         // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(SettingsActivity.this).setTitle(
+        dialog = new NowPlayingPreferenceDialog(this).setTitle(
             this.detailItems.get(position).getLabel()).setKey(
             this.detailItems.get(position).getKey()).setEntries(
             R.array.entries_reviews_provider_preference).setPositiveButton(
@@ -98,7 +98,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
         // The order in which the methods on the NowPlayingPreferenceDialog object are called
         // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(SettingsActivity.this).setTitle(
+        dialog = new NowPlayingPreferenceDialog(this).setTitle(
             this.detailItems.get(position).getLabel()).setKey(
             this.detailItems.get(position).getKey()).setEntries(
             R.array.entries_auto_update_preference).setPositiveButton(
@@ -127,16 +127,15 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         this.year = cal.get(Calendar.YEAR);
         this.month = cal.get(Calendar.MONTH);
         this.day = cal.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(SettingsActivity.this,
-                             dateSetListener, this.year, this.month, this.day).show();
-        super.onListItemClick(l, v, position, id);
+        new DatePickerDialog(this, dateSetListener, this.year, this.month, this.day).show();
+        super.onListItemClick(listView, v, position, id);
         return;
     }
 
     if (dialog != null) {
       dialog.show();
     }
-    super.onListItemClick(l, v, position, id);
+    super.onListItemClick(listView, v, position, id);
   }
 
   @Override
@@ -224,7 +223,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   private class SettingsAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public SettingsAdapter() {
+    private SettingsAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(SettingsActivity.this);
     }
@@ -297,7 +296,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     }
   }
 
-  private class SettingsItem {
+  private static class SettingsItem {
     private String label;
     private String data;
     private NowPlayingPreferenceDialog.PreferenceKeys key;
@@ -328,7 +327,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   public Context getContext() {
-    return SettingsActivity.this;
+    return this;
   }
 
   public void refresh() {
