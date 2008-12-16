@@ -16,16 +16,14 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.io.AbstractPersistable;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   private static final long serialVersionUID = 4570788252867866289L;
@@ -297,4 +295,44 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   public int compareTo(Movie movie) {
     return getCanonicalTitle().compareTo(movie.getCanonicalTitle());
   }
+
+  public final static Comparator<Movie> TITLE_ORDER = new Comparator<Movie>() {
+    public int compare(final Movie m1, final Movie m2) {
+      return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
+    }
+  };
+  public final static Comparator<Movie> RELEASE_ORDER = new Comparator<Movie>() {
+    public int compare(final Movie m1, final Movie m2) {
+      final Calendar c1 = Calendar.getInstance();
+      c1.set(1900, 11, 11);
+      Date d1 = c1.getTime();
+      Date d2 = c1.getTime();
+      if (m1.getReleaseDate() != null) {
+        d1 = m1.getReleaseDate();
+      }
+      if (m2.getReleaseDate() != null) {
+        d2 = m2.getReleaseDate();
+      }
+      return d2.compareTo(d1);
+    }
+  };
+  public final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
+    public int compare(final Movie m1, final Movie m2) {
+      int value1 = 0;
+      int value2 = 0;
+      final Score s1 = NowPlayingControllerWrapper.getScore(m1);
+      final Score s2 = NowPlayingControllerWrapper.getScore(m2);
+      if (s1 != null) {
+        value1 = s1.getScoreValue();
+      }
+      if (s2 != null) {
+        value2 = s2.getScoreValue();
+      }
+      if (value1 == value2) {
+        return m1.getDisplayTitle().compareTo(m2.getDisplayTitle());
+      } else {
+        return value2 - value1;
+      }
+    }
+  };
 }

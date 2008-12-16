@@ -29,16 +29,16 @@ import java.util.*;
 
 public class Theater implements Parcelable, Persistable {
   private static final long serialVersionUID = 8020194452818140040L;
-  private String identifier;
-  private String name;
-  private String address;
-  private String phoneNumber;
+  private final String identifier;
+  private final String name;
+  private final String address;
+  private final String phoneNumber;
 
-  private Location location;
-  private Location originatingLocation;
-  private Set<String> movieTitles;
+  private final Location location;
+  private final Location originatingLocation;
+  private final Set<String> movieTitles;
 
-  public void persistTo(PersistableOutputStream out) throws IOException {
+  public void persistTo(final PersistableOutputStream out) throws IOException {
     out.writeString(identifier);
     out.writeString(name);
     out.writeString(address);
@@ -49,21 +49,21 @@ public class Theater implements Parcelable, Persistable {
   }
 
   public static final Reader<Theater> reader = new AbstractPersistable.AbstractReader<Theater>() {
-    public Theater read(PersistableInputStream in) throws IOException {
-      String identifier = in.readString();
-      String name = in.readString();
-      String address = in.readString();
-      String phoneNumber = in.readString();
-      Location location = in.readPersistable(Location.reader);
-      Location originatingLocation = in.readPersistable(Location.reader);
-      Set<String> movieTitles = in.readStringSet();
+    public Theater read(final PersistableInputStream in) throws IOException {
+      final String identifier = in.readString();
+      final String name = in.readString();
+      final String address = in.readString();
+      final String phoneNumber = in.readString();
+      final Location location = in.readPersistable(Location.reader);
+      final Location originatingLocation = in.readPersistable(Location.reader);
+      final Set<String> movieTitles = in.readStringSet();
 
       return new Theater(identifier, name, address, phoneNumber, location, originatingLocation, movieTitles);
     }
   };
 
-  public Theater(String identifier, String name, String address, String phoneNumber, Location location,
-                 Location originatingLocation, Set<String> movieTitles) {
+  public Theater(final String identifier, final String name, final String address, final String phoneNumber, final Location location,
+                 final Location originatingLocation, final Set<String> movieTitles) {
     this.identifier = identifier;
     this.name = nonNullString(name);
     this.address = nonNullString(address);
@@ -73,7 +73,8 @@ public class Theater implements Parcelable, Persistable {
     this.movieTitles = movieTitles;
   }
 
-  public boolean equals(Object o) {
+  @Override
+  public boolean equals(final Object o) {
     if (this == o) {
       return true;
     }
@@ -81,7 +82,7 @@ public class Theater implements Parcelable, Persistable {
       return false;
     }
 
-    Theater theater = (Theater) o;
+    final Theater theater = (Theater) o;
 
     if (name != null ? !name.equals(theater.name) : theater.name != null) {
       return false;
@@ -90,8 +91,9 @@ public class Theater implements Parcelable, Persistable {
     return true;
   }
 
+  @Override
   public int hashCode() {
-    return (identifier != null ? identifier.hashCode() : 0);
+    return identifier != null ? identifier.hashCode() : 0;
   }
 
   public String getIdentifier() {
@@ -126,7 +128,7 @@ public class Theater implements Parcelable, Persistable {
     return 0;
   }
 
-  public void writeToParcel(Parcel dest, int flags) {
+  public void writeToParcel(final Parcel dest, final int flags) {
     dest.writeString(identifier);
     dest.writeString(name);
     dest.writeString(address);
@@ -136,29 +138,30 @@ public class Theater implements Parcelable, Persistable {
     dest.writeStringList(new ArrayList<String>(movieTitles));
   }
 
-  public static final Parcelable.Creator<Theater> CREATOR = new Parcelable.Creator<Theater>() {
-    public Theater createFromParcel(Parcel source) {
-      String identifier = source.readString();
-      String name = source.readString();
-      String address = source.readString();
-      String phoneNumber = source.readString();
+  public static final Creator<Theater> CREATOR = new Creator<Theater>() {
+    public Theater createFromParcel(final Parcel source) {
+      final String identifier = source.readString();
+      final String name = source.readString();
+      final String address = source.readString();
+      final String phoneNumber = source.readString();
 
-      Location location = source.readParcelable(NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
-      Location originatingLocation = source.readParcelable(
+      final Location location = source.readParcelable(
           NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
-      List<String> movieTitles = new ArrayList<String>();
+      final Location originatingLocation = source.readParcelable(
+          NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
+      final List<String> movieTitles = new ArrayList<String>();
       source.readStringList(movieTitles);
 
       return new Theater(identifier, name, address, phoneNumber, location, originatingLocation,
                          new LinkedHashSet<String>(movieTitles));
     }
 
-    public Theater[] newArray(int size) {
+    public Theater[] newArray(final int size) {
       return new Theater[size];
     }
   };
 
-  public static String processShowtime(String showtime) {
+  public static String processShowtime(final String showtime) {
     if (DateUtilities.use24HourTime()) {
       return showtime;
     }
@@ -175,4 +178,10 @@ public class Theater implements Parcelable, Persistable {
 
     return showtime;
   }
+
+  public final static Comparator<Theater> TITLE_ORDER = new Comparator<Theater>() {
+    public int compare(final Theater m1, final Theater m2) {
+      return m1.getName().compareTo(m2.getName());
+    }
+  };
 }
