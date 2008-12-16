@@ -42,8 +42,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   // Define comparators for theater listings sort.
   private final Comparator<Theater> DISTANCE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
-      final Double dist_m1 = AllTheatersActivity.this.userLocation.distanceTo(m1.getLocation());
-      final Double dist_m2 = AllTheatersActivity.this.userLocation.distanceTo(m2.getLocation());
+      final Double dist_m1 = userLocation.distanceTo(m1.getLocation());
+      final Double dist_m2 = userLocation.distanceTo(m2.getLocation());
       return dist_m1.compareTo(dist_m2);
     }
   };
@@ -59,19 +59,19 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     setupView();
   }
 
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
-  protected void onPause() {
+  @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(broadcastReceiver);
     super.onPause();
   }
 
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
     registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
@@ -118,7 +118,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
-      intent.setClass(AllTheatersActivity.this, AllTheatersActivity.class);
+      intent.setClass(this, AllTheatersActivity.class);
       startActivity(intent);
       return true;
     }
@@ -128,7 +128,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   private class TheatersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public TheatersAdapter() {
+    private TheatersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(AllTheatersActivity.this);
     }

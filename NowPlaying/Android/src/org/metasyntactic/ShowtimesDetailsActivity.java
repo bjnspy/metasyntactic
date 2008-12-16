@@ -26,12 +26,12 @@ public class ShowtimesDetailsActivity extends ListActivity {
     NAME_SHOWTIMES, ADDRESS, PHONE
   }
 
-  @Override protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
+  @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final Intent intent = this.detailItems.get(position).getIntent();
     if (intent != null) {
       startActivity(intent);
     }
-    super.onListItemClick(l, v, position, id);
+    super.onListItemClick(listView, view, position, id);
   }
 
   @Override public void onCreate(final Bundle savedInstanceState) {

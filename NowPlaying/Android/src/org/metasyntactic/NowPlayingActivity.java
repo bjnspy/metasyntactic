@@ -52,7 +52,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
-    if (this.movies.size() > 0 && !this.isGridSetup) {
+    if (!this.movies.isEmpty() && !this.isGridSetup) {
       setup();
       // set isGridSetup, so that grid is not recreated on every refresh.
       this.isGridSetup = true;
@@ -100,7 +100,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     Log.i(getClass().getSimpleName(), "onResume");
     registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     if (this.isGridSetup) {
-      NowPlayingActivity.this.grid.setVisibility(View.VISIBLE);
+      this.grid.setVisibility(View.VISIBLE);
     }
     // Hack to show the progress dialog with a immediate return from onResume,
     // and then continue the work on main UI thread after the ProgressDialog is
@@ -128,10 +128,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
     };
     final Handler handler = new Handler();
-    if (!this.activityAdded) {
-      handler.postDelayed(action, 1000);
-    } else {
+    if (this.activityAdded) {
       handler.post(action);
+    } else {
+      handler.postDelayed(action, 1000);
     }
   }
 
@@ -166,8 +166,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.postersAdapter = new PostersAdapter();
     this.grid.setAdapter(this.postersAdapter);
     this.intent = new Intent();
-    this.intent.setClass(NowPlayingActivity.this, AllMoviesActivity.class);
-    this.animation = AnimationUtils.loadAnimation(NowPlayingActivity.this, R.anim.fade_reverse);
+    this.intent.setClass(this, AllMoviesActivity.class);
+    this.animation = AnimationUtils.loadAnimation(this, R.anim.fade_reverse);
     this.animation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
         NowPlayingActivity.this.grid.setVisibility(View.GONE);
@@ -189,7 +189,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private class PostersAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
 
-    public PostersAdapter() {
+    private PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(NowPlayingActivity.this);
     }
@@ -288,7 +288,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(NowPlayingActivity.this).setTitle(
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
           R.string.movies_select_sort_title).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
           R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
           android.R.string.cancel);
@@ -297,7 +297,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
-      intent.setClass(NowPlayingActivity.this, AllTheatersActivity.class);
+      intent.setClass(this, AllTheatersActivity.class);
       startActivity(intent);
       return true;
     }

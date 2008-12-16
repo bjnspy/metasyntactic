@@ -15,6 +15,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.text.DateFormat;
@@ -138,15 +139,11 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     // auto update location
     SettingsItem settings = new SettingsItem();
     settings.setLabel("Auto Update Location");
-    final Boolean isAutoUpdate = NowPlayingControllerWrapper.isAutoUpdateEnabled();
-    if (isAutoUpdate != null) {
-      if (isAutoUpdate) {
-        settings.setData("On");
-      } else {
-        settings.setData("Off");
-      }
+    final boolean isAutoUpdate = NowPlayingControllerWrapper.isAutoUpdateEnabled();
+    if (isAutoUpdate) {
+      settings.setData("On");
     } else {
-      settings.setData("Unknown");
+      settings.setData("Off");
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.AUTO_UPDATE_LOCATION);
     this.detailItems.add(settings);
@@ -154,7 +151,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     settings = new SettingsItem();
     settings.setLabel("Location");
     final String location = NowPlayingControllerWrapper.getUserLocation();
-    if (location != null && location != "") {
+    if (!isNullOrEmpty(location)) {
       settings.setData(location);
     } else {
       settings.setData("Click here and enter location to search for movies.");
@@ -168,7 +165,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     final int distance = NowPlayingControllerWrapper.getSearchDistance();
     //TODO Remove hardcoded values once the controller method for distance units
     // is available.
-    settings.setData(String.valueOf(distance) + " miles");
+    settings.setData(distance + " miles");
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DISTANCE);
     this.detailItems.add(settings);
 
