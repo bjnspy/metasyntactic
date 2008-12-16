@@ -16,10 +16,11 @@ package org.metasyntactic.collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.HashSet;
 
 public class BoundedPrioritySet<T> {
   private final Object lock = new Object();
-  private final LinkedHashSet<T> set = new LinkedHashSet<T>();
+  private final HashSet<T> set = new LinkedHashSet<T>();
   private final int maxSize;
 
   public BoundedPrioritySet(final int maxSize) {
@@ -43,9 +44,9 @@ public class BoundedPrioritySet<T> {
         return null;
       }
 
-      final Iterator<T> i = this.set.iterator();
-      final T value = i.next();
-      i.remove();
+      final Iterator<T> iterator = this.set.iterator();
+      final T value = iterator.next();
+      iterator.remove();
 
       return value;
     }
@@ -59,9 +60,9 @@ public class BoundedPrioritySet<T> {
       }
 
       if (!lowPriorityValues.isEmpty()) {
-        final Iterator<T> i = lowPriorityValues.iterator();
-        value = i.next();
-        i.remove();
+        final Iterator<T> iterator = lowPriorityValues.iterator();
+        value = iterator.next();
+        iterator.remove();
       }
 
       return value;

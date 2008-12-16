@@ -24,13 +24,13 @@ import java.io.IOException;
 
 public class Review implements Parcelable, Persistable {
   private static final long serialVersionUID = -1500254001711613076L;
-  private String text;
-  private int score;
-  private String link;
-  private String author;
-  private String source;
+  private final String text;
+  private final int score;
+  private final String link;
+  private final String author;
+  private final String source;
 
-  public void persistTo(PersistableOutputStream out) throws IOException {
+  public void persistTo(final PersistableOutputStream out) throws IOException {
     out.writeString(text);
     out.writeInt(score);
     out.writeString(link);
@@ -39,18 +39,18 @@ public class Review implements Parcelable, Persistable {
   }
 
   public static final Reader<Review> reader = new AbstractPersistable.AbstractReader<Review>() {
-    public Review read(PersistableInputStream in) throws IOException {
-      String text = in.readString();
-      int score = in.readInt();
-      String link = in.readString();
-      String author = in.readString();
-      String source = in.readString();
+    public Review read(final PersistableInputStream in) throws IOException {
+      final String text = in.readString();
+      final int score = in.readInt();
+      final String link = in.readString();
+      final String author = in.readString();
+      final String source = in.readString();
 
       return new Review(text, score, link, author, source);
     }
   };
 
-  public Review(String text, int score, String link, String author, String source) {
+  public Review(final String text, final int score, final String link, final String author, final String source) {
     this.text = text;
     this.score = score;
     this.link = link;
@@ -62,7 +62,7 @@ public class Review implements Parcelable, Persistable {
     return 0;
   }
 
-  public void writeToParcel(Parcel parcel, int i) {
+  public void writeToParcel(final Parcel parcel, final int i) {
     parcel.writeString(text);
     parcel.writeInt(score);
     parcel.writeString(link);
@@ -70,18 +70,18 @@ public class Review implements Parcelable, Persistable {
     parcel.writeString(source);
   }
 
-  public static final Parcelable.Creator<Review> CREATOR = new Parcelable.Creator<Review>() {
-    public Review createFromParcel(Parcel parcel) {
-      String text = parcel.readString();
-      int score = parcel.readInt();
-      String link = parcel.readString();
-      String author = parcel.readString();
-      String source = parcel.readString();
+  public static final Creator<Review> CREATOR = new Creator<Review>() {
+    public Review createFromParcel(final Parcel parcel) {
+      final String text = parcel.readString();
+      final int score = parcel.readInt();
+      final String link = parcel.readString();
+      final String author = parcel.readString();
+      final String source = parcel.readString();
 
       return new Review(text, score, link, author, source);
     }
 
-    public Review[] newArray(int size) {
+    public Review[] newArray(final int size) {
       return new Review[size];
     }
   };

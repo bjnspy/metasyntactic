@@ -29,7 +29,7 @@ import java.nio.charset.CharsetDecoder;
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class NetworkUtilities {
-  private static PriorityMutex mutex = new PriorityMutex();
+  private static final PriorityMutex mutex = new PriorityMutex();
 
   private NetworkUtilities() {
   }
@@ -42,7 +42,7 @@ public class NetworkUtilities {
     }
   }
 
-  private final static String[] charsets = new String[]{"UTF-8", "ISO-8859-1",};
+  private final static String[] charsets = {"UTF-8", "ISO-8859-1",};
 
   public static String downloadString(final URL url, final boolean important) {
     final byte[] bytes = download(url, important);
@@ -69,7 +69,7 @@ public class NetworkUtilities {
       final Charset utfCharset = Charset.forName(charset);
       final CharsetDecoder decoder = utfCharset.newDecoder();
       return decoder.decode(ByteBuffer.wrap(bytes)).toString();
-    } catch (final CharacterCodingException e) {
+    } catch (final CharacterCodingException ignored) {
       return null;
     }
   }

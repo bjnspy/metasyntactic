@@ -16,6 +16,7 @@ package org.metasyntactic.utilities.difference;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.util.List;
+import java.util.Collection;
 
 public class EditDistance {
   private EditDistance() {
@@ -115,7 +116,6 @@ public class EditDistance {
   }
 
   public static int findClosestMatchIndex(final String string, final List<String> list) {
-    int bestDistance = Integer.MAX_VALUE;
     int bestIndex = -1;
 
     if ((bestIndex = list.indexOf(string)) != -1) {
@@ -131,6 +131,7 @@ public class EditDistance {
       }
     }
 
+    int bestDistance = Integer.MAX_VALUE;
     for (int i = 0; i < list.size(); i++) {
       final String value = list.get(i);
 
@@ -158,7 +159,7 @@ public class EditDistance {
     return list.get(index);
   }
 
-  public static String findClosestMatch(final String string, final java.util.Collection<String> set) {
+  public static String findClosestMatch(final String string, final Collection<String> set) {
     if (set.contains(string)) {
       return string;
     }

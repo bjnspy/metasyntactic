@@ -25,23 +25,23 @@ import java.io.IOException;
 
 public class FavoriteTheater implements Parcelable, Persistable {
   private static final long serialVersionUID = 7339380828909301638L;
-  private String name;
-  private Location originatingLocation;
+  private final String name;
+  private final Location originatingLocation;
 
-  public void persistTo(PersistableOutputStream out) throws IOException {
+  public void persistTo(final PersistableOutputStream out) throws IOException {
     out.writeString(name);
     out.writePersistable(originatingLocation);
   }
 
   public static final Reader<FavoriteTheater> reader = new AbstractPersistable.AbstractReader<FavoriteTheater>() {
-    public FavoriteTheater read(PersistableInputStream in) throws IOException {
-      String name = in.readString();
-      Location originatingLocation = in.readPersistable(Location.reader);
+    public FavoriteTheater read(final PersistableInputStream in) throws IOException {
+      final String name = in.readString();
+      final Location originatingLocation = in.readPersistable(Location.reader);
       return new FavoriteTheater(name, originatingLocation);
     }
   };
 
-  public FavoriteTheater(String name, Location originatingLocation) {
+  public FavoriteTheater(final String name, final Location originatingLocation) {
     this.name = StringUtilities.nonNullString(name);
     this.originatingLocation = originatingLocation;
   }
@@ -58,20 +58,20 @@ public class FavoriteTheater implements Parcelable, Persistable {
     return 0;
   }
 
-  public void writeToParcel(Parcel dest, int flags) {
+  public void writeToParcel(final Parcel dest, final int flags) {
     dest.writeString(name);
     dest.writeParcelable(originatingLocation, 0);
   }
 
-  public static final Parcelable.Creator<FavoriteTheater> CREATOR = new Parcelable.Creator<FavoriteTheater>() {
-    public FavoriteTheater createFromParcel(Parcel source) {
-      String name = source.readString();
-      Location originatingLocation = source.readParcelable(null);
+  public static final Creator<FavoriteTheater> CREATOR = new Creator<FavoriteTheater>() {
+    public FavoriteTheater createFromParcel(final Parcel source) {
+      final String name = source.readString();
+      final Location originatingLocation = source.readParcelable(null);
 
       return new FavoriteTheater(name, originatingLocation);
     }
 
-    public FavoriteTheater[] newArray(int size) {
+    public FavoriteTheater[] newArray(final int size) {
       return new FavoriteTheater[size];
     }
   };

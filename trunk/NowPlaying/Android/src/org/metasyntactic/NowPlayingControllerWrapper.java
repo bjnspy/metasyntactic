@@ -64,7 +64,7 @@ public class NowPlayingControllerWrapper {
     GlobalActivityIndicator.removeActivity(activity);
     activities.remove(activity);
 
-    if (activities.size() == 0) {
+    if (activities.isEmpty()) {
       if (instance != null) {
         Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");
         instance.shutdown();
@@ -83,7 +83,7 @@ public class NowPlayingControllerWrapper {
       locationTracker = null;
     }
 
-    if (activities.size() > 0) {
+    if (!activities.isEmpty()) {
       locationTracker = new LocationTracker(instance, getApplicationContext());
     }
   }
@@ -265,7 +265,7 @@ public class NowPlayingControllerWrapper {
     return instance.isAutoUpdateEnabled();
   }
 
-  public static void setAutoUpdateEnabled(boolean enabled) {
+  public static void setAutoUpdateEnabled(final boolean enabled) {
     checkInstance();
     instance.setAutoUpdateEnabled(enabled);
     restartLocationTracker();
@@ -276,7 +276,7 @@ public class NowPlayingControllerWrapper {
     return instance.getSearchDate();
   }
 
-  public static void setSearchDate(Date date) {
+  public static void setSearchDate(final Date date) {
     checkInstance();
     instance.setSearchDate(date);
   }

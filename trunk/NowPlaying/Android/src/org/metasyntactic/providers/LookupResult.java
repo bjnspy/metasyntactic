@@ -23,12 +23,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LookupResult {
-  public List<Movie> movies;
-  public List<Theater> theaters;
+  public final List<Movie> movies;
+  public final List<Theater> theaters;
   // theater name -> movie name -> [ { showtime, showid } ]
-  public Map<String, Map<String, List<Performance>>> performances;
+  public final Map<String, Map<String, List<Performance>>> performances;
   // theater name -> date
-  public Map<String, Date> synchronizationData;
+  public final Map<String, Date> synchronizationData;
 
   public LookupResult(final List<Movie> movies, final List<Theater> theaters, final Map<String, Map<String, List<Performance>>> performances, final Map<String, Date> synchronizationData) {
     this.movies = movies;

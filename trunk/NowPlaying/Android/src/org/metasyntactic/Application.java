@@ -51,7 +51,7 @@ public class Application {
   public static final File upcomingPostersDirectory = new File(upcomingDirectory, "Posters");
   public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
-  private static Pulser pulser;
+  private static final Pulser pulser;
 
   static {
     createDirectories();
@@ -81,7 +81,7 @@ public class Application {
       final List<File> directories = new ArrayList<File>();
 
       for (final Field field : Application.class.getFields()) {
-        if (field.getType() != File.class || field.get(null) == root) {
+        if (!field.getType().equals(File.class) || root.equals(field.get(null))) {
           continue;
         }
 

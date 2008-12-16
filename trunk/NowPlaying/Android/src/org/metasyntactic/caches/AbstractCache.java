@@ -29,7 +29,7 @@ public abstract class AbstractCache {
   protected final NowPlayingModel model;
   protected boolean shutdown;
 
-  protected AbstractCache(NowPlayingModel model) {
+  protected AbstractCache(final NowPlayingModel model) {
     this.model = model;
   }
 
@@ -41,7 +41,7 @@ public abstract class AbstractCache {
 
   protected abstract List<File> getCacheDirectories();
 
-  protected void clearDirectory(final File directory) {
+  protected static void clearDirectory(final File directory) {
     final long now = new Date().getTime();
 
     for (final File child : directory.listFiles()) {

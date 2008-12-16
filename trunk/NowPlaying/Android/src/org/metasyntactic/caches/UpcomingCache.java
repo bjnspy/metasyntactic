@@ -29,6 +29,8 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import static java.util.Collections.unmodifiableList;
+import static java.lang.String.valueOf;
 
 public class UpcomingCache extends AbstractCache {
   private static int identifier;
@@ -39,23 +41,23 @@ public class UpcomingCache extends AbstractCache {
   private Map<String, String> studioKeys;
   private Map<String, String> titleKeys;
 
-  public UpcomingCache(NowPlayingModel model) {
+  public UpcomingCache(final NowPlayingModel model) {
     super(model);
   }
 
-  private File hashFile() {
+  private static File hashFile() {
     return new File(Application.upcomingDirectory, "Hash");
   }
 
-  private File moviesFile() {
+  private static File moviesFile() {
     return new File(Application.upcomingDirectory, "Movies");
   }
 
-  private File studiosFile() {
+  private static File studiosFile() {
     return new File(Application.upcomingDirectory, "Studios");
   }
 
-  private File titlesFile() {
+  private static File titlesFile() {
     return new File(Application.upcomingDirectory, "Titles");
   }
 
@@ -88,7 +90,7 @@ public class UpcomingCache extends AbstractCache {
       this.movies = list;
     }
 
-    return this.movies;
+    return unmodifiableList(this.movies);
   }
 
   private Map<String, String> getStudioKeys() {
@@ -211,7 +213,7 @@ public class UpcomingCache extends AbstractCache {
     updateDetails();
   }
 
-  private void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios, final Map<String, String> titles) {
+  private static void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios, final Map<String, String> titles) {
     FileUtilities.writePersistableCollection(movies, moviesFile());
     FileUtilities.writeStringToStringMap(studios, studiosFile());
     FileUtilities.writeStringToStringMap(titles, titlesFile());
@@ -244,7 +246,7 @@ public class UpcomingCache extends AbstractCache {
     final String studioKey = movieElement.getAttribute("studioKey");
     final String titleKey = movieElement.getAttribute("titleKey");
 
-    final Movie movie = new Movie("" + identifier++, title, rating, 0, "", releaseDate, poster, "", studio, directors,
+    final Movie movie = new Movie(valueOf(identifier++), title, rating, 0, "", releaseDate, poster, "", studio, directors,
                                   cast, genres);
 
     movies.add(movie);
@@ -252,7 +254,7 @@ public class UpcomingCache extends AbstractCache {
     titleKeys.put(movie.getCanonicalTitle(), titleKey);
   }
 
-  private List<String> processArray(final Element element) {
+  private static List<String> processArray(final Element element) {
     final List<String> result = new ArrayList<String>();
     for (final Element child : children(element)) {
       result.add(child.getAttribute("value"));
@@ -281,34 +283,34 @@ public class UpcomingCache extends AbstractCache {
     } while (movie != null && !this.shutdown);
   }
 
-  private void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
+  private static void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
     updateImdb(movie);
     updatePoster(movie);
     updateSynopsisAndCast(movie, studioKey, titleKey);
     updateTrailers(movie, studioKey, titleKey);
   }
 
-  private File getCastFile(final Movie movie) {
+  private static File getCastFile(final Movie movie) {
     return new File(Application.upcomingCastDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getIMDbFile(final Movie movie) {
+  private static File getIMDbFile(final Movie movie) {
     return new File(Application.upcomingImdbDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getPosterFile(final Movie movie) {
+  private static File getPosterFile(final Movie movie) {
     return new File(Application.upcomingPostersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getSynopsisFile(final Movie movie) {
+  private static File getSynopsisFile(final Movie movie) {
     return new File(Application.upcomingSynopsesDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private File getTrailersFile(final Movie movie) {
+  private static File getTrailersFile(final Movie movie) {
     return new File(Application.upcomingTrailersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
-  private void updateTrailers(final Movie movie, final String studioKey, final String titleKey) {
+  private static void updateTrailers(final Movie movie, final String studioKey, final String titleKey) {
     final File file = getTrailersFile(movie);
     if (file.exists()) {
       if (Math.abs(file.lastModified() - new Date().getTime()) < 3 * Constants.ONE_DAY) {
@@ -334,7 +336,7 @@ public class UpcomingCache extends AbstractCache {
     Application.refresh();
   }
 
-  private void updateSynopsisAndCast(final Movie movie, final String studioKey, final String titleKey) {
+  private static void updateSynopsisAndCast(final Movie movie, final String studioKey, final String titleKey) {
     final File file = getSynopsisFile(movie);
     if (file.exists()) {
       if (Math.abs(file.lastModified() - new Date().getTime()) < Constants.ONE_WEEK) {
@@ -356,22 +358,19 @@ public class UpcomingCache extends AbstractCache {
     }
 
     final String synopsis = values[0];
-    final List<String> cast = new ArrayList<String>();
-    for (int i = 1; i < values.length; i++) {
-      cast.add(values[i]);
-    }
+    final List<String> cast = Arrays.asList(values).subList(1, values.length);
 
     if (!synopsis.startsWith("No synopsis")) {
       FileUtilities.writeString(synopsis, file);
       Application.refresh();
     }
 
-    if (cast.size() > 0) {
+    if (!cast.isEmpty()) {
       FileUtilities.writeStringCollection(cast, getCastFile(movie));
     }
   }
 
-  private void updatePoster(final Movie movie) {
+  private static void updatePoster(final Movie movie) {
     if (isNullOrEmpty(movie.getPoster())) {
       return;
     }
@@ -391,7 +390,7 @@ public class UpcomingCache extends AbstractCache {
     Application.refresh();
   }
 
-  private void updateImdb(final Movie movie) {
+  private static void updateImdb(final Movie movie) {
     final File file = getIMDbFile(movie);
     if (file.exists()) {
       final String value = FileUtilities.readString(file);
@@ -417,15 +416,15 @@ public class UpcomingCache extends AbstractCache {
     Application.refresh();
   }
 
-  public byte[] getPoster(final Movie movie) {
+  public static byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(getPosterFile(movie));
   }
 
-  public String getSynopsis(final Movie movie) {
+  public static String getSynopsis(final Movie movie) {
     return FileUtilities.readString(getSynopsisFile(movie));
   }
 
-  public String getIMDbAddress(final Movie movie) {
+  public static String getIMDbAddress(final Movie movie) {
     return FileUtilities.readString(getIMDbFile(movie));
   }
 
@@ -433,13 +432,13 @@ public class UpcomingCache extends AbstractCache {
     this.prioritizedMovies.add(movie);
   }
 
-  protected List<File> getCacheDirectories() {
+  @Override protected List<File> getCacheDirectories() {
     return Arrays.asList(Application.upcomingCastDirectory, Application.upcomingImdbDirectory,
                          Application.upcomingPostersDirectory, Application.upcomingSynopsesDirectory,
                          Application.upcomingTrailersDirectory);
   }
 
-  public List<String> getCast(Movie movie) {
+  public static List<String> getCast(final Movie movie) {
     return FileUtilities.readStringList(getCastFile(movie));
   }
 }

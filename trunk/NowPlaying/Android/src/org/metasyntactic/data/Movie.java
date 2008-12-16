@@ -26,21 +26,21 @@ import java.util.*;
 
 public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   private static final long serialVersionUID = 4570788252867866289L;
-  private String identifier;
-  private String canonicalTitle;
-  private String displayTitle;
-  private String rating;
-  private int length; // minutes;
-  private String imdbAddress;
-  private Date releaseDate;
-  private String poster;
-  private String synopsis;
-  private String studio;
-  private List<String> directors;
-  private List<String> cast;
-  private List<String> genres;
+  private final String identifier;
+  private final String canonicalTitle;
+  private final String displayTitle;
+  private final String rating;
+  private final int length; // minutes;
+  private final String imdbAddress;
+  private final Date releaseDate;
+  private final String poster;
+  private final String synopsis;
+  private final String studio;
+  private final List<String> directors;
+  private final List<String> cast;
+  private final List<String> genres;
 
-  public void persistTo(PersistableOutputStream out) throws IOException {
+  public void persistTo(final PersistableOutputStream out) throws IOException {
     out.writeString(identifier);
     out.writeString(canonicalTitle);
     out.writeString(displayTitle);
@@ -57,27 +57,27 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   }
 
   public static final Reader<Movie> reader = new AbstractPersistable.AbstractReader<Movie>() {
-    public Movie read(PersistableInputStream in) throws IOException {
-      String identifier = in.readString();
-      String canonicalTitle = in.readString();
-      String displayTitle = in.readString();
-      String rating = in.readString();
-      int length = in.readInt();
-      String imdbAddress = in.readString();
-      Date releaseDate = in.readDate();
-      String poster = in.readString();
-      String synopsis = in.readString();
-      String studio = in.readString();
-      List<String> directors = in.readStringList();
-      List<String> cast = in.readStringList();
-      List<String> genres = in.readStringList();
+    public Movie read(final PersistableInputStream in) throws IOException {
+      final String identifier = in.readString();
+      final String canonicalTitle = in.readString();
+      final String displayTitle = in.readString();
+      final String rating = in.readString();
+      final int length = in.readInt();
+      final String imdbAddress = in.readString();
+      final Date releaseDate = in.readDate();
+      final String poster = in.readString();
+      final String synopsis = in.readString();
+      final String studio = in.readString();
+      final List<String> directors = in.readStringList();
+      final List<String> cast = in.readStringList();
+      final List<String> genres = in.readStringList();
 
       return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster,
                        synopsis, studio, directors, cast, genres);
     }
   };
 
-  private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, int length, String imdbAddress, Date releaseDate, String poster, String synopsis, String studio, List<String> directors, List<String> cast, List<String> genres) {
+  private Movie(final String identifier, final String canonicalTitle, final String displayTitle, final String rating, final int length, final String imdbAddress, final Date releaseDate, final String poster, final String synopsis, final String studio, final List<String> directors, final List<String> cast, final List<String> genres) {
     this.identifier = identifier;
     this.canonicalTitle = canonicalTitle;
     this.rating = rating;
@@ -93,7 +93,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     this.displayTitle = displayTitle;
   }
 
-  public Movie(String identifier, String title, String rating, int length, String imdbAddress, Date releaseDate, String poster, String synopsis, String studio, List<String> directors, List<String> cast, List<String> genres) {
+  public Movie(final String identifier, final String title, final String rating, final int length, final String imdbAddress, final Date releaseDate, final String poster, final String synopsis, final String studio, final List<String> directors, final List<String> cast, final List<String> genres) {
     this(identifier, makeCanonical(title), makeDisplay(title), rating, length, imdbAddress, releaseDate, poster,
          synopsis, studio, directors, cast, genres);
   }
@@ -150,7 +150,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     return Collections.unmodifiableList(genres);
   }
 
-  public boolean equals(Object o) {
+  @Override public boolean equals(final Object o) {
     if (this == o) {
       return true;
     }
@@ -158,7 +158,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
       return false;
     }
 
-    Movie movie = (Movie) o;
+    final Movie movie = (Movie) o;
 
     if (canonicalTitle != null ? !canonicalTitle.equals(movie.canonicalTitle) : movie.canonicalTitle != null) {
       return false;
@@ -167,29 +167,29 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     return true;
   }
 
-  public int hashCode() {
-    return (canonicalTitle != null ? canonicalTitle.hashCode() : 0);
+  @Override public int hashCode() {
+    return canonicalTitle != null ? canonicalTitle.hashCode() : 0;
   }
 
-  private static String[] prefixArticles;
-  private static String[] suffixArticles;
+  private final static String[] prefixArticles;
+  private final static String[] suffixArticles;
 
   static {
-    String[] articles = new String[]{"Der", "Das", "Ein", "Eine", "The", "A", "An", "La", "Las", "Le", "Les", "Los", "El", "Un", "Une", "Una", "Il", "O", "Het", "De", "Os", "Az", "Den", "Al", "En", "L'"};
+    final String[] articles = {"Der", "Das", "Ein", "Eine", "The", "A", "An", "La", "Las", "Le", "Les", "Los", "El", "Un", "Une", "Una", "Il", "O", "Het", "De", "Os", "Az", "Den", "Al", "En", "L'"};
 
     prefixArticles = new String[articles.length];
     suffixArticles = new String[articles.length];
 
     for (int i = 0; i < articles.length; i++) {
-      prefixArticles[i] = articles[i] + " ";
+      prefixArticles[i] = articles[i] + ' ';
       suffixArticles[i] = ", " + articles[i];
     }
   }
 
-  public static String makeCanonical(String title) {
+  public static String makeCanonical(final String title) {
     for (int i = 0; i < prefixArticles.length; i++) {
-      String prefixArticle = prefixArticles[i];
-      String suffixArticle = suffixArticles[i];
+      final String prefixArticle = prefixArticles[i];
+      final String suffixArticle = suffixArticles[i];
 
       if (title.endsWith(suffixArticle)) {
         return prefixArticle + title.substring(0, title.length() - suffixArticle.length());
@@ -199,10 +199,10 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     return title;
   }
 
-  public static String makeDisplay(String title) {
+  public static String makeDisplay(final String title) {
     for (int i = 0; i < prefixArticles.length; i++) {
-      String prefixArticle = prefixArticles[i];
-      String suffixArticle = suffixArticles[i];
+      final String prefixArticle = prefixArticles[i];
+      final String suffixArticle = suffixArticles[i];
 
       if (title.startsWith(prefixArticle)) {
         return title.substring(prefixArticle.length()) + suffixArticle;
@@ -216,7 +216,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     return 0;
   }
 
-  public void writeToParcel(Parcel dest, int flags) {
+  public void writeToParcel(final Parcel dest, final int flags) {
     dest.writeString(identifier);
     dest.writeString(canonicalTitle);
     dest.writeString(displayTitle);
@@ -232,35 +232,35 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     dest.writeStringList(genres);
   }
 
-  public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
-    public Movie createFromParcel(Parcel source) {
-      String identifier = source.readString();
-      String canonicalTitle = source.readString();
-      String displayTitle = source.readString();
-      String rating = source.readString();
-      int length = source.readInt();
-      String imdbAddress = source.readString();
-      Date releaseDate = (Date) source.readValue(null);
-      String poster = source.readString();
-      String synopsis = source.readString();
-      String studio = source.readString();
-      List<String> directors = new ArrayList<String>();
+  public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public Movie createFromParcel(final Parcel source) {
+      final String identifier = source.readString();
+      final String canonicalTitle = source.readString();
+      final String displayTitle = source.readString();
+      final String rating = source.readString();
+      final int length = source.readInt();
+      final String imdbAddress = source.readString();
+      final Date releaseDate = (Date) source.readValue(null);
+      final String poster = source.readString();
+      final String synopsis = source.readString();
+      final String studio = source.readString();
+      final List<String> directors = new ArrayList<String>();
       source.readStringList(directors);
-      List<String> cast = new ArrayList<String>();
+      final List<String> cast = new ArrayList<String>();
       source.readStringList(cast);
-      List<String> genres = new ArrayList<String>();
+      final List<String> genres = new ArrayList<String>();
       source.readStringList(genres);
 
       return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster,
                        synopsis, studio, directors, cast, genres);
     }
 
-    public Movie[] newArray(int size) {
+    public Movie[] newArray(final int size) {
       return new Movie[size];
     }
   };
 
-  public int compareTo(Movie movie) {
+  public int compareTo(final Movie movie) {
     return getCanonicalTitle().compareTo(movie.getCanonicalTitle());
   }
 
@@ -287,12 +287,12 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   public final static Comparator<Movie> SCORE_ORDER = new Comparator<Movie>() {
     public int compare(final Movie m1, final Movie m2) {
       int value1 = 0;
-      int value2 = 0;
       final Score s1 = NowPlayingControllerWrapper.getScore(m1);
       final Score s2 = NowPlayingControllerWrapper.getScore(m2);
       if (s1 != null) {
         value1 = s1.getScoreValue();
       }
+      int value2 = 0;
       if (s2 != null) {
         value2 = s2.getScoreValue();
       }
