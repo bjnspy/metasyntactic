@@ -24,15 +24,15 @@ public class NoneScoreProvider extends AbstractScoreProvider {
     super(model);
   }
 
-  protected String getProviderName() {
+  @Override protected String getProviderName() {
     return "None";
   }
 
-  protected String lookupServerHash() {
+  @Override protected String lookupServerHash() {
     return "0";
   }
 
-  protected Map<String, Score> lookupServerScores() {
+  @Override protected Map<String, Score> lookupServerScores() {
     return Collections.emptyMap();
   }
 }

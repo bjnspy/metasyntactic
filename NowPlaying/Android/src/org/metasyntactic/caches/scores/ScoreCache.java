@@ -50,13 +50,13 @@ public class ScoreCache {
   }
 
   private ScoreProvider getCurrentScoreProvider() {
-    if (this.model.getScoreType() == ScoreType.Google) {
+    if (this.model.getScoreType().equals(ScoreType.Google)) {
       return this.googleScoreProvider;
-    } else if (this.model.getScoreType() == ScoreType.Metacritic) {
+    } else if (this.model.getScoreType().equals(ScoreType.Metacritic)) {
       return this.metacriticScoreProvider;
-    } else if (this.model.getScoreType() == ScoreType.RottenTomatoes) {
+    } else if (this.model.getScoreType().equals(ScoreType.RottenTomatoes)) {
       return this.rottenTomatoesScoreProvider;
-    } else if (this.model.getScoreType() == ScoreType.None) {
+    } else if (this.model.getScoreType().equals(ScoreType.None)) {
       return this.noneScoreProvider;
     } else {
       throw new RuntimeException();

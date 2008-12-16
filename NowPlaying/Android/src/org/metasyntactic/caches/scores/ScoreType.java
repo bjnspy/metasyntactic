@@ -24,9 +24,9 @@ public abstract class ScoreType implements Parcelable {
   }
 
   private Field findField() {
-    for (Field field : ScoreType.class.getFields()) {
+    for (final Field field : ScoreType.class.getFields()) {
       try {
-        if (field.get(null) == this) {
+        if (this.equals(field.get(null))) {
           return field;
         }
       } catch (IllegalAccessException e) {
@@ -41,7 +41,7 @@ public abstract class ScoreType implements Parcelable {
     return 0;
   }
 
-  public void writeToParcel(Parcel parcel, int i) {
+  public void writeToParcel(final Parcel parcel, final int i) {
     parcel.writeInt(getIndex());
   }
 
@@ -49,8 +49,8 @@ public abstract class ScoreType implements Parcelable {
     return findField().getName();
   }
 
-  public static ScoreType valueOf(String name) {
-    for (Field field : ScoreType.class.getFields()) {
+  public static ScoreType valueOf(final String name) {
+    for (final Field field : ScoreType.class.getFields()) {
       if (field.getName().equals(name)) {
         try {
           return (ScoreType) field.get(null);
@@ -63,13 +63,13 @@ public abstract class ScoreType implements Parcelable {
     throw new RuntimeException();
   }
 
-  public static final Parcelable.Creator<ScoreType> CREATOR = new Parcelable.Creator<ScoreType>() {
-    public ScoreType createFromParcel(Parcel source) {
-      int index = source.readInt();
+  public static final Creator<ScoreType> CREATOR = new Creator<ScoreType>() {
+    public ScoreType createFromParcel(final Parcel source) {
+      final int index = source.readInt();
 
-      for (Field field : ScoreType.class.getFields()) {
+      for (final Field field : ScoreType.class.getFields()) {
         try {
-          ScoreType scoreType = (ScoreType) field.get(null);
+          final ScoreType scoreType = (ScoreType) field.get(null);
           if (scoreType.getIndex() == index) {
             return scoreType;
           }
@@ -81,16 +81,16 @@ public abstract class ScoreType implements Parcelable {
       throw new RuntimeException();
     }
 
-    public ScoreType[] newArray(int size) {
+    public ScoreType[] newArray(final int size) {
       return new ScoreType[size];
     }
   };
 
   private int getIndex() {
-    Field[] fields = ScoreType.class.getFields();
+    final Field[] fields = ScoreType.class.getFields();
     for (int i = 0; i < fields.length; i++) {
       try {
-        if (fields[i].get(null) == this) {
+        if (this.equals(fields[i].get(null))) {
           return i;
         }
       } catch (IllegalAccessException e) {
