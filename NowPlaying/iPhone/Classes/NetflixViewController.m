@@ -57,17 +57,10 @@
 - (void) majorRefresh {
     if ([self.tableView numberOfRowsInSection:0] == 1 &&
         self.hasAccount) {
-        NSInteger rowCount = [self tableView:self.tableView numberOfRowsInSection:0];
-        
         [self.tableView beginUpdates];
         {
-            NSMutableArray* indexPaths = [NSMutableArray array];
-            for (NSInteger i = 0; i < rowCount; i++) {
-                [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-            }
-        
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
-            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
         }
         [self.tableView endUpdates];
     } else {
@@ -179,20 +172,13 @@
 
 - (void)         alertView:(UIAlertView*) alertView
       clickedButtonAtIndex:(NSInteger) index {
-    if (index != alertView.cancelButtonIndex) {
-        NSInteger rowCount = [self tableView:self.tableView numberOfRowsInSection:0];
-        
+    if (index != alertView.cancelButtonIndex) {        
         [self.controller setNetflixKey:nil secret:nil userId:nil];
         
         [self.tableView beginUpdates];
         {
-            NSMutableArray* indexPaths = [NSMutableArray array];
-            for (NSInteger i = 0; i < rowCount; i++) {
-                [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-            }
-            
-            [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
         }
         [self.tableView endUpdates];
     }

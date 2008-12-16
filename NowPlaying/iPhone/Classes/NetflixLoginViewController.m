@@ -174,19 +174,19 @@
                                                                  realm:nil]; // use the default method, HMAC-SHA1
     
     [request setHTTPMethod:@"POST"];
-        
+    
     [OADataFetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(requestAuthorizationToken:didFinishWithData:)
-                  didFailSelector:@selector(requestAuthorizationToken:didFailWithError:)];
+                               delegate:self
+                      didFinishSelector:@selector(requestAuthorizationToken:didFinishWithData:)
+                        didFailSelector:@selector(requestAuthorizationToken:didFailWithError:)];
 }
 
 
 - (void) requestAuthorizationToken:(OAServiceTicket*) ticket
-          didFinishWithData:(NSData*) data {
+                 didFinishWithData:(NSData*) data {
     if (ticket.didSucceed) {
         NSString* responseBody = [[[NSString alloc] initWithData:data
-                                                       encoding:NSUTF8StringEncoding] autorelease];
+                                                        encoding:NSUTF8StringEncoding] autorelease];
         OAToken* token = [OAToken tokenWithHTTPResponseBody:responseBody];
         [self performSelectorOnMainThread:@selector(reportAuthorizationToken:) withObject:token waitUntilDone:NO];
     } else {
@@ -196,7 +196,7 @@
 
 
 - (void) requestAuthorizationToken:(OAServiceTicket*)
-           didFailWithError:(NSError*) error {
+                  didFailWithError:(NSError*) error {
     [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:NO];
 }
 
@@ -209,7 +209,7 @@
                                            otherButtonTitles:nil] autorelease];
     
     [alert show];
-
+    
     [activityIndicator stopAnimating];
     [button removeFromSuperview];
     statusLabel.text = NSLocalizedString(@"Error occurred", nil);
@@ -250,13 +250,13 @@
     if (!didShowBrowser) {
         return;
     }
-
+    
     // we're coming back after showing the user the the access page
     
     [activityIndicator startAnimating];
     statusLabel.text = NSLocalizedString(@"Requesting access", nil);
     button.enabled = NO;
-
+    
     [ThreadingUtilities performSelector:@selector(requestAccessToken) onTarget:self inBackgroundWithGate:nil visible:YES];
 }
 
