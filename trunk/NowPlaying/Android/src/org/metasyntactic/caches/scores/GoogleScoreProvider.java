@@ -56,9 +56,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     //Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
-
-    return address;
+    return "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
   }
 
   @Override protected String lookupServerHash() {
@@ -72,7 +70,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     final byte[] data = NetworkUtilities.download(address, true);
 
     if (data != null) {
-      NowPlaying.TheaterListingsProto theaterListings = null;
+      final NowPlaying.TheaterListingsProto theaterListings;
       try {
         theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
       } catch (final InvalidProtocolBufferException e) {
@@ -90,7 +88,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
           value = movieProto.getScore();
         }
 
-        final Score score = new Score(title, "", "" + value, "google", identifier);
+        final Score score = new Score(title, "", String.valueOf(value), "google", identifier);
         ratings.put(score.getCanonicalTitle(), score);
       }
 

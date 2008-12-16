@@ -51,7 +51,7 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
         final String synopsis = movieElement.getAttribute("synopsis");
         String value = movieElement.getAttribute("score");
 
-        if (value.equals("xx")) {
+        if ("xx".equals(value)) {
           value = "-1";
         }
 

@@ -37,7 +37,7 @@ import java.io.File;
 import java.util.*;
 
 public abstract class AbstractScoreProvider extends AbstractCache implements ScoreProvider {
-  private class MovieAndMap {
+  private static class MovieAndMap {
     private final Movie movie;
     private final Map<String, String> movieMap;
 
@@ -56,13 +56,13 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   private final File providerDirectory = new File(Application.scoresDirectory, getProviderName());
   private final File reviewsDirectory = new File(Application.reviewsDirectory, getProviderName());
 
-  public AbstractScoreProvider(final NowPlayingModel model) {
+  protected AbstractScoreProvider(final NowPlayingModel model) {
     super(model);
 
     createDirectory();
   }
 
-  public void createDirectory() {
+  public final void createDirectory() {
     this.providerDirectory.mkdirs();
     this.reviewsDirectory.mkdirs();
   }
@@ -113,7 +113,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     if (this.scores == null) {
       this.scores = loadScores();
     }
-    return this.scores;
+    return Collections.unmodifiableMap(this.scores);
   }
 
   private String getHash() {
@@ -308,7 +308,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
       if (!file.exists()) {
         scoresWithoutReviews.add(entry.getValue());
       } else {
-        if (Math.abs(new Date().getTime() - file.lastModified()) > 2 * Constants.ONE_DAY) {
+        if (FileUtilities.daysSinceNow(file) > 2 * Constants.ONE_DAY) {
           scoresWithReviews.add(entry.getValue());
         }
       }
@@ -345,9 +345,9 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
 
     if (!scores.isEmpty()) {
-      final Iterator<Score> i = scores.iterator();
-      final Score score = i.next();
-      i.remove();
+      final Iterator<Score> iterator = scores.iterator();
+      final Score score = iterator.next();
+      iterator.remove();
 
       return score;
     }
@@ -360,7 +360,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     this.prioritizedMovies.add(new MovieAndMap(movie, getMovieMap()));
   }
 
-  private String serverReviewsAddress(final Location location, final Score score) {
+  private static String serverReviewsAddress(final Location location, final Score score) {
     String country = Locale.getDefault().getCountry();
     if (!isNullOrEmpty(location.getCountry())) {
       country = location.getCountry();
@@ -418,7 +418,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     return extractReviews(element);
   }
 
-  private List<Review> extractReviews(final Element element) {
+  private static List<Review> extractReviews(final Element element) {
     final List<Review> result = new ArrayList<Review>();
     for (final Element reviewElement : children(element)) {
       final String text = reviewElement.getAttribute("text");
@@ -434,7 +434,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
       int scoreValue = -1;
       try {
         scoreValue = Integer.parseInt(score);
-      } catch (final NumberFormatException e) {
+      } catch (final NumberFormatException ignored) {
       }
 
       result.add(new Review(text, scoreValue, link, author, source));
@@ -456,7 +456,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     return FileUtilities.readPersistableList(Review.reader, reviewsFile(title));
   }
 
-  protected List<File> getCacheDirectories() {
+  @Override protected List<File> getCacheDirectories() {
     return Collections.singletonList(reviewsDirectory);
   }
 }
