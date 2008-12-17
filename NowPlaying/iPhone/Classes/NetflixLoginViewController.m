@@ -288,7 +288,7 @@
 }
 
 
-- (void) requestAccessToken:(OAServiceTicket*)
+- (void) requestAccessToken:(OAServiceTicket*) ticket
            didFailWithError:(NSError*) error {
     [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:NO];
 }

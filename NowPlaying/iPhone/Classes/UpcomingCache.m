@@ -596,18 +596,15 @@
     NSDictionary* titles = [arguments objectAtIndex:2];
 
     Movie* movie;
-    do {
+    while ((movie = [self getNextMovie:mutableMovies]) != nil) {
         NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
         {
-            movie = [self getNextMovie:mutableMovies];
-            if (movie != nil) {
-                [self updateDetails:movie
-                             studio:[studios objectForKey:movie.canonicalTitle]
-                              title:[titles objectForKey:movie.canonicalTitle]];
-            }
+            [self updateDetails:movie
+                         studio:[studios objectForKey:movie.canonicalTitle]
+                          title:[titles objectForKey:movie.canonicalTitle]];
         }
         [autoreleasePool release];
-    } while (movie != nil);
+    }
 }
 
 

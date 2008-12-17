@@ -93,10 +93,6 @@
                         index:(NSDictionary*) index
                     indexKeys:(NSArray*) indexKeys
                        engine:(DifferenceEngine*) engine {
-    if (movie == nil) {
-        return;
-    }
-
     NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:indexKeys];
     if (arrayIndex == NSNotFound) {
         // no trailer for this movie.  record that fact.  we'll try again later
@@ -156,17 +152,16 @@
     DifferenceEngine* engine = [DifferenceEngine engine];
 
     Movie* movie;
-    do {
+    while ((movie = [self getNextMovie:movies]) != nil) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        {
-            movie = [self getNextMovie:movies];
+        { 
             [self downloadMovieTrailer:movie
                                  index:index
                              indexKeys:indexKeys
                                 engine:engine];
         }
         [autoreleasePool release];
-    } while (movie != nil);
+    }
 }
 
 

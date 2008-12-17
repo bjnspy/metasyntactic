@@ -437,10 +437,6 @@
 
 
 - (void) updateVideoPoster:(Movie*) movie {
-    if (movie == nil) {
-        return;
-    }
-
     NSString* file = [self posterFile:movie set:nil];
     if ([FileUtilities fileExists:file]) {
         return;
@@ -463,10 +459,6 @@
 
 
 - (void) updateVideoImdbAddress:(Movie*) movie {
-    if (movie == nil) {
-        return;
-    }
-
     NSString* imdbFile = [self imdbFile:movie set:nil];
 
     NSDate* lastLookupDate = [FileUtilities modificationDate:imdbFile];
@@ -528,15 +520,14 @@
     NSMutableArray* videos = [NSMutableArray arrayWithArray:movies];
 
     Movie* movie;
-    do {
+    while ((movie = [self getNextMovie:videos]) != nil) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            movie = [self getNextMovie:videos];
             [self updateVideoPoster:movie];
             [self updateVideoImdbAddress:movie];
         }
         [pool release];
-    } while (movie != nil);
+    }
 }
 
 
