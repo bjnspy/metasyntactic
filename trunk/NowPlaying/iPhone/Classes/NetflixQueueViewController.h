@@ -6,7 +6,7 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "NetflixReorderQueueDelegate.h"
+#import "NetflixModifyQueueDelegate.h"
 #import "TappableImageViewDelegate.h"
 
 @interface NetflixQueueViewController : UITableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate> {
