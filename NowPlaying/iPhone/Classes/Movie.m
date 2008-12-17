@@ -266,7 +266,10 @@ static NSString* articles[] = {
 
 
 - (BOOL) isUnrated {
-    return rating.length == 0 || [rating isEqual:@"NR"] || [rating isEqual:@"Not Rated"];
+    return rating.length == 0 ||
+           [rating isEqual:@"NR"] ||
+           [rating isEqual:@"UR"] ||
+           [rating isEqual:@"Not Rated"];
 }
 
 
@@ -341,6 +344,11 @@ static NSString* articles[] = {
     }
     
     return result;
+}
+
+
+- (BOOL) isNetflix {
+    return [identifier hasPrefix:@"http://"];
 }
 
 @end

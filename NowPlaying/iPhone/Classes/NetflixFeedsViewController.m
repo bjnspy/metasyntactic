@@ -138,7 +138,8 @@
     }
     
     Feed* feed = [feeds objectAtIndex:indexPath.row];
-    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController feed:feed] autorelease];
+    NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController
+                                                                                                       feedKey:feed.key] autorelease];
     [navigationController pushViewController:controller animated:YES];
 }
 

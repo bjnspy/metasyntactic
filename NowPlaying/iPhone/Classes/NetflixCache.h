@@ -19,11 +19,14 @@
 
 + (NetflixCache*) cacheWithModel:(NowPlayingModel*) model;
 
++ (NSString*) recommendationKey;
+
 - (void) prioritizeMovie:(Movie*) movie;
 
 - (void) update;
 - (NSArray*) feeds;
 - (Queue*) queueForFeed:(Feed*) feed;
+- (Feed*) feedForKey:(NSString*) key;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

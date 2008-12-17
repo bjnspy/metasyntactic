@@ -27,6 +27,7 @@ static NSDateFormatter* mediumDateFormatter;
 static NSDateFormatter* longDateFormatter;
 static NSDateFormatter* fullDateFormatter;
 static NSDateFormatter* shortTimeFormatter;
+static NSDateFormatter* yearFormatter;
 
 
 static NSMutableDictionary* yearsAgoMap;
@@ -79,6 +80,11 @@ static BOOL use24HourTime;
             shortTimeFormatter = [[NSDateFormatter alloc] init];
             [shortTimeFormatter setDateStyle:NSDateFormatterNoStyle];
             [shortTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+        }
+        
+        {
+            yearFormatter = [[NSDateFormatter alloc] init];
+            [yearFormatter setDateFormat:@"YYYY"];
         }
 
         {
@@ -277,6 +283,11 @@ static BOOL use24HourTime;
 
 + (NSString*) formatFullDate:(NSDate*) date {
     return [self format:date formatter:fullDateFormatter];
+}
+
+
++ (NSString*) formatYear:(NSDate*) date {
+    return [self format:date formatter:yearFormatter];
 }
 
 

@@ -33,6 +33,7 @@
 + (NSString*) formatLongDate:(NSDate*) date;
 + (NSString*) formatMediumDate:(NSDate*) date;
 + (NSString*) formatFullDate:(NSDate*) date;
++ (NSString*) formatYear:(NSDate*) date;
 
 + (BOOL) use24HourTime;
 

@@ -9,6 +9,7 @@
 #import "NetflixCache.h"
 
 #import "Application.h"
+#import "DateUtilities.h"
 #import "Feed.h"
 #import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
@@ -278,6 +279,7 @@ static NSSet* allowableFeeds = nil;
     NSString* link = nil;
     NSString* poster = nil;
     NSString* rating = nil;
+    NSString* year = nil;
     NSMutableArray* genres = [NSMutableArray array];
     BOOL save = NO;
     
@@ -319,14 +321,20 @@ static NSSet* allowableFeeds = nil;
             } else if ([@"http://api.netflix.com/categories/queue_availability" isEqual:scheme]) {
                 save = [[child attributeValue:@"label"] isEqual:@"saved"];
             }
+        } else if ([@"release_year" isEqual:child.name]) {
+            year = child.text;
         }
     }
     
+    NSDate* date = nil;
+    if (year.length > 0) {
+        date = [DateUtilities dateWithNaturalLanguageString:year];
+    }
     Movie* movie = [Movie movieWithIdentifier:identifier
                                         title:title
                                        rating:rating
                                        length:0
-                                  releaseDate:nil
+                                  releaseDate:date
                                   imdbAddress:nil
                                        poster:poster
                                      synopsis:nil
@@ -1046,6 +1054,22 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
     return [FileUtilities readObject:[self synopsisFile:movie]];
+}
+
+
++ (NSString*) recommendationKey {
+    return @"http://schemas.netflix.com/feed.recommendations";
+}
+
+
+- (Feed*) feedForKey:(NSString*) key {
+    for (Feed* feed in self.feeds) {
+        if ([key isEqual:feed.key]) {
+            return feed;
+        }
+    }
+
+    return nil;
 }
 
 
