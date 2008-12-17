@@ -9,7 +9,7 @@
 #import "NetflixReorderQueueDelegate.h"
 #import "TappableImageViewDelegate.h"
 
-@interface NetflixQueueViewController : UITableViewController<TappableImageViewDelegate, NetflixReorderQueueDelegate> {
+@interface NetflixQueueViewController : UITableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate> {
 @private
     AbstractNavigationController* navigationController;
     Feed* feed;
@@ -19,9 +19,9 @@
     BOOL upArrowTapped;
     
     NSMutableArray* mutableMovies;
-    PointerSet* reorderedMovies;
-    
     NSMutableArray* mutableSaved;
+    IdentitySet* deletedMovies;
+    IdentitySet* reorderedMovies;
 
     BOOL readonlyMode;
 }

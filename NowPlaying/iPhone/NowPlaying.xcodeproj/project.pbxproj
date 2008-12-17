@@ -117,6 +117,8 @@
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		747D9FA50EF774B70066B881 /* NetflixMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D9FA40EF774B70066B881 /* NetflixMovieTitleCell.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
+		747DA4E30EF8882A0066B881 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA4E20EF8882A0066B881 /* IdentitySet.m */; };
+		747DA4E60EF8884F0066B881 /* IdentityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA4E50EF8884F0066B881 /* IdentityObject.m */; };
 		747E21080EED99B0005B638A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747E21070EED99B0005B638A /* WebViewController.m */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
@@ -504,6 +506,10 @@
 		747DA10D0EF835A50066B881 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		747DA10E0EF835A50066B881 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		747DA1640EF83B1F0066B881 /* NetflixReorderQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixReorderQueueDelegate.h; sourceTree = "<group>"; };
+		747DA4E10EF8882A0066B881 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
+		747DA4E20EF8882A0066B881 /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentitySet.m; sourceTree = "<group>"; };
+		747DA4E40EF8884F0066B881 /* IdentityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityObject.h; sourceTree = "<group>"; };
+		747DA4E50EF8884F0066B881 /* IdentityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityObject.m; sourceTree = "<group>"; };
 		747E21060EED99B0005B638A /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		747E21070EED99B0005B638A /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		748379C90DD0169E00DC3B80 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
@@ -1273,6 +1279,10 @@
 				748AB3800EB6C5A5004918A6 /* LinkedSet.m */,
 				747AB9250EB97822002438D0 /* PointerSet.h */,
 				747AB9260EB97822002438D0 /* PointerSet.m */,
+				747DA4E10EF8882A0066B881 /* IdentitySet.h */,
+				747DA4E20EF8882A0066B881 /* IdentitySet.m */,
+				747DA4E40EF8884F0066B881 /* IdentityObject.h */,
+				747DA4E50EF8884F0066B881 /* IdentityObject.m */,
 			);
 			name = Collections;
 			sourceTree = "<group>";
@@ -1905,6 +1915,8 @@
 				7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */,
 				747D9FA50EF774B70066B881 /* NetflixMovieTitleCell.m in Sources */,
 				747DA10F0EF835A50066B881 /* Queue.m in Sources */,
+				747DA4E30EF8882A0066B881 /* IdentitySet.m in Sources */,
+				747DA4E60EF8884F0066B881 /* IdentityObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

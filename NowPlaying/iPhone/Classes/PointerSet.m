@@ -56,6 +56,11 @@
 }
 
 
+- (void) removeObject:(id) value {
+    [set removeObject:[NSValue valueWithPointer:value]];
+}
+
+
 - (void) addObjectsFromArray:(NSArray*) values {
     for (id value in values) {
         [self addObject:value];
@@ -65,6 +70,11 @@
 
 - (BOOL) containsObject:(id) value {
     return [set containsObject:[NSValue valueWithPointer:value]];
+}
+
+
+- (NSInteger) count {
+    return set.count;
 }
 
 @end

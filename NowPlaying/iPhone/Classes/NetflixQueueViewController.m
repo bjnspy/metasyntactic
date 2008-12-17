@@ -15,7 +15,7 @@
 #import "NetflixCache.h"
 #import "NetflixMovieTitleCell.h"
 #import "NowPlayingModel.h"
-#import "PointerSet.h"
+#import "IdentitySet.h"
 #import "Queue.h"
 #import "TappableImageView.h"
 #import "ViewControllerUtilities.h"
@@ -26,7 +26,8 @@
 @property (retain) Queue* queue;
 @property (retain) NSMutableArray* mutableMovies;
 @property (retain) NSMutableArray* mutableSaved;
-@property (retain) PointerSet* reorderedMovies;
+@property (retain) IdentitySet* deletedMovies;
+@property (retain) IdentitySet* reorderedMovies;
 @property (retain) UIBarButtonItem* backButton;
 @end
 
@@ -38,6 +39,7 @@
 @synthesize queue;
 @synthesize mutableMovies;
 @synthesize mutableSaved;
+@synthesize deletedMovies;
 @synthesize reorderedMovies;
 @synthesize backButton;
 
@@ -47,6 +49,7 @@
     self.queue = nil;
     self.mutableMovies = nil;
     self.mutableSaved = nil;
+    self.deletedMovies = nil;
     self.reorderedMovies = nil;
     self.backButton = nil;
 
@@ -275,6 +278,7 @@
     readonlyMode = NO;
     [self setupButtons];
     [self setupTitle];
+    [self resetVisibleAccessories];
 }
 
 
@@ -287,11 +291,11 @@
     cell.accessoryView = activityIndicator;
     
     Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
-    [self.model.netflixCache moveMovie:movie toTopOfQueue:queue fromFeed:feed delegate:self];
+    [self.model.netflixCache updateQueue:queue fromFeed:feed byMovingMovieToTop:movie delegate:self];
 }
 
 
-- (void) reorderSucceededForMovie:(Movie*) movie
+- (void) moveSucceededForMovie:(Movie*) movie
                           inQueue:(Queue*) queue_
                          fromFeed:(Feed*) feed {
     self.queue = queue_;
@@ -310,16 +314,11 @@
     }
     [self.tableView endUpdates];
     
-    [self resetVisibleAccessories];
-    
     [self exitReadonlyMode];
 }
 
 
-- (void) reorderFailedWithError:(NSError*) error
-                       forMovie:(Movie*) movie
-                        inQueue:(Queue*) queue
-                       fromFeed:(Feed*) feed {
+- (void) onModifyFailure {
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
                                                      message:NSLocalizedString(@"Reordering queue failed", nil)
                                                     delegate:nil
@@ -327,11 +326,19 @@
                                            otherButtonTitles:nil] autorelease];
     
     [alert show];
-
+    
     [self exitReadonlyMode];
     
     // make sure we're in a good state.
     [self majorRefresh];
+}
+
+
+- (void) moveFailedWithError:(NSError*) error
+                       forMovie:(Movie*) movie
+                        inQueue:(Queue*) queue
+                       fromFeed:(Feed*) feed {
+    [self onModifyFailure];
 }
 
 
@@ -353,8 +360,8 @@
 
 
 - (BOOL)          tableView:(UITableView*) tableView
-      canEditRowAtIndexPath:(NSIndexPath*) indexPath {    
-    return YES;
+      canEditRowAtIndexPath:(NSIndexPath*) indexPath {
+    return tableView.editing;
 }
 
 
@@ -371,7 +378,17 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 
-        [mutableMovies removeObjectAtIndex:indexPath.row];
+        Movie* movie;
+        if (indexPath.section == 0) {
+            movie = [mutableMovies objectAtIndex:indexPath.row];
+            [mutableMovies removeObjectAtIndex:indexPath.row];
+        } else {
+            movie = [mutableSaved objectAtIndex:indexPath.row];
+            [mutableSaved removeObjectAtIndex:indexPath.row];
+        }
+
+        [deletedMovies addObject:movie];
+        [reorderedMovies removeObject:movie];
     }
 }
 
@@ -383,6 +400,10 @@
     NSInteger from = fromIndexPath.row;
     NSInteger to = toIndexPath.row;
     
+    if (from == to) {
+        return;
+    }
+    
     Movie* movie = [mutableMovies objectAtIndex:from];
     [mutableMovies removeObjectAtIndex:from];
     [mutableMovies insertObject:movie atIndex:to];
@@ -392,7 +413,8 @@
 
 
 - (void) onEdit:(id) sender {
-    self.reorderedMovies = [NSMutableSet set];
+    self.reorderedMovies = [IdentitySet set];
+    self.deletedMovies = [IdentitySet set];
     [self.tableView setEditing:YES animated:YES];
     [self setupButtons];
 }
@@ -405,9 +427,29 @@
 
 
 - (void) onSave:(id) sender {
-    [self.tableView setEditing:NO animated:YES];
-    [self setupButtons];
-    [self resetVisibleAccessories];
+    if (deletedMovies.count == 0 && reorderedMovies.count == 0) {
+        // user didn't do anything.  same as a cancel:
+        [self onCancel:sender];
+    } else {
+        [self.tableView setEditing:NO animated:YES];
+        [self enterReadonlyMode];
+        
+        [self.model.netflixCache updateQueue:queue fromFeed:feed byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self];
+    }
+}
+
+
+- (void) modifySucceededInQueue:(Queue*) queue
+                       fromFeed:(Feed*) feed {
+    [self initializeData];
+    [self exitReadonlyMode];
+}
+
+
+- (void) modifyFailedWithError:(NSError*) error
+                       inQueue:(Queue*) queue
+                      fromFeed:(Feed*) feed {
+    [self onModifyFailure];    
 }
 
 

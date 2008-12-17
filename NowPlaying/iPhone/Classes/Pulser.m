@@ -88,7 +88,7 @@
     // ok, actually pulse.
     self.lastPulseTime = now;
     //NSLog(@"Pulse at '%@' being performed at '%@'.", date, lastPulseTime);
-    [target performSelector:action];
+    [target performSelectorOnMainThread:action withObject:nil waitUntilDone:NO];
 }
 
 

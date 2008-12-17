@@ -14,7 +14,7 @@
 
 @protocol DataProvider;
 @protocol DataProviderUpdateDelegate;
-@protocol NetflixReorderQueueDelegate;
+@protocol NetflixModifyQueueDelegate;
 @protocol ScoreProvider;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
@@ -49,6 +49,7 @@
 @class FavoriteTheater;
 @class Feed;
 @class FontCache;
+@class IdentitySet;
 @class ImageCache;
 @class IMDbCache;
 @class ImdbPosterDownloader;
