@@ -136,6 +136,15 @@
 }
 
 
++ (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary {
+    if (dictionary == nil) {
+        return [NSDictionary dictionary];
+    }
+    
+    return dictionary;
+}
+
+
 + (NSArray*) nonNilArray:(NSArray*) array {
     if (array == nil) {
         return [NSArray array];

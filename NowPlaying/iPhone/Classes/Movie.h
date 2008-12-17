@@ -30,6 +30,8 @@
     NSString* displayTitle;
 
     NSString* cachedRatingAndRuntimeString;
+    
+    NSDictionary* additionalFields;
 }
 
 @property (readonly, copy) NSString* identifier;
@@ -45,6 +47,7 @@
 @property (readonly, retain) NSArray* directors;
 @property (readonly, retain) NSArray* cast;
 @property (readonly, retain) NSArray* genres;
+@property (readonly, retain) NSDictionary* additionalFields;
 
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary;
 
@@ -61,6 +64,19 @@
                      directors:(NSArray*) directors
                           cast:(NSArray*) cast
                         genres:(NSArray*) genres;
++ (Movie*) movieWithIdentifier:(NSString*) identifier
+                         title:(NSString*) title
+                        rating:(NSString*) rating
+                        length:(NSInteger) length
+                   releaseDate:(NSDate*) releaseDate
+                   imdbAddress:(NSString*) imdbAddress
+                        poster:(NSString*) poster
+                      synopsis:(NSString*) synopsis
+                        studio:(NSString*) studio
+                     directors:(NSArray*) directors
+                          cast:(NSArray*) cast
+                        genres:(NSArray*) genres
+              additionalFields:(NSDictionary*) additionalFields;
 
 - (NSDictionary*) dictionary;
 

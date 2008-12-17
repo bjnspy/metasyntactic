@@ -12,9 +12,13 @@
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
-    NSDictionary* identifierToDetailsData;
     
+    // movies whose details we want to update
+    LinkedSet* normalMovies;
+    LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
+    
+    NSCondition* updateDetailsLock;
 }
 
 + (NetflixCache*) cacheWithModel:(NowPlayingModel*) model;

@@ -29,5 +29,9 @@
 - (id) removeLastObjectAdded;
 
 - (void) addObject:(id) object;
+- (void) addObjectsFromArray:(NSArray*) array;
+- (void) setArray:(NSArray*) array;
+
+- (void) removeAllObjects;
 
 @end

@@ -31,6 +31,7 @@
 @property (retain) NSArray* cast;
 @property (retain) NSArray* genres;
 @property (retain) NSString* cachedRatingAndRuntimeString;
+@property (retain) NSDictionary* additionalFields;
 @end
 
 
@@ -49,6 +50,7 @@ property_definition(studio);
 property_definition(directors);
 property_definition(cast);
 property_definition(genres);
+property_definition(additionalFields);
 @synthesize cachedRatingAndRuntimeString;
 
 - (void) dealloc {
@@ -66,6 +68,7 @@ property_definition(genres);
     self.cast = nil;
     self.genres = nil;
     self.cachedRatingAndRuntimeString = nil;
+    self.additionalFields = nil;
 
     [super dealloc];
 }
@@ -120,7 +123,8 @@ static NSString* articles[] = {
                    studio:(NSString*) studio_
                 directors:(NSArray*) directors_
                      cast:(NSArray*) cast_
-                   genres:(NSArray*) genres_ {
+                   genres:(NSArray*) genres_
+         additionalFields:(NSDictionary*) additionalFields_ {
     if (self = [self init]) {
         self.identifier = [Utilities nonNilString:identifier_];
         self.canonicalTitle = [Utilities nonNilString:canonicalTitle_];
@@ -135,9 +139,30 @@ static NSString* articles[] = {
         self.directors = [Utilities nonNilArray:directors_];
         self.cast = [Utilities nonNilArray:cast_];
         self.genres = [Utilities nonNilArray:genres_];
+        self.additionalFields = [Utilities nonNilDictionary:additionalFields_];
     }
 
     return self;
+}
+
+
++ (BOOL) isStringDictionary:(id) dictionary {
+    if (![dictionary isKindOfClass:[NSDictionary class]]) {
+        return NO;
+    }
+    
+    for (id key in dictionary) {
+        if (![key isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+        
+        id value = [dictionary objectForKey:key];
+        if (![value isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 
@@ -170,7 +195,8 @@ static NSString* articles[] = {
     [[dictionary objectForKey:length_key] isKindOfClass:[NSNumber class]] &&
     [self isStringArray:[dictionary objectForKey:directors_key]] &&
     [self isStringArray:[dictionary objectForKey:cast_key]] &&
-    [self isStringArray:[dictionary objectForKey:genres_key]];
+    [self isStringArray:[dictionary objectForKey:genres_key]] &&
+    [self isStringDictionary:[dictionary objectForKey:additionalFields_key]];
 }
 
 
@@ -185,7 +211,8 @@ static NSString* articles[] = {
                         studio:(NSString*) studio
                      directors:(NSArray*) directors
                           cast:(NSArray*) cast
-                        genres:(NSArray*) genres {
+                        genres:(NSArray*) genres 
+               additionalFields:(NSDictionary*) additionalFields {
     rating = [rating stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (rating.length == 0) {
         rating = @"NR";
@@ -203,7 +230,36 @@ static NSString* articles[] = {
                                        studio:studio
                                     directors:directors
                                          cast:cast
-                                       genres:genres] autorelease];
+                                       genres:genres
+                             additionalFields:additionalFields] autorelease];
+}
+
+
++ (Movie*) movieWithIdentifier:(NSString*) identifier
+                         title:(NSString*) title
+                        rating:(NSString*) rating
+                        length:(NSInteger) length
+                   releaseDate:(NSDate*) releaseDate
+                   imdbAddress:(NSString*) imdbAddress
+                        poster:(NSString*) poster
+                      synopsis:(NSString*) synopsis
+                        studio:(NSString*) studio
+                     directors:(NSArray*) directors
+                          cast:(NSArray*) cast
+                        genres:(NSArray*) genres {
+    return [Movie movieWithIdentifier:identifier
+                                title:title
+                               rating:rating
+                               length:length
+                          releaseDate:releaseDate
+                          imdbAddress:imdbAddress
+                               poster:poster
+                             synopsis:synopsis
+                               studio:studio
+                            directors:directors
+                                 cast:cast
+                               genres:genres
+                     additionalFields:nil];
 }
 
 
@@ -220,7 +276,8 @@ static NSString* articles[] = {
                                        studio:[dictionary objectForKey:studio_key]
                                     directors:[dictionary objectForKey:directors_key]
                                          cast:[dictionary objectForKey:cast_key]
-                                       genres:[dictionary objectForKey:genres_key]] autorelease];
+                                       genres:[dictionary objectForKey:genres_key]
+                             additionalFields:[dictionary objectForKey:additionalFields_key]] autorelease];
 }
 
 
@@ -239,6 +296,7 @@ static NSString* articles[] = {
     [dictionary setValue:directors                          forKey:directors_key];
     [dictionary setValue:cast                               forKey:cast_key];
     [dictionary setValue:genres                             forKey:genres_key];
+    [dictionary setValue:additionalFields                   forKey:additionalFields_key];
     return dictionary;
 }
 
