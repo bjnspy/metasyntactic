@@ -30,7 +30,7 @@
     BOOL scrollToCurrentDateOnRefresh;
 }
 
-- (id) initWithNavigationController:(DVDNavigationController*) navigationController;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 - (BOOL) sortingByTitle;
 
