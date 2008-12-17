@@ -10,9 +10,11 @@
 
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
+#import "NetflixCache.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixNavigationController.h"
+#import "NetflixQueueViewController.h"
 #import "NowPlayingModel.h"
 
 @interface NetflixViewController()
@@ -191,9 +193,19 @@
 }
 
 
+- (void) didSelectRecommendationsRow {
+    NetflixQueueViewController* controller =
+    [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController
+                                                              feedKey:[NetflixCache recommendationKey]] autorelease];
+    [navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
     if (row == 2) {
         [self didSelectQueuesRow];
+    } else if (row == 3) {
+        [self didSelectRecommendationsRow];
     } else if (row == 5) {
         [self didSelectLogoutRow];
     }

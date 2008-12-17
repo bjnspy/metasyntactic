@@ -12,6 +12,7 @@
 @interface NetflixQueueViewController : UITableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate> {
 @private
     AbstractNavigationController* navigationController;
+    NSString* feedKey;
     Feed* feed;
     Queue* queue;
     
@@ -26,6 +27,7 @@
     BOOL readonlyMode;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController feed:(Feed*) feed;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
+                            feedKey:(NSString*) feedKey;
 
 @end

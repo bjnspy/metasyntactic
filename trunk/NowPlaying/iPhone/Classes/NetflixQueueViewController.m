@@ -22,6 +22,7 @@
 
 @interface NetflixQueueViewController()
 @property (assign) AbstractNavigationController* navigationController;
+@property (copy) NSString* feedKey;
 @property (retain) Feed* feed;
 @property (retain) Queue* queue;
 @property (retain) NSMutableArray* mutableMovies;
@@ -35,6 +36,7 @@
 @implementation NetflixQueueViewController
 
 @synthesize navigationController;
+@synthesize feedKey;
 @synthesize feed;
 @synthesize queue;
 @synthesize mutableMovies;
@@ -45,6 +47,7 @@
 
 - (void) dealloc {
     self.navigationController = nil;
+    self.feedKey = nil;
     self.feed = nil;
     self.queue = nil;
     self.mutableMovies = nil;
@@ -99,10 +102,10 @@
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ 
-                               feed:(Feed*) feed_ {
+                            feedKey:(NSString*) feedKey_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
-        self.feed = feed_;
+        self.feedKey = feedKey_;
         self.backButton = self.navigationItem.leftBarButtonItem;
         [self setupButtons];
     }
@@ -135,6 +138,7 @@
 
 
 - (void) initializeData {
+    self.feed = [self.model.netflixCache feedForKey:feedKey];
     self.queue = [self.model.netflixCache queueForFeed:feed];
     self.mutableMovies = [NSMutableArray arrayWithArray:queue.movies];
     self.mutableSaved = [NSMutableArray arrayWithArray:queue.saved];
@@ -190,8 +194,6 @@
         if (section == 0) {
             return [self.model.netflixCache noInformationFound];
         }
-    } else if (mutableMovies.count > 0 && section == 0) {
-        return NSLocalizedString(@"Queue", nil);
     } else if (mutableSaved.count > 0 && section == 1) {
         return NSLocalizedString(@"Saved", nil);
     }

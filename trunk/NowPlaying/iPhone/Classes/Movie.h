@@ -75,4 +75,6 @@
 + (NSArray*) encodeArray:(NSArray*) array;
 + (NSArray*) decodeArray:(NSArray*) array;
 
+- (BOOL) isNetflix;
+
 @end

@@ -215,7 +215,7 @@
 
 - (void) webViewDidFinishLoad:(UIWebView*) webView_ {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(clearTitle) object:nil];
-    [self performSelector:@selector(clearTitle) withObject:nil afterDelay:5];
+    [self performSelector:@selector(clearTitle) withObject:nil afterDelay:4];
 
     [self updateToolBarItems];
 }

@@ -135,6 +135,11 @@
 }
 
 
+- (BOOL) isNetflix {
+    return [movie isNetflix];
+}
+
+
 - (void) setupActionsView {
     NSMutableArray* selectors = [NSMutableArray array];
     NSMutableArray* titles = [NSMutableArray array];
@@ -164,7 +169,7 @@
         [titles addObject:NSLocalizedString(@"Website", nil)];
     }
 
-    if (![self isUpcomingMovie] && ![self isDVD]) {
+    if (![self isUpcomingMovie] && ![self isDVD] && ![self isNetflix]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
         [titles addObject:NSLocalizedString(@"Change date", nil)];
     }
