@@ -119,6 +119,30 @@
 }
 
 
+- (void) addObjectNoLock:(id) object {
+    if (object == nil) {
+        return;
+    }
+
+    LinkedNode* node = [valueToNode objectForKey:object];
+    [self removeNode:node];
+    
+    self.lastNode = [LinkedNode nodeWithValue:object previous:lastNode next:nil];
+    [valueToNode setObject:lastNode forKey:object];
+    
+    if (firstNode == nil) {
+        self.firstNode = lastNode;
+    }
+    
+    [self enforceLimit];
+    
+    NSAssert(firstNode != nil, @"");
+    NSAssert(lastNode != nil, @"");
+    NSAssert(firstNode.previous == nil, @"");
+    NSAssert(lastNode.next == nil, @"");
+}
+
+
 - (void) addObject:(id) object {
     if (object == nil) {
         return;
@@ -126,22 +150,56 @@
 
     [gate lock];
     {
-        LinkedNode* node = [valueToNode objectForKey:object];
-        [self removeNode:node];
+        [self addObjectNoLock:object];
+    }
+    [gate unlock];
+}
 
-        self.lastNode = [LinkedNode nodeWithValue:object previous:lastNode next:nil];
-        [valueToNode setObject:lastNode forKey:object];
 
-        if (firstNode == nil) {
-            self.firstNode = lastNode;
-        }
+- (void) addObjectsFromArrayNoLock:(NSArray*) array {
+    for (NSInteger i = array.count - 1; i >= 0; i--) {
+        [self addObjectNoLock:[array objectAtIndex:i]];
+    }
+}
 
-        [self enforceLimit];
+- (void) addObjectsFromArray:(NSArray*) array {
+    [gate lock];
+    {
+        [self addObjectsFromArrayNoLock:array];
+    }
+    [gate unlock];
+}
 
-        NSAssert(firstNode != nil, @"");
-        NSAssert(lastNode != nil, @"");
-        NSAssert(firstNode.previous == nil, @"");
-        NSAssert(lastNode.next == nil, @"");
+
+- (void) removeAllObjectsNoLock {
+    // delete all the back pointers.  
+    // This will clear up circular references.
+    for (LinkedNode* node = firstNode; node != nil; node = node.next) {
+        node.previous = nil;
+    }
+    
+    // now, when we release our nodes, they'll all dissapear.
+    self.firstNode = nil;
+    self.lastNode = nil;
+
+    [valueToNode removeAllObjects];
+}
+
+
+- (void) removeAllObjects {
+    [gate lock];
+    {
+        [self removeAllObjectsNoLock];
+    }
+    [gate unlock];
+}
+
+
+- (void) setArray:(NSArray*) array {
+    [gate lock];
+    {
+        [self removeAllObjectsNoLock];
+        [self addObjectsFromArrayNoLock:array];
     }
     [gate unlock];
 }

@@ -35,6 +35,7 @@
 
 + (NSInteger) hashString:(NSString*) string;
 
++ (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary;
 + (NSArray*) nonNilArray:(NSArray*) array;
 + (NSString*) nonNilString:(NSString*) string;
 
