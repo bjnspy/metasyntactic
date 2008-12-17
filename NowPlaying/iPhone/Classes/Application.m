@@ -50,6 +50,10 @@ static NSString* blurayPostersDirectory = nil;
 
 static NSString* netflixDirectory = nil;
 static NSString* netflixQueuesDirectory = nil;
+static NSString* netflixPostersDirectory = nil;
+static NSString* netflixSynopsesDirectory = nil;
+static NSString* netflixCastDirectory = nil;
+static NSString* netflixDirectorsDirectory = nil;
 
 /*
 static NSString* numbersDirectory = nil;
@@ -66,36 +70,40 @@ static NSString* upcomingSynopsesDirectory = nil;
 static NSString* upcomingTrailersDirectory = nil;
 
 static NSString** directories[] = {
-    &dataDirectory,
-    &imdbDirectory,
-    &userLocationsDirectory,
-    &dvdDirectory,
-    &dvdDetailsDirectory,
-    &dvdIMDbDirectory,
-    &dvdPostersDirectory,
-    &blurayDirectory,
-    &blurayDetailsDirectory,
-    &blurayIMDbDirectory,
-    &blurayPostersDirectory,
-    &netflixDirectory,
-    &netflixQueuesDirectory,
+&dataDirectory,
+&imdbDirectory,
+&userLocationsDirectory,
+&dvdDirectory,
+&dvdDetailsDirectory,
+&dvdIMDbDirectory,
+&dvdPostersDirectory,
+&blurayDirectory,
+&blurayDetailsDirectory,
+&blurayIMDbDirectory,
+&blurayPostersDirectory,
+&netflixDirectory,
+&netflixQueuesDirectory,
+&netflixPostersDirectory,
+&netflixSynopsesDirectory,
+&netflixCastDirectory,
+&netflixDirectorsDirectory,
 /*
-    &numbersDirectory,
-    &numbersBudgetsDirectory,
-    &numbersDailyDirectory,
-    &numbersWeekendDirectory,
+ &numbersDirectory,
+ &numbersBudgetsDirectory,
+ &numbersDailyDirectory,
+ &numbersWeekendDirectory,
  */
-    &scoresDirectory,
-    &reviewsDirectory,
-    &trailersDirectory,
-    &postersDirectory,
-    &largePostersDirectory,
-    &upcomingDirectory,
-    &upcomingCastDirectory,
-    &upcomingIMDbDirectory,
-    &upcomingPostersDirectory,
-    &upcomingSynopsesDirectory,
-    &upcomingTrailersDirectory
+&scoresDirectory,
+&reviewsDirectory,
+&trailersDirectory,
+&postersDirectory,
+&largePostersDirectory,
+&upcomingDirectory,
+&upcomingCastDirectory,
+&upcomingIMDbDirectory,
+&upcomingPostersDirectory,
+&upcomingSynopsesDirectory,
+&upcomingTrailersDirectory
 };
 
 
@@ -216,7 +224,11 @@ static DifferenceEngine* differenceEngine = nil;
             
             netflixDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
             netflixQueuesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Queues"] retain];
-            
+            netflixPostersDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+            netflixSynopsesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Synopses"] retain];
+            netflixCastDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Cast"] retain];
+            netflixDirectorsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Directors"] retain];
+
             upcomingDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
             upcomingIMDbDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
@@ -337,6 +349,26 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixQueuesDirectory {
     return netflixQueuesDirectory;
+}
+
+
++ (NSString*) netflixPostersDirectory {
+    return netflixPostersDirectory;
+}
+
+
++ (NSString*) netflixSynopsesDirectory {
+    return netflixSynopsesDirectory;
+}
+
+
++ (NSString*) netflixCastDirectory {
+    return netflixCastDirectory;
+}
+
+
++ (NSString*) netflixDirectorsDirectory {
+    return netflixDirectorsDirectory;
 }
 
 

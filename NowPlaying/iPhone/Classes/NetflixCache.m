@@ -30,17 +30,22 @@
 
 @implementation NetflixCache
 
+static NSString* title_key = @"title";
+static NSString* synopsis_key = @"synopsis";
+static NSString* directors_key = @"directors";
+static NSString* cast_key = @"cast";
+
 static NSSet* allowableFeeds = nil;
 
 + (void) initialize {
     if (self == [NetflixCache class]) {
         allowableFeeds = [[NSSet setWithObjects:
-                          @"http://schemas.netflix.com/feed.queues.disc",
-                          @"http://schemas.netflix.com/feed.queues.instant",
-                          @"http://schemas.netflix.com/feed.at_home",
-                          @"http://schemas.netflix.com/feed.rental_history.watched",
-                          @"http://schemas.netflix.com/feed.rental_history.returned",
-                          @"http://schemas.netflix.com/feed.recommendations", nil] retain];
+                           @"http://schemas.netflix.com/feed.queues.disc",
+                           @"http://schemas.netflix.com/feed.queues.instant",
+                           @"http://schemas.netflix.com/feed.at_home",
+                           @"http://schemas.netflix.com/feed.rental_history.watched",
+                           @"http://schemas.netflix.com/feed.rental_history.returned",
+                           @"http://schemas.netflix.com/feed.recommendations", nil] retain];
     }
 }
 
@@ -50,7 +55,7 @@ static NSSet* allowableFeeds = nil;
 - (void) dealloc {
     self.feedsData = nil;
     self.queues = nil;
-
+    
     [super dealloc];
 }
 
@@ -83,7 +88,10 @@ static NSSet* allowableFeeds = nil;
 - (NSSet*) cachedDirectoriesToClear {
     return [NSSet setWithObjects:
             [Application netflixDirectory],
-            [Application netflixQueuesDirectory], nil];
+            [Application netflixQueuesDirectory],
+            [Application netflixPostersDirectory],
+            [Application netflixSynopsesDirectory],
+            [Application netflixCastDirectory], nil];
 }
 
 
@@ -155,7 +163,7 @@ static NSSet* allowableFeeds = nil;
         [self clear];
         return;
     }
-        
+    
     [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint)
                                onTarget:self
                    inBackgroundWithGate:gate
@@ -180,7 +188,7 @@ static NSSet* allowableFeeds = nil;
     [request prepare];
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-
+    
     NSMutableArray* feeds = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         if ([child.name isEqual:@"link"]) {
@@ -213,7 +221,8 @@ static NSSet* allowableFeeds = nil;
 
 - (void) processItem:(XmlElement*) element
               movies:(NSMutableArray*) movies
-               saved:(NSMutableArray*) saved {
+               saved:(NSMutableArray*) saved 
+ identifierToDetails:(NSMutableDictionary*) identifierToDetails {
     if (![@"queue_item" isEqual:element.name] &&
         ![@"rental_history_item" isEqual:element.name] &&
         ![@"at_home_item" isEqual:element.name] &&
@@ -221,12 +230,14 @@ static NSSet* allowableFeeds = nil;
         return;
     }
     
+    NSMutableDictionary* detailLinks = [NSMutableDictionary dictionary];
+    
     NSString* identifier = nil;
     NSString* title = nil;
     NSString* link = nil;
     NSString* poster = nil;
     NSString* rating = nil;
-    NSArray* genres = nil;
+    NSMutableArray* genres = [NSMutableArray array];
     BOOL save = NO;
     
     for (XmlElement* child in element.children) {
@@ -236,6 +247,14 @@ static NSSet* allowableFeeds = nil;
             NSString* rel = [child attributeValue:@"rel"];
             if ([@"alternate" isEqual:rel]) {
                 link = [child attributeValue:@"href"];
+            } else if ([@"http://schemas.netflix.com/catalog/title" isEqual:rel]) {
+                [detailLinks setObject:[child attributeValue:@"href"] forKey:title_key];
+            } else if ([@"http://schemas.netflix.com/catalog/people.cast" isEqual:rel]) {
+                [detailLinks setObject:[child attributeValue:@"href"] forKey:cast_key];
+            } else if ([@"http://schemas.netflix.com/catalog/people.directors" isEqual:rel]) {
+                [detailLinks setObject:[child attributeValue:@"href"] forKey:directors_key];
+            } else if ([@"http://schemas.netflix.com/catalog/titles/synopsis" isEqual:rel]) {
+                [detailLinks setObject:[child attributeValue:@"href"] forKey:synopsis_key];
             }
         } else if ([@"title" isEqual:child.name]) {
             title = [child attributeValue:@"short"];
@@ -255,28 +274,12 @@ static NSSet* allowableFeeds = nil;
             if ([@"http://api.netflix.com/categories/mpaa_ratings" isEqual:scheme]) {
                 rating = [child attributeValue:@"label"];
             } else if ([@"http://api.netflix.com/categories/genres" isEqual:scheme]) {
-                genres = [NSArray arrayWithObject:[child attributeValue:@"label"]];
+                [genres addObject:[child attributeValue:@"label"]];
             } else if ([@"http://api.netflix.com/categories/queue_availability" isEqual:scheme]) {
                 save = [[child attributeValue:@"label"] isEqual:@"saved"];
             }
         }
     }
-    /*
-     <position>1</position> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866" rel="http://schemas.netflix.com/catalog/title" title="2010: The Year We Make Contact" /> 
-     <title short="2010: The Year We Make Contact" regular="2010: The Year We Make Contact" /> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866/synopsis" rel="http://schemas.netflix.com/catalog/titles/synopsis" title="synopsis" /> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866/cast" rel="http://schemas.netflix.com/catalog/people.cast" title="cast" /> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866/directors" rel="http://schemas.netflix.com/catalog/people.directors" title="directors" /> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866/awards" rel="http://schemas.netflix.com/catalog/titles/awards" title="awards" /> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866/format_availability" rel="http://schemas.netflix.com/catalog/titles/format_availability" title="formats" /> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866/screen_formats" rel="http://schemas.netflix.com/catalog/titles/screen_formats" title="screen formats" /> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866/languages_and_audio" rel="http://schemas.netflix.com/catalog/titles/languages_and_audio" title="languages and audio" /> 
-     <average_rating>3.5</average_rating> 
-     <link href="http://api.netflix.com/catalog/titles/movies/207866/similars" rel="http://schemas.netflix.com/catalog/titles.similars" title="similars" /> 
-     <link href="http://www.netflix.com/Movie/2010_The_Year_We_Make_Contact/207866" rel="alternate" title="web page" /> 
-     </queue_item>
-     */
     
     Movie* movie = [Movie movieWithIdentifier:identifier
                                         title:title
@@ -290,12 +293,14 @@ static NSSet* allowableFeeds = nil;
                                     directors:nil
                                          cast:nil
                                        genres:genres];
-                
+    
     if (save) {
         [saved addObject:movie];
     } else {
         [movies addObject:movie];
     }
+    
+    [identifierToDetails setObject:detailLinks forKey:identifier];
 }
 
 
@@ -320,16 +325,21 @@ static NSSet* allowableFeeds = nil;
     
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
+    NSMutableDictionary* identifierToDetails = [NSMutableDictionary dictionary];
+    
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            [self processItem:child movies:movies saved:saved];
+            [self processItem:child
+                       movies:movies
+                        saved:saved
+          identifierToDetails:identifierToDetails];
         }
         [pool release];
     }
     
     if (movies.count > 0 || saved.count > 0) {
-        Queue* queue = [Queue queueWithFeedKey:feed.key etag:etag movies:movies saved:saved];
+        Queue* queue = [Queue queueWithFeedKey:feed.key etag:etag movies:movies saved:saved identifierToDetails:identifierToDetails];
         [self saveQueue:queue fromFeed:feed];
         [self performSelectorOnMainThread:@selector(reportQueue:)
                                withObject:[NSArray arrayWithObjects:queue, feed, nil]
@@ -371,7 +381,7 @@ static NSSet* allowableFeeds = nil;
 
 - (void) reportQueueAndError:(NSArray*) arguments {
     [self reportQueue:arguments];
-
+    
     Queue* queue = [arguments objectAtIndex:0];
     Feed* feed = [arguments objectAtIndex:1];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:2];
@@ -402,7 +412,7 @@ static NSSet* allowableFeeds = nil;
 
 - (void) saveQueue:(Queue*) queue
           fromFeed:(Feed*) feed
-    andReportSuccess:(id<NetflixModifyQueueDelegate>) delegate {
+  andReportSuccess:(id<NetflixModifyQueueDelegate>) delegate {
     [self saveQueue:queue fromFeed:feed];
     NSArray* arguments = [NSArray arrayWithObjects:queue, feed, delegate, nil];
     [self performSelectorOnMainThread:@selector(reportQueueAndSuccess:) withObject:arguments waitUntilDone:NO];
@@ -424,13 +434,219 @@ static NSSet* allowableFeeds = nil;
     if (model.netflixUserId.length == 0) {
         return;
     }
-
+    
     NSArray* feeds = [self downloadFeeds];
     if (feeds.count > 0) {
         [self saveFeeds:feeds];
         [self performSelectorOnMainThread:@selector(reportFeeds:) withObject:feeds waitUntilDone:NO];
-
+        
         [self downloadQueues:feeds];
+    }
+    
+    [self performSelectorOnMainThread:@selector(updateDetails) withObject:nil waitUntilDone:NO];
+}
+
+
+- (void) updateDetails {
+    NSMutableArray* queues_list = [NSMutableArray array];
+    for (Feed* feed in self.feeds) {
+        Queue* queue = [self queueForFeed:feed];
+        if (queue != nil) {
+            [queues_list addObject:queue];
+        }
+    }
+    
+    [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundEntryPoint:)
+                               onTarget:self 
+               inBackgroundWithArgument:queues_list
+                                   gate:gate
+                                visible:NO];
+    
+}
+
+
+- (NSString*) posterPath:(Movie*) movie {
+    return
+    [[[Application netflixPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"jpg"];
+}
+
+
+- (void) updatePoster:(Movie*) movie
+                queue:(Queue*) queue {
+    if (movie.poster.length == 0) {
+        return;
+    }
+    
+    NSString* path = [self posterPath:movie];
+    if ([FileUtilities fileExists:path]) {
+        return;
+    }
+    
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
+    if (data.length > 0) {
+        [FileUtilities writeData:data toFile:path];
+        [NowPlayingAppDelegate minorRefresh];
+    }
+}
+
+
+- (NSString*) synopsisFile:(Movie*) movie {
+    return
+    [[[Application netflixSynopsesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (void) updateSynopsis:(Movie*) movie
+                  queue:(Queue*) queue {
+    NSString* address = [[queue.identifierToDetails objectForKey:movie.identifier] objectForKey:synopsis_key];
+    if (address.length == 0) {
+        return;
+    }
+    
+    NSString* path = [self synopsisFile:movie];
+    if ([FileUtilities fileExists:path]) {
+        return;
+    }
+
+    OAConsumer* consumer = [OAConsumer consumerWithKey:@"83k9wpqt34hcka5bfb2kkf8s"
+                                                secret:@"GGR5uHEucN"];
+    
+    OAToken* token = [OAToken tokenWithKey:model.netflixKey
+                                    secret:model.netflixSecret];
+    
+    OAMutableURLRequest* request =
+    [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
+                               consumer:consumer
+                                  token:token
+                                  realm:nil];
+    [request prepare];
+    
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
+    NSString* synopsis = element.text;
+    
+    if (synopsis.length > 0) {
+        [FileUtilities writeObject:synopsis toFile:path];
+        [NowPlayingAppDelegate minorRefresh];
+    }
+}
+
+
+- (NSString*) castFile:(Movie*) movie {
+    return
+    [[[Application netflixCastDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (void) updateCast:(Movie*) movie
+              queue:(Queue*) queue {
+    NSString* address = [[queue.identifierToDetails objectForKey:movie.identifier] objectForKey:cast_key];
+    if (address.length == 0) {
+        return;
+    }
+    
+    NSString* path = [self castFile:movie];
+    if ([FileUtilities fileExists:path]) {
+        return;
+    }
+    
+    OAConsumer* consumer = [OAConsumer consumerWithKey:@"83k9wpqt34hcka5bfb2kkf8s"
+                                                secret:@"GGR5uHEucN"];
+    
+    OAToken* token = [OAToken tokenWithKey:model.netflixKey
+                                    secret:model.netflixSecret];
+    
+    OAMutableURLRequest* request =
+    [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
+                               consumer:consumer
+                                  token:token
+                                  realm:nil];
+    [request prepare];
+    
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
+    
+    NSMutableArray* cast = [NSMutableArray array];
+    for (XmlElement* child in element.children) {
+        if (cast.count >= 6) {
+            // cap the number of actors we care about
+            break;
+        }
+
+        if (![child.name isEqual:@"person"]) {
+            continue;
+        }
+        
+        NSString* name = [[child element:@"name"] text];
+        if (name.length > 0) {
+            [cast addObject:name];
+        }
+    }
+    
+    if (cast.count > 0) {
+        [FileUtilities writeObject:cast toFile:path];
+        [NowPlayingAppDelegate minorRefresh];
+    }
+}
+
+
+- (void) updateDetails:(Movie*) movie
+                 queue:(Queue*) queue {
+    [self updatePoster:movie queue:queue];
+    [self updateSynopsis:movie queue:queue];
+    [self updateCast:movie queue:queue];
+    //[self updateDirectors:movie queue:queue];
+    /*
+     NSString* address = [queue.identifierToDetails objectForKey:movie.identifier];
+     if (address == nil) {
+     return;
+     }
+     
+     OAConsumer* consumer = [OAConsumer consumerWithKey:@"83k9wpqt34hcka5bfb2kkf8s"
+     secret:@"GGR5uHEucN"];
+     
+     OAToken* token = [OAToken tokenWithKey:model.netflixKey
+     secret:model.netflixSecret];
+     
+     OAMutableURLRequest* request =
+     [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
+     consumer:consumer
+     token:token
+     realm:nil];
+     
+     [request prepare];
+     
+     NSString* value = [NetworkUtilities stringWithContentsOfUrlRequest:request
+     important:YES];
+     
+     NSLog(@"%@", value);
+     
+     //    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
+     //                                                            important:YES];
+     
+     */
+}
+
+
+- (void) updateDetails:(Queue*) queue {
+    NSArray* arrays = [NSArray arrayWithObjects:queue.movies, queue.saved, nil];
+    for (NSArray* array in arrays) {
+        for (Movie* movie in array) {
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            {
+                [self updateDetails:movie queue:queue];
+            }
+            [pool release];
+        }
+    }
+}
+
+
+- (void) updateDetailsBackgroundEntryPoint:(NSArray*) queues_list {
+    for (Queue* queue in queues_list) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [self updateDetails:queue];
+        }
+        [pool release];
     }
 }
 
@@ -441,7 +657,7 @@ static NSSet* allowableFeeds = nil;
             return YES;
         }
     }
-
+    
     return NO;
 }
 
@@ -517,7 +733,11 @@ static NSSet* allowableFeeds = nil;
     [movies removeObjectIdenticalTo:movie];
     [movies insertObject:movie atIndex:position];
     
-    Queue* finalQueue = [Queue queueWithFeedKey:queue.feedKey etag:etag movies:movies saved:queue.saved];
+    Queue* finalQueue = [Queue queueWithFeedKey:queue.feedKey
+                                           etag:etag
+                                         movies:movies
+                                          saved:queue.saved
+                            identifierToDetails:queue.identifierToDetails];
     
     return finalQueue;
 }
@@ -593,10 +813,10 @@ static NSSet* allowableFeeds = nil;
         [self performSelectorOnMainThread:@selector(reportModifyFailure:) withObject:arguments waitUntilDone:NO];
         return NO;
     }
-
+    
     return YES;
 }
-    
+
 
 - (void) reportModifyFailure:(NSArray*) arguments {
     Queue* queue = [arguments objectAtIndex:0];
@@ -639,11 +859,11 @@ NSInteger orderMovies(id t1, id t2, void* context) {
     NSArray* orderedMoviesToReorder = [reorderedMovies.allObjects sortedArrayUsingFunction:orderMovies context:moviesInOrder];
     for (Movie* movie in orderedMoviesToReorder) {
         Queue* resultantQueue = [self moveMovie:movie
-                                      toPosition:[moviesInOrder indexOfObjectIdenticalTo:movie]
-                                         inQueue:finalQueue
-                                        fromFeed:feed
-                                        delegate:delegate];
-    
+                                     toPosition:[moviesInOrder indexOfObjectIdenticalTo:movie]
+                                        inQueue:finalQueue
+                                       fromFeed:feed
+                                       delegate:delegate];
+        
         if (resultantQueue == nil) {
             [self saveQueue:finalQueue fromFeed:feed andReportError:delegate];
             return;
@@ -652,11 +872,11 @@ NSInteger orderMovies(id t1, id t2, void* context) {
         finalQueue = resultantQueue;
     }
     
-//    for (Movie* movie in deletedMovies.allObjects) {
-//        if (![self deleteMovie:movie inQueue:queue fromFeed:(Feed*) feed delegate:delegate]) {
-//            return finalQueue;
-//        }
-        //    }
+    //    for (Movie* movie in deletedMovies.allObjects) {
+    //        if (![self deleteMovie:movie inQueue:queue fromFeed:(Feed*) feed delegate:delegate]) {
+    //            return finalQueue;
+    //        }
+    //    }
     [self saveQueue:finalQueue fromFeed:feed andReportSuccess:delegate];
 }
 

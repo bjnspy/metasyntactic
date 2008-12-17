@@ -16,6 +16,7 @@
 @property (copy) NSString* etag;
 @property (retain) NSArray* movies;
 @property (retain) NSArray* saved;
+@property (retain) NSDictionary* identifierToDetails;
 @end
 
 
@@ -25,12 +26,14 @@ property_definition(feedKey);
 property_definition(etag);
 property_definition(movies);
 property_definition(saved);
+property_definition(identifierToDetails);
 
 - (void) dealloc {
     self.feedKey = nil;
     self.etag = nil;
     self.movies = nil;
     self.saved = nil;
+    self.identifierToDetails = nil;
 
     [super dealloc];
 }
@@ -39,12 +42,14 @@ property_definition(saved);
 - (id) initWithFeedKey:(NSString*) feedKey_
                   etag:(NSString*) etag_
                   movies:(NSArray*) movies_ 
-                 saved:(NSArray*) saved_ {
+                 saved:(NSArray*) saved_
+   identifierToDetails:(NSDictionary*) identifierToDetails_ {
     if (self = [super init]) {
         self.feedKey = feedKey_;
         self.etag = [Utilities nonNilString:etag_];
         self.movies = movies_;
         self.saved = saved_;
+        self.identifierToDetails = identifierToDetails_;
     }
     
     return self;
@@ -53,12 +58,14 @@ property_definition(saved);
 
 + (Queue*) queueWithFeedKey:(NSString*) feedKey
                        etag:(NSString*) etag
-                  movies:(NSArray*) movies
-                      saved:(NSArray*) saved {
+                     movies:(NSArray*) movies
+                      saved:(NSArray*) saved
+        identifierToDetails:(NSDictionary*) identifierToDetails {
     return [[[Queue alloc] initWithFeedKey:feedKey
                                       etag:etag
                                     movies:movies
-                                     saved:saved] autorelease];
+                                     saved:saved
+                       identifierToDetails:identifierToDetails] autorelease];
 }
 
 
@@ -66,7 +73,8 @@ property_definition(saved);
     return [Queue queueWithFeedKey:[dictionary objectForKey:feedKey_key]
                               etag:[dictionary objectForKey:etag_key]
                             movies:[Movie decodeArray:[dictionary objectForKey:movies_key]]
-                             saved:[Movie decodeArray:[dictionary objectForKey:saved_key]]];
+                             saved:[Movie decodeArray:[dictionary objectForKey:saved_key]]
+               identifierToDetails:[dictionary objectForKey:identifierToDetails_key]];
 }
 
 
@@ -76,6 +84,7 @@ property_definition(saved);
     [result setObject:etag forKey:etag_key];
     [result setObject:[Movie encodeArray:movies] forKey:movies_key];
     [result setObject:[Movie encodeArray:saved] forKey:saved_key];
+    [result setObject:identifierToDetails forKey:identifierToDetails_key];
     return result;
 }
 
