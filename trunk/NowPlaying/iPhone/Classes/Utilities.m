@@ -202,7 +202,7 @@
         return @"";
     }
 
-    NSArray* htmlCodes = [NSArray arrayWithObjects:@"em", @"p", @"b", @"i", @"br", nil];
+    NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"em", @"p", @"b", @"i", @"br", nil];
 
     for (NSString* code in htmlCodes) {
         string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@>", code] withString:@""];

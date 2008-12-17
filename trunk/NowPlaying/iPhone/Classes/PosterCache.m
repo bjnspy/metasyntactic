@@ -124,10 +124,6 @@
 
 - (void) downloadPoster:(Movie*) movie
              postalCode:(NSString*) postalCode {
-    if (movie == nil) {
-        return;
-    }
-
     NSString* path = [self posterFilePath:movie];
 
     if ([FileUtilities fileExists:path]) {
@@ -179,14 +175,13 @@
 - (void) downloadPosters:(NSMutableArray*) movies
               postalCode:(NSString*) postalCode {
     Movie* movie;
-    do {
+    while ((movie = [self getNextMovie:movies]) != nil) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
-            movie = [self getNextMovie:movies];
             [self downloadPoster:movie postalCode:postalCode];
         }
         [autoreleasePool release];
-    } while (movie != nil);
+    }
 }
 
 

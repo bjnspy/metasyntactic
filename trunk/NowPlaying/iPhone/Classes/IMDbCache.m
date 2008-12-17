@@ -136,11 +136,14 @@
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
     NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
-    Movie* movie = nil;
-    do {
-        movie = [self getNextMovie:mutableMovies];
-        [self downloadAddress:movie];
-    } while (movie != nil);
+    Movie* movie;
+    while ((movie = [self getNextMovie:mutableMovies]) != nil) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [self downloadAddress:movie];
+        }
+        [pool release];
+    }
 }
 
 

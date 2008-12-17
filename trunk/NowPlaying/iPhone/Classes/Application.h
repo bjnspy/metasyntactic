@@ -51,6 +51,7 @@
 + (NSString*) netflixSynopsesDirectory;
 + (NSString*) netflixCastDirectory;
 + (NSString*) netflixDirectorsDirectory;
++ (NSString*) netflixIMDbDirectory;
 
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;

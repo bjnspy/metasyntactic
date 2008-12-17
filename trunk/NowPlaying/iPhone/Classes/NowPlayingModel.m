@@ -34,6 +34,7 @@
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "NetflixCache.h"
+#import "NetflixViewController.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "PosterCache.h"
@@ -975,20 +976,42 @@ static NSString** KEYS[] = {
 
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
-    if (movie.directors.count > 0) {
-        return movie.directors;
+    NSArray* directors = movie.directors;
+    if (directors.count > 0) {
+        return directors;
     }
 
-    return [upcomingCache directorsForMovie:movie];
+    directors = [upcomingCache directorsForMovie:movie];
+    if (directors.count > 0) {
+        return directors;
+    }
+    
+    directors = [netflixCache directorsForMovie:movie];
+    if (directors.count > 0) {
+        return directors;
+    }
+    
+    return [NSArray array];
 }
 
 
 - (NSArray*) castForMovie:(Movie*) movie {
-    if (movie.cast.count > 0) {
-        return movie.cast;
+    NSArray* cast = movie.cast;
+    if (cast.count > 0) {
+        return cast;
     }
 
-    return [upcomingCache castForMovie:movie];
+    cast = [upcomingCache castForMovie:movie];
+    if (cast.count > 0) {
+        return cast;
+    }
+    
+    cast = [netflixCache castForMovie:movie];
+    if (cast.count > 0) {
+        return cast;
+    }
+    
+    return [NSArray array];
 }
 
 
@@ -1023,6 +1046,11 @@ static NSString** KEYS[] = {
     }
 
     result = [blurayCache imdbAddressForMovie:movie];
+    if (result.length > 0) {
+        return result;
+    }
+    
+    result = [netflixCache imdbAddressForMovie:movie];
     if (result.length > 0) {
         return result;
     }
@@ -1062,14 +1090,14 @@ static NSString** KEYS[] = {
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, blurayCache, largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, blurayCache, netflixCache, largePosterCache, nil]
                        selector:@selector(posterForMovie:)];
 }
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, blurayCache, largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, blurayCache, netflixCache, largePosterCache, nil]
                        selector:@selector(smallPosterForMovie:)];
 }
 
@@ -1352,6 +1380,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
         if (synopsis.length > 0) {
             [options addObject:synopsis];
         }
+        
+        synopsis = [netflixCache synopsisForMovie:movie];
+        if (synopsis.length > 0) {
+            [options addObject:synopsis];
+        }
     }
 
     if (options.count == 0) {
@@ -1436,6 +1469,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
                    [viewController isKindOfClass:[UpcomingMoviesViewController class]] ||
                    [viewController isKindOfClass:[DVDViewController class]]) {
             continue;
+        } else if ([viewController isKindOfClass:[NetflixViewController class]]) {
+            break;
         } else {
             NSAssert(false, @"");
         }
@@ -1477,6 +1512,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     [upcomingCache prioritizeMovie:movie];
     [dvdCache prioritizeMovie:movie];
     [blurayCache prioritizeMovie:movie];
+    [netflixCache prioritizeMovie:movie];
 }
 
 

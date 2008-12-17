@@ -345,6 +345,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (readonlyMode) {
+        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
         return;
     }
 
@@ -353,7 +354,18 @@
         [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
         [self upArrowTappedForRowAtIndexPath:indexPath];
     } else {
+        if ([self indexPathOutOfBounds:indexPath]) {
+            return;
+        }
         
+        Movie* movie;
+        if (indexPath.section == 0) {
+            movie = [queue.movies objectAtIndex:indexPath.row];
+        } else {
+            movie = [queue.saved objectAtIndex:indexPath.row];
+        }
+        
+        [navigationController pushMovieDetails:movie animated:YES];
     }
 }
 

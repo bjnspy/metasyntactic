@@ -12,13 +12,25 @@
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
+    NSDictionary* identifierToDetailsData;
+    
+    LinkedSet* prioritizedMovies;
 }
 
 + (NetflixCache*) cacheWithModel:(NowPlayingModel*) model;
 
+- (void) prioritizeMovie:(Movie*) movie;
+
 - (void) update;
 - (NSArray*) feeds;
 - (Queue*) queueForFeed:(Feed*) feed;
+
+- (UIImage*) posterForMovie:(Movie*) movie;
+- (UIImage*) smallPosterForMovie:(Movie*) movie;
+- (NSArray*) castForMovie:(Movie*) movie;
+- (NSArray*) directorsForMovie:(Movie*) movie;
+- (NSString*) imdbAddressForMovie:(Movie*) movie;
+- (NSString*) synopsisForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
 
