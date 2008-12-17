@@ -179,7 +179,7 @@
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
         } else if (row == 5) {
-            text = NSLocalizedString(@"Netflix", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
+            text = NSLocalizedString(@"Netflix (beta)", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.netflixEnabled;
             selector = @selector(onNetflixEnabledChanged:);
         } else if (row == 6) {
@@ -215,6 +215,16 @@
 
 - (void) onNetflixEnabledChanged:(id) sender {
     [self.controller setNetflixEnabled:!self.model.netflixEnabled];
+    
+    if (self.model.netflixEnabled) {
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+                                                         message:NSLocalizedString(@"Netflix support is currently in 'beta'. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button below.  Thanks!\n\nThe Management (a.k.a. Cyrus)", nil)
+                                                        delegate:nil
+                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                               otherButtonTitles:nil] autorelease];
+        
+        [alert show];   
+    }
 }
 
 

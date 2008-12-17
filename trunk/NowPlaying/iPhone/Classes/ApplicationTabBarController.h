@@ -18,6 +18,7 @@
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
+    UpcomingMoviesAndDVDNavigationController* upcomingMoviesAndDVDNavigationController;
     DVDNavigationController* dvdNavigationController;
     NetflixNavigationController* netflixNavigationController;
     SettingsNavigationController* settingsNavigationController;
