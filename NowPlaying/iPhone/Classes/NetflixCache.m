@@ -13,7 +13,7 @@
 #import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
-#import "NetflixReorderQueueDelegate.h"
+#import "NetflixModifyQueueDelegate.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
