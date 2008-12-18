@@ -196,9 +196,11 @@
 }
 
 
-- (void) requestAuthorizationToken:(OAServiceTicket*)
+- (void) requestAuthorizationToken:(OAServiceTicket*) ticket
                   didFailWithError:(NSError*) error {
-    [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(reportError:)
+                           withObject:error
+                        waitUntilDone:NO];
 }
 
 
