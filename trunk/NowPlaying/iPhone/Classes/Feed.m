@@ -55,25 +55,6 @@ property_definition(name);
 }
 
 
-- (NSString*) title {
-    if ([key isEqual:@"http://schemas.netflix.com/feed.queues.disc"]) {
-        return NSLocalizedString(@"DVDs (%@)", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.queues.instant"]) {
-        return NSLocalizedString(@"Instant (%@)", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.at_home"]) {
-        return NSLocalizedString(@"At Home (%@)", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history.watched"]) {
-        return NSLocalizedString(@"Recently Watched (%@)", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history.returned"]) {
-        return NSLocalizedString(@"Recently Returned (%@)", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.recommendations"]) {
-        return NSLocalizedString(@"Recommendations (%@)", nil);
-    }
-    
-    return name;
-}
-
-
 - (NSDictionary*) dictionary {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:url   forKey:url_key];
@@ -83,8 +64,27 @@ property_definition(name);
 }
 
 
-- (BOOL) isRecommendationFeed {
+- (BOOL) isRecommendationsFeed {
     return [key isEqual:@"http://schemas.netflix.com/feed.recommendations"];
 }
+
+
+- (BOOL) isDVDQueueFeed {
+    return [key isEqual:@"http://schemas.netflix.com/feed.queues.disc"];
+}
+
+
+- (BOOL) isInstantQueueFeed {
+    return [key isEqual:@"http://schemas.netflix.com/feed.queues.instant"];
+}
+
+
+- (BOOL) isAtHomeFeed {
+    return [key isEqual:@"http://schemas.netflix.com/feed.at_home"];
+}
+
+//@"http://schemas.netflix.com/feed.rental_history",
+//@"http://schemas.netflix.com/feed.rental_history.watched",
+//@"http://schemas.netflix.com/feed.rental_history.returned",
 
 @end

@@ -19,9 +19,11 @@
 + (Feed*) feedWithUrl:(NSString*) url key:(NSString*) key name:(NSString*) name;
 + (Feed*) feedWithDictionary:(NSDictionary*) dictionary;
 
-- (NSString*) title;
 - (NSDictionary*) dictionary;
 
-- (BOOL) isRecommendationFeed;
+- (BOOL) isRecommendationsFeed;
+- (BOOL) isDVDQueueFeed;
+- (BOOL) isInstantQueueFeed;
+- (BOOL) isAtHomeFeed;
 
 @end

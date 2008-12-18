@@ -23,7 +23,13 @@
 
 + (NetflixCache*) cacheWithModel:(NowPlayingModel*) model;
 
++ (NSString*) dvdQueueKey;
++ (NSString*) instantQueueKey;
++ (NSString*) atHomeKey;
 + (NSString*) recommendationKey;
++ (NSString*) rentalHistoryKey;
++ (NSString*) rentalHistoryWatchedKey;
++ (NSString*) rentalHistoryReturnedKey;
 
 - (void) prioritizeMovie:(Movie*) movie;
 
@@ -31,6 +37,9 @@
 - (NSArray*) feeds;
 - (Queue*) queueForFeed:(Feed*) feed;
 - (Feed*) feedForKey:(NSString*) key;
+- (Queue*) queueForKey:(NSString*) key;
+- (NSString*) titleForKey:(NSString*) key;
+- (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

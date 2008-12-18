@@ -19,24 +19,29 @@
 
 @interface NetflixFeedsViewController()
 @property (assign) AbstractNavigationController* navigationController;
+@property (retain) NSArray* feedKeys;
 @end
 
 
 @implementation NetflixFeedsViewController
 
 @synthesize navigationController;
+@synthesize feedKeys;
 
-- (void)dealloc {
+- (void) dealloc {
     self.navigationController = nil;
+    self.feedKeys = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
+                           feedKeys:(NSArray*) feedKeys_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Queues", nil);
+        self.feedKeys = feedKeys_;
     }
     
     return self;
@@ -85,7 +90,7 @@
     
     NSMutableArray* result = [NSMutableArray array];
     for (Feed* feed in feeds) {
-        if (!feed.isRecommendationFeed) {
+        if ([feedKeys containsObject:feed.key]) {
             [result addObject:feed];
         }
     }
@@ -100,13 +105,17 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray* feeds = self.feeds;
-    
-    if (feeds.count == 0) {
-        return 1;
-    } else {
-        return feeds.count;
+    return self.feeds.count;
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (!self.hasFeeds) {
+        return self.model.netflixCache.noInformationFound;
     }
+    
+    return nil;
 }
 
 
@@ -115,17 +124,11 @@
     AutoResizingCell *cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
 
     NSArray* feeds = self.feeds;
-    if (feeds.count == 0) {
-        cell.text = self.model.netflixCache.noInformationFound;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    } else {
-        Feed* feed = [feeds objectAtIndex:indexPath.row];
-        Queue* queue = [self.model.netflixCache queueForFeed:feed];
-        
-        id argument = (queue == nil ? (id)NSLocalizedString(@"downloading", nil) : (id)[NSNumber numberWithInt:queue.movies.count]);
-        cell.text = [NSString stringWithFormat:feed.title, argument];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+    
+    Feed* feed = [feeds objectAtIndex:indexPath.row];
+    
+    cell.text = [self.model.netflixCache titleForKey:feed.key];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
@@ -133,9 +136,6 @@
 
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSArray* feeds = self.feeds;
-    if (feeds.count == 0) {
-        return;
-    }
     
     Feed* feed = [feeds objectAtIndex:indexPath.row];
     NetflixQueueViewController* controller = [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController

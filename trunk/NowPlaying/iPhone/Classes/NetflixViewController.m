@@ -8,6 +8,7 @@
 
 #import "NetflixViewController.h"
 
+#import "AutoResizingCell.h"
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixCache.h"
@@ -16,6 +17,7 @@
 #import "NetflixNavigationController.h"
 #import "NetflixQueueViewController.h"
 #import "NowPlayingModel.h"
+#import "Queue.h"
 
 @interface NetflixViewController()
 @property (assign) NetflixNavigationController* navigationController;
@@ -23,6 +25,18 @@
 
 
 @implementation NetflixViewController
+
+typedef enum {
+    SearchSection,
+    BrowseSection,
+    DVDSection,
+    InstantSection,
+    RecommendationsSection,
+    AtHomeSection,
+    RentalHistorySection,
+    LogOutSection,
+    LastSection = LogOutSection
+} Sections;
 
 @synthesize navigationController;
 
@@ -57,6 +71,7 @@
 
 
 - (void) majorRefresh {
+    self.tableView.rowHeight = 41;
     if ([self.tableView numberOfRowsInSection:0] == 1 &&
         self.hasAccount) {
         [self.tableView beginUpdates];
@@ -118,32 +133,42 @@
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
     if (self.hasAccount) {
-        return 6;
+        return LastSection + 1;
     } else {
         return 1;
     }
 }
 
 
+- (NetflixCache*) netflixCache {
+    return self.model.netflixCache;
+}
+
+
 - (UITableViewCell*) cellForLoggedInRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    if (row == 0) {
+        
+    if (row == SearchSection) {
         cell.text = NSLocalizedString(@"Search", nil);
-    } else if (row == 1) {
+    } else if (row == BrowseSection) {
         cell.text = NSLocalizedString(@"Browse", nil);
-    } else if (row == 2) {
-        cell.text = NSLocalizedString(@"Queues", nil);
-    } else if (row == 3) {
-        cell.text = NSLocalizedString(@"Recommendations", nil);
-    } else if (row == 4) {
+    } else if (row == DVDSection) {
+        cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+    } else if (row == InstantSection) {
+        cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+    } else if (row == RecommendationsSection) {
+        cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+    } else if (row == AtHomeSection) {
+        cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+    } else if (row == RentalHistorySection) {
         cell.text = NSLocalizedString(@"Rental History", nil);
-    } else if (row == 5) {
+    } else if (row == LogOutSection) {
         cell.text = NSLocalizedString(@"Tap to Log Out", nil);
         cell.textColor = [ColorCache commandColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    
     return cell;
 }
 
@@ -193,20 +218,40 @@
 }
 
 
-- (void) didSelectRecommendationsRow {
+- (void) didSelectQueueRow:(NSString*) key {
     NetflixQueueViewController* controller =
     [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController
-                                                              feedKey:[NetflixCache recommendationKey]] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+                                                              feedKey:key] autorelease];
+    [navigationController pushViewController:controller animated:YES];    
+}
+
+
+- (void) didSelectRentalHistoryRow {
+    NSArray* keys =
+    [NSArray arrayWithObjects:
+     [NetflixCache rentalHistoryKey],
+     [NetflixCache rentalHistoryWatchedKey],
+     [NetflixCache rentalHistoryReturnedKey], nil];
+    
+    NetflixFeedsViewController* controller =
+    [[[NetflixFeedsViewController alloc] initWithNavigationController:navigationController
+                                                             feedKeys:keys] autorelease];
+    [navigationController pushViewController:controller animated:YES];    
 }
 
 
 - (void) didSelectLoggedInRow:(NSInteger) row {
-    if (row == 2) {
-        [self didSelectQueuesRow];
-    } else if (row == 3) {
-        [self didSelectRecommendationsRow];
-    } else if (row == 5) {
+    if (row == DVDSection) {
+        [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
+    } else if (row == InstantSection) {
+        [self didSelectQueueRow:[NetflixCache instantQueueKey]];
+    } else if (row == RecommendationsSection) {
+        [self didSelectQueueRow:[NetflixCache recommendationKey]];
+    } else if (row == AtHomeSection) {
+        [self didSelectQueueRow:[NetflixCache atHomeKey]];
+    } else if (row == RentalHistorySection) {
+        [self didSelectRentalHistoryRow];
+    } else if (row == LogOutSection) {
         [self didSelectLogoutRow];
     }
 }

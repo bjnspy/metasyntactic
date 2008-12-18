@@ -129,8 +129,7 @@
     if (readonlyMode) {
         label.text = NSLocalizedString(@"Please Wait", nil);
     } else {
-        id argument = (queue == nil ? (id)NSLocalizedString(@"downloading", nil) : (id)[NSNumber numberWithInt:queue.movies.count]);
-        label.text = [NSString stringWithFormat:feed.title, argument];
+        label.text = [self.model.netflixCache titleForKey:feedKey includeCount:NO];
     }
     
     self.navigationItem.titleView = label;
