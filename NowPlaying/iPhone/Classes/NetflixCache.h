@@ -37,6 +37,8 @@
 + (NSString*) rentalHistoryWatchedKey;
 + (NSString*) rentalHistoryReturnedKey;
 
+- (OAMutableURLRequest*) createURLRequest:(NSString*) address;
+
 - (void) prioritizeMovie:(Movie*) movie;
 
 - (void) update;

@@ -14,82 +14,113 @@
 
 #import "NetflixSearchViewController.h"
 
+#import "AbstractNavigationController.h"
+#import "GlobalActivityIndicator.h"
+#import "NetflixSearchEngine.h"
+
+@interface NetflixSearchViewController()
+@property (assign) AbstractNavigationController* navigationController;
+@property (retain) UISearchBar* searchBar;
+@property (retain) NetflixSearchEngine* searchEngine;
+@property (retain) UIActivityIndicatorView* activityIndicatorView;
+@end
+
 
 @implementation NetflixSearchViewController
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
+@synthesize navigationController;
+@synthesize searchBar;
+@synthesize searchEngine;
+@synthesize activityIndicatorView;
+
+- (void) dealloc {
+    self.navigationController = nil;
+    self.searchBar = nil;
+    self.searchEngine = nil;
+    self.activityIndicatorView = nil;
+
+    [super dealloc];
+}
+
+
+- (NowPlayingModel*) model {
+    return navigationController.model;
+}
+
+
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.searchEngine = [NetflixSearchEngine engineWithModel:self.model
+                                                        delegate:self];
+        self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    
+        CGRect frame = activityIndicatorView.frame;
+        frame.size.width += 4;
+        
+        UIView* activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
+        [activityView addSubview:activityIndicatorView];
+        
+        self.navigationItem.rightBarButtonItem = 
+        [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
     }
+    
     return self;
 }
-*/
 
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void) loadView {
+    [super loadView];
+    
+    CGRect rect = self.view.frame;
+    rect.origin.x = 0;
+    rect.origin.y = 0;
+    
+    self.searchBar = [[[UISearchBar alloc] initWithFrame:rect] autorelease];
+    searchBar.delegate = self;
+    searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [searchBar sizeToFit];
+    
+    self.navigationItem.titleView = searchBar;
 }
-*/
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
+
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return NO;
 }
-*/
+
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
+    [super didReceiveMemoryWarning]; 
 }
 
-#pragma mark Table view methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 1;
 }
 
 
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+- (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
+    return 1;
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        //[cell addSubview:searchBar];
     }
     
     // Set up the cell...
@@ -98,7 +129,8 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
@@ -106,49 +138,22 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void) searchBar:(UISearchBar*) searchBar
+     textDidChange:(NSString*) searchText {
+    if (searchText.length == 0) {
+        [activityIndicatorView stopAnimating];
+        [searchEngine invalidateExistingRequests];
+    } else {
+        [activityIndicatorView startAnimating];
+        [searchEngine submitRequest:searchText];
+    }
 }
-*/
 
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void) reportResult:(SearchResult*) result {
+    [activityIndicatorView stopAnimating];
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    
 }
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
-- (void)dealloc {
-    [super dealloc];
-}
-
 
 @end

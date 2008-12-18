@@ -12,8 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixSearchViewController : UITableViewController {
+#import "SearchEngineDelegate.h"
+
+@interface NetflixSearchViewController : UITableViewController<UISearchBarDelegate, SearchEngineDelegate> {
 @private
+    AbstractNavigationController* navigationController;
+    UISearchBar* searchBar;
+    UIActivityIndicatorView* activityIndicatorView;
+    NetflixSearchEngine* searchEngine;
 }
+
+
+- (id) initWithNavigationController:(AbstractNavigationController*) abstractNavigationController;
 
 @end
