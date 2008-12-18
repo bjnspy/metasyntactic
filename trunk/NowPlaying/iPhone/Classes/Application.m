@@ -108,6 +108,9 @@ static NSString** directories[] = {
 &upcomingTrailersDirectory
 };
 
+static NSString* emptyStarString = nil;
+static NSString* halfStarString = nil;
+static NSString* starString = nil;
 
 static DifferenceEngine* differenceEngine = nil;
 
@@ -195,9 +198,18 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (NSString*) stringFromUnichar:(unichar) c {
+    return [NSString stringWithCharacters:&c length:1];
+}
+
+
 + (void) initialize {
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
+
+        emptyStarString = [[self stringFromUnichar:(unichar)0x2606] retain];
+        halfStarString = [[self stringFromUnichar:(unichar)0x272F] retain];
+        starString = [[self stringFromUnichar:[self starCharacter]] retain];
 
         differenceEngine = [[DifferenceEngine engine] retain];
 
@@ -490,15 +502,23 @@ static DifferenceEngine* differenceEngine = nil;
     //*/
 }
 
++ (NSString*) emptyStarString {
+    return emptyStarString;
+}
+
 
 + (unichar) starCharacter {
     return (unichar)0x2605;
 }
 
 
++ (NSString*) halfStarString {
+    return halfStarString;
+}
+
+
 + (NSString*) starString {
-    unichar c = [Application starCharacter];
-    return [NSString stringWithCharacters:&c length:1];
+    return starString;
 }
 
 

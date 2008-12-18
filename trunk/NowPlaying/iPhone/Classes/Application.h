@@ -74,6 +74,8 @@
 + (NSString*) host;
 
 + (unichar) starCharacter;
++ (NSString*) emptyStarString;
++ (NSString*) halfStarString;
 + (NSString*) starString;
 
 + (BOOL) useKilometers;

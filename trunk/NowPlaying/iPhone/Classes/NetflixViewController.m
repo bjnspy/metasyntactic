@@ -63,7 +63,7 @@ typedef enum {
         self.title = NSLocalizedString(@"Netflix", nil);
 
         self.tableView.rowHeight = 41;
-        self.tableView.backgroundColor = [UIColor colorWithRed:100.0/255.5 green:14.0/255.0 blue:17.0/255.0 alpha:1];
+        self.tableView.backgroundColor = [ColorCache netflixRed];
     }
     return self;
 }
