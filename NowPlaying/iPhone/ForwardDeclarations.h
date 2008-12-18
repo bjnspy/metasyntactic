@@ -118,6 +118,8 @@
 @class UpcomingMovieCell;
 @class UpcomingMoviesNavigationController;
 @class UpcomingMoviesViewController;
+@class UpcomingMoviesAndDVDNavigationController;
+@class UpcomingMoviesAndDVDViewController;
 @class UserLocationCache;
 @class Utilities;
 @class ViewControllerUtilities;
