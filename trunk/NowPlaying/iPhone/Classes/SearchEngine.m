@@ -22,47 +22,17 @@
 #import "Theater.h"
 #import "Utilities.h"
 
-@interface SearchEngine()
-@property (assign) id<SearchEngineDelegate> delegate;
-@property NSInteger currentRequestId;
-@property (retain) NowPlayingModel* model;
-@property (retain) SearchRequest* currentlyExecutingRequest;
-@property (retain) SearchRequest* nextSearchRequest;
-@property (retain) NSCondition* gate;
-@end
-
 
 @implementation SearchEngine
 
-@synthesize delegate;
-@synthesize currentRequestId;
-@synthesize model;
-@synthesize currentlyExecutingRequest;
-@synthesize nextSearchRequest;
-@synthesize gate;
-
-
 - (void) dealloc {
-    self.delegate = nil;
-    self.currentRequestId = 0;
-    self.model = nil;
-    self.currentlyExecutingRequest = nil;
-    self.nextSearchRequest = nil;
-    self.gate = nil;
-
     [super dealloc];
 }
 
 
 - (id) initWithModel:(NowPlayingModel*) model_
             delegate:(id<SearchEngineDelegate>) delegate_ {
-    if (self = [super init]) {
-        self.model = model_;
-        self.currentRequestId = 0;
-        self.delegate = delegate_;
-        self.gate = [[[NSCondition alloc] init] autorelease];
-
-        [self performSelectorInBackground:@selector(searchThreadEntryPoint) withObject:nil];
+    if (self = [super initWithModel:model_ delegate:delegate_]) {
     }
 
     return self;
@@ -72,19 +42,6 @@
 + (SearchEngine*) engineWithModel:(NowPlayingModel*) model
                          delegate:(id<SearchEngineDelegate>) delegate {
     return [[[SearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
-}
-
-
-- (BOOL) abortEarly {
-    BOOL result;
-
-    [gate lock];
-    {
-        result = currentlyExecutingRequest.requestId != currentRequestId;
-    }
-    [gate unlock];
-
-    return result;
 }
 
 
@@ -209,89 +166,11 @@
     if ([self abortEarly]) { return; }
     //...
 
-    SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
-                                                value:currentlyExecutingRequest.value
-                                               movies:movies
-                                             theaters:theaters
-                                       upcomingMovies:upcomingMovies
-                                                 dvds:dvds
-                                               bluray:bluray];
-    [self performSelectorOnMainThread:@selector(reportResult:) withObject:result waitUntilDone:NO];
-}
-
-
-- (void) searchLoop {
-    while (true) {
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        {
-            [gate lock];
-            {
-                while (nextSearchRequest == nil) {
-                    [gate wait];
-                }
-
-                self.currentlyExecutingRequest = nextSearchRequest;
-                self.nextSearchRequest = nil;
-            }
-            [gate unlock];
-
-            [self search];
-
-            self.currentlyExecutingRequest = nil;
-        }
-        [autoreleasePool release];
-    }
-}
-
-
-- (void) searchThreadEntryPoint {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    {
-        [NSThread setThreadPriority:0.0];
-
-        [self searchLoop];
-    }
-    [autoreleasePool release];
-}
-
-
-- (void) submitRequest:(NSString*) string {
-    [gate lock];
-    {
-        currentRequestId++;
-        self.nextSearchRequest = [SearchRequest requestWithId:currentRequestId value:string model:model];
-
-        [gate broadcast];
-    }
-    [gate unlock];
-}
-
-
-- (void) reportResult:(SearchResult*) result {
-    BOOL abort = NO;
-    [gate lock];
-    {
-        if (result.requestId != currentRequestId) {
-            abort = YES;
-        }
-    }
-    [gate unlock];
-
-    if (abort) {
-        return;
-    }
-
-    [delegate reportResult:result];
-}
-
-
-- (void) invalidateExistingRequests {
-    [gate lock];
-    {
-        currentRequestId++;
-        self.nextSearchRequest = nil;
-    }
-    [gate unlock];
+    [self reportResult:movies
+               theaters:theaters
+         upcomingMovies:upcomingMovies
+                   dvds:dvds
+                 bluray:bluray];
 }
 
 @end

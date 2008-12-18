@@ -22,11 +22,13 @@
 #import "NetflixLoginViewController.h"
 #import "NetflixNavigationController.h"
 #import "NetflixQueueViewController.h"
+#import "NetflixSearchViewController.h"
 #import "NowPlayingModel.h"
 #import "Queue.h"
 
 @interface NetflixViewController()
 @property (assign) NetflixNavigationController* navigationController;
+@property (retain) NetflixSearchViewController* searchViewController;
 @end
 
 
@@ -45,9 +47,12 @@ typedef enum {
 } Sections;
 
 @synthesize navigationController;
+@synthesize searchViewController;
 
 - (void) dealloc {
     self.navigationController = nil;
+    self.searchViewController = nil;
+
     [super dealloc];
 }
 
@@ -56,6 +61,9 @@ typedef enum {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Netflix", nil);
+
+        self.tableView.rowHeight = 41;
+        self.tableView.backgroundColor = [UIColor colorWithRed:100.0/255.5 green:14.0/255.0 blue:17.0/255.0 alpha:1];
     }
     return self;
 }
@@ -153,27 +161,45 @@ typedef enum {
 
 - (UITableViewCell*) cellForLoggedInRow:(NSInteger) row {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+    cell.label.backgroundColor = [UIColor clearColor];
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     if (row == SearchSection) {
         cell.text = NSLocalizedString(@"Search", nil);
+        cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
     } else if (row == BrowseSection) {
         cell.text = NSLocalizedString(@"Browse", nil);
+        cell.image = [UIImage imageNamed:@"NetflixBrowse.png"];
     } else if (row == DVDSection) {
         cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+        cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
     } else if (row == InstantSection) {
         cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+        cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
     } else if (row == RecommendationsSection) {
         cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+        cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
     } else if (row == AtHomeSection) {
         cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+        cell.image = [UIImage imageNamed:@"NetflixHome.png"];
     } else if (row == RentalHistorySection) {
         cell.text = NSLocalizedString(@"Rental History", nil);
+        cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
     } else if (row == LogOutSection) {
         cell.text = NSLocalizedString(@"Tap to Log Out", nil);
+        cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
         cell.textColor = [ColorCache commandColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    
+    NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
+    NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
+    UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundName]] autorelease];
+    UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:selectedBackgroundName]] autorelease];
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    cell.backgroundView = backgroundView;
+    cell.selectedBackgroundView = selectedBackgroundView;
     
     return cell;
 }
@@ -246,8 +272,20 @@ typedef enum {
 }
 
 
+- (void) didSelectSearchRow {
+    if (searchViewController == nil) {
+        self.searchViewController =
+        [[[NetflixSearchViewController alloc] initWithNavigationController:navigationController] autorelease];
+    }
+
+    [navigationController pushViewController:searchViewController animated:YES];
+}
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
-    if (row == DVDSection) {
+    if (row == SearchSection) {
+        [self didSelectSearchRow];
+    } else if (row == DVDSection) {
         [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
     } else if (row == InstantSection) {
         [self didSelectQueueRow:[NetflixCache instantQueueKey]];

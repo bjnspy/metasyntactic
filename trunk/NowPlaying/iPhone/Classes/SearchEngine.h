@@ -12,28 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SearchEngineDelegate.h"
+#import "AbstractSearchEngine.h"
 
-@interface SearchEngine : NSObject {
+@interface SearchEngine : AbstractSearchEngine {
 @private
-    // only accessed from the main thread.  needs no lock.
-    NowPlayingModel* model;
-    id<SearchEngineDelegate> delegate;
-
-    // accessed from both threads.  needs lock
-    NSInteger currentRequestId;
-    SearchRequest* nextSearchRequest;
-
-    // only accessed from the background thread.  needs no lock
-    SearchRequest* currentlyExecutingRequest;
-
-    NSCondition* gate;
 }
 
 + (SearchEngine*) engineWithModel:(NowPlayingModel*) model delegate:(id<SearchEngineDelegate>) delegate;
-
-- (void) submitRequest:(NSString*) string;
-
-- (void) invalidateExistingRequests;
 
 @end

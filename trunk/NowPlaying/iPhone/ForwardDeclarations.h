@@ -16,6 +16,7 @@
 @protocol DataProviderUpdateDelegate;
 @protocol NetflixModifyQueueDelegate;
 @protocol ScoreProvider;
+@protocol SearchEngineDelegate;
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
 @protocol TappableScrollViewDelegate;
@@ -72,6 +73,8 @@
 @class MultiDictionary;
 @class NetflixCache;
 @class NetflixNavigationController;
+@class NetflixSearchEngine;
+@class NetflixSearchViewController;
 @class NetflixViewController;
 @class NetworkUtilities;
 @class NonClippingView;

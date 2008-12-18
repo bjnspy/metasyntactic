@@ -15,6 +15,7 @@
 @interface NetflixViewController : UITableViewController<UIAlertViewDelegate> {
 @private 
     NetflixNavigationController* navigationController;
+    NetflixSearchViewController* searchViewController;
 }
 
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController;

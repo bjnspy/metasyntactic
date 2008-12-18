@@ -17,4 +17,6 @@
     UILabel* label;
 }
 
+@property (readonly, retain) UILabel* label;
+
 @end

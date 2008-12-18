@@ -55,6 +55,10 @@
     CGRect labelFrame = label.frame;
     CGRect contentFrame = self.contentView.frame;
 
+    if (self.image != nil) {
+        labelFrame.origin.x = 60;
+    }
+    
     labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);
     labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
 
