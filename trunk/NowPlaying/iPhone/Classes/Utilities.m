@@ -228,4 +228,9 @@
     return asciiString;
 }
 
+
++ (NSString*) stringFromUnichar:(unichar) c {
+    return [NSString stringWithCharacters:&c length:1];
+}
+
 @end

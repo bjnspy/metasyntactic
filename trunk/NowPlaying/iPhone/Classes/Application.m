@@ -198,18 +198,13 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (NSString*) stringFromUnichar:(unichar) c {
-    return [NSString stringWithCharacters:&c length:1];
-}
-
-
 + (void) initialize {
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
 
-        emptyStarString = [[self stringFromUnichar:(unichar)0x2606] retain];
-        halfStarString = [[self stringFromUnichar:(unichar)0x272F] retain];
-        starString = [[self stringFromUnichar:[self starCharacter]] retain];
+        emptyStarString = [[Utilities stringFromUnichar:(unichar)0x2606] retain];
+        halfStarString = [[Utilities stringFromUnichar:(unichar)0x272F] retain];
+        starString = [[Utilities stringFromUnichar:[self starCharacter]] retain];
 
         differenceEngine = [[DifferenceEngine engine] retain];
 

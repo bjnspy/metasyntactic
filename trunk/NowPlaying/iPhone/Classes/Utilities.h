@@ -48,5 +48,6 @@
 
 + (NSString*) stripHtmlCodes:(NSString*) string;
 + (NSString*) asciiString:(NSString*) string;
++ (NSString*) stringFromUnichar:(unichar) c;
 
 @end

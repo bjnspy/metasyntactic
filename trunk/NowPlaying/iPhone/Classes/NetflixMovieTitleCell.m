@@ -43,9 +43,9 @@
                               style:style_]) {
         self.starLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         starLabel.font = [UIFont systemFontOfSize:17];
-        starLabel.textColor = [UIColor redColor];
+        starLabel.textColor = [ColorCache netflixRed];
         starLabel.text = [@"" stringByPaddingToLength:5 withString:[Application starString] startingAtIndex:0];
-        starLabel.backgroundColor = [ColorCache netflixRed];
+        starLabel.backgroundColor = [UIColor clearColor];
         [starLabel sizeToFit];
         
         [self.contentView addSubview:starLabel];
