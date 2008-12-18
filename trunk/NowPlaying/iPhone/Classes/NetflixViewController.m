@@ -146,11 +146,7 @@ typedef enum {
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-    if (self.hasAccount) {
-        return LastSection + 1;
-    } else {
-        return 1;
-    }
+    return 9;
 }
 
 
@@ -159,37 +155,51 @@ typedef enum {
 }
 
 
-- (UITableViewCell*) cellForLoggedInRow:(NSInteger) row {
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.label.backgroundColor = [UIColor clearColor];
-    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.label.textColor = [UIColor whiteColor];
+    cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
+
+    NSInteger row = indexPath.row;
+    if (self.hasAccount) {
+        if (row == SearchSection) {
+            cell.text = NSLocalizedString(@"Search", nil);
+            cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
+        } else if (row == BrowseSection) {
+            cell.text = NSLocalizedString(@"Browse", nil);
+            cell.image = [UIImage imageNamed:@"NetflixBrowse.png"];
+        } else if (row == DVDSection) {
+            cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+            cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
+        } else if (row == InstantSection) {
+            cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+            cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
+        } else if (row == RecommendationsSection) {
+            cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+            cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
+        } else if (row == AtHomeSection) {
+            cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+            cell.image = [UIImage imageNamed:@"NetflixHome.png"];
+        } else if (row == RentalHistorySection) {
+            cell.text = NSLocalizedString(@"Rental History", nil);
+            cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
+        } else if (row == LogOutSection) {
+            cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
+            cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+            cell.textColor = [ColorCache commandColor];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        } 
+    } else {        
+        if (indexPath.row == 0) {
+            cell.text = NSLocalizedString(@"Log In to Netflix", nil);
+            cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+        }
+    }
     
-    if (row == SearchSection) {
-        cell.text = NSLocalizedString(@"Search", nil);
-        cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
-    } else if (row == BrowseSection) {
-        cell.text = NSLocalizedString(@"Browse", nil);
-        cell.image = [UIImage imageNamed:@"NetflixBrowse.png"];
-    } else if (row == DVDSection) {
-        cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
-        cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
-    } else if (row == InstantSection) {
-        cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
-        cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
-    } else if (row == RecommendationsSection) {
-        cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
-        cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
-    } else if (row == AtHomeSection) {
-        cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
-        cell.image = [UIImage imageNamed:@"NetflixHome.png"];
-    } else if (row == RentalHistorySection) {
-        cell.text = NSLocalizedString(@"Rental History", nil);
-        cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
-    } else if (row == LogOutSection) {
-        cell.text = NSLocalizedString(@"Tap to Log Out", nil);
-        cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
-        cell.textColor = [ColorCache commandColor];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    if (cell.text.length == 0) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryView = nil;
     }
     
     NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
@@ -202,18 +212,6 @@ typedef enum {
     cell.selectedBackgroundView = selectedBackgroundView;
     
     return cell;
-}
-
-
-- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (self.hasAccount) {
-        return [self cellForLoggedInRow:indexPath.row];
-    } else {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-        cell.text = NSLocalizedString(@"Tap to Log In", nil);
-        cell.textColor = [ColorCache commandColor];
-        return cell;
-    }
 }
 
 
@@ -231,6 +229,7 @@ typedef enum {
 
 - (void)         alertView:(UIAlertView*) alertView
       clickedButtonAtIndex:(NSInteger) index {
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
     if (index != alertView.cancelButtonIndex) {        
         [self.controller setNetflixKey:nil secret:nil userId:nil];
         
@@ -306,8 +305,10 @@ typedef enum {
     if (self.hasAccount) {
         [self didSelectLoggedInRow:indexPath.row];
     } else {
-        NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:navigationController] autorelease];
-        [navigationController pushViewController:controller animated:YES];
+        if (indexPath.row == 0) {
+            NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:navigationController] autorelease];
+            [navigationController pushViewController:controller animated:YES];
+        }
     }
 }
 
