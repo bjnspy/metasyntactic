@@ -241,6 +241,13 @@
 		74EB9AA40EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9B0EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png */; };
 		74EB9AA50EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9C0EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png */; };
 		74EB9AA60EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9D0EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png */; };
+		74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */; };
+		74EB9C220EFA3ED80083DC33 /* RedStar-0.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */; };
+		74EB9C230EFA3ED80083DC33 /* RedStar-0.2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */; };
+		74EB9C240EFA3ED80083DC33 /* RedStar-0.4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1E0EFA3ED80083DC33 /* RedStar-0.4.png */; };
+		74EB9C250EFA3ED80083DC33 /* RedStar-0.6.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1F0EFA3ED80083DC33 /* RedStar-0.6.png */; };
+		74EB9C260EFA3ED80083DC33 /* RedStar-0.8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C200EFA3ED80083DC33 /* RedStar-0.8.png */; };
+		74EB9C270EFA3ED80083DC33 /* RedStar-1.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */; };
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
 		74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC069F0DD2D69B006953A4 /* Utilities.m */; };
 		74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC08720DD3EEBB006953A4 /* MultiDictionary.m */; };
@@ -768,6 +775,14 @@
 		74EB9A9B0EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-6.png"; path = "Resources/NetflixCellSelectedBackground-6.png"; sourceTree = "<group>"; };
 		74EB9A9C0EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-7.png"; path = "Resources/NetflixCellSelectedBackground-7.png"; sourceTree = "<group>"; };
 		74EB9A9D0EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-8.png"; path = "Resources/NetflixCellSelectedBackground-8.png"; sourceTree = "<group>"; };
+		74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixRatingsCell.h; sourceTree = "<group>"; };
+		74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixRatingsCell.m; sourceTree = "<group>"; };
+		74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.0.png"; path = "Resources/RedStar-0.0.png"; sourceTree = "<group>"; };
+		74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.2.png"; path = "Resources/RedStar-0.2.png"; sourceTree = "<group>"; };
+		74EB9C1E0EFA3ED80083DC33 /* RedStar-0.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.4.png"; path = "Resources/RedStar-0.4.png"; sourceTree = "<group>"; };
+		74EB9C1F0EFA3ED80083DC33 /* RedStar-0.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.6.png"; path = "Resources/RedStar-0.6.png"; sourceTree = "<group>"; };
+		74EB9C200EFA3ED80083DC33 /* RedStar-0.8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.8.png"; path = "Resources/RedStar-0.8.png"; sourceTree = "<group>"; };
+		74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-1.0.png"; path = "Resources/RedStar-1.0.png"; sourceTree = "<group>"; };
 		74EC04F30DD2B704006953A4 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		74EC04F40DD2B704006953A4 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		74EC069E0DD2D69B006953A4 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
@@ -1236,6 +1251,8 @@
 				7479D8350E65255F00D91649 /* UpcomingMovieCell.m */,
 				747D9FA30EF774B70066B881 /* NetflixMovieTitleCell.h */,
 				747D9FA40EF774B70066B881 /* NetflixMovieTitleCell.m */,
+				74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */,
+				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1253,6 +1270,12 @@
 		7471E1FF0EFA0D67000490CA /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
+				74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */,
+				74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */,
+				74EB9C1E0EFA3ED80083DC33 /* RedStar-0.4.png */,
+				74EB9C1F0EFA3ED80083DC33 /* RedStar-0.6.png */,
+				74EB9C200EFA3ED80083DC33 /* RedStar-0.8.png */,
+				74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */,
 				74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */,
 				74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */,
 				74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */,
@@ -1856,6 +1879,12 @@
 				74EB9AA40EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png in Resources */,
 				74EB9AA50EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png in Resources */,
 				74EB9AA60EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png in Resources */,
+				74EB9C220EFA3ED80083DC33 /* RedStar-0.0.png in Resources */,
+				74EB9C230EFA3ED80083DC33 /* RedStar-0.2.png in Resources */,
+				74EB9C240EFA3ED80083DC33 /* RedStar-0.4.png in Resources */,
+				74EB9C250EFA3ED80083DC33 /* RedStar-0.6.png in Resources */,
+				74EB9C260EFA3ED80083DC33 /* RedStar-0.8.png in Resources */,
+				74EB9C270EFA3ED80083DC33 /* RedStar-1.0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2063,6 +2092,7 @@
 				747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */,
 				747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */,
 				747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */,
+				74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

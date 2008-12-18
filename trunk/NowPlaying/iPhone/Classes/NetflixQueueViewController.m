@@ -223,6 +223,8 @@
         } else {
             cell.accessoryView = [self tappableArrow];
         }
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 }
 

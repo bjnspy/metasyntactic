@@ -30,6 +30,7 @@
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
+#import "NetflixRatingsCell.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
 #import "TappableImageView.h"
@@ -436,11 +437,7 @@
 
 
 - (NSInteger) numberOfRowsInHeaderSection {
-    if (dvd == nil) {
-        return 2;
-    } else {
-        return 3;
-    }
+    return 4;
 }
 
 
@@ -508,6 +505,13 @@
 }
 
 
+- (UITableViewCell*) createNetflixRatingsCell {
+    return [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
+                                                model:self.model
+                                                movie:movie] autorelease];
+}
+
+
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie
@@ -518,8 +522,20 @@
                                    activityView:posterActivityView];
     }
 
-    if (row == 1 && dvd != nil) {
-        return [self createDvdDetailsCell];
+    if (row == 1) {
+        if (dvd != nil) {
+            return [self createDvdDetailsCell];
+        } else {
+            return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        }
+    }
+    
+    if (row == 2) {
+        if ([self isNetflix]) {
+            return [self createNetflixRatingsCell];
+        } else {
+            return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        }
     }
 
     if (expandedDetails) {
@@ -539,8 +555,20 @@
         return [MovieOverviewCell heightForMovie:movie model:self.model];
     }
 
-    if (row == 1 && dvd != nil) {
-        return self.tableView.rowHeight - 14;
+    if (row == 1) {
+        if (dvd != nil) {
+            return self.tableView.rowHeight - 14;
+        } else {
+            return 0;
+        }
+    }
+    
+    if (row == 2) {
+        if ([self isNetflix]) {
+            return self.tableView.rowHeight;
+        } else {
+            return 0;
+        }
     }
 
     AbstractMovieDetailsCell* cell = (AbstractMovieDetailsCell*)[self cellForHeaderRow:row];
@@ -833,14 +861,7 @@
 
 - (void)       tableView:(UITableView*) tableView
       didSelectHeaderRow:(NSInteger) row {
-    int expandableRow;
-    if (dvd == nil) {
-        expandableRow = 1;
-    } else {
-        expandableRow = 2;
-    }
-
-    if (row == expandableRow) {
+    if (row == 3) {
         expandedDetails = !expandedDetails;
 
         NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];

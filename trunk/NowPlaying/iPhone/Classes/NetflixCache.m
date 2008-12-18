@@ -216,7 +216,9 @@ static NSSet* allowableFeeds = nil;
     Queue* queue = [queues objectForKey:feed.key];
     if (queue == nil) {
         queue = [self loadQueue:feed];
-        [queues setObject:queue forKey:feed.key];
+        if (queue != nil) {
+            [queues setObject:queue forKey:feed.key];
+        }
     }
     return queue;
 }
@@ -360,6 +362,8 @@ static NSSet* allowableFeeds = nil;
             }
         } else if ([@"release_year" isEqual:child.name]) {
             year = child.text;
+        } else if ([@"average_rating" isEqual:child.name]) {
+            [additionalFields setObject:child.text forKey:@"average_rating"];
         }
     }
     
@@ -601,7 +605,10 @@ static NSSet* allowableFeeds = nil;
         }
     }
     
-    return [Utilities stripHtmlCodes:synopsis];
+    synopsis = [Utilities stripHtmlCodes:synopsis];
+    synopsis = [synopsis stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    return synopsis;
 }
 
 
