@@ -56,7 +56,7 @@
     CGRect contentFrame = self.contentView.frame;
 
     if (self.image != nil) {
-        labelFrame.origin.x = 10 + self.image.size.widthhy ;
+        labelFrame.origin.x = 15 + self.image.size.width;
     }
     
     labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);
@@ -69,6 +69,11 @@
 - (void) setText:(NSString*) text {
     label.text = text;
     [label sizeToFit];
+}
+
+
+- (NSString*) text {
+    return label.text;
 }
 
 @end
