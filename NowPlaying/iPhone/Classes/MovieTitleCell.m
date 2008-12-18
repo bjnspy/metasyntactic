@@ -64,7 +64,7 @@
         titleLabel.minimumFontSize = 14;
         titleLabel.textColor = [UIColor blackColor];
 
-        self.ratingLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        self.ratingLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         ratingLabel.font = [UIFont systemFontOfSize:12];
         ratingLabel.textColor = [UIColor grayColor];
 
@@ -197,6 +197,10 @@
         self.image = nil;
         scoreLabel.text = nil;
     }
+}
+
+
+- (void) setRatingLabelText:(Movie*) movie {
 }
 
 

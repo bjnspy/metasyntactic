@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface MovieTitleCell : UITableViewCell {
-@private
+@protected
     NowPlayingModel* model;
     UITableViewStyle style;
     UILabel* scoreLabel;

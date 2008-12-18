@@ -15,6 +15,8 @@
 #import "MovieTitleCell.h"
 
 @interface NetflixMovieTitleCell : MovieTitleCell {
+@private
+    UILabel* starLabel;
 }
 
 - (id) initWithFrame:(CGRect) frame

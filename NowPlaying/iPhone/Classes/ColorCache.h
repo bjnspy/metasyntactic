@@ -20,5 +20,6 @@
 + (UIColor*) darkDarkGray;
 + (UIColor*) footerColor;
 + (UIColor*) tintColor;
++ (UIColor*) netflixRed;
 
 @end
