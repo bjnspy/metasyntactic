@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixFeedsViewController : UITableViewController {
+#import "AbstractNavigationController.h"
+
+@interface UpcomingMoviesAndDVDNavigationController : AbstractNavigationController {
 @private
-    AbstractNavigationController* navigationController;
-    NSArray* feedKeys;
+    UpcomingMoviesAndDVDViewController* dvdViewController;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                           feedKeys:(NSArray*) feedKeys;
+- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
 @end
