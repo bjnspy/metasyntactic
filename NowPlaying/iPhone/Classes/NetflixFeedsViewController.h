@@ -9,9 +9,10 @@
 @interface NetflixFeedsViewController : UITableViewController {
 @private
     AbstractNavigationController* navigationController;
-    
+    NSArray* feedKeys;
 }
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
+                           feedKeys:(NSArray*) feedKeys;
 
 @end

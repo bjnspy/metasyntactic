@@ -45,12 +45,49 @@ static NSString* cast_key = @"cast";
 
 static NSSet* allowableFeeds = nil;
 
+
++ (NSString*) recommendationKey {
+    return @"http://schemas.netflix.com/feed.recommendations";
+}
+
+
++ (NSString*) dvdQueueKey {
+    return @"http://schemas.netflix.com/feed.queues.disc";
+}
+
+
++ (NSString*) instantQueueKey {
+    return @"http://schemas.netflix.com/feed.queues.instant";
+}
+
+
++ (NSString*) atHomeKey {
+    return @"http://schemas.netflix.com/feed.at_home";
+}
+
+
++ (NSString*) rentalHistoryKey {
+    return @"http://schemas.netflix.com/feed.rental_history";
+}
+
+
++ (NSString*) rentalHistoryWatchedKey {
+    return @"http://schemas.netflix.com/feed.rental_history.watched";
+}
+
+
++ (NSString*) rentalHistoryReturnedKey {
+    return @"http://schemas.netflix.com/feed.rental_history.returned";
+}
+
+
 + (void) initialize {
     if (self == [NetflixCache class]) {
         allowableFeeds = [[NSSet setWithObjects:
                            @"http://schemas.netflix.com/feed.queues.disc",
                            @"http://schemas.netflix.com/feed.queues.instant",
                            @"http://schemas.netflix.com/feed.at_home",
+                           @"http://schemas.netflix.com/feed.rental_history",
                            @"http://schemas.netflix.com/feed.rental_history.watched",
                            @"http://schemas.netflix.com/feed.rental_history.returned",
                            @"http://schemas.netflix.com/feed.recommendations", nil] retain];
@@ -166,6 +203,10 @@ static NSSet* allowableFeeds = nil;
 
 
 - (Queue*) queueForFeed:(Feed*) feed {
+    if (feed == nil) {
+        return nil;
+    }
+    
     Queue* queue = [queues objectForKey:feed.key];
     if (queue == nil) {
         queue = [self loadQueue:feed];
@@ -1007,11 +1048,6 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 }
 
 
-+ (NSString*) recommendationKey {
-    return @"http://schemas.netflix.com/feed.recommendations";
-}
-
-
 - (Feed*) feedForKey:(NSString*) key {
     for (Feed* feed in self.feeds) {
         if ([key isEqual:feed.key]) {
@@ -1020,6 +1056,44 @@ NSInteger orderMovies(id t1, id t2, void* context) {
     }
 
     return nil;
+}
+
+
+- (Queue*) queueForKey:(NSString*) key {
+    return [self queueForFeed:[self feedForKey:key]];
+}
+
+
+- (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount {
+    NSString* title = nil;
+    if ([key isEqual:@"http://schemas.netflix.com/feed.queues.disc"]) {
+        title = NSLocalizedString(@"DVD/Blu-ray Queue", nil);
+    } else if ([key isEqual:@"http://schemas.netflix.com/feed.queues.instant"]) {
+        title = NSLocalizedString(@"Instant Queue", nil);
+    } else if ([key isEqual:@"http://schemas.netflix.com/feed.at_home"]) {
+        title = NSLocalizedString(@"At Home", nil);
+    } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history.watched"]) {
+        title = NSLocalizedString(@"Recently Watched", nil);
+    } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history.returned"]) {
+        title = NSLocalizedString(@"Recently Returned", nil);
+    } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history"]) {
+        title = NSLocalizedString(@"Entire History", nil);
+    } else if ([key isEqual:@"http://schemas.netflix.com/feed.recommendations"]) {
+        title = NSLocalizedString(@"Recommendations", nil);
+    }
+    
+    Queue* queue = [self queueForKey:key];
+    if (queue == nil || !includeCount) {
+        return title;
+    }
+    
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", @"Netflix queue title and title count.  i.e: 'Instant Queue (45)'"),
+            title, queue.movies.count + queue.saved.count];
+}
+
+
+- (NSString*) titleForKey:(NSString*) key {
+    return [self titleForKey:key includeCount:YES];
 }
 
 @end

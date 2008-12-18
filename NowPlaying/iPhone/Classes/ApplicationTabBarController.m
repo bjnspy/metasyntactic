@@ -134,7 +134,7 @@
 
         [self resetTabs:NO];
 
-        if (self.model.userAddress.length == 0 && !self.model.netflixEnabled) {
+        if (self.model.userAddress.length == 0) {
             self.selectedViewController = [self loadSettingsNavigationController];
         } else {
             AbstractNavigationController* controller;
