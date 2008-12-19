@@ -30,6 +30,7 @@
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
+#import "NetflixCache.h"
 #import "NetflixRatingsCell.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
@@ -512,6 +513,11 @@
 }
 
 
+- (BOOL) hasNetflixRating {
+    return [self isNetflix] && [self.model.netflixCache ratingForMovie:movie].length > 0;
+}
+
+
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie
@@ -531,7 +537,7 @@
     }
     
     if (row == 2) {
-        if ([self isNetflix]) {
+        if ([self hasNetflixRating]) {
             return [self createNetflixRatingsCell];
         } else {
             return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
@@ -564,7 +570,7 @@
     }
     
     if (row == 2) {
-        if ([self isNetflix]) {
+        if ([self hasNetflixRating]) {
             return self.tableView.rowHeight;
         } else {
             return 0;
