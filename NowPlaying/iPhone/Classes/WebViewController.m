@@ -14,6 +14,7 @@
 
 #import "WebViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "Application.h"
 #import "ViewControllerUtilities.h"
 
@@ -140,7 +141,8 @@
 
     self.toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-
+    toolbar.tintColor = self.navigationController.navigationBar.tintColor;
+    
     [self setupToolbarItems];
 }
 

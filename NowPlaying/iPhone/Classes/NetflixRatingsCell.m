@@ -8,6 +8,8 @@
 
 #import "NetflixRatingsCell.h"
 
+#import "NetflixCache.h"
+#import "NowPlayingModel.h"
 #import "Movie.h"
 
 @implementation NetflixRatingsCell
@@ -24,8 +26,7 @@
     if (self = [super initWithFrame:frame
                               model:model_
                               movie:movie_]) {
-        
-        NSString* rating = [movie.additionalFields objectForKey:@"average_rating"];
+        NSString* rating = [model.netflixCache ratingForMovie:movie];
         CGFloat value = [rating floatValue];
         
         NSInteger fullStarsMax = (NSInteger)value;

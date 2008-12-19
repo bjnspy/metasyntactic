@@ -39,7 +39,7 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
-        self.title = [NSString stringWithFormat:@"%@/%@", NSLocalizedString(@"DVD", nil), NSLocalizedString(@"Upcoming", nil)];
+        self.title = NSLocalizedString(@"Coming Soon", nil);
     }
     
     return self;

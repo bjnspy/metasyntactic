@@ -55,6 +55,7 @@
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
+- (NSString*) ratingForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
 

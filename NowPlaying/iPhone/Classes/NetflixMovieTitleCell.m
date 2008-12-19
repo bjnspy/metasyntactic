@@ -17,6 +17,8 @@
 #import "Application.h"
 #import "ColorCache.h"
 #import "Movie.h"
+#import "NetflixCache.h"
+#import "NowPlayingModel.h"
 
 @interface NetflixMovieTitleCell()
 @property (retain) UILabel* starLabel;
@@ -86,7 +88,13 @@
     [super setMovie:movie owner:owner];
     
     NSMutableString* result = [NSMutableString string];
-    CGFloat score = [[movie.additionalFields objectForKey:@"average_rating"] floatValue];
+    NSString* rating = [model.netflixCache ratingForMovie:movie];
+    if (rating.length == 0) {
+        starLabel.text = @"";
+        return;
+    }
+    
+    CGFloat score = [rating floatValue];
     
     for (int i = 0; i < 5; i++) {
         CGFloat value = score - i;

@@ -58,7 +58,7 @@
 
 
 - (void) setupTitle {
-    self.title = [NSString stringWithFormat:@"%@/%@", NSLocalizedString(@"DVD", nil), NSLocalizedString(@"Upcoming", nil)];
+    self.title = NSLocalizedString(@"Coming Soon", nil);
 }
 
 

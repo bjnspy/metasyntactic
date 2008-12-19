@@ -179,7 +179,7 @@
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
         } else if (row == 5) {
-            text = NSLocalizedString(@"Netflix (beta)", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
+            text = NSLocalizedString(@"Netflix (Beta)", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.netflixEnabled;
             selector = @selector(onNetflixEnabledChanged:);
         } else if (row == 6) {
