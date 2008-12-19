@@ -26,30 +26,23 @@
     if (self = [super initWithFrame:frame
                               model:model_
                               movie:movie_]) {
-        NSString* rating = [model.netflixCache ratingForMovie:movie];
-        CGFloat value = [rating floatValue];
+        CGFloat rating = [[model.netflixCache ratingForMovie:movie] floatValue];
         
-        NSInteger fullStarsMax = (NSInteger)value;
-        NSInteger emptyStarsMin = fullStarsMax + 1;
-        
-        value = MAX(MIN(5, value), 0);
-        for (NSInteger i = 0; i < 5; i++) {
+        for (NSInteger i = -1; i < 5; i++) {
             UIImage* image;
-            if (i < fullStarsMax) {
-                image = [UIImage imageNamed:@"RedStar-1.0.png"];
-            } else if (i >= emptyStarsMin) {
-                image = [UIImage imageNamed:@"RedStar-0.0.png"];
+            if (i == -1) {
+                image = [UIImage imageNamed:@"ClearRating.png"];
             } else {
-                CGFloat partial = value - fullStarsMax;
-                if (partial < 0.2) {
+                CGFloat value = rating - i;
+                if (value < 0.2) {
                     image = [UIImage imageNamed:@"RedStar-0.0.png"];
-                } else if (partial < 0.4) {
+                } else if (value < 0.4) {
                     image = [UIImage imageNamed:@"RedStar-0.2.png"];
-                } else if (partial < 0.6) {
+                } else if (value < 0.6) {
                     image = [UIImage imageNamed:@"RedStar-0.4.png"];
-                } else if (partial < 0.8) {
+                } else if (value < 0.8) {
                     image = [UIImage imageNamed:@"RedStar-0.6.png"];
-                } else if (partial < 1.0) {
+                } else if (value < 1) {
                     image = [UIImage imageNamed:@"RedStar-0.8.png"];
                 } else {
                     image = [UIImage imageNamed:@"RedStar-1.0.png"];
@@ -59,7 +52,9 @@
             UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
             CGRect rect = imageView.frame;
             rect.origin.y = 10;
-            rect.origin.x = 60 + 40 * i;
+            NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
+            
+            rect.origin.x = (halfWayPoint - 110) + (40 * (i + 1));
             imageView.frame = rect;
             
             [self.contentView addSubview:imageView];
