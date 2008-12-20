@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "RefreshableTableViewController.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "TappableImageViewDelegate.h"
 
-@interface NetflixQueueViewController : UITableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate> {
+@interface NetflixQueueViewController : RefreshableTableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate> {
 @private
     AbstractNavigationController* navigationController;
     NSString* feedKey;

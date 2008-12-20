@@ -21,6 +21,7 @@
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixNavigationController.h"
+#import "NetflixRecommendationsViewController.h"
 #import "NetflixQueueViewController.h"
 #import "NetflixSearchViewController.h"
 #import "NowPlayingModel.h"
@@ -84,7 +85,7 @@ typedef enum {
 }
 
 
-- (void) majorRefresh {
+- (void) majorRefreshWorker {
     self.tableView.rowHeight = 41;
     if ([self.tableView numberOfRowsInSection:0] == 1 &&
         self.hasAccount) {
@@ -97,6 +98,10 @@ typedef enum {
     } else {
         [self.tableView reloadData];
     }
+}
+
+
+- (void) minorRefreshWorker {
 }
 
 
@@ -281,6 +286,12 @@ typedef enum {
 }
 
 
+- (void) didSelectRecomendationsRow {
+    NetflixRecommendationsViewController* controller = [[[NetflixRecommendationsViewController alloc] initWithNavigationController:navigationController] autorelease];
+    [navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
     if (row == SearchSection) {
         [self didSelectSearchRow];
@@ -289,7 +300,7 @@ typedef enum {
     } else if (row == InstantSection) {
         [self didSelectQueueRow:[NetflixCache instantQueueKey]];
     } else if (row == RecommendationsSection) {
-        [self didSelectQueueRow:[NetflixCache recommendationKey]];
+        [self didSelectRecomendationsRow];
     } else if (row == AtHomeSection) {
         [self didSelectQueueRow:[NetflixCache atHomeKey]];
     } else if (row == RentalHistorySection) {
@@ -311,29 +322,5 @@ typedef enum {
         }
     }
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
 @end

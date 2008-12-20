@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixFeedsViewController : UITableViewController {
+#import "RefreshableTableViewController.h"
+
+@interface NetflixFeedsViewController : RefreshableTableViewController {
 @private
     AbstractNavigationController* navigationController;
     NSArray* feedKeys;

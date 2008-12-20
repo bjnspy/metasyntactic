@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "RefreshableTableViewController.h"
 #import "SearchEngineDelegate.h"
 
-@interface NetflixSearchViewController : UITableViewController<UISearchBarDelegate, SearchEngineDelegate> {
+@interface NetflixSearchViewController : RefreshableTableViewController<UISearchBarDelegate, SearchEngineDelegate> {
 @private
     AbstractNavigationController* navigationController;
     UISearchBar* searchBar;

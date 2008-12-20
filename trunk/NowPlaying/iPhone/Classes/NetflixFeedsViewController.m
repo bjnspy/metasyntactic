@@ -64,8 +64,12 @@
 }
 
 
-- (void) majorRefresh {
+- (void) majorRefreshWorker {
     [self.tableView reloadData];
+}
+
+
+- (void) minorRefreshWorker {
 }
 
 

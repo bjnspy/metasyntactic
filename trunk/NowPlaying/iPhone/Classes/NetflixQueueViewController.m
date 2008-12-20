@@ -152,13 +152,18 @@
 }
 
 
-- (void) majorRefresh {
+- (void) majorRefreshWorker {
     if (self.editing || readonlyMode) {
         return;
     }
 
     [self initializeData];
     [self.tableView reloadData];
+}
+
+
+- (void) minorRefreshWorker {
+    [self majorRefresh];
 }
 
 
