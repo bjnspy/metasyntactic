@@ -16,6 +16,7 @@
 #import "NetflixMovieTitleCell.h"
 #import "NowPlayingModel.h"
 #import "Queue.h"
+#import "ViewControllerUtilities.h"
 
 @interface NetflixGenreRecommendationsViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -45,6 +46,10 @@
         self.navigationController = navigationController_;
         self.genre = genre_;
         self.title = genre_;
+        
+        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+        label.text = genre;
+        self.navigationItem.titleView = label;
     }
     
     return self;
