@@ -31,7 +31,7 @@ property_definition(name);
     self.url = nil;
     self.key = nil;
     self.name = nil;
-    
+
     [super dealloc];
 }
 
@@ -44,7 +44,7 @@ property_definition(name);
         self.key = key_;
         self.name = name_;
     }
-    
+
     return self;
 }
 

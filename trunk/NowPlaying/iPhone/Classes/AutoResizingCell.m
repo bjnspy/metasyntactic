@@ -58,7 +58,7 @@
     if (self.image != nil) {
         labelFrame.origin.x = 15 + self.image.size.width;
     }
-    
+
     labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);
     labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
 

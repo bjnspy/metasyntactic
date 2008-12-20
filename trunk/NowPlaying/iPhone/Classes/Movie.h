@@ -30,7 +30,7 @@
     NSString* displayTitle;
 
     NSString* cachedRatingAndRuntimeString;
-    
+
     NSDictionary* additionalFields;
 }
 

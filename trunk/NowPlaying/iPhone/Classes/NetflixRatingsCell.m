@@ -27,7 +27,7 @@
                               model:model_
                               movie:movie_]) {
         CGFloat rating = [[model.netflixCache ratingForMovie:movie] floatValue];
-        
+
         for (NSInteger i = -1; i < 5; i++) {
             UIImage* image;
             if (i == -1) {
@@ -53,20 +53,20 @@
             CGRect rect = imageView.frame;
             rect.origin.y = 10;
             NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
-            
+
             rect.origin.x = (halfWayPoint - 110) + (40 * (i + 1));
             imageView.frame = rect;
-            
+
             [self.contentView addSubview:imageView];
         }
     }
-    
+
     return self;
 }
 
 
 - (void) layoutSubviews {
-    [super layoutSubviews];    
+    [super layoutSubviews];
 }
 
 @end

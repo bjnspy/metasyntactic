@@ -27,7 +27,7 @@
 
 - (void) dealloc {
     self.set = nil;
-    
+
     [super dealloc];
 }
 
@@ -36,7 +36,7 @@
     if (self = [super init]) {
         self.set = [NSMutableSet set];
     }
-    
+
     return self;
 }
 
@@ -82,11 +82,11 @@
 
 - (NSArray*) allObjects {
     NSMutableArray* array = [NSMutableArray array];
-    
+
     for (IdentityObject* object in set) {
         [array addObject:object.value];
     }
-    
+
     return array;
 }
 

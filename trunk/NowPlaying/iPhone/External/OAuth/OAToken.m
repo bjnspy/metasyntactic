@@ -45,7 +45,7 @@
     self.key = nil;
     self.secret = nil;
     self.fields = nil;
-    
+
     [super dealloc];
 }
 
@@ -55,7 +55,7 @@
         self.key = @"";
         self.secret = @"";
     }
-    
+
     return self;
 }
 
@@ -66,7 +66,7 @@
         self.key = aKey;
         self.secret = aSecret;
     }
-    
+
     return self;
 }
 
@@ -75,14 +75,14 @@
     if (self = [super init]) {
         NSArray* pairs = [body componentsSeparatedByString:@"&"];
         NSMutableDictionary* map = [NSMutableDictionary dictionary];
-        
+
         for (NSString* pair in pairs) {
             NSArray* elements = [pair componentsSeparatedByString:@"="];
-            
+
             if (elements.count >= 2) {
                 NSString* urlKey = [elements objectAtIndex:0];
                 NSString* value = [elements objectAtIndex:1];
-                
+
                 if ([urlKey isEqual:@"oauth_token"]) {
                     [self setKey:value];
                 } else if ([urlKey isEqual:@"oauth_token_secret"]) {
@@ -92,10 +92,10 @@
                 [map setObject:value forKey:urlKey];
             }
         }
-        
+
         self.fields = map;
     }
-    
+
     return self;
 }
 
@@ -125,49 +125,49 @@
     if (status != noErr) {
         return nil;
     }
-    
+
     // from Advanced Mac OS X Programming, ch. 16
     UInt32 length;
     char* password;
     SecKeychainAttribute attributes[8];
     SecKeychainAttributeList list;
-    
+
     attributes[0].tag = kSecAccountItemAttr;
     attributes[1].tag = kSecDescriptionItemAttr;
     attributes[2].tag = kSecLabelItemAttr;
     attributes[3].tag = kSecModDateItemAttr;
-    
+
     list.count = 4;
     list.attr = attributes;
-    
+
     status = SecKeychainItemCopyContent(item, NULL, &list, &length, (void **)&password);
-    
+
     if (status == noErr) {
         [self setKey:[NSString stringWithCString:list.attr[0].data
                                           length:list.attr[0].length]];
         if (password != NULL) {
             char passwordBuffer[1024];
-            
+
             if (length > 1023) {
                 length = 1023;
             }
             strncpy(passwordBuffer, password, length);
-            
+
             passwordBuffer[length] = '\0';
             [self setSecret:[NSString stringWithCString:passwordBuffer]];
         }
-        
+
         SecKeychainItemFreeContent(&list, password);
-        
+
     } else {
         // TODO find out why this always works in i386 and always fails on ppc
         NSLog(@"Error from SecKeychainItemCopyContent: %d", status);
         return nil;
     }
-    
+
     // NSMakeCollectable not supported in Obj-1.x
     CFMakeCollectable(item);
-    
+
     return self;
 }
 */
@@ -180,16 +180,16 @@
 - (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString*)name serviceProviderName:(NSString*)provider {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:kSecClassGenericPassword forKey:kSecClass];
-    
-    
+
+
     UInt32 serviceNameLength, const char* serviceName, UInt32 accountNameLength, const char* accountName, UInt32 passwordLength, const void* passwordData,
-    
+
     OSStatus status = SecItemAdd(
-    
-    OSStatus status = SecKeychainAddGenericPassword(keychain,                                     
-                                                    [name length] + [provider length] + 9, 
+
+    OSStatus status = SecKeychainAddGenericPassword(keychain,netflixSeriesDirectory
+                                                    [name length] + [provider length] + 9,netflixSeriesDirectory
                                                     [[NSString stringWithFormat:@"%@::OAuth::%@", name, provider] UTF8String],
-                                                    [[self key] length],                        
+                                                    [[self key] length],netflixSeriesDirectory
                                                     [[self key] UTF8String],
                                                     [[self secret] length],
                                                     [[self secret] UTF8String],

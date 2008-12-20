@@ -198,9 +198,9 @@
     NSDate* today = [DateUtilities today];
 
     BOOL prioritizeBookmarks = self.model.prioritizeBookmarks;
-    
+
     NSString* starString = [Application starString];
-    
+
     for (Movie* movie in sortedMovies) {
         if (prioritizeBookmarks && [self.model isBookmarked:movie]) {
             [sectionTitleToContentsMap addObject:movie forKey:starString];

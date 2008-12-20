@@ -33,7 +33,7 @@
     if (self = [super init]) {
         self.value = value_;
     }
-    
+
     return self;
 }
 

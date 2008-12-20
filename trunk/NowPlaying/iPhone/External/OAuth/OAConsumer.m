@@ -37,7 +37,7 @@
 - (void) dealloc {
     self.key = nil;
     self.secret = nil;
-    
+
     [super dealloc];
 }
 
@@ -47,7 +47,7 @@
 	self.key = key_;
 	self.secret = secret_;
     }
-    
+
     return self;
 }
 

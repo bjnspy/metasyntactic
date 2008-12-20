@@ -38,7 +38,7 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
     }
-    
+
     return self;
 }
 
@@ -55,22 +55,22 @@
 
 - (NSString*) serverUrl {
     Location* location = [model.userLocationCache locationForUserAddress:model.userAddress];
-    
+
     if (location.postalCode == nil) {
         return nil;
     }
-    
+
     NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry]
     : location.country;
-    
-    
+
+
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                    fromDate:[DateUtilities today]
                                                                      toDate:model.searchDate
                                                                     options:0];
     NSInteger day = components.day;
     day = MIN(MAX(day, 0), 7);
-    
+
     NSString* address = [NSString stringWithFormat:
                          @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=pb&latitude=%d&longitude=%d",
                          [Application host],
@@ -80,7 +80,7 @@
                          day,
                          (int)(location.latitude * 1000000),
                          (int)(location.longitude * 1000000)];
-    
+
     return address;
 }
 
@@ -102,9 +102,9 @@
         @try {
             TheaterListingsProto* theaterListings = [TheaterListingsProto parseFromData:data];
             NSArray* movieProtos = theaterListings.moviesList;
-            
+
             NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-            
+
             for (MovieProto* movieProto in movieProtos) {
                 NSString* identifier = movieProto.identifier;
                 NSString* title = movieProto.title;
@@ -112,21 +112,21 @@
                 if (movieProto.hasScore) {
                     score = movieProto.score;
                 }
-                
+
                 Score* info = [Score scoreWithTitle:title
                                            synopsis:@""
                                               score:[NSString stringWithFormat:@"%d", score]
                                            provider:@"google"
                                          identifier:identifier];
-                
+
                 [ratings setObject:info forKey:info.canonicalTitle];
             }
-            
+
             return ratings;
         } @catch (NSException* e) {
         }
     }
-    
+
     return nil;
 }
 

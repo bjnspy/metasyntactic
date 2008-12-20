@@ -39,14 +39,14 @@
                  withSecret:(NSString*) secret {
     NSData* secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
     NSData* clearTextData = [text dataUsingEncoding:NSUTF8StringEncoding];
-    
+
     uint8_t digest[CC_SHA1_DIGEST_LENGTH] = {0};
-    
+
     CCHmacContext hmacContext;
     CCHmacInit(&hmacContext, kCCHmacAlgSHA1, secretData.bytes, secretData.length);
     CCHmacUpdate(&hmacContext, clearTextData.bytes, clearTextData.length);
     CCHmacFinal(&hmacContext, digest);
-    
+
     return [Base64 encode:[NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH]];
 }
 

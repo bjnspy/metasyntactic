@@ -36,13 +36,13 @@
             didFinishSelector:(SEL) didFinishSelector
               didFailSelector:(SEL) didFailSelector {
     [request prepare];
-    
+
     NSURLResponse* response;
     NSError* error;
     NSData* responseData = [NSURLConnection sendSynchronousRequest:request
                                                  returningResponse:&response
                                                              error:&error];
-    
+
     if (response == nil || responseData == nil || error != nil) {
         OAServiceTicket* ticket =
         [OAServiceTicket ticketWithRequest:request
@@ -52,14 +52,14 @@
                        withObject:ticket
                        withObject:error];
     } else {
-        OAServiceTicket* ticket = 
+        OAServiceTicket* ticket =
         [OAServiceTicket ticketWithRequest:request
                                   response:response
                                 didSucceed:[(NSHTTPURLResponse*)response statusCode] < 400];
         [delegate performSelector:didFinishSelector
                        withObject:ticket
                        withObject:responseData];
-    }   
+    }
 }
 
 @end

@@ -45,7 +45,7 @@
 }
 
 
-- (id) initWithRequest:(OAMutableURLRequest*) aRequest 
+- (id) initWithRequest:(OAMutableURLRequest*) aRequest
               response:(NSURLResponse*) aResponse
             didSucceed:(BOOL)success {
     if (self = [super init]) {

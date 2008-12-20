@@ -126,16 +126,16 @@
 
     LinkedNode* node = [valueToNode objectForKey:object];
     [self removeNode:node];
-    
+
     self.lastNode = [LinkedNode nodeWithValue:object previous:lastNode next:nil];
     [valueToNode setObject:lastNode forKey:object];
-    
+
     if (firstNode == nil) {
         self.firstNode = lastNode;
     }
-    
+
     [self enforceLimit];
-    
+
     NSAssert(firstNode != nil, @"");
     NSAssert(lastNode != nil, @"");
     NSAssert(firstNode.previous == nil, @"");
@@ -172,12 +172,12 @@
 
 
 - (void) removeAllObjectsNoLock {
-    // delete all the back pointers.  
+    // delete all the back pointers.netflixSeriesDirectory
     // This will clear up circular references.
     for (LinkedNode* node = firstNode; node != nil; node = node.next) {
         node.previous = nil;
     }
-    
+
     // now, when we release our nodes, they'll all dissapear.
     self.firstNode = nil;
     self.lastNode = nil;

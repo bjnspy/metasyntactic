@@ -22,10 +22,10 @@
     NSString* feedKey;
     Feed* feed;
     Queue* queue;
-    
+
     UIBarButtonItem* backButton;
     BOOL upArrowTapped;
-    
+
     NSMutableArray* mutableMovies;
     NSMutableArray* mutableSaved;
     IdentitySet* deletedMovies;

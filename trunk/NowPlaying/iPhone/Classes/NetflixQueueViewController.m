@@ -74,15 +74,15 @@
 - (void) setupButtons {
     if (readonlyMode) {
         [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-        
+
         UIActivityIndicatorView* activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         CGRect frame = activityIndicatorView.frame;
         frame.size.width += 4;
         [activityIndicatorView startAnimating];
-        
+
         UIView* activityView = [[UIView alloc] initWithFrame:frame];
         [activityView addSubview:activityIndicatorView];
-        
+
         UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
         [self.navigationItem setRightBarButtonItem:right animated:YES];
         [self.navigationItem setHidesBackButton:YES animated:YES];
@@ -100,14 +100,14 @@
             left = backButton;
             right = nil;
         }
-        
+
         [self.navigationItem setLeftBarButtonItem:left animated:YES];
         [self.navigationItem setRightBarButtonItem:right animated:YES];
     }
 }
 
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_ 
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                             feedKey:(NSString*) feedKey_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
@@ -115,7 +115,7 @@
         self.backButton = self.navigationItem.leftBarButtonItem;
         [self setupButtons];
     }
-    
+
     return self;
 }
 
@@ -137,7 +137,7 @@
     } else {
         label.text = [self.model.netflixCache titleForKey:feedKey includeCount:NO];
     }
-    
+
     self.navigationItem.titleView = label;
 }
 
@@ -207,7 +207,7 @@
     } else if (mutableSaved.count > 0 && section == 1) {
         return NSLocalizedString(@"Saved", nil);
     }
-    
+
     return nil;
 }
 
@@ -247,9 +247,9 @@
     if ([self indexPathOutOfBounds:indexPath]) {
         return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     }
-    
+
     static NSString* reuseIdentifier = @"NetflixQueueReuseIdentifier";
-    
+
     NetflixMovieTitleCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[NetflixMovieTitleCell alloc] initWithFrame:CGRectZero
@@ -257,18 +257,18 @@
                                                        model:self.model
                                                        style:UITableViewStylePlain] autorelease];
     }
-    
+
     [self setAccessoryForCell:cell atIndexPath:indexPath];
-    
+
     Movie* movie;
     if (indexPath.section == 0) {
         movie = [mutableMovies objectAtIndex:indexPath.row];
     } else {
         movie = [mutableSaved objectAtIndex:indexPath.row];
     }
-    
+
     [cell setMovie:movie owner:self];
-    
+
     return cell;
 }
 
@@ -298,12 +298,12 @@
 
 - (void) upArrowTappedForRowAtIndexPath:(NSIndexPath*) indexPath {
     [self enterReadonlyMode];
-    
+
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
     [activityIndicator startAnimating];
     cell.accessoryView = activityIndicator;
-    
+
     Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
     [self.model.netflixCache updateQueue:queue fromFeed:feed byMovingMovieToTop:movie delegate:self];
 }
@@ -319,15 +319,15 @@
     {
         NSIndexPath* firstRow = [NSIndexPath indexPathForRow:0 inSection:0];
         NSIndexPath* currentRow = [NSIndexPath indexPathForRow:row inSection:0];
-        
+
         [mutableMovies removeObjectAtIndex:row];
         [mutableMovies insertObject:movie atIndex:0];
-        
+
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:currentRow] withRowAnimation:UITableViewRowAnimationBottom];
         [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:firstRow] withRowAnimation:UITableViewRowAnimationTop];
     }
     [self.tableView endUpdates];
-    
+
     [self exitReadonlyMode];
 }
 
@@ -338,11 +338,11 @@
                                                     delegate:nil
                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                            otherButtonTitles:nil] autorelease];
-    
+
     [alert show];
-    
+
     [self exitReadonlyMode];
-    
+
     // make sure we're in a good state.
     [self majorRefresh];
 }
@@ -371,14 +371,14 @@
         if ([self indexPathOutOfBounds:indexPath]) {
             return;
         }
-        
+
         Movie* movie;
         if (indexPath.section == 0) {
             movie = [queue.movies objectAtIndex:indexPath.row];
         } else {
             movie = [queue.saved objectAtIndex:indexPath.row];
         }
-        
+
         [navigationController pushMovieDetails:movie animated:YES];
     }
 }
@@ -425,15 +425,15 @@
              toIndexPath:(NSIndexPath*) toIndexPath {
     NSInteger from = fromIndexPath.row;
     NSInteger to = toIndexPath.row;
-    
+
     if (from == to) {
         return;
     }
-    
+
     Movie* movie = [mutableMovies objectAtIndex:from];
     [mutableMovies removeObjectAtIndex:from];
     [mutableMovies insertObject:movie atIndex:to];
-    
+
     [reorderedMovies addObject:movie];
 }
 
@@ -459,7 +459,7 @@
     } else {
         [self.tableView setEditing:NO animated:YES];
         [self enterReadonlyMode];
-        
+
         [self.model.netflixCache updateQueue:queue fromFeed:feed byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self];
     }
 }
@@ -475,7 +475,7 @@
 - (void) modifyFailedWithError:(NSError*) error
                        inQueue:(Queue*) queue
                       fromFeed:(Feed*) feed {
-    [self onModifyFailure];    
+    [self onModifyFailure];
 }
 
 
@@ -485,7 +485,7 @@
     if (proposedDestinationIndexPath.section == 1) {
         return [NSIndexPath indexPathForRow:(mutableMovies.count - 1) inSection:0];
     }
-    
+
     return proposedDestinationIndexPath;
 }
 

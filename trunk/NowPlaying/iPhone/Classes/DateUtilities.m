@@ -81,7 +81,7 @@ static BOOL use24HourTime;
             [shortTimeFormatter setDateStyle:NSDateFormatterNoStyle];
             [shortTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
         }
-        
+
         {
             yearFormatter = [[NSDateFormatter alloc] init];
             [yearFormatter setDateFormat:@"YYYY"];
