@@ -1268,12 +1268,27 @@ NSInteger orderMovies(id t1, id t2, void* context) {
         movie = series;
     }
 
+    NSArray* ratings = [FileUtilities readObject:[self ratingsFile:movie]];
+    if (ratings.count > 0) {
+        return [ratings objectAtIndex:1];
+    }
+
     return [movie.additionalFields objectForKey:average_rating_key];
 }
 
 
 - (NSString*) userRatingForMovie:(Movie*) movie {
-    return @"";
+    Movie* series = [self getSeriesForDisc:movie];
+    if (series != nil) {
+        movie = series;
+    }
+    
+    NSArray* ratings = [FileUtilities readObject:[self ratingsFile:movie]];
+    if (ratings.count > 0) {
+        return [ratings objectAtIndex:0];
+    }
+
+    return nil;
 }
 
 
