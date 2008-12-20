@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NetflixViewController : UITableViewController<UIAlertViewDelegate> {
+#import "RefreshableTableViewController.h"
+
+@interface NetflixViewController : RefreshableTableViewController<UIAlertViewDelegate> {
 @private 
     NetflixNavigationController* navigationController;
     NetflixSearchViewController* searchViewController;

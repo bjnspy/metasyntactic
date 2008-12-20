@@ -88,8 +88,17 @@
 }
 
 
+- (void) majorRefreshWorker {
+}
+
+
+- (void) minorRefreshWorker {
+}
+
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self majorRefresh];
 }
 
 
