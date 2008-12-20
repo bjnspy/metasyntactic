@@ -511,8 +511,9 @@ static NSSet* allowableFeeds = nil;
     Feed* feed = [arguments objectAtIndex:1];
     Movie* movie = [arguments objectAtIndex:2];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:3];
+    NSString* error = [arguments objectAtIndex:4];
 
-    [delegate moveFailedWithError:nil forMovie:movie inQueue:queue fromFeed:feed];
+    [delegate moveFailedWithError:error forMovie:movie inQueue:queue fromFeed:feed];
 }
 
 
@@ -534,8 +535,9 @@ static NSSet* allowableFeeds = nil;
     Queue* queue = [arguments objectAtIndex:0];
     Feed* feed = [arguments objectAtIndex:1];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:2];
+    NSString* error = [arguments objectAtIndex:3];
 
-    [delegate modifyFailedWithError:nil inQueue:queue fromFeed:feed];
+    [delegate modifyFailedWithError:error inQueue:queue fromFeed:feed];
 }
 
 
@@ -552,16 +554,17 @@ static NSSet* allowableFeeds = nil;
 
 - (void) saveQueue:(Queue*) queue
           fromFeed:(Feed*) feed
-    andReportError:(id<NetflixModifyQueueDelegate>) delegate {
+    andReportError:(NSString*) error
+        toDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     [self saveQueue:queue];
-    NSArray* arguments = [NSArray arrayWithObjects:queue, feed, delegate, nil];
+    NSArray* arguments = [NSArray arrayWithObjects:queue, feed, delegate, error, nil];
     [self performSelectorOnMainThread:@selector(reportQueueAndError:) withObject:arguments waitUntilDone:NO];
 }
 
 
 - (void) saveQueue:(Queue*) queue
           fromFeed:(Feed*) feed
-  andReportSuccess:(id<NetflixModifyQueueDelegate>) delegate {
+  andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     [self saveQueue:queue];
     NSArray* arguments = [NSArray arrayWithObjects:queue, feed, delegate, nil];
     [self performSelectorOnMainThread:@selector(reportQueueAndSuccess:) withObject:arguments waitUntilDone:NO];
@@ -1030,7 +1033,9 @@ static NSSet* allowableFeeds = nil;
           toPosition:(NSInteger) position
              inQueue:(Queue*) queue
             fromFeed:(Feed*) feed
-            delegate:(id<NetflixModifyQueueDelegate>) delegate {
+            delegate:(id<NetflixModifyQueueDelegate>) delegate
+               error:(NSString**) error {
+    *error = nil;
     NSString* queueType = queue.isDVDQueue ? @"disc" : @"instant";
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/%@", model.netflixUserId, queueType];
 
@@ -1047,9 +1052,19 @@ static NSSet* allowableFeeds = nil;
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
+    if (element == nil) {
+        *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
+        return nil;
+    }
 
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
+        NSString* message = [[element element:@"message"] text];
+        if (message.length == 0) {
+            message = NSLocalizedString(@"An unknown error occurred.", nil);
+        }
+        
+        *error = message;
         return nil;
     }
 
@@ -1073,13 +1088,16 @@ static NSSet* allowableFeeds = nil;
     Movie* movie = [arguments objectAtIndex:2];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:3];
 
+    NSString* error;
     Queue* finalQueue = [self moveMovie:movie
                              toPosition:0
                                 inQueue:queue
                                fromFeed:feed
-                               delegate:delegate];
+                               delegate:delegate
+                                  error:&error];
     if (finalQueue == nil) {
-        [self performSelectorOnMainThread:@selector(reportMoveFailure:) withObject:arguments waitUntilDone:NO];
+        NSArray* errorArguments = [NSArray arrayWithObjects:queue, feed, movie, delegate, error, nil];
+        [self performSelectorOnMainThread:@selector(reportMoveFailure:) withObject:errorArguments waitUntilDone:NO];
         return;
     }
 
@@ -1172,14 +1190,16 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 
     NSArray* orderedMoviesToReorder = [reorderedMovies.allObjects sortedArrayUsingFunction:orderMovies context:moviesInOrder];
     for (Movie* movie in orderedMoviesToReorder) {
+        NSString* error = nil;
         Queue* resultantQueue = [self moveMovie:movie
                                      toPosition:[moviesInOrder indexOfObjectIdenticalTo:movie]
                                         inQueue:finalQueue
                                        fromFeed:feed
-                                       delegate:delegate];
+                                       delegate:delegate
+                                          error:&error];
 
         if (resultantQueue == nil) {
-            [self saveQueue:finalQueue fromFeed:feed andReportError:delegate];
+            [self saveQueue:finalQueue fromFeed:feed andReportError:error toDelegate:delegate];
             return;
         }
 
@@ -1193,7 +1213,7 @@ NSInteger orderMovies(id t1, id t2, void* context) {
     //    }
     [self saveQueue:finalQueue
            fromFeed:feed
-   andReportSuccess:delegate];
+   andReportSuccessToDelegate:delegate];
 }
 
 

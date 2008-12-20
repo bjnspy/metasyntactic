@@ -135,6 +135,7 @@
     [NSString stringWithFormat:
      NSLocalizedString(@"%@ (%d)", @"name and count.  i.e.: Drama (58)"),
      genre, count];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
