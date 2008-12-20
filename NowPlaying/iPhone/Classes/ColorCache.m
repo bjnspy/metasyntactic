@@ -16,20 +16,22 @@
 
 @implementation ColorCache
 
-static UIColor* commandColor = nil;
+static UIColor* netflixYellow = nil;
 static UIColor* darkDarkGray = nil;
+static UIColor* commandColor = nil;
 static UIColor* footerColor = nil;
-static UIColor* tintColor = nil;
 static UIColor* netflixRed = nil;
+static UIColor* tintColor = nil;
 
 + (void) initialize {
     if (self == [ColorCache class]) {
 
-        commandColor = [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
-        darkDarkGray = [[UIColor colorWithWhite:0.1666666666666 alpha:1] retain];
-        footerColor  = [[UIColor colorWithRed:76.0 / 255.0 green:86.0 / 255.0 blue:107.0 / 255.0 alpha:1] retain];
-        tintColor    = [[UIColor colorWithRed:27.0/255.0 green:55.0/255.0 blue:89.0/255.0 alpha:1] retain];
-        netflixRed   = [[UIColor colorWithRed:100.0/255.5 green:14.0/255.0 blue:17.0/255.0 alpha:1] retain];
+        commandColor  = [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
+        darkDarkGray  = [[UIColor colorWithWhite:0.1666666666666 alpha:1] retain];
+        footerColor   = [[UIColor colorWithRed:76.0 / 255.0 green:86.0 / 255.0 blue:107.0 / 255.0 alpha:1] retain];
+        tintColor     = [[UIColor colorWithRed:27.0/255.0 green:55.0/255.0 blue:89.0/255.0 alpha:1] retain];
+        netflixRed    = [[UIColor colorWithRed:100.0/255.5 green:14.0/255.0 blue:17.0/255.0 alpha:1] retain];
+        netflixYellow = [[UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1] retain];
     }
 }
 
@@ -56,6 +58,11 @@ static UIColor* netflixRed = nil;
 
 + (UIColor*) netflixRed {
     return netflixRed;
+}
+
+
++ (UIColor*) netflixYellow {
+    return netflixYellow;
 }
 
 @end

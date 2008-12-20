@@ -16,10 +16,11 @@
 
 }
 
-+ (UIColor*) commandColor;
-+ (UIColor*) darkDarkGray;
-+ (UIColor*) footerColor;
 + (UIColor*) tintColor;
 + (UIColor*) netflixRed;
++ (UIColor*) footerColor;
++ (UIColor*) commandColor;
++ (UIColor*) darkDarkGray;
++ (UIColor*) netflixYellow;
 
 @end

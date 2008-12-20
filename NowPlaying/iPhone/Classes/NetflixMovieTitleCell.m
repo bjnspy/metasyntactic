@@ -84,11 +84,27 @@
 }
 
 
+- (void) setRatingColor {
+    if (userRating) {
+        starLabel.textColor = [ColorCache netflixYellow];
+    } else {
+        starLabel.textColor = [ColorCache netflixRed];
+    }
+}
+
+
 - (void) setMovie:(Movie*) movie owner:(id) owner {
     [super setMovie:movie owner:owner];
 
     NSMutableString* result = [NSMutableString string];
-    NSString* rating = [model.netflixCache netflixRatingForMovie:movie];
+    NSString* rating = [model.netflixCache userRatingForMovie:movie];
+    if (rating.length > 0) {
+        userRating = YES;
+    } else {
+        userRating = NO;
+        rating = [model.netflixCache netflixRatingForMovie:movie];
+    }
+    
     if (rating.length == 0) {
         starLabel.text = @"";
         return;
@@ -118,7 +134,7 @@
     if (selected) {
         starLabel.textColor = [UIColor whiteColor];
     } else {
-        starLabel.textColor = [UIColor redColor];
+        [self setRatingColor];
     }
 }
 

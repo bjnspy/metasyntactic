@@ -17,6 +17,7 @@
 @interface NetflixMovieTitleCell : MovieTitleCell {
 @private
     UILabel* starLabel;
+    BOOL userRating;
 }
 
 - (id) initWithFrame:(CGRect) frame
