@@ -16,7 +16,7 @@
 
 @implementation NetflixSearchEngine
 
-- (void) dealloc {    
+- (void) dealloc {
     [super dealloc];
 }
 
@@ -25,7 +25,7 @@
             delegate:(id<SearchEngineDelegate>) delegate_ {
     if (self = [super initWithModel:model_ delegate:delegate_]) {
     }
-    
+
     return self;
 }
 
@@ -44,18 +44,18 @@
     NSArray* dvds = nil;
     NSArray* bluray = nil;
      */
-    
+
     OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles/autocomplete"];
-    
+
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:currentlyExecutingRequest.lowercaseValue], nil];
-    
+
     [request setParameters:parameters];
     [request prepare];
-    
+
     NSString* result = [NetworkUtilities stringWithContentsOfUrlRequest:request
                                                               important:YES];
-    
+
     NSLog(@"%@", result);
     [self reportResult:movies
               theaters:nil

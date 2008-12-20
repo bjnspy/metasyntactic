@@ -39,7 +39,7 @@
 - (void) dealloc {
     self.name = nil;
     self.value = nil;
-    
+
     [super dealloc];
 }
 
@@ -49,7 +49,7 @@
         self.name = aName;
         self.value = aValue;
     }
-    
+
     return self;
 }
 

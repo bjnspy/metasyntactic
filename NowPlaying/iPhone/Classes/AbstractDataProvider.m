@@ -464,7 +464,7 @@
     if (self.model.userAddress.length == 0) {
         return;
     }
-    
+
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
     if (location == nil) {
         [request.delegate onDataProviderUpdateFailure:NSLocalizedString(@"Could not find location.", nil) context:request.context];

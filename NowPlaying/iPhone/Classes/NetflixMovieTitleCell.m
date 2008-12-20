@@ -49,10 +49,10 @@
         starLabel.text = [@"" stringByPaddingToLength:5 withString:[Application starString] startingAtIndex:0];
         starLabel.backgroundColor = [UIColor clearColor];
         [starLabel sizeToFit];
-        
+
         [self.contentView addSubview:starLabel];
     }
-    
+
     return self;
 }
 
@@ -68,34 +68,34 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGRect starFrame = starLabel.frame;
     starFrame.origin.x = 10;
     starFrame.origin.y = 21;
     starLabel.frame = starFrame;
-    
+
     CGRect ratingFrame = ratingLabel.frame;
     ratingFrame.origin.x = starFrame.origin.x + starFrame.size.width + 10;
     ratingFrame.origin.y = 26;
     ratingFrame.size.width = self.contentView.frame.size.width - ratingFrame.origin.x;
     ratingFrame.size.height = 14;
-    
+
     ratingLabel.frame = ratingFrame;
 }
 
 
 - (void) setMovie:(Movie*) movie owner:(id) owner {
     [super setMovie:movie owner:owner];
-    
+
     NSMutableString* result = [NSMutableString string];
     NSString* rating = [model.netflixCache ratingForMovie:movie];
     if (rating.length == 0) {
         starLabel.text = @"";
         return;
     }
-    
+
     CGFloat score = [rating floatValue];
-    
+
     for (int i = 0; i < 5; i++) {
         CGFloat value = score - i;
         if (value <= 0) {
@@ -114,7 +114,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-    
+
     if (selected) {
         starLabel.textColor = [UIColor whiteColor];
     } else {

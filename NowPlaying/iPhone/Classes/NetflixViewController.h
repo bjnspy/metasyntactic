@@ -15,7 +15,7 @@
 #import "RefreshableTableViewController.h"
 
 @interface NetflixViewController : RefreshableTableViewController<UIAlertViewDelegate> {
-@private 
+@private
     NetflixNavigationController* navigationController;
     NetflixSearchViewController* searchViewController;
 }

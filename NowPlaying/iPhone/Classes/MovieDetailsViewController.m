@@ -535,7 +535,7 @@
             return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         }
     }
-    
+
     if (row == 2) {
         if ([self hasNetflixRating]) {
             return [self createNetflixRatingsCell];
@@ -568,7 +568,7 @@
             return 0;
         }
     }
-    
+
     if (row == 2) {
         if ([self hasNetflixRating]) {
             return self.tableView.rowHeight;

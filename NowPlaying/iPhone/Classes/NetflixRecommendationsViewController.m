@@ -43,7 +43,7 @@
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Recommendations", nil);
     }
-    
+
     return self;
 }
 
@@ -60,7 +60,7 @@
 
 - (void) initializeData {
     self.genreToMovies = [MultiDictionary dictionary];
-    
+
     NSMutableSet* set = [NSMutableSet set];
     Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
     for (Movie* movie in queue.movies) {
@@ -71,7 +71,7 @@
             [set addObject:genre];
         }
     }
-    
+
     self.genres = [[set allObjects] sortedArrayUsingSelector:@selector(compare:)];
 }
 
@@ -106,10 +106,10 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* genre = [genres objectAtIndex:indexPath.row];
-    
+
     NetflixGenreRecommendationsViewController* controller =
     [[[NetflixGenreRecommendationsViewController alloc] initWithNavigationController:navigationController genre:genre] autorelease];
-    
+
     [navigationController pushViewController:controller animated:YES];
 }
 
@@ -128,14 +128,14 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-    
+
     NSString* genre = [genres objectAtIndex:indexPath.row];
     NSInteger count = [[genreToMovies objectsForKey:genre] count];
     cell.text =
     [NSString stringWithFormat:
-     NSLocalizedString(@"%@ (%d)", @"name and count.  i.e.: Drama (58)"), 
+     NSLocalizedString(@"%@ (%d)", @"name and count.  i.e.: Drama (58)"),
      genre, count];
-    
+
     return cell;
 }
 

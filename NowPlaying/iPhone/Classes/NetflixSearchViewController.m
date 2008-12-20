@@ -53,37 +53,37 @@
         self.searchEngine = [NetflixSearchEngine engineWithModel:self.model
                                                         delegate:self];
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-    
+
         CGRect frame = activityIndicatorView.frame;
         frame.size.width += 4;
-        
+
         UIView* activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
         [activityView addSubview:activityIndicatorView];
-        
-        self.navigationItem.rightBarButtonItem = 
+
+        self.navigationItem.rightBarButtonItem =
         [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
     }
-    
+
     return self;
 }
 
 
 - (void) loadView {
     [super loadView];
-    
+
     CGRect rect = self.view.frame;
     rect.origin.x = 0;
     rect.origin.y = 0;
-    
+
     self.searchBar = [[[UISearchBar alloc] initWithFrame:rect] autorelease];
     searchBar.delegate = self;
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     searchBar.tintColor = [UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1];
-    
+
     [searchBar sizeToFit];
-    
+
     self.navigationItem.titleView = searchBar;
 }
 
@@ -108,7 +108,7 @@
 
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; 
+    [super didReceiveMemoryWarning];
 }
 
 
@@ -125,15 +125,15 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *CellIdentifier = @"Cell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
         //[cell addSubview:searchBar];
     }
-    
+
     // Set up the cell...
 
     return cell;
@@ -163,8 +163,8 @@
 
 - (void) reportResult:(SearchResult*) result {
     [activityIndicatorView stopAnimating];
-    
-    
+
+
 }
 
 @end

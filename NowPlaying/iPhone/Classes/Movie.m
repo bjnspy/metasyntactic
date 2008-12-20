@@ -150,18 +150,18 @@ static NSString* articles[] = {
     if (![dictionary isKindOfClass:[NSDictionary class]]) {
         return NO;
     }
-    
+
     for (id key in dictionary) {
         if (![key isKindOfClass:[NSString class]]) {
             return NO;
         }
-        
+
         id value = [dictionary objectForKey:key];
         if (![value isKindOfClass:[NSString class]]) {
             return NO;
         }
     }
-    
+
     return YES;
 }
 
@@ -211,7 +211,7 @@ static NSString* articles[] = {
                         studio:(NSString*) studio
                      directors:(NSArray*) directors
                           cast:(NSArray*) cast
-                        genres:(NSArray*) genres 
+                        genres:(NSArray*) genres
                additionalFields:(NSDictionary*) additionalFields {
     rating = [rating stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (rating.length == 0) {
@@ -379,13 +379,13 @@ static NSString* articles[] = {
     if (array.count == 0) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
-    
+
     for (Movie* movie in array) {
         [result addObject:movie.dictionary];
     }
-    
+
     return result;
 }
 
@@ -394,13 +394,13 @@ static NSString* articles[] = {
     if (array.count == 0) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
-    
+
     for (NSDictionary* dictionary in array) {
         [result addObject:[Movie movieWithDictionary:dictionary]];
     }
-    
+
     return result;
 }
 

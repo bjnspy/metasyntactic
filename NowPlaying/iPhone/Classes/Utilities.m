@@ -140,7 +140,7 @@
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     return dictionary;
 }
 

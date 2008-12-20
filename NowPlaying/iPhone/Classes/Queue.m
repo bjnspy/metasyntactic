@@ -44,7 +44,7 @@ property_definition(saved);
 
 - (id) initWithFeedKey:(NSString*) feedKey_
                   etag:(NSString*) etag_
-                  movies:(NSArray*) movies_ 
+                  movies:(NSArray*) movies_
                  saved:(NSArray*) saved_{
     if (self = [super init]) {
         self.feedKey = feedKey_;
@@ -52,7 +52,7 @@ property_definition(saved);
         self.movies = movies_;
         self.saved = saved_;
     }
-    
+
     return self;
 }
 

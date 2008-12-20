@@ -36,15 +36,15 @@
 
 - (NSArray*) movies {
     NSMutableArray* result = [NSMutableArray array];
-    
+
     if (self.model.dvdMoviesShowDVDs) {
         [result addObjectsFromArray:self.model.dvdCache.movies];
     }
-    
+
     if (self.model.dvdMoviesShowBluray) {
         [result addObjectsFromArray:self.model.blurayCache.movies];
     }
-    
+
     return result;
 }
 
@@ -52,7 +52,7 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) controller {
     if (self = [super initWithNavigationController:controller]) {
     }
-    
+
     return self;
 }
 
@@ -70,7 +70,7 @@
                                reuseIdentifier:reuseIdentifier
                                          model:self.model] autorelease];
     }
-    
+
     [cell setMovie:movie owner:self];
     return cell;
 }

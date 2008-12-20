@@ -44,7 +44,7 @@
     self.currentlyExecutingRequest = nil;
     self.nextSearchRequest = nil;
     self.gate = nil;
-    
+
     [super dealloc];
 }
 
@@ -56,23 +56,23 @@
         self.currentRequestId = 0;
         self.delegate = delegate_;
         self.gate = [[[NSCondition alloc] init] autorelease];
-        
+
         [self performSelectorInBackground:@selector(searchThreadEntryPoint) withObject:nil];
     }
-    
+
     return self;
 }
 
 
 - (BOOL) abortEarly {
     BOOL result;
-    
+
     [gate lock];
     {
         result = currentlyExecutingRequest.requestId != currentRequestId;
     }
     [gate unlock];
-    
+
     return result;
 }
 
@@ -91,14 +91,14 @@
                 while (nextSearchRequest == nil) {
                     [gate wait];
                 }
-                
+
                 self.currentlyExecutingRequest = nextSearchRequest;
                 self.nextSearchRequest = nil;
             }
             [gate unlock];
-            
+
             [self search];
-            
+
             self.currentlyExecutingRequest = nil;
         }
         [autoreleasePool release];
@@ -110,7 +110,7 @@
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
         [NSThread setThreadPriority:0.0];
-        
+
         [self searchLoop];
     }
     [autoreleasePool release];
@@ -122,7 +122,7 @@
     {
         currentRequestId++;
         self.nextSearchRequest = [SearchRequest requestWithId:currentRequestId value:string model:model];
-        
+
         [gate broadcast];
     }
     [gate unlock];
@@ -138,11 +138,11 @@
         }
     }
     [gate unlock];
-    
+
     if (abort) {
         return;
     }
-    
+
     [delegate reportResult:result];
 }
 

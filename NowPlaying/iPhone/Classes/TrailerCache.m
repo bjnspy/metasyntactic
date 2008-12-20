@@ -154,7 +154,7 @@
     Movie* movie;
     while ((movie = [self getNextMovie:movies]) != nil) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        { 
+        {
             [self downloadMovieTrailer:movie
                                  index:index
                              indexKeys:indexKeys

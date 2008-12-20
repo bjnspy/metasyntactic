@@ -194,13 +194,13 @@
         self.title = NSLocalizedString(@"Blu-ray", nil);
     } else {
         self.title = NSLocalizedString(@"DVD", nil);
-    }    
+    }
 }
 
 
 - (void) majorRefresh {
     [self setupTitle];
-    
+
     self.tableView.rowHeight = 100;
     [super majorRefresh];
 }

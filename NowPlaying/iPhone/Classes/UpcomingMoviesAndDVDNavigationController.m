@@ -31,7 +31,7 @@
 
 - (void) dealloc {
     self.dvdViewController = nil;
-    
+
     [super dealloc];
 }
 
@@ -41,14 +41,14 @@
         self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
         self.title = NSLocalizedString(@"Coming Soon", nil);
     }
-    
+
     return self;
 }
 
 
 - (void) loadView {
     [super loadView];
-    
+
     if (dvdViewController == nil) {
         self.dvdViewController = [[[UpcomingMoviesAndDVDViewController alloc] initWithNavigationController:self] autorelease];
         [self pushViewController:dvdViewController animated:NO];
@@ -62,13 +62,13 @@
             return movie;
         }
     }
-    
+
     for (Movie* movie in self.model.upcomingCache.movies) {
         if ([movie.canonicalTitle isEqual:canonicalTitle]) {
             return movie;
         }
     }
-    
+
     return [super movieForTitle:canonicalTitle];
 }
 

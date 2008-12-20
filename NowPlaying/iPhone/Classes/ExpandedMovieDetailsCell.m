@@ -130,14 +130,14 @@
     }
 
     NSString* title = NSLocalizedString(@"Release date:", nil);
-    
+
     NSString* value;
     if (movie.isNetflix) {
         value = [DateUtilities formatYear:movie.releaseDate];
     } else {
         value = [DateUtilities formatMediumDate:movie.releaseDate];
     }
-    
+
     [self addTitle:title andValue:value];
 }
 

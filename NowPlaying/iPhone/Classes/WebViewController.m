@@ -142,7 +142,7 @@
     self.toolbar = [[[UIToolbar alloc] initWithFrame:toolbarFrame] autorelease];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     toolbar.tintColor = self.navigationController.navigationBar.tintColor;
-    
+
     [self setupToolbarItems];
 }
 
@@ -151,7 +151,7 @@
     [super loadView];
 
     if (showSafariButton) {
-        self.navigationItem.rightBarButtonItem = 
+        self.navigationItem.rightBarButtonItem =
         [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Safari", nil)
                                           style:UIBarButtonItemStyleDone
                                          target:self

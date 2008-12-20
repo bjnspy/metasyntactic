@@ -68,7 +68,7 @@
     if (moviesNavigationController == nil) {
         self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return moviesNavigationController;
 }
 
@@ -77,7 +77,7 @@
     if (theatersNavigationController == nil) {
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return theatersNavigationController;
 }
 
@@ -86,7 +86,7 @@
     if (upcomingMoviesNavigationController == nil) {
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return upcomingMoviesNavigationController;
 }
 
@@ -95,7 +95,7 @@
     if (upcomingMoviesAndDVDNavigationController == nil) {
         self.upcomingMoviesAndDVDNavigationController = [[[UpcomingMoviesAndDVDNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return upcomingMoviesAndDVDNavigationController;
 }
 
@@ -104,7 +104,7 @@
     if (dvdNavigationController == nil) {
         self.dvdNavigationController = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return dvdNavigationController;
 }
 
@@ -113,7 +113,7 @@
     if (netflixNavigationController == nil) {
         self.netflixNavigationController = [[[NetflixNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return netflixNavigationController;
 }
 
@@ -122,7 +122,7 @@
     if (settingsNavigationController == nil) {
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
     }
-    
+
     return settingsNavigationController;
 }
 
@@ -235,7 +235,7 @@
 
 - (void) setTabs:(NSNumber*) animated {
     NSArray* controllers;
-    
+
     if (self.model.netflixEnabled) {
         controllers =
         [NSArray arrayWithObjects:
@@ -253,7 +253,7 @@
          [self loadDVDNavigationController],
          [self loadSettingsNavigationController], nil];
     }
-    
+
     [self setViewControllers:controllers animated:animated.boolValue];
 
     // Such an awful hack.  For some reason, changing the view controllers

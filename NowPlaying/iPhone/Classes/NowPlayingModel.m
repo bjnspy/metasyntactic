@@ -260,7 +260,7 @@ static NSString** KEYS[] = {
                       bookmarkedDVD:(id) previousBookmarkedDVD
                    bookmarkedBluray:(id) previousBookmarkedBluray
                   dvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
-                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray 
+                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray
                      netflixEnabled:(id) previousNetflixEnabled {
     if ([previousUserAddress isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
@@ -293,7 +293,7 @@ static NSString** KEYS[] = {
     if ([previousScoreProviderIndex isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setInteger:[previousScoreProviderIndex intValue] forKey:SCORE_PROVIDER_INDEX];
     }
-    
+
     if ([previousNetflixEnabled isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousNetflixEnabled boolValue] forKey:NETFLIX_ENABLED];
     }
@@ -531,7 +531,7 @@ static NSString** KEYS[] = {
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
     [[NSUserDefaults standardUserDefaults] setObject:userId forKey:NETFLIX_USER_ID];
-    [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];    
+    [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];
     [[NSUserDefaults standardUserDefaults] setObject:key forKey:NETFLIX_KEY];
 }
 
@@ -985,12 +985,12 @@ static NSString** KEYS[] = {
     if (directors.count > 0) {
         return directors;
     }
-    
+
     directors = [netflixCache directorsForMovie:movie];
     if (directors.count > 0) {
         return directors;
     }
-    
+
     return [NSArray array];
 }
 
@@ -1005,12 +1005,12 @@ static NSString** KEYS[] = {
     if (cast.count > 0) {
         return cast;
     }
-    
+
     cast = [netflixCache castForMovie:movie];
     if (cast.count > 0) {
         return cast;
     }
-    
+
     return [NSArray array];
 }
 
@@ -1049,7 +1049,7 @@ static NSString** KEYS[] = {
     if (result.length > 0) {
         return result;
     }
-    
+
     result = [netflixCache imdbAddressForMovie:movie];
     if (result.length > 0) {
         return result;
@@ -1380,7 +1380,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
         if (synopsis.length > 0) {
             [options addObject:synopsis];
         }
-        
+
         synopsis = [netflixCache synopsisForMovie:movie];
         if (synopsis.length > 0) {
             [options addObject:synopsis];

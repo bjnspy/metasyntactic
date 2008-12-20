@@ -194,19 +194,19 @@ typedef enum {
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
             cell.textColor = [ColorCache commandColor];
             cell.accessoryType = UITableViewCellAccessoryNone;
-        } 
-    } else {        
+        }
+    } else {
         if (indexPath.row == 0) {
             cell.text = NSLocalizedString(@"Log In to Netflix", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
         }
     }
-    
+
     if (cell.text.length == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryView = nil;
     }
-    
+
     NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
     NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
     UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundName]] autorelease];
@@ -215,7 +215,7 @@ typedef enum {
     selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     cell.backgroundView = backgroundView;
     cell.selectedBackgroundView = selectedBackgroundView;
-    
+
     return cell;
 }
 
@@ -226,7 +226,7 @@ typedef enum {
                                                     delegate:nil
                                            cancelButtonTitle:NSLocalizedString(@"No", nil)
                                            otherButtonTitles:NSLocalizedString(@"Yes", nil), nil] autorelease];
-    
+
     alert.delegate = self;
     [alert show];
 }
@@ -235,9 +235,9 @@ typedef enum {
 - (void)         alertView:(UIAlertView*) alertView
       clickedButtonAtIndex:(NSInteger) index {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    if (index != alertView.cancelButtonIndex) {        
+    if (index != alertView.cancelButtonIndex) {
         [self.controller setNetflixKey:nil secret:nil userId:nil];
-        
+
         [self.tableView beginUpdates];
         {
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
@@ -258,7 +258,7 @@ typedef enum {
     NetflixQueueViewController* controller =
     [[[NetflixQueueViewController alloc] initWithNavigationController:navigationController
                                                               feedKey:key] autorelease];
-    [navigationController pushViewController:controller animated:YES];    
+    [navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -268,11 +268,11 @@ typedef enum {
      [NetflixCache rentalHistoryKey],
      [NetflixCache rentalHistoryWatchedKey],
      [NetflixCache rentalHistoryReturnedKey], nil];
-    
+
     NetflixFeedsViewController* controller =
     [[[NetflixFeedsViewController alloc] initWithNavigationController:navigationController
                                                              feedKeys:keys] autorelease];
-    [navigationController pushViewController:controller animated:YES];    
+    [navigationController pushViewController:controller animated:YES];
 }
 
 

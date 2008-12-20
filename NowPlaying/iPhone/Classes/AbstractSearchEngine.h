@@ -11,14 +11,14 @@
     // only accessed from the main thread.  needs no lock.
     NowPlayingModel* model;
     id<SearchEngineDelegate> delegate;
-    
+
     // accessed from both threads.  needs lock
     NSInteger currentRequestId;
     SearchRequest* nextSearchRequest;
-    
+
     // only accessed from the background thread.  needs no lock
     SearchRequest* currentlyExecutingRequest;
-    
+
     NSCondition* gate;
 }
 

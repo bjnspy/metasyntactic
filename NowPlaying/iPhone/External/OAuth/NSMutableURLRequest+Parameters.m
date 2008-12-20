@@ -32,7 +32,7 @@
 
 - (NSArray*) parameters {
     NSString* encodedParameters;
-    
+
     if ([self.HTTPMethod isEqualToString:@"GET"] ||
         [self.HTTPMethod isEqualToString:@"DELETE"]) {
         encodedParameters = self.URL.query;
@@ -41,11 +41,11 @@
         encodedParameters = [[[NSString alloc] initWithData:self.HTTPBody
                                                    encoding:NSASCIIStringEncoding] autorelease];
     }
-    
+
     if (encodedParameters.length == 0) {
         return nil;
     }
-    
+
     NSArray* encodedParameterPairs = [encodedParameters componentsSeparatedByString:@"&"];
     NSMutableArray* requestParameters = [NSMutableArray array];
 
@@ -55,13 +55,13 @@
                                                                         value:[[encodedPairElements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [requestParameters addObject:parameter];
     }
-    
+
     return requestParameters;
 }
 
 - (void) setParameters:(NSArray*) parameters {
     NSMutableString* encodedParameterPairs = [NSMutableString string];
-    
+
     int position = 1;
     for (OARequestParameter* requestParameter in parameters) {
         [encodedParameterPairs appendString:[requestParameter URLEncodedNameValuePair]];
@@ -70,7 +70,7 @@
         }
         position++;
     }
-    
+
     if ([self.HTTPMethod isEqualToString:@"GET"] ||
         [self.HTTPMethod isEqualToString:@"DELETE"]) {
         [self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [self.URL URLStringWithoutQuery], encodedParameterPairs]]];

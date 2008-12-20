@@ -46,12 +46,12 @@
         self.navigationController = navigationController_;
         self.genre = genre_;
         self.title = genre_;
-        
+
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = genre;
         self.navigationItem.titleView = label;
     }
-    
+
     return self;
 }
 
@@ -68,7 +68,7 @@
 
 - (void) initializeData {
     NSMutableArray* array = [NSMutableArray array];
-    
+
     Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache recommendationKey]];
     for (Movie* movie in queue.movies) {
         NSArray* genres = movie.genres;
@@ -76,7 +76,7 @@
             [array addObject:movie];
         }
     }
-    
+
     self.movies = array;
 }
 
@@ -133,10 +133,10 @@
                                                        style:UITableViewStylePlain] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     Movie* movie = [movies objectAtIndex:indexPath.row];
     [cell setMovie:movie owner:self];
-    
+
     return cell;
 }
 
