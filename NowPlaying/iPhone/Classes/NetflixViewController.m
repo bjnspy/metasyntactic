@@ -64,7 +64,6 @@ typedef enum {
         self.title = NSLocalizedString(@"Netflix", nil);
 
         self.tableView.rowHeight = 41;
-        self.tableView.backgroundColor = [ColorCache netflixRed];
     }
     return self;
 }
@@ -87,6 +86,8 @@ typedef enum {
 
 - (void) majorRefreshWorker {
     self.tableView.rowHeight = 41;
+    self.tableView.backgroundColor = [ColorCache netflixRed];
+
     if ([self.tableView numberOfRowsInSection:0] == 1 &&
         self.hasAccount) {
         [self.tableView beginUpdates];
