@@ -888,15 +888,15 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (NSString*) userRatingsFile:(Movie*) movie {
-    return [[[Application netflixUserRatingsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+- (NSString*) ratingsFile:(Movie*) movie {
+    return [[[Application netflixRatingsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
                 stringByAppendingPathExtension:@"plist"];
 
 }
 
 
 - (void) updateRatings:(Movie*) movie {
-    NSString* file = [self userRatingsFile:movie];
+    NSString* file = [self ratingsFile:movie];
     if ([FileUtilities fileExists:file]) {
         return;
     }

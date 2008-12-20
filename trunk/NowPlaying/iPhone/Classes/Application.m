@@ -56,7 +56,7 @@ static NSString* netflixCastDirectory = nil;
 static NSString* netflixDirectorsDirectory = nil;
 static NSString* netflixIMDbDirectory = nil;
 static NSString* netflixSeriesDirectory = nil;
-static NSString* netflixUserRatingsDirectory = nil;
+static NSString* netflixRatingsDirectory = nil;
 
 /*
 static NSString* numbersDirectory = nil;
@@ -92,7 +92,7 @@ static NSString** directories[] = {
 &netflixDirectorsDirectory,
 &netflixIMDbDirectory,
 &netflixSeriesDirectory,
-&netflixUserRatingsDirectory,
+&netflixRatingsDirectory,
 /*
  &numbersDirectory,
  &numbersBudgetsDirectory,
@@ -243,7 +243,7 @@ static DifferenceEngine* differenceEngine = nil;
             netflixDirectorsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Directors"] retain];
             netflixIMDbDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
             netflixSeriesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Series"] retain];
-            netflixUserRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"UserRatings"] retain];
+            netflixRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Ratings"] retain];
 
             upcomingDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
@@ -398,8 +398,8 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (NSString*) netflixUserRatingsDirectory {
-    return netflixUserRatingsDirectory;
++ (NSString*) netflixRatingsDirectory {
+    return netflixRatingsDirectory;
 }
 
 
