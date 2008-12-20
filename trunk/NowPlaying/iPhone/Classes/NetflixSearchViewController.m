@@ -15,6 +15,7 @@
 #import "NetflixSearchViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixSearchEngine.h"
 
