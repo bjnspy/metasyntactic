@@ -26,7 +26,7 @@
     if (self = [super initWithFrame:frame
                               model:model_
                               movie:movie_]) {
-        CGFloat rating = [[model.netflixCache ratingForMovie:movie] floatValue];
+        CGFloat rating = [[model.netflixCache netflixRatingForMovie:movie] floatValue];
 
         for (NSInteger i = -1; i < 5; i++) {
             UIImage* image;

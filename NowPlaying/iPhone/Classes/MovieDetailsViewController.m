@@ -514,7 +514,7 @@
 
 
 - (BOOL) hasNetflixRating {
-    return [self isNetflix] && [self.model.netflixCache ratingForMovie:movie].length > 0;
+    return [self isNetflix] && [self.model.netflixCache netflixRatingForMovie:movie].length > 0;
 }
 
 

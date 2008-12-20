@@ -88,7 +88,7 @@
     [super setMovie:movie owner:owner];
 
     NSMutableString* result = [NSMutableString string];
-    NSString* rating = [model.netflixCache ratingForMovie:movie];
+    NSString* rating = [model.netflixCache netflixRatingForMovie:movie];
     if (rating.length == 0) {
         starLabel.text = @"";
         return;

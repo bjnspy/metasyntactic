@@ -594,18 +594,11 @@ static NSSet* allowableFeeds = nil;
         [self downloadQueues:feeds];
     }
 
-    [self performSelectorOnMainThread:@selector(updateDetails)
-                           withObject:nil
-                        waitUntilDone:NO];
-}
-
-
-- (void) updateDetails {
     [updateDetailsLock lock];
     {
         for (NSInteger i = self.feeds.count - 1; i >= 0; i--) {
             Feed* feed = [self.feeds objectAtIndex:i];
-
+            
             Queue* queue = [self queueForFeed:feed];
             if (queue != nil) {
                 [normalMovies addObjectsFromArray:queue.saved];
@@ -895,8 +888,34 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (void) updateUserRating:(Movie*) movie {
+- (NSString*) userRatingsFile:(Movie*) movie {
+    return [[[Application netflixUserRatingsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
+                stringByAppendingPathExtension:@"plist"];
 
+}
+
+
+- (void) updateUserRating:(Movie*) movie {
+    NSString* file = [self userRatingsFile:movie];
+    if ([FileUtilities fileExists:file]) {
+        return;
+    }
+    
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", model.netflixUserId];
+    OAMutableURLRequest* request = [self createURLRequest:address];
+    OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
+    [request setParameters:[NSArray arrayWithObject:parameter]];
+    [request prepare];
+  
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
+                                                              important:NO];
+    
+    NSString* userRating = [[[element element:@"ratings_item"] element:@"user_rating"] text];
+    if (userRating.length > 0) {
+        [FileUtilities writeObject:userRating toFile:file];
+    } else if (element != nil) {
+        [FileUtilities writeObject:@"" toFile:file];
+    }
 }
 
 
@@ -1232,13 +1251,18 @@ NSInteger orderMovies(id t1, id t2, void* context) {
 }
 
 
-- (NSString*) ratingForMovie:(Movie*) movie {
+- (NSString*) netflixRatingForMovie:(Movie*) movie {
     Movie* series = [self getSeriesForDisc:movie];
     if (series != nil) {
         movie = series;
     }
 
     return [movie.additionalFields objectForKey:average_rating_key];
+}
+
+
+- (NSString*) userRatingForMovie:(Movie*) movie {
+    return @"";
 }
 
 
