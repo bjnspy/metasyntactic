@@ -895,7 +895,7 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (void) updateUserRating:(Movie*) movie {
+- (void) updateRatings:(Movie*) movie {
     NSString* file = [self userRatingsFile:movie];
     if ([FileUtilities fileExists:file]) {
         return;
@@ -909,13 +909,24 @@ static NSSet* allowableFeeds = nil;
   
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
-    
-    NSString* userRating = [[[element element:@"ratings_item"] element:@"user_rating"] text];
-    if (userRating.length > 0) {
-        [FileUtilities writeObject:userRating toFile:file];
-    } else if (element != nil) {
-        [FileUtilities writeObject:@"" toFile:file];
+    XmlElement* ratingsItemElment = [element element:@"ratings_item"];
+    if (ratingsItemElment == nil) {
+        return;
     }
+    
+    NSString* userRating = [[ratingsItemElment element:@"user_rating"] text];
+    NSString* predictedRating = [[ratingsItemElment element:@"predicted_rating"] text];
+
+    if (userRating.length == 0) {
+        userRating = @"";
+    }
+    
+    if (predictedRating.length == 0) {
+        predictedRating = @"";
+    }
+    
+    NSArray* ratings = [NSArray arrayWithObjects:userRating, predictedRating, nil];
+    [FileUtilities writeObject:ratings toFile:file];
 }
 
 
@@ -934,7 +945,7 @@ static NSSet* allowableFeeds = nil;
             [self updateCast:movie];
             [self updateDirectors:movie];
             [self updateIMDb:movie];
-            [self updateUserRating:movie];
+            [self updateRatings:movie];
         }
 
         // we download the synopsis for both a series and a disc.
