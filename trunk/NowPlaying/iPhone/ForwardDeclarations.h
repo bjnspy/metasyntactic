@@ -14,6 +14,7 @@
 
 @protocol DataProvider;
 @protocol DataProviderUpdateDelegate;
+@protocol NetflixChangeRatingDelegate;
 @protocol NetflixModifyQueueDelegate;
 @protocol ScoreProvider;
 @protocol SearchEngineDelegate;
@@ -73,6 +74,7 @@
 @class MultiDictionary;
 @class NetflixCache;
 @class NetflixNavigationController;
+@class NetflixRatingsCell;
 @class NetflixSearchEngine;
 @class NetflixSearchViewController;
 @class NetflixViewController;

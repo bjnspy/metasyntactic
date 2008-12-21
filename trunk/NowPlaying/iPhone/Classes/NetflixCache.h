@@ -72,5 +72,8 @@
                   to:(NSArray*) movies
             delegate:(id<NetflixModifyQueueDelegate>) delegate;
 
+- (void) changeRatingTo:(NSString*) rating
+               forMovie:(Movie*) movie
+               delegate:(id<NetflixChangeRatingDelegate>) delegate;
 
 @end

@@ -58,6 +58,7 @@
 @property (retain) TappableImageView* posterImageView;
 @property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
 @property (retain) UIButton* bookmarkButton;
+@property (retain) NetflixRatingsCell* netflixRatingsCell;
 @end
 
 
@@ -77,6 +78,7 @@
 @synthesize posterImage;
 @synthesize posterImageView;
 @synthesize bookmarkButton;
+@synthesize netflixRatingsCell;
 
 - (void) dealloc {
     self.movie = nil;
@@ -93,6 +95,7 @@
     self.posterImage = nil;
     self.posterImageView = nil;
     self.bookmarkButton = nil;
+    self.netflixRatingsCell = nil;
 
     [super dealloc];
 }
@@ -379,7 +382,8 @@
     [ThreadingUtilities performSelector:@selector(downloadPoster)
                                onTarget:self
                inBackgroundWithArgument:posterDownloadLock
-                                   gate:nil visible:NO];
+                                   gate:nil
+                                visible:NO];
 }
 
 
@@ -507,9 +511,14 @@
 
 
 - (UITableViewCell*) createNetflixRatingsCell {
-    return [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
+    if (netflixRatingsCell == nil) {
+        self.netflixRatingsCell = 
+           [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
                                                 model:self.model
                                                 movie:movie] autorelease];
+    }
+    
+    return netflixRatingsCell;
 }
 
 

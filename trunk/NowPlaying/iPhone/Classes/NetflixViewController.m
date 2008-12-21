@@ -37,7 +37,6 @@
 
 typedef enum {
     SearchSection,
-    BrowseSection,
     DVDSection,
     InstantSection,
     RecommendationsSection,
@@ -63,7 +62,7 @@ typedef enum {
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Netflix", nil);
 
-        self.tableView.rowHeight = 41;
+        self.tableView.rowHeight = 46;
     }
     return self;
 }
@@ -85,7 +84,7 @@ typedef enum {
 
 
 - (void) majorRefreshWorker {
-    self.tableView.rowHeight = 41;
+    self.tableView.rowHeight = 46;
     self.tableView.backgroundColor = [ColorCache netflixRed];
 
     if ([self.tableView numberOfRowsInSection:0] == 1 &&
@@ -152,7 +151,7 @@ typedef enum {
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-    return 9;
+    return 8;
 }
 
 
@@ -172,9 +171,6 @@ typedef enum {
         if (row == SearchSection) {
             cell.text = NSLocalizedString(@"Search", nil);
             cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
-        } else if (row == BrowseSection) {
-            cell.text = NSLocalizedString(@"Browse", nil);
-            cell.image = [UIImage imageNamed:@"NetflixBrowse.png"];
         } else if (row == DVDSection) {
             cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
             cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];

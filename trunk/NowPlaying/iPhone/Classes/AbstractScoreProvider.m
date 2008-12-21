@@ -234,16 +234,15 @@
 
     [self saveScores:result hash:serverHash];
 
-    NSArray* arguments = [NSArray arrayWithObjects:result, serverHash, nil];
-    [self performSelectorOnMainThread:@selector(reportResult:) withObject:arguments waitUntilDone:NO];
+    [ThreadingUtilities performSelector:@selector(reportResult:withHash:)
+                               onTarget:self
+               onMainThreadWithArgument:result
+                               argument:serverHash];
 }
 
 
 
-- (void) reportResult:(NSArray*) arguments {
-    NSDictionary* result = [arguments objectAtIndex:0];
-    NSString* hash = [arguments objectAtIndex:1];
-
+- (void) reportResult:(NSDictionary*) result withHash:(NSString*) hash {
     self.scoresData = result;
     self.hashData = hash;
     self.movieMapData = nil;
@@ -259,21 +258,18 @@
         self.movies = movies_;
 
         NSDictionary* scores = self.scores;
-        NSArray* arguments = [NSArray arrayWithObjects:scores, movies, nil];
 
-        [ThreadingUtilities performSelector:@selector(regenerateMovieMap:)
+        [ThreadingUtilities performSelector:@selector(regenerateMap:forMovies:)
                                    onTarget:self
-                   inBackgroundWithArgument:arguments
+                   inBackgroundWithArgument:scores
+                                   argument:movies
                                        gate:movieMapLock
                                     visible:YES];
     }
 }
 
 
-- (void) regenerateMovieMap:(NSArray*) arguments {
-    NSDictionary* scores = [arguments objectAtIndex:0];
-    NSArray* movies_ = [arguments objectAtIndex:1];
-
+- (void) regenerateMap:(NSDictionary*) scores forMovies:(NSArray*) localMovies {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
     NSArray* keys = scores.allKeys;
@@ -284,7 +280,7 @@
 
     DifferenceEngine* engine = [DifferenceEngine engine];
 
-    for (Movie* movie in movies_) {
+    for (Movie* movie in localMovies) {
         NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
         NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
         if (index == NSNotFound) {
@@ -303,14 +299,16 @@
 
     [FileUtilities writeObject:result toFile:self.movieMapFile];
 
-    NSArray* resultArguments = [NSArray arrayWithObjects:result, movies_, nil];
-    [self performSelectorOnMainThread:@selector(reportMovieMap:) withObject:resultArguments waitUntilDone:NO];
+    [ThreadingUtilities performSelector:@selector(reportMap:forMovies:)
+                               onTarget:self
+               onMainThreadWithArgument:result
+                               argument:localMovies];
 }
 
 
-- (void) reportMovieMap:(NSArray*) arguments {
-    self.movieMapData = [arguments objectAtIndex:0];
-    self.movies = [arguments objectAtIndex:1];
+- (void) reportMap:(NSDictionary*) map forMovies:(NSArray*) localMovies {
+    self.movieMapData = map;
+    self.movies = localMovies;
 
     [NowPlayingAppDelegate majorRefresh:YES];
 }

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface Invocation : NSObject {
-@private
+@protected
     id target;
     SEL selector;
     id argument;

@@ -15,6 +15,7 @@
 #import "NowPlayingModel.h"
 
 #import "AbstractNavigationController.h"
+#import "AlertUtilities.h"
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
 #import "Application.h"
@@ -84,6 +85,7 @@ static NSString* BOOKMARKED_BLURAY                      = @"bookmarkedBluray";
 static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
 static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
 static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray";
+static NSString* UPCOMING_AND_DVD_HIDE_UPCOMING         = @"upcomingAndDvdMoviesHideUpcoming";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
@@ -103,7 +105,7 @@ static NSString* NETFLIX_SECRET                         = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                        = @"netflixUserId";
 
 
-static NSString** KEYS[] = {
+static NSString** ALL_KEYS[] = {
 &VERSION,
 &ALL_MOVIES_SELECTED_SEGMENT_INDEX,
 &ALL_THEATERS_SELECTED_SEGMENT_INDEX,
@@ -116,6 +118,7 @@ static NSString** KEYS[] = {
 &DVD_MOVIES_SELECTED_SEGMENT_INDEX,
 &DVD_MOVIES_HIDE_DVDS,
 &DVD_MOVIES_HIDE_BLURAY,
+&UPCOMING_AND_DVD_HIDE_UPCOMING,
 &FAVORITE_THEATERS,
 &NAVIGATION_STACK_TYPES,
 &NAVIGATION_STACK_VALUES,
@@ -132,6 +135,45 @@ static NSString** KEYS[] = {
 &NETFLIX_KEY,
 &NETFLIX_SECRET,
 &NETFLIX_USER_ID
+};
+
+
+static NSString** STRING_KEYS_TO_MIGRATE[] = {
+&USER_ADDRESS,
+&NETFLIX_KEY,
+&NETFLIX_SECRET,
+&NETFLIX_USER_ID,
+};
+
+static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
+&ALL_MOVIES_SELECTED_SEGMENT_INDEX,
+&ALL_THEATERS_SELECTED_SEGMENT_INDEX,
+&DVD_MOVIES_SELECTED_SEGMENT_INDEX,
+&SCORE_PROVIDER_INDEX,
+&SEARCH_RADIUS,
+&SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
+&UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX
+};
+
+static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
+&AUTO_UPDATE_LOCATION,
+&DVD_MOVIES_HIDE_DVDS,
+&DVD_MOVIES_HIDE_BLURAY,
+&UPCOMING_AND_DVD_HIDE_UPCOMING,
+&PRIORITIZE_BOOKMARKS,
+&USE_NORMAL_FONTS,
+&NETFLIX_ENABLED
+};
+
+static NSString** STRING_ARRAY_KEYS_TO_MIGRATE[] = {
+&BOOKMARKED_TITLES
+};
+
+static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
+&BOOKMARKED_MOVIES,
+&BOOKMARKED_UPCOMING,
+&BOOKMARKED_DVD,
+&BOOKMARKED_BLURAY
 };
 
 
@@ -231,106 +273,87 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) restoreMovieArray:(id) previousMovieArray key:(NSString*) key {
-    if (![previousMovieArray isKindOfClass:[NSArray array]]) {
-        return;
-    }
-
-    NSMutableArray* movies = [NSMutableArray array];
-    for (NSDictionary* dictionary in previousMovieArray) {
-        if ([Movie canReadDictionary:dictionary]) {
-            [movies addObject:[Movie movieWithDictionary:dictionary]];
+- (NSDictionary*) valuesToMigrate {
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    for (NSInteger i = 0; i < ArrayLength(STRING_KEYS_TO_MIGRATE); i++) {
+        NSString* key = *STRING_KEYS_TO_MIGRATE[i];
+        id previousValue = [defaults objectForKey:key];
+        if ([previousValue isKindOfClass:[NSString class]]) {
+            [result setObject:previousValue forKey:key];
         }
     }
-
-    [NowPlayingModel saveMovies:movies key:key];
+    
+    for (NSInteger i = 0; i < ArrayLength(BOOLEAN_KEYS_TO_MIGRATE); i++) {
+        NSString* key = *BOOLEAN_KEYS_TO_MIGRATE[i];
+        id previousValue = [defaults objectForKey:key];
+        if ([previousValue isKindOfClass:[NSNumber class]]) {
+            [result setObject:previousValue forKey:key];
+        }
+    }
+    
+    for (NSInteger i = 0; i < ArrayLength(INTEGER_KEYS_TO_MIGRATE); i++) {
+        NSString* key = *INTEGER_KEYS_TO_MIGRATE[i];
+        id previousValue = [defaults objectForKey:key];
+        if ([previousValue isKindOfClass:[NSNumber class]]) {
+            [result setObject:previousValue forKey:key];
+        }
+    }
+    
+    for (NSInteger i = 0; i < ArrayLength(STRING_ARRAY_KEYS_TO_MIGRATE); i++) {
+        NSString* key = *STRING_ARRAY_KEYS_TO_MIGRATE[i];
+        id previousValue = [defaults objectForKey:key];
+        if ([previousValue isKindOfClass:[NSArray class]]) {
+            NSMutableArray* elements = [NSMutableArray array];
+            for (id element in previousValue) {
+                if ([element isKindOfClass:[NSString class]]) {
+                    [elements addObject:element];
+                }
+            }
+            
+            [result setObject:elements forKey:key];
+        }
+    }
+    
+    for (NSInteger i = 0; i < ArrayLength(MOVIE_ARRAY_KEYS_TO_MIGRATE); i++) {
+        NSString* key = *MOVIE_ARRAY_KEYS_TO_MIGRATE[i];
+        id previousValue = [defaults objectForKey:key];
+        if ([previousValue isKindOfClass:[NSArray class]]) {
+            NSMutableArray* elements = [NSMutableArray array];
+            for (id element in previousValue) {
+                if ([element isKindOfClass:[NSDictionary class]] &&
+                    [Movie canReadDictionary:element]) {
+                    [elements addObject:element];
+                }
+            }
+            
+            [result setObject:elements forKey:key];
+        }
+    }
+    
+    {
+        id previousValue = [defaults objectForKey:FAVORITE_THEATERS];
+        if ([previousValue isKindOfClass:[NSArray class]]) {
+            NSMutableArray* elements = [NSMutableArray array];
+            
+            for (id element in previousValue) {
+                if ([element isKindOfClass:[NSDictionary class]] &&
+                    [FavoriteTheater canReadDictionary:element]) {
+                    [elements addObject:element];
+                }
+            }
+            
+            [result setObject:elements forKey:FAVORITE_THEATERS];
+        }
+    }
+    
+    return result;
 }
-
-
-- (void) restorePreviousUserAddress:(id) previousUserAddress
-                       searchRadius:(id) previousSearchRadius
-                 scoreProviderIndex:(id) previousScoreProviderIndex
-                 autoUpdateLocation:(id) previousAutoUpdateLocation
-                prioritizeBookmarks:(id) previousPrioritizeBookmarks
-                     useNormalFonts:(id) previousUseNormalFonts
-                   favoriteTheaters:(id) previousFavoriteTheaters
-                   bookmarkedTitles:(id) previousBookmarkedTitles
-                   bookmarkedMovies:(id) previousBookmarkedMovies
-                 bookmarkedUpcoming:(id) previousBookmarkedUpcoming
-                      bookmarkedDVD:(id) previousBookmarkedDVD
-                   bookmarkedBluray:(id) previousBookmarkedBluray
-                  dvdMoviesHideDVDs:(id) previousDvdMoviesHideDVDs
-                dvdMoviesHideBluray:(id) previousDvdMoviesHideBluray
-                     netflixEnabled:(id) previousNetflixEnabled {
-    if ([previousUserAddress isKindOfClass:[NSString class]]) {
-        [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
-    }
-
-    if ([previousSearchRadius isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setInteger:[previousSearchRadius intValue] forKey:SEARCH_RADIUS];
-    }
-
-    if ([previousAutoUpdateLocation isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];
-    }
-
-    if ([previousPrioritizeBookmarks isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:[previousPrioritizeBookmarks boolValue] forKey:PRIORITIZE_BOOKMARKS];
-    }
-
-    if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:[previousUseNormalFonts boolValue] forKey:USE_NORMAL_FONTS];
-    }
-
-    if ([previousDvdMoviesHideDVDs isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideDVDs boolValue] forKey:DVD_MOVIES_HIDE_DVDS];
-    }
-
-    if ([previousDvdMoviesHideBluray isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:[previousDvdMoviesHideBluray boolValue] forKey:DVD_MOVIES_HIDE_BLURAY];
-    }
-
-    if ([previousScoreProviderIndex isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setInteger:[previousScoreProviderIndex intValue] forKey:SCORE_PROVIDER_INDEX];
-    }
-
-    if ([previousNetflixEnabled isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:[previousNetflixEnabled boolValue] forKey:NETFLIX_ENABLED];
-    }
-
-    if ([previousBookmarkedTitles isKindOfClass:[NSArray class]]) {
-        NSMutableSet* bookmarkedTitles = [NSMutableSet set];
-        for (id previousTitle in previousBookmarkedTitles) {
-            if ([previousTitle isKindOfClass:[NSString class]]) {
-                [bookmarkedTitles addObject:previousTitle];
-            }
-        }
-        [NowPlayingModel saveBookmarkedTitles:bookmarkedTitles];
-    }
-
-    [self restoreMovieArray:previousBookmarkedMovies key:BOOKMARKED_MOVIES];
-    [self restoreMovieArray:previousBookmarkedUpcoming key:BOOKMARKED_UPCOMING];
-    [self restoreMovieArray:previousBookmarkedDVD key:BOOKMARKED_DVD];
-    [self restoreMovieArray:previousBookmarkedBluray key:BOOKMARKED_BLURAY];
-
-    if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
-        NSMutableArray* favoriteTheaters = [NSMutableArray array];
-
-        for (id previousTheater in previousFavoriteTheaters) {
-            if (![previousTheater isKindOfClass:[NSDictionary class]]) {
-                continue;
-            }
-
-            if (![FavoriteTheater canReadDictionary:previousTheater]) {
-                continue;
-            }
-
-            FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:previousTheater];
-            [favoriteTheaters addObject:theater];
-        }
-
-        [NowPlayingModel saveFavoriteTheaters:favoriteTheaters];
-    }
+    
+    
+- (void) synchronize {
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -339,52 +362,28 @@ static NSString** KEYS[] = {
 
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
     if (version == nil || ![persistenceVersion isEqual:version]) {
-        id previousUserAddress = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ADDRESS];
-        id previousSearchRadius = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_RADIUS];
-        id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
-        id previousPrioritizeBookmarks = [[NSUserDefaults standardUserDefaults] objectForKey:PRIORITIZE_BOOKMARKS];
-        id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
-        id previousBookmarkedTitles = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_TITLES];
-        id previousBookmarkedMovies = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_MOVIES];
-        id previousBookmarkedUpcoming = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_UPCOMING];
-        id previousBookmarkedDVD = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_DVD];
-        id previousBookmarkedBluray = [[NSUserDefaults standardUserDefaults] objectForKey:BOOKMARKED_BLURAY];
-        id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
-        id previousDvdMoviesHideDVDs = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_DVDS];
-        id previousDvdMoviesHideBluray = [[NSUserDefaults standardUserDefaults] objectForKey:DVD_MOVIES_HIDE_BLURAY];
-        id previousScoreProviderIndex = [[NSUserDefaults standardUserDefaults] objectForKey:SCORE_PROVIDER_INDEX];
-        id previousNetflixEnabled = [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_ENABLED];
-
-        for (int i = 0; i < ArrayLength(KEYS); i++) {
-            NSString** key = KEYS[i];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
+        // First, capture any preferences that we can safely migrate
+        NSDictionary* currentValues = [self valuesToMigrate];
+        
+        // Now, wipe out all keys
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        for (int i = 0; i < ArrayLength(ALL_KEYS); i++) {
+            NSString* key = *ALL_KEYS[i];
+            [defaults removeObjectForKey:key];
         }
 
+        // And delete and stored state
         [Application resetDirectories];
 
-        [self restorePreviousUserAddress:previousUserAddress
-                            searchRadius:previousSearchRadius
-                      scoreProviderIndex:previousScoreProviderIndex
-                      autoUpdateLocation:previousAutoUpdateLocation
-                     prioritizeBookmarks:previousPrioritizeBookmarks
-                          useNormalFonts:previousUseNormalFonts
-                        favoriteTheaters:previousFavoriteTheaters
-                        bookmarkedTitles:previousBookmarkedTitles
-                        bookmarkedMovies:previousBookmarkedMovies
-                      bookmarkedUpcoming:previousBookmarkedUpcoming
-                           bookmarkedDVD:previousBookmarkedDVD
-                        bookmarkedBluray:previousBookmarkedBluray
-                       dvdMoviesHideDVDs:previousDvdMoviesHideDVDs
-                     dvdMoviesHideBluray:previousDvdMoviesHideBluray
-                          netflixEnabled:previousNetflixEnabled];
+        // Now restore the saved preferences.
+        for (NSString* key in currentValues) {
+            [defaults setObject:[currentValues objectForKey:key] forKey:key];
+        }
 
+        // Mark that we updated successfully, and flush to disc.
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
+        [self synchronize];
     }
-}
-
-
-- (void) synchronize {
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -426,13 +425,7 @@ static NSString** KEYS[] = {
      [UIDevice currentDevice].localizedModel,
      [LocaleUtilities displayCountry]];
 
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:warning
-                                                    delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                           otherButtonTitles:nil] autorelease];
-
-    [alert show];
+    [AlertUtilities showOkAlert:warning];
 }
 
 
@@ -689,6 +682,16 @@ static NSString** KEYS[] = {
 
 - (void) setDvdMoviesShowBluray:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_MOVIES_HIDE_BLURAY];
+}
+
+
+- (BOOL) upcomingAndDVDShowUpcoming {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_AND_DVD_HIDE_UPCOMING];
+}
+
+
+- (void) setUpcomingAndDVDShowUpcoming:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:UPCOMING_AND_DVD_HIDE_UPCOMING];
 }
 
 
@@ -1527,6 +1530,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
                       (self.prioritizeBookmarks ? @"yes" : @"no"),
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
+    
+    if (self.netflixEnabled) {
+        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@", self.netflixUserId, self.netflixKey, self.netflixSecret];
+    }
 
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {

@@ -233,6 +233,10 @@
 		74E17FC90E95FEFE00F8D0D3 /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC40E95FEFE00F8D0D3 /* ExtendableBuilder.m */; };
 		74E17FCA0E95FEFE00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC60E95FEFE00F8D0D3 /* MethodDescriptor.m */; };
 		74E17FCB0E95FEFE00F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */; };
+		74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */; };
+		74E62FDE0EFD7C00002EE26B /* Invocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E62FDD0EFD7C00002EE26B /* Invocation2.m */; };
+		74E6313E0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */; };
+		74E631C30EFDCE5D002EE26B /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E631C20EFDCE5D002EE26B /* AlertUtilities.m */; };
 		74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */; };
 		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
@@ -770,6 +774,15 @@
 		74E17FC60E95FEFE00F8D0D3 /* MethodDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodDescriptor.m; sourceTree = "<group>"; };
 		74E17FC70E95FEFE00F8D0D3 /* ServiceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDescriptor.h; sourceTree = "<group>"; };
 		74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceDescriptor.m; sourceTree = "<group>"; };
+		74E62FBC0EFD78F9002EE26B /* BackgroundInvocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation2.h; sourceTree = "<group>"; };
+		74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
+		74E62FDC0EFD7C00002EE26B /* Invocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation2.h; sourceTree = "<group>"; };
+		74E62FDD0EFD7C00002EE26B /* Invocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation2.m; sourceTree = "<group>"; };
+		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
+		74E6313C0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingAndDVDFilterViewController.h; sourceTree = "<group>"; };
+		74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingAndDVDFilterViewController.m; sourceTree = "<group>"; };
+		74E631C10EFDCE5D002EE26B /* AlertUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtilities.h; sourceTree = "<group>"; };
+		74E631C20EFDCE5D002EE26B /* AlertUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtilities.m; sourceTree = "<group>"; };
 		74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityMutex.h; sourceTree = "<group>"; };
 		74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
 		74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
@@ -1083,6 +1096,8 @@
 				74166B0D0EC94A5700FFD29A /* LocationManager.m */,
 				74E0300D0EF4A7E900B2D2BA /* Base64.h */,
 				74E0300E0EF4A7E900B2D2BA /* Base64.m */,
+				74E631C10EFDCE5D002EE26B /* AlertUtilities.h */,
+				74E631C20EFDCE5D002EE26B /* AlertUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1396,6 +1411,10 @@
 				747AB7AA0EB956DC002438D0 /* DVDViewController.m */,
 				747DA9350EF9A9040066B881 /* UpcomingAndDVDViewController.h */,
 				747DA9360EF9A9040066B881 /* UpcomingAndDVDViewController.m */,
+				74FF70B90EC9710600B0D534 /* DVDFilterViewController.h */,
+				74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */,
+				74E6313C0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.h */,
+				74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */,
 			);
 			name = DVD;
 			sourceTree = "<group>";
@@ -1404,6 +1423,7 @@
 			isa = PBXGroup;
 			children = (
 				747DA5530EF88E180066B881 /* NetflixModifyQueueDelegate.h */,
+				74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */,
 				7400EE890EF57C1100058CDD /* NetflixCache.h */,
 				7400EE8A0EF57C1100058CDD /* NetflixCache.m */,
 				747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */,
@@ -1506,8 +1526,6 @@
 				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
 				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
 				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
-				74FF70B90EC9710600B0D534 /* DVDFilterViewController.h */,
-				74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */,
 				748F1D3D0EB513E100DEB5BB /* ScoreProviderViewController.h */,
 				748F1D3E0EB513E100DEB5BB /* ScoreProviderViewController.m */,
 			);
@@ -1659,8 +1677,12 @@
 			children = (
 				740246770E785B0000ECE1B4 /* Invocation.h */,
 				740246780E785B0000ECE1B4 /* Invocation.m */,
+				74E62FDC0EFD7C00002EE26B /* Invocation2.h */,
+				74E62FDD0EFD7C00002EE26B /* Invocation2.m */,
 				740246600E785A9000ECE1B4 /* BackgroundInvocation.h */,
 				740246610E785A9000ECE1B4 /* BackgroundInvocation.m */,
+				74E62FBC0EFD78F9002EE26B /* BackgroundInvocation2.h */,
+				74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */,
 				749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */,
 				749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */,
 				74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */,
@@ -2109,6 +2131,10 @@
 				74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */,
 				741649000EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m in Sources */,
 				7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */,
+				74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */,
+				74E62FDE0EFD7C00002EE26B /* Invocation2.m in Sources */,
+				74E6313E0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m in Sources */,
+				74E631C30EFDCE5D002EE26B /* AlertUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

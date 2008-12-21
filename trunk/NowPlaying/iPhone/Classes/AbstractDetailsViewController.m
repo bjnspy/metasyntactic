@@ -15,6 +15,7 @@
 #import "AbstractDetailsViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "AlertUtilities.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
 #import "NowPlayingModel.h"
@@ -205,13 +206,7 @@
 
 
 - (void) reportError:(NSString*) error {
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:error
-                                                    delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                           otherButtonTitles:nil] autorelease];
-
-    [alert show];
+    [AlertUtilities showOkAlert:error];
 }
 
 

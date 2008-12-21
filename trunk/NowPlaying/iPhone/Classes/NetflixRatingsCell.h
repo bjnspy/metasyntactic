@@ -7,8 +7,10 @@
 //
 
 #import "AbstractMovieDetailsCell.h"
+#import "NetflixChangeRatingDelegate.h"
+#import "TappableImageViewDelegate.h"
 
-@interface NetflixRatingsCell : AbstractMovieDetailsCell {
+@interface NetflixRatingsCell : AbstractMovieDetailsCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
 }
 
 - (id) initWithFrame:(CGRect) frame

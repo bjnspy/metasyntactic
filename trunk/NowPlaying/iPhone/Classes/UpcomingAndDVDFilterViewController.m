@@ -12,24 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "DVDFilterViewController.h"
+#import "UpcomingAndDVDFilterViewController.h"
 
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "SettingsNavigationController.h"
 
-@interface DVDFilterViewController()
+@interface UpcomingAndDVDFilterViewController()
 @property (assign) AbstractNavigationController* navigationController;
 @end
 
 
-@implementation DVDFilterViewController
+@implementation UpcomingAndDVDFilterViewController
 
 @synthesize navigationController;
 
 - (void) dealloc {
     self.navigationController = nil;
-
+    
     [super dealloc];
 }
 
@@ -38,8 +38,9 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Settings", nil);
-    }
 
+    }
+    
     return self;
 }
 
@@ -55,29 +56,45 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+    return 2;
 }
 
 
 - (NSInteger) tableView:(UITableView*) tableView
   numberOfRowsInSection:(NSInteger) section {
-    return 2;
+    if (section == 0) {
+        return 2;
+    } else {
+        return 1;
+    }
 }
 
 
 - (void) setCheckmarkForCell:(UITableViewCell*) cell
-                       atRow:(NSInteger) row {
+                 atIndexPath:(NSIndexPath*) indexPath {
     cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            if (self.model.dvdMoviesShowDVDs) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+        } else if (indexPath.row == 1) {
+            if (self.model.dvdMoviesShowBluray) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+        } 
+    } else {
+        if (self.model.upcomingAndDVDShowUpcoming) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
+}
 
-    if (row == 0) {
-        if (self.model.dvdMoviesShowDVDs) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-    } else if (row == 1) {
-        if (self.model.dvdMoviesShowBluray) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-    } 
+
+- (void) setCheckmarkForIndexPath:(NSIndexPath*) indexPath {
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self setCheckmarkForCell:cell atIndexPath:indexPath];
 }
 
 
@@ -88,15 +105,15 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-
+    
     if (indexPath.row == 0) {
         cell.text = NSLocalizedString(@"DVD", nil);
     } else if (indexPath.row == 1) {
         cell.text = NSLocalizedString(@"Blu-ray", nil);
     }
-
-    [self setCheckmarkForCell:cell atRow:indexPath.row];
-
+    
+    [self setCheckmarkForCell:cell atIndexPath:indexPath];
+    
     return cell;
 }
 
@@ -104,20 +121,17 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
     [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
-
+    
     if (selectPath.row == 0) {
         [self.model setDvdMoviesShowDVDs:!self.model.dvdMoviesShowDVDs];
     } else {
         [self.model setDvdMoviesShowBluray:!self.model.dvdMoviesShowBluray];
     }
-
-    for (int i = 0; i <= 1; i++) {
-        NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
-        UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
-
-        [self setCheckmarkForCell:cell atRow:i];
-    }
-
+    
+    [self setCheckmarkForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    [self setCheckmarkForIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    [self setCheckmarkForIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    
     [NowPlayingAppDelegate majorRefresh:YES];
 }
 
