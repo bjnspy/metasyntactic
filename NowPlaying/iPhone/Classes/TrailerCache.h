@@ -16,7 +16,13 @@
 
 @interface TrailerCache : AbstractCache {
 @private
+    LinkedSet* moviesWithoutTrailers;
+    LinkedSet* moviesWithTrailers;
     LinkedSet* prioritizedMovies;
+    
+    // only accessed from background thread
+    NSDictionary* index;
+    DifferenceEngine* engine;
 }
 
 + (TrailerCache*) cacheWithModel:(NowPlayingModel*) model;

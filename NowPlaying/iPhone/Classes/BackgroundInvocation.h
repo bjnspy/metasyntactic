@@ -16,20 +16,20 @@
 
 @interface BackgroundInvocation : Invocation {
 @protected
-    NSLock* gate;
+    id<NSLocking> gate;
     BOOL visible;
 }
 
 - (id) initWithTarget:(id) target
              selector:(SEL) selector
              argument:(id) argument
-                 gate:(NSLock*) gate
+                 gate:(id<NSLocking>) gate
               visible:(BOOL) visible;
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
                                       argument:(id) argument
-                                          gate:(NSLock*) gate
+                                          gate:(id<NSLocking>) gate
                                        visible:(BOOL) visible;
 
 @end
