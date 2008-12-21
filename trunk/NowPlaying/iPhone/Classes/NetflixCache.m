@@ -1174,12 +1174,12 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     OARequestParameter* parameter1 = [OARequestParameter parameterWithName:@"method" value:@"PUT"];
     OARequestParameter* parameter2 = [OARequestParameter parameterWithName:@"rating" value:netflixRating];
     [request setParameters:[NSArray arrayWithObjects:parameter1, parameter2, nil]];
-    
+
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-    
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
@@ -1187,10 +1187,10 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
         if (message.length == 0) {
             message = NSLocalizedString(@"An unknown error occurred.", nil);
         }
-        
+
         return message;
     }
-    
+
     return nil;
 }
 
