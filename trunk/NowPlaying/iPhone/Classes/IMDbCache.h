@@ -16,6 +16,7 @@
 
 @interface IMDbCache : AbstractCache {
 @private
+    LinkedSet* normalMovies;
     LinkedSet* prioritizedMovies;
 }
 

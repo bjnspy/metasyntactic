@@ -33,15 +33,15 @@ static NSMutableArray* lowPriorityOperations;
         condition = [[NSCondition alloc] init];
         highPriorityOperations = [[NSMutableArray alloc] init];
         lowPriorityOperations = [[NSMutableArray alloc] init];
-
+        
         NSThread* highPriorityThread = [[NSThread alloc] initWithTarget:[ThreadingUtilities class]
                                                                selector:@selector(run:)
                                                                  object:highPriorityOperations];
-
+        
         NSThread* lowPriorityThread = [[NSThread alloc] initWithTarget:[ThreadingUtilities class]
-                                                               selector:@selector(run:)
-                                                                 object:lowPriorityOperations];
-
+                                                              selector:@selector(run:)
+                                                                object:lowPriorityOperations];
+        
         [highPriorityThread start];
         [lowPriorityThread start];
     }
@@ -50,18 +50,18 @@ static NSMutableArray* lowPriorityOperations;
 
 + (BackgroundInvocation*) extractNextOperation:(NSMutableArray*) operations {
     BackgroundInvocation* invocation = nil;
-
+    
     [condition lock];
     {
         while (operations.count == 0) {
             [condition wait];
         }
-
+        
         invocation = [[[operations objectAtIndex:0] retain] autorelease];
         [operations removeObjectAtIndex:0];
     }
     [condition unlock];
-
+    
     return invocation;
 }
 
@@ -89,7 +89,7 @@ static NSMutableArray* lowPriorityOperations;
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             BackgroundInvocation* invocation = [self extractNextOperation:operations];
-
+            
             [self lock:operations];
             {
                 [invocation run];
@@ -126,7 +126,7 @@ static NSMutableArray* lowPriorityOperations;
         } else {
             [lowPriorityOperations addObject:invocation];
         }
-
+        
         [condition broadcast];
     }
     [condition unlock];
@@ -135,16 +135,16 @@ static NSMutableArray* lowPriorityOperations;
 
 + (void)       performSelector:(SEL) selector
                       onTarget:(id) target
-     inBackgroundWithArgument:(id) argument1
-                     argument:(id) argument2
-                          gate:(NSLock*) gate
+      inBackgroundWithArgument:(id) argument1
+                      argument:(id) argument2
+                          gate:(id<NSLocking>) gate
                        visible:(BOOL) visible {
     BackgroundInvocation2* invocation = [BackgroundInvocation2 invocationWithTarget:target
-                                                                         selector:selector
-                                                                         argument:argument1
-                                                                          argument:argument2
-                                                                             gate:gate
-                                                                          visible:visible];
+                                                                           selector:selector
+                                                                           argument:argument1
+                                                                           argument:argument2
+                                                                               gate:gate
+                                                                            visible:visible];
     [invocation performSelectorInBackground:@selector(run) withObject:nil];
 }
 
@@ -152,7 +152,7 @@ static NSMutableArray* lowPriorityOperations;
 + (void)       performSelector:(SEL) selector
                       onTarget:(id) target
       inBackgroundWithArgument:(id) argument
-                          gate:(NSLock*) gate
+                          gate:(id<NSLocking>) gate
                        visible:(BOOL) visible {
     BackgroundInvocation* invocation = [BackgroundInvocation invocationWithTarget:target
                                                                          selector:selector
@@ -165,7 +165,7 @@ static NSMutableArray* lowPriorityOperations;
 
 + (void) performSelector:(SEL) selector
                 onTarget:(id) target
-    inBackgroundWithGate:(NSLock*) gate
+    inBackgroundWithGate:(id<NSLocking>) gate
                  visible:(BOOL) visible {
     [self performSelector:selector
                  onTarget:target
@@ -185,7 +185,7 @@ onMainThreadWithArgument:(id) argument {
 + (void) performSelector:(SEL) selector
                 onTarget:(id) target
 onMainThreadWithArgument:(id) argument1
-               argument:(id) argument2 {
+                argument:(id) argument2 {
     Invocation2* invocation = [Invocation2 invocationWithTarget:target selector:selector argument:argument1 argument:argument2];
     [invocation performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
 }

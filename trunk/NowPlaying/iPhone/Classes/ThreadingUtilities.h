@@ -19,18 +19,18 @@
                  onTarget:(id) target
  inBackgroundWithArgument:(id) argument1
                  argument:(id) argument2
-                     gate:(NSLock*) gate
+                     gate:(id<NSLocking>) gate
                   visible:(BOOL) visible;
 
 + (void) performSelector:(SEL) selector
                 onTarget:(id) target
 inBackgroundWithArgument:(id) argument
-                    gate:(NSLock*) gate
+                    gate:(id<NSLocking>) gate
                  visible:(BOOL) visible;
 
 + (void) performSelector:(SEL) selector
                 onTarget:(id) target
-    inBackgroundWithGate:(NSLock*) gate
+    inBackgroundWithGate:(id<NSLocking>) gate
                  visible:(BOOL) visible;
 
 + (void) performSelector:(SEL) selector

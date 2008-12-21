@@ -17,7 +17,7 @@
 #import "GlobalActivityIndicator.h"
 
 @interface BackgroundInvocation()
-@property (retain) NSLock* gate;
+@property (retain) id<NSLocking> gate;
 @property BOOL visible;
 @end
 
@@ -38,7 +38,7 @@
 - (id) initWithTarget:(id) target_
              selector:(SEL) selector_
              argument:(id) argument_
-                 gate:(NSLock*) gate_
+                 gate:(id<NSLocking>) gate_
               visible:(BOOL) visible_ {
     if (self = [super initWithTarget:target_ selector:selector_ argument:argument_]) {
         self.gate = gate_;
@@ -52,7 +52,7 @@
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
                                       argument:(id) argument
-                                          gate:(NSLock*) gate
+                                          gate:(id<NSLocking>) gate
                                        visible:(BOOL) visible {
     return [[[BackgroundInvocation alloc] initWithTarget:target
                                                 selector:selector
