@@ -14,7 +14,7 @@
 
 @interface AbstractCache : NSObject {
 @protected
-    NSCondition* gate;
+    NSLock* gate;
     NowPlayingModel* model;
 }
 

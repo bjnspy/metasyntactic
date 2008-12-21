@@ -18,7 +18,7 @@
 
 @interface AbstractCache()
 @property (retain) NowPlayingModel* model;
-@property (retain) NSCondition* gate;
+@property (retain) NSLock* gate;
 @end
 
 
@@ -38,7 +38,7 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
-        self.gate = [[[NSCondition alloc] init] autorelease];
+        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;
