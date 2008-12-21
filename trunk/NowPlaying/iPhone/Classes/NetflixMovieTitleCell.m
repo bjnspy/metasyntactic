@@ -104,7 +104,7 @@
         userRating = NO;
         rating = [model.netflixCache netflixRatingForMovie:movie];
     }
-    
+
     if (rating.length == 0) {
         starLabel.text = @"";
         return;

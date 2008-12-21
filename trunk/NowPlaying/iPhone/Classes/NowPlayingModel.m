@@ -276,7 +276,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (NSDictionary*) valuesToMigrate {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    
+
     for (NSInteger i = 0; i < ArrayLength(STRING_KEYS_TO_MIGRATE); i++) {
         NSString* key = *STRING_KEYS_TO_MIGRATE[i];
         id previousValue = [defaults objectForKey:key];
@@ -284,7 +284,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             [result setObject:previousValue forKey:key];
         }
     }
-    
+
     for (NSInteger i = 0; i < ArrayLength(BOOLEAN_KEYS_TO_MIGRATE); i++) {
         NSString* key = *BOOLEAN_KEYS_TO_MIGRATE[i];
         id previousValue = [defaults objectForKey:key];
@@ -292,7 +292,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             [result setObject:previousValue forKey:key];
         }
     }
-    
+
     for (NSInteger i = 0; i < ArrayLength(INTEGER_KEYS_TO_MIGRATE); i++) {
         NSString* key = *INTEGER_KEYS_TO_MIGRATE[i];
         id previousValue = [defaults objectForKey:key];
@@ -300,7 +300,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             [result setObject:previousValue forKey:key];
         }
     }
-    
+
     for (NSInteger i = 0; i < ArrayLength(STRING_ARRAY_KEYS_TO_MIGRATE); i++) {
         NSString* key = *STRING_ARRAY_KEYS_TO_MIGRATE[i];
         id previousValue = [defaults objectForKey:key];
@@ -311,11 +311,11 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
                     [elements addObject:element];
                 }
             }
-            
+
             [result setObject:elements forKey:key];
         }
     }
-    
+
     for (NSInteger i = 0; i < ArrayLength(MOVIE_ARRAY_KEYS_TO_MIGRATE); i++) {
         NSString* key = *MOVIE_ARRAY_KEYS_TO_MIGRATE[i];
         id previousValue = [defaults objectForKey:key];
@@ -327,31 +327,31 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
                     [elements addObject:element];
                 }
             }
-            
+
             [result setObject:elements forKey:key];
         }
     }
-    
+
     {
         id previousValue = [defaults objectForKey:FAVORITE_THEATERS];
         if ([previousValue isKindOfClass:[NSArray class]]) {
             NSMutableArray* elements = [NSMutableArray array];
-            
+
             for (id element in previousValue) {
                 if ([element isKindOfClass:[NSDictionary class]] &&
                     [FavoriteTheater canReadDictionary:element]) {
                     [elements addObject:element];
                 }
             }
-            
+
             [result setObject:elements forKey:FAVORITE_THEATERS];
         }
     }
-    
+
     return result;
 }
-    
-    
+
+
 - (void) synchronize {
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -364,7 +364,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     if (version == nil || ![persistenceVersion isEqual:version]) {
         // First, capture any preferences that we can safely migrate
         NSDictionary* currentValues = [self valuesToMigrate];
-        
+
         // Now, wipe out all keys
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         for (int i = 0; i < ArrayLength(ALL_KEYS); i++) {
@@ -1530,7 +1530,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
                       (self.prioritizeBookmarks ? @"yes" : @"no"),
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
-    
+
     if (self.netflixEnabled) {
         body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@", self.netflixUserId, self.netflixKey, self.netflixSecret];
     }

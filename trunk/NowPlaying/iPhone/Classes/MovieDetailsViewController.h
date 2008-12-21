@@ -44,7 +44,7 @@
     BOOL visible;
 
     UIButton* bookmarkButton;
-    
+
     NetflixRatingsCell* netflixRatingsCell;
 }
 

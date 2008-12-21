@@ -512,12 +512,12 @@
 
 - (UITableViewCell*) createNetflixRatingsCell {
     if (netflixRatingsCell == nil) {
-        self.netflixRatingsCell = 
+        self.netflixRatingsCell =
            [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
                                                 model:self.model
                                                 movie:movie] autorelease];
     }
-    
+
     return netflixRatingsCell;
 }
 

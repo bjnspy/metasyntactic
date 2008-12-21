@@ -118,7 +118,7 @@ static NSSet* allowableFeeds = nil;
     self.searchMovies = nil;
     self.prioritizedMovies = nil;
     self.updateDetailsLock = nil;
-    
+
     [super dealloc];
 }
 
@@ -126,18 +126,18 @@ static NSSet* allowableFeeds = nil;
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
         self.queues = [NSMutableDictionary dictionary];
-        
+
         self.normalMovies = [LinkedSet set];
         self.searchMovies = [LinkedSet set];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.updateDetailsLock = [[[NSCondition alloc] init] autorelease];
-        
+
         [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundEntryPoint)
                                    onTarget:self
                        inBackgroundWithGate:nil
                                     visible:NO];
     }
-    
+
     return self;
 }
 
@@ -178,7 +178,7 @@ static NSSet* allowableFeeds = nil;
     if (array.count == 0) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dictionary in array) {
         [result addObject:[Feed feedWithDictionary:dictionary]];
@@ -191,7 +191,7 @@ static NSSet* allowableFeeds = nil;
     if (feedsData == nil) {
         self.feedsData = [self loadFeeds];
     }
-    
+
     return feedsData;
 }
 
@@ -214,7 +214,7 @@ static NSSet* allowableFeeds = nil;
     if (dictionary.count == 0) {
         return nil;
     }
-    
+
     return [Queue queueWithDictionary:dictionary];
 }
 
@@ -223,7 +223,7 @@ static NSSet* allowableFeeds = nil;
     if (feed == nil) {
         return nil;
     }
-    
+
     Queue* queue = [queues objectForKey:feed.key];
     if (queue == nil) {
         queue = [self loadQueue:feed];
@@ -239,7 +239,7 @@ static NSSet* allowableFeeds = nil;
     [Application resetNetflixDirectories];
     self.feedsData = nil;
     self.queues = nil;
-    
+
     [NowPlayingAppDelegate majorRefresh:YES];
 }
 
@@ -249,7 +249,7 @@ static NSSet* allowableFeeds = nil;
         [self clear];
         return;
     }
-    
+
     [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint)
                                onTarget:self
                    inBackgroundWithGate:gate
@@ -260,16 +260,16 @@ static NSSet* allowableFeeds = nil;
 - (OAMutableURLRequest*) createURLRequest:(NSString*) address {
     OAConsumer* consumer = [OAConsumer consumerWithKey:@"83k9wpqt34hcka5bfb2kkf8s"
                                                 secret:@"GGR5uHEucN"];
-    
+
     OAToken* token = [OAToken tokenWithKey:model.netflixKey
                                     secret:model.netflixSecret];
-    
+
     OAMutableURLRequest* request =
     [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
                                consumer:consumer
                                   token:token
                                   realm:nil];
-    
+
     return request;
 }
 
@@ -277,37 +277,37 @@ static NSSet* allowableFeeds = nil;
 - (NSArray*) downloadFeeds {
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/feeds", model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
-    
+
     [request prepare];
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-    
+
     NSMutableArray* feeds = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         if ([child.name isEqual:@"link"]) {
             NSString* key = [child attributeValue:@"rel"];
-            
+
             if ([allowableFeeds containsObject:key]) {
                 Feed* feed = [Feed feedWithUrl:[child attributeValue:@"href"]
                                            key:key
                                           name:[child attributeValue:@"title"]];
-                
+
                 [feeds addObject:feed];
             }
         }
     }
-    
+
     return feeds;
 }
 
 
 - (void) saveFeeds:(NSArray*) feeds {
     NSMutableArray* result = [NSMutableArray array];
-    
+
     for (Feed* feed in feeds) {
         [result addObject:feed.dictionary];
     }
-    
+
     [FileUtilities writeObject:result toFile:self.feedsFile];
 }
 
@@ -317,9 +317,9 @@ static NSSet* allowableFeeds = nil;
     if (element == nil) {
         return nil;
     }
-    
+
     NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
-    
+
     NSString* identifier = nil;
     NSString* title = nil;
     NSString* link = nil;
@@ -328,7 +328,7 @@ static NSSet* allowableFeeds = nil;
     NSString* year = nil;
     NSMutableArray* genres = [NSMutableArray array];
     BOOL save = NO;
-    
+
     for (XmlElement* child in element.children) {
         if ([@"id" isEqual:child.name]) {
             identifier = child.text;
@@ -375,7 +375,7 @@ static NSSet* allowableFeeds = nil;
             [additionalFields setObject:child.text forKey:average_rating_key];
         }
     }
-    
+
     NSDate* date = nil;
     if (year.length > 0) {
         date = [DateUtilities dateWithNaturalLanguageString:year];
@@ -393,11 +393,11 @@ static NSSet* allowableFeeds = nil;
                                          cast:nil
                                        genres:genres
                              additionalFields:additionalFields];
-    
+
     if (saved != NULL) {
         *saved = save;
     }
-    
+
     return movie;
 }
 
@@ -411,10 +411,10 @@ static NSSet* allowableFeeds = nil;
         ![@"recommendation" isEqual:element.name]) {
         return;
     }
-    
+
     BOOL save;
     Movie* movie = [self processItem:element saved:&save];
-    
+
     if (save) {
         [saved addObject:movie];
     } else {
@@ -435,12 +435,12 @@ static NSSet* allowableFeeds = nil;
     if (range.length > 0) {
         url = [NSString stringWithFormat:@"%@%@", [url substringToIndex:range.location], [url substringFromIndex:range.location + range.length]];
     }
-    
+
     NSString* address = [NSString stringWithFormat:@"%@&max_results=1", url];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
                                                            important:YES];
-    
+
     return [[element element:@"etag"] text];
 }
 
@@ -451,9 +451,9 @@ static NSSet* allowableFeeds = nil;
     if (localEtag.length == 0) {
         return YES;
     }
-    
+
     NSString* serverEtag = [self downloadEtag:feed];
-    
+
     return ![serverEtag isEqual:localEtag];
 }
 
@@ -463,23 +463,23 @@ static NSSet* allowableFeeds = nil;
     if (![self etagChanged:feed]) {
         return;
     }
-    
+
     NSRange range = [feed.url rangeOfString:@"&output=atom"];
     NSString* url = feed.url;
     if (range.length > 0) {
         url = [NSString stringWithFormat:@"%@%@", [url substringToIndex:range.location], [url substringFromIndex:range.location + range.length]];
     }
-    
+
     NSString* address = [NSString stringWithFormat:@"%@&max_results=500", url];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
                                                            important:YES];
-    
+
     NSString* etag = [[element element:@"etag"] text];
-    
+
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
-    
+
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
@@ -489,7 +489,7 @@ static NSSet* allowableFeeds = nil;
         }
         [pool release];
     }
-    
+
     if (movies.count > 0 || saved.count > 0) {
         Queue* queue = [Queue queueWithFeedKey:feed.key
                                           etag:etag
@@ -506,7 +506,7 @@ static NSSet* allowableFeeds = nil;
 - (void) reportQueue:(NSArray*) arguments {
     Queue* queue = [arguments objectAtIndex:0];
     Feed* feed = [arguments objectAtIndex:1];
-    
+
     [queues setObject:queue forKey:feed.key];
     [NowPlayingAppDelegate majorRefresh];
 }
@@ -518,7 +518,7 @@ static NSSet* allowableFeeds = nil;
     Movie* movie = [arguments objectAtIndex:2];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:3];
     NSString* error = [arguments objectAtIndex:4];
-    
+
     [delegate moveFailedWithError:error forMovie:movie inQueue:queue fromFeed:feed];
 }
 
@@ -528,32 +528,32 @@ static NSSet* allowableFeeds = nil;
     Feed* feed = [arguments objectAtIndex:1];
     Movie* movie = [arguments objectAtIndex:2];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:3];
-    
+
     [self reportQueue:arguments];
-    
+
     [delegate moveSucceededForMovie:movie inQueue:queue fromFeed:feed];
 }
 
 
 - (void) reportQueueAndError:(NSArray*) arguments {
     [self reportQueue:arguments];
-    
+
     Queue* queue = [arguments objectAtIndex:0];
     Feed* feed = [arguments objectAtIndex:1];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:2];
     NSString* error = [arguments objectAtIndex:3];
-    
+
     [delegate modifyFailedWithError:error inQueue:queue fromFeed:feed];
 }
 
 
 - (void) reportQueueAndSuccess:(NSArray*) arguments {
     [self reportQueue:arguments];
-    
+
     Queue* queue = [arguments objectAtIndex:0];
     Feed* feed = [arguments objectAtIndex:1];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:2];
-    
+
     [delegate modifySucceededInQueue:queue fromFeed:feed];
 }
 
@@ -592,22 +592,22 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (model.netflixUserId.length == 0) {
         return;
     }
-    
+
     NSArray* feeds = [self downloadFeeds];
     if (feeds.count > 0) {
         [self saveFeeds:feeds];
         [self performSelectorOnMainThread:@selector(reportFeeds:)
                                withObject:feeds
                             waitUntilDone:NO];
-        
+
         [self downloadQueues:feeds];
     }
-    
+
     [updateDetailsLock lock];
     {
         for (NSInteger i = self.feeds.count - 1; i >= 0; i--) {
             Feed* feed = [self.feeds objectAtIndex:i];
-            
+
             Queue* queue = [self queueForFeed:feed];
             if (queue != nil) {
                 [normalMovies addObjectsFromArray:queue.saved];
@@ -637,12 +637,12 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (movie.poster.length == 0) {
         return;
     }
-    
+
     NSString* path = [self posterFile:movie];
     if ([FileUtilities fileExists:path]) {
         return;
     }
-    
+
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
     if (data.length > 0) {
         [FileUtilities writeData:data toFile:path];
@@ -659,7 +659,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
 - (NSString*) cleanupSynopsis:(NSString*) synopsis {
     NSInteger index = 0;
-    
+
     NSRange range;
     while ((range = [synopsis rangeOfString:@"<a href"
                                     options:0
@@ -672,14 +672,14 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
             synopsis = [NSString stringWithFormat:@"%@%@", [synopsis substringToIndex:range.location], [synopsis substringFromIndex:closeAngleRange.location + 1]];
         }
     }
-    
-    
+
+
     index = 0;
     while ((range = [synopsis rangeOfString:@"&#x"
                                     options:0
                                       range:NSMakeRange(index, synopsis.length - index)]).length > 0) {
         NSRange semiColonRange = [synopsis rangeOfString:@";" options:0 range:NSMakeRange(range.location, synopsis.length - range.location)];
-        
+
         index = range.location + 1;
         if (semiColonRange.length > 0) {
             NSScanner* scanner = [NSScanner scannerWithString:synopsis];
@@ -693,10 +693,10 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
             }
         }
     }
-    
+
     synopsis = [Utilities stripHtmlCodes:synopsis];
     synopsis = [synopsis stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
+
     return synopsis;
 }
 
@@ -706,20 +706,20 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (address.length == 0) {
         return;
     }
-    
+
     NSString* path = [self synopsisFile:movie];
     if ([FileUtilities fileExists:path]) {
         return;
     }
-    
+
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
     NSString* synopsis = element.text;
-    
+
     synopsis = [self cleanupSynopsis:synopsis];
-    
+
     if (synopsis.length > 0) {
         [FileUtilities writeObject:synopsis toFile:path];
         [NowPlayingAppDelegate minorRefresh];
@@ -735,23 +735,23 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
 - (NSArray*) extractPeople:(XmlElement*) element {
     NSMutableArray* cast = [NSMutableArray array];
-    
+
     for (XmlElement* child in element.children) {
         if (cast.count >= 6) {
             // cap the number of actors we care about
             break;
         }
-        
+
         if (![child.name isEqual:@"person"]) {
             continue;
         }
-        
+
         NSString* name = [[child element:@"name"] text];
         if (name.length > 0) {
             [cast addObject:name];
         }
     }
-    
+
     return cast;
 }
 
@@ -761,19 +761,19 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (address.length == 0) {
         return;
     }
-    
+
     NSString* path = [self castFile:movie];
     if ([FileUtilities fileExists:path]) {
         return;
     }
-    
+
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
+
     NSArray* cast = [self extractPeople:element];
-    
+
     if (cast.count > 0) {
         [FileUtilities writeObject:cast toFile:path];
         [NowPlayingAppDelegate minorRefresh];
@@ -791,19 +791,19 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (address.length == 0) {
         return;
     }
-    
+
     NSString* path = [self directorsFile:movie];
     if ([FileUtilities fileExists:path]) {
         return;
     }
-    
+
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
+
     NSArray* directors = [self extractPeople:element];
-    
+
     if (directors.count > 0) {
         [FileUtilities writeObject:directors toFile:path];
         [NowPlayingAppDelegate minorRefresh];
@@ -819,26 +819,26 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 - (void)       updateIMDb:(Movie*) movie {
     NSString* path = [self imdbFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
-    
+
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
         if (value.length > 0) {
             // we have a real imdb value for this movie
             return;
         }
-        
+
         // we have a sentinel.  only update if it's been long enough
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
         }
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (imdbAddress == nil) {
         return;
     }
-    
+
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:path];
@@ -860,23 +860,23 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (seriesKey.length == 0) {
         return;
     }
-    
+
     NSString* file = [self seriesFile:seriesKey];
     if ([FileUtilities fileExists:file]) {
         return;
     }
-    
+
     OAMutableURLRequest* request = [self createURLRequest:seriesKey];
     [request prepare];
-    
+
     XmlElement* value = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                             important:NO];
-    
+
     Movie* series = [self processItem:value saved:NULL];
     if (series == nil) {
         return;
     }
-    
+
     [FileUtilities writeObject:series.dictionary toFile:file];
     [self updateDetails:series];
 }
@@ -892,7 +892,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (dictionary == nil) {
         return nil;
     }
-    
+
     return [Movie movieWithDictionary:dictionary];
 }
 
@@ -909,50 +909,50 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 - (NSString*) userRatingsFile:(Movie*) movie {
     return [[[Application netflixUserRatingsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
             stringByAppendingPathExtension:@"plist"];
-    
+
 }
 
 
 - (NSString*) predictedRatingsFile:(Movie*) movie {
     return [[[Application netflixPredictedRatingsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
             stringByAppendingPathExtension:@"plist"];
-    
+
 }
 
 
 - (void) updateRatings:(Movie*) movie {
     NSString* userRatingsFile = [self userRatingsFile:movie];
     NSString* predictedRatingsFile = [self predictedRatingsFile:movie];
-    
-    if ([FileUtilities fileExists:userRatingsFile] && 
+
+    if ([FileUtilities fileExists:userRatingsFile] &&
         [FileUtilities fileExists:predictedRatingsFile]) {
         return;
     }
-    
+
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
     OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
     [request setParameters:[NSArray arrayWithObject:parameter]];
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
     XmlElement* ratingsItemElment = [element element:@"ratings_item"];
     if (ratingsItemElment == nil) {
         return;
     }
-    
+
     NSString* userRating = [[ratingsItemElment element:@"user_rating"] text];
     NSString* predictedRating = [[ratingsItemElment element:@"predicted_rating"] text];
-    
+
     if (userRating.length == 0) {
         userRating = @"";
     }
-    
+
     if (predictedRating.length == 0) {
         predictedRating = @"";
     }
-    
+
     [FileUtilities writeObject:userRating toFile:userRatingsFile];
     [FileUtilities writeObject:predictedRating toFile:predictedRatingsFile];
     [NowPlayingAppDelegate minorRefresh];
@@ -963,11 +963,11 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (movie == nil) {
         return;
     }
-    
+
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     {
         [self updateSeries:movie];
-        
+
         if (![self isSeriesDisc:movie]) {
             // we don't download this stuff on a per disc basis.  only for a series.
             [self updatePoster:movie];
@@ -976,7 +976,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
             [self updateIMDb:movie];
             [self updateRatings:movie];
         }
-        
+
         // we download the synopsis for both a series and a disc.
         [self updateSynopsis:movie];
     }
@@ -988,7 +988,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (![movie isNetflix]) {
         return;
     }
-    
+
     [updateDetailsLock lock];
     {
         [prioritizedMovies addObject:movie];
@@ -1010,7 +1010,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
             }
         }
         [updateDetailsLock unlock];
-        
+
         [self updateDetails:movie];
     }
 }
@@ -1022,7 +1022,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -1030,13 +1030,13 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
 - (void) reportFeeds:(NSArray*) feeds {
     self.feedsData = feeds;
-    
+
     for (NSString* key in self.queues.allKeys) {
         if (![self feedsContainsKey:key]) {
             [self.queues removeObjectForKey:key];
         }
     }
-    
+
     [NowPlayingAppDelegate majorRefresh];
 }
 
@@ -1046,7 +1046,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
   byMovingMovieToTop:(Movie*) movie
             delegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, feed, movie, delegate, nil];
-    
+
     [ThreadingUtilities performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:arguments
@@ -1064,46 +1064,46 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     *error = nil;
     NSString* queueType = queue.isDVDQueue ? @"disc" : @"instant";
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/%@", model.netflixUserId, queueType];
-    
+
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request setHTTPMethod:@"POST"];
-    
+
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"title_ref" value:movie.identifier],
                            [OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position + 1]],
                            [OARequestParameter parameterWithName:@"etag" value:queue.etag], nil];
-    
+
     [request setParameters:parameters];
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
     if (element == nil) {
         *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
         return nil;
     }
-    
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         NSString* message = [[element element:@"message"] text];
         if (message.length == 0) {
             message = NSLocalizedString(@"An unknown error occurred.", nil);
         }
-        
+
         *error = message;
         return nil;
     }
-    
+
     NSString* etag = [[element element:@"etag"] text];
     NSMutableArray* movies = [NSMutableArray arrayWithArray:queue.movies];
     [movies removeObjectIdenticalTo:movie];
     [movies insertObject:movie atIndex:position];
-    
+
     Queue* finalQueue = [Queue queueWithFeedKey:queue.feedKey
                                            etag:etag
                                          movies:movies
                                           saved:queue.saved];
-    
+
     return finalQueue;
 }
 
@@ -1113,7 +1113,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     Feed* feed = [arguments objectAtIndex:1];
     Movie* movie = [arguments objectAtIndex:2];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:3];
-    
+
     NSString* error;
     Queue* finalQueue = [self moveMovie:movie
                              toPosition:0
@@ -1126,9 +1126,9 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
         [self performSelectorOnMainThread:@selector(reportMoveFailure:) withObject:errorArguments waitUntilDone:NO];
         return;
     }
-    
+
     [self saveQueue:finalQueue];
-    
+
     NSArray* finalArguments = [NSArray arrayWithObjects:finalQueue, feed, movie, delegate, nil];
     [self performSelectorOnMainThread:@selector(reportMoveSuccess:)
                            withObject:finalArguments
@@ -1143,7 +1143,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
                   to:(NSArray*) movies
             delegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, feed, deletedMovies, reorderedMovies, movies, delegate, nil];
-    
+
     [ThreadingUtilities performSelector:@selector(updateQueueBackgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:arguments
@@ -1153,7 +1153,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
 
 - (void) changeRatingTo:(NSString*) rating
-               forMovie:(Movie*) movie 
+               forMovie:(Movie*) movie
                delegate:(id<NetflixChangeRatingDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
     [ThreadingUtilities performSelector:@selector(changeRatingBackgroundEntryPoint:)
@@ -1165,22 +1165,22 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
 
 - (NSString*) putChangeRatingTo:(NSString*) rating
-                       forMovie:(Movie*) movie 
+                       forMovie:(Movie*) movie
                  withIdentifier:(NSString*) identifier {
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", model.netflixUserId, identifier];
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request setHTTPMethod:@"PUT"];
-    
+
     NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
     OARequestParameter* parameter1 = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
     OARequestParameter* parameter2 = [OARequestParameter parameterWithName:@"rating" value:netflixRating];
     [request setParameters:[NSArray arrayWithObjects:parameter1, parameter2, nil]];
-    
+
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-    
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
@@ -1188,31 +1188,31 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
         if (message.length == 0) {
             message = NSLocalizedString(@"An unknown error occurred.", nil);
         }
-        
+
         return message;
-    }        
-    
+    }
+
     return nil;
 }
 
 
 - (NSString*) postChangeRatingTo:(NSString*) rating
-                        forMovie:(Movie*) movie 
+                        forMovie:(Movie*) movie
                   withIdentifier:(NSString*) identifier {
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title/actual/%@", model.netflixUserId, identifier];
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request setHTTPMethod:@"POST"];
-    
+
     NSString* netflixRating = rating.length > 0 ? rating : @"no_opinion";
     OARequestParameter* parameter1 = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
     OARequestParameter* parameter2 = [OARequestParameter parameterWithName:@"rating" value:netflixRating];
     [request setParameters:[NSArray arrayWithObjects:parameter1, parameter2, nil]];
-    
+
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-    
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
@@ -1220,10 +1220,10 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
         if (message.length == 0) {
             message = NSLocalizedString(@"An unknown error occurred.", nil);
         }
-        
+
         return message;
-    }        
-    
+    }
+
     return nil;
 }
 
@@ -1233,13 +1233,13 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     // I hate the netflix API.  In order to do this, we need to first
     // test if the user already has a rating set.  If so, we will 'PUT'
     // to that rating.  Otherwise we will 'POST' to it.
-    
+
     NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/ratings/title", model.netflixUserId];
     OAMutableURLRequest* request = [self createURLRequest:address];
     OARequestParameter* parameter = [OARequestParameter parameterWithName:@"title_refs" value:movie.identifier];
     [request setParameters:[NSArray arrayWithObject:parameter]];
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
     XmlElement* ratingsItemElment = [element element:@"ratings_item"];
@@ -1247,12 +1247,12 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     if (identifier.length == 0) {
         return NSLocalizedString(@"An unknown error occurred.", nil);
     }
-    
+
     NSRange lastSlashRange = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
     identifier = [identifier substringFromIndex:lastSlashRange.location + 1];
-    
+
     XmlElement* userRatingElement = [ratingsItemElment element:@"user_rating"];
-    
+
     if (userRatingElement == nil) {
         return [self postChangeRatingTo:rating
                                forMovie:movie
@@ -1269,21 +1269,21 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     NSString* rating = [arguments objectAtIndex:0];
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
-    
+
     movie = [self promoteDiscToSeries:movie];
     NSString* userRatingsFile = [self userRatingsFile:movie];
     NSString* existingUserRating = [FileUtilities readObject:userRatingsFile];
-    
+
     // First, persist the change so that the UI picks it up
     [FileUtilities writeObject:rating toFile:userRatingsFile];
-    
+
     NSString* message = [self changeRatingTo:rating forMovieWorker:movie];
     if (message.length > 0) {
         [FileUtilities writeObject:existingUserRating toFile:userRatingsFile];
         [(id)delegate performSelectorOnMainThread:@selector(changeFailedWithError:) withObject:message waitUntilDone:NO];
-        return;        
+        return;
     }
-    
+
     [(id)delegate performSelectorOnMainThread:@selector(changeSucceeded) withObject:nil waitUntilDone:NO];
 }
 
@@ -1291,16 +1291,16 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 - (Queue*) deleteMovie:(Movie*) movie
                inQueue:(Queue*) queue
               fromFeed:(Feed*) feed
-              delegate:(id<NetflixModifyQueueDelegate>) delegate 
+              delegate:(id<NetflixModifyQueueDelegate>) delegate
                  error:(NSString**) error {
     *error = nil;
     NSString* address = movie.identifier;
-    
+
     OAMutableURLRequest* request = [self createURLRequest:address];
-    
+
     [request setHTTPMethod:@"DELETE"];
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
     NSInteger status = [[[element element:@"status"] text] intValue];
@@ -1309,18 +1309,18 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
         if (message.length == 0) {
             message = NSLocalizedString(@"An unknown error occurred.", nil);
         }
-        
+
         *error = message;
         return nil;
     }
-    
+
     // TODO: what do we do if this fails?!
     NSString* etag = [self downloadEtag:feed];
     NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
     NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
     [newMovies removeObjectIdenticalTo:movie];
     [newSaved removeObjectIdenticalTo:movie];
-    
+
     return [Queue queueWithFeedKey:feed.key etag:etag movies:newMovies saved:newSaved];
 }
 
@@ -1328,12 +1328,12 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 NSInteger orderMovies(id t1, id t2, void* context) {
     Movie* movie1 = t1;
     Movie* movie2 = t2;
-    
+
     NSArray* moviesInOrder = context;
-    
+
     NSInteger i1 = [moviesInOrder indexOfObjectIdenticalTo:movie1];
     NSInteger i2 = [moviesInOrder indexOfObjectIdenticalTo:movie2];
-    
+
     if (i1 < i2) {
         return NSOrderedAscending;
     } else if (i1 > i2) {
@@ -1351,17 +1351,17 @@ NSInteger orderMovies(id t1, id t2, void* context) {
     IdentitySet* reorderedMovies = [arguments objectAtIndex:3];
     NSArray* moviesInOrder = [arguments objectAtIndex:4];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:5];
-    
+
     Queue* finalQueue = queue;
-    
+
     for (Movie* movie in deletedMovies.allObjects) {
         NSString* error;
         Queue* resultantQueue = [self deleteMovie:movie
                                           inQueue:queue
                                          fromFeed:feed
-                                         delegate:delegate 
+                                         delegate:delegate
                                             error:&error];
-        
+
         if (resultantQueue == nil) {
             [self saveQueue:finalQueue
                    fromFeed:feed
@@ -1369,10 +1369,10 @@ NSInteger orderMovies(id t1, id t2, void* context) {
                  toDelegate:delegate];
             return;
         }
-        
+
         finalQueue = resultantQueue;
     }
-    
+
     NSArray* orderedMoviesToReorder = [reorderedMovies.allObjects sortedArrayUsingFunction:orderMovies context:moviesInOrder];
     for (Movie* movie in orderedMoviesToReorder) {
         NSString* error = nil;
@@ -1382,7 +1382,7 @@ NSInteger orderMovies(id t1, id t2, void* context) {
                                        fromFeed:feed
                                        delegate:delegate
                                           error:&error];
-        
+
         if (resultantQueue == nil) {
             [self saveQueue:finalQueue
                    fromFeed:feed
@@ -1390,10 +1390,10 @@ NSInteger orderMovies(id t1, id t2, void* context) {
                  toDelegate:delegate];
             return;
         }
-        
+
         finalQueue = resultantQueue;
     }
-    
+
     [self saveQueue:finalQueue
            fromFeed:feed
 andReportSuccessToDelegate:delegate];
@@ -1402,7 +1402,7 @@ andReportSuccessToDelegate:delegate];
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
+
     NSData* data = [FileUtilities readData:[self posterFile:movie]];
     return [UIImage imageWithData:data];
 }
@@ -1410,61 +1410,61 @@ andReportSuccessToDelegate:delegate];
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
+
     NSString* smallPosterPath = [self smallPosterFile:movie];
     NSData* smallPosterData;
-    
+
     if ([FileUtilities size:smallPosterPath] == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFile:movie]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                                 toHeight:SMALL_POSTER_HEIGHT];
-        
+
         [FileUtilities writeData:smallPosterData
                           toFile:smallPosterPath];
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-    
+
     return [UIImage imageWithData:smallPosterData];
 }
 
 
 - (NSArray*) castForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
+
     return [FileUtilities readObject:[self castFile:movie]];
 }
 
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
+
     return [FileUtilities readObject:[self directorsFile:movie]];
 }
 
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
+
     return [FileUtilities readObject:[self imdbFile:movie]];
 }
 
 
 - (NSString*) netflixRatingForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
+
     NSString* rating = [FileUtilities readObject:[self predictedRatingsFile:movie]];
     if (rating.length > 0) {
         return rating;
     }
-    
+
     return [movie.additionalFields objectForKey:average_rating_key];
 }
 
 
 - (NSString*) userRatingForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
+
     return [FileUtilities readObject:[self userRatingsFile:movie]];
 }
 
@@ -1472,14 +1472,14 @@ andReportSuccessToDelegate:delegate];
 - (NSString*) synopsisForMovie:(Movie*) movie {
     NSString* discSynopsis = [FileUtilities readObject:[self synopsisFile:movie]];
     NSString* seriesSynopsis = [FileUtilities readObject:[self synopsisFile:[self seriesForDisc:movie]]];
-    
+
     if (discSynopsis.length == 0) {
         return seriesSynopsis;
     } else {
         if (seriesSynopsis.length == 0) {
             return discSynopsis;
         }
-        
+
         return [NSString stringWithFormat:@"%@\n\n%@", discSynopsis, seriesSynopsis];
     }
 }
@@ -1491,7 +1491,7 @@ andReportSuccessToDelegate:delegate];
             return feed;
         }
     }
-    
+
     return nil;
 }
 
@@ -1518,12 +1518,12 @@ andReportSuccessToDelegate:delegate];
     } else if ([key isEqual:@"http://schemas.netflix.com/feed.recommendations"]) {
         title = NSLocalizedString(@"Recommendations", nil);
     }
-    
+
     Queue* queue = [self queueForKey:key];
     if (queue == nil || !includeCount) {
         return title;
     }
-    
+
     return [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", @"Netflix queue title and title count.  i.e: 'Instant Queue (45)'"),
             title, queue.movies.count + queue.saved.count];
 }

@@ -77,7 +77,7 @@
         if (self.model.dvdMoviesShowBluray) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-    } 
+    }
 }
 
 
