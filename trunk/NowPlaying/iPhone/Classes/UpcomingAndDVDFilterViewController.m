@@ -17,6 +17,7 @@
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "SettingsNavigationController.h"
+#import "UpcomingAndDVDFilterViewController.h"
 
 @interface UpcomingAndDVDFilterViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -106,10 +107,14 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
 
-    if (indexPath.row == 0) {
-        cell.text = NSLocalizedString(@"DVD", nil);
-    } else if (indexPath.row == 1) {
-        cell.text = NSLocalizedString(@"Blu-ray", nil);
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.text = NSLocalizedString(@"DVD", nil);
+        } else if (indexPath.row == 1) {
+            cell.text = NSLocalizedString(@"Blu-ray", nil);
+        }
+    } else {
+        cell.text = NSLocalizedString(@"Upcoming", nil);
     }
 
     [self setCheckmarkForCell:cell atIndexPath:indexPath];
@@ -122,10 +127,14 @@
       didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
     [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
 
-    if (selectPath.row == 0) {
-        [self.model setDvdMoviesShowDVDs:!self.model.dvdMoviesShowDVDs];
-    } else {
-        [self.model setDvdMoviesShowBluray:!self.model.dvdMoviesShowBluray];
+    if (selectPath.section == 0) {
+        if (selectPath.row == 0) {
+            [self.model setDvdMoviesShowDVDs:!self.model.dvdMoviesShowDVDs];
+        } else {
+            [self.model setDvdMoviesShowBluray:!self.model.dvdMoviesShowBluray];
+        }
+    } else { 
+        [self.model setUpcomingAndDVDShowUpcoming:!self.model.upcomingAndDVDShowUpcoming];
     }
 
     [self setCheckmarkForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];

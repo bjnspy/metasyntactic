@@ -18,6 +18,8 @@
 
 @interface UpcomingMoviesAndDVDViewController : DVDViewController {
 @private
+    IdentitySet* dvds;
+    IdentitySet* upcomingMovies;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
