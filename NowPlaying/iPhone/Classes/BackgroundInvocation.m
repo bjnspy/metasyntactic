@@ -62,6 +62,11 @@
 }
 
 
+- (void) invokeSelector {
+    [target performSelector:selector withObject:argument];
+}
+
+
 - (void) runWorker {
     if (visible) {
         [NSThread setThreadPriority:0.25];
@@ -72,7 +77,7 @@
     [gate lock];
     [GlobalActivityIndicator addBackgroundTask:visible];
     {
-        [self.target performSelector:self.selector withObject:self.argument];
+        [self invokeSelector];
     }
     [GlobalActivityIndicator removeBackgroundTask:visible];
     [gate unlock];

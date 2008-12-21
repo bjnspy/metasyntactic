@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "ApplicationTabBarController.h"
+#import "AlertUtilities.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
 #import "LocationManager.h"
@@ -156,20 +157,16 @@
     if (address.length > 0) {
         Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
 
-        [self performSelectorOnMainThread:@selector(reportUserLocation:) withObject:location waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(reportUserLocation:)
+                               withObject:location
+                            waitUntilDone:NO];
     }
 }
 
 
 - (void) reportUserLocation:(Location*) location {
     if (location == nil) {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                         message:NSLocalizedString(@"Could not find location.", nil)
-                                                        delegate:nil
-                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                               otherButtonTitles:nil] autorelease];
-
-        [alert show];
+        [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
     } else {
         [self spawnDataProviderLookupThread];
         [self spawnScoresLookupThread];

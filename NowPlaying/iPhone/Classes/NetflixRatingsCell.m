@@ -8,10 +8,12 @@
 
 #import "NetflixRatingsCell.h"
 
+#import "AlertUtilities.h"
 #import "ImageCache.h"
 #import "NetflixCache.h"
 #import "NowPlayingModel.h"
 #import "Movie.h"
+#import "TappableImageView.h"
 
 @implementation NetflixRatingsCell
 
@@ -45,7 +47,10 @@
             }
         }
         
-        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
+        imageView.delegate = self;
+        imageView.tag = i + 1;
+        
         CGRect rect = imageView.frame;
         rect.origin.y = 10;
         NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
@@ -74,7 +79,10 @@
             }
         }
         
-        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
+        imageView.delegate = self;
+        imageView.tag = i + 1;
+        
         CGRect rect = imageView.frame;
         rect.origin.y = 10;
         NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
@@ -87,18 +95,23 @@
 }
 
 
+- (void) setupRating {
+    NSString* userRating = [model.netflixCache userRatingForMovie:movie];
+    if (userRating.length > 0) {
+        [self setupUserRating:userRating];
+    } else {
+        [self setupNetflixRating];
+    }
+}
+
+
 - (id) initWithFrame:(CGRect) frame
                model:(NowPlayingModel*) model_
                movie:(Movie*) movie_ {
     if (self = [super initWithFrame:frame
                               model:model_
                               movie:movie_]) {
-        NSString* userRating = [model.netflixCache userRatingForMovie:movie];
-        if (userRating.length > 0) {
-            [self setupUserRating:userRating];
-        } else {
-            [self setupNetflixRating];
-        }
+        [self setupRating];
     }
 
     return self;
@@ -107,6 +120,37 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
+}
+
+
+- (void) imageView:(TappableImageView*) imageView
+         wasTapped:(NSInteger) tapCount {
+    NSInteger value = imageView.tag;
+    NSInteger currentUserRating = (NSInteger)[[model.netflixCache userRatingForMovie:movie] floatValue];
+    
+    if (value == currentUserRating) {
+        return;
+    }
+    
+    // change the UI:
+    [self setupUserRating:(value == 0 ? @"" : [NSString stringWithFormat:@"%d", value])];
+    
+    // now, update in the background.
+    NSString* rating = value == 0 ? @"no_opinion" : [NSString stringWithFormat:@"%d", value];
+    [model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
+}
+
+
+- (void) changeSucceeded {
+    
+}
+
+
+- (void) changeFailedWithError:(NSString*) error {
+    NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Could not change rating:\n\n%@", nil), error];
+    [AlertUtilities showOkAlert:message];
+    
+    [self setupRating];
 }
 
 @end

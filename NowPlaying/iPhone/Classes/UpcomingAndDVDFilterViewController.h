@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface DVDFilterViewController : UITableViewController {
+@interface UpcomingAndDVDFilterViewController : UITableViewController {
 @private
     AbstractNavigationController* navigationController;
 }

@@ -14,6 +14,7 @@
 
 #import "NetflixLoginViewController.h"
 
+#import "AlertUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixNavigationController.h"
 #import "NowPlayingModel.h"
@@ -159,7 +160,10 @@
     [self setupActivityIndicator];
     [self setupButton];
 
-    [ThreadingUtilities performSelector:@selector(requestAuthorizationToken) onTarget:self inBackgroundWithGate:nil visible:YES];
+    [ThreadingUtilities performSelector:@selector(requestAuthorizationToken)
+                               onTarget:self
+                   inBackgroundWithGate:nil
+                                visible:YES];
 }
 
 
@@ -205,13 +209,7 @@
 
 
 - (void) reportError:(NSError*) error {
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:NSLocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil)
-                                                    delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                           otherButtonTitles:nil] autorelease];
-
-    [alert show];
+    [AlertUtilities showOkAlert:NSLocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil)];
 
     [activityIndicator stopAnimating];
     [button removeFromSuperview];
@@ -260,7 +258,10 @@
     statusLabel.text = NSLocalizedString(@"Requesting access", nil);
     button.enabled = NO;
 
-    [ThreadingUtilities performSelector:@selector(requestAccessToken) onTarget:self inBackgroundWithGate:nil visible:YES];
+    [ThreadingUtilities performSelector:@selector(requestAccessToken)
+                               onTarget:self
+                   inBackgroundWithGate:nil
+                                visible:YES];
 }
 
 - (void) requestAccessToken {

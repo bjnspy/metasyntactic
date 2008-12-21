@@ -22,6 +22,7 @@
 #import "DVDNavigationController.h"
 #import "NowPlayingModel.h"
 #import "TappableLabel.h"
+#import "UpcomingCache.h"
 
 @interface UpcomingMoviesAndDVDViewController()
 @end
@@ -44,6 +45,8 @@
     if (self.model.dvdMoviesShowBluray) {
         [result addObjectsFromArray:self.model.blurayCache.movies];
     }
+    
+    [result addObjectsFromArray:self.model.upcomingCache.movies];
 
     return result;
 }

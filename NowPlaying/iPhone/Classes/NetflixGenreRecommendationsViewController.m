@@ -22,6 +22,7 @@
 @property (assign) AbstractNavigationController* navigationController;
 @property (copy) NSString* genre;
 @property (retain) NSArray* movies;
+@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
@@ -30,11 +31,13 @@
 @synthesize navigationController;
 @synthesize genre;
 @synthesize movies;
+@synthesize visibleIndexPaths;
 
-- (void)dealloc {
+- (void) dealloc {
     self.navigationController = nil;
     self.genre = nil;
     self.movies = nil;
+    self.visibleIndexPaths = nil;
 
     [super dealloc];
 }
@@ -84,6 +87,16 @@
 - (void) majorRefreshWorker {
     [self initializeData];
     [self.tableView reloadData];
+    
+    if (visibleIndexPaths.count > 0) {
+        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
+        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
+            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
+            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        }
+        
+        self.visibleIndexPaths = nil;
+    }
 }
 
 
@@ -107,6 +120,12 @@
 
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+    self.movies = [NSArray array];
+    
+    // Store the currently visible cells so we can scroll back to them when
+    // we're reloaded.
+    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];    
 }
 
 

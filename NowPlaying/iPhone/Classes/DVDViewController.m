@@ -222,9 +222,7 @@
 
     if (dvdFilterViewController == nil) {
         self.dvdFilterViewController =
-            [[[DVDFilterViewController alloc] initWithNavigationController:navigationController
-                                                                    target:self
-                                                                  selector:@selector(onDvdFilterChanged)] autorelease];
+            [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
         UIView* dvdView = dvdFilterViewController.view;
         CGRect frame = dvdView.frame;
         frame.origin.y -= 20;
@@ -251,11 +249,6 @@
         }
     }
     [UIView commitAnimations];
-}
-
-
-- (void) onDvdFilterChanged {
-    [self flipUpDown:nil];
 }
 
 

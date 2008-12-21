@@ -15,6 +15,8 @@
 #import "ThreadingUtilities.h"
 
 #import "BackgroundInvocation.h"
+#import "BackgroundInvocation2.h"
+#import "Invocation2.h"
 #import "PriorityMutex.h"
 
 @implementation ThreadingUtilities
@@ -133,6 +135,22 @@ static NSMutableArray* lowPriorityOperations;
 
 + (void)       performSelector:(SEL) selector
                       onTarget:(id) target
+     inBackgroundWithArgument:(id) argument1
+                     argument:(id) argument2
+                          gate:(NSLock*) gate
+                       visible:(BOOL) visible {
+    BackgroundInvocation2* invocation = [BackgroundInvocation2 invocationWithTarget:target
+                                                                         selector:selector
+                                                                         argument:argument1
+                                                                          argument:argument2
+                                                                             gate:gate
+                                                                          visible:visible];
+    [invocation performSelectorInBackground:@selector(run) withObject:nil];
+}
+
+
++ (void)       performSelector:(SEL) selector
+                      onTarget:(id) target
       inBackgroundWithArgument:(id) argument
                           gate:(NSLock*) gate
                        visible:(BOOL) visible {
@@ -154,6 +172,22 @@ static NSMutableArray* lowPriorityOperations;
  inBackgroundWithArgument:nil
                      gate:gate
                   visible:visible];
+}
+
+
++ (void) performSelector:(SEL) selector
+                onTarget:(id) target
+onMainThreadWithArgument:(id) argument {
+    [target performSelectorOnMainThread:selector withObject:argument waitUntilDone:NO];
+}
+
+
++ (void) performSelector:(SEL) selector
+                onTarget:(id) target
+onMainThreadWithArgument:(id) argument1
+               argument:(id) argument2 {
+    Invocation2* invocation = [Invocation2 invocationWithTarget:target selector:selector argument:argument1 argument:argument2];
+    [invocation performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
 }
 
 @end

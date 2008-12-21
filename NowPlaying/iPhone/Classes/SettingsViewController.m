@@ -15,9 +15,9 @@
 #import "SettingsViewController.h"
 
 #import "Application.h"
+#import "AlertUtilities.h"
 #import "ColorCache.h"
 #import "CreditsViewController.h"
-#import "DVDFilterViewController.h"
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Location.h"
@@ -217,13 +217,8 @@
     [self.controller setNetflixEnabled:!self.model.netflixEnabled];
 
     if (self.model.netflixEnabled) {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                         message:NSLocalizedString(@"Netflix support is currently in 'beta'. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button below.  Thanks!\n\nThe Management (a.k.a. Cyrus)", nil)
-                                                        delegate:nil
-                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                               otherButtonTitles:nil] autorelease];
-
-        [alert show];
+        NSString* message = NSLocalizedString(@"Netflix support is currently in 'beta'. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button below.  Thanks!\n\nThe Management (a.k.a. Cyrus)", nil);
+        [AlertUtilities showOkAlert:message];
     }
 }
 

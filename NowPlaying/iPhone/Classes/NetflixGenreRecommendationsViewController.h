@@ -13,6 +13,8 @@
     AbstractNavigationController* navigationController;
     NSString* genre;
     NSArray* movies;
+    
+    NSArray* visibleIndexPaths;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController genre:(NSString*) genre;

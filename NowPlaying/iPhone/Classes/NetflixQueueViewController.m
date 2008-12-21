@@ -15,6 +15,7 @@
 #import "NetflixQueueViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "AlertUtilities.h"
 #import "ImageCache.h"
 #import "Feed.h"
 #import "MovieTitleCell.h"
@@ -36,6 +37,7 @@
 @property (retain) IdentitySet* deletedMovies;
 @property (retain) IdentitySet* reorderedMovies;
 @property (retain) UIBarButtonItem* backButton;
+@property (retain) NSArray* visibleIndexPaths;
 @end
 
 
@@ -50,6 +52,7 @@
 @synthesize deletedMovies;
 @synthesize reorderedMovies;
 @synthesize backButton;
+@synthesize visibleIndexPaths;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -61,6 +64,7 @@
     self.deletedMovies = nil;
     self.reorderedMovies = nil;
     self.backButton = nil;
+    self.visibleIndexPaths = nil;
     
     [super dealloc];
 }
@@ -159,6 +163,16 @@
     
     [self initializeData];
     [self.tableView reloadData];
+    
+    if (visibleIndexPaths.count > 0) {
+        NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
+        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
+            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
+            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        }
+        
+        self.visibleIndexPaths = nil;
+    }
 }
 
 
@@ -179,7 +193,14 @@
 
 
 - (void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+    [super didReceiveMemoryWarning];
+
+    // I don't want to clean anything else up here due to the complicated
+    // state being kep around.
+    
+    // Store the currently visible cells so we can scroll back to them when
+    // we're reloaded.
+    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
 }
 
 
@@ -334,13 +355,7 @@
 
 - (void) onModifyFailure:(NSString*) error {
     NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Reordering queue failed:\n\n%@", nil), error];
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:message
-                                                    delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                           otherButtonTitles:nil] autorelease];
-    
-    [alert show];
+    [AlertUtilities showOkAlert:message];
     
     [self exitReadonlyMode];
     

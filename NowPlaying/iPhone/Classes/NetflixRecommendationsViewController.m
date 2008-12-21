@@ -100,6 +100,9 @@
 
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+    self.genreToMovies = [MultiDictionary dictionary];
+    self.genres = [NSArray array];
 }
 
 

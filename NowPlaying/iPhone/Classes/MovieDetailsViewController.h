@@ -44,6 +44,8 @@
     BOOL visible;
 
     UIButton* bookmarkButton;
+    
+    NetflixRatingsCell* netflixRatingsCell;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

@@ -32,6 +32,8 @@
     IdentitySet* reorderedMovies;
 
     BOOL readonlyMode;
+
+    NSArray* visibleIndexPaths;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

@@ -56,7 +56,8 @@ static NSString* netflixCastDirectory = nil;
 static NSString* netflixDirectorsDirectory = nil;
 static NSString* netflixIMDbDirectory = nil;
 static NSString* netflixSeriesDirectory = nil;
-static NSString* netflixRatingsDirectory = nil;
+static NSString* netflixUserRatingsDirectory = nil;
+static NSString* netflixPredictedRatingsDirectory = nil;
 
 /*
 static NSString* numbersDirectory = nil;
@@ -92,7 +93,8 @@ static NSString** directories[] = {
 &netflixDirectorsDirectory,
 &netflixIMDbDirectory,
 &netflixSeriesDirectory,
-&netflixRatingsDirectory,
+&netflixUserRatingsDirectory,
+&netflixPredictedRatingsDirectory,
 /*
  &numbersDirectory,
  &numbersBudgetsDirectory,
@@ -243,7 +245,8 @@ static DifferenceEngine* differenceEngine = nil;
             netflixDirectorsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Directors"] retain];
             netflixIMDbDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
             netflixSeriesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Series"] retain];
-            netflixRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Ratings"] retain];
+            netflixUserRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"UserRatings"] retain];
+            netflixPredictedRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"PredictedRatings"] retain];
 
             upcomingDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Upcoming"] retain];
             upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
@@ -398,8 +401,13 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (NSString*) netflixRatingsDirectory {
-    return netflixRatingsDirectory;
++ (NSString*) netflixUserRatingsDirectory {
+    return netflixUserRatingsDirectory;
+}
+
+
++ (NSString*) netflixPredictedRatingsDirectory {
+    return netflixPredictedRatingsDirectory;
 }
 
 
