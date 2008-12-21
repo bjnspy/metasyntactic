@@ -30,7 +30,7 @@
 @property (retain) UIButton* flipButton;
 @property (retain) UIView* superView;
 @property (retain) UITableView* cachedTableView;
-@property (retain) UITableViewController* dvdFilterViewController;
+@property (retain) UIViewController* filterViewController;
 @property (retain) NSArray* visibleIndexPaths;
 @end
 
@@ -43,7 +43,7 @@
 @synthesize flipButton;
 @synthesize superView;
 @synthesize cachedTableView;
-@synthesize dvdFilterViewController;
+@synthesize filterViewController;
 @synthesize visibleIndexPaths;
 
 - (void) dealloc {
@@ -53,7 +53,7 @@
     self.flipButton = nil;
     self.superView = nil;
     self.cachedTableView = nil;
-    self.dvdFilterViewController = nil;
+    self.filterViewController = nil;
     self.visibleIndexPaths = nil;
 
     [super dealloc];
@@ -213,6 +213,11 @@
 }
 
 
+- (UIViewController*) createFilterViewController {
+    return [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
+}
+
+
 - (void) flipUpDown:(id) sender {
     flipButton.selected = !flipButton.selected;
 
@@ -220,10 +225,9 @@
         self.superView = self.tableView.superview;
     }
 
-    if (dvdFilterViewController == nil) {
-        self.dvdFilterViewController =
-            [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
-        UIView* dvdView = dvdFilterViewController.view;
+    if (filterViewController == nil) {
+        self.filterViewController = [self createFilterViewController];
+        UIView* dvdView = filterViewController.view;
         CGRect frame = dvdView.frame;
         frame.origin.y -= 20;
         dvdView.frame = frame;
@@ -239,12 +243,12 @@
                                      cache:YES];
             self.cachedTableView = self.tableView;
             [self.tableView removeFromSuperview];
-            [superView addSubview:dvdFilterViewController.view];
+            [superView addSubview:filterViewController.view];
         } else {
             [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
                                    forView:superView
                                      cache:YES];
-            [dvdFilterViewController.view removeFromSuperview];
+            [filterViewController.view removeFromSuperview];
             [superView addSubview:self.cachedTableView];
         }
     }

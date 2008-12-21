@@ -20,33 +20,51 @@
 #import "DVDCell.h"
 #import "DVDFilterViewController.h"
 #import "DVDNavigationController.h"
+#import "IdentitySet.h"
 #import "NowPlayingModel.h"
 #import "TappableLabel.h"
 #import "UpcomingCache.h"
+#import "UpcomingAndDVDFilterViewController.h"
+#import "UpcomingMovieCell.h"
 
 @interface UpcomingMoviesAndDVDViewController()
+@property (retain) IdentitySet* dvds;
+@property (retain) IdentitySet* upcomingMovies;
 @end
 
 
 @implementation UpcomingMoviesAndDVDViewController
 
+@synthesize dvds;
+@synthesize upcomingMovies;
+
 - (void) dealloc {
+    self.dvds = nil;
+    self.upcomingMovies = nil;
+
     [super dealloc];
 }
 
 
 - (NSArray*) movies {
     NSMutableArray* result = [NSMutableArray array];
+    self.dvds = [IdentitySet set];
+    self.upcomingMovies = [IdentitySet set];
 
     if (self.model.dvdMoviesShowDVDs) {
         [result addObjectsFromArray:self.model.dvdCache.movies];
+        [dvds addObjectsFromArray:self.model.dvdCache.movies];
     }
 
     if (self.model.dvdMoviesShowBluray) {
         [result addObjectsFromArray:self.model.blurayCache.movies];
+        [dvds addObjectsFromArray:self.model.blurayCache.movies];
     }
 
-    [result addObjectsFromArray:self.model.upcomingCache.movies];
+    if (self.model.upcomingAndDVDShowUpcoming) {
+        [result addObjectsFromArray:self.model.upcomingCache.movies];
+        [upcomingMovies addObjectsFromArray:self.model.upcomingCache.movies];
+    }
 
     return result;
 }
@@ -66,16 +84,32 @@
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
-    static NSString* reuseIdentifier = @"UpcomingAndDVDCellIdentifier";
-    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                               reuseIdentifier:reuseIdentifier
-                                         model:self.model] autorelease];
+    id cell = nil;
+    if ([dvds containsObject:movie]) {
+        static NSString* reuseIdentifier = @"DVDCell";
+        cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                   reuseIdentifier:reuseIdentifier
+                                             model:self.model] autorelease];
+        }
+    } else {
+        static NSString* reuseIdentifier = @"UpcomingCell";
+        cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                   reuseIdentifier:reuseIdentifier
+                                             model:self.model] autorelease];
+        }
     }
 
     [cell setMovie:movie owner:self];
     return cell;
+}
+
+
+- (UIViewController*) createFilterViewController {
+    return [[[UpcomingAndDVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
 }
 
 @end

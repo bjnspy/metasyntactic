@@ -25,7 +25,7 @@
 
     UIView* superView;
     UITableView* cachedTableView;
-    UITableViewController* dvdFilterViewController;
+    UIViewController* filterViewController;
 
     BOOL scrollToCurrentDateOnRefresh;
 }
