@@ -25,18 +25,15 @@
 #import "Utilities.h"
 
 @interface IMDbCache()
-@property (retain) LinkedSet* normalMovies;
 @property (retain) LinkedSet* prioritizedMovies;
 @end
 
 
 @implementation IMDbCache
 
-@synthesize normalMovies;
 @synthesize prioritizedMovies;
 
 - (void) dealloc {
-    self.normalMovies = nil;
     self.prioritizedMovies = nil;
 
     [super dealloc];
@@ -45,16 +42,15 @@
 
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
-        self.normalMovies = [LinkedSet set];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        
-        [ThreadingUtilities performSelector:@selector(updateBackgroundEntryPoint)
-                                   onTarget:self
-                       inBackgroundWithGate:nil
-                                    visible:NO];
     }
 
     return self;
+}
+
+
++ (IMDbCache*) cacheWithModel:(NowPlayingModel*) model {
+    return [[[IMDbCache alloc] initWithModel:model] autorelease];
 }
 
 
@@ -64,34 +60,47 @@
 }
 
 
-- (void) updateIMDbAddress:(Movie*) movie {
+- (void) update:(NSArray*) movies {
+    if (model.userAddress.length == 0) {
+        return;
+    }
+
+    [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:movies
+                                   gate:gate
+                                visible:NO];
+}
+
+
+- (void) downloadAddress:(Movie*) movie {
     if (movie.imdbAddress.length > 0) {
         // don't even bother if the movie has an imdb address in it
         return;
     }
-    
+
     NSString* path = [self imdbFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
-    
+
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
         if (value.length > 0) {
             // we have a real imdb value for this movie
             return;
         }
-        
+
         // we have a sentinel.  only update if it's been long enough
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
         }
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (imdbAddress == nil) {
         return;
     }
-    
+
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:path];
@@ -101,59 +110,45 @@
 }
 
 
-- (void) updateOneMovie {
-    Movie* movie = nil;
-    [gate lock];
-    {
-        while ((movie = [prioritizedMovies removeLastObjectAdded]) == NULL &&
-               (movie = [normalMovies removeLastObjectAdded]) == NULL) {
-            [gate wait];
-        }
-    }
-    [gate unlock];
-    
-    [self updateIMDbAddress:movie];
+- (NSSet*) cachedDirectoriesToClear {
+    return [NSSet setWithObject:[Application imdbDirectory]];
 }
 
 
-- (void) updateBackgroundEntryPoint {
-    while (YES) {
+
+- (Movie*) getNextMovie:(NSMutableArray*) movies {
+    Movie* movie;
+    while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
+        if (![FileUtilities fileExists:[self imdbFile:movie]]) {
+            return movie;
+        }
+    }
+
+    if (movies.count > 0) {
+        movie = [[[movies lastObject] retain] autorelease];
+        [movies removeLastObject];
+        return movie;
+    }
+
+    return nil;
+}
+
+
+- (void) backgroundEntryPoint:(NSArray*) movies {
+    NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
+    Movie* movie;
+    while ((movie = [self getNextMovie:mutableMovies]) != nil) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            [self updateOneMovie];
+            [self downloadAddress:movie];
         }
         [pool release];
     }
 }
 
 
-+ (IMDbCache*) cacheWithModel:(NowPlayingModel*) model {
-    return [[[IMDbCache alloc] initWithModel:model] autorelease];
-}
-
-
-- (void) update:(NSArray*) movies {
-    [gate lock];
-    {
-        [normalMovies addObjectsFromArray:movies];
-        [gate signal];
-    }
-    [gate unlock];
-}
-
-
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObject:[Application imdbDirectory]];
-}
-
-
 - (void) prioritizeMovie:(Movie*) movie {
-    [gate lock];
-    {
-        [prioritizedMovies addObject:movie];
-        [gate signal];
-    }
-    [gate unlock];
+    [prioritizedMovies addObject:movie];
 }
 
 
