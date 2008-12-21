@@ -29,7 +29,7 @@
     if (self = [super initWithTarget:target_ selector:selector_ argument:argument1_]) {
         self.argument2 = argument2_;
     }
-    
+
     return self;
 }
 

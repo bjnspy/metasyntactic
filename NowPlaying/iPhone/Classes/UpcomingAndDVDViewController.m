@@ -45,7 +45,7 @@
     if (self.model.dvdMoviesShowBluray) {
         [result addObjectsFromArray:self.model.blurayCache.movies];
     }
-    
+
     [result addObjectsFromArray:self.model.upcomingCache.movies];
 
     return result;

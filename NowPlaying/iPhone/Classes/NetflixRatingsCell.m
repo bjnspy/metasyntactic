@@ -1,16 +1,10 @@
-// Copyright 2008 Cyrus Najmabadi
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+//  NetflixRatingsCell.m
+//  NowPlaying
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//  Created by Cyrus Najmabadi on 12/18/08.
+//  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 #import "NetflixRatingsCell.h"
 
@@ -31,7 +25,7 @@
 
 - (void) setupNetflixRating {
     CGFloat rating = [[model.netflixCache netflixRatingForMovie:movie] floatValue];
-    
+
     for (NSInteger i = -1; i < 5; i++) {
         UIImage* image;
         if (i == -1) {
@@ -52,18 +46,18 @@
                 image = [UIImage imageNamed:@"RedStar-1.0.png"];
             }
         }
-        
+
         TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
         imageView.delegate = self;
         imageView.tag = i + 1;
-        
+
         CGRect rect = imageView.frame;
         rect.origin.y = 10;
         NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
-        
+
         rect.origin.x = (halfWayPoint - 110) + (40 * (i + 1));
         imageView.frame = rect;
-        
+
         [self.contentView addSubview:imageView];
     }
 }
@@ -71,7 +65,7 @@
 
 - (void) setupUserRating:(NSString*) userRating {
     CGFloat rating = [userRating floatValue];
-    
+
     for (NSInteger i = -1; i < 5; i++) {
         UIImage* image;
         if (i == -1) {
@@ -84,18 +78,18 @@
                 image = [ImageCache filledStarImage];
             }
         }
-        
+
         TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
         imageView.delegate = self;
         imageView.tag = i + 1;
-        
+
         CGRect rect = imageView.frame;
         rect.origin.y = 10;
         NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
-        
+
         rect.origin.x = (halfWayPoint - 110) + (40 * (i + 1));
         imageView.frame = rect;
-        
+
         [self.contentView addSubview:imageView];
     }
 }
@@ -133,14 +127,14 @@
          wasTapped:(NSInteger) tapCount {
     NSInteger value = imageView.tag;
     NSInteger currentUserRating = (NSInteger)[[model.netflixCache userRatingForMovie:movie] floatValue];
-    
+
     if (value == currentUserRating) {
         return;
     }
-    
+
     // change the UI:
     [self setupUserRating:(value == 0 ? @"" : [NSString stringWithFormat:@"%d", value])];
-    
+
     // now, update in the background.
     NSString* rating = value == 0 ? @"no_opinion" : [NSString stringWithFormat:@"%d", value];
     [model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
@@ -148,14 +142,14 @@
 
 
 - (void) changeSucceeded {
-    
+
 }
 
 
 - (void) changeFailedWithError:(NSString*) error {
     NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Could not change rating:\n\n%@", nil), error];
     [AlertUtilities showOkAlert:message];
-    
+
     [self setupRating];
 }
 

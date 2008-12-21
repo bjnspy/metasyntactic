@@ -1,16 +1,10 @@
-// Copyright 2008 Cyrus Najmabadi
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+//  NetflixGenreRecommendationsViewController.m
+//  NowPlaying
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//  Created by Cyrus Najmabadi on 12/19/08.
+//  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 #import "NetflixGenreRecommendationsViewController.h"
 
@@ -93,14 +87,14 @@
 - (void) majorRefreshWorker {
     [self initializeData];
     [self.tableView reloadData];
-    
+
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-        
+
         self.visibleIndexPaths = nil;
     }
 }
@@ -126,12 +120,12 @@
 
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
+
     self.movies = [NSArray array];
-    
+
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];    
+    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
 }
 
 
