@@ -80,6 +80,15 @@
 
 
 - (void) update:(NSArray*) movies {
+    [ThreadingUtilities performSelector:@selector(addMovies:)
+                               onTarget:self
+                   inBackgroundWithArgument:movies
+                                   gate:nil
+                                visible:NO];
+}
+
+
+- (void) addMovies:(NSArray*) movies {
     [gate lock];
     {
         for (Movie* movie in movies) {
