@@ -20,6 +20,7 @@
 #import "Feed.h"
 #import "MovieTitleCell.h"
 #import "NetflixCache.h"
+#import "NetflixCell.h"
 #import "NetflixMovieTitleCell.h"
 #import "NowPlayingModel.h"
 #import "IdentitySet.h"
@@ -182,6 +183,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    self.tableView.rowHeight = 100;
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
@@ -271,12 +273,11 @@
 
     static NSString* reuseIdentifier = @"NetflixQueueReuseIdentifier";
 
-    NetflixMovieTitleCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixMovieTitleCell alloc] initWithFrame:CGRectZero
+        cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
                                              reuseIdentifier:reuseIdentifier
-                                                       model:self.model
-                                                       style:UITableViewStylePlain] autorelease];
+                                                       model:self.model] autorelease];
     }
 
     [self setAccessoryForCell:cell atIndexPath:indexPath];

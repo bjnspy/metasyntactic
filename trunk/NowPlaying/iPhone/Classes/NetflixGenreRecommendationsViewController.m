@@ -19,6 +19,7 @@
 #import "Movie.h"
 #import "MultiDictionary.h"
 #import "NetflixCache.h"
+#import "NetflixCell.h"
 #import "NetflixMovieTitleCell.h"
 #import "NowPlayingModel.h"
 #import "Queue.h"
@@ -112,6 +113,7 @@
 
 
 - (void) viewWillAppear:(BOOL)animated {
+    self.tableView.rowHeight = 100;
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
@@ -150,12 +152,11 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"NetflixGenreReuseIdentifier";
-    NetflixMovieTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixMovieTitleCell alloc] initWithFrame:CGRectZero
+        cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
                                              reuseIdentifier:reuseIdentifier
-                                                       model:self.model
-                                                       style:UITableViewStylePlain] autorelease];
+                                                       model:self.model] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 

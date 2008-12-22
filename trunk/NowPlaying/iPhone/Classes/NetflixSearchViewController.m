@@ -17,6 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
+#import "NetflixCell.h"
 #import "NetflixMovieTitleCell.h"
 #import "NetflixSearchEngine.h"
 #import "SearchResult.h"
@@ -101,10 +102,12 @@
 
 
 - (void) minorRefreshWorker {
+    [self majorRefresh];
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
+    self.tableView.rowHeight = 100;
     [super viewWillAppear:animated];
     [self majorRefresh];
 }
@@ -135,12 +138,11 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* reuseIdentifier = @"NetflixSearchReuseIdentifier";
 
-    NetflixMovieTitleCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[NetflixMovieTitleCell alloc] initWithFrame:CGRectZero
+        cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
                                              reuseIdentifier:reuseIdentifier
-                                                       model:self.model
-                                                       style:UITableViewStylePlain] autorelease];
+                                                       model:self.model] autorelease];
     }
 
     Movie* movie = [movies objectAtIndex:indexPath.row];
