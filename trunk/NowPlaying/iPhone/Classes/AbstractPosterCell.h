@@ -29,6 +29,9 @@ typedef enum {
     UIImageView* imageView;
 
     UIActivityIndicatorView* activityView;
+    
+    UILabel* titleLabel;
+    CGFloat titleWidth;
 }
 
 @property (retain) Movie* movie;
@@ -39,5 +42,10 @@ typedef enum {
 
 - (void) loadImage;
 - (void) clearImage;
+
+- (void) setMovie:(Movie*) movie owner:(id) owner;
+
+// @protected
+- (void) onSetSameMovie:(Movie*) movie owner:(id) owner;
 
 @end

@@ -157,7 +157,7 @@
 
 
 - (void) majorRefreshWorker {
-    if (self.editing || readonlyMode) {
+    if (self.tableView.editing || readonlyMode) {
         return;
     }
 

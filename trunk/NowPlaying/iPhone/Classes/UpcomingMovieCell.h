@@ -16,8 +16,6 @@
 
 @interface UpcomingMovieCell : AbstractPosterCell {
 @private
-    UILabel* titleLabel;
-
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
     UILabel* genreTitleLabel;
@@ -27,14 +25,10 @@
     UILabel* castLabel;
     UILabel* genreLabel;
     UILabel* ratedLabel;
-
-    CGFloat titleWidth;
 }
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(NowPlayingModel*) model;
-
-- (void) setMovie:(Movie*) movie owner:(id) owner;
 
 @end

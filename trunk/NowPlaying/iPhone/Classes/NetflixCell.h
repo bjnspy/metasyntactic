@@ -10,7 +10,6 @@
 
 @interface NetflixCell : AbstractPosterCell {
 @private
-    UILabel* titleLabel;
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
     UILabel* genreTitleLabel;
@@ -22,15 +21,12 @@
     UILabel* genreLabel;
     UILabel* ratedLabel;
     UILabel* netflixLabel;
-    
-    CGFloat titleWidth;
+
     BOOL userRating;
 }
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(NowPlayingModel*) model;
-
-- (void) setMovie:(Movie*) movie owner:(id) owner;
 
 @end
