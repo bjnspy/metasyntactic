@@ -137,7 +137,6 @@
 		747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56960E67583600BD69DA /* NowPlayingModel.m */; };
 		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
-		747D9FA50EF774B70066B881 /* NetflixMovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D9FA40EF774B70066B881 /* NetflixMovieTitleCell.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
 		747DA4E30EF8882A0066B881 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA4E20EF8882A0066B881 /* IdentitySet.m */; };
 		747DA4E60EF8884F0066B881 /* IdentityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA4E50EF8884F0066B881 /* IdentityObject.m */; };
@@ -573,8 +572,6 @@
 		747CA1C00E8594C300A09E89 /* LocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCache.m; sourceTree = "<group>"; };
 		747D9DF80EF714960066B881 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		747D9FA30EF774B70066B881 /* NetflixMovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMovieTitleCell.h; sourceTree = "<group>"; };
-		747D9FA40EF774B70066B881 /* NetflixMovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixMovieTitleCell.m; sourceTree = "<group>"; };
 		747DA10D0EF835A50066B881 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		747DA10E0EF835A50066B881 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		747DA4E10EF8882A0066B881 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
@@ -1251,8 +1248,6 @@
 				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
 				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
 				74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */,
-				747D9FA30EF774B70066B881 /* NetflixMovieTitleCell.h */,
-				747D9FA40EF774B70066B881 /* NetflixMovieTitleCell.m */,
 				741377AF0E64765000404519 /* TheaterNameCell.h */,
 				741377B00E64765000404519 /* TheaterNameCell.m */,
 				742445A50E2D2F9800C98F84 /* AttributeCell.h */,
@@ -2124,7 +2119,6 @@
 				7400EFD20EF5935700058CDD /* Feed.m in Sources */,
 				7400EFEF0EF59D7800058CDD /* NetflixFeedsViewController.m in Sources */,
 				7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */,
-				747D9FA50EF774B70066B881 /* NetflixMovieTitleCell.m in Sources */,
 				747DA10F0EF835A50066B881 /* Queue.m in Sources */,
 				747DA4E30EF8882A0066B881 /* IdentitySet.m in Sources */,
 				747DA4E60EF8884F0066B881 /* IdentityObject.m in Sources */,

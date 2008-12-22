@@ -21,7 +21,6 @@
 #import "MovieTitleCell.h"
 #import "NetflixCache.h"
 #import "NetflixCell.h"
-#import "NetflixMovieTitleCell.h"
 #import "NowPlayingModel.h"
 #import "IdentitySet.h"
 #import "Queue.h"
