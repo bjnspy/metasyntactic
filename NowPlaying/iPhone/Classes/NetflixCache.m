@@ -1337,7 +1337,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-    NSInteger status = [[[element element:@"status"] text] intValue];
+    NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         NSString* message = [[element element:@"message"] text];
         if (message.length == 0) {
