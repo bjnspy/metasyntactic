@@ -1272,10 +1272,10 @@
 				747AB8600EB963AE002438D0 /* DVDCell.m */,
 				7479D8340E65255F00D91649 /* UpcomingMovieCell.h */,
 				7479D8350E65255F00D91649 /* UpcomingMovieCell.m */,
-				74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */,
-				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
 				74676D860EFF6E7D00C64100 /* NetflixCell.h */,
 				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
+				74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */,
+				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";

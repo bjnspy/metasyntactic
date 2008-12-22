@@ -14,8 +14,10 @@
 
 #import "AbstractPosterCell.h"
 
+#import "Application.h"
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
+#import "Movie.h"
 #import "NowPlayingModel.h"
 
 
@@ -25,6 +27,7 @@
 @property (retain) UIImageView* imageLoadingView;
 @property (retain) UIImageView* imageView;
 @property (retain) UIActivityIndicatorView* activityView;
+@property (retain) UILabel* titleLabel;
 @end
 
 
@@ -36,6 +39,7 @@
 @synthesize imageLoadingView;
 @synthesize imageView;
 @synthesize activityView;
+@synthesize titleLabel;
 
 - (void) dealloc {
     self.model = nil;
@@ -43,6 +47,7 @@
     self.imageLoadingView = nil;
     self.imageView = nil;
     self.activityView = nil;
+    self.titleLabel = nil;
 
     [super dealloc];
 }
@@ -53,6 +58,7 @@
                model:(NowPlayingModel*) model_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
+        self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
 
         state = Loading;
         self.imageLoadingView = [[[UIImageView alloc] initWithImage:[ImageCache imageLoading]] autorelease];
@@ -66,6 +72,8 @@
         imageFrame.size.width = (int)(imageFrame.size.width * SMALL_POSTER_HEIGHT / imageFrame.size.height);
         imageFrame.size.height = (int)SMALL_POSTER_HEIGHT;
         imageView.frame = imageLoadingView.frame = imageFrame;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
 
         self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
         activityView.hidesWhenStopped = YES;
@@ -138,6 +146,96 @@
     imageView.image = nil;
     imageView.alpha = 0;
     imageLoadingView.alpha = 1;
+}
+
+
+- (NSArray*) allLabels {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (NSArray*) valueLabels {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (void) setSelected:(BOOL) selected
+            animated:(BOOL) animated {
+    [super setSelected:selected animated:animated];
+    
+    if (selected) {
+        titleLabel.textColor = [UIColor whiteColor];
+        
+        for (UILabel* label in self.allLabels) {
+            label.textColor = [UIColor whiteColor];
+        }
+    } else {
+        titleLabel.textColor = [UIColor blackColor];
+        
+        for (UILabel* label in self.allLabels) {
+            label.textColor = [UIColor darkGrayColor];
+        }
+    }
+}
+
+
+- (void) onSetSameMovie:(Movie*) movie_
+                  owner:(id) owner  {
+    // refreshing with the same movie.
+    // update our image if necessary.
+    [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
+    [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];    
+}
+
+
+- (void) onSetDifferentMovie:(Movie*) movie_
+                       owner:(id) owner  {
+    // switching to a new movie.  update everything.
+    self.movie = movie_;
+    
+    for (UILabel* label in self.allLabels) {
+        [label removeFromSuperview];
+    }
+    
+    [self clearImage];
+    
+    [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
+    [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];    
+}
+
+
+- (void) setMovie:(Movie*) movie_
+            owner:(id) owner {
+    if ([model isBookmarked:movie_]) {
+        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie_.displayTitle];
+    } else {
+        titleLabel.text = movie_.displayTitle;
+    }
+    
+    if (movie == movie_) {
+        [self onSetSameMovie:movie_ owner:owner];
+    } else {
+        [self onSetDifferentMovie:movie_ owner:owner];
+    }
+}
+
+
+- (void) layoutSubviews {
+    [super layoutSubviews];
+    
+    CGRect imageFrame = imageView.frame;
+    
+    CGRect titleFrame = titleLabel.frame;
+    titleFrame.origin.x = (int)(imageFrame.size.width + 7);
+    titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
+    titleLabel.frame = titleFrame;
+    
+    for (UILabel* label in self.valueLabels) {
+        CGRect frame = label.frame;
+        frame.origin.x = (int)(imageFrame.size.width + 7 + titleWidth + 5);
+        frame.size.width = self.contentView.frame.size.width - frame.origin.x;
+        label.frame = frame;
+    }
 }
 
 @end

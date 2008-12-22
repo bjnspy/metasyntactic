@@ -25,7 +25,6 @@
 #import "NowPlayingModel.h"
 
 @interface DVDCell()
-@property (retain) UILabel* titleLabel;
 @property (retain) UILabel* directorTitleLabel;
 @property (retain) UILabel* castTitleLabel;
 @property (retain) UILabel* ratedTitleLabel;
@@ -41,8 +40,6 @@
 
 @implementation DVDCell
 
-@synthesize titleLabel;
-
 @synthesize directorTitleLabel;
 @synthesize castTitleLabel;
 @synthesize ratedTitleLabel;
@@ -56,8 +53,6 @@
 @synthesize formatLabel;
 
 - (void) dealloc {
-    self.titleLabel = nil;
-
     self.directorTitleLabel = nil;
     self.castTitleLabel = nil;
     self.ratedTitleLabel = nil;
@@ -130,7 +125,6 @@
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier
                               model:model_]) {
-        self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.minimumFontSize = 14;
@@ -166,25 +160,6 @@
     }
 
     return self;
-}
-
-
-- (void) layoutSubviews {
-    [super layoutSubviews];
-
-    CGRect imageFrame = imageView.frame;
-
-    CGRect titleFrame = titleLabel.frame;
-    titleFrame.origin.x = (int)(imageFrame.size.width + 7);
-    titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
-    titleLabel.frame = titleFrame;
-
-    for (UILabel* label in self.valueLabels) {
-        CGRect frame = label.frame;
-        frame.origin.x = (int)(imageFrame.size.width + 7 + titleWidth + 5);
-        frame.size.width = self.contentView.frame.size.width - frame.origin.x;
-        label.frame = frame;
-    }
 }
 
 
@@ -225,53 +200,6 @@
 
     for (UILabel* label in self.allLabels) {
         [self.contentView addSubview:label];
-    }
-}
-
-
-- (void) setMovie:(Movie*) movie_
-            owner:(id) owner {
-    if ([model isBookmarked:movie_]) {
-        titleLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], movie_.displayTitle];
-    } else {
-        titleLabel.text = movie_.displayTitle;
-    }
-
-    if (movie == movie_) {
-        // refreshing with the same movie.
-        // update our image if necessary.
-        [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
-        [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
-    } else {
-        // switching to a new movie.  update everything.
-        self.movie = movie_;
-
-        for (UILabel* label in self.allLabels) {
-            [label removeFromSuperview];
-        }
-
-        [self clearImage];
-
-        [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
-        [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
-    }
-}
-
-
-- (void) setSelected:(BOOL) selected
-            animated:(BOOL) animated {
-    [super setSelected:selected animated:animated];
-
-    if (selected) {
-        titleLabel.textColor = [UIColor whiteColor];
-        for (UILabel* label in self.allLabels) {
-            label.textColor = [UIColor whiteColor];
-        }
-    } else {
-        titleLabel.textColor = [UIColor blackColor];
-        for (UILabel* label in self.allLabels) {
-            label.textColor = [UIColor darkGrayColor];
-        }
     }
 }
 

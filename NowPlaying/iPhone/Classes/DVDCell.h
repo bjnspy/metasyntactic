@@ -16,7 +16,6 @@
 
 @interface DVDCell : AbstractPosterCell {
 @private
-    UILabel* titleLabel;
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
     UILabel* genreTitleLabel;
@@ -28,14 +27,10 @@
     UILabel* genreLabel;
     UILabel* ratedLabel;
     UILabel* formatLabel;
-
-    CGFloat titleWidth;
 }
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(NowPlayingModel*) model;
-
-- (void) setMovie:(Movie*) movie owner:(id) owner;
 
 @end
