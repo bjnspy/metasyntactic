@@ -18,7 +18,6 @@
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixCell.h"
-#import "NetflixMovieTitleCell.h"
 #import "NetflixSearchEngine.h"
 #import "SearchResult.h"
 
