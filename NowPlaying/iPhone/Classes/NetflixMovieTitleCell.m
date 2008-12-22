@@ -45,7 +45,6 @@
                               style:style_]) {
         self.starLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         starLabel.font = [UIFont systemFontOfSize:17];
-        starLabel.textColor = [ColorCache netflixRed];
         starLabel.text = [@"" stringByPaddingToLength:5 withString:[Application starString] startingAtIndex:0];
         starLabel.backgroundColor = [UIColor clearColor];
         [starLabel sizeToFit];
@@ -88,7 +87,7 @@
     if (userRating) {
         starLabel.textColor = [ColorCache netflixYellow];
     } else {
-        starLabel.textColor = [ColorCache netflixRed];
+        starLabel.textColor = [UIColor redColor];//[ColorCache netflixRed];
     }
 }
 
