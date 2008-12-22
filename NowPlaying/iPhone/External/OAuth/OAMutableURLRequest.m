@@ -162,7 +162,8 @@
     OAHMAC_SHA1SignatureProvider* provider =
     [[[OAHMAC_SHA1SignatureProvider alloc] init] autorelease];
 
-    self.signature = [provider signClearText:[self _signatureBaseString]
+    NSString* baseString = [self _signatureBaseString];
+    self.signature = [provider signClearText:baseString
                                   withSecret:[NSString stringWithFormat:@"%@&%@", consumer.secret, token.secret]];
 
     // set OAuth headers
