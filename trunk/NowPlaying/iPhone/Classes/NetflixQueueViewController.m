@@ -418,8 +418,6 @@
       commitEditingStyle:(UITableViewCellEditingStyle) editingStyle
        forRowAtIndexPath:(NSIndexPath*) indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-
         Movie* movie;
         if (indexPath.section == 0) {
             movie = [mutableMovies objectAtIndex:indexPath.row];
@@ -431,6 +429,8 @@
 
         [deletedMovies addObject:movie];
         [reorderedMovies removeObject:movie];
+
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
     }
 }
 
