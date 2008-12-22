@@ -23,4 +23,6 @@
                model:(NowPlayingModel*) model
                movie:(Movie*) movie;
 
+- (void) refresh;
+
 @end

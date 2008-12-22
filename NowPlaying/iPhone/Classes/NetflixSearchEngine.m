@@ -43,26 +43,8 @@
 
 
 - (void) search {
-    NSArray* movies = nil;
-    /*
-    NSArray* theaters = nil;
-    NSArray* upcomingMovies = nil;
-    NSArray* dvds = nil;
-    NSArray* bluray = nil;
-     */
+    NSArray* movies = [model.netflixCache search:currentlyExecutingRequest.lowercaseValue];
 
-    OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles/autocomplete"];
-
-    NSArray* parameters = [NSArray arrayWithObjects:
-                           [OARequestParameter parameterWithName:@"term" value:currentlyExecutingRequest.lowercaseValue], nil];
-
-    [request setParameters:parameters];
-    [request prepare];
-
-    NSString* result = [NetworkUtilities stringWithContentsOfUrlRequest:request
-                                                              important:YES];
-
-    NSLog(@"%@", result);
     [self reportResult:movies
               theaters:nil
         upcomingMovies:nil

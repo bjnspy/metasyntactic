@@ -408,7 +408,8 @@ static NSSet* allowableFeeds = nil;
     if (![@"queue_item" isEqual:element.name] &&
         ![@"rental_history_item" isEqual:element.name] &&
         ![@"at_home_item" isEqual:element.name] &&
-        ![@"recommendation" isEqual:element.name]) {
+        ![@"recommendation" isEqual:element.name] &&
+        ![@"catalog_title" isEqual:element.name]) {
         return;
     }
 
@@ -458,6 +459,48 @@ static NSSet* allowableFeeds = nil;
 }
 
 
+- (void) processItemList:(XmlElement*) element
+                  movies:(NSMutableArray*) movies
+                   saved:(NSMutableArray*) saved {
+    for (XmlElement* child in element.children) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [self processItem:child
+                       movies:movies
+                        saved:saved];
+        }
+        [pool release];
+    }
+}
+
+
+- (NSArray*) search:(NSString*) query {
+    OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
+    
+    NSArray* parameters = [NSArray arrayWithObject:
+                           [OARequestParameter parameterWithName:@"term" value:query]];
+    
+    [request setParameters:parameters];
+    [request prepare];
+    
+    XmlElement* element = 
+    [NetworkUtilities xmlWithContentsOfUrlRequest:request
+                                        important:YES];
+    
+    NSMutableArray* movies = [NSMutableArray array];
+    NSMutableArray* saved = [NSMutableArray array];
+    [self processItemList:element movies:movies saved:saved];
+    
+    [movies addObjectsFromArray:saved];
+    
+    if (movies.count > 0) {
+        [searchMovies setArray:movies];
+    }
+    
+    return movies;
+}
+
+
 - (void) downloadQueue:(Feed*) feed {
     // first download and check the feed's current etag against the current one.
     if (![self etagChanged:feed]) {
@@ -480,15 +523,7 @@ static NSSet* allowableFeeds = nil;
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
 
-    for (XmlElement* child in element.children) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            [self processItem:child
-                       movies:movies
-                        saved:saved];
-        }
-        [pool release];
-    }
+    [self processItemList:element movies:movies saved:saved];
 
     if (movies.count > 0 || saved.count > 0) {
         Queue* queue = [Queue queueWithFeedKey:feed.key

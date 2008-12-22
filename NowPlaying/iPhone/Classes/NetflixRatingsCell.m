@@ -159,4 +159,9 @@
     [self setupRating];
 }
 
+
+- (void) refresh {
+    [self setupRating];
+}
+
 @end

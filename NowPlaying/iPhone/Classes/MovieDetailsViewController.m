@@ -421,6 +421,7 @@
 
 - (void) majorRefresh {
     [self initializeData];
+    [netflixRatingsCell refresh];
     [self.tableView reloadData];
 }
 
