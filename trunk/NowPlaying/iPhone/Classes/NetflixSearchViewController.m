@@ -17,13 +17,16 @@
 #import "AbstractNavigationController.h"
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
+#import "NetflixMovieTitleCell.h"
 #import "NetflixSearchEngine.h"
+#import "SearchResult.h"
 
 @interface NetflixSearchViewController()
 @property (assign) AbstractNavigationController* navigationController;
 @property (retain) UISearchBar* searchBar;
 @property (retain) NetflixSearchEngine* searchEngine;
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
+@property (retain) NSArray* movies;
 @end
 
 
@@ -33,12 +36,14 @@
 @synthesize searchBar;
 @synthesize searchEngine;
 @synthesize activityIndicatorView;
+@synthesize movies;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.searchBar = nil;
     self.searchEngine = nil;
     self.activityIndicatorView = nil;
+    self.movies = nil;
 
     [super dealloc];
 }
@@ -91,6 +96,7 @@
 
 
 - (void) majorRefreshWorker {
+    [self.tableView reloadData];
 }
 
 
@@ -121,22 +127,24 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-    return 1;
+    return movies.count;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString* reuseIdentifier = @"NetflixSearchReuseIdentifier";
 
-    static NSString *CellIdentifier = @"Cell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NetflixMovieTitleCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-        //[cell addSubview:searchBar];
+        cell = [[[NetflixMovieTitleCell alloc] initWithFrame:CGRectZero
+                                             reuseIdentifier:reuseIdentifier
+                                                       model:self.model
+                                                       style:UITableViewStylePlain] autorelease];
     }
 
-    // Set up the cell...
+    Movie* movie = [movies objectAtIndex:indexPath.row];
+    [cell setMovie:movie owner:self];
 
     return cell;
 }
@@ -144,10 +152,8 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+    Movie* movie = [movies objectAtIndex:indexPath.row];
+    [navigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -156,6 +162,8 @@
     if (searchText.length == 0) {
         [activityIndicatorView stopAnimating];
         [searchEngine invalidateExistingRequests];
+        self.movies = [NSArray array];
+        [self majorRefresh];
     } else {
         [activityIndicatorView startAnimating];
         [searchEngine submitRequest:searchText];
@@ -166,7 +174,8 @@
 - (void) reportResult:(SearchResult*) result {
     [activityIndicatorView stopAnimating];
 
-
+    self.movies = result.movies;
+    [self majorRefresh];
 }
 
 @end
