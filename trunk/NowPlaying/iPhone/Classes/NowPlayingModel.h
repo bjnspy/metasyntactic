@@ -31,6 +31,7 @@ enum ViewControllerType {
     TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
     NetflixCache* netflixCache;
+    NetflixSearchCache* netflixSearchCache;
 
     NSInteger searchRadius;
 
@@ -52,6 +53,7 @@ enum ViewControllerType {
 @property (readonly, retain) TrailerCache* trailerCache;
 @property (readonly, retain) UpcomingCache* upcomingCache;
 @property (readonly, retain) NetflixCache* netflixCache;
+@property (readonly, retain) NetflixSearchCache* netflixSearchCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
 + (NowPlayingModel*) model;

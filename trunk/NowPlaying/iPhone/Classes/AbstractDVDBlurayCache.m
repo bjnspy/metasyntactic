@@ -23,6 +23,7 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetflixCache.h"
+#import "NetflixSearchCache.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
@@ -340,16 +341,6 @@
 }
 
 
-- (NSString*) netflixFile:(Movie*) movie set:(PointerSet*) movies {
-    if (movies == nil || [movies containsObject:movie]) {
-        return [[[self netflixDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-                stringByAppendingString:@".plist"];
-    }
-    
-    return nil;
-}
-
-
 - (NSString*) smallPosterFile:(Movie*) movie set:(PointerSet*) movies {
     if (movies == nil || [movies containsObject:movie]) {
         return [[[self postersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
@@ -453,16 +444,7 @@
 
 
 - (void) updateNetflix:(Movie*) movie {
-    NSString* file = [self netflixFile:movie set:nil];
-    if ([FileUtilities fileExists:file]) {
-        return;
-    }
-    
-    Movie* netflixMovie = [model.netflixCache findMovie:movie.canonicalTitle];
-    if (netflixMovie != nil) {
-        [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-        [NowPlayingAppDelegate minorRefresh];
-    }
+    [model.netflixSearchCache updateMovie:movie];
 }
 
 
