@@ -22,6 +22,7 @@
 #import "NowPlayingModel.h"
 #import "RottenTomatoesScoreProvider.h"
 #import "Score.h"
+#import "ScoreProvider.h"
 
 @interface ScoreCache()
 @property (assign) NowPlayingModel* model;
@@ -69,6 +70,15 @@
 }
 
 
+- (NSArray*) scoreProviders {
+    return [NSArray arrayWithObjects:
+            rottenTomatoesScoreProvider,
+            metacriticScoreProvider,
+            googleScoreProvider,
+            noneScoreProvider, nil];
+}
+
+
 - (id<ScoreProvider>) currentScoreProvider {
     if (model.rottenTomatoesScores) {
         return rottenTomatoesScoreProvider;
@@ -90,7 +100,12 @@
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies {
-    return [self.currentScoreProvider reviewsForMovie:movie inMovies:movies];
+    id<ScoreProvider> provider = self.currentScoreProvider;
+    if (provider == rottenTomatoesScoreProvider) {
+        provider = metacriticScoreProvider;
+    }
+
+    return [provider reviewsForMovie:movie inMovies:movies];
 }
 
 
@@ -99,21 +114,24 @@
         return;
     }
 
-    [self.currentScoreProvider update];
+    for (id<ScoreProvider> provider in self.scoreProviders) {
+        [provider update];
+    }
 }
 
 
 - (void) prioritizeMovie:(Movie*) movie
                 inMovies:(NSArray*) movies {
-    [self.currentScoreProvider prioritizeMovie:movie inMovies:movies];
+    for (id<ScoreProvider> provider in self.scoreProviders) {
+        [provider prioritizeMovie:movie inMovies:movies];
+    }
 }
 
 
 - (void) clearStaleData {
-    [rottenTomatoesScoreProvider clearStaleData];
-    [metacriticScoreProvider clearStaleData];
-    [googleScoreProvider clearStaleData];
-    [noneScoreProvider clearStaleData];
+    for (id<ScoreProvider> provider in self.scoreProviders) {
+        [provider clearStaleData];
+    }
 }
 
 @end

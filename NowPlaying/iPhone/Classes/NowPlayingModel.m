@@ -559,7 +559,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (void) setScoreProviderIndex:(NSInteger) index {
     cachedScoreProviderIndex = index;
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:SCORE_PROVIDER_INDEX];
-    [self updateScoreCache];
 
     if (self.noScores && self.allMoviesSortingByScore) {
         [self setAllMoviesSelectedSegmentIndex:0];
