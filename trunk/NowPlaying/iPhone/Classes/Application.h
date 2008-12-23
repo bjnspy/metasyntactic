@@ -39,11 +39,13 @@
 + (NSString*) dvdDetailsDirectory;
 + (NSString*) dvdIMDbDirectory;
 + (NSString*) dvdPostersDirectory;
++ (NSString*) dvdNetflixDirectory;
 
 + (NSString*) blurayDirectory;
 + (NSString*) blurayDetailsDirectory;
 + (NSString*) blurayIMDbDirectory;
 + (NSString*) blurayPostersDirectory;
++ (NSString*) blurayNetflixDirectory;
 
 + (NSString*) netflixDirectory;
 + (NSString*) netflixQueuesDirectory;
