@@ -25,7 +25,11 @@
     LinkedSet* prioritizedMovies;
 
     NSCondition* updateDetailsLock;
+    
+    NSDate* lastQuotaErrorDate;
 }
+
+@property (readonly, retain) NSDate* lastQuotaErrorDate;
 
 + (NetflixCache*) cacheWithModel:(NowPlayingModel*) model;
 
@@ -36,6 +40,8 @@
 + (NSString*) rentalHistoryKey;
 + (NSString*) rentalHistoryWatchedKey;
 + (NSString*) rentalHistoryReturnedKey;
+
+- (void) reportApiResult:(XmlElement*) element;
 
 - (NSArray*) search:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;

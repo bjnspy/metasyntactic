@@ -17,6 +17,6 @@
 - (void) updateMovies:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;
 
-- (Movie*) netflixMovieForLocalMovie:(Movie*) movie;
+- (Movie*) netflixMovieForMovie:(Movie*) movie;
 
 @end
