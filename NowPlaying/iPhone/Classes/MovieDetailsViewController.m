@@ -31,6 +31,7 @@
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
 #import "NetflixCache.h"
+#import "NetflixSearchCache.h"
 #import "NetflixRatingsCell.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
@@ -46,6 +47,7 @@
 @interface MovieDetailsViewController()
 @property (retain) Movie* movie;
 @property (retain) DVD* dvd;
+@property (retain) Movie* netflixMovie;
 @property (retain) NSMutableArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
 @property (copy) NSString* trailer;
@@ -66,6 +68,7 @@
 
 @synthesize movie;
 @synthesize dvd;
+@synthesize netflixMovie;
 @synthesize theatersArray;
 @synthesize showtimesArray;
 @synthesize trailer;
@@ -83,6 +86,7 @@
 - (void) dealloc {
     self.movie = nil;
     self.dvd = nil;
+    self.netflixMovie = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
     self.trailer = nil;
@@ -173,6 +177,11 @@
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
         [titles addObject:NSLocalizedString(@"Website", nil)];
     }
+    
+    if (netflixMovie != nil && ![self.model.netflixCache isEnqueued:netflixMovie]) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
+        [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
+    }
 
     if (![self isUpcomingMovie] && ![self isDVD] && ![self isNetflix]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
@@ -198,6 +207,8 @@
 
 
 - (void) initializeData {
+    self.netflixMovie = [self.model.netflixSearchCache netflixMovieForLocalMovie:movie];
+    
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
         self.trailer = [trailers objectAtIndex:0];

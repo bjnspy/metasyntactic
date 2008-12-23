@@ -40,6 +40,8 @@
 - (NSArray*) search:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;
 
+- (BOOL) isEnqueued:(Movie*) movie;
+
 - (void) update;
 
 - (NSArray*) feeds;

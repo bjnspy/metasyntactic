@@ -19,6 +19,7 @@
 @private
     Movie* movie;
     DVD* dvd;
+    Movie* netflixMovie;
 
     NSMutableArray* theatersArray;
     NSMutableArray* showtimesArray;
