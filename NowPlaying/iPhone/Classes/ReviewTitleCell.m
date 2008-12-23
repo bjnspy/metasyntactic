@@ -82,17 +82,6 @@
 }
 
 
-- (void) setRottenTomatoesImage:(NSInteger) score {
-    [self clearScoreLabel];
-
-    if (score >= 60) {
-        self.image = [ImageCache freshImage];
-    } else {
-        self.image = [ImageCache rottenFullImage];
-    }
-}
-
-
 - (void) setBasicSquareImage:(NSInteger) score {
     if (score >= 0 && score <= 40) {
         self.image = [ImageCache redRatingImage];
