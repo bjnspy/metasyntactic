@@ -72,6 +72,7 @@ static NSString* upcomingIMDbDirectory = nil;
 static NSString* upcomingPostersDirectory = nil;
 static NSString* upcomingSynopsesDirectory = nil;
 static NSString* upcomingTrailersDirectory = nil;
+static NSString* upcomingNetflixDirectory = nil;
 
 static NSString** directories[] = {
 &dataDirectory,
@@ -111,7 +112,8 @@ static NSString** directories[] = {
 &upcomingIMDbDirectory,
 &upcomingPostersDirectory,
 &upcomingSynopsesDirectory,
-&upcomingTrailersDirectory
+&upcomingTrailersDirectory,
+&upcomingNetflixDirectory,
 };
 
 static NSString* emptyStarString = nil;
@@ -254,6 +256,7 @@ static DifferenceEngine* differenceEngine = nil;
             upcomingPostersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Posters"] retain];
             upcomingSynopsesDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Synopses"] retain];
             upcomingTrailersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Trailers"] retain];
+            upcomingNetflixDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
 
             [self createDirectories];
         }
@@ -274,7 +277,8 @@ static DifferenceEngine* differenceEngine = nil;
 + (void) resetNetflixDirectories {
     [gate lock];
     {
-        [FileUtilities removeItem:netflixDirectory];
+        [FileUtilities removeItem:netflixUserRatingsDirectory];
+        [FileUtilities removeItem:netflixPredictedRatingsDirectory];
         [self createDirectories];
     }
     [gate unlock];
@@ -438,6 +442,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) upcomingTrailersDirectory {
     return upcomingTrailersDirectory;
+}
+
+
++ (NSString*) upcomingNetflixDirectory {
+    return upcomingNetflixDirectory;
 }
 
 

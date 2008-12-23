@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
+#import "DifferenceEngine.h"
 #import "Feed.h"
 #import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
@@ -498,6 +499,44 @@ static NSSet* allowableFeeds = nil;
     }
     
     return movies;
+}
+
+
+- (BOOL) hasAccount {
+    return model.netflixUserId.length > 0;
+}
+
+
+- (Movie*) findMovie:(NSString*) query {
+    if ([self hasAccount]) {
+        OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
+        
+        NSArray* parameters = [NSArray arrayWithObjects:
+                               [OARequestParameter parameterWithName:@"term" value:query],
+                               [OARequestParameter parameterWithName:@"max_results" value:@"1"], nil];
+        
+        [request setParameters:parameters];
+        [request prepare];
+        
+        XmlElement* element = 
+        [NetworkUtilities xmlWithContentsOfUrlRequest:request
+                                            important:YES];
+        
+        NSMutableArray* movies = [NSMutableArray array];
+        NSMutableArray* saved = [NSMutableArray array];
+        [self processItemList:element movies:movies saved:saved];
+        
+        [movies addObjectsFromArray:saved];
+        
+        if (movies.count > 0) {
+            Movie* movie = [movies objectAtIndex:0];
+            if ([DifferenceEngine areSimilar:movie.canonicalTitle other:query]) {
+                return movie;
+            }
+        }
+    }
+    
+    return nil;
 }
 
 

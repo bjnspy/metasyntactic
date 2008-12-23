@@ -22,5 +22,6 @@
 + (UIColor*) commandColor;
 + (UIColor*) darkDarkGray;
 + (UIColor*) netflixYellow;
++ (UIColor*) starYellow;
 
 @end

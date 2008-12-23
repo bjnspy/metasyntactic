@@ -62,6 +62,7 @@
 + (NSString*) upcomingPostersDirectory;
 + (NSString*) upcomingSynopsesDirectory;
 + (NSString*) upcomingTrailersDirectory;
++ (NSString*) upcomingNetflixDirectory;
 
 + (void) resetDirectories;
 + (void) resetNetflixDirectories;

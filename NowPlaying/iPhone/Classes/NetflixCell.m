@@ -194,7 +194,7 @@
 
 - (void) setNetflixLabelColor {
     if (userRating) {
-        netflixLabel.textColor = [ColorCache netflixYellow];
+        netflixLabel.textColor = [ColorCache starYellow];
     } else {
         netflixLabel.textColor = [UIColor redColor];
     }
