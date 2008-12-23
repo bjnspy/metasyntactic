@@ -21,6 +21,7 @@
 #import "LargePosterCache.h"
 #import "LinkedSet.h"
 #import "Movie.h"
+#import "NetflixCache.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
@@ -333,6 +334,11 @@
 }
 
 
+- (NSString*) netflixFile:(Movie*) movie {
+    return [[[Application upcomingNetflixDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
 - (NSSet*) cachedDirectoriesToClear {
     return [NSSet setWithObjects:
             [Application upcomingCastDirectory],
@@ -560,11 +566,26 @@
 }
 
 
+- (void) updateNetflix:(Movie*) movie {
+    NSString* file = [self netflixFile:movie];
+    if ([FileUtilities fileExists:file]) {
+        return;
+    }
+    
+    Movie* netflixMovie = [model.netflixCache findMovie:movie.canonicalTitle];
+    if (netflixMovie != nil) {
+        [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
+        [NowPlayingAppDelegate minorRefresh];
+    }
+}
+
+
 - (void) updateDetails:(Movie*) movie studio:(NSString*) studio title:(NSString*) title {
     [self updateIMDb:movie];
     [self updatePoster:movie];
     [self updateSynopsisAndCast:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
+    [self updateNetflix:movie];
 }
 
 

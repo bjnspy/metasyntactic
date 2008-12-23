@@ -107,7 +107,9 @@
 
 
 - (void) minorRefreshWorker {
-    [self majorRefresh];
+    for (id cell in self.tableView.visibleCells) {
+        [cell refresh];
+    }
 }
 
 

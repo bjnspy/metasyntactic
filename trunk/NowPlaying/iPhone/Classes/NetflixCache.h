@@ -38,6 +38,8 @@
 + (NSString*) rentalHistoryReturnedKey;
 
 - (NSArray*) search:(NSString*) query;
+- (Movie*) findMovie:(NSString*) query;
+
 - (void) prioritizeMovie:(Movie*) movie;
 
 - (void) update;
