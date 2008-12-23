@@ -241,7 +241,6 @@
     }
 
     [self.model setScoreProviderIndex:index];
-    [self spawnScoresLookupThread];
 }
 
 

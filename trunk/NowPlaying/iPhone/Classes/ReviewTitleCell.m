@@ -129,7 +129,7 @@
     int score = review.score;
 
     if (model.rottenTomatoesScores) {
-        [self setRottenTomatoesImage:score];
+        [self setBasicSquareImage:score];
     } else if (model.metacriticScores) {
         [self setBasicSquareImage:score];
     } else if (model.googleScores) {
