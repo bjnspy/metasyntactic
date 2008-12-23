@@ -29,4 +29,7 @@
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(NowPlayingModel*) model;
 
+
+- (void) refresh;
+
 @end
