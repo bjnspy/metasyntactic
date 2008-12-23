@@ -43,7 +43,7 @@ typedef enum {
     AtHomeSection,
     RentalHistorySection,
     LogOutSection,
-    LastSection = LogOutSection
+    OverQuotaSection,
 } Sections;
 
 @synthesize navigationController;
@@ -102,6 +102,7 @@ typedef enum {
 
 
 - (void) minorRefreshWorker {
+    [self majorRefresh];
 }
 
 
@@ -190,7 +191,14 @@ typedef enum {
             cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
             cell.textColor = [ColorCache commandColor];
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.accessoryView = nil;
+        } else if (row == OverQuotaSection) {
+            if (self.model.netflixCache.lastQuotaErrorDate != nil &&
+                self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
+                cell.text = NSLocalizedString(@"Over Quota - Try Again Later", nil);
+                cell.accessoryView = nil;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
         }
     } else {
         if (indexPath.row == 0) {

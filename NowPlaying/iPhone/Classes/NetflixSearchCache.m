@@ -57,6 +57,8 @@
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
     
+    [model.netflixCache reportApiResult:element];
+    
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
     [model.netflixCache processMovieItemList:element movies:movies saved:saved];
@@ -131,7 +133,11 @@
 }
 
 
-- (Movie*) netflixMovieForLocalMovie:(Movie*) movie {
+- (Movie*) netflixMovieForMovie:(Movie*) movie {
+    if (movie.isNetflix) {
+        return movie;
+    }
+    
     NSString* file = [self netflixFile:movie];
     NSDictionary* dictionary = [FileUtilities readObject:file];
     if (dictionary.count == 0) {

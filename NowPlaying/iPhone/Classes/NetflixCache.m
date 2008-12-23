@@ -40,6 +40,7 @@
 @property (retain) LinkedSet* searchMovies;
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) NSCondition* updateDetailsLock;
+@property (retain) NSDate* lastQuotaErrorDate;
 
 - (void) updateDetails:(Movie*) movie;
 @end
@@ -111,6 +112,7 @@ static NSSet* allowableFeeds = nil;
 @synthesize searchMovies;
 @synthesize prioritizedMovies;
 @synthesize updateDetailsLock;
+@synthesize lastQuotaErrorDate;
 
 - (void) dealloc {
     self.feedsData = nil;
@@ -119,6 +121,7 @@ static NSSet* allowableFeeds = nil;
     self.searchMovies = nil;
     self.prioritizedMovies = nil;
     self.updateDetailsLock = nil;
+    self.lastQuotaErrorDate = nil;
 
     [super dealloc];
 }
@@ -283,6 +286,8 @@ static NSSet* allowableFeeds = nil;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
 
+    [self reportApiResult:element];
+    
     NSMutableArray* feeds = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         if ([child.name isEqual:@"link"]) {
@@ -487,6 +492,8 @@ static NSSet* allowableFeeds = nil;
     XmlElement* element = 
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
+    
+    [self reportApiResult:element];
     
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
@@ -752,8 +759,10 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
+    
+    [self reportApiResult:element];
+    
     NSString* synopsis = element.text;
-
     synopsis = [self cleanupSynopsis:synopsis];
 
     if (synopsis.length > 0) {
@@ -807,9 +816,10 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
+    
+    [self reportApiResult:element];
 
     NSArray* cast = [self extractPeople:element];
-
     if (cast.count > 0) {
         [FileUtilities writeObject:cast toFile:path];
         [NowPlayingAppDelegate minorRefresh];
@@ -837,9 +847,10 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-
+    
+    [self reportApiResult:element];
+    
     NSArray* directors = [self extractPeople:element];
-
     if (directors.count > 0) {
         [FileUtilities writeObject:directors toFile:path];
         [NowPlayingAppDelegate minorRefresh];
@@ -905,10 +916,12 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     OAMutableURLRequest* request = [self createURLRequest:seriesKey];
     [request prepare];
 
-    XmlElement* value = [NetworkUtilities xmlWithContentsOfUrlRequest:request
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                             important:NO];
+    
+    [self reportApiResult:element];
 
-    Movie* series = [self processItem:value saved:NULL];
+    Movie* series = [self processItem:element saved:NULL];
     if (series == nil) {
         return;
     }
@@ -973,6 +986,9 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
+    
+    [self reportApiResult:element];
+    
     XmlElement* ratingsItemElment = [element element:@"ratings_item"];
     if (ratingsItemElment == nil) {
         return;
@@ -1114,6 +1130,8 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
+    
+    [self reportApiResult:element];
     if (element == nil) {
         *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
         return nil;
@@ -1216,6 +1234,8 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
 
+    [self reportApiResult:element];
+    
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
@@ -1248,6 +1268,8 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
 
+    [self reportApiResult:element];
+    
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
@@ -1277,6 +1299,9 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
+
+    [self reportApiResult:element];
+    
     XmlElement* ratingsItemElment = [element element:@"ratings_item"];
     NSString* identifier = [[ratingsItemElment element:@"id"] text];
     if (identifier.length == 0) {
@@ -1338,6 +1363,9 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
+
+    [self reportApiResult:element];
+    
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         NSString* message = [[element element:@"message"] text];
@@ -1591,6 +1619,15 @@ andReportSuccessToDelegate:delegate];
     return
     [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache dvdQueueKey]]] ||
     [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache instantQueueKey]]];
+}
+
+
+- (void) reportApiResult:(XmlElement*) element {
+    NSString* message = [[element element:@"message"] text];
+    if ([@"Over queries per day limit" isEqual:message]) {
+        self.lastQuotaErrorDate = [NSDate date];
+        [NowPlayingAppDelegate minorRefresh];
+    }
 }
 
 @end

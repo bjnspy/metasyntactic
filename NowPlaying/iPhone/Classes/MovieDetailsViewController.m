@@ -207,7 +207,7 @@
 
 
 - (void) initializeData {
-    self.netflixMovie = [self.model.netflixSearchCache netflixMovieForLocalMovie:movie];
+    self.netflixMovie = [self.model.netflixSearchCache netflixMovieForMovie:movie];
     
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
