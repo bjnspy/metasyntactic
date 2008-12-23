@@ -42,11 +42,13 @@ static NSString* dvdDirectory = nil;
 static NSString* dvdDetailsDirectory = nil;
 static NSString* dvdIMDbDirectory = nil;
 static NSString* dvdPostersDirectory = nil;
+static NSString* dvdNetflixDirectory = nil;
 
 static NSString* blurayDirectory = nil;
 static NSString* blurayDetailsDirectory = nil;
 static NSString* blurayIMDbDirectory = nil;
 static NSString* blurayPostersDirectory = nil;
+static NSString* blurayNetflixDirectory = nil;
 
 static NSString* netflixDirectory = nil;
 static NSString* netflixQueuesDirectory = nil;
@@ -82,10 +84,12 @@ static NSString** directories[] = {
 &dvdDetailsDirectory,
 &dvdIMDbDirectory,
 &dvdPostersDirectory,
+&dvdNetflixDirectory,
 &blurayDirectory,
 &blurayDetailsDirectory,
 &blurayIMDbDirectory,
 &blurayPostersDirectory,
+&blurayNetflixDirectory,
 &netflixDirectory,
 &netflixQueuesDirectory,
 &netflixPostersDirectory,
@@ -233,11 +237,13 @@ static DifferenceEngine* differenceEngine = nil;
             dvdDetailsDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Details"] retain];
             dvdIMDbDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
             dvdPostersDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+            dvdNetflixDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
 
             blurayDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Bluray"] retain];
             blurayDetailsDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Details"] retain];
             blurayIMDbDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
             blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+            blurayNetflixDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
 
             netflixDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
             netflixQueuesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Queues"] retain];
@@ -345,6 +351,11 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (NSString*) dvdNetflixDirectory {
+    return dvdNetflixDirectory;
+}
+
+
 + (NSString*) blurayDirectory {
     return blurayDirectory;
 }
@@ -362,6 +373,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) blurayPostersDirectory {
     return blurayPostersDirectory;
+}
+
+
++ (NSString*) blurayNetflixDirectory {
+    return blurayNetflixDirectory;
 }
 
 
