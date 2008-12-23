@@ -38,11 +38,10 @@
 + (NSString*) rentalHistoryReturnedKey;
 
 - (NSArray*) search:(NSString*) query;
-- (Movie*) findMovie:(NSString*) query;
-
 - (void) prioritizeMovie:(Movie*) movie;
 
 - (void) update;
+
 - (NSArray*) feeds;
 - (Queue*) queueForFeed:(Feed*) feed;
 - (Feed*) feedForKey:(NSString*) key;
@@ -76,5 +75,11 @@
 - (void) changeRatingTo:(NSString*) rating
                forMovie:(Movie*) movie
                delegate:(id<NetflixChangeRatingDelegate>) delegate;
+
+// @internal
+- (OAMutableURLRequest*) createURLRequest:(NSString*) address;
+- (void) processMovieItemList:(XmlElement*) element
+                       movies:(NSMutableArray*) movies
+                        saved:(NSMutableArray*) saved;
 
 @end

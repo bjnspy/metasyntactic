@@ -460,7 +460,7 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (void) processItemList:(XmlElement*) element
+- (void) processMovieItemList:(XmlElement*) element
                   movies:(NSMutableArray*) movies
                    saved:(NSMutableArray*) saved {
     for (XmlElement* child in element.children) {
@@ -490,7 +490,7 @@ static NSSet* allowableFeeds = nil;
     
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
-    [self processItemList:element movies:movies saved:saved];
+    [self processMovieItemList:element movies:movies saved:saved];
     
     [movies addObjectsFromArray:saved];
     
@@ -499,44 +499,6 @@ static NSSet* allowableFeeds = nil;
     }
     
     return movies;
-}
-
-
-- (BOOL) hasAccount {
-    return model.netflixUserId.length > 0;
-}
-
-
-- (Movie*) findMovie:(NSString*) query {
-    if ([self hasAccount]) {
-        OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
-        
-        NSArray* parameters = [NSArray arrayWithObjects:
-                               [OARequestParameter parameterWithName:@"term" value:query],
-                               [OARequestParameter parameterWithName:@"max_results" value:@"1"], nil];
-        
-        [request setParameters:parameters];
-        [request prepare];
-        
-        XmlElement* element = 
-        [NetworkUtilities xmlWithContentsOfUrlRequest:request
-                                            important:YES];
-        
-        NSMutableArray* movies = [NSMutableArray array];
-        NSMutableArray* saved = [NSMutableArray array];
-        [self processItemList:element movies:movies saved:saved];
-        
-        [movies addObjectsFromArray:saved];
-        
-        if (movies.count > 0) {
-            Movie* movie = [movies objectAtIndex:0];
-            if ([DifferenceEngine areSimilar:movie.canonicalTitle other:query]) {
-                return movie;
-            }
-        }
-    }
-    
-    return nil;
 }
 
 
@@ -562,7 +524,7 @@ static NSSet* allowableFeeds = nil;
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
 
-    [self processItemList:element movies:movies saved:saved];
+    [self processMovieItemList:element movies:movies saved:saved];
 
     if (movies.count > 0 || saved.count > 0) {
         Queue* queue = [Queue queueWithFeedKey:feed.key

@@ -75,6 +75,7 @@
 @class NetflixCache;
 @class NetflixNavigationController;
 @class NetflixRatingsCell;
+@class NetflixSearchCache;
 @class NetflixSearchEngine;
 @class NetflixSearchViewController;
 @class NetflixViewController;
