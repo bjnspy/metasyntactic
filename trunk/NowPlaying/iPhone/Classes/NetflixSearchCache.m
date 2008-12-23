@@ -66,7 +66,7 @@
     if (movies.count > 0) {
         Movie* netflixMovie = [movies objectAtIndex:0];
         if ([DifferenceEngine areSimilar:movie.canonicalTitle other:netflixMovie.canonicalTitle]) {
-            return movie;
+            return netflixMovie;
         }
     }
     
@@ -128,6 +128,17 @@
 
 - (NSSet*) cachedDirectoriesToClear {
     return [NSSet setWithObject:[Application netflixSearchDirectory]];
+}
+
+
+- (Movie*) netflixMovieForLocalMovie:(Movie*) movie {
+    NSString* file = [self netflixFile:movie];
+    NSDictionary* dictionary = [FileUtilities readObject:file];
+    if (dictionary.count == 0) {
+        return nil;
+    }
+    
+    return [Movie movieWithDictionary:dictionary];
 }
 
 @end

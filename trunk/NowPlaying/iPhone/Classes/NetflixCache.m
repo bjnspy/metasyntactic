@@ -1568,4 +1568,29 @@ andReportSuccessToDelegate:delegate];
     return [self titleForKey:key includeCount:YES];
 }
 
+
+- (BOOL) isEnqueued:(Movie*) movie inArray:(NSArray*) array {
+    for (Movie* netflixMovie in array) {
+        if ([netflixMovie.identifier isEqual:movie.identifier]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
+- (BOOL) isEnqueued:(Movie*) movie inQueue:(Queue*) queue {
+    return
+    [self isEnqueued:movie inArray:queue.movies] ||
+    [self isEnqueued:movie inArray:queue.saved];
+}
+
+
+- (BOOL) isEnqueued:(Movie*) movie {
+    return
+    [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache dvdQueueKey]]] ||
+    [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache instantQueueKey]]];
+}
+
 @end
