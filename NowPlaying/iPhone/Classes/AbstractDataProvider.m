@@ -495,7 +495,7 @@
 
 - (void) updateBackgroundEntryPoint:(LookupRequest*) request {
     [self updateBackgroundEntryPointWorker:request];
-    [self.model performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
+    [(id)request.delegate performSelectorOnMainThread:@selector(onDataProviderUpdateComplete) withObject:nil waitUntilDone:NO];
 }
 
 

@@ -96,11 +96,18 @@
 
 
 - (void) spawnDataProviderLookupThread {
+    NSAssert([NSThread isMainThread], nil);
     if ([self tooSoon:[self.model.dataProvider lastLookupDate]]) {
-        [self.model performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
+        [self onDataProviderUpdateComplete];
     } else {
         [self.model.dataProvider update:self.model.searchDate delegate:self context:nil];
     }
+}
+
+
+- (void) spawnModelUpdateThread {
+    NSAssert([NSThread isMainThread], nil);
+    [self.model update];
 }
 
 
@@ -129,11 +136,13 @@
 
 
 - (void) spawnScoresLookupThread {
+    NSAssert([NSThread isMainThread], nil);
     [self.model.scoreCache update];
 }
 
 
 - (void) spawnDetermineLocationThread {
+    NSAssert([NSThread isMainThread], nil);
     [ThreadingUtilities performSelector:@selector(determineLocationBackgroundEntryPoint)
                                onTarget:self
                    inBackgroundWithGate:determineLocationLock
@@ -142,35 +151,48 @@
 
 
 - (void) spawnNetflixThread {
+    NSAssert([NSThread isMainThread], nil);
     [self.model.netflixCache update];
 }
 
 
-- (void) start {
-    [self spawnDetermineLocationThread];
+- (void) spawnUpdateRemainderThreads {
+    NSAssert([NSThread isMainThread], nil);
+    [self spawnScoresLookupThread];
     [self spawnNetflixThread];
+    [self spawnModelUpdateThread];
+}
+
+
+- (void) onDataProviderUpdateComplete {
+    NSAssert([NSThread isMainThread], nil);
+    [self spawnUpdateRemainderThreads];
+}
+
+
+- (void) start {
+    NSAssert([NSThread isMainThread], nil);
+    [self spawnDetermineLocationThread];
 }
 
 
 - (void) determineLocationBackgroundEntryPoint {
     NSString* address = self.model.userAddress;
-    if (address.length > 0) {
-        Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
-
-        [self performSelectorOnMainThread:@selector(reportUserLocation:)
-                               withObject:location
-                            waitUntilDone:NO];
-    }
+    Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
+    
+    [self performSelectorOnMainThread:@selector(reportUserLocation:)
+                           withObject:location
+                        waitUntilDone:NO];
 }
 
 
 - (void) reportUserLocation:(Location*) location {
-    if (location == nil) {
+    NSAssert([NSThread isMainThread], nil);
+    if (self.model.userAddress.length > 0 && location == nil) {
         [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
-    } else {
-        [self spawnDataProviderLookupThread];
-        [self spawnScoresLookupThread];
     }
+    
+    [self spawnDataProviderLookupThread];
 }
 
 
