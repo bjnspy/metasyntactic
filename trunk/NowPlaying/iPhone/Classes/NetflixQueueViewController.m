@@ -328,7 +328,7 @@
     cell.accessoryView = activityIndicator;
 
     Movie* movie = [mutableMovies objectAtIndex:indexPath.row];
-    [self.model.netflixCache updateQueue:queue fromFeed:feed byMovingMovieToTop:movie delegate:self];
+    [self.model.netflixCache updateQueue:queue byMovingMovieToTop:movie delegate:self];
 }
 
 
@@ -473,7 +473,7 @@
         [self.tableView setEditing:NO animated:YES];
         [self enterReadonlyMode];
 
-        [self.model.netflixCache updateQueue:queue fromFeed:feed byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self];
+        [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self];
     }
 }
 
