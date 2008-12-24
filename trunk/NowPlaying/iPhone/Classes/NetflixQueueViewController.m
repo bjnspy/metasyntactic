@@ -332,10 +332,8 @@
 }
 
 
-- (void) moveSucceededForMovie:(Movie*) movie
-                       inQueue:(Queue*) queue_
-                      fromFeed:(Feed*) feed {
-    self.queue = queue_;
+- (void) moveSucceededForMovie:(Movie*) movie {
+    self.queue = [self.model.netflixCache queueForFeed:feed];
     NSInteger row = [mutableMovies indexOfObjectIdenticalTo:movie];
 
     [self.tableView beginUpdates];
@@ -366,10 +364,7 @@
 }
 
 
-- (void) moveFailedWithError:(NSString*) error
-                    forMovie:(Movie*) movie
-                     inQueue:(Queue*) queue
-                    fromFeed:(Feed*) feed {
+- (void) moveFailedWithError:(NSString*) error {
     [self onModifyFailure:error];
 }
 
@@ -483,16 +478,13 @@
 }
 
 
-- (void) modifySucceededInQueue:(Queue*) queue
-                       fromFeed:(Feed*) feed {
+- (void) modifySucceeded {
     [self initializeData];
     [self exitReadonlyMode];
 }
 
 
-- (void) modifyFailedWithError:(NSString*) error
-                       inQueue:(Queue*) queue
-                      fromFeed:(Feed*) feed {
+- (void) modifyFailedWithError:(NSString*) error {
     [self onModifyFailure:error];
 }
 

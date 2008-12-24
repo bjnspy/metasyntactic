@@ -15,6 +15,8 @@
 @protocol DataProvider;
 @protocol DataProviderUpdateDelegate;
 @protocol NetflixChangeRatingDelegate;
+@protocol NetflixAddMovieDelegate;
+@protocol NetflixMoveMovieDelegate;
 @protocol NetflixModifyQueueDelegate;
 @protocol ScoreProvider;
 @protocol SearchEngineDelegate;

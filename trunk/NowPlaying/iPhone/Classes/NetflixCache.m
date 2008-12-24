@@ -23,6 +23,8 @@
 #import "ImageUtilities.h"
 #import "LinkedSet.h"
 #import "Movie.h"
+#import "NetflixAddMovieDelegate.h"
+#import "NetflixMoveMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
@@ -556,48 +558,39 @@ static NSSet* allowableFeeds = nil;
 
 
 - (void) reportMoveFailure:(NSArray*) arguments {
-    Queue* queue = [arguments objectAtIndex:0];
-    Feed* feed = [arguments objectAtIndex:1];
-    Movie* movie = [arguments objectAtIndex:2];
-    id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:3];
+    id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:3];
     NSString* error = [arguments objectAtIndex:4];
 
-    [delegate moveFailedWithError:error forMovie:movie inQueue:queue fromFeed:feed];
+    [delegate moveFailedWithError:error];
 }
 
 
 - (void) reportMoveSuccess:(NSArray*) arguments {
-    Queue* queue = [arguments objectAtIndex:0];
-    Feed* feed = [arguments objectAtIndex:1];
     Movie* movie = [arguments objectAtIndex:2];
-    id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:3];
+    id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:3];
 
     [self reportQueue:arguments];
 
-    [delegate moveSucceededForMovie:movie inQueue:queue fromFeed:feed];
+    [delegate moveSucceededForMovie:movie];
 }
 
 
 - (void) reportQueueAndError:(NSArray*) arguments {
     [self reportQueue:arguments];
 
-    Queue* queue = [arguments objectAtIndex:0];
-    Feed* feed = [arguments objectAtIndex:1];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:2];
     NSString* error = [arguments objectAtIndex:3];
 
-    [delegate modifyFailedWithError:error inQueue:queue fromFeed:feed];
+    [delegate modifyFailedWithError:error];
 }
 
 
 - (void) reportQueueAndSuccess:(NSArray*) arguments {
     [self reportQueue:arguments];
 
-    Queue* queue = [arguments objectAtIndex:0];
-    Feed* feed = [arguments objectAtIndex:1];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:2];
 
-    [delegate modifySucceededInQueue:queue fromFeed:feed];
+    [delegate modifySucceeded];
 }
 
 
@@ -1096,7 +1089,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 - (void) updateQueue:(Queue*) queue
             fromFeed:(Feed*) feed
   byMovingMovieToTop:(Movie*) movie
-            delegate:(id<NetflixModifyQueueDelegate>) delegate {
+            delegate:(id<NetflixMoveMovieDelegate>) delegate {
     NSArray* arguments = [NSArray arrayWithObjects:queue, feed, movie, delegate, nil];
 
     [ThreadingUtilities performSelector:@selector(moveMovieToTopOfQueueBackgroundEntryPoint:)
@@ -1111,7 +1104,6 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
           toPosition:(NSInteger) position
              inQueue:(Queue*) queue
             fromFeed:(Feed*) feed
-            delegate:(id<NetflixModifyQueueDelegate>) delegate
                error:(NSString**) error {
     *error = nil;
     NSString* queueType = queue.isDVDQueue ? @"disc" : @"instant";
@@ -1166,14 +1158,13 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     Queue* queue = [arguments objectAtIndex:0];
     Feed* feed = [arguments objectAtIndex:1];
     Movie* movie = [arguments objectAtIndex:2];
-    id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:3];
+    id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:3];
 
     NSString* error;
     Queue* finalQueue = [self moveMovie:movie
                              toPosition:0
                                 inQueue:queue
                                fromFeed:feed
-                               delegate:delegate
                                   error:&error];
     if (finalQueue == nil) {
         NSArray* errorArguments = [NSArray arrayWithObjects:queue, feed, movie, delegate, error, nil];
@@ -1348,6 +1339,13 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 }
 
 
+- (void) updateQueue:(Queue*) queue
+       byAddingMovie:(Movie*) movie 
+            delegate:(id<NetflixAddMovieDelegate>) delegate {
+    
+}
+
+
 - (Queue*) deleteMovie:(Movie*) movie
                inQueue:(Queue*) queue
               fromFeed:(Feed*) feed
@@ -1443,7 +1441,6 @@ NSInteger orderMovies(id t1, id t2, void* context) {
                                      toPosition:[moviesInOrder indexOfObjectIdenticalTo:movie]
                                         inQueue:finalQueue
                                        fromFeed:feed
-                                       delegate:delegate
                                           error:&error];
 
         if (resultantQueue == nil) {
@@ -1618,7 +1615,8 @@ andReportSuccessToDelegate:delegate];
 - (BOOL) isEnqueued:(Movie*) movie {
     return
     [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache dvdQueueKey]]] ||
-    [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache instantQueueKey]]];
+    [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache instantQueueKey]]] ||
+    [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache atHomeKey]]];
 }
 
 

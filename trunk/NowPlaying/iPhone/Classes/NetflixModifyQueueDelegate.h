@@ -14,10 +14,7 @@
 
 @protocol NetflixModifyQueueDelegate
 
-- (void) moveSucceededForMovie:(Movie*) movie inQueue:(Queue*) queue fromFeed:(Feed*) feed;
-- (void) moveFailedWithError:(NSString*) error forMovie:(Movie*) movie inQueue:(Queue*) queue fromFeed:(Feed*) feed;
-
-- (void) modifySucceededInQueue:(Queue*) queue fromFeed:(Feed*) feed;
-- (void) modifyFailedWithError:(NSString*) error inQueue:(Queue*) queue fromFeed:(Feed*) feed;
+- (void) modifySucceeded;
+- (void) modifyFailedWithError:(NSString*) error;
 
 @end
