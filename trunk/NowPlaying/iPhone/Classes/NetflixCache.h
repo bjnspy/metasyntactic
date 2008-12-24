@@ -25,7 +25,7 @@
     LinkedSet* prioritizedMovies;
 
     NSCondition* updateDetailsLock;
-    
+
     NSDate* lastQuotaErrorDate;
 }
 

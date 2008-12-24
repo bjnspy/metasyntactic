@@ -21,7 +21,7 @@
     UISearchBar* searchBar;
     UIActivityIndicatorView* activityIndicatorView;
     NetflixSearchEngine* searchEngine;
-    
+
     NSArray* movies;
 }
 

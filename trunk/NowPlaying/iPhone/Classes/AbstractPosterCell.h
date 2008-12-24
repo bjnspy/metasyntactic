@@ -29,7 +29,7 @@ typedef enum {
     UIImageView* imageView;
 
     UIActivityIndicatorView* activityView;
-    
+
     UILabel* titleLabel;
     CGFloat titleWidth;
 }

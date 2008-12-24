@@ -54,20 +54,20 @@
     self.ratedTitleLabel = nil;
     self.genreTitleLabel = nil;
     self.netflixTitleLabel = nil;
-    
+
     self.directorLabel = nil;
     self.castLabel = nil;
     self.ratedLabel = nil;
     self.genreLabel = nil;
     self.netflixLabel = nil;
-    
+
     [super dealloc];
 }
 
 
 - (UILabel*) createTitleLabel:(NSString*) title yPosition:(NSInteger) yPosition {
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    
+
     label.font = [UIFont systemFontOfSize:12];
     label.textColor = [UIColor darkGrayColor];
     label.text = title;
@@ -76,7 +76,7 @@
     CGRect frame = label.frame;
     frame.origin.y = yPosition;
     label.frame = frame;
-    
+
     return label;
 }
 
@@ -124,38 +124,38 @@
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.minimumFontSize = 14;
-        
+
         self.directorTitleLabel = [self createTitleLabel:NSLocalizedString(@"Directors:", nil) yPosition:22];
         self.directorLabel = [self createValueLabel:22];
-        
+
         self.castTitleLabel = [self createTitleLabel:NSLocalizedString(@"Cast:", nil) yPosition:37];
         self.castLabel = [self createValueLabel:37];
-        
+
         self.genreTitleLabel = [self createTitleLabel:NSLocalizedString(@"Genre:", nil) yPosition:52];
         self.genreLabel = [self createValueLabel:52];
-        
+
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:67];
         self.ratedLabel = [self createValueLabel:67];
-        
+
         self.netflixTitleLabel = [self createTitleLabel:NSLocalizedString(@"Netflix:", nil) yPosition:82];
         self.netflixLabel = [self createValueLabel:81];
-        netflixLabel.font = [UIFont systemFontOfSize:17];        
-        
+        netflixLabel.font = [UIFont systemFontOfSize:17];
+
         titleWidth = 0;
         for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
         }
-        
+
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
             frame.origin.x = (int)(imageView.frame.size.width + 7);
             frame.size.width = titleWidth;
             label.frame = frame;
         }
-        
+
         [self.contentView addSubview:titleLabel];
     }
-    
+
     return self;
 }
 
@@ -169,14 +169,14 @@
         userRating = NO;
         rating = [model.netflixCache netflixRatingForMovie:movie];
     }
-    
+
     if (rating.length == 0) {
         netflixLabel.text = @"";
         return;
     }
-    
+
     CGFloat score = [rating floatValue];
-    
+
     for (int i = 0; i < 5; i++) {
         CGFloat value = score - i;
         if (value <= 0) {
@@ -187,8 +187,8 @@
             [result appendString:[Application halfStarString]];
         }
     }
-    
-    netflixLabel.text = result;    
+
+    netflixLabel.text = result;
 }
 
 
@@ -203,7 +203,7 @@
 
 - (void) loadMovie:(id) owner {
     [self loadImage];
-    
+
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
@@ -214,7 +214,7 @@
     } else {		
         rating = movie.rating;		
     }
-    
+
     ratedLabel.text = rating;
 
     if (movie.directors.count <= 1) {
@@ -222,10 +222,10 @@
     } else {
         directorTitleLabel.text = NSLocalizedString(@"Directors:", nil);
     }
-    
+
     [self setNetflixLabel];
     [self setNetflixLabelColor];
-    
+
     for (UILabel* label in self.allLabels) {
         [self.contentView addSubview:label];
     }
@@ -240,7 +240,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-    
+
     if (!selected) {
         [self setNetflixLabelColor];
     }
@@ -250,7 +250,7 @@
 - (void) onSetSameMovie:(Movie*) movie_
                    owner:(id) owner  {
     [super onSetSameMovie:movie_ owner:owner];
-    
+
     [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
     [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
 }

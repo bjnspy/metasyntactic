@@ -28,7 +28,7 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
     }
-    
+
     return self;
 }
 
@@ -45,33 +45,33 @@
 
 - (Movie*) updateMovieWorker:(Movie*) movie {
     OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
-    
+
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:movie.canonicalTitle],
                            [OARequestParameter parameterWithName:@"max_results" value:@"1"], nil];
-    
+
     [request setParameters:parameters];
     [request prepare];
-    
-    XmlElement* element = 
+
+    XmlElement* element =
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
-    
+
     [model.netflixCache reportApiResult:element];
-    
+
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
     [model.netflixCache processMovieItemList:element movies:movies saved:saved];
-    
+
     [movies addObjectsFromArray:saved];
-    
+
     if (movies.count > 0) {
         Movie* netflixMovie = [movies objectAtIndex:0];
         if ([DifferenceEngine areSimilar:movie.canonicalTitle other:netflixMovie.canonicalTitle]) {
             return netflixMovie;
         }
     }
-    
+
     return nil;
 }
 
@@ -86,7 +86,7 @@
     if ([FileUtilities fileExists:file]) {
         return;
     }
-    
+
     Movie* netflixMovie = [self updateMovieWorker:movie];
     if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
@@ -137,13 +137,13 @@
     if (movie.isNetflix) {
         return movie;
     }
-    
+
     NSString* file = [self netflixFile:movie];
     NSDictionary* dictionary = [FileUtilities readObject:file];
     if (dictionary.count == 0) {
         return nil;
     }
-    
+
     return [Movie movieWithDictionary:dictionary];
 }
 

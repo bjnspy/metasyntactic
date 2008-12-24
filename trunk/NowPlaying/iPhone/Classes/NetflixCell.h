@@ -15,7 +15,7 @@
     UILabel* genreTitleLabel;
     UILabel* ratedTitleLabel;
     UILabel* netflixTitleLabel;
-    
+
     UILabel* directorLabel;
     UILabel* castLabel;
     UILabel* genreLabel;

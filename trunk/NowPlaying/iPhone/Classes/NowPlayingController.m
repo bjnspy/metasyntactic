@@ -179,7 +179,7 @@
 - (void) determineLocationBackgroundEntryPoint {
     NSString* address = self.model.userAddress;
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
-    
+
     [self performSelectorOnMainThread:@selector(reportUserLocation:)
                            withObject:location
                         waitUntilDone:NO];
@@ -191,7 +191,7 @@
     if (self.model.userAddress.length > 0 && location == nil) {
         [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
     }
-    
+
     [self spawnDataProviderLookupThread];
 }
 
