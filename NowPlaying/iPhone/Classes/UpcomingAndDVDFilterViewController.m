@@ -133,7 +133,7 @@
         } else {
             [self.model setDvdMoviesShowBluray:!self.model.dvdMoviesShowBluray];
         }
-    } else { 
+    } else {
         [self.model setUpcomingAndDVDShowUpcoming:!self.model.upcomingAndDVDShowUpcoming];
     }
 

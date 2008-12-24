@@ -287,7 +287,7 @@ static NSSet* allowableFeeds = nil;
                                                               important:YES];
 
     [self reportApiResult:element];
-    
+
     NSMutableArray* feeds = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         if ([child.name isEqual:@"link"]) {
@@ -482,29 +482,29 @@ static NSSet* allowableFeeds = nil;
 
 - (NSArray*) search:(NSString*) query {
     OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
-    
+
     NSArray* parameters = [NSArray arrayWithObject:
                            [OARequestParameter parameterWithName:@"term" value:query]];
-    
+
     [request setParameters:parameters];
     [request prepare];
-    
-    XmlElement* element = 
+
+    XmlElement* element =
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
-    
+
     [self reportApiResult:element];
-    
+
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
     [self processMovieItemList:element movies:movies saved:saved];
-    
+
     [movies addObjectsFromArray:saved];
-    
+
     if (movies.count > 0) {
         [searchMovies setArray:movies];
     }
-    
+
     return movies;
 }
 
@@ -759,9 +759,9 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
+
     [self reportApiResult:element];
-    
+
     NSString* synopsis = element.text;
     synopsis = [self cleanupSynopsis:synopsis];
 
@@ -816,7 +816,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
+
     [self reportApiResult:element];
 
     NSArray* cast = [self extractPeople:element];
@@ -847,9 +847,9 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
+
     [self reportApiResult:element];
-    
+
     NSArray* directors = [self extractPeople:element];
     if (directors.count > 0) {
         [FileUtilities writeObject:directors toFile:path];
@@ -918,7 +918,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                             important:NO];
-    
+
     [self reportApiResult:element];
 
     Movie* series = [self processItem:element saved:NULL];
@@ -986,9 +986,9 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
-    
+
     [self reportApiResult:element];
-    
+
     XmlElement* ratingsItemElment = [element element:@"ratings_item"];
     if (ratingsItemElment == nil) {
         return;
@@ -1130,7 +1130,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-    
+
     [self reportApiResult:element];
     if (element == nil) {
         *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
@@ -1235,7 +1235,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
                                                               important:YES];
 
     [self reportApiResult:element];
-    
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
@@ -1269,7 +1269,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
                                                               important:YES];
 
     [self reportApiResult:element];
-    
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
@@ -1301,7 +1301,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
                                                               important:NO];
 
     [self reportApiResult:element];
-    
+
     XmlElement* ratingsItemElment = [element element:@"ratings_item"];
     NSString* identifier = [[ratingsItemElment element:@"id"] text];
     if (identifier.length == 0) {
@@ -1365,7 +1365,7 @@ andReportSuccessToDelegate:(id<NetflixModifyQueueDelegate>) delegate {
                                                               important:YES];
 
     [self reportApiResult:element];
-    
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         NSString* message = [[element element:@"message"] text];
@@ -1603,7 +1603,7 @@ andReportSuccessToDelegate:delegate];
             return YES;
         }
     }
-    
+
     return NO;
 }
 

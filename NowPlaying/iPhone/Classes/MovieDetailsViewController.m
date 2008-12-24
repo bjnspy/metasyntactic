@@ -177,7 +177,7 @@
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
         [titles addObject:NSLocalizedString(@"Website", nil)];
     }
-    
+
     if (netflixMovie != nil && ![self.model.netflixCache isEnqueued:netflixMovie]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
         [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
@@ -208,7 +208,7 @@
 
 - (void) initializeData {
     self.netflixMovie = [self.model.netflixSearchCache netflixMovieForMovie:movie];
-    
+
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
         self.trailer = [trailers objectAtIndex:0];

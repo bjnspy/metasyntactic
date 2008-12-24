@@ -162,16 +162,16 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-    
+
     if (selected) {
         titleLabel.textColor = [UIColor whiteColor];
-        
+
         for (UILabel* label in self.allLabels) {
             label.textColor = [UIColor whiteColor];
         }
     } else {
         titleLabel.textColor = [UIColor blackColor];
-        
+
         for (UILabel* label in self.allLabels) {
             label.textColor = [UIColor darkGrayColor];
         }
@@ -184,7 +184,7 @@
     // refreshing with the same movie.
     // update our image if necessary.
     [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadImage) object:nil];
-    [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];    
+    [self performSelector:@selector(loadImage) withObject:nil afterDelay:0];
 }
 
 
@@ -192,15 +192,15 @@
                        owner:(id) owner  {
     // switching to a new movie.  update everything.
     self.movie = movie_;
-    
+
     for (UILabel* label in self.allLabels) {
         [label removeFromSuperview];
     }
-    
+
     [self clearImage];
-    
+
     [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
-    [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];    
+    [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
 }
 
 
@@ -211,7 +211,7 @@
     } else {
         titleLabel.text = movie_.displayTitle;
     }
-    
+
     if (movie == movie_) {
         [self onSetSameMovie:movie_ owner:owner];
     } else {
@@ -222,14 +222,14 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGRect imageFrame = imageView.frame;
-    
+
     CGRect titleFrame = titleLabel.frame;
     titleFrame.origin.x = (int)(imageFrame.size.width + 7);
     titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
     titleLabel.frame = titleFrame;
-    
+
     for (UILabel* label in self.valueLabels) {
         CGRect frame = label.frame;
         frame.origin.x = (int)(imageFrame.size.width + 7 + titleWidth + 5);
