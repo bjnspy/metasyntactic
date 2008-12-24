@@ -13,9 +13,14 @@
 // limitations under the License.
 
 #import "AbstractDetailsViewController.h"
+#import "NetflixAddMovieDelegate.h" 
 #import "TappableImageViewDelegate.h"
 
-@interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate> {
+@interface MovieDetailsViewController :
+    AbstractDetailsViewController<
+        TappableImageViewDelegate,
+        NetflixAddMovieDelegate,
+        UIActionSheetDelegate> {
 @private
     Movie* movie;
     DVD* dvd;

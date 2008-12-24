@@ -49,13 +49,14 @@ static NSString* blurayIMDbDirectory = nil;
 static NSString* blurayPostersDirectory = nil;
 
 static NSString* netflixDirectory = nil;
+static NSString* netflixIMDbDirectory = nil;
+static NSString* netflixCastDirectory = nil;
+static NSString* netflixSeriesDirectory = nil;
 static NSString* netflixQueuesDirectory = nil;
+static NSString* netflixFormatsDirectory = nil;
 static NSString* netflixPostersDirectory = nil;
 static NSString* netflixSynopsesDirectory = nil;
-static NSString* netflixCastDirectory = nil;
 static NSString* netflixDirectorsDirectory = nil;
-static NSString* netflixIMDbDirectory = nil;
-static NSString* netflixSeriesDirectory = nil;
 static NSString* netflixUserRatingsDirectory = nil;
 static NSString* netflixPredictedRatingsDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
@@ -87,13 +88,14 @@ static NSString** directories[] = {
 &blurayIMDbDirectory,
 &blurayPostersDirectory,
 &netflixDirectory,
+&netflixCastDirectory,
+&netflixIMDbDirectory,
 &netflixQueuesDirectory,
+&netflixSeriesDirectory,
+&netflixFormatsDirectory,
 &netflixPostersDirectory,
 &netflixSynopsesDirectory,
-&netflixCastDirectory,
 &netflixDirectorsDirectory,
-&netflixIMDbDirectory,
-&netflixSeriesDirectory,
 &netflixUserRatingsDirectory,
 &netflixPredictedRatingsDirectory,
 &netflixSearchDirectory,
@@ -247,6 +249,7 @@ static DifferenceEngine* differenceEngine = nil;
             netflixDirectorsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Directors"] retain];
             netflixIMDbDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
             netflixSeriesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Series"] retain];
+            netflixFormatsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Formats"] retain];
             netflixUserRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"UserRatings"] retain];
             netflixPredictedRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"PredictedRatings"] retain];
             netflixSearchDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Search"] retain];
@@ -402,6 +405,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixSeriesDirectory {
     return netflixSeriesDirectory;
+}
+
+
++ (NSString*) netflixFormatsDirectory {
+    return netflixFormatsDirectory;
 }
 
 
