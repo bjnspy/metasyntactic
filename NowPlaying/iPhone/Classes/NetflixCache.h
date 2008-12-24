@@ -69,12 +69,10 @@
 - (NSString*) noInformationFound;
 
 - (void) updateQueue:(Queue*) queue
-            fromFeed:(Feed*) feed
   byMovingMovieToTop:(Movie*) movie
             delegate:(id<NetflixMoveMovieDelegate>) delegate;
 
 - (void) updateQueue:(Queue*) queue
-            fromFeed:(Feed*) feed
     byDeletingMovies:(IdentitySet*) deletedMovies
  andReorderingMovies:(IdentitySet*) reorderedMovies
                   to:(NSArray*) movies
