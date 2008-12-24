@@ -490,6 +490,8 @@
 		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
 		746770DA0F009A8C00C64100 /* NetflixSearchCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchCache.h; sourceTree = "<group>"; };
 		746770DB0F009A8C00C64100 /* NetflixSearchCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchCache.m; sourceTree = "<group>"; };
+		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
+		746772A50F02B2B400C64100 /* NetflixAddMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAddMovieDelegate.h; sourceTree = "<group>"; };
 		7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		746A01420DC819270079D89B /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
@@ -1425,7 +1427,9 @@
 		747DA1630EF83B0D0066B881 /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
+				746772A50F02B2B400C64100 /* NetflixAddMovieDelegate.h */,
 				747DA5530EF88E180066B881 /* NetflixModifyQueueDelegate.h */,
+				746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */,
 				74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */,
 				7400EE890EF57C1100058CDD /* NetflixCache.h */,
 				7400EE8A0EF57C1100058CDD /* NetflixCache.m */,

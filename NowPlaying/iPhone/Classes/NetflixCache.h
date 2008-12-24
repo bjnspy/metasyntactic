@@ -71,7 +71,7 @@
 - (void) updateQueue:(Queue*) queue
             fromFeed:(Feed*) feed
   byMovingMovieToTop:(Movie*) movie
-            delegate:(id<NetflixModifyQueueDelegate>) delegate;
+            delegate:(id<NetflixMoveMovieDelegate>) delegate;
 
 - (void) updateQueue:(Queue*) queue
             fromFeed:(Feed*) feed
@@ -79,6 +79,10 @@
  andReorderingMovies:(IdentitySet*) reorderedMovies
                   to:(NSArray*) movies
             delegate:(id<NetflixModifyQueueDelegate>) delegate;
+
+- (void) updateQueue:(Queue*) queue 
+       byAddingMovie:(Movie*) movie
+            delegate:(id<NetflixAddMovieDelegate>) delegate;
 
 - (void) changeRatingTo:(NSString*) rating
                forMovie:(Movie*) movie

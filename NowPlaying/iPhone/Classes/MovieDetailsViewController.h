@@ -30,23 +30,20 @@
     NSInteger hiddenTheaterCount;
 
     ActionsView* actionsView;
+    UIButton* bookmarkButton;
+    NetflixRatingsCell* netflixRatingsCell;
 
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
-
     BOOL shutdown;
+    BOOL visible;
+    BOOL readonly;
+    
     NSLock* posterDownloadLock;
-
     UIImage* posterImage;
     TappableImageView* posterImageView;
     ActivityIndicatorViewWithBackground* posterActivityView;
     NSInteger posterCount;
-
-    BOOL visible;
-
-    UIButton* bookmarkButton;
-
-    NetflixRatingsCell* netflixRatingsCell;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

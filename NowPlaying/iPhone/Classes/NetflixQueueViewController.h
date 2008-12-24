@@ -13,10 +13,15 @@
 // limitations under the License.
 
 #import "RefreshableTableViewController.h"
+#import "NetflixMoveMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "TappableImageViewDelegate.h"
 
-@interface NetflixQueueViewController : RefreshableTableViewController<TappableImageViewDelegate, NetflixModifyQueueDelegate> {
+@interface NetflixQueueViewController :
+    RefreshableTableViewController<
+        TappableImageViewDelegate,
+        NetflixModifyQueueDelegate,
+        NetflixMoveMovieDelegate> {
 @private
     AbstractNavigationController* navigationController;
     NSString* feedKey;

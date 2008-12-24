@@ -319,6 +319,39 @@
 }
 
 
+- (void) setupTitle {
+    if (readonly) {
+        self.title = NSLocalizedString(@"Please Wait", nil);
+    } else {
+        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+        label.text = movie.displayTitle;
+        
+        self.title = movie.displayTitle;
+        self.navigationItem.titleView = label;
+    }
+}
+
+
+- (void) setupButtons {
+    if (readonly) {
+        UIActivityIndicatorView* activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        CGRect frame = activityIndicatorView.frame;
+        frame.size.width += 4;
+        [activityIndicatorView startAnimating];
+        
+        UIView* activityView = [[UIView alloc] initWithFrame:frame];
+        [activityView addSubview:activityIndicatorView];
+        
+        UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
+        [self.navigationItem setRightBarButtonItem:right animated:YES];
+        [self.navigationItem setHidesBackButton:YES animated:YES];
+    } else {
+        [self.navigationItem setHidesBackButton:NO animated:YES];
+        [self initializeBookmarkButton];
+    }
+}
+
+
 - (void) loadView {
     [super loadView];
 
@@ -326,14 +359,8 @@
 
     filterTheatersByDistance = YES;
 
-    UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-    label.text = movie.displayTitle;
-
-    self.title = movie.displayTitle;
-    self.navigationItem.titleView = label;
-
     [self setupPosterView];
-    [self initializeBookmarkButton];
+    [self setupButtons];
     [self.model prioritizeMovie:movie];
 }
 
@@ -431,6 +458,10 @@
 
 
 - (void) majorRefresh {
+    if (readonly) {
+        return;
+    }
+
     [self initializeData];
     [netflixRatingsCell refresh];
     [self.tableView reloadData];
@@ -813,6 +844,29 @@
 
 - (void) visitWebsite {
     [navigationController pushBrowser:dvd.url animated:YES];
+}
+
+
+- (void) enterReadonlyMode {
+    if (readonly) {
+        return;
+    }
+    readonly = YES;
+    [self setupTitle];
+    [self setupButtons];
+}
+
+
+- (void) exitReadonlyMode {
+    readonly = NO;
+    [self setupTitle];
+    [self setupButtons];
+}
+
+
+- (void) addToQueue {
+    [self enterReadonlyMode];
+//    [self.model.netflixCache 
 }
 
 
