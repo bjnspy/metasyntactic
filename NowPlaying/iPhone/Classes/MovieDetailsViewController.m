@@ -321,7 +321,7 @@
 
 
 - (void) setupTitle {
-    if (readonly) {
+    if (readonlyMode) {
         self.title = NSLocalizedString(@"Please Wait", nil);
     } else {
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
@@ -334,7 +334,7 @@
 
 
 - (void) setupButtons {
-    if (readonly) {
+    if (readonlyMode) {
         UIActivityIndicatorView* activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         CGRect frame = activityIndicatorView.frame;
         frame.size.width += 4;
@@ -461,7 +461,7 @@
 
 
 - (void) majorRefresh {
-    if (readonly) {
+    if (readonlyMode) {
         return;
     }
     
@@ -851,17 +851,17 @@
 
 
 - (void) enterReadonlyMode {
-    if (readonly) {
+    if (readonlyMode) {
         return;
     }
-    readonly = YES;
+    readonlyMode = YES;
     [self setupTitle];
     [self setupButtons];
 }
 
 
 - (void) exitReadonlyMode {
-    readonly = NO;
+    readonlyMode = NO;
     [self setupTitle];
     [self setupButtons];
 }
@@ -895,6 +895,10 @@
 
 
 - (void) addToQueue {
+    if (readonlyMode) {
+        return;
+    }
+
     NSArray* formats = [self.model.netflixCache formatsForMovie:netflixMovie];
     if (formats.count >= 2 && [formats containsObject:@"instant"]) {
         UIActionSheet* actionSheet =

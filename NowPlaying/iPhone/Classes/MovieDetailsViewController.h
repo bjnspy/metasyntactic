@@ -42,7 +42,7 @@
     BOOL expandedDetails;
     BOOL shutdown;
     BOOL visible;
-    BOOL readonly;
+    BOOL readonlyMode;
     
     NSLock* posterDownloadLock;
     UIImage* posterImage;

@@ -143,9 +143,7 @@
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (self.model.rottenTomatoesScores) {
-            cell.text = @"RottenTomatoes.com";
-        } else if (self.model.metacriticScores) {
+        if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
             cell.text = @"Metacritic.com";
         } else if (self.model.googleScores) {
             cell.text = @"Google.com";
