@@ -46,16 +46,17 @@
 + (NSString*) blurayPostersDirectory;
 
 + (NSString*) netflixDirectory;
++ (NSString*) netflixCastDirectory;
++ (NSString*) netflixIMDbDirectory;
++ (NSString*) netflixSearchDirectory;
 + (NSString*) netflixQueuesDirectory;
++ (NSString*) netflixSeriesDirectory;
++ (NSString*) netflixFormatsDirectory;
 + (NSString*) netflixPostersDirectory;
 + (NSString*) netflixSynopsesDirectory;
-+ (NSString*) netflixCastDirectory;
 + (NSString*) netflixDirectorsDirectory;
-+ (NSString*) netflixIMDbDirectory;
-+ (NSString*) netflixSeriesDirectory;
 + (NSString*) netflixUserRatingsDirectory;
 + (NSString*) netflixPredictedRatingsDirectory;
-+ (NSString*) netflixSearchDirectory;
 
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;

@@ -90,6 +90,7 @@
     Movie* netflixMovie = [self updateMovieWorker:movie];
     if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
+        [model.netflixCache addSearchResult:netflixMovie];
         [NowPlayingAppDelegate minorRefresh];
     }
 }

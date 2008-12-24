@@ -65,6 +65,7 @@
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSString*) netflixRatingForMovie:(Movie*) movie;
 - (NSString*) userRatingForMovie:(Movie*) movie;
+- (NSArray*) formatsForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
 
@@ -87,6 +88,7 @@
                delegate:(id<NetflixChangeRatingDelegate>) delegate;
 
 // @internal
+- (void) addSearchResult:(Movie*) movie;
 - (OAMutableURLRequest*) createURLRequest:(NSString*) address;
 - (void) processMovieItemList:(XmlElement*) element
                        movies:(NSMutableArray*) movies

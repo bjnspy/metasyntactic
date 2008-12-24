@@ -8,7 +8,7 @@
 
 @protocol NetflixAddMovieDelegate
 
-- (void) addSucceededForMovie:(Movie*) movie;
+- (void) addSucceeded;
 - (void) addFailedWithError:(NSString*) error;
 
 @end
