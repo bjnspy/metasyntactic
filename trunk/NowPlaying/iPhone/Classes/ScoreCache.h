@@ -31,6 +31,4 @@
 
 - (void) prioritizeMovie:(Movie*) movie inMovies:(NSArray*) movies;
 
-- (void) clearStaleData;
-
 @end

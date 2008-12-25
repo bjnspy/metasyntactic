@@ -35,7 +35,6 @@
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "MutableNetflixCache.h"
-#import "NetflixSearchCache.h"
 #import "NetflixViewController.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
@@ -399,16 +398,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     [self synchronize];
 
     if (runCount % 20 == 0) {
-        [userLocationCache clearStaleData];
-        [netflixCache clearStaleData];
-        [largePosterCache clearStaleData];
-        [imdbCache clearStaleData];
-        [trailerCache clearStaleData];
-        [blurayCache clearStaleData];
-        [dvdCache clearStaleData];
-        [posterCache clearStaleData];
-        [scoreCache clearStaleData];
-        [upcomingCache clearStaleData];
+        [Application clearStaleData];
     }
 }
 

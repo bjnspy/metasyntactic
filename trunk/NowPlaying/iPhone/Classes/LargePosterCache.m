@@ -65,11 +65,6 @@
 }
 
 
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObject:[Application largePostersDirectory]];
-}
-
-
 - (UIImage*) posterForMovie:(Movie*) movie
                       index:(NSInteger) index {
     NSString* path = [self posterFilePath:movie index:index];

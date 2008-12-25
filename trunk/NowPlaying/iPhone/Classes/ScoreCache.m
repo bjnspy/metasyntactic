@@ -127,11 +127,4 @@
     }
 }
 
-
-- (void) clearStaleData {
-    for (id<ScoreProvider> provider in self.scoreProviders) {
-        [provider clearStaleData];
-    }
-}
-
 @end

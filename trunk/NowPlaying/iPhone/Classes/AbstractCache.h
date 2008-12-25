@@ -18,8 +18,6 @@
     NowPlayingModel* model;
 }
 
-- (void) clearStaleData;
-
 /* @protected */
 - (id) initWithModel:(NowPlayingModel*) model;
 

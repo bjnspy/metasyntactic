@@ -32,7 +32,6 @@
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
 #import "MutableNetflixCache.h"
-#import "NetflixSearchCache.h"
 #import "NetflixRatingsCell.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
@@ -302,8 +301,6 @@
 
 - (void) initializeBookmarkButton {
     self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    //[bookmarkButton setImage:[UIImage imageNamed:@"Bookmark-Inactive.png"] forState:UIControlStateNormal];
-    //[bookmarkButton setImage:[UIImage imageNamed:@"Bookmark-Active.png"] forState:UIControlStateSelected];
     [bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
     [bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
     
@@ -322,7 +319,10 @@
 
 - (void) setupTitle {
     if (readonlyMode) {
-        self.title = NSLocalizedString(@"Please Wait", nil);
+        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+        label.text = NSLocalizedString(@"Please Wait", nil);
+
+        self.navigationItem.titleView = label;
     } else {
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = movie.displayTitle;

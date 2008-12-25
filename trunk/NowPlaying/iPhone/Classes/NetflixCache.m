@@ -125,20 +125,6 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObjects:
-            [Application netflixDirectory],
-            [Application netflixQueuesDirectory],
-            [Application netflixPostersDirectory],
-            [Application netflixSynopsesDirectory],
-            [Application netflixCastDirectory],
-            [Application netflixSearchDirectory],
-            [Application netflixUserRatingsDirectory],
-            [Application netflixPredictedRatingsDirectory], 
-            [Application netflixDirectorsDirectory], nil];
-}
-
-
 - (NSString*) feedsFile {
     return [[Application netflixDirectory] stringByAppendingPathComponent:@"Feeds.plist"];
 }

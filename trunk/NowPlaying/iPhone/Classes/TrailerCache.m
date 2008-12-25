@@ -222,9 +222,4 @@
     return trailers;
 }
 
-
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObject:[Application trailersDirectory]];
-}
-
 @end

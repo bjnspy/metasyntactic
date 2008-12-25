@@ -44,24 +44,4 @@
     return self;
 }
 
-
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet set];
-}
-
-
-- (void) clearStaleData {
-    NSSet* cachedDirectoriesToClear = self.cachedDirectoriesToClear;
-
-    for (NSString* path in cachedDirectoriesToClear) {
-        NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
-        if (lastModifiedDate != nil) {
-            if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                [FileUtilities removeItem:path];
-            }
-        }
-    }
-}
-
-
 @end

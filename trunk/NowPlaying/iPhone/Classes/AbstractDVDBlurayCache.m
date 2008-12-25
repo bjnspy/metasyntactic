@@ -23,7 +23,6 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "NetflixSearchCache.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
@@ -375,14 +374,6 @@
 
     // do this last.  it signifies that we're done
     [FileUtilities writeObject:[Movie encodeArray:videos] toFile:self.moviesFile];
-}
-
-
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObjects:
-            [self detailsDirectory],
-            [self imdbDirectory],
-            [self postersDirectory], nil];
 }
 
 
