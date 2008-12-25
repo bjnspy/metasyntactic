@@ -43,7 +43,7 @@
 }
 
 
-- (Movie*) updateMovieWorker:(Movie*) movie {
+- (Movie*) lookupMovieWorker:(Movie*) movie {
     OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
@@ -81,13 +81,13 @@
 }
 
 
-- (void) updateMovieBackgroundEntryPoint:(Movie*) movie {
+- (void) lookupMovieBackgroundEntryPoint:(Movie*) movie {
     NSString* file = [self netflixFile:movie];
     if ([FileUtilities fileExists:file]) {
         return;
     }
 
-    Movie* netflixMovie = [self updateMovieWorker:movie];
+    Movie* netflixMovie = [self lookupMovieWorker:movie];
     if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
         [model.netflixCache addSearchResult:netflixMovie];
@@ -96,9 +96,9 @@
 }
 
 
-- (void) updateMovie:(Movie*) movie {
+- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie {
     if ([self hasAccount]) {
-        [ThreadingUtilities performSelector:@selector(updateMovieBackgroundEntryPoint:)
+        [ThreadingUtilities performSelector:@selector(lookupMovieBackgroundEntryPoint:)
                                    onTarget:self
                    inBackgroundWithArgument:movie
                                        gate:gate
@@ -107,9 +107,9 @@
 }
 
 
-- (void) updateMovies:(NSArray*) movies {
+- (void) lookupNetflixMovieForLocalMovies:(NSArray*) movies {
     if ([self hasAccount]) {
-        [ThreadingUtilities performSelector:@selector(updateMoviesBackgroundEntryPoint:)
+        [ThreadingUtilities performSelector:@selector(lookupMoviesBackgroundEntryPoint:)
                                    onTarget:self
                    inBackgroundWithArgument:movies
                                        gate:gate
@@ -118,11 +118,11 @@
 }
 
 
-- (void) updateMoviesBackgroundEntryPoint:(NSArray*) movies {
+- (void) lookupMoviesBackgroundEntryPoint:(NSArray*) movies {
     for (Movie* movie in movies) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            [self updateMovieBackgroundEntryPoint:movie];
+            [self lookupMovieBackgroundEntryPoint:movie];
         }
         [pool release];
     }

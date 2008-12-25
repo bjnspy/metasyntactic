@@ -761,20 +761,7 @@ static NSSet* allowableFeeds = nil;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
     
     [self checkApiResult:element];
-    /*
-     </external_ids>  
-     <delivery_formats>  
-     <availability available_from="1199174400">  
-     <category scheme="http://api.netflix.com/categories/title_format"  label="instant"    
-     term="instant"></category>  
-     </availability>  
-     <availability available_from="862297200">  
-     <category scheme="http://api.netflix.com/categories/title_format"  label="DVD"    
-     term="DVD"></category>  
-     </availability>  
-     </delivery_formats>  
-     */
-    
+
     NSMutableArray* formats = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -1157,9 +1144,9 @@ static NSSet* allowableFeeds = nil;
 
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount {
     NSString* title = nil;
-    if ([key isEqual:@"http://schemas.netflix.com/feed.queues.disc"]) {
+    if ([key isEqual:[NetflixCache dvdQueueKey]]) {
         title = NSLocalizedString(@"DVD/Blu-ray Queue", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.queues.instant"]) {
+    } else if ([key isEqual:[NetflixCache instantQueueKey]]) {
         title = NSLocalizedString(@"Instant Queue", nil);
     } else if ([key isEqual:@"http://schemas.netflix.com/feed.at_home"]) {
         title = NSLocalizedString(@"At Home", nil);

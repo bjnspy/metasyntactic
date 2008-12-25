@@ -446,7 +446,7 @@
 
 
 - (void) updateNetflix:(Movie*) movie {
-    [model.netflixSearchCache updateMovie:movie];
+    [model.netflixSearchCache lookupNetflixMovieForLocalMovie:movie];
 }
 
 

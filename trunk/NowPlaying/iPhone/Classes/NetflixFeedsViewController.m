@@ -130,7 +130,7 @@
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AutoResizingCell *cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
+    AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
 
     NSArray* feeds = self.feeds;
 
