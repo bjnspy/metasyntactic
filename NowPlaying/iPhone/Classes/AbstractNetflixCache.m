@@ -26,7 +26,7 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
     }
-    
+
     return self;
 }
 
@@ -69,16 +69,16 @@
 - (OAMutableURLRequest*) createURLRequest:(NSString*) address {
     OAConsumer* consumer = [OAConsumer consumerWithKey:@"83k9wpqt34hcka5bfb2kkf8s"
                                                 secret:@"GGR5uHEucN"];
-    
+
     OAToken* token = [OAToken tokenWithKey:model.netflixKey
                                     secret:model.netflixSecret];
-    
+
     OAMutableURLRequest* request =
     [OAMutableURLRequest requestWithURL:[NSURL URLWithString:address]
                                consumer:consumer
                                   token:token
                                   realm:nil];
-    
+
     return request;
 }
 

@@ -105,7 +105,7 @@
     for (UIView* view in self.contentView.subviews) {
         [view removeFromSuperview];
     }
-    
+
     NSString* userRating = [model.netflixCache userRatingForMovie:movie];
     if (userRating.length > 0) {
         [self setupUserRating:userRating];

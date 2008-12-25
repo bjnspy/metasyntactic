@@ -30,7 +30,7 @@
                   to:(NSArray*) movies
             delegate:(id<NetflixModifyQueueDelegate>) delegate;
 
-- (void) updateQueue:(Queue*) queue 
+- (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
             delegate:(id<NetflixAddMovieDelegate>) delegate;
 

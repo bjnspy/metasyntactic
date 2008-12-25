@@ -739,17 +739,17 @@ static NSSet* allowableFeeds = nil;
     if (address.length == 0) {
         return;
     }
-    
+
     NSString* path = [self formatsFile:movie];
     if ([FileUtilities fileExists:path]) {
         return;
     }
-    
+
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request prepare];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
+
     [self checkApiResult:element];
 
     NSMutableArray* formats = [NSMutableArray array];
@@ -767,7 +767,7 @@ static NSSet* allowableFeeds = nil;
         }
         [pool release];
     }
-    
+
     if (formats.count > 0) {
         [FileUtilities writeObject:formats toFile:path];
     }
@@ -957,7 +957,7 @@ static NSSet* allowableFeeds = nil;
     if (![movie isNetflix]) {
         return;
     }
-    
+
     [updateDetailsLock lock];
     {
         [searchMovies addObject:movie];
@@ -1210,33 +1210,33 @@ static NSSet* allowableFeeds = nil;
 
 - (Movie*) lookupMovieWorker:(Movie*) movie {
     OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
-    
+
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:movie.canonicalTitle],
                            [OARequestParameter parameterWithName:@"max_results" value:@"1"], nil];
-    
+
     [request setParameters:parameters];
     [request prepare];
-    
+
     XmlElement* element =
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
-    
+
     [model.netflixCache checkApiResult:element];
-    
+
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
     [model.netflixCache processMovieItemList:element movies:movies saved:saved];
-    
+
     [movies addObjectsFromArray:saved];
-    
+
     if (movies.count > 0) {
         Movie* netflixMovie = [movies objectAtIndex:0];
         if ([DifferenceEngine areSimilar:movie.canonicalTitle other:netflixMovie.canonicalTitle]) {
             return netflixMovie;
         }
     }
-    
+
     return nil;
 }
 
@@ -1251,7 +1251,7 @@ static NSSet* allowableFeeds = nil;
     if ([FileUtilities fileExists:file]) {
         return;
     }
-    
+
     Movie* netflixMovie = [self lookupMovieWorker:movie];
     if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
@@ -1298,13 +1298,13 @@ static NSSet* allowableFeeds = nil;
     if (movie.isNetflix) {
         return movie;
     }
-    
+
     NSString* file = [self netflixFile:movie];
     NSDictionary* dictionary = [FileUtilities readObject:file];
     if (dictionary.count == 0) {
         return nil;
     }
-    
+
     return [Movie movieWithDictionary:dictionary];
 }
 

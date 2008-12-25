@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #import "AbstractDetailsViewController.h"
-#import "NetflixAddMovieDelegate.h" 
+#import "NetflixAddMovieDelegate.h"
 #import "TappableImageViewDelegate.h"
 
 @interface MovieDetailsViewController :
@@ -43,7 +43,7 @@
     BOOL shutdown;
     BOOL visible;
     BOOL readonlyMode;
-    
+
     NSLock* posterDownloadLock;
     UIImage* posterImage;
     TappableImageView* posterImageView;
