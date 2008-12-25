@@ -15,12 +15,6 @@
 @interface Application : NSObject {
 }
 
-/*
-+ (NSString*) supportDirectory;
-+ (NSString*) tempDirectory;
-+ (NSString*) documentsDirectory;
-*/
-
 + (NSString*) dataDirectory;
 + (NSString*) imdbDirectory;
 + (NSString*) userLocationsDirectory;
