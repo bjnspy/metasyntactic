@@ -67,29 +67,17 @@
 }
 
 
-- (id) initWithURL:(NSURL*) url
+- (id) initWithURL:(NSURL*) url_
           consumer:(OAConsumer*) consumer_
-             token:(OAToken*)aToken
-             realm:(NSString*)aRealm {
-    if ([super initWithURL:url
+             token:(OAToken*) token_
+             realm:(NSString*) realm_ {
+    if ([super initWithURL:url_
                cachePolicy:NSURLRequestReloadIgnoringCacheData
            timeoutInterval:60.0]) {
 
         self.consumer = consumer_;
-
-        // empty token for Unauthorized Request Token transaction
-        if (aToken == nil) {
-            self.token = [[[OAToken alloc] init] autorelease];
-        } else {
-            self.token = aToken;
-        }
-
-        if (aRealm == nil) {
-            self.realm = @"";
-        } else {
-            self.realm = aRealm;
-        }
-
+        self.token = token_;
+        self.realm = realm_.length == 0 ? @"" : realm_;
         self.timestamp = [NSString stringWithFormat:@"%d", time(NULL)];
 
         CFUUIDRef uuid = CFUUIDCreate(NULL);
@@ -159,19 +147,15 @@
 
 - (void) prepare {
     // sign
-    OAHMAC_SHA1SignatureProvider* provider =
-    [[[OAHMAC_SHA1SignatureProvider alloc] init] autorelease];
-
     NSString* baseString = [self _signatureBaseString];
-    self.signature = [provider signClearText:baseString
-                                  withSecret:[NSString stringWithFormat:@"%@&%@", consumer.secret, token.secret]];
+    self.signature = 
+    [OAHMAC_SHA1SignatureProvider signClearText:baseString
+                                     withSecret:[NSString stringWithFormat:@"%@&%@", consumer.secret, token.secret]];
 
     // set OAuth headers
 
-    NSString* oauthToken;
-    if (token.key.length == 0) {
-        oauthToken = @""; // not used on Request Token transactions
-    } else {
+    NSString* oauthToken = @"";
+    if (token.key.length > 0) {
         oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", token.key.encodedURLParameterString];
     }
 
@@ -179,7 +163,7 @@
                              realm.encodedURLParameterString,
                              consumer.key.encodedURLParameterString,
                              oauthToken,
-                             [[provider name] encodedURLParameterString],
+                             [[OAHMAC_SHA1SignatureProvider name] encodedURLParameterString],
                              signature.encodedURLParameterString,
                              timestamp,
                              nonce];

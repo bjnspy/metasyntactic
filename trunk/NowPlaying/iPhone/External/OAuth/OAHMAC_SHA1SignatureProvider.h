@@ -25,8 +25,8 @@
 
 @interface OAHMAC_SHA1SignatureProvider : NSObject
 
-- (NSString*) name;
-- (NSString*) signClearText:(NSString*) text
++ (NSString*) name;
++ (NSString*) signClearText:(NSString*) text
                  withSecret:(NSString*) secret;
 
 @end
