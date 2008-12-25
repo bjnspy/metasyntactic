@@ -42,7 +42,8 @@
 }
 
 
-- (id) initWithKey:(NSString*) key_ secret:(NSString*) secret_ {
+- (id) initWithKey:(NSString*) key_
+            secret:(NSString*) secret_ {
     if (self = [super init]) {
 	self.key = key_;
 	self.secret = secret_;
@@ -52,8 +53,10 @@
 }
 
 
-+ (OAConsumer*) consumerWithKey:(NSString*) key secret:(NSString*) secret {
-    return [[[OAConsumer alloc] initWithKey:key secret:secret] autorelease];
++ (OAConsumer*) consumerWithKey:(NSString*) key
+                         secret:(NSString*) secret {
+    return [[[OAConsumer alloc] initWithKey:key
+                                     secret:secret] autorelease];
 }
 
 @end

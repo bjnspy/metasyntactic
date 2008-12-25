@@ -126,7 +126,7 @@
     [parameterPairs addObject:[[OARequestParameter parameterWithName:@"oauth_nonce" value:nonce] URLEncodedNameValuePair]];
     [parameterPairs addObject:[[OARequestParameter parameterWithName:@"oauth_version" value:@"1.0"] URLEncodedNameValuePair]];
 
-    if (![token.key isEqualToString:@""]) {
+    if (token.key.length > 0) {
         [parameterPairs addObject:[[OARequestParameter parameterWithName:@"oauth_token" value:token.key] URLEncodedNameValuePair]];
     }
 
@@ -153,7 +153,6 @@
                                      withSecret:[NSString stringWithFormat:@"%@&%@", consumer.secret, token.secret]];
 
     // set OAuth headers
-
     NSString* oauthToken = @"";
     if (token.key.length > 0) {
         oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", token.key.encodedURLParameterString];
@@ -163,7 +162,7 @@
                              realm.encodedURLParameterString,
                              consumer.key.encodedURLParameterString,
                              oauthToken,
-                             [[OAHMAC_SHA1SignatureProvider name] encodedURLParameterString],
+                             [@"HMAC-SHA1" encodedURLParameterString],
                              signature.encodedURLParameterString,
                              timestamp,
                              nonce];
