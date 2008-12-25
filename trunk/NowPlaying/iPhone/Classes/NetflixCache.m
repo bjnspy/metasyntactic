@@ -144,7 +144,7 @@ static NSString* average_rating_key = @"average_rating";
 
 
 - (NSString*) queueEtagFile:(Queue*) queue {
-    NSString* name = [NSString stringWithFormat:@"%@-etag", queue.feedKey];
+    NSString* name = [NSString stringWithFormat:@"%@-etag", queue.feed.key];
     return [[[Application netflixQueuesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:name]]
             stringByAppendingPathExtension:@"plist"];
 }
@@ -362,7 +362,7 @@ static NSString* average_rating_key = @"average_rating";
 
 
 - (void) saveQueue:(Queue*) queue {
-    [FileUtilities writeObject:queue.dictionary toFile:[self queueFile:queue.feedKey]];
+    [FileUtilities writeObject:queue.dictionary toFile:[self queueFile:queue.feed.key]];
     [FileUtilities writeObject:queue.etag toFile:[self queueEtagFile:queue]];
 }
 
@@ -465,10 +465,10 @@ static NSString* average_rating_key = @"average_rating";
     [NetflixCache processMovieItemList:element movies:movies saved:saved];
     
     if (movies.count > 0 || saved.count > 0) {
-        Queue* queue = [Queue queueWithFeedKey:feed.key
-                                          etag:etag
-                                        movies:movies
-                                         saved:saved];
+        Queue* queue = [Queue queueWithFeed:feed
+                                       etag:etag
+                                     movies:movies
+                                      saved:saved];
         [self saveQueue:queue];
         [self performSelectorOnMainThread:@selector(reportQueue:)
                                withObject:queue
@@ -479,7 +479,7 @@ static NSString* average_rating_key = @"average_rating";
 
 - (void) reportQueue:(Queue*) queue {
     NSAssert([NSThread isMainThread], nil);
-    [queues setObject:queue forKey:queue.feedKey];
+    [queues setObject:queue forKey:queue.feed.key];
     [NowPlayingAppDelegate majorRefresh];
 }
 

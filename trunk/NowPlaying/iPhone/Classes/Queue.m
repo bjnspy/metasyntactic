@@ -14,11 +14,13 @@
 
 #import "Queue.h"
 
+#import "Feed.h"
 #import "Movie.h"
+#import "NetflixCache.h"
 #import "Utilities.h"
 
 @interface Queue()
-@property (copy) NSString* feedKey;
+@property (retain) Feed* feed;
 @property (copy) NSString* etag;
 @property (retain) NSArray* movies;
 @property (retain) NSArray* saved;
@@ -27,58 +29,58 @@
 
 @implementation Queue
 
-property_definition(feedKey);
+property_definition(feed);
 property_definition(etag);
 property_definition(movies);
 property_definition(saved);
 
 - (void) dealloc {
-    self.feedKey = nil;
+    self.feed = nil;
     self.etag = nil;
     self.movies = nil;
     self.saved = nil;
-
+    
     [super dealloc];
 }
 
 
-- (id) initWithFeedKey:(NSString*) feedKey_
-                  etag:(NSString*) etag_
-                  movies:(NSArray*) movies_
-                 saved:(NSArray*) saved_{
+- (id) initWithFeed:(Feed*) feed_
+               etag:(NSString*) etag_
+             movies:(NSArray*) movies_
+              saved:(NSArray*) saved_{
     if (self = [super init]) {
-        self.feedKey = feedKey_;
+        self.feed = feed_;
         self.etag = [Utilities nonNilString:etag_];
         self.movies = movies_;
         self.saved = saved_;
     }
-
+    
     return self;
 }
 
 
-+ (Queue*) queueWithFeedKey:(NSString*) feedKey
-                       etag:(NSString*) etag
-                     movies:(NSArray*) movies
-                      saved:(NSArray*) saved {
-    return [[[Queue alloc] initWithFeedKey:feedKey
-                                      etag:etag
-                                    movies:movies
-                                     saved:saved] autorelease];
++ (Queue*) queueWithFeed:(Feed*) feed
+                    etag:(NSString*) etag
+                  movies:(NSArray*) movies
+                   saved:(NSArray*) saved {
+    return [[[Queue alloc] initWithFeed:feed
+                                   etag:etag
+                                 movies:movies
+                                  saved:saved] autorelease];
 }
 
 
 + (Queue*) queueWithDictionary:(NSDictionary*) dictionary {
-    return [Queue queueWithFeedKey:[dictionary objectForKey:feedKey_key]
-                              etag:[dictionary objectForKey:etag_key]
-                            movies:[Movie decodeArray:[dictionary objectForKey:movies_key]]
-                             saved:[Movie decodeArray:[dictionary objectForKey:saved_key]]];
+    return [Queue queueWithFeed:[Feed feedWithDictionary:[dictionary objectForKey:feed_key]]
+                           etag:[dictionary objectForKey:etag_key]
+                         movies:[Movie decodeArray:[dictionary objectForKey:movies_key]]
+                          saved:[Movie decodeArray:[dictionary objectForKey:saved_key]]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:feedKey forKey:feedKey_key];
+    [result setObject:feed.dictionary forKey:feed_key];
     [result setObject:etag forKey:etag_key];
     [result setObject:[Movie encodeArray:movies] forKey:movies_key];
     [result setObject:[Movie encodeArray:saved] forKey:saved_key];
@@ -87,12 +89,12 @@ property_definition(saved);
 
 
 - (BOOL) isDVDQueue {
-    return [@"http://schemas.netflix.com/feed.queues.disc" isEqual:feedKey];
+    return [[NetflixCache dvdQueueKey] isEqual:feed.key];
 }
 
 
 - (BOOL) isInstantQueue {
-    return [@"http://schemas.netflix.com/feed.queues.instant" isEqual:feedKey];
+    return [[NetflixCache instantQueueKey] isEqual:feed.key];
 }
 
 
