@@ -119,16 +119,14 @@ static MainThreadGate* gate;
         NSData* plistData = [NSPropertyListSerialization dataFromPropertyList:object
                                                                        format:NSPropertyListBinaryFormat_v1_0
                                                              errorDescription:NULL];
-        if(plistData) {
+
+        if (plistData != nil) {
             [plistData writeToFile:file atomically:YES];
+        } if (object == nil) {
+            [FileUtilities removeItem:file];
         }
     }
     [gate unlock];
-    /*
-    if ([NSThread threadPriority] == 0.0) {
-        [NSThread sleepForTimeInterval:0.25];
-    }
-     */
 }
 
 
@@ -159,12 +157,6 @@ static MainThreadGate* gate;
         [data writeToFile:file atomically:YES];
     }
     [gate unlock];
-
-    /*
-    if ([NSThread threadPriority] == 0.0) {
-        [NSThread sleepForTimeInterval:0.25];
-    }
-     */
 }
 
 
