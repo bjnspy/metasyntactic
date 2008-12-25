@@ -19,7 +19,6 @@
 @property (retain) NSArray* selectors;
 @property (retain) NSArray* titles;
 @property (retain) NSArray* buttons;
-@property (retain) UILabel* footer;
 @end
 
 
@@ -29,14 +28,12 @@
 @synthesize selectors;
 @synthesize titles;
 @synthesize buttons;
-@synthesize footer;
 
 - (void) dealloc {
     self.target = nil;
     self.selectors = nil;
     self.titles = nil;
     self.buttons = nil;
-    self.footer = nil;
 
     [super dealloc];
 }
@@ -44,20 +41,12 @@
 
 - (id) initWithTarget:(id) target_
             selectors:(NSArray*) selectors_
-               titles:(NSArray*) titles_
-               footer:(NSString*) footer_ {
+               titles:(NSArray*) titles_{
     if (self = [super initWithFrame:CGRectZero]) {
         self.target = target_;
         self.selectors = selectors_;
         self.titles = titles_;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
-
-        if (footer_ != nil) {
-            self.footer = [[[UILabel alloc] init] autorelease];
-            footer.text = footer_;
-            footer.opaque = NO;
-            footer.backgroundColor = [UIColor clearColor];
-        }
 
         NSMutableArray* array = [NSMutableArray array];
         for (NSString* title in titles) {
@@ -88,19 +77,10 @@
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
-                         titles:(NSArray*) titles
-                         footer:(NSString*) footer {
+                         titles:(NSArray*) titles {
     return [[[ActionsView alloc] initWithTarget:(id) target
                                       selectors:selectors
-                                         titles:titles
-                                         footer:footer] autorelease];
-}
-
-
-+ (ActionsView*) viewWithTarget:(id) target
-                      selectors:(NSArray*) selectors
-                         titles:(NSArray*) titles {
-    return [ActionsView viewWithTarget:target selectors:selectors titles:titles footer:nil];
+                                         titles:titles] autorelease];
 }
 
 
