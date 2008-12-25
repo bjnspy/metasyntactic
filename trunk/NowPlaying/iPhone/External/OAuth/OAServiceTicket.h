@@ -29,13 +29,13 @@
 @private
     OAMutableURLRequest* request;
     NSURLResponse* response;
-    BOOL didSucceed;
+    BOOL succeeded;
 }
 
 @property (readonly, retain) OAMutableURLRequest* request;
 @property (readonly, retain) NSURLResponse* response;
-@property (readonly) BOOL didSucceed;
+@property (readonly) BOOL succeeded;
 
-+ (OAServiceTicket*) ticketWithRequest:(OAMutableURLRequest*) request response:(NSURLResponse*) response didSucceed:(BOOL) success;
++ (OAServiceTicket*) ticketWithRequest:(OAMutableURLRequest*) request response:(NSURLResponse*) response succeeded:(BOOL) succeeded;
 
 @end

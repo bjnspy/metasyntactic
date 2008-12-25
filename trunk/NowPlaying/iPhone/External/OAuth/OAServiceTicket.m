@@ -30,12 +30,12 @@
 @interface OAServiceTicket()
 @property (retain) OAMutableURLRequest* request;
 @property (retain) NSURLResponse* response;
-@property BOOL didSucceed;
+@property BOOL succeeded;
 @end
 
 @implementation OAServiceTicket
 
-@synthesize request, response, didSucceed;
+@synthesize request, response, succeeded;
 
 - (void) dealloc {
     self.request = nil;
@@ -47,11 +47,11 @@
 
 - (id) initWithRequest:(OAMutableURLRequest*) request_
               response:(NSURLResponse*) response_
-            didSucceed:(BOOL) success_ {
+             succeeded:(BOOL) succeeded_ {
     if (self = [super init]) {
         self.request = request_;
         self.response = response_;
-        self.didSucceed = success_;
+        self.succeeded = succeeded_;
     }
 
     return self;
@@ -60,8 +60,8 @@
 
 + (OAServiceTicket*) ticketWithRequest:(OAMutableURLRequest*) request
                               response:(NSURLResponse*) response
-                            didSucceed:(BOOL) success {
-    return [[[OAServiceTicket alloc] initWithRequest:request response:response didSucceed:success] autorelease];
+                             succeeded:(BOOL) succeeded {
+    return [[[OAServiceTicket alloc] initWithRequest:request response:response succeeded:succeeded] autorelease];
 }
 
 @end
