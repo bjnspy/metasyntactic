@@ -1187,15 +1187,6 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
-- (void) checkApiResult:(XmlElement*) element {
-    NSString* message = [[element element:@"message"] text];
-    if ([@"Over queries per day limit" isEqual:message]) {
-        self.lastQuotaErrorDate = [NSDate date];
-        [NowPlayingAppDelegate minorRefresh];
-    }
-}
-
-
 - (BOOL) hasAccount {
     return model.netflixUserId.length > 0;
 }
@@ -1299,6 +1290,15 @@ static NSString* average_rating_key = @"average_rating";
     }
 
     return [Movie movieWithDictionary:dictionary];
+}
+
+
+- (void) checkApiResult:(XmlElement*) element {
+    NSString* message = [[element element:@"message"] text];
+    if ([@"Over queries per day limit" isEqual:message]) {
+        self.lastQuotaErrorDate = [NSDate date];
+        [NowPlayingAppDelegate minorRefresh];
+    }
 }
 
 @end
