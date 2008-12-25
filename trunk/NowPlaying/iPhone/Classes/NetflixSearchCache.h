@@ -14,9 +14,6 @@
 
 + (NetflixSearchCache*) cacheWithModel:(NowPlayingModel*) model;
 
-- (void) lookupNetflixMovieForLocalMovies:(NSArray*) movies;
-- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie;
 
-- (Movie*) netflixMovieForMovie:(Movie*) movie;
 
 @end

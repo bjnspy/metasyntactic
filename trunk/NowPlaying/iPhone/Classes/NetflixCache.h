@@ -61,6 +61,11 @@
 
 - (NSString*) noInformationFound;
 
+- (void) lookupNetflixMovieForLocalMovies:(NSArray*) movies;
+- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie;
+
+- (Movie*) netflixMovieForMovie:(Movie*) movie;
+
 // @internal
 - (void) addSearchResult:(Movie*) movie;
 - (void) processMovieItemList:(XmlElement*) element
