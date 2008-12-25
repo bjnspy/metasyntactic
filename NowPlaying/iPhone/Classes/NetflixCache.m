@@ -1133,13 +1133,13 @@ static NSString* average_rating_key = @"average_rating";
         title = NSLocalizedString(@"Instant Queue", nil);
     } else if ([key isEqual:[NetflixCache atHomeKey]]) {
         title = NSLocalizedString(@"At Home", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history.watched"]) {
+    } else if ([key isEqual:[NetflixCache rentalHistoryWatchedKey]]) {
         title = NSLocalizedString(@"Recently Watched", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history.returned"]) {
+    } else if ([key isEqual:[NetflixCache rentalHistoryReturnedKey]]) {
         title = NSLocalizedString(@"Recently Returned", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history"]) {
+    } else if ([key isEqual:[NetflixCache rentalHistoryKey]]) {
         title = NSLocalizedString(@"Entire History", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.recommendations"]) {
+    } else if ([key isEqual:[NetflixCache recommendationKey]]) {
         title = NSLocalizedString(@"Recommendations", nil);
     }
 
