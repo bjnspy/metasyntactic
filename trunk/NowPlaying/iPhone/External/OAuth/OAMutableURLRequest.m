@@ -54,7 +54,6 @@
 @synthesize nonce;
 @synthesize timestamp;
 
-
 - (void) dealloc {
     self.consumer = nil;
     self.token = nil;
@@ -115,7 +114,7 @@
  */
 
 
-- (NSString*) _signatureBaseString {
+- (NSString*) signatureBaseString {
     // OAuth Spec, Section 9.1.1 "Normalize Request Parameters"
     // build a sorted array of both request parameters and OAuth header parameters
     NSMutableArray* parameterPairs = [NSMutableArray array];
@@ -147,7 +146,7 @@
 
 - (void) prepare {
     // sign
-    NSString* baseString = [self _signatureBaseString];
+    NSString* baseString = [self signatureBaseString];
     self.signature = 
     [OAHMAC_SHA1SignatureProvider signClearText:baseString
                                      withSecret:[NSString stringWithFormat:@"%@&%@", consumer.secret, token.secret]];
