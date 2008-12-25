@@ -411,6 +411,7 @@
 
 
 - (void) reportPoster:(NSNumber*) posterCount_ {
+    NSAssert([NSThread isMainThread], nil);
     if (shutdown) { return; }
     posterCount = [posterCount_ intValue];
     [posterActivityView stopAnimating];

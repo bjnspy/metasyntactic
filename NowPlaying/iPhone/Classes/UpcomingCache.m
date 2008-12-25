@@ -408,6 +408,8 @@
 
 
 - (void) reportIndex:(NSArray*) arguments {
+    NSAssert([NSThread isMainThread], nil);
+    
     NSMutableArray* movies = [arguments objectAtIndex:1];
 
     // add in any previously bookmarked movies that we now no longer know about.

@@ -18,6 +18,7 @@
 @implementation AlertUtilities
 
 + (void) showOkAlert:(NSString*) message {
+    NSAssert([NSThread isMainThread], nil);
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
                                                      message:message
                                                     delegate:nil

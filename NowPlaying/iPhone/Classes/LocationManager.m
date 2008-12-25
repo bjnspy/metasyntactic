@@ -179,6 +179,7 @@
 
 
 - (void) reportFoundUserLocation:(Location*) userLocation {
+    NSAssert([NSThread isMainThread], nil);
     [self stopAll];
 
     if (userLocation == nil) {
