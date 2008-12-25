@@ -58,22 +58,6 @@ static NSString* synopsis_key = @"synopsis";
 static NSString* directors_key = @"directors";
 static NSString* average_rating_key = @"average_rating";
 
-static NSSet* allowableFeeds = nil;
-
-
-+ (void) initialize {
-    if (self == [NetflixCache class]) {
-        allowableFeeds = [[NSSet setWithObjects:
-                           @"http://schemas.netflix.com/feed.queues.disc",
-                           @"http://schemas.netflix.com/feed.queues.instant",
-                           @"http://schemas.netflix.com/feed.at_home",
-                           @"http://schemas.netflix.com/feed.rental_history",
-                           @"http://schemas.netflix.com/feed.rental_history.watched",
-                           @"http://schemas.netflix.com/feed.rental_history.returned",
-                           @"http://schemas.netflix.com/feed.recommendations", nil] retain];
-    }
-}
-
 @synthesize feedsData;
 @synthesize queues;
 @synthesize normalMovies;
@@ -223,6 +207,15 @@ static NSSet* allowableFeeds = nil;
                                                               important:YES];
 
     [self checkApiResult:element];
+    
+    NSSet* allowableFeeds = [NSSet setWithObjects:
+                             [NetflixCache dvdQueueKey],
+                             [NetflixCache instantQueueKey],
+                             [NetflixCache atHomeKey],
+                             [NetflixCache recommendationKey],
+                             [NetflixCache rentalHistoryKey],
+                             [NetflixCache rentalHistoryWatchedKey],
+                             [NetflixCache rentalHistoryReturnedKey], nil];
 
     NSMutableArray* feeds = [NSMutableArray array];
     for (XmlElement* child in element.children) {
