@@ -31,7 +31,7 @@
 
 - (void) dealloc {
     self.gate = nil;
-
+    
     [super dealloc];
 }
 
@@ -40,7 +40,7 @@
     if (self = [super init]) {
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
-
+    
     return self;
 }
 
@@ -51,11 +51,11 @@
 
 
 - (void) updateUserAddressLocation:(NSString*) userAddress {
-    [ThreadingUtilities performSelector:@selector(downloadUserAddressLocationBackgroundEntryPoint:)
-                               onTarget:self
-               inBackgroundWithArgument:userAddress
-                                   gate:gate
-                                visible:YES];
+    [ThreadingUtilities backgroundSelector:@selector(downloadUserAddressLocationBackgroundEntryPoint:)
+                                  onTarget:self
+                                  argument:userAddress
+                                      gate:gate
+                                   visible:YES];
 }
 
 
@@ -66,7 +66,7 @@
             return YES;
         }
     }
-
+    
     return NO;
 }
 
@@ -76,13 +76,13 @@
     if (userAddress.length <= 8 &&
         [self containsNumber:userAddress]) {
         // possibly a postal code.  append the country to help make it unique
-
+        
         NSString* country = [LocaleUtilities englishCountry];
         if (country != nil) {
             return [NSString stringWithFormat:@"%@. %@", userAddress, country];
         }
     }
-
+    
     return nil;
 }
 
@@ -96,12 +96,12 @@
     if (userAddress.length == 0) {
         return nil;
     }
-
+    
     Location* location = [self loadLocation:[self massageAddress:userAddress]];
     if (location != nil) {
         return location;
     }
-
+    
     return [self loadLocation:userAddress];
 }
 
@@ -116,19 +116,19 @@
     if (userAddress.length == 0) {
         return nil;
     }
-
+    
     NSAssert(![NSThread isMainThread], @"Only call this from the background");
     Location* location = [self locationForUserAddress:userAddress];
-
+    
     if (location == nil) {
         location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
         if (![location.country isEqual:[LocaleUtilities isoCountry]]) {
             location = [self downloadAddressLocationFromWebService:userAddress];
         }
-
+        
         [self setLocation:location forUserAddress:userAddress];
     }
-
+    
     return location;
 }
 

@@ -15,31 +15,31 @@
 @interface ThreadingUtilities : NSObject {
 }
 
-+ (void)  performSelector:(SEL) selector
-                 onTarget:(id) target
- inBackgroundWithArgument:(id) argument1
-                 argument:(id) argument2
-                     gate:(NSLock*) gate
-                  visible:(BOOL) visible;
++ (void) backgroundSelector:(SEL) selector
+                   onTarget:(id) target
+                   argument:(id) argument1
+                   argument:(id) argument2
+                       gate:(NSLock*) gate
+                    visible:(BOOL) visible;
 
-+ (void) performSelector:(SEL) selector
-                onTarget:(id) target
-inBackgroundWithArgument:(id) argument
-                    gate:(NSLock*) gate
-                 visible:(BOOL) visible;
++ (void) backgroundSelector:(SEL) selector
+                   onTarget:(id) target
+                   argument:(id) argument
+                       gate:(NSLock*) gate
+                    visible:(BOOL) visible;
 
-+ (void) performSelector:(SEL) selector
-                onTarget:(id) target
-    inBackgroundWithGate:(NSLock*) gate
-                 visible:(BOOL) visible;
++ (void) backgroundSelector:(SEL) selector
+                   onTarget:(id) target
+                       gate:(NSLock*) gate
+                    visible:(BOOL) visible;
 
-+ (void) performSelector:(SEL) selector
-                onTarget:(id) target
-onMainThreadWithArgument:(id) argument;
++ (void) foregroundSelector:(SEL) selector
+                   onTarget:(id) target
+                   argument:(id) argument;
 
-+ (void) performSelector:(SEL) selector
-                onTarget:(id) target
-onMainThreadWithArgument:(id) argument1
-                argument:(id) argument2;
++ (void) foregroundSelector:(SEL) selector
+                   onTarget:(id) target
+                   argument:(id) argument1
+                   argument:(id) argument2;
 
 @end
