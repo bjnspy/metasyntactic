@@ -14,22 +14,22 @@
 
 @interface Queue : NSObject {
 @private
-    NSString* feedKey;
+    Feed* feed;
     NSString* etag;
     NSArray* movies;
     NSArray* saved;
 }
 
-@property (readonly, copy) NSString* feedKey;
+@property (readonly, retain) Feed* feed;
 @property (readonly, copy) NSString* etag;
 @property (readonly, retain) NSArray* movies;
 @property (readonly, retain) NSArray* saved;
 
 + (Queue*) queueWithDictionary:(NSDictionary*) dictionary;
-+ (Queue*) queueWithFeedKey:(NSString*) feedKey
-                       etag:(NSString*) etag
-                     movies:(NSArray*) movies
-                      saved:(NSArray*) saved;
++ (Queue*) queueWithFeed:(Feed*) feed
+                    etag:(NSString*) etag
+                  movies:(NSArray*) movies
+                   saved:(NSArray*) saved;
 
 - (NSDictionary*) dictionary;
 

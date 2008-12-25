@@ -171,7 +171,7 @@
     [movies removeObjectIdenticalTo:movie];
     [movies insertObject:movie atIndex:position];
     
-    Queue* finalQueue = [Queue queueWithFeedKey:queue.feedKey
+    Queue* finalQueue = [Queue queueWithFeed:queue.feed
                                            etag:etag
                                          movies:movies
                                           saved:queue.saved];
@@ -391,7 +391,7 @@
     id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:2];
     
     NSString* address;
-    if ([queue.feedKey isEqual:[NetflixCache instantQueueKey]]) {
+    if ([queue isInstantQueue]) {
         address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", model.netflixUserId];
     } else {
         address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", model.netflixUserId];
@@ -431,7 +431,7 @@
     NSMutableArray* newSaved = [NSMutableArray array];
     [NetflixCache processMovieItemList:[element element:@"resources_created"] movies:newMovies saved:newSaved];
     
-    Queue* finalQueue = [Queue queueWithFeedKey:queue.feedKey
+    Queue* finalQueue = [Queue queueWithFeed:queue.feed
                                            etag:etag
                                          movies:[queue.movies arrayByAddingObjectsFromArray:newMovies]
                                           saved:[queue.saved arrayByAddingObjectsFromArray:newSaved]];
@@ -462,16 +462,16 @@
     }
     
     // TODO: what do we do if this fails?!
-    NSString* etag = [self downloadEtag:[self feedForKey:queue.feedKey]];
+    NSString* etag = [self downloadEtag:queue.feed];
     NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
     NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
     [newMovies removeObjectIdenticalTo:movie];
     [newSaved removeObjectIdenticalTo:movie];
     
-    return [Queue queueWithFeedKey:queue.feedKey
-                              etag:etag
-                            movies:newMovies
-                             saved:newSaved];
+    return [Queue queueWithFeed:queue.feed
+                           etag:etag
+                         movies:newMovies
+                          saved:newSaved];
 }
 
 
