@@ -34,7 +34,7 @@
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "NetflixSearchCache.h"
 #import "NetflixViewController.h"
 #import "NetworkUtilities.h"
@@ -62,7 +62,7 @@
 @property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
-@property (retain) NetflixCache* netflixCache;
+@property (retain) MutableNetflixCache* netflixCache;
 @property (retain) NetflixSearchCache* netflixSearchCache;
 @property (retain) NSMutableSet* bookmarkedTitlesData;
 @property (retain) NSMutableDictionary* favoriteTheatersData;
@@ -453,7 +453,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         self.posterCache = [PosterCache cacheWithModel:self];
         self.scoreCache = [ScoreCache cacheWithModel:self];
         self.upcomingCache = [UpcomingCache cacheWithModel:self];
-        self.netflixCache = [NetflixCache cacheWithModel:self];
+        self.netflixCache = [MutableNetflixCache cacheWithModel:self];
         self.netflixSearchCache = [NetflixSearchCache cacheWithModel:self];
 
         [self clearCaches];

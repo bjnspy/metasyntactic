@@ -31,7 +31,7 @@
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "NetflixSearchCache.h"
 #import "NetflixRatingsCell.h"
 #import "NowPlayingModel.h"

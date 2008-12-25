@@ -69,6 +69,7 @@
 @class Movie;
 @class MovieDetailsViewController;
 @class MovieOverviewCell;
+@class MutableNetflixCache;
 @class Score;
 @class MovieShowtimesCell;
 @class MoviesNavigationController;

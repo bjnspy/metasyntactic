@@ -17,7 +17,7 @@
 #import "AutoResizingCell.h"
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
 #import "NetflixNavigationController.h"

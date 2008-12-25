@@ -19,7 +19,7 @@
 #import "ImageCache.h"
 #import "Feed.h"
 #import "MovieTitleCell.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "NowPlayingModel.h"
 #import "IdentitySet.h"

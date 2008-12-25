@@ -18,7 +18,7 @@
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "NetflixGenreRecommendationsViewController.h"
 #import "NowPlayingModel.h"
 #import "Queue.h"
