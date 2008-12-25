@@ -45,13 +45,13 @@
 }
 
 
-- (id) initWithRequest:(OAMutableURLRequest*) aRequest
-              response:(NSURLResponse*) aResponse
-            didSucceed:(BOOL)success {
+- (id) initWithRequest:(OAMutableURLRequest*) request_
+              response:(NSURLResponse*) response_
+            didSucceed:(BOOL) success_ {
     if (self = [super init]) {
-        self.request = aRequest;
-        self.response = aResponse;
-        self.didSucceed = success;
+        self.request = request_;
+        self.response = response_;
+        self.didSucceed = success_;
     }
 
     return self;

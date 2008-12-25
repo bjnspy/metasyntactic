@@ -44,10 +44,11 @@
 }
 
 
-- (id) initWithName:(NSString*)aName value:(NSString*)aValue {
+- (id) initWithName:(NSString*) name_
+              value:(NSString*) value_ {
     if (self = [super init]) {
-        self.name = aName;
-        self.value = aValue;
+        self.name = name_;
+        self.value = value_;
     }
 
     return self;
@@ -60,12 +61,12 @@
 
 
 - (NSString*) URLEncodedName {
-    return [self.name encodedURLParameterString];
+    return [name encodedURLParameterString];
 }
 
 
 - (NSString*) URLEncodedValue {
-    return [self.value encodedURLParameterString];
+    return [value encodedURLParameterString];
 }
 
 

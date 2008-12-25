@@ -60,11 +60,11 @@
 }
 
 
-- (id) initWithKey:(NSString*) aKey
-            secret:(NSString*) aSecret {
+- (id) initWithKey:(NSString*) key_
+            secret:(NSString*) secret_ {
     if (self = [super init]) {
-        self.key = aKey;
-        self.secret = aSecret;
+        self.key = key_;
+        self.secret = secret_;
     }
 
     return self;
