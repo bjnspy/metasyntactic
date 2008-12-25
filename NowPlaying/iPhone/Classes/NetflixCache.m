@@ -412,7 +412,7 @@ static NSString* average_rating_key = @"average_rating";
 
 
 - (NSArray*) search:(NSString*) query {
-    OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
+    OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObject:
                            [OARequestParameter parameterWithName:@"term" value:query]];
@@ -1193,7 +1193,7 @@ static NSString* average_rating_key = @"average_rating";
 
 
 - (Movie*) lookupMovieWorker:(Movie*) movie {
-    OAMutableURLRequest* request = [model.netflixCache createURLRequest:@"http://api.netflix.com/catalog/titles"];
+    OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:movie.canonicalTitle],
@@ -1206,11 +1206,11 @@ static NSString* average_rating_key = @"average_rating";
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
 
-    [model.netflixCache checkApiResult:element];
+    [self checkApiResult:element];
 
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
-    [model.netflixCache processMovieItemList:element movies:movies saved:saved];
+    [NetflixCache processMovieItemList:element movies:movies saved:saved];
 
     [movies addObjectsFromArray:saved];
 
