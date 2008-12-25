@@ -33,4 +33,6 @@
 
 + (NSArray*) directoryContentsPaths:(NSString*) directory;
 
++ (BOOL) isDirectory:(NSString*) path;
+
 @end

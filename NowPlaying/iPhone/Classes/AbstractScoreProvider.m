@@ -551,11 +551,6 @@
 }
 
 
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObject:reviewsDirectory];
-}
-
-
 - (void) prioritizeMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
     [self ensureMovieMap:movies_];
     NSArray* arguments = [NSArray arrayWithObjects:movie, self.movieMap, nil];

@@ -110,12 +110,6 @@
 }
 
 
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObject:[Application imdbDirectory]];
-}
-
-
-
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie;
     while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {

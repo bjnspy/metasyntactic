@@ -83,11 +83,6 @@
 }
 
 
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObject:[Application postersDirectory]];
-}
-
-
 - (NSData*) downloadPosterWorker:(Movie*) movie
              postalCode:(NSString*) postalCode {
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];

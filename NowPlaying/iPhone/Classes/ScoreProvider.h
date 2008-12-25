@@ -18,5 +18,4 @@
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies;
 - (void) update;
 - (void) prioritizeMovie:(Movie*) movie inMovies:(NSArray*) movies;
-- (void) clearStaleData;
 @end

@@ -22,7 +22,6 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "NetflixSearchCache.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
@@ -332,17 +331,6 @@
 
 - (NSString*) trailersFile:(Movie*) movie {
     return [[[Application upcomingTrailersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (NSSet*) cachedDirectoriesToClear {
-    return [NSSet setWithObjects:
-            [Application upcomingCastDirectory],
-            [Application upcomingIMDbDirectory],
-            [Application upcomingPostersDirectory],
-            [Application upcomingSynopsesDirectory],
-            [Application upcomingTrailersDirectory], nil];
-
 }
 
 

@@ -143,9 +143,4 @@
     return result;
 }
 
-
-- (void) clearStaleData {
-    // does nothing
-}
-
 @end
