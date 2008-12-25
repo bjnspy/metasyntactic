@@ -33,8 +33,6 @@
 
 - (id) initWithModel:(NowPlayingModel*) model;
 
-- (void) checkApiResult:(XmlElement*) element;
-
 - (NSArray*) search:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;
 
@@ -72,6 +70,7 @@
 - (NSString*) userRatingsFile:(Movie*) movie;
 - (NSString*) downloadEtag:(Feed*) feed;
 - (void) reportQueue:(Queue*) queue;
+- (void) checkApiResult:(XmlElement*) result;
 
 + (void) processMovieItemList:(XmlElement*) element
                        movies:(NSMutableArray*) movies
