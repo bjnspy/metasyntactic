@@ -30,11 +30,6 @@
 
 @implementation OAHMAC_SHA1SignatureProvider
 
-+ (NSString*)name {
-    return @"HMAC-SHA1";
-}
-
-
 + (NSString*) signClearText:(NSString*) text
                  withSecret:(NSString*) secret {
     NSData* secretData = [secret dataUsingEncoding:NSUTF8StringEncoding];
