@@ -185,7 +185,7 @@ static MainThreadGate* gate;
 
 + (BOOL) isDirectory:(NSString*) path {
     BOOL result;
-    
+
     [gate lock];
     {
         [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&result];
