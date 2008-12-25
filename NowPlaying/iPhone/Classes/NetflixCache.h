@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractCache.h"
+#import "AbstractNetflixCache.h"
 
-@interface NetflixCache : AbstractCache {
+@interface NetflixCache : AbstractNetflixCache {
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
@@ -31,15 +31,7 @@
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
 
-+ (NetflixCache*) cacheWithModel:(NowPlayingModel*) model;
-
-+ (NSString*) dvdQueueKey;
-+ (NSString*) instantQueueKey;
-+ (NSString*) atHomeKey;
-+ (NSString*) recommendationKey;
-+ (NSString*) rentalHistoryKey;
-+ (NSString*) rentalHistoryWatchedKey;
-+ (NSString*) rentalHistoryReturnedKey;
+- (id) initWithModel:(NowPlayingModel*) model;
 
 - (void) reportApiResult:(XmlElement*) element;
 
@@ -69,29 +61,17 @@
 
 - (NSString*) noInformationFound;
 
-- (void) updateQueue:(Queue*) queue
-  byMovingMovieToTop:(Movie*) movie
-            delegate:(id<NetflixMoveMovieDelegate>) delegate;
-
-- (void) updateQueue:(Queue*) queue
-    byDeletingMovies:(IdentitySet*) deletedMovies
- andReorderingMovies:(IdentitySet*) reorderedMovies
-                  to:(NSArray*) movies
-            delegate:(id<NetflixModifyQueueDelegate>) delegate;
-
-- (void) updateQueue:(Queue*) queue 
-       byAddingMovie:(Movie*) movie
-            delegate:(id<NetflixAddMovieDelegate>) delegate;
-
-- (void) changeRatingTo:(NSString*) rating
-               forMovie:(Movie*) movie
-               delegate:(id<NetflixChangeRatingDelegate>) delegate;
-
 // @internal
 - (void) addSearchResult:(Movie*) movie;
-- (OAMutableURLRequest*) createURLRequest:(NSString*) address;
 - (void) processMovieItemList:(XmlElement*) element
                        movies:(NSMutableArray*) movies
                         saved:(NSMutableArray*) saved;
+
+// @protected
+- (void) saveQueue:(Queue*) queue;
+- (Movie*) promoteDiscToSeries:(Movie*) disc;
+- (NSString*) userRatingsFile:(Movie*) movie;
+- (NSString*) downloadEtag:(Feed*) feed;
+- (void) reportQueue:(Queue*) queue;
 
 @end

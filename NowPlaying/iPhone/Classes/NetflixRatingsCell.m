@@ -16,7 +16,7 @@
 
 #import "AlertUtilities.h"
 #import "ImageCache.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "NowPlayingModel.h"
 #import "Movie.h"
 #import "TappableImageView.h"
@@ -102,6 +102,10 @@
 
 
 - (void) setupRating {
+    for (UIView* view in self.contentView.subviews) {
+        [view removeFromSuperview];
+    }
+    
     NSString* userRating = [model.netflixCache userRatingForMovie:movie];
     if (userRating.length > 0) {
         [self setupUserRating:userRating];

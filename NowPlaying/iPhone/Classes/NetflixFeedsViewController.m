@@ -18,7 +18,7 @@
 #import "AutoResizingCell.h"
 #import "Feed.h"
 #import "GlobalActivityIndicator.h"
-#import "NetflixCache.h"
+#import "MutableNetflixCache.h"
 #import "NetflixQueueViewController.h"
 #import "NowPlayingModel.h"
 #import "Queue.h"
