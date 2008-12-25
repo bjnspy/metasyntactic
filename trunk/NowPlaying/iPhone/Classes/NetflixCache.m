@@ -1138,7 +1138,7 @@ static NSSet* allowableFeeds = nil;
         title = NSLocalizedString(@"DVD/Blu-ray Queue", nil);
     } else if ([key isEqual:[NetflixCache instantQueueKey]]) {
         title = NSLocalizedString(@"Instant Queue", nil);
-    } else if ([key isEqual:@"http://schemas.netflix.com/feed.at_home"]) {
+    } else if ([key isEqual:[NetflixCache atHomeKey]]) {
         title = NSLocalizedString(@"At Home", nil);
     } else if ([key isEqual:@"http://schemas.netflix.com/feed.rental_history.watched"]) {
         title = NSLocalizedString(@"Recently Watched", nil);
