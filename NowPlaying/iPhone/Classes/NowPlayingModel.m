@@ -63,7 +63,6 @@
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
 @property (retain) MutableNetflixCache* netflixCache;
-@property (retain) NetflixSearchCache* netflixSearchCache;
 @property (retain) NSMutableSet* bookmarkedTitlesData;
 @property (retain) NSMutableDictionary* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
@@ -193,7 +192,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize trailerCache;
 @synthesize upcomingCache;
 @synthesize netflixCache;
-@synthesize netflixSearchCache;
 
 - (void) dealloc {
     self.dataProvider = nil;
@@ -210,7 +208,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.trailerCache = nil;
     self.upcomingCache = nil;
     self.netflixCache = nil;
-    self.netflixSearchCache = nil;
 
     [super dealloc];
 }
@@ -227,7 +224,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) updateNetflixCache {
-    [netflixSearchCache lookupNetflixMovieForLocalMovies:self.movies];
+    [netflixCache lookupNetflixMovieForLocalMovies:self.movies];
 }
 
 
@@ -412,7 +409,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         [posterCache clearStaleData];
         [scoreCache clearStaleData];
         [upcomingCache clearStaleData];
-        [netflixSearchCache clearStaleData];
     }
 }
 
@@ -454,7 +450,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         self.scoreCache = [ScoreCache cacheWithModel:self];
         self.upcomingCache = [UpcomingCache cacheWithModel:self];
         self.netflixCache = [MutableNetflixCache cacheWithModel:self];
-        self.netflixSearchCache = [NetflixSearchCache cacheWithModel:self];
 
         [self clearCaches];
 
