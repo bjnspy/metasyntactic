@@ -138,7 +138,7 @@
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
     
-    [self reportApiResult:element];
+    [self checkApiResult:element];
     if (element == nil) {
         *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
         return nil;
@@ -251,7 +251,7 @@
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
     
-    [self reportApiResult:element];
+    [self checkApiResult:element];
     
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
@@ -285,7 +285,7 @@
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
     
-    [self reportApiResult:element];
+    [self checkApiResult:element];
     
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
@@ -317,7 +317,7 @@
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
     
-    [self reportApiResult:element];
+    [self checkApiResult:element];
     
     XmlElement* ratingsItemElment = [element element:@"ratings_item"];
     NSString* identifier = [[ratingsItemElment element:@"id"] text];
@@ -403,7 +403,7 @@
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
     
-    [self reportApiResult:element];
+    [self checkApiResult:element];
     if (element == nil) {
         NSString* error = NSLocalizedString(@"Could not connect to Netflix.", nil);
         [(id)delegate performSelectorOnMainThread:@selector(addFailedWithError:) withObject:error waitUntilDone:NO];
@@ -449,7 +449,7 @@
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
     
-    [self reportApiResult:element];
+    [self checkApiResult:element];
     
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {

@@ -57,7 +57,7 @@
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
 
-    [model.netflixCache reportApiResult:element];
+    [model.netflixCache checkApiResult:element];
 
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];

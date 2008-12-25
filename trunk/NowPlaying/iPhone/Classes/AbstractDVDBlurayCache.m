@@ -421,6 +421,8 @@
 
 
 - (void) reportResults:(NSDictionary*) map {
+    NSAssert([NSThread isMainThread], nil);
+
     NSMutableArray* movies = [NSMutableArray arrayWithArray:map.allKeys];
     // add in any previously bookmarked movies that we now no longer know about.
     for (Movie* movie in self.bookmarks.allValues) {

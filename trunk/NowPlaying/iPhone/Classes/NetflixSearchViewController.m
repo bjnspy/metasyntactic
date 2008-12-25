@@ -175,6 +175,7 @@
 
 
 - (void) reportResult:(SearchResult*) result {
+    NSAssert([NSThread isMainThread], nil);
     [activityIndicatorView stopAnimating];
 
     self.movies = result.movies;

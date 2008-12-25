@@ -206,6 +206,8 @@
 
 
 - (void) reportError:(NSString*) error {
+    NSAssert([NSThread isMainThread], nil);
+    
     [AlertUtilities showOkAlert:error];
 }
 

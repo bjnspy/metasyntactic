@@ -243,6 +243,8 @@
 
 
 - (void) reportResult:(NSDictionary*) result withHash:(NSString*) hash {
+    NSAssert([NSThread isMainThread], nil);
+
     self.scoresData = result;
     self.hashData = hash;
     self.movieMapData = nil;
@@ -307,6 +309,8 @@
 
 
 - (void) reportMap:(NSDictionary*) map forMovies:(NSArray*) localMovies {
+    NSAssert([NSThread isMainThread], nil);
+
     self.movieMapData = map;
     self.movies = localMovies;
 

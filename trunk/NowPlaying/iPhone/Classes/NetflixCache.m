@@ -232,7 +232,7 @@ static NSSet* allowableFeeds = nil;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
 
-    [self reportApiResult:element];
+    [self checkApiResult:element];
 
     NSMutableArray* feeds = [NSMutableArray array];
     for (XmlElement* child in element.children) {
@@ -441,7 +441,7 @@ static NSSet* allowableFeeds = nil;
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
 
-    [self reportApiResult:element];
+    [self checkApiResult:element];
 
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
@@ -641,7 +641,7 @@ static NSSet* allowableFeeds = nil;
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
 
-    [self reportApiResult:element];
+    [self checkApiResult:element];
 
     NSString* synopsis = element.text;
     synopsis = [self cleanupSynopsis:synopsis];
@@ -698,7 +698,7 @@ static NSSet* allowableFeeds = nil;
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
 
-    [self reportApiResult:element];
+    [self checkApiResult:element];
 
     NSArray* cast = [self extractPeople:element];
     if (cast.count > 0) {
@@ -729,7 +729,7 @@ static NSSet* allowableFeeds = nil;
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
 
-    [self reportApiResult:element];
+    [self checkApiResult:element];
 
     NSArray* directors = [self extractPeople:element];
     if (directors.count > 0) {
@@ -760,7 +760,7 @@ static NSSet* allowableFeeds = nil;
     
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
     
-    [self reportApiResult:element];
+    [self checkApiResult:element];
     /*
      </external_ids>  
      <delivery_formats>  
@@ -858,7 +858,7 @@ static NSSet* allowableFeeds = nil;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                             important:NO];
 
-    [self reportApiResult:element];
+    [self checkApiResult:element];
 
     Movie* series = [self processItem:element saved:NULL];
     if (series == nil) {
@@ -926,7 +926,7 @@ static NSSet* allowableFeeds = nil;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
 
-    [self reportApiResult:element];
+    [self checkApiResult:element];
 
     XmlElement* ratingsItemElment = [element element:@"ratings_item"];
     if (ratingsItemElment == nil) {
@@ -1035,6 +1035,8 @@ static NSSet* allowableFeeds = nil;
 
 
 - (void) reportFeeds:(NSArray*) feeds {
+    NSAssert([NSThread isMainThread], nil);
+
     self.feedsData = feeds;
 
     for (NSString* key in self.queues.allKeys) {
@@ -1215,7 +1217,7 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (void) reportApiResult:(XmlElement*) element {
+- (void) checkApiResult:(XmlElement*) element {
     NSString* message = [[element element:@"message"] text];
     if ([@"Over queries per day limit" isEqual:message]) {
         self.lastQuotaErrorDate = [NSDate date];

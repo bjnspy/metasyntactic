@@ -33,7 +33,7 @@
 
 - (id) initWithModel:(NowPlayingModel*) model;
 
-- (void) reportApiResult:(XmlElement*) element;
+- (void) checkApiResult:(XmlElement*) element;
 
 - (NSArray*) search:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;

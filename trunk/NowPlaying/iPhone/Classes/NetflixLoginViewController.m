@@ -209,6 +209,7 @@
 
 
 - (void) reportError:(NSError*) error {
+    NSAssert([NSThread isMainThread], nil);
     [AlertUtilities showOkAlert:NSLocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil)];
 
     [activityIndicator stopAnimating];
@@ -218,6 +219,7 @@
 
 
 - (void) reportAuthorizationToken:(OAToken*) token {
+    NSAssert([NSThread isMainThread], nil);
     self.authorizationToken = token;
 
     button.enabled = YES;
@@ -304,6 +306,7 @@
 
 
 - (void) reportAccessToken:(OAToken*) token {
+    NSAssert([NSThread isMainThread], nil);
     [activityIndicator stopAnimating];
     [button removeFromSuperview];
     statusLabel.text = @"";

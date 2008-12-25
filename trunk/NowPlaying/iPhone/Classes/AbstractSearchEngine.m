@@ -136,6 +136,8 @@
 
 
 - (void) reportResult:(SearchResult*) result {
+    NSAssert([NSThread isMainThread], nil);
+
     BOOL abort = NO;
     [gate lock];
     {

@@ -414,6 +414,7 @@
 
 
 - (void) reportResult:(SearchResult*) result {
+    NSAssert([NSThread isMainThread], nil);
     self.searchResult = result;
     [self.tableView reloadData];
 }

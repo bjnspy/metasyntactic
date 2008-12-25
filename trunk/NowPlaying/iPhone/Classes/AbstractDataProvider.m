@@ -505,6 +505,7 @@
 
 
 - (void) reportResult:(LookupResult*) result {
+    NSAssert([NSThread isMainThread], nil);
     // add in any previously bookmarked movies that we now no longer know about.
     for (Movie* movie in self.bookmarks.allValues) {
         if (![result.movies containsObject:movie]) {
