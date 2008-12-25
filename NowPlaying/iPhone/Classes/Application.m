@@ -61,13 +61,6 @@ static NSString* netflixUserRatingsDirectory = nil;
 static NSString* netflixPredictedRatingsDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
 
-/*
-static NSString* numbersDirectory = nil;
-static NSString* numbersBudgetsDirectory = nil;
-static NSString* numbersDailyDirectory = nil;
-static NSString* numbersWeekendDirectory = nil;
-*/
-
 static NSString* upcomingDirectory = nil;
 static NSString* upcomingCastDirectory = nil;
 static NSString* upcomingIMDbDirectory = nil;
@@ -99,12 +92,6 @@ static NSString** directories[] = {
 &netflixUserRatingsDirectory,
 &netflixPredictedRatingsDirectory,
 &netflixSearchDirectory,
-/*
- &numbersDirectory,
- &numbersBudgetsDirectory,
- &numbersDailyDirectory,
- &numbersWeekendDirectory,
- */
 &scoresDirectory,
 &reviewsDirectory,
 &trailersDirectory,
@@ -182,8 +169,7 @@ static DifferenceEngine* differenceEngine = nil;
     [gate lock];
     {
         for (int i = 0; i < ArrayLength(directories); i++) {
-            NSString** directoryReference = directories[i];
-            NSString* directory = *directoryReference;
+            NSString* directory = *directories[i];
 
             if (directory != nil) {
                 [FileUtilities removeItem:directory];
@@ -198,8 +184,7 @@ static DifferenceEngine* differenceEngine = nil;
     [gate lock];
     {
         for (int i = 0; i < ArrayLength(directories); i++) {
-            NSString** directoryReference = directories[i];
-            NSString* directory = *directoryReference;
+            NSString* directory = *directories[i];
 
             [FileUtilities createDirectory:directory];
         }
@@ -559,7 +544,7 @@ static DifferenceEngine* differenceEngine = nil;
 #if !TARGET_IPHONE_SIMULATOR
     return @"metaboxoffice2";
 #endif
-    //*
+    /*
     return @"metaboxoffice6";
     /*/
      return @"metaboxoffice2";

@@ -24,11 +24,6 @@
 + (NSString*) reviewsDirectory;
 + (NSString*) trailersDirectory;
 
-/*
-+ (NSString*) numbersDirectory;
-+ (NSString*) numbersDetailsDirectory;
-*/
-
 + (NSString*) dvdDirectory;
 + (NSString*) dvdDetailsDirectory;
 + (NSString*) dvdIMDbDirectory;
