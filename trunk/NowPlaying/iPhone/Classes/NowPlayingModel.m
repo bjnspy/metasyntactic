@@ -223,7 +223,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) updateNetflixCache {
-    [netflixCache lookupNetflixMovieForLocalMovies:self.movies];
+    [netflixCache lookupNetflixMoviesForLocalMovies:self.movies];
 }
 
 

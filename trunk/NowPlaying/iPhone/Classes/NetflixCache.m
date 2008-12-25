@@ -1272,7 +1272,7 @@ static NSSet* allowableFeeds = nil;
 }
 
 
-- (void) lookupNetflixMovieForLocalMovies:(NSArray*) movies {
+- (void) lookupNetflixMoviesForLocalMovies:(NSArray*) movies {
     if ([self hasAccount]) {
         [ThreadingUtilities performSelector:@selector(lookupMoviesBackgroundEntryPoint:)
                                    onTarget:self
