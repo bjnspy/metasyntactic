@@ -66,17 +66,15 @@
 
 - (Movie*) netflixMovieForMovie:(Movie*) movie;
 
-// @internal
-- (void) addSearchResult:(Movie*) movie;
-- (void) processMovieItemList:(XmlElement*) element
-                       movies:(NSMutableArray*) movies
-                        saved:(NSMutableArray*) saved;
-
 // @protected
 - (void) saveQueue:(Queue*) queue;
 - (Movie*) promoteDiscToSeries:(Movie*) disc;
 - (NSString*) userRatingsFile:(Movie*) movie;
 - (NSString*) downloadEtag:(Feed*) feed;
 - (void) reportQueue:(Queue*) queue;
+
++ (void) processMovieItemList:(XmlElement*) element
+                       movies:(NSMutableArray*) movies
+                        saved:(NSMutableArray*) saved;
 
 @end
