@@ -56,6 +56,7 @@
         TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
         imageView.delegate = self;
         imageView.tag = i + 1;
+        imageView.contentMode = UIViewContentModeCenter;
 
         CGRect rect = imageView.frame;
         rect.origin.y = 5;
@@ -90,6 +91,7 @@
         TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
         imageView.delegate = self;
         imageView.tag = i + 1;
+        imageView.contentMode = UIViewContentModeCenter;
 
         CGRect rect = imageView.frame;
         rect.origin.y = 5;
@@ -145,9 +147,13 @@
     if (value == currentUserRating) {
         return;
     }
-
+    
     // change the UI:
-    [self setupUserRating:(value == 0 ? @"" : [NSString stringWithFormat:@"%d", value])];
+    if (value == 0) {
+        [self setupNetflixRating];
+    } else {
+        [self setupUserRating:[NSString stringWithFormat:@"%d", value]];
+    }
 
     // now, update in the background.
     NSString* rating = value == 0 ? @"no_opinion" : [NSString stringWithFormat:@"%d", value];
