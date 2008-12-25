@@ -122,6 +122,16 @@
 }
 
 
+- (NSString*) extractErrorMessage:(XmlElement*) element {
+    NSString* message = [[element element:@"message"] text];
+    if (message.length > 0) {
+        return message;
+    } else {
+        return NSLocalizedString(@"An unknown error occurred.", nil);
+    }
+}
+
+
 - (Queue*) moveMovie:(Movie*) movie
           toPosition:(NSInteger) position
              inQueue:(Queue*) queue
@@ -152,12 +162,7 @@
 
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
-        NSString* message = [[element element:@"message"] text];
-        if (message.length == 0) {
-            message = NSLocalizedString(@"An unknown error occurred.", nil);
-        }
-
-        *error = message;
+        *error = [self extractErrorMessage:element];
         return nil;
     }
 
@@ -262,12 +267,7 @@
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
-        NSString* message = [[element element:@"message"] text];
-        if (message.length == 0) {
-            message = NSLocalizedString(@"An unknown error occurred.", nil);
-        }
-
-        return message;
+        return [self extractErrorMessage:element];
     }
 
     return nil;
@@ -296,12 +296,7 @@
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         // we failed.  restore the rating to its original value
-        NSString* message = [[element element:@"message"] text];
-        if (message.length == 0) {
-            message = NSLocalizedString(@"An unknown error occurred.", nil);
-        }
-
-        return message;
+        return [self extractErrorMessage:element];
     }
 
     return nil;
@@ -325,8 +320,14 @@
 
     [self checkApiResult:element];
 
-    XmlElement* ratingsItemElment = [element element:@"ratings_item"];
-    NSString* identifier = [[ratingsItemElment element:@"id"] text];
+    NSInteger status = [[[element element:@"status_code"] text] intValue];
+    if (status < 200 || status >= 300) {
+        // we failed.  restore the rating to its original value
+        return [self extractErrorMessage:element];
+    }
+    
+    XmlElement* ratingsItemElement = [element element:@"ratings_item"];
+    NSString* identifier = [[ratingsItemElement element:@"id"] text];
     if (identifier.length == 0) {
         return NSLocalizedString(@"An unknown error occurred.", nil);
     }
@@ -334,7 +335,7 @@
     NSRange lastSlashRange = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
     identifier = [identifier substringFromIndex:lastSlashRange.location + 1];
 
-    XmlElement* userRatingElement = [ratingsItemElment element:@"user_rating"];
+    XmlElement* userRatingElement = [ratingsItemElement element:@"user_rating"];
 
     if (userRatingElement == nil) {
         return [self postChangeRatingTo:rating
@@ -418,10 +419,7 @@
 
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
-        NSString* error = [[element element:@"message"] text];
-        if (error.length == 0) {
-            error = NSLocalizedString(@"An unknown error occurred.", nil);
-        }
+        NSString* error = [self extractErrorMessage:element];
 
         [(id)delegate performSelectorOnMainThread:@selector(addFailedWithError:) withObject:error waitUntilDone:NO];
         return;
@@ -459,12 +457,7 @@
 
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
-        NSString* message = [[element element:@"message"] text];
-        if (message.length == 0) {
-            message = NSLocalizedString(@"An unknown error occurred.", nil);
-        }
-
-        *error = message;
+        *error = [self extractErrorMessage:element];
         return nil;
     }
 
