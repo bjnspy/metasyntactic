@@ -255,42 +255,4 @@
     [UIView commitAnimations];
 }
 
-
-- (void) sortMoviesByReleaseDate {
-    [super sortMoviesByReleaseDate];
-
-    if (!scrollToCurrentDateOnRefresh || visibleIndexPaths != nil) {
-        return;
-    }
-    scrollToCurrentDateOnRefresh = NO;
-
-    NSArray* movies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
-    NSDate* today = [DateUtilities today];
-
-    NSDate* date = nil;
-    for (Movie* movie in movies) {
-        NSDate* releaseDate = [self.model releaseDateForMovie:movie];
-
-        if (releaseDate != nil) {
-            if ([releaseDate compare:today] == NSOrderedDescending) {
-                date = releaseDate;
-                break;
-            }
-        }
-    }
-
-    if (date == nil) {
-        return;
-    }
-
-    NSString* title = [DateUtilities formatFullDate:date];
-    NSInteger section = [sectionTitles indexOfObject:title];
-
-    if (section < 0 || section >= sectionTitles.count) {
-        return;
-    }
-
-    self.visibleIndexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:section], nil];
-}
-
 @end

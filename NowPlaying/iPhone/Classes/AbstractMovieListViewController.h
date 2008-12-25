@@ -26,6 +26,8 @@
 
     BOOL visible;
     NSArray* visibleIndexPaths;
+    
+    BOOL scrollToCurrentDateOnRefresh;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
@@ -33,6 +35,5 @@
 /* protected */
 - (NowPlayingModel*) model;
 - (NowPlayingController*) controller;
-- (void) sortMoviesByReleaseDate;
 
 @end

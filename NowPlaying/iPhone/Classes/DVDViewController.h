@@ -26,8 +26,6 @@
     UIView* superView;
     UITableView* cachedTableView;
     UIViewController* filterViewController;
-
-    BOOL scrollToCurrentDateOnRefresh;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

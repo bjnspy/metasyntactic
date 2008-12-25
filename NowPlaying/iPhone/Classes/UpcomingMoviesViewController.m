@@ -82,6 +82,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
+    scrollToCurrentDateOnRefresh = YES;
     self.model.upcomingMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
     [self majorRefresh];
 }
@@ -98,6 +99,7 @@
 - (void) loadView {
     [super loadView];
 
+    scrollToCurrentDateOnRefresh = YES;
     self.segmentedControl = [self setupSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
 
