@@ -1438,10 +1438,10 @@
 				74A33E490F034B8100E5450A /* AbstractNetflixCache.m */,
 				7400EE890EF57C1100058CDD /* NetflixCache.h */,
 				7400EE8A0EF57C1100058CDD /* NetflixCache.m */,
-				747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */,
-				747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */,
 				74A33E520F034C4100E5450A /* MutableNetflixCache.h */,
 				74A33E530F034C4100E5450A /* MutableNetflixCache.m */,
+				747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */,
+				747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
