@@ -429,7 +429,7 @@
 
     NSMutableArray* newMovies = [NSMutableArray array];
     NSMutableArray* newSaved = [NSMutableArray array];
-    [self processMovieItemList:[element element:@"resources_created"] movies:newMovies saved:newSaved];
+    [NetflixCache processMovieItemList:[element element:@"resources_created"] movies:newMovies saved:newSaved];
 
     Queue* finalQueue = [Queue queueWithFeedKey:queue.feedKey
                                            etag:etag

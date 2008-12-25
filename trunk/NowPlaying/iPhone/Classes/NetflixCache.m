@@ -247,7 +247,7 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
-- (Movie*) processItem:(XmlElement*) element
++ (Movie*) processItem:(XmlElement*) element
                  saved:(BOOL*) saved {
     if (element == nil) {
         return nil;
@@ -339,7 +339,7 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
-- (void) processItem:(XmlElement*) element
++ (void) processItem:(XmlElement*) element
               movies:(NSMutableArray*) movies
                saved:(NSMutableArray*) saved {
     if (![@"queue_item" isEqual:element.name] &&
@@ -396,7 +396,7 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
-- (void) processMovieItemList:(XmlElement*) element
++ (void) processMovieItemList:(XmlElement*) element
                   movies:(NSMutableArray*) movies
                    saved:(NSMutableArray*) saved {
     for (XmlElement* child in element.children) {
@@ -428,7 +428,7 @@ static NSString* average_rating_key = @"average_rating";
 
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
-    [self processMovieItemList:element movies:movies saved:saved];
+    [NetflixCache processMovieItemList:element movies:movies saved:saved];
 
     [movies addObjectsFromArray:saved];
 
@@ -462,7 +462,7 @@ static NSString* average_rating_key = @"average_rating";
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
 
-    [self processMovieItemList:element movies:movies saved:saved];
+    [NetflixCache processMovieItemList:element movies:movies saved:saved];
 
     if (movies.count > 0 || saved.count > 0) {
         Queue* queue = [Queue queueWithFeedKey:feed.key
@@ -830,7 +830,7 @@ static NSString* average_rating_key = @"average_rating";
 
     [self checkApiResult:element];
 
-    Movie* series = [self processItem:element saved:NULL];
+    Movie* series = [NetflixCache processItem:element saved:NULL];
     if (series == nil) {
         return;
     }
@@ -1248,7 +1248,7 @@ static NSString* average_rating_key = @"average_rating";
     Movie* netflixMovie = [self lookupMovieWorker:movie];
     if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-        [model.netflixCache addSearchResult:netflixMovie];
+        [self addSearchResult:netflixMovie];
         [NowPlayingAppDelegate minorRefresh];
     }
 }
