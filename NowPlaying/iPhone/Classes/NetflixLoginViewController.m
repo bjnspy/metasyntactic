@@ -189,7 +189,7 @@
 
 - (void) requestAuthorizationToken:(OAServiceTicket*) ticket
                  didFinishWithData:(NSData*) data {
-    if (ticket.didSucceed) {
+    if (ticket.succeeded) {
         NSString* responseBody = [[[NSString alloc] initWithData:data
                                                         encoding:NSUTF8StringEncoding] autorelease];
         OAToken* token = [OAToken tokenWithHTTPResponseBody:responseBody];
@@ -288,7 +288,7 @@
 
 - (void) requestAccessToken:(OAServiceTicket*) ticket
           didFinishWithData:(NSData*) data {
-    if (ticket.didSucceed) {
+    if (ticket.succeeded) {
         NSString* responseBody = [[[NSString alloc] initWithData:data
                                                         encoding:NSUTF8StringEncoding] autorelease];
         OAToken* accessToken = [OAToken tokenWithHTTPResponseBody:responseBody];
