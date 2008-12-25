@@ -46,7 +46,7 @@
     self.activityIndicator = nil;
     self.button = nil;
     self.authorizationToken = nil;
-
+    
     [super dealloc];
 }
 
@@ -83,14 +83,14 @@
                       "be providing your Netflix username and password to Now Playing. "
                       "Instead, tapping the button below will allow you to login to Netflix "
                       "and grant access directly.", nil);
-
+    
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];
-
+    
     CGRect labelRect = CGRectMake(10, 10, self.view.frame.size.width - 20, self.view.frame.size.height);
     messageLabel.frame = labelRect;
     [messageLabel sizeToFit];
-
+    
     [self.view addSubview:messageLabel];
 }
 
@@ -101,15 +101,15 @@
     statusLabel.text = NSLocalizedString(@"Requesting authorization", nil);
     statusLabel.textColor = [UIColor whiteColor];
     [statusLabel sizeToFit];
-
+    
     CGRect messageFrame = messageLabel.frame;
     CGRect statusFrame = statusLabel.frame;
-
+    
     statusFrame.origin.x = messageFrame.origin.x + 30;
     statusFrame.origin.y = messageFrame.origin.y + messageFrame.size.height + 30;
     statusFrame.size.width = messageFrame.size.width - statusFrame.origin.x;
     statusLabel.frame = statusFrame;
-
+    
     [self.view addSubview:statusLabel];
 }
 
@@ -121,7 +121,7 @@
     frame.origin.x = messageLabel.frame.origin.x + 5;
     activityIndicator.frame = frame;
     [activityIndicator startAnimating];
-
+    
     [self.view addSubview:activityIndicator];
 }
 
@@ -130,11 +130,11 @@
     self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:NSLocalizedString(@"Continue", nil) forState:UIControlStateNormal];
     [button setTitle:NSLocalizedString(@"Please wait...", nil) forState:UIControlStateDisabled];
-
+    
     UIImage* image = [[UIImage imageNamed:@"BlackButton.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [button setBackgroundImage:image forState:UIControlStateNormal];
     [button setBackgroundImage:image forState:UIControlStateDisabled];
-
+    
     CGRect frame = self.view.frame;
     CGRect buttonFrame = button.frame;
     buttonFrame.origin.x = 10;
@@ -142,44 +142,44 @@
     buttonFrame.size.width = frame.size.width - 20;
     buttonFrame.size.height = image.size.height;
     button.frame = buttonFrame;
-
+    
     [button addTarget:self action:@selector(onContinueTapped:) forControlEvents:UIControlEventTouchUpInside];
     button.enabled = NO;
-
+    
     [self.view addSubview:button];
 }
 
 
 - (void) loadView {
     [super loadView];
-
+    
     self.view.backgroundColor = [UIColor blackColor];
-
+    
     [self setupMessage];
     [self setupStatus];
     [self setupActivityIndicator];
     [self setupButton];
-
-    [ThreadingUtilities performSelector:@selector(requestAuthorizationToken)
-                               onTarget:self
-                   inBackgroundWithGate:nil
-                                visible:YES];
+    
+    [ThreadingUtilities backgroundSelector:@selector(requestAuthorizationToken)
+                                  onTarget:self
+                                      gate:nil
+                                   visible:YES];
 }
 
 
 - (void) requestAuthorizationToken {
     OAConsumer* consumer = [OAConsumer consumerWithKey:@"83k9wpqt34hcka5bfb2kkf8s"
                                                 secret:@"GGR5uHEucN"];
-
+    
     NSURL *url = [NSURL URLWithString:@"http://api.netflix.com/oauth/request_token"];
-
+    
     OAMutableURLRequest *request = [OAMutableURLRequest requestWithURL:url
                                                               consumer:consumer
                                                                  token:nil   // we don't have a Token yet
                                                                  realm:nil]; // use the default method, HMAC-SHA1
-
+    
     [request setHTTPMethod:@"POST"];
-
+    
     [OADataFetcher fetchDataWithRequest:request
                                delegate:self
                       didFinishSelector:@selector(requestAuthorizationToken:didFinishWithData:)
@@ -211,7 +211,7 @@
 - (void) reportError:(NSError*) error {
     NSAssert([NSThread isMainThread], nil);
     [AlertUtilities showOkAlert:NSLocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil)];
-
+    
     [activityIndicator stopAnimating];
     [button removeFromSuperview];
     statusLabel.text = NSLocalizedString(@"Error occurred", nil);
@@ -221,7 +221,7 @@
 - (void) reportAuthorizationToken:(OAToken*) token {
     NSAssert([NSThread isMainThread], nil);
     self.authorizationToken = token;
-
+    
     button.enabled = YES;
     [activityIndicator stopAnimating];
     statusLabel.text = @"";
@@ -253,32 +253,32 @@
     if (!didShowBrowser) {
         return;
     }
-
+    
     // we're coming back after showing the user the the access page
-
+    
     [activityIndicator startAnimating];
     statusLabel.text = NSLocalizedString(@"Requesting access", nil);
     button.enabled = NO;
-
-    [ThreadingUtilities performSelector:@selector(requestAccessToken)
-                               onTarget:self
-                   inBackgroundWithGate:nil
-                                visible:YES];
+    
+    [ThreadingUtilities backgroundSelector:@selector(requestAccessToken)
+                                  onTarget:self
+                                      gate:nil
+                                   visible:YES];
 }
 
 - (void) requestAccessToken {
     OAConsumer* consumer = [OAConsumer consumerWithKey:@"83k9wpqt34hcka5bfb2kkf8s"
                                                 secret:@"GGR5uHEucN"];
-
+    
     NSURL *url = [NSURL URLWithString:@"http://api.netflix.com/oauth/access_token"];
-
+    
     OAMutableURLRequest *request = [OAMutableURLRequest requestWithURL:url
                                                               consumer:consumer
                                                                  token:authorizationToken
                                                                  realm:nil]; // use the default method, HMAC-SHA1
-
+    
     [request setHTTPMethod:@"POST"];
-
+    
     [OADataFetcher fetchDataWithRequest:request
                                delegate:self
                       didFinishSelector:@selector(requestAccessToken:didFinishWithData:)
@@ -314,7 +314,7 @@
     NSLocalizedString(@"Success! Now Playing was granted access to your Netflix "
                       "account. You will now be able to add movies to your queue, "
                       "see what's new and what's recommended for you, and much more!", nil);
-
+    
     [self.controller setNetflixKey:token.key secret:token.secret userId:[token.fields objectForKey:@"user_id"]];
 }
 

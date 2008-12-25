@@ -293,9 +293,9 @@
 
 
 - (void) updateIndex {
-    [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint)
+    [ThreadingUtilities backgroundSelector:@selector(updateIndexBackgroundEntryPoint)
                                onTarget:self
-               inBackgroundWithGate:gate
+               gate:gate
                                 visible:YES];
 }
 
@@ -376,9 +376,9 @@
 - (void) updateDetails {
     NSAssert([NSThread isMainThread], @"");
     NSArray* arguments = [NSArray arrayWithObjects:self.movies, self.studioKeys, self.titleKeys, nil];
-    [ThreadingUtilities performSelector:@selector(updateDetailsInBackgroundEntryPoint:)
+    [ThreadingUtilities backgroundSelector:@selector(updateDetailsInBackgroundEntryPoint:)
                                onTarget:self
-               inBackgroundWithArgument:arguments
+               argument:arguments
                                    gate:gate
                                 visible:NO];
 }

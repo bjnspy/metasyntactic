@@ -45,7 +45,7 @@
     self.appDelegate = nil;
     self.determineLocationLock = nil;
     self.locationManager = nil;
-
+    
     [super dealloc];
 }
 
@@ -60,7 +60,7 @@
         self.appDelegate = appDelegate_;
         self.locationManager = [LocationManager managerWithController:self];
     }
-
+    
     return self;
 }
 
@@ -74,22 +74,22 @@
     if (lastDate == nil) {
         return NO;
     }
-
+    
     NSDate* now = [NSDate date];
-
+    
     if (![DateUtilities isSameDay:now date:lastDate]) {
         // different days. we definitely need to refresh
         return NO;
     }
-
+    
     NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
     NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-
+    
     // same day, check if they're at least 8 hours apart.
     if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
         return NO;
     }
-
+    
     // it's been less than 8 hours. it's too soon to refresh
     return YES;
 }
@@ -129,7 +129,7 @@
      delegate:nil
      cancelButtonTitle:NSLocalizedString(@"OK", nil)
      otherButtonTitles:nil] autorelease];
-
+     
      [alert show];
      */
 }
@@ -143,10 +143,10 @@
 
 - (void) spawnDetermineLocationThread {
     NSAssert([NSThread isMainThread], nil);
-    [ThreadingUtilities performSelector:@selector(determineLocationBackgroundEntryPoint)
-                               onTarget:self
-                   inBackgroundWithGate:determineLocationLock
-                                visible:YES];
+    [ThreadingUtilities backgroundSelector:@selector(determineLocationBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:determineLocationLock
+                                   visible:YES];
 }
 
 
@@ -179,7 +179,7 @@
 - (void) determineLocationBackgroundEntryPoint {
     NSString* address = self.model.userAddress;
     Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
-
+    
     [self performSelectorOnMainThread:@selector(reportUserLocation:)
                            withObject:location
                         waitUntilDone:NO];
@@ -191,7 +191,7 @@
     if (self.model.userAddress.length > 0 && location == nil) {
         [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
     }
-
+    
     [self spawnDataProviderLookupThread];
 }
 
@@ -205,10 +205,10 @@
     if ([DateUtilities isSameDay:searchDate date:self.model.searchDate]) {
         return;
     }
-
+    
     [appDelegate.tabBarController popNavigationControllersToRoot];
     [self.model setSearchDate:searchDate];
-
+    
     [self markDataProviderOutOfDate];
     [self spawnDataProviderLookupThread];
 }
@@ -218,13 +218,13 @@
     if ([userAddress isEqual:self.model.userAddress]) {
         return;
     }
-
+    
     [appDelegate.tabBarController popNavigationControllersToRoot];
     [self.model setUserAddress:userAddress];
-
+    
     [self markDataProviderOutOfDate];
     [self spawnDetermineLocationThread];
-
+    
     // Force a refresh so the UI displays this new address.
     [NowPlayingAppDelegate majorRefresh:YES];
 }
@@ -239,7 +239,7 @@
     if (index == self.model.scoreProviderIndex) {
         return;
     }
-
+    
     [self.model setScoreProviderIndex:index];
 }
 

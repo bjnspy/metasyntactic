@@ -35,7 +35,7 @@
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
-
+    
     [super dealloc];
 }
 
@@ -44,7 +44,7 @@
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
-
+    
     return self;
 }
 
@@ -64,12 +64,12 @@
     if (model.userAddress.length == 0) {
         return;
     }
-
-    [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
-                               onTarget:self
-               inBackgroundWithArgument:movies
-                                   gate:gate
-                                visible:NO];
+    
+    [ThreadingUtilities backgroundSelector:@selector(backgroundEntryPoint:)
+                                  onTarget:self
+                                  argument:movies
+                                      gate:gate
+                                   visible:NO];
 }
 
 
@@ -78,29 +78,29 @@
         // don't even bother if the movie has an imdb address in it
         return;
     }
-
+    
     NSString* path = [self imdbFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
-
+    
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
         if (value.length > 0) {
             // we have a real imdb value for this movie
             return;
         }
-
+        
         // we have a sentinel.  only update if it's been long enough
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
         }
     }
-
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (imdbAddress == nil) {
         return;
     }
-
+    
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:path];
@@ -117,13 +117,13 @@
             return movie;
         }
     }
-
+    
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
-
+    
     return nil;
 }
 
