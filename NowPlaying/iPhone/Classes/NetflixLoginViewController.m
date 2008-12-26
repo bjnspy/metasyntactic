@@ -176,7 +176,7 @@
     OAMutableURLRequest *request = [OAMutableURLRequest requestWithURL:url
                                                               consumer:consumer
                                                                  token:nil   // we don't have a Token yet
-                                                                 realm:nil]; // use the default method, HMAC-SHA1
+                                                                 realm:nil];
     
     [request setHTTPMethod:@"POST"];
     
@@ -226,14 +226,6 @@
     [activityIndicator stopAnimating];
     statusLabel.text = @"";
 }
-
-
-/*
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad {
- [super viewDidLoad];
- }
- */
 
 
 // Override to allow orientations other than the default portrait orientation.

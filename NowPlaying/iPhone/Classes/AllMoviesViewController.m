@@ -107,7 +107,7 @@
 
 
 - (void) didReceiveMemoryWarning {
-    if (/*navigationController.visible ||*/ visible) {
+    if (visible) {
         return;
     }
 
@@ -136,18 +136,6 @@
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
-    /*
-    if (self.model.rottenTomatoesScores) {
-        return [self createRottenTomatoesCell:movie];
-    } else if (self.model.metacriticScores ||
-               self.model.googleScores) {
-        return [self createNumericCell:movie];
-    } else {
-        //if (self.model.noScores) {
-        return [self createBasicCell:movie];
-    }
-     */
-
     static NSString* reuseIdentifier = @"MovieCellIdentifier";
     id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {

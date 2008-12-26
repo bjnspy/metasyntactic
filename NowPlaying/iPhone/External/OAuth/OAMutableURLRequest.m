@@ -147,9 +147,10 @@
 - (void) prepare {
     // sign
     NSString* baseString = [self signatureBaseString];
+    NSString* tokenSecret = token.secret.length == 0 ? @"" : token.secret;
     self.signature = 
     [OAHMAC_SHA1SignatureProvider signClearText:baseString
-                                     withSecret:[NSString stringWithFormat:@"%@&%@", consumer.secret, token.secret]];
+                                     withSecret:[NSString stringWithFormat:@"%@&%@", consumer.secret, tokenSecret]];
 
     // set OAuth headers
     NSString* oauthToken = @"";

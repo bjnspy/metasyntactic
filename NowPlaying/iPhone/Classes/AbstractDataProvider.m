@@ -90,12 +90,6 @@
     return [[Application dataDirectory] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
-/*
- - (NSString*) bookmarksFile {
- return [[Application dataDirectory] stringByAppendingPathComponent:@"Bookmarks.plist"];
- }
- */
-
 
 - (NSString*) theatersFile {
     return [[Application dataDirectory] stringByAppendingPathComponent:@"Theaters.plist"];

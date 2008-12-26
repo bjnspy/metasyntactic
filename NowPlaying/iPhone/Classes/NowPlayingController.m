@@ -59,6 +59,7 @@
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
         self.locationManager = [LocationManager managerWithController:self];
+        self.determineLocationLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
     
     return self;

@@ -1160,15 +1160,6 @@ static NSString* average_rating_key = @"average_rating";
 
 - (BOOL) isEnqueued:(Movie*) movie inArray:(NSArray*) array {
     return [array containsObject:movie];
-    /*
-     for (Movie* netflixMovie in array) {
-     if ([netflixMovie.identifier isEqual:movie.identifier]) {
-     return YES;
-     }
-     }
-     
-     return NO;
-     */
 }
 
 
