@@ -109,7 +109,7 @@
 
 
 - (void) didReceiveMemoryWarning {
-    if (/*navigationController.visible ||*/ visible) {
+    if (visible) {
         return;
     }
 
