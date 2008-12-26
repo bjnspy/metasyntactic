@@ -39,6 +39,7 @@
     BOOL readonlyMode;
 
     NSArray* visibleIndexPaths;
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

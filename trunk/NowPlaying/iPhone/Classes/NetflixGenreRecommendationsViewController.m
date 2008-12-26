@@ -122,19 +122,33 @@
 }
 
 
+- (void) viewDidAppear:(BOOL) animated {
+    visible = YES;
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 
 
 - (void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    if (visible) {
+        return;
+    }
 
     self.movies = [NSArray array];
-
+    
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
     self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
+    
+    [super didReceiveMemoryWarning];
 }
 
 

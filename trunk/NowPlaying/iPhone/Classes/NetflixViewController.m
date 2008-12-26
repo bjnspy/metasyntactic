@@ -113,19 +113,31 @@ typedef enum {
 }
 
 
-// Override to allow orientations other than the default portrait orientation.
+- (void) viewDidAppear:(BOOL) animated {
+    visible = YES;
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return YES;
 }
 
 
 - (void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
+    if (visible) {
+        return;
+    }
+    
+    [super didReceiveMemoryWarning];
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
@@ -230,12 +242,6 @@ typedef enum {
         }
         [self.tableView endUpdates];
     }
-}
-
-
-- (void) didSelectQueuesRow {
-    NetflixFeedsViewController* controller = [[[NetflixFeedsViewController alloc] initWithNavigationController:navigationController] autorelease];
-    [navigationController pushViewController:controller animated:YES];
 }
 
 

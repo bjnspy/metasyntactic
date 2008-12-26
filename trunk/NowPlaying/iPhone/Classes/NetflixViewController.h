@@ -18,6 +18,8 @@
 @private
     NetflixNavigationController* navigationController;
     NetflixSearchViewController* searchViewController;
+    
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController;

@@ -80,12 +80,26 @@
 }
 
 
+- (void) viewDidAppear:(BOOL) animated {
+    visible = YES;
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    visible = NO;
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 
 
 - (void) didReceiveMemoryWarning {
+    if (visible) {
+        return;
+    }
+    
     [super didReceiveMemoryWarning];
 }
 
