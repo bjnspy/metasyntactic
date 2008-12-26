@@ -18,6 +18,8 @@
 @private
     AbstractNavigationController* navigationController;
     NSArray* feedKeys;
+
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

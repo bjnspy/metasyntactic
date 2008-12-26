@@ -21,6 +21,7 @@
     NSArray* movies;
 
     NSArray* visibleIndexPaths;
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController genre:(NSString*) genre;

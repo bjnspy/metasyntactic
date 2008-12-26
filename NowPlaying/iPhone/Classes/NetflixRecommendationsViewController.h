@@ -20,6 +20,8 @@
 
     NSArray* genres;
     MultiDictionary* genreToMovies;
+    
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

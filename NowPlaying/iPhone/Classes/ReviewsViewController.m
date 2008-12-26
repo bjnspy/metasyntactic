@@ -76,7 +76,7 @@
 }
 
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL) animated {
     visible = YES;
     [self.model saveNavigationStack:self.navigationController];
 }
