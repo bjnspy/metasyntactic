@@ -113,7 +113,7 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL) animated {
     self.tableView.rowHeight = 100;
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
@@ -127,12 +127,12 @@
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL) animated {
     visible = NO;
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return YES;
 }
 
@@ -158,7 +158,7 @@
 
 
 // Customize the number of rows in the table view.
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) section {
     return movies.count;
 }
 

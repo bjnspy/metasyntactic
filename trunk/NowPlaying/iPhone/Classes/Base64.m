@@ -46,7 +46,7 @@
 
 
 + (NSString*) encode:(NSData*) rawBytes {
-    return [Base64 encode:(const uint8_t*)rawBytes.bytes length:rawBytes.length];
+    return [Base64 encode:(const uint8_t*) rawBytes.bytes length:rawBytes.length];
 }
 
 @end

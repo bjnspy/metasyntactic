@@ -104,12 +104,12 @@
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL) animated {
     visible = NO;
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return YES;
 }
 

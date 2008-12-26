@@ -595,7 +595,7 @@ static NSString* average_rating_key = @"average_rating";
             if ([scanner scanHexInt:&hex] && hex > 0) {
                 synopsis = [NSString stringWithFormat:@"%@%@%@",
                             [synopsis substringToIndex:range.location],
-                            [Utilities stringFromUnichar:(unichar)hex],
+                            [Utilities stringFromUnichar:(unichar) hex],
                             [synopsis substringFromIndex:semiColonRange.location + 1]];
             }
         }

@@ -368,13 +368,13 @@
 }
 
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL) animated {
     visible = YES;
     [self.model saveNavigationStack:navigationController];
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL) animated {
     visible = NO;
 }
 
@@ -709,7 +709,7 @@
 
 
 - (CGFloat)          tableView:(UITableView*) tableView
-      heightForFooterInSection:(NSInteger)section {
+      heightForFooterInSection:(NSInteger) section {
     if (section == 0) {
         CGFloat height = [actionsView height];
         
