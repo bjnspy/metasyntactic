@@ -36,10 +36,10 @@
     NSString* timestamp;
 }
 
-+ (OAMutableURLRequest*) requestWithURL:(NSURL*)aUrl
-                               consumer:(OAConsumer*)aConsumer
-                                  token:(OAToken*)aToken
-                                  realm:(NSString*)aRealm;
++ (OAMutableURLRequest*) requestWithURL:(NSURL*) url
+                               consumer:(OAConsumer*) consumer
+                                  token:(OAToken*) token
+                                  realm:(NSString*) realm;
 
 /*
 + (OAMutableURLRequest*) requestWithURL:(NSURL*)aUrl
