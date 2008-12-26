@@ -90,12 +90,12 @@
 }
 
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL) animated {
     visible = YES;
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL) animated {
     visible = NO;
 }
 

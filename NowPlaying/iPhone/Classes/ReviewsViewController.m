@@ -82,7 +82,7 @@
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL) animated {
     visible = NO;
 }
 

@@ -195,12 +195,12 @@
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL) animated {
     visible = NO;
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return YES;
 }
 
@@ -221,13 +221,13 @@
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *) tableView {
     return 2;
 }
 
 
 // Customize the number of rows in the table view.
-- (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return mutableMovies.count;
     } else {

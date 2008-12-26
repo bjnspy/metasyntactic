@@ -97,12 +97,12 @@
 }
 
 /*
-+ (OAMutableURLRequest*) requestWithURL:(NSURL*)url
-                               consumer:(OAConsumer*)consumer
-                                  token:(OAToken*)token
-                                  realm:(NSString*)realm
-                                  nonce:(NSString*)nonce
-                              timestamp:(NSString*)timestamp {
++ (OAMutableURLRequest*) requestWithURL:(NSURL*) url
+                               consumer:(OAConsumer*) consumer
+                                  token:(OAToken*) token
+                                  realm:(NSString*) realm
+                                  nonce:(NSString*) nonce
+                              timestamp:(NSString*) timestamp {
     OAMutableURLRequest* request =
     [OAMutableURLRequest requestWithURL:url consumer:consumer token:token realm:realm];
 

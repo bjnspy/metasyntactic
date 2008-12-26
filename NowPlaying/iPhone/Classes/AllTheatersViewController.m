@@ -313,13 +313,13 @@
 }
 
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL) animated {
     visible = YES;
     [self.model saveNavigationStack:self.navigationController];
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL) animated {
     visible = NO;
 }
 

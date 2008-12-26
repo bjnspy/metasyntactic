@@ -107,7 +107,7 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL) animated {
     self.tableView.rowHeight = 100;
     [super viewWillAppear:animated];
     [self majorRefresh];
@@ -119,12 +119,12 @@
 }
 
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL) animated {
     visible = NO;
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return NO;
 }
 
@@ -150,7 +150,7 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     static NSString* reuseIdentifier = @"NetflixSearchReuseIdentifier";
 
     NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
