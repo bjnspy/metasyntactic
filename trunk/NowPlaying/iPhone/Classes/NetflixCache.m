@@ -929,6 +929,9 @@ static NSString* average_rating_key = @"average_rating";
     {
         [self updateSeries:movie];
         
+        // we download the formats for both a series and a disc.
+        [self updateSynopsis:movie];
+        
         if (![self isSeriesDisc:movie]) {
             // we don't download this stuff on a per disc basis.  only for a series.
             [self updatePoster:movie];
@@ -937,9 +940,7 @@ static NSString* average_rating_key = @"average_rating";
             [self updateIMDb:movie];
             [self updateRatings:movie];
         }
-        
-        // we download the formats for both a series and a disc.
-        [self updateSynopsis:movie];
+
         [self updateFormats:movie];
     }
     [pool release];
@@ -1093,7 +1094,7 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
-- (NSString*) synopsisForMovie:(Movie*) movie {
+- (NSString*) synopsisForMovieWorker:(Movie*) movie {
     NSString* discSynopsis = [FileUtilities readObject:[self synopsisFile:movie]];
     NSString* seriesSynopsis = [FileUtilities readObject:[self synopsisFile:[self seriesForDisc:movie]]];
     
@@ -1106,6 +1107,20 @@ static NSString* average_rating_key = @"average_rating";
         
         return [NSString stringWithFormat:@"%@\n\n%@", discSynopsis, seriesSynopsis];
     }
+}
+
+
+- (NSString*) synopsisForMovie:(Movie*) movie {
+    if (!movie.isNetflix) {
+        return @"";
+    }
+    
+    NSString* synopsis = [self synopsisForMovieWorker:movie];
+    if (synopsis.length == 0) {
+        return NSLocalizedString(@"Downloading information.", nil);
+    }
+    
+    return synopsis;
 }
 
 
