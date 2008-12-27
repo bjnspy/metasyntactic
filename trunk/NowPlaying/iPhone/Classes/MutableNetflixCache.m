@@ -318,12 +318,9 @@
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:NO];
     
-    [self checkApiResult:element];
-    
-    NSInteger status = [[[element element:@"status_code"] text] intValue];
-    if (status < 200 || status >= 300) {
+    if (element == nil) {
         // we failed.  restore the rating to its original value
-        return [self extractErrorMessage:element];
+        return NSLocalizedString(@"An unknown error occurred.", nil);
     }
     
     XmlElement* ratingsItemElement = [element element:@"ratings_item"];
