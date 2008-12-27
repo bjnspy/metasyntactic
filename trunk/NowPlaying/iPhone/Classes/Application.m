@@ -273,21 +273,18 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) clearStaleData {
++ (void) clearStaleData:(NSInteger) directoryIndex {
     [gate lock];
     {
-        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-
-            if ([userLocationsDirectory isEqual:directory]) {
-                continue;
-            }
-
+        directoryIndex %= ArrayLength(directories); 
+        NSString* directory = *directories[directoryIndex];
+        
+        if (![userLocationsDirectory isEqual:directory]) {
             for (NSString* path in [FileUtilities directoryContentsPaths:directory]) {
                 if ([FileUtilities isDirectory:path]) {
                     continue;
                 }
-
+                
                 NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
                 if (lastModifiedDate != nil) {
                     if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
