@@ -78,7 +78,6 @@
 @class NetflixCache;
 @class NetflixNavigationController;
 @class NetflixRatingsCell;
-@class NetflixSearchCache;
 @class NetflixSearchEngine;
 @class NetflixSearchViewController;
 @class NetflixViewController;
@@ -132,6 +131,7 @@
 @class UserLocationCache;
 @class Utilities;
 @class ViewControllerUtilities;
+@class WikipediaCache;
 @class XmlDocument;
 @class XmlElement;
 @class XmlParser;
