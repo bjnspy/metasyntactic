@@ -53,7 +53,7 @@
 
 + (void) resetDirectories;
 + (void) resetNetflixDirectories;
-+ (void) clearStaleData:(NSInteger) directoryIndex;
++ (void) clearStaleData:(NSInteger) index;
 
 + (NSString*) uniqueTemporaryDirectory;
 
