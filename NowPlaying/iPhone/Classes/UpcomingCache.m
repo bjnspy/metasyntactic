@@ -28,6 +28,7 @@
 #import "NowPlayingModel.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
+#import "WikipediaCache.h"
 #import "XmlElement.h"
 
 @interface UpcomingCache()
@@ -431,6 +432,11 @@
 }
 
 
+- (void) updateWikipedia:(Movie*) movie {
+    [model.wikipediaCache updateMovie:movie];
+}
+
+
 - (void) updatePoster:(Movie*) movie {
     if (movie.poster.length == 0) {
         [model.largePosterCache downloadFirstPosterForMovie:movie];
@@ -527,11 +533,12 @@
 
 
 - (void) updateDetails:(Movie*) movie studio:(NSString*) studio title:(NSString*) title {
-    [self updateIMDb:movie];
     [self updatePoster:movie];
     [self updateSynopsisAndCast:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
     [self updateNetflix:movie];
+    [self updateIMDb:movie];
+    [self updateWikipedia:movie];
 }
 
 

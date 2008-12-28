@@ -11,11 +11,13 @@
 @interface WikipediaCache : AbstractCache {
 @private
     LinkedSet* prioritizedMovies;
+    LinkedSet* normalMovies;
 }
 
 + (WikipediaCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update:(NSArray*) movies;
+- (void) updateMovie:(Movie*) movie;
 - (void) prioritizeMovie:(Movie*) movie;
 
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie;

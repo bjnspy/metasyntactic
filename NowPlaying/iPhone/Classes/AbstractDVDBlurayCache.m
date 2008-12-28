@@ -447,6 +447,11 @@
 }
 
 
+- (void) updateVideoWikipediaAddress:(Movie*) movie {
+    [model.wikipediaCache updateMovie:movie];
+}
+
+
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie = [prioritizedMovies removeLastObjectAdded];
     
@@ -481,8 +486,9 @@
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             [self updateVideoPoster:movie];
-            [self updateVideoImdbAddress:movie];
             [self updateNetflix:movie];
+            [self updateVideoImdbAddress:movie];
+            [self updateVideoWikipediaAddress:movie];
         }
         [pool release];
     }

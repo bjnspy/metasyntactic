@@ -17,10 +17,7 @@
 #import "TappableImageViewDelegate.h"
 
 @interface MovieDetailsViewController :
-    AbstractDetailsViewController<
-        TappableImageViewDelegate,
-        NetflixAddMovieDelegate,
-        UIActionSheetDelegate> {
+    AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate> {
 @private
     Movie* movie;
     DVD* dvd;
@@ -30,7 +27,7 @@
     NSMutableArray* showtimesArray;
     NSString* trailer;
     NSArray* reviewsArray;
-    NSString* imdbAddress;
+    NSDictionary* websites;
 
     NSInteger hiddenTheaterCount;
 
