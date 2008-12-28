@@ -50,12 +50,14 @@
 #import "UpcomingMoviesViewController.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
+#import "WikipediaCache.h"
 
 @interface NowPlayingModel()
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) BlurayCache* blurayCache;
 @property (retain) DVDCache* dvdCache;
 @property (retain) IMDbCache* imdbCache;
+@property (retain) WikipediaCache* wikipediaCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
 @property (retain) ScoreCache* scoreCache;
@@ -185,6 +187,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize blurayCache;
 @synthesize dvdCache;
 @synthesize imdbCache;
+@synthesize wikipediaCache;
 @synthesize posterCache;
 @synthesize largePosterCache;
 @synthesize scoreCache;
@@ -201,6 +204,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.blurayCache = nil;
     self.dvdCache = nil;
     self.imdbCache = nil;
+    self.wikipediaCache = nil;
     self.posterCache = nil;
     self.largePosterCache = nil;
     self.scoreCache = nil;
@@ -240,6 +244,11 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) updateIMDbCache {
     [imdbCache update:self.movies];
+}
+
+
+- (void) updateWikipediaCache {
+    [wikipediaCache update:self.movies];
 }
 
 
@@ -431,6 +440,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         self.userLocationCache = [UserLocationCache cache];
         self.largePosterCache = [LargePosterCache cacheWithModel:self];
         self.imdbCache = [IMDbCache cacheWithModel:self];
+        self.wikipediaCache = [WikipediaCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cacheWithModel:self];
         self.blurayCache = [BlurayCache cacheWithModel:self];
         self.dvdCache = [DVDCache cacheWithModel:self];
@@ -457,6 +467,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         @selector(updatePosterCache),
         @selector(updateTrailerCache),
         @selector(updateIMDbCache),
+        @selector(updateWikipediaCache),
         @selector(updateUpcomingCache),
         @selector(updateDVDCache),
         @selector(updateNetflixCache),
@@ -1033,6 +1044,11 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     }
 
     return nil;
+}
+
+
+- (NSString*) wikipediaAddressForMovie:(Movie*) movie {
+    return [wikipediaCache wikipediaAddressForMovie:movie];
 }
 
 
