@@ -38,7 +38,7 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
-        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
+        self.gate = [[[NSCondition alloc] init] autorelease];
     }
 
     return self;
