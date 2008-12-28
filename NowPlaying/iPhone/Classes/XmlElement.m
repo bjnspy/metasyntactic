@@ -63,6 +63,12 @@ property_definition(text);
 
 
 + (id) elementWithName:(NSString*) name_
+              child:(XmlElement*) child_ {
+    return [XmlElement elementWithName:name_ children:[NSArray arrayWithObjects:child_]];
+}
+
+
++ (id) elementWithName:(NSString*) name_
             attributes:(NSDictionary*) attributes_
               children:(NSArray*) children_ {
     return [XmlElement elementWithName:name_ attributes:attributes_ children:children_ text:[NSString string]];

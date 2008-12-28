@@ -35,6 +35,9 @@
               children:(NSArray*) children;
 
 + (id) elementWithName:(NSString*) name
+                 child:(XmlElement*) child;
+
++ (id) elementWithName:(NSString*) name
                   text:(NSString*) text;
 
 + (id) elementWithName:(NSString*) name
