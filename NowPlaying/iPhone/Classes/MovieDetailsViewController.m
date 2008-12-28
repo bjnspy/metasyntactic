@@ -211,16 +211,16 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     NSMutableDictionary* map = [NSMutableDictionary dictionary];
     NSString* imdbAddress = [self.model imdbAddressForMovie:movie];
     if (imdbAddress.length > 0) {
-        [map setObject:imdbAddress forKey:@"IMDb.com"];
+        [map setObject:imdbAddress forKey:@"IMDb"];
     }
     
     NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
     if (wikipediaAddress.length > 0) {
-        [map setObject:wikipediaAddress forKey:@"Wikipedia.org"];
+        [map setObject:wikipediaAddress forKey:@"Wikipedia"];
     }
     
     if (dvd != nil) {
-        [map setObject:dvd.url forKey:@"VideoETA.com"];
+        [map setObject:dvd.url forKey:@"VideoETA"];
     }
     self.websites = map;
 }
