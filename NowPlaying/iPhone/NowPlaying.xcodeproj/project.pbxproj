@@ -164,6 +164,7 @@
 		749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */; };
 		749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
 		7495695B0E2D6248007BFF21 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695A0E2D6248007BFF21 /* Review.m */; };
+		749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749D34B20F075F8F006E7C7D /* WikipediaCache.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
 		74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E490F034B8100E5450A /* AbstractNetflixCache.m */; };
@@ -632,6 +633,8 @@
 		749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
 		749569590E2D6248007BFF21 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		7495695A0E2D6248007BFF21 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		749D34B10F075F8F006E7C7D /* WikipediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaCache.h; sourceTree = "<group>"; };
+		749D34B20F075F8F006E7C7D /* WikipediaCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaCache.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		74A33E480F034B8100E5450A /* AbstractNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNetflixCache.h; sourceTree = "<group>"; };
@@ -1408,6 +1411,8 @@
 				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
+				749D34B10F075F8F006E7C7D /* WikipediaCache.h */,
+				749D34B20F075F8F006E7C7D /* WikipediaCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -2151,6 +2156,7 @@
 				74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */,
 				74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */,
 				74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */,
+				749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -156,7 +156,7 @@
     }
 
     // now, update in the background.
-    NSString* rating = value == 0 ? @"no_opinion" : [NSString stringWithFormat:@"%d", value];
+    NSString* rating = value == 0 ? @"" : [NSString stringWithFormat:@"%d", value];
     [model.netflixCache changeRatingTo:rating forMovie:movie delegate:self];
 }
 
