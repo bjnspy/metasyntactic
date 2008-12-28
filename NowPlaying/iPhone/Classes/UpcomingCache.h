@@ -40,7 +40,6 @@
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
-- (NSString*) imdbAddressForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
 
 - (void) prioritizeMovie:(Movie*) movie;

@@ -51,7 +51,6 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
-- (NSString*) imdbAddressForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSString*) netflixRatingForMovie:(Movie*) movie;
 - (NSString*) userRatingForMovie:(Movie*) movie;

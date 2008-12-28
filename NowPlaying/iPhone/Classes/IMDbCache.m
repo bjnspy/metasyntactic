@@ -26,15 +26,18 @@
 
 @interface IMDbCache()
 @property (retain) LinkedSet* prioritizedMovies;
+@property (retain) LinkedSet* normalMovies;
 @end
 
 
 @implementation IMDbCache
 
 @synthesize prioritizedMovies;
+@synthesize normalMovies;
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
+    self.normalMovies = nil;
     
     [super dealloc];
 }
@@ -43,6 +46,12 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
+        self.normalMovies = [LinkedSet set];
+        
+        [ThreadingUtilities backgroundSelector:@selector(updateAddressBackgroundEntryPoint)
+                                      onTarget:self
+                                          gate:nil
+                                       visible:NO];
     }
     
     return self;
@@ -61,19 +70,16 @@
 
 
 - (void) update:(NSArray*) movies {
-    if (model.userAddress.length == 0) {
-        return;
-    }
-    
-    [ThreadingUtilities backgroundSelector:@selector(backgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:movies
-                                      gate:gate
-                                   visible:NO];
+    [normalMovies addObjectsFromArray:movies];
 }
 
 
-- (void) downloadAddress:(Movie*) movie {
+- (void) updateMovie:(Movie*) movie {
+    [normalMovies addObject:movie];
+}
+
+
+- (void) updateAddress:(Movie*) movie {
     if (movie.imdbAddress.length > 0) {
         // don't even bother if the movie has an imdb address in it
         return;
@@ -110,33 +116,19 @@
 }
 
 
-- (Movie*) getNextMovie:(NSMutableArray*) movies {
-    Movie* movie;
-    while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
-        if (![FileUtilities fileExists:[self imdbFile:movie]]) {
-            return movie;
-        }
-    }
-    
-    if (movies.count > 0) {
-        movie = [[[movies lastObject] retain] autorelease];
-        [movies removeLastObject];
-        return movie;
-    }
-    
-    return nil;
-}
-
-
-- (void) backgroundEntryPoint:(NSArray*) movies {
-    NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
-    Movie* movie;
-    while ((movie = [self getNextMovie:mutableMovies]) != nil) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+- (void) updateAddressBackgroundEntryPoint {
+    while (YES) {
+        Movie* movie = nil;
+        [gate lock];
         {
-            [self downloadAddress:movie];
+            while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
+                   (movie = [normalMovies removeLastObjectAdded]) == nil) {
+                [gate wait];
+            }
         }
-        [pool release];
+        [gate unlock];
+        
+        [self updateAddress:movie];
     }
 }
 

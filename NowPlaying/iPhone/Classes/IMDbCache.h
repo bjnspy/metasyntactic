@@ -17,11 +17,13 @@
 @interface IMDbCache : AbstractCache {
 @private
     LinkedSet* prioritizedMovies;
+    LinkedSet* normalMovies;
 }
 
 + (IMDbCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update:(NSArray*) movies;
+- (void) updateMovie:(Movie*) movie;
 - (void) prioritizeMovie:(Movie*) movie;
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie;

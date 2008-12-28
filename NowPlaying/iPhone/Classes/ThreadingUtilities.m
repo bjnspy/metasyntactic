@@ -25,7 +25,7 @@
                    onTarget:(id) target
                    argument:(id) argument1
                    argument:(id) argument2
-                       gate:(NSLock*) gate
+                       gate:(id<NSLocking>) gate
                     visible:(BOOL) visible {
     BackgroundInvocation2* invocation = [BackgroundInvocation2 invocationWithTarget:target
                                                                            selector:selector
@@ -40,7 +40,7 @@
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
                    argument:(id) argument
-                       gate:(NSLock*) gate
+                       gate:(id<NSLocking>) gate
                     visible:(BOOL) visible {
     BackgroundInvocation* invocation = [BackgroundInvocation invocationWithTarget:target
                                                                          selector:selector
@@ -53,7 +53,7 @@
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
-                       gate:(NSLock*) gate
+                       gate:(id<NSLocking>) gate
                     visible:(BOOL) visible {
     [self backgroundSelector:selector
                     onTarget:target

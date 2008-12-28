@@ -19,6 +19,7 @@
 #import "DateUtilities.h"
 #import "FileUtilities.h"
 #import "ImageUtilities.h"
+#import "IMDbCache.h"
 #import "LargePosterCache.h"
 #import "LinkedSet.h"
 #import "Movie.h"
@@ -82,11 +83,6 @@
 
 - (NSString*) postersDirectory {
     return [self.directory stringByAppendingPathComponent:@"Posters"];
-}
-
-
-- (NSString*) imdbDirectory {
-    return [self.directory stringByAppendingPathComponent:@"IMDb"];
 }
 
 
@@ -313,23 +309,6 @@
 }
 
 
-- (NSString*) imdbFile:(Movie*) movie set:(PointerSet*) movies {
-    if (movies == nil || [movies containsObject:movie]) {
-        return [[[self imdbDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
-                stringByAppendingString:@".plist"];
-    }
-    
-    return nil;
-}
-
-
-- (NSString*) imdbFile:(Movie*) movie {
-    NSAssert([NSThread isMainThread], @"");
-    
-    return [self imdbFile:movie set:self.moviesSet];
-}
-
-
 - (NSString*) posterFile:(Movie*) movie set:(PointerSet*) movies {
     if (movies == nil || [movies containsObject:movie]) {
         return [[[self postersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]]
@@ -464,34 +443,7 @@
 
 
 - (void) updateVideoImdbAddress:(Movie*) movie {
-    NSString* imdbFile = [self imdbFile:movie set:nil];
-    
-    NSDate* lastLookupDate = [FileUtilities modificationDate:imdbFile];
-    if (lastLookupDate != nil) {
-        NSString* value = [FileUtilities readObject:imdbFile];
-        if (value.length > 0) {
-            // we have a real imdb value for this movie
-            return;
-        }
-        
-        // we have a sentinel.  only update if it's been long enough
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
-            return;
-        }
-    }
-    
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-    NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-    if (imdbAddress == nil) {
-        return;
-    }
-    
-    // write down the response (even if it is empty).  An empty value will
-    // ensure that we don't update this entry too often.
-    [FileUtilities writeObject:imdbAddress toFile:imdbFile];
-    if (imdbAddress.length > 0) {
-        [NowPlayingAppDelegate minorRefresh];
-    }
+    [model.imdbCache updateMovie:movie];
 }
 
 
@@ -534,11 +486,6 @@
         }
         [pool release];
     }
-}
-
-
-- (NSString*) imdbAddressForMovie:(Movie*) movie {
-    return [FileUtilities readObject:[self imdbFile:movie]];
 }
 
 
