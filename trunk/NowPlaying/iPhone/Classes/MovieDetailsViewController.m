@@ -52,7 +52,7 @@
 @property (retain) NSMutableArray* showtimesArray;
 @property (copy) NSString* trailer;
 @property (retain) NSArray* reviewsArray;
-@property (copy) NSString* imdbAddress;
+@property (retain) NSDictionary* websites;
 @property (retain) UIView* actionsView;
 @property NSInteger hiddenTheaterCount;
 @property (retain) NSLock* posterDownloadLock;
@@ -66,6 +66,9 @@
 
 @implementation MovieDetailsViewController
 
+const NSInteger ADD_TO_NETFLIX_TAG = 1;
+const NSInteger VISIT_WEBSITES_TAG = 2;
+
 @synthesize movie;
 @synthesize dvd;
 @synthesize netflixMovie;
@@ -73,7 +76,7 @@
 @synthesize showtimesArray;
 @synthesize trailer;
 @synthesize reviewsArray;
-@synthesize imdbAddress;
+@synthesize websites;
 @synthesize actionsView;
 @synthesize hiddenTheaterCount;
 @synthesize posterActivityView;
@@ -91,7 +94,7 @@
     self.showtimesArray = nil;
     self.trailer = nil;
     self.reviewsArray = nil;
-    self.imdbAddress = nil;
+    self.websites = nil;
     self.actionsView = nil;
     self.hiddenTheaterCount = 0;
     self.posterActivityView = nil;
@@ -163,19 +166,17 @@
         [titles addObject:NSLocalizedString(@"Read reviews", nil)];
     }
     
-    if (imdbAddress.length > 0) {
-        [selectors addObject:[NSValue valueWithPointer:@selector(visitIMDb)]];
-        [titles addObject:NSLocalizedString(@"Visit IMDb", nil)];
+    if (websites.count == 1) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
+        [titles addObject:[websites.allKeys objectAtIndex:0]];
+    } else if (websites.count > 1) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsites)]];
+        [titles addObject:NSLocalizedString(@"Websites", nil)];
     }
     
     if (theatersArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
         [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
-    }
-    
-    if (dvd != nil) {
-        [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
-        [titles addObject:NSLocalizedString(@"Website", nil)];
     }
     
     if (netflixMovie != nil && ![self.model.netflixCache isEnqueued:netflixMovie]) {
@@ -203,6 +204,25 @@
         image = [ImageCache imageNotAvailable];
     }
     return image;
+}
+
+
+- (void) initializeWebsites {
+    NSMutableDictionary* map = [NSMutableDictionary dictionary];
+    NSString* imdbAddress = [self.model imdbAddressForMovie:movie];
+    if (imdbAddress.length > 0) {
+        [map setObject:imdbAddress forKey:@"IMDb.com"];
+    }
+    
+    NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
+    if (wikipediaAddress.length > 0) {
+        [map setObject:wikipediaAddress forKey:@"Wikipedia.org"];
+    }
+    
+    if (dvd != nil) {
+        [map setObject:dvd.url forKey:@"VideoETA.com"];
+    }
+    self.websites = map;
 }
 
 
@@ -236,7 +256,7 @@
         [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
     }
     
-    self.imdbAddress = [self.model imdbAddressForMovie:movie];
+    [self initializeWebsites];
     
     self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
     self.posterImageView.image = posterImage;
@@ -389,7 +409,7 @@
     self.showtimesArray = nil;
     self.trailer = nil;
     self.reviewsArray = nil;
-    self.imdbAddress = nil;
+    self.websites = nil;
     self.hiddenTheaterCount = 0;
     self.actionsView = nil;
     self.posterImage = nil;
@@ -841,13 +861,29 @@
 }
 
 
-- (void) visitIMDb {
-    [navigationController pushBrowser:imdbAddress animated:YES];
+- (void) visitWebsite {
+    [navigationController pushBrowser:[websites.allValues objectAtIndex:0] animated:YES];
 }
 
 
-- (void) visitWebsite {
-    [navigationController pushBrowser:dvd.url animated:YES];
+- (void) visitWebsites {
+    UIActionSheet* actionSheet =
+    [[[UIActionSheet alloc] initWithTitle:nil
+                                 delegate:self
+                        cancelButtonTitle:nil
+                   destructiveButtonTitle:nil
+                        otherButtonTitles:nil] autorelease];
+    actionSheet.tag = VISIT_WEBSITES_TAG;
+    
+    NSArray* keys = [websites.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    for (NSString* key in keys) {
+        [actionSheet addButtonWithTitle:key];
+    }
+    
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    actionSheet.cancelButtonIndex = keys.count;
+    
+    [actionSheet showInView:self.view];
 }
 
 
@@ -908,6 +944,7 @@
                             cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                        destructiveButtonTitle:nil
                             otherButtonTitles:NSLocalizedString(@"DVD/Blu-ray Queue", nil), NSLocalizedString(@"Instant Queue", nil), nil] autorelease];
+        actionSheet.tag = ADD_TO_NETFLIX_TAG;
         
         [actionSheet showInView:self.view];
     } else {
@@ -915,10 +952,32 @@
     }
 }
 
-- (void)            actionSheet:(UIActionSheet*) actionSheet
-      didDismissWithButtonIndex:(NSInteger) buttonIndex {
+
+- (void) didDismissAddToNetflixActionSheet:(UIActionSheet*) actionSheet
+                           withButtonIndex:(NSInteger) buttonIndex {
     if (buttonIndex != actionSheet.cancelButtonIndex) {
         [self addToQueue:[@"instant" isEqual:[actionSheet buttonTitleAtIndex:buttonIndex]]];
+    }    
+}
+
+
+- (void) didDismissVisitWebsitesActionSheet:(UIActionSheet*) actionSheet
+                            withButtonIndex:(NSInteger) buttonIndex {
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        NSString* url = [websites objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
+        [navigationController pushBrowser:url animated:YES];
+    }    
+}
+
+
+- (void)            actionSheet:(UIActionSheet*) actionSheet
+      didDismissWithButtonIndex:(NSInteger) buttonIndex {
+    if (actionSheet.tag == ADD_TO_NETFLIX_TAG) {
+        [self didDismissAddToNetflixActionSheet:actionSheet
+                                withButtonIndex:buttonIndex];
+    } else {
+        [self didDismissVisitWebsitesActionSheet:actionSheet
+                                 withButtonIndex:buttonIndex];
     }
 }
 

@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  WikipediaCache.m
-//  NowPlaying
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 12/28/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "WikipediaCache.h"
 
@@ -20,15 +26,18 @@
 
 @interface WikipediaCache()
 @property (retain) LinkedSet* prioritizedMovies;
+@property (retain) LinkedSet* normalMovies;
 @end
 
 
 @implementation WikipediaCache
 
 @synthesize prioritizedMovies;
+@synthesize normalMovies;
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
+    self.normalMovies = nil;
     
     [super dealloc];
 }
@@ -37,6 +46,12 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
+        self.normalMovies = [LinkedSet set];
+        
+        [ThreadingUtilities backgroundSelector:@selector(updateAddressBackgroundEntryPoint)
+                                      onTarget:self
+                                          gate:nil
+                                       visible:NO];
     }
     
     return self;
@@ -50,24 +65,21 @@
 
 - (NSString*) wikipediaFile:(Movie*) movie {
     NSString* name = [[FileUtilities sanitizeFileName:movie.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-    return [[Application imdbDirectory] stringByAppendingPathComponent:name];
+    return [[Application wikipediaDirectory] stringByAppendingPathComponent:name];
 }
 
 
 - (void) update:(NSArray*) movies {
-    if (model.userAddress.length == 0) {
-        return;
-    }
-    
-    [ThreadingUtilities backgroundSelector:@selector(backgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:movies
-                                      gate:gate
-                                   visible:NO];
+    [normalMovies addObjectsFromArray:movies];
 }
 
 
-- (void) downloadAddress:(Movie*) movie {
+- (void) updateMovie:(Movie*) movie {
+    [normalMovies addObject:movie];
+}
+
+
+- (void) updateAddress:(Movie*) movie {
     NSString* path = [self wikipediaFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
     
@@ -99,33 +111,19 @@
 }
 
 
-- (Movie*) getNextMovie:(NSMutableArray*) movies {
-    Movie* movie;
-    while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
-        if (![FileUtilities fileExists:[self wikipediaFile:movie]]) {
-            return movie;
-        }
-    }
-    
-    if (movies.count > 0) {
-        movie = [[[movies lastObject] retain] autorelease];
-        [movies removeLastObject];
-        return movie;
-    }
-    
-    return nil;
-}
-
-
-- (void) backgroundEntryPoint:(NSArray*) movies {
-    NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
-    Movie* movie;
-    while ((movie = [self getNextMovie:mutableMovies]) != nil) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+- (void) updateAddressBackgroundEntryPoint {
+    while (YES) {
+        Movie* movie = nil;
+        [gate lock];
         {
-            [self downloadAddress:movie];
+            while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
+                   (movie = [normalMovies removeLastObjectAdded]) == nil) {
+                [gate wait];
+            }
         }
-        [pool release];
+        [gate unlock];
+        
+        [self updateAddress:movie];
     }
 }
 

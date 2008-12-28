@@ -773,6 +773,11 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
+- (void) updateWikipedia:(Movie*) movie {
+    [model.wikipediaCache updateMovie:movie];
+}
+
+
 - (NSString*) seriesFile:(NSString*) seriesKey {
     return
     [[[Application netflixSeriesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:seriesKey]]
@@ -906,8 +911,9 @@ static NSString* average_rating_key = @"average_rating";
             [self updatePoster:movie];
             [self updateCast:movie];
             [self updateDirectors:movie];
-            [self updateIMDb:movie];
             [self updateRatings:movie];
+            [self updateIMDb:movie];
+            [self updateWikipedia:movie];
         }
 
         [self updateFormats:movie];
