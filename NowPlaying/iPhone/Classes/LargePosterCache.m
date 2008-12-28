@@ -186,7 +186,7 @@
 }
 
 
-- (NSArray*) posterUrlsWorker:(Movie*) movie {
+- (NSArray*) posterUrlsNoLock:(Movie*) movie {
     [self ensureIndex];
 
     NSDictionary* index = self.index;
@@ -209,7 +209,7 @@
     NSArray* array;
     [gate lock];
     {
-        array = [self posterUrlsWorker:movie];
+        array = [self posterUrlsNoLock:movie];
     }
     [gate unlock];
     return array;
@@ -266,7 +266,7 @@
     NSInteger count;
     [gate lock];
     {
-        NSArray* urls = [self posterUrls:movie];
+        NSArray* urls = [self posterUrlsNoLock:movie];
         count = urls.count;
     }
     [gate unlock];
