@@ -264,14 +264,19 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) clearStaleData:(NSInteger) directoryIndex {
++ (void) clearStaleData:(NSInteger) index {
     [gate lock];
     {
-        directoryIndex %= ArrayLength(directories); 
-        NSString* directory = *directories[directoryIndex];
-        
-        if (![userLocationsDirectory isEqual:directory]) {
-            for (NSString* path in [FileUtilities directoryContentsPaths:directory]) {
+        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
+            NSString* directory = *directories[i];
+            
+            if ([userLocationsDirectory isEqual:directory]) {
+                continue;
+            }
+            
+            NSArray* paths = [FileUtilities directoryContentsPaths:directory];
+            for (NSInteger j = index; j < paths.count; j += CACHE_LIMIT) {
+                NSString* path = [paths objectAtIndex:j];
                 if ([FileUtilities isDirectory:path]) {
                     continue;
                 }
