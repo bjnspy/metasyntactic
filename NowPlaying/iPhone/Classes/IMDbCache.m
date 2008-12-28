@@ -70,12 +70,22 @@
 
 
 - (void) update:(NSArray*) movies {
-    [normalMovies addObjectsFromArray:movies];
+    [gate lock];
+    {
+        [normalMovies addObjectsFromArray:movies];
+        [gate signal];
+    }
+    [gate unlock];
 }
 
 
 - (void) updateMovie:(Movie*) movie {
-    [normalMovies addObject:movie];
+    [gate lock];
+    {
+        [normalMovies addObject:movie];
+        [gate signal];
+    }
+    [gate unlock];
 }
 
 
@@ -134,7 +144,12 @@
 
 
 - (void) prioritizeMovie:(Movie*) movie {
-    [prioritizedMovies addObject:movie];
+    [gate lock];
+    {
+        [prioritizedMovies addObject:movie];
+        [gate signal];
+    }
+    [gate unlock];
 }
 
 
