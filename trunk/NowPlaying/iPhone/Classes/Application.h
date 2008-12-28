@@ -17,6 +17,7 @@
 
 + (NSString*) dataDirectory;
 + (NSString*) imdbDirectory;
++ (NSString*) wikipediaDirectory;
 + (NSString*) userLocationsDirectory;
 + (NSString*) postersDirectory;
 + (NSString*) largePostersDirectory;
@@ -26,17 +27,14 @@
 
 + (NSString*) dvdDirectory;
 + (NSString*) dvdDetailsDirectory;
-+ (NSString*) dvdIMDbDirectory;
 + (NSString*) dvdPostersDirectory;
 
 + (NSString*) blurayDirectory;
 + (NSString*) blurayDetailsDirectory;
-+ (NSString*) blurayIMDbDirectory;
 + (NSString*) blurayPostersDirectory;
 
 + (NSString*) netflixDirectory;
 + (NSString*) netflixCastDirectory;
-+ (NSString*) netflixIMDbDirectory;
 + (NSString*) netflixSearchDirectory;
 + (NSString*) netflixQueuesDirectory;
 + (NSString*) netflixSeriesDirectory;
@@ -49,7 +47,6 @@
 
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;
-+ (NSString*) upcomingIMDbDirectory;
 + (NSString*) upcomingPostersDirectory;
 + (NSString*) upcomingSynopsesDirectory;
 + (NSString*) upcomingTrailersDirectory;

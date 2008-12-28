@@ -34,7 +34,7 @@
              selector:(SEL) selector_
              argument:(id) argument1_
              argument:(id) argument2_
-                 gate:(NSLock*) gate_
+                 gate:(id<NSLocking>) gate_
               visible:(BOOL) visible_ {
     if (self = [super initWithTarget:target_
                             selector:selector_
@@ -52,7 +52,7 @@
                                        selector:(SEL) selector
                                        argument:(id) argument1
                                        argument:(id) argument2
-                                           gate:(NSLock*) gate
+                                           gate:(id<NSLocking>) gate
                                         visible:(BOOL) visible {
     return [[[BackgroundInvocation2 alloc] initWithTarget:target
                                                  selector:selector

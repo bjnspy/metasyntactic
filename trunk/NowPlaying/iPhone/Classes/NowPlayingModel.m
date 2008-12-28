@@ -1032,26 +1032,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         return result;
     }
 
-    result = [upcomingCache imdbAddressForMovie:movie];
-    if (result.length > 0) {
-        return result;
-    }
-
-    result = [dvdCache imdbAddressForMovie:movie];
-    if (result.length > 0) {
-        return result;
-    }
-
-    result = [blurayCache imdbAddressForMovie:movie];
-    if (result.length > 0) {
-        return result;
-    }
-
-    result = [netflixCache imdbAddressForMovie:movie];
-    if (result.length > 0) {
-        return result;
-    }
-
     return nil;
 }
 

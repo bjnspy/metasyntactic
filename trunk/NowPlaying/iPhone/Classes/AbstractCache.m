@@ -18,7 +18,7 @@
 
 @interface AbstractCache()
 @property (retain) NowPlayingModel* model;
-@property (retain) NSLock* gate;
+@property (retain) NSCondition* gate;
 @end
 
 
