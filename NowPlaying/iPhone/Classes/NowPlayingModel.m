@@ -1502,6 +1502,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     [scoreCache prioritizeMovie:movie inMovies:self.movies];
     [trailerCache prioritizeMovie:movie];
     [imdbCache prioritizeMovie:movie];
+    [wikipediaCache prioritizeMovie:movie];
     [upcomingCache prioritizeMovie:movie];
     [dvdCache prioritizeMovie:movie];
     [blurayCache prioritizeMovie:movie];
