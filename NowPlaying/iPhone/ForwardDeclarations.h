@@ -32,6 +32,7 @@
 @class ActivityIndicatorViewWithBackground;
 @class AllMoviesViewController;
 @class AllTheatersViewController;
+@class AmazonCache;
 @class ApplePosterDownloader;
 @class Application;
 @class ApplicationTabBarController;
