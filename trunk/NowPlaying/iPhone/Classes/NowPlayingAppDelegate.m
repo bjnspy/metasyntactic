@@ -119,4 +119,9 @@ static NowPlayingAppDelegate* appDelegate = nil;
     [appDelegate minorRefresh];
 }
 
+
++ (UIWindow*) window {
+    return appDelegate.window;
+}
+
 @end

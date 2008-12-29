@@ -278,6 +278,10 @@ static DifferenceEngine* differenceEngine = nil;
             }
             
             NSArray* paths = [FileUtilities directoryContentsPaths:directory];
+            if (paths.count == 0) {
+                continue;
+            }
+
             for (NSInteger j = (index % paths.count); j < paths.count; j += CACHE_LIMIT) {
                 NSString* path = [paths objectAtIndex:j];
                 if ([FileUtilities isDirectory:path]) {
