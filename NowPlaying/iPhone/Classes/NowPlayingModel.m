@@ -18,6 +18,7 @@
 #import "AlertUtilities.h"
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
+#import "AmazonCache.h"
 #import "Application.h"
 #import "BlurayCache.h"
 #import "DVDCache.h"
@@ -57,6 +58,7 @@
 @property (retain) BlurayCache* blurayCache;
 @property (retain) DVDCache* dvdCache;
 @property (retain) IMDbCache* imdbCache;
+@property (retain) AmazonCache* amazonCache;
 @property (retain) WikipediaCache* wikipediaCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
@@ -187,6 +189,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize blurayCache;
 @synthesize dvdCache;
 @synthesize imdbCache;
+@synthesize amazonCache;
 @synthesize wikipediaCache;
 @synthesize posterCache;
 @synthesize largePosterCache;
@@ -204,6 +207,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.blurayCache = nil;
     self.dvdCache = nil;
     self.imdbCache = nil;
+    self.amazonCache = nil;
     self.wikipediaCache = nil;
     self.posterCache = nil;
     self.largePosterCache = nil;
@@ -244,6 +248,11 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) updateIMDbCache {
     [imdbCache update:self.movies];
+}
+
+
+- (void) updateAmazonCache {
+    [amazonCache update:self.movies];
 }
 
 
@@ -440,6 +449,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         self.userLocationCache = [UserLocationCache cache];
         self.largePosterCache = [LargePosterCache cacheWithModel:self];
         self.imdbCache = [IMDbCache cacheWithModel:self];
+        self.amazonCache = [AmazonCache cacheWithModel:self];
         self.wikipediaCache = [WikipediaCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cacheWithModel:self];
         self.blurayCache = [BlurayCache cacheWithModel:self];
@@ -467,6 +477,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         @selector(updatePosterCache),
         @selector(updateTrailerCache),
         @selector(updateIMDbCache),
+        @selector(updateAmazonCache),
         @selector(updateWikipediaCache),
         @selector(updateUpcomingCache),
         @selector(updateDVDCache),
@@ -1047,6 +1058,11 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
+- (NSString*) amazonAddressForMovie:(Movie*) movie {
+    return [amazonCache amazonAddressForMovie:movie];
+}
+
+
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie {
     return [wikipediaCache wikipediaAddressForMovie:movie];
 }
@@ -1502,6 +1518,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     [scoreCache prioritizeMovie:movie inMovies:self.movies];
     [trailerCache prioritizeMovie:movie];
     [imdbCache prioritizeMovie:movie];
+    [amazonCache prioritizeMovie:movie];
     [wikipediaCache prioritizeMovie:movie];
     [upcomingCache prioritizeMovie:movie];
     [dvdCache prioritizeMovie:movie];
