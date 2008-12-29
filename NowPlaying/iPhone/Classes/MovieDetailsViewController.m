@@ -33,6 +33,7 @@
 #import "MoviesNavigationController.h"
 #import "MutableNetflixCache.h"
 #import "NetflixRatingsCell.h"
+#import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
 #import "TappableImageView.h"
@@ -212,6 +213,11 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     NSString* imdbAddress = [self.model imdbAddressForMovie:movie];
     if (imdbAddress.length > 0) {
         [map setObject:imdbAddress forKey:@"IMDb"];
+    }
+    
+    NSString* amazonAddress = [self.model amazonAddressForMovie:movie];
+    if (amazonAddress.length > 0) {
+        [map setObject:amazonAddress forKey:@"Amazon"];
     }
     
     NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
@@ -883,7 +889,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     actionSheet.cancelButtonIndex = keys.count;
     
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[NowPlayingAppDelegate window]];
 }
 
 
@@ -946,7 +952,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
                             otherButtonTitles:NSLocalizedString(@"DVD/Blu-ray Queue", nil), NSLocalizedString(@"Instant Queue", nil), nil] autorelease];
         actionSheet.tag = ADD_TO_NETFLIX_TAG;
         
-        [actionSheet showInView:self.view];
+        [actionSheet showInView:[NowPlayingAppDelegate window]];
     } else {
         [self addToQueue:NO];
     }

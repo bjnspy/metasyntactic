@@ -32,4 +32,6 @@
 + (void) majorRefresh;
 + (void) majorRefresh:(BOOL) force;
 
++ (UIWindow*) window;
+
 @end
