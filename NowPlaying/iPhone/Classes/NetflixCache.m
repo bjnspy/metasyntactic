@@ -51,13 +51,14 @@
 
 @implementation NetflixCache
 
-static NSString* cast_key = @"cast";
 static NSString* title_key = @"title";
 static NSString* series_key = @"series";
+static NSString* average_rating_key = @"average_rating";
+
+static NSString* cast_key = @"cast";
 static NSString* formats_key = @"formats";
 static NSString* synopsis_key = @"synopsis";
 static NSString* directors_key = @"directors";
-static NSString* average_rating_key = @"average_rating";
 
 @synthesize feedsData;
 @synthesize queues;
@@ -274,16 +275,8 @@ static NSString* average_rating_key = @"average_rating";
                 link = [child attributeValue:@"href"];
             } else if ([@"http://schemas.netflix.com/catalog/title" isEqual:rel]) {
                 [additionalFields setObject:[child attributeValue:@"href"] forKey:title_key];
-            } else if ([@"http://schemas.netflix.com/catalog/people.cast" isEqual:rel]) {
-                [additionalFields setObject:[child attributeValue:@"href"] forKey:cast_key];
-            } else if ([@"http://schemas.netflix.com/catalog/people.directors" isEqual:rel]) {
-                [additionalFields setObject:[child attributeValue:@"href"] forKey:directors_key];
-            } else if ([@"http://schemas.netflix.com/catalog/titles/synopsis" isEqual:rel]) {
-                [additionalFields setObject:[child attributeValue:@"href"] forKey:synopsis_key];
             } else if ([@"http://schemas.netflix.com/catalog/titles.series" isEqual:rel]) {
                 [additionalFields setObject:[child attributeValue:@"href"] forKey:series_key];
-            } else if ([@"http://schemas.netflix.com/catalog/titles/format_availability" isEqual:rel]) {
-                [additionalFields setObject:[child attributeValue:@"href"] forKey:formats_key];
             }
         } else if ([@"title" isEqual:child.name]) {
             title = [child attributeValue:@"short"];
@@ -559,12 +552,6 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
-- (NSString*) synopsisFile:(Movie*) movie {
-    return
-    [[[Application netflixSynopsesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
 - (NSString*) cleanupSynopsis:(NSString*) synopsis {
     NSInteger index = 0;
     
@@ -609,40 +596,6 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
-- (void) updateSynopsis:(Movie*) movie  {
-    NSString* address = [movie.additionalFields objectForKey:synopsis_key];
-    if (address.length == 0) {
-        return;
-    }
-    
-    NSString* path = [self synopsisFile:movie];
-    if ([FileUtilities fileExists:path]) {
-        return;
-    }
-    
-    OAMutableURLRequest* request = [self createURLRequest:address];
-    [request prepare];
-    
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
-    [self checkApiResult:element];
-    
-    NSString* synopsis = element.text;
-    synopsis = [self cleanupSynopsis:synopsis];
-    
-    if (synopsis.length > 0) {
-        [FileUtilities writeObject:synopsis toFile:path];
-        [NowPlayingAppDelegate minorRefresh];
-    }
-}
-
-
-- (NSString*) castFile:(Movie*) movie {
-    return
-    [[[Application netflixCastDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
 - (NSArray*) extractPeople:(XmlElement*) element {
     NSMutableArray* cast = [NSMutableArray array];
     
@@ -651,120 +604,14 @@ static NSString* average_rating_key = @"average_rating";
             // cap the number of actors we care about
             break;
         }
-        
-        if (![child.name isEqual:@"person"]) {
-            continue;
-        }
-        
-        NSString* name = [[child element:@"name"] text];
+
+        NSString* name = [child attributeValue:@"title"];
         if (name.length > 0) {
             [cast addObject:name];
         }
     }
     
     return cast;
-}
-
-
-- (void)       updateCast:(Movie*) movie {
-    NSString* address = [movie.additionalFields objectForKey:cast_key];
-    if (address.length == 0) {
-        return;
-    }
-    
-    NSString* path = [self castFile:movie];
-    if ([FileUtilities fileExists:path]) {
-        return;
-    }
-    
-    OAMutableURLRequest* request = [self createURLRequest:address];
-    [request prepare];
-    
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
-    [self checkApiResult:element];
-    
-    NSArray* cast = [self extractPeople:element];
-    if (cast.count > 0) {
-        [FileUtilities writeObject:cast toFile:path];
-        [NowPlayingAppDelegate minorRefresh];
-    }
-}
-
-
-- (NSString*) directorsFile:(Movie*) movie {
-    return [[[Application netflixDirectorsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (void) updateDirectors:(Movie*) movie {
-    NSString* address = [movie.additionalFields objectForKey:directors_key];
-    if (address.length == 0) {
-        return;
-    }
-    
-    NSString* path = [self directorsFile:movie];
-    if ([FileUtilities fileExists:path]) {
-        return;
-    }
-    
-    OAMutableURLRequest* request = [self createURLRequest:address];
-    [request prepare];
-    
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
-    [self checkApiResult:element];
-    
-    NSArray* directors = [self extractPeople:element];
-    if (directors.count > 0) {
-        [FileUtilities writeObject:directors toFile:path];
-        [NowPlayingAppDelegate minorRefresh];
-    }
-}
-
-
-- (NSString*) formatsFile:(Movie*) movie {
-    return [[[Application netflixFormatsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (void) updateFormats:(Movie*) movie {
-    NSString* address = [movie.additionalFields objectForKey:formats_key];
-    if (address.length == 0) {
-        return;
-    }
-    
-    NSString* path = [self formatsFile:movie];
-    if ([FileUtilities fileExists:path]) {
-        return;
-    }
-    
-    OAMutableURLRequest* request = [self createURLRequest:address];
-    [request prepare];
-    
-    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    
-    [self checkApiResult:element];
-    
-    NSMutableArray* formats = [NSMutableArray array];
-    for (XmlElement* child in element.children) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        {
-            if ([@"availability" isEqual:child.name]) {
-                for (XmlElement* grandChild in child.children) {
-                    if ([@"category" isEqual:grandChild.name] &&
-                        [@"http://api.netflix.com/categories/title_formats" isEqual:[grandChild attributeValue:@"scheme"]]) {
-                        [formats addObject:[grandChild attributeValue:@"label"]];
-                    }
-                }
-            }
-        }
-        [pool release];
-    }
-    
-    if (formats.count > 0) {
-        [FileUtilities writeObject:formats toFile:path];
-    }
 }
 
 
@@ -899,6 +746,130 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
+- (NSString*) detailsFile:(Movie*) movie {
+    return [[[Application netflixDetailsDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (NSArray*) extractFormats:(XmlElement*) element {
+    NSMutableArray* formats = [NSMutableArray array];
+    for (XmlElement* child in element.children) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            if ([@"availability" isEqual:child.name]) {
+                for (XmlElement* grandChild in child.children) {
+                    if ([@"category" isEqual:grandChild.name] &&
+                        [@"http://api.netflix.com/categories/title_formats" isEqual:[grandChild attributeValue:@"scheme"]]) {
+                        [formats addObject:[grandChild attributeValue:@"term"]];
+                    }
+                }
+            }
+        }
+        [pool release];
+    }
+    
+    return formats;
+}
+
+
+- (NSDictionary*) extractDetails:(XmlElement*) element {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    for (XmlElement* child in element.children) {
+        if ([@"link" isEqual:child.name]) {
+            if ([@"http://schemas.netflix.com/catalog/titles/synopsis" isEqual:[child attributeValue:@"rel"]]) {
+                NSString* synopsis = [self cleanupSynopsis:[[child element:@"synopsis"] text]];
+                if (synopsis.length > 0) {
+                    [dictionary setObject:synopsis forKey:synopsis_key];
+                }
+            } else if ([@"http://schemas.netflix.com/catalog/titles/format_availability" isEqual:[child attributeValue:@"rel"]]) {
+                NSArray* formats = [self extractFormats:[child element:@"delivery_formats"]];
+                if (formats.count > 0) {
+                    [dictionary setObject:formats forKey:formats_key];
+                }
+            } else if ([@"http://schemas.netflix.com/catalog/people.cast" isEqual:[child attributeValue:@"rel"]]) {
+                NSArray* cast = [self extractPeople:[child element:@"people"]];
+                if (cast.count > 0) {
+                    [dictionary setObject:cast forKey:cast_key];
+                }
+            } else if ([@"http://schemas.netflix.com/catalog/people.directors" isEqual:[child attributeValue:@"rel"]]) {
+                NSArray* directors = [self extractPeople:[child element:@"people"]];
+                if (directors.count > 0) {
+                    [dictionary setObject:directors forKey:directors_key];
+                }
+            }
+        }
+    }
+    return dictionary;
+}
+
+
+- (void) updateSeriesDiscDetails:(Movie*) movie {
+    NSString* address = [movie.additionalFields objectForKey:title_key];
+    if (address.length == 0) {
+        return;
+    }
+    
+    NSString* path = [self detailsFile:movie];
+    if ([FileUtilities fileExists:path]) {
+        return;
+    }
+    
+    address = [NSString stringWithFormat:@"%@?expand=synopsis,formats", address];
+    
+    OAMutableURLRequest* request = [self createURLRequest:address];
+    [request prepare];
+    
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
+    
+    NSDictionary* dictionary = [self extractDetails:element];
+
+    if (dictionary.count > 0) {
+        [FileUtilities writeObject:dictionary toFile:path];
+        [NowPlayingAppDelegate minorRefresh];
+    }
+}
+
+
+- (void) updateDiscDetailsWorker:(Movie*) movie {
+    NSString* address = [movie.additionalFields objectForKey:title_key];
+    if (address.length == 0) {
+        address = movie.identifier;
+        if (address.length == 0) {
+            return;
+        }
+    }
+    
+    NSString* path = [self detailsFile:movie];
+    if ([FileUtilities fileExists:path]) {
+        return;
+    }
+    
+    address = [NSString stringWithFormat:@"%@?expand=synopsis,cast,directors,formats", address];
+    
+    OAMutableURLRequest* request = [self createURLRequest:address];
+    [request prepare];
+    
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
+    NSDictionary* dictionary = [self extractDetails:element];
+    if (dictionary.count > 0) {
+        [FileUtilities writeObject:dictionary toFile:path];
+        [NowPlayingAppDelegate minorRefresh];
+    }
+}
+
+
+- (void) updateDiscDetails:(Movie*) movie {
+    // we don't download this stuff on a per disc basis.  only for a series.
+    [self updatePoster:movie];
+    
+    [self updateDiscDetailsWorker:movie];
+    [self updateRatings:movie];
+    [self updateIMDb:movie];
+    [self updateWikipedia:movie];
+    [self updateAmazon:movie];
+}
+
+
 - (void) updateDetails:(Movie*) movie {
     if (movie == nil) {
         return;
@@ -908,21 +879,12 @@ static NSString* average_rating_key = @"average_rating";
     {
         [self updateSeries:movie];
         
-        // we download the formats for both a series and a disc.
-        [self updateSynopsis:movie];
-        
-        if (![self isSeriesDisc:movie]) {
-            // we don't download this stuff on a per disc basis.  only for a series.
-            [self updatePoster:movie];
-            [self updateCast:movie];
-            [self updateDirectors:movie];
-            [self updateRatings:movie];
-            [self updateIMDb:movie];
-            [self updateWikipedia:movie];
-            [self updateAmazon:movie];
+        if ([self isSeriesDisc:movie]) {
+            [self updateSeriesDiscDetails:movie];
+        } else {
+            [self updateDiscDetails:movie];
         }
 
-        [self updateFormats:movie];
     }
     [pool release];
 }
@@ -1030,17 +992,22 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
+- (NSDictionary*) detailsForMovie:(Movie*) movie {
+    return [FileUtilities readObject:[self detailsFile:movie]];
+}
+
+
 - (NSArray*) castForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
-    return [FileUtilities readObject:[self castFile:movie]];
+    NSDictionary* details = [self detailsForMovie:movie];
+    return [details objectForKey:cast_key];
 }
 
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
-    
-    return [FileUtilities readObject:[self directorsFile:movie]];
+    NSDictionary* details = [self detailsForMovie:movie];
+    return [details objectForKey:directors_key];
 }
 
 
@@ -1064,13 +1031,21 @@ static NSString* average_rating_key = @"average_rating";
 
 
 - (NSArray*) formatsForMovie:(Movie*) movie {
-    return [FileUtilities readObject:[self formatsFile:movie]];
+    movie = [self promoteDiscToSeries:movie];
+    NSDictionary* details = [self detailsForMovie:movie];
+    return [details objectForKey:formats_key];
+}
+
+
+- (NSString*) synopsisForMovieDetails:(Movie*) movie {
+    NSDictionary* details = [self detailsForMovie:movie];
+    return [details objectForKey:synopsis_key];
 }
 
 
 - (NSString*) synopsisForMovieWorker:(Movie*) movie {
-    NSString* discSynopsis = [FileUtilities readObject:[self synopsisFile:movie]];
-    NSString* seriesSynopsis = [FileUtilities readObject:[self synopsisFile:[self seriesForDisc:movie]]];
+    NSString* discSynopsis = [self synopsisForMovieDetails:movie];
+    NSString* seriesSynopsis = [self synopsisForMovieDetails:[self seriesForDisc:movie]];
     
     if (discSynopsis.length == 0) {
         return seriesSynopsis;
