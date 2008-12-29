@@ -17,6 +17,7 @@
 
 + (NSString*) dataDirectory;
 + (NSString*) imdbDirectory;
++ (NSString*) amazonDirectory;
 + (NSString*) wikipediaDirectory;
 + (NSString*) userLocationsDirectory;
 + (NSString*) postersDirectory;
