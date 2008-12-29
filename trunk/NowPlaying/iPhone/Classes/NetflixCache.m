@@ -773,6 +773,11 @@ static NSString* average_rating_key = @"average_rating";
 }
 
 
+- (void) updateAmazon:(Movie*) movie {
+    [model.amazonCache updateMovie:movie];
+}
+
+
 - (void) updateWikipedia:(Movie*) movie {
     [model.wikipediaCache updateMovie:movie];
 }
@@ -914,6 +919,7 @@ static NSString* average_rating_key = @"average_rating";
             [self updateRatings:movie];
             [self updateIMDb:movie];
             [self updateWikipedia:movie];
+            [self updateAmazon:movie];
         }
 
         [self updateFormats:movie];

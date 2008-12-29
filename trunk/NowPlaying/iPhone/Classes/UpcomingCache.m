@@ -432,6 +432,11 @@
 }
 
 
+- (void) updateAmazon:(Movie*) movie {
+    [model.amazonCache updateMovie:movie];
+}
+
+
 - (void) updateWikipedia:(Movie*) movie {
     [model.wikipediaCache updateMovie:movie];
 }
@@ -539,6 +544,7 @@
     [self updateNetflix:movie];
     [self updateIMDb:movie];
     [self updateWikipedia:movie];
+    [self updateAmazon:movie];
 }
 
 

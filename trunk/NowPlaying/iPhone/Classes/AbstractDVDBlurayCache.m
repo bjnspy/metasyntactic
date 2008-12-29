@@ -14,6 +14,7 @@
 
 #import "AbstractDVDBlurayCache.h"
 
+#import "AmazonCache.h"
 #import "Application.h"
 #import "DVD.h"
 #import "DateUtilities.h"
@@ -442,12 +443,17 @@
 }
 
 
-- (void) updateVideoImdbAddress:(Movie*) movie {
+- (void) updateIMDb:(Movie*) movie {
     [model.imdbCache updateMovie:movie];
 }
 
 
-- (void) updateVideoWikipediaAddress:(Movie*) movie {
+- (void) updateAmazon:(Movie*) movie {
+    [model.amazonCache updateMovie:movie];
+}
+
+
+- (void) updateWikipedia:(Movie*) movie {
     [model.wikipediaCache updateMovie:movie];
 }
 
@@ -487,8 +493,9 @@
         {
             [self updateVideoPoster:movie];
             [self updateNetflix:movie];
-            [self updateVideoImdbAddress:movie];
-            [self updateVideoWikipediaAddress:movie];
+            [self updateIMDb:movie];
+            [self updateWikipedia:movie];
+            [self updateAmazon:movie];
         }
         [pool release];
     }

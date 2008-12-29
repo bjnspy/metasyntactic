@@ -25,6 +25,7 @@ enum ViewControllerType {
     BlurayCache* blurayCache;
     DVDCache* dvdCache;
     IMDbCache* imdbCache;
+    AmazonCache* amazonCache;
     WikipediaCache* wikipediaCache;
     PosterCache* posterCache;
     LargePosterCache* largePosterCache;
@@ -47,6 +48,7 @@ enum ViewControllerType {
 @property (readonly, retain) BlurayCache* blurayCache;
 @property (readonly, retain) DVDCache* dvdCache;
 @property (readonly, retain) IMDbCache* imdbCache;
+@property (readonly, retain) AmazonCache* amazonCache;
 @property (readonly, retain) WikipediaCache* wikipediaCache;
 @property (readonly, retain) PosterCache* posterCache;
 @property (readonly, retain) LargePosterCache* largePosterCache;
@@ -138,6 +140,7 @@ enum ViewControllerType {
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
+- (NSString*) amazonAddressForMovie:(Movie*) movie;
 - (NSString*) wikipediaAddressForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
