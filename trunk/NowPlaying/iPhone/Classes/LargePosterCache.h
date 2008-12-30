@@ -17,6 +17,7 @@
 @interface LargePosterCache : AbstractCache {
 @private
     NSMutableDictionary* yearToMovieMap;
+    NSLock* yearToMovieMapGate;
 }
 
 + (LargePosterCache*) cacheWithModel:(NowPlayingModel*) model;
