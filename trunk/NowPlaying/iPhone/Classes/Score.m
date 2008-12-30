@@ -40,7 +40,7 @@ property_definition(identifier);
     self.score = nil;
     self.provider = nil;
     self.identifier = nil;
-
+    
     [super dealloc];
 }
 
@@ -57,30 +57,30 @@ property_definition(identifier);
         self.provider = provider_;
         self.identifier = [Utilities nonNilString:identifier_];
     }
-
+    
     return self;
 }
 
 
 + (Score*) scoreWithTitle:(NSString*) title
-                        synopsis:(NSString*) synopsis
-                           score:(NSString*) score
-                        provider:(NSString*) provider
-                      identifier:(NSString*) identifier {
+                 synopsis:(NSString*) synopsis
+                    score:(NSString*) score
+                 provider:(NSString*) provider
+               identifier:(NSString*) identifier {
     return [[[Score alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
-                                               synopsis:[Utilities stripHtmlCodes:synopsis]
-                                                  score:score
-                                               provider:provider
-                                             identifier:identifier] autorelease];
+                                         synopsis:[Utilities stripHtmlCodes:synopsis]
+                                            score:score
+                                         provider:provider
+                                       identifier:identifier] autorelease];
 }
 
 
 + (Score*) scoreWithDictionary:(NSDictionary*) dictionary {
     return [[[Score alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
-                                               synopsis:[dictionary objectForKey:synopsis_key]
-                                                  score:[dictionary objectForKey:score_key]
-                                               provider:[dictionary objectForKey:provider_key]
-                                             identifier:[dictionary objectForKey:identifier_key]] autorelease];
+                                         synopsis:[dictionary objectForKey:synopsis_key]
+                                            score:[dictionary objectForKey:score_key]
+                                         provider:[dictionary objectForKey:provider_key]
+                                       identifier:[dictionary objectForKey:identifier_key]] autorelease];
 }
 
 
@@ -100,7 +100,7 @@ property_definition(identifier);
     if (value >= 0 && value <= 100) {
         return value;
     }
-
+    
     return -1;
 }
 

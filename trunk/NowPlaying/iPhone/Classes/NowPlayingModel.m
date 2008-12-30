@@ -1362,6 +1362,16 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 }
 
 
+- (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
+    return [scoreCache rottenTomatoesScoreForMovie:movie inMovies:self.movies];
+}
+
+
+- (Score*) metacriticScoreForMovie:(Movie*) movie {
+    return [scoreCache metacriticScoreForMovie:movie inMovies:self.movies];
+}
+
+
 - (NSInteger) scoreValueForMovie:(Movie*) movie {
     Score* score = [self scoreForMovie:movie];
     if (score == nil) {
