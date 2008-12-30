@@ -271,21 +271,17 @@ static DifferenceEngine* differenceEngine = nil;
             }
             
             NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-            if (paths.count == 0) {
-                continue;
-            }
-
-            NSInteger start = (index % paths.count) % cacheLimit;
-            for (NSInteger j = start; j < paths.count; j += cacheLimit) {
-                NSString* path = [paths objectAtIndex:j];
-                if ([FileUtilities isDirectory:path]) {
-                    continue;
-                }
-                
-                NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
-                if (lastModifiedDate != nil) {
-                    if (ABS(lastModifiedDate.timeIntervalSinceNow) > cacheLimit) {
-                        [FileUtilities removeItem:path];
+            for (NSString* path in paths) {
+                if ((rand() % 1000) < 10) {
+                    if ([FileUtilities isDirectory:path]) {
+                        continue;
+                    }
+                    
+                    NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
+                    if (lastModifiedDate != nil) {
+                        if (ABS(lastModifiedDate.timeIntervalSinceNow) > cacheLimit) {
+                            [FileUtilities removeItem:path];
+                        }
                     }
                 }
             }
