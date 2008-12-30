@@ -254,6 +254,7 @@
 - (void) setNetflixEnabled:(BOOL) value {
     [self.model setNetflixEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];
+    [Application resetNetflixDirectories];
     [NowPlayingAppDelegate majorRefresh:YES];
     [self spawnNetflixThread];
 }
