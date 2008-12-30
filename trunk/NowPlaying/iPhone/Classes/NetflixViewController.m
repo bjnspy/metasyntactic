@@ -36,6 +36,8 @@
 
 @implementation NetflixViewController
 
+const NSInteger ROW_HEIGHT = 46;
+
 typedef enum {
     SearchSection,
     DVDSection,
@@ -63,7 +65,7 @@ typedef enum {
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Netflix", nil);
 
-        self.tableView.rowHeight = 46;
+        self.tableView.rowHeight = ROW_HEIGHT;
     }
     return self;
 }
@@ -85,7 +87,7 @@ typedef enum {
 
 
 - (void) majorRefreshWorker {
-    self.tableView.rowHeight = 46;
+    self.tableView.rowHeight = ROW_HEIGHT;
     self.tableView.backgroundColor = [ColorCache netflixRed];
 
     [self.tableView reloadData];

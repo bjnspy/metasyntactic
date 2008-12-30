@@ -19,6 +19,7 @@
 @property (retain) NSArray* selectors;
 @property (retain) NSArray* titles;
 @property (retain) NSArray* buttons;
+@property (retain) NSArray* arguments;
 @end
 
 
@@ -28,12 +29,14 @@
 @synthesize selectors;
 @synthesize titles;
 @synthesize buttons;
+@synthesize arguments;
 
 - (void) dealloc {
     self.target = nil;
     self.selectors = nil;
     self.titles = nil;
     self.buttons = nil;
+    self.arguments = nil;
 
     [super dealloc];
 }
@@ -41,11 +44,13 @@
 
 - (id) initWithTarget:(id) target_
             selectors:(NSArray*) selectors_
-               titles:(NSArray*) titles_{
+               titles:(NSArray*) titles_
+            arguments:(NSArray*) arguments_ {
     if (self = [super initWithFrame:CGRectZero]) {
         self.target = target_;
         self.selectors = selectors_;
         self.titles = titles_;
+        self.arguments = arguments_;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
         NSMutableArray* array = [NSMutableArray array];
@@ -77,17 +82,27 @@
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
-                         titles:(NSArray*) titles {
+                         titles:(NSArray*) titles
+                      arguments:(NSArray*) arguments {
     return [[[ActionsView alloc] initWithTarget:(id) target
                                       selectors:selectors
-                                         titles:titles] autorelease];
+                                         titles:titles
+                                      arguments:arguments] autorelease];
 }
 
 
 - (void) onButtonTapped:(UIButton*) button {
-    SEL selector = [[selectors objectAtIndex:[buttons indexOfObject:button]] pointerValue];
+    NSInteger index = [buttons indexOfObject:button];
+    
+    SEL selector = [[selectors objectAtIndex:index] pointerValue];
     if ([target respondsToSelector:selector]) {
-        [target performSelector:selector];
+        id argument = [arguments objectAtIndex:index];
+        
+        if (argument == [NSNull null]) {
+            [target performSelector:selector];
+        } else {
+            [target performSelector:selector withObject:argument];
+        }
     }
 }
 
