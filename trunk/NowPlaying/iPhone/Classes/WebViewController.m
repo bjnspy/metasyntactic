@@ -255,7 +255,7 @@
     if ([[NSURLRequest class] respondsToSelector:@selector(setAllowsAnyHTTPSCertificate:forHost:)]) {
         [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:request.URL.host];
     }
-    
+
     if ([request.URL.absoluteString hasPrefix:@"nowplaying://popviewcontroller"]) {
         [navigationController popViewControllerAnimated:YES];
         return NO;

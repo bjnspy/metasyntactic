@@ -132,7 +132,7 @@ typedef enum {
     if (visible) {
         return;
     }
-    
+
     [super didReceiveMemoryWarning];
 }
 

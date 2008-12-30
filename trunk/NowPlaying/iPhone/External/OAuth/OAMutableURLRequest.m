@@ -148,7 +148,7 @@
     // sign
     NSString* baseString = [self signatureBaseString];
     NSString* tokenSecret = token.secret.length == 0 ? @"" : token.secret;
-    self.signature = 
+    self.signature =
     [OAHMAC_SHA1SignatureProvider signClearText:baseString
                                      withSecret:[NSString stringWithFormat:@"%@&%@", consumer.secret, tokenSecret]];
 

@@ -43,7 +43,7 @@
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
-    
+
     [super dealloc];
 }
 
@@ -52,7 +52,7 @@
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
-    
+
     return self;
 }
 
@@ -89,30 +89,30 @@
     if (data != nil) {
         return data;
     }
-    
+
     data = [ApplePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     data = [FandangoPosterDownloader download:movie postalCode:postalCode];
     if (data != nil) {
         return data;
     }
-    
+
     data = [ImdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-    
+
     [model.largePosterCache downloadFirstPosterForMovie:movie];
-    
+
     // if we had a network connection, then it means we don't know of any
     // posters for this movie.  record that fact and try again another time
     if ([NetworkUtilities isNetworkAvailable]) {
         return [NSData data];
     }
-    
+
     return nil;
 }
 
@@ -120,13 +120,13 @@
 - (void) downloadPoster:(Movie*) movie
              postalCode:(NSString*) postalCode {
     NSString* path = [self posterFilePath:movie];
-    
+
     if ([FileUtilities fileExists:path]) {
         if ([FileUtilities size:path] > 0) {
             // already have a real poster.
             return;
         }
-        
+
         if ([FileUtilities size:path] == 0) {
             // sentinel value.  only update if it's been long enough.
             NSDate* modificationDate = [FileUtilities modificationDate:path];
@@ -135,12 +135,12 @@
             }
         }
     }
-    
+
     NSData* data = [self downloadPosterWorker:movie postalCode:postalCode];
-    
+
     if (data != nil) {
         [FileUtilities writeData:data toFile:path];
-        
+
         if (data.length > 0) {
             [NowPlayingAppDelegate minorRefresh];
         }
@@ -150,19 +150,19 @@
 
 - (Movie*) getNextMovie:(NSMutableArray*) movies {
     Movie* movie;
-    
+
     while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
         if (![FileUtilities fileExists:[self posterFilePath:movie]]) {
             return movie;
         }
     }
-    
+
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
-    
+
     return nil;
 }
 
@@ -189,7 +189,7 @@
     // movies with poster links download faster. try them first.
     NSMutableArray* moviesWithPosterLinks = [NSMutableArray array];
     NSMutableArray* moviesWithoutPosterLinks = [NSMutableArray array];
-    
+
     for (Movie* movie in movies) {
         if (movie.poster.length == 0) {
             [moviesWithoutPosterLinks addObject:movie];
@@ -197,13 +197,13 @@
             [moviesWithPosterLinks addObject:movie];
         }
     }
-    
+
     Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
     NSString* postalCode = location.postalCode;
     if (postalCode == nil || ![@"US" isEqual:location.country]) {
         postalCode = @"10009";
     }
-    
+
     [self downloadPosters:moviesWithPosterLinks postalCode:postalCode];
     [self downloadPosters:moviesWithoutPosterLinks postalCode:postalCode];
 }
@@ -219,17 +219,17 @@
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     NSString* smallPosterPath = [self smallPosterFilePath:movie];
     NSData* smallPosterData;
-    
+
     if ([FileUtilities size:smallPosterPath] == 0) {
         NSData* normalPosterData = [FileUtilities readData:[self posterFilePath:movie]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                                 toHeight:SMALL_POSTER_HEIGHT];
-        
+
         [FileUtilities writeData:smallPosterData toFile:smallPosterPath];
     } else {
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
-    
+
     return [UIImage imageWithData:smallPosterData];
 }
 

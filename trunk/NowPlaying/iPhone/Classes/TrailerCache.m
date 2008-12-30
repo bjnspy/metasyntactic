@@ -35,7 +35,7 @@
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
-    
+
     [super dealloc];
 }
 
@@ -44,7 +44,7 @@
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
-    
+
     return self;
 }
 
@@ -63,10 +63,10 @@
 - (NSArray*) getOrderedMovies:(NSArray*) movies {
     NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
     NSMutableArray* moviesWithTrailers = [NSMutableArray array];
-    
+
     for (Movie* movie in movies) {
         NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
-        
+
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
@@ -75,7 +75,7 @@
             }
         }
     }
-    
+
     return [NSArray arrayWithObjects:moviesWithoutTrailers, moviesWithTrailers, nil];
 }
 
@@ -99,11 +99,11 @@
         [FileUtilities writeObject:[NSArray array] toFile:[self trailerFile:movie]];
         return;
     }
-    
+
     NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
     NSString* studio = [studioAndLocation objectAtIndex:0];
     NSString* location = [studioAndLocation objectAtIndex:1];
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url
                                                                    important:NO];
@@ -111,7 +111,7 @@
         // didn't get any data.  ignore this for now.
         return;
     }
-    
+
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
     NSMutableArray* final = [NSMutableArray array];
     for (NSString* trailer in trailers) {
@@ -119,9 +119,9 @@
             [final addObject:trailer];
         }
     }
-    
+
     [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
-    
+
     if (final.count > 0) {
         [NowPlayingAppDelegate minorRefresh];
     }
@@ -135,13 +135,13 @@
             return movie;
         }
     }
-    
+
     if (movies.count > 0) {
         movie = [[[movies lastObject] retain] autorelease];
         [movies removeLastObject];
         return movie;
     }
-    
+
     return nil;
 }
 
@@ -150,7 +150,7 @@
                     index:(NSDictionary*) index
                 indexKeys:(NSArray*) indexKeys {
     DifferenceEngine* engine = [DifferenceEngine engine];
-    
+
     Movie* movie;
     while ((movie = [self getNextMovie:movies]) != nil) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -172,22 +172,22 @@
 
 - (NSDictionary*) generateIndex:(NSString*) indexText {
     NSMutableDictionary* index = [NSMutableDictionary dictionary];
-    
+
     NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSArray* values = [row componentsSeparatedByString:@"\t"];
         if (values.count != 3) {
             continue;
         }
-        
+
         NSString* fullTitle = [values objectAtIndex:0];
         NSString* studio = [values objectAtIndex:1];
         NSString* location = [values objectAtIndex:2];
-        
+
         [index setObject:[NSArray arrayWithObjects:studio, location, nil]
                   forKey:fullTitle.lowercaseString];
     }
-    
+
     return index;
 }
 
@@ -199,16 +199,16 @@
     if (moviesWithoutTrailers.count == 0 && moviesWithTrailers.count == 0) {
         return;
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
     NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (indexText == nil) {
         return;
     }
-    
+
     NSDictionary* index = [self generateIndex:indexText];
     NSArray* indexKeys = index.allKeys;
-    
+
     [self downloadTrailers:moviesWithoutTrailers index:index indexKeys:indexKeys];
     [self downloadTrailers:moviesWithTrailers index:index indexKeys:indexKeys];
 }

@@ -64,7 +64,7 @@
     self.providerDirectory = nil;
     self.reviewsDirectory = nil;
     self.prioritizedMovies = nil;
-    
+
     [super dealloc];
 }
 
@@ -89,11 +89,11 @@
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
-        
+
         [FileUtilities createDirectory:providerDirectory];
         [FileUtilities createDirectory:reviewsDirectory];
     }
-    
+
     return self;
 }
 
@@ -118,13 +118,13 @@
     if (encodedScores == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     for (NSString* title in encodedScores) {
         Score* rating = [Score scoreWithDictionary:[encodedScores objectForKey:title]];
         [result setObject:rating forKey:title];
     }
-    
+
     return result;
 }
 
@@ -151,7 +151,7 @@
     if (scoresData == nil) {
         self.scoresData = [self loadScores];
     }
-    
+
     return scoresData;
 }
 
@@ -160,7 +160,7 @@
     if (hashData == nil) {
         self.hashData = [self loadHash];
     }
-    
+
     return hashData;
 }
 
@@ -169,7 +169,7 @@
     if (movieMapData == nil) {
         self.movieMapData = [self loadMovieMap];
     }
-    
+
     return movieMapData;
 }
 
@@ -203,7 +203,7 @@
         NSDictionary* dictionary = [[scores objectForKey:title] dictionary];
         [encodedScores setObject:dictionary forKey:title];
     }
-    
+
     [FileUtilities writeObject:encodedScores toFile:self.scoresFile];
     [FileUtilities writeObject:hash toFile:self.hashFile];
 }
@@ -211,29 +211,29 @@
 
 - (void) updateScoresBackgroundEntryPoint {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
-    
+
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
             return;
         }
     }
-    
+
     NSString* localHash = self.hash;
     NSString* serverHash = [self lookupServerHash];
-    
+
     if (serverHash.length == 0 ||
         [serverHash isEqual:@"0"] ||
         [serverHash isEqual:localHash]) {
         return;
     }
-    
+
     NSDictionary* result = [self lookupServerScores];
     if (result.count == 0) {
         return;
     }
-    
+
     [self saveScores:result hash:serverHash];
-    
+
     [ThreadingUtilities foregroundSelector:@selector(reportResult:withHash:)
                                   onTarget:self
                                   argument:result
@@ -244,13 +244,13 @@
 
 - (void) reportResult:(NSDictionary*) result withHash:(NSString*) hash {
     NSAssert([NSThread isMainThread], nil);
-    
+
     self.scoresData = result;
     self.hashData = hash;
     self.movieMapData = nil;
     self.movies = nil;
     [NowPlayingAppDelegate majorRefresh:YES];
-    
+
     [self updateReviews];
 }
 
@@ -258,9 +258,9 @@
 - (void) ensureMovieMap:(NSArray*) movies_ {
     if (movies_ != self.movies) {
         self.movies = movies_;
-        
+
         NSDictionary* scores = self.scores;
-        
+
         [ThreadingUtilities backgroundSelector:@selector(regenerateMap:forMovies:)
                                       onTarget:self
                                       argument:scores
@@ -273,34 +273,34 @@
 
 - (void) regenerateMap:(NSDictionary*) scores forMovies:(NSArray*) localMovies {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    
+
     NSArray* keys = scores.allKeys;
     NSMutableArray* lowercaseKeys = [NSMutableArray array];
     for (NSString* key in keys) {
         [lowercaseKeys addObject:key.lowercaseString];
     }
-    
+
     DifferenceEngine* engine = [DifferenceEngine engine];
-    
+
     for (Movie* movie in localMovies) {
         NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
         NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
         if (index == NSNotFound) {
             index = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
         }
-        
+
         if (index != NSNotFound) {
             NSString* key = [keys objectAtIndex:index];
             [result setObject:key forKey:movie.canonicalTitle];
         }
     }
-    
+
     if (result.count == 0) {
         return;
     }
-    
+
     [FileUtilities writeObject:result toFile:self.movieMapFile];
-    
+
     [ThreadingUtilities foregroundSelector:@selector(reportMap:forMovies:)
                                   onTarget:self
                                   argument:result
@@ -310,17 +310,17 @@
 
 - (void) reportMap:(NSDictionary*) map forMovies:(NSArray*) localMovies {
     NSAssert([NSThread isMainThread], nil);
-    
+
     self.movieMapData = map;
     self.movies = localMovies;
-    
+
     [NowPlayingAppDelegate majorRefresh:YES];
 }
 
 
 - (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
     [self ensureMovieMap:movies_];
-    
+
     NSString* title = [self.movieMap objectForKey:movie.canonicalTitle];
     return [self.scores objectForKey:title];
 }
@@ -339,19 +339,19 @@
 
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies_ {
     [self ensureMovieMap:movies_];
-    
+
     NSString* title = [self.movieMap objectForKey:movie.canonicalTitle];
     NSArray* encodedResult = [FileUtilities readObject:[self reviewsFile:title]];
-    
+
     if (encodedResult == nil) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dictionary in encodedResult) {
         [result addObject:[Review reviewWithDictionary:dictionary]];
     }
-    
+
     return result;
 }
 
@@ -360,7 +360,7 @@
                              score:(Score*) score {
     NSString* country = location.country.length == 0 ? [LocaleUtilities isoCountry] :
     location.country;
-    
+
     NSString* url =
     [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews2?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
      [Application host],
@@ -370,7 +370,7 @@
      score.provider,
      (int)(location.latitude * 1000000),
      (int)(location.longitude * 1000000)];
-    
+
     return url;
 }
 
@@ -383,20 +383,20 @@
         NSString* link = [reviewElement attributeValue:@"link"];
         NSString* author = [reviewElement attributeValue:@"author"];
         NSString* source = [reviewElement attributeValue:@"source"];
-        
+
         if ([author rangeOfString:@"HREF"].length > 0) {
             continue;
         }
-        
+
         NSInteger scoreValue = [score intValue];
-        
+
         [result addObject:[Review reviewWithText:text
                                            score:scoreValue
                                             link:link
                                           author:author
                                           source:source]];
     }
-    
+
     return result;
 }
 
@@ -408,14 +408,14 @@
         // We couldn't even connect.  Just abort what we're doing.
         return nil;
     }
-    
+
     XmlElement* element = [XmlParser parse:data];
     if (element == nil) {
         // we got an empty string back.  record this so we don't try
         // downloading for another two days.
         return [NSMutableArray array];
     }
-    
+
     return [self extractReviews:element];
 }
 
@@ -432,7 +432,7 @@
     for (Review* review in reviews) {
         [encodedReviews addObject:review.dictionary];
     }
-    
+
     [self saveEncodedReviews:encodedReviews hash:hash title:title];
 }
 
@@ -442,24 +442,24 @@
     if (score == nil) {
         return;
     }
-    
+
     NSString* address = [[self serverReviewsAddress:location score:score] stringByAppendingString:@"&hash=true"];
     NSString* localHash = [FileUtilities readObject:[self reviewsHashFile:score.canonicalTitle]];
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address important:NO];
-    
+
     if (serverHash.length == 0 ||
         [serverHash isEqual:@"0"] ||
         [serverHash isEqual:localHash]) {
         return;
     }
-    
+
     NSMutableArray* reviews = [self downloadReviewContents:score location:location];
     if (reviews == nil) {
         // didn't download.  just ignore it.
         return;
     }
-    
-    
+
+
     NSString* title = score.canonicalTitle;
     if (reviews.count == 0) {
         // we got no reviews.  only save that fact if we don't currently have
@@ -474,10 +474,10 @@
             return;
         }
     }
-    
+
     [reviews sortUsingSelector:@selector(compare:)];
     [self saveReviews:reviews hash:serverHash title:title];
-    
+
     [NowPlayingAppDelegate minorRefresh];
 }
 
@@ -488,7 +488,7 @@
     if (arguments != nil) {
         Movie* movie = [arguments objectAtIndex:0];
         NSDictionary* movieMap = [arguments objectAtIndex:1];
-        
+
         Score* score = [scoresMap objectForKey:[movieMap objectForKey:movie.canonicalTitle]];
         if (score != nil) {
             // only process this movie if we've got no data for it.
@@ -497,13 +497,13 @@
             }
         }
     }
-    
+
     if (scores.count > 0) {
         Score* score = [[[scores lastObject] retain] autorelease];
         [scores removeLastObject];
         return score;
     }
-    
+
     return nil;
 }
 
@@ -511,11 +511,11 @@
 - (void) downloadReviews:(NSMutableArray*) scores
                scoresMap:(NSDictionary*) scoresMap {
     Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
-    
+
     if (location == nil) {
         return;
     }
-    
+
     Score* score;
     do {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -531,12 +531,12 @@
 - (void) updateReviewsBackgroundEntryPoint:(NSDictionary*) scoresMap {
     NSMutableArray* scoresWithoutReviews = [NSMutableArray array];
     NSMutableArray* scoresWithReviews = [NSMutableArray array];
-    
+
     for (Score* score in scoresMap.allValues) {
         NSString* file = [self reviewsFile:score.canonicalTitle];
-        
+
         NSDate* lastLookupDate = [FileUtilities modificationDate:file];
-        
+
         if (lastLookupDate == nil) {
             [scoresWithoutReviews addObject:score];
         } else {
@@ -545,7 +545,7 @@
             }
         }
     }
-    
+
     [self downloadReviews:scoresWithoutReviews scoresMap:scoresMap];
     [self downloadReviews:scoresWithReviews scoresMap:scoresMap];
 }

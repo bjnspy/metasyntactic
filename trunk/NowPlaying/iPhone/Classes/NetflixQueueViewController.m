@@ -209,14 +209,14 @@
     if (visible) {
         return;
     }
-    
+
     // I don't want to clean anything else up here due to the complicated
     // state being kep around.
-    
+
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
     self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-    
+
     [super didReceiveMemoryWarning];
 }
 
