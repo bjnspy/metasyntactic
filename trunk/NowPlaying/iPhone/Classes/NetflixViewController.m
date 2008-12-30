@@ -14,6 +14,7 @@
 
 #import "NetflixViewController.h"
 
+#import "Application.h"
 #import "AutoResizingCell.h"
 #import "ColorCache.h"
 #import "GlobalActivityIndicator.h"
@@ -87,17 +88,7 @@ typedef enum {
     self.tableView.rowHeight = 46;
     self.tableView.backgroundColor = [ColorCache netflixRed];
 
-    if ([self.tableView numberOfRowsInSection:0] == 1 &&
-        self.hasAccount) {
-        [self.tableView beginUpdates];
-        {
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
-        }
-        [self.tableView endUpdates];
-    } else {
-        [self.tableView reloadData];
-    }
+    [self.tableView reloadData];
 }
 
 
@@ -223,13 +214,9 @@ typedef enum {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
     if (index != alertView.cancelButtonIndex) {
         [self.controller setNetflixKey:nil secret:nil userId:nil];
-
-        [self.tableView beginUpdates];
-        {
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
-        }
-        [self.tableView endUpdates];
+        [Application resetNetflixDirectories];
+    
+        [self majorRefresh];
     }
 }
 
