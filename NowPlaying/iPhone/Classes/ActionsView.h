@@ -17,6 +17,7 @@
     id target;
     NSArray* selectors;
     NSArray* titles;
+    NSArray* arguments;
 
     NSArray* buttons;
 
@@ -25,7 +26,8 @@
 
 + (ActionsView*) viewWithTarget:(id) target
                       selectors:(NSArray*) selectors
-                         titles:(NSArray*) titles;
+                         titles:(NSArray*) titles
+                      arguments:(NSArray*) arguments;
 
 - (CGFloat) height;
 

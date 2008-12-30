@@ -157,45 +157,61 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 - (void) setupActionsView {
     NSMutableArray* selectors = [NSMutableArray array];
     NSMutableArray* titles = [NSMutableArray array];
+    NSMutableArray* arguments = [NSMutableArray array];
 
     if (trailer.length > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
         [titles addObject:NSLocalizedString(@"Play trailer", nil)];
+        [arguments addObject:[NSNull null]];
     }
 
     if (reviewsArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(readReviews)]];
         [titles addObject:NSLocalizedString(@"Read reviews", nil)];
-    }
-
-    if (websites.count == 1) {
-        [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite)]];
-        [titles addObject:[websites.allKeys objectAtIndex:0]];
-    } else if (websites.count > 1) {
-        [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsites)]];
-        [titles addObject:NSLocalizedString(@"Websites", nil)];
+        [arguments addObject:[NSNull null]];
     }
 
     if (theatersArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
         [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
+        [arguments addObject:[NSNull null]];
     }
 
     if (netflixMovie != nil && ![self.model.netflixCache isEnqueued:netflixMovie]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
         [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
+        [arguments addObject:[NSNull null]];
     }
 
     if (![self isUpcomingMovie] && ![self isDVD] && ![self isNetflix]) {
         [selectors addObject:[NSValue valueWithPointer:@selector(changeDate)]];
         [titles addObject:NSLocalizedString(@"Change date", nil)];
+        [arguments addObject:[NSNull null]];
+    }
+    
+    if ((selectors.count + websites.count) > 6) {
+        // condense to one button
+        [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsites)]];
+        [titles addObject:NSLocalizedString(@"Websites", nil)];
+        [arguments addObject:[NSNull null]];
+    } else {
+        // show individual buttons
+        for (NSString* name in [websites.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
+            [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite:)]];
+            [titles addObject:name];
+            [arguments addObject:[websites objectForKey:name]];
+        }
     }
 
     if (selectors.count == 0) {
         return;
     }
 
-    self.actionsView = [ActionsView viewWithTarget:self selectors:selectors titles:titles];
+    self.actionsView = [ActionsView viewWithTarget:self
+                                         selectors:selectors
+                                            titles:titles
+                                         arguments:arguments];
+    
     [actionsView sizeToFit];
 }
 
@@ -878,8 +894,8 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (void) visitWebsite {
-    [navigationController pushBrowser:[websites.allValues objectAtIndex:0] animated:YES];
+- (void) visitWebsite:(NSString*) website {
+    [navigationController pushBrowser:website animated:YES];
 }
 
 
