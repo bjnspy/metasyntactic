@@ -169,17 +169,26 @@
 }
 
 
++ (BOOL) substringSimilar:(NSString*) s1 other:(NSString*) s2 {
+    if (s1.length > 4 && s2.length > 4) {
+        if (([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].length > 0) ||
+            ([s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].length > 0)) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
 - (BOOL) similar:(NSString*) s1
            other:(NSString*) s2 {
     if (s1 == nil || s2 == nil) {
         return NO;
     }
 
-    if (s1.length > 4 && s2.length > 4) {
-        if (([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].length > 0) ||
-            ([s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].length > 0)) {
-            return YES;
-        }
+    if ([DifferenceEngine substringSimilar:s1 other:s2]) {
+        return YES;
     }
 
     NSInteger threshold = [self threshold:s1];
