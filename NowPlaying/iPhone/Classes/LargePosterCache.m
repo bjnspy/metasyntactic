@@ -23,19 +23,23 @@
 #import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
+#import "ThreadingUtilities.h"
 
 @interface LargePosterCache()
 @property (retain) NSMutableDictionary* yearToMovieMap;
+@property (retain) NSLock* yearToMovieMapGate;
 @end
 
 @implementation LargePosterCache
 
 @synthesize yearToMovieMap;
+@synthesize yearToMovieMapGate;
 
 const int START_YEAR = 1912;
 
 - (void) dealloc {
     self.yearToMovieMap = nil;
+    self.yearToMovieMapGate = nil;
     
     [super dealloc];
 }
@@ -44,6 +48,12 @@ const int START_YEAR = 1912;
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super initWithModel:model_]) {
         self.yearToMovieMap = [NSMutableDictionary dictionary];
+        self.yearToMovieMapGate = [[[NSRecursiveLock alloc] init] autorelease];
+        
+        [ThreadingUtilities backgroundSelector:@selector(updateIndices)
+                                      onTarget:self
+                                          gate:nil
+                                       visible:NO];
     }
     
     return self;
@@ -188,7 +198,11 @@ const int START_YEAR = 1912;
     }
     
     if (dictionary.count > 0) {
-        [yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
+        [yearToMovieMapGate lock];
+        {
+            [yearToMovieMap setObject:dictionary forKey:[NSNumber numberWithInt:year]];
+        }
+        [yearToMovieMapGate unlock];
     }
 }
 
@@ -207,11 +221,7 @@ const int START_YEAR = 1912;
 }
 
 
-- (void) ensureIndex {
-    if (yearToMovieMap.count > 0) {
-        return;
-    }
-    
+- (void) updateIndices {
     NSInteger year = self.currentYear;
     for (NSInteger i = year + 1; i >= START_YEAR; i--) {
         [self ensureIndex:i updateIfStale:(i >= (year - 1) || i <= (year + 1))];
@@ -220,7 +230,13 @@ const int START_YEAR = 1912;
 
 
 - (NSArray*) posterNames:(Movie*) movie year:(NSInteger) year {
-    NSDictionary* movieMap = [yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
+    NSDictionary* movieMap;
+    [yearToMovieMapGate lock];
+    {
+        movieMap = [yearToMovieMap objectForKey:[NSNumber numberWithInt:year]];
+    }
+    [yearToMovieMapGate unlock];
+
     NSArray* result = [movieMap objectForKey:movie.canonicalTitle.lowercaseString];
     if (result.count > 0) {
         return result;
@@ -253,8 +269,6 @@ const int START_YEAR = 1912;
 
 
 - (NSArray*) posterUrlsNoLock:(Movie*) movie {
-    [self ensureIndex];
-    
     NSDate* date = movie.releaseDate;
     if (date != nil) {
         NSInteger releaseYear = [self yearForDate:date];
