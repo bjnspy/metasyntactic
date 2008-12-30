@@ -254,6 +254,12 @@
     UIImage* image = [ImageCache upArrow];
     TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
     imageView.delegate = self;
+    imageView.contentMode = UIViewContentModeCenter;
+   
+    CGRect frame = imageView.frame;
+    frame.size.height += 20;
+    imageView.frame = frame;
+    
     return imageView;
 }
 
