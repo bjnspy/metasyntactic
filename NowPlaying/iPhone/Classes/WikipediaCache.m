@@ -38,7 +38,7 @@
 - (void) dealloc {
     self.prioritizedMovies = nil;
     self.normalMovies = nil;
-    
+
     [super dealloc];
 }
 
@@ -47,13 +47,13 @@
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.normalMovies = [LinkedSet set];
-        
+
         [ThreadingUtilities backgroundSelector:@selector(updateAddressBackgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
                                        visible:NO];
     }
-    
+
     return self;
 }
 
@@ -92,26 +92,26 @@
 - (void) updateAddress:(Movie*) movie {
     NSString* path = [self wikipediaFile:movie];
     NSDate* lastLookupDate = [FileUtilities modificationDate:path];
-    
+
     if (lastLookupDate != nil) {
         NSString* value = [FileUtilities readObject:path];
         if (value.length > 0) {
             // we have a real imdb value for this movie
             return;
         }
-        
+
         // we have a sentinel.  only update if it's been long enough
         if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
             return;
         }
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupWikipediaListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* wikipediaAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (wikipediaAddress == nil) {
         return;
     }
-    
+
     // write down the response (even if it is empty).  An empty value will
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:wikipediaAddress toFile:path];
@@ -132,7 +132,7 @@
             }
         }
         [gate unlock];
-        
+
         [self updateAddress:movie];
     }
 }

@@ -18,7 +18,7 @@
 @private
     NetflixNavigationController* navigationController;
     NetflixSearchViewController* searchViewController;
-    
+
     BOOL visible;
 }
 

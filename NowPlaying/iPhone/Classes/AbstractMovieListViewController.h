@@ -26,7 +26,7 @@
 
     BOOL visible;
     NSArray* visibleIndexPaths;
-    
+
     BOOL scrollToCurrentDateOnRefresh;
 }
 

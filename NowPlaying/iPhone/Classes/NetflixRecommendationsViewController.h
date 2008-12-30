@@ -20,7 +20,7 @@
 
     NSArray* genres;
     MultiDictionary* genreToMovies;
-    
+
     BOOL visible;
 }
 

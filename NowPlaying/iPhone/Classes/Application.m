@@ -265,18 +265,18 @@ static DifferenceEngine* differenceEngine = nil;
 
         for (NSInteger i = 0; i < ArrayLength(directories); i++) {
             NSString* directory = *directories[i];
-            
+
             if ([userLocationsDirectory isEqual:directory]) {
                 continue;
             }
-            
+
             NSArray* paths = [FileUtilities directoryContentsPaths:directory];
             for (NSString* path in paths) {
                 if ((rand() % 1000) < 10) {
                     if ([FileUtilities isDirectory:path]) {
                         continue;
                     }
-                    
+
                     NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
                     if (lastModifiedDate != nil) {
                         if (ABS(lastModifiedDate.timeIntervalSinceNow) > cacheLimit) {

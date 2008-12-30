@@ -147,7 +147,7 @@
     if (value == currentUserRating) {
         return;
     }
-    
+
     // change the UI:
     if (value == 0) {
         [self setupNetflixRating];

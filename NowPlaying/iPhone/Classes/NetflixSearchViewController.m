@@ -133,7 +133,7 @@
     if (visible) {
         return;
     }
-    
+
     [super didReceiveMemoryWarning];
 }
 
