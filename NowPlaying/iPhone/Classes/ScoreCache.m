@@ -99,6 +99,16 @@
 }
 
 
+- (Score*) rottenTomatoesScoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
+    return [rottenTomatoesScoreProvider scoreForMovie:movie inMovies:movies];
+}
+
+
+- (Score*) metacriticScoreForMovie:(Movie*) movie inMovies:(NSArray*) movies {
+    return [metacriticScoreProvider scoreForMovie:movie inMovies:movies];
+}
+
+
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies {
     id<ScoreProvider> provider = self.currentScoreProvider;
     if (provider == rottenTomatoesScoreProvider) {

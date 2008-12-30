@@ -36,6 +36,7 @@
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "PosterCache.h"
+#import "Score.h"
 #import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
@@ -223,6 +224,16 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
     if (wikipediaAddress.length > 0) {
         [map setObject:wikipediaAddress forKey:@"Wikipedia"];
+    }
+    
+    Score* score = [self.model rottenTomatoesScoreForMovie:movie];
+    if (score.identifier.length > 0) {
+        [map setObject:score.identifier forKey:@"RottenTomatoes"];
+    }
+    
+    score = [self.model metacriticScoreForMovie:movie];
+    if (score.identifier.length > 0) {
+        [map setObject:score.identifier forKey:@"Metacritic"];
     }
 
     if (dvd != nil) {

@@ -21,6 +21,7 @@
 #import "Review.h"
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"
+#import "Score.h"
 #import "Utilities.h"
 #import "WebViewController.h"
 
@@ -171,10 +172,10 @@
             [navigationController pushBrowser:review.link animated:YES];
         }
     } else {
-        if (self.model.rottenTomatoesScores) {
-            [navigationController pushBrowser:@"http://www.rottentomatoes.com" animated:YES];
-        } else if (self.model.metacriticScores) {
-            [navigationController pushBrowser:@"http://www.metacritic.com" animated:YES];
+        if (self.model.rottenTomatoesScores || self.model.metacriticScores) {
+            Score* score = [self.model metacriticScoreForMovie:movie];
+            NSString* address = score.identifier.length > 0 ? score.identifier : @"http://www.metacritic.com";
+            [navigationController pushBrowser:address animated:YES];
         } else if (self.model.googleScores) {
             [navigationController pushBrowser:@"http://www.google.com/movies" animated:YES];
         }
