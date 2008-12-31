@@ -259,18 +259,9 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (void) updateImage:(UIImage*) image {
-    if (image == nil) {
-        return;
-    }
-
-    self.posterImage = image;
-    self.posterImageView.image = posterImage;   
-}
-
-
-- (void) updateImage {
-    [self updateImage:[MovieDetailsViewController posterForMovie:movie model:self.model]];
+- (void) updateImage {    
+    self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
+    self.posterImageView.image = posterImage;  
 }
 
 
@@ -480,10 +471,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (shutdown) { return; }
     posterCount = [posterNumber intValue];
     [posterActivityView stopAnimating];
-
-    if (posterImage == nil) {
-        [self updateImage:[self.model.largePosterCache posterForMovie:movie]];
-    }
+    [self minorRefresh];
 }
 
 
