@@ -14,6 +14,7 @@
 
 #import "FileUtilities.h"
 
+#import "Application.h"
 #import "MainThreadGate.h"
 
 @implementation FileUtilities
@@ -79,9 +80,10 @@ static MainThreadGate* gate;
 
 
 + (void) removeItem:(NSString*) path {
+    NSString* trashPath = [Application uniqueTrashDirectory];
     [gate lock];
     {
-        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+        [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
     }
     [gate unlock];
 }

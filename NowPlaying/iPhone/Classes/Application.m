@@ -17,6 +17,7 @@
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 
 @implementation Application
@@ -27,6 +28,7 @@ static NSLock* gate = nil;
 static NSString* cacheDirectory = nil;
 static NSString* supportDirectory = nil;
 static NSString* tempDirectory = nil;
+static NSString* trashDirectory = nil;
 
 // Application storage directories
 static NSString* dataDirectory = nil;
@@ -102,59 +104,6 @@ static NSString* starString = nil;
 static DifferenceEngine* differenceEngine = nil;
 
 
-+ (NSString*) cacheDirectory {
-    [gate lock];
-    {
-        if (cacheDirectory == nil) {
-            NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-
-            NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-            NSString* directory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-
-            [FileUtilities createDirectory:directory];
-
-            cacheDirectory = [directory retain];
-        }
-    }
-    [gate unlock];
-
-    return cacheDirectory;
-}
-
-
-+ (NSString*) supportDirectory {
-    [gate lock];
-    {
-        if (supportDirectory == nil) {
-            NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-
-            NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-            NSString* directory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-
-            [FileUtilities createDirectory:directory];
-
-            supportDirectory = [directory retain];
-        }
-    }
-    [gate unlock];
-
-    return supportDirectory;
-}
-
-
-+ (NSString*) tempDirectory {
-    [gate lock];
-    {
-        if (tempDirectory == nil) {
-            tempDirectory = [NSTemporaryDirectory() retain];
-        }
-    }
-    [gate unlock];
-
-    return tempDirectory;
-}
-
-
 + (void) deleteDirectories {
     [gate lock];
     {
@@ -183,6 +132,80 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
++ (void) emptyTrash {
+    [ThreadingUtilities backgroundSelector:@selector(emptyTrashBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:nil
+                                   visible:NO];
+}
+
+
++ (void) initializeDirectories {
+    tempDirectory = [NSTemporaryDirectory() retain];
+    
+    {
+        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
+        NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
+        NSString* directory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
+        [FileUtilities createDirectory:directory];
+        cacheDirectory = [directory retain];            
+    }
+    
+    {
+        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
+        NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
+        NSString* directory = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
+        [FileUtilities createDirectory:directory];
+        supportDirectory = [directory retain];
+    }
+    
+    {
+        NSString* directory = [cacheDirectory stringByAppendingPathComponent:@"Trash"];
+        [FileUtilities createDirectory:directory];
+        trashDirectory = [directory retain];
+    }
+    
+    {
+        dataDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Data"] retain];
+        imdbDirectory = [[cacheDirectory stringByAppendingPathComponent:@"IMDb"] retain];
+        amazonDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Amazon"] retain];
+        wikipediaDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Wikipedia"] retain];
+        userLocationsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"UserLocations"] retain];
+        scoresDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Scores"] retain];
+        reviewsDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Reviews"] retain];
+        trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
+        
+        postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
+        largePostersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LargePosters"] retain];
+        
+        dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
+        dvdDetailsDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Details"] retain];
+        dvdPostersDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+        
+        blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
+        blurayDetailsDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Details"] retain];
+        blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+        
+        netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
+        netflixQueuesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Queues"] retain];
+        netflixPostersDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+        netflixSeriesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Series"] retain];
+        netflixDetailsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Details"] retain];
+        netflixUserRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"UserRatings"] retain];
+        netflixPredictedRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"PredictedRatings"] retain];
+        netflixSearchDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Search"] retain];
+        
+        upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
+        upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
+        upcomingPostersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+        upcomingSynopsesDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Synopses"] retain];
+        upcomingTrailersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Trailers"] retain];
+        
+        [self createDirectories];
+    }
+}
+
+
 + (void) initialize {
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
@@ -193,46 +216,17 @@ static DifferenceEngine* differenceEngine = nil;
 
         differenceEngine = [[DifferenceEngine engine] retain];
 
-        [FileUtilities removeItem:[self supportDirectory]];
+        [self initializeDirectories];
+        [FileUtilities removeItem:supportDirectory];
+        
+        [self emptyTrash];
+    }
+}
 
-        {
-            dataDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Data"] retain];
-            imdbDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"IMDb"] retain];
-            amazonDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Amazon"] retain];
-            wikipediaDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Wikipedia"] retain];
-            userLocationsDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"UserLocations"] retain];
-            scoresDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Scores"] retain];
-            reviewsDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Reviews"] retain];
-            trailersDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Trailers"] retain];
 
-            postersDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-            largePostersDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"LargePosters"] retain];
-
-            dvdDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"DVD"] retain];
-            dvdDetailsDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Details"] retain];
-            dvdPostersDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-
-            blurayDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Bluray"] retain];
-            blurayDetailsDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Details"] retain];
-            blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-
-            netflixDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Netflix"] retain];
-            netflixQueuesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Queues"] retain];
-            netflixPostersDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-            netflixSeriesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Series"] retain];
-            netflixDetailsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Details"] retain];
-            netflixUserRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"UserRatings"] retain];
-            netflixPredictedRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"PredictedRatings"] retain];
-            netflixSearchDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Search"] retain];
-
-            upcomingDirectory = [[[self cacheDirectory] stringByAppendingPathComponent:@"Upcoming"] retain];
-            upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
-            upcomingPostersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-            upcomingSynopsesDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Synopses"] retain];
-            upcomingTrailersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Trailers"] retain];
-
-            [self createDirectories];
-        }
++ (void) emptyTrashBackgroundEntryPoint {
+    for (NSString* path in [FileUtilities directoryContentsPaths:[self trashDirectory]]) {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     }
 }
 
@@ -288,6 +282,26 @@ static DifferenceEngine* differenceEngine = nil;
         }
     }
     [gate unlock];
+}
+
+
++ (NSString*) cacheDirectory {
+    return cacheDirectory;
+}
+
+
++ (NSString*) supportDirectory {
+    return supportDirectory;
+}
+
+
++ (NSString*) trashDirectory {
+    return trashDirectory;
+}
+
+
++ (NSString*) tempDirectory {
+    return tempDirectory;
 }
 
 
@@ -445,24 +459,34 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (NSString*) uniqueTemporaryDirectory {
++ (NSString*) uniqueDirectory:(NSString*) parentDirectory
+                       create:(BOOL) create {
     NSString* finalDir;
-
+    
     [gate lock];
-    {
-        NSFileManager* manager = [NSFileManager defaultManager];
-
-        NSString* tempDir = [Application tempDirectory];
+    {        
         do {
             NSString* random = [Application randomString];
-            finalDir = [tempDir stringByAppendingPathComponent:random];
-        } while ([manager fileExistsAtPath:finalDir]);
-
-        [FileUtilities createDirectory:finalDir];
+            finalDir = [parentDirectory stringByAppendingPathComponent:random];
+        } while ([[NSFileManager defaultManager] fileExistsAtPath:finalDir]);
+    
+        if (create) {
+            [FileUtilities createDirectory:finalDir];
+        }
     }
     [gate unlock];
-
+    
     return finalDir;
+}
+
+
++ (NSString*) uniqueTemporaryDirectory {
+    return [self uniqueDirectory:[Application tempDirectory] create:YES];
+}
+
+
++ (NSString*) uniqueTrashDirectory {
+    return [self uniqueDirectory:[Application trashDirectory] create:NO];
 }
 
 

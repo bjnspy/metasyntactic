@@ -15,6 +15,8 @@
 @interface Application : NSObject {
 }
 
++ (NSString*) trashDirectory;
+
 + (NSString*) dataDirectory;
 + (NSString*) imdbDirectory;
 + (NSString*) amazonDirectory;
@@ -36,14 +38,10 @@
 
 + (NSString*) netflixDirectory;
 + (NSString*) netflixDetailsDirectory;
-//+ (NSString*) netflixCastDirectory;
 + (NSString*) netflixSearchDirectory;
 + (NSString*) netflixQueuesDirectory;
 + (NSString*) netflixSeriesDirectory;
-//+ (NSString*) netflixFormatsDirectory;
 + (NSString*) netflixPostersDirectory;
-//+ (NSString*) netflixSynopsesDirectory;
-//+ (NSString*) netflixDirectorsDirectory;
 + (NSString*) netflixUserRatingsDirectory;
 + (NSString*) netflixPredictedRatingsDirectory;
 
@@ -58,6 +56,7 @@
 + (void) clearStaleData:(NSInteger) index;
 
 + (NSString*) uniqueTemporaryDirectory;
++ (NSString*) uniqueTrashDirectory;
 
 + (void) openBrowser:(NSString*) address;
 + (void) openMap:(NSString*) address;
