@@ -259,6 +259,21 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
+- (void) updateImage:(UIImage*) image {
+    if (image == nil) {
+        return;
+    }
+
+    self.posterImage = image;
+    self.posterImageView.image = posterImage;   
+}
+
+
+- (void) updateImage {
+    [self updateImage:[MovieDetailsViewController posterForMovie:movie model:self.model]];
+}
+
+
 - (void) initializeData {
     self.netflixMovie = [self.model.netflixCache netflixMovieForMovie:movie];
 
@@ -290,10 +305,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     }
 
     [self initializeWebsites];
-
-    self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
-    self.posterImageView.image = posterImage;
-
+    [self updateImage];
     [self setupActionsView];
 }
 
@@ -463,11 +475,15 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (void) reportPoster:(NSNumber*) posterCount_ {
+- (void) reportPoster:(NSNumber*) posterNumber {
     NSAssert([NSThread isMainThread], nil);
     if (shutdown) { return; }
-    posterCount = [posterCount_ intValue];
+    posterCount = [posterNumber intValue];
     [posterActivityView stopAnimating];
+
+    if (posterImage == nil) {
+        [self updateImage:[self.model.largePosterCache posterForMovie:movie]];
+    }
 }
 
 
