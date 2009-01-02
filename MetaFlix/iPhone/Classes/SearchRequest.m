@@ -22,8 +22,6 @@
 @property (copy) NSString* value;
 @property (copy) NSString* lowercaseValue;
 @property (retain) NSArray* movies;
-@property (retain) NSArray* theaters;
-@property (retain) NSArray* upcomingMovies;
 @end
 
 
@@ -33,16 +31,12 @@
 @synthesize value;
 @synthesize lowercaseValue;
 @synthesize movies;
-@synthesize theaters;
-@synthesize upcomingMovies;
 
 - (void) dealloc {
     self.requestId = 0;
     self.value = nil;
     self.lowercaseValue = nil;
     self.movies = nil;
-    self.theaters = nil;
-    self.upcomingMovies = nil;
 
     [super dealloc];
 }

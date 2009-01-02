@@ -42,7 +42,7 @@
 }
 
 
-- (id) initWithTabBarController:(MetaFlixAppDelegate*) appDelegate_ {
+- (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
     }

@@ -161,7 +161,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 };
 
 
-@synthesize dataProvider;
 @synthesize bookmarkedTitlesData;
 
 @synthesize userLocationCache;
@@ -431,11 +430,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             @"Metacritic",
             @"Google",
             NSLocalizedString(@"None", @"This is what a user picks when they don't want any reviews."), nil];
-}
-
-
-- (NSString*) currentScoreProvider {
-    return [self.scoreProvider objectAtIndex:self.scoreProviderIndex];
 }
 
 
@@ -920,14 +914,8 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
 
 
 - (NSString*) feedbackUrl {
-    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nLocation: %@\nSearch Distance: %d\nSearch Date: %@\nReviews: %@\nAuto-Update Location: %@\nPrioritize Bookmarks: %@\nCountry: %@\nLanguage: %@",
+    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nCountry: %@\nLanguage: %@",
                       currentVersion,
-                      self.userAddress,
-                      self.searchRadius,
-                      [DateUtilities formatShortDate:self.searchDate],
-                      self.currentScoreProvider,
-                      (self.autoUpdateLocation ? @"yes" : @"no"),
-                      (self.prioritizeBookmarks ? @"yes" : @"no"),
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
 

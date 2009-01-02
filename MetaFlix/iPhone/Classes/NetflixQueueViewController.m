@@ -18,7 +18,6 @@
 #import "AlertUtilities.h"
 #import "ImageCache.h"
 #import "Feed.h"
-#import "MovieTitleCell.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "MetaFlixModel.h"

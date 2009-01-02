@@ -17,9 +17,9 @@
 #import "Application.h"
 #import "AlertUtilities.h"
 #import "DateUtilities.h"
-#import "LocationManager.h"
 #import "MetaFlixAppDelegate.h"
 #import "MetaFlixModel.h"
+#import "NetflixCache.h"
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
@@ -54,7 +54,6 @@
 - (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
-        self.locationManager = [LocationManager managerWithController:self];
         self.determineLocationLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
 

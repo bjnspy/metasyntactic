@@ -38,10 +38,6 @@
 
 - (BOOL) abortEarly;
 
-- (void) reportResult:(NSArray*) movies
-             theaters:(NSArray*) theaters
-       upcomingMovies:(NSArray*) upcomingMovies
-                 dvds:(NSArray*) dvds
-               bluray:(NSArray*) bluray;
+- (void) reportMovies:(NSArray*) movies;
 
 @end

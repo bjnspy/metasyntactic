@@ -198,11 +198,7 @@
         }
     }
 
-    Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
-    NSString* postalCode = location.postalCode;
-    if (postalCode == nil || ![@"US" isEqual:location.country]) {
-        postalCode = @"10009";
-    }
+    NSString* postalCode = @"10009";
 
     [self downloadPosters:moviesWithPosterLinks postalCode:postalCode];
     [self downloadPosters:moviesWithoutPosterLinks postalCode:postalCode];
