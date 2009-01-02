@@ -17,24 +17,12 @@
 
 + (NSString*) trashDirectory;
 
-+ (NSString*) dataDirectory;
 + (NSString*) imdbDirectory;
 + (NSString*) amazonDirectory;
 + (NSString*) wikipediaDirectory;
-+ (NSString*) userLocationsDirectory;
 + (NSString*) postersDirectory;
 + (NSString*) largePostersDirectory;
-+ (NSString*) scoresDirectory;
-+ (NSString*) reviewsDirectory;
 + (NSString*) trailersDirectory;
-
-+ (NSString*) dvdDirectory;
-+ (NSString*) dvdDetailsDirectory;
-+ (NSString*) dvdPostersDirectory;
-
-+ (NSString*) blurayDirectory;
-+ (NSString*) blurayDetailsDirectory;
-+ (NSString*) blurayPostersDirectory;
 
 + (NSString*) netflixDirectory;
 + (NSString*) netflixDetailsDirectory;
@@ -45,12 +33,6 @@
 + (NSString*) netflixUserRatingsDirectory;
 + (NSString*) netflixPredictedRatingsDirectory;
 
-+ (NSString*) upcomingDirectory;
-+ (NSString*) upcomingCastDirectory;
-+ (NSString*) upcomingPostersDirectory;
-+ (NSString*) upcomingSynopsesDirectory;
-+ (NSString*) upcomingTrailersDirectory;
-
 + (void) resetDirectories;
 + (void) resetNetflixDirectories;
 + (void) clearStaleData;
@@ -59,8 +41,6 @@
 + (NSString*) uniqueTrashDirectory;
 
 + (void) openBrowser:(NSString*) address;
-+ (void) openMap:(NSString*) address;
-+ (void) makeCall:(NSString*) phoneNumber;
 
 + (DifferenceEngine*) differenceEngine;
 

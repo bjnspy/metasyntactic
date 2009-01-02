@@ -21,7 +21,6 @@ enum ViewControllerType {
 
 @interface MetaFlixModel : NSObject {
 @private
-    UserLocationCache* userLocationCache;
     IMDbCache* imdbCache;
     AmazonCache* amazonCache;
     WikipediaCache* wikipediaCache;
@@ -33,7 +32,6 @@ enum ViewControllerType {
     NSMutableSet* bookmarkedTitlesData;
 }
 
-@property (readonly, retain) UserLocationCache* userLocationCache;
 @property (readonly, retain) IMDbCache* imdbCache;
 @property (readonly, retain) AmazonCache* amazonCache;
 @property (readonly, retain) WikipediaCache* wikipediaCache;

@@ -29,7 +29,6 @@
 #import "MetaFlixAppDelegate.h"
 #import "MetaFlixModel.h"
 #import "ThreadingUtilities.h"
-#import "UserLocationCache.h"
 #import "Utilities.h"
 
 @interface PosterCache()

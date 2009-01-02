@@ -21,7 +21,6 @@
 #import "MetaFlixModel.h"
 #import "NetflixCache.h"
 #import "ThreadingUtilities.h"
-#import "UserLocationCache.h"
 #import "Utilities.h"
 
 @interface MetaFlixController()
