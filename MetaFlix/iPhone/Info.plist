@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Now Playing</string>
+	<string>MetaFlix</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>CFBundleExecutable</key>
@@ -13,17 +13,17 @@
 	<key>CFBundleIconFile</key>
 	<string>Icon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.metasyntactic.BoxOffice</string>
+	<string>org.metasyntactic.MetaFlix</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>BoxOffice</string>
+	<string>MetaFlix</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.6</string>
+	<string>1.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 </dict>
