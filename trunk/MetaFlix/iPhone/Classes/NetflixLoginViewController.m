@@ -236,7 +236,7 @@
 
 - (void) onContinueTapped:(id) sender {
     NSString* accessUrl =
-    [NSString stringWithFormat:@"https://api-user.netflix.com/oauth/login?oauth_token=%@&oauth_consumer_key=83k9wpqt34hcka5bfb2kkf8s&application_name=MetaFlix&oauth_callback=nowplaying://popviewcontroller",
+    [NSString stringWithFormat:@"https://api-user.netflix.com/oauth/login?oauth_token=%@&oauth_consumer_key=83k9wpqt34hcka5bfb2kkf8s&application_name=NowPlaying&oauth_callback=nowplaying://popviewcontroller",
      authorizationToken.key];
 
     [navigationController pushBrowser:accessUrl showSafariButton:NO animated:YES];

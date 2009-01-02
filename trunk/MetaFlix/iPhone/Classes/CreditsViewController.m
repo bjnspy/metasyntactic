@@ -32,11 +32,6 @@ typedef enum {
     WrittenBySection,
     MyOtherApplicationsSection,
     GraphicsBySection,
-    ReviewsBySection,
-    TicketSalesBySection,
-    MovieDetailsBySection,
-    GeolocationServicesBySection,
-    DVDDetailsBySection,
     LocalizedBySection,
     LicenseSection,
     LastSection = LicenseSection
@@ -117,18 +112,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if (section == WrittenBySection) {
         return 2;
     } else if (section == MyOtherApplicationsSection) {
-        return 1;
-    } else if (section == GraphicsBySection) {
-        return 1;
-    } else if (section == ReviewsBySection) {
         return 2;
-    } else if (section == TicketSalesBySection) {
-        return 1;
-    } else if (section == MovieDetailsBySection) {
-        return 1;
-    } else if (section == GeolocationServicesBySection) {
-        return 3;
-    } else if (section == DVDDetailsBySection) {
+    } else if (section == GraphicsBySection) {
         return 1;
     } else if (section == LocalizedBySection) {
         return localizers.count;
@@ -140,42 +125,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (UIImage*) getImage:(NSIndexPath*) indexPath {
-    NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
-
-    if (section == ReviewsBySection) {
-        if (row == 0) {
-            return [UIImage imageNamed:@"RottenTomatoesLogo.png"];
-        } else if (row == 1) {
-            return [UIImage imageNamed:@"MetacriticLogo.png"];
-        }
-    } else if (section == TicketSalesBySection) {
-        return [UIImage imageNamed:@"FandangoLogo.png"];
-    } else if (section == MovieDetailsBySection) {
-        return [UIImage imageNamed:@"TryntLogo.png"];
-    } else if (section == GeolocationServicesBySection) {
-        if (row == 0) {
-            return [UIImage imageNamed:@"YahooLogo.png"];
-        }
-    } else if (section == DVDDetailsBySection) {
-        return [UIImage imageNamed:@"VideoETALogo.png"];
-    }
-
-    return nil;
-}
-
-
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    UIImage* image = [self getImage:indexPath];
     CGFloat height = tableView.rowHeight;
-    if (image != nil) {
-        CGFloat imageHeight = image.size.height + 10;
-        if (imageHeight > height) {
-            height = imageHeight;
-        }
-    } else if (indexPath.section == LocalizedBySection) {
+    if (indexPath.section == LocalizedBySection) {
         return tableView.rowHeight - 14;
     }
 
@@ -214,33 +167,20 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    UIImage* image = [self getImage:indexPath];
-
-    if (image != nil) {
-        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-
-        NSInteger x = (self.tableView.contentSize.width - image.size.width) / 2 - 20;
-        NSInteger y = ([self tableView:tableView heightForRowAtIndexPath:indexPath] - image.size.height) / 2;
-
-        imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
-
-        [cell.contentView addSubview:imageView];
-    } else if (section == WrittenBySection) {
+    if (section == WrittenBySection) {
         if (row == 0) {
             cell.text = NSLocalizedString(@"Send Feedback", nil);
         } else {
-            cell.text = NSLocalizedString(@"Project website", nil);
+            cell.text = NSLocalizedString(@"Project Website", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
-        cell.text = @"ComiXology";
+        if (row == 0) {
+            cell.text = @"Now Playing";
+        } else {
+            cell.text = @"ComiXology";
+        }
     } else if (section == GraphicsBySection) {
         cell.text = NSLocalizedString(@"Website", nil);
-    } else if (section == GeolocationServicesBySection) {
-        if (row == 1) {
-            cell.text = @"GeoNames";
-        } else if (row == 2) {
-            cell.text = @"GeoCoder.ca";
-        }
     } else if (section == LicenseSection) {
         cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -258,16 +198,6 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return NSLocalizedString(@"My other applications", nil);
     } else if (section == GraphicsBySection) {
         return NSLocalizedString(@"Graphics by Jeffrey Nee", nil);
-    } else if (section == ReviewsBySection) {
-        return NSLocalizedString(@"Movie reviews provided by:", nil);
-    } else if (section == TicketSalesBySection) {
-        return NSLocalizedString(@"Ticket sales provided by:", nil);
-    } else if (section == MovieDetailsBySection) {
-        return NSLocalizedString(@"Movie details provided by:", nil);
-    } else if (section == GeolocationServicesBySection) {
-        return NSLocalizedString(@"Geolocation services provided by:", nil);
-    } else if (section == DVDDetailsBySection) {
-        return NSLocalizedString(@"DVD/Blu-ray details provided by:", nil);
     } else if (section == LocalizedBySection) {
         return NSLocalizedString(@"Localized by:", nil);
     }
@@ -276,19 +206,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForFooterInSection:(NSInteger) section {
-    if (section == LastSection) {
-        return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes. Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
-    }
-
-    return nil;
-}
-
-
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsBySection) {
+    if (indexPath.section < LocalizedBySection) {
         return UITableViewCellAccessoryDetailDisclosureButton;
     } else if (indexPath.section == LocalizedBySection) {
         return UITableViewCellAccessoryNone;
@@ -339,29 +259,13 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             url = @"http://metasyntactic.googlecode.com";
         }
     } else if (section == MyOtherApplicationsSection) {
-        url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
+        if (row == 0) {
+            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
+        } else {
+            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
+        }
     } else if (section == GraphicsBySection) {
         url = @"http://www.jeffnee.com";
-    } else if (section == ReviewsBySection) {
-        if (row == 0) {
-            url = @"http://www.rottentomatoes.com";
-        } else {
-            url = @"http://www.metacritic.com";
-        }
-    } else if (section == TicketSalesBySection) {
-        url = @"http://www.fandango.com";
-    } else if (section == MovieDetailsBySection) {
-        url = @"http://www.trynt.com";
-    } else if (section == GeolocationServicesBySection) {
-        if (row == 0) {
-            url = @"http://www.yahoo.com";
-        } else if (row == 1) {
-            url = @"http://www.geonames.org";
-        } else {
-            url = @"http://geocoder.ca";
-        }
-    } else if (section == DVDDetailsBySection) {
-        url = @"http://www.videoeta.com";
     } else if (section == LocalizedBySection) {
         return;
     } else if (section == LicenseSection) {

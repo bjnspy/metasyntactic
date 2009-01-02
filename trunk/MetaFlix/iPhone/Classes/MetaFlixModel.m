@@ -35,12 +35,10 @@
 #import "MetaFlixAppDelegate.h"
 #import "PosterCache.h"
 #import "TrailerCache.h"
-#import "UserLocationCache.h"
 #import "Utilities.h"
 #import "WikipediaCache.h"
 
 @interface MetaFlixModel()
-@property (retain) UserLocationCache* userLocationCache;
 @property (retain) IMDbCache* imdbCache;
 @property (retain) AmazonCache* amazonCache;
 @property (retain) WikipediaCache* wikipediaCache;
@@ -58,32 +56,14 @@ static NSString* persistenceVersion = @"101";
 
 static NSString* VERSION = @"version";
 
-static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSegmentIndex";
-static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
-static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
 static NSString* BOOKMARKED_TITLES                      = @"bookmarkedTitles";
 static NSString* BOOKMARKED_MOVIES                      = @"bookmarkedMovies";
 static NSString* BOOKMARKED_UPCOMING                    = @"bookmarkedUpcoming";
 static NSString* BOOKMARKED_DVD                         = @"bookmarkedDVD";
 static NSString* BOOKMARKED_BLURAY                      = @"bookmarkedBluray";
-static NSString* DVD_MOVIES_SELECTED_SEGMENT_INDEX      = @"dvdMoviesSelectedSegmentIndex";
-static NSString* DVD_MOVIES_HIDE_DVDS                   = @"dvdMoviesHideDVDs";
-static NSString* DVD_MOVIES_HIDE_BLURAY                 = @"dvdMoviesHideBluray";
-static NSString* UPCOMING_AND_DVD_HIDE_UPCOMING         = @"upcomingAndDvdMoviesHideUpcoming";
-static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
-static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
-static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
 static NSString* PRIORITIZE_BOOKMARKS                   = @"prioritizeBookmarks";
-static NSString* SCORE_PROVIDER_INDEX                   = @"scoreProviderIndex";
-static NSString* SEARCH_DATE                            = @"searchDate";
-static NSString* SEARCH_RADIUS                          = @"searchRadius";
-static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
-static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX = @"upcomingMoviesSelectedSegmentIndex";
-static NSString* USER_ADDRESS                           = @"userLocation";
-static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
 static NSString* RUN_COUNT                              = @"runCount";
 static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
-static NSString* NETFLIX_ENABLED                        = @"netflixEnabled";
 static NSString* NETFLIX_KEY                            = @"netflixKey";
 static NSString* NETFLIX_SECRET                         = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                        = @"netflixUserId";
@@ -91,31 +71,13 @@ static NSString* NETFLIX_USER_ID                        = @"netflixUserId";
 
 static NSString** ALL_KEYS[] = {
 &VERSION,
-&ALL_MOVIES_SELECTED_SEGMENT_INDEX,
-&ALL_THEATERS_SELECTED_SEGMENT_INDEX,
-&AUTO_UPDATE_LOCATION,
 &BOOKMARKED_TITLES,
 &BOOKMARKED_MOVIES,
 &BOOKMARKED_UPCOMING,
 &BOOKMARKED_DVD,
 &BOOKMARKED_BLURAY,
-&DVD_MOVIES_SELECTED_SEGMENT_INDEX,
-&DVD_MOVIES_HIDE_DVDS,
-&DVD_MOVIES_HIDE_BLURAY,
-&UPCOMING_AND_DVD_HIDE_UPCOMING,
-&FAVORITE_THEATERS,
-&NAVIGATION_STACK_TYPES,
-&NAVIGATION_STACK_VALUES,
 &PRIORITIZE_BOOKMARKS,
-&SCORE_PROVIDER_INDEX,
-&SEARCH_DATE,
-&SEARCH_RADIUS,
-&SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
-&UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
-&USER_ADDRESS,
-&USE_NORMAL_FONTS,
 &RUN_COUNT,
-&NETFLIX_ENABLED,
 &NETFLIX_KEY,
 &NETFLIX_SECRET,
 &NETFLIX_USER_ID
@@ -123,30 +85,17 @@ static NSString** ALL_KEYS[] = {
 
 
 static NSString** STRING_KEYS_TO_MIGRATE[] = {
-&USER_ADDRESS,
 &NETFLIX_KEY,
 &NETFLIX_SECRET,
 &NETFLIX_USER_ID,
 };
 
 static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
-&ALL_MOVIES_SELECTED_SEGMENT_INDEX,
-&ALL_THEATERS_SELECTED_SEGMENT_INDEX,
-&DVD_MOVIES_SELECTED_SEGMENT_INDEX,
-&SCORE_PROVIDER_INDEX,
-&SEARCH_RADIUS,
-&SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
-&UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX
+
 };
 
 static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
-&AUTO_UPDATE_LOCATION,
-&DVD_MOVIES_HIDE_DVDS,
-&DVD_MOVIES_HIDE_BLURAY,
-&UPCOMING_AND_DVD_HIDE_UPCOMING,
 &PRIORITIZE_BOOKMARKS,
-&USE_NORMAL_FONTS,
-&NETFLIX_ENABLED
 };
 
 static NSString** STRING_ARRAY_KEYS_TO_MIGRATE[] = {
@@ -163,7 +112,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 @synthesize bookmarkedTitlesData;
 
-@synthesize userLocationCache;
 @synthesize imdbCache;
 @synthesize amazonCache;
 @synthesize wikipediaCache;
@@ -175,7 +123,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (void) dealloc {
     self.bookmarkedTitlesData = nil;
 
-    self.userLocationCache = nil;
     self.imdbCache = nil;
     self.amazonCache = nil;
     self.wikipediaCache = nil;
@@ -190,15 +137,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 + (NSString*) version {
     return currentVersion;
-}
-
-+ (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
-    NSMutableArray* result = [NSMutableArray array];
-    for (FavoriteTheater* theater in favoriteTheaters) {
-        [result addObject:theater.dictionary];
-    }
-
-    [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
 }
 
 
@@ -273,22 +211,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             }
 
             [result setObject:elements forKey:key];
-        }
-    }
-
-    {
-        id previousValue = [defaults objectForKey:FAVORITE_THEATERS];
-        if ([previousValue isKindOfClass:[NSArray class]]) {
-            NSMutableArray* elements = [NSMutableArray array];
-
-            for (id element in previousValue) {
-                if ([element isKindOfClass:[NSDictionary class]] &&
-                    [FavoriteTheater canReadDictionary:element]) {
-                    [elements addObject:element];
-                }
-            }
-
-            [result setObject:elements forKey:FAVORITE_THEATERS];
         }
     }
 
@@ -367,7 +289,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         [self checkCountry];
         [self loadData];
 
-        self.userLocationCache = [UserLocationCache cache];
         self.largePosterCache = [LargePosterCache cacheWithModel:self];
         self.imdbCache = [IMDbCache cacheWithModel:self];
         self.amazonCache = [AmazonCache cacheWithModel:self];
@@ -385,20 +306,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 + (MetaFlixModel*) model {
     return [[[MetaFlixModel alloc] init] autorelease];
-}
-
-
-- (BOOL) netflixEnabled {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_ENABLED];
-}
-
-
-- (void) setNetflixEnabled:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:NETFLIX_ENABLED];
-
-    if (!value) {
-        [self setNetflixKey:nil secret:nil userId:nil];
-    }
 }
 
 
@@ -433,120 +340,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-- (NSInteger) selectedTabBarViewControllerIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX];
-}
-
-
-- (void) setSelectedTabBarViewControllerIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX];
-}
-
-
-- (NSInteger) allMoviesSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (NSInteger) allTheatersSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
-}
-
-- (NSInteger) upcomingMoviesSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (void) setUpcomingMoviesSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (NSInteger) dvdMoviesSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:DVD_MOVIES_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (void) setDvdMoviesSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:DVD_MOVIES_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (BOOL) dvdMoviesShowDVDs {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_MOVIES_HIDE_DVDS];
-}
-
-
-- (BOOL) dvdMoviesShowBluray {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_MOVIES_HIDE_BLURAY];
-}
-
-
-- (void) setDvdMoviesShowDVDs:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_MOVIES_HIDE_DVDS];
-}
-
-
-- (void) setDvdMoviesShowBluray:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_MOVIES_HIDE_BLURAY];
-}
-
-
-- (BOOL) upcomingAndDVDShowUpcoming {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_AND_DVD_HIDE_UPCOMING];
-}
-
-
-- (void) setUpcomingAndDVDShowUpcoming:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:UPCOMING_AND_DVD_HIDE_UPCOMING];
-}
-
-
-- (BOOL) allMoviesSortingByReleaseDate {
-    return self.allMoviesSelectedSegmentIndex == 0;
-}
-
-
-- (BOOL) allMoviesSortingByTitle {
-    return self.allMoviesSelectedSegmentIndex == 1;
-}
-
-
-- (BOOL) allMoviesSortingByScore {
-    return self.allMoviesSelectedSegmentIndex == 2;
-}
-
-
-- (BOOL) upcomingMoviesSortingByReleaseDate {
-    return self.upcomingMoviesSelectedSegmentIndex == 0;
-}
-
-
-- (BOOL) upcomingMoviesSortingByTitle {
-    return self.upcomingMoviesSelectedSegmentIndex == 1;
-}
-
-
-- (BOOL) dvdMoviesSortingByReleaseDate {
-    return self.dvdMoviesSelectedSegmentIndex == 0;
-}
-
-
-- (BOOL) dvdMoviesSortingByTitle {
-    return self.dvdMoviesSelectedSegmentIndex == 1;
-}
-
-
 - (BOOL) prioritizeBookmarks {
     return [[NSUserDefaults standardUserDefaults] boolForKey:PRIORITIZE_BOOKMARKS];
 }
@@ -554,26 +347,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) setPrioritizeBookmarks:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:PRIORITIZE_BOOKMARKS];
-}
-
-
-- (BOOL) autoUpdateLocation {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:AUTO_UPDATE_LOCATION];
-}
-
-
-- (void) setAutoUpdateLocation:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:AUTO_UPDATE_LOCATION];
-}
-
-
-- (NSString*) userAddress {
-    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:USER_ADDRESS];
-    if (result == nil) {
-        result = @"";
-    }
-
-    return result;
 }
 
 
@@ -670,22 +443,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) setBookmarkedBluray:(NSArray*) array {
     [MetaFlixModel saveMovies:array key:BOOKMARKED_BLURAY];
-}
-
-
-- (NSMutableDictionary*) loadFavoriteTheaters {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:FAVORITE_THEATERS];
-    if (array.count == 0) {
-        return [NSMutableDictionary dictionary];
-    }
-
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    for (NSDictionary* dictionary in array) {
-        FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:dictionary];
-        [result setObject:theater forKey:theater.name];
-    }
-
-    return result;
 }
 
 
@@ -836,11 +593,6 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
 }
 
 
-- (void) setUserAddress:(NSString*) userAddress {
-    [[NSUserDefaults standardUserDefaults] setObject:userAddress forKey:USER_ADDRESS];
-    [self synchronize];
-}
-
 - (NSString*) synopsisForMovie:(Movie*) movie {
     NSMutableArray* options = [NSMutableArray array];
     NSString* synopsis = movie.synopsis;
@@ -877,9 +629,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
 
 
 - (NSString*) noInformationFound {
-    if (self.userAddress.length == 0) {
-        return NSLocalizedString(@"Please enter your location", nil);
-    } else if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
+    if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
         return NSLocalizedString(@"Downloading data", nil);
     } else if (![NetworkUtilities isNetworkAvailable]) {
         return NSLocalizedString(@"Network unavailable", nil);
@@ -890,16 +640,6 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
     } else {
         return NSLocalizedString(@"No information found", nil);
     }
-}
-
-
-- (BOOL) useSmallFonts {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:USE_NORMAL_FONTS];
-}
-
-
-- (void) setUseSmallFonts:(BOOL) useSmallFonts {
-    [[NSUserDefaults standardUserDefaults] setBool:!useSmallFonts forKey:USE_NORMAL_FONTS];
 }
 
 
@@ -919,9 +659,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
 
-    if (self.netflixEnabled) {
-        body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@", self.netflixUserId, self.netflixKey, self.netflixSecret];
-    }
+    body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@", self.netflixUserId, self.netflixKey, self.netflixSecret];
 
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {
