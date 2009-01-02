@@ -117,7 +117,7 @@
 
 
 - (void) markOutOfDate {
-    [FileUtilities removeItem:[self lastLookupDateFile]];
+    [FileUtilities moveItemToTrash:[self lastLookupDateFile]];
 }
 
 
@@ -212,7 +212,7 @@
         [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentDirectory:tempDirectory]];
     }
 
-    [FileUtilities removeItem:self.performancesDirectory];
+    [FileUtilities moveItemToTrash:self.performancesDirectory];
     [FileUtilities moveItem:tempDirectory to:self.performancesDirectory];
 
     [FileUtilities writeObject:[Movie encodeArray:result.movies] toFile:self.moviesFile];

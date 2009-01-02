@@ -415,7 +415,9 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     [[NSUserDefaults standardUserDefaults] setInteger:(runCount + 1) forKey:RUN_COUNT];
     [self synchronize];
 
-    [Application clearStaleData:runCount];
+    if ((runCount % 5) == 0) {
+        [Application clearStaleData];
+    }
 }
 
 
