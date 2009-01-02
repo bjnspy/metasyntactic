@@ -96,17 +96,7 @@
     NSArray* movies = [self findMovies];
     if ([self abortEarly]) { return; }
 
-    NSArray* upcomingMovies = [self findUpcomingMovies];
-    if ([self abortEarly]) { return; }
-
-    NSArray* dvds = [self findDVDs];
-    if ([self abortEarly]) { return; }
-
-    NSArray* bluray = [self findBluray];
-    if ([self abortEarly]) { return; }
-    //...
-
-    [self reportResult:movies];
+    [self reportMovies:movies];
 }
 
 @end

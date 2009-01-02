@@ -18,7 +18,6 @@
 #import "AlertUtilities.h"
 #import "DateUtilities.h"
 #import "MetaFlixModel.h"
-#import "SearchDatePickerViewController.h"
 
 @interface AbstractDetailsViewController()
 @property (assign) AbstractNavigationController* navigationController;

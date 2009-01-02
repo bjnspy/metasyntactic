@@ -154,18 +154,10 @@
 }
 
 
-- (void) reportResult:(NSArray*) movies
-             theaters:(NSArray*) theaters
-       upcomingMovies:(NSArray*) upcomingMovies
-                 dvds:(NSArray*) dvds
-               bluray:(NSArray*) bluray {
+- (void) reportMovies:(NSArray*) movies {
     SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                                 value:currentlyExecutingRequest.value
-                                               movies:movies
-                                             theaters:theaters
-                                       upcomingMovies:upcomingMovies
-                                                 dvds:dvds
-                                               bluray:bluray];
+                                               movies:movies];
     [self performSelectorOnMainThread:@selector(reportResult:) withObject:result waitUntilDone:NO];
 }
 

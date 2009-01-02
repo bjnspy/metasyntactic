@@ -317,13 +317,8 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
         return;
     }
 
-    self.dvd = nil;
-    self.theatersArray = nil;
-    self.showtimesArray = nil;
     self.trailer = nil;
-    self.reviewsArray = nil;
     self.websites = nil;
-    self.hiddenTheaterCount = 0;
     self.actionsView = nil;
     self.posterImage = nil;
     self.posterImageView = nil;
@@ -515,24 +510,6 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (UITableViewCell*) showHiddenTheatersCell {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-    cell.textAlignment = UITextAlignmentCenter;
-
-    if (self.hiddenTheaterCount == 1) {
-        cell.text = NSLocalizedString(@"Show 1 hidden theater", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about.");
-    } else {
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", @"We hide theaters if they are too far away.  But we provide this button to let the user 'unhide' in case it's the only theater showing a movie they care about."),
-                     self.hiddenTheaterCount];
-    }
-
-    cell.textColor = [ColorCache commandColor];
-    cell.font = [UIFont boldSystemFontOfSize:14];
-
-    return cell;
-}
-
-
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     return [self cellForHeaderRow:indexPath.row];
@@ -599,11 +576,6 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     MPMoviePlayerController* moviePlayer = notification.object;
     [moviePlayer stop];
     [moviePlayer autorelease];
-}
-
-
-- (void) readReviews {
-    [navigationController pushReviews:movie animated:YES];
 }
 
 

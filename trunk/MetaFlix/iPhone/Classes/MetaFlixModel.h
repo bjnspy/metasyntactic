@@ -41,7 +41,6 @@ enum ViewControllerType {
 @property (readonly, retain) LargePosterCache* largePosterCache;
 @property (readonly, retain) TrailerCache* trailerCache;
 @property (readonly, retain) MutableNetflixCache* netflixCache;
-@property (readonly, retain) id<DataProvider> dataProvider;
 
 + (MetaFlixModel*) model;
 

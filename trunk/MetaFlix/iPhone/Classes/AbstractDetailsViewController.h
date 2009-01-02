@@ -22,7 +22,4 @@
 - (MetaFlixModel*) model;
 - (MetaFlixController*) controller;
 
-// @protected
-- (void) changeDate;
-
 @end

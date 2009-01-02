@@ -14,7 +14,6 @@
 
 #import "MetaFlixAppDelegate.h"
 
-#import "LocationManager.h"
 #import "MetaFlixController.h"
 #import "MetaFlixModel.h"
 #import "Pulser.h"

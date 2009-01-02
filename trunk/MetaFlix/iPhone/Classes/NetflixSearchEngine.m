@@ -45,11 +45,7 @@
 - (void) search {
     NSArray* movies = [model.netflixCache search:currentlyExecutingRequest.lowercaseValue];
 
-    [self reportResult:movies
-              theaters:nil
-        upcomingMovies:nil
-                  dvds:nil
-                bluray:nil];
+    [self reportMovies:movies];
 }
 
 @end
