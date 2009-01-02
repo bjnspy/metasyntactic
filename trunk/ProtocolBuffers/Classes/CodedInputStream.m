@@ -222,7 +222,7 @@ const int32_t BUFFER_SIZE = 4096;
         // Fast path:  We already have the bytes in a contiguous buffer, so
         //   just copy directly from it.
         //  new String(buffer, bufferPos, size, "UTF-8");
-        NSString* result = [[[NSString alloc] initWithBytes:(((uint8_t*)buffer.bytes) + bufferPos)
+        NSString* result = [[[NSString alloc] initWithBytes:(((uint8_t*) buffer.bytes) + bufferPos)
                                                      length:size
                                                    encoding:NSUTF8StringEncoding] autorelease];
         bufferPos += size;
@@ -287,7 +287,7 @@ const int32_t BUFFER_SIZE = 4096;
     if (size < bufferSize - bufferPos && size > 0) {
         // Fast path:  We already have the bytes in a contiguous buffer, so
         //   just copy directly from it.
-        NSData* result = [NSData dataWithBytes:(((uint8_t*)buffer.bytes) + bufferPos) length:size];
+        NSData* result = [NSData dataWithBytes:(((uint8_t*) buffer.bytes) + bufferPos) length:size];
         bufferPos += size;
         return result;
     } else {
@@ -670,7 +670,7 @@ int64_t decodeZigZag64(int64_t n) {
 
     if (size <= bufferSize - bufferPos) {
         // We have all the bytes we need already.
-        NSData* data = [NSData dataWithBytes:(((int8_t*)buffer.bytes) + bufferPos) length:size];
+        NSData* data = [NSData dataWithBytes:(((int8_t*) buffer.bytes) + bufferPos) length:size];
         bufferPos += size;
         return data;
     } else if (size < BUFFER_SIZE) {
@@ -705,7 +705,7 @@ int64_t decodeZigZag64(int64_t n) {
         // maliciously-crafted message could provide a bogus very large size in
         // order to trick the app into allocating a lot of memory.  We avoid this
         // by allocating and reading only a small chunk at a time, so that the
-        // malicious message must actually *be* extremely large to cause
+        // malicious message must actuall* e* extremely large to cause
         // problems.  Meanwhile, we limit the allowed size of a message elsewhere.
 
         // Remember the buffer markers since we'll have to copy the bytes out of
@@ -729,7 +729,7 @@ int64_t decodeZigZag64(int64_t n) {
             while (pos < chunk.length) {
                 int32_t n = 0;
                 if (input != nil) {
-                    n = [input read:(((uint8_t*)chunk.mutableBytes) + pos) maxLength:chunk.length - pos];
+                    n = [input read:(((uint8_t*) chunk.mutableBytes) + pos) maxLength:chunk.length - pos];
                 }
                 if (n <= 0) {
                     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];

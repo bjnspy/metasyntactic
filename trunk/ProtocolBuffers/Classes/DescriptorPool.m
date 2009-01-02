@@ -248,7 +248,7 @@ BOOL isDigit(unichar c) {
                 if (result != nil) {
                     if (firstPartLength.length > 0) {
                         // We only found the first part of the symbol.  Now look for
-                        // the whole thing.  If this fails, we *don't* want to keep
+                        // the whole thing.  If this fails, w* on't* want to keep
                         // searching parent scopes.
                         [scopeToTry setString:[scopeToTry substringToIndex:(dotpos.location + 1)]];
                         [scopeToTry appendString:name];

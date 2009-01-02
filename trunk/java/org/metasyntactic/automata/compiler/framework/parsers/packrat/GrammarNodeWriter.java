@@ -145,6 +145,12 @@ public class GrammarNodeWriter<TTokenType> {
     write(s);
   }
 
+  private void dedentWriteAndIndent(String s) {
+    dedent();
+    write(s);
+    indent();
+  }
+
   private void dedent() {indentLevel--;}
 
   public void write() {
@@ -387,13 +393,17 @@ public class GrammarNodeWriter<TTokenType> {
     write("String getName();");
     write("void accept(INodeVisitor visitor);");
     write("List<Object> getChildren();");
+    write("List<INode> getNodes();");
+    write("List<SourceToken> getTokens();");
     dedentAndWrite("}");
   }
 
   private void writeNode() {
     writeAndIndent("public static abstract class AbstractNode implements INode {");
-
     write("private List<Object> children;");
+    write("private List<INode> nodes;");
+    write("private List<SourceToken> tokens;");
+
     writeAndIndent("public List<Object> getChildren() {");
     writeAndIndent("if (children == null) {");
     write("children = getChildrenWorker();");
@@ -401,6 +411,34 @@ public class GrammarNodeWriter<TTokenType> {
     write("return children;");
     dedentAndWrite("}");
     write("protected abstract List<Object> getChildrenWorker();");
+
+    writeAndIndent("public List<INode> getNodes() {");
+    writeAndIndent("if (nodes == null) {");
+    write("List<INode> list = new ArrayList<INode>();");
+    writeAndIndent("for (Object child : getChildren()) {");
+    writeAndIndent("if (child instanceof INode) {");
+    write("list.add((INode)child);");
+    dedentAndWrite("}");
+    dedentAndWrite("}");
+    write("nodes = list;");
+    dedentAndWrite("}");
+    write("return nodes;");
+    dedentAndWrite("}");
+
+    writeAndIndent("public List<SourceToken> getTokens() {");
+    writeAndIndent("if (tokens == null) {");
+    write("List<SourceToken> list = new ArrayList<SourceToken>();");
+    writeAndIndent("for (Object child : getChildren()) {");
+    writeAndIndent("if (child instanceof INode) {");
+    write("list.addAll(((INode)child).getTokens());");
+    dedentWriteAndIndent("} else {");
+    write("list.add((SourceToken)child);");
+    dedentAndWrite("}");
+    dedentAndWrite("}");
+    write("tokens = list;");
+    dedentAndWrite("}");
+    write("return tokens;");
+    dedentAndWrite("}");
 
     write("private int hashCode = -1;");
     writeAndIndent("public int hashCode() {");

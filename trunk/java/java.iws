@@ -90,7 +90,7 @@
         <option name="CONDITION" value="variableExpression.getVariable().equals(&quot;Block&quot;)" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" line="515" class="org.metasyntactic.automata.compiler.framework.parsers.packrat.GrammarNodeWriter" package="org.metasyntactic.automata.compiler.framework.parsers.packrat">
+      <breakpoint url="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java" line="553" class="org.metasyntactic.automata.compiler.framework.parsers.packrat.GrammarNodeWriter" package="org.metasyntactic.automata.compiler.framework.parsers.packrat">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -194,10 +194,8 @@
       <file leaf-file-name="JavaParserGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="6" selection-start="6893" selection-end="6899" vertical-scroll-proportion="1.0727763">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="153" column="6" selection-start="6893" selection-end="6899" vertical-scroll-proportion="0.017391304">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -205,7 +203,7 @@
       <file leaf-file-name="GrammarNodeWriter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="228" column="42" selection-start="7218" selection-end="7218" vertical-scroll-proportion="0.8059299">
+            <state line="414" column="54" selection-start="13295" selection-end="13295" vertical-scroll-proportion="0.017391304">
               <folding />
             </state>
           </provider>
@@ -214,10 +212,8 @@
       <file leaf-file-name="Metasyntactic.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/client/Metasyntactic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="0" selection-start="2884" selection-end="2884" vertical-scroll-proportion="0.9395466">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="17" column="0" selection-start="822" selection-end="822" vertical-scroll-proportion="0.017391304">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -225,10 +221,17 @@
       <file leaf-file-name="Nodes.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8751" column="7" selection-start="297574" selection-end="297574" vertical-scroll-proportion="0.33501258">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="2747" column="29" selection-start="115481" selection-end="115481" vertical-scroll-proportion="0.017391304">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractJavaGeneratedParser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6078" column="85" selection-start="289348" selection-end="289348" vertical-scroll-proportion="0.017391304">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -236,7 +239,7 @@
       <file leaf-file-name="TextArea.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextArea.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="67" selection-start="221" selection-end="221" vertical-scroll-proportion="0.1209068">
+            <state line="5" column="67" selection-start="221" selection-end="221" vertical-scroll-proportion="0.069565214">
               <folding />
             </state>
           </provider>
@@ -245,7 +248,7 @@
       <file leaf-file-name="TextBoxBase.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextBoxBase.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="65" selection-start="219" selection-end="219" vertical-scroll-proportion="0.1209068">
+            <state line="5" column="65" selection-start="219" selection-end="219" vertical-scroll-proportion="0.017391304">
               <folding />
             </state>
           </provider>
@@ -254,7 +257,7 @@
       <file leaf-file-name="FocusWidget.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/FocusWidget.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="74" selection-start="228" selection-end="228" vertical-scroll-proportion="0.1209068">
+            <state line="5" column="74" selection-start="228" selection-end="228" vertical-scroll-proportion="0.069565214">
               <folding />
             </state>
           </provider>
@@ -263,7 +266,7 @@
       <file leaf-file-name="Widget.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/Widget.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="64" selection-start="218" selection-end="218" vertical-scroll-proportion="0.1209068">
+            <state line="5" column="64" selection-start="218" selection-end="218" vertical-scroll-proportion="0.069565214">
               <folding />
             </state>
           </provider>
@@ -272,16 +275,7 @@
       <file leaf-file-name="UIObject.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/UIObject.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="116" column="51" selection-start="5407" selection-end="5407" vertical-scroll-proportion="1.4962217">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HasDirection.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/i18n/client/HasDirection.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="17" selection-start="168" selection-end="168" vertical-scroll-proportion="0.1209068">
+            <state line="116" column="51" selection-start="5407" selection-end="5407" vertical-scroll-proportion="0.8956522">
               <folding />
             </state>
           </provider>
@@ -1022,18 +1016,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.CreateNodes">
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1062,6 +1044,18 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" />
@@ -1307,7 +1301,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" order="8" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37880793" order="2" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37880793" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3112583" order="4" />
@@ -1409,63 +1403,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6334" column="135" selection-start="304692" selection-end="304692" vertical-scroll-proportion="-0.0023696683">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/i18n/client/HasDirection.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="17" selection-start="168" selection-end="168" vertical-scroll-proportion="0.1209068">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextArea.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="67" selection-start="221" selection-end="221" vertical-scroll-proportion="0.1209068">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextBoxBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="65" selection-start="219" selection-end="219" vertical-scroll-proportion="0.1209068">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/FocusWidget.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="74" selection-start="228" selection-end="228" vertical-scroll-proportion="0.1209068">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/Widget.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="64" selection-start="218" selection-end="218" vertical-scroll-proportion="0.1209068">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/UIObject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="51" selection-start="5407" selection-end="5407" vertical-scroll-proportion="1.4962217">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="6" selection-start="6893" selection-end="6899" vertical-scroll-proportion="1.0727763">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1476,28 +1417,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/org/metasyntactic/client/Metasyntactic.java">
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/generator/java/JavaParserGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="0" selection-start="2884" selection-end="2884" vertical-scroll-proportion="0.9395466">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="153" column="6" selection-start="6893" selection-end="6899" vertical-scroll-proportion="0.017391304">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/framework/parsers/packrat/GrammarNodeWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="42" selection-start="7218" selection-end="7218" vertical-scroll-proportion="0.8059299">
+        <state line="414" column="54" selection-start="13295" selection-end="13295" vertical-scroll-proportion="0.017391304">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/client/Metasyntactic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="822" selection-end="822" vertical-scroll-proportion="0.017391304">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/AbstractJavaGeneratedParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6078" column="85" selection-start="289348" selection-end="289348" vertical-scroll-proportion="0.017391304">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextArea.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="67" selection-start="221" selection-end="221" vertical-scroll-proportion="0.069565214">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/TextBoxBase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="65" selection-start="219" selection-end="219" vertical-scroll-proportion="0.017391304">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/FocusWidget.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="74" selection-start="228" selection-end="228" vertical-scroll-proportion="0.069565214">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/Widget.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="64" selection-start="218" selection-end="218" vertical-scroll-proportion="0.069565214">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Projects/gwt-mac-1.5.3/gwt-user.jar!/com/google/gwt/user/client/ui/UIObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="51" selection-start="5407" selection-end="5407" vertical-scroll-proportion="0.8956522">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/org/metasyntactic/automata/compiler/java/parser/Nodes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8751" column="7" selection-start="297574" selection-end="297574" vertical-scroll-proportion="0.33501258">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="2747" column="29" selection-start="115481" selection-end="115481" vertical-scroll-proportion="0.017391304">
+          <folding />
         </state>
       </provider>
     </entry>
