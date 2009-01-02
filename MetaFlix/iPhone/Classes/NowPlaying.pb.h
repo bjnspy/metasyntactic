@@ -37,7 +37,7 @@
 @class TheaterProto;
 @class TheaterProto_Builder;
 
-@interface NowPlayingRoot : NSObject {
+@interface MetaFlixRoot : NSObject {
 }
 + (PBFileDescriptor*) descriptor;
 + (PBFileDescriptor*) buildDescriptor;

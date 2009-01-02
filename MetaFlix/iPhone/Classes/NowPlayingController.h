@@ -14,9 +14,9 @@
 
 #import "DataProviderUpdateDelegate.h"
 
-@interface NowPlayingController : NSObject<DataProviderUpdateDelegate> {
+@interface MetaFlixController : NSObject<DataProviderUpdateDelegate> {
 @private
-    NowPlayingAppDelegate* appDelegate;
+    MetaFlixAppDelegate* appDelegate;
     LocationManager* locationManager;
 
     NSLock* determineLocationLock;
@@ -26,7 +26,7 @@
 
 - (void) start;
 
-- (NowPlayingModel*) model;
+- (MetaFlixModel*) model;
 
 - (void) setSearchDate:(NSDate*) searchDate;
 - (void) setUserAddress:(NSString*) userAddress;
@@ -36,6 +36,6 @@
 - (void) setNetflixEnabled:(BOOL) value;
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 
-+ (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
++ (MetaFlixController*) controllerWithAppDelegate:(MetaFlixAppDelegate*) appDelegate;
 
 @end

@@ -17,15 +17,15 @@
 #import "DVDNavigationController.h"
 #import "MoviesNavigationController.h"
 #import "NetflixNavigationController.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
 #import "UpcomingMoviesAndDVDNavigationController.h"
 
 @interface ApplicationTabBarController()
-@property (assign) NowPlayingAppDelegate* appDelegate;
+@property (assign) MetaFlixAppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
@@ -127,7 +127,7 @@
 }
 
 
-- (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDel {
+- (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDel {
     if (self = [super init]) {
         self.appDelegate = appDel;
         self.lastRefreshDate = nil;
@@ -155,7 +155,7 @@
 }
 
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate {
++ (ApplicationTabBarController*) controllerWithAppDelegate:(MetaFlixAppDelegate*) appDelegate {
     return [[[ApplicationTabBarController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
@@ -166,12 +166,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (MetaFlixModel*) model {
     return appDelegate.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (MetaFlixController*) controller {
     return appDelegate.controller;
 }
 

@@ -17,6 +17,6 @@
 @interface RottenTomatoesScoreProvider : AbstractScoreProvider {
 }
 
-+ (RottenTomatoesScoreProvider*) providerWithModel:(NowPlayingModel*) model;
++ (RottenTomatoesScoreProvider*) providerWithModel:(MetaFlixModel*) model;
 
 @end

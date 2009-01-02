@@ -19,8 +19,8 @@
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "NetworkUtilities.h"
-#import "NowPlaying.pb.h"
-#import "NowPlayingModel.h"
+#import "MetaFlix.pb.h"
+#import "MetaFlixModel.h"
 #import "Score.h"
 #import "ScoreCache.h"
 #import "UserLocationCache.h"
@@ -35,7 +35,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(MetaFlixModel*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 
@@ -43,7 +43,7 @@
 }
 
 
-+ (GoogleScoreProvider*) providerWithModel:(NowPlayingModel*) model {
++ (GoogleScoreProvider*) providerWithModel:(MetaFlixModel*) model {
     return [[[GoogleScoreProvider alloc] initWithModel:model] autorelease];
 }
 

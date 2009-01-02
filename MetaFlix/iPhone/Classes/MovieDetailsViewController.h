@@ -54,6 +54,6 @@
 - (void) minorRefresh;
 - (void) majorRefresh;
 
-+ (UIImage*) posterForMovie:(Movie*) movie model:(NowPlayingModel*) model;
++ (UIImage*) posterForMovie:(Movie*) movie model:(MetaFlixModel*) model;
 
 @end

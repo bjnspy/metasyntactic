@@ -14,7 +14,7 @@
 
 @interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
 @private
-    NowPlayingAppDelegate* appDelegate;
+    MetaFlixAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
@@ -26,10 +26,10 @@
     NSDate* lastRefreshDate;
 }
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
++ (ApplicationTabBarController*) controllerWithAppDelegate:(MetaFlixAppDelegate*) appDelegate;
 
-- (NowPlayingModel*) model;
-- (NowPlayingController*) controller;
+- (MetaFlixModel*) model;
+- (MetaFlixController*) controller;
 
 - (void) majorRefresh;
 - (void) minorRefresh;

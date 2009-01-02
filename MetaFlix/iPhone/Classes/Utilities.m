@@ -16,7 +16,7 @@
 
 #import "DataProvider.h"
 #import "DateUtilities.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "Performance.h"
 #import "Theater.h"
 #import "XmlDocument.h"
@@ -178,7 +178,7 @@
 }
 
 
-+ (NSString*) generateShowtimeLinks:(NowPlayingModel*) model
++ (NSString*) generateShowtimeLinks:(MetaFlixModel*) model
                               movie:(Movie*) movie
                             theater:(Theater*) theater
                        performances:(NSArray*) performances {

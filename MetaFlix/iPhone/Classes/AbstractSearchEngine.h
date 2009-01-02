@@ -15,7 +15,7 @@
 @interface AbstractSearchEngine : NSObject {
 @protected
     // only accessed from the main thread.  needs no lock.
-    NowPlayingModel* model;
+    MetaFlixModel* model;
     id<SearchEngineDelegate> delegate;
 
     // accessed from both threads.  needs lock
@@ -33,7 +33,7 @@
 - (void) invalidateExistingRequests;
 
 /* @protected */
-- (id) initWithModel:(NowPlayingModel*) model
+- (id) initWithModel:(MetaFlixModel*) model
             delegate:(id<SearchEngineDelegate>) delegate;
 
 - (BOOL) abortEarly;

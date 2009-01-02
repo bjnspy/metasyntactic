@@ -14,7 +14,7 @@
 
 #import "AbstractNetflixCache.h"
 
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 
 @implementation AbstractNetflixCache
 
@@ -23,7 +23,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(MetaFlixModel*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 

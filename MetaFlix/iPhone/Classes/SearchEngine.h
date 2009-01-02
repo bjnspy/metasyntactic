@@ -18,6 +18,6 @@
 @private
 }
 
-+ (SearchEngine*) engineWithModel:(NowPlayingModel*) model delegate:(id<SearchEngineDelegate>) delegate;
++ (SearchEngine*) engineWithModel:(MetaFlixModel*) model delegate:(id<SearchEngineDelegate>) delegate;
 
 @end

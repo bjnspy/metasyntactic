@@ -19,7 +19,7 @@
     LinkedSet* prioritizedMovies;
 }
 
-+ (PosterCache*) cacheWithModel:(NowPlayingModel*) model;
++ (PosterCache*) cacheWithModel:(MetaFlixModel*) model;
 
 - (void) update:(NSArray*) movies;
 

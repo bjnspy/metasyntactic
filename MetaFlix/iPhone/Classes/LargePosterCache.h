@@ -20,7 +20,7 @@
     NSLock* yearToMovieMapGate;
 }
 
-+ (LargePosterCache*) cacheWithModel:(NowPlayingModel*) model;
++ (LargePosterCache*) cacheWithModel:(MetaFlixModel*) model;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

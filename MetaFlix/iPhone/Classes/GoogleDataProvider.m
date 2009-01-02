@@ -22,8 +22,8 @@
 #import "LookupResult.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "NowPlaying.pb.h"
-#import "NowPlayingModel.h"
+#import "MetaFlix.pb.h"
+#import "MetaFlixModel.h"
 #import "Performance.h"
 #import "Theater.h"
 #import "Utilities.h"
@@ -48,7 +48,7 @@
 }
 
 
-+ (GoogleDataProvider*) providerWithModel:(NowPlayingModel*) model {
++ (GoogleDataProvider*) providerWithModel:(MetaFlixModel*) model {
     return [[[GoogleDataProvider alloc] initWithModel:model] autorelease];
 }
 

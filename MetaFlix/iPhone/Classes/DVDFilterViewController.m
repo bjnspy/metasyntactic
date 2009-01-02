@@ -14,8 +14,8 @@
 
 #import "DVDFilterViewController.h"
 
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "SettingsNavigationController.h"
 
 @interface DVDFilterViewController()
@@ -44,12 +44,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (MetaFlixModel*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (MetaFlixController*) controller {
     return navigationController.controller;
 }
 
@@ -118,7 +118,7 @@
         [self setCheckmarkForCell:cell atRow:i];
     }
 
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [MetaFlixAppDelegate majorRefresh:YES];
 }
 
 @end

@@ -22,8 +22,8 @@
 #import "Location.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "Review.h"
 #import "Score.h"
 #import "ScoreCache.h"
@@ -84,7 +84,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(MetaFlixModel*) model_ {
     if (self = [super initWithModel:model_]) {
         self.providerDirectory = [[Application scoresDirectory] stringByAppendingPathComponent:self.providerName];
         self.reviewsDirectory = [[Application reviewsDirectory] stringByAppendingPathComponent:self.providerName];
@@ -249,7 +249,7 @@
     self.hashData = hash;
     self.movieMapData = nil;
     self.movies = nil;
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [MetaFlixAppDelegate majorRefresh:YES];
 
     [self updateReviews];
 }
@@ -314,7 +314,7 @@
     self.movieMapData = map;
     self.movies = localMovies;
 
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [MetaFlixAppDelegate majorRefresh:YES];
 }
 
 
@@ -478,7 +478,7 @@
     [reviews sortUsingSelector:@selector(compare:)];
     [self saveReviews:reviews hash:serverHash title:title];
 
-    [NowPlayingAppDelegate minorRefresh];
+    [MetaFlixAppDelegate minorRefresh];
 }
 
 

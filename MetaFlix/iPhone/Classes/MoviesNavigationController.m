@@ -16,7 +16,7 @@
 
 #import "AllMoviesViewController.h"
 #import "Movie.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 
 @interface MoviesNavigationController()
 @property (retain) AllMoviesViewController* allMoviesViewController;

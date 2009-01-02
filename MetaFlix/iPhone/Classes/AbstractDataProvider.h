@@ -16,7 +16,7 @@
 @private
     NSLock* gate;
 
-    NowPlayingModel* model;
+    MetaFlixModel* model;
     NSArray* moviesData;
     NSArray* theatersData;
     NSDictionary* synchronizationInformationData;
@@ -25,9 +25,9 @@
     NSMutableDictionary* performancesData;
 }
 
-@property (readonly, retain) NowPlayingModel* model;
+@property (readonly, retain) MetaFlixModel* model;
 
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(MetaFlixModel*) model;
 
 - (NSArray*) movies;
 - (NSArray*) theaters;

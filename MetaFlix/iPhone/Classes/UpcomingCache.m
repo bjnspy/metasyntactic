@@ -24,8 +24,8 @@
 #import "Movie.h"
 #import "NetflixCache.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "WikipediaCache.h"
@@ -62,7 +62,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(MetaFlixModel*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
@@ -71,7 +71,7 @@
 }
 
 
-+ (UpcomingCache*) cacheWithModel:(NowPlayingModel*) model {
++ (UpcomingCache*) cacheWithModel:(MetaFlixModel*) model {
     return [[[UpcomingCache alloc] initWithModel:model] autorelease];
 }
 
@@ -423,7 +423,7 @@
     self.titleKeysData = [arguments objectAtIndex:3];
 
     [self updateDetails];
-    [NowPlayingAppDelegate majorRefresh];
+    [MetaFlixAppDelegate majorRefresh];
 }
 
 
@@ -497,7 +497,7 @@
     [FileUtilities writeObject:synopsis toFile:synopsisFile];
     [FileUtilities writeObject:cast toFile:[self castFile:movie]];
 
-    [NowPlayingAppDelegate minorRefresh];
+    [MetaFlixAppDelegate minorRefresh];
 }
 
 
@@ -528,7 +528,7 @@
     }
 
     [FileUtilities writeObject:final toFile:trailersFile];
-    [NowPlayingAppDelegate minorRefresh];
+    [MetaFlixAppDelegate minorRefresh];
 }
 
 

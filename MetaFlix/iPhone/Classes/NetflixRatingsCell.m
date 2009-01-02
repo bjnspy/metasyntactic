@@ -17,7 +17,7 @@
 #import "AlertUtilities.h"
 #import "ImageCache.h"
 #import "MutableNetflixCache.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "Movie.h"
 #import "TappableImageView.h"
 
@@ -122,7 +122,7 @@
 
 
 - (id) initWithFrame:(CGRect) frame
-               model:(NowPlayingModel*) model_
+               model:(MetaFlixModel*) model_
                movie:(Movie*) movie_ {
     if (self = [super initWithFrame:frame
                               model:model_

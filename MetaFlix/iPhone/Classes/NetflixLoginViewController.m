@@ -17,7 +17,7 @@
 #import "AlertUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixNavigationController.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "ThreadingUtilities.h"
 
 @interface NetflixLoginViewController()
@@ -59,12 +59,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (MetaFlixModel*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (MetaFlixController*) controller {
     return navigationController.controller;
 }
 
@@ -78,9 +78,9 @@
     self.messageLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text =
-    NSLocalizedString(@"Now Playing needs permission from both you and Netflix to "
+    NSLocalizedString(@"MetaFlix needs permission from both you and Netflix to "
                       "access your account. To protect your security, you will not "
-                      "be providing your Netflix username and password to Now Playing. "
+                      "be providing your Netflix username and password to MetaFlix. "
                       "Instead, tapping the button below will allow you to login to Netflix "
                       "and grant access directly.", nil);
 
@@ -236,7 +236,7 @@
 
 - (void) onContinueTapped:(id) sender {
     NSString* accessUrl =
-    [NSString stringWithFormat:@"https://api-user.netflix.com/oauth/login?oauth_token=%@&oauth_consumer_key=83k9wpqt34hcka5bfb2kkf8s&application_name=NowPlaying&oauth_callback=nowplaying://popviewcontroller",
+    [NSString stringWithFormat:@"https://api-user.netflix.com/oauth/login?oauth_token=%@&oauth_consumer_key=83k9wpqt34hcka5bfb2kkf8s&application_name=MetaFlix&oauth_callback=nowplaying://popviewcontroller",
      authorizationToken.key];
 
     [navigationController pushBrowser:accessUrl showSafariButton:NO animated:YES];
@@ -306,7 +306,7 @@
     [button removeFromSuperview];
     statusLabel.text = @"";
     messageLabel.text =
-    NSLocalizedString(@"Success! Now Playing was granted access to your Netflix "
+    NSLocalizedString(@"Success! MetaFlix was granted access to your Netflix "
                       "account. You will now be able to add movies to your queue, "
                       "see what's new and what's recommended for you, and much more!", nil);
 

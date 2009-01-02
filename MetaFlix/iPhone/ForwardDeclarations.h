@@ -85,9 +85,9 @@
 @class NetworkUtilities;
 @class NonClippingView;
 @class NoneScoreProvider;
-@class NowPlayingAppDelegate;
-@class NowPlayingController;
-@class NowPlayingModel;
+@class MetaFlixAppDelegate;
+@class MetaFlixController;
+@class MetaFlixModel;
 @class Performance;
 @class PickerEditorViewController;
 @class PointerSet;

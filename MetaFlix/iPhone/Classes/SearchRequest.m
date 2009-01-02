@@ -16,7 +16,7 @@
 
 #import "BlurayCache.h"
 #import "DVDCache.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
 
@@ -59,7 +59,7 @@
 
 - (id) initWithId:(NSInteger) requestId_
             value:(NSString*) value_
-            model:(NowPlayingModel*) model {
+            model:(MetaFlixModel*) model {
     if (self = [super init]) {
         self.requestId = requestId_;
         self.value = value_;
@@ -78,7 +78,7 @@
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
                            value:(NSString*) value
-                           model:(NowPlayingModel*) model{
+                           model:(MetaFlixModel*) model{
     return [[[SearchRequest alloc] initWithId:requestId value:value model:model] autorelease];
 }
 

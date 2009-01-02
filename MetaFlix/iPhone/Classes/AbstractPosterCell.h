@@ -21,7 +21,7 @@ typedef enum {
 
 @interface AbstractPosterCell : UITableViewCell {
 @protected
-    NowPlayingModel* model;
+    MetaFlixModel* model;
     Movie* movie;
 
     ImageState state;
@@ -38,7 +38,7 @@ typedef enum {
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(NowPlayingModel*) model_;
+               model:(MetaFlixModel*) model_;
 
 - (void) loadImage;
 - (void) clearImage;

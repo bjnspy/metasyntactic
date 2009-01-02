@@ -21,7 +21,7 @@
 
 - (void) majorRefresh;
 
-- (NowPlayingModel*) model;
-- (NowPlayingController*) controller;
+- (MetaFlixModel*) model;
+- (MetaFlixController*) controller;
 
 @end

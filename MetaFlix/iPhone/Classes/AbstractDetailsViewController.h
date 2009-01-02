@@ -22,8 +22,8 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
-- (NowPlayingModel*) model;
-- (NowPlayingController*) controller;
+- (MetaFlixModel*) model;
+- (MetaFlixController*) controller;
 
 // @protected
 - (void) changeDate;

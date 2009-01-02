@@ -16,7 +16,7 @@
 
 #import "Application.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "Score.h"
 #import "XmlElement.h"
 
@@ -27,7 +27,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(MetaFlixModel*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 
@@ -35,7 +35,7 @@
 }
 
 
-+ (RottenTomatoesScoreProvider*) providerWithModel:(NowPlayingModel*) model {
++ (RottenTomatoesScoreProvider*) providerWithModel:(MetaFlixModel*) model {
     return [[[RottenTomatoesScoreProvider alloc] initWithModel:model] autorelease];
 }
 

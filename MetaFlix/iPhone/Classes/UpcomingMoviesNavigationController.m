@@ -15,7 +15,7 @@
 #import "UpcomingMoviesNavigationController.h"
 
 #import "Movie.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 

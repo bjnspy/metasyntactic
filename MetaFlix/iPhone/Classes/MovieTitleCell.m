@@ -19,10 +19,10 @@
 #import "FontCache.h"
 #import "ImageCache.h"
 #import "Movie.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 
 @interface MovieTitleCell()
-@property (retain) NowPlayingModel* model;
+@property (retain) MetaFlixModel* model;
 @property (retain) UILabel* scoreLabel;
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* ratingLabel;
@@ -48,7 +48,7 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(NowPlayingModel*) model_
+               model:(MetaFlixModel*) model_
                style:(UITableViewStyle) style_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
