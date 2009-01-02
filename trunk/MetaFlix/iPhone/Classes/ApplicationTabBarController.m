@@ -33,7 +33,6 @@
 @property (retain) DVDNavigationController* dvdNavigationController;
 @property (retain) NetflixNavigationController* netflixNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
-@property (retain) NSDate* lastRefreshDate;
 @end
 
 
@@ -47,7 +46,6 @@
 @synthesize netflixNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
-@synthesize lastRefreshDate;
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
@@ -58,7 +56,6 @@
     self.netflixNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
-    self.lastRefreshDate = nil;
 
     [super dealloc];
 }
@@ -130,7 +127,6 @@
 - (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDel {
     if (self = [super init]) {
         self.appDelegate = appDel;
-        self.lastRefreshDate = nil;
 
         [self resetTabs:NO];
 
