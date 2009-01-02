@@ -927,7 +927,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
     if ([LocaleUtilities isJapanese]) {
         subject = [Utilities stringByAddingPercentEscapes:@"MetaFlixのフィードバック"];
     } else {
-        subject = @"Now%20Playing%20Feedback";
+        subject = @"MetaFlix%20Feedback";
     }
 
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];

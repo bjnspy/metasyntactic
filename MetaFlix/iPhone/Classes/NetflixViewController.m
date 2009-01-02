@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "AutoResizingCell.h"
 #import "ColorCache.h"
+#import "CreditsViewController.h"
 #import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
@@ -45,6 +46,7 @@ typedef enum {
     RecommendationsSection,
     AtHomeSection,
     RentalHistorySection,
+    AboutSendFeedbackSection,
     LogOutSection,
     OverQuotaSection,
 } Sections;
@@ -63,7 +65,7 @@ typedef enum {
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
-        self.title = NSLocalizedString(@"Netflix", nil);
+        self.title = NSLocalizedString(@"MetaFlix", nil);
 
         self.tableView.rowHeight = ROW_HEIGHT;
     }
@@ -161,6 +163,8 @@ typedef enum {
         } else if (row == RentalHistorySection) {
             cell.text = NSLocalizedString(@"Rental History", nil);
             cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
+        } else if (row == AboutSendFeedbackSection) {
+            cell.text = NSLocalizedString(@"About / Send Feedback", nil);        
         } else if (row == LogOutSection) {
             cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
@@ -261,6 +265,12 @@ typedef enum {
 }
 
 
+- (void) didSelectAboutSendFeedbackRow {
+    CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
+    [navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
     if (row == SearchSection) {
         [self didSelectSearchRow];
@@ -274,6 +284,8 @@ typedef enum {
         [self didSelectQueueRow:[NetflixCache atHomeKey]];
     } else if (row == RentalHistorySection) {
         [self didSelectRentalHistoryRow];
+    } else if (row == AboutSendFeedbackSection) {
+        [self didSelectAboutSendFeedbackRow];
     } else if (row == LogOutSection) {
         [self didSelectLogoutRow];
     }
