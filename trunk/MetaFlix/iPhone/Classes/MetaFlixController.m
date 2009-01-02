@@ -26,21 +26,15 @@
 
 @interface MetaFlixController()
 @property (assign) MetaFlixAppDelegate* appDelegate;
-@property (retain) NSLock* determineLocationLock;
-@property (retain) LocationManager* locationManager;
 @end
 
 
 @implementation MetaFlixController
 
 @synthesize appDelegate;
-@synthesize determineLocationLock;
-@synthesize locationManager;
 
 - (void) dealloc {
     self.appDelegate = nil;
-    self.determineLocationLock = nil;
-    self.locationManager = nil;
 
     [super dealloc];
 }
@@ -54,7 +48,6 @@
 - (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
-        self.determineLocationLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;
@@ -66,61 +59,15 @@
 }
 
 
-- (BOOL) tooSoon:(NSDate*) lastDate {
-    if (lastDate == nil) {
-        return NO;
-    }
-
-    NSDate* now = [NSDate date];
-
-    if (![DateUtilities isSameDay:now date:lastDate]) {
-        // different days. we definitely need to refresh
-        return NO;
-    }
-
-    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
-    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-
-    // same day, check if they're at least 8 hours apart.
-    if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
-        return NO;
-    }
-
-    // it's been less than 8 hours. it's too soon to refresh
-    return YES;
-}
-
-
-- (void) spawnDetermineLocationThread {
-    NSAssert([NSThread isMainThread], nil);
-    [ThreadingUtilities backgroundSelector:@selector(determineLocationBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:determineLocationLock
-                                   visible:YES];
-}
-
-
 - (void) spawnNetflixThread {
     NSAssert([NSThread isMainThread], nil);
     [self.model.netflixCache update];
 }
 
 
-- (void) spawnUpdateRemainderThreads {
-    NSAssert([NSThread isMainThread], nil);
-    [self spawnNetflixThread];
-}
-
-
-- (void) onDataProviderUpdateComplete {
-    NSAssert([NSThread isMainThread], nil);
-    [self spawnUpdateRemainderThreads];
-}
-
-
 - (void) start {
     NSAssert([NSThread isMainThread], nil);
-    [self spawnDetermineLocationThread];
+    [self spawnNetflixThread];
 }
 
 

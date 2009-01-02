@@ -15,12 +15,7 @@
 @interface MetaFlixController : NSObject {
 @private
     MetaFlixAppDelegate* appDelegate;
-    LocationManager* locationManager;
-
-    NSLock* determineLocationLock;
 }
-
-@property (readonly, retain) LocationManager* locationManager;
 
 - (void) start;
 
