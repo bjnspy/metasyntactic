@@ -677,6 +677,7 @@
 		74C2AED70F0DF33600EFAF74 /* MetaFlixModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaFlixModel.m; path = Classes/MetaFlixModel.m; sourceTree = "<group>"; };
 		74C2AEDA0F0DF37800EFAF74 /* MetaFlixController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaFlixController.h; path = Classes/MetaFlixController.h; sourceTree = "<group>"; };
 		74C2AEDB0F0DF37800EFAF74 /* MetaFlixController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaFlixController.m; path = Classes/MetaFlixController.m; sourceTree = "<group>"; };
+		74C2AEE40F0DF3B700EFAF74 /* MetaFlix_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaFlix_Prefix.pch; sourceTree = "<group>"; };
 		74C571F40EA11E2F009A9432 /* AbstractFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFieldAccessor.h; sourceTree = "<group>"; };
 		74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFieldAccessor.m; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
@@ -964,6 +965,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				74C2AEE40F0DF3B700EFAF74 /* MetaFlix_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */,
 				74A3F11D0E687D26007ED6DC /* Macros.h */,
@@ -1791,7 +1793,7 @@
 			dependencies = (
 			);
 			name = MetaFlix;
-			productName = BoxOffice;
+			productName = MetaFlix;
 			productReference = 1D6058910D05DD3D006BFB54 /* MetaFlix.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -2211,9 +2213,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
+				GCC_PREFIX_HEADER = MetaFlix_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice;
+				PRODUCT_NAME = MetaFlix;
 			};
 			name = Debug;
 		};
@@ -2226,9 +2228,9 @@
 					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
+				GCC_PREFIX_HEADER = MetaFlix_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice;
+				PRODUCT_NAME = MetaFlix;
 			};
 			name = Release;
 		};
@@ -2271,9 +2273,9 @@
 					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
+				GCC_PREFIX_HEADER = MetaFlix_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice;
+				PRODUCT_NAME = MetaFlix;
 			};
 			name = AdHoc;
 		};
@@ -2313,9 +2315,9 @@
 					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = NowPlaying_Prefix.pch;
+				GCC_PREFIX_HEADER = MetaFlix_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = BoxOffice;
+				PRODUCT_NAME = MetaFlix;
 			};
 			name = Distribution;
 		};
