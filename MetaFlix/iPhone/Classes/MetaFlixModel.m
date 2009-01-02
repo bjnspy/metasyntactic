@@ -73,7 +73,7 @@
 
 @implementation MetaFlixModel
 
-static NSString* currentVersion = @"2.6.0";
+static NSString* currentVersion = @"1.0.0";
 static NSString* persistenceVersion = @"101";
 
 static NSString* VERSION = @"version";

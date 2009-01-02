@@ -22,8 +22,6 @@
     DVDNavigationController* dvdNavigationController;
     NetflixNavigationController* netflixNavigationController;
     SettingsNavigationController* settingsNavigationController;
-
-    NSDate* lastRefreshDate;
 }
 
 + (ApplicationTabBarController*) controllerWithAppDelegate:(MetaFlixAppDelegate*) appDelegate;
