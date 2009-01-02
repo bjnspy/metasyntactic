@@ -20,7 +20,6 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
-#import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "IMDbCache.h"
