@@ -14,8 +14,7 @@
 
 @interface AbstractNavigationController : UINavigationController {
 @private
-    ApplicationTabBarController* tabBarController;
-    SearchViewController* searchViewController;
+    MetaFlixAppDelegate* appDelegate;
     PostersViewController* postersViewController;
     BOOL viewLoaded;
 
@@ -23,10 +22,10 @@
     BOOL visible;
 }
 
-@property (readonly, assign) ApplicationTabBarController* tabBarController;
+@property (readonly, assign) MetaFlixAppDelegate* appDelegate;
 @property (readonly) BOOL visible;
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
+- (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDelegate;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
@@ -34,26 +33,11 @@
 - (MetaFlixModel*) model;
 - (MetaFlixController*) controller;
 
-- (void) pushTicketsView:(Movie*) movie
-                 theater:(Theater*) theater
-                   title:(NSString*) title
-                animated:(BOOL) animated;
-
-- (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated;
 - (void) pushMovieDetails:(Movie*) movie animated:(BOOL) animated;
-- (void) pushReviews:(Movie*) movie animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated;
 
-- (void) navigateToLastViewedPage;
-
-- (void) showSearchView;
-- (void) hideSearchView;
-
 - (void) showPostersView:(Movie*) movie posterCount:(NSInteger) posterCount;
 - (void) hidePostersView;
-
-// @protected
-- (Movie*) movieForTitle:(NSString*) canonicalTitle;
 
 @end

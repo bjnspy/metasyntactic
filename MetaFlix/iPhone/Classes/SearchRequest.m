@@ -14,10 +14,7 @@
 
 #import "SearchRequest.h"
 
-#import "BlurayCache.h"
-#import "DVDCache.h"
 #import "MetaFlixModel.h"
-#import "UpcomingCache.h"
 #import "Utilities.h"
 
 @interface SearchRequest()
@@ -27,8 +24,6 @@
 @property (retain) NSArray* movies;
 @property (retain) NSArray* theaters;
 @property (retain) NSArray* upcomingMovies;
-@property (retain) NSArray* dvds;
-@property (retain) NSArray* bluray;
 @end
 
 
@@ -40,8 +35,6 @@
 @synthesize movies;
 @synthesize theaters;
 @synthesize upcomingMovies;
-@synthesize dvds;
-@synthesize bluray;
 
 - (void) dealloc {
     self.requestId = 0;
@@ -50,8 +43,6 @@
     self.movies = nil;
     self.theaters = nil;
     self.upcomingMovies = nil;
-    self.dvds = nil;
-    self.bluray = nil;
 
     [super dealloc];
 }
@@ -66,8 +57,6 @@
         self.movies = model.movies;
         self.theaters = model.theaters;
         self.upcomingMovies = model.upcomingCache.movies;
-        self.dvds = model.dvdCache.movies;
-        self.bluray = model.blurayCache.movies;
 
         self.lowercaseValue = [[Utilities asciiString:value] lowercaseString];
     }

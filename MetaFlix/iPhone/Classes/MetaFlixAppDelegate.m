@@ -14,16 +14,16 @@
 
 #import "MetaFlixAppDelegate.h"
 
-#import "ApplicationTabBarController.h"
 #import "LocationManager.h"
 #import "MetaFlixController.h"
 #import "MetaFlixModel.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
+#import "NetflixNavigationController.h"
 
 @interface MetaFlixAppDelegate()
 @property (nonatomic, retain) UIWindow* window;
-@property (retain) ApplicationTabBarController* tabBarController;
+@property (retain) NetflixNavigationController* navigationController;
 @property (retain) MetaFlixController* controller;
 @property (retain) MetaFlixModel* model;
 @property (retain) Pulser* majorRefreshPulser;
@@ -36,7 +36,7 @@
 static MetaFlixAppDelegate* appDelegate = nil;
 
 @synthesize window;
-@synthesize tabBarController;
+@synthesize navigationController;
 @synthesize controller;
 @synthesize model;
 @synthesize majorRefreshPulser;
@@ -44,7 +44,7 @@ static MetaFlixAppDelegate* appDelegate = nil;
 
 - (void) dealloc {
     self.window = nil;
-    self.tabBarController = nil;
+    self.navigationController = nil;
     self.controller = nil;
     self.model = nil;
     self.majorRefreshPulser = nil;
@@ -65,11 +65,11 @@ static MetaFlixAppDelegate* appDelegate = nil;
     self.model = [MetaFlixModel model];
     self.controller = [MetaFlixController controllerWithAppDelegate:self];
 
-    self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
-    self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
-    self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
+    self.navigationController = [NetflixNavigationController controllerWithAppDelegate:self];
+    self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
+    self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
 
-    [window addSubview:tabBarController.view];
+    [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 
     [controller start];

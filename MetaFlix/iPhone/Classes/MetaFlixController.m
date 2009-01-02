@@ -15,7 +15,6 @@
 #import "MetaFlixController.h"
 
 #import "Application.h"
-#import "ApplicationTabBarController.h"
 #import "AlertUtilities.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
@@ -202,35 +201,6 @@
 }
 
 
-- (void) setSearchDate:(NSDate*) searchDate {
-    if ([DateUtilities isSameDay:searchDate date:self.model.searchDate]) {
-        return;
-    }
-
-    [appDelegate.tabBarController popNavigationControllersToRoot];
-    [self.model setSearchDate:searchDate];
-
-    [self markDataProviderOutOfDate];
-    [self spawnDataProviderLookupThread];
-}
-
-
-- (void) setUserAddress:(NSString*) userAddress {
-    if ([userAddress isEqual:self.model.userAddress]) {
-        return;
-    }
-
-    [appDelegate.tabBarController popNavigationControllersToRoot];
-    [self.model setUserAddress:userAddress];
-
-    [self markDataProviderOutOfDate];
-    [self spawnDetermineLocationThread];
-
-    // Force a refresh so the UI displays this new address.
-    [MetaFlixAppDelegate majorRefresh:YES];
-}
-
-
 - (void) setSearchRadius:(NSInteger) radius {
     [self.model setSearchRadius:radius];
 }
@@ -248,15 +218,6 @@
 - (void) setAutoUpdateLocation:(BOOL) value {
     [self.model setAutoUpdateLocation:value];
     [locationManager autoUpdateLocation];
-}
-
-
-- (void) setNetflixEnabled:(BOOL) value {
-    [self.model setNetflixEnabled:value];
-    [appDelegate.tabBarController resetTabs:YES];
-    [Application resetNetflixDirectories];
-    [MetaFlixAppDelegate majorRefresh:YES];
-    [self spawnNetflixThread];
 }
 
 

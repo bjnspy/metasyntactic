@@ -14,21 +14,15 @@
 
 #import "AbstractNavigationController.h"
 
-#import "ApplicationTabBarController.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
+#import "MetaFlixAppDelegate.h"
 #import "MetaFlixModel.h"
 #import "PostersViewController.h"
-#import "ReviewsViewController.h"
-#import "SearchViewController.h"
-#import "Theater.h"
-#import "TheaterDetailsViewController.h"
-#import "TicketsViewController.h"
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
-@property (assign) ApplicationTabBarController* tabBarController;
-@property (retain) SearchViewController* searchViewController;
+@property (assign) MetaFlixAppDelegate* appDelegate;
 @property (retain) PostersViewController* postersViewController;
 @property BOOL visible;
 @end
@@ -36,23 +30,21 @@
 
 @implementation AbstractNavigationController
 
-@synthesize tabBarController;
-@synthesize searchViewController;
+@synthesize appDelegate;
 @synthesize postersViewController;
 @synthesize visible;
 
 - (void) dealloc {
-    self.tabBarController = nil;
-    self.searchViewController = nil;
+    self.appDelegate = nil;
     self.postersViewController = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
+- (id) initWithTabBarController:(MetaFlixAppDelegate*) appDelegate_ {
     if (self = [super init]) {
-        self.tabBarController = controller;
+        self.appDelegate = appDelegate_;
     }
 
     return self;
@@ -111,12 +103,12 @@
 
 
 - (MetaFlixModel*) model {
-    return tabBarController.model;
+    return appDelegate.model;
 }
 
 
 - (MetaFlixController*) controller {
-    return tabBarController.controller;
+    return appDelegate.controller;
 }
 
 
@@ -128,53 +120,6 @@
     }
 
     return nil;
-}
-
-
-- (Theater*) theaterForName:(NSString*) name {
-    for (Theater* theater in self.model.theaters) {
-        if ([theater.name isEqual:name]) {
-            return theater;
-        }
-    }
-
-    return nil;
-}
-
-
-- (void) navigateToLastViewedPage {
-    NSArray* types = self.model.navigationStackTypes;
-    NSArray* values = self.model.navigationStackValues;
-
-    for (int i = 0; i < types.count; i++) {
-        NSInteger type = [[types objectAtIndex:i] intValue];
-        id value = [values objectAtIndex:i];
-
-        if (type == MovieDetails) {
-            Movie* movie = [self movieForTitle:value];
-            [self pushMovieDetails:movie animated:NO];
-        } else if (type == TheaterDetails) {
-            Theater* theater = [self theaterForName:value];
-            [self pushTheaterDetails:theater animated:NO];
-        } else if (type == Reviews) {
-            Movie* movie = [self movieForTitle:value];
-            [self pushReviews:movie animated:NO];
-        } else if (type == Tickets) {
-            Movie* movie = [self movieForTitle:[value objectAtIndex:0]];
-            Theater* theater = [self theaterForName:[value objectAtIndex:1]];
-            NSString* title = [value objectAtIndex:2];
-
-            [self pushTicketsView:movie theater:theater title:title animated:NO];
-        }
-    }
-}
-
-
-- (void) pushReviews:(Movie*) movie animated:(BOOL) animated {
-    ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
-                                                                                               movie:movie] autorelease];
-
-    [self pushViewController:controller animated:animated];
 }
 
 
@@ -191,53 +136,8 @@
 }
 
 
-- (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
-    if (theater == nil) {
-        return;
-    }
-
-    UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self
-                                                                                                   theater:theater] autorelease];
-
-    [self pushViewController:viewController animated:animated];
-}
-
-
-- (void) pushTicketsView:(Movie*) movie
-                 theater:(Theater*) theater
-                   title:(NSString*) title
-                animated:(BOOL) animated {
-    if (movie == nil || theater == nil) {
-        return;
-    }
-
-    UIViewController* viewController = [[[TicketsViewController alloc] initWithController:self
-                                                                                  theater:theater
-                                                                                    movie:movie
-                                                                                    title:title] autorelease];
-
-    [self pushViewController:viewController animated:animated];
-}
-
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return postersViewController == nil;
-}
-
-
-- (void) showSearchView {
-    if (searchViewController == nil) {
-        self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
-    }
-
-    [self presentModalViewController:searchViewController animated:YES];
-    [searchViewController onShow];
-}
-
-
-- (void) hideSearchView {
-    [searchViewController onHide];
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 
