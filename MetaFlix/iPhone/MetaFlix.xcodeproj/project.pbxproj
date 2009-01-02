@@ -143,6 +143,9 @@
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
+		74DD8A960F0ECFDD009DC326 /* NetflixCellBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */; };
+		74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */; };
+		74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */; };
 		74E0300F0EF4A7E900B2D2BA /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E0300E0EF4A7E900B2D2BA /* Base64.m */; };
 		74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
 		74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */; };
@@ -490,6 +493,9 @@
 		74D6F2B60DCC144D0097A984 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		74D6F2BC0DCC176D0097A984 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
 		74D6F2BD0DCC176D0097A984 /* XmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlElement.m; sourceTree = "<group>"; };
+		74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-9.png"; path = "Resources/NetflixCellBackground-9.png"; sourceTree = "<group>"; };
+		74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-9.png"; path = "Resources/NetflixCellSelectedBackground-9.png"; sourceTree = "<group>"; };
+		74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixSettings.png; path = Resources/NetflixSettings.png; sourceTree = "<group>"; };
 		74E0300D0EF4A7E900B2D2BA /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		74E0300E0EF4A7E900B2D2BA /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNavigationController.h; sourceTree = "<group>"; };
@@ -925,6 +931,9 @@
 		7471E1FF0EFA0D67000490CA /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
+				74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */,
+				74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */,
+				74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */,
 				741648DB0EFC5D15000EC7B5 /* ClearRating.png */,
 				74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */,
 				74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */,
@@ -1340,6 +1349,9 @@
 				74EB9C260EFA3ED80083DC33 /* RedStar-0.8.png in Resources */,
 				74EB9C270EFA3ED80083DC33 /* RedStar-1.0.png in Resources */,
 				741648DC0EFC5D15000EC7B5 /* ClearRating.png in Resources */,
+				74DD8A960F0ECFDD009DC326 /* NetflixCellBackground-9.png in Resources */,
+				74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */,
+				74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
