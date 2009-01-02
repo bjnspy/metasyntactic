@@ -87,7 +87,7 @@ BOOL isHex(unichar c) {
     }
 
     // from the man pages:
-    // (Thus, if *str is not `\0' but **endptr is `\0' on return, the entire
+    // (Thus, i* tr is not `\0' but **endptr is `\0' on return, the entire
     // string was valid.)
     if (*in_string == 0 || *out_string != 0) {
         @throw [NSException exceptionWithName:@"NumberFormat" reason:@"IllegalNumber" userInfo:nil];

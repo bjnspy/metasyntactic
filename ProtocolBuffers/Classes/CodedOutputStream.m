@@ -654,7 +654,7 @@ int32_t computeFieldSize(PBFieldDescriptorType type,
             position = length;
         } else {
             // Write is very big.  Let's do it all at once.
-            [output write:((uint8_t*)value.bytes) + offset maxLength:length];
+            [output write:((uint8_t*) value.bytes) + offset maxLength:length];
         }
     }
 }
@@ -708,10 +708,10 @@ int32_t computeRawVarint32Size(int32_t value) {
 - (void) writeRawVarint64:(int64_t) value{
     while (YES) {
         if ((value & ~0x7FL) == 0) {
-            [self writeRawByte:((int32_t)value)];
+            [self writeRawByte:((int32_t) value)];
             return;
         } else {
-            [self writeRawByte:(((int32_t)value & 0x7F) | 0x80)];
+            [self writeRawByte:(((int32_t) value & 0x7F) | 0x80)];
             value = logicalRightShift64(value, 7);
         }
     }
