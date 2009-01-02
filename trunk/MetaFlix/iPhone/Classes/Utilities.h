@@ -41,11 +41,6 @@
 
 + (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
-+ (NSString*) generateShowtimeLinks:(MetaFlixModel*) model
-                              movie:(Movie*) movie
-                            theater:(Theater*) theater
-                       performances:(NSArray*) performances;
-
 + (NSString*) stripHtmlCodes:(NSString*) string;
 + (NSString*) asciiString:(NSString*) string;
 + (NSString*) stringFromUnichar:(unichar) c;

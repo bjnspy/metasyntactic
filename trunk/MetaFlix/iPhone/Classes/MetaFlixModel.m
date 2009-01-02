@@ -25,7 +25,6 @@
 #import "IMDbCache.h"
 #import "LargePosterCache.h"
 #import "LocaleUtilities.h"
-#import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "MutableNetflixCache.h"

@@ -23,7 +23,6 @@
 #import "ImdbPosterDownloader.h"
 #import "LargePosterCache.h"
 #import "LinkedSet.h"
-#import "Location.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "MetaFlixAppDelegate.h"

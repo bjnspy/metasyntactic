@@ -14,7 +14,6 @@
 
 #import "SearchEngine.h"
 
-#import "Location.h"
 #import "Movie.h"
 #import "MetaFlixModel.h"
 #import "SearchRequest.h"
