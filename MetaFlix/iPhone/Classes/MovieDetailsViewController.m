@@ -28,7 +28,6 @@
 #import "LargePosterCache.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
-#import "MovieShowtimesCell.h"
 #import "MutableNetflixCache.h"
 #import "NetflixRatingsCell.h"
 #import "MetaFlixAppDelegate.h"
