@@ -14,11 +14,9 @@
 
 #import "Utilities.h"
 
-#import "DataProvider.h"
 #import "DateUtilities.h"
 #import "MetaFlixModel.h"
 #import "Performance.h"
-#import "Theater.h"
 #import "XmlDocument.h"
 #import "XmlElement.h"
 #import "XmlParser.h"

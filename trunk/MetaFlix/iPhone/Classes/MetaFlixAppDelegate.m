@@ -65,7 +65,7 @@ static MetaFlixAppDelegate* appDelegate = nil;
     self.model = [MetaFlixModel model];
     self.controller = [MetaFlixController controllerWithAppDelegate:self];
 
-    self.navigationController = [NetflixNavigationController controllerWithAppDelegate:self];
+    self.navigationController = [[[NetflixNavigationController alloc] initWithAppDelegate:self] autorelease];
     self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
 

@@ -23,7 +23,6 @@
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
-#import "GoogleDataProvider.h"
 #import "IMDbCache.h"
 #import "LargePosterCache.h"
 #import "LocaleUtilities.h"
@@ -164,37 +163,26 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 @synthesize dataProvider;
 @synthesize bookmarkedTitlesData;
-@synthesize favoriteTheatersData;
 
 @synthesize userLocationCache;
-@synthesize blurayCache;
-@synthesize dvdCache;
 @synthesize imdbCache;
 @synthesize amazonCache;
 @synthesize wikipediaCache;
 @synthesize posterCache;
 @synthesize largePosterCache;
-@synthesize scoreCache;
 @synthesize trailerCache;
-@synthesize upcomingCache;
 @synthesize netflixCache;
 
 - (void) dealloc {
-    self.dataProvider = nil;
     self.bookmarkedTitlesData = nil;
-    self.favoriteTheatersData = nil;
 
     self.userLocationCache = nil;
-    self.blurayCache = nil;
-    self.dvdCache = nil;
     self.imdbCache = nil;
     self.amazonCache = nil;
     self.wikipediaCache = nil;
     self.posterCache = nil;
     self.largePosterCache = nil;
-    self.scoreCache = nil;
     self.trailerCache = nil;
-    self.upcomingCache = nil;
     self.netflixCache = nil;
 
     [super dealloc];
@@ -204,53 +192,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 + (NSString*) version {
     return currentVersion;
 }
-
-
-- (void) updateScoreCache {
-    [scoreCache update];
-}
-
-
-- (void) updateNetflixCache {
-    [netflixCache lookupNetflixMoviesForLocalMovies:self.movies];
-}
-
-
-- (void) updateDVDCache {
-    [dvdCache update];
-    [blurayCache update];
-}
-
-
-- (void) updateUpcomingCache {
-    [upcomingCache update];
-}
-
-
-- (void) updateIMDbCache {
-    [imdbCache update:self.movies];
-}
-
-
-- (void) updateAmazonCache {
-    [amazonCache update:self.movies];
-}
-
-
-- (void) updateWikipediaCache {
-    [wikipediaCache update:self.movies];
-}
-
-
-- (void) updatePosterCache {
-    [posterCache update:self.movies];
-}
-
-
-- (void) updateTrailerCache {
-    [trailerCache update:self.movies];
-}
-
 
 + (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
     NSMutableArray* result = [NSMutableArray array];
@@ -443,44 +384,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-- (void) updateCaches:(NSNumber*) number {
-    int value = number.intValue;
-
-    SEL selectors[] = {
-        @selector(updateScoreCache),
-        @selector(updatePosterCache),
-        @selector(updateTrailerCache),
-        @selector(updateIMDbCache),
-        @selector(updateAmazonCache),
-        @selector(updateWikipediaCache),
-        @selector(updateUpcomingCache),
-        @selector(updateDVDCache),
-        @selector(updateNetflixCache),
-    };
-
-    if (value >= ArrayLength(selectors)) {
-        return;
-    }
-
-    [self performSelector:selectors[value]];
-    [self performSelector:@selector(updateCaches:)
-               withObject:[NSNumber numberWithInt:value + 1]
-               afterDelay:1];
-}
-
-
-- (void) update {
-    [self updateCaches:[NSNumber numberWithInt:0]];
-}
-
-
 + (MetaFlixModel*) model {
     return [[[MetaFlixModel alloc] init] autorelease];
-}
-
-
-- (id<DataProvider>) dataProvider {
-    return dataProvider;
 }
 
 
@@ -517,63 +422,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     [[NSUserDefaults standardUserDefaults] setObject:userId forKey:NETFLIX_USER_ID];
     [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];
     [[NSUserDefaults standardUserDefaults] setObject:key forKey:NETFLIX_KEY];
-}
-
-
-- (NSInteger) scoreProviderIndexWorker {
-    NSNumber* result = [[NSUserDefaults standardUserDefaults] objectForKey:SCORE_PROVIDER_INDEX];
-    if (result != nil) {
-        return [result intValue];
-    }
-
-    // by default, chose 'rottentomatoes' if they're an english speaking
-    // country.  otherwise, choose 'google'.
-    if ([LocaleUtilities isEnglish]) {
-        [self setScoreProviderIndex:0];
-    } else {
-        [self setScoreProviderIndex:2];
-    }
-
-    return [self scoreProviderIndex];
-}
-
-
-- (NSInteger) scoreProviderIndex {
-    if (cachedScoreProviderIndex == -1) {
-        cachedScoreProviderIndex = [self scoreProviderIndexWorker];
-    }
-
-    return cachedScoreProviderIndex;
-}
-
-
-- (void) setScoreProviderIndex:(NSInteger) index {
-    cachedScoreProviderIndex = index;
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:SCORE_PROVIDER_INDEX];
-
-    if (self.noScores && self.allMoviesSortingByScore) {
-        [self setAllMoviesSelectedSegmentIndex:0];
-    }
-}
-
-
-- (BOOL) rottenTomatoesScores {
-    return self.scoreProviderIndex == 0;
-}
-
-
-- (BOOL) metacriticScores {
-    return self.scoreProviderIndex == 1;
-}
-
-
-- (BOOL) googleScores {
-    return self.scoreProviderIndex == 2;
-}
-
-
-- (BOOL) noScores {
-    return self.scoreProviderIndex == 3;
 }
 
 
@@ -637,21 +485,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) setDvdMoviesSelectedSegmentIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:DVD_MOVIES_SELECTED_SEGMENT_INDEX];
-}
-
-
-- (BOOL) dvdMoviesShowBoth {
-    return self.dvdMoviesShowDVDs && self.dvdMoviesShowBluray;
-}
-
-
-- (BOOL) dvdMoviesShowOnlyDVDs {
-    return self.dvdMoviesShowDVDs && !self.dvdMoviesShowBluray;
-}
-
-
-- (BOOL) dvdMoviesShowOnlyBluray {
-    return !self.dvdMoviesShowDVDs && self.dvdMoviesShowBluray;
 }
 
 
@@ -750,50 +583,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-- (int) searchRadius {
-    if (searchRadius == -1) {
-        searchRadius = [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_RADIUS];
-        if (searchRadius == 0) {
-            searchRadius = 5;
-        }
-
-        searchRadius = MAX(MIN(searchRadius, 50), 1);
-    }
-
-    return searchRadius;
-}
-
-
-- (void) setSearchRadius:(NSInteger) radius {
-    searchRadius = radius;
-    [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:SEARCH_RADIUS];
-}
-
-
-- (NSDate*) searchDate {
-    NSDate* date = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_DATE];
-    if (date == nil || [date compare:[NSDate date]] == NSOrderedAscending) {
-        return [DateUtilities today];
-    }
-    return date;
-}
-
-
-- (void) setSearchDate:(NSDate*) date {
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:SEARCH_DATE];
-}
-
-
-- (NSArray*) movies {
-    return [dataProvider movies];
-}
-
-
-- (NSArray*) theaters {
-    return [dataProvider theaters];
-}
-
-
 - (NSMutableSet*) loadBookmarkedTitles {
     NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:BOOKMARKED_TITLES];
     if (array.count == 0) {
@@ -826,11 +615,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData addObject:movie.canonicalTitle];
     [MetaFlixModel saveBookmarkedTitles:bookmarkedTitlesData];
-
-    [dataProvider addBookmark:movie.canonicalTitle];
-    [upcomingCache addBookmark:movie.canonicalTitle];
-    [dvdCache addBookmark:movie.canonicalTitle];
-    [blurayCache addBookmark:movie.canonicalTitle];
 }
 
 
@@ -838,11 +622,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData removeObject:movie.canonicalTitle];
     [MetaFlixModel saveBookmarkedTitles:bookmarkedTitlesData];
-
-    [dataProvider removeBookmark:movie.canonicalTitle];
-    [upcomingCache removeBookmark:movie.canonicalTitle];
-    [dvdCache removeBookmark:movie.canonicalTitle];
-    [blurayCache removeBookmark:movie.canonicalTitle];
 }
 
 
@@ -916,65 +695,13 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-- (void) ensureFavoriteTheaters {
-    if (favoriteTheatersData == nil) {
-        self.favoriteTheatersData = [self loadFavoriteTheaters];
-    }
-}
-
-
-- (NSArray*) favoriteTheaters {
-    [self ensureFavoriteTheaters];
-    return favoriteTheatersData.allValues;
-}
-
-
-- (void) saveFavoriteTheaters {
-    [MetaFlixModel saveFavoriteTheaters:self.favoriteTheaters];
-}
-
-
-- (void) addFavoriteTheater:(Theater*) theater {
-    [self ensureFavoriteTheaters];
-
-    FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
-                                                    originatingLocation:theater.originatingLocation];
-    [favoriteTheatersData setObject:favoriteTheater forKey:theater.name];
-    [self saveFavoriteTheaters];
-}
-
-
-- (BOOL) isFavoriteTheater:(Theater*) theater {
-    [self ensureFavoriteTheaters];
-
-    return [favoriteTheatersData objectForKey:theater.name] != nil;
-}
-
-
-- (void) removeFavoriteTheater:(Theater*) theater {
-    [self ensureFavoriteTheaters];
-
-    [favoriteTheatersData removeObjectForKey:theater.name];
-    [self saveFavoriteTheaters];
-}
-
-
 - (NSDate*) releaseDateForMovie:(Movie*) movie {
-    if (movie.releaseDate != nil) {
-        return movie.releaseDate;
-    }
-
-    return [upcomingCache releaseDateForMovie:movie];
+    return movie.releaseDate;
 }
 
 
 - (NSArray*) directorsForMovie:(Movie*) movie {
     NSArray* directors = movie.directors;
-    if (directors.count > 0) {
-        return directors;
-    }
-
-    directors = [upcomingCache directorsForMovie:movie];
     if (directors.count > 0) {
         return directors;
     }
@@ -994,11 +721,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         return cast;
     }
 
-    cast = [upcomingCache castForMovie:movie];
-    if (cast.count > 0) {
-        return cast;
-    }
-
     cast = [netflixCache castForMovie:movie];
     if (cast.count > 0) {
         return cast;
@@ -1009,11 +731,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (NSArray*) genresForMovie:(Movie*) movie {
-    if (movie.genres.count > 0) {
-        return movie.genres;
-    }
-
-    return [upcomingCache genresForMovie:movie];
+    return movie.genres;
 }
 
 
@@ -1042,21 +760,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-- (DVD*) dvdDetailsForMovie:(Movie*) movie {
-    DVD* dvd = [dvdCache detailsForMovie:movie];
-    if (dvd != nil) {
-        return dvd;
-    }
-
-    dvd = [blurayCache detailsForMovie:movie];
-    if (dvd != nil) {
-        return dvd;
-    }
-
-    return nil;
-}
-
-
 - (UIImage*) posterForMovie:(Movie*) movie
                     sources:(NSArray*) sources
                    selector:(SEL) selector {
@@ -1073,166 +776,15 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (UIImage*) posterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, blurayCache, netflixCache, largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, netflixCache, largePosterCache, nil]
                        selector:@selector(posterForMovie:)];
 }
 
 
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     return [self posterForMovie:movie
-                        sources:[NSArray arrayWithObjects:posterCache, upcomingCache, dvdCache, blurayCache, netflixCache, largePosterCache, nil]
+                        sources:[NSArray arrayWithObjects:posterCache, netflixCache, largePosterCache, nil]
                        selector:@selector(smallPosterForMovie:)];
-}
-
-
-- (NSMutableArray*) theatersShowingMovie:(Movie*) movie {
-    NSMutableArray* array = [NSMutableArray array];
-
-    for (Theater* theater in self.theaters) {
-        if ([theater.movieTitles containsObject:movie.canonicalTitle]) {
-            [array addObject:theater];
-        }
-    }
-
-    return array;
-}
-
-
-- (NSArray*) moviesAtTheater:(Theater*) theater {
-    NSMutableArray* array = [NSMutableArray array];
-
-    for (Movie* movie in self.movies) {
-        if ([theater.movieTitles containsObject:movie.canonicalTitle]) {
-            [array addObject:movie];
-        }
-    }
-
-    return array;
-}
-
-
-- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
-    return [dataProvider moviePerformances:movie forTheater:theater];
-}
-
-
-- (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [dataProvider synchronizationDateForTheater:theater];
-}
-
-
-- (BOOL) isStaleWorker:(Theater*) theater {
-    return [dataProvider isStale:theater];
-}
-
-
-- (BOOL) isStale:(Theater*) theater {
-    NSNumber* stale = theater.isStale;
-    if (stale == nil) {
-        stale = [NSNumber numberWithBool:[self isStaleWorker:theater]];
-        theater.isStale = stale;
-    }
-
-    return [stale boolValue];
-}
-
-
-- (NSString*) showtimesRetrievedOnString:(Theater*) theater {
-    if ([self isStale:theater]) {
-        // we're showing out of date information
-        NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
-        return [NSString stringWithFormat:
-                NSLocalizedString(@"Theater last reported show times on\n%@.", nil),
-                [DateUtilities formatLongDate:theaterSyncDate]];
-    } else {
-        NSDate* globalSyncDate = [dataProvider lastLookupDate];
-        if (globalSyncDate == nil) {
-            return @"";
-        }
-
-        return [NSString stringWithFormat:
-                NSLocalizedString(@"Show times retrieved on %@.", nil),
-                [DateUtilities formatLongDate:globalSyncDate]];
-    }
-}
-
-
-- (NSString*) simpleAddressForTheater:(Theater*) theater {
-    return theater.simpleAddress;
-}
-
-
-- (NSDictionary*) theaterDistanceMap:(Location*) location
-                            theaters:(NSArray*) theaters {
-    NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
-
-    for (Theater* theater in theaters) {
-        double d;
-        if (location != nil) {
-            d = [location distanceTo:theater.location];
-        } else {
-            d = UNKNOWN_DISTANCE;
-        }
-
-        NSNumber* value = [NSNumber numberWithDouble:d];
-        NSString* key = theater.name;
-        [theaterDistanceMap setObject:value forKey:key];
-    }
-
-    return theaterDistanceMap;
-}
-
-
-- (NSDictionary*) theaterDistanceMap {
-    Location* location = [userLocationCache locationForUserAddress:self.userAddress];
-    return [self theaterDistanceMap:location
-                           theaters:self.theaters];
-}
-
-
-- (BOOL) tooFarAway:(double) distance {
-    return
-        distance != UNKNOWN_DISTANCE &&
-        self.searchRadius < 50 &&
-        distance > self.searchRadius;
-}
-
-
-- (NSArray*) theatersInRange:(NSArray*) theaters {
-    NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
-    NSMutableArray* result = [NSMutableArray array];
-
-    for (Theater* theater in theaters) {
-        double distance = [[theaterDistanceMap objectForKey:theater.name] doubleValue];
-
-        if ([self isFavoriteTheater:theater] || ![self tooFarAway:distance]) {
-            [result addObject:theater];
-        }
-    }
-
-    return result;
-}
-
-
-NSInteger compareMoviesByScore(id t1, id t2, void* context) {
-    if (t1 == t2) {
-        return NSOrderedSame;
-    }
-
-    Movie* movie1 = t1;
-    Movie* movie2 = t2;
-    MetaFlixModel* model = context;
-
-    int movieRating1 = [model scoreValueForMovie:movie1];
-    int movieRating2 = [model scoreValueForMovie:movie2];
-
-    if (movieRating1 < movieRating2) {
-        return NSOrderedDescending;
-    } else if (movieRating1 > movieRating2) {
-        return NSOrderedAscending;
-    }
-
-    return compareMoviesByTitle(t1, t2, context);
 }
 
 
@@ -1290,71 +842,10 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
 }
 
 
-NSInteger compareTheatersByName(id t1, id t2, void* context) {
-    if (t1 == t2) {
-        return NSOrderedSame;
-    }
-
-    Theater* theater1 = t1;
-    Theater* theater2 = t2;
-
-    return [theater1.name compare:theater2.name options:NSCaseInsensitiveSearch];
-}
-
-
-NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
-    if (t1 == t2) {
-        return NSOrderedSame;
-    }
-
-    NSDictionary* theaterDistanceMap = context;
-
-    Theater* theater1 = t1;
-    Theater* theater2 = t2;
-
-    double distance1 = [[theaterDistanceMap objectForKey:theater1.name] doubleValue];
-    double distance2 = [[theaterDistanceMap objectForKey:theater2.name] doubleValue];
-
-    if (distance1 < distance2) {
-        return NSOrderedAscending;
-    } else if (distance1 > distance2) {
-        return NSOrderedDescending;
-    }
-
-    return compareTheatersByName(t1, t2, nil);
-}
-
-
 - (void) setUserAddress:(NSString*) userAddress {
     [[NSUserDefaults standardUserDefaults] setObject:userAddress forKey:USER_ADDRESS];
     [self synchronize];
 }
-
-
-- (Score*) scoreForMovie:(Movie*) movie {
-    return [scoreCache scoreForMovie:movie inMovies:self.movies];
-}
-
-
-- (Score*) rottenTomatoesScoreForMovie:(Movie*) movie {
-    return [scoreCache rottenTomatoesScoreForMovie:movie inMovies:self.movies];
-}
-
-
-- (Score*) metacriticScoreForMovie:(Movie*) movie {
-    return [scoreCache metacriticScoreForMovie:movie inMovies:self.movies];
-}
-
-
-- (NSInteger) scoreValueForMovie:(Movie*) movie {
-    Score* score = [self scoreForMovie:movie];
-    if (score == nil) {
-        return -1;
-    }
-
-    return score.scoreValue;
-}
-
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
     NSMutableArray* options = [NSMutableArray array];
@@ -1364,16 +855,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
     }
 
     if (options.count == 0 || [LocaleUtilities isEnglish]) {
-        synopsis = [self scoreForMovie:movie].synopsis;
-        if (synopsis.length > 0) {
-            [options addObject:synopsis];
-        }
-
-        synopsis = [upcomingCache synopsisForMovie:movie];
-        if (synopsis.length > 0) {
-            [options addObject:synopsis];
-        }
-
         synopsis = [netflixCache synopsisForMovie:movie];
         if (synopsis.length > 0) {
             [options addObject:synopsis];
@@ -1397,17 +878,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* result = [trailerCache trailersForMovie:movie];
-    if (result.count > 0) {
-        return result;
-    }
-
-    return [upcomingCache trailersForMovie:movie];
-}
-
-
-- (NSArray*) reviewsForMovie:(Movie*) movie {
-    return [scoreCache reviewsForMovie:movie inMovies:self.movies];
+    return [trailerCache trailersForMovie:movie];
 }
 
 
@@ -1440,14 +911,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 - (void) prioritizeMovie:(Movie*) movie {
     [posterCache prioritizeMovie:movie];
-    [scoreCache prioritizeMovie:movie inMovies:self.movies];
     [trailerCache prioritizeMovie:movie];
     [imdbCache prioritizeMovie:movie];
     [amazonCache prioritizeMovie:movie];
     [wikipediaCache prioritizeMovie:movie];
-    [upcomingCache prioritizeMovie:movie];
-    [dvdCache prioritizeMovie:movie];
-    [blurayCache prioritizeMovie:movie];
     [netflixCache prioritizeMovie:movie];
 }
 

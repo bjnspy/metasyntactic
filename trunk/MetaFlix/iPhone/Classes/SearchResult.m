@@ -18,10 +18,6 @@
 @property NSInteger requestId;
 @property (copy) NSString* value;
 @property (retain) NSArray* movies;
-@property (retain) NSArray* theaters;
-@property (retain) NSArray* upcomingMovies;
-@property (retain) NSArray* dvds;
-@property (retain) NSArray* bluray;
 @end
 
 
@@ -30,19 +26,11 @@
 @synthesize requestId;
 @synthesize value;
 @synthesize movies;
-@synthesize theaters;
-@synthesize upcomingMovies;
-@synthesize dvds;
-@synthesize bluray;
 
 - (void) dealloc {
     self.requestId = 0;
     self.value = nil;
     self.movies = nil;
-    self.theaters = nil;
-    self.upcomingMovies = nil;
-    self.dvds = nil;
-    self.bluray = nil;
 
     [super dealloc];
 }
@@ -50,19 +38,11 @@
 
 - (id) initWithId:(NSInteger) requestId_
             value:(NSString*) value_
-           movies:(NSArray*) movies_
-         theaters:(NSArray*) theaters_
-   upcomingMovies:(NSArray*) upcomingMovies_
-             dvds:(NSArray*) dvds_
-           bluray:(NSArray*) bluray_ {
+           movies:(NSArray*) movies_ {
     if (self = [super init]) {
         self.requestId = requestId_;
         self.value = value_;
         self.movies = movies_;
-        self.theaters = theaters_;
-        self.upcomingMovies = upcomingMovies_;
-        self.dvds = dvds_;
-        self.bluray = bluray_;
     }
 
     return self;
@@ -71,18 +51,10 @@
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
-                        movies:(NSArray*) movies
-                      theaters:(NSArray*) theaters
-                upcomingMovies:(NSArray*) upcomingMovies
-                          dvds:(NSArray*) dvds
-                        bluray:(NSArray*) bluray {
+                        movies:(NSArray*) movies {
     return [[[SearchResult alloc] initWithId:requestId
                                        value:value
-                                      movies:movies
-                                    theaters:theaters
-                              upcomingMovies:upcomingMovies
-                                        dvds:dvds
-                                      bluray:bluray] autorelease];
+                                      movies:movies] autorelease];
 }
 
 @end

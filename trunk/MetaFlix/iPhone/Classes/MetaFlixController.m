@@ -16,14 +16,11 @@
 
 #import "Application.h"
 #import "AlertUtilities.h"
-#import "DataProvider.h"
 #import "DateUtilities.h"
 #import "LocationManager.h"
 #import "MetaFlixAppDelegate.h"
 #import "MetaFlixModel.h"
-#import "ScoreCache.h"
 #import "ThreadingUtilities.h"
-#import "UpcomingCache.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
@@ -95,52 +92,6 @@
 }
 
 
-- (void) spawnDataProviderLookupThread {
-    NSAssert([NSThread isMainThread], nil);
-    if ([self tooSoon:[self.model.dataProvider lastLookupDate]]) {
-        [self onDataProviderUpdateComplete];
-    } else {
-        [self.model.dataProvider update:self.model.searchDate delegate:self context:nil];
-    }
-}
-
-
-- (void) spawnModelUpdateThread {
-    NSAssert([NSThread isMainThread], nil);
-    [self.model update];
-}
-
-
-- (void) onDataProviderUpdateSuccess:(LookupResult*) lookupResult context:(id) context {
-    // Save the results.
-    [self.model.dataProvider saveResult:lookupResult];
-}
-
-
-- (void) onDataProviderUpdateFailure:(NSString*) error context:(id) context {
-    [self performSelectorOnMainThread:@selector(reportError:) withObject:error waitUntilDone:NO];
-}
-
-
-- (void) reportError:(NSString*) error {
-    /*
-     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-     message:NSLocalizedString(@"No information found", nil)
-     delegate:nil
-     cancelButtonTitle:NSLocalizedString(@"OK", nil)
-     otherButtonTitles:nil] autorelease];
-
-     [alert show];
-     */
-}
-
-
-- (void) spawnScoresLookupThread {
-    NSAssert([NSThread isMainThread], nil);
-    [self.model.scoreCache update];
-}
-
-
 - (void) spawnDetermineLocationThread {
     NSAssert([NSThread isMainThread], nil);
     [ThreadingUtilities backgroundSelector:@selector(determineLocationBackgroundEntryPoint)
@@ -158,9 +109,7 @@
 
 - (void) spawnUpdateRemainderThreads {
     NSAssert([NSThread isMainThread], nil);
-    [self spawnScoresLookupThread];
     [self spawnNetflixThread];
-    [self spawnModelUpdateThread];
 }
 
 
@@ -173,51 +122,6 @@
 - (void) start {
     NSAssert([NSThread isMainThread], nil);
     [self spawnDetermineLocationThread];
-}
-
-
-- (void) determineLocationBackgroundEntryPoint {
-    NSString* address = self.model.userAddress;
-    Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:address];
-
-    [self performSelectorOnMainThread:@selector(reportUserLocation:)
-                           withObject:location
-                        waitUntilDone:NO];
-}
-
-
-- (void) reportUserLocation:(Location*) location {
-    NSAssert([NSThread isMainThread], nil);
-    if (self.model.userAddress.length > 0 && location == nil) {
-        [AlertUtilities showOkAlert:NSLocalizedString(@"Could not find location.", nil)];
-    }
-
-    [self spawnDataProviderLookupThread];
-}
-
-
-- (void) markDataProviderOutOfDate {
-    [self.model.dataProvider markOutOfDate];
-}
-
-
-- (void) setSearchRadius:(NSInteger) radius {
-    [self.model setSearchRadius:radius];
-}
-
-
-- (void) setScoreProviderIndex:(NSInteger) index {
-    if (index == self.model.scoreProviderIndex) {
-        return;
-    }
-
-    [self.model setScoreProviderIndex:index];
-}
-
-
-- (void) setAutoUpdateLocation:(BOOL) value {
-    [self.model setAutoUpdateLocation:value];
-    [locationManager autoUpdateLocation];
 }
 
 

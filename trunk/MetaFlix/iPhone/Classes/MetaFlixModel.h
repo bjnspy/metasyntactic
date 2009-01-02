@@ -47,8 +47,6 @@ enum ViewControllerType {
 
 + (NSString*) version;
 
-- (void) update;
-
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;
 - (NSString*) netflixUserId;
@@ -56,8 +54,6 @@ enum ViewControllerType {
 
 - (BOOL) prioritizeBookmarks;
 - (void) setPrioritizeBookmarks:(BOOL) value;
-
-- (NSArray*) movies;
 
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;

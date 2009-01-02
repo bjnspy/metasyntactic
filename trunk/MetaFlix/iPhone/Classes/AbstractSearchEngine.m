@@ -20,7 +20,6 @@
 #import "SearchEngineDelegate.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
-#import "Theater.h"
 #import "Utilities.h"
 
 @interface AbstractSearchEngine()

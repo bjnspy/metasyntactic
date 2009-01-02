@@ -12,12 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "DataProviderUpdateDelegate.h"
-
-@interface AbstractDetailsViewController : UITableViewController<DataProviderUpdateDelegate> {
+@interface AbstractDetailsViewController : UITableViewController {
 @protected
     AbstractNavigationController* navigationController;
-    NSInteger updateId;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
