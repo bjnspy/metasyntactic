@@ -133,9 +133,6 @@
 		747AB9270EB97822002438D0 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB9260EB97822002438D0 /* PointerSet.m */; };
 		747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 747ABB770EBA4228002438D0 /* VideoETALogo.png */; };
 		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
-		747C56970E67583600BD69DA /* NowPlayingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */; };
-		747C56980E67583600BD69DA /* NowPlayingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56940E67583600BD69DA /* NowPlayingController.m */; };
-		747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56960E67583600BD69DA /* NowPlayingModel.m */; };
 		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
@@ -185,8 +182,11 @@
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
 		74BD51CA0EB786FC0098C2DF /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BD51C90EB786FC0098C2DF /* MainThreadGate.m */; };
 		74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */; };
+		74C2AED30F0DF31E00EFAF74 /* MetaFlix.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C2AED20F0DF31E00EFAF74 /* MetaFlix.pb.m */; };
+		74C2AED80F0DF33600EFAF74 /* MetaFlixAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C2AED50F0DF33600EFAF74 /* MetaFlixAppDelegate.m */; };
+		74C2AED90F0DF33600EFAF74 /* MetaFlixModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C2AED70F0DF33600EFAF74 /* MetaFlixModel.m */; };
+		74C2AEDC0F0DF37800EFAF74 /* MetaFlixController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C2AEDB0F0DF37800EFAF74 /* MetaFlixController.m */; };
 		74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */; };
-		74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
@@ -568,12 +568,6 @@
 		747ABB770EBA4228002438D0 /* VideoETALogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VideoETALogo.png; path = Resources/VideoETALogo.png; sourceTree = "<group>"; };
 		747B4C210EE110D000F6FB1F /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		747B4C220EE110D000F6FB1F /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
-		747C56910E67583600BD69DA /* NowPlayingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingAppDelegate.h; sourceTree = "<group>"; };
-		747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingAppDelegate.m; sourceTree = "<group>"; };
-		747C56930E67583600BD69DA /* NowPlayingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingController.h; sourceTree = "<group>"; };
-		747C56940E67583600BD69DA /* NowPlayingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingController.m; sourceTree = "<group>"; };
-		747C56950E67583600BD69DA /* NowPlayingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingModel.h; sourceTree = "<group>"; };
-		747C56960E67583600BD69DA /* NowPlayingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingModel.m; sourceTree = "<group>"; };
 		747CA1390E8591B600A09E89 /* UserLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationCache.h; sourceTree = "<group>"; };
 		747CA13A0E8591B600A09E89 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
 		747CA1BF0E8594C300A09E89 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
@@ -675,10 +669,16 @@
 		74BD51C90EB786FC0098C2DF /* MainThreadGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainThreadGate.m; sourceTree = "<group>"; };
 		74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
 		74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
+		74C2AED10F0DF31E00EFAF74 /* MetaFlix.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaFlix.pb.h; sourceTree = "<group>"; };
+		74C2AED20F0DF31E00EFAF74 /* MetaFlix.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaFlix.pb.m; sourceTree = "<group>"; };
+		74C2AED40F0DF33600EFAF74 /* MetaFlixAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaFlixAppDelegate.h; path = Classes/MetaFlixAppDelegate.h; sourceTree = "<group>"; };
+		74C2AED50F0DF33600EFAF74 /* MetaFlixAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaFlixAppDelegate.m; path = Classes/MetaFlixAppDelegate.m; sourceTree = "<group>"; };
+		74C2AED60F0DF33600EFAF74 /* MetaFlixModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaFlixModel.h; path = Classes/MetaFlixModel.h; sourceTree = "<group>"; };
+		74C2AED70F0DF33600EFAF74 /* MetaFlixModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaFlixModel.m; path = Classes/MetaFlixModel.m; sourceTree = "<group>"; };
+		74C2AEDA0F0DF37800EFAF74 /* MetaFlixController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaFlixController.h; path = Classes/MetaFlixController.h; sourceTree = "<group>"; };
+		74C2AEDB0F0DF37800EFAF74 /* MetaFlixController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaFlixController.m; path = Classes/MetaFlixController.m; sourceTree = "<group>"; };
 		74C571F40EA11E2F009A9432 /* AbstractFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFieldAccessor.h; sourceTree = "<group>"; };
 		74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFieldAccessor.m; sourceTree = "<group>"; };
-		74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.pb.h; sourceTree = "<group>"; };
-		74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlaying.pb.m; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
@@ -850,7 +850,6 @@
 		74F3B2E60E3CF02400DD25DA /* LookupResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupResult.m; sourceTree = "<group>"; };
 		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
-		74F6D0590E6754B200943D78 /* NowPlaying_Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = NowPlaying_Prefix.pch; sourceTree = "<group>"; };
 		74F94A9E0E6B9ECB00075068 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtilities.h; sourceTree = "<group>"; };
 		74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtilities.m; sourceTree = "<group>"; };
 		74F94C8B0E6BB34800075068 /* LocationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationUtilities.h; sourceTree = "<group>"; };
@@ -935,12 +934,6 @@
 				74D6F2B40DCC14420097A984 /* Xml */,
 				746A02140DC81A1A0079D89B /* Application.h */,
 				746A02150DC81A1A0079D89B /* Application.m */,
-				747C56910E67583600BD69DA /* NowPlayingAppDelegate.h */,
-				747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */,
-				747C56930E67583600BD69DA /* NowPlayingController.h */,
-				747C56940E67583600BD69DA /* NowPlayingController.m */,
-				747C56950E67583600BD69DA /* NowPlayingModel.h */,
-				747C56960E67583600BD69DA /* NowPlayingModel.m */,
 				74A41ACD0E9E172B007CF82C /* Pulser.h */,
 				74A41ACE0E9E172B007CF82C /* Pulser.m */,
 			);
@@ -971,10 +964,15 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				74F6D0590E6754B200943D78 /* NowPlaying_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */,
 				74A3F11D0E687D26007ED6DC /* Macros.h */,
+				74C2AEDA0F0DF37800EFAF74 /* MetaFlixController.h */,
+				74C2AEDB0F0DF37800EFAF74 /* MetaFlixController.m */,
+				74C2AED40F0DF33600EFAF74 /* MetaFlixAppDelegate.h */,
+				74C2AED50F0DF33600EFAF74 /* MetaFlixAppDelegate.m */,
+				74C2AED60F0DF33600EFAF74 /* MetaFlixModel.h */,
+				74C2AED70F0DF33600EFAF74 /* MetaFlixModel.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1760,8 +1758,8 @@
 		74F3B2430E3CE79900DD25DA /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
-				74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */,
-				74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */,
+				74C2AED10F0DF31E00EFAF74 /* MetaFlix.pb.h */,
+				74C2AED20F0DF31E00EFAF74 /* MetaFlix.pb.m */,
 				74F3B22B0E3CE71A00DD25DA /* DataProvider.h */,
 				74F3B22C0E3CE71A00DD25DA /* DataProvider.m */,
 				74EC92C40EE4DD43004E044E /* DataProviderUpdateDelegate.h */,
@@ -2012,9 +2010,6 @@
 				74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */,
 				74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */,
 				7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */,
-				747C56970E67583600BD69DA /* NowPlayingAppDelegate.m in Sources */,
-				747C56980E67583600BD69DA /* NowPlayingController.m in Sources */,
-				747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */,
 				74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */,
 				74F94C8D0E6BB34800075068 /* LocationUtilities.m in Sources */,
 				744592040E6CA017002D05C3 /* WarningView.m in Sources */,
@@ -2084,7 +2079,6 @@
 				74365DB50E9B5EE800448025 /* TextFormat.m in Sources */,
 				74A41ACF0E9E172B007CF82C /* Pulser.m in Sources */,
 				74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */,
-				74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */,
 				74CCF8E70EA800AC009C7A8E /* PackageDescriptor.m in Sources */,
 				748F1D390EB513D300DEB5BB /* GoogleScoreProvider.m in Sources */,
 				748F1D3A0EB513D300DEB5BB /* MetacriticScoreProvider.m in Sources */,
@@ -2163,6 +2157,10 @@
 				74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */,
 				749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */,
 				742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */,
+				74C2AED30F0DF31E00EFAF74 /* MetaFlix.pb.m in Sources */,
+				74C2AED80F0DF33600EFAF74 /* MetaFlixAppDelegate.m in Sources */,
+				74C2AED90F0DF33600EFAF74 /* MetaFlixModel.m in Sources */,
+				74C2AEDC0F0DF37800EFAF74 /* MetaFlixController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
