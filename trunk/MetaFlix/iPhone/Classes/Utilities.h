@@ -41,7 +41,7 @@
 
 + (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
-+ (NSString*) generateShowtimeLinks:(NowPlayingModel*) model
++ (NSString*) generateShowtimeLinks:(MetaFlixModel*) model
                               movie:(Movie*) movie
                             theater:(Theater*) theater
                        performances:(NSArray*) performances;

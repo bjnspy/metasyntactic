@@ -17,6 +17,6 @@
 @interface NoneScoreProvider : AbstractScoreProvider {
 }
 
-+ (NoneScoreProvider*) providerWithModel:(NowPlayingModel*) model;
++ (NoneScoreProvider*) providerWithModel:(MetaFlixModel*) model;
 
 @end

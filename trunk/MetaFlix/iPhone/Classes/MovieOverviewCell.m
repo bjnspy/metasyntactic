@@ -18,13 +18,13 @@
 #import "FontCache.h"
 #import "ImageCache.h"
 #import "MovieDetailsViewController.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "PosterCache.h"
 #import "TappableImageView.h"
 
 @interface MovieOverviewCell()
-@property (retain) NowPlayingModel* model;
+@property (retain) MetaFlixModel* model;
 @property (retain) Movie* movie;
 @property (copy) NSString* synopsis;
 @property NSInteger synopsisSplit;
@@ -76,7 +76,7 @@
 
 
 - (id) initWithMovie:(Movie*) movie_
-               model:(NowPlayingModel*) model_
+               model:(MetaFlixModel*) model_
                frame:(CGRect) frame
          posterImage:(UIImage*) posterImage_
      posterImageView:(TappableImageView*) posterImageView
@@ -232,7 +232,7 @@
 
 
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
-                               model:(NowPlayingModel*) model
+                               model:(MetaFlixModel*) model
                                frame:(CGRect) frame
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
@@ -274,7 +274,7 @@
 }
 
 
-+ (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model {
++ (CGFloat) heightForMovie:(Movie*) movie model:(MetaFlixModel*) model {
     UIImage* posterImage = [MovieDetailsViewController posterForMovie:movie model:model];
     TappableImageView* posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
@@ -38,7 +38,7 @@
 #import "MutableNetflixCache.h"
 #import "NetflixViewController.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
+#import "MetaFlixAppDelegate.h"
 #import "PosterCache.h"
 #import "ReviewsViewController.h"
 #import "Score.h"
@@ -53,7 +53,7 @@
 #import "Utilities.h"
 #import "WikipediaCache.h"
 
-@interface NowPlayingModel()
+@interface MetaFlixModel()
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) BlurayCache* blurayCache;
 @property (retain) DVDCache* dvdCache;
@@ -71,7 +71,7 @@
 @property (retain) id<DataProvider> dataProvider;
 @end
 
-@implementation NowPlayingModel
+@implementation MetaFlixModel
 
 static NSString* currentVersion = @"2.6.0";
 static NSString* persistenceVersion = @"101";
@@ -435,7 +435,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
     NSString* warning =
     [NSString stringWithFormat:
-    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
+    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for MetaFlix is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
      [UIDevice currentDevice].localizedModel,
      [LocaleUtilities displayCountry]];
 
@@ -502,8 +502,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-+ (NowPlayingModel*) model {
-    return [[[NowPlayingModel alloc] init] autorelease];
++ (MetaFlixModel*) model {
+    return [[[MetaFlixModel alloc] init] autorelease];
 }
 
 
@@ -853,7 +853,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (void) addBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData addObject:movie.canonicalTitle];
-    [NowPlayingModel saveBookmarkedTitles:bookmarkedTitlesData];
+    [MetaFlixModel saveBookmarkedTitles:bookmarkedTitlesData];
 
     [dataProvider addBookmark:movie.canonicalTitle];
     [upcomingCache addBookmark:movie.canonicalTitle];
@@ -865,7 +865,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (void) removeBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData removeObject:movie.canonicalTitle];
-    [NowPlayingModel saveBookmarkedTitles:bookmarkedTitlesData];
+    [MetaFlixModel saveBookmarkedTitles:bookmarkedTitlesData];
 
     [dataProvider removeBookmark:movie.canonicalTitle];
     [upcomingCache removeBookmark:movie.canonicalTitle];
@@ -909,22 +909,22 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) setBookmarkedMovies:(NSArray*) array {
-    [NowPlayingModel saveMovies:array key:BOOKMARKED_MOVIES];
+    [MetaFlixModel saveMovies:array key:BOOKMARKED_MOVIES];
 }
 
 
 - (void) setBookmarkedUpcoming:(NSArray*) array {
-    [NowPlayingModel saveMovies:array key:BOOKMARKED_UPCOMING];
+    [MetaFlixModel saveMovies:array key:BOOKMARKED_UPCOMING];
 }
 
 
 - (void) setBookmarkedDVD:(NSArray*) array {
-    [NowPlayingModel saveMovies:array key:BOOKMARKED_DVD];
+    [MetaFlixModel saveMovies:array key:BOOKMARKED_DVD];
 }
 
 
 - (void) setBookmarkedBluray:(NSArray*) array {
-    [NowPlayingModel saveMovies:array key:BOOKMARKED_BLURAY];
+    [MetaFlixModel saveMovies:array key:BOOKMARKED_BLURAY];
 }
 
 
@@ -958,7 +958,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) saveFavoriteTheaters {
-    [NowPlayingModel saveFavoriteTheaters:self.favoriteTheaters];
+    [MetaFlixModel saveFavoriteTheaters:self.favoriteTheaters];
 }
 
 
@@ -1249,7 +1249,7 @@ NSInteger compareMoviesByScore(id t1, id t2, void* context) {
 
     Movie* movie1 = t1;
     Movie* movie2 = t2;
-    NowPlayingModel* model = context;
+    MetaFlixModel* model = context;
 
     int movieRating1 = [model scoreValueForMovie:movie1];
     int movieRating2 = [model scoreValueForMovie:movie2];
@@ -1269,7 +1269,7 @@ NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void* context) {
         return NSOrderedSame;
     }
 
-    NowPlayingModel* model = context;
+    MetaFlixModel* model = context;
     Movie* movie1 = t1;
     Movie* movie2 = t2;
 
@@ -1300,7 +1300,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
         return NSOrderedSame;
     }
 
-    NowPlayingModel* model = context;
+    MetaFlixModel* model = context;
 
     Movie* movie1 = t1;
     Movie* movie2 = t2;
@@ -1557,7 +1557,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {
-        subject = [Utilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
+        subject = [Utilities stringByAddingPercentEscapes:@"MetaFlixのフィードバック"];
     } else {
         subject = @"Now%20Playing%20Feedback";
     }

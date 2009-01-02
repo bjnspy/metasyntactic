@@ -12,28 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NowPlayingAppDelegate.h"
+#import "MetaFlixAppDelegate.h"
 
 #import "ApplicationTabBarController.h"
 #import "LocationManager.h"
-#import "NowPlayingController.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixController.h"
+#import "MetaFlixModel.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
 
-@interface NowPlayingAppDelegate()
+@interface MetaFlixAppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) NowPlayingController* controller;
-@property (retain) NowPlayingModel* model;
+@property (retain) MetaFlixController* controller;
+@property (retain) MetaFlixModel* model;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
 @end
 
 
-@implementation NowPlayingAppDelegate
+@implementation MetaFlixAppDelegate
 
-static NowPlayingAppDelegate* appDelegate = nil;
+static MetaFlixAppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize tabBarController;
@@ -54,7 +54,7 @@ static NowPlayingAppDelegate* appDelegate = nil;
 }
 
 
-+ (NowPlayingAppDelegate*) appDelegate {
++ (MetaFlixAppDelegate*) appDelegate {
     return appDelegate;
 }
 
@@ -62,8 +62,8 @@ static NowPlayingAppDelegate* appDelegate = nil;
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     appDelegate = self;
 
-    self.model = [NowPlayingModel model];
-    self.controller = [NowPlayingController controllerWithAppDelegate:self];
+    self.model = [MetaFlixModel model];
+    self.controller = [MetaFlixController controllerWithAppDelegate:self];
 
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];

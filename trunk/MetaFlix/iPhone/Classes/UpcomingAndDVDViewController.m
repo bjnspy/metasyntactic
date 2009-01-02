@@ -21,7 +21,7 @@
 #import "DVDFilterViewController.h"
 #import "DVDNavigationController.h"
 #import "IdentitySet.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "TappableLabel.h"
 #import "UpcomingCache.h"
 #import "UpcomingAndDVDFilterViewController.h"

@@ -31,6 +31,6 @@
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
 
-- (NowPlayingModel*) model;
+- (MetaFlixModel*) model;
 
 @end

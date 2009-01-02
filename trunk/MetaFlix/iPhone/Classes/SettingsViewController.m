@@ -23,9 +23,9 @@
 #import "Location.h"
 #import "LocationManager.h"
 #import "LocationUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingController.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixController.h"
+#import "MetaFlixModel.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SettingCell.h"
@@ -50,12 +50,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (MetaFlixModel*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (MetaFlixController*) controller {
     return navigationController.controller;
 }
 
@@ -65,7 +65,7 @@
         self.navigationController = controller;
 
         NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-        NSString* appVersion = [NowPlayingModel version];
+        NSString* appVersion = [MetaFlixModel version];
         appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
 
         self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
@@ -217,7 +217,7 @@
     [self.controller setNetflixEnabled:!self.model.netflixEnabled];
 
     if (self.model.netflixEnabled) {
-        NSString* message = NSLocalizedString(@"Netflix support is currently in 'beta'. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button below.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)", nil);
+        NSString* message = NSLocalizedString(@"Netflix support is currently in 'beta'. Please help improve MetaFlix by reporting any issues you find using the 'Send Feedback' button below.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)", nil);
         [AlertUtilities showOkAlert:message];
     }
 }

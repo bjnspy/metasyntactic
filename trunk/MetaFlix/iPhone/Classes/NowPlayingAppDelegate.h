@@ -12,21 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface NowPlayingAppDelegate : NSObject<UIApplicationDelegate> {
+@interface MetaFlixAppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
 
-    NowPlayingModel* model;
-    NowPlayingController* controller;
+    MetaFlixModel* model;
+    MetaFlixController* controller;
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
 @property (readonly, retain) ApplicationTabBarController* tabBarController;
-@property (readonly, retain) NowPlayingController* controller;
-@property (readonly, retain) NowPlayingModel* model;
+@property (readonly, retain) MetaFlixController* controller;
+@property (readonly, retain) MetaFlixModel* model;
 
 + (void) minorRefresh;
 + (void) majorRefresh;

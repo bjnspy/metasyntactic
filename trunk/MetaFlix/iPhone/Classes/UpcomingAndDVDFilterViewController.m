@@ -14,8 +14,8 @@
 
 #import "UpcomingAndDVDFilterViewController.h"
 
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "SettingsNavigationController.h"
 #import "UpcomingAndDVDFilterViewController.h"
 
@@ -46,12 +46,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (MetaFlixModel*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (MetaFlixController*) controller {
     return navigationController.controller;
 }
 
@@ -141,7 +141,7 @@
     [self setCheckmarkForIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     [self setCheckmarkForIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
 
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [MetaFlixAppDelegate majorRefresh:YES];
 }
 
 @end

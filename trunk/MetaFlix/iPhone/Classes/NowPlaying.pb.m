@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NowPlaying.pb.h"
+#import "MetaFlix.pb.h"
 
-@implementation NowPlayingRoot
+@implementation MetaFlixRoot
 static PBFileDescriptor* descriptor = nil;
 static PBDescriptor* internal_static_ShowtimeProto_descriptor = nil;
 static PBFieldAccessorTable* internal_static_ShowtimeProto_fieldAccessorTable = nil;
@@ -89,8 +89,8 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
   return internal_static_ReviewsListProto_fieldAccessorTable;
 }
 + (void) initialize {
-  if (self == [NowPlayingRoot class]) {
-    descriptor = [[NowPlayingRoot buildDescriptor] retain];
+  if (self == [MetaFlixRoot class]) {
+    descriptor = [[MetaFlixRoot buildDescriptor] retain];
     internal_static_ShowtimeProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"Time", @"Url", @"Dubbed", @"Subtitled", nil];
@@ -300,10 +300,10 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
   return [ShowtimeProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_ShowtimeProto_descriptor];
+  return [MetaFlixRoot internal_static_ShowtimeProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_ShowtimeProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_ShowtimeProto_fieldAccessorTable];
 }
 - (NSArray*) dubbedList {
   return mutableDubbedList;
@@ -654,10 +654,10 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
   return [AllShowtimesProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_AllShowtimesProto_descriptor];
+  return [MetaFlixRoot internal_static_AllShowtimesProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_AllShowtimesProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_AllShowtimesProto_fieldAccessorTable];
 }
 - (NSArray*) showtimesList {
   return mutableShowtimesList;
@@ -1043,10 +1043,10 @@ static MovieProto* defaultMovieProtoInstance = nil;
   return [MovieProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_MovieProto_descriptor];
+  return [MetaFlixRoot internal_static_MovieProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_MovieProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_MovieProto_fieldAccessorTable];
 }
 - (NSArray*) directorList {
   return mutableDirectorList;
@@ -1809,10 +1809,10 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
   return [TheaterProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_TheaterProto_descriptor];
+  return [MetaFlixRoot internal_static_TheaterProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_TheaterProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_TheaterProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -2267,10 +2267,10 @@ static TheaterListingsProto* defaultTheaterListingsProtoInstance = nil;
   return [TheaterListingsProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_descriptor];
+  return [MetaFlixRoot internal_static_TheaterListingsProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_TheaterListingsProto_fieldAccessorTable];
 }
 - (NSArray*) moviesList {
   return mutableMoviesList;
@@ -2391,10 +2391,10 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor];
+  return [MetaFlixRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable];
 }
 - (NSArray*) movieAndShowtimesList {
   return mutableMovieAndShowtimesList;
@@ -2518,10 +2518,10 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor];
+  return [MetaFlixRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!hasMovieIdentifier) {
@@ -3174,10 +3174,10 @@ static ReviewProto* defaultReviewProtoInstance = nil;
   return [ReviewProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_ReviewProto_descriptor];
+  return [MetaFlixRoot internal_static_ReviewProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_ReviewProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_ReviewProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -3571,10 +3571,10 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
   return [ReviewsListProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [NowPlayingRoot internal_static_ReviewsListProto_descriptor];
+  return [MetaFlixRoot internal_static_ReviewsListProto_descriptor];
 }
 - (PBFieldAccessorTable*) fieldAccessorTable {
-  return [NowPlayingRoot internal_static_ReviewsListProto_fieldAccessorTable];
+  return [MetaFlixRoot internal_static_ReviewsListProto_fieldAccessorTable];
 }
 - (NSArray*) reviewsList {
   return mutableReviewsList;

@@ -20,7 +20,7 @@
 }
 
 - (id) initWithFrame:(CGRect) frame
-               model:(NowPlayingModel*) model
+               model:(MetaFlixModel*) model
                movie:(Movie*) movie;
 
 - (void) refresh;

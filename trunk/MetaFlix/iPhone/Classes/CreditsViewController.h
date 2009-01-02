@@ -14,11 +14,11 @@
 
 @interface CreditsViewController : UITableViewController {
 @private
-    NowPlayingModel* model;
+    MetaFlixModel* model;
     NSArray* languages;
     NSDictionary* localizers;
 }
 
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(MetaFlixModel*) model;
 
 @end

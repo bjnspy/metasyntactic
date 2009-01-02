@@ -16,13 +16,13 @@
 
 #import "Location.h"
 #import "LocationUtilities.h"
-#import "NowPlayingController.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixController.h"
+#import "MetaFlixModel.h"
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 
 @interface LocationManager()
-@property (retain) NowPlayingController* controller;
+@property (retain) MetaFlixController* controller;
 @property (retain) CLLocationManager* locationManager;
 @property (retain) NSLock* gate;
 @property (retain) UINavigationItem* navigationItem;
@@ -50,7 +50,7 @@
 }
 
 
-- (id) initWithController:(NowPlayingController*) controller_ {
+- (id) initWithController:(MetaFlixController*) controller_ {
     if (self = [super init]) {
         self.controller = controller_;
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
@@ -73,12 +73,12 @@
 }
 
 
-+ (LocationManager*) managerWithController:(NowPlayingController*) controller {
++ (LocationManager*) managerWithController:(MetaFlixController*) controller {
     return [[[LocationManager alloc] initWithController:controller] autorelease];
 }
 
 
-- (NowPlayingModel*) model {
+- (MetaFlixModel*) model {
     return controller.model;
 }
 

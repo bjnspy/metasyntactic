@@ -21,6 +21,6 @@
     NSDateComponents* dateComponents;
 }
 
-+ (GoogleDataProvider*) providerWithModel:(NowPlayingModel*) model;
++ (GoogleDataProvider*) providerWithModel:(MetaFlixModel*) model;
 
 @end

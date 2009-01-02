@@ -17,6 +17,6 @@
 @interface MetacriticScoreProvider : AbstractScoreProvider {
 }
 
-+ (MetacriticScoreProvider*) providerWithModel:(NowPlayingModel*) model;
++ (MetacriticScoreProvider*) providerWithModel:(MetaFlixModel*) model;
 
 @end

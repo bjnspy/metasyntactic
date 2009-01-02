@@ -17,11 +17,11 @@
 #import "ColorCache.h"
 #import "FontCache.h"
 #import "ImageCache.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "Review.h"
 
 @interface ReviewTitleCell()
-@property (retain) NowPlayingModel* model;
+@property (retain) MetaFlixModel* model;
 @property (retain) UILabel* scoreLabel;
 @property (retain) UILabel* authorLabel;
 @property (retain) UILabel* sourceLabel;
@@ -44,7 +44,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_
+- (id) initWithModel:(MetaFlixModel*) model_
                frame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {

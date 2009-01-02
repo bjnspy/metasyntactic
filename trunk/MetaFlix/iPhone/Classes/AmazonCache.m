@@ -19,8 +19,8 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -43,7 +43,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(MetaFlixModel*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.normalMovies = [LinkedSet set];
@@ -58,7 +58,7 @@
 }
 
 
-+ (AmazonCache*) cacheWithModel:(NowPlayingModel*) model {
++ (AmazonCache*) cacheWithModel:(MetaFlixModel*) model {
     return [[[AmazonCache alloc] initWithModel:model] autorelease];
 }
 
@@ -116,7 +116,7 @@
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:amazonAddress toFile:path];
     if (amazonAddress.length > 0) {
-        [NowPlayingAppDelegate minorRefresh];
+        [MetaFlixAppDelegate minorRefresh];
     }
 }
 

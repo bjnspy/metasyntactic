@@ -18,7 +18,7 @@
 #import "AlertUtilities.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "SearchDatePickerViewController.h"
 
 @interface AbstractDetailsViewController()
@@ -46,12 +46,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (MetaFlixModel*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (MetaFlixController*) controller {
     return navigationController.controller;
 }
 

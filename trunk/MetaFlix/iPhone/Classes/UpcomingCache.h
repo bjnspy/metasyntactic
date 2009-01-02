@@ -26,7 +26,7 @@
     NSMutableDictionary* bookmarksData;
 }
 
-+ (UpcomingCache*) cacheWithModel:(NowPlayingModel*) model;
++ (UpcomingCache*) cacheWithModel:(MetaFlixModel*) model;
 
 - (void) update;
 

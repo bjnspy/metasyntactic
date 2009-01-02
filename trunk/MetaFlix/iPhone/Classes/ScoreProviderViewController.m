@@ -15,7 +15,7 @@
 #import "ScoreProviderViewController.h"
 
 #import "ApplicationTabBarController.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixModel.h"
 #import "SettingsNavigationController.h"
 
 @interface ScoreProviderViewController()
@@ -44,12 +44,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (MetaFlixModel*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (MetaFlixController*) controller {
     return navigationController.controller;
 }
 

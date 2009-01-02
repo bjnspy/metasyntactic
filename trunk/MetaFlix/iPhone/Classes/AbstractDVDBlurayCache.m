@@ -26,8 +26,8 @@
 #import "Movie.h"
 #import "NetflixCache.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "PointerSet.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
@@ -58,7 +58,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(MetaFlixModel*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet set];
     }
@@ -412,7 +412,7 @@
 
     [self setMovies:movies];
     [self updateDetails];
-    [NowPlayingAppDelegate majorRefresh];
+    [MetaFlixAppDelegate majorRefresh];
 }
 
 
@@ -438,7 +438,7 @@
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
     if (data != nil) {
         [FileUtilities writeData:data toFile:file];
-        [NowPlayingAppDelegate minorRefresh];
+        [MetaFlixAppDelegate minorRefresh];
     }
 }
 

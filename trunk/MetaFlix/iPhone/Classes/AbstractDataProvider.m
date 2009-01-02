@@ -24,8 +24,8 @@
 #import "LookupResult.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "MetaFlixAppDelegate.h"
+#import "MetaFlixModel.h"
 #import "Performance.h"
 #import "Theater.h"
 #import "ThreadingUtilities.h"
@@ -33,7 +33,7 @@
 
 @interface AbstractDataProvider()
 @property (retain) NSLock* gate;
-@property (retain) NowPlayingModel* model;
+@property (retain) MetaFlixModel* model;
 @property (retain) NSArray* moviesData;
 @property (retain) NSArray* theatersData;
 @property (retain) NSDictionary* synchronizationInformationData;
@@ -65,7 +65,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(MetaFlixModel*) model_ {
     if (self = [super init]) {
         self.gate = [[[NSRecursiveLock alloc] init] autorelease];
         self.model = model_;
@@ -520,7 +520,7 @@
     self.synchronizationInformationData = result.synchronizationInformation;
     self.performancesData = [NSMutableDictionary dictionary];
 
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [MetaFlixAppDelegate majorRefresh:YES];
 }
 
 
