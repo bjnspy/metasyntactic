@@ -16,7 +16,6 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
-#import "DataProvider.h"
 #import "DateUtilities.h"
 #import "MetaFlixModel.h"
 #import "SearchDatePickerViewController.h"
@@ -53,12 +52,6 @@
 
 - (MetaFlixController*) controller {
     return navigationController.controller;
-}
-
-
-- (void) onCancelTapped:(id) sender {
-    ++updateId;
-    [self dismissUpdateListingsViewController];
 }
 
 

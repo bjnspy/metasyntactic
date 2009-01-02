@@ -19,7 +19,6 @@
 #import "MetaFlixModel.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
-#import "Theater.h"
 #import "Utilities.h"
 
 
@@ -81,65 +80,9 @@
 }
 
 
-- (BOOL) theaterMatches:(Theater*) theater {
-    NSMutableArray* array = [NSMutableArray array];
-    [array addObject:theater.name];
-    [array addObject:theater.location.address];
-    return [self arrayMatches:array];
-}
-
-
 - (NSArray*) findMovies {
     NSMutableArray* result = [NSMutableArray array];
     for (Movie* movie in currentlyExecutingRequest.movies) {
-        if ([self movieMatches:movie]) {
-            [result addObject:movie];
-        }
-    }
-    [result sortUsingFunction:compareMoviesByTitle context:nil];
-    return result;
-}
-
-
-- (NSArray*) findTheaters {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Theater* theater in currentlyExecutingRequest.theaters) {
-        if ([self theaterMatches:theater]) {
-            [result addObject:theater];
-        }
-    }
-    [result sortUsingFunction:compareTheatersByName context:nil];
-    return result;
-}
-
-
-- (NSArray*) findUpcomingMovies {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Movie* movie in currentlyExecutingRequest.upcomingMovies) {
-        if ([self movieMatches:movie]) {
-            [result addObject:movie];
-        }
-    }
-    [result sortUsingFunction:compareMoviesByTitle context:nil];
-    return result;
-}
-
-
-- (NSArray*) findDVDs {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Movie* movie in currentlyExecutingRequest.dvds) {
-        if ([self movieMatches:movie]) {
-            [result addObject:movie];
-        }
-    }
-    [result sortUsingFunction:compareMoviesByTitle context:nil];
-    return result;
-}
-
-
-- (NSArray*) findBluray {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Movie* movie in currentlyExecutingRequest.bluray) {
         if ([self movieMatches:movie]) {
             [result addObject:movie];
         }
@@ -153,9 +96,6 @@
     NSArray* movies = [self findMovies];
     if ([self abortEarly]) { return; }
 
-    NSArray* theaters = [self findTheaters];
-    if ([self abortEarly]) { return; }
-
     NSArray* upcomingMovies = [self findUpcomingMovies];
     if ([self abortEarly]) { return; }
 
@@ -166,11 +106,7 @@
     if ([self abortEarly]) { return; }
     //...
 
-    [self reportResult:movies
-               theaters:theaters
-         upcomingMovies:upcomingMovies
-                   dvds:dvds
-                 bluray:bluray];
+    [self reportResult:movies];
 }
 
 @end

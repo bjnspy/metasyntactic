@@ -54,9 +54,6 @@
     if (self = [super init]) {
         self.requestId = requestId_;
         self.value = value_;
-        self.movies = model.movies;
-        self.theaters = model.theaters;
-        self.upcomingMovies = model.upcomingCache.movies;
 
         self.lowercaseValue = [[Utilities asciiString:value] lowercaseString];
     }

@@ -212,26 +212,6 @@
 }
 
 
-- (void) onNetflixEnabledChanged:(id) sender {
-    [self.controller setNetflixEnabled:!self.model.netflixEnabled];
-
-    if (self.model.netflixEnabled) {
-        NSString* message = NSLocalizedString(@"Netflix support is currently in 'beta'. Please help improve MetaFlix by reporting any issues you find using the 'Send Feedback' button below.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)", nil);
-        [AlertUtilities showOkAlert:message];
-    }
-}
-
-
-- (void) onAutoUpdateChanged:(id) sender {
-    [self.controller setAutoUpdateLocation:!self.model.autoUpdateLocation];
-}
-
-
-- (void) onUseSmallFontsChanged:(id) sender {
-    [self.model setUseSmallFonts:!self.model.useSmallFonts];
-}
-
-
 - (void) onPrioritizeBookmarksChanged:(id) sender {
     [self.model setPrioritizeBookmarks:!self.model.prioritizeBookmarks];
 }

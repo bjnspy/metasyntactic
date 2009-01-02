@@ -112,17 +112,6 @@
 }
 
 
-- (Movie*) movieForTitle:(NSString*) canonicalTitle {
-    for (Movie* movie in self.model.movies) {
-        if ([movie.canonicalTitle isEqual:canonicalTitle]) {
-            return movie;
-        }
-    }
-
-    return nil;
-}
-
-
 - (void) pushMovieDetails:(Movie*) movie
                  animated:(BOOL) animated {
     if (movie == nil) {

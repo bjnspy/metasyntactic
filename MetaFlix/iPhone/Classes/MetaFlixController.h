@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "DataProviderUpdateDelegate.h"
-
-@interface MetaFlixController : NSObject<DataProviderUpdateDelegate> {
+@interface MetaFlixController : NSObject {
 @private
     MetaFlixAppDelegate* appDelegate;
     LocationManager* locationManager;
@@ -28,12 +26,6 @@
 
 - (MetaFlixModel*) model;
 
-- (void) setSearchDate:(NSDate*) searchDate;
-- (void) setUserAddress:(NSString*) userAddress;
-- (void) setSearchRadius:(NSInteger) radius;
-- (void) setScoreProviderIndex:(NSInteger) index;
-- (void) setAutoUpdateLocation:(BOOL) value;
-- (void) setNetflixEnabled:(BOOL) value;
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 
 + (MetaFlixController*) controllerWithAppDelegate:(MetaFlixAppDelegate*) appDelegate;
