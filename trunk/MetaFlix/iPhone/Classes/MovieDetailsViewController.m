@@ -14,13 +14,13 @@
 
 #import "MovieDetailsViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "ActionsView.h"
 #import "ActivityIndicatorViewWithBackground.h"
 #import "AlertUtilities.h"
 #import "Application.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
-#import "DVD.h"
 #import "DateUtilities.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "GlobalActivityIndicator.h"
@@ -30,19 +30,14 @@
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
-#import "MoviesNavigationController.h"
 #import "MutableNetflixCache.h"
 #import "NetflixRatingsCell.h"
 #import "MetaFlixAppDelegate.h"
 #import "MetaFlixModel.h"
 #import "PosterCache.h"
-#import "Score.h"
 #import "TappableImageView.h"
 #import "Theater.h"
-#import "TheaterNameCell.h"
-#import "TheatersNavigationController.h"
 #import "ThreadingUtilities.h"
-#import "UpcomingCache.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
@@ -564,29 +559,11 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (NSInteger) getTheaterIndex:(NSInteger) section {
-    return section - 1;
-}
-
-
-- (NSInteger) isTheaterSection:(NSInteger) section {
-    NSInteger theaterIndex = [self getTheaterIndex:section];
-    return theaterIndex >= 0 && theaterIndex < theatersArray.count;
-}
-
-
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return [self numberOfRowsInHeaderSection];
     }
-
-    if ([self isTheaterSection:section]) {
-        return 2;
-    }
-
-    // show hidden theaters
-    return 1;
 }
 
 
@@ -1117,39 +1094,12 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         [self tableView:tableView didSelectHeaderRow:indexPath.row];
-        return;
     }
-
-    if ([self isTheaterSection:indexPath.section]) {
-        // theater section
-        Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
-
-        if (indexPath.row == 0) {
-            [navigationController pushTheaterDetails:theater animated:YES];
-        } else {
-            [self pushTicketsView:theater animated:YES];
-        }
-        return;
-    }
-
-    [self didSelectShowHiddenTheaters];
 }
 
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = indexPath.section;
-
-    if (section == 0) {
-        return UITableViewCellAccessoryNone;
-    }
-
-    if ([self isTheaterSection:section]) {
-        // theater section
-        return UITableViewCellAccessoryDisclosureIndicator;
-    }
-
-    // show hidden theaters
     return UITableViewCellAccessoryNone;
 }
 

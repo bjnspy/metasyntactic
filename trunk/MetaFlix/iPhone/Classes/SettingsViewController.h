@@ -14,10 +14,10 @@
 
 @interface SettingsViewController : UITableViewController {
 @private
-    SettingsNavigationController* navigationController;
+    AbstractNavigationController* navigationController;
 }
 
-- (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 - (void) majorRefresh;
 

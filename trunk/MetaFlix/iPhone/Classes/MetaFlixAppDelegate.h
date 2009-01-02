@@ -15,7 +15,7 @@
 @interface MetaFlixAppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
-    ApplicationTabBarController* tabBarController;
+    NetflixNavigationController* navigationController;
 
     MetaFlixModel* model;
     MetaFlixController* controller;
@@ -24,7 +24,7 @@
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
-@property (readonly, retain) ApplicationTabBarController* tabBarController;
+@property (readonly, retain) NetflixNavigationController* navigationController;
 @property (readonly, retain) MetaFlixController* controller;
 @property (readonly, retain) MetaFlixModel* model;
 

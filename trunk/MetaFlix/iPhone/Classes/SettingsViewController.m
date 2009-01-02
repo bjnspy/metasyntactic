@@ -26,16 +26,15 @@
 #import "MetaFlixAppDelegate.h"
 #import "MetaFlixController.h"
 #import "MetaFlixModel.h"
-#import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SettingCell.h"
-#import "SettingsNavigationController.h"
+#import "AbstractNavigationController.h"
 #import "TextFieldEditorViewController.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
 @interface SettingsViewController()
-@property (assign) SettingsNavigationController* navigationController;
+@property (assign) AbstractNavigationController* navigationController;
 @end
 
 
@@ -245,11 +244,6 @@
                                                           selector:@selector(onSearchDateChanged:)];
 
     [navigationController pushViewController:pickerController animated:YES];
-}
-
-
-- (void) onSearchDateChanged:(NSString*) dateString {
-    [navigationController.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
 }
 
 

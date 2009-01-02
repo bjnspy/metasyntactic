@@ -20,22 +20,15 @@
     AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate> {
 @private
     Movie* movie;
-    DVD* dvd;
     Movie* netflixMovie;
 
-    NSMutableArray* theatersArray;
-    NSMutableArray* showtimesArray;
     NSString* trailer;
-    NSArray* reviewsArray;
     NSDictionary* websites;
-
-    NSInteger hiddenTheaterCount;
 
     ActionsView* actionsView;
     UIButton* bookmarkButton;
     NetflixRatingsCell* netflixRatingsCell;
 
-    BOOL filterTheatersByDistance;
     BOOL expandedDetails;
     BOOL shutdown;
     BOOL visible;

@@ -16,13 +16,8 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
-#import "AllMoviesViewController.h"
-#import "AllTheatersViewController.h"
 #import "AmazonCache.h"
 #import "Application.h"
-#import "BlurayCache.h"
-#import "DVDCache.h"
-#import "DVDViewController.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "FavoriteTheater.h"
@@ -40,35 +35,21 @@
 #import "NetworkUtilities.h"
 #import "MetaFlixAppDelegate.h"
 #import "PosterCache.h"
-#import "ReviewsViewController.h"
-#import "Score.h"
-#import "ScoreCache.h"
-#import "Theater.h"
-#import "TheaterDetailsViewController.h"
-#import "TicketsViewController.h"
 #import "TrailerCache.h"
-#import "UpcomingCache.h"
-#import "UpcomingMoviesViewController.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 #import "WikipediaCache.h"
 
 @interface MetaFlixModel()
 @property (retain) UserLocationCache* userLocationCache;
-@property (retain) BlurayCache* blurayCache;
-@property (retain) DVDCache* dvdCache;
 @property (retain) IMDbCache* imdbCache;
 @property (retain) AmazonCache* amazonCache;
 @property (retain) WikipediaCache* wikipediaCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
-@property (retain) ScoreCache* scoreCache;
 @property (retain) TrailerCache* trailerCache;
-@property (retain) UpcomingCache* upcomingCache;
 @property (retain) MutableNetflixCache* netflixCache;
 @property (retain) NSMutableSet* bookmarkedTitlesData;
-@property (retain) NSMutableDictionary* favoriteTheatersData;
-@property (retain) id<DataProvider> dataProvider;
 @end
 
 @implementation MetaFlixModel
@@ -381,8 +362,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) loadData {
-    self.dataProvider = [GoogleDataProvider providerWithModel:self];
-
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
     if (version == nil || ![persistenceVersion isEqual:version]) {
         // First, capture any preferences that we can safely migrate
@@ -454,17 +433,10 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         self.amazonCache = [AmazonCache cacheWithModel:self];
         self.wikipediaCache = [WikipediaCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cacheWithModel:self];
-        self.blurayCache = [BlurayCache cacheWithModel:self];
-        self.dvdCache = [DVDCache cacheWithModel:self];
         self.posterCache = [PosterCache cacheWithModel:self];
-        self.scoreCache = [ScoreCache cacheWithModel:self];
-        self.upcomingCache = [UpcomingCache cacheWithModel:self];
         self.netflixCache = [MutableNetflixCache cacheWithModel:self];
 
         [self clearCaches];
-
-        searchRadius = -1;
-        cachedScoreProviderIndex = -1;
     }
 
     return self;
@@ -1463,65 +1435,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
 - (void) setUseSmallFonts:(BOOL) useSmallFonts {
     [[NSUserDefaults standardUserDefaults] setBool:!useSmallFonts forKey:USE_NORMAL_FONTS];
-}
-
-
-- (void) saveNavigationStack:(AbstractNavigationController*) controller {
-    NSMutableArray* types = [NSMutableArray array];
-    NSMutableArray* values = [NSMutableArray array];
-
-    for (id viewController in controller.viewControllers) {
-        NSInteger type;
-        id value;
-        if ([viewController isKindOfClass:[MovieDetailsViewController class]]) {
-            type = MovieDetails;
-            value = [[viewController movie] canonicalTitle];
-        } else if ([viewController isKindOfClass:[TheaterDetailsViewController class]]) {
-            type = TheaterDetails;
-            value = [[viewController theater] name];
-        } else if ([viewController isKindOfClass:[ReviewsViewController class]]) {
-            type = Reviews;
-            value = [[viewController movie] canonicalTitle];
-        } else if ([viewController isKindOfClass:[TicketsViewController class]]) {
-            type = Tickets;
-            value = [NSArray arrayWithObjects:[[viewController movie] canonicalTitle], [[viewController theater] name], [viewController title], nil];
-        } else if ([viewController isKindOfClass:[AllMoviesViewController class]] ||
-                   [viewController isKindOfClass:[AllTheatersViewController class]] ||
-                   [viewController isKindOfClass:[UpcomingMoviesViewController class]] ||
-                   [viewController isKindOfClass:[DVDViewController class]]) {
-            continue;
-        } else if ([viewController isKindOfClass:[NetflixViewController class]]) {
-            break;
-        } else {
-            NSAssert(false, @"");
-        }
-
-        [types addObject:[NSNumber numberWithInt:type]];
-        [values addObject:value];
-    }
-
-    [[NSUserDefaults standardUserDefaults] setObject:types forKey:NAVIGATION_STACK_TYPES];
-    [[NSUserDefaults standardUserDefaults] setObject:values forKey:NAVIGATION_STACK_VALUES];
-}
-
-
-- (NSArray*) navigationStackTypes {
-    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:NAVIGATION_STACK_TYPES];
-    if (result == nil) {
-        return [NSArray array];
-    }
-
-    return result;
-}
-
-
-- (NSArray*) navigationStackValues {
-    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:NAVIGATION_STACK_VALUES];
-    if (result == nil) {
-        return [NSArray array];
-    }
-
-    return result;
 }
 
 
