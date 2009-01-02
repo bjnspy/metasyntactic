@@ -111,7 +111,7 @@ static DifferenceEngine* differenceEngine = nil;
             NSString* directory = *directories[i];
 
             if (directory != nil) {
-                [FileUtilities removeItem:directory];
+                [FileUtilities moveItemToTrash:directory];
             }
         }
     }
@@ -179,27 +179,27 @@ static DifferenceEngine* differenceEngine = nil;
         largePostersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LargePosters"] retain];
         
         dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
-        dvdDetailsDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Details"] retain];
-        dvdPostersDirectory = [[[self dvdDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+        dvdDetailsDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Details"] retain];
+        dvdPostersDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Posters"] retain];
         
         blurayDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Bluray"] retain];
-        blurayDetailsDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Details"] retain];
-        blurayPostersDirectory = [[[self blurayDirectory] stringByAppendingPathComponent:@"Posters"] retain];
+        blurayDetailsDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Details"] retain];
+        blurayPostersDirectory = [[blurayDirectory stringByAppendingPathComponent:@"Posters"] retain];
         
         netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
-        netflixQueuesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Queues"] retain];
-        netflixPostersDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-        netflixSeriesDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Series"] retain];
-        netflixDetailsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Details"] retain];
-        netflixUserRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"UserRatings"] retain];
-        netflixPredictedRatingsDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"PredictedRatings"] retain];
-        netflixSearchDirectory = [[[self netflixDirectory] stringByAppendingPathComponent:@"Search"] retain];
+        netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
+        netflixPostersDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Posters"] retain];
+        netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
+        netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
+        netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
+        netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
+        netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
         
         upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
-        upcomingCastDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Cast"] retain];
-        upcomingPostersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Posters"] retain];
-        upcomingSynopsesDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Synopses"] retain];
-        upcomingTrailersDirectory = [[[self upcomingDirectory] stringByAppendingPathComponent:@"Trailers"] retain];
+        upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
+        upcomingPostersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Posters"] retain];
+        upcomingSynopsesDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Synopses"] retain];
+        upcomingTrailersDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Trailers"] retain];
         
         [self createDirectories];
     }
@@ -217,7 +217,7 @@ static DifferenceEngine* differenceEngine = nil;
         differenceEngine = [[DifferenceEngine engine] retain];
 
         [self initializeDirectories];
-        [FileUtilities removeItem:supportDirectory];
+        [FileUtilities moveItemToTrash:supportDirectory];
         
         [self emptyTrash];
     }
@@ -244,15 +244,15 @@ static DifferenceEngine* differenceEngine = nil;
 + (void) resetNetflixDirectories {
     [gate lock];
     {
-        [FileUtilities removeItem:netflixUserRatingsDirectory];
-        [FileUtilities removeItem:netflixPredictedRatingsDirectory];
+        [FileUtilities moveItemToTrash:netflixUserRatingsDirectory];
+        [FileUtilities moveItemToTrash:netflixPredictedRatingsDirectory];
         [self createDirectories];
     }
     [gate unlock];
 }
 
 
-+ (void) clearStaleData:(NSInteger) index {
++ (void) clearStaleData {
     [gate lock];
     {
         NSInteger cacheLimit = (NSInteger)CACHE_LIMIT;
@@ -266,7 +266,7 @@ static DifferenceEngine* differenceEngine = nil;
 
             NSArray* paths = [FileUtilities directoryContentsPaths:directory];
             for (NSString* path in paths) {
-                if ((rand() % 1000) < 10) {
+                if ((rand() % 1000) < 50) {
                     if ([FileUtilities isDirectory:path]) {
                         continue;
                     }
@@ -274,7 +274,7 @@ static DifferenceEngine* differenceEngine = nil;
                     NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
                     if (lastModifiedDate != nil) {
                         if (ABS(lastModifiedDate.timeIntervalSinceNow) > cacheLimit) {
-                            [FileUtilities removeItem:path];
+                            [FileUtilities moveItemToTrash:path];
                         }
                     }
                 }

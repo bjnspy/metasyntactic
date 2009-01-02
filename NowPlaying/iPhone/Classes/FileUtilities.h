@@ -27,7 +27,7 @@
 + (NSDate*) modificationDate:(NSString*) file;
 + (unsigned long long) size:(NSString*) file;
 
-+ (void) removeItem:(NSString*) path;
++ (void) moveItemToTrash:(NSString*) path;
 + (BOOL) fileExists:(NSString*) path;
 + (void) moveItem:(NSString*) from to:(NSString*) to;
 

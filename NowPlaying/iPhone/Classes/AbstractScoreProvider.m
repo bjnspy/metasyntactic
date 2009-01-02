@@ -469,7 +469,7 @@
         if (existingReviews.count > 0) {
             // we have reviews already.  don't wipe it out.
             // rewrite the reviews so the mod date is correct.
-            [FileUtilities removeItem:[self reviewsFile:title]];
+            [FileUtilities moveItemToTrash:[self reviewsFile:title]];
             [self saveEncodedReviews:existingReviews hash:serverHash title:title];
             return;
         }

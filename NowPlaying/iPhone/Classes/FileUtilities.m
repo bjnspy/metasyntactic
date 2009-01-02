@@ -79,7 +79,7 @@ static MainThreadGate* gate;
 }
 
 
-+ (void) removeItem:(NSString*) path {
++ (void) moveItemToTrash:(NSString*) path {
     NSString* trashPath = [Application uniqueTrashDirectory];
     [gate lock];
     {
@@ -125,7 +125,7 @@ static MainThreadGate* gate;
         if (plistData != nil) {
             [plistData writeToFile:file atomically:YES];
         } if (object == nil) {
-            [FileUtilities removeItem:file];
+            [FileUtilities moveItemToTrash:file];
         }
     }
     [gate unlock];
