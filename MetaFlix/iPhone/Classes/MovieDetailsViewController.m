@@ -26,7 +26,6 @@
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "LargePosterCache.h"
-#import "LookupResult.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
