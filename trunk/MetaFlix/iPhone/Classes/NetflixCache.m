@@ -502,10 +502,12 @@ static NSString* directors_key = @"directors";
     
     NSMutableArray* preferredFormats = [NSMutableArray array];
     for (XmlElement* child in [[element element:@"preferred_formats"] children]) {
-        if ([@"http://api.netflix.com/categories/title_formats" isEqual:child.name]) {
-            NSString* label = [child attributeValue:@"label"];
-            if (label.length > 0) {
-                [preferredFormats addObject:label];
+        if ([@"category" isEqual:child.name]) {
+            if ([@"http://api.netflix.com/categories/title_formats" isEqual:[child attributeValue:@"scheme"]]) {
+                NSString* label = [child attributeValue:@"label"];
+                if (label.length > 0) {
+                    [preferredFormats addObject:label];
+                }
             }
         }
     }
