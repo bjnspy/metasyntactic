@@ -93,11 +93,11 @@
 
 - (void) onButtonTapped:(UIButton*) button {
     NSInteger index = [buttons indexOfObject:button];
-    
+
     SEL selector = [[selectors objectAtIndex:index] pointerValue];
     if ([target respondsToSelector:selector]) {
         id argument = [arguments objectAtIndex:index];
-        
+
         if (argument == [NSNull null]) {
             [target performSelector:selector];
         } else {
