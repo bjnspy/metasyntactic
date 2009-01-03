@@ -49,7 +49,7 @@
         self.netflixViewController = [[[NetflixViewController alloc] initWithNavigationController:self] autorelease];
         [self pushViewController:netflixViewController animated:NO];
     }
-    
+
     self.navigationBar.tintColor = [ColorCache netflixYellow];
 }
 

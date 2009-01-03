@@ -164,7 +164,7 @@ typedef enum {
             cell.text = NSLocalizedString(@"Rental History", nil);
             cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
         } else if (row == AboutSendFeedbackSection) {
-            cell.text = NSLocalizedString(@"About / Send Feedback", nil);    
+            cell.text = NSLocalizedString(@"About / Send Feedback", nil);
             cell.image = [UIImage imageNamed:@"NetflixSettings.png"];
         } else if (row == LogOutSection) {
             cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
@@ -222,7 +222,7 @@ typedef enum {
     if (index != alertView.cancelButtonIndex) {
         [self.controller setNetflixKey:nil secret:nil userId:nil];
         [Application resetNetflixDirectories];
-    
+
         [self majorRefresh];
     }
 }
