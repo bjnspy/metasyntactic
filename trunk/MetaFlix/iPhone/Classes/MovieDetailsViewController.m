@@ -514,47 +514,6 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (void) didSelectShowHiddenTheaters {
-    NSIndexPath* startPath = self.tableView.indexPathForSelectedRow;
-    [self.tableView deselectRowAtIndexPath:startPath animated:NO];
-
-    [self majorRefresh];
-
-    // this animates showing the theaters.  but it's unfortunately too slow
-    /*
-     NSInteger currentTheaterCount = self.theatersArray.count;
-     filterTheatersByDistance = NO;
-
-     [self initializeData];
-
-     NSInteger newTheaterCount = self.theatersArray.count;
-
-     if (currentTheaterCount >= newTheaterCount) {
-     return;
-     }
-
-     NSInteger startSection = startPath.section;
-     [self.tableView beginUpdates];
-     {
-     [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:startSection] withRowAnimation:UITableViewRowAnimationBottom];
-
-     NSMutableIndexSet* sectionsToAdd = [NSMutableIndexSet indexSet];
-
-     for (int i = 0; i < (newTheaterCount - currentTheaterCount); i++) {
-     [sectionsToAdd addIndex:startSection + i];
-     }
-
-     [self.tableView insertSections:sectionsToAdd withRowAnimation:UITableViewRowAnimationBottom];
-     }
-     [self.tableView endUpdates];
-
-     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
-     atScrollPosition:UITableViewScrollPositionMiddle
-     animated:YES];
-     */
-}
-
-
 - (void) playTrailer {
     NSString* urlString = trailer;
     MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:urlString]];
@@ -700,7 +659,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 - (void)       tableView:(UITableView*) tableView
       didSelectHeaderRow:(NSInteger) row {
-    if (row == 3) {
+    if (row == 2) {
         expandedDetails = !expandedDetails;
 
         NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
