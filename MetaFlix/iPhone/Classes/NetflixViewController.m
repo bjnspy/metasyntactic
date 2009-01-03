@@ -29,6 +29,7 @@
 #import "NetflixSettingsViewController.h"
 #import "MetaFlixModel.h"
 #import "Queue.h"
+#import "ViewControllerUtilities.h"
 
 @interface NetflixViewController()
 @property (assign) NetflixNavigationController* navigationController;
@@ -50,7 +51,6 @@ typedef enum {
     SettingsSection,
     AboutSendFeedbackSection,
     LogOutSection,
-    OverQuotaSection,
 } Sections;
 
 @synthesize navigationController;
@@ -70,6 +70,8 @@ typedef enum {
         self.title = NSLocalizedString(@"MetaFlix", nil);
 
         self.tableView.rowHeight = ROW_HEIGHT;
+        self.navigationItem.leftBarButtonItem =
+        [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
     }
     return self;
 }
@@ -90,15 +92,28 @@ typedef enum {
 }
 
 
+- (void) setupTitle {
+    if (self.model.netflixCache.lastQuotaErrorDate != nil &&
+        self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
+        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+        label.text = NSLocalizedString(@"Over Quota - Try Again Later", nil);
+        self.navigationItem.titleView = label;
+    } else {
+        self.navigationItem.titleView = nil;
+    }
+}
+
+
 - (void) majorRefreshWorker {
     self.tableView.rowHeight = ROW_HEIGHT;
     self.tableView.backgroundColor = [ColorCache netflixRed];
-
+    [self setupTitle];
     [self.tableView reloadData];
 }
 
 
 - (void) minorRefreshWorker {
+    [self setupTitle];
 }
 
 
@@ -176,13 +191,6 @@ typedef enum {
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
             cell.textColor = [ColorCache commandColor];
             cell.accessoryView = nil;
-        } else if (row == OverQuotaSection) {
-            if (self.model.netflixCache.lastQuotaErrorDate != nil &&
-                self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
-                cell.text = NSLocalizedString(@"Over Quota - Try Again Later", nil);
-                cell.accessoryView = nil;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
         }
     } else {
         if (indexPath.row == 0) {
