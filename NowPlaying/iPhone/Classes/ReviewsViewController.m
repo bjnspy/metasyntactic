@@ -110,7 +110,7 @@
     Review* review = [reviews objectAtIndex:section];
 
     if (row == 0) {
-        static NSString* reuseIdentifier = @"ReviewTitleCellIdentifier";
+        static NSString* reuseIdentifier = @"titleReuseIdentifier";
 
         ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
@@ -123,7 +123,7 @@
 
         return cell;
     } else {
-        static NSString* reuseIdentifier = @"ReviewBodyCellIdentifier";
+        static NSString* reuseIdentifier = @"bodyReuseIdentifier";
 
         ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {

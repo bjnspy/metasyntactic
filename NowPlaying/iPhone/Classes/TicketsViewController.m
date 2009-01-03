@@ -182,21 +182,6 @@
 }
 
 
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForFooterInSection:(NSInteger) section {
-    if (section == 1) {
-        if (performances.count == 0) {
-            return NSLocalizedString(@"No more show times available today.", nil);
-        }
-
-        if (![self.model isStale:theater]) {
-            return [self.model showtimesRetrievedOnString:theater];
-        }
-    }
-
-    return nil;
-}
-
 - (UIView*)        tableView:(UITableView*) tableView
       viewForFooterInSection:(NSInteger) section {
     if (section == 1) {
@@ -223,7 +208,7 @@
 
 - (UITableViewCell*) showtimeCellForSection:(NSInteger) section
                                         row:(NSInteger) row {
-    static NSString* reuseIdentifier = @"TicketsViewShowtimeCellIdentifier";
+    static NSString* reuseIdentifier = @"reuseIdentifier";
 
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {

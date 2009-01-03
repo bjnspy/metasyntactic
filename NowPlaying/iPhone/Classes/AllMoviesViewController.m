@@ -136,7 +136,7 @@
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
-    static NSString* reuseIdentifier = @"MovieCellIdentifier";
+    static NSString* reuseIdentifier = @"reuseIdentifier";
     id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame

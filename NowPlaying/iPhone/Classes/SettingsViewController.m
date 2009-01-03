@@ -120,7 +120,7 @@
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
     if (row >= 0 && row <= 3) {
-        static NSString* reuseIdentifier = @"SettingCellReuseIdentifier";
+        static NSString* reuseIdentifier = @"reuseIdentifier";
         SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[SettingCell alloc] initWithFrame:CGRectZero

@@ -86,7 +86,7 @@
 - (UITableViewCell*) createCell:(Movie*) movie {
     id cell = nil;
     if ([dvds containsObject:movie]) {
-        static NSString* reuseIdentifier = @"DVDCell";
+        static NSString* reuseIdentifier = @"dvdReuseIdentifier";
         cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
@@ -94,7 +94,7 @@
                                              model:self.model] autorelease];
         }
     } else {
-        static NSString* reuseIdentifier = @"UpcomingCell";
+        static NSString* reuseIdentifier = @"upcomingReuseIdentifier";
         cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame

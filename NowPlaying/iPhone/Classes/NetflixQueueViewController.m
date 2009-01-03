@@ -292,7 +292,7 @@
         return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     }
 
-    static NSString* reuseIdentifier = @"NetflixQueueReuseIdentifier";
+    static NSString* reuseIdentifier = @"reuseIdentifier";
 
     NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {

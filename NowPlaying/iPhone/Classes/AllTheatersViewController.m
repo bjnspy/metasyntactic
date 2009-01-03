@@ -398,7 +398,7 @@
 
     Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    static NSString* reuseIdentifier = @"AllTheatersCellIdentifier";
+    static NSString* reuseIdentifier = @"reuseIdentifier";
 
     TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {

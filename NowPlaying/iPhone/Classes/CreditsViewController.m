@@ -184,7 +184,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
-    static NSString* reuseIdentifier = @"LocalizationCellIdentifier";
+    static NSString* reuseIdentifier = @"reuseIdentifier";
     SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[SettingCell alloc] initWithFrame:CGRectZero
