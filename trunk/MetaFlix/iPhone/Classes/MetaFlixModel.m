@@ -344,6 +344,16 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
+- (BOOL) netflixCanInstantWatch {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_CAN_INSTANT_WATCH];
+}
+
+
+- (NSArray*) netflixPreferredFormats {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_PREFERRED_FORMATS];
+}
+
+
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
     [[NSUserDefaults standardUserDefaults] setObject:userId forKey:NETFLIX_USER_ID];
     [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];

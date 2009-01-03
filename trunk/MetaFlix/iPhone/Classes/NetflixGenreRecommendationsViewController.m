@@ -166,7 +166,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    static NSString* reuseIdentifier = @"NetflixGenreReuseIdentifier";
+    static NSString* reuseIdentifier = @"reuseIdentifier";
     NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[NetflixCell alloc] initWithFrame:CGRectZero

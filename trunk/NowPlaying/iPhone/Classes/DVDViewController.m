@@ -176,7 +176,7 @@
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
-    static NSString* reuseIdentifier = @"DVDCellIdentifier";
+    static NSString* reuseIdentifier = @"reuseIdentifier";
     id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame

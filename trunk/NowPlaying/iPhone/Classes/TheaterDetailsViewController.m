@@ -255,7 +255,7 @@
 
 - (UITableViewCell*) cellForTheaterIndex:(NSInteger) index row:(NSInteger) row {
     if (row == 0) {
-        static NSString* reuseIdentifier = @"TheaterDetailsMovieCellIdentifier";
+        static NSString* reuseIdentifier = @"movieReuseIdentifier";
         id movieCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (movieCell == nil) {
             movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
@@ -268,7 +268,7 @@
 
         return movieCell;
     } else {
-        static NSString* reuseIdentifier = @"TheaterDetailsShowtimesCellIdentifier";
+        static NSString* reuseIdentifier = @"showtimesReuseIdentifier";
         id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame

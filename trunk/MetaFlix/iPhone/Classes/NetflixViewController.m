@@ -26,6 +26,7 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixQueueViewController.h"
 #import "NetflixSearchViewController.h"
+#import "NetflixSettingsViewController.h"
 #import "MetaFlixModel.h"
 #import "Queue.h"
 
@@ -276,6 +277,12 @@ typedef enum {
 }
 
 
+- (void) didSelectSettingsRow {
+    NetflixSettingsViewController* controller = [[[NetflixSettingsViewController alloc] initWithNavigationController:navigationController] autorelease];
+    [navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
     if (row == SearchSection) {
         [self didSelectSearchRow];
@@ -289,6 +296,8 @@ typedef enum {
         [self didSelectQueueRow:[NetflixCache atHomeKey]];
     } else if (row == RentalHistorySection) {
         [self didSelectRentalHistoryRow];
+    } else if (row == SettingsSection) {
+        [self didSelectSettingsRow];
     } else if (row == AboutSendFeedbackSection) {
         [self didSelectAboutSendFeedbackRow];
     } else if (row == LogOutSection) {

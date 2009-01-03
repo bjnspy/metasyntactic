@@ -101,7 +101,7 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    static NSString* reuseIdentifier = @"DVDFilterCellIdentifier";
+    static NSString* reuseIdentifier = @"reuseIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];

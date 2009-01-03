@@ -517,6 +517,7 @@ static NSString* directors_key = @"directors";
                           lastName:lastName
                    canInstantWatch:canInstantWatch
                   preferredFormats:preferredFormats];
+        [MetaFlixAppDelegate majorRefresh];
     }
 }
 

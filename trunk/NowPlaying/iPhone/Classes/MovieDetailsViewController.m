@@ -723,7 +723,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 - (UITableViewCell*) cellForTheaterSection:(NSInteger) theaterIndex
                                        row:(NSInteger) row {
     if (row == 0) {
-        static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
+        static NSString* reuseIdentifier = @"theaterReuseIdentifier";
         id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[TheaterNameCell alloc] initWithFrame:CGRectZero
@@ -736,7 +736,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
         return cell;
     } else {
-        static NSString* reuseIdentifier = @"MovieDetailsShowtimesCellIdentifier";
+        static NSString* reuseIdentifier = @"detailsReuseIdentifier";
         id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
