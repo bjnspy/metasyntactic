@@ -47,7 +47,10 @@ enum ViewControllerType {
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;
 - (NSString*) netflixUserId;
+- (NSString*) netflixFirstName;
+- (NSString*) netflixLastName;
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
+- (void) setNetflixFirstName:(NSString*) firstName lastName:(NSString*) lastName canInstantWatch:(BOOL) canInstantWatch preferredFormats:(NSArray*) preferredFormats;
 
 - (BOOL) prioritizeBookmarks;
 - (void) setPrioritizeBookmarks:(BOOL) value;
