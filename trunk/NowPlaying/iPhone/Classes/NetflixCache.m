@@ -489,10 +489,43 @@ static NSString* directors_key = @"directors";
 }
 
 
+- (void) downloadUserData {
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@", model.netflixUserId];
+    OAMutableURLRequest* request = [self createURLRequest:address];
+    
+    [request prepare];
+    
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:YES];
+    NSString* firstName = [[element element:@"first_name"] text];
+    NSString* lastName = [[element element:@"last_name"] text];
+    BOOL canInstantWatch = [[[element element:@"can_instant_watch"] text] isEqual:@"true"];
+    
+    NSMutableArray* preferredFormats = [NSMutableArray array];
+    for (XmlElement* child in [[element element:@"preferred_formats"] children]) {
+        if ([@"http://api.netflix.com/categories/title_formats" isEqual:child.name]) {
+            NSString* label = [child attributeValue:@"label"];
+            if (label.length > 0) {
+                [preferredFormats addObject:label];
+            }
+        }
+    }
+    
+    if (firstName.length > 0 || lastName.length > 0) {
+        [model setNetflixFirstName:firstName
+                          lastName:lastName
+                   canInstantWatch:canInstantWatch
+                  preferredFormats:preferredFormats];
+    }
+}
+
+
 - (void) updateBackgroundEntryPoint {
     if (model.netflixUserId.length == 0) {
         return;
     }
+    
+    
+    [self downloadUserData];
 
     NSArray* feeds = [self downloadFeeds];
     if (feeds.count > 0) {

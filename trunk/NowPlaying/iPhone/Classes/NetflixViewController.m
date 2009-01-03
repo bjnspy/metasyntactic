@@ -27,6 +27,7 @@
 #import "NetflixSearchViewController.h"
 #import "NowPlayingModel.h"
 #import "Queue.h"
+#import "ViewControllerUtilities.h"
 
 @interface NetflixViewController()
 @property (assign) NetflixNavigationController* navigationController;

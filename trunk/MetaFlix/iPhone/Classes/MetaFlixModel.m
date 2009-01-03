@@ -65,6 +65,10 @@ static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
 static NSString* NETFLIX_KEY                            = @"netflixKey";
 static NSString* NETFLIX_SECRET                         = @"netflixSecret";
 static NSString* NETFLIX_USER_ID                        = @"netflixUserId";
+static NSString* NETFLIX_FIRST_NAME                     = @"netflixFirstName";
+static NSString* NETFLIX_LAST_NAME                      = @"netflixLastName";
+static NSString* NETFLIX_CAN_INSTANT_WATCH              = @"netflixCanInstantWatch";
+static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredFormats";
 
 
 static NSString** ALL_KEYS[] = {
@@ -78,7 +82,11 @@ static NSString** ALL_KEYS[] = {
 &RUN_COUNT,
 &NETFLIX_KEY,
 &NETFLIX_SECRET,
-&NETFLIX_USER_ID
+&NETFLIX_USER_ID,
+&NETFLIX_FIRST_NAME,
+&NETFLIX_LAST_NAME,
+&NETFLIX_CAN_INSTANT_WATCH,
+&NETFLIX_PREFERRED_FORMATS
 };
 
 
@@ -86,6 +94,8 @@ static NSString** STRING_KEYS_TO_MIGRATE[] = {
 &NETFLIX_KEY,
 &NETFLIX_SECRET,
 &NETFLIX_USER_ID,
+&NETFLIX_FIRST_NAME,
+&NETFLIX_LAST_NAME,
 };
 
 static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
@@ -94,17 +104,19 @@ static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
 
 static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &PRIORITIZE_BOOKMARKS,
+&NETFLIX_CAN_INSTANT_WATCH,
 };
 
 static NSString** STRING_ARRAY_KEYS_TO_MIGRATE[] = {
-&BOOKMARKED_TITLES
+&BOOKMARKED_TITLES,
+&NETFLIX_PREFERRED_FORMATS,
 };
 
 static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 &BOOKMARKED_MOVIES,
 &BOOKMARKED_UPCOMING,
 &BOOKMARKED_DVD,
-&BOOKMARKED_BLURAY
+&BOOKMARKED_BLURAY,
 };
 
 
@@ -322,10 +334,31 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
+-(NSString*) netflixFirstName {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_FIRST_NAME];
+}
+
+
+-(NSString*) netflixLastName {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_LAST_NAME];
+}
+
+
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId {
     [[NSUserDefaults standardUserDefaults] setObject:userId forKey:NETFLIX_USER_ID];
     [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];
     [[NSUserDefaults standardUserDefaults] setObject:key forKey:NETFLIX_KEY];
+}
+
+
+- (void) setNetflixFirstName:(NSString*) firstName
+                    lastName:(NSString*) lastName
+             canInstantWatch:(BOOL) canInstantWatch
+            preferredFormats:(NSArray*) preferredFormats {
+    [[NSUserDefaults standardUserDefaults] setObject:firstName forKey:NETFLIX_FIRST_NAME];
+    [[NSUserDefaults standardUserDefaults] setObject:lastName forKey:NETFLIX_LAST_NAME];
+    [[NSUserDefaults standardUserDefaults] setBool:canInstantWatch forKey:NETFLIX_CAN_INSTANT_WATCH];
+    [[NSUserDefaults standardUserDefaults] setObject:preferredFormats forKey:NETFLIX_PREFERRED_FORMATS];
 }
 
 
