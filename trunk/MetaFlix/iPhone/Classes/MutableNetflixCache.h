@@ -18,7 +18,7 @@
 }
 
 
-+ (MutableNetflixCache*) cacheWithModel:(MetaFlixModel*) model;
++ (MutableNetflixCache*) cacheWithModel:(Model*) model;
 
 - (void) updateQueue:(Queue*) queue
   byMovingMovieToTop:(Movie*) movie

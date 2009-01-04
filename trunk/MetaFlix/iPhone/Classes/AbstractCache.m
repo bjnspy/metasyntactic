@@ -17,7 +17,7 @@
 #import "FileUtilities.h"
 
 @interface AbstractCache()
-@property (retain) MetaFlixModel* model;
+@property (retain) Model* model;
 @property (retain) NSCondition* gate;
 @end
 
@@ -35,7 +35,7 @@
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super init]) {
         self.model = model_;
         self.gate = [[[NSCondition alloc] init] autorelease];

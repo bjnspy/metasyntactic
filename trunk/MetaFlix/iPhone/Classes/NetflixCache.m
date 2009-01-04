@@ -28,8 +28,8 @@
 #import "NetflixMoveMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetworkUtilities.h"
-#import "MetaFlixAppDelegate.h"
-#import "MetaFlixModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "IdentitySet.h"
 #import "Queue.h"
 #import "ThreadingUtilities.h"
@@ -147,7 +147,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.queues = [NSMutableDictionary dictionary];
 
@@ -249,7 +249,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     self.feedsData = nil;
     self.queues = nil;
 
-    [MetaFlixAppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh:YES];
 }
 
 
@@ -543,7 +543,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     NSLog(@"Reporting queue '%@' with etag: %@", queue.feed.key, queue.etag);
     
     [queues setObject:queue forKey:queue.feed.key];
-    [MetaFlixAppDelegate majorRefresh];
+    [AppDelegate majorRefresh];
 }
 
 
@@ -586,7 +586,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
                           lastName:lastName
                    canInstantWatch:canInstantWatch
                   preferredFormats:preferredFormats];
-        [MetaFlixAppDelegate majorRefresh];
+        [AppDelegate majorRefresh];
     }
 }
 
@@ -710,7 +710,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
     if (data.length > 0) {
         [FileUtilities writeData:data toFile:path];
-        [MetaFlixAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 
@@ -905,7 +905,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     [FileUtilities writeObject:userRating toFile:userRatingsFile];
     [FileUtilities writeObject:predictedRating toFile:predictedRatingsFile];
-    [MetaFlixAppDelegate minorRefresh];
+    [AppDelegate minorRefresh];
 }
 
 
@@ -1012,7 +1012,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     if (dictionary.count > 0) {
         [FileUtilities writeObject:dictionary toFile:path];
-        [MetaFlixAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 
@@ -1040,7 +1040,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     NSDictionary* dictionary = [self extractDetails:element];
     if (dictionary.count > 0) {
         [FileUtilities writeObject:dictionary toFile:path];
-        [MetaFlixAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 
@@ -1146,7 +1146,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         }
     }
 
-    [MetaFlixAppDelegate majorRefresh];
+    [AppDelegate majorRefresh];
 }
 
 
@@ -1393,7 +1393,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
         [self addSearchResult:netflixMovie];
-        [MetaFlixAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 
@@ -1450,7 +1450,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     NSString* message = [[element element:@"message"] text];
     if ([@"Over queries per day limit" isEqual:message]) {
         self.lastQuotaErrorDate = [NSDate date];
-        [MetaFlixAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 

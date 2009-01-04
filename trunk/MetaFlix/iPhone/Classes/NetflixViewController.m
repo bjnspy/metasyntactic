@@ -27,7 +27,7 @@
 #import "NetflixQueueViewController.h"
 #import "NetflixSearchViewController.h"
 #import "NetflixSettingsViewController.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "Queue.h"
 #import "ViewControllerUtilities.h"
 
@@ -77,12 +77,12 @@ typedef enum {
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (MetaFlixController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

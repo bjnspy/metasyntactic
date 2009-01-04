@@ -20,7 +20,7 @@
 #import "MultiDictionary.h"
 #import "NetflixCache.h"
 #import "NetflixCell.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "Queue.h"
 #import "ViewControllerUtilities.h"
 
@@ -65,12 +65,12 @@
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (MetaFlixController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

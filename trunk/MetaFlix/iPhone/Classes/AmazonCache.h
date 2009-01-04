@@ -20,7 +20,7 @@
     LinkedSet* normalMovies;
 }
 
-+ (AmazonCache*) cacheWithModel:(MetaFlixModel*) model;
++ (AmazonCache*) cacheWithModel:(Model*) model;
 
 - (void) update:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;

@@ -34,7 +34,7 @@
 
 
 - (id) initWithFrame:(CGRect) frame
-               model:(MetaFlixModel*) model_
+               model:(Model*) model_
                movie:(Movie*) movie_ {
     if (self = [super initWithFrame:frame model:model_ movie:movie_]) {
         self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];

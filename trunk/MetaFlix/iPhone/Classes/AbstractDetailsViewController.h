@@ -19,7 +19,7 @@
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
-- (MetaFlixModel*) model;
-- (MetaFlixController*) controller;
+- (Model*) model;
+- (Controller*) controller;
 
 @end

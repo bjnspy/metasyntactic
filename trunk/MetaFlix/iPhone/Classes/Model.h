@@ -19,7 +19,7 @@ enum ViewControllerType {
     Tickets = 4
 };
 
-@interface MetaFlixModel : NSObject {
+@interface Model : NSObject {
 @private
     IMDbCache* imdbCache;
     AmazonCache* amazonCache;
@@ -40,7 +40,7 @@ enum ViewControllerType {
 @property (readonly, retain) TrailerCache* trailerCache;
 @property (readonly, retain) MutableNetflixCache* netflixCache;
 
-+ (MetaFlixModel*) model;
++ (Model*) model;
 
 + (NSString*) version;
 

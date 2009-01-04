@@ -9,7 +9,7 @@
 #import "NetflixSettingsViewController.h"
 
 #import "AbstractNavigationController.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 
 @interface NetflixSettingsViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -35,12 +35,12 @@
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (MetaFlixController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

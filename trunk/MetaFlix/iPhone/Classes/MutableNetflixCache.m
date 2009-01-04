@@ -22,7 +22,7 @@
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "Queue.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
@@ -36,7 +36,7 @@
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 
@@ -44,7 +44,7 @@
 }
 
 
-+ (MutableNetflixCache*) cacheWithModel:(MetaFlixModel*) model {
++ (MutableNetflixCache*) cacheWithModel:(Model*) model {
     return [[[MutableNetflixCache alloc] initWithModel:model] autorelease];
 }
 

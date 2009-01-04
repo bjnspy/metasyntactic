@@ -14,12 +14,12 @@
 
 @interface AbstractMovieDetailsCell : UITableViewCell {
 @protected
-    MetaFlixModel* model;
+    Model* model;
     Movie* movie;
 }
 
 - (id) initWithFrame:(CGRect) frame
-               model:(MetaFlixModel*) model
+               model:(Model*) model
                movie:(Movie*) movie;
 
 - (CGFloat) height:(UITableView*) tableView;

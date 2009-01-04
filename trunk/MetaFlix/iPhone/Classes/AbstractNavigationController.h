@@ -14,7 +14,7 @@
 
 @interface AbstractNavigationController : UINavigationController {
 @private
-    MetaFlixAppDelegate* appDelegate;
+    AppDelegate* appDelegate;
     PostersViewController* postersViewController;
     BOOL viewLoaded;
 
@@ -22,16 +22,16 @@
     BOOL visible;
 }
 
-@property (readonly, assign) MetaFlixAppDelegate* appDelegate;
+@property (readonly, assign) AppDelegate* appDelegate;
 @property (readonly) BOOL visible;
 
-- (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDelegate;
+- (id) initWithAppDelegate:(AppDelegate*) appDelegate;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
 
-- (MetaFlixModel*) model;
-- (MetaFlixController*) controller;
+- (Model*) model;
+- (Controller*) controller;
 
 - (void) pushMovieDetails:(Movie*) movie animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated;

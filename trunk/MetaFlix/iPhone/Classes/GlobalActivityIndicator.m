@@ -14,7 +14,7 @@
 
 #import "GlobalActivityIndicator.h"
 
-#import "MetaFlixAppDelegate.h"
+#import "AppDelegate.h"
 
 @implementation GlobalActivityIndicator
 
@@ -87,7 +87,7 @@ static NSInteger visibleBackgroundTaskCount = 0;
             }
         }
 
-        [MetaFlixAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
     [gate unlock];
 }

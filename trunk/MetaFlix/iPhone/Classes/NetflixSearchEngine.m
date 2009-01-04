@@ -16,7 +16,7 @@
 
 #import "NetflixCache.h"
 #import "NetworkUtilities.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
 
@@ -27,7 +27,7 @@
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_
+- (id) initWithModel:(Model*) model_
             delegate:(id<SearchEngineDelegate>) delegate_ {
     if (self = [super initWithModel:model_ delegate:delegate_]) {
     }
@@ -36,7 +36,7 @@
 }
 
 
-+ (NetflixSearchEngine*) engineWithModel:(MetaFlixModel*) model
++ (NetflixSearchEngine*) engineWithModel:(Model*) model
                          delegate:(id<SearchEngineDelegate>) delegate {
     return [[[NetflixSearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
 }

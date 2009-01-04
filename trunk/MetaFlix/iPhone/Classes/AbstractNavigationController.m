@@ -16,13 +16,13 @@
 
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-#import "MetaFlixAppDelegate.h"
-#import "MetaFlixModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "PostersViewController.h"
 #import "WebViewController.h"
 
 @interface AbstractNavigationController()
-@property (assign) MetaFlixAppDelegate* appDelegate;
+@property (assign) AppDelegate* appDelegate;
 @property (retain) PostersViewController* postersViewController;
 @property BOOL visible;
 @end
@@ -42,7 +42,7 @@
 }
 
 
-- (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDelegate_ {
+- (id) initWithAppDelegate:(AppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
     }
@@ -102,12 +102,12 @@
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return appDelegate.model;
 }
 
 
-- (MetaFlixController*) controller {
+- (Controller*) controller {
     return appDelegate.controller;
 }
 

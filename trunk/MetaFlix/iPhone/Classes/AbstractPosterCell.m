@@ -18,12 +18,12 @@
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "Movie.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 
 
 @interface AbstractPosterCell()
 @property ImageState state;
-@property (retain) MetaFlixModel* model;
+@property (retain) Model* model;
 @property (retain) UIImageView* imageLoadingView;
 @property (retain) UIImageView* imageView;
 @property (retain) UIActivityIndicatorView* activityView;
@@ -55,7 +55,7 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(MetaFlixModel*) model_ {
+               model:(Model*) model_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
         self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 2, 0, 20)] autorelease];

@@ -28,6 +28,6 @@
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
                            value:(NSString*) value
-                           model:(MetaFlixModel*) model;
+                           model:(Model*) model;
 
 @end
