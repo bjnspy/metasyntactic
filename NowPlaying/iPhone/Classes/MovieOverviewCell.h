@@ -16,7 +16,7 @@
 
 @interface MovieOverviewCell : UITableViewCell {
 @private
-    NowPlayingModel* model;
+    Model* model;
     Movie* movie;
 
     NSString* synopsis;
@@ -30,11 +30,11 @@
 }
 
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
-                               model:(NowPlayingModel*) model
+                               model:(Model*) model
                                frame:(CGRect) frame
                          posterImage:(UIImage*) posterImage
                      posterImageView:(TappableImageView*) posterImageView
                         activityView:(ActivityIndicatorViewWithBackground*) activityView;
-+ (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model;
++ (CGFloat) heightForMovie:(Movie*) movie model:(Model*) model;
 
 @end

@@ -17,7 +17,7 @@
 #import "ApplicationTabBarController.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "PostersViewController.h"
 #import "ReviewsViewController.h"
 #import "SearchViewController.h"
@@ -110,12 +110,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return tabBarController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return tabBarController.controller;
 }
 

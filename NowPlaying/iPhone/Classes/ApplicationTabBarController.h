@@ -14,7 +14,7 @@
 
 @interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
 @private
-    NowPlayingAppDelegate* appDelegate;
+    AppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
@@ -24,10 +24,10 @@
     SettingsNavigationController* settingsNavigationController;
 }
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
++ (ApplicationTabBarController*) controllerWithAppDelegate:(AppDelegate*) appDelegate;
 
-- (NowPlayingModel*) model;
-- (NowPlayingController*) controller;
+- (Model*) model;
+- (Controller*) controller;
 
 - (void) majorRefresh;
 - (void) minorRefresh;

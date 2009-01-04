@@ -23,7 +23,7 @@
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NowPlaying.pb.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Performance.h"
 #import "Theater.h"
 #import "Utilities.h"
@@ -48,7 +48,7 @@
 }
 
 
-+ (GoogleDataProvider*) providerWithModel:(NowPlayingModel*) model {
++ (GoogleDataProvider*) providerWithModel:(Model*) model {
     return [[[GoogleDataProvider alloc] initWithModel:model] autorelease];
 }
 

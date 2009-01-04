@@ -16,7 +16,7 @@
 
 #import "Location.h"
 #import "Movie.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
 #import "Theater.h"
@@ -30,7 +30,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_
+- (id) initWithModel:(Model*) model_
             delegate:(id<SearchEngineDelegate>) delegate_ {
     if (self = [super initWithModel:model_ delegate:delegate_]) {
     }
@@ -39,7 +39,7 @@
 }
 
 
-+ (SearchEngine*) engineWithModel:(NowPlayingModel*) model
++ (SearchEngine*) engineWithModel:(Model*) model
                          delegate:(id<SearchEngineDelegate>) delegate {
     return [[[SearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
 }

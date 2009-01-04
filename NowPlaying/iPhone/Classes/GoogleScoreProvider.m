@@ -20,7 +20,7 @@
 #import "Location.h"
 #import "NetworkUtilities.h"
 #import "NowPlaying.pb.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Score.h"
 #import "ScoreCache.h"
 #import "UserLocationCache.h"
@@ -35,7 +35,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 
@@ -43,7 +43,7 @@
 }
 
 
-+ (GoogleScoreProvider*) providerWithModel:(NowPlayingModel*) model {
++ (GoogleScoreProvider*) providerWithModel:(Model*) model {
     return [[[GoogleScoreProvider alloc] initWithModel:model] autorelease];
 }
 

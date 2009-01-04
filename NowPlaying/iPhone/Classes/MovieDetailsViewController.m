@@ -33,8 +33,8 @@
 #import "MoviesNavigationController.h"
 #import "MutableNetflixCache.h"
 #import "NetflixRatingsCell.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "PosterCache.h"
 #import "Score.h"
 #import "TappableImageView.h"
@@ -216,7 +216,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-+ (UIImage*) posterForMovie:(Movie*) movie model:(NowPlayingModel*) model {
++ (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model {
     UIImage* image = [model posterForMovie:movie];
     if (image == nil) {
         image = [ImageCache imageNotAvailable];
@@ -920,7 +920,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     actionSheet.cancelButtonIndex = keys.count;
 
-    [actionSheet showInView:[NowPlayingAppDelegate window]];
+    [actionSheet showInView:[AppDelegate window]];
 }
 
 
@@ -983,7 +983,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
                             otherButtonTitles:NSLocalizedString(@"DVD/Blu-ray Queue", nil), NSLocalizedString(@"Instant Queue", nil), nil] autorelease];
         actionSheet.tag = ADD_TO_NETFLIX_TAG;
 
-        [actionSheet showInView:[NowPlayingAppDelegate window]];
+        [actionSheet showInView:[AppDelegate window]];
     } else {
         [self addToQueue:NO];
     }

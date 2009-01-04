@@ -22,7 +22,7 @@
 #import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "Movie.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 
 @interface DVDCell()
 @property (retain) UILabel* directorTitleLabel;
@@ -121,7 +121,7 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(NowPlayingModel*) model_ {
+               model:(Model*) model_ {
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier
                               model:model_]) {

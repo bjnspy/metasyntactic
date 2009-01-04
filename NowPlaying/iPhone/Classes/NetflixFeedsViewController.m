@@ -20,7 +20,7 @@
 #import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
 #import "NetflixQueueViewController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Queue.h"
 
 @interface NetflixFeedsViewController()
@@ -54,12 +54,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

@@ -22,7 +22,7 @@
 #import "NetflixAddMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Queue.h"
 #import "ThreadingUtilities.h"
 #import "XmlElement.h"
@@ -35,7 +35,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 
@@ -43,7 +43,7 @@
 }
 
 
-+ (MutableNetflixCache*) cacheWithModel:(NowPlayingModel*) model {
++ (MutableNetflixCache*) cacheWithModel:(Model*) model {
     return [[[MutableNetflixCache alloc] initWithModel:model] autorelease];
 }
 

@@ -17,7 +17,7 @@
 #import "Application.h"
 #import "GlobalActivityIndicator.h"
 #import "MoviesNavigationController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Review.h"
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"
@@ -47,12 +47,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

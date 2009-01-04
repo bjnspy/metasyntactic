@@ -23,6 +23,9 @@
 		740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246610E785A9000ECE1B4 /* BackgroundInvocation.m */; };
 		740246790E785B0000ECE1B4 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246780E785B0000ECE1B4 /* Invocation.m */; };
 		7405F7CD0DCAF3B9002E2D06 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */; };
+		7406A78B0F104D1D00795555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7860F104D1D00795555 /* AppDelegate.m */; };
+		7406A78C0F104D1D00795555 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7880F104D1D00795555 /* Controller.m */; };
+		7406A78D0F104D1D00795555 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A78A0F104D1D00795555 /* Model.m */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E670DCD36AE00954696 /* XmlDocument.m */; };
 		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
@@ -121,9 +124,6 @@
 		747AB8610EB963AE002438D0 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
 		747AB9270EB97822002438D0 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB9260EB97822002438D0 /* PointerSet.m */; };
 		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
-		747C56970E67583600BD69DA /* NowPlayingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */; };
-		747C56980E67583600BD69DA /* NowPlayingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56940E67583600BD69DA /* NowPlayingController.m */; };
-		747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56960E67583600BD69DA /* NowPlayingModel.m */; };
 		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
@@ -356,6 +356,12 @@
 		740246780E785B0000ECE1B4 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
 		7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavigationController.h; sourceTree = "<group>"; };
 		7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavigationController.m; sourceTree = "<group>"; };
+		7406A7850F104D1D00795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7406A7860F104D1D00795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7406A7870F104D1D00795555 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		7406A7880F104D1D00795555 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		7406A7890F104D1D00795555 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		7406A78A0F104D1D00795555 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
 		74088BD60DCD0AA800954696 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
 		74088E660DCD36AE00954696 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
@@ -560,12 +566,6 @@
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747B4C210EE110D000F6FB1F /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		747B4C220EE110D000F6FB1F /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
-		747C56910E67583600BD69DA /* NowPlayingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingAppDelegate.h; sourceTree = "<group>"; };
-		747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingAppDelegate.m; sourceTree = "<group>"; };
-		747C56930E67583600BD69DA /* NowPlayingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingController.h; sourceTree = "<group>"; };
-		747C56940E67583600BD69DA /* NowPlayingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingController.m; sourceTree = "<group>"; };
-		747C56950E67583600BD69DA /* NowPlayingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingModel.h; sourceTree = "<group>"; };
-		747C56960E67583600BD69DA /* NowPlayingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingModel.m; sourceTree = "<group>"; };
 		747CA1390E8591B600A09E89 /* UserLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationCache.h; sourceTree = "<group>"; };
 		747CA13A0E8591B600A09E89 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
 		747CA1BF0E8594C300A09E89 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
@@ -943,14 +943,14 @@
 				74D6F2B40DCC14420097A984 /* Xml */,
 				746A02140DC81A1A0079D89B /* Application.h */,
 				746A02150DC81A1A0079D89B /* Application.m */,
-				747C56910E67583600BD69DA /* NowPlayingAppDelegate.h */,
-				747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */,
-				747C56930E67583600BD69DA /* NowPlayingController.h */,
-				747C56940E67583600BD69DA /* NowPlayingController.m */,
-				747C56950E67583600BD69DA /* NowPlayingModel.h */,
-				747C56960E67583600BD69DA /* NowPlayingModel.m */,
 				74A41ACD0E9E172B007CF82C /* Pulser.h */,
 				74A41ACE0E9E172B007CF82C /* Pulser.m */,
+				7406A7850F104D1D00795555 /* AppDelegate.h */,
+				7406A7860F104D1D00795555 /* AppDelegate.m */,
+				7406A7870F104D1D00795555 /* Controller.h */,
+				7406A7880F104D1D00795555 /* Controller.m */,
+				7406A7890F104D1D00795555 /* Model.h */,
+				7406A78A0F104D1D00795555 /* Model.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2028,9 +2028,6 @@
 				74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */,
 				74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */,
 				7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */,
-				747C56970E67583600BD69DA /* NowPlayingAppDelegate.m in Sources */,
-				747C56980E67583600BD69DA /* NowPlayingController.m in Sources */,
-				747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */,
 				74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */,
 				74F94C8D0E6BB34800075068 /* LocationUtilities.m in Sources */,
 				744592040E6CA017002D05C3 /* WarningView.m in Sources */,
@@ -2179,6 +2176,9 @@
 				74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */,
 				749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */,
 				742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */,
+				7406A78B0F104D1D00795555 /* AppDelegate.m in Sources */,
+				7406A78C0F104D1D00795555 /* Controller.m in Sources */,
+				7406A78D0F104D1D00795555 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

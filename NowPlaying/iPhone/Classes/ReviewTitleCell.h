@@ -14,13 +14,13 @@
 
 @interface ReviewTitleCell : UITableViewCell {
 @private
-    NowPlayingModel* model;
+    Model* model;
     UILabel* scoreLabel;
     UILabel* authorLabel;
     UILabel* sourceLabel;
 }
 
-- (id) initWithModel:(NowPlayingModel*) model
+- (id) initWithModel:(Model*) model
                frame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier;
 

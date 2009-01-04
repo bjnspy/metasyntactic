@@ -14,16 +14,16 @@
 
 @interface ScoreCache : NSObject {
 @private
-    NowPlayingModel* model;
+    Model* model;
     id<ScoreProvider> rottenTomatoesScoreProvider;
     id<ScoreProvider> metacriticScoreProvider;
     id<ScoreProvider> googleScoreProvider;
     id<ScoreProvider> noneScoreProvider;
 }
 
-@property (readonly, assign) NowPlayingModel* model;
+@property (readonly, assign) Model* model;
 
-+ (ScoreCache*) cacheWithModel:(NowPlayingModel*) model;
++ (ScoreCache*) cacheWithModel:(Model*) model;
 
 - (void) update;
 - (Score*) scoreForMovie:(Movie*) movie inMovies:(NSArray*) movies;

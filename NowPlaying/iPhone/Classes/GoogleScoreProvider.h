@@ -17,6 +17,6 @@
 @interface GoogleScoreProvider : AbstractScoreProvider {
 }
 
-+ (GoogleScoreProvider*) providerWithModel:(NowPlayingModel*) model;
++ (GoogleScoreProvider*) providerWithModel:(Model*) model;
 
 @end

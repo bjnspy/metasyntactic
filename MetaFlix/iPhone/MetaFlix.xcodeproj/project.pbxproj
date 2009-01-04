@@ -25,6 +25,9 @@
 		740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246610E785A9000ECE1B4 /* BackgroundInvocation.m */; };
 		740246790E785B0000ECE1B4 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246780E785B0000ECE1B4 /* Invocation.m */; };
 		7406A6EE0F101DF400795555 /* NetflixMostPopular.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406A6ED0F101DF400795555 /* NetflixMostPopular.png */; };
+		7406A7680F104C2200795555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7630F104C2200795555 /* AppDelegate.m */; };
+		7406A7690F104C2200795555 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7650F104C2200795555 /* Controller.m */; };
+		7406A76A0F104C2200795555 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7670F104C2200795555 /* Model.m */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E670DCD36AE00954696 /* XmlDocument.m */; };
 		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
@@ -138,9 +141,6 @@
 		74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
 		74BD51CA0EB786FC0098C2DF /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BD51C90EB786FC0098C2DF /* MainThreadGate.m */; };
 		74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */; };
-		74C2AED80F0DF33600EFAF74 /* MetaFlixAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C2AED50F0DF33600EFAF74 /* MetaFlixAppDelegate.m */; };
-		74C2AED90F0DF33600EFAF74 /* MetaFlixModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C2AED70F0DF33600EFAF74 /* MetaFlixModel.m */; };
-		74C2AEDC0F0DF37800EFAF74 /* MetaFlixController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C2AEDB0F0DF37800EFAF74 /* MetaFlixController.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
@@ -259,6 +259,12 @@
 		740246770E785B0000ECE1B4 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
 		740246780E785B0000ECE1B4 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
 		7406A6ED0F101DF400795555 /* NetflixMostPopular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixMostPopular.png; path = Resources/NetflixMostPopular.png; sourceTree = "<group>"; };
+		7406A7620F104C2200795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7406A7630F104C2200795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7406A7640F104C2200795555 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		7406A7650F104C2200795555 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		7406A7660F104C2200795555 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		7406A7670F104C2200795555 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
 		74088BD60DCD0AA800954696 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
 		74088E660DCD36AE00954696 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
@@ -484,12 +490,6 @@
 		74BD51C90EB786FC0098C2DF /* MainThreadGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainThreadGate.m; sourceTree = "<group>"; };
 		74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
 		74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
-		74C2AED40F0DF33600EFAF74 /* MetaFlixAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaFlixAppDelegate.h; path = Classes/MetaFlixAppDelegate.h; sourceTree = "<group>"; };
-		74C2AED50F0DF33600EFAF74 /* MetaFlixAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaFlixAppDelegate.m; path = Classes/MetaFlixAppDelegate.m; sourceTree = "<group>"; };
-		74C2AED60F0DF33600EFAF74 /* MetaFlixModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaFlixModel.h; path = Classes/MetaFlixModel.h; sourceTree = "<group>"; };
-		74C2AED70F0DF33600EFAF74 /* MetaFlixModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaFlixModel.m; path = Classes/MetaFlixModel.m; sourceTree = "<group>"; };
-		74C2AEDA0F0DF37800EFAF74 /* MetaFlixController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaFlixController.h; path = Classes/MetaFlixController.h; sourceTree = "<group>"; };
-		74C2AEDB0F0DF37800EFAF74 /* MetaFlixController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaFlixController.m; path = Classes/MetaFlixController.m; sourceTree = "<group>"; };
 		74C2AEE40F0DF3B700EFAF74 /* MetaFlix_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaFlix_Prefix.pch; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
@@ -636,6 +636,12 @@
 				746A02150DC81A1A0079D89B /* Application.m */,
 				74A41ACD0E9E172B007CF82C /* Pulser.h */,
 				74A41ACE0E9E172B007CF82C /* Pulser.m */,
+				7406A7620F104C2200795555 /* AppDelegate.h */,
+				7406A7630F104C2200795555 /* AppDelegate.m */,
+				7406A7640F104C2200795555 /* Controller.h */,
+				7406A7650F104C2200795555 /* Controller.m */,
+				7406A7660F104C2200795555 /* Model.h */,
+				7406A7670F104C2200795555 /* Model.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -668,12 +674,6 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */,
 				74A3F11D0E687D26007ED6DC /* Macros.h */,
-				74C2AEDA0F0DF37800EFAF74 /* MetaFlixController.h */,
-				74C2AEDB0F0DF37800EFAF74 /* MetaFlixController.m */,
-				74C2AED40F0DF33600EFAF74 /* MetaFlixAppDelegate.h */,
-				74C2AED50F0DF33600EFAF74 /* MetaFlixAppDelegate.m */,
-				74C2AED60F0DF33600EFAF74 /* MetaFlixModel.h */,
-				74C2AED70F0DF33600EFAF74 /* MetaFlixModel.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1480,10 +1480,10 @@
 				74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */,
 				749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */,
 				742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */,
-				74C2AED80F0DF33600EFAF74 /* MetaFlixAppDelegate.m in Sources */,
-				74C2AED90F0DF33600EFAF74 /* MetaFlixModel.m in Sources */,
-				74C2AEDC0F0DF37800EFAF74 /* MetaFlixController.m in Sources */,
 				741EFF140F0F24B8002FD93B /* NetflixSettingsViewController.m in Sources */,
+				7406A7680F104C2200795555 /* AppDelegate.m in Sources */,
+				7406A7690F104C2200795555 /* Controller.m in Sources */,
+				7406A76A0F104C2200795555 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

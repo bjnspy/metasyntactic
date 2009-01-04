@@ -25,7 +25,7 @@
 + (NSString*) rentalHistoryWatchedKey;
 + (NSString*) rentalHistoryReturnedKey;
 
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(Model*) model;
 
 // @protected
 - (OAMutableURLRequest*) createURLRequest:(NSString*) address;

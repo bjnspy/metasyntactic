@@ -21,7 +21,7 @@
 #import "MovieTitleCell.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "IdentitySet.h"
 #import "Queue.h"
 #import "TappableImageView.h"
@@ -124,12 +124,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

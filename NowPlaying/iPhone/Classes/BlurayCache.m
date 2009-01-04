@@ -15,7 +15,7 @@
 #import "BlurayCache.h"
 
 #import "Application.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 
 @implementation BlurayCache
 
@@ -24,7 +24,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 
@@ -32,7 +32,7 @@
 }
 
 
-+ (BlurayCache*) cacheWithModel:(NowPlayingModel*) model {
++ (BlurayCache*) cacheWithModel:(Model*) model {
     return [[[BlurayCache alloc] initWithModel:model] autorelease];
 }
 

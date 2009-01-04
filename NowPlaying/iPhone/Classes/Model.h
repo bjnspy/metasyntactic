@@ -19,7 +19,7 @@ enum ViewControllerType {
     Tickets = 4
 };
 
-@interface NowPlayingModel : NSObject {
+@interface Model : NSObject {
 @private
     UserLocationCache* userLocationCache;
     BlurayCache* blurayCache;
@@ -58,7 +58,7 @@ enum ViewControllerType {
 @property (readonly, retain) MutableNetflixCache* netflixCache;
 @property (readonly, retain) id<DataProvider> dataProvider;
 
-+ (NowPlayingModel*) model;
++ (Model*) model;
 
 + (NSString*) version;
 

@@ -14,14 +14,14 @@
 
 @interface TheaterNameCell : UITableViewCell {
 @private
-    NowPlayingModel* model;
+    Model* model;
     UILabel* nameLabel;
     UILabel* addressLabel;
 }
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier
-                    model:(NowPlayingModel*) model;
+                    model:(Model*) model;
 
 - (void) setTheater:(Theater*) theater;
 

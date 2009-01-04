@@ -17,7 +17,7 @@
 #import "DVDCache.h"
 #import "UpcomingAndDVDViewController.h"
 #import "Movie.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "UpcomingCache.h"
 
 @interface UpcomingMoviesAndDVDNavigationController()

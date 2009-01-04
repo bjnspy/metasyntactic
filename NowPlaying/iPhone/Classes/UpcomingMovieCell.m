@@ -18,7 +18,7 @@
 #import "DateUtilities.h"
 #import "ImageCache.h"
 #import "Movie.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 
@@ -111,7 +111,7 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(NowPlayingModel*) model_ {
+               model:(Model*) model_ {
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier
                               model:model_]) {

@@ -31,8 +31,8 @@
 - (void) majorRefresh;
 - (void) minorRefresh;
 
-- (NowPlayingModel*) model;
-- (NowPlayingController*) controller;
+- (Model*) model;
+- (Controller*) controller;
 
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater

@@ -15,7 +15,7 @@
 #import "ScoreProviderViewController.h"
 
 #import "ApplicationTabBarController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "SettingsNavigationController.h"
 
 @interface ScoreProviderViewController()
@@ -44,12 +44,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

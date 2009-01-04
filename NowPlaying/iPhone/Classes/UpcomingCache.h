@@ -26,7 +26,7 @@
     NSMutableDictionary* bookmarksData;
 }
 
-+ (UpcomingCache*) cacheWithModel:(NowPlayingModel*) model;
++ (UpcomingCache*) cacheWithModel:(Model*) model;
 
 - (void) update;
 

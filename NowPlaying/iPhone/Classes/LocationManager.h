@@ -14,7 +14,7 @@
 
 @interface LocationManager : NSObject<CLLocationManagerDelegate> {
 @private
-    NowPlayingController* controller;
+    Controller* controller;
     NSLock* gate;
     CLLocationManager* locationManager;
 
@@ -25,7 +25,7 @@
     BOOL firstTime;
 }
 
-+ (LocationManager*) managerWithController:(NowPlayingController*) controller;
++ (LocationManager*) managerWithController:(Controller*) controller;
 
 - (void) autoUpdateLocation;
 

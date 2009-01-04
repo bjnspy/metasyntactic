@@ -20,7 +20,7 @@
     LinkedSet* normalMovies;
 }
 
-+ (WikipediaCache*) cacheWithModel:(NowPlayingModel*) model;
++ (WikipediaCache*) cacheWithModel:(Model*) model;
 
 - (void) update:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;

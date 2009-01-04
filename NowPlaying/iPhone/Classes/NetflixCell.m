@@ -24,7 +24,7 @@
 #import "ImageCache.h"
 #import "Movie.h"
 #import "NetflixCache.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 
 @interface NetflixCell()
 @property (retain) UILabel* directorTitleLabel;
@@ -123,7 +123,7 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(NowPlayingModel*) model_ {
+               model:(Model*) model_ {
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier
                               model:model_]) {

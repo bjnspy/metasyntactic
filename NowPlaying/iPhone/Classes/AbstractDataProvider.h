@@ -16,7 +16,7 @@
 @private
     NSLock* gate;
 
-    NowPlayingModel* model;
+    Model* model;
     NSArray* moviesData;
     NSArray* theatersData;
     NSDictionary* synchronizationInformationData;
@@ -25,9 +25,9 @@
     NSMutableDictionary* performancesData;
 }
 
-@property (readonly, retain) NowPlayingModel* model;
+@property (readonly, retain) Model* model;
 
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(Model*) model;
 
 - (NSArray*) movies;
 - (NSArray*) theaters;

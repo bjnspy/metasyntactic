@@ -16,7 +16,7 @@
 
 #import "AbstractNavigationController.h"
 #import "DateUtilities.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 
 @implementation SearchDatePickerViewController
 

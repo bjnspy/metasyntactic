@@ -20,7 +20,7 @@
 #import "DVDCell.h"
 #import "DVDFilterViewController.h"
 #import "DVDNavigationController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "TappableLabel.h"
 
 @interface DVDViewController()

@@ -23,7 +23,7 @@
 #import "Movie.h"
 #import "MovieShowtimesCell.h"
 #import "MovieTitleCell.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
 #import "Utilities.h"

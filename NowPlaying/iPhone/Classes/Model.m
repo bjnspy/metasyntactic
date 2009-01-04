@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NowPlayingModel.h"
+#import "Model.h"
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
@@ -38,7 +38,7 @@
 #import "MutableNetflixCache.h"
 #import "NetflixViewController.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
+#import "AppDelegate.h"
 #import "PosterCache.h"
 #import "ReviewsViewController.h"
 #import "Score.h"
@@ -53,7 +53,7 @@
 #import "Utilities.h"
 #import "WikipediaCache.h"
 
-@interface NowPlayingModel()
+@interface Model()
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) BlurayCache* blurayCache;
 @property (retain) DVDCache* dvdCache;
@@ -71,7 +71,7 @@
 @property (retain) id<DataProvider> dataProvider;
 @end
 
-@implementation NowPlayingModel
+@implementation Model
 
 static NSString* currentVersion = @"2.6.0";
 static NSString* persistenceVersion = @"101";
@@ -514,8 +514,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-+ (NowPlayingModel*) model {
-    return [[[NowPlayingModel alloc] init] autorelease];
++ (Model*) model {
+    return [[[Model alloc] init] autorelease];
 }
 
 
@@ -886,7 +886,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (void) addBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData addObject:movie.canonicalTitle];
-    [NowPlayingModel saveBookmarkedTitles:bookmarkedTitlesData];
+    [Model saveBookmarkedTitles:bookmarkedTitlesData];
 
     [dataProvider addBookmark:movie.canonicalTitle];
     [upcomingCache addBookmark:movie.canonicalTitle];
@@ -898,7 +898,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (void) removeBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData removeObject:movie.canonicalTitle];
-    [NowPlayingModel saveBookmarkedTitles:bookmarkedTitlesData];
+    [Model saveBookmarkedTitles:bookmarkedTitlesData];
 
     [dataProvider removeBookmark:movie.canonicalTitle];
     [upcomingCache removeBookmark:movie.canonicalTitle];
@@ -942,22 +942,22 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) setBookmarkedMovies:(NSArray*) array {
-    [NowPlayingModel saveMovies:array key:BOOKMARKED_MOVIES];
+    [Model saveMovies:array key:BOOKMARKED_MOVIES];
 }
 
 
 - (void) setBookmarkedUpcoming:(NSArray*) array {
-    [NowPlayingModel saveMovies:array key:BOOKMARKED_UPCOMING];
+    [Model saveMovies:array key:BOOKMARKED_UPCOMING];
 }
 
 
 - (void) setBookmarkedDVD:(NSArray*) array {
-    [NowPlayingModel saveMovies:array key:BOOKMARKED_DVD];
+    [Model saveMovies:array key:BOOKMARKED_DVD];
 }
 
 
 - (void) setBookmarkedBluray:(NSArray*) array {
-    [NowPlayingModel saveMovies:array key:BOOKMARKED_BLURAY];
+    [Model saveMovies:array key:BOOKMARKED_BLURAY];
 }
 
 
@@ -991,7 +991,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) saveFavoriteTheaters {
-    [NowPlayingModel saveFavoriteTheaters:self.favoriteTheaters];
+    [Model saveFavoriteTheaters:self.favoriteTheaters];
 }
 
 
@@ -1282,7 +1282,7 @@ NSInteger compareMoviesByScore(id t1, id t2, void* context) {
 
     Movie* movie1 = t1;
     Movie* movie2 = t2;
-    NowPlayingModel* model = context;
+    Model* model = context;
 
     int movieRating1 = [model scoreValueForMovie:movie1];
     int movieRating2 = [model scoreValueForMovie:movie2];
@@ -1302,7 +1302,7 @@ NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void* context) {
         return NSOrderedSame;
     }
 
-    NowPlayingModel* model = context;
+    Model* model = context;
     Movie* movie1 = t1;
     Movie* movie2 = t2;
 
@@ -1333,7 +1333,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
         return NSOrderedSame;
     }
 
-    NowPlayingModel* model = context;
+    Model* model = context;
 
     Movie* movie1 = t1;
     Movie* movie2 = t2;

@@ -19,13 +19,13 @@
 #import "GoogleScoreProvider.h"
 #import "MetacriticScoreProvider.h"
 #import "NoneScoreProvider.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "RottenTomatoesScoreProvider.h"
 #import "Score.h"
 #import "ScoreProvider.h"
 
 @interface ScoreCache()
-@property (assign) NowPlayingModel* model;
+@property (assign) Model* model;
 @property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;
 @property (retain) id<ScoreProvider> metacriticScoreProvider;
 @property (retain) id<ScoreProvider> googleScoreProvider;
@@ -51,7 +51,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super init]) {
         self.model = model_;
 
@@ -65,7 +65,7 @@
 }
 
 
-+ (ScoreCache*) cacheWithModel:(NowPlayingModel*) model {
++ (ScoreCache*) cacheWithModel:(Model*) model {
     return [[[ScoreCache alloc] initWithModel:model] autorelease];
 }
 

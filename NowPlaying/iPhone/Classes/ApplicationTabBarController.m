@@ -17,15 +17,15 @@
 #import "DVDNavigationController.h"
 #import "MoviesNavigationController.h"
 #import "NetflixNavigationController.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
 #import "UpcomingMoviesAndDVDNavigationController.h"
 
 @interface ApplicationTabBarController()
-@property (assign) NowPlayingAppDelegate* appDelegate;
+@property (assign) AppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
@@ -124,7 +124,7 @@
 }
 
 
-- (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDel {
+- (id) initWithAppDelegate:(AppDelegate*) appDel {
     if (self = [super init]) {
         self.appDelegate = appDel;
 
@@ -151,7 +151,7 @@
 }
 
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate {
++ (ApplicationTabBarController*) controllerWithAppDelegate:(AppDelegate*) appDelegate {
     return [[[ApplicationTabBarController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
@@ -165,12 +165,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return appDelegate.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return appDelegate.controller;
 }
 
