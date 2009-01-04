@@ -174,9 +174,7 @@ static Pulser* pulser = nil;
     [gate unlock];
 
     // pause a bit so we don't saturate the network.
-    if (![NSThread isMainThread]) {
-        [NSThread sleepForTimeInterval:0.25];
-    }
+    [NSThread sleepForTimeInterval:0.25];
 
     if (error != nil) {
         return nil;

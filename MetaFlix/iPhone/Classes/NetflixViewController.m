@@ -22,6 +22,7 @@
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
+#import "NetflixMostPopularViewController.h"
 #import "NetflixNavigationController.h"
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixQueueViewController.h"
@@ -166,7 +167,7 @@ typedef enum {
             cell.text = NSLocalizedString(@"Search", nil);
             cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
         } else if (row == MostPopularSection) {
-            cell.text = NSLocalizedString(@"Top Choices", nil);
+            cell.text = NSLocalizedString(@"Most Popular", nil);
             cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
         } else if (row == DVDSection) {
             cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
@@ -292,7 +293,8 @@ typedef enum {
 
 
 - (void) didSelectMostPopularSection {
-    
+    NetflixMostPopularViewController* controller = [[[NetflixMostPopularViewController alloc] initWithNavigationController:navigationController] autorelease];
+    [navigationController pushViewController:controller animated:YES];
 }
 
 
