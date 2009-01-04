@@ -118,7 +118,7 @@ enum ViewControllerType {
 - (BOOL) upcomingAndDVDShowUpcoming;
 - (void) setUpcomingAndDVDShowUpcoming:(BOOL) value;
 
-- (void) saveNavigationStack:(AbstractNavigationController*) controller;
+- (void) saveNavigationStack:(UINavigationController*) controller;
 - (NSArray*) navigationStackTypes;
 - (NSArray*) navigationStackValues;
 

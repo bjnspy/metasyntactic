@@ -38,7 +38,7 @@
                movie:(Movie*) movie_ {
     if (self = [super initWithFrame:frame model:model_ movie:movie_]) {
         self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
+        ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:16];
 
         if ([@"de" isEqual:[LocaleUtilities isoLanguage]]) {
             ratingAndRuntimeLabel.text = movie.rating;
@@ -59,7 +59,7 @@
 
 
 - (CGFloat) height:(UITableView*) tableView {
-    return tableView.rowHeight - 14;
+    return tableView.rowHeight - 8;
 }
 
 

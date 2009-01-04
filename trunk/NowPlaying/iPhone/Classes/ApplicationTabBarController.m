@@ -159,6 +159,9 @@
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
     [self.model setSelectedTabBarViewControllerIndex:self.selectedIndex];
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        [self.model saveNavigationStack:(id)viewController];
+    }
 }
 
 

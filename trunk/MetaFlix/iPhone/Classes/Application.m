@@ -47,6 +47,7 @@ static NSString* netflixUserRatingsDirectory = nil;
 static NSString* netflixPredictedRatingsDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
 static NSString* netflixDetailsDirectory = nil;
+static NSString* netflixRSSDirectory = nil;
 
 static NSString** directories[] = {
 &dataDirectory,
@@ -61,6 +62,7 @@ static NSString** directories[] = {
 &netflixPredictedRatingsDirectory,
 &netflixSearchDirectory,
 &netflixDetailsDirectory,
+&netflixRSSDirectory,
 &trailersDirectory,
 &postersDirectory,
 &largePostersDirectory,
@@ -152,6 +154,7 @@ static DifferenceEngine* differenceEngine = nil;
         netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
         netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
         netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
+        netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
 
         [self createDirectories];
     }
@@ -325,6 +328,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixSearchDirectory {
     return netflixSearchDirectory;
+}
+
+
++ (NSString*) netflixRSSDirectory {
+    return netflixRSSDirectory;
 }
 
 

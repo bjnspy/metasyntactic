@@ -24,6 +24,7 @@
 		740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
 		740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246610E785A9000ECE1B4 /* BackgroundInvocation.m */; };
 		740246790E785B0000ECE1B4 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246780E785B0000ECE1B4 /* Invocation.m */; };
+		7406A6EE0F101DF400795555 /* NetflixMostPopular.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406A6ED0F101DF400795555 /* NetflixMostPopular.png */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E670DCD36AE00954696 /* XmlDocument.m */; };
 		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
@@ -257,6 +258,7 @@
 		740246610E785A9000ECE1B4 /* BackgroundInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation.m; sourceTree = "<group>"; };
 		740246770E785B0000ECE1B4 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
 		740246780E785B0000ECE1B4 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
+		7406A6ED0F101DF400795555 /* NetflixMostPopular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixMostPopular.png; path = Resources/NetflixMostPopular.png; sourceTree = "<group>"; };
 		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
 		74088BD60DCD0AA800954696 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
 		74088E660DCD36AE00954696 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
@@ -679,7 +681,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				741EFEEB0F0F214C002FD93B /* NetflixCredits.png */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
 				746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */,
 				746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */,
@@ -937,6 +938,8 @@
 		7471E1FF0EFA0D67000490CA /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
+				7406A6ED0F101DF400795555 /* NetflixMostPopular.png */,
+				741EFEEB0F0F214C002FD93B /* NetflixCredits.png */,
 				74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */,
 				74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */,
 				74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */,
@@ -1361,6 +1364,7 @@
 				74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */,
 				74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */,
 				741EFEEC0F0F214C002FD93B /* NetflixCredits.png in Resources */,
+				7406A6EE0F101DF400795555 /* NetflixMostPopular.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

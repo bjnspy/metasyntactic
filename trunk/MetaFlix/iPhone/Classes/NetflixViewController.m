@@ -43,12 +43,12 @@ const NSInteger ROW_HEIGHT = 46;
 
 typedef enum {
     SearchSection,
+    MostPopularSection,
     DVDSection,
     InstantSection,
     RecommendationsSection,
     AtHomeSection,
     RentalHistorySection,
-    SettingsSection,
     AboutSendFeedbackSection,
     LogOutSection,
 } Sections;
@@ -165,6 +165,9 @@ typedef enum {
         if (row == SearchSection) {
             cell.text = NSLocalizedString(@"Search", nil);
             cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
+        } else if (row == MostPopularSection) {
+            cell.text = NSLocalizedString(@"Top Choices", nil);
+            cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
         } else if (row == DVDSection) {
             cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
             cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
@@ -180,9 +183,6 @@ typedef enum {
         } else if (row == RentalHistorySection) {
             cell.text = NSLocalizedString(@"Rental History", nil);
             cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
-        } else if (row == SettingsSection) {
-            cell.text = NSLocalizedString(@"Settings", nil);
-            cell.image = [UIImage imageNamed:@"NetflixSettings.png"];
         } else if (row == AboutSendFeedbackSection) {
             cell.text = NSLocalizedString(@"About / Send Feedback", nil);
             cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
@@ -291,9 +291,16 @@ typedef enum {
 }
 
 
+- (void) didSelectMostPopularSection {
+    
+}
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
     if (row == SearchSection) {
         [self didSelectSearchRow];
+    } else if (row == MostPopularSection) {
+        [self didSelectMostPopularSection];
     } else if (row == DVDSection) {
         [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
     } else if (row == InstantSection) {
@@ -304,8 +311,6 @@ typedef enum {
         [self didSelectQueueRow:[NetflixCache atHomeKey]];
     } else if (row == RentalHistorySection) {
         [self didSelectRentalHistoryRow];
-    } else if (row == SettingsSection) {
-        [self didSelectSettingsRow];
     } else if (row == AboutSendFeedbackSection) {
         [self didSelectAboutSendFeedbackRow];
     } else if (row == LogOutSection) {

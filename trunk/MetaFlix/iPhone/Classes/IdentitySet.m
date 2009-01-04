@@ -90,4 +90,9 @@
     return array;
 }
 
+
+- (NSString*) description {
+    return set.description;
+}
+
 @end
