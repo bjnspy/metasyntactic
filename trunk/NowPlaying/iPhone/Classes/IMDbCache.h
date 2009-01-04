@@ -20,7 +20,7 @@
     LinkedSet* normalMovies;
 }
 
-+ (IMDbCache*) cacheWithModel:(NowPlayingModel*) model;
++ (IMDbCache*) cacheWithModel:(Model*) model;
 
 - (void) update:(NSArray*) movies;
 - (void) updateMovie:(Movie*) movie;

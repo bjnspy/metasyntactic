@@ -19,7 +19,7 @@
     LinkedSet* prioritizedMovies;
 }
 
-+ (PosterCache*) cacheWithModel:(NowPlayingModel*) model;
++ (PosterCache*) cacheWithModel:(Model*) model;
 
 - (void) update:(NSArray*) movies;
 

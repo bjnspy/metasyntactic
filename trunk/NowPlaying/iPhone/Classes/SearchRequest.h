@@ -36,6 +36,6 @@
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
                            value:(NSString*) value
-                           model:(NowPlayingModel*) model;
+                           model:(Model*) model;
 
 @end

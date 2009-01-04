@@ -33,6 +33,6 @@
     LinkedSet* prioritizedMovies;
 }
 
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(Model*) model;
 
 @end

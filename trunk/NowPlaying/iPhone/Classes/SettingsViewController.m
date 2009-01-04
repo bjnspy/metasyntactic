@@ -23,9 +23,9 @@
 #import "Location.h"
 #import "LocationManager.h"
 #import "LocationUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingController.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Controller.h"
+#import "Model.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SettingCell.h"
@@ -50,12 +50,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 
@@ -65,7 +65,7 @@
         self.navigationController = controller;
 
         NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-        NSString* appVersion = [NowPlayingModel version];
+        NSString* appVersion = [Model version];
         appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
 
         self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];

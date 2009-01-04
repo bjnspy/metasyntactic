@@ -17,6 +17,6 @@
 @interface BlurayCache : AbstractDVDBlurayCache {
 }
 
-+ (BlurayCache*) cacheWithModel:(NowPlayingModel*) model;
++ (BlurayCache*) cacheWithModel:(Model*) model;
 
 @end

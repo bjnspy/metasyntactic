@@ -24,7 +24,7 @@
     NSMutableDictionary* bookmarksData;
 }
 
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(Model*) model;
 
 - (void) update;
 - (void) prioritizeMovie:(Movie*) movie;

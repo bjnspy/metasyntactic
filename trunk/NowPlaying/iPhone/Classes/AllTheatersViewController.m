@@ -20,7 +20,7 @@
 #import "LocaleUtilities.h"
 #import "Location.h"
 #import "MultiDictionary.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
@@ -77,12 +77,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

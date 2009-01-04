@@ -33,7 +33,7 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 /* protected */
-- (NowPlayingModel*) model;
-- (NowPlayingController*) controller;
+- (Model*) model;
+- (Controller*) controller;
 
 @end

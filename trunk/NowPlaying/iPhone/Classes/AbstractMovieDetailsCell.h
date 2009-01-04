@@ -14,12 +14,12 @@
 
 @interface AbstractMovieDetailsCell : UITableViewCell {
 @protected
-    NowPlayingModel* model;
+    Model* model;
     Movie* movie;
 }
 
 - (id) initWithFrame:(CGRect) frame
-               model:(NowPlayingModel*) model
+               model:(Model*) model
                movie:(Movie*) movie;
 
 - (CGFloat) height:(UITableView*) tableView;

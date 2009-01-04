@@ -25,7 +25,7 @@
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixQueueViewController.h"
 #import "NetflixSearchViewController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Queue.h"
 #import "ViewControllerUtilities.h"
 
@@ -72,12 +72,12 @@ typedef enum {
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

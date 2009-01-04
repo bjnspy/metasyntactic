@@ -14,7 +14,7 @@
 
 @interface MovieTitleCell : UITableViewCell {
 @protected
-    NowPlayingModel* model;
+    Model* model;
     UITableViewStyle style;
     UILabel* scoreLabel;
     UILabel* titleLabel;
@@ -23,7 +23,7 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(NowPlayingModel*) model
+               model:(Model*) model
                style:(UITableViewStyle) style;
 
 - (void) setMovie:(Movie*) movie owner:(id) owner;

@@ -16,8 +16,8 @@
 
 #import "Application.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "PointerSet.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -30,7 +30,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 
@@ -38,7 +38,7 @@
 }
 
 
-+ (DVDCache*) cacheWithModel:(NowPlayingModel*) model {
++ (DVDCache*) cacheWithModel:(Model*) model {
     return [[[DVDCache alloc] initWithModel:model] autorelease];
 }
 

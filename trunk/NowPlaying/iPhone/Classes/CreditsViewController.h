@@ -14,11 +14,11 @@
 
 @interface CreditsViewController : UITableViewController {
 @private
-    NowPlayingModel* model;
+    Model* model;
     NSArray* languages;
     NSDictionary* localizers;
 }
 
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(Model*) model;
 
 @end

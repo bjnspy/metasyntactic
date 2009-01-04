@@ -20,8 +20,8 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 
 @interface TrailerCache()
@@ -40,7 +40,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
@@ -49,7 +49,7 @@
 }
 
 
-+ (TrailerCache*) cacheWithModel:(NowPlayingModel*) model {
++ (TrailerCache*) cacheWithModel:(Model*) model {
     return [[[TrailerCache alloc] initWithModel:model] autorelease];
 }
 
@@ -123,7 +123,7 @@
     [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
 
     if (final.count > 0) {
-        [NowPlayingAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 

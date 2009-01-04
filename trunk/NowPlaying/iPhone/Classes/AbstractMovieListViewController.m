@@ -22,7 +22,7 @@
 #import "Movie.h"
 #import "MoviesNavigationController.h"
 #import "MultiDictionary.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Utilities.h"
 
 @interface AbstractMovieListViewController()
@@ -91,12 +91,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

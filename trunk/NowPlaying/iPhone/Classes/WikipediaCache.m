@@ -19,8 +19,8 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -43,7 +43,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.normalMovies = [LinkedSet set];
@@ -58,7 +58,7 @@
 }
 
 
-+ (WikipediaCache*) cacheWithModel:(NowPlayingModel*) model {
++ (WikipediaCache*) cacheWithModel:(Model*) model {
     return [[[WikipediaCache alloc] initWithModel:model] autorelease];
 }
 
@@ -116,7 +116,7 @@
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:wikipediaAddress toFile:path];
     if (wikipediaAddress.length > 0) {
-        [NowPlayingAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 

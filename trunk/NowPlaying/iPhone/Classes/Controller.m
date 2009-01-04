@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NowPlayingController.h"
+#import "Controller.h"
 
 #import "Application.h"
 #import "ApplicationTabBarController.h"
@@ -20,22 +20,22 @@
 #import "DataProvider.h"
 #import "DateUtilities.h"
 #import "LocationManager.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "ScoreCache.h"
 #import "ThreadingUtilities.h"
 #import "UpcomingCache.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
 
-@interface NowPlayingController()
-@property (assign) NowPlayingAppDelegate* appDelegate;
+@interface Controller()
+@property (assign) AppDelegate* appDelegate;
 @property (retain) NSLock* determineLocationLock;
 @property (retain) LocationManager* locationManager;
 @end
 
 
-@implementation NowPlayingController
+@implementation Controller
 
 @synthesize appDelegate;
 @synthesize determineLocationLock;
@@ -50,12 +50,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return appDelegate.model;
 }
 
 
-- (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDelegate_ {
+- (id) initWithAppDelegate:(AppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
         self.locationManager = [LocationManager managerWithController:self];
@@ -66,8 +66,8 @@
 }
 
 
-+ (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate {
-    return [[[NowPlayingController alloc] initWithAppDelegate:appDelegate] autorelease];
++ (Controller*) controllerWithAppDelegate:(AppDelegate*) appDelegate {
+    return [[[Controller alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
 
@@ -227,7 +227,7 @@
     [self spawnDetermineLocationThread];
 
     // Force a refresh so the UI displays this new address.
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh:YES];
 }
 
 
@@ -255,7 +255,7 @@
     [self.model setNetflixEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];
     [Application resetNetflixDirectories];
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh:YES];
     [self spawnNetflixThread];
 }
 

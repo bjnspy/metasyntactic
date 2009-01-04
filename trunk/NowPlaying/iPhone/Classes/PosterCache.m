@@ -26,8 +26,8 @@
 #import "Location.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
@@ -48,7 +48,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
@@ -57,7 +57,7 @@
 }
 
 
-+ (PosterCache*) cacheWithModel:(NowPlayingModel*) model {
++ (PosterCache*) cacheWithModel:(Model*) model {
     return [[[PosterCache alloc] initWithModel:model] autorelease];
 }
 
@@ -142,7 +142,7 @@
         [FileUtilities writeData:data toFile:path];
 
         if (data.length > 0) {
-            [NowPlayingAppDelegate minorRefresh];
+            [AppDelegate minorRefresh];
         }
     }
 }

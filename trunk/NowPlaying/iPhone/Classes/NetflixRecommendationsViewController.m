@@ -20,7 +20,7 @@
 #import "MultiDictionary.h"
 #import "MutableNetflixCache.h"
 #import "NetflixGenreRecommendationsViewController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Queue.h"
 
 @interface NetflixRecommendationsViewController()
@@ -54,12 +54,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

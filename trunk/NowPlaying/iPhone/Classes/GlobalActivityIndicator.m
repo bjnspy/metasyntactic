@@ -14,7 +14,7 @@
 
 #import "GlobalActivityIndicator.h"
 
-#import "NowPlayingAppDelegate.h"
+#import "AppDelegate.h"
 
 @implementation GlobalActivityIndicator
 
@@ -87,7 +87,7 @@ static NSInteger visibleBackgroundTaskCount = 0;
             }
         }
 
-        [NowPlayingAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
     [gate unlock];
 }

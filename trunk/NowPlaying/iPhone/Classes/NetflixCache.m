@@ -28,8 +28,8 @@
 #import "NetflixMoveMovieDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetworkUtilities.h"
-#import "NowPlayingAppDelegate.h"
-#import "NowPlayingModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "IdentitySet.h"
 #import "Queue.h"
 #import "ThreadingUtilities.h"
@@ -81,7 +81,7 @@ static NSString* directors_key = @"directors";
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.queues = [NSMutableDictionary dictionary];
 
@@ -183,7 +183,7 @@ static NSString* directors_key = @"directors";
     self.feedsData = nil;
     self.queues = nil;
 
-    [NowPlayingAppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh:YES];
 }
 
 
@@ -474,7 +474,7 @@ static NSString* directors_key = @"directors";
 - (void) reportQueue:(Queue*) queue {
     NSAssert([NSThread isMainThread], nil);
     [queues setObject:queue forKey:queue.feed.key];
-    [NowPlayingAppDelegate majorRefresh];
+    [AppDelegate majorRefresh];
 }
 
 
@@ -580,7 +580,7 @@ static NSString* directors_key = @"directors";
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
     if (data.length > 0) {
         [FileUtilities writeData:data toFile:path];
-        [NowPlayingAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 
@@ -775,7 +775,7 @@ static NSString* directors_key = @"directors";
 
     [FileUtilities writeObject:userRating toFile:userRatingsFile];
     [FileUtilities writeObject:predictedRating toFile:predictedRatingsFile];
-    [NowPlayingAppDelegate minorRefresh];
+    [AppDelegate minorRefresh];
 }
 
 
@@ -858,7 +858,7 @@ static NSString* directors_key = @"directors";
 
     if (dictionary.count > 0) {
         [FileUtilities writeObject:dictionary toFile:path];
-        [NowPlayingAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 
@@ -886,7 +886,7 @@ static NSString* directors_key = @"directors";
     NSDictionary* dictionary = [self extractDetails:element];
     if (dictionary.count > 0) {
         [FileUtilities writeObject:dictionary toFile:path];
-        [NowPlayingAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 
@@ -992,7 +992,7 @@ static NSString* directors_key = @"directors";
         }
     }
 
-    [NowPlayingAppDelegate majorRefresh];
+    [AppDelegate majorRefresh];
 }
 
 
@@ -1228,7 +1228,7 @@ static NSString* directors_key = @"directors";
     if (netflixMovie != nil) {
         [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
         [self addSearchResult:netflixMovie];
-        [NowPlayingAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 
@@ -1285,7 +1285,7 @@ static NSString* directors_key = @"directors";
     NSString* message = [[element element:@"message"] text];
     if ([@"Over queries per day limit" isEqual:message]) {
         self.lastQuotaErrorDate = [NSDate date];
-        [NowPlayingAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 

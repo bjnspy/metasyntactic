@@ -17,7 +17,7 @@
 #import "AlertUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixNavigationController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 
 @interface NetflixLoginViewController()
@@ -59,12 +59,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

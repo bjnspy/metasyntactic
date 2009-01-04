@@ -31,6 +31,6 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(NowPlayingModel*) model;
+               model:(Model*) model;
 
 @end

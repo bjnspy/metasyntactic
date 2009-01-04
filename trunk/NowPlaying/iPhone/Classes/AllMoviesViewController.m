@@ -17,7 +17,7 @@
 #import "GlobalActivityIndicator.h"
 #import "MovieTitleCell.h"
 #import "MoviesNavigationController.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 
 @interface AllMoviesViewController()
 @property (retain) UISegmentedControl* segmentedControl;

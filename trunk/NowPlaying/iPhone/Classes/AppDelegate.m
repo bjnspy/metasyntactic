@@ -12,28 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NowPlayingAppDelegate.h"
+#import "AppDelegate.h"
 
 #import "ApplicationTabBarController.h"
 #import "LocationManager.h"
-#import "NowPlayingController.h"
-#import "NowPlayingModel.h"
+#import "Controller.h"
+#import "Model.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
 
-@interface NowPlayingAppDelegate()
+@interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) NowPlayingController* controller;
-@property (retain) NowPlayingModel* model;
+@property (retain) Controller* controller;
+@property (retain) Model* model;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
 @end
 
 
-@implementation NowPlayingAppDelegate
+@implementation AppDelegate
 
-static NowPlayingAppDelegate* appDelegate = nil;
+static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize tabBarController;
@@ -54,7 +54,7 @@ static NowPlayingAppDelegate* appDelegate = nil;
 }
 
 
-+ (NowPlayingAppDelegate*) appDelegate {
++ (AppDelegate*) appDelegate {
     return appDelegate;
 }
 
@@ -62,8 +62,8 @@ static NowPlayingAppDelegate* appDelegate = nil;
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     appDelegate = self;
 
-    self.model = [NowPlayingModel model];
-    self.controller = [NowPlayingController controllerWithAppDelegate:self];
+    self.model = [Model model];
+    self.controller = [Controller controllerWithAppDelegate:self];
 
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];

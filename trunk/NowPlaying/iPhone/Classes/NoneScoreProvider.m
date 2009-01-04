@@ -21,7 +21,7 @@
 }
 
 
-- (id) initWithModel:(NowPlayingModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
     }
 
@@ -29,7 +29,7 @@
 }
 
 
-+ (NoneScoreProvider*) providerWithModel:(NowPlayingModel*) model; {
++ (NoneScoreProvider*) providerWithModel:(Model*) model; {
     return [[[NoneScoreProvider alloc] initWithModel:model] autorelease];
 }
 

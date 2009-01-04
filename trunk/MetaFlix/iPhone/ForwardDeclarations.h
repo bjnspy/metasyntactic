@@ -66,9 +66,9 @@
 @class NetflixViewController;
 @class NetworkUtilities;
 @class NonClippingView;
-@class MetaFlixAppDelegate;
-@class MetaFlixController;
-@class MetaFlixModel;
+@class AppDelegate;
+@class Controller;
+@class Model;
 @class PickerEditorViewController;
 @class PointerSet;
 @class PosterCache;

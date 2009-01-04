@@ -31,7 +31,7 @@
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
 
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(Model*) model;
 
 - (NSArray*) search:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;

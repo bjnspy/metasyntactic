@@ -15,11 +15,11 @@
 #import "TheaterNameCell.h"
 
 #import "Application.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Theater.h"
 
 @interface TheaterNameCell()
-@property (retain) NowPlayingModel* model;
+@property (retain) Model* model;
 @property (retain) UILabel* nameLabel;
 @property (retain) UILabel* addressLabel;
 @end
@@ -42,7 +42,7 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(NowPlayingModel*) model_ {
+               model:(Model*) model_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
 

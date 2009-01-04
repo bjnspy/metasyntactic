@@ -85,9 +85,9 @@
 @class NetworkUtilities;
 @class NonClippingView;
 @class NoneScoreProvider;
-@class NowPlayingAppDelegate;
-@class NowPlayingController;
-@class NowPlayingModel;
+@class AppDelegate;
+@class Controller;
+@class Model;
 @class Performance;
 @class PickerEditorViewController;
 @class PointerSet;

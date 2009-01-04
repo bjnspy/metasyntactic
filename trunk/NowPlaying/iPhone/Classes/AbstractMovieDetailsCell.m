@@ -15,7 +15,7 @@
 #import "AbstractMovieDetailsCell.h"
 
 @interface AbstractMovieDetailsCell()
-@property (retain) NowPlayingModel* model;
+@property (retain) Model* model;
 @property (retain) Movie* movie;
 @end
 
@@ -35,7 +35,7 @@
 
 
 - (id) initWithFrame:(CGRect) frame
-               model:(NowPlayingModel*) model_
+               model:(Model*) model_
                movie:(Movie*) movie_ {
     if (self = [super initWithFrame:frame]) {
         self.model = model_;

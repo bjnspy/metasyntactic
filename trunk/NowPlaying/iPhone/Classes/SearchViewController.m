@@ -18,7 +18,7 @@
 #import "ApplicationTabBarController.h"
 #import "DVDCell.h"
 #import "MovieTitleCell.h"
-#import "NowPlayingAppDelegate.h"
+#import "AppDelegate.h"
 #import "SearchEngine.h"
 #import "SearchResult.h"
 #import "TheaterNameCell.h"
@@ -65,12 +65,12 @@
 }
 
 
-- (NowPlayingModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (NowPlayingController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

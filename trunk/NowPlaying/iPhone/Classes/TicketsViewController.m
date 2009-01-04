@@ -23,7 +23,7 @@
 #import "GlobalActivityIndicator.h"
 #import "LookupResult.h"
 #import "Movie.h"
-#import "NowPlayingModel.h"
+#import "Model.h"
 #import "Performance.h"
 #import "SearchDatePickerViewController.h"
 #import "Theater.h"

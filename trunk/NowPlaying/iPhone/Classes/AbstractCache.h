@@ -15,10 +15,10 @@
 @interface AbstractCache : NSObject {
 @protected
     NSCondition* gate;
-    NowPlayingModel* model;
+    Model* model;
 }
 
 /* @protected */
-- (id) initWithModel:(NowPlayingModel*) model;
+- (id) initWithModel:(Model*) model;
 
 @end

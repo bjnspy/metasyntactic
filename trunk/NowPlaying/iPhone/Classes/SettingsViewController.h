@@ -21,7 +21,7 @@
 
 - (void) majorRefresh;
 
-- (NowPlayingModel*) model;
-- (NowPlayingController*) controller;
+- (Model*) model;
+- (Controller*) controller;
 
 @end
