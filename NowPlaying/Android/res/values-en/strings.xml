@@ -97,6 +97,8 @@
   <string name="downloading_data">Downloading data</string>
   <!--Downloading poster-->
   <string name="downloading_poster">Downloading poster</string>
+  <!--E-mail-->
+  <string name="email">E-mail</string>
   <!--E-mail listings-->
   <string name="email_listings">E-mail listings</string>
   <!--Favorites-->
