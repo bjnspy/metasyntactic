@@ -31,6 +31,8 @@
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
 
++ (NSArray*) mostPopularTitles;
+
 - (id) initWithModel:(Model*) model;
 
 - (NSArray*) search:(NSString*) query;
@@ -46,6 +48,7 @@
 - (Queue*) queueForKey:(NSString*) key;
 - (NSString*) titleForKey:(NSString*) key;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount;
+- (NSArray*) moviesForRSSTitle:(NSString*) title;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

@@ -207,30 +207,27 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) clearStaleData {
-    [gate lock];
-    {
-        NSInteger cacheLimit = (NSInteger)CACHE_LIMIT;
-
-        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-
-            NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-            for (NSString* path in paths) {
-                if ((rand() % 1000) < 50) {
-                    if ([FileUtilities isDirectory:path]) {
-                        continue;
-                    }
-
-                    NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
-                    if (lastModifiedDate != nil) {
-                        if (ABS(lastModifiedDate.timeIntervalSinceNow) > cacheLimit) {
-                            [FileUtilities moveItemToTrash:path];
-                        }
-                    }
++ (void) clearStaleData:(NSString*) directory {
+    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
+    for (NSString* path in paths) {
+        if ([FileUtilities isDirectory:path]) {
+            [self clearStaleData:path];
+        } else if ((rand() % 1000) < 50) {
+            NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
+            if (lastModifiedDate != nil) {
+                if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
+                    [FileUtilities moveItemToTrash:path];
                 }
             }
         }
+    }
+}
+
+
++ (void) clearStaleData {
+    [gate lock];
+    {
+        [self clearStaleData:cacheDirectory];
     }
     [gate unlock];
 }
