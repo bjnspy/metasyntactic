@@ -178,7 +178,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (trailers.count > 0) {
         self.trailer = [trailers objectAtIndex:0];
     }
-    
+
     self.similarMovies = [self.model.netflixCache similarMoviesForMovie:netflixMovie];
 
     [self initializeWebsites];
@@ -525,7 +525,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (section == 1 && similarMovies.count > 0) {
         return NSLocalizedString(@"Similar Movies", nil);
     }
-    
+
     return nil;
 }
 
@@ -537,7 +537,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (cell == nil) {
         cell = [[[NetflixCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier model:self.model] autorelease];
     }
-    
+
     [cell setMovie:similarMovie owner:self];
     return cell;
 }
@@ -642,20 +642,20 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
                         cancelButtonTitle:nil
                    destructiveButtonTitle:nil
                         otherButtonTitles:nil] autorelease];
-    
+
     [actionSheet addButtonWithTitle:NSLocalizedString(@"DVD Queue", nil)];
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of DVD Queue", nil)];
     actionSheet.tag = ADD_TO_NETFLIX_TAG;
-    
+
     NSArray* formats = [self.model.netflixCache formatsForMovie:netflixMovie];
     if (formats.count >= 2 && [formats containsObject:@"instant"]) {
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Instant Queue", nil)];
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of Instant Queue", nil)];
     }
-    
+
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
-    
+
     [actionSheet showInView:[AppDelegate window]];
 }
 
@@ -665,10 +665,10 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }
-    
+
     if (buttonIndex >= 0 &&  buttonIndex <= 3) {
         [self enterReadonlyMode];
-        
+
         Queue* queue;
         if (buttonIndex <= 1) {
             queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey]];
@@ -677,7 +677,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
         }
 
         if (buttonIndex % 2 == 0) {
-            [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self]; 
+            [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self];
         } else {
             [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie toPosition:0 delegate:self];
         }
@@ -730,7 +730,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (void)              tableView:(UITableView*) tableView 
+- (void)              tableView:(UITableView*) tableView
       didSelectSimilarMoviesRow:(NSInteger) row {
     Movie* similarMovie = [similarMovies objectAtIndex:row];
     [navigationController pushMovieDetails:similarMovie animated:YES];

@@ -29,7 +29,7 @@
 
 - (void) dealloc {
     self.navigationController = nil;
-    
+
     [super dealloc];
 }
 
@@ -39,7 +39,7 @@
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Most Popular", nil);
     }
-    
+
     return self;
 }
 
@@ -57,7 +57,7 @@
 - (void) majorRefresh {
     [self.tableView reloadData];
 }
- 
+
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return YES;
@@ -78,13 +78,13 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     cell.text = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.row];
     return cell;
 }
@@ -93,7 +93,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.row];
-    
+
     NetflixMostPopularMoviesViewController* controller = [[[NetflixMostPopularMoviesViewController alloc] initWithNavigationController:navigationController category:title] autorelease];
     [navigationController pushViewController:controller animated:YES];
 }

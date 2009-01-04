@@ -45,7 +45,7 @@
     self.category = nil;
     self.movies = nil;
     self.visibleIndexPaths = nil;
-    
+
     [super dealloc];
 }
 
@@ -56,12 +56,12 @@
         self.navigationController = navigationController_;
         self.category = category_;
         self.title = category_;
-        
+
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = category;
         self.navigationItem.titleView = label;
     }
-    
+
     return self;
 }
 
@@ -84,14 +84,14 @@
 - (void) majorRefreshWorker {
     [self initializeData];
     [self.tableView reloadData];
-    
+
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-        
+
         self.visibleIndexPaths = nil;
     }
 }
@@ -132,13 +132,13 @@
     if (visible) {
         return;
     }
-    
+
     self.movies = [NSArray array];
-    
+
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
     self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
-    
+
     [super didReceiveMemoryWarning];
 }
 
@@ -165,10 +165,10 @@
                                              model:self.model] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     Movie* movie = [movies objectAtIndex:indexPath.row];
     [cell setMovie:movie owner:self];
-    
+
     return cell;
 }
 
@@ -189,7 +189,7 @@
             return NSLocalizedString(@"Downloading data", nil);
         }
     }
-    
+
     return nil;
 }
 

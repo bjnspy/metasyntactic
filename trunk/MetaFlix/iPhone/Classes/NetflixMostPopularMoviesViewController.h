@@ -19,7 +19,7 @@
     AbstractNavigationController* navigationController;
     NSString* category;
     NSArray* movies;
-    
+
     NSArray* visibleIndexPaths;
     BOOL visible;
 }
