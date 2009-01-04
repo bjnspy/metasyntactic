@@ -52,4 +52,9 @@
     return value == [other value];
 }
 
+
+- (NSString*) description {
+    return [value description];
+}
+
 @end

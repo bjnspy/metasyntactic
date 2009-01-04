@@ -72,7 +72,7 @@
              realm:(NSString*) realm_ {
     if ([super initWithURL:url_
                cachePolicy:NSURLRequestReloadIgnoringCacheData
-           timeoutInterval:60.0]) {
+           timeoutInterval:30.0]) {
 
         self.consumer = consumer_;
         self.token = token_;

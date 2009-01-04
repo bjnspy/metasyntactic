@@ -16,14 +16,14 @@
 #import "NetflixAddMovieDelegate.h"
 #import "TappableImageViewDelegate.h"
 
-@interface MovieDetailsViewController :
-    AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate> {
+@interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate> {
 @private
     Movie* movie;
     Movie* netflixMovie;
 
     NSString* trailer;
     NSDictionary* websites;
+    NSArray* similarMovies;
 
     ActionsView* actionsView;
     UIButton* bookmarkButton;

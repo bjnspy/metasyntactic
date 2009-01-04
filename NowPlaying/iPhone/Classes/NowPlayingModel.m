@@ -1499,7 +1499,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 }
 
 
-- (void) saveNavigationStack:(AbstractNavigationController*) controller {
+- (void) saveNavigationStack:(UINavigationController*) controller {
     NSMutableArray* types = [NSMutableArray array];
     NSMutableArray* values = [NSMutableArray array];
 

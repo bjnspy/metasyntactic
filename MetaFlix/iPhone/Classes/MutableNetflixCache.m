@@ -25,6 +25,7 @@
 #import "MetaFlixModel.h"
 #import "Queue.h"
 #import "ThreadingUtilities.h"
+#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation MutableNetflixCache
@@ -50,6 +51,9 @@
 
 - (void) reportMoveMovieFailure:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
+    
+    NSLog(@"Reporting failure to NetflixMoveMovieDelegate.", nil);
+    
     id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:0];
     NSString* error = [arguments objectAtIndex:1];
 
@@ -59,8 +63,10 @@
 
 - (void) reportQueueAndMoveMovieSuccess:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
+    
+    NSLog(@"Reporting queue and success to NetflixMoveMovieDelegate.", nil);
+    
     [self reportQueue:[arguments objectAtIndex:0]];
-
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
 
@@ -70,8 +76,10 @@
 
 - (void) reportQueueAndModifyQueueError:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
+    
+    NSLog(@"Reporting queue and success to NetflixModifyQueueDelegate.", nil);
+    
     [self reportQueue:[arguments objectAtIndex:0]];
-
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:1];
     NSString* error = [arguments objectAtIndex:2];
 
@@ -81,6 +89,8 @@
 
 - (void) reportQueueAndModifyQueueSuccess:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
+    NSLog(@"Reporting queue and success to NetflixModifyQueueDelegate.", nil);
+    
     [self reportQueue:[arguments objectAtIndex:0]];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:1];
 
@@ -90,6 +100,9 @@
 
 - (void) reportQueueAndAddMovieSuccess:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
+    
+    NSLog(@"Reporting queue and success to NetflixAddMovieDelegate.", nil);
+    
     [self reportQueue:[arguments objectAtIndex:0]];
     id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:1];
 
@@ -100,6 +113,7 @@
 - (void)          saveQueue:(Queue*) queue
              andReportError:(NSString*) error
       toModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate {
+    NSLog(@"Saving queue and reporting failure to NetflixModifyQueueDelegate.", nil);
     [self saveQueue:queue];
     NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, error, nil];
     [self performSelectorOnMainThread:@selector(reportQueueAndModifyQueueError:) withObject:arguments waitUntilDone:NO];
@@ -108,6 +122,7 @@
 
 - (void)                          saveQueue:(Queue*) queue
       andReportSuccessToModifyQueueDelegate:(id<NetflixModifyQueueDelegate>) delegate {
+    NSLog(@"Saving queue and reporting success to NetflixModifyQueueDelegate.", nil);
     [self saveQueue:queue];
     NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, nil];
     [self performSelectorOnMainThread:@selector(reportQueueAndModifyQueueSuccess:) withObject:arguments waitUntilDone:NO];
@@ -116,6 +131,7 @@
 
 - (void)                       saveQueue:(Queue*) queue
       andReportSuccessToAddMovieDelegate:(id<NetflixAddMovieDelegate>) delegate {
+    NSLog(@"Saving queue and reporting success to NetflixAddMovieDelegate.", nil);
     [self saveQueue:queue];
     NSArray* arguments = [NSArray arrayWithObjects:queue, delegate, nil];
     [self performSelectorOnMainThread:@selector(reportQueueAndAddMovieSuccess:) withObject:arguments waitUntilDone:NO];
@@ -127,6 +143,12 @@
     if (message.length > 0) {
         return message;
     } else {
+        if (element == nil) {
+            NSLog(@"Could not parse Netflix result.", nil);
+        } else {
+            NSLog(@"Netflix response had no 'message' element", nil);
+        }
+
         return NSLocalizedString(@"An unknown error occurred.", nil);
     }
 }
@@ -185,17 +207,21 @@
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
 
+    NSLog(@"Moving '%@' to top of queue.", movie.canonicalTitle); 
+    
     NSString* error;
     Queue* finalQueue = [self moveMovie:movie
                              toPosition:0
                                 inQueue:queue
                                   error:&error];
     if (finalQueue == nil) {
+        NSLog(@"Moving '%@' failed: %@", movie.canonicalTitle, error); 
         NSArray* errorArguments = [NSArray arrayWithObjects:delegate, error, nil];
         [self performSelectorOnMainThread:@selector(reportMoveMovieFailure:) withObject:errorArguments waitUntilDone:NO];
         return;
     }
-
+    
+    NSLog(@"Moving '%@' succeeded.  Saving and reporting queue with etag: %@", movie.canonicalTitle, finalQueue.etag);
     [self saveQueue:finalQueue];
 
     NSArray* finalArguments = [NSArray arrayWithObjects:finalQueue, movie, delegate, nil];
@@ -320,12 +346,14 @@
 
     if (element == nil) {
         // we failed.  restore the rating to its original value
+        NSLog(@"Couldn't parse Netflix response.", nil);
         return NSLocalizedString(@"An unknown error occurred.", nil);
     }
 
     XmlElement* ratingsItemElement = [element element:@"ratings_item"];
     NSString* identifier = [[ratingsItemElement element:@"id"] text];
     if (identifier.length == 0) {
+        NSLog(@"No identifier returned.", nil);
         return NSLocalizedString(@"An unknown error occurred.", nil);
     }
 
@@ -335,10 +363,12 @@
     XmlElement* userRatingElement = [ratingsItemElement element:@"user_rating"];
 
     if (userRatingElement == nil) {
+        NSLog(@"No user rating.  Posting response.", nil);
         return [self postChangeRatingTo:rating
                                forMovie:movie
                          withIdentifier:identifier];
     } else {
+        NSLog(@"Existing user rating.  Putting response.", nil);
         return [self putChangeRatingTo:rating
                               forMovie:movie
                         withIdentifier:identifier];
@@ -353,27 +383,33 @@
 
     movie = [self promoteDiscToSeries:movie];
     NSString* userRatingsFile = [self userRatingsFile:movie];
-    NSString* existingUserRating = [FileUtilities readObject:userRatingsFile];
+    NSString* existingUserRating = [Utilities nonNilString:[FileUtilities readObject:userRatingsFile]];
 
+    NSLog(@"Changing rating for '%@' from '%@' to '%@'.", movie.canonicalTitle, existingUserRating, rating);
+    
     // First, persist the change so that the UI picks it up
     [FileUtilities writeObject:rating toFile:userRatingsFile];
 
     NSString* message = [self changeRatingTo:rating forMovieWorker:movie];
     if (message.length > 0) {
+        NSLog(@"Changing rating failed. Restoring existing rating.", nil);
         [FileUtilities writeObject:existingUserRating toFile:userRatingsFile];
         [(id)delegate performSelectorOnMainThread:@selector(changeFailedWithError:) withObject:message waitUntilDone:NO];
         return;
     }
-
+    
+    NSLog(@"Changing rating succeeded.", nil);
     [(id)delegate performSelectorOnMainThread:@selector(changeSucceeded) withObject:nil waitUntilDone:NO];
 }
 
 
 - (void) updateQueue:(Queue*) queue
        byAddingMovie:(Movie*) movie
+          toPosition:(NSInteger) position
             delegate:(id<NetflixAddMovieDelegate>) delegate {
-    NSArray* arguments = [NSArray arrayWithObjects:queue, movie, delegate, nil];
-
+    NSArray* arguments =
+        [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, nil];
+    
     [ThreadingUtilities backgroundSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                   onTarget:self
                                   argument:arguments
@@ -382,24 +418,82 @@
 }
 
 
+- (void) updateQueue:(Queue*) queue
+       byAddingMovie:(Movie*) movie
+            delegate:(id<NetflixAddMovieDelegate>) delegate {
+    [self updateQueue:queue byAddingMovie:movie toPosition:-1 delegate:delegate];
+}
+
+
+- (Queue*) processAddMovieResult:(XmlElement*) element
+                           queue:(Queue*) queue
+                        position:(NSInteger) position
+                           error:(NSString**) error {
+    *error = nil;
+    if (element == nil) {
+        *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
+        return nil;
+    }
+    
+    NSInteger status = [[[element element:@"status_code"] text] intValue];
+    if (status < 200 || status >= 300) {
+        *error = [self extractErrorMessage:element];
+        return nil;
+    }
+    
+    NSString* etag = [[element element:@"etag"] text];
+    
+    NSMutableArray* addedMovies = [NSMutableArray array];
+    NSMutableArray* addedSaved = [NSMutableArray array];
+    [NetflixCache processMovieItemList:[element element:@"resources_created"] movies:addedMovies saved:addedSaved];
+    
+    NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
+    NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
+    if (addedMovies.count > 0) {
+        if (position >= 0) {
+            [newMovies insertObject:[addedMovies objectAtIndex:0] atIndex:position];
+        } else {
+            [newMovies addObject:[addedMovies objectAtIndex:0]];
+        }
+    } else if (addedSaved.count > 0) {
+        if (position >= 0) {
+            [newSaved insertObject:[addedSaved objectAtIndex:0] atIndex:position];
+        } else {
+            [newSaved addObject:[addedSaved objectAtIndex:0]];
+        }
+    }
+    
+    return [Queue queueWithFeed:queue.feed
+                           etag:etag
+                         movies:newMovies
+                          saved:newSaved];
+}
+
+
 - (void) addMovieToQueueBackgroundEntryPoint:(NSArray*) arguments {
     Queue* queue = [arguments objectAtIndex:0];
     Movie* movie = [arguments objectAtIndex:1];
-    id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:2];
+    NSInteger position = [[arguments objectAtIndex:2] intValue];
+    id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:3];
 
     NSString* address;
     if ([queue isInstantQueue]) {
+        NSLog(@"Adding '%@' to instant queue.", movie.canonicalTitle);
         address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/instant", model.netflixUserId];
     } else {
+        NSLog(@"Adding '%@' to DVD queue.", movie.canonicalTitle);
         address = [NSString stringWithFormat:@"http://api.netflix.com/users/%@/queues/disc", model.netflixUserId];
     }
 
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request setHTTPMethod:@"POST"];
 
-    NSArray* parameters = [NSArray arrayWithObjects:
-                           [OARequestParameter parameterWithName:@"title_ref" value:movie.identifier],
-                           [OARequestParameter parameterWithName:@"etag" value:queue.etag], nil];
+    NSMutableArray* parameters = [NSMutableArray array];
+    [parameters addObject:[OARequestParameter parameterWithName:@"title_ref" value:movie.identifier]];
+    [parameters addObject:[OARequestParameter parameterWithName:@"etag" value:queue.etag]];
+    if (position >= 0) {
+        [parameters addObject:[OARequestParameter parameterWithName:@"position" value:[NSString stringWithFormat:@"%d", position]]];
+    }
 
     [request setParameters:parameters];
     [request prepare];
@@ -408,31 +502,19 @@
                                                               important:YES];
 
     [self checkApiResult:element];
-    if (element == nil) {
-        NSString* error = NSLocalizedString(@"Could not connect to Netflix.", nil);
+
+    NSString* error;
+    Queue* finalQueue = [self processAddMovieResult:element
+                                              queue:queue
+                                           position:position
+                                              error:&error];
+    if (finalQueue == nil) {
+        NSLog(@"Adding '%@' failed: %@", movie.canonicalTitle, error);
         [(id)delegate performSelectorOnMainThread:@selector(addFailedWithError:) withObject:error waitUntilDone:NO];
         return;
     }
-
-    NSInteger status = [[[element element:@"status_code"] text] intValue];
-    if (status < 200 || status >= 300) {
-        NSString* error = [self extractErrorMessage:element];
-
-        [(id)delegate performSelectorOnMainThread:@selector(addFailedWithError:) withObject:error waitUntilDone:NO];
-        return;
-    }
-
-    NSString* etag = [[element element:@"etag"] text];
-
-    NSMutableArray* newMovies = [NSMutableArray array];
-    NSMutableArray* newSaved = [NSMutableArray array];
-    [NetflixCache processMovieItemList:[element element:@"resources_created"] movies:newMovies saved:newSaved];
-
-    Queue* finalQueue = [Queue queueWithFeed:queue.feed
-                                           etag:etag
-                                         movies:[queue.movies arrayByAddingObjectsFromArray:newMovies]
-                                          saved:[queue.saved arrayByAddingObjectsFromArray:newSaved]];
-
+    
+    NSLog(@"Adding '%@' succeeded.", movie.canonicalTitle);
     [self saveQueue:finalQueue andReportSuccessToAddMovieDelegate:delegate];
 }
 
@@ -499,7 +581,8 @@ NSInteger orderMovies(id t1, id t2, void* context) {
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:4];
 
     Queue* finalQueue = queue;
-
+    NSLog(@"Deleting:\n'%@'\nReordering:\n%@", deletedMovies, reorderedMovies); 
+    
     for (Movie* movie in deletedMovies.allObjects) {
         NSString* error;
         Queue* resultantQueue = [self deleteMovie:movie
@@ -507,33 +590,41 @@ NSInteger orderMovies(id t1, id t2, void* context) {
                                             error:&error];
 
         if (resultantQueue == nil) {
+            NSLog(@"Failed to delete '%@'. %@.", movie.canonicalTitle, error);
             [self saveQueue:finalQueue
              andReportError:error
       toModifyQueueDelegate:delegate];
             return;
         }
-
+        
+        NSLog(@"Succeeded in deleting '%@'. New etag: %@.", movie.canonicalTitle, resultantQueue.etag);
         finalQueue = resultantQueue;
     }
 
     NSArray* orderedMoviesToReorder = [reorderedMovies.allObjects sortedArrayUsingFunction:orderMovies context:moviesInOrder];
     for (Movie* movie in orderedMoviesToReorder) {
+        NSInteger position = [moviesInOrder indexOfObjectIdenticalTo:movie];
+        NSLog(@"Moving %@ to %d", movie.canonicalTitle, position);
+        
         NSString* error = nil;
         Queue* resultantQueue = [self moveMovie:movie
-                                     toPosition:[moviesInOrder indexOfObjectIdenticalTo:movie]
+                                     toPosition:position
                                         inQueue:finalQueue
                                           error:&error];
 
         if (resultantQueue == nil) {
+            NSLog(@"Failed to move'%@' to %d. %@", movie.canonicalTitle, position, error);
             [self saveQueue:finalQueue
              andReportError:error
       toModifyQueueDelegate:delegate];
             return;
         }
 
+        NSLog(@"Succeeded in moving '%@' to %d. New etag: %@.", movie.canonicalTitle, position, resultantQueue.etag);
         finalQueue = resultantQueue;
     }
 
+    NSLog(@"Delete/Reorder completed successfully.  Saving queue and reporting.", nil);
     [self saveQueue:finalQueue andReportSuccessToModifyQueueDelegate:delegate];
 }
 
