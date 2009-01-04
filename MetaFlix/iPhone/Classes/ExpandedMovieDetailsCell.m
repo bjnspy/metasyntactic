@@ -17,7 +17,7 @@
 #import "DateUtilities.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 
 @interface ExpandedMovieDetailsCell()
 @property (retain) NSMutableArray* titles;
@@ -238,7 +238,7 @@
 
 
 - (id) initWithFrame:(CGRect) frame
-               model:(MetaFlixModel*) model_
+               model:(Model*) model_
                movie:(Movie*) movie_ {
     if (self = [super initWithFrame:frame model:model_ movie:movie_]) {
         self.titles = [NSMutableArray array];

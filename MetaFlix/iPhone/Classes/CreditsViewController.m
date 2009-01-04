@@ -16,11 +16,11 @@
 
 #import "Application.h"
 #import "LocaleUtilities.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "SettingCell.h"
 
 @interface CreditsViewController()
-@property (retain) MetaFlixModel* model;
+@property (retain) Model* model;
 @property (retain) NSArray* languages;
 @property (retain) NSDictionary* localizers;
 @end
@@ -58,7 +58,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.model = model_;
         self.title = NSLocalizedString(@"About", nil);

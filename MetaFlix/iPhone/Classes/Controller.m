@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "MetaFlixController.h"
+#import "Controller.h"
 
 #import "Application.h"
 #import "AlertUtilities.h"
 #import "DateUtilities.h"
-#import "MetaFlixAppDelegate.h"
-#import "MetaFlixModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "NetflixCache.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
-@interface MetaFlixController()
-@property (assign) MetaFlixAppDelegate* appDelegate;
+@interface Controller()
+@property (assign) AppDelegate* appDelegate;
 @end
 
 
-@implementation MetaFlixController
+@implementation Controller
 
 @synthesize appDelegate;
 
@@ -39,12 +39,12 @@
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return appDelegate.model;
 }
 
 
-- (id) initWithAppDelegate:(MetaFlixAppDelegate*) appDelegate_ {
+- (id) initWithAppDelegate:(AppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
     }
@@ -53,8 +53,8 @@
 }
 
 
-+ (MetaFlixController*) controllerWithAppDelegate:(MetaFlixAppDelegate*) appDelegate {
-    return [[[MetaFlixController alloc] initWithAppDelegate:appDelegate] autorelease];
++ (Controller*) controllerWithAppDelegate:(AppDelegate*) appDelegate {
+    return [[[Controller alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
 

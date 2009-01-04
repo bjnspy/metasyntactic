@@ -14,7 +14,7 @@
 
 #import "SearchRequest.h"
 
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "Utilities.h"
 
 @interface SearchRequest()
@@ -44,7 +44,7 @@
 
 - (id) initWithId:(NSInteger) requestId_
             value:(NSString*) value_
-            model:(MetaFlixModel*) model {
+            model:(Model*) model {
     if (self = [super init]) {
         self.requestId = requestId_;
         self.value = value_;
@@ -58,7 +58,7 @@
 
 + (SearchRequest*) requestWithId:(NSInteger) requestId
                            value:(NSString*) value
-                           model:(MetaFlixModel*) model{
+                           model:(Model*) model{
     return [[[SearchRequest alloc] initWithId:requestId value:value model:model] autorelease];
 }
 

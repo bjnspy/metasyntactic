@@ -31,8 +31,8 @@
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "NetflixRatingsCell.h"
-#import "MetaFlixAppDelegate.h"
-#import "MetaFlixModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "PosterCache.h"
 #import "TappableImageView.h"
 #import "ThreadingUtilities.h"
@@ -135,7 +135,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-+ (UIImage*) posterForMovie:(Movie*) movie model:(MetaFlixModel*) model {
++ (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model {
     UIImage* image = [model posterForMovie:movie];
     if (image == nil) {
         image = [ImageCache imageNotAvailable];
@@ -597,7 +597,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     actionSheet.cancelButtonIndex = keys.count;
 
-    [actionSheet showInView:[MetaFlixAppDelegate window]];
+    [actionSheet showInView:[AppDelegate window]];
 }
 
 
@@ -656,7 +656,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
     
-    [actionSheet showInView:[MetaFlixAppDelegate window]];
+    [actionSheet showInView:[AppDelegate window]];
 }
 
 

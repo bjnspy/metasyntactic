@@ -33,7 +33,7 @@
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
-               model:(MetaFlixModel*) model;
+               model:(Model*) model;
 
 
 - (void) refresh;

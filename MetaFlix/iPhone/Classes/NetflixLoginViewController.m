@@ -17,7 +17,7 @@
 #import "AlertUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixNavigationController.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 
 @interface NetflixLoginViewController()
@@ -59,12 +59,12 @@
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (MetaFlixController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

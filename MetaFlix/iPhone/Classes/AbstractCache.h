@@ -15,10 +15,10 @@
 @interface AbstractCache : NSObject {
 @protected
     NSCondition* gate;
-    MetaFlixModel* model;
+    Model* model;
 }
 
 /* @protected */
-- (id) initWithModel:(MetaFlixModel*) model;
+- (id) initWithModel:(Model*) model;
 
 @end

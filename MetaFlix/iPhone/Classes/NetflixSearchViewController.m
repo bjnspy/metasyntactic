@@ -49,7 +49,7 @@
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 

@@ -20,7 +20,7 @@
 #import "Feed.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "IdentitySet.h"
 #import "Queue.h"
 #import "TappableImageView.h"
@@ -123,12 +123,12 @@
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (MetaFlixController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

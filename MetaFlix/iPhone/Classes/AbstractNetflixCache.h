@@ -25,7 +25,7 @@
 + (NSString*) rentalHistoryWatchedKey;
 + (NSString*) rentalHistoryReturnedKey;
 
-- (id) initWithModel:(MetaFlixModel*) model;
+- (id) initWithModel:(Model*) model;
 
 // @protected
 - (OAMutableURLRequest*) createURLRequest:(NSString*) address;

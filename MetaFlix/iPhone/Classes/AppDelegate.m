@@ -12,27 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "MetaFlixAppDelegate.h"
+#import "AppDelegate.h"
 
-#import "MetaFlixController.h"
-#import "MetaFlixModel.h"
+#import "Controller.h"
+#import "Model.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
 #import "NetflixNavigationController.h"
 
-@interface MetaFlixAppDelegate()
+@interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) NetflixNavigationController* navigationController;
-@property (retain) MetaFlixController* controller;
-@property (retain) MetaFlixModel* model;
+@property (retain) Controller* controller;
+@property (retain) Model* model;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
 @end
 
 
-@implementation MetaFlixAppDelegate
+@implementation AppDelegate
 
-static MetaFlixAppDelegate* appDelegate = nil;
+static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize navigationController;
@@ -53,7 +53,7 @@ static MetaFlixAppDelegate* appDelegate = nil;
 }
 
 
-+ (MetaFlixAppDelegate*) appDelegate {
++ (AppDelegate*) appDelegate {
     return appDelegate;
 }
 
@@ -61,8 +61,8 @@ static MetaFlixAppDelegate* appDelegate = nil;
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     appDelegate = self;
 
-    self.model = [MetaFlixModel model];
-    self.controller = [MetaFlixController controllerWithAppDelegate:self];
+    self.model = [Model model];
+    self.controller = [Controller controllerWithAppDelegate:self];
 
     self.navigationController = [[[NetflixNavigationController alloc] initWithAppDelegate:self] autorelease];
     self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];

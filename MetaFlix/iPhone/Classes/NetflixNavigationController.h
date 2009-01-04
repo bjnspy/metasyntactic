@@ -19,6 +19,6 @@
     NetflixViewController* netflixViewController;
 }
 
-- (id) initWithTabBarController:(MetaFlixAppDelegate*) appDelegate;
+- (id) initWithTabBarController:(AppDelegate*) appDelegate;
 
 @end

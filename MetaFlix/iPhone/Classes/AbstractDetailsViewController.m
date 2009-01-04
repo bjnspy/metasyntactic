@@ -17,7 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "DateUtilities.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 
 @interface AbstractDetailsViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -44,12 +44,12 @@
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
 
-- (MetaFlixController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 

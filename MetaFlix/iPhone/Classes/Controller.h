@@ -12,17 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface MetaFlixController : NSObject {
+@interface Controller : NSObject {
 @private
-    MetaFlixAppDelegate* appDelegate;
+    AppDelegate* appDelegate;
 }
 
 - (void) start;
 
-- (MetaFlixModel*) model;
+- (Model*) model;
 
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 
-+ (MetaFlixController*) controllerWithAppDelegate:(MetaFlixAppDelegate*) appDelegate;
++ (Controller*) controllerWithAppDelegate:(AppDelegate*) appDelegate;
 
 @end

@@ -15,7 +15,7 @@
 #import "SearchEngine.h"
 
 #import "Movie.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
 #import "Utilities.h"
@@ -28,7 +28,7 @@
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_
+- (id) initWithModel:(Model*) model_
             delegate:(id<SearchEngineDelegate>) delegate_ {
     if (self = [super initWithModel:model_ delegate:delegate_]) {
     }
@@ -37,7 +37,7 @@
 }
 
 
-+ (SearchEngine*) engineWithModel:(MetaFlixModel*) model
++ (SearchEngine*) engineWithModel:(Model*) model
                          delegate:(id<SearchEngineDelegate>) delegate {
     return [[[SearchEngine alloc] initWithModel:model delegate:delegate] autorelease];
 }

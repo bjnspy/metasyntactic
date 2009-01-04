@@ -25,8 +25,8 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "MetaFlixAppDelegate.h"
-#import "MetaFlixModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -46,7 +46,7 @@
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
     }
@@ -55,7 +55,7 @@
 }
 
 
-+ (PosterCache*) cacheWithModel:(MetaFlixModel*) model {
++ (PosterCache*) cacheWithModel:(Model*) model {
     return [[[PosterCache alloc] initWithModel:model] autorelease];
 }
 
@@ -140,7 +140,7 @@
         [FileUtilities writeData:data toFile:path];
 
         if (data.length > 0) {
-            [MetaFlixAppDelegate minorRefresh];
+            [AppDelegate minorRefresh];
         }
     }
 }

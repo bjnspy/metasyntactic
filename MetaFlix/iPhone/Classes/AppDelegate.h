@@ -12,21 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface MetaFlixAppDelegate : NSObject<UIApplicationDelegate> {
+@interface AppDelegate : NSObject<UIApplicationDelegate> {
 @private
     IBOutlet UIWindow* window;
     NetflixNavigationController* navigationController;
 
-    MetaFlixModel* model;
-    MetaFlixController* controller;
+    Model* model;
+    Controller* controller;
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
 @property (readonly, retain) NetflixNavigationController* navigationController;
-@property (readonly, retain) MetaFlixController* controller;
-@property (readonly, retain) MetaFlixModel* model;
+@property (readonly, retain) Controller* controller;
+@property (readonly, retain) Model* model;
 
 + (void) minorRefresh;
 + (void) majorRefresh;

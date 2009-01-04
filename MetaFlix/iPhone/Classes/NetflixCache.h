@@ -31,7 +31,7 @@
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
 
-- (id) initWithModel:(MetaFlixModel*) model;
+- (id) initWithModel:(Model*) model;
 
 - (NSArray*) search:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;

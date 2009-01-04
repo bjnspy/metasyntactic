@@ -19,8 +19,8 @@
 #import "LinkedSet.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "MetaFlixAppDelegate.h"
-#import "MetaFlixModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -43,7 +43,7 @@
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.normalMovies = [LinkedSet set];
@@ -58,7 +58,7 @@
 }
 
 
-+ (IMDbCache*) cacheWithModel:(MetaFlixModel*) model {
++ (IMDbCache*) cacheWithModel:(Model*) model {
     return [[[IMDbCache alloc] initWithModel:model] autorelease];
 }
 
@@ -121,7 +121,7 @@
     // ensure that we don't update this entry too often.
     [FileUtilities writeObject:imdbAddress toFile:path];
     if (imdbAddress.length > 0) {
-        [MetaFlixAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "MetaFlixModel.h"
+#import "Model.h"
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
@@ -30,13 +30,13 @@
 #import "MutableNetflixCache.h"
 #import "NetflixViewController.h"
 #import "NetworkUtilities.h"
-#import "MetaFlixAppDelegate.h"
+#import "AppDelegate.h"
 #import "PosterCache.h"
 #import "TrailerCache.h"
 #import "Utilities.h"
 #import "WikipediaCache.h"
 
-@interface MetaFlixModel()
+@interface Model()
 @property (retain) IMDbCache* imdbCache;
 @property (retain) AmazonCache* amazonCache;
 @property (retain) WikipediaCache* wikipediaCache;
@@ -47,7 +47,7 @@
 @property (retain) NSMutableSet* bookmarkedTitlesData;
 @end
 
-@implementation MetaFlixModel
+@implementation Model
 
 static NSString* currentVersion = @"1.0.0";
 static NSString* persistenceVersion = @"101";
@@ -314,8 +314,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-+ (MetaFlixModel*) model {
-    return [[[MetaFlixModel alloc] init] autorelease];
++ (Model*) model {
+    return [[[Model alloc] init] autorelease];
 }
 
 
@@ -422,14 +422,14 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (void) addBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData addObject:movie.canonicalTitle];
-    [MetaFlixModel saveBookmarkedTitles:bookmarkedTitlesData];
+    [Model saveBookmarkedTitles:bookmarkedTitlesData];
 }
 
 
 - (void) removeBookmark:(Movie*) movie {
     [self ensureBookmarkedTitles];
     [bookmarkedTitlesData removeObject:movie.canonicalTitle];
-    [MetaFlixModel saveBookmarkedTitles:bookmarkedTitlesData];
+    [Model saveBookmarkedTitles:bookmarkedTitlesData];
 }
 
 
@@ -468,22 +468,22 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (void) setBookmarkedMovies:(NSArray*) array {
-    [MetaFlixModel saveMovies:array key:BOOKMARKED_MOVIES];
+    [Model saveMovies:array key:BOOKMARKED_MOVIES];
 }
 
 
 - (void) setBookmarkedUpcoming:(NSArray*) array {
-    [MetaFlixModel saveMovies:array key:BOOKMARKED_UPCOMING];
+    [Model saveMovies:array key:BOOKMARKED_UPCOMING];
 }
 
 
 - (void) setBookmarkedDVD:(NSArray*) array {
-    [MetaFlixModel saveMovies:array key:BOOKMARKED_DVD];
+    [Model saveMovies:array key:BOOKMARKED_DVD];
 }
 
 
 - (void) setBookmarkedBluray:(NSArray*) array {
-    [MetaFlixModel saveMovies:array key:BOOKMARKED_BLURAY];
+    [Model saveMovies:array key:BOOKMARKED_BLURAY];
 }
 
 
@@ -585,7 +585,7 @@ NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void* context) {
         return NSOrderedSame;
     }
 
-    MetaFlixModel* model = context;
+    Model* model = context;
     Movie* movie1 = t1;
     Movie* movie2 = t2;
 
@@ -616,7 +616,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
         return NSOrderedSame;
     }
 
-    MetaFlixModel* model = context;
+    Model* model = context;
 
     Movie* movie1 = t1;
     Movie* movie2 = t2;

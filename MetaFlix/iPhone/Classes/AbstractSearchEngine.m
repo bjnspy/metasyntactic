@@ -15,7 +15,7 @@
 #import "AbstractSearchEngine.h"
 
 #import "Movie.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "SearchEngineDelegate.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
@@ -24,7 +24,7 @@
 @interface AbstractSearchEngine()
 @property (assign) id<SearchEngineDelegate> delegate;
 @property NSInteger currentRequestId;
-@property (retain) MetaFlixModel* model;
+@property (retain) Model* model;
 @property (retain) SearchRequest* currentlyExecutingRequest;
 @property (retain) SearchRequest* nextSearchRequest;
 @property (retain) NSCondition* gate;
@@ -53,7 +53,7 @@
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_
+- (id) initWithModel:(Model*) model_
             delegate:(id<SearchEngineDelegate>) delegate_ {
     if (self = [super init]) {
         self.model = model_;

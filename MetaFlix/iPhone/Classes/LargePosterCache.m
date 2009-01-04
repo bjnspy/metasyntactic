@@ -21,8 +21,8 @@
 #import "ImageUtilities.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "MetaFlixAppDelegate.h"
-#import "MetaFlixModel.h"
+#import "AppDelegate.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 
 @interface LargePosterCache()
@@ -45,7 +45,7 @@ const int START_YEAR = 1912;
 }
 
 
-- (id) initWithModel:(MetaFlixModel*) model_ {
+- (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.yearToMovieMap = [NSMutableDictionary dictionary];
         self.yearToMovieMapGate = [[[NSRecursiveLock alloc] init] autorelease];
@@ -60,7 +60,7 @@ const int START_YEAR = 1912;
 }
 
 
-+ (LargePosterCache*) cacheWithModel:(MetaFlixModel*) model {
++ (LargePosterCache*) cacheWithModel:(Model*) model {
     return [[[LargePosterCache alloc] initWithModel:model] autorelease];
 }
 
@@ -320,7 +320,7 @@ const int START_YEAR = 1912;
                                                      important:NO];
     if (data != nil) {
         [FileUtilities writeData:data toFile:[self posterFilePath:movie index:index]];
-        [MetaFlixAppDelegate minorRefresh];
+        [AppDelegate minorRefresh];
     }
 }
 

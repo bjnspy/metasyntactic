@@ -18,7 +18,7 @@
 #import "ColorCache.h"
 #import "LargePosterCache.h"
 #import "NonClippingView.h"
-#import "MetaFlixModel.h"
+#import "Model.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
 
@@ -70,12 +70,12 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (MetaFlixController*) controller {
+- (Controller*) controller {
     return navigationController.controller;
 }
 
 
-- (MetaFlixModel*) model {
+- (Model*) model {
     return navigationController.model;
 }
 
