@@ -30,7 +30,7 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
     }
-    
+
     return self;
 }
 
@@ -71,7 +71,7 @@
     } else if (section == 1) {
         return self.model.netflixPreferredFormats.count;
     }
-    
+
     return 0;
 }
 
@@ -89,7 +89,7 @@
     } else {
         cell.text = [self.model.netflixPreferredFormats objectAtIndex:indexPath.row];
     }
-    
+
     return cell;
 }
 
@@ -99,7 +99,7 @@
     if (section == 1) {
         return NSLocalizedString(@"Preferred Formats", nil);
     }
-    
+
     return nil;
 }
 
@@ -109,7 +109,7 @@
     if (section == 1) {
         return NSLocalizedString(@"Currently, settings can only be modified from Netflix's website", nil);
     }
-    
+
     return nil;
 }
 
