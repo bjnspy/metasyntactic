@@ -8,11 +8,13 @@
 
 @interface AnswerViewController : UITableViewController {
 @private
+    NSString* sectionTitle;
     NSString* question;
     NSString* answer;
+    NSArray* links;
 }
 
-- (id) initWithQuestion:(NSString*) question answer:(NSString*) answer;
+- (id) initWithSectionTitle:(NSString*) sectionTitle question:(NSString*) question answer:(NSString*) answer;
 
 @end
 
