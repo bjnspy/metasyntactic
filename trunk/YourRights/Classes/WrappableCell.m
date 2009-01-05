@@ -6,14 +6,14 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "TitleCell.h"
+#import "WrappableCell.h"
 
-@interface TitleCell()
+@interface WrappableCell()
 @property (retain) NSString* title;
 @property (retain) UILabel* label;
 @end
 
-@implementation TitleCell
+@implementation WrappableCell
 
 @synthesize title;
 @synthesize label;
@@ -46,7 +46,7 @@
     [super layoutSubviews];
     CGRect frame = self.contentView.frame;
     
-    label.frame = CGRectMake(10, 10, frame.size.width - 20, [TitleCell height:title] - 20);
+    label.frame = CGRectMake(10, 10, frame.size.width - 20, [WrappableCell height:title accessoryType:self.accessoryType] - 20);
 }
 
 
@@ -61,7 +61,7 @@
 }
 
 
-+ (CGFloat) height:(NSString*) title {
++ (CGFloat) height:(NSString*) title accessoryType:(UITableViewCellAccessoryType) accessoryType {
     double width;
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
@@ -69,7 +69,10 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
     width -= 20; // normal content view
-    width -= 10; // the disclosure indicator
+    
+    if (accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
+        width -= 10;
+    }
     
     CGSize size = CGSizeMake(width, 2000);
     size = [title sizeWithFont:[UIFont boldSystemFontOfSize:20]

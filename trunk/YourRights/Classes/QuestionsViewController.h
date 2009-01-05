@@ -9,7 +9,9 @@
 @interface QuestionsViewController : UITableViewController {
 @private
     NSString* sectionTitle;
+    NSString* preamble;
     NSArray* questions;
+    NSArray* otherResources;
 }
 
 - (id) initWithSectionTitle:(NSString*) sectionTitle;

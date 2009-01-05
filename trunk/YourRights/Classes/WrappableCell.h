@@ -6,13 +6,13 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-@interface TitleCell : UITableViewCell {
+@interface WrappableCell : UITableViewCell {
 @private 
     NSString* title;
     UILabel* label;
 }
 
 - (id) initWithTitle:(NSString*) title;
-+ (CGFloat) height:(NSString*) text;
++ (CGFloat) height:(NSString*) text accessoryType:(UITableViewCellAccessoryType) accessoryType ;
 
 @end
