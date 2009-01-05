@@ -8,6 +8,7 @@
 
 #import "YourRightsNavigationController.h"
 
+#import "RootViewController.h"
 #import "SectionViewController.h"
 
 @interface YourRightsNavigationController()
