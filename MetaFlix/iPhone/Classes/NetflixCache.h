@@ -50,6 +50,7 @@
 - (NSString*) titleForKey:(NSString*) key;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount;
 - (NSArray*) moviesForRSSTitle:(NSString*) title;
+- (NSInteger) movieCountForRSSTitle:(NSString*) title;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;

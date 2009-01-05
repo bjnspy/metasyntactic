@@ -15,20 +15,25 @@
 #import "NetflixMostPopularViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "AutoResizingCell.h"
+#import "Model.h"
 #import "NetflixCache.h"
 #import "NetflixMostPopularMoviesViewController.h"
 
 @interface NetflixMostPopularViewController()
 @property (assign) AbstractNavigationController* navigationController;
+@property (retain) NSDictionary* titleToCount;
 @end
 
 
 @implementation NetflixMostPopularViewController
 
 @synthesize navigationController;
+@synthesize titleToCount;
 
 - (void) dealloc {
     self.navigationController = nil;
+    self.titleToCount = nil;
 
     [super dealloc];
 }
@@ -54,8 +59,26 @@
 }
 
 
+- (void) initializeData {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    for (NSString* title in [NetflixCache mostPopularTitles]) {
+        NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
+        [dictionary setObject:[NSNumber numberWithInt:count] forKey:title];
+    }
+    self.titleToCount = dictionary;    
+}
+
+
 - (void) majorRefresh {
+    [self initializeData];
     [self.tableView reloadData];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    [self majorRefresh];
 }
 
 
@@ -81,11 +104,15 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-    cell.text = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.row];
+    NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.row];
+    NSNumber* count = [titleToCount objectForKey:title];
+    id number = (count.intValue > 0) ? (id)count : (id)NSLocalizedString(@"Downloading", nil);
+    
+    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, number];
     return cell;
 }
 
