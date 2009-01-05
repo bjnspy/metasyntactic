@@ -287,9 +287,10 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
     NSString* warning =
     [NSString stringWithFormat:
-    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for MetaFlix is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
+    NSLocalizedString(@"Your %@'s country is set to: %@\n\nFull support for %@ is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.", nil),
      [UIDevice currentDevice].localizedModel,
-     [LocaleUtilities displayCountry]];
+     [LocaleUtilities displayCountry],
+     [Application name]];
 
     [AlertUtilities showOkAlert:warning];
 }
@@ -705,9 +706,9 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
 
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {
-        subject = [StringUtilities stringByAddingPercentEscapes:@"MetaFlixのフィードバック"];
+        subject = [StringUtilities stringByAddingPercentEscapes:@"PocketFlixのフィードバック"];
     } else {
-        subject = @"MetaFlix%20Feedback";
+        subject = @"PocketFlix%20Feedback";
     }
 
     NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];

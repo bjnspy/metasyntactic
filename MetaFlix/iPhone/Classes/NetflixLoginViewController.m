@@ -15,6 +15,7 @@
 #import "NetflixLoginViewController.h"
 
 #import "AlertUtilities.h"
+#import "Application.h"
 #import "GlobalActivityIndicator.h"
 #import "NetflixNavigationController.h"
 #import "Model.h"
@@ -78,11 +79,12 @@
     self.messageLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text =
-    NSLocalizedString(@"MetaFlix needs permission from both you and Netflix to "
+    [NSString stringWithFormat:
+    NSLocalizedString(@"%@ needs permission from both you and Netflix to "
                       "access your account. To protect your security, you will not "
-                      "be providing your Netflix username and password to MetaFlix. "
+                      "be providing your Netflix username and password to %@. "
                       "Instead, tapping the button below will allow you to login to Netflix "
-                      "and grant access directly.", nil);
+                      "and grant access directly.", nil), [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];
@@ -306,9 +308,10 @@
     [button removeFromSuperview];
     statusLabel.text = @"";
     messageLabel.text =
-    NSLocalizedString(@"Success! MetaFlix was granted access to your Netflix "
+    [NSString stringWithFormat:
+    NSLocalizedString(@"Success! %@ was granted access to your Netflix "
                       "account. You will now be able to add movies to your queue, "
-                      "see what's new and what's recommended for you, and much more!", nil);
+                      "see what's new and what's recommended for you, and much more!", nil), [Application name]];
 
     [self.controller setNetflixKey:token.key secret:token.secret userId:[token.fields objectForKey:@"user_id"]];
 }

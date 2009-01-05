@@ -68,8 +68,8 @@ typedef enum {
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
-        self.title = NSLocalizedString(@"MetaFlix", nil);
-
+        self.title = [Application nameAndVersion];
+        
         self.tableView.rowHeight = ROW_HEIGHT;
         self.navigationItem.leftBarButtonItem =
         [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];

@@ -14,6 +14,7 @@
 
 #import "NetflixNavigationController.h"
 
+#import "Application.h"
 #import "ColorCache.h"
 #import "NetflixViewController.h"
 
@@ -34,7 +35,7 @@
 
 - (id) initWithTabBarController:(AppDelegate*) appDelegate {
     if (self = [super initWithAppDelegate:appDelegate]) {
-        self.title = NSLocalizedString(@"MetaFlix", nil); //195.175.105
+        self.title = [Application name];
         self.navigationBar.tintColor = [UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1];
     }
 
