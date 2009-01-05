@@ -39,7 +39,6 @@
 @synthesize category;
 @synthesize movies;
 @synthesize visibleIndexPaths;
-
 - (void) dealloc {
     self.navigationController = nil;
     self.category = nil;
