@@ -68,6 +68,7 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [[Model sectionTitles] objectAtIndex:indexPath.row];
+    text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
     
     UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

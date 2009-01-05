@@ -53,7 +53,7 @@ static NSArray* links;
                                         @"search them or their homes. However, there are some special concerns "
                                         @"that apply to non-citizens, so the following rights and responsibilities are "
                                         @"important for non-citizens to know. Non-citizens at the border who are "
-                                        @"trying to enter the U.S. do not have all the same rights. See Section V for "
+                                        @"trying to enter the U.S. do not have all the same rights. See Section 5 for "
                                         @"more information if you are arriving in the U.S.", nil),
                       NSLocalizedString(@"Remember: It is illegal for law enforcement officers to perform any stops, "
                                         @"searches, detentions or removals based solely on your race, national origin, "
@@ -135,7 +135,7 @@ static NSArray* links;
                            @"for refusing to answer a question. It is a good idea to "
                            @"talk to a lawyer before agreeing to answer questions. In general, "
                            @"only a judge can order you to answer questions. "
-                           @"(Non-citizens should see Section IV for more information on "
+                           @"(Non-citizens should see Section 4 for more information on "
                            @"this topic.)", nil),
          NSLocalizedString(@"Yes, there are two limited exceptions. First, in some states, "
                            @"you must provide your name to law enforcement officers if you "
@@ -144,7 +144,7 @@ static NSArray* links;
                            @"Second, if you are driving and you are pulled over for a traffic "
                            @"violation, the officer can require you to show your license, "
                            @"vehicle registration and proof of insurance (but you do not "
-                           @"have to answer questions). (Non-citizens should see Section IV "
+                           @"have to answer questions). (Non-citizens should see Section 4 "
                            @"for more information on this topic.)", nil),
          NSLocalizedString(@"Yes. You have the constitutional right to talk to a lawyer "
                            @"before answering questions, whether or not the police tell you "
@@ -205,7 +205,7 @@ static NSArray* links;
                            @"if you are detained or arrested, except that the police may ask "
                            @"for your name once you have been detained, and you can be "
                            @"arrested in some states for refusing to provide it. (Non-citizens "
-                           @"should see Section IV for more information on this topic.)", nil),
+                           @"should see Section 4 for more information on this topic.)", nil),
          NSLocalizedString(@"Keep your hands where the police can see them. You must "
                            @"show your drivers license, registration and proof of insurance "
                            @"if you are asked for these documents. Officers can also ask "
@@ -231,7 +231,7 @@ static NSArray* links;
                            @"phone call. Law enforcement officers may not listen to a call you make "
                            @"to your lawyer, but they can listen to calls you make to other people. You "
                            @"must be taken before a judge as soon as possible-generally within 48 "
-                           @"hours of your arrest at the latest.  (See Section IV for information about "
+                           @"hours of your arrest at the latest.  (See Section 4 for information about "
                            @"arrests for noncriminal immigration violations.)", nil), 
          NSLocalizedString(@"No. If you are arrested, you do not have to answer any questions or "
                            @"volunteer any information. Ask for a lawyer right away. Repeat this "
@@ -369,11 +369,11 @@ static NSArray* links;
                            @"you to agree to an interview where they would ask questions about your "
                            @"background, immigration status, relatives, colleagues and other topics. "
                            @"You may encounter the full range of law enforcement officers listed in "
-                           @"Section I.", nil),
+                           @"Section 1.", nil),
          NSLocalizedString(@"You have the same right to be silent that U.S. citizens have, so the "
                            @"general rule is that you do not have to answer any questions that a law "
                            @"enforcement officer asks you. However, there are exceptions to this at "
-                           @"ports of entry, such as airports and borders (see Section V).", nil), 
+                           @"ports of entry, such as airports and borders (see Section 5).", nil), 
          NSLocalizedString(@"You do not have to answer any of the above questions if you do not "
                            @"want to answer them. But do not falsely claim U.S. citizenship. It is "
                            @"almost always a good idea to speak with a lawyer before you answer "
@@ -533,7 +533,7 @@ static NSArray* links;
         NSArray* portsOfEntryAnswers = 
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You may encounter any of the full range of law enforcement "
-                           @"officers listed above in Section I. In particular, at airports and "
+                           @"officers listed above in Section 1. In particular, at airports and "
                            @"at the border you are likely to encounter customs agents, "
                            @"immigration officers, and Transportation and Safety "
                            @"Administration (TSA) officers.", nil),
