@@ -67,4 +67,52 @@
     return [NSString stringWithCharacters:&c length:1];
 }
 
+
++ (NSString*) stripHtmlLinks:(NSString*) string {
+    NSInteger index = 0;
+    NSRange range;
+    while ((range = [string rangeOfString:@"<a href"
+                                    options:0
+                                      range:NSMakeRange(index, string.length - index)]).length > 0) {
+        index = range.location + 1;
+        NSRange closeAngleRange = [string rangeOfString:@">"
+                                                  options:0
+                                                    range:NSMakeRange(range.location, string.length - range.location)];
+        if (closeAngleRange.length > 0) {
+            string = [NSString stringWithFormat:@"%@%@", [string substringToIndex:range.location], [string substringFromIndex:closeAngleRange.location + 1]];
+        }
+    }
+    
+    return string;
+}
+
+
++ (NSString*) convertHtmlEncodings:(NSString*) string {
+    NSInteger index = 0;
+    NSRange range;
+    while ((range = [string rangeOfString:@"&#x"
+                                    options:0
+                                      range:NSMakeRange(index, string.length - index)]).length > 0) {
+        NSRange semiColonRange = [string rangeOfString:@";" options:0 range:NSMakeRange(range.location, string.length - range.location)];
+        
+        index = range.location + 1;
+        if (semiColonRange.length > 0) {
+            NSScanner* scanner = [NSScanner scannerWithString:string];
+            [scanner setScanLocation:range.location + 3];
+            unsigned hex;
+            if ([scanner scanHexInt:&hex] && hex > 0) {
+                string = [NSString stringWithFormat:@"%@%@%@",
+                            [string substringToIndex:range.location],
+                            [StringUtilities stringFromUnichar:(unichar) hex],
+                            [string substringFromIndex:semiColonRange.location + 1]];
+            }
+        }
+    }
+    
+    string = [StringUtilities stripHtmlCodes:string];
+    string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    return string;
+}
+
 @end

@@ -632,50 +632,6 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (NSString*) cleanupSynopsis:(NSString*) synopsis {
-    NSInteger index = 0;
-
-    NSRange range;
-    while ((range = [synopsis rangeOfString:@"<a href"
-                                    options:0
-                                      range:NSMakeRange(index, synopsis.length - index)]).length > 0) {
-        index = range.location + 1;
-        NSRange closeAngleRange = [synopsis rangeOfString:@">"
-                                                  options:0
-                                                    range:NSMakeRange(range.location, synopsis.length - range.location)];
-        if (closeAngleRange.length > 0) {
-            synopsis = [NSString stringWithFormat:@"%@%@", [synopsis substringToIndex:range.location], [synopsis substringFromIndex:closeAngleRange.location + 1]];
-        }
-    }
-
-
-    index = 0;
-    while ((range = [synopsis rangeOfString:@"&#x"
-                                    options:0
-                                      range:NSMakeRange(index, synopsis.length - index)]).length > 0) {
-        NSRange semiColonRange = [synopsis rangeOfString:@";" options:0 range:NSMakeRange(range.location, synopsis.length - range.location)];
-
-        index = range.location + 1;
-        if (semiColonRange.length > 0) {
-            NSScanner* scanner = [NSScanner scannerWithString:synopsis];
-            [scanner setScanLocation:range.location + 3];
-            unsigned hex;
-            if ([scanner scanHexInt:&hex] && hex > 0) {
-                synopsis = [NSString stringWithFormat:@"%@%@%@",
-                            [synopsis substringToIndex:range.location],
-                            [StringUtilities stringFromUnichar:(unichar) hex],
-                            [synopsis substringFromIndex:semiColonRange.location + 1]];
-            }
-        }
-    }
-
-    synopsis = [StringUtilities stripHtmlCodes:synopsis];
-    synopsis = [synopsis stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    return synopsis;
-}
-
-
 - (NSArray*) extractPeople:(XmlElement*) element {
     NSMutableArray* cast = [NSMutableArray array];
 
@@ -853,6 +809,11 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     }
 
     return result;
+}
+
+
+- (NSString*) cleanupSynopsis:(NSString*) synopsis {
+    return [StringUtilities convertHtmlEncodings:[StringUtilities stripHtmlLinks:synopsis]];
 }
 
 
