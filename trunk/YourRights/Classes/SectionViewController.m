@@ -39,6 +39,22 @@
 }
 
 
+- (void) majorRefresh {
+    [self.tableView reloadData];
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self majorRefresh];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    [self majorRefresh];
+}
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
