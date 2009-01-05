@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'YourRights' target in the 'YourRights' project
+//
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "ForwardDeclarations.h"
+#endif
