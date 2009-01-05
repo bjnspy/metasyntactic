@@ -14,6 +14,7 @@
 
 #import "Movie.h"
 
+#import "StringUtilities.h"
 #import "Utilities.h"
 
 @interface Movie()
@@ -126,16 +127,16 @@ static NSString* articles[] = {
                    genres:(NSArray*) genres_
          additionalFields:(NSDictionary*) additionalFields_ {
     if (self = [self init]) {
-        self.identifier = [Utilities nonNilString:identifier_];
-        self.canonicalTitle = [Utilities nonNilString:canonicalTitle_];
-        self.displayTitle = [Utilities nonNilString:displayTitle_];
-        self.rating = [Utilities nonNilString:rating_];
+        self.identifier = [StringUtilities nonNilString:identifier_];
+        self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
+        self.displayTitle = [StringUtilities nonNilString:displayTitle_];
+        self.rating = [StringUtilities nonNilString:rating_];
         self.length = length_;
         self.releaseDate = releaseDate_;
-        self.imdbAddress = [Utilities nonNilString:imdbAddress_];
-        self.poster = [Utilities nonNilString:poster_];
-        self.synopsis = [Utilities nonNilString:synopsis_];
-        self.studio = [Utilities nonNilString:studio_];
+        self.imdbAddress = [StringUtilities nonNilString:imdbAddress_];
+        self.poster = [StringUtilities nonNilString:poster_];
+        self.synopsis = [StringUtilities nonNilString:synopsis_];
+        self.studio = [StringUtilities nonNilString:studio_];
         self.directors = [Utilities nonNilArray:directors_];
         self.cast = [Utilities nonNilArray:cast_];
         self.genres = [Utilities nonNilArray:genres_];
@@ -226,7 +227,7 @@ static NSString* articles[] = {
                                   releaseDate:releaseDate
                                   imdbAddress:imdbAddress
                                        poster:poster
-                                     synopsis:[Utilities stripHtmlCodes:synopsis]
+                                     synopsis:[StringUtilities stripHtmlCodes:synopsis]
                                        studio:studio
                                     directors:directors
                                          cast:cast

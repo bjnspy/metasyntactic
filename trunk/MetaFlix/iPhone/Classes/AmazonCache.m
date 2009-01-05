@@ -21,6 +21,7 @@
 #import "NetworkUtilities.h"
 #import "AppDelegate.h"
 #import "Model.h"
+#import "StringUtilities.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -106,7 +107,7 @@
         }
     }
 
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupAmazonListings?q=%@", [Application host], [StringUtilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* amazonAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (amazonAddress == nil) {
         return;

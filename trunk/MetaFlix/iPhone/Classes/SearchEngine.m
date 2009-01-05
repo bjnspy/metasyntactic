@@ -18,8 +18,8 @@
 #import "Model.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
-
 
 @implementation SearchEngine
 
@@ -49,7 +49,7 @@
             return NO;
         }
 
-        NSString* lowercaseText = [[Utilities asciiString:text] lowercaseString];
+        NSString* lowercaseText = [[StringUtilities asciiString:text] lowercaseString];
 
         NSRange range = [lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue];
         if (range.length > 0) {

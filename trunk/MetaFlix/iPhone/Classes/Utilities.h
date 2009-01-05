@@ -33,16 +33,7 @@
 
 + (id) removeRandomElement:(NSMutableArray*) array;
 
-+ (NSInteger) hashString:(NSString*) string;
-
 + (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary;
 + (NSArray*) nonNilArray:(NSArray*) array;
-+ (NSString*) nonNilString:(NSString*) string;
-
-+ (NSString*) stringByAddingPercentEscapes:(NSString*) string;
-
-+ (NSString*) stripHtmlCodes:(NSString*) string;
-+ (NSString*) asciiString:(NSString*) string;
-+ (NSString*) stringFromUnichar:(unichar) c;
 
 @end

@@ -25,6 +25,7 @@
 #import "Model.h"
 #import "Queue.h"
 #import "ThreadingUtilities.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -383,7 +384,7 @@
 
     movie = [self promoteDiscToSeries:movie];
     NSString* userRatingsFile = [self userRatingsFile:movie];
-    NSString* existingUserRating = [Utilities nonNilString:[FileUtilities readObject:userRatingsFile]];
+    NSString* existingUserRating = [StringUtilities nonNilString:[FileUtilities readObject:userRatingsFile]];
 
     NSLog(@"Changing rating for '%@' from '%@' to '%@'.", movie.canonicalTitle, existingUserRating, rating);
 
