@@ -21,6 +21,7 @@
 
     // movies whose details we want to update
     LinkedSet* normalMovies;
+    LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
 
