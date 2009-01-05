@@ -17,6 +17,8 @@ static NSArray* questions;
 static NSArray* answers;
 static NSArray* preambles;
 static NSArray* otherResources;
+static NSArray* sectionLinks;
+static NSArray* links;
 
 + (void) initialize {
     if (self == [Model class]) {
@@ -46,7 +48,7 @@ static NSArray* otherResources;
                                         @"seekers, persons who have permission to come to the U.S. for reasons "
                                         @"like work, school or travel, and those without legal immigration status of "
                                         @"any kind. Non-citizens who are in the United States-no matter what "
-                                        @"their immigration status—generally have the same constitutional rights "
+                                        @"their immigration status-generally have the same constitutional rights "
                                         @"as citizens when law enforcement officers stop, question, arrest, or "
                                         @"search them or their homes. However, there are some special concerns "
                                         @"that apply to non-citizens, so the following rights and responsibilities are "
@@ -78,7 +80,7 @@ static NSArray* otherResources;
                                               @"carrier personnel (check-in, gate staff, plane staff, pilot), "
                                               @"including discrimination on the basis of race, ethnicity, religion, "
                                               @"sex, national origin, ancestry, or disability. You can submit a "
-                                              @"complaint via email to airconsumer@ost.dot.gov—see the webpage "
+                                              @"complaint via email to airconsumer@ost.dot.gov-see the webpage "
                                               @"page for what information to include.", nil),
                             NSLocalizedString(@"U.S. Department of Transportation's Aviation Consumer Protected Division Resource Page\n"
                                               @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm "
@@ -90,7 +92,19 @@ static NSArray* otherResources;
                                               @"Immigration and Customs Enforcement (ICE), U.S. Border "
                                               @"Patrol, Customs and Border Protection, and National Guard.", nil), nil],
                            [NSArray array], nil] retain];
-        
+
+        sectionLinks = [[NSArray arrayWithObjects:
+                         [NSArray array],
+                         [NSArray array],
+                         [NSArray array],
+                         [NSArray array],
+                         [NSArray arrayWithObjects:
+                          @"http://www.dhs.gov/xabout/structure/editorial_0373.shtm",
+                          @"civil.liberties@dhs.gov",
+                          @"http://airconsumer.ost.dot.gov/problems.htm",
+                          @"airconsumer@ost.dot.gov",
+                          @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm", nil],
+                         [NSArray array], nil] retain];
         
         NSArray* questioningQuestions = 
         [NSArray arrayWithObjects:
@@ -216,7 +230,7 @@ static NSArray* otherResources;
                            @"amount of time after your arrest or booking you have the right to a "
                            @"phone call. Law enforcement officers may not listen to a call you make "
                            @"to your lawyer, but they can listen to calls you make to other people. You "
-                           @"must be taken before a judge as soon as possible—generally within 48 "
+                           @"must be taken before a judge as soon as possible-generally within 48 "
                            @"hours of your arrest at the latest.  (See Section IV for information about "
                            @"arrests for noncriminal immigration violations.)", nil), 
          NSLocalizedString(@"No. If you are arrested, you do not have to answer any questions or "
@@ -409,7 +423,7 @@ static NSArray* otherResources;
                            @"chance you will be arrested.", nil), 
          NSLocalizedString(@"If your workplace is raided, it may not be clear to you "
                            @"whether you are free to leave. Either way, you have the right to "
-                           @"remain silent—you do not have to answer questions about your "
+                           @"remain silent-you do not have to answer questions about your "
                            @"citizenship, immigration status or anything else. If you do "
                            @"answer questions and you say that you are not a U.S. citizen, you will be "
                            @"expected to produce immigration documents showing your immigration "
@@ -448,11 +462,11 @@ static NSArray* otherResources;
                            @"hearing. There are some reasons why a person might not have "
                            @"a right to see an immigration judge, but even if you are told "
                            @"that this is your situation, you should speak with a lawyer "
-                           @"immediately—immigration officers do not always know or tell "
+                           @"immediately-immigration officers do not always know or tell "
                            @"you about exceptions that may apply to you; and you could have "
                            @"a right that you do not know about. Also, it is very important "
                            @"that you tell the officer (and contact a lawyer) immediately if "
-                           @"you fear persecution or torture in your home country—you have "
+                           @"you fear persecution or torture in your home country-you have "
                            @"additional rights if you have this fear, and you may be able to "
                            @"win the right to stay here.", nil), 
          NSLocalizedString(@"In many cases, you will be detained, but most people are "
@@ -608,13 +622,54 @@ static NSArray* otherResources;
                            @"Transportation at "
                            @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm.", nil), nil];
         
+        NSArray* portsOfEntryLinks = 
+        [NSArray arrayWithObjects:
+         [NSArray array],
+         [NSArray array],
+         [NSArray array],
+         [NSArray array],
+         [NSArray array],
+         [NSArray array],
+         [NSArray array],
+         [NSArray array],
+         [NSArray array],
+         [NSArray arrayWithObjects:@"http://www.tsa.gov/travelers/customer/redress/index.shtm", @"http://www.aclu.org/noflycomplaint", nil],
+         [NSArray arrayWithObjects:@"http://www.aclu.org/airlineprofiling", @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm", nil],
+         nil];
+        
         NSArray* charitableDonationsQuestions = 
         [NSArray arrayWithObjects:
-         NSLocalizedString(@"", nil), nil];
+         NSLocalizedString(@"Can I give to a charity organization without becoming a "
+                           @"terror suspect?", nil), 
+         NSLocalizedString(@"Is it safe for me to practice my religion in religious "
+                           @"institutions or public places?", nil), 
+         NSLocalizedString(@"What else can I do to be prepared?", nil), nil];
         
         NSArray* charitableDonationsAnswers = 
         [NSArray arrayWithObjects:
-         NSLocalizedString(@"", nil), nil];
+         NSLocalizedString(@"Yes. You should continue to give money to the causes you believe "
+                           @"in, but you should be careful in choosing which charities to support." 
+                           @"For helpful tips, see Muslim Advocates’ guide on charitable giving: "
+                           @"http://www.muslimadvocates.org/documents/safe_donating.html.", nil), 
+         NSLocalizedString(@"Yes. Worshipping as you want is your constitutional right. You "
+                           @"have the right to go to a place of worship, attend and hear sermons "
+                           @"and religious lectures, participate in community activities, and pray "
+                           @"in public. While there have been news stories recently about people "
+                           @"being unfairly singled out for doing these things, the law is on your "
+                           @"side to protect you.", nil), 
+         NSLocalizedString(@"You should keep informed about issues that matter to you by "
+                           @"going to the library, reading the news, surfing the internet, and "
+                           @"speaking out about what is important to you. In case of emergency, "
+                           @"you should have a family plan-the number of a good friend or "
+                           @"relative that anyone in the family can call if they need help, as well "
+                           @"as the number of an attorney. If you are a non-citizen, remember to "
+                           @"carry your immigration documents with you.", nil), nil];
+        
+        NSArray* charitableDonationsLinks = 
+        [NSArray arrayWithObjects:
+         [NSArray arrayWithObjects:@"http://www.muslimadvocates.org/documents/safe_donating.html", nil],
+         [NSArray array],
+         [NSArray array], nil];
         
         questions = [[NSArray arrayWithObjects:
                       questioningQuestions, 
@@ -630,6 +685,14 @@ static NSArray* otherResources;
                     nonCitizensAnswers,
                     portsOfEntryAnswers,
                     charitableDonationsAnswers, nil] retain];
+        
+        links = [[NSArray arrayWithObjects:
+                 [NSArray array],
+                 [NSArray array],
+                 [NSArray array],
+                 [NSArray array],
+                 portsOfEntryLinks,
+                  charitableDonationsLinks, nil] retain];
     }
 }
 
@@ -675,5 +738,18 @@ static NSArray* otherResources;
     
     return [specificAnswers objectAtIndex:[questions indexOfObject:question]];
 }
+
+
++ (NSArray*) linksForSectionTitle:(NSString*) sectionTitle {
+    return [sectionLinks objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
+}
+
+
++ (NSArray*) linksForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
+    NSArray* questions = [self questionsForSectionTitle:sectionTitle];
+    NSArray* specificLinks = [links objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
+    return [specificLinks objectAtIndex:[questions indexOfObject:question]];
+}
+
 
 @end

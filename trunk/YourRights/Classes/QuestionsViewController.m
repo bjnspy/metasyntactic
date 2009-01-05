@@ -18,6 +18,7 @@
 @property (copy) NSString* preamble;
 @property (retain) NSArray* questions;
 @property (retain) NSArray* otherResources;
+@property (retain) NSArray* links;
 @end
 
 
@@ -27,12 +28,15 @@
 @synthesize preamble;
 @synthesize questions;
 @synthesize otherResources;
+@synthesize links;
 
 - (void)dealloc {
     self.sectionTitle = nil;
     self.preamble = nil;
     self.questions = nil;
     self.otherResources = nil;
+    self.links = nil;
+
     [super dealloc];
 }
 
@@ -45,6 +49,7 @@
         self.preamble = [Model preambleForSectionTitle:sectionTitle];
         self.questions = [Model questionsForSectionTitle:sectionTitle];
         self.otherResources = [Model otherResourcesForSectionTitle:sectionTitle];
+        self.links = [Model linksForSectionTitle:sectionTitle];
     }
     
     return self;
@@ -52,7 +57,7 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 
@@ -62,8 +67,10 @@
         return preamble.length == 0 ? 0 : 1;
     } else if (section == 1) {
         return questions.count;
-    } else {
+    } else if (section == 2) {
         return otherResources.count;
+    } else {
+        return links.count;
     }
 }
 
@@ -81,12 +88,21 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         return cell;
-    } else {
+    } else if (indexPath.section == 2) {
         NSString* text = [otherResources objectAtIndex:indexPath.row];
         
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        return cell;
+    } else {
+        NSString* link = [links objectAtIndex:indexPath.row];
+        UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
+        cell.textColor = [UIColor blueColor];
+        cell.text = link;
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        cell.font = [UIFont systemFontOfSize:14];
+        cell.lineBreakMode = UILineBreakModeMiddleTruncation;
         return cell;
     }
 }
@@ -98,8 +114,10 @@
         return [WrappableCell height:preamble accessoryType:UITableViewCellAccessoryNone];
     } else if (indexPath.section == 1) {
         return [WrappableCell height:[questions objectAtIndex:indexPath.row] accessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    } else {
+    } else if (indexPath.section == 2) {
         return [WrappableCell height:[otherResources objectAtIndex:indexPath.row] accessoryType:UITableViewCellAccessoryNone];
+    } else {
+        return tableView.rowHeight;
     }
 }
 
@@ -110,10 +128,18 @@
     } else if (indexPath.section == 1) {
         NSString* question = [questions objectAtIndex:indexPath.row];
         NSString* answer = [Model answerForQuestion:question withSectionTitle:sectionTitle];
-        AnswerViewController* controller = [[[AnswerViewController alloc] initWithQuestion:question answer:answer] autorelease];
+        AnswerViewController* controller = [[[AnswerViewController alloc] initWithSectionTitle:sectionTitle question:question answer:answer] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
-    } else {
+    } else if (indexPath.section == 2) {
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];   
+    } else {
+        NSString* link = [links objectAtIndex:indexPath.row];
+        if ([link rangeOfString:@"@"].length > 0) {
+            link = [NSString stringWithFormat:@"mailto:%@", link];
+        }
+        
+        NSURL* url = [NSURL URLWithString:link];
+        [[UIApplication sharedApplication] openURL:url];
     }
 }
 
@@ -123,11 +149,13 @@
     if (section == 0 && preamble.length > 0) {
         return NSLocalizedString(@"Information", nil);
     } else if (section == 1) {
-        if (preamble.length > 0 || otherResources.count > 0) {
+        if (preamble.length > 0 || otherResources.count > 0 || links.count > 0) {
             return NSLocalizedString(@"Questions", nil);
         }
     } else if (section == 2 && otherResources.count > 0) {
         return NSLocalizedString(@"Other Resources", nil);
+    } else if (section == 3 && links.count > 0) {
+        return NSLocalizedString(@"Useful Links", nil);
     }
     
     return nil;

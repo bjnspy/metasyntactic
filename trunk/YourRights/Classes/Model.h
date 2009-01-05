@@ -19,5 +19,7 @@
 + (NSArray*) questionsForSectionTitle:(NSString*) sectionTitle;
 + (NSArray*) otherResourcesForSectionTitle:(NSString*) sectionTitle;
 + (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle;
++ (NSArray*) linksForSectionTitle:(NSString*) sectionTitle;
++ (NSArray*) linksForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle;
 
 @end

@@ -12,6 +12,7 @@
     NSString* preamble;
     NSArray* questions;
     NSArray* otherResources;
+    NSArray* links;
 }
 
 - (id) initWithSectionTitle:(NSString*) sectionTitle;
