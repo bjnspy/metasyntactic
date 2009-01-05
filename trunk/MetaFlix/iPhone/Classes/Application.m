@@ -32,7 +32,6 @@ static NSString* tempDirectory = nil;
 static NSString* trashDirectory = nil;
 
 // Application storage directories
-static NSString* dataDirectory = nil;
 static NSString* imdbDirectory = nil;
 static NSString* amazonDirectory = nil;
 static NSString* wikipediaDirectory = nil;
@@ -51,7 +50,6 @@ static NSString* netflixDetailsDirectory = nil;
 static NSString* netflixRSSDirectory = nil;
 
 static NSString** directories[] = {
-&dataDirectory,
 &imdbDirectory,
 &amazonDirectory,
 &wikipediaDirectory,
@@ -138,7 +136,6 @@ static DifferenceEngine* differenceEngine = nil;
     }
 
     {
-        dataDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Data"] retain];
         imdbDirectory = [[cacheDirectory stringByAppendingPathComponent:@"IMDb"] retain];
         amazonDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Amazon"] retain];
         wikipediaDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Wikipedia"] retain];
@@ -251,11 +248,6 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) tempDirectory {
     return tempDirectory;
-}
-
-
-+ (NSString*) dataDirectory {
-    return dataDirectory;
 }
 
 

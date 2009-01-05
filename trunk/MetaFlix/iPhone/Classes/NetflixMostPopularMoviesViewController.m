@@ -183,11 +183,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (movies.count == 0) {
-        if (![NetworkUtilities isNetworkAvailable]) {
-            return NSLocalizedString(@"Network unavailable", nil);
-        } else {
-            return NSLocalizedString(@"Downloading data", nil);
-        }
+        return self.model.noInformationFound;
     }
 
     return nil;

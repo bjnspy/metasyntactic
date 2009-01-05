@@ -265,6 +265,10 @@ static NSString* articles[] = {
 
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
+    if (dictionary.count == 0) {
+        return nil;
+    }
+
     return [[[Movie alloc] initWithIdentifier:[dictionary objectForKey:identifier_key]
                                canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                  displayTitle:[dictionary objectForKey:displayTitle_key]
