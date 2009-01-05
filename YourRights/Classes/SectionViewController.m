@@ -10,7 +10,7 @@
 
 #import "Model.h"
 #import "QuestionsViewController.h"
-#import "TitleCell.h"
+#import "WrappableCell.h"
 #import "ViewControllerUtilities.h"
 
 @interface SectionViewController()
@@ -53,7 +53,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [[Model sectionTitles] objectAtIndex:indexPath.row];
     
-    UITableViewCell *cell = [[[TitleCell alloc] initWithTitle:text] autorelease];
+    UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -62,7 +62,7 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-   return [TitleCell height:[[Model sectionTitles] objectAtIndex:indexPath.row]];
+    return [WrappableCell height:[[Model sectionTitles] objectAtIndex:indexPath.row] accessoryType:UITableViewCellAccessoryDisclosureIndicator];
 }
 
 

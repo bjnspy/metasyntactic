@@ -6,9 +6,6 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-
 @interface Model : NSObject {
 
 }
@@ -18,6 +15,9 @@
 
 + (NSString*) shortSectionTitleForSectionTitle:(NSString*) sectionTitle;
 
++ (NSString*) preambleForSectionTitle:(NSString*) sectionTitle;
 + (NSArray*) questionsForSectionTitle:(NSString*) sectionTitle;
++ (NSArray*) otherResourcesForSectionTitle:(NSString*) sectionTitle;
++ (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle;
 
 @end

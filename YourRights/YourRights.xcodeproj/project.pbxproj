@@ -15,10 +15,12 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */; };
 		742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */; };
-		742DB6920F1201C60079E6B0 /* TitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB6910F1201C60079E6B0 /* TitleCell.m */; };
 		742DB7810F1209540079E6B0 /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB7800F1209540079E6B0 /* QuestionsViewController.m */; };
 		742DB7840F12095C0079E6B0 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB7830F12095C0079E6B0 /* Model.m */; };
 		742DB8180F120DD10079E6B0 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */; };
+		742DB84D0F129F070079E6B0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 742DB84C0F129F070079E6B0 /* Icon.png */; };
+		742DB8800F12A6650079E6B0 /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB87F0F12A6650079E6B0 /* WrappableCell.m */; };
+		742DB8B30F12A7190079E6B0 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB8B20F12A7190079E6B0 /* AnswerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,14 +38,17 @@
 		742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
 		742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRightsNavigationController.m; sourceTree = "<group>"; };
 		742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
-		742DB6900F1201C60079E6B0 /* TitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleCell.h; sourceTree = "<group>"; };
-		742DB6910F1201C60079E6B0 /* TitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleCell.m; sourceTree = "<group>"; };
 		742DB77F0F1209540079E6B0 /* QuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsViewController.h; sourceTree = "<group>"; };
 		742DB7800F1209540079E6B0 /* QuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsViewController.m; sourceTree = "<group>"; };
 		742DB7820F12095C0079E6B0 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		742DB7830F12095C0079E6B0 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		742DB8160F120DD10079E6B0 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
 		742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
+		742DB84C0F129F070079E6B0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		742DB87E0F12A6650079E6B0 /* WrappableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappableCell.h; sourceTree = "<group>"; };
+		742DB87F0F12A6650079E6B0 /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
+		742DB8B10F12A7190079E6B0 /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
+		742DB8B20F12A7190079E6B0 /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +110,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				742DB84C0F129F070079E6B0 /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */,
@@ -125,16 +131,18 @@
 		742DB8150F120DC30079E6B0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				742DB87E0F12A6650079E6B0 /* WrappableCell.h */,
+				742DB87F0F12A6650079E6B0 /* WrappableCell.m */,
 				742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */,
 				742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */,
 				742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */,
 				742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */,
-				742DB6900F1201C60079E6B0 /* TitleCell.h */,
-				742DB6910F1201C60079E6B0 /* TitleCell.m */,
 				742DB77F0F1209540079E6B0 /* QuestionsViewController.h */,
 				742DB7800F1209540079E6B0 /* QuestionsViewController.m */,
 				742DB8160F120DD10079E6B0 /* ViewControllerUtilities.h */,
 				742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */,
+				742DB8B10F12A7190079E6B0 /* AnswerViewController.h */,
+				742DB8B20F12A7190079E6B0 /* AnswerViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				742DB84D0F129F070079E6B0 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,10 +205,11 @@
 				1D3623260D0F684500981E51 /* YourRightsAppDelegate.m in Sources */,
 				742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */,
 				742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */,
-				742DB6920F1201C60079E6B0 /* TitleCell.m in Sources */,
 				742DB7810F1209540079E6B0 /* QuestionsViewController.m in Sources */,
 				742DB7840F12095C0079E6B0 /* Model.m in Sources */,
 				742DB8180F120DD10079E6B0 /* ViewControllerUtilities.m in Sources */,
+				742DB8800F12A6650079E6B0 /* WrappableCell.m in Sources */,
+				742DB8B30F12A7190079E6B0 /* AnswerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
