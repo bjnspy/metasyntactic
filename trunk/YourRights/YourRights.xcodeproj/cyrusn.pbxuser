@@ -627,6 +627,20 @@
 			742DBA9B0F12C6090079E6B0 /* PBXTextBookmark */ = 742DBA9B0F12C6090079E6B0 /* PBXTextBookmark */;
 			742DBA9C0F12C6090079E6B0 /* PBXTextBookmark */ = 742DBA9C0F12C6090079E6B0 /* PBXTextBookmark */;
 			742DBA9D0F12C6090079E6B0 /* PBXTextBookmark */ = 742DBA9D0F12C6090079E6B0 /* PBXTextBookmark */;
+			742DBA9F0F12C6760079E6B0 /* PBXTextBookmark */ = 742DBA9F0F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA00F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA00F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA10F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA10F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA20F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA20F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA30F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA30F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA40F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA40F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA50F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA50F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA60F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA60F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA70F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA70F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA80F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA80F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAA90F12C6760079E6B0 /* PBXTextBookmark */ = 742DBAA90F12C6760079E6B0 /* PBXTextBookmark */;
+			742DBAAE0F12C69D0079E6B0 /* PBXTextBookmark */ = 742DBAAE0F12C69D0079E6B0 /* PBXTextBookmark */;
+			742DBAAF0F12C69D0079E6B0 /* PBXTextBookmark */ = 742DBAAF0F12C69D0079E6B0 /* PBXTextBookmark */;
+			742DBAB00F12C69D0079E6B0 /* PBXTextBookmark */ = 742DBAB00F12C69D0079E6B0 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 742DB5D10F11FAE90079E6B0 /* Source Control */;
 		userBuildSettings = {
@@ -701,9 +715,9 @@
 	};
 	742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {684, 684}}";
+			sepNavIntBoundsRect = "{{0, 0}, {660, 722}}";
 			sepNavSelRange = "{243, 0}";
-			sepNavVisRange = "{55, 644}";
+			sepNavVisRange = "{3, 721}";
 		};
 	};
 	742DB5F50F11FF170079E6B0 /* YourRightsNavigationController.h */ = {
@@ -1139,7 +1153,7 @@
 		ignoreCount = 0;
 		lineNumber = 11;
 		location = YourRights;
-		modificationTime = 252888518.133415;
+		modificationTime = 252888697.469064;
 		state = 1;
 	};
 	742DB64F0F1200590079E6B0 /* PBXTextBookmark */ = {
@@ -1297,7 +1311,7 @@
 		fRef = 742DB6070F11FF550079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 69";
 		rLen = 0;
-		rLoc = 2048;
+		rLoc = 2123;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 1057;
@@ -1378,7 +1392,7 @@
 		ignoreCount = 0;
 		lineNumber = 29;
 		location = YourRights;
-		modificationTime = 252888518.13343;
+		modificationTime = 252888697.469088;
 		state = 2;
 	};
 	742DB6730F1201360079E6B0 /* PBXTextBookmark */ = {
@@ -1556,7 +1570,7 @@
 		fRef = 742DB6070F11FF550079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 65";
 		rLen = 0;
-		rLoc = 1772;
+		rLoc = 1847;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 1277;
@@ -1566,7 +1580,7 @@
 		fRef = 742DB6070F11FF550079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 63";
 		rLen = 0;
-		rLoc = 1767;
+		rLoc = 1842;
 		rType = 0;
 		vrLen = 980;
 		vrLoc = 1277;
@@ -1668,7 +1682,7 @@
 		fRef = 742DB6070F11FF550079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 63";
 		rLen = 0;
-		rLoc = 1767;
+		rLoc = 1842;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 1193;
@@ -1868,7 +1882,7 @@
 		fRef = 742DB69D0F1203760079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 65";
 		rLen = 0;
-		rLoc = 1763;
+		rLoc = 1838;
 		rType = 0;
 		vrLen = 1044;
 		vrLoc = 1215;
@@ -1878,7 +1892,7 @@
 		fRef = 742DB69D0F1203760079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 63";
 		rLen = 0;
-		rLoc = 1607;
+		rLoc = 1682;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 1215;
@@ -1888,7 +1902,7 @@
 		fRef = 742DB69D0F1203760079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 65";
 		rLen = 0;
-		rLoc = 1763;
+		rLoc = 1838;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 1215;
@@ -1908,7 +1922,7 @@
 		fRef = 742DB69D0F1203760079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 65";
 		rLen = 0;
-		rLoc = 1763;
+		rLoc = 1838;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 1215;
@@ -2018,7 +2032,7 @@
 		fRef = 742DB69D0F1203760079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 73";
 		rLen = 0;
-		rLoc = 2045;
+		rLoc = 2120;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 1444;
@@ -2028,7 +2042,7 @@
 		fRef = 742DB69D0F1203760079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 73";
 		rLen = 0;
-		rLoc = 2045;
+		rLoc = 2120;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 1444;
@@ -2079,7 +2093,7 @@
 		fRef = 742DB7430F1207170079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 72";
 		rLen = 141;
-		rLoc = 1905;
+		rLoc = 1980;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 1473;
@@ -2106,7 +2120,7 @@
 		fRef = 742DB69D0F1203760079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 72";
 		rLen = 0;
-		rLoc = 1905;
+		rLoc = 1980;
 		rType = 0;
 		vrLen = 974;
 		vrLoc = 1444;
@@ -2136,7 +2150,7 @@
 		fRef = 742DB7430F1207170079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 72";
 		rLen = 141;
-		rLoc = 1905;
+		rLoc = 1980;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 1473;
@@ -2236,7 +2250,7 @@
 		fRef = 742DB7430F1207170079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 82";
 		rLen = 0;
-		rLoc = 2048;
+		rLoc = 2123;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 1444;
@@ -2246,7 +2260,7 @@
 		fRef = 742DB7430F1207170079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 82";
 		rLen = 0;
-		rLoc = 2048;
+		rLoc = 2123;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 1444;
@@ -2266,7 +2280,7 @@
 		fRef = 742DB7430F1207170079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 82";
 		rLen = 0;
-		rLoc = 2048;
+		rLoc = 2123;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 1444;
@@ -2306,7 +2320,7 @@
 		fRef = 742DB7430F1207170079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 82";
 		rLen = 0;
-		rLoc = 2048;
+		rLoc = 2123;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 1353;
@@ -2326,7 +2340,7 @@
 		fRef = 742DB7430F1207170079E6B0 /* YourRightsViewController.m */;
 		name = "YourRightsViewController.m: 83";
 		rLen = 0;
-		rLoc = 1905;
+		rLoc = 1980;
 		rType = 0;
 		vrLen = 832;
 		vrLoc = 1476;
@@ -2358,7 +2372,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DB7770F1208F40079E6B0 /* YourRightsViewController.m */;
 		rLen = 1;
-		rLoc = 80;
+		rLoc = 81;
 		rType = 1;
 	};
 	742DB77C0F1208FC0079E6B0 /* PBXTextBookmark */ = {
@@ -2708,7 +2722,7 @@
 		fRef = 742DB7C10F120C930079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 69";
 		rLen = 0;
-		rLoc = 2219;
+		rLoc = 2294;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 906;
@@ -2808,7 +2822,7 @@
 		fRef = 742DB7AB0F120A4D0079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 70";
 		rLen = 76;
-		rLoc = 2336;
+		rLoc = 2411;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 950;
@@ -2998,7 +3012,7 @@
 		fRef = 742DB7BA0F120C770079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 69";
 		rLen = 117;
-		rLoc = 2219;
+		rLoc = 2294;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 950;
@@ -3018,7 +3032,7 @@
 		fRef = 742DB7C10F120C930079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 69";
 		rLen = 0;
-		rLoc = 2219;
+		rLoc = 2294;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 906;
@@ -3048,7 +3062,7 @@
 		fRef = 742DB7C10F120C930079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 69";
 		rLen = 0;
-		rLoc = 2219;
+		rLoc = 2294;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 906;
@@ -3068,7 +3082,7 @@
 		fRef = 742DB7C10F120C930079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 69";
 		rLen = 0;
-		rLoc = 2219;
+		rLoc = 2294;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 906;
@@ -3078,7 +3092,7 @@
 		fRef = 742DB7C10F120C930079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 69";
 		rLen = 0;
-		rLoc = 2219;
+		rLoc = 2294;
 		rType = 0;
 		vrLen = 522;
 		vrLoc = 154;
@@ -3088,7 +3102,7 @@
 		fRef = 742DB7C10F120C930079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 69";
 		rLen = 0;
-		rLoc = 2219;
+		rLoc = 2294;
 		rType = 0;
 		vrLen = 522;
 		vrLoc = 154;
@@ -3970,7 +3984,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DB8960F12A6930079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 50";
-		rLen = 993;
+		rLen = 1068;
 		rLoc = 1420;
 		rType = 0;
 		vrLen = 1124;
@@ -4057,7 +4071,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DB8960F12A6930079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 50";
-		rLen = 993;
+		rLen = 1068;
 		rLoc = 1420;
 		rType = 0;
 		vrLen = 1124;
@@ -4725,9 +4739,9 @@
 		path = /Projects/metasyntactic/trunk/YourRights/Classes/SectionViewController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {836, 2014}}";
-			sepNavSelRange = "{1022, 97}";
-			sepNavVisRange = "{429, 720}";
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 1824}}";
+			sepNavSelRange = "{1682, 0}";
+			sepNavVisRange = "{1023, 1101}";
 		};
 	};
 	742DB92E0F12ABA70079E6B0 /* QuestionsViewController.m */ = {
@@ -4785,7 +4799,7 @@
 		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 65";
 		rLen = 0;
-		rLoc = 2043;
+		rLoc = 2118;
 		rType = 0;
 		vrLen = 1186;
 		vrLoc = 882;
@@ -4852,7 +4866,7 @@
 		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 65";
 		rLen = 0;
-		rLoc = 2043;
+		rLoc = 2118;
 		rType = 0;
 		vrLen = 1186;
 		vrLoc = 882;
@@ -5130,7 +5144,7 @@
 		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 65";
 		rLen = 0;
-		rLoc = 2043;
+		rLoc = 2118;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 429;
@@ -5207,7 +5221,7 @@
 		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 65";
 		rLen = 0;
-		rLoc = 2043;
+		rLoc = 2118;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 429;
@@ -5780,7 +5794,7 @@
 		fRef = 742DB9BE0F12B9630079E6B0 /* Model.m */;
 		name = "Model.m: 663";
 		rLen = 0;
-		rLoc = 58028;
+		rLoc = 58024;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 53605;
@@ -5827,7 +5841,7 @@
 		fRef = 742DB9BE0F12B9630079E6B0 /* Model.m */;
 		name = "Model.m: 663";
 		rLen = 0;
-		rLoc = 58028;
+		rLoc = 58024;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 53605;
@@ -5877,7 +5891,7 @@
 		fRef = 742DB9BE0F12B9630079E6B0 /* Model.m */;
 		name = "Model.m: 663";
 		rLen = 0;
-		rLoc = 58028;
+		rLoc = 58024;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 53605;
@@ -5917,7 +5931,7 @@
 		fRef = 742DB9BE0F12B9630079E6B0 /* Model.m */;
 		name = "Model.m: 642";
 		rLen = 0;
-		rLoc = 56026;
+		rLoc = 56022;
 		rType = 0;
 		vrLen = 2154;
 		vrLoc = 53474;
@@ -5995,9 +6009,9 @@
 		path = /Projects/metasyntactic/trunk/YourRights/Classes/Model.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1180, 14383}}";
-			sepNavSelRange = "{6922, 0}";
-			sepNavVisRange = "{58002, 1063}";
+			sepNavIntBoundsRect = "{{0, 0}, {1108, 15048}}";
+			sepNavSelRange = "{3018, 0}";
+			sepNavVisRange = "{1619, 2482}";
 		};
 	};
 	742DBA200F12C0600079E6B0 /* PBXTextBookmark */ = {
@@ -6084,7 +6098,7 @@
 		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 65";
 		rLen = 0;
-		rLoc = 2043;
+		rLoc = 2118;
 		rType = 0;
 		vrLen = 770;
 		vrLoc = 405;
@@ -6164,7 +6178,7 @@
 		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
 		name = "SectionViewController.m: 65";
 		rLen = 0;
-		rLoc = 2043;
+		rLoc = 2118;
 		rType = 0;
 		vrLen = 770;
 		vrLoc = 405;
@@ -6288,7 +6302,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1780, 3952}}";
 			sepNavSelRange = "{2031, 0}";
-			sepNavVisRange = "{1637, 589}";
+			sepNavVisRange = "{587, 1145}";
 		};
 	};
 	742DBA530F12C3770079E6B0 /* AnswerViewController.m */ = {
@@ -6852,5 +6866,145 @@
 		rType = 0;
 		vrLen = 677;
 		vrLoc = 0;
+	};
+	742DBA9F0F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBA530F12C3770079E6B0 /* AnswerViewController.m */;
+		name = "AnswerViewController.m: 14";
+		rLen = 0;
+		rLoc = 284;
+		rType = 0;
+		vrLen = 677;
+		vrLoc = 0;
+	};
+	742DBAA00F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBA4E0F12C3680079E6B0 /* QuestionsViewController.m */;
+		name = "QuestionsViewController.m: 73";
+		rLen = 0;
+		rLoc = 2031;
+		rType = 0;
+		vrLen = 1145;
+		vrLoc = 587;
+	};
+	742DBAA10F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB77F0F1209540079E6B0 /* QuestionsViewController.h */;
+		name = "QuestionsViewController.h: 15";
+		rLen = 0;
+		rLoc = 350;
+		rType = 0;
+		vrLen = 414;
+		vrLoc = 0;
+	};
+	742DBAA20F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */;
+		name = "YourRightsNavigationController.m: 13";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 721;
+		vrLoc = 3;
+	};
+	742DBAA30F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
+		name = "SectionViewController.m: 52";
+		rLen = 97;
+		rLoc = 1022;
+		rType = 0;
+		vrLen = 720;
+		vrLoc = 428;
+	};
+	742DBAA40F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBA530F12C3770079E6B0 /* AnswerViewController.m */;
+		name = "AnswerViewController.m: 14";
+		rLen = 0;
+		rLoc = 284;
+		rType = 0;
+		vrLen = 677;
+		vrLoc = 0;
+	};
+	742DBAA50F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
+		name = "SectionViewController.m: 52";
+		rLen = 97;
+		rLoc = 1022;
+		rType = 0;
+		vrLen = 720;
+		vrLoc = 428;
+	};
+	742DBAA60F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBA4E0F12C3680079E6B0 /* QuestionsViewController.m */;
+		name = "QuestionsViewController.m: 73";
+		rLen = 0;
+		rLoc = 2031;
+		rType = 0;
+		vrLen = 1145;
+		vrLoc = 587;
+	};
+	742DBAA70F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB77F0F1209540079E6B0 /* QuestionsViewController.h */;
+		name = "QuestionsViewController.h: 15";
+		rLen = 0;
+		rLoc = 350;
+		rType = 0;
+		vrLen = 414;
+		vrLoc = 0;
+	};
+	742DBAA80F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */;
+		name = "YourRightsNavigationController.m: 13";
+		rLen = 0;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 721;
+		vrLoc = 3;
+	};
+	742DBAA90F12C6760079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
+		name = "SectionViewController.m: 73";
+		rLen = 0;
+		rLoc = 1682;
+		rType = 0;
+		vrLen = 1004;
+		vrLoc = 1120;
+	};
+	742DBAAE0F12C69D0079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
+		name = "SectionViewController.m: 73";
+		rLen = 0;
+		rLoc = 1682;
+		rType = 0;
+		vrLen = 1101;
+		vrLoc = 1023;
+	};
+	742DBAAF0F12C69D0079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB9290F12AB980079E6B0 /* SectionViewController.m */;
+		name = "SectionViewController.m: 73";
+		rLen = 0;
+		rLoc = 1682;
+		rType = 0;
+		vrLen = 1101;
+		vrLoc = 1023;
+	};
+	742DBAB00F12C69D0079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBA1E0F12C0400079E6B0 /* Model.m */;
+		name = "Model.m: 56";
+		rLen = 0;
+		rLoc = 3018;
+		rType = 0;
+		vrLen = 2482;
+		vrLoc = 1619;
 	};
 }
