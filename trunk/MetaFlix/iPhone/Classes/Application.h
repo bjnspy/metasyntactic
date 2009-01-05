@@ -15,6 +15,9 @@
 @interface Application : NSObject {
 }
 
++ (NSString*) name;
++ (NSString*) nameAndVersion;
+
 + (NSString*) trashDirectory;
 
 + (NSString*) imdbDirectory;

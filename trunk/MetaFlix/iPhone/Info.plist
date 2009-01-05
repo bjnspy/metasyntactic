@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>MetaFlix</string>
+	<string>PocketFlix</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>CFBundleExecutable</key>
@@ -13,11 +13,11 @@
 	<key>CFBundleIconFile</key>
 	<string>Icon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.metasyntactic.MetaFlix</string>
+	<string>org.metasyntactic.PocketFlix</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>MetaFlix</string>
+	<string>PocketFlix</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
