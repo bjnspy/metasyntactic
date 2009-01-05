@@ -15,6 +15,7 @@
 #import "SearchRequest.h"
 
 #import "Model.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
 
 @interface SearchRequest()
@@ -49,7 +50,7 @@
         self.requestId = requestId_;
         self.value = value_;
 
-        self.lowercaseValue = [[Utilities asciiString:value] lowercaseString];
+        self.lowercaseValue = [[StringUtilities asciiString:value] lowercaseString];
     }
 
     return self;

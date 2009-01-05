@@ -32,6 +32,7 @@
 #import "Model.h"
 #import "IdentitySet.h"
 #import "Queue.h"
+#import "StringUtilities.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -261,13 +262,12 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 - (void) update {
     if (model.netflixUserId.length == 0) {
         [self clear];
-        return;
+    } else {
+        [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint)
+                                      onTarget:self
+                                          gate:gate
+                                       visible:YES];
     }
-
-    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:gate
-                                   visible:YES];
 }
 
 
@@ -320,8 +320,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-+ (Movie*) processItem:(XmlElement*) element
-                 saved:(BOOL*) saved {
++ (Movie*) processMovieItem:(XmlElement*) element
+                      saved:(BOOL*) saved {
     if (element == nil) {
         return nil;
     }
@@ -408,7 +408,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-+ (void) processItem:(XmlElement*) element
++ (void) processMovieItem:(XmlElement*) element
               movies:(NSMutableArray*) movies
                saved:(NSMutableArray*) saved {
     if (![@"queue_item" isEqual:element.name] &&
@@ -420,7 +420,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     }
 
     BOOL save;
-    Movie* movie = [self processItem:element saved:&save];
+    Movie* movie = [self processMovieItem:element saved:&save];
 
     if (save) {
         [saved addObject:movie];
@@ -431,7 +431,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (void) saveQueue:(Queue*) queue {
-    NSLog(@"Saving queue '%@' with etag: %@", queue.feed.key, queue.etag);
+    NSLog(@"Saving queue '%@' with etag '%@'", queue.feed.key, queue.etag);
     [FileUtilities writeObject:queue.dictionary toFile:[self queueFile:queue.feed.key]];
     [FileUtilities writeObject:queue.etag toFile:[self queueEtagFile:queue]];
 }
@@ -472,7 +472,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     for (XmlElement* child in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            [self processItem:child
+            [self processMovieItem:child
                        movies:movies
                         saved:saved];
         }
@@ -503,6 +503,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     [movies addObjectsFromArray:saved];
 
     if (movies.count > 0) {
+        // download the details for these movies in teh background.
         [searchMovies setArray:movies];
     }
 
@@ -517,12 +518,12 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     }
 
     NSRange range = [feed.url rangeOfString:@"&output=atom"];
-    NSString* url = feed.url;
+    NSString* address = feed.url;
     if (range.length > 0) {
-        url = [NSString stringWithFormat:@"%@%@", [url substringToIndex:range.location], [url substringFromIndex:range.location + range.length]];
+        address = [NSString stringWithFormat:@"%@%@", [address substringToIndex:range.location], [address substringFromIndex:range.location + range.length]];
     }
 
-    NSString* address = [NSString stringWithFormat:@"%@&max_results=500", url];
+    address = [NSString stringWithFormat:@"%@&max_results=500", address];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
                                                            important:YES];
@@ -549,7 +550,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 - (void) reportQueue:(Queue*) queue {
     NSAssert([NSThread isMainThread], nil);
-    NSLog(@"Reporting queue '%@' with etag: %@", queue.feed.key, queue.etag);
+    NSLog(@"Reporting queue '%@' with etag '%@'", queue.feed.key, queue.etag);
 
     [queues setObject:queue forKey:queue.feed.key];
     [AppDelegate majorRefresh];
@@ -662,13 +663,13 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
             if ([scanner scanHexInt:&hex] && hex > 0) {
                 synopsis = [NSString stringWithFormat:@"%@%@%@",
                             [synopsis substringToIndex:range.location],
-                            [Utilities stringFromUnichar:(unichar) hex],
+                            [StringUtilities stringFromUnichar:(unichar) hex],
                             [synopsis substringFromIndex:semiColonRange.location + 1]];
             }
         }
     }
 
-    synopsis = [Utilities stripHtmlCodes:synopsis];
+    synopsis = [StringUtilities stripHtmlCodes:synopsis];
     synopsis = [synopsis stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     return synopsis;
@@ -694,21 +695,6 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (void) updateIMDb:(Movie*) movie {
-    [model.imdbCache updateMovie:movie];
-}
-
-
-- (void) updateAmazon:(Movie*) movie {
-    [model.amazonCache updateMovie:movie];
-}
-
-
-- (void) updateWikipedia:(Movie*) movie {
-    [model.wikipediaCache updateMovie:movie];
-}
-
-
 - (NSString*) seriesFile:(NSString*) seriesKey {
     return
     [[[Application netflixSeriesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:seriesKey]]
@@ -725,7 +711,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     [self checkApiResult:element];
 
-    return [NetflixCache processItem:element saved:NULL];
+    return [NetflixCache processMovieItem:element saved:NULL];
 }
 
 
@@ -978,7 +964,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     [request prepare];
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request important:NO];
-    return [NetflixCache processItem:element saved:NULL];
+    return [NetflixCache processMovieItem:element saved:NULL];
 }
 
 
@@ -1063,9 +1049,9 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     [self updateDiscDetailsWorker:movie];
     [self updateRatings:movie];
-    [self updateIMDb:movie];
-    [self updateWikipedia:movie];
-    [self updateAmazon:movie];
+    [model.imdbCache updateMovie:movie];
+    [model.wikipediaCache updateMovie:movie];
+    [model.amazonCache updateMovie:movie];
 }
 
 

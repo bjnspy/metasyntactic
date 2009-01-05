@@ -17,6 +17,7 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixCache.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
 
 @interface Queue()
@@ -50,7 +51,7 @@ property_definition(saved);
               saved:(NSArray*) saved_{
     if (self = [super init]) {
         self.feed = feed_;
-        self.etag = [Utilities nonNilString:etag_];
+        self.etag = [StringUtilities nonNilString:etag_];
         self.movies = movies_;
         self.saved = saved_;
     }

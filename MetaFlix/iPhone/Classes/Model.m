@@ -32,6 +32,7 @@
 #import "NetworkUtilities.h"
 #import "AppDelegate.h"
 #import "PosterCache.h"
+#import "StringUtilities.h"
 #import "TrailerCache.h"
 #import "Utilities.h"
 #import "WikipediaCache.h"
@@ -704,12 +705,12 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
 
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {
-        subject = [Utilities stringByAddingPercentEscapes:@"MetaFlixのフィードバック"];
+        subject = [StringUtilities stringByAddingPercentEscapes:@"MetaFlixのフィードバック"];
     } else {
         subject = @"MetaFlix%20Feedback";
     }
 
-    NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
+    NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
     NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
     return result;
 }

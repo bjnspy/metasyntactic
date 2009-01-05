@@ -17,6 +17,7 @@
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
+#import "StringUtilities.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -165,9 +166,9 @@ static DifferenceEngine* differenceEngine = nil;
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
 
-        emptyStarString = [[Utilities stringFromUnichar:(unichar)0x2606] retain];
-        halfStarString = [[Utilities stringFromUnichar:(unichar)0x272F] retain];
-        starString = [[Utilities stringFromUnichar:[self starCharacter]] retain];
+        emptyStarString = [[StringUtilities stringFromUnichar:(unichar)0x2606] retain];
+        halfStarString = [[StringUtilities stringFromUnichar:(unichar)0x272F] retain];
+        starString = [[StringUtilities stringFromUnichar:[self starCharacter]] retain];
 
         differenceEngine = [[DifferenceEngine engine] retain];
 
@@ -400,7 +401,7 @@ static DifferenceEngine* differenceEngine = nil;
         phoneNumber = [phoneNumber substringToIndex:xRange.location];
     }
 
-    NSString* urlString = [NSString stringWithFormat:@"tel:%@", [Utilities stringByAddingPercentEscapes:phoneNumber]];
+    NSString* urlString = [NSString stringWithFormat:@"tel:%@", [StringUtilities stringByAddingPercentEscapes:phoneNumber]];
 
     [self openBrowser:urlString];
 }
