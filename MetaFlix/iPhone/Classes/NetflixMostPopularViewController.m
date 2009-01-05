@@ -16,6 +16,7 @@
 
 #import "AbstractNavigationController.h"
 #import "AutoResizingCell.h"
+#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "NetflixCache.h"
 #import "NetflixMostPopularMoviesViewController.h"
