@@ -68,7 +68,7 @@ typedef enum {
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
-        self.title = [Application nameAndVersion];
+        self.title = [Application name];
         
         self.tableView.rowHeight = ROW_HEIGHT;
         self.navigationItem.leftBarButtonItem =
