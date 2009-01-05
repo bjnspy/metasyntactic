@@ -13,6 +13,9 @@
 + (NSArray*) sectionTitles;
 + (NSArray*) shortSectionTitles;
 
++ (NSArray*) toughQuestions;
++ (NSString*) answerForToughQuestion:(NSString*) question;
+
 + (NSString*) shortSectionTitleForSectionTitle:(NSString*) sectionTitle;
 
 + (NSString*) preambleForSectionTitle:(NSString*) sectionTitle;

@@ -20,8 +20,99 @@ static NSArray* otherResources;
 static NSArray* sectionLinks;
 static NSArray* links;
 
+static NSArray* toughQuestions;
+static NSArray* toughAnswers;
+
++ (void) setupToughQuestions {
+    toughQuestions =
+    [[NSArray arrayWithObjects:
+     NSLocalizedString(@"Why do you defend Nazis and the Klan?", nil),
+     NSLocalizedString(@"You’re all a bunch of liberals, aren’t you?", nil),
+     NSLocalizedString(@"Why does the ACLU support cross burning?", nil),
+     NSLocalizedString(@"Why does the ACLU support pornography? Why are you in favor of child porn?", nil),
+     NSLocalizedString(@"Why doesn’t the ACLU support gun ownership/gun control?", nil),
+     NSLocalizedString(@"Why does the ACLU support the rights of criminals but not victims of crime?", nil),
+     NSLocalizedString(@"Why is the ACLU against God/Christianity/the Bible?", nil),
+     NSLocalizedString(@"Why is the ACLU against drug testing of employees?", nil),
+     NSLocalizedString(@"Why does the ACLU help rapists and child molesters?", nil),
+     NSLocalizedString(@"Why did the ACLU defend NAMBLA?", nil), nil] retain];
+    
+    toughAnswers =
+    [[NSArray arrayWithObjects:
+     NSLocalizedString(@"The ACLU’s client is the Bill of Rights, not any particular person or group. We defend its principles – basic "
+                       @"rights of citizens – whenever these are threatened. We do not believe that you can pick and chose when to "
+                       @"uphold rights. If a right can be taken away from one person, it can be taken away from anyone. When you deny "
+                       @"a right to someone with whom you disagree, you pave the way for that right to be denied to yourself or someone "
+                       @"whom you strongly support. For example, the principle by which the Ku Klux Klan has the right to march is the "
+                       @"same one that allows civil rights activists to march against racism.", nil),
+     NSLocalizedString(@"The ACLU is a nonpartisan group. We have defended and worked with people all across the political spectrum, "
+                       @"from Rev. Jerry Falwell and Oliver North to radio host Rush Limbaugh and former Republican member of "
+                       @"Congress Bob Barr. The ACLU strongly supports women’s right to choose abortion, yet we have also assisted "
+                       @"anti-abortion activists when police used excessive force in arresting them. The ACLU has won support from "
+                       @"women’s groups for our stand on women’s rights, but has angered some feminists for our First Amendment "
+                       @"stand on pornography.", nil),
+     NSLocalizedString(@"The ACLU condemns all forms of racism. However, the ACLU does believe that in some specific cases, the "
+                       @"First Amendment protects the burning of a cross. People have the right to be bigots and to make extreme, "
+                       @"symbolic statements of their bigotry. Burning a cross on one’s own lawn in the middle of the day without "
+                       @"making specific threats against anybody is an example of this. That’s why the ACLU opposes laws that say any "
+                       @"and all instances of cross burning are illegal. Such laws are too broad and vague and have the result of "
+                       @"preventing people from exercising their rights to free speech. As an answer to racist speech, the ACLU "
+                       @"advocates more speech directed against racism, not the suppression of speech.", nil),
+     NSLocalizedString(@"The ACLU does not support pornography. But we do oppose virtually all forms of censorship. Possessing "
+                       @"books or films should not make one a criminal. Once society starts censoring “bad” ideas, it becomes very "
+                       @"difficult to draw the line. Your idea of what is offensive may be a lot different from your neighbor’s. In fact, the "
+                       @"ACLU does take a very purist approach in opposing censorship. Our policy is that possessing even "
+                       @"pornographic material about children should not itself be a crime. The way to deal with this issue is to prosecute "
+                       @"the makers of child pornography for exploiting minors.", nil),
+     NSLocalizedString(@"The national ACLU is neutral on the issue of gun control. We believe the Second Amendment does not confer "
+                       @"an unlimited right upon individuals to own guns or other weapons, nor does it prohibit reasonable regulation of "
+                       @"gun ownership, such as licensing and registration. This, like all ACLU policies, is set by the board of directors, "
+                       @"a group of ACLU members.", nil),
+     NSLocalizedString(@"The ACLU supports everybody’s rights. Citizens are outraged by crime and understandably want criminals "
+                       @"caught and prosecuted. The ACLU simply believes that the rights to fair treatment and due process must be "
+                       @"respected for people accused of crimes. Respecting these rights does not cause crime, nor does it hinder police "
+                       @"from pursuing criminals. It should, and does in fact, cause police to avoid sloppy procedures.", nil),
+     NSLocalizedString(@"The ACLU strongly supports our country’s guarantee that all people have the right to practice their own "
+                       @"religion, as well as the right not to practice any religion. The best way to ensure religious freedom for all is to "
+                       @"keep the government out of the business of pushing religion on anybody. The ACLU strongly supports the "
+                       @"separation of church and state. In practice, this means that people may practice their religion – just not with "
+                       @"government funding or sponsorship. This simple principle in no way banishes or weakens religion. It only "
+                       @"means that no one should have somebody else’s religion forced on him or her, even if most other people in a "
+                       @"community support that religion.", nil),
+     NSLocalizedString(@"The ACLU, of course, believes that employers have the right to discipline and fire workers who fail to perform "
+                       @"on the job. However, the ACLU does oppose indiscriminate urine testing because the process is both unfair and "
+                       @"unnecessary. Having someone urinate in a cup is a degrading and uncertain procedure that violates personal "
+                       @"privacy. Further, drug tests do not measure impaired job performance. A positive drug test simply indicates that "
+                       @"a person may have taken drugs at some time in the past – not that they are failing to perform properly in their "
+                       @"assigned work. And the accuracy of some drug tests is notoriously unreliable. The ACLU especially objects to "
+                       @"mass random drug testing of workers. There is no reason that a person should have to prove he or she is "
+                       @"“innocent” of taking drugs when there is no evidence that he or she has done so. In general, what workers do off "
+                       @"the job should be their own business so long as they are performing satisfactorily at work.", nil),
+     NSLocalizedString(@"Of course, the ACLU supports the prosecution and conviction of rapists and child molesters. They should "
+                       @"receive appropriate punishment – especially for repeat offenders. But like all convicted felons, they are entitled "
+                       @"to some basic constitutional protections. In this regard the ACLU opposes the Community Protection Act "
+                       @"passed by the Washington Legislature. It calls for locking up an individual indefinitely – potentially for life – "
+                       @"after he has served his prison term. The punishment is based not on additional wrongful acts, but on speculation "
+                       @"that the person may commit illegal acts in the future. This is unconstitutional preventive detention. It is based on "
+                       @"the unscientific notion that society can predict with any reasonable standard of accuracy how a particular "
+                       @"individual will act at some unspecified time.", nil),
+     NSLocalizedString(@"In representing NAMBLA, the ACLU does not advocate sexual relationships between adults and children. In "
+                       @"celebrated cases, the ACLU has stood up for everyone from Oliver North to the National Socialist Party. In "
+                       @"spite of all that, the ACLU has never advocated Christianity, ritual animal sacrifice, trading arms for hostages or "
+                       @"genocide. What we do advocate is robust freedom of speech. This lawsuit strikes at the heart of freedom of "
+                       @"speech. The defense of freedom of speech is most critical when the message is one most people find repulsive. "
+                       @"The case is based on a shocking murder. But the lawsuit says the crime is the responsibility not of those who "
+                       @"committed the murder, but of someone who posted vile material on the Internet. The principle is as simple as it "
+                       @"is central to true freedom of speech: those who do wrong are responsible for what they do; those who speak "
+                       @"about it are not. It is easy to defend freedom of speech when the message is something many people find at least "
+                       @"reasonable. But the defense of freedom of speech is most critical when the message is one most people find "
+                       @"repulsive. That was true when the Nazis marched in Skokie. It remains true today.", nil), nil] retain];    
+}
+
+
 + (void) initialize {
     if (self == [Model class]) {
+        [self setupToughQuestions];
         sectionTitles = [[NSArray arrayWithObjects:
                           NSLocalizedString(@"Questioning", nil),
                           NSLocalizedString(@"Stops and Arrests", nil),
@@ -751,5 +842,14 @@ static NSArray* links;
     return [specificLinks objectAtIndex:[questions indexOfObject:question]];
 }
 
+
++ (NSArray*) toughQuestions {
+    return toughQuestions;
+}
+
+
++ (NSString*) answerForToughQuestion:(NSString*) question {
+    return [toughAnswers objectAtIndex:[toughQuestions indexOfObject:question]];
+}
 
 @end

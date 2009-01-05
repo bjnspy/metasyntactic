@@ -21,6 +21,9 @@
 		742DB84D0F129F070079E6B0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 742DB84C0F129F070079E6B0 /* Icon.png */; };
 		742DB8800F12A6650079E6B0 /* WrappableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB87F0F12A6650079E6B0 /* WrappableCell.m */; };
 		742DB8B30F12A7190079E6B0 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB8B20F12A7190079E6B0 /* AnswerViewController.m */; };
+		742DBAB30F12C6D80079E6B0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBAB20F12C6D80079E6B0 /* RootViewController.m */; };
+		742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */; };
+		742DBB630F12D29D0079E6B0 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,12 @@
 		742DB87F0F12A6650079E6B0 /* WrappableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrappableCell.m; sourceTree = "<group>"; };
 		742DB8B10F12A7190079E6B0 /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
 		742DB8B20F12A7190079E6B0 /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
+		742DBAB10F12C6D80079E6B0 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		742DBAB20F12C6D80079E6B0 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		742DBB1F0F12CD240079E6B0 /* ToughQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughQuestionsViewController.h; sourceTree = "<group>"; };
+		742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughQuestionsViewController.m; sourceTree = "<group>"; };
+		742DBB610F12D29D0079E6B0 /* ToughAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughAnswerViewController.h; sourceTree = "<group>"; };
+		742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +152,12 @@
 				742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */,
 				742DB8B10F12A7190079E6B0 /* AnswerViewController.h */,
 				742DB8B20F12A7190079E6B0 /* AnswerViewController.m */,
+				742DBAB10F12C6D80079E6B0 /* RootViewController.h */,
+				742DBAB20F12C6D80079E6B0 /* RootViewController.m */,
+				742DBB1F0F12CD240079E6B0 /* ToughQuestionsViewController.h */,
+				742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */,
+				742DBB610F12D29D0079E6B0 /* ToughAnswerViewController.h */,
+				742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -210,6 +225,9 @@
 				742DB8180F120DD10079E6B0 /* ViewControllerUtilities.m in Sources */,
 				742DB8800F12A6650079E6B0 /* WrappableCell.m in Sources */,
 				742DB8B30F12A7190079E6B0 /* AnswerViewController.m in Sources */,
+				742DBAB30F12C6D80079E6B0 /* RootViewController.m in Sources */,
+				742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */,
+				742DBB630F12D29D0079E6B0 /* ToughAnswerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

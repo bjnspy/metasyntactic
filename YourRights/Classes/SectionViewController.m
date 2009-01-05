@@ -10,6 +10,7 @@
 
 #import "Model.h"
 #import "QuestionsViewController.h"
+#import "ToughQuestionsViewController.h"
 #import "WrappableCell.h"
 #import "ViewControllerUtilities.h"
 
@@ -56,37 +57,89 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[Model sectionTitles] count];
+    if (section == 0) {
+        return [[Model sectionTitles] count];
+    } else {
+        return 3;
+    }
+}
+
+
+- (NSString*) titleForIndexPath:(NSIndexPath*) indexPath {
+    if (indexPath.section == 0) {
+        return [[Model sectionTitles] objectAtIndex:indexPath.row];
+    } else {
+        if (indexPath.row == 0) {
+            return NSLocalizedString(@"Tough Questions about ACLU positions", nil);
+        } else if (indexPath.row == 1) {
+            return NSLocalizedString(@"The ACLU Is / Isn't", nil);
+        } else {
+            return NSLocalizedString(@"ACLU 100 Greatest Hits", nil);
+        } 
+    }
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSString* text = [[Model sectionTitles] objectAtIndex:indexPath.row];
-    text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
-    
-    UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
+    NSString* text = [self titleForIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
+        
+        UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        return cell;
+    } else {
+        UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        return cell;
+    }
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    return [WrappableCell height:[[Model sectionTitles] objectAtIndex:indexPath.row] accessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    NSString* text = [self titleForIndexPath:indexPath];
+    
+    if (indexPath.section == 0) {
+        text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
+        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    } else {
+        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    }
 }
 
 
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSString* text = [[Model sectionTitles] objectAtIndex:indexPath.row];
-    QuestionsViewController* controller = [[[QuestionsViewController alloc] initWithSectionTitle:text] autorelease];
-    [self.navigationController pushViewController:controller animated:YES];
+    if (indexPath.section == 0) {
+        NSString* text = [[Model sectionTitles] objectAtIndex:indexPath.row];
+        QuestionsViewController* controller = [[[QuestionsViewController alloc] initWithSectionTitle:text] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+    } else {
+        if (indexPath.row == 0) {
+            ToughQuestionsViewController* controller = [[[ToughQuestionsViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    }
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (section == 0) {
+        return NSLocalizedString(@"Encountering Law Enforment", nil);
+    } else {
+        return NSLocalizedString(@"ACLU Information", nil);
+    }
+
+    return nil;
 }
 
 
