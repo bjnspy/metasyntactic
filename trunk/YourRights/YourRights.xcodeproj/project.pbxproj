@@ -28,6 +28,7 @@
 		742DBC280F12FD1C0079E6B0 /* GreatestHitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */; };
 		742DBC2C0F12FD4E0079E6B0 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */; };
 		742DBCEB0F1309BE0079E6B0 /* DecisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */; };
+		742DBE360F1321030079E6B0 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBE350F1321030079E6B0 /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,8 @@
 		742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
 		742DBCE90F1309BE0079E6B0 /* DecisionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecisionCell.h; sourceTree = "<group>"; };
 		742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecisionCell.m; sourceTree = "<group>"; };
+		742DBE340F1321030079E6B0 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		742DBE350F1321030079E6B0 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +158,8 @@
 		742DB8150F120DC30079E6B0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				742DBE340F1321030079E6B0 /* WebViewController.h */,
+				742DBE350F1321030079E6B0 /* WebViewController.m */,
 				742DB87E0F12A6650079E6B0 /* WrappableCell.h */,
 				742DB87F0F12A6650079E6B0 /* WrappableCell.m */,
 				742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */,
@@ -260,6 +265,7 @@
 				742DBC280F12FD1C0079E6B0 /* GreatestHitsViewController.m in Sources */,
 				742DBC2C0F12FD4E0079E6B0 /* MultiDictionary.m in Sources */,
 				742DBCEB0F1309BE0079E6B0 /* DecisionCell.m in Sources */,
+				742DBE360F1321030079E6B0 /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,6 @@
 @private
     Decision* decision;
     
-    UILabel* yearLabel;
     UILabel* titleLabel;
     UILabel* synopsisLabel;
     UILabel* categoryLabel;
@@ -18,8 +17,7 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
-+ (CGFloat) height:(Decision*) decision; 
-
++ (CGFloat) height:(Decision*) decision owner:(id) owner; 
 - (void) setDecision:(Decision*) decision owner:(id) owner;
 
 @end

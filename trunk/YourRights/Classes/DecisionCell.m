@@ -12,7 +12,6 @@
 
 @interface DecisionCell()
 @property (retain) Decision* decision;
-@property (retain) UILabel* yearLabel;
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* synopsisLabel;
 @property (retain) UILabel* categoryLabel;
@@ -22,7 +21,6 @@
 @implementation DecisionCell
 
 @synthesize decision;
-@synthesize yearLabel;
 @synthesize titleLabel;
 @synthesize synopsisLabel;
 @synthesize categoryLabel;
@@ -37,31 +35,57 @@
         self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 2, 0, 20)] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:20];
         titleLabel.adjustsFontSizeToFitWidth = YES;
- 
+        
+        self.synopsisLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 26, 0, 12)] autorelease];
+        synopsisLabel.font = [UIFont systemFontOfSize:12];
+        synopsisLabel.textColor = [UIColor darkGrayColor];
+        synopsisLabel.numberOfLines = 0;
+        synopsisLabel.lineBreakMode = UILineBreakModeWordWrap;
+        
+        self.categoryLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        categoryLabel.font = [UIFont systemFontOfSize:12];
+        categoryLabel.textColor = [UIColor darkGrayColor];
+        categoryLabel.textAlignment = UITextAlignmentRight;
         
         [self.contentView addSubview:titleLabel];
+        [self.contentView addSubview:synopsisLabel];
+        [self.contentView addSubview:categoryLabel];
     }
     return self;
 }
 
 
++ (CGFloat) width:(Decision*) decision {
+    double width;
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        width = [UIScreen mainScreen].bounds.size.height;
+    } else {
+        width = [UIScreen mainScreen].bounds.size.width;
+    }
+    width -= 35;
+    
+    return width;
+}
+
+
 - (void) layoutSubviews {
     [super layoutSubviews];
-        
-    CGRect frame = self.contentView.frame;
     
+    CGFloat width = [DecisionCell width:decision];
+
     CGRect titleFrame = titleLabel.frame;
-    titleFrame.size.width = frame.size.width - 10;
+    titleFrame.size.width = width;
     titleLabel.frame = titleFrame;
-/*
     
-    for (UILabel* label in self.valueLabels) {
-        CGRect frame = label.frame;
-        frame.origin.x = (int)(imageFrame.size.width + 7 + titleWidth + 5);
-        frame.size.width = self.contentView.frame.size.width - frame.origin.x;
-        label.frame = frame;
-    }
- */
+    CGSize size = [synopsisLabel.text sizeWithFont:synopsisLabel.font constrainedToSize:CGSizeMake(width, 2000) lineBreakMode:synopsisLabel.lineBreakMode];
+    CGRect synopsisFrame = synopsisLabel.frame;
+    synopsisFrame.size = size;
+    synopsisLabel.frame = synopsisFrame;
+    
+    CGRect categoryFrame = categoryLabel.frame;
+    categoryFrame.origin.y = synopsisFrame.origin.y + synopsisFrame.size.height;
+    categoryFrame.size.width = width;
+    categoryLabel.frame = categoryFrame;
 }
 
 
@@ -70,13 +94,26 @@
 
     if (selected) {
         titleLabel.textColor = [UIColor whiteColor];
+        synopsisLabel.textColor = [UIColor whiteColor];
+        categoryLabel.textColor = [UIColor whiteColor];
     } else {
         titleLabel.textColor = [UIColor blackColor];
+        synopsisLabel.textColor = [UIColor darkGrayColor];
+        categoryLabel.textColor = [UIColor darkGrayColor];
     }
 }
 
 - (void) setDecision:(Decision*) decision_ owner:(id) owner {
     self.decision = decision_;
+    
+    if ([owner sortingByCategory]) {
+        categoryLabel.text = @"";
+    } else {
+        categoryLabel.text = [Decision categoryString:decision.category];
+    }
+    [categoryLabel sizeToFit];
+    
+    synopsisLabel.text = decision.synopsis;
     
     if ([owner sortingByYear]) {
         titleLabel.text = decision.title;
@@ -89,8 +126,17 @@
 }
 
 
-+ (CGFloat) height:(Decision*) decision {
-    return 100;
+
++ (CGFloat) height:(Decision*) decision owner:(id) owner {
+    CGFloat width = [self width:decision];
+    CGSize size = [decision.synopsis sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(width, 2000) lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGFloat height = 26/*top of title */ + size.height + 4/*+2 on the top and bottom*/;
+    if (![owner sortingByCategory]) {
+        height += 14/*categoryLabel*/;
+    }
+    
+    return height;
 }
 
 @end

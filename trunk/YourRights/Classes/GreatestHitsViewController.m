@@ -18,6 +18,7 @@
 #import "Model.h"
 #import "MultiDictionary.h"
 #import "Decision.h"
+#import "WebViewController.h"
 
 @interface GreatestHitsViewController()
 @property (retain) NSArray* sectionTitles;
@@ -70,7 +71,6 @@
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.segmentedControl = [self setupSegmentedControl];
-        self.navigationItem.titleView = segmentedControl;
         
         self.indexTitles =
         [NSArray arrayWithObjects:
@@ -208,6 +208,12 @@
 }
 
 
+- (void) viewDidAppear:(BOOL) animated {
+    self.segmentedControl = [self setupSegmentedControl];
+    self.navigationItem.titleView = segmentedControl;
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
@@ -258,6 +264,12 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
+    if (decision.link.length > 0) {
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    } else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
     [cell setDecision:decision owner:self];
     
     return cell;
@@ -265,10 +277,14 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+    Decision* decision = [self decisionForIndexPath:indexPath];
+    
+    if (decision.link.length == 0) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    } else {
+        WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:self.navigationController address:decision.link showSafariButton:YES] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 
@@ -316,7 +332,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     Decision* decision = [self decisionForIndexPath:indexPath];
-    return [DecisionCell height:decision];
+    return [DecisionCell height:decision owner:self];
 }
 
 @end

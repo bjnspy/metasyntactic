@@ -34,13 +34,13 @@ static NSArray* greatestHits;
            NSLocalizedString(@"Gitlow’s conviction for distributing a pamphlet calling for the overthrow "
                              @"of the government was upheld. But the ACLU’s first Supreme Court "
                              @"landmark established that the 14th Amendment “incorporates” the First "
-                             @"Amendment’s free speech clause and therefore applies to the states.", nil) link:@"http://en.wikipedia.org/wiki/Gitlow_v. _New_York"],
+                             @"Amendment’s free speech clause and therefore applies to the states.", nil) link:@"http://en.wikipedia.org/wiki/Gitlow_v._New_York"],
           [Decision decisionWithYear:1927 category:FreedomOfAssociation title:@"Whitney v. California" synopsis:
            NSLocalizedString(@"Whitney’s conviction for membership in a group advocating the overthrow " 
                              @"of the state was upheld. But Justice Brandeis laid the groundwork "
                              @"for modern First Amendment law in a separate opinion, "
                              @"in which he argued that under a “clear and present danger” test, the strong " 
-                             @"presumption should be in favor of “more speech, not enforced silence.”", nil) link:@"http://en.wikipedia.org/wiki/Whitney_v. _California"],
+                             @"presumption should be in favor of “more speech, not enforced silence.”", nil) link:@"http://en.wikipedia.org/wiki/Whitney_v._California"],
           [Decision decisionWithYear:1931 category:FreedomOfExpression title:@"Stromberg v. California" synopsis:
            NSLocalizedString(@"A California law leading to the conviction of a communist who " 
                              @"displayed a red flag was overturned on the grounds that the law was vague, "
