@@ -25,6 +25,8 @@
 		742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */; };
 		742DBB630F12D29D0079E6B0 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */; };
 		742DBB870F12D4AC0079E6B0 /* Decision.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB860F12D4AC0079E6B0 /* Decision.m */; };
+		742DBC280F12FD1C0079E6B0 /* GreatestHitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */; };
+		742DBC2C0F12FD4E0079E6B0 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,10 @@
 		742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
 		742DBB850F12D4AC0079E6B0 /* Decision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decision.h; sourceTree = "<group>"; };
 		742DBB860F12D4AC0079E6B0 /* Decision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decision.m; sourceTree = "<group>"; };
+		742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreatestHitsViewController.h; sourceTree = "<group>"; };
+		742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreatestHitsViewController.m; sourceTree = "<group>"; };
+		742DBC2A0F12FD4E0079E6B0 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDictionary.h; sourceTree = "<group>"; };
+		742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +87,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				742DBC290F12FD2A0079E6B0 /* Collections */,
 				742DB8150F120DC30079E6B0 /* UI */,
 				1D3623240D0F684500981E51 /* YourRightsAppDelegate.h */,
 				1D3623250D0F684500981E51 /* YourRightsAppDelegate.m */,
@@ -163,8 +170,19 @@
 				742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */,
 				742DBB610F12D29D0079E6B0 /* ToughAnswerViewController.h */,
 				742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */,
+				742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */,
+				742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		742DBC290F12FD2A0079E6B0 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				742DBC2A0F12FD4E0079E6B0 /* MultiDictionary.h */,
+				742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */,
+			);
+			name = Collections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +252,8 @@
 				742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */,
 				742DBB630F12D29D0079E6B0 /* ToughAnswerViewController.m in Sources */,
 				742DBB870F12D4AC0079E6B0 /* Decision.m in Sources */,
+				742DBC280F12FD1C0079E6B0 /* GreatestHitsViewController.m in Sources */,
+				742DBC2C0F12FD4E0079E6B0 /* MultiDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

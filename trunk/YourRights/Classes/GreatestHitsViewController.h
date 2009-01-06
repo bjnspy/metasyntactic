@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface YourRightsNavigationController : UINavigationController {
-@private
-    SectionViewController* viewController;
+@interface GreatestHitsViewController : UITableViewController {
+
 }
 
 @end
