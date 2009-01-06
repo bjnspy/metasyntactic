@@ -354,7 +354,7 @@
 							<real>235</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>47 29 880 847 0 0 1440 878 </string>
+						<string>48 29 880 847 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -384,7 +384,7 @@
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>742DC1A10F1348800079E6B0</string>
+										<string>742DC1DD0F134CF70079E6B0</string>
 										<key>history</key>
 										<array>
 											<string>742DC0EA0F13394B0079E6B0</string>
@@ -442,7 +442,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {623, 628}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 29 880 847 0 0 1440 878 </string>
+								<string>48 29 880 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -462,7 +462,7 @@
 								<key>Frame</key>
 								<string>{{0, 633}, {623, 173}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 29 880 847 0 0 1440 878 </string>
+								<string>48 29 880 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -607,7 +607,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>252921984.08731499</real>
+	<real>252923127.51704901</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -622,7 +622,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>742DC19A0F1348550079E6B0</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>742DB6540F1200590079E6B0</string>
 		<string>742DB6550F1200590079E6B0</string>
@@ -632,7 +631,7 @@
 		<string>/Projects/metasyntactic/trunk/YourRights/YourRights.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>47 29 880 847 0 0 1440 878 </string>
+	<string>48 29 880 847 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

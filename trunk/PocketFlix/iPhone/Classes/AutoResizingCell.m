@@ -16,15 +16,18 @@
 
 @interface AutoResizingCell()
 @property (retain) UILabel* label;
+@property (retain) UIColor* textColorData;
 @end
 
 
 @implementation AutoResizingCell
 
 @synthesize label;
+@synthesize textColorData;
 
 - (void) dealloc {
     self.label = nil;
+    self.textColorData = nil;
 
     [super dealloc];
 }
@@ -32,6 +35,7 @@
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+        self.textColorData = [UIColor blackColor];
         self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];
         label.font = self.font;
         label.adjustsFontSizeToFitWidth = YES;
@@ -74,6 +78,23 @@
 
 - (NSString*) text {
     return label.text;
+}
+
+
+- (void) setTextColor:(UIColor*) color {
+    label.textColor = color;
+    self.textColorData = color;
+}
+
+
+- (void) setSelected:(BOOL) selected
+             animated:(BOOL) animated {
+    [super setSelected:selected animated:animated];
+    if (selected) {
+        label.textColor = [UIColor whiteColor];
+    } else {
+        label.textColor = textColorData;
+    }
 }
 
 @end

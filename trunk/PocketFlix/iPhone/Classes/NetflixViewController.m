@@ -158,7 +158,7 @@ typedef enum {
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.label.backgroundColor = [UIColor clearColor];
-    cell.label.textColor = [UIColor whiteColor];
+    cell.textColor = [UIColor whiteColor];
     cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
 
     NSInteger row = indexPath.row;
@@ -190,7 +190,6 @@ typedef enum {
         } else if (row == LogOutSection) {
             cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
-            cell.textColor = [ColorCache commandColor];
             cell.accessoryView = nil;
         }
     } else {
