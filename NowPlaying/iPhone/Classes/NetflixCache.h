@@ -18,18 +18,21 @@
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
-
+    
     // movies whose details we want to update
     LinkedSet* normalMovies;
+    LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
-
+    
     NSCondition* updateDetailsLock;
-
+    
     NSDate* lastQuotaErrorDate;
 }
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
+
++ (NSArray*) mostPopularTitles;
 
 - (id) initWithModel:(Model*) model;
 
@@ -46,6 +49,8 @@
 - (Queue*) queueForKey:(NSString*) key;
 - (NSString*) titleForKey:(NSString*) key;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount;
+- (NSArray*) moviesForRSSTitle:(NSString*) title;
+- (NSInteger) movieCountForRSSTitle:(NSString*) title;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
@@ -55,6 +60,7 @@
 - (NSString*) netflixRatingForMovie:(Movie*) movie;
 - (NSString*) userRatingForMovie:(Movie*) movie;
 - (NSArray*) formatsForMovie:(Movie*) movie;
+- (NSArray*) similarMoviesForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
 

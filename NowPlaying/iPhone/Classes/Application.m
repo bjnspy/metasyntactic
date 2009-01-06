@@ -58,6 +58,7 @@ static NSString* netflixUserRatingsDirectory = nil;
 static NSString* netflixPredictedRatingsDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
 static NSString* netflixDetailsDirectory = nil;
+static NSString* netflixRSSDirectory = nil;
 
 static NSString* upcomingDirectory = nil;
 static NSString* upcomingCastDirectory = nil;
@@ -85,6 +86,7 @@ static NSString** directories[] = {
 &netflixPredictedRatingsDirectory,
 &netflixSearchDirectory,
 &netflixDetailsDirectory,
+&netflixRSSDirectory,
 &scoresDirectory,
 &reviewsDirectory,
 &trailersDirectory,
@@ -194,6 +196,7 @@ static DifferenceEngine* differenceEngine = nil;
         netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
         netflixPredictedRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"PredictedRatings"] retain];
         netflixSearchDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Search"] retain];
+        netflixRSSDirectory = [[netflixDirectory stringByAppendingPathComponent:@"RSS"] retain];
         
         upcomingDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Upcoming"] retain];
         upcomingCastDirectory = [[upcomingDirectory stringByAppendingPathComponent:@"Cast"] retain];
@@ -252,34 +255,27 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (void) clearStaleData {
-    [gate lock];
-    {
-        NSInteger cacheLimit = (NSInteger)CACHE_LIMIT;
-
-        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
-            NSString* directory = *directories[i];
-
-            if ([userLocationsDirectory isEqual:directory]) {
-                continue;
-            }
-
-            NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-            for (NSString* path in paths) {
-                if ((rand() % 1000) < 50) {
-                    if ([FileUtilities isDirectory:path]) {
-                        continue;
-                    }
-
-                    NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
-                    if (lastModifiedDate != nil) {
-                        if (ABS(lastModifiedDate.timeIntervalSinceNow) > cacheLimit) {
-                            [FileUtilities moveItemToTrash:path];
-                        }
-                    }
++ (void) clearStaleData:(NSString*) directory {
+    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
+    for (NSString* path in paths) {
+        if ([FileUtilities isDirectory:path]) {
+            [self clearStaleData:path];
+        } else if ((rand() % 1000) < 50) {
+            NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
+            if (lastModifiedDate != nil) {
+                if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
+                    [FileUtilities moveItemToTrash:path];
                 }
             }
         }
+    }
+}
+
+
++ (void) clearStaleData {
+    [gate lock];
+    {
+        [self clearStaleData:cacheDirectory];
     }
     [gate unlock];
 }
@@ -422,6 +418,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixSearchDirectory {
     return netflixSearchDirectory;
+}
+
+
++ (NSString*) netflixRSSDirectory {
+    return netflixRSSDirectory;
 }
 
 

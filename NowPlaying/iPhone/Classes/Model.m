@@ -43,6 +43,7 @@
 #import "ReviewsViewController.h"
 #import "Score.h"
 #import "ScoreCache.h"
+#import "SettingsViewController.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -1523,7 +1524,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
                    [viewController isKindOfClass:[UpcomingMoviesViewController class]] ||
                    [viewController isKindOfClass:[DVDViewController class]]) {
             continue;
-        } else if ([viewController isKindOfClass:[NetflixViewController class]]) {
+        } else if ([viewController isKindOfClass:[NetflixViewController class]] ||
+                   [viewController isKindOfClass:[SettingsViewController class]]) {
             break;
         } else {
             NSAssert(false, @"");

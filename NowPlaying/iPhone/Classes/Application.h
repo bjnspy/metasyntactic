@@ -44,6 +44,7 @@
 + (NSString*) netflixPostersDirectory;
 + (NSString*) netflixUserRatingsDirectory;
 + (NSString*) netflixPredictedRatingsDirectory;
++ (NSString*) netflixRSSDirectory;
 
 + (NSString*) upcomingDirectory;
 + (NSString*) upcomingCastDirectory;
