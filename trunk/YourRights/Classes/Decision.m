@@ -187,10 +187,10 @@ static NSArray* greatestHits;
                              @"and established the “Miranda warnings” requirement that police inform "
                              @"suspects of their rights before interrogating them.", nil) link:@""],
           [Decision decisionWithYear:1966 category:0 title:@"Bond v. Floyd" synopsis:
-           NSLocalizedString(@"The Georgia state legislature was ordered to seat state senator-elect Julian 
-                             Bond who had been denied his seat for publicly supporting Vietnam 
-                             War draft resisters. Criticizing U.S. foreign policy, said the Court, does 
-                             not violate a legislator’s oath to uphold the Constitution.", nil) link:@""],
+           NSLocalizedString(@"The Georgia state legislature was ordered to seat state senator-elect Julian "
+                             @"Bond who had been denied his seat for publicly supporting Vietnam "
+                             @"War draft resisters. Criticizing U.S. foreign policy, said the Court, does "
+                             @"not violate a legislator’s oath to uphold the Constitution.", nil) link:@""],
           [Decision decisionWithYear:1967 category:0 title:@"Keyishian v. Board of Regents" synopsis:
            NSLocalizedString(@"Struck down a Cold War-era law that required public school teachers to "
                              @"sign a loyalty oath. Public employment is not a “privilege” to which government " 
@@ -271,37 +271,189 @@ static NSArray* greatestHits;
                              @"performed an illegal abortion, it expanded the “life and health of the "
                              @"woman” concept to include “psychological well-being,” thereby allowing "
                              @"more women to obtain legal “therapeutic” abortions.", nil) link:@""], 
-          [Decision decisionWithYear:1972 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:1972 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""], 
-          [Decision decisionWithYear:0 category:0 title:@"" synopsis:NSLocalizedString(@"", nil) link:@""],  nil] retain];
+          [Decision decisionWithYear:1972 category:0 title:@"Eisenstadt v. Baird" synopsis:
+           NSLocalizedString(@"In an extension of the Court’s evolving privacy doctrine, the conviction "
+                             @"of a reproductive rights activist who had given an unmarried "
+                             @"Massachusetts woman a contraceptive device was reversed.", nil) link:@""], 
+          [Decision decisionWithYear:1972 category:0 title:@"Furman v. Georgia" synopsis:
+           NSLocalizedString(@"This decision led to a four-year halt to executions nationwide when the "
+                             @"Court ruled that existing state death penalty statutes were “arbitrary and "
+                             @"capricious” in violation of the Eight Amendment.", nil) link:@""], 
+          [Decision decisionWithYear:1973 category:0 title:@"Frontiero v. Richardson" synopsis:
+           NSLocalizedString(@"Struck down a federal law that allowed a woman in the armed forces to "
+                             @"claim her husband as a “dependent” only if he depended on her for more "
+                             @"than half of his support, while a serviceman could claim “dependent” status " 
+                             @"for his wife regardless of actual dependency.", nil) link:@""], 
+          [Decision decisionWithYear:1973 category:0 title:@"Holtzman v. Schlesinger" synopsis:
+           NSLocalizedString(@"The ACLU took on Rep. Elizabeth Holtzman’s lawsuit to halt the bombing " 
+                             @"of Cambodia as an unconstitutional Presidential usurpation of "
+                             @"Congress’ authority to declare war. Although a federal order to stop the "
+                             @"bombing was eventually overturned, the bombing was halted for a few hours.", nil) link:@""], 
+          [Decision decisionWithYear:1973 category:0 title:@"Roe v.Wade/Doe v. Bolton" synopsis:
+           NSLocalizedString(@"Recognizing a woman’s constitutional right to terminate a pregnancy, Roe "
+                             @"erased all existing criminal abortion laws. Its companion case, Doe, established " 
+                             @"lished that it is the attending physician who determines, in light of all "
+                             @"factors relevant to a woman’s well-being, whether an abortion is “necessary.”", nil) link:@""], 
+          [Decision decisionWithYear:1974 category:0 title:@"Communist Party of Indiana v.Whitcomb" synopsis:
+           NSLocalizedString(@"Invalidated a state requirement that political parties swear that they do "
+                             @"not advocate the violent overthrow of government as a condition of getting " 
+                             @"on the ballot.", nil) link:@""], 
+          [Decision decisionWithYear:1974 category:0 title:@"Smith v. Goguen" synopsis:
+           NSLocalizedString(@"A Massachusetts state law that made it a crime to treat the American flag "
+                             @"“contemptuously” was found by the Court to be void for vagueness.", nil) link:@""], 
+          [Decision decisionWithYear:1974 category:0 title:@"U.S. v. Nixon" synopsis:
+           NSLocalizedString(@"In the only amicus brief filed in this critical case, the ACLU argued: "
+                             @"“There is no proposition more dangerous to the health of a constitutional " 
+                             @"democracy than the notion that an elected head of state is above the "
+                             @"law and beyond the reach of judicial review.” The Court agreed, and ordered Nixon "
+                             @"to hand over crucial Watergate tapes to the Special Prosecutor.", nil) link:@""], 
+          [Decision decisionWithYear:1975 category:0 title:@"Goss v. Lopez" synopsis:
+           NSLocalizedString(@"Invalidated a state law authorizing a public school principal to suspend " 
+                             @"a student for up to ten days without a hearing. Students are entitled " 
+                             @"to notice and a hearing before a significant disciplinary action can "
+                             @"be taken against them.", nil) link:@""], 
+          [Decision decisionWithYear:1975 category:0 title:@"O’Connor v. Donaldson" synopsis:
+           NSLocalizedString(@"In its first “right to treatment” decision, the Court ruled that mental illness " 
+                             @"alone did not justify “simple custodial confinement” on an indefinite " 
+                             @"basis in the case of a non-violent patient who had been involuntarily "
+                             @"held in a mental institution for 15 years.", nil) link:@""], 
+          [Decision decisionWithYear:1976 category:0 title:@"Buckley v.Valeo" synopsis:
+           NSLocalizedString(@"This challenge to the limits on campaign spending imposed by amendments " 
+                             @"to the Federal Elections Campaign Act represented a partial victory " 
+                             @"for free speech, as the Court struck down the Act’s restrictions on "
+                             @"spending “relative to a candidate.”", nil) link:@""], 
+          [Decision decisionWithYear:1977 category:0 title:@"Wooley v. Maynard" synopsis:
+           NSLocalizedString(@"A New Hampshire law that prohibited a Jehovah’s Witness from covering "
+                             @"up the license plate slogan “Live Free or Die” was invalidated by the Court "
+                             @"as a denial of the “right not to speak.”", nil) link:@""], 
+          [Decision decisionWithYear:1978 category:0 title:@"Smith v. Collin " synopsis:
+           NSLocalizedString(@"A Nazi group wanted to march through a Chicago suburb, Skokie, where "
+                             @"many Holocaust survivors lived. The ACLU’s controversial challenge to "
+                             @"the village’s ban on the march was ultimately successful.", nil) link:@""], 
+          [Decision decisionWithYear:1978 category:0 title:@"In re Primus" synopsis:
+           NSLocalizedString(@"An ACLU cooperating attorney had been reprimanded for “improper "
+                             @"solicitation” by the state supreme court for encouraging poor women to "
+                             @"challenge the state’s sterilization of welfare recipients. The Court distinguished " 
+                             @"between lawyers who solicit “for pecuniary gain” and those who do so to "
+                             @"“further political and ideological goals through associational activity.”", nil) link:@""], 
+          [Decision decisionWithYear:1980 category:0 title:@"Prune Yard Shopping Center v. Robins" synopsis:
+           NSLocalizedString(@"Shopping mall owners appealed a California state court ruling that a "
+                             @"shopping center allow distribution of political pamphlets on its premises. "
+                             @"The Court rejected the owners’ property rights claim, and ruled that a "
+                             @"mall was comparable to streets and sidewalks.", nil) link:@""], 
+          [Decision decisionWithYear:1982 category:0 title:@"Board of Education, Island Trees School District v. Pico" synopsis:
+           NSLocalizedString(@"Students successfully sued their school board on First Amendment "
+                             @"grounds for removing certain “objectionable books” from the school "
+                             @"library. While acknowledging a school’s right to remove material that was “pervasively " 
+                             @"vulgar” or “educationally unsuitable,” the Court held that in this case, the "
+                             @"students’ First Amendment “right to know” had been violated.", nil) link:@""], 
+          [Decision decisionWithYear:1983 category:0 title:@"Bob Jones University v. United States" synopsis:
+           NSLocalizedString(@"Two fundamentalist Christian colleges that practiced racial discrimination " 
+                             @"lost their tax exempt status. The IRS can set rules enforcing a “settled " 
+                             @"public policy” against racial discrimination in education.", nil) link:@""], 
+          [Decision decisionWithYear:1985 category:0 title:@"Wallace v. Jaffree" synopsis:
+           NSLocalizedString(@"Alabama’s “moment of silence” law, which required public school children " 
+                             @"to take a moment “for meditation or voluntary prayer,” violated "
+                             @"the First Amendment’s Establishment Clause.", nil) link:@""], 
+          [Decision decisionWithYear:1986 category:0 title:@"Edward v.Aguillard" synopsis:
+           NSLocalizedString(@"In a case reminiscent of the 1925 Scopes “monkey” trial, the Court "
+                             @"struck down a Louisiana law that required public school science "
+                             @"teachers to give “equal time” to so-called creation science if they "
+                             @"taught students about the theory of evolution.", nil) link:@""], 
+          [Decision decisionWithYear:1989 category:0 title:@"Texas v. Johnson" synopsis:
+           NSLocalizedString(@"In invalidating the Texas flag desecration statute, the Court provoked "
+                             @"President Bush to propose a federal ban on flag burning or mutilation. "
+                             @"Congress swiftly obliged, but the Court struck down that law a year "
+                             @"later in United States v. Eichman - in which the ACLU also filed a brief.", nil) link:@""], 
+          [Decision decisionWithYear:1990 category:0 title:@"Cruzan v. Director of the Missouri Department of Health" synopsis:
+           NSLocalizedString(@"In the Court’s first right-to-die case, the ACLU represented the family of "
+                             @"a woman who had been in a persistent vegetative state for more than "
+                             @"seven years. Although the Court did not go as far as the ACLU urged, it "
+                             @"did recognize living wills as clear and convincing evidence of a patient’s wishes.", nil) link:@""], 
+          [Decision decisionWithYear:1992 category:0 title:@"R.A.V. v.Wisconsin" synopsis:
+           NSLocalizedString(@"A unanimous Court struck down as overly broad a local law banning "
+                             @"the display, on public or private property, of any symbol “that arouses "
+                             @"anger, alarm or resentment in others on the basis of race, color, creed, "
+                             @"religion or gender.”", nil) link:@""], 
+          [Decision decisionWithYear:1992 category:0 title:@"Planned Parenthood v. Casey" synopsis:
+           NSLocalizedString(@"Although the Court upheld parts of Pennsylvania’s restrictive abortion "
+                             @"law, it also reaffirmed the “central holding” of Roe v. Wadethat abortions "
+                             @"performed prior to viability cannot be prohibited by the state.", nil) link:@""], 
+          [Decision decisionWithYear:1992 category:0 title:@"Lee v.Weisman" synopsis:
+           NSLocalizedString(@"The inclusion of a prayer at the beginning of a public high school graduation " 
+                             @"ceremony violated the Establishment Clause.", nil) link:@""], 
+          [Decision decisionWithYear:1992 category:0 title:@"Hudson v. McMillian" synopsis:
+           NSLocalizedString(@"The beating of a shackled and handcuffed Louisiana prisoner was "
+                             @"deemed a violation of the Eighth Amendment ban on cruel and unusual "
+                             @"punishment. “Unnecessary and wanton infliction of pain” was recognized " 
+                             @"as an appropriate standard in the prison context.", nil) link:@""], 
+          [Decision decisionWithYear:1993 category:0 title:@"J.E.B. v.T.B." synopsis:
+           NSLocalizedString(@"A prosecutor could not use peremptory challenges to disqualify potential "
+                             @"jurors based solely on their gender.", nil) link:@""], 
+          [Decision decisionWithYear:1993 category:0 title:@"Church of the Lukumi Babalu Aye v. Hialeah" synopsis:
+           NSLocalizedString(@"A city’s ban on the ritual slaughter of animals as practiced by the "
+                             @"Santeria religion was overturned as a violation of religious liberty since "
+                             @"the city did permit such secular activities as hunting and fishing.", nil) link:@""], 
+          [Decision decisionWithYear:1993 category:0 title:@"Wisconsin v. Mitchell" synopsis:
+           NSLocalizedString(@"Wisconsin’s “hate crime” statute, providing for additional criminal "
+                             @"penalties if a jury found that a defendant “intentionally selected” a victim " 
+                             @"based on “race, religion, color, disability, sexual orientation, national "
+                             @"origin or ancestry,” did not violate the First Amendment because the statute punished " 
+                             @"acts, not thoughts or speech. ", nil) link:@""], 
+          [Decision decisionWithYear:1994 category:0 title:@"Ladue v. Gilleo" synopsis:
+           NSLocalizedString(@"A Missouri town’s ordinance that barred a homeowner from posting a "
+                             @"sign in her bedroom window that said, “Say No to War in the Gulf – "
+                             @"Call Congress Now!” was deemed to violate the First Amendment.", nil) link:@""], 
+          [Decision decisionWithYear:1995 category:0 title:@"Lebron v. Amtrak" synopsis:
+           NSLocalizedString(@"An artist argued successfully that Amtrak had been wrong to reject his "
+                             @"billboard display because of its political message. The Court extended "
+                             @"the First Amendment to corporations created by, and under the control  "
+                             @"of, the government.", nil) link:@""], 
+          [Decision decisionWithYear:1995 category:0 title:@"McIntyre v. Ohio Elections Commission" synopsis:
+           NSLocalizedString(@"A state prohibition against the anonymous distribution of political campaign " 
+                             @"literature violated the right to anonymous free speech.", nil) link:@""], 
+          [Decision decisionWithYear:1995 category:0 title:@"Capitol Square Review Board v. Pinette" synopsis:
+           NSLocalizedString(@"Upheld the right of the KKK to put up a cross in an area in front of the "
+                             @"Ohio State Capitol building that was a traditional public forum used by "
+                             @"many other groups, rejecting Ohio’s argument that allowing the display "
+                             @"violated the separation of church and state.", nil) link:@""], 
+          [Decision decisionWithYear:1995 category:0 title:@"Hurley v. Irish American Gay, Lesbian, and Bisexual Group of Boston" synopsis:
+           NSLocalizedString(@"Upheld the right of private groups to exclude participants from their "
+                             @"parades who do not share the values and message the parade sponsors "
+                             @"wish to communicate.", nil) link:@""], 
+          [Decision decisionWithYear:1996 category:0 title:@"Romer v. Evans" synopsis:
+           NSLocalizedString(@"In this first gay rights victory, the Court invalidated a state constitutional " 
+                             @"amendment, passed by public referendum in Colorado, that prohibited " 
+                             @"the state and its municipalities from enacting gay rights laws.", nil) link:@""], 
+          [Decision decisionWithYear:1996 category:0 title:@"Board of Commissioners v. Umbehr" synopsis:
+           NSLocalizedString(@"Government contractors cannot be subjected to reprisals, such as the loss "
+                             @"of a contract, for expressing their political views.", nil) link:@""], 
+          [Decision decisionWithYear:1997 category:0 title:@"Reno v. ACLU" synopsis:
+           NSLocalizedString(@"The Court struck down Congress’ Communications Decency Act, which "
+                             @"was an attempt to censor the Internet by banning “indecent” speech, "
+                             @"ruling that “the interest in encouraging freedom of expression in a democratic " 
+                             @"society outweighs any theoretical but unproven benefit of censorship.”", nil) link:@""], 
+          [Decision decisionWithYear:1997 category:0 title:@"Chandler v. Miller" synopsis:
+           NSLocalizedString(@"Struck down a Georgia law requiring candidates for political office to "
+                             @"take a urine drug test on the grounds that it violated the candidates’ "
+                             @"Fourth Amendment right to privacy.", nil) link:@""], 
+          [Decision decisionWithYear:1998 category:0 title:@"Bragdon v. Abbott" synopsis:
+           NSLocalizedString(@"The anti-discrimination provisions of the Americans with Disabilities "
+                             @"Act was interpreted to apply to persons in the early stages of HIV infection, " 
+                             @"even if they did not have any overt symptoms of AIDS.", nil) link:@""], 
+          [Decision decisionWithYear:1998 category:0 title:@"Oncale v. Sundowner Offshore Services" synopsis:
+           NSLocalizedString(@"Title VII of the Civil Rights Act, which prohibits sexual discrimination "
+                             @"and harassment in the workplace, applies to same-sex as well as opposite "
+                             @"sex harassment.", nil) link:@""], 
+          [Decision decisionWithYear:1999 category:0 title:@"Chicago v. Morales" synopsis:
+           NSLocalizedString(@"Struck down Chicago’s anti-gang loitering law which disproportionately "
+                             @"targeted African American and Latino youth who were not engaged in "
+                             @"criminal activity, and resulted in the arrest of 45,000 innocent people.", nil) link:@""], 
+          [Decision decisionWithYear:1999 category:0 title:@"Saenz v. Roe" synopsis:
+           NSLocalizedString(@"Invalidated California’s 12-month residency requirement for welfare "
+                             @"applicants new to the state as a violation of the constitutional right to "
+                             @"travel, and reaffirmed the principle that citizens select states; states do "
+                             @"not select citizens.", nil) link:@""], nil] retain];
     }
 }
 
