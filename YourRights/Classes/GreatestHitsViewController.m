@@ -14,86 +14,239 @@
 
 #import "GreatestHitsViewController.h"
 
+#import "Model.h"
+#import "MultiDictionary.h"
+#import "Decision.h"
+
+@interface GreatestHitsViewController()
+@property (retain) NSArray* sectionTitles;
+@property (retain) NSArray* indexTitles;
+@property (retain) MultiDictionary* sectionTitleToDecisions;
+@property (retain) UISegmentedControl* segmentedControl;
+@end
+
 
 @implementation GreatestHitsViewController
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
+@synthesize sectionTitles;
+@synthesize sectionTitleToDecisions;
+@synthesize segmentedControl;
+@synthesize indexTitles;
+
+- (void)dealloc {
+    self.sectionTitles = nil;
+    self.sectionTitleToDecisions = nil;
+    self.segmentedControl = nil;
+    self.indexTitles = nil;
+
+    [super dealloc];
+}
+
+
+- (UISegmentedControl*) setupSegmentedControl {
+    UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
+                                    [NSArray arrayWithObjects:
+                                     NSLocalizedString(@"Year", nil),
+                                     NSLocalizedString(@"Category", nil),
+                                     NSLocalizedString(@"Pursuer", nil),
+                                     NSLocalizedString(@"Defender", nil), nil]] autorelease];
+    
+    control.segmentedControlStyle = UISegmentedControlStyleBar;
+    control.selectedSegmentIndex = [Model greatestHitsSortIndex];
+    
+    [control addTarget:self
+                action:@selector(onSortOrderChanged:)
+      forControlEvents:UIControlEventValueChanged];
+    
+    CGRect rect = control.frame;
+    rect.size.width = 250;
+    control.frame = rect;
+    
+    return control;
+}
+
+
+- (id) init {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.segmentedControl = [self setupSegmentedControl];
+        self.navigationItem.titleView = segmentedControl;
+        
+        self.indexTitles =
+        [NSArray arrayWithObjects:
+         @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
+         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
+         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     }
+
     return self;
 }
-*/
 
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void) sortByYear {
+    NSMutableArray* titles = [NSMutableArray array];
+    MultiDictionary* dictionary = [MultiDictionary dictionary];
+    
+    for (Decision* decision in [Decision greatestHits]) {
+        NSString* year = [NSString stringWithFormat:@"%d", decision.year];
+        
+        if (![titles containsObject:year]) {
+            [titles addObject:year];
+        }
+        
+        [dictionary addObject:decision forKey:year];
+    }
+    
+    self.sectionTitles = titles;
+    self.sectionTitleToDecisions = dictionary;
 }
-*/
 
-/*
+
+- (NSString*) categoryString:(Category) category {
+    switch (category) {
+        case FreedomOfAssociation: return NSLocalizedString(@"Freedom of Association", nil);
+        case FreedomOfThePress: return NSLocalizedString(@"Freedom of the Press", nil);
+        case FreedomOfExpression: return NSLocalizedString(@"Freedom of Expression", nil);
+        case EqualityUnderTheLaw: return NSLocalizedString(@"Equality under the Law", nil);
+        case RightToFairProcedures: return NSLocalizedString(@"Right to Fair Procedures", nil);
+        case RightToPrivacy: return NSLocalizedString(@"Right to Privacy", nil);
+        case ChecksAndBalances: return NSLocalizedString(@"Checks and Balances", nil);
+        case SeparationOfChurchAndState: return NSLocalizedString(@"Separation of Church and State", nil);
+        case FreeExerciseOfReligion: return NSLocalizedString(@"Free Exercise of Religion", nil);
+    }
+    
+    return @"";
+}
+
+
+- (void) sortByCategory {
+    NSMutableArray* titles = [NSMutableArray array];
+    MultiDictionary* dictionary = [MultiDictionary dictionary];
+    
+    for (Decision* decision in [Decision greatestHits]) {
+        NSString* category = [self categoryString:decision.category];
+        
+        if (![titles containsObject:category]) {
+            [titles addObject:category];
+        }
+        
+        [dictionary addObject:decision forKey:category];
+    }
+    
+    self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
+    self.sectionTitleToDecisions = dictionary;
+}
+
+
+- (void) sortByPursuer {
+    NSMutableArray* titles = [NSMutableArray array];
+    MultiDictionary* dictionary = [MultiDictionary dictionary];
+    
+    for (Decision* decision in [Decision greatestHits]) {
+        NSString* title = [decision.title substringToIndex:1];
+        
+        if (![titles containsObject:title]) {
+            [titles addObject:title];
+        }
+        
+        [dictionary addObject:decision forKey:title];
+    }
+    
+    self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
+    self.sectionTitleToDecisions = dictionary;
+}
+
+
+- (void) sortByDefender {
+    NSMutableArray* titles = [NSMutableArray array];
+    MultiDictionary* dictionary = [MultiDictionary dictionary];
+    
+    for (Decision* decision in [Decision greatestHits]) {
+        NSRange range = [decision.title rangeOfString:@"v. "];
+        NSString* title;
+        
+        if (range.length > 0) {
+            title = [decision.title substringWithRange:NSMakeRange(range.location + range.length, 1)];
+        } else {
+            title = [decision.title substringToIndex:1];
+        }
+        
+        if (![titles containsObject:title]) {
+            [titles addObject:title];
+        }
+        
+        [dictionary addObject:decision forKey:title];
+    }
+    
+    self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
+    self.sectionTitleToDecisions = dictionary;
+}
+
+
+- (BOOL) sortingByPersuer {
+    return segmentedControl.selectedSegmentIndex == 2;
+}
+
+
+- (BOOL) sortingByDefender {
+    return segmentedControl.selectedSegmentIndex == 3;
+}
+
+
+- (void) initializeData {
+    switch (segmentedControl.selectedSegmentIndex) {
+        case 0: [self sortByYear]; break;
+        case 1: [self sortByCategory]; break;
+        case 2: [self sortByPursuer]; break;
+        case 3: [self sortByDefender]; break;
+    }
+}
+
+
+- (void) majorRefresh {
+    [self initializeData];
+    [self.tableView reloadData];
+}
+
+
 - (void)viewWillAppear:(BOOL)animated {
+    [self majorRefresh];
     [super viewWillAppear:animated];
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
+    return YES;
 }
 
-#pragma mark Table view methods
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self majorRefresh];
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return MAX(sectionTitles.count, 1);
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    if (sectionTitles.count == 0) {
+        return 0;
+    }
+
+    return [[sectionTitleToDecisions objectsForKey:[sectionTitles objectAtIndex:section]] count];
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    NSString* section = [sectionTitles objectAtIndex:indexPath.section];
+    Decision* decision = [[sectionTitleToDecisions objectsForKey:section] objectAtIndex:indexPath.row];
     
-    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
+    cell.text = decision.title;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Set up the cell...
-
     return cell;
 }
 
@@ -106,50 +259,44 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    return [sectionTitles objectAtIndex:section];
 }
-*/
 
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void) onSortOrderChanged:(id) sender {
+    [Model setGreatestHitsSortIndex:segmentedControl.selectedSegmentIndex];
+    [self majorRefresh];
+}
+
+
+- (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
+    if ([self sortingByPersuer] || [self sortingByDefender]) {
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+            return indexTitles;
+        }
+    }
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
-- (void)dealloc {
-    [super dealloc];
+    return nil;
 }
 
+
+- (NSInteger)           tableView:(UITableView*) tableView
+      sectionForSectionIndexTitle:(NSString*) title
+                          atIndex:(NSInteger) index {
+    unichar firstChar = [title characterAtIndex:0];
+    
+    for (unichar c = firstChar; c >= 'A'; c--) {
+        NSString* s = [NSString stringWithFormat:@"%c", c];
+        
+        NSInteger result = [sectionTitles indexOfObject:s];
+        if (result != NSNotFound) {
+            return result;
+        }
+    }
+    
+    return 0;
+}
 
 @end
-

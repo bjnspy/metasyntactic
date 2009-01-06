@@ -31,4 +31,7 @@
 + (NSArray*) linksForSectionTitle:(NSString*) sectionTitle;
 + (NSArray*) linksForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle;
 
++ (NSInteger) greatestHitsSortIndex;
++ (void) setGreatestHitsSortIndex:(NSInteger) index;
+
 @end

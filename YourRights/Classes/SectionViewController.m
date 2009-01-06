@@ -14,6 +14,7 @@
 
 #import "SectionViewController.h"
 
+#import "GreatestHitsViewController.h"
 #import "Model.h"
 #import "QuestionsViewController.h"
 #import "ToughQuestionsViewController.h"
@@ -131,6 +132,9 @@
     } else {
         if (indexPath.row == 0) {
             ToughQuestionsViewController* controller = [[[ToughQuestionsViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        } else if (indexPath.row == 2) {
+            GreatestHitsViewController* controller = [[[GreatestHitsViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         }
     }
