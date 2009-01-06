@@ -27,6 +27,7 @@
 		742DBB870F12D4AC0079E6B0 /* Decision.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB860F12D4AC0079E6B0 /* Decision.m */; };
 		742DBC280F12FD1C0079E6B0 /* GreatestHitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */; };
 		742DBC2C0F12FD4E0079E6B0 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */; };
+		742DBCEB0F1309BE0079E6B0 /* DecisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreatestHitsViewController.m; sourceTree = "<group>"; };
 		742DBC2A0F12FD4E0079E6B0 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDictionary.h; sourceTree = "<group>"; };
 		742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
+		742DBCE90F1309BE0079E6B0 /* DecisionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecisionCell.h; sourceTree = "<group>"; };
+		742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecisionCell.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +175,8 @@
 				742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */,
 				742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */,
 				742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */,
+				742DBCE90F1309BE0079E6B0 /* DecisionCell.h */,
+				742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 				742DBB870F12D4AC0079E6B0 /* Decision.m in Sources */,
 				742DBC280F12FD1C0079E6B0 /* GreatestHitsViewController.m in Sources */,
 				742DBC2C0F12FD4E0079E6B0 /* MultiDictionary.m in Sources */,
+				742DBCEB0F1309BE0079E6B0 /* DecisionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

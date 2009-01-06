@@ -47,4 +47,9 @@ typedef enum {
 
 + (NSArray*) greatestHits;
 
+
+
+
++ (NSString*) categoryString:(Category) category;
+
 @end
