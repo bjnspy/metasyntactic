@@ -31,9 +31,9 @@
 		742DBE360F1321030079E6B0 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBE350F1321030079E6B0 /* WebViewController.m */; };
 		742DBF1A0F132AD50079E6B0 /* ACLUInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */; };
 		742DC05F0F1336510079E6B0 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC05E0F1336510079E6B0 /* CreditsViewController.m */; };
-		742DC0610F1337090079E6B0 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 742DC0600F1337090079E6B0 /* License.txt */; };
 		742DC0690F1337ED0079E6B0 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */; };
 		742DC06C0F1337FF0079E6B0 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC06B0F1337FF0079E6B0 /* Utilities.m */; };
+		7462953A0F135CF90073F830 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 746295390F135CF90073F830 /* License.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,11 +82,11 @@
 		742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUInfoViewController.m; sourceTree = "<group>"; };
 		742DC05D0F1336510079E6B0 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
 		742DC05E0F1336510079E6B0 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
-		742DC0600F1337090079E6B0 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		742DC0670F1337ED0079E6B0 /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
 		742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
 		742DC06A0F1337FF0079E6B0 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		742DC06B0F1337FF0079E6B0 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		746295390F135CF90073F830 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,7 +152,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				742DC0600F1337090079E6B0 /* License.txt */,
+				746295390F135CF90073F830 /* License.txt */,
 				742DB84C0F129F070079E6B0 /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -270,7 +270,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				742DB84D0F129F070079E6B0 /* Icon.png in Resources */,
-				742DC0610F1337090079E6B0 /* License.txt in Resources */,
+				7462953A0F135CF90073F830 /* License.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,11 +363,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
 				SDKROOT = iphoneos2.2;
 			};
 			name = Distribution;
