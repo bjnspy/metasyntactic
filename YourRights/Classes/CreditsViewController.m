@@ -45,7 +45,7 @@ typedef enum {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
     }
-
+    
     return self;
 }
 
@@ -76,7 +76,7 @@ typedef enum {
     } else if (section == LicenseSection) {
         return 1;
     }
-
+    
     return 0;
 }
 
@@ -85,10 +85,10 @@ typedef enum {
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
     if (section == WrittenBySection) {
         if (row == 0) {
             cell.text = NSLocalizedString(@"Send Feedback", nil);
@@ -106,7 +106,7 @@ typedef enum {
     } else if (section == LicenseSection) {
         cell.text = NSLocalizedString(@"License", nil);
     }
-
+    
     return cell;
 }
 
@@ -118,9 +118,9 @@ typedef enum {
     } else if (section == MyOtherApplicationsSection) {
         return NSLocalizedString(@"My other applications", nil);
     } else if (section == InformationProvidedBySection) {
-        return NSLocalizedString(@"Information provided by the", nil);
+        return NSLocalizedString(@"Information obtained from the", nil);
     }
-
+    
     return nil;
 }
 
@@ -131,11 +131,11 @@ typedef enum {
         return NSLocalizedString(@"This application is not provided by or endorsed by the American Civil Liberties Union.", nil);
     } else if (section == InformationProvidedBySection) {
         return NSLocalizedString(
-        @"This application addresses what rights you  have when you are "
-        @"stopped, questioned, arrested, or searched by law enforcement "
-        @"officers. This information is for citizens and  non-citizens. "
-        @"This application tells you about your basic rights. It is not a substitute "
-        @"for legal advice. You should contact an attorney if you have been "
+                                 @"This application addresses what rights you  have when you are "
+                                 @"stopped, questioned, arrested, or searched by law enforcement "
+                                 @"officers. This information is for citizens and  non-citizens. "
+                                 @"This application tells you about your basic rights. It is not a substitute "
+                                 @"for legal advice. You should contact an attorney if you have been "
                                  @"arrested or believe that your rights have been violated.", nil);
     }
     
@@ -156,16 +156,16 @@ typedef enum {
 - (void) licenseCellTapped {
     UIViewController* controller = [[[UIViewController alloc] init] autorelease];
     controller.title = NSLocalizedString(@"License", nil);
-
+    
     UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
     textView.editable = NO;
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
+    
     NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
     textView.text = [NSString stringWithContentsOfFile:licensePath];
     textView.font = [UIFont boldSystemFontOfSize:12];
     textView.textColor = [UIColor grayColor];
-
+    
     [controller.view addSubview:textView];
     [navigationController pushViewController:controller animated:YES];
 }
@@ -183,7 +183,7 @@ typedef enum {
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     NSString* address = nil;
     if (section == WrittenBySection) {
         if (row == 0) {
@@ -202,7 +202,7 @@ typedef enum {
     } else if (section == LicenseSection) {
         return;
     }
-
+    
     NSURL* url = [NSURL URLWithString:address];
     [[UIApplication sharedApplication] openURL:url];
 }
