@@ -42,7 +42,7 @@
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Your Rights When Encountering Law Enforcement", nil),
          NSLocalizedString(@"Tough Question about ACLU positions", nil),
-         NSLocalizedString(@"The ACLU Is/Isn't", nil),
+         NSLocalizedString(@"The ACLU Is / Is Not", nil),
          NSLocalizedString(@"ACLU 100 Greatest Hits", nil), nil];
 
         self.navigationItem.titleView =

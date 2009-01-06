@@ -34,4 +34,6 @@
 + (NSInteger) greatestHitsSortIndex;
 + (void) setGreatestHitsSortIndex:(NSInteger) index;
 
++ (NSString*) feedbackUrl;
+
 @end

@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface SectionViewController : UITableViewController {
+@interface SectionViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
+@private
+    UITableView* tableView;
+    CreditsViewController* creditsViewController;
 }
 
 @end

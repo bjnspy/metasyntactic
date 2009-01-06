@@ -14,6 +14,8 @@
 
 #import "SectionViewController.h"
 
+#import "ACLUInfoViewController.h"
+#import "CreditsViewController.h"
 #import "GreatestHitsViewController.h"
 #import "Model.h"
 #import "QuestionsViewController.h"
@@ -22,27 +24,103 @@
 #import "ViewControllerUtilities.h"
 
 @interface SectionViewController()
+@property (retain) UITableView* tableView;
+@property (retain) CreditsViewController* creditsViewController;
 @end
 
 
 @implementation SectionViewController
 
-- (void)dealloc {
+@synthesize tableView;
+@synthesize creditsViewController;
+
+- (void) dealloc {
+    self.tableView = nil;
+    self.creditsViewController = nil;
+
     [super dealloc];
 }
 
 
 - (id) init {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
+    if (self = [super init]) {
         self.navigationItem.titleView =
         [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
+    
+        UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        CGRect frame = button.frame;
+        frame.size.width += 10;
+        button.frame = frame;
+        
+        [button addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
     }
     
     return self;
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (void) createCreditsView {
+    if (creditsViewController != nil) {
+        return;
+    }
+    
+    self.creditsViewController = [[[CreditsViewController alloc] initWithNavigationController:self.navigationController] autorelease];
+    self.creditsViewController.view.frame = tableView.frame;
+}
+
+
+- (void) flipView:(id) sender {
+    [self createCreditsView];
+    
+    [UIView beginAnimations:nil context:NULL];
+    {
+        [UIView setAnimationDuration:1];
+        
+        if (tableView.superview) {
+            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
+                                   forView:self.view
+                                     cache:YES];
+            [tableView removeFromSuperview];
+            [self.view addSubview:creditsViewController.tableView];
+        } else {
+            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+                                   forView:self.view
+                                     cache:YES];
+            [creditsViewController.tableView removeFromSuperview];
+            [self.view addSubview:tableView];
+        }
+    }
+    [UIView commitAnimations];
+}
+
+
+- (UITableView*) createTableView:(CGRect) tableViewRect {
+    UITableView* table = [[[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain] autorelease];
+    table.delegate = self;
+    table.dataSource = self;
+    
+    // add the subviews and set their resize behavior
+    table.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    return table;
+}
+
+
+- (void) loadView {
+    CGRect rect = [UIScreen mainScreen].bounds;
+    
+    self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
+    self.view.autoresizesSubviews = YES;
+    
+    self.tableView = [self createTableView:rect];
+    
+    [self.view addSubview:tableView];
+}
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 
@@ -71,24 +149,24 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return [[Model sectionTitles] count];
-    } else {
         return 3;
+    } else {
+        return [[Model sectionTitles] count];
     }
 }
 
 
 - (NSString*) titleForIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        return [[Model sectionTitles] objectAtIndex:indexPath.row];
-    } else {
         if (indexPath.row == 0) {
             return NSLocalizedString(@"Tough Questions about ACLU positions", nil);
         } else if (indexPath.row == 1) {
-            return NSLocalizedString(@"The ACLU Is / Isn't", nil);
+            return NSLocalizedString(@"The ACLU Is / Is Not", nil);
         } else {
             return NSLocalizedString(@"ACLU 100 Greatest Hits", nil);
-        } 
+        }
+    } else {
+        return [[Model sectionTitles] objectAtIndex:indexPath.row]; 
     }
 }
 
@@ -96,13 +174,13 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self titleForIndexPath:indexPath];
     if (indexPath.section == 0) {
-        text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
-        
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         return cell;
     } else {
+        text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
+        
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
@@ -116,9 +194,9 @@
     NSString* text = [self titleForIndexPath:indexPath];
     
     if (indexPath.section == 0) {
-        text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
         return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
+        text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
         return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
 }
@@ -126,17 +204,20 @@
 
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        NSString* text = [[Model sectionTitles] objectAtIndex:indexPath.row];
-        QuestionsViewController* controller = [[[QuestionsViewController alloc] initWithSectionTitle:text] autorelease];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else {
         if (indexPath.row == 0) {
             ToughQuestionsViewController* controller = [[[ToughQuestionsViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        } else if (indexPath.row == 1) {
+            ACLUInfoViewController* controller = [[[ACLUInfoViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 2) {
             GreatestHitsViewController* controller = [[[GreatestHitsViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         }
+    } else {
+        NSString* text = [[Model sectionTitles] objectAtIndex:indexPath.row];
+        QuestionsViewController* controller = [[[QuestionsViewController alloc] initWithSectionTitle:text] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -144,9 +225,9 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
-        return NSLocalizedString(@"Encountering Law Enforment", nil);
-    } else {
         return NSLocalizedString(@"ACLU Information", nil);
+    } else {
+        return NSLocalizedString(@"Encountering Law Enforment", nil);
     }
 
     return nil;
