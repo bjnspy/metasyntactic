@@ -278,22 +278,15 @@ typedef enum {
 
 
 - (void) didSelectLoggedInRow:(NSInteger) row {
-    if (row == SearchSection) {
-        [self didSelectSearchRow];
-    } else if (row == MostPopularSection) {
-        [self didSelectMostPopularSection];
-    } else if (row == DVDSection) {
-        [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
-    } else if (row == InstantSection) {
-        [self didSelectQueueRow:[NetflixCache instantQueueKey]];
-    } else if (row == RecommendationsSection) {
-        [self didSelectRecomendationsRow];
-    } else if (row == AtHomeSection) {
-        [self didSelectQueueRow:[NetflixCache atHomeKey]];
-    } else if (row == RentalHistorySection) {
-        [self didSelectRentalHistoryRow];
-    } else if (row == LogOutSection) {
-        [self didSelectLogoutRow];
+    switch (row) {
+        case SearchSection:             return [self didSelectSearchRow];
+        case MostPopularSection:        return [self didSelectMostPopularSection];
+        case DVDSection:                return [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
+        case InstantSection:            return [self didSelectQueueRow:[NetflixCache instantQueueKey]];
+        case RecommendationsSection:    return [self didSelectRecomendationsRow];
+        case AtHomeSection:             return [self didSelectQueueRow:[NetflixCache atHomeKey]];
+        case RentalHistorySection:      return [self didSelectRentalHistoryRow];
+        case LogOutSection:             return [self didSelectLogoutRow];
     }
 }
 
