@@ -900,6 +900,10 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     
     NSMutableArray* items = [NSMutableArray array];
     for (XmlElement* itemElement in [channelElement elements:@"item"]) {
+        if (items.count >= 100) {
+            break;
+        }
+
         NSString* identifier = [[itemElement element:@"link"] text];
         NSRange lastSlashRange = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
         
