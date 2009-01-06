@@ -322,17 +322,20 @@
 								<string>742DB8150F120DC30079E6B0</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>1C08E77C0454961000C914BD</string>
+								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>58</integer>
+									<integer>18</integer>
+									<integer>10</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 402}, {235, 788}}</string>
+							<string>{{0, 0}, {235, 788}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -351,7 +354,7 @@
 							<real>235</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>46 30 880 847 0 0 1440 878 </string>
+						<string>47 29 880 847 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -369,7 +372,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CreditsViewController.m</string>
+								<string>SectionViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -377,23 +380,23 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CreditsViewController.m</string>
+										<string>SectionViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>742DC1610F133E760079E6B0</string>
+										<string>742DC1A10F1348800079E6B0</string>
 										<key>history</key>
 										<array>
-											<string>742DC0E40F13394B0079E6B0</string>
-											<string>742DC0E50F13394B0079E6B0</string>
-											<string>742DC0E80F13394B0079E6B0</string>
-											<string>742DC0E90F13394B0079E6B0</string>
 											<string>742DC0EA0F13394B0079E6B0</string>
 											<string>742DC1050F13396C0079E6B0</string>
 											<string>742DC1230F133AB50079E6B0</string>
-											<string>742DC1290F133B2A0079E6B0</string>
+											<string>742DC18C0F1348550079E6B0</string>
+											<string>742DC18D0F1348550079E6B0</string>
+											<string>742DC18E0F1348550079E6B0</string>
+											<string>742DC18F0F1348550079E6B0</string>
+											<string>742DC1900F1348550079E6B0</string>
+											<string>742DC1910F1348550079E6B0</string>
 											<string>742DC13D0F133B9F0079E6B0</string>
-											<string>742DC1520F133DAB0079E6B0</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -407,14 +410,8 @@
 											<string>742DC0480F13354B0079E6B0</string>
 											<string>742DC0ED0F13394B0079E6B0</string>
 											<string>742DC0EE0F13394B0079E6B0</string>
-											<string>742DC0EF0F13394B0079E6B0</string>
-											<string>742DC0F00F13394B0079E6B0</string>
-											<string>742DC0F10F13394B0079E6B0</string>
-											<string>742DC0F20F13394B0079E6B0</string>
 											<string>742DC0F30F13394B0079E6B0</string>
 											<string>742DC0F40F13394B0079E6B0</string>
-											<string>742DC0F50F13394B0079E6B0</string>
-											<string>742DC0F60F13394B0079E6B0</string>
 											<string>742DC0F70F13394B0079E6B0</string>
 											<string>742DC0F80F13394B0079E6B0</string>
 											<string>742DC0F90F13394B0079E6B0</string>
@@ -425,6 +422,13 @@
 											<string>742DC12C0F133B2A0079E6B0</string>
 											<string>742DC1370F133B7E0079E6B0</string>
 											<string>742DC13F0F133B9F0079E6B0</string>
+											<string>742DC1920F1348550079E6B0</string>
+											<string>742DC1930F1348550079E6B0</string>
+											<string>742DC1940F1348550079E6B0</string>
+											<string>742DC1950F1348550079E6B0</string>
+											<string>742DC1960F1348550079E6B0</string>
+											<string>742DC1970F1348550079E6B0</string>
+											<string>742DC1980F1348550079E6B0</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -438,7 +442,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {623, 628}}</string>
 								<key>RubberWindowFrame</key>
-								<string>46 30 880 847 0 0 1440 878 </string>
+								<string>47 29 880 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -458,7 +462,7 @@
 								<key>Frame</key>
 								<string>{{0, 633}, {623, 173}}</string>
 								<key>RubberWindowFrame</key>
-								<string>46 30 880 847 0 0 1440 878 </string>
+								<string>47 29 880 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -603,7 +607,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>252919414.91580299</real>
+	<real>252921984.08731499</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -618,7 +622,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>742DC15F0F133E170079E6B0</string>
+		<string>742DC19A0F1348550079E6B0</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>742DB6540F1200590079E6B0</string>
 		<string>742DB6550F1200590079E6B0</string>
@@ -628,7 +632,7 @@
 		<string>/Projects/metasyntactic/trunk/YourRights/YourRights.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>46 30 880 847 0 0 1440 878 </string>
+	<string>47 29 880 847 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -867,7 +871,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ACLUInfoViewController.m</string>
+										<string>CreditsViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>

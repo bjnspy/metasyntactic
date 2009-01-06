@@ -54,6 +54,9 @@
         
         [button addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
         
+        UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)] autorelease];
+        
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:view] autorelease];
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
     }
     
