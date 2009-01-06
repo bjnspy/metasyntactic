@@ -9,6 +9,7 @@
 #import "DecisionCell.h"
 
 #import "Decision.h"
+#import "GreatestHitsViewController.h"
 
 @interface DecisionCell()
 @property (retain) Decision* decision;
@@ -103,7 +104,7 @@
     }
 }
 
-- (void) setDecision:(Decision*) decision_ owner:(id) owner {
+- (void) setDecision:(Decision*) decision_ owner:(GreatestHitsViewController*) owner {
     self.decision = decision_;
     
     if ([owner sortingByCategory]) {
@@ -127,7 +128,7 @@
 
 
 
-+ (CGFloat) height:(Decision*) decision owner:(id) owner {
++ (CGFloat) height:(Decision*) decision owner:(GreatestHitsViewController*) owner {
     CGFloat width = [self width:decision];
     CGSize size = [decision.synopsis sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(width, 2000) lineBreakMode:UILineBreakModeWordWrap];
     

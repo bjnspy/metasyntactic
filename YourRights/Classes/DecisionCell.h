@@ -17,7 +17,7 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
-+ (CGFloat) height:(Decision*) decision owner:(id) owner; 
-- (void) setDecision:(Decision*) decision owner:(id) owner;
++ (CGFloat) height:(Decision*) decision owner:(GreatestHitsViewController*) owner; 
+- (void) setDecision:(Decision*) decision owner:(GreatestHitsViewController*) owner;
 
 @end

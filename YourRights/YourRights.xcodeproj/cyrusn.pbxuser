@@ -31,8 +31,8 @@
 		breakpoints = (
 			742DB64D0F1200510079E6B0 /* YourRightsNavigationController.m:18 */,
 			742DB6710F1201270079E6B0 /* YourRightsAppDelegate.m:35 */,
-			742DBD6D0F1312D10079E6B0 /* DecisionCell.m:72 */,
-			742DBDD40F131A110079E6B0 /* DecisionCell.m:81 */,
+			742DBD6D0F1312D10079E6B0 /* DecisionCell.m:73 */,
+			742DBDD40F131A110079E6B0 /* DecisionCell.m:82 */,
 			742DBE2D0F13208F0079E6B0 /* GreatestHitsViewController.m:280 */,
 			742DBE310F1320A50079E6B0 /* GreatestHitsViewController.m:286 */,
 			742DBE890F13234C0079E6B0 /* GreatestHitsViewController.m:205 */,
@@ -1180,6 +1180,21 @@
 			742DBE8A0F13234E0079E6B0 /* PBXTextBookmark */ = 742DBE8A0F13234E0079E6B0 /* PBXTextBookmark */;
 			742DBE8C0F1323850079E6B0 /* PBXTextBookmark */ = 742DBE8C0F1323850079E6B0 /* PBXTextBookmark */;
 			742DBE8E0F1323930079E6B0 /* PBXTextBookmark */ = 742DBE8E0F1323930079E6B0 /* PBXTextBookmark */;
+			742DBE9F0F1324740079E6B0 /* PBXTextBookmark */ = 742DBE9F0F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA00F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA00F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA10F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA10F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA20F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA20F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA30F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA30F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA40F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA40F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA50F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA50F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA60F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA60F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA70F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA70F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA80F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA80F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEA90F1324740079E6B0 /* PBXTextBookmark */ = 742DBEA90F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEAA0F1324740079E6B0 /* PBXTextBookmark */ = 742DBEAA0F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEAB0F1324740079E6B0 /* PBXTextBookmark */ = 742DBEAB0F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEAC0F1324740079E6B0 /* PBXTextBookmark */ = 742DBEAC0F1324740079E6B0 /* PBXTextBookmark */;
+			742DBEAD0F1324740079E6B0 /* PBXTextBookmark */ = 742DBEAD0F1324740079E6B0 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 742DB5D10F11FAE90079E6B0 /* Source Control */;
 		userBuildSettings = {
@@ -1281,8 +1296,8 @@
 	742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {612, 573}}";
-			sepNavSelRange = "{609, 0}";
-			sepNavVisRange = "{0, 703}";
+			sepNavSelRange = "{644, 0}";
+			sepNavVisRange = "{0, 738}";
 		};
 	};
 	742DB6070F11FF550079E6B0 /* YourRightsViewController.m */ = {
@@ -1355,7 +1370,7 @@
 		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 9";
 		rLen = 0;
-		rLoc = 703;
+		rLoc = 738;
 		rType = 0;
 		vrLen = 184;
 		vrLoc = 0;
@@ -1493,7 +1508,7 @@
 		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 9";
 		rLen = 0;
-		rLoc = 703;
+		rLoc = 738;
 		rType = 0;
 		vrLen = 184;
 		vrLoc = 0;
@@ -1581,7 +1596,7 @@
 		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 9";
 		rLen = 0;
-		rLoc = 634;
+		rLoc = 669;
 		rType = 0;
 		vrLen = 223;
 		vrLoc = 0;
@@ -1658,7 +1673,7 @@
 		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 9";
 		rLen = 0;
-		rLoc = 634;
+		rLoc = 669;
 		rType = 0;
 		vrLen = 223;
 		vrLoc = 0;
@@ -10276,8 +10291,8 @@
 	742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {612, 573}}";
-			sepNavSelRange = "{838, 0}";
-			sepNavVisRange = "{0, 846}";
+			sepNavSelRange = "{866, 0}";
+			sepNavVisRange = "{0, 874}";
 		};
 	};
 	742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */ = {
@@ -10566,7 +10581,7 @@
 		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 9";
 		rLen = 0;
-		rLoc = 633;
+		rLoc = 668;
 		rType = 0;
 		vrLen = 245;
 		vrLoc = 0;
@@ -10926,7 +10941,7 @@
 		fRef = 742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */;
 		name = "GreatestHitsViewController.h: 18";
 		rLen = 0;
-		rLoc = 839;
+		rLoc = 867;
 		rType = 0;
 		vrLen = 720;
 		vrLoc = 0;
@@ -11140,7 +11155,7 @@
 		fRef = 742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 125";
 		rLen = 0;
-		rLoc = 8810;
+		rLoc = 8814;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 2418;
@@ -11190,7 +11205,7 @@
 		fRef = 742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 125";
 		rLen = 0;
-		rLoc = 8810;
+		rLoc = 8814;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 2418;
@@ -11418,7 +11433,7 @@
 		fRef = 742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */;
 		name = "GreatestHitsViewController.h: 22";
 		rLen = 0;
-		rLoc = 839;
+		rLoc = 867;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 0;
@@ -11445,7 +11460,7 @@
 		fRef = 742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */;
 		name = "GreatestHitsViewController.h: 22";
 		rLen = 0;
-		rLoc = 839;
+		rLoc = 867;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 0;
@@ -11455,7 +11470,7 @@
 		fRef = 742DBCDF0F1309180079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 299";
 		rLen = 0;
-		rLoc = 9740;
+		rLoc = 9744;
 		rType = 0;
 		vrLen = 787;
 		vrLoc = 8617;
@@ -11490,7 +11505,7 @@
 		fRef = 742DBCDF0F1309180079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 299";
 		rLen = 0;
-		rLoc = 9740;
+		rLoc = 9744;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 7305;
@@ -11499,8 +11514,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBCF10F130E740079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 58";
-		rLen = 62;
-		rLoc = 3270;
+		rLen = 87;
+		rLoc = 3309;
 		rType = 0;
 		vrLen = 507;
 		vrLoc = 0;
@@ -11510,7 +11525,7 @@
 		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 15";
 		rLen = 0;
-		rLoc = 609;
+		rLoc = 644;
 		rType = 0;
 		vrLen = 703;
 		vrLoc = 0;
@@ -11529,8 +11544,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBCE90F1309BE0079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 23";
-		rLen = 17;
-		rLoc = 472;
+		rLen = 42;
+		rLoc = 497;
 		rType = 0;
 		vrLen = 504;
 		vrLoc = 0;
@@ -11540,7 +11555,7 @@
 		fRef = 742DBCDF0F1309180079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 299";
 		rLen = 0;
-		rLoc = 9740;
+		rLoc = 9744;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 7323;
@@ -11560,7 +11575,7 @@
 		fRef = 742DBCDF0F1309180079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 299";
 		rLen = 0;
-		rLoc = 9740;
+		rLoc = 9744;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 7323;
@@ -11570,7 +11585,7 @@
 		fRef = 742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 13";
 		rLen = 0;
-		rLoc = 388;
+		rLoc = 427;
 		rType = 0;
 		vrLen = 602;
 		vrLoc = 22;
@@ -11580,7 +11595,7 @@
 		fRef = 742DBCDF0F1309180079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 299";
 		rLen = 0;
-		rLoc = 9740;
+		rLoc = 9744;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 7305;
@@ -11589,8 +11604,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBCE90F1309BE0079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 16";
-		rLen = 60;
-		rLoc = 430;
+		rLen = 85;
+		rLoc = 455;
 		rType = 0;
 		vrLen = 381;
 		vrLoc = 0;
@@ -11600,7 +11615,7 @@
 		fRef = 742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 42";
 		rLen = 0;
-		rLoc = 3867;
+		rLoc = 3931;
 		rType = 0;
 		vrLen = 577;
 		vrLoc = 236;
@@ -11650,7 +11665,7 @@
 		fRef = 742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 54";
 		rLen = 0;
-		rLoc = 3835;
+		rLoc = 3899;
 		rType = 0;
 		vrLen = 720;
 		vrLoc = 561;
@@ -11659,8 +11674,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBCE90F1309BE0079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 23";
-		rLen = 17;
-		rLoc = 472;
+		rLen = 42;
+		rLoc = 497;
 		rType = 0;
 		vrLen = 504;
 		vrLoc = 0;
@@ -11669,8 +11684,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBCF10F130E740079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 58";
-		rLen = 62;
-		rLoc = 3270;
+		rLen = 87;
+		rLoc = 3309;
 		rType = 0;
 		vrLen = 507;
 		vrLoc = 0;
@@ -11680,7 +11695,7 @@
 		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 15";
 		rLen = 0;
-		rLoc = 609;
+		rLoc = 644;
 		rType = 0;
 		vrLen = 703;
 		vrLoc = 0;
@@ -11699,8 +11714,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBCE90F1309BE0079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 23";
-		rLen = 17;
-		rLoc = 472;
+		rLen = 42;
+		rLoc = 497;
 		rType = 0;
 		vrLen = 504;
 		vrLoc = 0;
@@ -11727,8 +11742,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBCE90F1309BE0079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 23";
-		rLen = 17;
-		rLoc = 472;
+		rLen = 42;
+		rLoc = 497;
 		rType = 0;
 		vrLen = 504;
 		vrLoc = 0;
@@ -11737,15 +11752,15 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBD090F130ECA0079E6B0 /* DecisionCell.m */;
 		rLen = 1;
-		rLoc = 141;
+		rLoc = 142;
 		rType = 1;
 	};
 	742DBD0D0F130ED30079E6B0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 742DBCE90F1309BE0079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 23";
-		rLen = 17;
-		rLoc = 472;
+		rLen = 42;
+		rLoc = 497;
 		rType = 0;
 		vrLen = 504;
 		vrLoc = 0;
@@ -11779,9 +11794,9 @@
 		path = /Projects/metasyntactic/trunk/YourRights/Classes/DecisionCell.h;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {562, 573}}";
-			sepNavSelRange = "{226, 1}";
-			sepNavVisRange = "{0, 497}";
+			sepNavIntBoundsRect = "{{0, 0}, {684, 573}}";
+			sepNavSelRange = "{532, 0}";
+			sepNavVisRange = "{0, 547}";
 		};
 	};
 	742DBD320F130F630079E6B0 /* DecisionCell.m */ = {
@@ -11820,8 +11835,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBD240F130F400079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 23";
-		rLen = 59;
-		rLoc = 431;
+		rLen = 84;
+		rLoc = 456;
 		rType = 0;
 		vrLen = 505;
 		vrLoc = 0;
@@ -11831,7 +11846,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 72";
 		rLen = 4;
-		rLoc = 4339;
+		rLoc = 4428;
 		rType = 0;
 		vrLen = 629;
 		vrLoc = 969;
@@ -11861,7 +11876,7 @@
 		fRef = 742DBD240F130F400079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 21";
 		rLen = 0;
-		rLoc = 429;
+		rLoc = 454;
 		rType = 0;
 		vrLen = 505;
 		vrLoc = 0;
@@ -11871,7 +11886,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 72";
 		rLen = 4;
-		rLoc = 4339;
+		rLoc = 4428;
 		rType = 0;
 		vrLen = 629;
 		vrLoc = 969;
@@ -11880,8 +11895,8 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBD240F130F400079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 23";
-		rLen = 59;
-		rLoc = 431;
+		rLen = 84;
+		rLoc = 456;
 		rType = 0;
 		vrLen = 505;
 		vrLoc = 0;
@@ -11891,7 +11906,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 73";
 		rLen = 0;
-		rLoc = 3912;
+		rLoc = 3976;
 		rType = 0;
 		vrLen = 734;
 		vrLoc = 529;
@@ -11901,7 +11916,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 78";
 		rLen = 0;
-		rLoc = 3835;
+		rLoc = 3899;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 1318;
@@ -11929,7 +11944,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 78";
 		rLen = 0;
-		rLoc = 3835;
+		rLoc = 3899;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 1318;
@@ -11946,7 +11961,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 78";
 		rLen = 0;
-		rLoc = 3835;
+		rLoc = 3899;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 1318;
@@ -11994,7 +12009,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 71";
 		rLen = 0;
-		rLoc = 3362;
+		rLoc = 3426;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 1383;
@@ -12031,7 +12046,7 @@
 		fRef = 742DBD4E0F1311190079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 324";
 		rLen = 0;
-		rLoc = 9975;
+		rLoc = 9979;
 		rType = 0;
 		vrLen = 796;
 		vrLoc = 9303;
@@ -12041,7 +12056,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 71";
 		rLen = 0;
-		rLoc = 3362;
+		rLoc = 3426;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 1383;
@@ -12081,7 +12096,7 @@
 		fRef = 742DBD320F130F630079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 53";
 		rLen = 0;
-		rLoc = 2440;
+		rLoc = 2479;
 		rType = 0;
 		vrLen = 848;
 		vrLoc = 710;
@@ -12098,7 +12113,7 @@
 			sepNavVisRange = "{1548, 783}";
 		};
 	};
-	742DBD6D0F1312D10079E6B0 /* DecisionCell.m:72 */ = {
+	742DBD6D0F1312D10079E6B0 /* DecisionCell.m:73 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -12110,7 +12125,7 @@
 		functionName = "-layoutSubviews";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 72;
+		lineNumber = 73;
 		location = YourRights;
 		modificationTime = 252912520.616422;
 		state = 2;
@@ -12120,7 +12135,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 53";
 		rLen = 0;
-		rLoc = 2440;
+		rLoc = 2479;
 		rType = 0;
 		vrLen = 848;
 		vrLoc = 710;
@@ -12130,7 +12145,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 53";
 		rLen = 0;
-		rLoc = 2440;
+		rLoc = 2479;
 		rType = 0;
 		vrLen = 720;
 		vrLoc = 891;
@@ -12140,7 +12155,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 53";
 		rLen = 0;
-		rLoc = 2440;
+		rLoc = 2479;
 		rType = 0;
 		vrLen = 720;
 		vrLoc = 891;
@@ -12150,7 +12165,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 52";
 		rLen = 0;
-		rLoc = 2224;
+		rLoc = 2263;
 		rType = 0;
 		vrLen = 725;
 		vrLoc = 891;
@@ -12160,7 +12175,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 52";
 		rLen = 0;
-		rLoc = 2224;
+		rLoc = 2263;
 		rType = 0;
 		vrLen = 725;
 		vrLoc = 891;
@@ -12170,7 +12185,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 38";
 		rLen = 0;
-		rLoc = 855;
+		rLoc = 894;
 		rType = 0;
 		vrLen = 850;
 		vrLoc = 219;
@@ -12180,7 +12195,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 38";
 		rLen = 0;
-		rLoc = 855;
+		rLoc = 894;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 219;
@@ -12190,7 +12205,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 45";
 		rLen = 0;
-		rLoc = 2054;
+		rLoc = 2093;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 710;
@@ -12214,7 +12229,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 45";
 		rLen = 0;
-		rLoc = 2054;
+		rLoc = 2093;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 710;
@@ -12284,7 +12299,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 45";
 		rLen = 0;
-		rLoc = 2054;
+		rLoc = 2093;
 		rType = 0;
 		vrLen = 962;
 		vrLoc = 651;
@@ -12314,7 +12329,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 54";
 		rLen = 0;
-		rLoc = 2238;
+		rLoc = 2277;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 651;
@@ -12324,7 +12339,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 54";
 		rLen = 0;
-		rLoc = 2238;
+		rLoc = 2277;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 651;
@@ -12334,7 +12349,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 54";
 		rLen = 0;
-		rLoc = 2238;
+		rLoc = 2277;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 651;
@@ -12436,7 +12451,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 54";
 		rLen = 0;
-		rLoc = 2238;
+		rLoc = 2277;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 651;
@@ -12516,7 +12531,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 38";
 		rLen = 0;
-		rLoc = 886;
+		rLoc = 925;
 		rType = 0;
 		vrLen = 848;
 		vrLoc = 482;
@@ -12526,7 +12541,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 30";
 		rLen = 0;
-		rLoc = 539;
+		rLoc = 578;
 		rType = 0;
 		vrLen = 848;
 		vrLoc = 482;
@@ -12546,7 +12561,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 30";
 		rLen = 0;
-		rLoc = 539;
+		rLoc = 578;
 		rType = 0;
 		vrLen = 848;
 		vrLoc = 482;
@@ -12586,7 +12601,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 41";
 		rLen = 0;
-		rLoc = 940;
+		rLoc = 979;
 		rType = 0;
 		vrLen = 917;
 		vrLoc = 482;
@@ -12606,7 +12621,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 41";
 		rLen = 0;
-		rLoc = 940;
+		rLoc = 979;
 		rType = 0;
 		vrLen = 917;
 		vrLoc = 482;
@@ -12626,7 +12641,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 78";
 		rLen = 0;
-		rLoc = 3258;
+		rLoc = 3297;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 1544;
@@ -12636,7 +12651,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 86";
 		rLen = 0;
-		rLoc = 3438;
+		rLoc = 3502;
 		rType = 0;
 		vrLen = 837;
 		vrLoc = 1891;
@@ -12646,7 +12661,7 @@
 		fRef = 742DBD6B0F1312D10079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 39";
 		rLen = 0;
-		rLoc = 940;
+		rLoc = 979;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 467;
@@ -12673,7 +12688,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBDC80F1319980079E6B0 /* DecisionCell.m */;
 		rLen = 0;
-		rLoc = 111;
+		rLoc = 112;
 		rType = 1;
 	};
 	742DBDCE0F1319B10079E6B0 /* PBXTextBookmark */ = {
@@ -12681,7 +12696,7 @@
 		fRef = 742DBDCA0F1319980079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 105";
 		rLen = 0;
-		rLoc = 3525;
+		rLoc = 3589;
 		rType = 0;
 		vrLen = 816;
 		vrLoc = 2878;
@@ -12698,7 +12713,7 @@
 			sepNavVisRange = "{3186, 730}";
 		};
 	};
-	742DBDD40F131A110079E6B0 /* DecisionCell.m:81 */ = {
+	742DBDD40F131A110079E6B0 /* DecisionCell.m:82 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -12710,7 +12725,7 @@
 		functionName = "-layoutSubviews";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 81;
+		lineNumber = 82;
 		location = YourRights;
 		modificationTime = 252912520.616429;
 		state = 2;
@@ -12720,7 +12735,7 @@
 		fRef = 742DBDD20F131A110079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 43";
 		rLen = 0;
-		rLoc = 1236;
+		rLoc = 1275;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 1713;
@@ -12730,7 +12745,7 @@
 		fRef = 742DBDD20F131A110079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 68";
 		rLen = 0;
-		rLoc = 2438;
+		rLoc = 2477;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 1713;
@@ -12740,7 +12755,7 @@
 		fRef = 742DBDD20F131A110079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 68";
 		rLen = 0;
-		rLoc = 2438;
+		rLoc = 2477;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 1713;
@@ -12750,7 +12765,7 @@
 		fRef = 742DBDD20F131A110079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 68";
 		rLen = 0;
-		rLoc = 2438;
+		rLoc = 2477;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 1713;
@@ -12760,7 +12775,7 @@
 		fRef = 742DBDD20F131A110079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 63";
 		rLen = 0;
-		rLoc = 2167;
+		rLoc = 2206;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 1713;
@@ -12770,7 +12785,7 @@
 		fRef = 742DBDD20F131A110079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 63";
 		rLen = 0;
-		rLoc = 2167;
+		rLoc = 2206;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 1713;
@@ -12817,7 +12832,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBDE60F131BEA0079E6B0 /* DecisionCell.m */;
 		rLen = 1;
-		rLoc = 131;
+		rLoc = 132;
 		rType = 1;
 	};
 	742DBDEE0F131C4B0079E6B0 /* PBXTextBookmark */ = {
@@ -12825,7 +12840,7 @@
 		fRef = 742DBDD20F131A110079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 125";
 		rLen = 0;
-		rLoc = 4228;
+		rLoc = 4317;
 		rType = 0;
 		vrLen = 746;
 		vrLoc = 3166;
@@ -12855,7 +12870,7 @@
 		fRef = 742DBDE80F131BEA0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 148";
 		rLen = 0;
-		rLoc = 4141;
+		rLoc = 4230;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 3740;
@@ -12865,7 +12880,7 @@
 		fRef = 742DBDE80F131BEA0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 148";
 		rLen = 0;
-		rLoc = 4141;
+		rLoc = 4230;
 		rType = 0;
 		vrLen = 885;
 		vrLoc = 2326;
@@ -12892,7 +12907,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBDF70F131CFB0079E6B0 /* DecisionCell.m */;
 		rLen = 1;
-		rLoc = 87;
+		rLoc = 88;
 		rType = 1;
 	};
 	742DBDFD0F131D0B0079E6B0 /* PBXTextBookmark */ = {
@@ -12900,7 +12915,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 97";
 		rLen = 0;
-		rLoc = 2759;
+		rLoc = 2798;
 		rType = 0;
 		vrLen = 1160;
 		vrLoc = 2407;
@@ -12910,7 +12925,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 65";
 		rLen = 0;
-		rLoc = 2029;
+		rLoc = 2068;
 		rType = 0;
 		vrLen = 860;
 		vrLoc = 1660;
@@ -12920,7 +12935,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 65";
 		rLen = 0;
-		rLoc = 2028;
+		rLoc = 2067;
 		rType = 0;
 		vrLen = 860;
 		vrLoc = 1660;
@@ -12930,7 +12945,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 86";
 		rLen = 0;
-		rLoc = 2693;
+		rLoc = 2732;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 2083;
@@ -12940,7 +12955,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 136";
 		rLen = 0;
-		rLoc = 4287;
+		rLoc = 4376;
 		rType = 0;
 		vrLen = 879;
 		vrLoc = 3443;
@@ -12962,7 +12977,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 139";
 		rLen = 0;
-		rLoc = 4335;
+		rLoc = 4424;
 		rType = 0;
 		vrLen = 775;
 		vrLoc = 3571;
@@ -12972,7 +12987,7 @@
 		fRef = 742DBE0E0F131E6F0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 319";
 		rLen = 54;
-		rLoc = 9922;
+		rLoc = 9926;
 		rType = 0;
 		vrLen = 880;
 		vrLoc = 8640;
@@ -12982,7 +12997,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 139";
 		rLen = 0;
-		rLoc = 4335;
+		rLoc = 4424;
 		rType = 0;
 		vrLen = 775;
 		vrLoc = 3571;
@@ -12992,7 +13007,7 @@
 		fRef = 742DBE0E0F131E6F0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 319";
 		rLen = 54;
-		rLoc = 9922;
+		rLoc = 9926;
 		rType = 0;
 		vrLen = 880;
 		vrLoc = 8640;
@@ -13002,7 +13017,7 @@
 		fRef = 742DBD240F130F400079E6B0 /* DecisionCell.h */;
 		name = "DecisionCell.h: 20";
 		rLen = 0;
-		rLoc = 430;
+		rLoc = 455;
 		rType = 0;
 		vrLen = 497;
 		vrLoc = 0;
@@ -13022,7 +13037,7 @@
 		fRef = 742DBE0E0F131E6F0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 318";
 		rLen = 0;
-		rLoc = 9910;
+		rLoc = 9914;
 		rType = 0;
 		vrLen = 880;
 		vrLoc = 8640;
@@ -13042,7 +13057,7 @@
 		fRef = 742DBE0E0F131E6F0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 318";
 		rLen = 0;
-		rLoc = 9910;
+		rLoc = 9914;
 		rType = 0;
 		vrLen = 880;
 		vrLoc = 8640;
@@ -13052,7 +13067,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 86";
 		rLen = 0;
-		rLoc = 2693;
+		rLoc = 2732;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 3561;
@@ -13062,7 +13077,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 50";
 		rLen = 0;
-		rLoc = 1547;
+		rLoc = 1586;
 		rType = 0;
 		vrLen = 1362;
 		vrLoc = 494;
@@ -13072,7 +13087,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 114";
 		rLen = 0;
-		rLoc = 3536;
+		rLoc = 3600;
 		rType = 0;
 		vrLen = 729;
 		vrLoc = 3143;
@@ -13082,7 +13097,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 114";
 		rLen = 0;
-		rLoc = 3536;
+		rLoc = 3600;
 		rType = 0;
 		vrLen = 728;
 		vrLoc = 3143;
@@ -13092,7 +13107,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 114";
 		rLen = 0;
-		rLoc = 3536;
+		rLoc = 3600;
 		rType = 0;
 		vrLen = 728;
 		vrLoc = 3143;
@@ -13102,7 +13117,7 @@
 		fRef = 742DBE0E0F131E6F0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 281";
 		rLen = 0;
-		rLoc = 8649;
+		rLoc = 8653;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 7558;
@@ -13141,7 +13156,7 @@
 		fRef = 742DBE2B0F13208F0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 281";
 		rLen = 0;
-		rLoc = 8649;
+		rLoc = 8653;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 7558;
@@ -13168,7 +13183,7 @@
 		fRef = 742DBE2B0F13208F0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 281";
 		rLen = 0;
-		rLoc = 8649;
+		rLoc = 8653;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 7558;
@@ -13187,9 +13202,9 @@
 		path = /Projects/metasyntactic/trunk/YourRights/Classes/WebViewController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1108, 5168}}";
-			sepNavSelRange = "{1529, 30}";
-			sepNavVisRange = "{593, 774}";
+			sepNavIntBoundsRect = "{{0, 0}, {1188, 5117}}";
+			sepNavSelRange = "{679, 20}";
+			sepNavVisRange = "{37, 1105}";
 		};
 	};
 	742DBE580F1321DE0079E6B0 /* GreatestHitsViewController.m */ = {
@@ -13234,7 +13249,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 114";
 		rLen = 0;
-		rLoc = 3536;
+		rLoc = 3600;
 		rType = 0;
 		vrLen = 843;
 		vrLoc = 2774;
@@ -13251,7 +13266,7 @@
 		fRef = 742DBE2B0F13208F0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 281";
 		rLen = 0;
-		rLoc = 8649;
+		rLoc = 8653;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 7558;
@@ -13281,7 +13296,7 @@
 		fRef = 742DBDF90F131CFB0079E6B0 /* DecisionCell.m */;
 		name = "DecisionCell.m: 114";
 		rLen = 0;
-		rLoc = 3536;
+		rLoc = 3600;
 		rType = 0;
 		vrLen = 843;
 		vrLoc = 2774;
@@ -13290,7 +13305,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBE5A0F1321DF0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 280";
-		rLen = 181;
+		rLen = 185;
 		rLoc = 8383;
 		rType = 0;
 		vrLen = 971;
@@ -13312,7 +13327,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBE660F1321EA0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 280";
-		rLen = 181;
+		rLen = 185;
 		rLoc = 8383;
 		rType = 0;
 		vrLen = 971;
@@ -13322,7 +13337,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBE660F1321EA0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 280";
-		rLen = 181;
+		rLen = 185;
 		rLoc = 8383;
 		rType = 0;
 		vrLen = 971;
@@ -13332,7 +13347,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBE660F1321EA0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 280";
-		rLen = 181;
+		rLen = 185;
 		rLoc = 8383;
 		rType = 0;
 		vrLen = 971;
@@ -13362,7 +13377,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742DBE660F1321EA0079E6B0 /* GreatestHitsViewController.m */;
 		name = "GreatestHitsViewController.m: 280";
-		rLen = 181;
+		rLen = 185;
 		rLoc = 8383;
 		rType = 0;
 		vrLen = 970;
@@ -13501,5 +13516,190 @@
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 5761;
+	};
+	742DBE930F1324190079E6B0 /* DecisionCell.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = DecisionCell.m;
+		path = /Projects/metasyntactic/trunk/YourRights/Classes/DecisionCell.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1292, 2935}}";
+			sepNavSelRange = "{4229, 38}";
+			sepNavVisRange = "{3452, 884}";
+		};
+	};
+	742DBE980F1324450079E6B0 /* DecisionCell.m */ = {
+		isa = PBXFileReference;
+		name = DecisionCell.m;
+		path = /Projects/metasyntactic/trunk/YourRights/Classes/DecisionCell.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1292, 2981}}";
+			sepNavSelRange = "{4318, 38}";
+			sepNavVisRange = "{3427, 958}";
+		};
+	};
+	742DBE9D0F1324530079E6B0 /* GreatestHitsViewController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = GreatestHitsViewController.m;
+		path = /Projects/metasyntactic/trunk/YourRights/Classes/GreatestHitsViewController.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1484, 6118}}";
+			sepNavSelRange = "{8484, 0}";
+			sepNavVisRange = "{7945, 1017}";
+		};
+	};
+	742DBE9F0F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
+		name = "ForwardDeclarations.h: 16";
+		rLen = 0;
+		rLoc = 644;
+		rType = 0;
+		vrLen = 738;
+		vrLoc = 0;
+	};
+	742DBEA00F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBD240F130F400079E6B0 /* DecisionCell.h */;
+		name = "DecisionCell.h: 21";
+		rLen = 0;
+		rLoc = 532;
+		rType = 0;
+		vrLen = 547;
+		vrLoc = 0;
+	};
+	742DBEA10F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBE980F1324450079E6B0 /* DecisionCell.m */;
+		name = "DecisionCell.m: 136";
+		rLen = 38;
+		rLoc = 4318;
+		rType = 0;
+		vrLen = 929;
+		vrLoc = 3427;
+	};
+	742DBEA20F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */;
+		name = "GreatestHitsViewController.h: 25";
+		rLen = 0;
+		rLoc = 866;
+		rType = 0;
+		vrLen = 874;
+		vrLoc = 0;
+	};
+	742DBEA30F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBE9D0F1324530079E6B0 /* GreatestHitsViewController.m */;
+		name = "GreatestHitsViewController.m: 285";
+		rLen = 0;
+		rLoc = 8484;
+		rType = 0;
+		vrLen = 1017;
+		vrLoc = 7945;
+	};
+	742DBEA40F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBE4E0F13215D0079E6B0 /* WebViewController.m */;
+		name = "WebViewController.m: 55";
+		rLen = 30;
+		rLoc = 1529;
+		rType = 0;
+		vrLen = 775;
+		vrLoc = 592;
+	};
+	742DBEA50F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBE870F13234C0079E6B0 /* GreatestHitsViewController.m */;
+		name = "GreatestHitsViewController.m: 211";
+		rLen = 0;
+		rLoc = 6051;
+		rType = 0;
+		vrLen = 643;
+		vrLoc = 5761;
+	};
+	742DBEA60F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBE930F1324190079E6B0 /* DecisionCell.m */;
+		name = "DecisionCell.m: 135";
+		rLen = 38;
+		rLoc = 4318;
+		rType = 0;
+		vrLen = 907;
+		vrLoc = 3405;
+	};
+	742DBEA70F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */;
+		name = "GreatestHitsViewController.h: 15";
+		rLen = 26;
+		rLoc = 604;
+		rType = 0;
+		vrLen = 846;
+		vrLoc = 0;
+	};
+	742DBEA80F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DB5F60F11FF240079E6B0 /* ForwardDeclarations.h */;
+		name = "ForwardDeclarations.h: 16";
+		rLen = 0;
+		rLoc = 644;
+		rType = 0;
+		vrLen = 738;
+		vrLoc = 0;
+	};
+	742DBEA90F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBD240F130F400079E6B0 /* DecisionCell.h */;
+		name = "DecisionCell.h: 21";
+		rLen = 0;
+		rLoc = 532;
+		rType = 0;
+		vrLen = 547;
+		vrLoc = 0;
+	};
+	742DBEAA0F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBE980F1324450079E6B0 /* DecisionCell.m */;
+		name = "DecisionCell.m: 136";
+		rLen = 38;
+		rLoc = 4318;
+		rType = 0;
+		vrLen = 929;
+		vrLoc = 3427;
+	};
+	742DBEAB0F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */;
+		name = "GreatestHitsViewController.h: 25";
+		rLen = 0;
+		rLoc = 866;
+		rType = 0;
+		vrLen = 874;
+		vrLoc = 0;
+	};
+	742DBEAC0F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBE9D0F1324530079E6B0 /* GreatestHitsViewController.m */;
+		name = "GreatestHitsViewController.m: 285";
+		rLen = 0;
+		rLoc = 8484;
+		rType = 0;
+		vrLen = 1017;
+		vrLoc = 7945;
+	};
+	742DBEAD0F1324740079E6B0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 742DBE4E0F13215D0079E6B0 /* WebViewController.m */;
+		name = "WebViewController.m: 18";
+		rLen = 20;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 1105;
+		vrLoc = 37;
 	};
 }

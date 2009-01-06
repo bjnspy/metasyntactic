@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @class Decision;
+@class GreatestHitsViewController;
 @class MultiDictionary;
 @class SectionViewController;
 @class YourRightsNavigationController;

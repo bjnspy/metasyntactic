@@ -282,7 +282,7 @@
     if (decision.link.length == 0) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     } else {
-        WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:self.navigationController address:decision.link showSafariButton:YES] autorelease];
+        WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:(id)self.navigationController address:decision.link showSafariButton:YES] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }
