@@ -378,7 +378,7 @@
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>742DBBEB0F12E4710079E6B0</string>
+										<string>742DBC170F12EE060079E6B0</string>
 										<key>history</key>
 										<array>
 											<string>742DBB540F12D1F80079E6B0</string>
@@ -390,7 +390,7 @@
 											<string>742DBB920F12D7370079E6B0</string>
 											<string>742DBBA90F12D9FD0079E6B0</string>
 											<string>742DBBAA0F12D9FD0079E6B0</string>
-											<string>742DBBAB0F12D9FD0079E6B0</string>
+											<string>742DBC160F12EE060079E6B0</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -608,7 +608,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>252896369.36030999</real>
+	<real>252898822.30030501</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
