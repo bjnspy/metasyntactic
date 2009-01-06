@@ -8,6 +8,7 @@
 
 #import "Model.h"
 
+#import "Decision.h"
 
 @implementation Model
 
@@ -22,6 +23,7 @@ static NSArray* links;
 
 static NSArray* toughQuestions;
 static NSArray* toughAnswers;
+
 
 + (void) setupToughQuestions {
     toughQuestions =
