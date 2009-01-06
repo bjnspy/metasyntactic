@@ -12,9 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class CreditsViewController;
-@class Decision;
-@class GreatestHitsViewController;
-@class MultiDictionary;
-@class SectionViewController;
-@class YourRightsNavigationController;
+@interface LocaleUtilities : NSObject {
+}
+
++ (NSString*) isoCountry;
++ (NSString*) isoLanguage;
++ (NSString*) displayCountry;
++ (NSString*) displayLanguage;
++ (NSString*) englishCountry;
++ (NSString*) englishLanguage;
+
++ (NSString*) displayLanguage:(NSString*) isoLanguage;
+
++ (BOOL) isEnglish;
++ (BOOL) isJapanese;
+
++ (BOOL) isSupportedCountry;
+
+@end

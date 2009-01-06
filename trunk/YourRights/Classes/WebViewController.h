@@ -12,9 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class CreditsViewController;
-@class Decision;
-@class GreatestHitsViewController;
-@class MultiDictionary;
-@class SectionViewController;
-@class YourRightsNavigationController;
+@interface WebViewController : UIViewController<UIWebViewDelegate> {
+@private
+    YourRightsNavigationController* navigationController;
+    UIWebView* webView;
+    UIToolbar* toolbar;
+    UIActivityIndicatorView* activityView;
+    UILabel* label;
+    NSString* address;
+    BOOL showSafariButton;
+}
+
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
+                            address:(NSString*) address
+                   showSafariButton:(BOOL) showSafariButton;
+
+@end

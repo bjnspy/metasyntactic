@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class CreditsViewController;
-@class Decision;
-@class GreatestHitsViewController;
-@class MultiDictionary;
-@class SectionViewController;
-@class YourRightsNavigationController;
+@interface ACLUInfoViewController : UITableViewController {
+@private
+    NSArray* isArray;
+    NSArray* isNotArray;
+}
+
+@end

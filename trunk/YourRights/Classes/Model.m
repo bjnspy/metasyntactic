@@ -15,6 +15,8 @@
 #import "Model.h"
 
 #import "Decision.h"
+#import "LocaleUtilities.h"
+#import "Utilities.h"
 
 @implementation Model
 
@@ -30,6 +32,7 @@ static NSArray* links;
 static NSArray* toughQuestions;
 static NSArray* toughAnswers;
 
+static NSString* currentVersion = @"1.0";
 
 + (void) setupToughQuestions {
     toughQuestions =
@@ -888,6 +891,20 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 
 + (void) setGreatestHitsSortIndex:(NSInteger) index {
     
+}
+
+
++ (NSString*) feedbackUrl {
+    NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nCountry: %@\nLanguage: %@",
+                      currentVersion,
+                      [LocaleUtilities englishCountry],
+                      [LocaleUtilities englishLanguage]];
+    
+    NSString* subject = @"Your%20Rights%20Feedback";
+    
+    NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
+    NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
+    return result;
 }
 
 @end

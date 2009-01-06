@@ -29,6 +29,11 @@
 		742DBC2C0F12FD4E0079E6B0 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */; };
 		742DBCEB0F1309BE0079E6B0 /* DecisionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */; };
 		742DBE360F1321030079E6B0 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBE350F1321030079E6B0 /* WebViewController.m */; };
+		742DBF1A0F132AD50079E6B0 /* ACLUInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */; };
+		742DC05F0F1336510079E6B0 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC05E0F1336510079E6B0 /* CreditsViewController.m */; };
+		742DC0610F1337090079E6B0 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 742DC0600F1337090079E6B0 /* License.txt */; };
+		742DC0690F1337ED0079E6B0 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */; };
+		742DC06C0F1337FF0079E6B0 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC06B0F1337FF0079E6B0 /* Utilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +78,15 @@
 		742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecisionCell.m; sourceTree = "<group>"; };
 		742DBE340F1321030079E6B0 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		742DBE350F1321030079E6B0 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUInfoViewController.h; sourceTree = "<group>"; };
+		742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUInfoViewController.m; sourceTree = "<group>"; };
+		742DC05D0F1336510079E6B0 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		742DC05E0F1336510079E6B0 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
+		742DC0600F1337090079E6B0 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		742DC0670F1337ED0079E6B0 /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
+		742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
+		742DC06A0F1337FF0079E6B0 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		742DC06B0F1337FF0079E6B0 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +107,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				742DC0660F1337D40079E6B0 /* Utilities */,
 				742DBC290F12FD2A0079E6B0 /* Collections */,
 				742DB8150F120DC30079E6B0 /* UI */,
 				1D3623240D0F684500981E51 /* YourRightsAppDelegate.h */,
@@ -137,6 +152,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				742DC0600F1337090079E6B0 /* License.txt */,
 				742DB84C0F129F070079E6B0 /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -158,6 +174,8 @@
 		742DB8150F120DC30079E6B0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				742DC05D0F1336510079E6B0 /* CreditsViewController.h */,
+				742DC05E0F1336510079E6B0 /* CreditsViewController.m */,
 				742DBE340F1321030079E6B0 /* WebViewController.h */,
 				742DBE350F1321030079E6B0 /* WebViewController.m */,
 				742DB87E0F12A6650079E6B0 /* WrappableCell.h */,
@@ -182,6 +200,8 @@
 				742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */,
 				742DBCE90F1309BE0079E6B0 /* DecisionCell.h */,
 				742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */,
+				742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */,
+				742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -193,6 +213,17 @@
 				742DBC2B0F12FD4E0079E6B0 /* MultiDictionary.m */,
 			);
 			name = Collections;
+			sourceTree = "<group>";
+		};
+		742DC0660F1337D40079E6B0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				742DC06A0F1337FF0079E6B0 /* Utilities.h */,
+				742DC06B0F1337FF0079E6B0 /* Utilities.m */,
+				742DC0670F1337ED0079E6B0 /* LocaleUtilities.h */,
+				742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +270,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				742DB84D0F129F070079E6B0 /* Icon.png in Resources */,
+				742DC0610F1337090079E6B0 /* License.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +298,10 @@
 				742DBC2C0F12FD4E0079E6B0 /* MultiDictionary.m in Sources */,
 				742DBCEB0F1309BE0079E6B0 /* DecisionCell.m in Sources */,
 				742DBE360F1321030079E6B0 /* WebViewController.m in Sources */,
+				742DBF1A0F132AD50079E6B0 /* ACLUInfoViewController.m in Sources */,
+				742DC05F0F1336510079E6B0 /* CreditsViewController.m in Sources */,
+				742DC0690F1337ED0079E6B0 /* LocaleUtilities.m in Sources */,
+				742DC06C0F1337FF0079E6B0 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

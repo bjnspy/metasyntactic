@@ -175,9 +175,6 @@
             WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:(id)self.navigationController address:link showSafariButton:YES] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         }
-        
-        NSURL* url = [NSURL URLWithString:link];
-        [[UIApplication sharedApplication] openURL:url];
     }
 }
 
