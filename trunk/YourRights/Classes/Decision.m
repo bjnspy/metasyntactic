@@ -259,7 +259,7 @@ static NSArray* greatestHits;
            NSLocalizedString(@"Convicting an anti-war protester of disturbing the peace for wearing a "
                              @"jacket that bore the words, “Fuck the draft,” was unconstitutional. The "
                              @"government cannot prohibit speech just because it is “offensive.”", nil) link:@"http://en.wikipedia.org/wiki/Cohen_v._California"],
-          [Decision decisionWithYear:1971 category:FreedomOfExpression title:@"Organization for Better Austin v. Keefe" synopsis:
+          [Decision decisionWithYear:1971 category:FreedomOfExpression title:@"Better Austin v. Keefe" synopsis:
            NSLocalizedString(@"An injunction against the distribution of leaflets in an entire residential "
                              @"suburb was struck down on the grounds that the privacy interests of the "
                              @"residents did not justify such a sweeping restraint.", nil) link:@""],
@@ -342,18 +342,18 @@ static NSArray* greatestHits;
                              @"challenge the state’s sterilization of welfare recipients. The Court distinguished " 
                              @"between lawyers who solicit “for pecuniary gain” and those who do so to "
                              @"“further political and ideological goals through associational activity.”", nil) link:@""], 
-          [Decision decisionWithYear:1980 category:FreedomOfExpression title:@"Prune Yard Shopping Center v. Robins" synopsis:
+          [Decision decisionWithYear:1980 category:FreedomOfExpression title:@"Prune Yard Shopping v. Robins" synopsis:
            NSLocalizedString(@"Shopping mall owners appealed a California state court ruling that a "
                              @"shopping center allow distribution of political pamphlets on its premises. "
                              @"The Court rejected the owners’ property rights claim, and ruled that a "
                              @"mall was comparable to streets and sidewalks.", nil) link:@"http://en.wikipedia.org/wiki/Pruneyard_Shopping_Center_v._Robins"], 
-          [Decision decisionWithYear:1982 category:FreedomOfExpression title:@"Board of Education, Island Trees School District v. Pico" synopsis:
+          [Decision decisionWithYear:1982 category:FreedomOfExpression title:@"Island Trees School District v. Pico" synopsis:
            NSLocalizedString(@"Students successfully sued their school board on First Amendment "
                              @"grounds for removing certain “objectionable books” from the school "
                              @"library. While acknowledging a school’s right to remove material that was “pervasively " 
                              @"vulgar” or “educationally unsuitable,” the Court held that in this case, the "
                              @"students’ First Amendment “right to know” had been violated.", nil) link:@"http://en.wikipedia.org/wiki/Island_Trees_School_District_v._Pico"], 
-          [Decision decisionWithYear:1983 category:EqualityUnderTheLaw title:@"Bob Jones University v. United States" synopsis:
+          [Decision decisionWithYear:1983 category:EqualityUnderTheLaw title:@"Bob Jones University v. U.S." synopsis:
            NSLocalizedString(@"Two fundamentalist Christian colleges that practiced racial discrimination " 
                              @"lost their tax exempt status. The IRS can set rules enforcing a “settled " 
                              @"public policy” against racial discrimination in education.", nil) link:@"http://en.wikipedia.org/wiki/Bob_Jones_University_v._United_States"], 
@@ -371,7 +371,7 @@ static NSArray* greatestHits;
                              @"President Bush to propose a federal ban on flag burning or mutilation. "
                              @"Congress swiftly obliged, but the Court struck down that law a year "
                              @"later in United States v. Eichman - in which the ACLU also filed a brief.", nil) link:@"http://en.wikipedia.org/wiki/Texas_v._Johnson"], 
-          [Decision decisionWithYear:1990 category:RightToPrivacy title:@"Cruzan v. Director of the Missouri Department of Health" synopsis:
+          [Decision decisionWithYear:1990 category:RightToPrivacy title:@"Cruzan v. Director of the Missouri D.O.H." synopsis:
            NSLocalizedString(@"In the Court’s first right-to-die case, the ACLU represented the family of "
                              @"a woman who had been in a persistent vegetative state for more than "
                              @"seven years. Although the Court did not go as far as the ACLU urged, it "
@@ -423,7 +423,7 @@ static NSArray* greatestHits;
                              @"Ohio State Capitol building that was a traditional public forum used by "
                              @"many other groups, rejecting Ohio’s argument that allowing the display "
                              @"violated the separation of church and state.", nil) link:@""], 
-          [Decision decisionWithYear:1995 category:FreedomOfAssociation title:@"Hurley v. Irish American Gay, Lesbian, and Bisexual Group of Boston" synopsis:
+          [Decision decisionWithYear:1995 category:FreedomOfAssociation title:@"Hurley v. Irish American GLB Group" synopsis:
            NSLocalizedString(@"Upheld the right of private groups to exclude participants from their "
                              @"parades who do not share the values and message the parade sponsors "
                              @"wish to communicate.", nil) link:@"http://en.wikipedia.org/wiki/Hurley_v._Irish-American_Gay,_Lesbian,_and_Bisexual_Group_of_Boston"], 
@@ -447,7 +447,7 @@ static NSArray* greatestHits;
            NSLocalizedString(@"The anti-discrimination provisions of the Americans with Disabilities "
                              @"Act was interpreted to apply to persons in the early stages of HIV infection, " 
                              @"even if they did not have any overt symptoms of AIDS.", nil) link:@"http://en.wikipedia.org/wiki/Bragdon_v._Abbott"], 
-          [Decision decisionWithYear:1998 category:EqualityUnderTheLaw title:@"Oncale v. Sundowner Offshore Services" synopsis:
+          [Decision decisionWithYear:1998 category:EqualityUnderTheLaw title:@"Oncale v. Sundowner" synopsis:
            NSLocalizedString(@"Title VII of the Civil Rights Act, which prohibits sexual discrimination "
                              @"and harassment in the workplace, applies to same-sex as well as opposite "
                              @"sex harassment.", nil) link:@"http://en.wikipedia.org/wiki/Oncale_v._Sundowner_Offshore_Services"], 
@@ -510,6 +510,23 @@ static NSArray* greatestHits;
                                      title:title
                                   synopsis:synopsis
                                       link:link] autorelease];
+}
+
+
++ (NSString*) categoryString:(Category) category {
+    switch (category) {
+        case FreedomOfAssociation: return NSLocalizedString(@"Freedom of Association", nil);
+        case FreedomOfThePress: return NSLocalizedString(@"Freedom of the Press", nil);
+        case FreedomOfExpression: return NSLocalizedString(@"Freedom of Expression", nil);
+        case EqualityUnderTheLaw: return NSLocalizedString(@"Equality under the Law", nil);
+        case RightToFairProcedures: return NSLocalizedString(@"Right to Fair Procedures", nil);
+        case RightToPrivacy: return NSLocalizedString(@"Right to Privacy", nil);
+        case ChecksAndBalances: return NSLocalizedString(@"Checks and Balances", nil);
+        case SeparationOfChurchAndState: return NSLocalizedString(@"Separation of Church and State", nil);
+        case FreeExerciseOfReligion: return NSLocalizedString(@"Free Exercise of Religion", nil);
+    }
+    
+    return @"";
 }
 
 @end

@@ -21,4 +21,6 @@
     NSArray* indexTitles;
 }
 
+- (BOOL) sortingByYear;
+
 @end

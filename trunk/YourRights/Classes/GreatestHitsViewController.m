@@ -14,6 +14,7 @@
 
 #import "GreatestHitsViewController.h"
 
+#import "DecisionCell.h"
 #import "Model.h"
 #import "MultiDictionary.h"
 #import "Decision.h"
@@ -101,29 +102,12 @@
 }
 
 
-- (NSString*) categoryString:(Category) category {
-    switch (category) {
-        case FreedomOfAssociation: return NSLocalizedString(@"Freedom of Association", nil);
-        case FreedomOfThePress: return NSLocalizedString(@"Freedom of the Press", nil);
-        case FreedomOfExpression: return NSLocalizedString(@"Freedom of Expression", nil);
-        case EqualityUnderTheLaw: return NSLocalizedString(@"Equality under the Law", nil);
-        case RightToFairProcedures: return NSLocalizedString(@"Right to Fair Procedures", nil);
-        case RightToPrivacy: return NSLocalizedString(@"Right to Privacy", nil);
-        case ChecksAndBalances: return NSLocalizedString(@"Checks and Balances", nil);
-        case SeparationOfChurchAndState: return NSLocalizedString(@"Separation of Church and State", nil);
-        case FreeExerciseOfReligion: return NSLocalizedString(@"Free Exercise of Religion", nil);
-    }
-    
-    return @"";
-}
-
-
 - (void) sortByCategory {
     NSMutableArray* titles = [NSMutableArray array];
     MultiDictionary* dictionary = [MultiDictionary dictionary];
     
     for (Decision* decision in [Decision greatestHits]) {
-        NSString* category = [self categoryString:decision.category];
+        NSString* category = [Decision categoryString:decision.category];
         
         if (![titles containsObject:category]) {
             [titles addObject:category];
@@ -179,6 +163,16 @@
     
     self.sectionTitles = [titles sortedArrayUsingSelector:@selector(compare:)];
     self.sectionTitleToDecisions = dictionary;
+}
+
+
+- (BOOL) sortingByYear {
+    return segmentedControl.selectedSegmentIndex == 0;
+}
+
+
+- (BOOL) sortingByCategory {
+    return segmentedControl.selectedSegmentIndex == 1;
 }
 
 
@@ -239,13 +233,32 @@
 }
 
 
-// Customize the appearance of table view cells.
-- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (Decision*) decisionForIndexPath:(NSIndexPath*) indexPath {
     NSString* section = [sectionTitles objectAtIndex:indexPath.section];
     Decision* decision = [[sectionTitleToDecisions objectsForKey:section] objectAtIndex:indexPath.row];
     
-    UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
-    cell.text = decision.title;
+    return decision;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    Decision* decision = [self decisionForIndexPath:indexPath];
+    
+    static NSString* reuseIdentifier = @"reuseIdentifier";
+    DecisionCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[DecisionCell alloc] initWithReuseIdentifier:reuseIdentifier] autorelease];
+    }
+
+    if (decision.link.length > 0 &&
+        ([self sortingByYear] || [self sortingByCategory])) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    [cell setDecision:decision owner:self];
     
     return cell;
 }
@@ -297,6 +310,13 @@
     }
     
     return 0;
+}
+
+
+- (CGFloat)         tableView:(UITableView*) tableView
+      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+    Decision* decision = [self decisionForIndexPath:indexPath];
+    return [DecisionCell height:decision];
 }
 
 @end
