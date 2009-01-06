@@ -102,14 +102,14 @@ static NSArray* greatestHits;
                              @"Due Process Clause outlaws “conduct that shocks the conscience.”", nil) link:@"http://en.wikipedia.org/wiki/Rochin_v._California"],
           [Decision decisionWithYear:1952 category:FreedomOfExpression title:@"Burstyn v. Wilson" synopsis:
            NSLocalizedString(@"Overturning its own 1915 decision, the Supreme Court decided New "
-                             @"York State’s refusal to license the film “The Miracle” because it was sacreligious " 
+                             @"York State’s refusal to license the film “The Miracle” because it was sacrilegious " 
                              @"violated the First Amendment.", nil) link:@"http://en.wikipedia.org/wiki/Joseph_Burstyn,_Inc_v._Wilson"],
           [Decision decisionWithYear:1954 category:EqualityUnderTheLaw title:@"Brown v. Board of Education" synopsis:
            NSLocalizedString(@"One of the century’s most significant Court decisions declared racially "
                              @"segregated schools unconstitutional, wiping out the “separate but equal” "
                              @"doctrine announced in the infamous 1896 Plessy v. Ferguson decision.", nil) link:@"http://en.wikipedia.org/wiki/Brown_v._Board_of_Education"],
           [Decision decisionWithYear:1957 category:FreedomOfAssociation title:@"Watkins v. United States" synopsis:
-           NSLocalizedString(@"The investigative powers of the House UnAmerican Activities "
+           NSLocalizedString(@"The investigative powers of the House Un-American Activities "
                              @"Committee were curbed on First Amendment grounds when the Court "
                              @"reversed a labor leader’s conviction for refusing to answer questions "
                              @"about membership in the Communist Party.", nil) link:@"http://en.wikipedia.org/wiki/Watkins_v._United_States"],
@@ -298,7 +298,7 @@ static NSArray* greatestHits;
           [Decision decisionWithYear:1973 category:RightToPrivacy title:@"Roe v. Wade/Doe v. Bolton" synopsis:
            NSLocalizedString(@"Recognizing a woman’s constitutional right to terminate a pregnancy, Roe "
                              @"erased all existing criminal abortion laws. Its companion case, Doe, established " 
-                             @"lished that it is the attending physician who determines, in light of all "
+                             @"that it is the attending physician who determines, in light of all "
                              @"factors relevant to a woman’s well-being, whether an abortion is “necessary.”", nil) link:@"http://en.wikipedia.org/wiki/Roe_v._Wade"], 
           [Decision decisionWithYear:1974 category:FreedomOfExpression title:@"Communist Party of Indiana v. Whitcomb" synopsis:
            NSLocalizedString(@"Invalidated a state requirement that political parties swear that they do "
