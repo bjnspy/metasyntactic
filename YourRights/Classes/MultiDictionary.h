@@ -12,9 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface YourRightsNavigationController : UINavigationController {
+@interface MultiDictionary : NSObject {
 @private
-    SectionViewController* viewController;
+    NSMutableDictionary* dictionary;
 }
+
++ (MultiDictionary*) dictionary;
+
+- (void) addObject:(id) object
+            forKey:(id) key;
+
+- (void) addObjects:(NSArray*) objects
+             forKey:(id) key;
+
+- (NSArray*) objectsForKey:(id) key;
+- (NSMutableArray*) mutableObjectsForKey:(id) key;
+
+- (NSArray*) allKeys;
+
+// returns an array of arrays;
+- (NSArray*) allValues;
+
+- (void) removeObjectsForKey:(id) key;
 
 @end
