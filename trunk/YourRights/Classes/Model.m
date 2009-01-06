@@ -839,15 +839,35 @@ static NSArray* toughAnswers;
 }
 
 
+NSInteger compareLinks(id link1, id link2, void* context) {
+    NSRange range1 = [link1 rangeOfString:@"@"];
+    NSRange range2 = [link2 rangeOfString:@"@"];
+    
+    if (range1.length > 0 && range2.length == 0) {
+        return NSOrderedDescending;
+    } else if (range2.length > 0 && range1.length == 0) {
+        return NSOrderedAscending;
+    } else {
+        return [link1 compare:link2];
+    }
+}
+
+
 + (NSArray*) linksForSectionTitle:(NSString*) sectionTitle {
-    return [sectionLinks objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
+    NSArray* result = [sectionLinks objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
+    return [result sortedArrayUsingFunction:compareLinks context:NULL];   
 }
 
 
 + (NSArray*) linksForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
     NSArray* questions = [self questionsForSectionTitle:sectionTitle];
     NSArray* specificLinks = [links objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
-    return [specificLinks objectAtIndex:[questions indexOfObject:question]];
+    if (specificLinks.count == 0) {
+        return [NSArray array];
+    }
+
+    NSArray* result = [specificLinks objectAtIndex:[questions indexOfObject:question]];
+    return [result sortedArrayUsingFunction:compareLinks context:NULL];
 }
 
 

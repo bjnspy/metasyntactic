@@ -17,6 +17,7 @@
 #import "AnswerViewController.h"
 #import "Model.h"
 #import "ViewControllerUtilities.h"
+#import "WebViewController.h"
 #import "WrappableCell.h"
 
 @interface QuestionsViewController()
@@ -127,7 +128,11 @@
         UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
         cell.textColor = [UIColor blueColor];
         cell.text = link;
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        if ([link rangeOfString:@"@"].length > 0) {
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
         cell.font = [UIFont systemFontOfSize:14];
         cell.lineBreakMode = UILineBreakModeMiddleTruncation;
         return cell;
@@ -163,6 +168,12 @@
         NSString* link = [links objectAtIndex:indexPath.row];
         if ([link rangeOfString:@"@"].length > 0) {
             link = [NSString stringWithFormat:@"mailto:%@", link];
+            
+            NSURL* url = [NSURL URLWithString:link];
+            [[UIApplication sharedApplication] openURL:url];
+        } else {
+            WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:(id)self.navigationController address:link showSafariButton:YES] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
         }
         
         NSURL* url = [NSURL URLWithString:link];
