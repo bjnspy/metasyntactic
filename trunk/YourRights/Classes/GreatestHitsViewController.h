@@ -22,5 +22,6 @@
 }
 
 - (BOOL) sortingByYear;
+- (BOOL) sortingByCategory;
 
 @end
