@@ -12,19 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#define ArrayLength(x) (sizeof(x)/sizeof(*(x)))
+@interface NetflixMostPopularViewController : UITableViewController {
+@private
+    AbstractNavigationController* navigationController;
+    
+    NSDictionary* titleToCount;
+}
 
-#define ONE_MINUTE (60.0)
-#define ONE_HOUR   (60.0 * ONE_MINUTE)
-#define ONE_DAY    (24.0 * ONE_HOUR)
-#define ONE_WEEK   (7.0 * ONE_DAY)
-#define ONE_MONTH  (30.5 * ONE_DAY)
-#define ONE_YEAR   (365.0 * ONE_DAY)
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
-#define property_definition(x) static NSString* x ## _key = @#x; @synthesize x
-
-#define SMALL_POSTER_HEIGHT 99.0
-#define FULL_SCREEN_POSTER_HEIGHT 460
-#define FULL_SCREEN_POSTER_WIDTH 310
-
-#define CACHE_LIMIT (30.0 * ONE_DAY)
+@end

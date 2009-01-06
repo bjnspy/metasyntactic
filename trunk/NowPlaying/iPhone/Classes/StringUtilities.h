@@ -12,19 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#define ArrayLength(x) (sizeof(x)/sizeof(*(x)))
+@interface StringUtilities : NSObject {
 
-#define ONE_MINUTE (60.0)
-#define ONE_HOUR   (60.0 * ONE_MINUTE)
-#define ONE_DAY    (24.0 * ONE_HOUR)
-#define ONE_WEEK   (7.0 * ONE_DAY)
-#define ONE_MONTH  (30.5 * ONE_DAY)
-#define ONE_YEAR   (365.0 * ONE_DAY)
+}
 
-#define property_definition(x) static NSString* x ## _key = @#x; @synthesize x
++ (NSString*) nonNilString:(NSString*) string;
 
-#define SMALL_POSTER_HEIGHT 99.0
-#define FULL_SCREEN_POSTER_HEIGHT 460
-#define FULL_SCREEN_POSTER_WIDTH 310
++ (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
-#define CACHE_LIMIT (30.0 * ONE_DAY)
++ (NSString*) stripHtmlCodes:(NSString*) string;
++ (NSString*) stripHtmlLinks:(NSString*) string;
++ (NSString*) convertHtmlEncodings:(NSString*) string;
+
++ (NSString*) asciiString:(NSString*) string;
++ (NSString*) stringFromUnichar:(unichar) c;
+
+@end

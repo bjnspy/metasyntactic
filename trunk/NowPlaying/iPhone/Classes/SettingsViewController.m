@@ -179,7 +179,7 @@
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
         } else if (row == 5) {
-            text = NSLocalizedString(@"Netflix (Beta)", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
+            text = NSLocalizedString(@"Netflix", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.netflixEnabled;
             selector = @selector(onNetflixEnabledChanged:);
         } else if (row == 6) {
@@ -217,7 +217,7 @@
     [self.controller setNetflixEnabled:!self.model.netflixEnabled];
 
     if (self.model.netflixEnabled) {
-        NSString* message = NSLocalizedString(@"Netflix support is currently in 'beta'. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button below.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)", nil);
+        NSString* message = NSLocalizedString(@"This is the first release of Netflix support in Now Playing. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button below.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)", nil);
         [AlertUtilities showOkAlert:message];
     }
 }

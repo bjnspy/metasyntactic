@@ -21,6 +21,7 @@
 #import "MutableNetflixCache.h"
 #import "NetflixFeedsViewController.h"
 #import "NetflixLoginViewController.h"
+#import "NetflixMostPopularViewController.h"
 #import "NetflixNavigationController.h"
 #import "NetflixRecommendationsViewController.h"
 #import "NetflixQueueViewController.h"
@@ -41,6 +42,7 @@ const NSInteger ROW_HEIGHT = 46;
 
 typedef enum {
     SearchSection,
+    MostPopularSection,
     DVDSection,
     InstantSection,
     RecommendationsSection,
@@ -147,6 +149,9 @@ typedef enum {
         if (row == SearchSection) {
             cell.text = NSLocalizedString(@"Search", nil);
             cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
+        } else if (row == MostPopularSection) {
+            cell.text = NSLocalizedString(@"Most Popular", nil);
+            cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
         } else if (row == DVDSection) {
             cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
             cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
@@ -262,9 +267,17 @@ typedef enum {
 }
 
 
+- (void) didSelectMostPopularSection {
+    NetflixMostPopularViewController* controller = [[[NetflixMostPopularViewController alloc] initWithNavigationController:navigationController] autorelease];
+    [navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void) didSelectLoggedInRow:(NSInteger) row {
     if (row == SearchSection) {
         [self didSelectSearchRow];
+    } else if (row == MostPopularSection) {
+        [self didSelectMostPopularSection];
     } else if (row == DVDSection) {
         [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
     } else if (row == InstantSection) {
