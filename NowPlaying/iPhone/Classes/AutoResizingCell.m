@@ -16,52 +16,56 @@
 
 @interface AutoResizingCell()
 @property (retain) UILabel* label;
+@property (retain) UIColor* textColorData;
 @end
 
 
 @implementation AutoResizingCell
 
 @synthesize label;
+@synthesize textColorData;
 
 - (void) dealloc {
     self.label = nil;
-
+    self.textColorData = nil;
+    
     [super dealloc];
 }
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+        self.textColorData = [UIColor blackColor];
         self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];
         label.font = self.font;
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumFontSize = 12;
         label.lineBreakMode = UILineBreakModeMiddleTruncation;
-
+        
         CGRect frame = label.frame;
         frame.origin.x = 10;
         label.frame = frame;
-
+        
         [self.contentView addSubview:label];
     }
-
+    
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
+    
     CGRect labelFrame = label.frame;
     CGRect contentFrame = self.contentView.frame;
-
+    
     if (self.image != nil) {
         labelFrame.origin.x = 15 + self.image.size.width;
     }
-
+    
     labelFrame.size.width = MIN(labelFrame.size.width, contentFrame.size.width - labelFrame.origin.x);
     labelFrame.origin.y = floor((contentFrame.size.height - labelFrame.size.height) / 2);
-
+    
     label.frame = labelFrame;
 }
 
@@ -74,6 +78,23 @@
 
 - (NSString*) text {
     return label.text;
+}
+
+
+- (void) setTextColor:(UIColor*) color {
+    label.textColor = color;
+    self.textColorData = color;
+}
+
+
+- (void) setSelected:(BOOL) selected
+            animated:(BOOL) animated {
+    [super setSelected:selected animated:animated];
+    if (selected) {
+        label.textColor = [UIColor whiteColor];
+    } else {
+        label.textColor = textColorData;
+    }
 }
 
 @end
