@@ -24,6 +24,7 @@
 		742DBAB30F12C6D80079E6B0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBAB20F12C6D80079E6B0 /* RootViewController.m */; };
 		742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */; };
 		742DBB630F12D29D0079E6B0 /* ToughAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */; };
+		742DBB870F12D4AC0079E6B0 /* Decision.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DBB860F12D4AC0079E6B0 /* Decision.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,8 @@
 		742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughQuestionsViewController.m; sourceTree = "<group>"; };
 		742DBB610F12D29D0079E6B0 /* ToughAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToughAnswerViewController.h; sourceTree = "<group>"; };
 		742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToughAnswerViewController.m; sourceTree = "<group>"; };
+		742DBB850F12D4AC0079E6B0 /* Decision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decision.h; sourceTree = "<group>"; };
+		742DBB860F12D4AC0079E6B0 /* Decision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decision.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +86,8 @@
 				1D3623250D0F684500981E51 /* YourRightsAppDelegate.m */,
 				742DB7820F12095C0079E6B0 /* Model.h */,
 				742DB7830F12095C0079E6B0 /* Model.m */,
+				742DBB850F12D4AC0079E6B0 /* Decision.h */,
+				742DBB860F12D4AC0079E6B0 /* Decision.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				742DBAB30F12C6D80079E6B0 /* RootViewController.m in Sources */,
 				742DBB210F12CD240079E6B0 /* ToughQuestionsViewController.m in Sources */,
 				742DBB630F12D29D0079E6B0 /* ToughAnswerViewController.m in Sources */,
+				742DBB870F12D4AC0079E6B0 /* Decision.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
