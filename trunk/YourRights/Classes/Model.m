@@ -860,4 +860,14 @@ static NSArray* toughAnswers;
     return [toughAnswers objectAtIndex:[toughQuestions indexOfObject:question]];
 }
 
+
++ (NSInteger) greatestHitsSortIndex {
+    return 0;
+}
+
+
++ (void) setGreatestHitsSortIndex:(NSInteger) index {
+    
+}
+
 @end

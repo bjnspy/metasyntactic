@@ -13,7 +13,12 @@
 // limitations under the License.
 
 @interface GreatestHitsViewController : UITableViewController {
-
+@private
+    NSArray* sectionTitles;
+    MultiDictionary* sectionTitleToDecisions;
+    
+    UISegmentedControl* segmentedControl;
+    NSArray* indexTitles;
 }
 
 @end
