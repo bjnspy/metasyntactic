@@ -49,7 +49,6 @@ typedef enum {
     AtHomeSection,
     RentalHistorySection,
     LogOutSection,
-    OverQuotaSection,
 } Sections;
 
 @synthesize navigationController;
@@ -89,10 +88,22 @@ typedef enum {
 }
 
 
+- (void) setupTitle {
+    if (self.model.netflixCache.lastQuotaErrorDate != nil &&
+        self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
+        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+        label.text = NSLocalizedString(@"Over Quota - Try Again Later", nil);
+        self.navigationItem.titleView = label;
+    } else {
+        self.navigationItem.titleView = nil;
+    }
+}
+
+
 - (void) majorRefreshWorker {
     self.tableView.rowHeight = ROW_HEIGHT;
     self.tableView.backgroundColor = [ColorCache netflixRed];
-
+    [self setupTitle];
     [self.tableView reloadData];
 }
 
@@ -172,13 +183,6 @@ typedef enum {
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
             cell.textColor = [ColorCache commandColor];
             cell.accessoryView = nil;
-        } else if (row == OverQuotaSection) {
-            if (self.model.netflixCache.lastQuotaErrorDate != nil &&
-                self.model.netflixCache.lastQuotaErrorDate.timeIntervalSinceNow < (5 * ONE_MINUTE)) {
-                cell.text = NSLocalizedString(@"Over Quota - Try Again Later", nil);
-                cell.accessoryView = nil;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
         }
     } else {
         if (indexPath.row == 0) {
