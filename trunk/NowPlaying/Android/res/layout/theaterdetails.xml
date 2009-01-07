@@ -160,7 +160,6 @@
     </RelativeLayout>
     <TextView
             android:id="@+id/showtimeslbl"
-            android:layout_marginTop="60px"
             android:layout_below="@id/divider2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
