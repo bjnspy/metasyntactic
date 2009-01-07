@@ -16,14 +16,18 @@
 }
 
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address        important:(BOOL) important;
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address        important:(BOOL) important  response:(NSHTTPURLResponse**) response;
 + (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url                   important:(BOOL) important;
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url                   important:(BOOL) important  response:(NSHTTPURLResponse**) response;
 + (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url     important:(BOOL) important;
++ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) url     important:(BOOL) important  response:(NSHTTPURLResponse**) response;
 + (NSString*) stringWithContentsOfAddress:(NSString*) address       important:(BOOL) important;
 + (NSString*) stringWithContentsOfUrl:(NSURL*) url                  important:(BOOL) important;
 + (NSString*) stringWithContentsOfUrlRequest:(NSURLRequest*) url    important:(BOOL) important;
 + (NSData*) dataWithContentsOfAddress:(NSString*) address           important:(BOOL) important;
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url                      important:(BOOL) important;
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url        important:(BOOL) important;
++ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) url        important:(BOOL) important  response:(NSHTTPURLResponse**) response;
 
 + (BOOL) isNetworkAvailable;
 

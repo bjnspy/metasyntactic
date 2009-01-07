@@ -215,8 +215,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (NSString*) queueFile:(NSString*) key {
-    return [[[Application netflixQueuesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:key]]
+- (NSString*) queueFile:(Feed*) feed {
+    return [[[Application netflixQueuesDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:feed.key]]
             stringByAppendingPathExtension:@"plist"];
 }
 
@@ -229,7 +229,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (Queue*) loadQueue:(Feed*) feed {
-    NSDictionary* dictionary = [FileUtilities readObject:[self queueFile:feed.key]];
+    NSDictionary* dictionary = [FileUtilities readObject:[self queueFile:feed]];
     if (dictionary.count == 0) {
         return nil;
     }
@@ -436,8 +436,25 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 - (void) saveQueue:(Queue*) queue {
     NSLog(@"Saving queue '%@' with etag '%@'", queue.feed.key, queue.etag);
-    [FileUtilities writeObject:queue.dictionary toFile:[self queueFile:queue.feed.key]];
+    [FileUtilities writeObject:queue.dictionary toFile:[self queueFile:queue.feed]];
     [FileUtilities writeObject:queue.etag toFile:[self queueEtagFile:queue]];
+}
+
+
+- (NSString*) extractEtagFromElement:(XmlElement*) element andResponse:(NSHTTPURLResponse*) response {
+    NSString* etag = [[element element:@"etag"] text];
+    if (etag.length > 0) {
+        return etag;
+    }
+    
+    etag = [response.allHeaderFields objectForKey:@"Etag"];
+    NSRange lastQuoteRange;
+    if ([etag hasPrefix:@"\""] &&
+        (lastQuoteRange = [etag rangeOfString:@"\"" options:NSBackwardsSearch]).length > 0) {
+        return [etag substringWithRange:NSMakeRange(1, lastQuoteRange.location - 1)];
+    }
+    
+    return @""; 
 }
 
 
@@ -450,10 +467,12 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     
     NSString* address = [NSString stringWithFormat:@"%@&max_results=1", url];
     
+    NSHTTPURLResponse* response;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                           important:YES];
+                                                           important:YES
+                                                            response:&response];
     
-    return [[element element:@"etag"] text];
+    return [self extractEtagFromElement:element andResponse:response];
 }
 
 
@@ -542,10 +561,12 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     
     address = [NSString stringWithFormat:@"%@&max_results=500", address];
     
+    NSHTTPURLResponse* response;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                           important:YES];
+                                                           important:YES
+                                                            response:&response];
     
-    NSString* etag = [[element element:@"etag"] text];
+    NSString* etag = [self extractEtagFromElement:element andResponse:response];
     
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];

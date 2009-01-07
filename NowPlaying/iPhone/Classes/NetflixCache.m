@@ -441,6 +441,23 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
+- (NSString*) extractEtagFromElement:(XmlElement*) element andResponse:(NSHTTPURLResponse*) response {
+    NSString* etag = [[element element:@"etag"] text];
+    if (etag.length > 0) {
+        return etag;
+    }
+    
+    etag = [response.allHeaderFields objectForKey:@"Etag"];
+    NSRange lastQuoteRange;
+    if ([etag hasPrefix:@"\""] &&
+        (lastQuoteRange = [etag rangeOfString:@"\"" options:NSBackwardsSearch]).length > 0) {
+        return [etag substringWithRange:NSMakeRange(1, lastQuoteRange.location - 1)];
+    }
+    
+    return @""; 
+}
+
+
 - (NSString*) downloadEtag:(Feed*) feed {
     NSRange range = [feed.url rangeOfString:@"&output=atom"];
     NSString* url = feed.url;
@@ -450,10 +467,12 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     
     NSString* address = [NSString stringWithFormat:@"%@&max_results=1", url];
     
+    NSHTTPURLResponse* response;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                           important:YES];
+                                                           important:YES
+                                                            response:&response];
     
-    return [[element element:@"etag"] text];
+    return [self extractEtagFromElement:element andResponse:response];
 }
 
 
@@ -542,10 +561,12 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     
     address = [NSString stringWithFormat:@"%@&max_results=500", address];
     
+    NSHTTPURLResponse* response;
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                           important:YES];
+                                                           important:YES
+                                                            response:&response];
     
-    NSString* etag = [[element element:@"etag"] text];
+    NSString* etag = [self extractEtagFromElement:element andResponse:response];
     
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
