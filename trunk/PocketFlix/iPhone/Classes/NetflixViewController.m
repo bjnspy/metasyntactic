@@ -70,6 +70,7 @@ typedef enum {
         self.navigationController = navigationController_;
         self.title = [Application name];
         
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.rowHeight = ROW_HEIGHT;
         self.navigationItem.leftBarButtonItem =
         [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
@@ -156,12 +157,13 @@ typedef enum {
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    NSInteger row = indexPath.row;
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
+
     cell.label.backgroundColor = [UIColor clearColor];
     cell.textColor = [UIColor whiteColor];
     cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
 
-    NSInteger row = indexPath.row;
     if (self.hasAccount) {
         if (row == SearchSection) {
             cell.text = NSLocalizedString(@"Search", nil);
@@ -203,6 +205,7 @@ typedef enum {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryView = nil;
     }
+
 
     NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
     NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
