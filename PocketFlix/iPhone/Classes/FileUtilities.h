@@ -31,7 +31,10 @@
 + (BOOL) fileExists:(NSString*) path;
 + (void) moveItem:(NSString*) from to:(NSString*) to;
 
++ (NSArray*) directoryContentsNames:(NSString*) directory;
 + (NSArray*) directoryContentsPaths:(NSString*) directory;
+
++ (NSDictionary*) attributesOfItemAtPath:(NSString*)path;
 
 + (BOOL) isDirectory:(NSString*) path;
 
