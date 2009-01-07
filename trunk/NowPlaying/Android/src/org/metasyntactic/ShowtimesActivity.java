@@ -2,15 +2,22 @@ package org.metasyntactic;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.TextUtils;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.CollectionUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
@@ -20,13 +27,13 @@ import java.util.List;
 public class ShowtimesActivity extends ListActivity {
   private List<Theater> theaters;
   private Movie movie;
-  private List<TheaterDetailItem> detailItems;
 
   enum TheaterDetailItemType {
     NAME_SHOWTIMES, ADDRESS, PHONE
   }
 
-  @Override protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
+  @Override
+  protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
     final Intent intent = new Intent();
     intent.setClass(ShowtimesActivity.this, ShowtimesDetailsActivity.class);
     intent.putExtra("movie", (Parcelable) movie);
@@ -35,26 +42,49 @@ public class ShowtimesActivity extends ListActivity {
     super.onListItemClick(l, v, position, id);
   }
 
-  @Override public void onCreate(final Bundle savedInstanceState) {
+  @Override
+  public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.theaters_movie);
     this.movie = getIntent().getExtras().getParcelable("movie");
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   private void bindView() {
-    final TextView movieLabel = (TextView) findViewById(R.id.movie);
-    movieLabel.setEllipsize(TextUtils.TruncateAt.END);
-    movieLabel.setText(this.movie.getDisplayTitle());
+    TextView title = (TextView) findViewById(R.id.title);
+    title.setText(movie.getDisplayTitle());
+    // Get and set scores text and background image
+    Button scoreImg = (Button) findViewById(R.id.score);
+    TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
+    // TextView scoreLabel = (TextView)findViewById(R.id.scoreLabel);
+    final Resources res = getResources();
+    final Score score = NowPlayingControllerWrapper.getScore(movie);
+    int scoreValue = -1;
+    if (score != null && !score.getValue().equals("")) {
+      scoreValue = Integer.parseInt(score.getValue());
+    } else {
+    }
+    final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
+    scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType,
+        res));
+    if (scoreValue != -1) {
+      scoreLbl.setText(String.valueOf(scoreValue) + "%");
+    }
+    TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
+    final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
+    final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
+    ratingLengthLabel.setText(rating + ". " + length);
     this.theaters = NowPlayingControllerWrapper.getTheatersShowingMovie(this.movie);
   }
 
-  @Override protected void onResume() {
+  @Override
+  protected void onResume() {
     super.onResume();
     bindView();
     // populateTheaterDetailItems();
@@ -72,8 +102,8 @@ public class ShowtimesActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder(
-          (TextView) convertView.findViewById(R.id.label), (TextView) convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
+          .findViewById(R.id.label), (TextView) convertView.findViewById(R.id.data));
       final Theater theater = ShowtimesActivity.this.theaters.get(position);
       holder.label.setText(theater.getName());
       final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
@@ -143,24 +173,12 @@ public class ShowtimesActivity extends ListActivity {
     }
   }
 
-  @Override public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
-        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
-  }
-
-  @Override public boolean onOptionsItemSelected(final MenuItem item) {
-    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
-      final Intent intent = new Intent();
-      intent.setClass(ShowtimesActivity.this, AllTheatersActivity.class);
-      startActivity(intent);
-      return true;
-    }
-    return false;
   }
 }

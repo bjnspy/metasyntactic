@@ -6,7 +6,7 @@
         android:type="sweep"
         android:useLevel="false"
         android:startColor="#ffffffff"
-        android:centerColor="#ff94785b"
+        android:centerColor="#ff000000"
         android:endColor="#ffffffff"
         android:centerY="0.50" />
     <padding

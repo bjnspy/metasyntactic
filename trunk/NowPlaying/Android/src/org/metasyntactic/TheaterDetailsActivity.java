@@ -6,12 +6,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
@@ -21,13 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TheaterDetailsActivity extends ListActivity {
-  /**
-   * Called when the activity is first created.
-   */
+  /** Called when the activity is first created. */
   private Theater theater;
   private List<Movie> movies = new ArrayList<Movie>();
 
-  @Override public void onCreate(final Bundle savedInstanceState) {
+  @Override
+  public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.theaterdetails);
@@ -35,16 +38,19 @@ public class TheaterDetailsActivity extends ListActivity {
     bindView();
   }
 
-  @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
+  @Override
+  protected void onListItemClick(final ListView listView, final View view, final int position,
+      final long id) {
     final Movie movie = this.movies.get(position);
     final Intent intent = new Intent();
-    intent.setClass(this, MovieDetailsActivity.class);
+    intent.setClass(this, AllMoviesActivity.class);
     intent.putExtra("movie", (Parcelable) movie);
     startActivity(intent);
     super.onListItemClick(listView, view, position, id);
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -63,9 +69,10 @@ public class TheaterDetailsActivity extends ListActivity {
     this.movies = NowPlayingControllerWrapper.getMoviesAtTheater(this.theater);
     final ImageView mapIcon = (ImageView) findViewById(R.id.mapicon);
     final ImageView phoneIcon = (ImageView) findViewById(R.id.phoneicon);
-    final Intent mapIntent = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q=" + address));
-    final Intent callIntent = new Intent("android.intent.action.DIAL",
-                                         Uri.parse("tel:" + this.theater.getPhoneNumber()));
+    final Intent mapIntent = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
+        + address));
+    final Intent callIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
+        + this.theater.getPhoneNumber()));
     mapIcon.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         startActivity(mapIntent);
@@ -103,12 +110,12 @@ public class TheaterDetailsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
-      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.label),
-                                                         (TextView) convertView.findViewById(R.id.data));
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
+          .findViewById(R.id.label), (TextView) convertView.findViewById(R.id.data));
       final Movie movie = TheaterDetailsActivity.this.movies.get(position);
       holder.label.setText(movie.getDisplayTitle());
-      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(movie,
-                                                                                                  TheaterDetailsActivity.this.theater);
+      final List<Performance> list = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(
+          movie, TheaterDetailsActivity.this.theater);
       String performance = "";
       for (Performance aList : list) {
         performance += aList.getTime() + ", ";
@@ -149,24 +156,12 @@ public class TheaterDetailsActivity extends ListActivity {
     }
   }
 
-  @Override public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
-        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
-  }
-
-  @Override public boolean onOptionsItemSelected(final MenuItem item) {
-    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
-      final Intent intent = new Intent();
-      intent.setClass(this, AllTheatersActivity.class);
-      startActivity(intent);
-      return true;
-    }
-    return false;
   }
 }

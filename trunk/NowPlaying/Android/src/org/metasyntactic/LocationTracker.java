@@ -34,7 +34,6 @@ public class LocationTracker implements LocationListener {
   public LocationTracker(final NowPlayingController controller, final Context context) {
     this.controller = controller;
     this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-
     autoUpdateLocation();
   }
 
@@ -56,7 +55,6 @@ public class LocationTracker implements LocationListener {
     if (location == null) {
       return;
     }
-
     final Runnable runnable = new Runnable() {
       public void run() {
         findLocationBackgroundEntryPoint(location.getLatitude(), location.getLongitude());
@@ -70,7 +68,6 @@ public class LocationTracker implements LocationListener {
     if (location == null) {
       return;
     }
-
     final Runnable runnable = new Runnable() {
       public void run() {
         reportFoundLocation(location);
@@ -83,7 +80,6 @@ public class LocationTracker implements LocationListener {
     if (this.shutdown) {
       return;
     }
-
     final String displayString = location.toDisplayString();
     this.controller.reportLocationForAddress(location, displayString);
     this.controller.setUserAddress(displayString);

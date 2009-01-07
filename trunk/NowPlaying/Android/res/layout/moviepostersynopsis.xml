@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@drawable/dark_header_dithered"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textStyle="bold"
+        android:text="Synopsis"
+        android:textSize="14sp"
+        android:paddingLeft="8dip" />
+    <ImageView
+        android:id="@+id/divider"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/name"
+        android:layout_height="1px"
+        android:background="@drawable/divider_horizontal_bright"
+        android:layout_marginBottom="5px" />
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="130px"
+        android:layout_below="@id/divider"
+        android:layout_height="210px"
+        android:src="@drawable/loading"
+        android:background="@drawable/image_frame"
+        android:layout_alignParentLeft="true"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="5px"
+        android:layout_marginBottom="5px" />
+    <TextView
+        android:id="@+id/value1"
+        android:layout_below="@id/divider"
+        android:layout_width="fill_parent"
+        android:paddingLeft="8dip"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/poster"
+        android:gravity="center_vertical"
+        android:singleLine="false"
+        android:textSize="14px"
+        android:textColor="?android:attr/textColorPrimary"
+        android:paddingRight="6dip"
+        android:paddingBottom="8dip" />
+    <TextView
+        android:id="@+id/value2"
+        android:layout_width="fill_parent"
+        android:paddingLeft="8dip"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_below="@id/poster"
+        android:singleLine="false"
+        android:textSize="14px"
+        android:textColor="?android:attr/textColorPrimary"
+        android:paddingRight="6dip"
+        android:paddingBottom="8dip" />
+</RelativeLayout>

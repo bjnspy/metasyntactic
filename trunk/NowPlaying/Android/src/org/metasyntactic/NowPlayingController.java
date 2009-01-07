@@ -47,16 +47,16 @@ public class NowPlayingController {
         updateBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Model", runnable, this.lock, false/* visible */);
+    ThreadingUtilities
+        .performOnBackgroundThread("Update Model", runnable, this.lock, false/* visible */);
   }
 
   private void updateBackgroundEntryPoint() {
     if (isNullOrEmpty(this.model.getUserAddress())) {
       return;
     }
-
-    final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
-        this.model.getUserAddress());
+    final Location location = this.model.getUserLocationCache()
+        .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
     if (location == null) {
       ThreadingUtilities.performOnMainThread(new Runnable() {
         public void run() {
@@ -73,12 +73,11 @@ public class NowPlayingController {
     if (context == null) {
       return;
     }
-
-    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot).setPositiveButton(R.string.ok,
-                                                                                                        new DialogInterface.OnClickListener() {
-                                                                                                          public void onClick(final DialogInterface dialogInterface, final int i) {
-                                                                                                          }
-                                                                                                        }).show();
+    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot)
+        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+          public void onClick(final DialogInterface dialogInterface, final int i) {
+          }
+        }).show();
   }
 
   public String getUserAddress() {
@@ -89,7 +88,6 @@ public class NowPlayingController {
     if (getUserAddress().equals(userAddress)) {
       return;
     }
-
     this.model.setUserAddress(userAddress);
     update();
   }

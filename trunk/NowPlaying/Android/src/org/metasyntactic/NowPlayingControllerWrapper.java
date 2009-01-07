@@ -35,7 +35,6 @@ public class NowPlayingControllerWrapper {
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
   private static NowPlayingController instance;
   private static LocationTracker locationTracker;
-
   static {
     Application.initialize();
   }
@@ -47,15 +46,14 @@ public class NowPlayingControllerWrapper {
     checkThread();
     activities.add(activity);
     GlobalActivityIndicator.addActivity(activity);
-
     if (activities.size() == 1) {
       if (instance == null) {
-        Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity created.  Starting controller");
+        Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
+            "First activity created.  Starting controller");
         instance = new NowPlayingController(activity.getApplicationContext());
         instance.startup();
       }
     }
-
     restartLocationTracker();
   }
 
@@ -63,26 +61,23 @@ public class NowPlayingControllerWrapper {
     checkThread();
     GlobalActivityIndicator.removeActivity(activity);
     activities.remove(activity);
-
     if (activities.isEmpty()) {
       if (instance != null) {
-        Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");
+        Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
+            "Last activity destroyed.  Stopping controller");
         instance.shutdown();
         instance = null;
       }
     }
-
     restartLocationTracker();
   }
 
   private static void restartLocationTracker() {
     checkThread();
-
     if (locationTracker != null) {
       locationTracker.shutdown();
       locationTracker = null;
     }
-
     if (!activities.isEmpty()) {
       locationTracker = new LocationTracker(instance, getApplicationContext());
     }
@@ -111,7 +106,6 @@ public class NowPlayingControllerWrapper {
     if (isEmpty(activities)) {
       return null;
     }
-
     return any(activities);
   }
 
@@ -136,7 +130,6 @@ public class NowPlayingControllerWrapper {
 
   public static int getSearchDistance() {
     checkInstance();
-
     return instance.getSearchDistance();
   }
 
@@ -225,7 +218,8 @@ public class NowPlayingControllerWrapper {
     return instance.getMoviesAtTheater(theater);
   }
 
-  public static List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
+  public static List<Performance> getPerformancesForMovieAtTheater(final Movie movie,
+      final Theater theater) {
     checkInstance();
     return instance.getPerformancesForMovieAtTheater(movie, theater);
   }

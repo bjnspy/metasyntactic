@@ -16,7 +16,7 @@
         android:layout_width="fill_parent"
         android:layout_height="380px"
         android:drawSelectorOnTop="false"
-        android:layoutAnimation="@anim/layout_bottom_to_top_slide" />
+        android:layoutAnimation="@anim/layout_top_to_bottom_slide" />
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_below="@id/detail"
@@ -31,6 +31,6 @@
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@id/details"
             android:layout_centerVertical="true"
-            android:text="Refresh" />
+            android:text="OK" />
     </RelativeLayout>
 </LinearLayout>
