@@ -29,7 +29,7 @@ static Pulser* pulser = nil;
 + (void) initialize {
     if (self == [NetworkUtilities class]) {
         priorityMutex = [[PriorityMutex alloc] init];
-
+        
         gate = [[NSRecursiveLock alloc] init];
         pulser = [[Pulser pulserWithTarget:self
                                     action:@selector(updateNetworkActivityIndicator)
@@ -56,7 +56,7 @@ static Pulser* pulser = nil;
     if (address.length == 0) {
         return nil;
     }
-
+    
     return [self stringWithContentsOfUrl:[NSURL URLWithString:address]
                                important:important];
 }
@@ -66,13 +66,13 @@ static Pulser* pulser = nil;
     if (url == nil) {
         return nil;
     }
-
+    
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.timeoutInterval = 120;
     request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
-
+    
     return request;
 }
 
@@ -88,48 +88,85 @@ static Pulser* pulser = nil;
     if (request == nil) {
         return nil;
     }
-
+    
     NSData* data = [self dataWithContentsOfUrlRequest:request
                                             important:important];
     if (data == nil) {
         return nil;
     }
-
+    
     //return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
     NSString* result = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if (result != nil) {
         return result;
     }
-
+    
     return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
 
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address
                                important:(BOOL) important {
+    return [self xmlWithContentsOfAddress:address
+                                important:important
+                                 response:NULL];
+}
+
+
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address
+                               important:(BOOL) important
+                                response:(NSHTTPURLResponse**) response {
+    if (response != NULL) {
+        *response = nil;
+    }
+    
     if (address.length == 0) {
         return nil;
     }
-
+    
     return [self xmlWithContentsOfUrl:[NSURL URLWithString:address]
-                            important:important];
+                            important:important
+                             response:response];
 }
 
 
 + (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url
                            important:(BOOL) important {
-    return [self xmlWithContentsOfUrlRequest:[self createRequest:url] important:important];
+    return [self xmlWithContentsOfUrl:url important:important response:NULL];
+}
+
+
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url
+                           important:(BOOL) important
+                            response:(NSHTTPURLResponse**) response {
+    return [self xmlWithContentsOfUrlRequest:[self createRequest:url]
+                                   important:important
+                                    response:response];
 }
 
 
 + (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) request
                                   important:(BOOL) important {
+    return [self xmlWithContentsOfUrlRequest:request
+                                   important:important
+                                    response:NULL];
+}
+
+
++ (XmlElement*) xmlWithContentsOfUrlRequest:(NSURLRequest*) request
+                                  important:(BOOL) important
+                                   response:(NSHTTPURLResponse**) response {
+    if (response != NULL) {
+        *response = nil;
+    }
+    
     if (request == nil) {
         return nil;
     }
-
+    
     NSData* data = [self dataWithContentsOfUrlRequest:request
-                                            important:important];
+                                            important:important
+                                             response:response];
     return [XmlParser parse:data];
 }
 
@@ -139,75 +176,86 @@ static Pulser* pulser = nil;
     if (address.length == 0) {
         return nil;
     }
-
+    
     return [self dataWithContentsOfUrl:[NSURL URLWithString:address]
                              important:important];
 }
 
 
-+ (NSData*) dataWithContentsOfUrlRequestWorker:(NSURLRequest*) request {
++ (NSData*) dataWithContentsOfUrlRequestWorker:(NSURLRequest*) request
+                                      response:(NSHTTPURLResponse**) response {
     NSAssert(![NSThread isMainThread], @"");
-
+    
+    if (response != NULL) {
+        *response = nil;
+    }
+    
     if (request == nil) {
         return nil;
     }
-
+    
     [gate lock];
     {
         inflightOperations++;
         [pulser tryPulse];
     }
     [gate unlock];
-
-    NSURLResponse* response = nil;
+    
+    NSURLResponse* urlResponse = nil;
     NSError* error;
     NSData* data = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response
+                                         returningResponse:&urlResponse
                                                      error:&error];
-
-
+    
+    
     [gate lock];
     {
         inflightOperations--;
         [pulser tryPulse];
     }
     [gate unlock];
-
+    
     // pause a bit so we don't saturate the network.
     if (![NSThread isMainThread]) {
         [NSThread sleepForTimeInterval:0.25];
     }
-
+    
     if (error != nil) {
         return nil;
     }
-
+    
+    if (response != NULL && [urlResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+        *response = (NSHTTPURLResponse*)urlResponse;
+    }
+    
     return data;
 }
 
 
-+ (NSData*) highPriorityDataWithContentsOfUrlRequest:(NSURLRequest*) request {
++ (NSData*) highPriorityDataWithContentsOfUrlRequest:(NSURLRequest*) request
+                                            response:(NSHTTPURLResponse**) response {
     NSData* data;
-
+    
     [priorityMutex lockHigh];
     {
-        data = [self dataWithContentsOfUrlRequestWorker:request];
+        data = [self dataWithContentsOfUrlRequestWorker:request response:response];
     }
     [priorityMutex unlockHigh];
-
+    
     return data;
 }
 
 
-+ (NSData*) lowPriorityDataWithContentsOfUrlRequest:(NSURLRequest*) request {
++ (NSData*) lowPriorityDataWithContentsOfUrlRequest:(NSURLRequest*) request
+                                           response:(NSHTTPURLResponse**) response {
     NSData* data;
-
+    
     [priorityMutex lockLow];
     {
-        data = [self dataWithContentsOfUrlRequestWorker:request];
+        data = [self dataWithContentsOfUrlRequestWorker:request response:response];
     }
     [priorityMutex unlockLow];
-
+    
     return data;
 }
 
@@ -221,14 +269,25 @@ static Pulser* pulser = nil;
 
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) request
                                important:(BOOL) important {
+    return [self dataWithContentsOfUrlRequest:request important:important response:NULL];
+}
+
+
++ (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) request
+                               important:(BOOL) important
+                                response:(NSHTTPURLResponse**) response {
+    if (response != NULL) {
+        *response = nil;
+    }
+    
     if (request == nil) {
         return nil;
     }
-
+    
     if (important) {
-        return [self highPriorityDataWithContentsOfUrlRequest:request];
+        return [self highPriorityDataWithContentsOfUrlRequest:request response:response];
     } else {
-        return [self lowPriorityDataWithContentsOfUrlRequest:request];
+        return [self lowPriorityDataWithContentsOfUrlRequest:request response:response];
     }
 }
 
@@ -238,7 +297,7 @@ static Pulser* pulser = nil;
     // kSCNetworkReachabilityFlagsReachable indicates that the specified nodename or address can
     // be reached using the current network configuration.
     BOOL isReachable = flags & kSCNetworkReachabilityFlagsReachable;
-
+    
     // This flag indicates that the specified nodename or address can
     // be reached using the current network configuration, but a
     // connection must first be established.
@@ -250,7 +309,7 @@ static Pulser* pulser = nil;
     if ((flags & kSCNetworkReachabilityFlagsIsWWAN)) {
         noConnectionRequired = YES;
     }
-
+    
     return (isReachable && noConnectionRequired) ? YES : NO;
 }
 
@@ -258,19 +317,19 @@ static Pulser* pulser = nil;
 + (BOOL) isNetworkAvailable {
     struct sockaddr_in zeroAddress;
     bzero(&zeroAddress, sizeof(zeroAddress));
-
+    
     zeroAddress.sin_len = sizeof(zeroAddress);
     zeroAddress.sin_family = AF_INET;
-
+    
     SCNetworkReachabilityRef networkReachability =
     SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr*)&zeroAddress);
-
+    
     SCNetworkReachabilityFlags flags;
     BOOL gotFlags = SCNetworkReachabilityGetFlags(networkReachability, &flags);
     if (!gotFlags) {
         return NO;
     }
-
+    
     return [self isReachableWithoutRequiringConnection:flags];
 }
 
