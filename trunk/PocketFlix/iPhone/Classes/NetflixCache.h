@@ -18,15 +18,15 @@
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
-
+    
     // movies whose details we want to update
     LinkedSet* normalMovies;
     LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
-
+    
     NSCondition* updateDetailsLock;
-
+    
     NSDate* lastQuotaErrorDate;
 }
 
@@ -65,7 +65,7 @@
 - (NSString*) noInformationFound;
 
 - (void) lookupNetflixMoviesForLocalMovies:(NSArray*) movies;
-- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie;
+- (void) lookupNetflixMovieForLocalMovieBackgroundEntryPoint:(Movie*) movie;
 
 - (Movie*) netflixMovieForMovie:(Movie*) movie;
 
