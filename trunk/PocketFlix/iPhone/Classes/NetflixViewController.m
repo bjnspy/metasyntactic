@@ -70,7 +70,6 @@ typedef enum {
         self.navigationController = navigationController_;
         self.title = [Application name];
         
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.rowHeight = ROW_HEIGHT;
         self.navigationItem.leftBarButtonItem =
         [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
@@ -108,7 +107,9 @@ typedef enum {
 
 - (void) majorRefreshWorker {
     self.tableView.rowHeight = ROW_HEIGHT;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [ColorCache netflixRed];
+
     [self setupTitle];
     [self.tableView reloadData];
 }
