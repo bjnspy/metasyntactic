@@ -1,0 +1,1747 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623EC0D0F72F000981E51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		7400EB600EF4E4F300058CDD /* NetflixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */; };
+		7400EB640EF4E8E700058CDD /* NetflixLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EB630EF4E8E700058CDD /* NetflixLoginViewController.m */; };
+		7400EE8B0EF57C1100058CDD /* NetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EE8A0EF57C1100058CDD /* NetflixCache.m */; };
+		7400EFD20EF5935700058CDD /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EFD10EF5935700058CDD /* Feed.m */; };
+		7400EFEF0EF59D7800058CDD /* NetflixFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */; };
+		7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */; };
+		740224550E53F323006C58A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 740224540E53F323006C58A2 /* Localizable.strings */; };
+		740244300E77926C00ECE1B4 /* DownDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442E0E77926C00ECE1B4 /* DownDisclosureTriangle.png */; };
+		740244310E77926C00ECE1B4 /* RightDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */; };
+		740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
+		740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246610E785A9000ECE1B4 /* BackgroundInvocation.m */; };
+		740246790E785B0000ECE1B4 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246780E785B0000ECE1B4 /* Invocation.m */; };
+		7406A6EE0F101DF400795555 /* NetflixMostPopular.png in Resources */ = {isa = PBXBuildFile; fileRef = 7406A6ED0F101DF400795555 /* NetflixMostPopular.png */; };
+		7406A7680F104C2200795555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7630F104C2200795555 /* AppDelegate.m */; };
+		7406A7690F104C2200795555 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7650F104C2200795555 /* Controller.m */; };
+		7406A76A0F104C2200795555 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7670F104C2200795555 /* Model.m */; };
+		7406A7EF0F106AAA00795555 /* NetflixMostPopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7EE0F106AAA00795555 /* NetflixMostPopularViewController.m */; };
+		7406A8490F107C1A00795555 /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A8480F107C1A00795555 /* NetflixMostPopularMoviesViewController.m */; };
+		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
+		74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E670DCD36AE00954696 /* XmlDocument.m */; };
+		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
+		740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740C9FE70E3A838E00D7A56B /* ColorCache.m */; };
+		740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */; };
+		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
+		7410D7410EC2C0740079BF1E /* LargePosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7410D7400EC2C0740079BF1E /* LargePosterCache.m */; };
+		741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
+		741373F30E89CF1B00CF4900 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 741373F20E89CF1B00CF4900 /* Search.png */; };
+		741648DC0EFC5D15000EC7B5 /* ClearRating.png in Resources */ = {isa = PBXBuildFile; fileRef = 741648DB0EFC5D15000EC7B5 /* ClearRating.png */; };
+		741649000EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */; };
+		7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */; };
+		741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 741669330EC92C3B00FFD29A /* TappableLabel.m */; };
+		741EFEEC0F0F214C002FD93B /* NetflixCredits.png in Resources */ = {isa = PBXBuildFile; fileRef = 741EFEEB0F0F214C002FD93B /* NetflixCredits.png */; };
+		741EFF140F0F24B8002FD93B /* NetflixSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741EFF130F0F24B8002FD93B /* NetflixSettingsViewController.m */; };
+		742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
+		7427C1630ED6BCDA00B7BF09 /* RefreshableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */; };
+		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
+		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
+		742ED8090EF45BC0000D5245 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7DD0EF45BC0000D5245 /* NSMutableURLRequest+Parameters.m */; };
+		742ED80B0EF45BC0000D5245 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7E10EF45BC0000D5245 /* NSString+URLEncoding.m */; };
+		742ED80D0EF45BC0000D5245 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7E50EF45BC0000D5245 /* NSURL+Base.m */; };
+		742ED80F0EF45BC0000D5245 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7E90EF45BC0000D5245 /* OAConsumer.m */; };
+		742ED8110EF45BC0000D5245 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7ED0EF45BC0000D5245 /* OADataFetcher.m */; };
+		742ED8130EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7F10EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m */; };
+		742ED8150EF45BC0000D5245 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7F50EF45BC0000D5245 /* OAMutableURLRequest.m */; };
+		742ED8190EF45BC0000D5245 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED7FD0EF45BC0000D5245 /* OARequestParameter.m */; };
+		742ED81B0EF45BC0000D5245 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED8010EF45BC0000D5245 /* OAServiceTicket.m */; };
+		742ED81C0EF45BC0000D5245 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 742ED8040EF45BC0000D5245 /* OAToken.m */; };
+		743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743394100E61E52000D285F0 /* MovieOverviewCell.m */; };
+		743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
+		744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247000E89F7A700ACDBCF /* SearchEngine.m */; };
+		744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
+		744247070E89F7C300ACDBCF /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247060E89F7C300ACDBCF /* SearchResult.m */; };
+		74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */; };
+		744592040E6CA017002D05C3 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744592030E6CA017002D05C3 /* WarningView.m */; };
+		744592070E6CA06C002D05C3 /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 744592060E6CA06C002D05C3 /* Warning-32x32.png */; };
+		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
+		744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 744AF54C0EC42A40008B5B35 /* BlackCircle.png */; };
+		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
+		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
+		745F37590EE99B4600636D8E /* Bookmark-Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F37570EE99B4500636D8E /* Bookmark-Active.png */; };
+		745F375A0EE99B4600636D8E /* Bookmark-Inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F37580EE99B4500636D8E /* Bookmark-Inactive.png */; };
+		74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
+		7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
+		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
+		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
+		746A1BDE0EF1950B00CF38C9 /* Navigate-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */; };
+		746A1BDF0EF1950B00CF38C9 /* Navigate-Forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */; };
+		7471E21D0EFA0D7A000490CA /* NetflixBrowse.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2010EFA0D7A000490CA /* NetflixBrowse.png */; };
+		7471E2270EFA0D7A000490CA /* NetflixCellBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20B0EFA0D7A000490CA /* NetflixCellBackground-0.png */; };
+		7471E2280EFA0D7A000490CA /* NetflixCellBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20C0EFA0D7A000490CA /* NetflixCellBackground-1.png */; };
+		7471E2290EFA0D7A000490CA /* NetflixCellBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20D0EFA0D7A000490CA /* NetflixCellBackground-2.png */; };
+		7471E22A0EFA0D7A000490CA /* NetflixCellBackground-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20E0EFA0D7A000490CA /* NetflixCellBackground-3.png */; };
+		7471E22B0EFA0D7A000490CA /* NetflixCellBackground-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E20F0EFA0D7A000490CA /* NetflixCellBackground-4.png */; };
+		7471E22C0EFA0D7A000490CA /* NetflixCellBackground-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2100EFA0D7A000490CA /* NetflixCellBackground-5.png */; };
+		7471E22D0EFA0D7A000490CA /* NetflixCellBackground-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2110EFA0D7A000490CA /* NetflixCellBackground-6.png */; };
+		7471E22E0EFA0D7A000490CA /* NetflixCellBackground-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2120EFA0D7A000490CA /* NetflixCellBackground-7.png */; };
+		7471E22F0EFA0D7A000490CA /* NetflixCellBackground-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2130EFA0D7A000490CA /* NetflixCellBackground-8.png */; };
+		7471E2300EFA0D7A000490CA /* NetflixChevron.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2140EFA0D7A000490CA /* NetflixChevron.png */; };
+		7471E2310EFA0D7A000490CA /* NetflixDVDQueue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2150EFA0D7A000490CA /* NetflixDVDQueue.png */; };
+		7471E2320EFA0D7A000490CA /* NetflixHistory.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2160EFA0D7A000490CA /* NetflixHistory.png */; };
+		7471E2330EFA0D7A000490CA /* NetflixHome.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2170EFA0D7A000490CA /* NetflixHome.png */; };
+		7471E2340EFA0D7A000490CA /* NetflixInstantQueue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2180EFA0D7A000490CA /* NetflixInstantQueue.png */; };
+		7471E2350EFA0D7A000490CA /* NetflixLogOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E2190EFA0D7A000490CA /* NetflixLogOff.png */; };
+		7471E2360EFA0D7A000490CA /* NetflixRecommendations.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E21A0EFA0D7A000490CA /* NetflixRecommendations.png */; };
+		7471E2370EFA0D7A000490CA /* NetflixSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E21B0EFA0D7A000490CA /* NetflixSearch.png */; };
+		74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
+		747406260EC6468F00625001 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 7474061E0EC6468F00625001 /* xmlparse.c */; };
+		747406270EC6468F00625001 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 7474061F0EC6468F00625001 /* xmlrole.c */; };
+		747406280EC6468F00625001 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 747406210EC6468F00625001 /* xmltok.c */; };
+		747406290EC6468F00625001 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 747406230EC6468F00625001 /* xmltok_impl.c */; };
+		7474062A0EC6468F00625001 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 747406250EC6468F00625001 /* xmltok_ns.c */; };
+		747411250EC79EA200625001 /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747411240EC79EA200625001 /* ImageUtilities.m */; };
+		747412910EC7C0B500625001 /* ImageLoading.png in Resources */ = {isa = PBXBuildFile; fileRef = 747412900EC7C0B500625001 /* ImageLoading.png */; };
+		747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747413880EC7F2EC00625001 /* AbstractPosterCell.m */; };
+		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
+		747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */; };
+		747AB7A70EB956B2002438D0 /* DVD.png in Resources */ = {isa = PBXBuildFile; fileRef = 747AB7A60EB956B2002438D0 /* DVD.png */; };
+		747AB9270EB97822002438D0 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB9260EB97822002438D0 /* PointerSet.m */; };
+		747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 747ABB770EBA4228002438D0 /* VideoETALogo.png */; };
+		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
+		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
+		747DA4E30EF8882A0066B881 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA4E20EF8882A0066B881 /* IdentitySet.m */; };
+		747DA4E60EF8884F0066B881 /* IdentityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA4E50EF8884F0066B881 /* IdentityObject.m */; };
+		747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */; };
+		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
+		747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */; };
+		747E21080EED99B0005B638A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747E21070EED99B0005B638A /* WebViewController.m */; };
+		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
+		748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB0310EB61C2C004918A6 /* IMDbCache.m */; };
+		748AB37E0EB6C59A004918A6 /* LinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB37D0EB6C59A004918A6 /* LinkedNode.m */; };
+		748AB3810EB6C5A5004918A6 /* LinkedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 748AB3800EB6C5A5004918A6 /* LinkedSet.m */; };
+		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
+		749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */; };
+		749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
+		749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
+		749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */; };
+		749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
+		749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749D34B20F075F8F006E7C7D /* WikipediaCache.m */; };
+		749DE12A0F118F370056902E /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749DE1290F118F370056902E /* StringUtilities.m */; };
+		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
+		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
+		74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E490F034B8100E5450A /* AbstractNetflixCache.m */; };
+		74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E530F034C4100E5450A /* MutableNetflixCache.m */; };
+		74A41ACF0E9E172B007CF82C /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A41ACE0E9E172B007CF82C /* Pulser.m */; };
+		74A70AD20EC391A0008C661D /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A70AD00EC391A0008C661D /* LeftArrow.png */; };
+		74A70AD30EC391A0008C661D /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A70AD10EC391A0008C661D /* RightArrow.png */; };
+		74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */; };
+		74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */; };
+		74AF0F850EC2D38D00A8F639 /* NonClippingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F840EC2D38D00A8F639 /* NonClippingView.m */; };
+		74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
+		74BD51CA0EB786FC0098C2DF /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BD51C90EB786FC0098C2DF /* MainThreadGate.m */; };
+		74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */; };
+		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
+		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
+		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
+		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
+		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
+		74DD8A960F0ECFDD009DC326 /* NetflixCellBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */; };
+		74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */; };
+		74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */; };
+		74E0300F0EF4A7E900B2D2BA /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E0300E0EF4A7E900B2D2BA /* Base64.m */; };
+		74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
+		74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */; };
+		74E62FDE0EFD7C00002EE26B /* Invocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E62FDD0EFD7C00002EE26B /* Invocation2.m */; };
+		74E631C30EFDCE5D002EE26B /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E631C20EFDCE5D002EE26B /* AlertUtilities.m */; };
+		74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */; };
+		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
+		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
+		74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
+		74EB9AA00EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */; };
+		74EB9AA10EFA110D0083DC33 /* NetflixCellSelectedBackground-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A980EFA110D0083DC33 /* NetflixCellSelectedBackground-3.png */; };
+		74EB9AA20EFA110D0083DC33 /* NetflixCellSelectedBackground-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A990EFA110D0083DC33 /* NetflixCellSelectedBackground-4.png */; };
+		74EB9AA30EFA110D0083DC33 /* NetflixCellSelectedBackground-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9A0EFA110D0083DC33 /* NetflixCellSelectedBackground-5.png */; };
+		74EB9AA40EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9B0EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png */; };
+		74EB9AA50EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9C0EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png */; };
+		74EB9AA60EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A9D0EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png */; };
+		74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */; };
+		74EB9C220EFA3ED80083DC33 /* RedStar-0.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */; };
+		74EB9C230EFA3ED80083DC33 /* RedStar-0.2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */; };
+		74EB9C240EFA3ED80083DC33 /* RedStar-0.4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1E0EFA3ED80083DC33 /* RedStar-0.4.png */; };
+		74EB9C250EFA3ED80083DC33 /* RedStar-0.6.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C1F0EFA3ED80083DC33 /* RedStar-0.6.png */; };
+		74EB9C260EFA3ED80083DC33 /* RedStar-0.8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C200EFA3ED80083DC33 /* RedStar-0.8.png */; };
+		74EB9C270EFA3ED80083DC33 /* RedStar-1.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */; };
+		74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC069F0DD2D69B006953A4 /* Utilities.m */; };
+		74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC08720DD3EEBB006953A4 /* MultiDictionary.m */; };
+		74EC959D0EE5C610004E044E /* BlackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC959C0EE5C610004E044E /* BlackButton.png */; };
+		74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */; };
+		74EC99050EE5F874004E044E /* FlipUp-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC99030EE5F874004E044E /* FlipUp-Normal.png */; };
+		74EC99060EE5F874004E044E /* FlipUp-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC99040EE5F874004E044E /* FlipUp-Selected.png */; };
+		74EC993E0EE5FCFA004E044E /* FlipUp-Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC993D0EE5FCFA004E044E /* FlipUp-Highlighted.png */; };
+		74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */; };
+		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
+		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
+		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
+		74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
+		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
+		74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */; };
+		74F94FCA0E6BC98800075068 /* CurrentPosition.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA40E6BC98800075068 /* CurrentPosition.png */; };
+		74F94FCB0E6BC98800075068 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA50E6BC98800075068 /* Default.png */; };
+		74F94FCC0E6BC98800075068 /* DownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA60E6BC98800075068 /* DownArrow.png */; };
+		74F94FCD0E6BC98800075068 /* Empty Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA70E6BC98800075068 /* Empty Star.png */; };
+		74F94FCE0E6BC98800075068 /* FandangoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA80E6BC98800075068 /* FandangoLogo.png */; };
+		74F94FCF0E6BC98800075068 /* Filled Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA90E6BC98800075068 /* Filled Star.png */; };
+		74F94FD00E6BC98800075068 /* Fresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAA0E6BC98800075068 /* Fresh.png */; };
+		74F94FD10E6BC98800075068 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAB0E6BC98800075068 /* Icon.png */; };
+		74F94FD20E6BC98800075068 /* ImageNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAC0E6BC98800075068 /* ImageNotAvailable.png */; };
+		74F94FD30E6BC98800075068 /* MetacriticLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAD0E6BC98800075068 /* MetacriticLogo.png */; };
+		74F94FD40E6BC98800075068 /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAE0E6BC98800075068 /* More.png */; };
+		74F94FD50E6BC98800075068 /* Movies.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FAF0E6BC98800075068 /* Movies.png */; };
+		74F94FD60E6BC98800075068 /* NeutralSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB00E6BC98800075068 /* NeutralSquare.png */; };
+		74F94FD70E6BC98800075068 /* Numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB10E6BC98800075068 /* Numbers.png */; };
+		74F94FD80E6BC98800075068 /* Rating-Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB20E6BC98800075068 /* Rating-Blue.png */; };
+		74F94FD90E6BC98800075068 /* Rating-Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB30E6BC98800075068 /* Rating-Green.png */; };
+		74F94FDA0E6BC98800075068 /* Rating-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB40E6BC98800075068 /* Rating-Red.png */; };
+		74F94FDB0E6BC98800075068 /* Rating-Unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB50E6BC98800075068 /* Rating-Unknown.png */; };
+		74F94FDC0E6BC98800075068 /* Rating-Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB60E6BC98800075068 /* Rating-Yellow.png */; };
+		74F94FDD0E6BC98800075068 /* Rotten-Faded.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB70E6BC98800075068 /* Rotten-Faded.png */; };
+		74F94FDE0E6BC98800075068 /* Rotten-Full.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB80E6BC98800075068 /* Rotten-Full.png */; };
+		74F94FDF0E6BC98800075068 /* RottenTomatoesLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FB90E6BC98800075068 /* RottenTomatoesLogo.png */; };
+		74F94FE00E6BC98800075068 /* Spinner0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBA0E6BC98800075068 /* Spinner0.png */; };
+		74F94FE10E6BC98800075068 /* Spinner1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBB0E6BC98800075068 /* Spinner1.png */; };
+		74F94FE20E6BC98800075068 /* Spinner2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBC0E6BC98800075068 /* Spinner2.png */; };
+		74F94FE30E6BC98800075068 /* Spinner3.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBD0E6BC98800075068 /* Spinner3.png */; };
+		74F94FE40E6BC98800075068 /* Spinner4.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBE0E6BC98800075068 /* Spinner4.png */; };
+		74F94FE50E6BC98800075068 /* Spinner5.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FBF0E6BC98800075068 /* Spinner5.png */; };
+		74F94FE60E6BC98800075068 /* Spinner6.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC00E6BC98800075068 /* Spinner6.png */; };
+		74F94FE70E6BC98800075068 /* Spinner7.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC10E6BC98800075068 /* Spinner7.png */; };
+		74F94FE80E6BC98800075068 /* Spinner8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC20E6BC98800075068 /* Spinner8.png */; };
+		74F94FE90E6BC98800075068 /* Spinner9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC30E6BC98800075068 /* Spinner9.png */; };
+		74F94FEA0E6BC98800075068 /* Theaters.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC40E6BC98800075068 /* Theaters.png */; };
+		74F94FEB0E6BC98800075068 /* TryntLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC50E6BC98800075068 /* TryntLogo.png */; };
+		74F94FEC0E6BC98800075068 /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC60E6BC98800075068 /* UpArrow.png */; };
+		74F94FED0E6BC98800075068 /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC70E6BC98800075068 /* Upcoming.png */; };
+		74F94FEE0E6BC98800075068 /* Warning-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC80E6BC98800075068 /* Warning-16x16.png */; };
+		74F94FEF0E6BC98800075068 /* YahooLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FC90E6BC98800075068 /* YahooLogo.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* PocketFlix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7400EB5E0EF4E4F300058CDD /* NetflixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixViewController.h; sourceTree = "<group>"; };
+		7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixViewController.m; sourceTree = "<group>"; };
+		7400EB620EF4E8E700058CDD /* NetflixLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixLoginViewController.h; sourceTree = "<group>"; };
+		7400EB630EF4E8E700058CDD /* NetflixLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixLoginViewController.m; sourceTree = "<group>"; };
+		7400EE890EF57C1100058CDD /* NetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCache.h; sourceTree = "<group>"; };
+		7400EE8A0EF57C1100058CDD /* NetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCache.m; sourceTree = "<group>"; };
+		7400EFD00EF5935700058CDD /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		7400EFD10EF5935700058CDD /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		7400EFED0EF59D7800058CDD /* NetflixFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixFeedsViewController.h; sourceTree = "<group>"; };
+		7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixFeedsViewController.m; sourceTree = "<group>"; };
+		7400F19B0EF5AF1700058CDD /* NetflixQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixQueueViewController.h; sourceTree = "<group>"; };
+		7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixQueueViewController.m; sourceTree = "<group>"; };
+		740224570E53F342006C58A2 /* ja */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ja; path = Resources/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		740224580E53F346006C58A2 /* pt */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = pt; path = Resources/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		740224590E53F351006C58A2 /* fr */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = fr; path = Resources/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7402245A0E53F353006C58A2 /* de */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = de; path = Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7402245B0E53F35A006C58A2 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7402442E0E77926C00ECE1B4 /* DownDisclosureTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DownDisclosureTriangle.png; path = Resources/DownDisclosureTriangle.png; sourceTree = "<group>"; };
+		7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightDisclosureTriangle.png; path = Resources/RightDisclosureTriangle.png; sourceTree = "<group>"; };
+		740245670E7848BF00ECE1B4 /* ActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsView.h; sourceTree = "<group>"; };
+		740245680E7848BF00ECE1B4 /* ActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsView.m; sourceTree = "<group>"; };
+		740246600E785A9000ECE1B4 /* BackgroundInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation.h; sourceTree = "<group>"; };
+		740246610E785A9000ECE1B4 /* BackgroundInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation.m; sourceTree = "<group>"; };
+		740246770E785B0000ECE1B4 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
+		740246780E785B0000ECE1B4 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
+		7406A6ED0F101DF400795555 /* NetflixMostPopular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixMostPopular.png; path = Resources/NetflixMostPopular.png; sourceTree = "<group>"; };
+		7406A7620F104C2200795555 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7406A7630F104C2200795555 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7406A7640F104C2200795555 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		7406A7650F104C2200795555 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		7406A7660F104C2200795555 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		7406A7670F104C2200795555 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		7406A7ED0F106AAA00795555 /* NetflixMostPopularViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMostPopularViewController.h; sourceTree = "<group>"; };
+		7406A7EE0F106AAA00795555 /* NetflixMostPopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixMostPopularViewController.m; sourceTree = "<group>"; };
+		7406A8470F107C1A00795555 /* NetflixMostPopularMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMostPopularMoviesViewController.h; sourceTree = "<group>"; };
+		7406A8480F107C1A00795555 /* NetflixMostPopularMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixMostPopularMoviesViewController.m; sourceTree = "<group>"; };
+		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
+		74088BD60DCD0AA800954696 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
+		74088E660DCD36AE00954696 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
+		74088E670DCD36AE00954696 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDocument.m; sourceTree = "<group>"; };
+		74088E680DCD36AE00954696 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
+		74088E690DCD36AE00954696 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; wrapsLines = 0; };
+		740C9FE60E3A838E00D7A56B /* ColorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCache.h; sourceTree = "<group>"; };
+		740C9FE70E3A838E00D7A56B /* ColorCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCache.m; sourceTree = "<group>"; };
+		740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
+		740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
+		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7410D73F0EC2C0740079BF1E /* LargePosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePosterCache.h; sourceTree = "<group>"; };
+		7410D7400EC2C0740079BF1E /* LargePosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargePosterCache.m; sourceTree = "<group>"; };
+		741111520DFCF61900B94FB5 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		741111530DFCF61900B94FB5 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
+		741373F20E89CF1B00CF4900 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Search.png; path = Resources/Search.png; sourceTree = "<group>"; };
+		741648DB0EFC5D15000EC7B5 /* ClearRating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ClearRating.png; path = Resources/ClearRating.png; sourceTree = "<group>"; };
+		741648FE0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixRecommendationsViewController.h; sourceTree = "<group>"; };
+		741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixRecommendationsViewController.m; sourceTree = "<group>"; };
+		7416496B0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixGenreRecommendationsViewController.h; sourceTree = "<group>"; };
+		7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixGenreRecommendationsViewController.m; sourceTree = "<group>"; };
+		741669320EC92C3B00FFD29A /* TappableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabel.h; sourceTree = "<group>"; };
+		741669330EC92C3B00FFD29A /* TappableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableLabel.m; sourceTree = "<group>"; };
+		741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableLabelDelegate.h; sourceTree = "<group>"; };
+		741EFEEB0F0F214C002FD93B /* NetflixCredits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixCredits.png; path = Resources/NetflixCredits.png; sourceTree = "<group>"; };
+		741EFF120F0F24B8002FD93B /* NetflixSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSettingsViewController.h; sourceTree = "<group>"; };
+		741EFF130F0F24B8002FD93B /* NetflixSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSettingsViewController.m; sourceTree = "<group>"; };
+		742445A50E2D2F9800C98F84 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
+		742445A60E2D2F9800C98F84 /* AttributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeCell.m; sourceTree = "<group>"; };
+		7427C1610ED6BCDA00B7BF09 /* RefreshableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableTableViewController.h; sourceTree = "<group>"; };
+		7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshableTableViewController.m; sourceTree = "<group>"; };
+		74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
+		74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FandangoPosterDownloader.m; sourceTree = "<group>"; };
+		742C07B10F08B0890087F4E0 /* AmazonCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonCache.h; sourceTree = "<group>"; };
+		742C07B20F08B0890087F4E0 /* AmazonCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonCache.m; sourceTree = "<group>"; };
+		742ED7DC0EF45BC0000D5245 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableURLRequest+Parameters.h"; path = "External/OAuth/NSMutableURLRequest+Parameters.h"; sourceTree = SOURCE_ROOT; };
+		742ED7DD0EF45BC0000D5245 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableURLRequest+Parameters.m"; path = "External/OAuth/NSMutableURLRequest+Parameters.m"; sourceTree = SOURCE_ROOT; };
+		742ED7E00EF45BC0000D5245 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "External/OAuth/NSString+URLEncoding.h"; sourceTree = SOURCE_ROOT; };
+		742ED7E10EF45BC0000D5245 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "External/OAuth/NSString+URLEncoding.m"; sourceTree = SOURCE_ROOT; };
+		742ED7E40EF45BC0000D5245 /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+Base.h"; path = "External/OAuth/NSURL+Base.h"; sourceTree = SOURCE_ROOT; };
+		742ED7E50EF45BC0000D5245 /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+Base.m"; path = "External/OAuth/NSURL+Base.m"; sourceTree = SOURCE_ROOT; };
+		742ED7E80EF45BC0000D5245 /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAConsumer.h; path = External/OAuth/OAConsumer.h; sourceTree = SOURCE_ROOT; };
+		742ED7E90EF45BC0000D5245 /* OAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAConsumer.m; path = External/OAuth/OAConsumer.m; sourceTree = SOURCE_ROOT; };
+		742ED7EC0EF45BC0000D5245 /* OADataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OADataFetcher.h; path = External/OAuth/OADataFetcher.h; sourceTree = SOURCE_ROOT; };
+		742ED7ED0EF45BC0000D5245 /* OADataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OADataFetcher.m; path = External/OAuth/OADataFetcher.m; sourceTree = SOURCE_ROOT; };
+		742ED7F00EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAHMAC_SHA1SignatureProvider.h; path = External/OAuth/OAHMAC_SHA1SignatureProvider.h; sourceTree = SOURCE_ROOT; };
+		742ED7F10EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAHMAC_SHA1SignatureProvider.m; path = External/OAuth/OAHMAC_SHA1SignatureProvider.m; sourceTree = SOURCE_ROOT; };
+		742ED7F40EF45BC0000D5245 /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAMutableURLRequest.h; path = External/OAuth/OAMutableURLRequest.h; sourceTree = SOURCE_ROOT; };
+		742ED7F50EF45BC0000D5245 /* OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAMutableURLRequest.m; path = External/OAuth/OAMutableURLRequest.m; sourceTree = SOURCE_ROOT; };
+		742ED7FC0EF45BC0000D5245 /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OARequestParameter.h; path = External/OAuth/OARequestParameter.h; sourceTree = SOURCE_ROOT; };
+		742ED7FD0EF45BC0000D5245 /* OARequestParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OARequestParameter.m; path = External/OAuth/OARequestParameter.m; sourceTree = SOURCE_ROOT; };
+		742ED8000EF45BC0000D5245 /* OAServiceTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAServiceTicket.h; path = External/OAuth/OAServiceTicket.h; sourceTree = SOURCE_ROOT; };
+		742ED8010EF45BC0000D5245 /* OAServiceTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAServiceTicket.m; path = External/OAuth/OAServiceTicket.m; sourceTree = SOURCE_ROOT; };
+		742ED8030EF45BC0000D5245 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAToken.h; path = External/OAuth/OAToken.h; sourceTree = SOURCE_ROOT; };
+		742ED8040EF45BC0000D5245 /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAToken.m; path = External/OAuth/OAToken.m; sourceTree = SOURCE_ROOT; };
+		742ED8070EF45BC0000D5245 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumer.h; path = External/OAuth/OAuthConsumer.h; sourceTree = SOURCE_ROOT; };
+		743394100E61E52000D285F0 /* MovieOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieOverviewCell.m; sourceTree = "<group>"; };
+		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		743BE1FC0E3BFB3B00D19F9B /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		744246FF0E89F7A700ACDBCF /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngine.h; sourceTree = "<group>"; };
+		744247000E89F7A700ACDBCF /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEngine.m; sourceTree = "<group>"; };
+		744247020E89F7B500ACDBCF /* SearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRequest.h; sourceTree = "<group>"; };
+		744247030E89F7B500ACDBCF /* SearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRequest.m; sourceTree = "<group>"; };
+		744247050E89F7C300ACDBCF /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
+		744247060E89F7C300ACDBCF /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
+		744247400E89FCE900ACDBCF /* SearchEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngineDelegate.h; sourceTree = "<group>"; };
+		744292EC0EF5C98500BE2B67 /* hu */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hu; path = Resources/hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74447C580DC840D100CC146C /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
+		74447C590DC840D100CC146C /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
+		744483150E5B8EB300E4B2CE /* en_GB */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_GB; path = Resources/en_GB.lproj/Localizable.strings; sourceTree = "<group>"; };
+		744592020E6CA017002D05C3 /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
+		744592030E6CA017002D05C3 /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
+		744592060E6CA06C002D05C3 /* Warning-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-32x32.png"; path = "Resources/Warning-32x32.png"; sourceTree = "<group>"; };
+		744815060E8610A1004AFB83 /* en_AU */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_AU; path = Resources/en_AU.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
+		74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
+		744AF54C0EC42A40008B5B35 /* BlackCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackCircle.png; path = Resources/BlackCircle.png; sourceTree = "<group>"; };
+		744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
+		744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
+		745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		745E203A0E58858A00105751 /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
+		745E203B0E58858A00105751 /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
+		745E213A0E5961F700105751 /* es */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E213C0E5962D100105751 /* cs */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = cs; path = Resources/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E213D0E5962DE00105751 /* da */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = da; path = Resources/da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E213E0E59630200105751 /* he */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = he; path = Resources/he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21400E59632400105751 /* it */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = it; path = Resources/it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21410E59633500105751 /* nl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = nl; path = Resources/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21420E59634900105751 /* ro */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; lineEnding = 0; name = ro; path = Resources/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21430E59637300105751 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ru; path = Resources/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21440E59638200105751 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sk; path = Resources/sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		745F37570EE99B4500636D8E /* Bookmark-Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bookmark-Active.png"; path = "Resources/Bookmark-Active.png"; sourceTree = "<group>"; };
+		745F37580EE99B4500636D8E /* Bookmark-Inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bookmark-Inactive.png"; path = "Resources/Bookmark-Inactive.png"; sourceTree = "<group>"; };
+		74676D860EFF6E7D00C64100 /* NetflixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCell.h; sourceTree = "<group>"; };
+		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
+		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
+		746772A50F02B2B400C64100 /* NetflixAddMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixAddMovieDelegate.h; sourceTree = "<group>"; };
+		7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		746A01420DC819270079D89B /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		746A02140DC81A1A0079D89B /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Back.png"; path = "Resources/Navigate-Back.png"; sourceTree = "<group>"; };
+		746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigate-Forward.png"; path = "Resources/Navigate-Forward.png"; sourceTree = "<group>"; };
+		7471E2010EFA0D7A000490CA /* NetflixBrowse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixBrowse.png; path = Resources/NetflixBrowse.png; sourceTree = "<group>"; };
+		7471E20B0EFA0D7A000490CA /* NetflixCellBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-0.png"; path = "Resources/NetflixCellBackground-0.png"; sourceTree = "<group>"; };
+		7471E20C0EFA0D7A000490CA /* NetflixCellBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-1.png"; path = "Resources/NetflixCellBackground-1.png"; sourceTree = "<group>"; };
+		7471E20D0EFA0D7A000490CA /* NetflixCellBackground-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-2.png"; path = "Resources/NetflixCellBackground-2.png"; sourceTree = "<group>"; };
+		7471E20E0EFA0D7A000490CA /* NetflixCellBackground-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-3.png"; path = "Resources/NetflixCellBackground-3.png"; sourceTree = "<group>"; };
+		7471E20F0EFA0D7A000490CA /* NetflixCellBackground-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-4.png"; path = "Resources/NetflixCellBackground-4.png"; sourceTree = "<group>"; };
+		7471E2100EFA0D7A000490CA /* NetflixCellBackground-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-5.png"; path = "Resources/NetflixCellBackground-5.png"; sourceTree = "<group>"; };
+		7471E2110EFA0D7A000490CA /* NetflixCellBackground-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-6.png"; path = "Resources/NetflixCellBackground-6.png"; sourceTree = "<group>"; };
+		7471E2120EFA0D7A000490CA /* NetflixCellBackground-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-7.png"; path = "Resources/NetflixCellBackground-7.png"; sourceTree = "<group>"; };
+		7471E2130EFA0D7A000490CA /* NetflixCellBackground-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-8.png"; path = "Resources/NetflixCellBackground-8.png"; sourceTree = "<group>"; };
+		7471E2140EFA0D7A000490CA /* NetflixChevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixChevron.png; path = Resources/NetflixChevron.png; sourceTree = "<group>"; };
+		7471E2150EFA0D7A000490CA /* NetflixDVDQueue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixDVDQueue.png; path = Resources/NetflixDVDQueue.png; sourceTree = "<group>"; };
+		7471E2160EFA0D7A000490CA /* NetflixHistory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixHistory.png; path = Resources/NetflixHistory.png; sourceTree = "<group>"; };
+		7471E2170EFA0D7A000490CA /* NetflixHome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixHome.png; path = Resources/NetflixHome.png; sourceTree = "<group>"; };
+		7471E2180EFA0D7A000490CA /* NetflixInstantQueue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixInstantQueue.png; path = Resources/NetflixInstantQueue.png; sourceTree = "<group>"; };
+		7471E2190EFA0D7A000490CA /* NetflixLogOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixLogOff.png; path = Resources/NetflixLogOff.png; sourceTree = "<group>"; };
+		7471E21A0EFA0D7A000490CA /* NetflixRecommendations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixRecommendations.png; path = Resources/NetflixRecommendations.png; sourceTree = "<group>"; };
+		7471E21B0EFA0D7A000490CA /* NetflixSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixSearch.png; path = Resources/NetflixSearch.png; sourceTree = "<group>"; };
+		74737BE50E2D8BA300C37E4B /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
+		74737BE60E2D8BA300C37E4B /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
+		747406120EC6468F00625001 /* amigaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = amigaconfig.h; path = External/Expat/amigaconfig.h; sourceTree = SOURCE_ROOT; };
+		747406130EC6468F00625001 /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = External/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
+		747406140EC6468F00625001 /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = External/Expat/asciitab.h; sourceTree = SOURCE_ROOT; };
+		747406150EC6468F00625001 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = External/Expat/expat.h; sourceTree = SOURCE_ROOT; };
+		747406160EC6468F00625001 /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = External/Expat/expat_external.h; sourceTree = SOURCE_ROOT; };
+		747406170EC6468F00625001 /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = External/Expat/iasciitab.h; sourceTree = SOURCE_ROOT; };
+		747406180EC6468F00625001 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = External/Expat/internal.h; sourceTree = SOURCE_ROOT; };
+		747406190EC6468F00625001 /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = latin1tab.h; path = External/Expat/latin1tab.h; sourceTree = SOURCE_ROOT; };
+		7474061A0EC6468F00625001 /* macconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = macconfig.h; path = External/Expat/macconfig.h; sourceTree = SOURCE_ROOT; };
+		7474061B0EC6468F00625001 /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nametab.h; path = External/Expat/nametab.h; sourceTree = SOURCE_ROOT; };
+		7474061C0EC6468F00625001 /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = External/Expat/utf8tab.h; sourceTree = SOURCE_ROOT; };
+		7474061D0EC6468F00625001 /* winconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = winconfig.h; path = External/Expat/winconfig.h; sourceTree = SOURCE_ROOT; };
+		7474061E0EC6468F00625001 /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlparse.c; path = External/Expat/xmlparse.c; sourceTree = SOURCE_ROOT; };
+		7474061F0EC6468F00625001 /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlrole.c; path = External/Expat/xmlrole.c; sourceTree = SOURCE_ROOT; };
+		747406200EC6468F00625001 /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmlrole.h; path = External/Expat/xmlrole.h; sourceTree = SOURCE_ROOT; };
+		747406210EC6468F00625001 /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok.c; path = External/Expat/xmltok.c; sourceTree = SOURCE_ROOT; };
+		747406220EC6468F00625001 /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = External/Expat/xmltok.h; sourceTree = SOURCE_ROOT; };
+		747406230EC6468F00625001 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
+		747406240EC6468F00625001 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
+		747406250EC6468F00625001 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		747411230EC79EA200625001 /* ImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtilities.h; sourceTree = "<group>"; };
+		747411240EC79EA200625001 /* ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtilities.m; sourceTree = "<group>"; };
+		747412900EC7C0B500625001 /* ImageLoading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageLoading.png; path = Resources/ImageLoading.png; sourceTree = "<group>"; };
+		747413870EC7F2EC00625001 /* AbstractPosterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterCell.h; sourceTree = "<group>"; };
+		747413880EC7F2EC00625001 /* AbstractPosterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCell.m; sourceTree = "<group>"; };
+		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
+		7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
+		747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
+		747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
+		747AB7A60EB956B2002438D0 /* DVD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVD.png; path = Resources/DVD.png; sourceTree = "<group>"; };
+		747AB9250EB97822002438D0 /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerSet.h; sourceTree = "<group>"; };
+		747AB9260EB97822002438D0 /* PointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerSet.m; sourceTree = "<group>"; };
+		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		747ABB770EBA4228002438D0 /* VideoETALogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VideoETALogo.png; path = Resources/VideoETALogo.png; sourceTree = "<group>"; };
+		747B4C210EE110D000F6FB1F /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
+		747B4C220EE110D000F6FB1F /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
+		747D9DF80EF714960066B881 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		747DA10D0EF835A50066B881 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		747DA10E0EF835A50066B881 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		747DA4E10EF8882A0066B881 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
+		747DA4E20EF8882A0066B881 /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentitySet.m; sourceTree = "<group>"; };
+		747DA4E40EF8884F0066B881 /* IdentityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityObject.h; sourceTree = "<group>"; };
+		747DA4E50EF8884F0066B881 /* IdentityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityObject.m; sourceTree = "<group>"; };
+		747DA5530EF88E180066B881 /* NetflixModifyQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixModifyQueueDelegate.h; sourceTree = "<group>"; };
+		747DAC0D0EF9D9F50066B881 /* NetflixSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchViewController.h; sourceTree = "<group>"; };
+		747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchViewController.m; sourceTree = "<group>"; };
+		747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchEngine.h; sourceTree = "<group>"; };
+		747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchEngine.m; sourceTree = "<group>"; };
+		747DAC640EF9F4130066B881 /* AbstractSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSearchEngine.h; sourceTree = "<group>"; };
+		747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSearchEngine.m; sourceTree = "<group>"; };
+		747E21060EED99B0005B638A /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		747E21070EED99B0005B638A /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		748379C90DD0169E00DC3B80 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
+		748379CA0DD0169E00DC3B80 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
+		748AB0300EB61C2C004918A6 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
+		748AB0310EB61C2C004918A6 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
+		748AB37C0EB6C59A004918A6 /* LinkedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedNode.h; sourceTree = "<group>"; };
+		748AB37D0EB6C59A004918A6 /* LinkedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedNode.m; sourceTree = "<group>"; };
+		748AB37F0EB6C5A5004918A6 /* LinkedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedSet.h; sourceTree = "<group>"; };
+		748AB3800EB6C5A5004918A6 /* LinkedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedSet.m; sourceTree = "<group>"; };
+		748AB4EF0EB77F37004918A6 /* no */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = no; path = Resources/no.lproj/Localizable.strings; sourceTree = "<group>"; };
+		748B23570E843AFE00322E25 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		749142A70E7629C900CC42A8 /* CollapsedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollapsedMovieDetailsCell.h; sourceTree = "<group>"; };
+		749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapsedMovieDetailsCell.m; sourceTree = "<group>"; };
+		749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandedMovieDetailsCell.h; sourceTree = "<group>"; };
+		749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandedMovieDetailsCell.m; sourceTree = "<group>"; };
+		749142D60E762D0400CC42A8 /* AbstractMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieDetailsCell.h; sourceTree = "<group>"; };
+		749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieDetailsCell.m; sourceTree = "<group>"; };
+		749144B50E76537900CC42A8 /* GlobalActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalActivityIndicator.h; sourceTree = "<group>"; };
+		749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalActivityIndicator.m; sourceTree = "<group>"; };
+		749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
+		749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
+		749D34B10F075F8F006E7C7D /* WikipediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaCache.h; sourceTree = "<group>"; };
+		749D34B20F075F8F006E7C7D /* WikipediaCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaCache.m; sourceTree = "<group>"; };
+		749DE1280F118F370056902E /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtilities.h; sourceTree = "<group>"; };
+		749DE1290F118F370056902E /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtilities.m; sourceTree = "<group>"; };
+		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		74A33E480F034B8100E5450A /* AbstractNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNetflixCache.h; sourceTree = "<group>"; };
+		74A33E490F034B8100E5450A /* AbstractNetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNetflixCache.m; sourceTree = "<group>"; };
+		74A33E520F034C4100E5450A /* MutableNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableNetflixCache.h; sourceTree = "<group>"; };
+		74A33E530F034C4100E5450A /* MutableNetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableNetflixCache.m; sourceTree = "<group>"; };
+		74A3F11D0E687D26007ED6DC /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		74A41ACD0E9E172B007CF82C /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
+		74A41ACE0E9E172B007CF82C /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulser.m; sourceTree = "<group>"; };
+		74A70AD00EC391A0008C661D /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LeftArrow.png; path = Resources/LeftArrow.png; sourceTree = "<group>"; };
+		74A70AD10EC391A0008C661D /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightArrow.png; path = Resources/RightArrow.png; sourceTree = "<group>"; };
+		74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageView.h; sourceTree = "<group>"; };
+		74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableImageView.m; sourceTree = "<group>"; };
+		74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableImageViewDelegate.h; sourceTree = "<group>"; };
+		74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersViewController.h; sourceTree = "<group>"; };
+		74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersViewController.m; sourceTree = "<group>"; };
+		74AF0F830EC2D38D00A8F639 /* NonClippingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonClippingView.h; sourceTree = "<group>"; };
+		74AF0F840EC2D38D00A8F639 /* NonClippingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonClippingView.m; sourceTree = "<group>"; };
+		74AF0F860EC2D42200A8F639 /* TappableScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollView.h; sourceTree = "<group>"; };
+		74AF0F870EC2D42200A8F639 /* TappableScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableScrollView.m; sourceTree = "<group>"; };
+		74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
+		74BD51C80EB786FC0098C2DF /* MainThreadGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainThreadGate.h; sourceTree = "<group>"; };
+		74BD51C90EB786FC0098C2DF /* MainThreadGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainThreadGate.m; sourceTree = "<group>"; };
+		74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
+		74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
+		74C2AEE40F0DF3B700EFAF74 /* PocketFlix_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlix_Prefix.pch; sourceTree = "<group>"; };
+		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
+		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
+		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
+		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
+		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
+		74D6F2B60DCC144D0097A984 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
+		74D6F2BC0DCC176D0097A984 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
+		74D6F2BD0DCC176D0097A984 /* XmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlElement.m; sourceTree = "<group>"; };
+		74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-9.png"; path = "Resources/NetflixCellBackground-9.png"; sourceTree = "<group>"; };
+		74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-9.png"; path = "Resources/NetflixCellSelectedBackground-9.png"; sourceTree = "<group>"; };
+		74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixSettings.png; path = Resources/NetflixSettings.png; sourceTree = "<group>"; };
+		74E0300D0EF4A7E900B2D2BA /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		74E0300E0EF4A7E900B2D2BA /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNavigationController.h; sourceTree = "<group>"; };
+		74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNavigationController.m; sourceTree = "<group>"; };
+		74E62FBC0EFD78F9002EE26B /* BackgroundInvocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation2.h; sourceTree = "<group>"; };
+		74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
+		74E62FDC0EFD7C00002EE26B /* Invocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation2.h; sourceTree = "<group>"; };
+		74E62FDD0EFD7C00002EE26B /* Invocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation2.m; sourceTree = "<group>"; };
+		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
+		74E631C10EFDCE5D002EE26B /* AlertUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtilities.h; sourceTree = "<group>"; };
+		74E631C20EFDCE5D002EE26B /* AlertUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtilities.m; sourceTree = "<group>"; };
+		74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityMutex.h; sourceTree = "<group>"; };
+		74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
+		74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
+		74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
+		74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-0.png"; path = "Resources/NetflixCellSelectedBackground-0.png"; sourceTree = "<group>"; };
+		74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-1.png"; path = "Resources/NetflixCellSelectedBackground-1.png"; sourceTree = "<group>"; };
+		74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-2.png"; path = "Resources/NetflixCellSelectedBackground-2.png"; sourceTree = "<group>"; };
+		74EB9A980EFA110D0083DC33 /* NetflixCellSelectedBackground-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-3.png"; path = "Resources/NetflixCellSelectedBackground-3.png"; sourceTree = "<group>"; };
+		74EB9A990EFA110D0083DC33 /* NetflixCellSelectedBackground-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-4.png"; path = "Resources/NetflixCellSelectedBackground-4.png"; sourceTree = "<group>"; };
+		74EB9A9A0EFA110D0083DC33 /* NetflixCellSelectedBackground-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-5.png"; path = "Resources/NetflixCellSelectedBackground-5.png"; sourceTree = "<group>"; };
+		74EB9A9B0EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-6.png"; path = "Resources/NetflixCellSelectedBackground-6.png"; sourceTree = "<group>"; };
+		74EB9A9C0EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-7.png"; path = "Resources/NetflixCellSelectedBackground-7.png"; sourceTree = "<group>"; };
+		74EB9A9D0EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-8.png"; path = "Resources/NetflixCellSelectedBackground-8.png"; sourceTree = "<group>"; };
+		74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixRatingsCell.h; sourceTree = "<group>"; };
+		74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixRatingsCell.m; sourceTree = "<group>"; };
+		74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.0.png"; path = "Resources/RedStar-0.0.png"; sourceTree = "<group>"; };
+		74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.2.png"; path = "Resources/RedStar-0.2.png"; sourceTree = "<group>"; };
+		74EB9C1E0EFA3ED80083DC33 /* RedStar-0.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.4.png"; path = "Resources/RedStar-0.4.png"; sourceTree = "<group>"; };
+		74EB9C1F0EFA3ED80083DC33 /* RedStar-0.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.6.png"; path = "Resources/RedStar-0.6.png"; sourceTree = "<group>"; };
+		74EB9C200EFA3ED80083DC33 /* RedStar-0.8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-0.8.png"; path = "Resources/RedStar-0.8.png"; sourceTree = "<group>"; };
+		74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-1.0.png"; path = "Resources/RedStar-1.0.png"; sourceTree = "<group>"; };
+		74EC069E0DD2D69B006953A4 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		74EC069F0DD2D69B006953A4 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		74EC08710DD3EEBB006953A4 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDictionary.h; sourceTree = "<group>"; };
+		74EC08720DD3EEBB006953A4 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
+		74EC959C0EE5C610004E044E /* BlackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackButton.png; path = Resources/BlackButton.png; sourceTree = "<group>"; };
+		74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDetailsViewController.h; sourceTree = "<group>"; };
+		74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsViewController.m; sourceTree = "<group>"; };
+		74EC99030EE5F874004E044E /* FlipUp-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FlipUp-Normal.png"; path = "Resources/FlipUp-Normal.png"; sourceTree = "<group>"; };
+		74EC99040EE5F874004E044E /* FlipUp-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FlipUp-Selected.png"; path = "Resources/FlipUp-Selected.png"; sourceTree = "<group>"; };
+		74EC993D0EE5FCFA004E044E /* FlipUp-Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FlipUp-Highlighted.png"; path = "Resources/FlipUp-Highlighted.png"; sourceTree = "<group>"; };
+		74EF2F920EB8D93C0053B3CC /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
+		74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
+		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
+		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
+		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
+		74EFE5350E35637200B6E103 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
+		74F187200E2710A400AB5E1E /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
+		74F187210E2710A400AB5E1E /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
+		74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
+		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
+		74F94A9E0E6B9ECB00075068 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtilities.h; sourceTree = "<group>"; };
+		74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtilities.m; sourceTree = "<group>"; };
+		74F94FA40E6BC98800075068 /* CurrentPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CurrentPosition.png; path = Resources/CurrentPosition.png; sourceTree = "<group>"; };
+		74F94FA50E6BC98800075068 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		74F94FA60E6BC98800075068 /* DownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DownArrow.png; path = Resources/DownArrow.png; sourceTree = "<group>"; };
+		74F94FA70E6BC98800075068 /* Empty Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Empty Star.png"; path = "Resources/Empty Star.png"; sourceTree = "<group>"; };
+		74F94FA80E6BC98800075068 /* FandangoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FandangoLogo.png; path = Resources/FandangoLogo.png; sourceTree = "<group>"; };
+		74F94FA90E6BC98800075068 /* Filled Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Filled Star.png"; path = "Resources/Filled Star.png"; sourceTree = "<group>"; };
+		74F94FAA0E6BC98800075068 /* Fresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fresh.png; path = Resources/Fresh.png; sourceTree = "<group>"; };
+		74F94FAB0E6BC98800075068 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		74F94FAC0E6BC98800075068 /* ImageNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageNotAvailable.png; path = Resources/ImageNotAvailable.png; sourceTree = "<group>"; };
+		74F94FAD0E6BC98800075068 /* MetacriticLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetacriticLogo.png; path = Resources/MetacriticLogo.png; sourceTree = "<group>"; };
+		74F94FAE0E6BC98800075068 /* More.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = More.png; path = Resources/More.png; sourceTree = "<group>"; };
+		74F94FAF0E6BC98800075068 /* Movies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Movies.png; path = Resources/Movies.png; sourceTree = "<group>"; };
+		74F94FB00E6BC98800075068 /* NeutralSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeutralSquare.png; path = Resources/NeutralSquare.png; sourceTree = "<group>"; };
+		74F94FB10E6BC98800075068 /* Numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Numbers.png; path = Resources/Numbers.png; sourceTree = "<group>"; };
+		74F94FB20E6BC98800075068 /* Rating-Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Blue.png"; path = "Resources/Rating-Blue.png"; sourceTree = "<group>"; };
+		74F94FB30E6BC98800075068 /* Rating-Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Green.png"; path = "Resources/Rating-Green.png"; sourceTree = "<group>"; };
+		74F94FB40E6BC98800075068 /* Rating-Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Red.png"; path = "Resources/Rating-Red.png"; sourceTree = "<group>"; };
+		74F94FB50E6BC98800075068 /* Rating-Unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Unknown.png"; path = "Resources/Rating-Unknown.png"; sourceTree = "<group>"; };
+		74F94FB60E6BC98800075068 /* Rating-Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Yellow.png"; path = "Resources/Rating-Yellow.png"; sourceTree = "<group>"; };
+		74F94FB70E6BC98800075068 /* Rotten-Faded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rotten-Faded.png"; path = "Resources/Rotten-Faded.png"; sourceTree = "<group>"; };
+		74F94FB80E6BC98800075068 /* Rotten-Full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rotten-Full.png"; path = "Resources/Rotten-Full.png"; sourceTree = "<group>"; };
+		74F94FB90E6BC98800075068 /* RottenTomatoesLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RottenTomatoesLogo.png; path = Resources/RottenTomatoesLogo.png; sourceTree = "<group>"; };
+		74F94FBA0E6BC98800075068 /* Spinner0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner0.png; path = Resources/Spinner0.png; sourceTree = "<group>"; };
+		74F94FBB0E6BC98800075068 /* Spinner1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner1.png; path = Resources/Spinner1.png; sourceTree = "<group>"; };
+		74F94FBC0E6BC98800075068 /* Spinner2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner2.png; path = Resources/Spinner2.png; sourceTree = "<group>"; };
+		74F94FBD0E6BC98800075068 /* Spinner3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner3.png; path = Resources/Spinner3.png; sourceTree = "<group>"; };
+		74F94FBE0E6BC98800075068 /* Spinner4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner4.png; path = Resources/Spinner4.png; sourceTree = "<group>"; };
+		74F94FBF0E6BC98800075068 /* Spinner5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner5.png; path = Resources/Spinner5.png; sourceTree = "<group>"; };
+		74F94FC00E6BC98800075068 /* Spinner6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner6.png; path = Resources/Spinner6.png; sourceTree = "<group>"; };
+		74F94FC10E6BC98800075068 /* Spinner7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner7.png; path = Resources/Spinner7.png; sourceTree = "<group>"; };
+		74F94FC20E6BC98800075068 /* Spinner8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner8.png; path = Resources/Spinner8.png; sourceTree = "<group>"; };
+		74F94FC30E6BC98800075068 /* Spinner9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner9.png; path = Resources/Spinner9.png; sourceTree = "<group>"; };
+		74F94FC40E6BC98800075068 /* Theaters.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Theaters.png; path = Resources/Theaters.png; sourceTree = "<group>"; };
+		74F94FC50E6BC98800075068 /* TryntLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TryntLogo.png; path = Resources/TryntLogo.png; sourceTree = "<group>"; };
+		74F94FC60E6BC98800075068 /* UpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UpArrow.png; path = Resources/UpArrow.png; sourceTree = "<group>"; };
+		74F94FC70E6BC98800075068 /* Upcoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Upcoming.png; path = Resources/Upcoming.png; sourceTree = "<group>"; };
+		74F94FC80E6BC98800075068 /* Warning-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-16x16.png"; path = "Resources/Warning-16x16.png"; sourceTree = "<group>"; };
+		74F94FC90E6BC98800075068 /* YahooLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = YahooLogo.png; path = Resources/YahooLogo.png; sourceTree = "<group>"; };
+		74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieOverviewCell.h; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				1D3623EC0D0F72F000981E51 /* CoreGraphics.framework in Frameworks */,
+				749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */,
+				749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */,
+				740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */,
+				74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */,
+				74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */,
+				7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				742ED7880EF45AFF000D5245 /* External */,
+				74447D550DC8474A00CC146C /* UI */,
+				7474FE910E6359BC00BAA43D /* Caches */,
+				748AB37B0EB6C57C004918A6 /* Collections */,
+				74EB7B3D0EE34373005BD3F0 /* Data */,
+				744246FE0E89F79000ACDBCF /* Search */,
+				74E6F0190E723FA200A4C2BE /* Threading */,
+				740DE12F0DCC3D5400B4E69A /* Utilities */,
+				74D6F2B40DCC14420097A984 /* Xml */,
+				746A02140DC81A1A0079D89B /* Application.h */,
+				746A02150DC81A1A0079D89B /* Application.m */,
+				74A41ACD0E9E172B007CF82C /* Pulser.h */,
+				74A41ACE0E9E172B007CF82C /* Pulser.m */,
+				7406A7620F104C2200795555 /* AppDelegate.h */,
+				7406A7630F104C2200795555 /* AppDelegate.m */,
+				7406A7640F104C2200795555 /* Controller.h */,
+				7406A7650F104C2200795555 /* Controller.m */,
+				7406A7660F104C2200795555 /* Model.h */,
+				7406A7670F104C2200795555 /* Model.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* PocketFlix.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				748B23570E843AFE00322E25 /* Entitlements.plist */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				74C2AEE40F0DF3B700EFAF74 /* PocketFlix_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */,
+				74A3F11D0E687D26007ED6DC /* Macros.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7471E1FF0EFA0D67000490CA /* Netflix */,
+				746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */,
+				746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */,
+				745F37570EE99B4500636D8E /* Bookmark-Active.png */,
+				745F37580EE99B4500636D8E /* Bookmark-Inactive.png */,
+				74EC993D0EE5FCFA004E044E /* FlipUp-Highlighted.png */,
+				74EC99030EE5F874004E044E /* FlipUp-Normal.png */,
+				74EC99040EE5F874004E044E /* FlipUp-Selected.png */,
+				74EC959C0EE5C610004E044E /* BlackButton.png */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
+				740224540E53F323006C58A2 /* Localizable.strings */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				744AF54C0EC42A40008B5B35 /* BlackCircle.png */,
+				74F94FA40E6BC98800075068 /* CurrentPosition.png */,
+				74F94FA50E6BC98800075068 /* Default.png */,
+				74F94FA60E6BC98800075068 /* DownArrow.png */,
+				7402442E0E77926C00ECE1B4 /* DownDisclosureTriangle.png */,
+				747AB7A60EB956B2002438D0 /* DVD.png */,
+				74F94FA70E6BC98800075068 /* Empty Star.png */,
+				74F94FA80E6BC98800075068 /* FandangoLogo.png */,
+				74F94FA90E6BC98800075068 /* Filled Star.png */,
+				74F94FAA0E6BC98800075068 /* Fresh.png */,
+				74F94FAB0E6BC98800075068 /* Icon.png */,
+				747412900EC7C0B500625001 /* ImageLoading.png */,
+				74F94FAC0E6BC98800075068 /* ImageNotAvailable.png */,
+				74A70AD00EC391A0008C661D /* LeftArrow.png */,
+				74F94FAD0E6BC98800075068 /* MetacriticLogo.png */,
+				74F94FAE0E6BC98800075068 /* More.png */,
+				74F94FAF0E6BC98800075068 /* Movies.png */,
+				74F94FB00E6BC98800075068 /* NeutralSquare.png */,
+				74F94FB10E6BC98800075068 /* Numbers.png */,
+				74F94FB20E6BC98800075068 /* Rating-Blue.png */,
+				74F94FB30E6BC98800075068 /* Rating-Green.png */,
+				74F94FB40E6BC98800075068 /* Rating-Red.png */,
+				74F94FB50E6BC98800075068 /* Rating-Unknown.png */,
+				74F94FB60E6BC98800075068 /* Rating-Yellow.png */,
+				74A70AD10EC391A0008C661D /* RightArrow.png */,
+				7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */,
+				74F94FB70E6BC98800075068 /* Rotten-Faded.png */,
+				74F94FB80E6BC98800075068 /* Rotten-Full.png */,
+				74F94FB90E6BC98800075068 /* RottenTomatoesLogo.png */,
+				741373F20E89CF1B00CF4900 /* Search.png */,
+				74F94FBA0E6BC98800075068 /* Spinner0.png */,
+				74F94FBB0E6BC98800075068 /* Spinner1.png */,
+				74F94FBC0E6BC98800075068 /* Spinner2.png */,
+				74F94FBD0E6BC98800075068 /* Spinner3.png */,
+				74F94FBE0E6BC98800075068 /* Spinner4.png */,
+				74F94FBF0E6BC98800075068 /* Spinner5.png */,
+				74F94FC00E6BC98800075068 /* Spinner6.png */,
+				74F94FC10E6BC98800075068 /* Spinner7.png */,
+				74F94FC20E6BC98800075068 /* Spinner8.png */,
+				74F94FC30E6BC98800075068 /* Spinner9.png */,
+				74F94FC40E6BC98800075068 /* Theaters.png */,
+				74F94FC50E6BC98800075068 /* TryntLogo.png */,
+				74F94FC60E6BC98800075068 /* UpArrow.png */,
+				74F94FC70E6BC98800075068 /* Upcoming.png */,
+				747ABB770EBA4228002438D0 /* VideoETALogo.png */,
+				74F94FC80E6BC98800075068 /* Warning-16x16.png */,
+				744592060E6CA06C002D05C3 /* Warning-32x32.png */,
+				74F94FC90E6BC98800075068 /* YahooLogo.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */,
+				74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */,
+				74CA20B60DD0F93D0046D1CE /* AddressBook.framework */,
+				740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */,
+				749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */,
+				749DF3250DC9838F00A551D9 /* CFNetwork.framework */,
+				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		740245660E78488D00ECE1B4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				744592020E6CA017002D05C3 /* WarningView.h */,
+				744592030E6CA017002D05C3 /* WarningView.m */,
+				740245670E7848BF00ECE1B4 /* ActionsView.h */,
+				740245680E7848BF00ECE1B4 /* ActionsView.m */,
+				74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */,
+				74AEAFDB0EC0DEDD00C0CF32 /* TappableImageView.m */,
+				74AEAFE00EC0DF0600C0CF32 /* TappableImageViewDelegate.h */,
+				74AF0F830EC2D38D00A8F639 /* NonClippingView.h */,
+				74AF0F840EC2D38D00A8F639 /* NonClippingView.m */,
+				74AF0F860EC2D42200A8F639 /* TappableScrollView.h */,
+				74AF0F870EC2D42200A8F639 /* TappableScrollView.m */,
+				74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */,
+				744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */,
+				744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */,
+				741669320EC92C3B00FFD29A /* TappableLabel.h */,
+				741669330EC92C3B00FFD29A /* TappableLabel.m */,
+				741669360EC92C7D00FFD29A /* TappableLabelDelegate.h */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */,
+				74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */,
+				74EC069E0DD2D69B006953A4 /* Utilities.h */,
+				74EC069F0DD2D69B006953A4 /* Utilities.m */,
+				747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */,
+				747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */,
+				74F94A9E0E6B9ECB00075068 /* NetworkUtilities.h */,
+				74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */,
+				74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */,
+				74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */,
+				74EF2F920EB8D93C0053B3CC /* LocaleUtilities.h */,
+				74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */,
+				747411230EC79EA200625001 /* ImageUtilities.h */,
+				747411240EC79EA200625001 /* ImageUtilities.m */,
+				74E0300D0EF4A7E900B2D2BA /* Base64.h */,
+				74E0300E0EF4A7E900B2D2BA /* Base64.m */,
+				74E631C10EFDCE5D002EE26B /* AlertUtilities.h */,
+				74E631C20EFDCE5D002EE26B /* AlertUtilities.m */,
+				749DE1280F118F370056902E /* StringUtilities.h */,
+				749DE1290F118F370056902E /* StringUtilities.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		742ED7880EF45AFF000D5245 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				742ED7890EF45B0E000D5245 /* OAuth */,
+				747405350EC638C800625001 /* Expat */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		742ED7890EF45B0E000D5245 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				742ED7DC0EF45BC0000D5245 /* NSMutableURLRequest+Parameters.h */,
+				742ED7DD0EF45BC0000D5245 /* NSMutableURLRequest+Parameters.m */,
+				742ED7E00EF45BC0000D5245 /* NSString+URLEncoding.h */,
+				742ED7E10EF45BC0000D5245 /* NSString+URLEncoding.m */,
+				742ED7E40EF45BC0000D5245 /* NSURL+Base.h */,
+				742ED7E50EF45BC0000D5245 /* NSURL+Base.m */,
+				742ED7E80EF45BC0000D5245 /* OAConsumer.h */,
+				742ED7E90EF45BC0000D5245 /* OAConsumer.m */,
+				742ED7EC0EF45BC0000D5245 /* OADataFetcher.h */,
+				742ED7ED0EF45BC0000D5245 /* OADataFetcher.m */,
+				742ED7F00EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.h */,
+				742ED7F10EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m */,
+				742ED7F40EF45BC0000D5245 /* OAMutableURLRequest.h */,
+				742ED7F50EF45BC0000D5245 /* OAMutableURLRequest.m */,
+				742ED7FC0EF45BC0000D5245 /* OARequestParameter.h */,
+				742ED7FD0EF45BC0000D5245 /* OARequestParameter.m */,
+				742ED8000EF45BC0000D5245 /* OAServiceTicket.h */,
+				742ED8010EF45BC0000D5245 /* OAServiceTicket.m */,
+				742ED8030EF45BC0000D5245 /* OAToken.h */,
+				742ED8040EF45BC0000D5245 /* OAToken.m */,
+				742ED8070EF45BC0000D5245 /* OAuthConsumer.h */,
+			);
+			name = OAuth;
+			sourceTree = "<group>";
+		};
+		744246FE0E89F79000ACDBCF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				744246FF0E89F7A700ACDBCF /* SearchEngine.h */,
+				744247000E89F7A700ACDBCF /* SearchEngine.m */,
+				744247020E89F7B500ACDBCF /* SearchRequest.h */,
+				744247030E89F7B500ACDBCF /* SearchRequest.m */,
+				744247050E89F7C300ACDBCF /* SearchResult.h */,
+				744247060E89F7C300ACDBCF /* SearchResult.m */,
+				744247400E89FCE900ACDBCF /* SearchEngineDelegate.h */,
+				747DAC640EF9F4130066B881 /* AbstractSearchEngine.h */,
+				747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		74447D550DC8474A00CC146C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				74489CCE0DDD11FC00F565B1 /* TableViewCells */,
+				74489CCC0DDD11B700F565B1 /* NavigationControllers */,
+				74489CCD0DDD11D600F565B1 /* ViewControllers */,
+				740245660E78488D00ECE1B4 /* Views */,
+				749144B50E76537900CC42A8 /* GlobalActivityIndicator.h */,
+				749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		74489CCC0DDD11B700F565B1 /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */,
+				740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */,
+				74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */,
+				74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */,
+			);
+			name = NavigationControllers;
+			sourceTree = "<group>";
+		};
+		74489CCD0DDD11D600F565B1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				74A863EE0E64F23E003A2249 /* Movies */,
+				74E031770EF4C5D000B2D2BA /* Netflix */,
+				74A863F20E64F255003A2249 /* Settings */,
+				74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */,
+				74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */,
+				74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */,
+				74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */,
+				74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */,
+				74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */,
+				7427C1610ED6BCDA00B7BF09 /* RefreshableTableViewController.h */,
+				7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */,
+				747E21060EED99B0005B638A /* WebViewController.h */,
+				747E21070EED99B0005B638A /* WebViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		74489CCE0DDD11FC00F565B1 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				745E203A0E58858A00105751 /* AutoResizingCell.h */,
+				745E203B0E58858A00105751 /* AutoResizingCell.m */,
+				742445A50E2D2F9800C98F84 /* AttributeCell.h */,
+				742445A60E2D2F9800C98F84 /* AttributeCell.m */,
+				74737BE50E2D8BA300C37E4B /* SettingCell.h */,
+				74737BE60E2D8BA300C37E4B /* SettingCell.m */,
+				74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */,
+				743394100E61E52000D285F0 /* MovieOverviewCell.m */,
+				749142D60E762D0400CC42A8 /* AbstractMovieDetailsCell.h */,
+				749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */,
+				749142A70E7629C900CC42A8 /* CollapsedMovieDetailsCell.h */,
+				749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */,
+				749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */,
+				749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */,
+				747413870EC7F2EC00625001 /* AbstractPosterCell.h */,
+				747413880EC7F2EC00625001 /* AbstractPosterCell.m */,
+				74676D860EFF6E7D00C64100 /* NetflixCell.h */,
+				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
+				74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */,
+				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		7471E1FF0EFA0D67000490CA /* Netflix */ = {
+			isa = PBXGroup;
+			children = (
+				7406A6ED0F101DF400795555 /* NetflixMostPopular.png */,
+				741EFEEB0F0F214C002FD93B /* NetflixCredits.png */,
+				74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */,
+				74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */,
+				74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */,
+				741648DB0EFC5D15000EC7B5 /* ClearRating.png */,
+				74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */,
+				74EB9C1D0EFA3ED80083DC33 /* RedStar-0.2.png */,
+				74EB9C1E0EFA3ED80083DC33 /* RedStar-0.4.png */,
+				74EB9C1F0EFA3ED80083DC33 /* RedStar-0.6.png */,
+				74EB9C200EFA3ED80083DC33 /* RedStar-0.8.png */,
+				74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */,
+				74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */,
+				74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */,
+				74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */,
+				74EB9A980EFA110D0083DC33 /* NetflixCellSelectedBackground-3.png */,
+				74EB9A990EFA110D0083DC33 /* NetflixCellSelectedBackground-4.png */,
+				74EB9A9A0EFA110D0083DC33 /* NetflixCellSelectedBackground-5.png */,
+				74EB9A9B0EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png */,
+				74EB9A9C0EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png */,
+				74EB9A9D0EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png */,
+				7471E2010EFA0D7A000490CA /* NetflixBrowse.png */,
+				7471E20B0EFA0D7A000490CA /* NetflixCellBackground-0.png */,
+				7471E20C0EFA0D7A000490CA /* NetflixCellBackground-1.png */,
+				7471E20D0EFA0D7A000490CA /* NetflixCellBackground-2.png */,
+				7471E20E0EFA0D7A000490CA /* NetflixCellBackground-3.png */,
+				7471E20F0EFA0D7A000490CA /* NetflixCellBackground-4.png */,
+				7471E2100EFA0D7A000490CA /* NetflixCellBackground-5.png */,
+				7471E2110EFA0D7A000490CA /* NetflixCellBackground-6.png */,
+				7471E2120EFA0D7A000490CA /* NetflixCellBackground-7.png */,
+				7471E2130EFA0D7A000490CA /* NetflixCellBackground-8.png */,
+				7471E2140EFA0D7A000490CA /* NetflixChevron.png */,
+				7471E2150EFA0D7A000490CA /* NetflixDVDQueue.png */,
+				7471E2160EFA0D7A000490CA /* NetflixHistory.png */,
+				7471E2170EFA0D7A000490CA /* NetflixHome.png */,
+				7471E2180EFA0D7A000490CA /* NetflixInstantQueue.png */,
+				7471E2190EFA0D7A000490CA /* NetflixLogOff.png */,
+				7471E21A0EFA0D7A000490CA /* NetflixRecommendations.png */,
+				7471E21B0EFA0D7A000490CA /* NetflixSearch.png */,
+			);
+			name = Netflix;
+			sourceTree = "<group>";
+		};
+		747405350EC638C800625001 /* Expat */ = {
+			isa = PBXGroup;
+			children = (
+				747406120EC6468F00625001 /* amigaconfig.h */,
+				747406130EC6468F00625001 /* ascii.h */,
+				747406140EC6468F00625001 /* asciitab.h */,
+				747406150EC6468F00625001 /* expat.h */,
+				747406160EC6468F00625001 /* expat_external.h */,
+				747406170EC6468F00625001 /* iasciitab.h */,
+				747406180EC6468F00625001 /* internal.h */,
+				747406190EC6468F00625001 /* latin1tab.h */,
+				7474061A0EC6468F00625001 /* macconfig.h */,
+				7474061B0EC6468F00625001 /* nametab.h */,
+				7474061C0EC6468F00625001 /* utf8tab.h */,
+				7474061D0EC6468F00625001 /* winconfig.h */,
+				7474061E0EC6468F00625001 /* xmlparse.c */,
+				7474061F0EC6468F00625001 /* xmlrole.c */,
+				747406200EC6468F00625001 /* xmlrole.h */,
+				747406210EC6468F00625001 /* xmltok.c */,
+				747406220EC6468F00625001 /* xmltok.h */,
+				747406230EC6468F00625001 /* xmltok_impl.c */,
+				747406240EC6468F00625001 /* xmltok_impl.h */,
+				747406250EC6468F00625001 /* xmltok_ns.c */,
+			);
+			name = Expat;
+			sourceTree = "<group>";
+		};
+		7474FE8F0E63595400BAA43D /* Posters */ = {
+			isa = PBXGroup;
+			children = (
+				74088BD50DCD0AA800954696 /* PosterCache.h */,
+				74088BD60DCD0AA800954696 /* PosterCache.m */,
+				74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */,
+				74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */,
+				7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */,
+				7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */,
+				74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */,
+				74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */,
+				7410D73F0EC2C0740079BF1E /* LargePosterCache.h */,
+				7410D7400EC2C0740079BF1E /* LargePosterCache.m */,
+			);
+			name = Posters;
+			sourceTree = "<group>";
+		};
+		7474FE910E6359BC00BAA43D /* Caches */ = {
+			isa = PBXGroup;
+			children = (
+				74EB7B3F0EE343F6005BD3F0 /* UI */,
+				747DA1630EF83B0D0066B881 /* Netflix */,
+				7474FE8F0E63595400BAA43D /* Posters */,
+				747B4C210EE110D000F6FB1F /* AbstractCache.h */,
+				747B4C220EE110D000F6FB1F /* AbstractCache.m */,
+				748AB0300EB61C2C004918A6 /* IMDbCache.h */,
+				748AB0310EB61C2C004918A6 /* IMDbCache.m */,
+				74F187200E2710A400AB5E1E /* TrailerCache.h */,
+				74F187210E2710A400AB5E1E /* TrailerCache.m */,
+				749D34B10F075F8F006E7C7D /* WikipediaCache.h */,
+				749D34B20F075F8F006E7C7D /* WikipediaCache.m */,
+				742C07B10F08B0890087F4E0 /* AmazonCache.h */,
+				742C07B20F08B0890087F4E0 /* AmazonCache.m */,
+			);
+			name = Caches;
+			sourceTree = "<group>";
+		};
+		747DA1630EF83B0D0066B881 /* Netflix */ = {
+			isa = PBXGroup;
+			children = (
+				746772A50F02B2B400C64100 /* NetflixAddMovieDelegate.h */,
+				747DA5530EF88E180066B881 /* NetflixModifyQueueDelegate.h */,
+				746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */,
+				74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */,
+				74A33E480F034B8100E5450A /* AbstractNetflixCache.h */,
+				74A33E490F034B8100E5450A /* AbstractNetflixCache.m */,
+				7400EE890EF57C1100058CDD /* NetflixCache.h */,
+				7400EE8A0EF57C1100058CDD /* NetflixCache.m */,
+				74A33E520F034C4100E5450A /* MutableNetflixCache.h */,
+				74A33E530F034C4100E5450A /* MutableNetflixCache.m */,
+				747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */,
+				747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */,
+			);
+			name = Netflix;
+			sourceTree = "<group>";
+		};
+		748AB37B0EB6C57C004918A6 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				74EC08710DD3EEBB006953A4 /* MultiDictionary.h */,
+				74EC08720DD3EEBB006953A4 /* MultiDictionary.m */,
+				748AB37C0EB6C59A004918A6 /* LinkedNode.h */,
+				748AB37D0EB6C59A004918A6 /* LinkedNode.m */,
+				748AB37F0EB6C5A5004918A6 /* LinkedSet.h */,
+				748AB3800EB6C5A5004918A6 /* LinkedSet.m */,
+				747AB9250EB97822002438D0 /* PointerSet.h */,
+				747AB9260EB97822002438D0 /* PointerSet.m */,
+				747DA4E10EF8882A0066B881 /* IdentitySet.h */,
+				747DA4E20EF8882A0066B881 /* IdentitySet.m */,
+				747DA4E40EF8884F0066B881 /* IdentityObject.h */,
+				747DA4E50EF8884F0066B881 /* IdentityObject.m */,
+			);
+			name = Collections;
+			sourceTree = "<group>";
+		};
+		74A863EE0E64F23E003A2249 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				74447C580DC840D100CC146C /* MovieDetailsViewController.h */,
+				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
+			);
+			name = Movies;
+			sourceTree = "<group>";
+		};
+		74A863F20E64F255003A2249 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
+				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
+				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
+				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
+				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
+				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
+				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
+				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		74D6F2B40DCC14420097A984 /* Xml */ = {
+			isa = PBXGroup;
+			children = (
+				74088E660DCD36AE00954696 /* XmlDocument.h */,
+				74088E670DCD36AE00954696 /* XmlDocument.m */,
+				74088E680DCD36AE00954696 /* XmlSerializer.h */,
+				74088E690DCD36AE00954696 /* XmlSerializer.m */,
+				74D6F2B50DCC144D0097A984 /* XmlParser.h */,
+				74D6F2B60DCC144D0097A984 /* XmlParser.m */,
+				74D6F2BC0DCC176D0097A984 /* XmlElement.h */,
+				74D6F2BD0DCC176D0097A984 /* XmlElement.m */,
+			);
+			name = Xml;
+			sourceTree = "<group>";
+		};
+		74E031770EF4C5D000B2D2BA /* Netflix */ = {
+			isa = PBXGroup;
+			children = (
+				7400EB5E0EF4E4F300058CDD /* NetflixViewController.h */,
+				7400EB5F0EF4E4F300058CDD /* NetflixViewController.m */,
+				7400EB620EF4E8E700058CDD /* NetflixLoginViewController.h */,
+				7400EB630EF4E8E700058CDD /* NetflixLoginViewController.m */,
+				7400EFED0EF59D7800058CDD /* NetflixFeedsViewController.h */,
+				7400EFEE0EF59D7800058CDD /* NetflixFeedsViewController.m */,
+				7400F19B0EF5AF1700058CDD /* NetflixQueueViewController.h */,
+				7400F19C0EF5AF1700058CDD /* NetflixQueueViewController.m */,
+				747DAC0D0EF9D9F50066B881 /* NetflixSearchViewController.h */,
+				747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */,
+				741648FE0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.h */,
+				741648FF0EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m */,
+				7416496B0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.h */,
+				7416496C0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m */,
+				741EFF120F0F24B8002FD93B /* NetflixSettingsViewController.h */,
+				741EFF130F0F24B8002FD93B /* NetflixSettingsViewController.m */,
+				7406A7ED0F106AAA00795555 /* NetflixMostPopularViewController.h */,
+				7406A7EE0F106AAA00795555 /* NetflixMostPopularViewController.m */,
+				7406A8470F107C1A00795555 /* NetflixMostPopularMoviesViewController.h */,
+				7406A8480F107C1A00795555 /* NetflixMostPopularMoviesViewController.m */,
+			);
+			name = Netflix;
+			sourceTree = "<group>";
+		};
+		74E6F0190E723FA200A4C2BE /* Threading */ = {
+			isa = PBXGroup;
+			children = (
+				740246770E785B0000ECE1B4 /* Invocation.h */,
+				740246780E785B0000ECE1B4 /* Invocation.m */,
+				74E62FDC0EFD7C00002EE26B /* Invocation2.h */,
+				74E62FDD0EFD7C00002EE26B /* Invocation2.m */,
+				740246600E785A9000ECE1B4 /* BackgroundInvocation.h */,
+				740246610E785A9000ECE1B4 /* BackgroundInvocation.m */,
+				74E62FBC0EFD78F9002EE26B /* BackgroundInvocation2.h */,
+				74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */,
+				749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */,
+				749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */,
+				74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */,
+				74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */,
+				74BD51C80EB786FC0098C2DF /* MainThreadGate.h */,
+				74BD51C90EB786FC0098C2DF /* MainThreadGate.m */,
+			);
+			name = Threading;
+			sourceTree = "<group>";
+		};
+		74EB7B3D0EE34373005BD3F0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				746A01410DC819270079D89B /* Movie.h */,
+				746A01420DC819270079D89B /* Movie.m */,
+				7400EFD00EF5935700058CDD /* Feed.h */,
+				7400EFD10EF5935700058CDD /* Feed.m */,
+				747DA10D0EF835A50066B881 /* Queue.h */,
+				747DA10E0EF835A50066B881 /* Queue.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		74EB7B3F0EE343F6005BD3F0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				740C9FE60E3A838E00D7A56B /* ColorCache.h */,
+				740C9FE70E3A838E00D7A56B /* ColorCache.m */,
+				74EFE5340E35637200B6E103 /* FontCache.h */,
+				74EFE5350E35637200B6E103 /* FontCache.m */,
+				74EFE4AE0E355D7500B6E103 /* ImageCache.h */,
+				74EFE4AF0E355D7500B6E103 /* ImageCache.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* PocketFlix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PocketFlix" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PocketFlix;
+			productName = PocketFlix;
+			productReference = 1D6058910D05DD3D006BFB54 /* PocketFlix.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PocketFlix" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+				pt,
+				jp,
+				ja,
+				fr,
+				de,
+				es,
+				ar,
+				cs,
+				da,
+				he,
+				hu,
+				it,
+				nl,
+				ro,
+				ru,
+				sk,
+				sv,
+				th,
+				tr,
+				en_GB,
+				fi,
+				en_AU,
+				no,
+				pl,
+				hi,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* PocketFlix */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */,
+				740224550E53F323006C58A2 /* Localizable.strings in Resources */,
+				74F94FCA0E6BC98800075068 /* CurrentPosition.png in Resources */,
+				74F94FCB0E6BC98800075068 /* Default.png in Resources */,
+				74F94FCC0E6BC98800075068 /* DownArrow.png in Resources */,
+				74F94FCD0E6BC98800075068 /* Empty Star.png in Resources */,
+				74F94FCE0E6BC98800075068 /* FandangoLogo.png in Resources */,
+				74F94FCF0E6BC98800075068 /* Filled Star.png in Resources */,
+				74F94FD00E6BC98800075068 /* Fresh.png in Resources */,
+				74F94FD10E6BC98800075068 /* Icon.png in Resources */,
+				74F94FD20E6BC98800075068 /* ImageNotAvailable.png in Resources */,
+				74F94FD30E6BC98800075068 /* MetacriticLogo.png in Resources */,
+				74F94FD40E6BC98800075068 /* More.png in Resources */,
+				74F94FD50E6BC98800075068 /* Movies.png in Resources */,
+				74F94FD60E6BC98800075068 /* NeutralSquare.png in Resources */,
+				74F94FD70E6BC98800075068 /* Numbers.png in Resources */,
+				74F94FD80E6BC98800075068 /* Rating-Blue.png in Resources */,
+				74F94FD90E6BC98800075068 /* Rating-Green.png in Resources */,
+				74F94FDA0E6BC98800075068 /* Rating-Red.png in Resources */,
+				74F94FDB0E6BC98800075068 /* Rating-Unknown.png in Resources */,
+				74F94FDC0E6BC98800075068 /* Rating-Yellow.png in Resources */,
+				74F94FDD0E6BC98800075068 /* Rotten-Faded.png in Resources */,
+				74F94FDE0E6BC98800075068 /* Rotten-Full.png in Resources */,
+				74F94FDF0E6BC98800075068 /* RottenTomatoesLogo.png in Resources */,
+				74F94FE00E6BC98800075068 /* Spinner0.png in Resources */,
+				74F94FE10E6BC98800075068 /* Spinner1.png in Resources */,
+				74F94FE20E6BC98800075068 /* Spinner2.png in Resources */,
+				74F94FE30E6BC98800075068 /* Spinner3.png in Resources */,
+				74F94FE40E6BC98800075068 /* Spinner4.png in Resources */,
+				74F94FE50E6BC98800075068 /* Spinner5.png in Resources */,
+				74F94FE60E6BC98800075068 /* Spinner6.png in Resources */,
+				74F94FE70E6BC98800075068 /* Spinner7.png in Resources */,
+				74F94FE80E6BC98800075068 /* Spinner8.png in Resources */,
+				74F94FE90E6BC98800075068 /* Spinner9.png in Resources */,
+				74F94FEA0E6BC98800075068 /* Theaters.png in Resources */,
+				74F94FEB0E6BC98800075068 /* TryntLogo.png in Resources */,
+				74F94FEC0E6BC98800075068 /* UpArrow.png in Resources */,
+				74F94FED0E6BC98800075068 /* Upcoming.png in Resources */,
+				74F94FEE0E6BC98800075068 /* Warning-16x16.png in Resources */,
+				74F94FEF0E6BC98800075068 /* YahooLogo.png in Resources */,
+				744592070E6CA06C002D05C3 /* Warning-32x32.png in Resources */,
+				740244300E77926C00ECE1B4 /* DownDisclosureTriangle.png in Resources */,
+				740244310E77926C00ECE1B4 /* RightDisclosureTriangle.png in Resources */,
+				748B23580E843AFE00322E25 /* Entitlements.plist in Resources */,
+				741373F30E89CF1B00CF4900 /* Search.png in Resources */,
+				747AB7A70EB956B2002438D0 /* DVD.png in Resources */,
+				747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */,
+				74A70AD20EC391A0008C661D /* LeftArrow.png in Resources */,
+				74A70AD30EC391A0008C661D /* RightArrow.png in Resources */,
+				744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */,
+				747412910EC7C0B500625001 /* ImageLoading.png in Resources */,
+				74EC959D0EE5C610004E044E /* BlackButton.png in Resources */,
+				74EC99050EE5F874004E044E /* FlipUp-Normal.png in Resources */,
+				74EC99060EE5F874004E044E /* FlipUp-Selected.png in Resources */,
+				74EC993E0EE5FCFA004E044E /* FlipUp-Highlighted.png in Resources */,
+				745F37590EE99B4600636D8E /* Bookmark-Active.png in Resources */,
+				745F375A0EE99B4600636D8E /* Bookmark-Inactive.png in Resources */,
+				746A1BDE0EF1950B00CF38C9 /* Navigate-Back.png in Resources */,
+				746A1BDF0EF1950B00CF38C9 /* Navigate-Forward.png in Resources */,
+				7471E21D0EFA0D7A000490CA /* NetflixBrowse.png in Resources */,
+				7471E2270EFA0D7A000490CA /* NetflixCellBackground-0.png in Resources */,
+				7471E2280EFA0D7A000490CA /* NetflixCellBackground-1.png in Resources */,
+				7471E2290EFA0D7A000490CA /* NetflixCellBackground-2.png in Resources */,
+				7471E22A0EFA0D7A000490CA /* NetflixCellBackground-3.png in Resources */,
+				7471E22B0EFA0D7A000490CA /* NetflixCellBackground-4.png in Resources */,
+				7471E22C0EFA0D7A000490CA /* NetflixCellBackground-5.png in Resources */,
+				7471E22D0EFA0D7A000490CA /* NetflixCellBackground-6.png in Resources */,
+				7471E22E0EFA0D7A000490CA /* NetflixCellBackground-7.png in Resources */,
+				7471E22F0EFA0D7A000490CA /* NetflixCellBackground-8.png in Resources */,
+				7471E2300EFA0D7A000490CA /* NetflixChevron.png in Resources */,
+				7471E2310EFA0D7A000490CA /* NetflixDVDQueue.png in Resources */,
+				7471E2320EFA0D7A000490CA /* NetflixHistory.png in Resources */,
+				7471E2330EFA0D7A000490CA /* NetflixHome.png in Resources */,
+				7471E2340EFA0D7A000490CA /* NetflixInstantQueue.png in Resources */,
+				7471E2350EFA0D7A000490CA /* NetflixLogOff.png in Resources */,
+				7471E2360EFA0D7A000490CA /* NetflixRecommendations.png in Resources */,
+				7471E2370EFA0D7A000490CA /* NetflixSearch.png in Resources */,
+				74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */,
+				74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */,
+				74EB9AA00EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png in Resources */,
+				74EB9AA10EFA110D0083DC33 /* NetflixCellSelectedBackground-3.png in Resources */,
+				74EB9AA20EFA110D0083DC33 /* NetflixCellSelectedBackground-4.png in Resources */,
+				74EB9AA30EFA110D0083DC33 /* NetflixCellSelectedBackground-5.png in Resources */,
+				74EB9AA40EFA110D0083DC33 /* NetflixCellSelectedBackground-6.png in Resources */,
+				74EB9AA50EFA110D0083DC33 /* NetflixCellSelectedBackground-7.png in Resources */,
+				74EB9AA60EFA110D0083DC33 /* NetflixCellSelectedBackground-8.png in Resources */,
+				74EB9C220EFA3ED80083DC33 /* RedStar-0.0.png in Resources */,
+				74EB9C230EFA3ED80083DC33 /* RedStar-0.2.png in Resources */,
+				74EB9C240EFA3ED80083DC33 /* RedStar-0.4.png in Resources */,
+				74EB9C250EFA3ED80083DC33 /* RedStar-0.6.png in Resources */,
+				74EB9C260EFA3ED80083DC33 /* RedStar-0.8.png in Resources */,
+				74EB9C270EFA3ED80083DC33 /* RedStar-1.0.png in Resources */,
+				741648DC0EFC5D15000EC7B5 /* ClearRating.png in Resources */,
+				74DD8A960F0ECFDD009DC326 /* NetflixCellBackground-9.png in Resources */,
+				74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */,
+				74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */,
+				741EFEEC0F0F214C002FD93B /* NetflixCredits.png in Resources */,
+				7406A6EE0F101DF400795555 /* NetflixMostPopular.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				746A01430DC819270079D89B /* Movie.m in Sources */,
+				746A02160DC81A1A0079D89B /* Application.m in Sources */,
+				74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */,
+				74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */,
+				74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */,
+				740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */,
+				74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */,
+				74088BD70DCD0AA800954696 /* PosterCache.m in Sources */,
+				74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */,
+				74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */,
+				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
+				748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */,
+				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,
+				74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */,
+				74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */,
+				74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */,
+				74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */,
+				741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */,
+				74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */,
+				747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */,
+				742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */,
+				74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */,
+				74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */,
+				74EFE5360E35637200B6E103 /* FontCache.m in Sources */,
+				740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */,
+				745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */,
+				743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */,
+				7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */,
+				74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */,
+				744592040E6CA017002D05C3 /* WarningView.m in Sources */,
+				74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */,
+				749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */,
+				749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */,
+				749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */,
+				749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */,
+				749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */,
+				740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */,
+				740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */,
+				740246790E785B0000ECE1B4 /* Invocation.m in Sources */,
+				74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */,
+				74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */,
+				744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */,
+				744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */,
+				744247070E89F7C300ACDBCF /* SearchResult.m in Sources */,
+				74A41ACF0E9E172B007CF82C /* Pulser.m in Sources */,
+				748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */,
+				748AB37E0EB6C59A004918A6 /* LinkedNode.m in Sources */,
+				748AB3810EB6C5A5004918A6 /* LinkedSet.m in Sources */,
+				74BD51CA0EB786FC0098C2DF /* MainThreadGate.m in Sources */,
+				74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */,
+				747AB9270EB97822002438D0 /* PointerSet.m in Sources */,
+				74AEAFDC0EC0DEDD00C0CF32 /* TappableImageView.m in Sources */,
+				7410D7410EC2C0740079BF1E /* LargePosterCache.m in Sources */,
+				74AF0F000EC2CE5100A8F639 /* PostersViewController.m in Sources */,
+				74AF0F850EC2D38D00A8F639 /* NonClippingView.m in Sources */,
+				74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */,
+				744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */,
+				747406260EC6468F00625001 /* xmlparse.c in Sources */,
+				747406270EC6468F00625001 /* xmlrole.c in Sources */,
+				747406280EC6468F00625001 /* xmltok.c in Sources */,
+				747406290EC6468F00625001 /* xmltok_impl.c in Sources */,
+				7474062A0EC6468F00625001 /* xmltok_ns.c in Sources */,
+				747411250EC79EA200625001 /* ImageUtilities.m in Sources */,
+				747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */,
+				741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */,
+				7427C1630ED6BCDA00B7BF09 /* RefreshableTableViewController.m in Sources */,
+				747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */,
+				74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */,
+				747E21080EED99B0005B638A /* WebViewController.m in Sources */,
+				742ED8090EF45BC0000D5245 /* NSMutableURLRequest+Parameters.m in Sources */,
+				742ED80B0EF45BC0000D5245 /* NSString+URLEncoding.m in Sources */,
+				742ED80D0EF45BC0000D5245 /* NSURL+Base.m in Sources */,
+				742ED80F0EF45BC0000D5245 /* OAConsumer.m in Sources */,
+				742ED8110EF45BC0000D5245 /* OADataFetcher.m in Sources */,
+				742ED8130EF45BC0000D5245 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				742ED8150EF45BC0000D5245 /* OAMutableURLRequest.m in Sources */,
+				742ED8190EF45BC0000D5245 /* OARequestParameter.m in Sources */,
+				742ED81B0EF45BC0000D5245 /* OAServiceTicket.m in Sources */,
+				742ED81C0EF45BC0000D5245 /* OAToken.m in Sources */,
+				74E0300F0EF4A7E900B2D2BA /* Base64.m in Sources */,
+				74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */,
+				7400EB600EF4E4F300058CDD /* NetflixViewController.m in Sources */,
+				7400EB640EF4E8E700058CDD /* NetflixLoginViewController.m in Sources */,
+				7400EE8B0EF57C1100058CDD /* NetflixCache.m in Sources */,
+				7400EFD20EF5935700058CDD /* Feed.m in Sources */,
+				7400EFEF0EF59D7800058CDD /* NetflixFeedsViewController.m in Sources */,
+				7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */,
+				747DA10F0EF835A50066B881 /* Queue.m in Sources */,
+				747DA4E30EF8882A0066B881 /* IdentitySet.m in Sources */,
+				747DA4E60EF8884F0066B881 /* IdentityObject.m in Sources */,
+				747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */,
+				747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */,
+				747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */,
+				74EB9BF60EFA3B2A0083DC33 /* NetflixRatingsCell.m in Sources */,
+				741649000EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m in Sources */,
+				7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */,
+				74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */,
+				74E62FDE0EFD7C00002EE26B /* Invocation2.m in Sources */,
+				74E631C30EFDCE5D002EE26B /* AlertUtilities.m in Sources */,
+				74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */,
+				74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */,
+				74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */,
+				749D34B30F075F8F006E7C7D /* WikipediaCache.m in Sources */,
+				742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */,
+				741EFF140F0F24B8002FD93B /* NetflixSettingsViewController.m in Sources */,
+				7406A7680F104C2200795555 /* AppDelegate.m in Sources */,
+				7406A7690F104C2200795555 /* Controller.m in Sources */,
+				7406A76A0F104C2200795555 /* Model.m in Sources */,
+				7406A7EF0F106AAA00795555 /* NetflixMostPopularViewController.m in Sources */,
+				7406A8490F107C1A00795555 /* NetflixMostPopularMoviesViewController.m in Sources */,
+				749DE12A0F118F370056902E /* StringUtilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		740224540E53F323006C58A2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				745E213C0E5962D100105751 /* cs */,
+				745E213D0E5962DE00105751 /* da */,
+				7402245A0E53F353006C58A2 /* de */,
+				7402245B0E53F35A006C58A2 /* en */,
+				744815060E8610A1004AFB83 /* en_AU */,
+				744483150E5B8EB300E4B2CE /* en_GB */,
+				745E213A0E5961F700105751 /* es */,
+				743398430E62615300D285F0 /* fi */,
+				740224590E53F351006C58A2 /* fr */,
+				745E213E0E59630200105751 /* he */,
+				745E21400E59632400105751 /* it */,
+				740224570E53F342006C58A2 /* ja */,
+				745E21410E59633500105751 /* nl */,
+				748AB4EF0EB77F37004918A6 /* no */,
+				747ABAF80EBA3DA3002438D0 /* pl */,
+				740224580E53F346006C58A2 /* pt */,
+				745E21420E59634900105751 /* ro */,
+				745E21430E59637300105751 /* ru */,
+				745E21440E59638200105751 /* sk */,
+				745E21470E5963A200105751 /* tr */,
+				744292EC0EF5C98500BE2B67 /* hu */,
+				747D9DF80EF714960066B881 /* hi */,
+				747D9E3E0EF724240066B881 /* sv */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PocketFlix_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = PocketFlix;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PocketFlix_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = PocketFlix;
+			};
+			name = Release;
+		};
+		749862260E8439DA00AE718F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = ADHOC;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "339F5B06-F060-44CC-81DC-A3F28C98DE59";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "339F5B06-F060-44CC-81DC-A3F28C98DE59";
+				SDKROOT = iphonesimulator2.1;
+			};
+			name = AdHoc;
+		};
+		749862270E8439DA00AE718F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PocketFlix_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = PocketFlix;
+			};
+			name = AdHoc;
+		};
+		74BB1B130E21493D0066328E /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DISTRIBUTION;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
+				"PROVISIONING_PROFILE[sdk=iphoneos2.1]" = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
+				SDKROOT = iphonesimulator2.1;
+			};
+			name = Distribution;
+		};
+		74BB1B140E21493D0066328E /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PocketFlix_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = PocketFlix;
+			};
+			name = Distribution;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = DefaultProfileUuid;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
+				SDKROOT = iphonesimulator2.1;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = RELEASE;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = DefaultProfileUuid;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B18A29D0-CE30-4041-9AF4-EE86F0CCA353";
+				SDKROOT = iphonesimulator2.1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PocketFlix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+				749862270E8439DA00AE718F /* AdHoc */,
+				74BB1B140E21493D0066328E /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PocketFlix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+				749862260E8439DA00AE718F /* AdHoc */,
+				74BB1B130E21493D0066328E /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
