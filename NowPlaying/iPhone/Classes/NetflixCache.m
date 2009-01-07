@@ -903,7 +903,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         if (items.count >= 100) {
             break;
         }
-
+        
         NSString* identifier = [[itemElement element:@"link"] text];
         NSRange lastSlashRange = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
         
@@ -1148,7 +1148,10 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     }
     [updateDetailsLock unlock];
     
-    [self downloadRSS];
+    [ThreadingUtilities backgroundSelector:@selector(downloadRSS)
+                                  onTarget:self
+                                      gate:nil // no lock.
+                                   visible:NO];
 }
 
 
@@ -1462,40 +1465,39 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (void) lookupMovieBackgroundEntryPoint:(Movie*) movie {
-    NSString* file = [self netflixFile:movie];
-    if ([FileUtilities fileExists:file]) {
+- (void) lookupNetflixMovieForLocalMovieBackgroundEntryPoint:(Movie*) movie {
+    if (![self hasAccount]) {
         return;
     }
     
-    Movie* netflixMovie = [self lookupMovieWorker:movie];
-    if (netflixMovie != nil) {
-        [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
-        [self addSearchResult:netflixMovie];
-        [AppDelegate minorRefresh];
+    NSAssert(![NSThread isMainThread], @"");
+    
+    [gate lock];
+    {
+        NSString* file = [self netflixFile:movie];
+        if (![FileUtilities fileExists:file]) {    
+            Movie* netflixMovie = [self lookupMovieWorker:movie];
+            if (netflixMovie != nil) {
+                [FileUtilities writeObject:netflixMovie.dictionary toFile:file];
+                [self addSearchResult:netflixMovie];
+                [AppDelegate minorRefresh];
+            }
+        } 
     }
-}
-
-
-- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie {
-    if ([self hasAccount]) {
-        [ThreadingUtilities backgroundSelector:@selector(lookupMovieBackgroundEntryPoint:)
-                                      onTarget:self
-                                      argument:movie
-                                          gate:gate
-                                       visible:NO];
-    }
+    [gate unlock];
 }
 
 
 - (void) lookupNetflixMoviesForLocalMovies:(NSArray*) movies {
-    if ([self hasAccount]) {
-        [ThreadingUtilities backgroundSelector:@selector(lookupMoviesBackgroundEntryPoint:)
-                                      onTarget:self
-                                      argument:movies
-                                          gate:gate
-                                       visible:NO];
+    if (![self hasAccount]) {
+        return;
     }
+    
+    [ThreadingUtilities backgroundSelector:@selector(lookupMoviesBackgroundEntryPoint:)
+                                  onTarget:self
+                                  argument:movies
+                                      gate:nil // no gate.  we'll take the gate for each movie
+                                   visible:NO];
 }
 
 
@@ -1503,7 +1505,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     for (Movie* movie in movies) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            [self lookupMovieBackgroundEntryPoint:movie];
+            [self lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
         }
         [pool release];
     }

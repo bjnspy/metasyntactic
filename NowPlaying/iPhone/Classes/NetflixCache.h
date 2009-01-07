@@ -65,7 +65,7 @@
 - (NSString*) noInformationFound;
 
 - (void) lookupNetflixMoviesForLocalMovies:(NSArray*) movies;
-- (void) lookupNetflixMovieForLocalMovie:(Movie*) movie;
+- (void) lookupNetflixMovieForLocalMovieBackgroundEntryPoint:(Movie*) movie;
 
 - (Movie*) netflixMovieForMovie:(Movie*) movie;
 
