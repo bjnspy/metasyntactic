@@ -213,6 +213,7 @@ static DifferenceEngine* differenceEngine = nil;
     {
         [FileUtilities moveItemToTrash:netflixUserRatingsDirectory];
         [FileUtilities moveItemToTrash:netflixPredictedRatingsDirectory];
+        [FileUtilities moveItemToTrash:netflixQueuesDirectory];
         [self createDirectories];
     }
     [gate unlock];
