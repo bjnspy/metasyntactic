@@ -197,7 +197,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == MyOtherApplicationsSection) {
         return NSLocalizedString(@"My other applications", nil);
     } else if (section == GraphicsBySection) {
-        return NSLocalizedString(@"Graphics by Jeffrey Nee", nil);
+        return NSLocalizedString(@"Graphics by David Steinberger", nil);
     } else if (section == LocalizedBySection) {
         return NSLocalizedString(@"Localized by:", nil);
     }
@@ -265,7 +265,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
         }
     } else if (section == GraphicsBySection) {
-        url = @"http://www.jeffnee.com";
+        url = @"http://www.comixology.com";
     } else if (section == LocalizedBySection) {
         return;
     } else if (section == LicenseSection) {

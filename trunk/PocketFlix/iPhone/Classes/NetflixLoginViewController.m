@@ -84,7 +84,8 @@
                       "access your account. To protect your security, you will not "
                       "be providing your Netflix username and password to %@. "
                       "Instead, tapping the button below will allow you to login to Netflix "
-                      "and grant access directly.", nil), [Application name], [Application name]];
+                      "and grant access directly.\n\nA Wi-fi connection is recommended "
+                      "the first time you use %@.", nil), [Application name], [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];

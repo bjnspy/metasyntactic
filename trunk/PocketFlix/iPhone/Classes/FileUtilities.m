@@ -65,6 +65,17 @@ static MainThreadGate* gate;
 }
 
 
++ (NSDictionary*) attributesOfItemAtPath:(NSString*) path {
+    NSDictionary* result;
+    [gate lock];
+    {
+        result = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:NULL];
+    }
+    [gate unlock];
+    return result;
+}
+
+
 + (NSArray*) directoryContentsNames:(NSString*) directory {
     NSArray* result;
     [gate lock];
@@ -84,17 +95,6 @@ static MainThreadGate* gate;
         for (NSString* name in names) {
             [result addObject:[directory stringByAppendingPathComponent:name]];
         }
-    }
-    [gate unlock];
-    return result;
-}
-
-
-+ (NSDictionary*) attributesOfItemAtPath:(NSString*) path {
-    NSDictionary* result;
-    [gate lock];
-    {
-        result = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:NULL];
     }
     [gate unlock];
     return result;
