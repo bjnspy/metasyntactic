@@ -1,21 +1,29 @@
 package org.metasyntactic;
 
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.StringUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.text.DateFormat;
@@ -32,7 +40,8 @@ public class SettingsActivity extends ListActivity {
   private int month;
   private int day;
 
-  @Override public void onCreate(final Bundle savedInstanceState) {
+  @Override
+  public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.settings);
@@ -49,94 +58,92 @@ public class SettingsActivity extends ListActivity {
         }
       }
     });
+    populateSettingsItems();
   }
 
-  @Override protected void onListItemClick(final ListView listView, final View v, final int position, final long id) {
-    NowPlayingPreferenceDialog dialog = null;
-    switch (this.detailItems.get(position).getKey()) {
-
-      case LOCATION:
-        final LayoutInflater factory = LayoutInflater.from(this);
-        final View textEntryView = factory.inflate(R.layout.alert_dialog_text_entry, null);
-        // The order in which the methods on the NowPlayingPreferenceDialog object are called
-        // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(position).getLabel()).setKey(
-            this.detailItems.get(position).getKey()).setTextView(textEntryView).setPositiveButton(
-            R.string.ok).setNegativeButton(android.R.string.cancel);
-        break;
-
-      case SEARCH_DISTANCE:
-
-        // The order in which the methods on the NowPlayingPreferenceDialog object are called
-        // should not be changed.
-
-        final String[] distanceValues = this.getResources().getStringArray(R.array.entries_search_distance_preference);
-        dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(position).getLabel()).setKey(
-            this.detailItems.get(position).getKey()).setItems(distanceValues);
-        break;
-
-      case REVIEWS_PROVIDER:
-
-        // The order in which the methods on the NowPlayingPreferenceDialog object are called
-        // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(position).getLabel()).setKey(
-            this.detailItems.get(position).getKey()).setEntries(
-            R.array.entries_reviews_provider_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
-            android.R.string.cancel);
-
-        break;
-
-      case AUTO_UPDATE_LOCATION:
-
-        // The order in which the methods on the NowPlayingPreferenceDialog object are called
-        // should not be changed.
-        dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(position).getLabel()).setKey(
-            this.detailItems.get(position).getKey()).setEntries(
-            R.array.entries_auto_update_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
-            android.R.string.cancel);
-
-        break;
-
-      case SEARCH_DATE:
-
-        final DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-          public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
-            SettingsActivity.this.year = year;
-            SettingsActivity.this.month = monthOfYear;
-            SettingsActivity.this.day = dayOfMonth;
-            final Calendar cal1 = Calendar.getInstance();
-            cal1.set(SettingsActivity.this.year, SettingsActivity.this.month, SettingsActivity.this.day);
-            NowPlayingControllerWrapper.setSearchDate(cal1.getTime());
-            refresh();
-          }
-        };
-        final Date searchDate = NowPlayingControllerWrapper.getSearchDate();
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(searchDate);
-
-        this.year = cal.get(Calendar.YEAR);
-        this.month = cal.get(Calendar.MONTH);
-        this.day = cal.get(Calendar.DAY_OF_MONTH);
-        new DatePickerDialog(this, dateSetListener, this.year, this.month, this.day).show();
-        super.onListItemClick(listView, v, position, id);
-        return;
+  @Override
+  protected Dialog onCreateDialog(int id) {
+    Dialog dialog = null;
+    switch (id) {
+    case 1:
+      final LayoutInflater factory = LayoutInflater.from(this);
+      final View textEntryView = factory.inflate(R.layout.alert_dialog_text_entry, null);
+      // The order in which the methods on the NowPlayingPreferenceDialog object
+      // are called
+      // should not be changed.
+      dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(1).getLabel())
+          .setKey(this.detailItems.get(1).getKey()).setTextView(textEntryView).setPositiveButton(
+              R.string.ok).setNegativeButton(android.R.string.cancel).create();
+      break;
+    case 2:
+      // The order in which the methods on the NowPlayingPreferenceDialog object
+      // are called
+      // should not be changed.
+      final String[] distanceValues = this.getResources().getStringArray(
+          R.array.entries_search_distance_preference);
+      dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(2).getLabel())
+          .setKey(this.detailItems.get(2).getKey()).setItems(distanceValues).create();
+      break;
+    case 4:
+      // The order in which the methods on the NowPlayingPreferenceDialog object
+      // are called
+      // should not be changed.
+      dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(4).getLabel())
+          .setKey(this.detailItems.get(4).getKey()).setEntries(
+              R.array.entries_reviews_provider_preference).setPositiveButton(android.R.string.ok)
+          .setNegativeButton(android.R.string.cancel).create();
+      break;
+    case 0:
+      // The order in which the methods on the NowPlayingPreferenceDialog object
+      // are called
+      // should not be changed.
+      dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(0).getLabel())
+          .setKey(this.detailItems.get(0).getKey()).setEntries(
+              R.array.entries_auto_update_preference).setPositiveButton(android.R.string.ok)
+          .setNegativeButton(android.R.string.cancel).create();
     }
+    return dialog;
+  }
 
-    if (dialog != null) {
-      dialog.show();
+  @Override
+  protected void onListItemClick(final ListView listView, final View v, final int position,
+      final long id) {
+    if (position == 3) {
+      final DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(final DatePicker view, final int year, final int monthOfYear,
+            final int dayOfMonth) {
+          SettingsActivity.this.year = year;
+          SettingsActivity.this.month = monthOfYear;
+          SettingsActivity.this.day = dayOfMonth;
+          final Calendar cal1 = Calendar.getInstance();
+          cal1.set(SettingsActivity.this.year, SettingsActivity.this.month,
+              SettingsActivity.this.day);
+          NowPlayingControllerWrapper.setSearchDate(cal1.getTime());
+          refresh();
+        }
+      };
+      final Date searchDate = NowPlayingControllerWrapper.getSearchDate();
+      final Calendar cal = Calendar.getInstance();
+      cal.setTime(searchDate);
+      this.year = cal.get(Calendar.YEAR);
+      this.month = cal.get(Calendar.MONTH);
+      this.day = cal.get(Calendar.DAY_OF_MONTH);
+      new DatePickerDialog(this, dateSetListener, this.year, this.month, this.day).show();
+    } else {
+      SettingsActivity.this.showDialog(position);
     }
     super.onListItemClick(listView, v, position, id);
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   private void populateSettingsItems() {
     this.detailItems = new ArrayList<SettingsItem>();
-
-    // auto update location
+    // auto update location - 0
     SettingsItem settings = new SettingsItem();
     settings.setLabel("Auto Update Location");
     final boolean isAutoUpdate = NowPlayingControllerWrapper.isAutoUpdateEnabled();
@@ -147,7 +154,7 @@ public class SettingsActivity extends ListActivity {
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.AUTO_UPDATE_LOCATION);
     this.detailItems.add(settings);
-    // location
+    // location - 1
     settings = new SettingsItem();
     settings.setLabel("Location");
     final String location = NowPlayingControllerWrapper.getUserLocation();
@@ -158,18 +165,17 @@ public class SettingsActivity extends ListActivity {
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.LOCATION);
     this.detailItems.add(settings);
-
-    // search distance
+    // search distance - 2
     settings = new SettingsItem();
     settings.setLabel("Search Distance");
     final int distance = NowPlayingControllerWrapper.getSearchDistance();
-    //TODO Remove hardcoded values once the controller method for distance units
+    // TODO Remove hardcoded values once the controller method for distance
+    // units
     // is available.
     settings.setData(distance + " miles");
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DISTANCE);
     this.detailItems.add(settings);
-
-    // search date
+    // search date - 3
     settings = new SettingsItem();
     settings.setLabel("Search Date");
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DATE);
@@ -180,10 +186,8 @@ public class SettingsActivity extends ListActivity {
     } else {
       settings.setData("Unknown");
     }
-
     this.detailItems.add(settings);
-
-    // reviews provider
+    // reviews provider - 4
     settings = new SettingsItem();
     settings.setLabel("Reviews Provider");
     final ScoreType type = NowPlayingControllerWrapper.getScoreType();
@@ -196,9 +200,9 @@ public class SettingsActivity extends ListActivity {
     this.detailItems.add(settings);
   }
 
-  @Override protected void onResume() {
+  @Override
+  protected void onResume() {
     super.onResume();
-    populateSettingsItems();
     this.settingsAdapter = new SettingsAdapter();
     setListAdapter(this.settingsAdapter);
   }
@@ -213,21 +217,17 @@ public class SettingsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.settings_item, null);
-
-      final SettingsViewHolder holder = new SettingsViewHolder((TextView) convertView.findViewById(R.id.label),
-                                                               (ImageView) convertView.findViewById(R.id.icon),
-                                                               (TextView) convertView.findViewById(R.id.data),
-                                                               (CheckBox) convertView.findViewById(R.id.check));
-
+      final SettingsViewHolder holder = new SettingsViewHolder((TextView) convertView
+          .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
+          (TextView) convertView.findViewById(R.id.data), (CheckBox) convertView
+              .findViewById(R.id.check));
       if (position == 0) {
         holder.check.setVisibility(View.VISIBLE);
         holder.icon.setVisibility(View.GONE);
         holder.check.setChecked(NowPlayingControllerWrapper.isAutoUpdateEnabled());
         holder.check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
           public void onCheckedChanged(final CompoundButton arg0, final boolean checked) {
-            Log.i("test", String.valueOf(checked));
             NowPlayingControllerWrapper.setAutoUpdateEnabled(checked);
-            Log.i("test", String.valueOf(NowPlayingControllerWrapper.isAutoUpdateEnabled()));
             populateSettingsItems();
             SettingsActivity.this.settingsAdapter.refresh();
           }
@@ -235,7 +235,6 @@ public class SettingsActivity extends ListActivity {
       }
       final SettingsItem settingsItem = SettingsActivity.this.detailItems.get(position);
       holder.data.setText(settingsItem.getData());
-
       holder.label.setText(settingsItem.getLabel());
       return convertView;
     }
@@ -250,7 +249,8 @@ public class SettingsActivity extends ListActivity {
       private final CheckBox check;
       private final ImageView icon;
 
-      private SettingsViewHolder(final TextView label, final ImageView icon, final TextView data, final CheckBox check) {
+      private SettingsViewHolder(final TextView label, final ImageView icon, final TextView data,
+          final CheckBox check) {
         this.label = label;
         this.data = data;
         this.check = check;

@@ -13,17 +13,23 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import android.util.Log;
+
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.utilities.difference.EditDistance;
 
 import java.io.File;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -54,7 +60,7 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private void downloadPosterForMovie(Movie movie, List<String> urls, int index) {
-    if (urls == null || index < 0 || index > urls.size()) {
+    if (urls == null || index < 0 || index >= urls.size()) {
       return;
     }
 
@@ -73,7 +79,13 @@ public class LargePosterCache extends AbstractCache {
   private List<String> getPosterUrls(Movie movie) {
     synchronized (lock) {
       ensureIndex();
-      String result = EditDistance.findClosestMatch(movie.getCanonicalTitle(), index.keySet());
+      String result = "";
+      try {
+      result = EditDistance.findClosestMatch(movie.getCanonicalTitle(), index.keySet());
+      }
+      catch(Exception ex){
+        Log.i("Exception", "exception " + ex.getLocalizedMessage());
+      }
       if (isNullOrEmpty(result)) {
         return Collections.emptyList();
       }

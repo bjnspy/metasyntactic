@@ -9,24 +9,8 @@
     android:paddingRight="0px"
     android:dividerHeight="0px"
     android:minHeight="?android:attr/listPreferredItemHeight">
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="6dip"
-        android:gravity="left"
-        android:layout_gravity="center_vertical"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorPrimary"
-        android:paddingTop="5px"
-        android:paddingBottom="5px" />
-    <!-- Divider -->
-    <ImageView
-        android:id="@+id/divider"
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:layout_alignParentBottom="true"
-        android:background="@android:drawable/divider_horizontal_dark" />
+   
+   
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"

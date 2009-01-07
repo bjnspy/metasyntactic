@@ -34,5 +34,5 @@
         android:layout_height="fill_parent"
         android:drawSelectorOnTop="false"
         android:layout_below="@id/movie"
-        android:layoutAnimation="@anim/layout_bottom_to_top_slide" />
+        android:layoutAnimation="@anim/layout_top_to_bottom_slide" />
 </RelativeLayout>

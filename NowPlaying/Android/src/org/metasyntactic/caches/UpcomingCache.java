@@ -90,7 +90,7 @@ public class UpcomingCache extends AbstractCache {
       this.movies = list;
     }
 
-    return unmodifiableList(this.movies);
+    return this.movies;
   }
 
   private Map<String, String> getStudioKeys() {

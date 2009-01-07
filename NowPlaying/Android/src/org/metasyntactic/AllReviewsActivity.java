@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import org.metasyntactic.data.Review;
@@ -16,15 +15,16 @@ import java.util.List;
 public class AllReviewsActivity extends ListActivity {
   private List<Review> reviews;
 
-  @Override protected void onCreate(final Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     this.reviews = getIntent().getParcelableArrayListExtra("reviews");
     setListAdapter(new ReviewsAdapter(this));
   }
 
-  @Override protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
-    Log.i("test", "on list item click");
+  @Override
+  protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
     final String review_url = reviews.get(position).getLink();
     if (review_url != null) {
       final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
@@ -35,7 +35,8 @@ public class AllReviewsActivity extends ListActivity {
     super.onListItemClick(l, v, position, id);
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -58,10 +59,10 @@ public class AllReviewsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.reviewview, null);
-      final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score),
-                                                         (TextView) convertView.findViewById(R.id.author),
-                                                         (TextView) convertView.findViewById(R.id.source),
-                                                         (TextView) convertView.findViewById(R.id.desc));
+      final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView
+          .findViewById(R.id.score), (TextView) convertView.findViewById(R.id.author),
+          (TextView) convertView.findViewById(R.id.source), (TextView) convertView
+              .findViewById(R.id.desc));
       convertView.setTag(holder);
       final Review review = AllReviewsActivity.this.reviews.get(position);
       holder.author.setText(review.getAuthor());
@@ -77,7 +78,8 @@ public class AllReviewsActivity extends ListActivity {
       private final TextView source;
       private final TextView description;
 
-      private MovieViewHolder(final ImageView score, final TextView author, final TextView source, final TextView description) {
+      private MovieViewHolder(final ImageView score, final TextView author, final TextView source,
+          final TextView description) {
         this.score = score;
         this.author = author;
         this.source = source;
@@ -90,24 +92,12 @@ public class AllReviewsActivity extends ListActivity {
     }
   }
 
-  @Override public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.movies).setIntent(
-        new Intent(this, NowPlayingActivity.class)).setAlphabeticShortcut('m');
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(R.drawable.theatres);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(R.drawable.upcoming);
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+        android.R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
-  }
-
-  @Override public boolean onOptionsItemSelected(final MenuItem item) {
-    if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
-      final Intent intent = new Intent();
-      intent.setClass(this, AllTheatersActivity.class);
-      startActivity(intent);
-      return true;
-    }
-    return false;
   }
 }

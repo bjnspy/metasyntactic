@@ -1,16 +1,18 @@
 package org.metasyntactic.views;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
+
+import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.R;
-import org.metasyntactic.Application;
 import org.metasyntactic.caches.scores.ScoreType;
 
 import java.util.Arrays;
@@ -29,9 +31,8 @@ public class NowPlayingPreferenceDialog {
     this.context = context;
   }
 
-  public NowPlayingPreferenceDialog create() {
-    this.builder.create();
-    return this;
+  public Dialog create() {
+    return builder.create();
   }
 
   public NowPlayingPreferenceDialog setIcon(final Drawable icon) {
@@ -44,7 +45,8 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-  public NowPlayingPreferenceDialog setNegativeButton(final int textId, final OnClickListener listener) {
+  public NowPlayingPreferenceDialog setNegativeButton(final int textId,
+      final OnClickListener listener) {
     this.builder.setNegativeButton(textId, listener);
     return this;
   }
@@ -70,7 +72,8 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem, final OnClickListener listener) {
+  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem,
+      final OnClickListener listener) {
     this.builder.setSingleChoiceItems(items, checkedItem, listener);
     return this;
   }
@@ -117,53 +120,53 @@ public class NowPlayingPreferenceDialog {
 
   private int getIntPreferenceValue() {
     switch (this.prefKey) {
-      case MOVIES_SORT:
-        return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
-      case THEATERS_SORT:
-        return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
-      case SEARCH_DISTANCE:
-        return NowPlayingControllerWrapper.getSearchDistance();
-      case REVIEWS_PROVIDER:
-        return this.scoreTypes.indexOf(NowPlayingControllerWrapper.getScoreType());
-      case AUTO_UPDATE_LOCATION:
-        return this.autoUpdate.indexOf(NowPlayingControllerWrapper.isAutoUpdateEnabled());
+    case MOVIES_SORT:
+      return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
+    case THEATERS_SORT:
+      return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
+    case SEARCH_DISTANCE:
+      return NowPlayingControllerWrapper.getSearchDistance();
+    case REVIEWS_PROVIDER:
+      return this.scoreTypes.indexOf(NowPlayingControllerWrapper.getScoreType());
+    case AUTO_UPDATE_LOCATION:
+      return this.autoUpdate.indexOf(NowPlayingControllerWrapper.isAutoUpdateEnabled());
     }
     return 0;
   }
 
   private String getStringPreferenceValue() {
     switch (this.prefKey) {
-      case LOCATION:
-        return NowPlayingControllerWrapper.getUserLocation();
+    case LOCATION:
+      return NowPlayingControllerWrapper.getUserLocation();
     }
     return null;
   }
 
   private void setIntPreferenceValue(final int prefValue) {
     switch (this.prefKey) {
-      case MOVIES_SORT:
-        NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(prefValue);
-        break;
-      case THEATERS_SORT:
-        NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(prefValue);
-        break;
-      case SEARCH_DISTANCE:
-        NowPlayingControllerWrapper.setSearchDistance(prefValue);
-        break;
-      case REVIEWS_PROVIDER:
-        NowPlayingControllerWrapper.setScoreType(this.scoreTypes.get(prefValue));
-        break;
-      case AUTO_UPDATE_LOCATION:
-        NowPlayingControllerWrapper.setAutoUpdateEnabled(this.autoUpdate.get(prefValue));
-        break;
+    case MOVIES_SORT:
+      NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(prefValue);
+      break;
+    case THEATERS_SORT:
+      NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(prefValue);
+      break;
+    case SEARCH_DISTANCE:
+      NowPlayingControllerWrapper.setSearchDistance(prefValue);
+      break;
+    case REVIEWS_PROVIDER:
+      NowPlayingControllerWrapper.setScoreType(this.scoreTypes.get(prefValue));
+      break;
+    case AUTO_UPDATE_LOCATION:
+      NowPlayingControllerWrapper.setAutoUpdateEnabled(this.autoUpdate.get(prefValue));
+      break;
     }
   }
 
   private void setStringPreferenceValue(final String prefValue) {
     switch (this.prefKey) {
-      case LOCATION:
-        NowPlayingControllerWrapper.setUserLocation(prefValue);
-        break;
+    case LOCATION:
+      NowPlayingControllerWrapper.setUserLocation(prefValue);
+      break;
     }
   }
 
@@ -187,6 +190,6 @@ public class NowPlayingPreferenceDialog {
   // Work around to make handling of scoretype,auto_update same as sort
   // preference, as both are choicetypes.
   private final List<ScoreType> scoreTypes = Arrays.asList(ScoreType.Google, ScoreType.Metacritic,
-                                                           ScoreType.RottenTomatoes);
+      ScoreType.RottenTomatoes);
   private final List<Boolean> autoUpdate = Arrays.asList(Boolean.TRUE, Boolean.FALSE);
 }
