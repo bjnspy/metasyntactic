@@ -533,7 +533,7 @@
 
 
 - (void) updateNetflix:(Movie*) movie {
-    [model.netflixCache lookupNetflixMovieForLocalMovie:movie];
+    [model.netflixCache lookupNetflixMovieForLocalMovieBackgroundEntryPoint:movie];
 }
 
 
