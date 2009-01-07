@@ -65,15 +65,24 @@ typedef enum {
 }
 
 
+- (void) setupTableStyle {
+    self.tableView.rowHeight = ROW_HEIGHT;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [ColorCache netflixRed];
+}
+
+
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
         self.title = [Application name];
-        
-        self.tableView.rowHeight = ROW_HEIGHT;
+
         self.navigationItem.leftBarButtonItem =
         [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
+
+        [self setupTableStyle];
     }
+
     return self;
 }
 
@@ -106,10 +115,7 @@ typedef enum {
 
 
 - (void) majorRefreshWorker {
-    self.tableView.rowHeight = ROW_HEIGHT;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [ColorCache netflixRed];
-
+    [self setupTableStyle];
     [self setupTitle];
     [self.tableView reloadData];
 }
@@ -166,34 +172,44 @@ typedef enum {
     cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
 
     if (self.hasAccount) {
-        if (row == SearchSection) {
-            cell.text = NSLocalizedString(@"Search", nil);
-            cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
-        } else if (row == MostPopularSection) {
-            cell.text = NSLocalizedString(@"Most Popular", nil);
-            cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
-        } else if (row == DVDSection) {
-            cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
-            cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
-        } else if (row == InstantSection) {
-            cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
-            cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
-        } else if (row == RecommendationsSection) {
-            cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
-            cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
-        } else if (row == AtHomeSection) {
-            cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
-            cell.image = [UIImage imageNamed:@"NetflixHome.png"];
-        } else if (row == RentalHistorySection) {
-            cell.text = NSLocalizedString(@"Rental History", nil);
-            cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
-        } else if (row == AboutSendFeedbackSection) {
-            cell.text = NSLocalizedString(@"About / Send Feedback", nil);
-            cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
-        } else if (row == LogOutSection) {
-            cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
-            cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
-            cell.accessoryView = nil;
+        switch (row) {
+            case SearchSection:
+                cell.text = NSLocalizedString(@"Search", nil);
+                cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
+                break;
+            case MostPopularSection:
+                cell.text = NSLocalizedString(@"Most Popular", nil);
+                cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
+                break;
+            case DVDSection:
+                cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
+                cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
+                break;
+            case InstantSection:
+                cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
+                cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
+                break;
+            case RecommendationsSection:
+                cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
+                cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
+                break;
+            case AtHomeSection:
+                cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
+                cell.image = [UIImage imageNamed:@"NetflixHome.png"];
+                break;
+            case RentalHistorySection:
+                cell.text = NSLocalizedString(@"Rental History", nil);
+                cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
+                break;
+            case AboutSendFeedbackSection:
+                cell.text = NSLocalizedString(@"About / Send Feedback", nil);
+                cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
+                break;
+            case LogOutSection:
+                cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
+                cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+                cell.accessoryView = nil;
+                break;
         }
     } else {
         if (indexPath.row == 0) {
@@ -302,24 +318,16 @@ typedef enum {
 
 
 - (void) didSelectLoggedInRow:(NSInteger) row {
-    if (row == SearchSection) {
-        [self didSelectSearchRow];
-    } else if (row == MostPopularSection) {
-        [self didSelectMostPopularSection];
-    } else if (row == DVDSection) {
-        [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
-    } else if (row == InstantSection) {
-        [self didSelectQueueRow:[NetflixCache instantQueueKey]];
-    } else if (row == RecommendationsSection) {
-        [self didSelectRecomendationsRow];
-    } else if (row == AtHomeSection) {
-        [self didSelectQueueRow:[NetflixCache atHomeKey]];
-    } else if (row == RentalHistorySection) {
-        [self didSelectRentalHistoryRow];
-    } else if (row == AboutSendFeedbackSection) {
-        [self didSelectAboutSendFeedbackRow];
-    } else if (row == LogOutSection) {
-        [self didSelectLogoutRow];
+    switch (row) {
+        case SearchSection:             return [self didSelectSearchRow];
+        case MostPopularSection:        return [self didSelectMostPopularSection];
+        case DVDSection:                return [self didSelectQueueRow:[NetflixCache dvdQueueKey]];
+        case InstantSection:            return [self didSelectQueueRow:[NetflixCache instantQueueKey]];
+        case RecommendationsSection:    return [self didSelectRecomendationsRow];
+        case AtHomeSection:             return [self didSelectQueueRow:[NetflixCache atHomeKey]];
+        case RentalHistorySection:      return [self didSelectRentalHistoryRow];
+        case AboutSendFeedbackSection:  return [self didSelectAboutSendFeedbackRow];
+        case LogOutSection:             return [self didSelectLogoutRow];
     }
 }
 
