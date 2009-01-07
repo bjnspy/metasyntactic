@@ -232,7 +232,7 @@
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* PocketFlix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketFlix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* iPhoneShared.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPhoneShared.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 		74BD51C90EB786FC0098C2DF /* MainThreadGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainThreadGate.m; sourceTree = "<group>"; };
 		74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
 		74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
-		74C2AEE40F0DF3B700EFAF74 /* PocketFlix_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketFlix_Prefix.pch; sourceTree = "<group>"; };
+		74C2AEE40F0DF3B700EFAF74 /* iPhoneShared_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneShared_Prefix.pch; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
@@ -658,7 +658,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* PocketFlix.app */,
+				1D6058910D05DD3D006BFB54 /* iPhoneShared.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -679,7 +679,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				74C2AEE40F0DF3B700EFAF74 /* PocketFlix_Prefix.pch */,
+				74C2AEE40F0DF3B700EFAF74 /* iPhoneShared_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */,
 				74A3F11D0E687D26007ED6DC /* Macros.h */,
@@ -1210,9 +1210,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* PocketFlix */ = {
+		1D6058900D05DD3D006BFB54 /* iPhoneShared */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PocketFlix" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iPhoneShared" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -1222,9 +1222,9 @@
 			);
 			dependencies = (
 			);
-			name = PocketFlix;
-			productName = PocketFlix;
-			productReference = 1D6058910D05DD3D006BFB54 /* PocketFlix.app */;
+			name = iPhoneShared;
+			productName = iPhoneShared;
+			productReference = 1D6058910D05DD3D006BFB54 /* iPhoneShared.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1232,7 +1232,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PocketFlix" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhoneShared" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1271,7 +1271,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* PocketFlix */,
+				1D6058900D05DD3D006BFB54 /* iPhoneShared */,
 			);
 		};
 /* End PBXProject section */
@@ -1552,9 +1552,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PocketFlix_Prefix.pch;
+				GCC_PREFIX_HEADER = iPhoneShared_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = PocketFlix;
+				PRODUCT_NAME = iPhoneShared;
 			};
 			name = Debug;
 		};
@@ -1567,9 +1567,9 @@
 					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PocketFlix_Prefix.pch;
+				GCC_PREFIX_HEADER = iPhoneShared_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = PocketFlix;
+				PRODUCT_NAME = iPhoneShared;
 			};
 			name = Release;
 		};
@@ -1612,9 +1612,9 @@
 					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PocketFlix_Prefix.pch;
+				GCC_PREFIX_HEADER = iPhoneShared_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = PocketFlix;
+				PRODUCT_NAME = iPhoneShared;
 			};
 			name = AdHoc;
 		};
@@ -1654,9 +1654,9 @@
 					"\"$(SRCROOT)/../../ProtocolBuffers/build/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PocketFlix_Prefix.pch;
+				GCC_PREFIX_HEADER = iPhoneShared_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = PocketFlix;
+				PRODUCT_NAME = iPhoneShared;
 			};
 			name = Distribution;
 		};
@@ -1719,7 +1719,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PocketFlix" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iPhoneShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -1730,7 +1730,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PocketFlix" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iPhoneShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
