@@ -65,6 +65,28 @@ static MainThreadGate* gate;
 }
 
 
++ (NSDictionary*) attributesOfItemAtPath:(NSString*) path {
+    NSDictionary* result;
+    [gate lock];
+    {
+        result = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:NULL];
+    }
+    [gate unlock];
+    return result;
+}
+
+
++ (NSArray*) directoryContentsNames:(NSString*) directory {
+    NSArray* result;
+    [gate lock];
+    {
+        result = [[NSFileManager defaultManager] directoryContentsAtPath:directory];
+    }
+    [gate unlock];
+    return result;
+}
+
+
 + (NSArray*) directoryContentsPaths:(NSString*) directory {
     NSMutableArray* result = [NSMutableArray array];
     [gate lock];

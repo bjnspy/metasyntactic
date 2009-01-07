@@ -256,12 +256,19 @@ static DifferenceEngine* differenceEngine = nil;
 
 
 + (void) clearStaleData:(NSString*) directory {
-    NSArray* paths = [FileUtilities directoryContentsPaths:directory];
-    for (NSString* path in paths) {
-        if ([FileUtilities isDirectory:path]) {
-            [self clearStaleData:path];
-        } else if ((rand() % 1000) < 50) {
-            NSDate* lastModifiedDate = [FileUtilities modificationDate:path];
+    NSArray* names = [FileUtilities directoryContentsNames:directory];
+    for (NSString* name in names) {
+        // clear 5% of the old directories
+        if ((rand() % 1000) < 50) {
+            NSString* path = [directory stringByAppendingPathComponent:name];
+            NSDictionary* attributes = [FileUtilities attributesOfItemAtPath:path];
+            
+            if ([[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
+                // don't delete folders
+                continue;
+            }
+            
+            NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
             if (lastModifiedDate != nil) {
                 if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
                     [FileUtilities moveItemToTrash:path];
@@ -275,7 +282,21 @@ static DifferenceEngine* differenceEngine = nil;
 + (void) clearStaleData {
     [gate lock];
     {
-        [self clearStaleData:cacheDirectory];
+        for (NSInteger i = 0; i < ArrayLength(directories); i++) {
+            NSString* directory = *directories[i];
+            if ([netflixRSSDirectory isEqual:directory] ||
+                [userLocationsDirectory isEqual:directory]) {
+                continue;
+            }
+            
+            [self clearStaleData:directory];
+        }
+        
+        for (NSString* path in [FileUtilities directoryContentsPaths:netflixRSSDirectory]) {
+            if ([FileUtilities isDirectory:path]) {
+                [self clearStaleData:path];
+            }
+        }
     }
     [gate unlock];
 }
