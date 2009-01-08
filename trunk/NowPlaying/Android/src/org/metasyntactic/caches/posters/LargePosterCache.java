@@ -82,8 +82,8 @@ public class LargePosterCache extends AbstractCache {
       }
 
       final String movie = columns[0];
-      final String[] posters = Arrays.copyOfRange(columns, 1, columns.length);
-      index.put(movie, Arrays.asList(posters));
+      final List<String> posters = Arrays.asList(columns).subList(1, columns.length);
+      index.put(movie, posters);
     }
 
     if (!index.isEmpty()) {
@@ -94,14 +94,14 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private void ensureIndex(final int year, final boolean updateIfStale) {
-    Map<String, List<String>> index = this.ensureIndexWorker(year, updateIfStale);
+    Map<String, List<String>> index = ensureIndexWorker(year, updateIfStale);
     if (index == null) {
-      index = FileUtilities.readStringToListOfStrings(this.getIndexFile(year));
+      index = FileUtilities.readStringToListOfStrings(getIndexFile(year));
     }
 
     if (!index.isEmpty()) {
-      synchronized (yearToMovieMapLock) {
-        yearToMovieMap.put(year, index);
+      synchronized (this.yearToMovieMapLock) {
+        this.yearToMovieMap.put(year, index);
       }
     }
   }
@@ -117,14 +117,14 @@ public class LargePosterCache extends AbstractCache {
   private void updateIndices() {
     final int currentYear = getCurrentYear();
     for (int year = currentYear + 1; year >= START_YEAR; year--) {
-      this.ensureIndex(year, year >= (currentYear - 1) || year <= (currentYear + 1));
+      ensureIndex(year, year >= currentYear - 1 || year <= currentYear + 1);
     }
   }
 
   private List<String> getPosterNames(final Movie movie, final int year) {
     final Map<String, List<String>> index;
-    synchronized (yearToMovieMapLock) {
-      index = yearToMovieMap.get(year);
+    synchronized (this.yearToMovieMapLock) {
+      index = this.yearToMovieMap.get(year);
     }
 
     if (index != null) {
