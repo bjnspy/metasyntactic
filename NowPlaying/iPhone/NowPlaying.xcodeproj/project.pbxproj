@@ -38,7 +38,6 @@
 		741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
 		7413718A0E88E79C00CF4900 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 741371890E88E79C00CF4900 /* Score.m */; };
 		741377B10E64765000404519 /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741377B00E64765000404519 /* TheaterNameCell.m */; };
-		7414A5F20F141481003163B3 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414A5F10F141481003163B3 /* StringUtilities.m */; };
 		7414A5F80F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414A5F50F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m */; };
 		7414A5F90F1414B2003163B3 /* NetflixMostPopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414A5F70F1414B2003163B3 /* NetflixMostPopularViewController.m */; };
 		7414A5FB0F1414F7003163B3 /* NetflixMostPopular.png in Resources */ = {isa = PBXBuildFile; fileRef = 7414A5FA0F1414F7003163B3 /* NetflixMostPopular.png */; };
@@ -97,6 +96,7 @@
 		74616D420F15D3260004B610 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D2E0F15D3260004B610 /* OAServiceTicket.m */; };
 		74616D430F15D3260004B610 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D310F15D3260004B610 /* OAToken.m */; };
 		74616D460F15D3420004B610 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D450F15D3420004B610 /* Base64.m */; };
+		74616D740F15D45D0004B610 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D730F15D45D0004B610 /* StringUtilities.m */; };
 		74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
 		7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
@@ -391,8 +391,6 @@
 		741371890E88E79C00CF4900 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		741377AF0E64765000404519 /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
 		741377B00E64765000404519 /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
-		7414A5F00F141481003163B3 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtilities.h; sourceTree = "<group>"; };
-		7414A5F10F141481003163B3 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtilities.m; sourceTree = "<group>"; };
 		7414A5F40F1414B2003163B3 /* NetflixMostPopularMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMostPopularMoviesViewController.h; sourceTree = "<group>"; };
 		7414A5F50F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixMostPopularMoviesViewController.m; sourceTree = "<group>"; };
 		7414A5F60F1414B2003163B3 /* NetflixMostPopularViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMostPopularViewController.h; sourceTree = "<group>"; };
@@ -533,6 +531,8 @@
 		74616D320F15D3260004B610 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		74616D440F15D3420004B610 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64.h; path = ../../iPhoneShared/Classes/Base64.h; sourceTree = SOURCE_ROOT; };
 		74616D450F15D3420004B610 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Base64.m; path = ../../iPhoneShared/Classes/Base64.m; sourceTree = SOURCE_ROOT; };
+		74616D720F15D45D0004B610 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtilities.h; path = ../../iPhoneShared/Classes/StringUtilities.h; sourceTree = SOURCE_ROOT; };
+		74616D730F15D45D0004B610 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtilities.m; path = ../../iPhoneShared/Classes/StringUtilities.m; sourceTree = SOURCE_ROOT; };
 		74676D860EFF6E7D00C64100 /* NetflixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCell.h; sourceTree = "<group>"; };
 		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
 		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
@@ -1116,10 +1116,10 @@
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74616D720F15D45D0004B610 /* StringUtilities.h */,
+				74616D730F15D45D0004B610 /* StringUtilities.m */,
 				74616D440F15D3420004B610 /* Base64.h */,
 				74616D450F15D3420004B610 /* Base64.m */,
-				7414A5F00F141481003163B3 /* StringUtilities.h */,
-				7414A5F10F141481003163B3 /* StringUtilities.m */,
 				74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */,
 				74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */,
 				74EC069E0DD2D69B006953A4 /* Utilities.h */,
@@ -2195,7 +2195,6 @@
 				7406A78B0F104D1D00795555 /* AppDelegate.m in Sources */,
 				7406A78C0F104D1D00795555 /* Controller.m in Sources */,
 				7406A78D0F104D1D00795555 /* Model.m in Sources */,
-				7414A5F20F141481003163B3 /* StringUtilities.m in Sources */,
 				7414A5F80F1414B2003163B3 /* NetflixMostPopularMoviesViewController.m in Sources */,
 				7414A5F90F1414B2003163B3 /* NetflixMostPopularViewController.m in Sources */,
 				74616D340F15D3260004B610 /* xmlparse.c in Sources */,
@@ -2215,6 +2214,7 @@
 				74616D420F15D3260004B610 /* OAServiceTicket.m in Sources */,
 				74616D430F15D3260004B610 /* OAToken.m in Sources */,
 				74616D460F15D3420004B610 /* Base64.m in Sources */,
+				74616D740F15D45D0004B610 /* StringUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
