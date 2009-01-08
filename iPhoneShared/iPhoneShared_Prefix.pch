@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonHMAC.h>
+#import <SystemConfiguration/SCNetworkReachability.h>
+#import <netinet/in.h>
 #import "expat.h"
 #import "ForwardDeclarations.h"
 #import "Macros.h"

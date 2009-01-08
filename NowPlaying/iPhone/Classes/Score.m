@@ -16,6 +16,7 @@
 
 #import "Movie.h"
 #import "Utilities.h"
+#import "StringUtilities.h"
 
 @interface Score()
 @property (copy) NSString* canonicalTitle;
@@ -68,7 +69,7 @@ property_definition(identifier);
                  provider:(NSString*) provider
                identifier:(NSString*) identifier {
     return [[[Score alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
-                                         synopsis:[Utilities stripHtmlCodes:synopsis]
+                                         synopsis:[StringUtilities stripHtmlCodes:synopsis]
                                             score:score
                                          provider:provider
                                        identifier:identifier] autorelease];

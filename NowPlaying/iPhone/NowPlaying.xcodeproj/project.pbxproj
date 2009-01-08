@@ -68,7 +68,6 @@
 		74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */; };
 		74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
 		744592040E6CA017002D05C3 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744592030E6CA017002D05C3 /* WarningView.m */; };
-		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
 		744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
 		744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
@@ -109,6 +108,16 @@
 		74616E2F0F15DB540004B610 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E290F15DB540004B610 /* XmlElement.m */; };
 		74616E300F15DB540004B610 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E2B0F15DB540004B610 /* XmlParser.m */; };
 		74616E310F15DB540004B610 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E2D0F15DB540004B610 /* XmlSerializer.m */; };
+		74616EDD0F15DE7D0004B610 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */; };
+		74616EEE0F15DE9D0004B610 /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EDF0F15DE9D0004B610 /* AlertUtilities.m */; };
+		74616EEF0F15DE9D0004B610 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE10F15DE9D0004B610 /* DateUtilities.m */; };
+		74616EF00F15DE9D0004B610 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE30F15DE9D0004B610 /* FileUtilities.m */; };
+		74616EF10F15DE9D0004B610 /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE50F15DE9D0004B610 /* ImageUtilities.m */; };
+		74616EF20F15DE9D0004B610 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE70F15DE9D0004B610 /* LocaleUtilities.m */; };
+		74616EF30F15DE9D0004B610 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EE90F15DE9D0004B610 /* NetworkUtilities.m */; };
+		74616EF40F15DE9D0004B610 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EEB0F15DE9D0004B610 /* Pulser.m */; };
+		74616F060F15DEF70004B610 /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616F050F15DEF70004B610 /* LocationUtilities.m */; };
+		74616FB90F15E0B70004B610 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616FB80F15E0B70004B610 /* Utilities.m */; };
 		74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
 		7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
@@ -133,11 +142,9 @@
 		7471E2360EFA0D7A000490CA /* NetflixRecommendations.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E21A0EFA0D7A000490CA /* NetflixRecommendations.png */; };
 		7471E2370EFA0D7A000490CA /* NetflixSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7471E21B0EFA0D7A000490CA /* NetflixSearch.png */; };
 		74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
-		747411250EC79EA200625001 /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747411240EC79EA200625001 /* ImageUtilities.m */; };
 		747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747413880EC7F2EC00625001 /* AbstractPosterCell.m */; };
 		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
 		7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */; };
-		747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */; };
 		747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AA0EB956DC002438D0 /* DVDViewController.m */; };
 		747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
 		747AB8610EB963AE002438D0 /* DVDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB8600EB963AE002438D0 /* DVDCell.m */; };
@@ -172,7 +179,6 @@
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
 		74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E490F034B8100E5450A /* AbstractNetflixCache.m */; };
 		74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A33E530F034C4100E5450A /* MutableNetflixCache.m */; };
-		74A41ACF0E9E172B007CF82C /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A41ACE0E9E172B007CF82C /* Pulser.m */; };
 		74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */; };
 		74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
@@ -183,7 +189,6 @@
 		74AF0F850EC2D38D00A8F639 /* NonClippingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F840EC2D38D00A8F639 /* NonClippingView.m */; };
 		74AF0F880EC2D42200A8F639 /* TappableScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AF0F870EC2D42200A8F639 /* TappableScrollView.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
-		74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */; };
 		74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */; };
 		74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C577210EA4D5E6009A9432 /* NowPlaying.pb.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
@@ -295,7 +300,6 @@
 		74E17FCB0E95FEFE00F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */; };
 		74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */; };
 		74E6313E0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */; };
-		74E631C30EFDCE5D002EE26B /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E631C20EFDCE5D002EE26B /* AlertUtilities.m */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
 		74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
 		74EB9AA00EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */; };
@@ -313,10 +317,8 @@
 		74EB9C260EFA3ED80083DC33 /* RedStar-0.8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C200EFA3ED80083DC33 /* RedStar-0.8.png */; };
 		74EB9C270EFA3ED80083DC33 /* RedStar-1.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */; };
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
-		74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC069F0DD2D69B006953A4 /* Utilities.m */; };
 		74EC92D60EE4E090004E044E /* LookupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC92D50EE4E090004E044E /* LookupRequest.m */; };
 		74EC963F0EE5DCF1004E044E /* AbstractDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */; };
-		74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */; };
 		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
@@ -325,8 +327,6 @@
 		74F3B2DA0E3CEF6000DD25DA /* AbstractDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2D90E3CEF6000DD25DA /* AbstractDataProvider.m */; };
 		74F3B2E70E3CF02400DD25DA /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2E60E3CF02400DD25DA /* LookupResult.m */; };
 		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
-		74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */; };
-		74F94C8D0E6BB34800075068 /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F94C8C0E6BB34800075068 /* LocationUtilities.m */; };
 		74FF70BB0EC9710600B0D534 /* DVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -453,8 +453,6 @@
 		744592020E6CA017002D05C3 /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
 		744592030E6CA017002D05C3 /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
 		744815060E8610A1004AFB83 /* en_AU */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_AU; path = Resources/en_AU.lproj/Localizable.strings; sourceTree = "<group>"; };
-		74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
-		74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
 		744AF54F0EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorViewWithBackground.h; sourceTree = "<group>"; };
 		744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorViewWithBackground.m; sourceTree = "<group>"; };
 		744AF7F90EC4DC1F008B5B35 /* BlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurayCache.h; sourceTree = "<group>"; };
@@ -557,6 +555,26 @@
 		74616E2B0F15DB540004B610 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlParser.m; path = ../../iPhoneShared/Classes/XmlParser.m; sourceTree = SOURCE_ROOT; };
 		74616E2C0F15DB540004B610 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlSerializer.h; path = ../../iPhoneShared/Classes/XmlSerializer.h; sourceTree = SOURCE_ROOT; };
 		74616E2D0F15DB540004B610 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlSerializer.m; path = ../../iPhoneShared/Classes/XmlSerializer.m; sourceTree = SOURCE_ROOT; };
+		74616EDB0F15DE7D0004B610 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewControllerUtilities.h; path = ../../iPhoneShared/Classes/ViewControllerUtilities.h; sourceTree = SOURCE_ROOT; };
+		74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewControllerUtilities.m; path = ../../iPhoneShared/Classes/ViewControllerUtilities.m; sourceTree = SOURCE_ROOT; };
+		74616EDE0F15DE9D0004B610 /* AlertUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertUtilities.h; path = ../../iPhoneShared/Classes/AlertUtilities.h; sourceTree = SOURCE_ROOT; };
+		74616EDF0F15DE9D0004B610 /* AlertUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertUtilities.m; path = ../../iPhoneShared/Classes/AlertUtilities.m; sourceTree = SOURCE_ROOT; };
+		74616EE00F15DE9D0004B610 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateUtilities.h; path = ../../iPhoneShared/Classes/DateUtilities.h; sourceTree = SOURCE_ROOT; };
+		74616EE10F15DE9D0004B610 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateUtilities.m; path = ../../iPhoneShared/Classes/DateUtilities.m; sourceTree = SOURCE_ROOT; };
+		74616EE20F15DE9D0004B610 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileUtilities.h; path = ../../iPhoneShared/Classes/FileUtilities.h; sourceTree = SOURCE_ROOT; };
+		74616EE30F15DE9D0004B610 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileUtilities.m; path = ../../iPhoneShared/Classes/FileUtilities.m; sourceTree = SOURCE_ROOT; };
+		74616EE40F15DE9D0004B610 /* ImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageUtilities.h; path = ../../iPhoneShared/Classes/ImageUtilities.h; sourceTree = SOURCE_ROOT; };
+		74616EE50F15DE9D0004B610 /* ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageUtilities.m; path = ../../iPhoneShared/Classes/ImageUtilities.m; sourceTree = SOURCE_ROOT; };
+		74616EE60F15DE9D0004B610 /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocaleUtilities.h; path = ../../iPhoneShared/Classes/LocaleUtilities.h; sourceTree = SOURCE_ROOT; };
+		74616EE70F15DE9D0004B610 /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocaleUtilities.m; path = ../../iPhoneShared/Classes/LocaleUtilities.m; sourceTree = SOURCE_ROOT; };
+		74616EE80F15DE9D0004B610 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkUtilities.h; path = ../../iPhoneShared/Classes/NetworkUtilities.h; sourceTree = SOURCE_ROOT; };
+		74616EE90F15DE9D0004B610 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkUtilities.m; path = ../../iPhoneShared/Classes/NetworkUtilities.m; sourceTree = SOURCE_ROOT; };
+		74616EEA0F15DE9D0004B610 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pulser.h; path = ../../iPhoneShared/Classes/Pulser.h; sourceTree = SOURCE_ROOT; };
+		74616EEB0F15DE9D0004B610 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pulser.m; path = ../../iPhoneShared/Classes/Pulser.m; sourceTree = SOURCE_ROOT; };
+		74616F040F15DEF70004B610 /* LocationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationUtilities.h; sourceTree = "<group>"; };
+		74616F050F15DEF70004B610 /* LocationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationUtilities.m; sourceTree = "<group>"; };
+		74616FB70F15E0B70004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		74616FB80F15E0B70004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		74676D860EFF6E7D00C64100 /* NetflixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCell.h; sourceTree = "<group>"; };
 		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
 		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
@@ -588,16 +606,12 @@
 		7471E21B0EFA0D7A000490CA /* NetflixSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixSearch.png; path = Resources/NetflixSearch.png; sourceTree = "<group>"; };
 		74737BE50E2D8BA300C37E4B /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		74737BE60E2D8BA300C37E4B /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
-		747411230EC79EA200625001 /* ImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtilities.h; sourceTree = "<group>"; };
-		747411240EC79EA200625001 /* ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtilities.m; sourceTree = "<group>"; };
 		747413870EC7F2EC00625001 /* AbstractPosterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPosterCell.h; sourceTree = "<group>"; };
 		747413880EC7F2EC00625001 /* AbstractPosterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCell.m; sourceTree = "<group>"; };
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
 		7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
 		7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
 		7479D8350E65255F00D91649 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
-		747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
-		747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
 		747AB7A90EB956DC002438D0 /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
 		747AB7AA0EB956DC002438D0 /* DVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDViewController.m; sourceTree = "<group>"; };
 		747AB7AC0EB95750002438D0 /* DVDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDNavigationController.h; sourceTree = "<group>"; };
@@ -670,8 +684,6 @@
 		74A33E520F034C4100E5450A /* MutableNetflixCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableNetflixCache.h; sourceTree = "<group>"; };
 		74A33E530F034C4100E5450A /* MutableNetflixCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableNetflixCache.m; sourceTree = "<group>"; };
 		74A3F11D0E687D26007ED6DC /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		74A41ACD0E9E172B007CF82C /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
-		74A41ACE0E9E172B007CF82C /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulser.m; sourceTree = "<group>"; };
 		74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieListViewController.h; sourceTree = "<group>"; };
 		74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieListViewController.m; sourceTree = "<group>"; };
 		74A865420E64FCAD003A2249 /* UpcomingMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesViewController.h; sourceTree = "<group>"; };
@@ -694,8 +706,6 @@
 		74AF0F8A0EC2D44C00A8F639 /* TappableScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableScrollViewDelegate.h; sourceTree = "<group>"; };
 		74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
-		74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
-		74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
 		74C571F40EA11E2F009A9432 /* AbstractFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFieldAccessor.h; sourceTree = "<group>"; };
 		74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFieldAccessor.m; sourceTree = "<group>"; };
 		74C577200EA4D5E6009A9432 /* NowPlaying.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.pb.h; sourceTree = "<group>"; };
@@ -868,8 +878,6 @@
 		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
 		74E6313C0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingAndDVDFilterViewController.h; sourceTree = "<group>"; };
 		74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingAndDVDFilterViewController.m; sourceTree = "<group>"; };
-		74E631C10EFDCE5D002EE26B /* AlertUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtilities.h; sourceTree = "<group>"; };
-		74E631C20EFDCE5D002EE26B /* AlertUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtilities.m; sourceTree = "<group>"; };
 		74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-0.png"; path = "Resources/NetflixCellSelectedBackground-0.png"; sourceTree = "<group>"; };
 		74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-1.png"; path = "Resources/NetflixCellSelectedBackground-1.png"; sourceTree = "<group>"; };
 		74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-2.png"; path = "Resources/NetflixCellSelectedBackground-2.png"; sourceTree = "<group>"; };
@@ -889,15 +897,11 @@
 		74EB9C210EFA3ED80083DC33 /* RedStar-1.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedStar-1.0.png"; path = "Resources/RedStar-1.0.png"; sourceTree = "<group>"; };
 		74EC04F30DD2B704006953A4 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		74EC04F40DD2B704006953A4 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
-		74EC069E0DD2D69B006953A4 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		74EC069F0DD2D69B006953A4 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		74EC92C40EE4DD43004E044E /* DataProviderUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderUpdateDelegate.h; sourceTree = "<group>"; };
 		74EC92D40EE4E090004E044E /* LookupRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupRequest.h; sourceTree = "<group>"; };
 		74EC92D50EE4E090004E044E /* LookupRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupRequest.m; sourceTree = "<group>"; };
 		74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDetailsViewController.h; sourceTree = "<group>"; };
 		74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDetailsViewController.m; sourceTree = "<group>"; };
-		74EF2F920EB8D93C0053B3CC /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
-		74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
 		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
@@ -914,10 +918,6 @@
 		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
 		74F6D0590E6754B200943D78 /* NowPlaying_Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = NowPlaying_Prefix.pch; sourceTree = "<group>"; };
-		74F94A9E0E6B9ECB00075068 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtilities.h; sourceTree = "<group>"; };
-		74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtilities.m; sourceTree = "<group>"; };
-		74F94C8B0E6BB34800075068 /* LocationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationUtilities.h; sourceTree = "<group>"; };
-		74F94C8C0E6BB34800075068 /* LocationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationUtilities.m; sourceTree = "<group>"; };
 		74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieOverviewCell.h; sourceTree = "<group>"; };
 		74FF70B90EC9710600B0D534 /* DVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDFilterViewController.h; sourceTree = "<group>"; };
 		74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVDFilterViewController.m; sourceTree = "<group>"; };
@@ -960,8 +960,6 @@
 				74D6F2B40DCC14420097A984 /* Xml */,
 				746A02140DC81A1A0079D89B /* Application.h */,
 				746A02150DC81A1A0079D89B /* Application.m */,
-				74A41ACD0E9E172B007CF82C /* Pulser.h */,
-				74A41ACE0E9E172B007CF82C /* Pulser.m */,
 				7406A7850F104D1D00795555 /* AppDelegate.h */,
 				7406A7860F104D1D00795555 /* AppDelegate.m */,
 				7406A7870F104D1D00795555 /* Controller.h */,
@@ -1116,30 +1114,32 @@
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74616FB70F15E0B70004B610 /* Utilities.h */,
+				74616FB80F15E0B70004B610 /* Utilities.m */,
+				74616F040F15DEF70004B610 /* LocationUtilities.h */,
+				74616F050F15DEF70004B610 /* LocationUtilities.m */,
+				74616EDE0F15DE9D0004B610 /* AlertUtilities.h */,
+				74616EDF0F15DE9D0004B610 /* AlertUtilities.m */,
+				74616EE00F15DE9D0004B610 /* DateUtilities.h */,
+				74616EE10F15DE9D0004B610 /* DateUtilities.m */,
+				74616EE20F15DE9D0004B610 /* FileUtilities.h */,
+				74616EE30F15DE9D0004B610 /* FileUtilities.m */,
+				74616EE40F15DE9D0004B610 /* ImageUtilities.h */,
+				74616EE50F15DE9D0004B610 /* ImageUtilities.m */,
+				74616EE60F15DE9D0004B610 /* LocaleUtilities.h */,
+				74616EE70F15DE9D0004B610 /* LocaleUtilities.m */,
+				74616EE80F15DE9D0004B610 /* NetworkUtilities.h */,
+				74616EE90F15DE9D0004B610 /* NetworkUtilities.m */,
+				74616EEA0F15DE9D0004B610 /* Pulser.h */,
+				74616EEB0F15DE9D0004B610 /* Pulser.m */,
 				74616D7A0F15D8160004B610 /* DifferenceEngine.h */,
 				74616D7B0F15D8160004B610 /* DifferenceEngine.m */,
 				74616D720F15D45D0004B610 /* StringUtilities.h */,
 				74616D730F15D45D0004B610 /* StringUtilities.m */,
 				74616D440F15D3420004B610 /* Base64.h */,
 				74616D450F15D3420004B610 /* Base64.m */,
-				74EC069E0DD2D69B006953A4 /* Utilities.h */,
-				74EC069F0DD2D69B006953A4 /* Utilities.m */,
-				747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */,
-				747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */,
-				74F94A9E0E6B9ECB00075068 /* NetworkUtilities.h */,
-				74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */,
-				74F94C8B0E6BB34800075068 /* LocationUtilities.h */,
-				74F94C8C0E6BB34800075068 /* LocationUtilities.m */,
-				74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */,
-				74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */,
-				74EF2F920EB8D93C0053B3CC /* LocaleUtilities.h */,
-				74EF2F930EB8D93C0053B3CC /* LocaleUtilities.m */,
-				747411230EC79EA200625001 /* ImageUtilities.h */,
-				747411240EC79EA200625001 /* ImageUtilities.m */,
 				74166B0C0EC94A5700FFD29A /* LocationManager.h */,
 				74166B0D0EC94A5700FFD29A /* LocationManager.m */,
-				74E631C10EFDCE5D002EE26B /* AlertUtilities.h */,
-				74E631C20EFDCE5D002EE26B /* AlertUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1241,14 +1241,14 @@
 				74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */,
 				742CA71E0DD6616600A69B79 /* TicketsViewController.h */,
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
-				74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */,
-				74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */,
 				74AF0EFE0EC2CE5100A8F639 /* PostersViewController.h */,
 				74AF0EFF0EC2CE5100A8F639 /* PostersViewController.m */,
 				7427C1610ED6BCDA00B7BF09 /* RefreshableTableViewController.h */,
 				7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */,
 				747E21060EED99B0005B638A /* WebViewController.h */,
 				747E21070EED99B0005B638A /* WebViewController.m */,
+				74616EDB0F15DE7D0004B610 /* ViewControllerUtilities.h */,
+				74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2023,15 +2023,12 @@
 				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,
 				74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */,
 				74EC04F50DD2B704006953A4 /* Location.m in Sources */,
-				74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */,
 				742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */,
 				743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */,
 				74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */,
-				74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */,
 				741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */,
 				7457FE920E21A41A00929D3E /* Performance.m in Sources */,
 				74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */,
-				747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */,
 				742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */,
 				7495695B0E2D6248007BFF21 /* Review.m in Sources */,
 				74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */,
@@ -2054,8 +2051,6 @@
 				74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */,
 				74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */,
 				7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */,
-				74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */,
-				74F94C8D0E6BB34800075068 /* LocationUtilities.m in Sources */,
 				744592040E6CA017002D05C3 /* WarningView.m in Sources */,
 				749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */,
 				749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */,
@@ -2065,7 +2060,6 @@
 				740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */,
 				740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */,
 				743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */,
-				74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */,
 				745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */,
 				74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */,
 				747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */,
@@ -2119,7 +2113,6 @@
 				74365DB20E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m in Sources */,
 				74365DB30E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.m in Sources */,
 				74365DB50E9B5EE800448025 /* TextFormat.m in Sources */,
-				74A41ACF0E9E172B007CF82C /* Pulser.m in Sources */,
 				74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */,
 				74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */,
 				74CCF8E70EA800AC009C7A8E /* PackageDescriptor.m in Sources */,
@@ -2131,7 +2124,6 @@
 				748F1E5A0EB5267D00DEB5BB /* AbstractScoreProvider.m in Sources */,
 				748F1FAC0EB5418D00DEB5BB /* NoneScoreProvider.m in Sources */,
 				748AB0320EB61C2C004918A6 /* IMDbCache.m in Sources */,
-				74EF2F940EB8D93C0053B3CC /* LocaleUtilities.m in Sources */,
 				747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */,
 				747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */,
 				747AB8610EB963AE002438D0 /* DVDCell.m in Sources */,
@@ -2143,7 +2135,6 @@
 				744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */,
 				744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */,
 				744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */,
-				747411250EC79EA200625001 /* ImageUtilities.m in Sources */,
 				747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */,
 				741669340EC92C3B00FFD29A /* TappableLabel.m in Sources */,
 				74166B0E0EC94A5700FFD29A /* LocationManager.m in Sources */,
@@ -2171,7 +2162,6 @@
 				7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */,
 				74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */,
 				74E6313E0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m in Sources */,
-				74E631C30EFDCE5D002EE26B /* AlertUtilities.m in Sources */,
 				74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */,
 				74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */,
 				74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */,
@@ -2215,6 +2205,16 @@
 				74616E2F0F15DB540004B610 /* XmlElement.m in Sources */,
 				74616E300F15DB540004B610 /* XmlParser.m in Sources */,
 				74616E310F15DB540004B610 /* XmlSerializer.m in Sources */,
+				74616EDD0F15DE7D0004B610 /* ViewControllerUtilities.m in Sources */,
+				74616EEE0F15DE9D0004B610 /* AlertUtilities.m in Sources */,
+				74616EEF0F15DE9D0004B610 /* DateUtilities.m in Sources */,
+				74616EF00F15DE9D0004B610 /* FileUtilities.m in Sources */,
+				74616EF10F15DE9D0004B610 /* ImageUtilities.m in Sources */,
+				74616EF20F15DE9D0004B610 /* LocaleUtilities.m in Sources */,
+				74616EF30F15DE9D0004B610 /* NetworkUtilities.m in Sources */,
+				74616EF40F15DE9D0004B610 /* Pulser.m in Sources */,
+				74616F060F15DEF70004B610 /* LocationUtilities.m in Sources */,
+				74616FB90F15E0B70004B610 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

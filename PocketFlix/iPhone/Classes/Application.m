@@ -95,7 +95,7 @@ static DifferenceEngine* differenceEngine = nil;
             NSString* directory = *directories[i];
 
             if (directory != nil) {
-                [FileUtilities moveItemToTrash:directory];
+                [self moveItemToTrash:directory];
             }
         }
     }
@@ -184,7 +184,7 @@ static DifferenceEngine* differenceEngine = nil;
         differenceEngine = [[DifferenceEngine engine] retain];
 
         [self initializeDirectories];
-        [FileUtilities moveItemToTrash:supportDirectory];
+        [self moveItemToTrash:supportDirectory];
 
         [self emptyTrash];
     }
@@ -211,9 +211,9 @@ static DifferenceEngine* differenceEngine = nil;
 + (void) resetNetflixDirectories {
     [gate lock];
     {
-        [FileUtilities moveItemToTrash:netflixUserRatingsDirectory];
-        [FileUtilities moveItemToTrash:netflixPredictedRatingsDirectory];
-        [FileUtilities moveItemToTrash:netflixQueuesDirectory];
+        [self moveItemToTrash:netflixUserRatingsDirectory];
+        [self moveItemToTrash:netflixPredictedRatingsDirectory];
+        [self moveItemToTrash:netflixQueuesDirectory];
         [self createDirectories];
     }
     [gate unlock];
@@ -236,7 +236,7 @@ static DifferenceEngine* differenceEngine = nil;
             NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
             if (lastModifiedDate != nil) {
                 if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
-                    [FileUtilities moveItemToTrash:path];
+                    [self moveItemToTrash:path];
                 }
             }
         }
@@ -262,6 +262,16 @@ static DifferenceEngine* differenceEngine = nil;
                 [self clearStaleData:path];
             }
         }
+    }
+    [gate unlock];
+}
+
+
++ (void) moveItemToTrash:(NSString*) path {
+    [gate lock];
+    {
+        NSString* trashPath = [self uniqueTrashDirectory];
+        [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
     }
     [gate unlock];
 }

@@ -15,6 +15,7 @@
 #import "Movie.h"
 
 #import "Utilities.h"
+#import "StringUtilities.h"
 
 @interface Movie()
 @property (copy) NSString* identifier;
@@ -226,7 +227,7 @@ static NSString* articles[] = {
                                   releaseDate:releaseDate
                                   imdbAddress:imdbAddress
                                        poster:poster
-                                     synopsis:[Utilities stripHtmlCodes:synopsis]
+                                     synopsis:[StringUtilities stripHtmlCodes:synopsis]
                                        studio:studio
                                     directors:directors
                                          cast:cast

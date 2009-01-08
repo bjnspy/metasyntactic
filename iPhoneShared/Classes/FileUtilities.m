@@ -14,7 +14,6 @@
 
 #import "FileUtilities.h"
 
-#import "Application.h"
 #import "MainThreadGate.h"
 
 @implementation FileUtilities
@@ -101,16 +100,6 @@ static MainThreadGate* gate;
 }
 
 
-+ (void) moveItemToTrash:(NSString*) path {
-    NSString* trashPath = [Application uniqueTrashDirectory];
-    [gate lock];
-    {
-        [[NSFileManager defaultManager] moveItemAtPath:path toPath:trashPath error:NULL];
-    }
-    [gate unlock];
-}
-
-
 + (BOOL) fileExists:(NSString*) path {
     BOOL result;
     [gate lock];
@@ -147,7 +136,7 @@ static MainThreadGate* gate;
         if (plistData != nil) {
             [plistData writeToFile:file atomically:YES];
         } if (object == nil) {
-            [FileUtilities moveItemToTrash:file];
+            [[NSFileManager defaultManager] removeItemAtPath:file error:NULL];
         }
     }
     [gate unlock];

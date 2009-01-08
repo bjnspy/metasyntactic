@@ -44,6 +44,8 @@
 + (NSString*) uniqueTemporaryDirectory;
 + (NSString*) uniqueTrashDirectory;
 
++ (void) moveItemToTrash:(NSString*) path;
+
 + (void) openBrowser:(NSString*) address;
 
 + (DifferenceEngine*) differenceEngine;

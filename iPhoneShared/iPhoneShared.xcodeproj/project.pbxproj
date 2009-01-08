@@ -46,6 +46,16 @@
 		74616DFC0F15DAC00004B610 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DF60F15DAC00004B610 /* XmlElement.m */; };
 		74616DFD0F15DAC00004B610 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DF80F15DAC00004B610 /* XmlParser.m */; };
 		74616DFE0F15DAC00004B610 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DFA0F15DAC00004B610 /* XmlSerializer.m */; };
+		74616E4D0F15DC800004B610 /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E400F15DC800004B610 /* AlertUtilities.m */; };
+		74616E4E0F15DC800004B610 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E420F15DC800004B610 /* DateUtilities.m */; };
+		74616E4F0F15DC800004B610 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E440F15DC800004B610 /* FileUtilities.m */; };
+		74616E500F15DC800004B610 /* ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E460F15DC800004B610 /* ImageUtilities.m */; };
+		74616E510F15DC800004B610 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E480F15DC800004B610 /* LocaleUtilities.m */; };
+		74616E520F15DC800004B610 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E4A0F15DC800004B610 /* NetworkUtilities.m */; };
+		74616E530F15DC800004B610 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E4C0F15DC800004B610 /* Utilities.m */; };
+		74616E650F15DCC10004B610 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E640F15DCC10004B610 /* ViewControllerUtilities.m */; };
+		74616E800F15DD0F0004B610 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E7F0F15DD0F0004B610 /* Pulser.m */; };
+		74616E890F15DD300004B610 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74616E880F15DD300004B610 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +148,25 @@
 		74616DF90F15DAC00004B610 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
 		74616DFA0F15DAC00004B610 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; };
 		74616E0C0F15DAF80004B610 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		74616E3F0F15DC800004B610 /* AlertUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtilities.h; sourceTree = "<group>"; };
+		74616E400F15DC800004B610 /* AlertUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtilities.m; sourceTree = "<group>"; };
+		74616E410F15DC800004B610 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
+		74616E420F15DC800004B610 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
+		74616E430F15DC800004B610 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
+		74616E440F15DC800004B610 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
+		74616E450F15DC800004B610 /* ImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtilities.h; sourceTree = "<group>"; };
+		74616E460F15DC800004B610 /* ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtilities.m; sourceTree = "<group>"; };
+		74616E470F15DC800004B610 /* LocaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleUtilities.h; sourceTree = "<group>"; };
+		74616E480F15DC800004B610 /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
+		74616E490F15DC800004B610 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtilities.h; sourceTree = "<group>"; };
+		74616E4A0F15DC800004B610 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtilities.m; sourceTree = "<group>"; };
+		74616E4B0F15DC800004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		74616E4C0F15DC800004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		74616E630F15DCC10004B610 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
+		74616E640F15DCC10004B610 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
+		74616E7E0F15DD0F0004B610 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pulser.h; sourceTree = "<group>"; };
+		74616E7F0F15DD0F0004B610 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pulser.m; sourceTree = "<group>"; };
+		74616E880F15DD300004B610 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +178,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				74616E890F15DD300004B610 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				74616C340F15D1CB0004B610 /* External */,
+				74616E620F15DCA60004B610 /* UI */,
 				74616DAA0F15D9420004B610 /* Collections */,
 				74616D820F15D8910004B610 /* Threading */,
 				74616C780F15D21F0004B610 /* Utilities */,
@@ -212,6 +243,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74616E880F15DD300004B610 /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -289,6 +321,22 @@
 		74616C780F15D21F0004B610 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74616E7E0F15DD0F0004B610 /* Pulser.h */,
+				74616E7F0F15DD0F0004B610 /* Pulser.m */,
+				74616E3F0F15DC800004B610 /* AlertUtilities.h */,
+				74616E400F15DC800004B610 /* AlertUtilities.m */,
+				74616E410F15DC800004B610 /* DateUtilities.h */,
+				74616E420F15DC800004B610 /* DateUtilities.m */,
+				74616E430F15DC800004B610 /* FileUtilities.h */,
+				74616E440F15DC800004B610 /* FileUtilities.m */,
+				74616E450F15DC800004B610 /* ImageUtilities.h */,
+				74616E460F15DC800004B610 /* ImageUtilities.m */,
+				74616E470F15DC800004B610 /* LocaleUtilities.h */,
+				74616E480F15DC800004B610 /* LocaleUtilities.m */,
+				74616E490F15DC800004B610 /* NetworkUtilities.h */,
+				74616E4A0F15DC800004B610 /* NetworkUtilities.m */,
+				74616E4B0F15DC800004B610 /* Utilities.h */,
+				74616E4C0F15DC800004B610 /* Utilities.m */,
 				74616D760F15D7F50004B610 /* DifferenceEngine.h */,
 				74616D770F15D7F50004B610 /* DifferenceEngine.m */,
 				74616D6A0F15D42A0004B610 /* StringUtilities.h */,
@@ -346,6 +394,15 @@
 				74616DFA0F15DAC00004B610 /* XmlSerializer.m */,
 			);
 			name = Xml;
+			sourceTree = "<group>";
+		};
+		74616E620F15DCA60004B610 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				74616E630F15DCC10004B610 /* ViewControllerUtilities.h */,
+				74616E640F15DCC10004B610 /* ViewControllerUtilities.m */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,6 +493,15 @@
 				74616DFC0F15DAC00004B610 /* XmlElement.m in Sources */,
 				74616DFD0F15DAC00004B610 /* XmlParser.m in Sources */,
 				74616DFE0F15DAC00004B610 /* XmlSerializer.m in Sources */,
+				74616E4D0F15DC800004B610 /* AlertUtilities.m in Sources */,
+				74616E4E0F15DC800004B610 /* DateUtilities.m in Sources */,
+				74616E4F0F15DC800004B610 /* FileUtilities.m in Sources */,
+				74616E500F15DC800004B610 /* ImageUtilities.m in Sources */,
+				74616E510F15DC800004B610 /* LocaleUtilities.m in Sources */,
+				74616E520F15DC800004B610 /* NetworkUtilities.m in Sources */,
+				74616E530F15DC800004B610 /* Utilities.m in Sources */,
+				74616E650F15DCC10004B610 /* ViewControllerUtilities.m in Sources */,
+				74616E800F15DD0F0004B610 /* Pulser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
