@@ -29,7 +29,6 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import static java.util.Collections.unmodifiableList;
 import static java.lang.String.valueOf;
 
 public class UpcomingCache extends AbstractCache {
@@ -116,7 +115,7 @@ public class UpcomingCache extends AbstractCache {
   }
 
   public void update() {
-    if (isNullOrEmpty(model.getUserAddress())) {
+    if (isNullOrEmpty(this.model.getUserAddress())) {
       return;
     }
 

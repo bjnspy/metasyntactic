@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,27 +20,27 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   private EditText mSearchText;
 
   @Override
-  public void onCreate(Bundle icicle) {
+  public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
     setContentView(R.layout.search_activity);
-    mSearchText = (EditText) findViewById(R.id.search_term);
-    mSearchText.setOnClickListener(this);
+    this.mSearchText = (EditText) findViewById(R.id.search_term);
+    this.mSearchText.setOnClickListener(this);
     findViewById(R.id.search_button).setOnClickListener(this);
   }
 
   // View.OnClickListener
-  public final void onClick(View v) {
-    if (mSearchText.length() != 0) {
+  public final void onClick(final View v) {
+    if (this.mSearchText.length() != 0) {
       performSearch();
     }
   }
 
   @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
+  public boolean onCreateOptionsMenu(final Menu menu) {
     super.onCreateOptionsMenu(menu);
     menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY)
         .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-          public boolean onMenuItemClick(MenuItem item) {
+          public boolean onMenuItemClick(final MenuItem item) {
             performSearch();
             return true;
           }
@@ -50,18 +49,18 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   }
 
   private void performSearch() {
-    String searchTerm = mSearchText.getText().toString();
+    final String searchTerm = this.mSearchText.getText().toString();
     privatePerformSearch(this, getText(R.string.search) + " : " + searchTerm, searchTerm, null);
   }
 
-  static public void performLabel(Activity activity, String label, String title) {
+  static public void performLabel(final Activity activity, final String label, final String title) {
     privatePerformSearch(activity, title, null, label);
   }
 
-  private static void privatePerformSearch(Activity activity, String title, String search,
-      String label) {
+  private static void privatePerformSearch(final Activity activity, final String title, final String search,
+      final String label) {
     if (!StringUtilities.isNullOrEmpty(search) || !StringUtilities.isNullOrEmpty(label)) {
-      Intent intent = new Intent();
+      final Intent intent = new Intent();
       intent.setClass(activity, NowPlayingActivity.class);
       intent.putExtra("movie", search);
       activity.startActivity(intent);

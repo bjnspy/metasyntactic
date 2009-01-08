@@ -18,6 +18,8 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 
+import android.sax.RootElement;
+
 import java.util.List;
 
 public class ScoreCache {
@@ -29,24 +31,31 @@ public class ScoreCache {
 
   public ScoreCache(final NowPlayingModel model) {
     this.model = model;
-    rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(model);
-    metacriticScoreProvider = new MetacriticScoreProvider(model);
-    googleScoreProvider = new GoogleScoreProvider(model);
-    noneScoreProvider = new NoneScoreProvider(model);
+    this.rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(model);
+    this.metacriticScoreProvider = new MetacriticScoreProvider(model);
+    this.googleScoreProvider = new GoogleScoreProvider(model);
+    this.noneScoreProvider = new NoneScoreProvider(model);
+  }
+
+  private ScoreProvider[] getProviders() {
+    return new ScoreProvider[] {
+        this.rottenTomatoesScoreProvider,
+        this.metacriticScoreProvider,
+        this.googleScoreProvider,
+        this.noneScoreProvider
+    };
   }
 
   public void shutdown() {
-    this.rottenTomatoesScoreProvider.shutdown();
-    this.metacriticScoreProvider.shutdown();
-    this.googleScoreProvider.shutdown();
-    this.rottenTomatoesScoreProvider.shutdown();
+    for (final ScoreProvider provider : getProviders()) {
+      provider.shutdown();
+    }
   }
 
   public void createDirectories() {
-    this.rottenTomatoesScoreProvider.createDirectory();
-    this.metacriticScoreProvider.createDirectory();
-    this.googleScoreProvider.createDirectory();
-    this.noneScoreProvider.createDirectory();
+    for (final ScoreProvider provider : getProviders()) {
+      provider.createDirectory();
+    }
   }
 
   private ScoreProvider getCurrentScoreProvider() {
@@ -68,21 +77,34 @@ public class ScoreCache {
   }
 
   public void update() {
-    getCurrentScoreProvider().update();
+    for (final ScoreProvider provider : getProviders()) {
+      provider.update();
+    }
   }
 
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
-    return getCurrentScoreProvider().getReviews(movies, movie);
+    if (this.model.getScoreType().equals(ScoreType.Google)) {
+      return this.googleScoreProvider.getReviews(movies, movie);
+    } else if (this.model.getScoreType().equals(ScoreType.Metacritic)) {
+      return this.metacriticScoreProvider.getReviews(movies, movie);
+    } else if (this.model.getScoreType().equals(ScoreType.RottenTomatoes)) {
+      return this.metacriticScoreProvider.getReviews(movies, movie);
+    } else if (this.model.getScoreType().equals(ScoreType.None)) {
+      return this.noneScoreProvider.getReviews(movies, movie);
+    } else {
+      throw new RuntimeException();
+    }
   }
 
   public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
-    getCurrentScoreProvider().prioritizeMovie(movies, movie);
+    for (final ScoreProvider provider : getProviders()) {
+      provider.prioritizeMovie(movies, movie);
+    }
   }
 
   public void clearStaleData() {
-    rottenTomatoesScoreProvider.clearStaleData();
-    metacriticScoreProvider.clearStaleData();
-    googleScoreProvider.clearStaleData();
-    noneScoreProvider.clearStaleData();
+    for (final ScoreProvider provider : getProviders()) {
+      provider.clearStaleData();
+    }
   }
 }
