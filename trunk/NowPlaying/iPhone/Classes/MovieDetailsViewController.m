@@ -188,7 +188,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
         [titles addObject:NSLocalizedString(@"Change date", nil)];
         [arguments addObject:[NSNull null]];
     }
-    
+
     if ((selectors.count + websites.count) > 6) {
         // condense to one button
         [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsites)]];
@@ -211,7 +211,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
                                          selectors:selectors
                                             titles:titles
                                          arguments:arguments];
-    
+
     [actionsView sizeToFit];
 }
 
@@ -241,12 +241,12 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (wikipediaAddress.length > 0) {
         [map setObject:wikipediaAddress forKey:@"Wikipedia"];
     }
-    
+
     Score* score = [self.model rottenTomatoesScoreForMovie:movie];
     if (score.identifier.length > 0) {
         [map setObject:score.identifier forKey:@"RottenTomatoes"];
     }
-    
+
     score = [self.model metacriticScoreForMovie:movie];
     if (score.identifier.length > 0) {
         [map setObject:score.identifier forKey:@"Metacritic"];
@@ -259,9 +259,9 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (void) updateImage {    
+- (void) updateImage {
     self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
-    self.posterImageView.image = posterImage;  
+    self.posterImageView.image = posterImage;
 }
 
 

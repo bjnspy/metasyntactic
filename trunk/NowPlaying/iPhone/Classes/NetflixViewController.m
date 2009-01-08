@@ -241,7 +241,7 @@ typedef enum {
     if (index != alertView.cancelButtonIndex) {
         [self.controller setNetflixKey:nil secret:nil userId:nil];
         [Application resetNetflixDirectories];
-    
+
         [self majorRefresh];
     }
 }

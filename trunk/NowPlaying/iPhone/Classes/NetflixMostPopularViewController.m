@@ -66,7 +66,7 @@
         NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
         [dictionary setObject:[NSNumber numberWithInt:count] forKey:title];
     }
-    self.titleToCount = dictionary;    
+    self.titleToCount = dictionary;
 }
 
 
@@ -112,7 +112,7 @@
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.row];
     NSNumber* count = [titleToCount objectForKey:title];
     id number = (count.intValue > 0) ? (id)count : (id)NSLocalizedString(@"Downloading", nil);
-    
+
     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, number];
     return cell;
 }

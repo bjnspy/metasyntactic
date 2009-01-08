@@ -83,8 +83,8 @@ static DifferenceEngine* differenceEngine = nil;
     NSString* appName = [self name];
     NSString* appVersion = [Model version];
     appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
-    
-    return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];    
+
+    return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
 }
 
 
@@ -227,12 +227,12 @@ static DifferenceEngine* differenceEngine = nil;
         if ((rand() % 1000) < 50) {
             NSString* path = [directory stringByAppendingPathComponent:name];
             NSDictionary* attributes = [FileUtilities attributesOfItemAtPath:path];
-            
+
             if ([[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
                 // don't delete folders
                 continue;
             }
-            
+
             NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
             if (lastModifiedDate != nil) {
                 if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
@@ -253,10 +253,10 @@ static DifferenceEngine* differenceEngine = nil;
                 // we handle this one specially below
                 continue;
             }
-            
+
             [self clearStaleData:directory];
         }
-        
+
         for (NSString* path in [FileUtilities directoryContentsPaths:netflixRSSDirectory]) {
             if ([FileUtilities isDirectory:path]) {
                 [self clearStaleData:path];

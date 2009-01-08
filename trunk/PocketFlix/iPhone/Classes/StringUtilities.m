@@ -20,7 +20,7 @@
     if (string == nil) {
         return @"";
     }
-    
+
     return string;
 }
 
@@ -30,7 +30,7 @@
     string = [string stringByAddingPercentEscapesUsingEncoding:encoding];
     string = [string stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
     string = [string stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
-    
+
     return string;
 }
 
@@ -44,14 +44,14 @@
     if (string == nil) {
         return @"";
     }
-    
+
     NSArray* htmlCodes = [NSArray arrayWithObjects:@"a", @"em", @"p", @"b", @"i", @"br", nil];
-    
+
     for (NSString* code in htmlCodes) {
         string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@>", code] withString:@""];
         string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"</%@>", code] withString:@""];
     }
-    
+
     return string;
 }
 
@@ -82,7 +82,7 @@
             string = [NSString stringWithFormat:@"%@%@", [string substringToIndex:range.location], [string substringFromIndex:closeAngleRange.location + 1]];
         }
     }
-    
+
     return string;
 }
 
@@ -94,7 +94,7 @@
                                     options:0
                                       range:NSMakeRange(index, string.length - index)]).length > 0) {
         NSRange semiColonRange = [string rangeOfString:@";" options:0 range:NSMakeRange(range.location, string.length - range.location)];
-        
+
         index = range.location + 1;
         if (semiColonRange.length > 0) {
             NSScanner* scanner = [NSScanner scannerWithString:string];
@@ -108,10 +108,10 @@
             }
         }
     }
-    
+
     string = [StringUtilities stripHtmlCodes:string];
     string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
+
     return string;
 }
 

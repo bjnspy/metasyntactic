@@ -15,7 +15,7 @@
 @interface NetflixMostPopularViewController : UITableViewController {
 @private
     AbstractNavigationController* navigationController;
-    
+
     NSDictionary* titleToCount;
 }
 
