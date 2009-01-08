@@ -13,17 +13,16 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
-import android.util.Log;
 import static org.apache.commons.collections.CollectionUtils.size;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.CollectionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.utilities.difference.EditDistance;
 
 import java.io.File;
@@ -39,6 +38,12 @@ public class LargePosterCache extends AbstractCache {
 
   public LargePosterCache(final NowPlayingModel model) {
     super(model);
+
+    ThreadingUtilities.performOnBackgroundThread("Update large poster indices", new Runnable() {
+      public void run() {
+        updateIndices();
+      }
+    }, null, false);
   }
 
   @Override
