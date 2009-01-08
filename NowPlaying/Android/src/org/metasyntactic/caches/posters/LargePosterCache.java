@@ -13,121 +13,204 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import android.util.Log;
-
+import static org.apache.commons.collections.CollectionUtils.size;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.utilities.CollectionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.utilities.difference.EditDistance;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class LargePosterCache extends AbstractCache {
-  private Map<String, List<String>> index;
+  private static final int START_YEAR = 1912;
+  private final Map<Integer, Map<String, List<String>>> yearToMovieMap = new HashMap<Integer, Map<String, List<String>>>();
+  private final Object yearToMovieMapLock = new Object();
 
-  public LargePosterCache(NowPlayingModel model) {
+  public LargePosterCache(final NowPlayingModel model) {
     super(model);
   }
 
+  @Override
   protected List<File> getCacheDirectories() {
     return Collections.singletonList(Application.postersLargeDirectory);
   }
 
-  public File getIndexFile() {
-    return new File(Application.postersLargeDirectory, "Index");
+  public static File getIndexFile(final int year) {
+    return new File(Application.postersLargeDirectory, year + ".index");
   }
 
-  public void downloadFirstPoster(Movie movie) {
-    List<String> urls = getPosterUrls(movie);
+  private static Map<String, List<String>> ensureIndexWorker(final int year, final boolean updateIfStale) {
+    final File file = getIndexFile(year);
+    if (file.exists()) {
+      if (!updateIfStale) {
+        return null;
+      }
+
+      if (FileUtilities.daysSinceNow(file) < 7) {
+        return null;
+      }
+    }
+
+    final String address = "http://" + Application.host + ".appspot.com/LookupPosterListing?provider=imp&year=" + year;
+    final String result = NetworkUtilities.downloadString(address, false);
+
+    if (StringUtilities.isNullOrEmpty(result)) {
+      return null;
+    }
+
+    final Map<String, List<String>> index = new HashMap<String, List<String>>();
+    for (final String row : result.split("\n")) {
+      final String[] columns = row.split("\t");
+      if (columns.length < 2) {
+        continue;
+      }
+
+      final String movie = columns[0];
+      final String[] posters = Arrays.copyOfRange(columns, 1, columns.length);
+      index.put(movie, Arrays.asList(posters));
+    }
+
+    if (!index.isEmpty()) {
+      FileUtilities.writeStringToListOfStrings(index, file);
+    }
+
+    return index;
+  }
+
+  private void ensureIndex(final int year, final boolean updateIfStale) {
+    Map<String, List<String>> index = this.ensureIndexWorker(year, updateIfStale);
+    if (index == null) {
+      index = FileUtilities.readStringToListOfStrings(this.getIndexFile(year));
+    }
+
+    if (!index.isEmpty()) {
+      synchronized (yearToMovieMapLock) {
+        yearToMovieMap.put(year, index);
+      }
+    }
+  }
+
+  private static int getYearForDate(final Date date) {
+    return date.getYear();
+  }
+
+  private static int getCurrentYear() {
+    return getYearForDate(new Date());
+  }
+
+  private void updateIndices() {
+    final int currentYear = getCurrentYear();
+    for (int year = currentYear + 1; year >= START_YEAR; year--) {
+      this.ensureIndex(year, year >= (currentYear - 1) || year <= (currentYear + 1));
+    }
+  }
+
+  private List<String> getPosterNames(final Movie movie, final int year) {
+    final Map<String, List<String>> index;
+    synchronized (yearToMovieMapLock) {
+      index = yearToMovieMap.get(year);
+    }
+
+    if (index != null) {
+      final List<String> result = index.get(movie.getCanonicalTitle());
+      if (!CollectionUtilities.isEmpty(result)) {
+        return result;
+      }
+
+      final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
+      for (final String key : index.keySet()) {
+        if (EditDistance.substringSimilar(key.toLowerCase(), lowercaseTitle)) {
+          return index.get(key);
+        }
+      }
+    }
+    return Collections.emptyList();
+  }
+
+  private List<String> getPosterUrls(final Movie movie, final int year) {
+    final List<String> names = getPosterNames(movie, year);
+    if (CollectionUtilities.isEmpty(names)) {
+      return Collections.emptyList();
+    }
+
+    final List<String> urls = new ArrayList<String>();
+    for (final String name : names) {
+      urls.add("http://www.impawards.com/" + year + "/posters/" + name);
+    }
+
+    return urls;
+  }
+
+  private List<String> getPosterUrlsWorker(final Movie movie) {
+    final Date date = movie.getReleaseDate();
+    if (date != null) {
+      final int releaseYear = getYearForDate(date);
+
+      List<String> result;
+      if (size(result = getPosterUrls(movie, releaseYear)) > 0 || size(
+          result = getPosterUrls(movie, releaseYear - 1)) > 0 || size(
+          result = getPosterUrls(movie, releaseYear - 2)) > 0 || size(
+          result = getPosterUrls(movie, releaseYear + 1)) > 0 || size(
+          result = getPosterUrls(movie, releaseYear + 2)) > 0) {
+        return result;
+      }
+    } else {
+      for (int year = getCurrentYear() + 1; year >= START_YEAR; year--) {
+        final List<String> result = getPosterUrls(movie, year);
+        if (size(result) > 0) {
+          return result;
+        }
+      }
+    }
+
+    return Collections.emptyList();
+  }
+
+  private List<String> getPosterUrls(final Movie movie) {
+    synchronized (this.lock) {
+      return getPosterUrlsWorker(movie);
+    }
+  }
+
+  public void downloadFirstPoster(final Movie movie) {
+    final List<String> urls = getPosterUrls(movie);
     downloadPosterForMovie(movie, urls, 0);
   }
 
-  private File posterFile(Movie movie, int index) {
+  private static File posterFile(final Movie movie, final int index) {
     return new File(Application.postersLargeDirectory,
                     FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + "-" + index + ".jpg"));
   }
 
-  private void downloadPosterForMovie(Movie movie, List<String> urls, int index) {
+  private static void downloadPosterForMovie(final Movie movie, final List<String> urls, final int index) {
     if (urls == null || index < 0 || index >= urls.size()) {
       return;
     }
 
-    File file = posterFile(movie, index);
+    final File file = posterFile(movie, index);
     if (file.exists()) {
       return;
     }
 
-    byte[] bytes = NetworkUtilities.download(urls.get(index), false);
+    final byte[] bytes = NetworkUtilities.download(urls.get(index), false);
     if (bytes != null) {
       FileUtilities.writeBytes(bytes, file);
       Application.refresh();
     }
   }
 
-  private List<String> getPosterUrls(Movie movie) {
-    synchronized (lock) {
-      ensureIndex();
-      String result = "";
-      try {
-      result = EditDistance.findClosestMatch(movie.getCanonicalTitle(), index.keySet());
-      }
-      catch(Exception ex){
-        Log.i("Exception", "exception " + ex.getLocalizedMessage());
-      }
-      if (isNullOrEmpty(result)) {
-        return Collections.emptyList();
-      }
-
-      return index.get(result);
-    }
-  }
-
-  private void ensureIndex() {
-    File indexFile = getIndexFile();
-
-    if (indexFile.exists()) {
-      if (FileUtilities.daysSinceNow(getIndexFile()) < 7) {
-        return;
-      }
-    }
-
-    String address = "http://" + Application.host + ".appspot.com/LookupPosterListings?provider=imp";
-    String rows = NetworkUtilities.downloadString(address, false);
-    if (isNullOrEmpty(rows)) {
-      return;
-    }
-
-    Map<String, List<String>> map = new LinkedHashMap<String, List<String>>();
-
-    for (String row : rows.split("\n")) {
-      String[] columns = row.split("\t");
-      if (columns.length < 2) {
-        continue;
-      }
-
-      List<String> posters = Arrays.asList(columns).subList(1, columns.length);
-      map.put(columns[0], posters);
-    }
-
-    if (map.size() > 0) {
-      FileUtilities.writeStringToListOfStrings(map, indexFile);
-      this.index = map;
-    }
-  }
-
-  public byte[] getPoster(Movie movie) {
+  public static byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(posterFile(movie, 0));
   }
 }
