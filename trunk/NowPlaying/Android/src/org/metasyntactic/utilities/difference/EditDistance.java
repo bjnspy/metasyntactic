@@ -95,15 +95,23 @@ public class EditDistance {
     return matrix[sourceLength][targetLength];
   }
 
+  public static boolean substringSimilar(final String s1, final String s2) {
+    if (s1.length() > 4 && s2.length() > 4) {
+      if (s1.contains(s2) || s2.contains(s1)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public static boolean areSimilar(final String s1, final String s2) {
     if (s1 == null || s2 == null) {
       return false;
     }
 
-    if (s1.length() > 4 && s2.length() > 4) {
-      if (s1.contains(s2) || s2.contains(s1)) {
-        return true;
-      }
+    if (substringSimilar(s1, s2)) {
+      return true;
     }
 
     final int threshold = threshold(s1);
