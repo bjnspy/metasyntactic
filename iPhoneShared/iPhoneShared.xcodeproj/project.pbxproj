@@ -32,6 +32,16 @@
 		74616C880F15D2450004B610 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616C870F15D2450004B610 /* Base64.m */; };
 		74616D6C0F15D42A0004B610 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D6B0F15D42A0004B610 /* StringUtilities.m */; };
 		74616D780F15D7F50004B610 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D770F15D7F50004B610 /* DifferenceEngine.m */; };
+		74616D8B0F15D8A10004B610 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D840F15D8A10004B610 /* Invocation.m */; };
+		74616D8C0F15D8A10004B610 /* Invocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D860F15D8A10004B610 /* Invocation2.m */; };
+		74616D8D0F15D8A10004B610 /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D880F15D8A10004B610 /* MainThreadGate.m */; };
+		74616D8E0F15D8A10004B610 /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D8A0F15D8A10004B610 /* PriorityMutex.m */; };
+		74616DB70F15D9590004B610 /* IdentityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DAC0F15D9590004B610 /* IdentityObject.m */; };
+		74616DB80F15D9590004B610 /* IdentitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DAE0F15D9590004B610 /* IdentitySet.m */; };
+		74616DB90F15D9590004B610 /* LinkedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB00F15D9590004B610 /* LinkedNode.m */; };
+		74616DBA0F15D9590004B610 /* LinkedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB20F15D9590004B610 /* LinkedSet.m */; };
+		74616DBB0F15D9590004B610 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB40F15D9590004B610 /* MultiDictionary.m */; };
+		74616DBC0F15D9590004B610 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB60F15D9590004B610 /* PointerSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +104,27 @@
 		74616D6B0F15D42A0004B610 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtilities.m; sourceTree = "<group>"; };
 		74616D760F15D7F50004B610 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
 		74616D770F15D7F50004B610 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
+		74616D830F15D8A10004B610 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
+		74616D840F15D8A10004B610 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
+		74616D850F15D8A10004B610 /* Invocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation2.h; sourceTree = "<group>"; };
+		74616D860F15D8A10004B610 /* Invocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation2.m; sourceTree = "<group>"; };
+		74616D870F15D8A10004B610 /* MainThreadGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainThreadGate.h; sourceTree = "<group>"; };
+		74616D880F15D8A10004B610 /* MainThreadGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainThreadGate.m; sourceTree = "<group>"; };
+		74616D890F15D8A10004B610 /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityMutex.h; sourceTree = "<group>"; };
+		74616D8A0F15D8A10004B610 /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
+		74616DAB0F15D9590004B610 /* IdentityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityObject.h; sourceTree = "<group>"; };
+		74616DAC0F15D9590004B610 /* IdentityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityObject.m; sourceTree = "<group>"; };
+		74616DAD0F15D9590004B610 /* IdentitySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentitySet.h; sourceTree = "<group>"; };
+		74616DAE0F15D9590004B610 /* IdentitySet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentitySet.m; sourceTree = "<group>"; };
+		74616DAF0F15D9590004B610 /* LinkedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedNode.h; sourceTree = "<group>"; };
+		74616DB00F15D9590004B610 /* LinkedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedNode.m; sourceTree = "<group>"; };
+		74616DB10F15D9590004B610 /* LinkedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedSet.h; sourceTree = "<group>"; };
+		74616DB20F15D9590004B610 /* LinkedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedSet.m; sourceTree = "<group>"; };
+		74616DB30F15D9590004B610 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDictionary.h; sourceTree = "<group>"; };
+		74616DB40F15D9590004B610 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
+		74616DB50F15D9590004B610 /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerSet.h; sourceTree = "<group>"; };
+		74616DB60F15D9590004B610 /* PointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerSet.m; sourceTree = "<group>"; };
+		74616DC80F15D9870004B610 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				74616C340F15D1CB0004B610 /* External */,
+				74616DAA0F15D9420004B610 /* Collections */,
 				74616C780F15D21F0004B610 /* Utilities */,
+				74616D820F15D8910004B610 /* Threading */,
 				1D3623240D0F684500981E51 /* iPhoneSharedAppDelegate.h */,
 				1D3623250D0F684500981E51 /* iPhoneSharedAppDelegate.m */,
 			);
@@ -145,6 +178,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				74616DC80F15D9870004B610 /* ForwardDeclarations.h */,
 				32CA4F630368D1EE00C91783 /* iPhoneShared_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -250,6 +284,40 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		74616D820F15D8910004B610 /* Threading */ = {
+			isa = PBXGroup;
+			children = (
+				74616D830F15D8A10004B610 /* Invocation.h */,
+				74616D840F15D8A10004B610 /* Invocation.m */,
+				74616D850F15D8A10004B610 /* Invocation2.h */,
+				74616D860F15D8A10004B610 /* Invocation2.m */,
+				74616D870F15D8A10004B610 /* MainThreadGate.h */,
+				74616D880F15D8A10004B610 /* MainThreadGate.m */,
+				74616D890F15D8A10004B610 /* PriorityMutex.h */,
+				74616D8A0F15D8A10004B610 /* PriorityMutex.m */,
+			);
+			name = Threading;
+			sourceTree = "<group>";
+		};
+		74616DAA0F15D9420004B610 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				74616DAB0F15D9590004B610 /* IdentityObject.h */,
+				74616DAC0F15D9590004B610 /* IdentityObject.m */,
+				74616DAD0F15D9590004B610 /* IdentitySet.h */,
+				74616DAE0F15D9590004B610 /* IdentitySet.m */,
+				74616DAF0F15D9590004B610 /* LinkedNode.h */,
+				74616DB00F15D9590004B610 /* LinkedNode.m */,
+				74616DB10F15D9590004B610 /* LinkedSet.h */,
+				74616DB20F15D9590004B610 /* LinkedSet.m */,
+				74616DB30F15D9590004B610 /* MultiDictionary.h */,
+				74616DB40F15D9590004B610 /* MultiDictionary.m */,
+				74616DB50F15D9590004B610 /* PointerSet.h */,
+				74616DB60F15D9590004B610 /* PointerSet.m */,
+			);
+			name = Collections;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -324,6 +392,16 @@
 				74616C880F15D2450004B610 /* Base64.m in Sources */,
 				74616D6C0F15D42A0004B610 /* StringUtilities.m in Sources */,
 				74616D780F15D7F50004B610 /* DifferenceEngine.m in Sources */,
+				74616D8B0F15D8A10004B610 /* Invocation.m in Sources */,
+				74616D8C0F15D8A10004B610 /* Invocation2.m in Sources */,
+				74616D8D0F15D8A10004B610 /* MainThreadGate.m in Sources */,
+				74616D8E0F15D8A10004B610 /* PriorityMutex.m in Sources */,
+				74616DB70F15D9590004B610 /* IdentityObject.m in Sources */,
+				74616DB80F15D9590004B610 /* IdentitySet.m in Sources */,
+				74616DB90F15D9590004B610 /* LinkedNode.m in Sources */,
+				74616DBA0F15D9590004B610 /* LinkedSet.m in Sources */,
+				74616DBB0F15D9590004B610 /* MultiDictionary.m in Sources */,
+				74616DBC0F15D9590004B610 /* PointerSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
