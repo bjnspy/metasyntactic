@@ -15,22 +15,6 @@
 @interface Utilities : NSObject {
 }
 
-+ (id) findSmallestElementInArray:(NSArray*) array
-                    usingFunction:(NSInteger(*)(id, id, void*)) comparator
-                          context:(void*) context;
-
-+ (id) findSmallestElementInArray:(NSArray*) array
-                    usingFunction:(NSInteger(*)(id, id, void*, void*)) comparator
-                         context1:(void*) context1
-                         context2:(void*) context2;
-
-+ (NSString*) titleForMovie:(XmlElement*) element;
-
-+ (XmlElement*) makeSoapRequest:(XmlElement*) element
-                          atUrl:(NSString*) urlString
-                         atHost:(NSString*) host
-                     withAction:(NSString*) soapAction;
-
 + (id) removeRandomElement:(NSMutableArray*) array;
 
 + (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary;
