@@ -130,7 +130,7 @@
 @class UpcomingMoviesAndDVDNavigationController;
 @class UpcomingMoviesAndDVDViewController;
 @class UserLocationCache;
-@class Utilities;
+//@class Utilities;
 @class ViewControllerUtilities;
 @class WikipediaCache;
 @class XmlDocument;

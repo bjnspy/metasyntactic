@@ -59,6 +59,8 @@
 + (NSString*) uniqueTemporaryDirectory;
 + (NSString*) uniqueTrashDirectory;
 
++ (void) moveItemToTrash:(NSString*) path;
+
 + (void) openBrowser:(NSString*) address;
 + (void) openMap:(NSString*) address;
 + (void) makeCall:(NSString*) phoneNumber;
