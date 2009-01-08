@@ -343,7 +343,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos2.1;
 			};
 			name = AdHoc;
 		};
@@ -371,7 +371,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4613F776-ABF0-4E2C-8B8B-3C49250F52A7";
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos2.1;
 			};
 			name = Distribution;
 		};
@@ -391,13 +391,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F78E6FF-6C7C-4CD6-A29F-42831F670392";
+				SDKROOT = iphoneos2.1;
 			};
 			name = Debug;
 		};
@@ -405,12 +406,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F78E6FF-6C7C-4CD6-A29F-42831F670392";
+				SDKROOT = iphoneos2.1;
 			};
 			name = Release;
 		};

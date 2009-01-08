@@ -21,7 +21,7 @@
 		);
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Distribution;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 742DB5C80F11FACA0079E6B0 /* YourRights */;
 		activeSDKPreference = iphoneos2.1;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* YourRights */;
@@ -84,25 +84,25 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 252927188;
-			PBXWorkspaceStateSaveDate = 252927188;
+			PBXPerProjectTemplateStateSaveDate = 253086156;
+			PBXWorkspaceStateSaveDate = 253086156;
 		};
 		perUserProjectItems = {
-			742DBF6A0F1332FF0079E6B0 /* PBXTextBookmark */ = 742DBF6A0F1332FF0079E6B0 /* PBXTextBookmark */;
-			742DC0EA0F13394B0079E6B0 /* PBXTextBookmark */ = 742DC0EA0F13394B0079E6B0 /* PBXTextBookmark */;
-			742DC0EE0F13394B0079E6B0 /* PBXTextBookmark */ = 742DC0EE0F13394B0079E6B0 /* PBXTextBookmark */;
-			742DC1050F13396C0079E6B0 /* PBXTextBookmark */ = 742DC1050F13396C0079E6B0 /* PBXTextBookmark */;
-			742DC1070F13396C0079E6B0 /* PBXTextBookmark */ = 742DC1070F13396C0079E6B0 /* PBXTextBookmark */;
-			742DC1230F133AB50079E6B0 /* PBXTextBookmark */ = 742DC1230F133AB50079E6B0 /* PBXTextBookmark */;
-			742DC1250F133AB50079E6B0 /* PBXTextBookmark */ = 742DC1250F133AB50079E6B0 /* PBXTextBookmark */;
-			742DC18D0F1348550079E6B0 /* PBXTextBookmark */ = 742DC18D0F1348550079E6B0 /* PBXTextBookmark */;
-			742DC18E0F1348550079E6B0 /* PBXTextBookmark */ = 742DC18E0F1348550079E6B0 /* PBXTextBookmark */;
-			742DC1910F1348550079E6B0 /* PlistBookmark */ = 742DC1910F1348550079E6B0 /* PlistBookmark */;
-			742DC1940F1348550079E6B0 /* PBXTextBookmark */ = 742DC1940F1348550079E6B0 /* PBXTextBookmark */;
-			742DC1950F1348550079E6B0 /* PBXTextBookmark */ = 742DC1950F1348550079E6B0 /* PBXTextBookmark */;
-			742DC1980F1348550079E6B0 /* PlistBookmark */ = 742DC1980F1348550079E6B0 /* PlistBookmark */;
-			746295420F135D130073F830 /* PBXBookmark */ = 746295420F135D130073F830 /* PBXBookmark */;
-			746295AB0F13EAF00073F830 /* PBXTextBookmark */ = 746295AB0F13EAF00073F830 /* PBXTextBookmark */;
+			742DBF6A0F1332FF0079E6B0 = 742DBF6A0F1332FF0079E6B0 /* PBXTextBookmark */;
+			742DC0EA0F13394B0079E6B0 = 742DC0EA0F13394B0079E6B0 /* PBXTextBookmark */;
+			742DC0EE0F13394B0079E6B0 = 742DC0EE0F13394B0079E6B0 /* PBXTextBookmark */;
+			742DC1050F13396C0079E6B0 = 742DC1050F13396C0079E6B0 /* PBXTextBookmark */;
+			742DC1070F13396C0079E6B0 = 742DC1070F13396C0079E6B0 /* PBXTextBookmark */;
+			742DC1230F133AB50079E6B0 = 742DC1230F133AB50079E6B0 /* PBXTextBookmark */;
+			742DC1250F133AB50079E6B0 = 742DC1250F133AB50079E6B0 /* PBXTextBookmark */;
+			742DC18D0F1348550079E6B0 = 742DC18D0F1348550079E6B0 /* PBXTextBookmark */;
+			742DC18E0F1348550079E6B0 = 742DC18E0F1348550079E6B0 /* PBXTextBookmark */;
+			742DC1910F1348550079E6B0 = 742DC1910F1348550079E6B0 /* PlistBookmark */;
+			742DC1940F1348550079E6B0 = 742DC1940F1348550079E6B0 /* PBXTextBookmark */;
+			742DC1950F1348550079E6B0 = 742DC1950F1348550079E6B0 /* PBXTextBookmark */;
+			742DC1980F1348550079E6B0 = 742DC1980F1348550079E6B0 /* PlistBookmark */;
+			746295420F135D130073F830 = 746295420F135D130073F830 /* PBXBookmark */;
+			746295AB0F13EAF00073F830 = 746295AB0F13EAF00073F830 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 742DB5D10F11FAE90079E6B0 /* Source Control */;
 		userBuildSettings = {
@@ -217,8 +217,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 18;
-		modificationTime = 252963560.639345;
-		state = 1;
+		modificationTime = 253086209.248835;
+		state = 0;
 	};
 	742DB66F0F1201270079E6B0 /* YourRightsAppDelegate.m */ = {
 		isa = PBXFileReference;
@@ -241,7 +241,7 @@
 		ignoreCount = 0;
 		lineNumber = 35;
 		location = YourRights;
-		modificationTime = 252963397.939237;
+		modificationTime = 253086209.034058;
 		state = 2;
 	};
 	742DB77F0F1209540079E6B0 /* QuestionsViewController.h */ = {
@@ -433,7 +433,7 @@
 		ignoreCount = 0;
 		lineNumber = 79;
 		location = YourRights;
-		modificationTime = 252963397.939242;
+		modificationTime = 253086209.034063;
 		state = 2;
 	};
 	742DBDD20F131A110079E6B0 /* DecisionCell.m */ = {
@@ -457,7 +457,7 @@
 		ignoreCount = 0;
 		lineNumber = 88;
 		location = YourRights;
-		modificationTime = 252963397.939256;
+		modificationTime = 253086209.034068;
 		state = 2;
 	};
 	742DBE2B0F13208F0079E6B0 /* GreatestHitsViewController.m */ = {
@@ -481,7 +481,7 @@
 		ignoreCount = 0;
 		lineNumber = 280;
 		location = YourRights;
-		modificationTime = 252963397.939269;
+		modificationTime = 253086209.034072;
 		state = 2;
 	};
 	742DBE310F1320A50079E6B0 /* GreatestHitsViewController.m:286 */ = {
@@ -498,7 +498,7 @@
 		ignoreCount = 0;
 		lineNumber = 286;
 		location = YourRights;
-		modificationTime = 252963397.939282;
+		modificationTime = 253086209.034076;
 		state = 2;
 	};
 	742DBE340F1321030079E6B0 /* WebViewController.h */ = {
@@ -529,7 +529,7 @@
 		ignoreCount = 0;
 		lineNumber = 205;
 		location = YourRights;
-		modificationTime = 252963397.939289;
+		modificationTime = 253086209.034081;
 		state = 2;
 	};
 	742DBEB80F1324F10079E6B0 /* QuestionsViewController.m */ = {
@@ -553,7 +553,7 @@
 		ignoreCount = 0;
 		lineNumber = 158;
 		location = YourRights;
-		modificationTime = 252963397.939301;
+		modificationTime = 253086209.034085;
 		state = 2;
 	};
 	742DBEC50F1325140079E6B0 /* QuestionsViewController.m:163 */ = {
@@ -570,7 +570,7 @@
 		ignoreCount = 0;
 		lineNumber = 163;
 		location = YourRights;
-		modificationTime = 252963397.939312;
+		modificationTime = 253086209.034089;
 		state = 2;
 	};
 	742DBEC90F13252D0079E6B0 /* AnswerViewController.m */ = {
@@ -594,7 +594,7 @@
 		ignoreCount = 0;
 		lineNumber = 49;
 		location = YourRights;
-		modificationTime = 252963397.93932;
+		modificationTime = 253086209.034094;
 		state = 2;
 	};
 	742DBECC0F13253A0079E6B0 /* Model.m */ = {
@@ -618,7 +618,7 @@
 		ignoreCount = 0;
 		lineNumber = 866;
 		location = YourRights;
-		modificationTime = 252963397.93933;
+		modificationTime = 253086209.034098;
 		state = 2;
 	};
 	742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */ = {
@@ -720,7 +720,7 @@
 		ignoreCount = 0;
 		lineNumber = 48;
 		location = YourRights;
-		modificationTime = 252963397.939342;
+		modificationTime = 253086209.034103;
 		state = 2;
 	};
 	742DC1230F133AB50079E6B0 /* PBXTextBookmark */ = {
@@ -757,7 +757,7 @@
 		ignoreCount = 0;
 		lineNumber = 48;
 		location = YourRights;
-		modificationTime = 252963397.939355;
+		modificationTime = 253086209.034107;
 		state = 2;
 	};
 	742DC18D0F1348550079E6B0 /* PBXTextBookmark */ = {
