@@ -41,9 +41,9 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   private int lastPosition;
   private TheatersAdapter adapter;
   private List<Theater> theaters = new ArrayList<Theater>();
-  private Map<Integer, Integer> alphaTheaterSectionsMap = new HashMap<Integer, Integer>();
-  private Map<Integer, Integer> alphaTheaterPositionsMap = new HashMap<Integer, Integer>();
-  private String[] mAlphabet;
+  private final Map<Integer, Integer> alphaTheaterSectionsMap = new HashMap<Integer, Integer>();
+  private final Map<Integer, Integer> alphaTheaterPositionsMap = new HashMap<Integer, Integer>();
+  private String[] alphabet;
   private Location userLocation;
   private Address userAddress;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -85,13 +85,13 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   }
 
   protected void onPause() {
-    unregisterReceiver(broadcastReceiver);
+    unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
 
   protected void onResume() {
     super.onResume();
-    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
   private void setupView() {
@@ -115,15 +115,14 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   }
 
   private void populateAlphaTheaterSectionsAndPositions() {
-    // TODO Auto-generated method stub
     int i = 0;
     String prevLetter = null;
-    List alphabets = Arrays.asList(mAlphabet);
-    for (final Theater theater : theaters) {
-      String firstLetter = theater.getName().substring(0, 1);
-      alphaTheaterSectionsMap.put(i, alphabets.indexOf(firstLetter));
+    final List<String> alphabets = Arrays.asList(this.alphabet);
+    for (final Theater theater : this.theaters) {
+      final String firstLetter = theater.getName().substring(0, 1);
+      this.alphaTheaterSectionsMap.put(i, alphabets.indexOf(firstLetter));
       if (!firstLetter.equals(prevLetter)) {
-        alphaTheaterPositionsMap.put(alphabets.indexOf(firstLetter), i);
+        this.alphaTheaterPositionsMap.put(alphabets.indexOf(firstLetter), i);
       }
       prevLetter = firstLetter;
       i++;
@@ -153,11 +152,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     return true;
   }
 
-  private void getAlphabet(Context context) {
-    String alphabetString = context.getResources().getString(R.string.alphabet);
-    mAlphabet = new String[alphabetString.length()];
-    for (int i = 0; i < mAlphabet.length; i++) {
-      mAlphabet[i] = String.valueOf(alphabetString.charAt(i));
+  private void getAlphabet(final Context context) {
+    final String alphabetString = context.getResources().getString(R.string.alphabet);
+    this.alphabet = new String[alphabetString.length()];
+    for (int i = 0; i < this.alphabet.length; i++) {
+      this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
 
@@ -213,27 +212,21 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       return position;
     }
 
-    @Override
-    public int getPositionForSection(int section) {
-      // TODO Auto-generated method stub
-      Integer position = alphaTheaterPositionsMap.get(section);
+    public int getPositionForSection(final int section) {
+      final Integer position = AllTheatersActivity.this.alphaTheaterPositionsMap.get(section);
       if (position != null) {
-        lastPosition = position;
+        AllTheatersActivity.this.lastPosition = position;
         return position;
       }
-      return lastPosition;
+      return AllTheatersActivity.this.lastPosition;
     }
 
-    @Override
-    public int getSectionForPosition(int position) {
-      // TODO Auto-generated method stub
-      return alphaTheaterSectionsMap.get(position);
+    public int getSectionForPosition(final int position) {
+      return AllTheatersActivity.this.alphaTheaterSectionsMap.get(position);
     }
 
-    @Override
     public Object[] getSections() {
-      // TODO Auto-generated method stub
-      return mAlphabet;
+      return AllTheatersActivity.this.alphabet;
     }
   }
 
