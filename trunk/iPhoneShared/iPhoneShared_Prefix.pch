@@ -6,5 +6,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonHMAC.h>
+#import "expat.h"
 #import "ForwardDeclarations.h"
+#import "Macros.h"
 #endif
