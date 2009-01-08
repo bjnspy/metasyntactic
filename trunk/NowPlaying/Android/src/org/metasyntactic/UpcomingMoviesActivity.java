@@ -211,7 +211,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     // TODO Auto-generated method stub
     int i = 0;
     String prevLetter = null;
-    final List alphabets = Arrays.asList(this.alphabet);
+    final List<String> alphabets = Arrays.asList(this.alphabet);
     for (final Movie movie : this.movies) {
       final String firstLetter = movie.getDisplayTitle().substring(0, 1);
       this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
