@@ -39,10 +39,12 @@ public class ThreadingUtilities {
   }
 
   public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock, final boolean visible) {
+    final Object lock2 = lock == null ? new Object() : lock;
+
     final Thread t = new HandlerThread(name) {
       @Override public void run() {
         Looper.prepare();
-        synchronized (lock) {
+        synchronized (lock2) {
           try {
             Log.i(getClass().getSimpleName(), "Starting '" + name + "' thread at " + new Date());
             GlobalActivityIndicator.addBackgroundTask(visible);
