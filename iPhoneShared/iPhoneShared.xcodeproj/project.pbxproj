@@ -42,6 +42,10 @@
 		74616DBA0F15D9590004B610 /* LinkedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB20F15D9590004B610 /* LinkedSet.m */; };
 		74616DBB0F15D9590004B610 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB40F15D9590004B610 /* MultiDictionary.m */; };
 		74616DBC0F15D9590004B610 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DB60F15D9590004B610 /* PointerSet.m */; };
+		74616DFB0F15DAC00004B610 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DF40F15DAC00004B610 /* XmlDocument.m */; };
+		74616DFC0F15DAC00004B610 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DF60F15DAC00004B610 /* XmlElement.m */; };
+		74616DFD0F15DAC00004B610 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DF80F15DAC00004B610 /* XmlParser.m */; };
+		74616DFE0F15DAC00004B610 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DFA0F15DAC00004B610 /* XmlSerializer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +129,15 @@
 		74616DB50F15D9590004B610 /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerSet.h; sourceTree = "<group>"; };
 		74616DB60F15D9590004B610 /* PointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerSet.m; sourceTree = "<group>"; };
 		74616DC80F15D9870004B610 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		74616DF30F15DAC00004B610 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
+		74616DF40F15DAC00004B610 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDocument.m; sourceTree = "<group>"; };
+		74616DF50F15DAC00004B610 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
+		74616DF60F15DAC00004B610 /* XmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlElement.m; sourceTree = "<group>"; };
+		74616DF70F15DAC00004B610 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
+		74616DF80F15DAC00004B610 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
+		74616DF90F15DAC00004B610 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
+		74616DFA0F15DAC00004B610 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; };
+		74616E0C0F15DAF80004B610 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,8 +160,9 @@
 			children = (
 				74616C340F15D1CB0004B610 /* External */,
 				74616DAA0F15D9420004B610 /* Collections */,
-				74616C780F15D21F0004B610 /* Utilities */,
 				74616D820F15D8910004B610 /* Threading */,
+				74616C780F15D21F0004B610 /* Utilities */,
+				74616DF20F15DAA80004B610 /* Xml */,
 				1D3623240D0F684500981E51 /* iPhoneSharedAppDelegate.h */,
 				1D3623250D0F684500981E51 /* iPhoneSharedAppDelegate.m */,
 			);
@@ -178,6 +192,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				74616E0C0F15DAF80004B610 /* Macros.h */,
 				74616DC80F15D9870004B610 /* ForwardDeclarations.h */,
 				32CA4F630368D1EE00C91783 /* iPhoneShared_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -318,6 +333,21 @@
 			name = Collections;
 			sourceTree = "<group>";
 		};
+		74616DF20F15DAA80004B610 /* Xml */ = {
+			isa = PBXGroup;
+			children = (
+				74616DF30F15DAC00004B610 /* XmlDocument.h */,
+				74616DF40F15DAC00004B610 /* XmlDocument.m */,
+				74616DF50F15DAC00004B610 /* XmlElement.h */,
+				74616DF60F15DAC00004B610 /* XmlElement.m */,
+				74616DF70F15DAC00004B610 /* XmlParser.h */,
+				74616DF80F15DAC00004B610 /* XmlParser.m */,
+				74616DF90F15DAC00004B610 /* XmlSerializer.h */,
+				74616DFA0F15DAC00004B610 /* XmlSerializer.m */,
+			);
+			name = Xml;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -402,6 +432,10 @@
 				74616DBA0F15D9590004B610 /* LinkedSet.m in Sources */,
 				74616DBB0F15D9590004B610 /* MultiDictionary.m in Sources */,
 				74616DBC0F15D9590004B610 /* PointerSet.m in Sources */,
+				74616DFB0F15DAC00004B610 /* XmlDocument.m in Sources */,
+				74616DFC0F15DAC00004B610 /* XmlElement.m in Sources */,
+				74616DFD0F15DAC00004B610 /* XmlParser.m in Sources */,
+				74616DFE0F15DAC00004B610 /* XmlSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

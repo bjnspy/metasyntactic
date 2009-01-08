@@ -30,8 +30,6 @@
 		7406A7EF0F106AAA00795555 /* NetflixMostPopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7EE0F106AAA00795555 /* NetflixMostPopularViewController.m */; };
 		7406A8490F107C1A00795555 /* NetflixMostPopularMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A8480F107C1A00795555 /* NetflixMostPopularMoviesViewController.m */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
-		74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E670DCD36AE00954696 /* XmlDocument.m */; };
-		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
 		740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740C9FE70E3A838E00D7A56B /* ColorCache.m */; };
 		740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */; };
 		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
@@ -91,6 +89,10 @@
 		74616DD90F15D9BA0004B610 /* LinkedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DD10F15D9BA0004B610 /* LinkedSet.m */; };
 		74616DDA0F15D9BA0004B610 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DD30F15D9BA0004B610 /* MultiDictionary.m */; };
 		74616DDB0F15D9BA0004B610 /* PointerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616DD50F15D9BA0004B610 /* PointerSet.m */; };
+		74616E1B0F15DB2F0004B610 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E140F15DB2F0004B610 /* XmlDocument.m */; };
+		74616E1C0F15DB2F0004B610 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E160F15DB2F0004B610 /* XmlElement.m */; };
+		74616E1D0F15DB2F0004B610 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E180F15DB2F0004B610 /* XmlParser.m */; };
+		74616E1E0F15DB2F0004B610 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616E1A0F15DB2F0004B610 /* XmlSerializer.m */; };
 		74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
 		7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
@@ -153,8 +155,6 @@
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
-		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
-		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
 		74DD8A960F0ECFDD009DC326 /* NetflixCellBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */; };
 		74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */; };
 		74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */; };
@@ -273,10 +273,6 @@
 		7406A8480F107C1A00795555 /* NetflixMostPopularMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixMostPopularMoviesViewController.m; sourceTree = "<group>"; };
 		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
 		74088BD60DCD0AA800954696 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
-		74088E660DCD36AE00954696 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
-		74088E670DCD36AE00954696 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDocument.m; sourceTree = "<group>"; };
-		74088E680DCD36AE00954696 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
-		74088E690DCD36AE00954696 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; wrapsLines = 0; };
 		740C9FE60E3A838E00D7A56B /* ColorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCache.h; sourceTree = "<group>"; };
 		740C9FE70E3A838E00D7A56B /* ColorCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCache.m; sourceTree = "<group>"; };
 		740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
@@ -414,6 +410,14 @@
 		74616DD30F15D9BA0004B610 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultiDictionary.m; path = ../../iPhoneShared/Classes/MultiDictionary.m; sourceTree = SOURCE_ROOT; };
 		74616DD40F15D9BA0004B610 /* PointerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointerSet.h; path = ../../iPhoneShared/Classes/PointerSet.h; sourceTree = SOURCE_ROOT; };
 		74616DD50F15D9BA0004B610 /* PointerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PointerSet.m; path = ../../iPhoneShared/Classes/PointerSet.m; sourceTree = SOURCE_ROOT; };
+		74616E130F15DB2F0004B610 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlDocument.h; path = ../../iPhoneShared/Classes/XmlDocument.h; sourceTree = SOURCE_ROOT; };
+		74616E140F15DB2F0004B610 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlDocument.m; path = ../../iPhoneShared/Classes/XmlDocument.m; sourceTree = SOURCE_ROOT; };
+		74616E150F15DB2F0004B610 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlElement.h; path = ../../iPhoneShared/Classes/XmlElement.h; sourceTree = SOURCE_ROOT; };
+		74616E160F15DB2F0004B610 /* XmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlElement.m; path = ../../iPhoneShared/Classes/XmlElement.m; sourceTree = SOURCE_ROOT; };
+		74616E170F15DB2F0004B610 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlParser.h; path = ../../iPhoneShared/Classes/XmlParser.h; sourceTree = SOURCE_ROOT; };
+		74616E180F15DB2F0004B610 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlParser.m; path = ../../iPhoneShared/Classes/XmlParser.m; sourceTree = SOURCE_ROOT; };
+		74616E190F15DB2F0004B610 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlSerializer.h; path = ../../iPhoneShared/Classes/XmlSerializer.h; sourceTree = SOURCE_ROOT; };
+		74616E1A0F15DB2F0004B610 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlSerializer.m; path = ../../iPhoneShared/Classes/XmlSerializer.m; sourceTree = SOURCE_ROOT; };
 		74676D860EFF6E7D00C64100 /* NetflixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCell.h; sourceTree = "<group>"; };
 		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
 		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
@@ -519,10 +523,6 @@
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
 		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
-		74D6F2B60DCC144D0097A984 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
-		74D6F2BC0DCC176D0097A984 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
-		74D6F2BD0DCC176D0097A984 /* XmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlElement.m; sourceTree = "<group>"; };
 		74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-9.png"; path = "Resources/NetflixCellBackground-9.png"; sourceTree = "<group>"; };
 		74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-9.png"; path = "Resources/NetflixCellSelectedBackground-9.png"; sourceTree = "<group>"; };
 		74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixSettings.png; path = Resources/NetflixSettings.png; sourceTree = "<group>"; };
@@ -1130,14 +1130,14 @@
 		74D6F2B40DCC14420097A984 /* Xml */ = {
 			isa = PBXGroup;
 			children = (
-				74088E660DCD36AE00954696 /* XmlDocument.h */,
-				74088E670DCD36AE00954696 /* XmlDocument.m */,
-				74088E680DCD36AE00954696 /* XmlSerializer.h */,
-				74088E690DCD36AE00954696 /* XmlSerializer.m */,
-				74D6F2B50DCC144D0097A984 /* XmlParser.h */,
-				74D6F2B60DCC144D0097A984 /* XmlParser.m */,
-				74D6F2BC0DCC176D0097A984 /* XmlElement.h */,
-				74D6F2BD0DCC176D0097A984 /* XmlElement.m */,
+				74616E130F15DB2F0004B610 /* XmlDocument.h */,
+				74616E140F15DB2F0004B610 /* XmlDocument.m */,
+				74616E150F15DB2F0004B610 /* XmlElement.h */,
+				74616E160F15DB2F0004B610 /* XmlElement.m */,
+				74616E170F15DB2F0004B610 /* XmlParser.h */,
+				74616E180F15DB2F0004B610 /* XmlParser.m */,
+				74616E190F15DB2F0004B610 /* XmlSerializer.h */,
+				74616E1A0F15DB2F0004B610 /* XmlSerializer.m */,
 			);
 			name = Xml;
 			sourceTree = "<group>";
@@ -1403,12 +1403,8 @@
 				746A01430DC819270079D89B /* Movie.m in Sources */,
 				746A02160DC81A1A0079D89B /* Application.m in Sources */,
 				74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */,
-				74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */,
-				74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */,
 				740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */,
 				74088BD70DCD0AA800954696 /* PosterCache.m in Sources */,
-				74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */,
-				74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */,
 				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
 				748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */,
 				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,
@@ -1512,6 +1508,10 @@
 				74616DD90F15D9BA0004B610 /* LinkedSet.m in Sources */,
 				74616DDA0F15D9BA0004B610 /* MultiDictionary.m in Sources */,
 				74616DDB0F15D9BA0004B610 /* PointerSet.m in Sources */,
+				74616E1B0F15DB2F0004B610 /* XmlDocument.m in Sources */,
+				74616E1C0F15DB2F0004B610 /* XmlElement.m in Sources */,
+				74616E1D0F15DB2F0004B610 /* XmlParser.m in Sources */,
+				74616E1E0F15DB2F0004B610 /* XmlSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
