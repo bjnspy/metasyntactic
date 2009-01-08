@@ -118,6 +118,7 @@
 		74616EF40F15DE9D0004B610 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EEB0F15DE9D0004B610 /* Pulser.m */; };
 		74616F060F15DEF70004B610 /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616F050F15DEF70004B610 /* LocationUtilities.m */; };
 		74616FB90F15E0B70004B610 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616FB80F15E0B70004B610 /* Utilities.m */; };
+		746170080F16858F0004B610 /* movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 746170070F16858F0004B610 /* movie.mp4 */; };
 		74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
 		7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
@@ -575,6 +576,7 @@
 		74616F050F15DEF70004B610 /* LocationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationUtilities.m; sourceTree = "<group>"; };
 		74616FB70F15E0B70004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		74616FB80F15E0B70004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		746170070F16858F0004B610 /* movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = movie.mp4; path = /Users/cyrusn/Downloads/movie.mp4; sourceTree = "<absolute>"; };
 		74676D860EFF6E7D00C64100 /* NetflixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCell.h; sourceTree = "<group>"; };
 		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
 		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
@@ -1005,6 +1007,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				746170070F16858F0004B610 /* movie.mp4 */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
@@ -1993,6 +1996,7 @@
 				74DD8A2F0F0ECF10009DC326 /* YahooLogo.png in Resources */,
 				7414A5FB0F1414F7003163B3 /* NetflixMostPopular.png in Resources */,
 				74616D330F15D3260004B610 /* COPYING in Resources */,
+				746170080F16858F0004B610 /* movie.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

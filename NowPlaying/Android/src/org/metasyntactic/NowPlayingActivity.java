@@ -46,7 +46,6 @@ import java.util.Map;
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private GridView grid;
   private Intent intent;
-  private Animation animation;
   private Movie selectedMovie;
   private PostersAdapter postersAdapter;
   private boolean gridAnimationEnded;
@@ -55,9 +54,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private boolean activityAdded;
   private int lastPosition;
   private String search;
-  private Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
-  private Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
-  private String[] mAlphabet;
+  private final Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
+  private final Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
+  private String[] alphabet;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -69,10 +68,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public void refresh() {
     List<Movie> matchingMovies;
     this.movies = NowPlayingControllerWrapper.getMovies();
-    if (search != null) {
-      matchingMovies = getMatchingMoviesList(search);
+    if (this.search != null) {
+      matchingMovies = getMatchingMoviesList(this.search);
       if (!matchingMovies.isEmpty() && !this.isGridSetup) {
-        movies = matchingMovies;
+        this.movies = matchingMovies;
       } else {
         Toast.makeText(this, "No matching movies found", Toast.LENGTH_SHORT).show();
       }
@@ -91,11 +90,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private List<Movie> getMatchingMoviesList(String search2) {
-    // TODO Auto-generated method stub
-    String search = search2.toLowerCase();
-    List<Movie> matchingMovies = new ArrayList<Movie>();
-    for (Movie movie : movies) {
+  private List<Movie> getMatchingMoviesList(final String search2) {
+    final String search = search2.toLowerCase();
+    final List<Movie> matchingMovies = new ArrayList<Movie>();
+    for (final Movie movie : this.movies) {
       if (movie.getDisplayTitle().toLowerCase().contains(search)) {
         matchingMovies.add(movie);
       }
@@ -114,7 +112,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.progressbar_1);
-    search = this.getIntent().getStringExtra("movie");
+    this.search = getIntent().getStringExtra("movie");
   }
 
   @Override
@@ -171,11 +169,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void getAlphabet(Context context) {
-    String alphabetString = context.getResources().getString(R.string.alphabet);
-    mAlphabet = new String[alphabetString.length()];
-    for (int i = 0; i < mAlphabet.length; i++) {
-      mAlphabet[i] = String.valueOf(alphabetString.charAt(i));
+  private void getAlphabet(final Context context) {
+    final String alphabetString = context.getResources().getString(R.string.alphabet);
+    this.alphabet = new String[alphabetString.length()];
+    for (int i = 0; i < this.alphabet.length; i++) {
+      this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
 
@@ -232,17 +230,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   private void populateAlphaMovieSectionsAndPositions() {
-    // TODO Auto-generated method stub
     int i = 0;
     String prevLetter = null;
-    List alphabets = Arrays.asList(mAlphabet);
-    for (final Movie movie : movies) {
-      String firstLetter = movie.getDisplayTitle().substring(0, 1);
-      alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
+    final List alphabets = Arrays.asList(this.alphabet);
+    for (final Movie movie : this.movies) {
+      final String firstLetter = movie.getDisplayTitle().substring(0, 1);
+      this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
       if (!firstLetter.equals(prevLetter)) {
-        alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
-        Log
-            .i("alphaMoviePositionMap", "i=" + i + "alphabetIndex="
+        this.alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
+        Log.i("alphaMoviePositionMap", "i=" + i + "alphabetIndex="
                 + alphabets.indexOf(firstLetter));
       }
       prevLetter = firstLetter;
@@ -328,24 +324,21 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       notifyDataSetChanged();
     }
 
-    @Override
-    public int getPositionForSection(int section) {
-      Integer position = alphaMoviePositionsMap.get(section);
+    public int getPositionForSection(final int section) {
+      final Integer position = NowPlayingActivity.this.alphaMoviePositionsMap.get(section);
       if (position != null) {
-        lastPosition = position;
+        NowPlayingActivity.this.lastPosition = position;
         return position;
       }
-      return lastPosition;
+      return NowPlayingActivity.this.lastPosition;
     }
 
-    @Override
-    public int getSectionForPosition(int position) {
-      return alphaMovieSectionsMap.get(position);
+    public int getSectionForPosition(final int position) {
+      return NowPlayingActivity.this.alphaMovieSectionsMap.get(position);
     }
 
-    @Override
     public Object[] getSections() {
-      return mAlphabet;
+      return NowPlayingActivity.this.alphabet;
     }
   }
 

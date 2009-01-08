@@ -49,9 +49,9 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private List<Movie> movies;
   private boolean activityAdded;
   private int lastPosition;
-  private Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
-  private Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
-  private String[] mAlphabet;
+  private final Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
+  private final Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
+  private String[] alphabet;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -147,11 +147,11 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void getAlphabet(Context context) {
-    String alphabetString = context.getResources().getString(R.string.alphabet);
-    mAlphabet = new String[alphabetString.length()];
-    for (int i = 0; i < mAlphabet.length; i++) {
-      mAlphabet[i] = String.valueOf(alphabetString.charAt(i));
+  private void getAlphabet(final Context context) {
+    final String alphabetString = context.getResources().getString(R.string.alphabet);
+    this.alphabet = new String[alphabetString.length()];
+    for (int i = 0; i < this.alphabet.length; i++) {
+      this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
 
@@ -211,15 +211,14 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     // TODO Auto-generated method stub
     int i = 0;
     String prevLetter = null;
-    List alphabets = Arrays.asList(mAlphabet);
-    for (final Movie movie : movies) {
-      String firstLetter = movie.getDisplayTitle().substring(0, 1);
-      alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
+    final List alphabets = Arrays.asList(this.alphabet);
+    for (final Movie movie : this.movies) {
+      final String firstLetter = movie.getDisplayTitle().substring(0, 1);
+      this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
       Log.i("alphaMovieSectionsMap", "i=" + i + "alphabet=" + firstLetter);
       if (!firstLetter.equals(prevLetter)) {
-        alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
-        Log
-            .i("alphaMoviePositionMap", "i=" + i + "alphabetIndex="
+        this.alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
+        Log.i("alphaMoviePositionMap", "i=" + i + "alphabetIndex="
                 + alphabets.indexOf(firstLetter));
       }
       prevLetter = firstLetter;
@@ -309,31 +308,25 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       notifyDataSetChanged();
     }
 
-    @Override
-    public int getPositionForSection(int section) {
-      // TODO Auto-generated method stub
+    public int getPositionForSection(final int section) {
       Log.i("TEST", "getPositionForSection" + section + "alphaMoviePositionsMap.get(section)"
-          + alphaMoviePositionsMap.get(section));
-      Integer position = alphaMoviePositionsMap.get(section);
+          + UpcomingMoviesActivity.this.alphaMoviePositionsMap.get(section));
+      final Integer position = UpcomingMoviesActivity.this.alphaMoviePositionsMap.get(section);
       if (position != null) {
-        lastPosition = position;
+        UpcomingMoviesActivity.this.lastPosition = position;
         return position;
       }
-      return lastPosition;
+      return UpcomingMoviesActivity.this.lastPosition;
     }
 
-    @Override
-    public int getSectionForPosition(int position) {
+    public int getSectionForPosition(final int position) {
       Log.i("TEST", "getSectionForPosition" + position + "alphaMovieSectionsMap.get(position)"
-          + alphaMovieSectionsMap.get(position));
-      // TODO Auto-generated method stub
-      return alphaMovieSectionsMap.get(position);
+          + UpcomingMoviesActivity.this.alphaMovieSectionsMap.get(position));
+      return UpcomingMoviesActivity.this.alphaMovieSectionsMap.get(position);
     }
 
-    @Override
     public Object[] getSections() {
-      // TODO Auto-generated method stub
-      return mAlphabet;
+      return UpcomingMoviesActivity.this.alphabet;
     }
   }
 

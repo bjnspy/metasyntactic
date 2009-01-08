@@ -87,7 +87,7 @@ public class DataProvider {
         if (context != null) {
           context.sendBroadcast(new Intent(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
         }
-        model.updateSecondaryCaches();
+        DataProvider.this.model.updateSecondaryCaches();
       }
     });
   }
@@ -163,7 +163,7 @@ public class DataProvider {
         continue;
       }
 
-      final Date syncDate = this.synchronizationDateForTheater(theater.getName());
+      final Date syncDate = synchronizationDateForTheater(theater.getName());
       if (Math.abs(syncDate.getTime() - new Date().getTime()) > Constants.FOUR_WEEKS) {
         continue;
       }
@@ -373,16 +373,6 @@ public class DataProvider {
     return true;
   }
 
-  private boolean is12HourTime(final List<NowPlaying.ShowtimeProto> showtimes) {
-    for (final NowPlaying.ShowtimeProto proto : showtimes) {
-      if (!proto.getTime().contains(":")) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
   private List<Date> process24HourTimes(final List<NowPlaying.ShowtimeProto> showtimes) {
     final List<Date> result = new ArrayList<Date>();
 
@@ -397,7 +387,7 @@ public class DataProvider {
         calendar.set(Calendar.MINUTE, minute);
 
         result.add(calendar.getTime());
-      } catch (NumberFormatException e) {
+      } catch (final NumberFormatException e) {
         result.add(null);
       }
     }
@@ -426,9 +416,9 @@ public class DataProvider {
       }
 
       try {
-        final Date date = format.parse(time);
+        final Date date = this.format.parse(time);
         reverseArray.add(date);
-      } catch (ParseException e) {
+      } catch (final ParseException e) {
         reverseArray.add(null);
       }
     }
