@@ -83,7 +83,7 @@
         CFStringRef string = CFUUIDCreateString(NULL, uuid);
         self.nonce = (NSString*)string;
         CFRelease(uuid);
-        
+
         [self setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         [self setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
     }
