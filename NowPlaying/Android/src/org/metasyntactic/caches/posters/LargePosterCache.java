@@ -67,7 +67,7 @@ public class LargePosterCache extends AbstractCache {
       }
     }
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupPosterListing?provider=imp&year=" + year;
+    final String address = "http://" + Application.host + ".appspot.com/LookupPosterListings?provider=imp&year=" + year;
     final String result = NetworkUtilities.downloadString(address, false);
 
     if (StringUtilities.isNullOrEmpty(result)) {
@@ -107,7 +107,9 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private static int getYearForDate(final Date date) {
-    return date.getYear();
+    final Calendar c = Calendar.getInstance();
+    c.setTime(date);
+    return c.get(Calendar.YEAR);
   }
 
   private static int getCurrentYear() {
