@@ -97,6 +97,7 @@
 		74616D430F15D3260004B610 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D310F15D3260004B610 /* OAToken.m */; };
 		74616D460F15D3420004B610 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D450F15D3420004B610 /* Base64.m */; };
 		74616D740F15D45D0004B610 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D730F15D45D0004B610 /* StringUtilities.m */; };
+		74616D7C0F15D8160004B610 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D7B0F15D8160004B610 /* DifferenceEngine.m */; };
 		74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
 		7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
@@ -294,7 +295,6 @@
 		74E6313E0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */; };
 		74E631C30EFDCE5D002EE26B /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E631C20EFDCE5D002EE26B /* AlertUtilities.m */; };
 		74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */; };
-		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
 		74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
 		74EB9AA00EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */; };
@@ -533,6 +533,8 @@
 		74616D450F15D3420004B610 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Base64.m; path = ../../iPhoneShared/Classes/Base64.m; sourceTree = SOURCE_ROOT; };
 		74616D720F15D45D0004B610 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtilities.h; path = ../../iPhoneShared/Classes/StringUtilities.h; sourceTree = SOURCE_ROOT; };
 		74616D730F15D45D0004B610 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtilities.m; path = ../../iPhoneShared/Classes/StringUtilities.m; sourceTree = SOURCE_ROOT; };
+		74616D7A0F15D8160004B610 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DifferenceEngine.h; path = ../../iPhoneShared/Classes/DifferenceEngine.h; sourceTree = SOURCE_ROOT; };
+		74616D7B0F15D8160004B610 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DifferenceEngine.m; path = ../../iPhoneShared/Classes/DifferenceEngine.m; sourceTree = SOURCE_ROOT; };
 		74676D860EFF6E7D00C64100 /* NetflixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCell.h; sourceTree = "<group>"; };
 		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
 		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
@@ -866,8 +868,6 @@
 		74E631C20EFDCE5D002EE26B /* AlertUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtilities.m; sourceTree = "<group>"; };
 		74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityMutex.h; sourceTree = "<group>"; };
 		74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
-		74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
-		74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
 		74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-0.png"; path = "Resources/NetflixCellSelectedBackground-0.png"; sourceTree = "<group>"; };
 		74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-1.png"; path = "Resources/NetflixCellSelectedBackground-1.png"; sourceTree = "<group>"; };
 		74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-2.png"; path = "Resources/NetflixCellSelectedBackground-2.png"; sourceTree = "<group>"; };
@@ -1116,12 +1116,12 @@
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74616D7A0F15D8160004B610 /* DifferenceEngine.h */,
+				74616D7B0F15D8160004B610 /* DifferenceEngine.m */,
 				74616D720F15D45D0004B610 /* StringUtilities.h */,
 				74616D730F15D45D0004B610 /* StringUtilities.m */,
 				74616D440F15D3420004B610 /* Base64.h */,
 				74616D450F15D3420004B610 /* Base64.m */,
-				74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */,
-				74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */,
 				74EC069E0DD2D69B006953A4 /* Utilities.h */,
 				74EC069F0DD2D69B006953A4 /* Utilities.m */,
 				747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */,
@@ -2019,7 +2019,6 @@
 				74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */,
 				74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */,
 				740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */,
-				74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */,
 				74088BD70DCD0AA800954696 /* PosterCache.m in Sources */,
 				74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */,
 				74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */,
@@ -2215,6 +2214,7 @@
 				74616D430F15D3260004B610 /* OAToken.m in Sources */,
 				74616D460F15D3420004B610 /* Base64.m in Sources */,
 				74616D740F15D45D0004B610 /* StringUtilities.m in Sources */,
+				74616D7C0F15D8160004B610 /* DifferenceEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

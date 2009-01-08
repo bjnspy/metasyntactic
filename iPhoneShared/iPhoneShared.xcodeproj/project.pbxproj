@@ -31,6 +31,7 @@
 		74616C720F15D1FF0004B610 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616C660F15D1FF0004B610 /* OAToken.m */; };
 		74616C880F15D2450004B610 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616C870F15D2450004B610 /* Base64.m */; };
 		74616D6C0F15D42A0004B610 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D6B0F15D42A0004B610 /* StringUtilities.m */; };
+		74616D780F15D7F50004B610 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616D770F15D7F50004B610 /* DifferenceEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,8 @@
 		74616C870F15D2450004B610 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		74616D6A0F15D42A0004B610 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtilities.h; sourceTree = "<group>"; };
 		74616D6B0F15D42A0004B610 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtilities.m; sourceTree = "<group>"; };
+		74616D760F15D7F50004B610 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
+		74616D770F15D7F50004B610 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,6 +240,8 @@
 		74616C780F15D21F0004B610 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74616D760F15D7F50004B610 /* DifferenceEngine.h */,
+				74616D770F15D7F50004B610 /* DifferenceEngine.m */,
 				74616D6A0F15D42A0004B610 /* StringUtilities.h */,
 				74616D6B0F15D42A0004B610 /* StringUtilities.m */,
 				74616C860F15D2450004B610 /* Base64.h */,
@@ -318,6 +323,7 @@
 				74616C720F15D1FF0004B610 /* OAToken.m in Sources */,
 				74616C880F15D2450004B610 /* Base64.m in Sources */,
 				74616D6C0F15D42A0004B610 /* StringUtilities.m in Sources */,
+				74616D780F15D7F50004B610 /* DifferenceEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
