@@ -100,7 +100,6 @@
 		74616EBD0F15DDDF0004B610 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EB20F15DDDF0004B610 /* LocaleUtilities.m */; };
 		74616EBE0F15DDDF0004B610 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EB40F15DDDF0004B610 /* NetworkUtilities.m */; };
 		74616EBF0F15DDDF0004B610 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EB60F15DDDF0004B610 /* Pulser.m */; };
-		74616EC00F15DDDF0004B610 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74616EB80F15DDDF0004B610 /* Utilities.m */; };
 		74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74676D870EFF6E7D00C64100 /* NetflixCell.m */; };
 		7469DBFB0EBD94EE007C8EEE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7469DBFA0EBD94EE007C8EEE /* SystemConfiguration.framework */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
@@ -162,6 +161,7 @@
 		74DD8A960F0ECFDD009DC326 /* NetflixCellBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */; };
 		74DD8A970F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */; };
 		74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */; };
+		74E00ED20F19440E00C8B9D1 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E00ED10F19440E00C8B9D1 /* Utilities.m */; };
 		74E031330EF4C2D400B2D2BA /* NetflixNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */; };
 		74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
@@ -432,8 +432,6 @@
 		74616EB40F15DDDF0004B610 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkUtilities.m; path = ../../iPhoneShared/Classes/NetworkUtilities.m; sourceTree = SOURCE_ROOT; };
 		74616EB50F15DDDF0004B610 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pulser.h; path = ../../iPhoneShared/Classes/Pulser.h; sourceTree = SOURCE_ROOT; };
 		74616EB60F15DDDF0004B610 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pulser.m; path = ../../iPhoneShared/Classes/Pulser.m; sourceTree = SOURCE_ROOT; };
-		74616EB70F15DDDF0004B610 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ../../iPhoneShared/Classes/Utilities.h; sourceTree = SOURCE_ROOT; };
-		74616EB80F15DDDF0004B610 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = ../../iPhoneShared/Classes/Utilities.m; sourceTree = SOURCE_ROOT; };
 		74676D860EFF6E7D00C64100 /* NetflixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixCell.h; sourceTree = "<group>"; };
 		74676D870EFF6E7D00C64100 /* NetflixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixCell.m; sourceTree = "<group>"; };
 		746772A20F02B2A200C64100 /* NetflixMoveMovieDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixMoveMovieDelegate.h; sourceTree = "<group>"; };
@@ -534,6 +532,8 @@
 		74DD8A930F0ECFDD009DC326 /* NetflixCellBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellBackground-9.png"; path = "Resources/NetflixCellBackground-9.png"; sourceTree = "<group>"; };
 		74DD8A940F0ECFDD009DC326 /* NetflixCellSelectedBackground-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-9.png"; path = "Resources/NetflixCellSelectedBackground-9.png"; sourceTree = "<group>"; };
 		74DD8A950F0ECFDD009DC326 /* NetflixSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NetflixSettings.png; path = Resources/NetflixSettings.png; sourceTree = "<group>"; };
+		74E00ED00F19440E00C8B9D1 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ../../iPhoneShared/Classes/Utilities.h; sourceTree = SOURCE_ROOT; };
+		74E00ED10F19440E00C8B9D1 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = ../../iPhoneShared/Classes/Utilities.m; sourceTree = SOURCE_ROOT; };
 		74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixNavigationController.h; sourceTree = "<group>"; };
 		74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixNavigationController.m; sourceTree = "<group>"; };
 		74E62FBC0EFD78F9002EE26B /* BackgroundInvocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation2.h; sourceTree = "<group>"; };
@@ -800,6 +800,8 @@
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74E00ED00F19440E00C8B9D1 /* Utilities.h */,
+				74E00ED10F19440E00C8B9D1 /* Utilities.m */,
 				74616EA90F15DDDF0004B610 /* AlertUtilities.h */,
 				74616EAA0F15DDDF0004B610 /* AlertUtilities.m */,
 				74616EAB0F15DDDF0004B610 /* DateUtilities.h */,
@@ -814,8 +816,6 @@
 				74616EB40F15DDDF0004B610 /* NetworkUtilities.m */,
 				74616EB50F15DDDF0004B610 /* Pulser.h */,
 				74616EB60F15DDDF0004B610 /* Pulser.m */,
-				74616EB70F15DDDF0004B610 /* Utilities.h */,
-				74616EB80F15DDDF0004B610 /* Utilities.m */,
 				74616D7D0F15D8260004B610 /* DifferenceEngine.h */,
 				74616D7E0F15D8260004B610 /* DifferenceEngine.m */,
 				74616D6E0F15D4460004B610 /* StringUtilities.h */,
@@ -1511,7 +1511,7 @@
 				74616EBD0F15DDDF0004B610 /* LocaleUtilities.m in Sources */,
 				74616EBE0F15DDDF0004B610 /* NetworkUtilities.m in Sources */,
 				74616EBF0F15DDDF0004B610 /* Pulser.m in Sources */,
-				74616EC00F15DDDF0004B610 /* Utilities.m in Sources */,
+				74E00ED20F19440E00C8B9D1 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
