@@ -900,13 +900,15 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (NSString*) rssFile:(NSString*) address {
-    return [[[Application netflixRSSDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]] stringByAppendingPathExtension:@"plist"];
+- (NSString*) rssFile:(NSString*) key {
+    return [[[Application netflixRSSDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:key]] stringByAppendingPathExtension:@"plist"];
 }
 
 
-- (void) downloadRSSFeed:(NSString*) address {
-    NSString* file = [self rssFile:address];
+- (void) downloadRSSFeed:(NSString*) key {
+    NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
+    
+    NSString* file = [self rssFile:key];
     if ([FileUtilities fileExists:file]) {
         NSDate* date = [FileUtilities modificationDate:file];
         if (date != nil) {
@@ -943,8 +945,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (NSString*) rssMovieFile:(NSString*) identifier address:(NSString*) address {
-    return [[[self rssFeedDirectory:address]
+- (NSString*) rssMovieFile:(NSString*) identifier key:(NSString*) key {
+    return [[[self rssFeedDirectory:key]
              stringByAppendingPathComponent:[FileUtilities sanitizeFileName:identifier]]
             stringByAppendingPathExtension:@"plist"];
 }
@@ -954,9 +956,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     for (NSString* key in mostPopularTitles) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
-            [FileUtilities createDirectory:[self rssFeedDirectory:address]];
-            [self downloadRSSFeed:address];
+            [FileUtilities createDirectory:[self rssFeedDirectory:key]];
+            [self downloadRSSFeed:key];
         }
         [pool release];
     }
@@ -980,9 +981,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (NSArray*) moviesForRSSTitle:(NSString*) title {
-    NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
-
-    NSString* directory = [self rssFeedDirectory:address];
+    NSString* directory = [self rssFeedDirectory:title];
     NSArray* paths = [FileUtilities directoryContentsPaths:directory];
 
     NSMutableArray* array = [NSMutableArray array];
@@ -1000,9 +999,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (NSInteger) movieCountForRSSTitle:(NSString*) title {
-    NSString* address = [mostPopularTitlesToAddresses objectForKey:title];
-
-    NSString* directory = [self rssFeedDirectory:address];
+    NSString* directory = [self rssFeedDirectory:title];
     NSArray* paths = [FileUtilities directoryContentsPaths:directory];
 
     return paths.count;
@@ -1075,8 +1072,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (void) downloadRSSMovie:(NSString*) identifier
-                  address:(NSString*) address {
-    NSString* file = [self rssMovieFile:identifier address:address];
+                      key:(NSString*) key {
+    NSString* file = [self rssMovieFile:identifier key:key];
 
     Movie* movie;
     if ([FileUtilities fileExists:file]) {
@@ -1104,14 +1101,14 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (void) downloadRSSMovies:(NSString*) address {
-    NSString* file = [self rssFile:address];
+- (void) downloadRSSMovies:(NSString*) key {
+    NSString* file = [self rssFile:key];
     NSArray* identifiers = [FileUtilities readObject:file];
 
     for (NSString* identifier in identifiers) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            [self downloadRSSMovie:identifier address:address];
+            [self downloadRSSMovie:identifier key:key];
         }
         [pool release];
     }
@@ -1122,8 +1119,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     for (NSString* key in mostPopularTitles) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
-            NSString* address = [mostPopularTitlesToAddresses objectForKey:key];
-            [self downloadRSSMovies:address];
+            [self downloadRSSMovies:key];
         }
         [pool release];
         [AppDelegate majorRefresh];
