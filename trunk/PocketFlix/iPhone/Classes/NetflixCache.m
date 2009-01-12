@@ -349,6 +349,11 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
             if ([@"alternate" isEqual:rel]) {
                 link = [child attributeValue:@"href"];
             } else if ([@"http://schemas.netflix.com/catalog/title" isEqual:rel]) {
+                NSString* title = [child attributeValue:@"href"];
+                if (identifier.length == 0) {
+                    identifier = title;
+                }
+
                 [additionalFields setObject:[child attributeValue:@"href"] forKey:title_key];
             } else if ([@"http://schemas.netflix.com/catalog/titles.series" isEqual:rel]) {
                 [additionalFields setObject:[child attributeValue:@"href"] forKey:series_key];
@@ -426,6 +431,10 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     BOOL save;
     Movie* movie = [self processMovieItem:element saved:&save];
 
+    if (movie == nil) {
+        return;
+    }
+    
     if (save) {
         [saved addObject:movie];
     } else {
