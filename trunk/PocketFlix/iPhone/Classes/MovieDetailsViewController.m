@@ -42,6 +42,7 @@
 @interface MovieDetailsViewController()
 @property (retain) Movie* movie;
 @property (retain) Movie* netflixMovie;
+@property (copy) NSString* netflixStatus;
 @property (copy) NSString* trailer;
 @property (retain) NSDictionary* websites;
 @property (retain) UIView* actionsView;
@@ -62,6 +63,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 @synthesize movie;
 @synthesize netflixMovie;
+@synthesize netflixStatus;
 @synthesize trailer;
 @synthesize websites;
 @synthesize actionsView;
@@ -76,6 +78,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 - (void) dealloc {
     self.movie = nil;
     self.netflixMovie = nil;
+    self.netflixStatus = nil;
     self.trailer = nil;
     self.websites = nil;
     self.actionsView = nil;
@@ -102,7 +105,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
         [arguments addObject:[NSNull null]];
     }
 
-    if (netflixMovie != nil && ![self.model.netflixCache isEnqueued:netflixMovie]) {
+    if (netflixMovie != nil && netflixStatus.length == 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
         [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
         [arguments addObject:[NSNull null]];
@@ -173,6 +176,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 - (void) initializeData {
     self.netflixMovie = [self.model.netflixCache netflixMovieForMovie:movie];
+    self.netflixStatus = [self.model.netflixCache queueStatus:movie];
 
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
@@ -413,14 +417,38 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 3;
+        return 4;
     } else {
         return similarMovies.count;
     }
 }
 
 
+- (UITableViewCell*) createNetflixStatusCell {
+    if (netflixStatus.length == 0) {
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    }
+    
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    cell.text = netflixStatus;
+    cell.font = [UIFont boldSystemFontOfSize:16];
+    cell.textAlignment = UITextAlignmentCenter;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    return cell;
+}
+
+
+- (BOOL) hasNetflixRating {
+    return [self.model.netflixCache netflixRatingForMovie:movie].length > 0;
+}
+
+
 - (UITableViewCell*) createNetflixRatingsCell {
+    if (![self hasNetflixRating]) {
+        return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    }
+    
     if (netflixRatingsCell == nil) {
         self.netflixRatingsCell =
         [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
@@ -429,11 +457,6 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     }
 
     return netflixRatingsCell;
-}
-
-
-- (BOOL) hasNetflixRating {
-    return [self.model.netflixCache netflixRatingForMovie:movie].length > 0;
 }
 
 
@@ -446,13 +469,13 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
                                 posterImageView:posterImageView
                                    activityView:posterActivityView];
     }
-
+    
     if (row == 1) {
-        if ([self hasNetflixRating]) {
-            return [self createNetflixRatingsCell];
-        } else {
-            return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-        }
+        return [self createNetflixStatusCell];
+    }
+
+    if (row == 2) {
+        return [self createNetflixRatingsCell];
     }
 
     if (expandedDetails) {
@@ -471,8 +494,16 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (row == 0) {
         return [MovieOverviewCell heightForMovie:movie model:self.model];
     }
-
+    
     if (row == 1) {
+        if (netflixStatus.length > 0) {
+            return self.tableView.rowHeight - 8;
+        } else {
+            return 0;
+        }
+    }
+    
+    if (row == 2) {
         if ([self hasNetflixRating]) {
             return self.tableView.rowHeight;
         } else {
@@ -708,7 +739,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 - (void)       tableView:(UITableView*) tableView
       didSelectHeaderRow:(NSInteger) row {
-    if (row == 2) {
+    if (row == 3) {
         expandedDetails = !expandedDetails;
 
         NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];

@@ -39,7 +39,7 @@
 - (NSArray*) search:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;
 
-- (BOOL) isEnqueued:(Movie*) movie;
+- (NSString*) queueStatus:(Movie*) movie;
 
 - (void) update;
 
