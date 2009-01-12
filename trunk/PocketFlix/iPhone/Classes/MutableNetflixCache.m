@@ -587,7 +587,7 @@ NSInteger orderMovies(id t1, id t2, void* context) {
     for (Movie* movie in deletedMovies.allObjects) {
         NSString* error;
         Queue* resultantQueue = [self deleteMovie:movie
-                                          inQueue:queue
+                                          inQueue:finalQueue
                                             error:&error];
 
         if (resultantQueue == nil) {
