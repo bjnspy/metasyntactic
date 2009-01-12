@@ -80,12 +80,9 @@
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text =
     [NSString stringWithFormat:
-    NSLocalizedString(@"%@ needs permission from both you and Netflix to "
-                      "access your account. To protect your security, you will not "
-                      "be providing your Netflix username and password to %@. "
-                      "Instead, tapping the button below will allow you to login to Netflix "
-                      "and grant access directly.\n\nA Wi-fi connection is recommended "
-                      "the first time you use %@.", nil), [Application name], [Application name], [Application name]];
+    NSLocalizedString(@"%@ does not store your Netflix username and password.\n\n"
+                      @"We will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended "
+                      @"the first time you use %@.", nil), [Application name], [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];
@@ -131,8 +128,10 @@
 
 - (void) setupButton {
     self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:NSLocalizedString(@"Continue", nil) forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedString(@"Open and Authorize", nil) forState:UIControlStateNormal];
     [button setTitle:NSLocalizedString(@"Please wait...", nil) forState:UIControlStateDisabled];
+    
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
     UIImage* image = [[UIImage imageNamed:@"BlackButton.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
     [button setBackgroundImage:image forState:UIControlStateNormal];
