@@ -82,7 +82,7 @@
     [NSString stringWithFormat:
     NSLocalizedString(@"%@ does not store your Netflix username and password.\n\n"
                       @"We will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended "
-                      @"the first time you use %@.", nil), [Application name], [Application name], [Application name]];
+                      @"the first time you use %@.", nil), [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];

@@ -112,7 +112,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if (section == WrittenBySection) {
         return 2;
     } else if (section == MyOtherApplicationsSection) {
-        return 2;
+        return 3;
     } else if (section == GraphicsBySection) {
         return 1;
     } else if (section == LocalizedBySection) {
@@ -176,8 +176,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
             cell.text = @"Now Playing";
-        } else {
+        } else if (row == 1) {
             cell.text = @"ComiXology";
+        } else {
+            cell.text = @"Your Rights";
         }
     } else if (section == GraphicsBySection) {
         cell.text = NSLocalizedString(@"Website", nil);
@@ -261,8 +263,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
             url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
-        } else {
+        } else if (row == 1) {
             url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
+        } else {
+            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301494200&mt=8";
         }
     } else if (section == GraphicsBySection) {
         url = @"http://www.comixology.com";
