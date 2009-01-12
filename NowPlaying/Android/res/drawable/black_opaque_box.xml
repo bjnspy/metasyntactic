@@ -5,9 +5,9 @@
     <gradient
         android:type="sweep"
         android:useLevel="false"
-        android:startColor="#ffffffff"
-        android:centerColor="#ff000000"
-        android:endColor="#ffffffff"
+        android:startColor="#ff666666"
+        android:centerColor="#ff666666"
+        android:endColor="#ff666666"
         android:centerY="0.50" />
     <padding
         android:left="5px"

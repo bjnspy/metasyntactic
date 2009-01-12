@@ -135,7 +135,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class));
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 

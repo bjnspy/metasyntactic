@@ -43,6 +43,7 @@ public class AllMoviesActivity extends ListActivity {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.moviedetails);
+    
     this.movie = getIntent().getExtras().getParcelable("movie");
     TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
@@ -71,16 +72,16 @@ public class AllMoviesActivity extends ListActivity {
     final MovieAdapter movieAdapter = new MovieAdapter();
     setListAdapter(movieAdapter);
     final Button showtimes = (Button) findViewById(R.id.showtimes);
-    final Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_reverse);
     showtimes.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
-        showtimes.startAnimation(animation);
-        final Intent intent = new Intent();
+       final Intent intent = new Intent();
         intent.setClass(AllMoviesActivity.this, ShowtimesActivity.class);
         intent.putExtra("movie", (Parcelable) movie);
         startActivity(intent);
       }
     });
+   
+    
   }
 
   private void populateMovieDetailEntries() {
@@ -196,11 +197,9 @@ public class AllMoviesActivity extends ListActivity {
       switch (entry.type) {
       case POSTER_SYNOPSIS:
         convertView = this.inflater.inflate(R.layout.moviepostersynopsis, null);
+       
         ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
-        Animation animation = AnimationUtils.loadAnimation(AllMoviesActivity.this,
-            R.anim.slide_right);
-        posterImage.startAnimation(animation);
-        TextView text1 = (TextView) convertView.findViewById(R.id.value1);
+         TextView text1 = (TextView) convertView.findViewById(R.id.value1);
         TextView text2 = (TextView) convertView.findViewById(R.id.value2);
         final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
         if (bytes.length > 0) {
@@ -297,7 +296,7 @@ public class AllMoviesActivity extends ListActivity {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class));
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 

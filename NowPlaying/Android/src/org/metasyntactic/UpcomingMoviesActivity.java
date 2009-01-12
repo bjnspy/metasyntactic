@@ -241,7 +241,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       // to findViewById() on each row.
       final ViewHolder holder;
       final int pagecount = position / 9;
-      Log.i("getView", String.valueOf(pagecount));
       // When convertView is not null, we can reuse it directly, there is
       // no need to reinflate it. We only inflate a new View when the
       // convertView
@@ -263,7 +262,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       NowPlayingControllerWrapper.prioritizeMovie(movie);
       holder.title.setText(movie.getDisplayTitle());
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
-      Log.i("NowPlayingActivity getview", "trying to show posters");
       final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
       if (bytes.length > 0) {
         final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -335,7 +333,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class));
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 }

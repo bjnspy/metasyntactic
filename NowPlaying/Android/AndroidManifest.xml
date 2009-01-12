@@ -20,7 +20,7 @@
             android:label="@string/app_name"
             android:name="ShowtimesDetailsActivity">
         </activity>
-        <activity android:theme = "@android:style/Theme.Dialog"
+        <activity android:theme="@android:style/Theme.Translucent"
             android:label="@string/menu_search"
             android:name="SearchMovieActivity">
         </activity>

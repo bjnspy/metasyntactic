@@ -118,7 +118,7 @@ public class TheaterDetailsActivity extends ListActivity {
           movie, TheaterDetailsActivity.this.theater);
       String performance = "";
       for (Performance aList : list) {
-        performance += aList.getTime() + ", ";
+        performance += aList.getTimeString() + ", ";
       }
       performance = performance.substring(0, performance.length() - 2);
       holder.data.setText(performance);
@@ -161,7 +161,7 @@ public class TheaterDetailsActivity extends ListActivity {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class));
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 }
