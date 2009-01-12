@@ -99,4 +99,9 @@ property_definition(saved);
 }
 
 
+- (BOOL) isAtHomeQueue {
+    return [[NetflixCache atHomeKey] isEqual:feed.key];
+}
+
+
 @end

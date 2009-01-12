@@ -1445,11 +1445,15 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         return @"";
     }
     
-    NSString* queueTitle = [self titleForKey:queue.feed.key includeCount:NO];
-    if (saved) {
-        return [NSString stringWithFormat:NSLocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
+    if (queue.isAtHomeQueue) {
+        return NSLocalizedString(@"At Home", nil);
     } else {
-        return [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (index + 1), queueTitle];
+        NSString* queueTitle = [self titleForKey:queue.feed.key includeCount:NO];
+        if (saved) {
+            return [NSString stringWithFormat:NSLocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
+        } else {
+            return [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (index + 1), queueTitle];
+        }
     }
 }
 
