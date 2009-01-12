@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -43,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private GridView grid;
   private Intent intent;
@@ -51,7 +53,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private boolean gridAnimationEnded;
   private boolean isGridSetup;
   private List<Movie> movies;
-  private boolean activityAdded;
   private int lastPosition;
   private String search;
   private final Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
@@ -66,15 +67,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   /** Updates display of the list of movies. */
   public void refresh() {
-    List<Movie> matchingMovies;
-    this.movies = NowPlayingControllerWrapper.getMovies();
-    if (this.search != null) {
-      matchingMovies = getMatchingMoviesList(this.search);
-      if (!matchingMovies.isEmpty() && !this.isGridSetup) {
-        this.movies = matchingMovies;
-      } else {
-        Toast.makeText(this, "No matching movies found", Toast.LENGTH_SHORT).show();
-      }
+    if (this.search == null) {
+      this.movies = NowPlayingControllerWrapper.getMovies();
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
@@ -90,10 +84,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private List<Movie> getMatchingMoviesList(final String search2) {
-    final String search = search2.toLowerCase();
-    final List<Movie> matchingMovies = new ArrayList<Movie>();
-    for (final Movie movie : this.movies) {
+  private List<Movie> getMatchingMoviesList(String search2) {
+    String search = search2.toLowerCase();
+    List<Movie> matchingMovies = new ArrayList<Movie>();
+    for (Movie movie : movies) {
       if (movie.getDisplayTitle().toLowerCase().contains(search)) {
         matchingMovies.add(movie);
       }
@@ -111,8 +105,25 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onCreate(savedInstanceState);
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    setContentView(R.layout.progressbar_1);
-    this.search = getIntent().getStringExtra("movie");
+    //  setContentView(R.layout.progressbar_1);
+    NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
+    final String userLocation = NowPlayingControllerWrapper.getUserLocation();
+    if (StringUtilities.isNullOrEmpty(userLocation)) {
+      final Intent intent = new Intent();
+      intent.setClass(NowPlayingActivity.this, SettingsActivity.class);
+      startActivity(intent);
+    }
+    refresh();
+    this.search = this.getIntent().getStringExtra("movie");
+    List<Movie> matchingMovies;
+    if (this.search != null) {
+      matchingMovies = getMatchingMoviesList(search);
+      if (!matchingMovies.isEmpty()) { //&& !this.isGridSetup
+        this.movies = matchingMovies;
+      } else {
+        Toast.makeText(this, "No matching movies found", Toast.LENGTH_SHORT).show();
+      }
+    }
   }
 
   @Override
@@ -135,45 +146,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }
-    // Hack to show the progress dialog with a immediate return from onResume,
-    // and then continue the work on main UI thread after the ProgressDialog is
-    // visible. Normally, when we are doing work on background thread we wont
-    // need this
-    // hack to show ProgressDialog.
-    final Runnable action = new Runnable() {
-      public void run() {
-        // For the first Activity, we add activity in onResume (which is
-        // different from rest of the Activities in this application).
-        // This is to show progress dialog with a quick return from onCreate(),
-        // onResume(). If we don't do this we would
-        // see a black screen for 1-2 seconds until controller methods complete
-        // executing.
-        if (!NowPlayingActivity.this.activityAdded) {
-          NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
-          NowPlayingActivity.this.activityAdded = true;
-          refresh();
-        }
-        final String userLocation = NowPlayingControllerWrapper.getUserLocation();
-        if (StringUtilities.isNullOrEmpty(userLocation)) {
-          final Intent intent = new Intent();
-          intent.setClass(NowPlayingActivity.this, SettingsActivity.class);
-          startActivity(intent);
-        }
-      }
-    };
-    final Handler handler = new Handler();
-    if (this.activityAdded) {
-      handler.post(action);
-    } else {
-      handler.postDelayed(action, 800);
-    }
   }
 
-  private void getAlphabet(final Context context) {
-    final String alphabetString = context.getResources().getString(R.string.alphabet);
-    this.alphabet = new String[alphabetString.length()];
-    for (int i = 0; i < this.alphabet.length; i++) {
-      this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
+  private void getAlphabet(Context context) {
+    String alphabetString = context.getResources().getString(R.string.alphabet);
+    alphabet = new String[alphabetString.length()];
+    for (int i = 0; i < alphabet.length; i++) {
+      alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
 
@@ -181,7 +160,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     getAlphabet(NowPlayingActivity.this);
     setContentView(R.layout.moviegrid_anim);
     this.grid = (GridView) findViewById(R.id.grid);
-    final int maxpagecount = (this.movies.size() - 1) / 9;
     this.grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position,
           final long id) {
@@ -196,6 +174,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         rotation.setFillAfter(true);
         rotation.setAnimationListener(new AnimationListener() {
           public void onAnimationEnd(final Animation animation) {
+            Animation slide = AnimationUtils.loadAnimation(NowPlayingActivity.this,
+                R.anim.slide_left);
+            grid.startAnimation(slide);
             NowPlayingActivity.this.grid.setVisibility(View.GONE);
             NowPlayingActivity.this.intent.putExtra("movie",
                 (Parcelable) NowPlayingActivity.this.selectedMovie);
@@ -232,14 +213,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private void populateAlphaMovieSectionsAndPositions() {
     int i = 0;
     String prevLetter = null;
-    final List<String> alphabets = Arrays.asList(this.alphabet);
+    List<String> alphabets = Arrays.asList(this.alphabet);
     for (final Movie movie : this.movies) {
       final String firstLetter = movie.getDisplayTitle().substring(0, 1);
       this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
       if (!firstLetter.equals(prevLetter)) {
         this.alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
-        Log.i("alphaMoviePositionMap", "i=" + i + "alphabetIndex="
-                + alphabets.indexOf(firstLetter));
       }
       prevLetter = firstLetter;
       i++;
@@ -260,7 +239,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     public View getView(final int position, View convertView, final ViewGroup parent) {
       // to findViewById() on each row.
       final ViewHolder holder;
-      final int pagecount = position / 9;
       // When convertView is not null, we can reuse it directly, there is
       // no need to reinflate it. We only inflate a new View when the
       // convertView
@@ -324,28 +302,31 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       notifyDataSetChanged();
     }
 
-    public int getPositionForSection(final int section) {
-      final Integer position = NowPlayingActivity.this.alphaMoviePositionsMap.get(section);
+    @Override
+    public int getPositionForSection(int section) {
+      Integer position = alphaMoviePositionsMap.get(section);
       if (position != null) {
-        NowPlayingActivity.this.lastPosition = position;
+        lastPosition = position;
         return position;
       }
-      return NowPlayingActivity.this.lastPosition;
+      return lastPosition;
     }
 
-    public int getSectionForPosition(final int position) {
-      return NowPlayingActivity.this.alphaMovieSectionsMap.get(position);
+    @Override
+    public int getSectionForPosition(int position) {
+      return alphaMovieSectionsMap.get(position);
     }
 
+    @Override
     public Object[] getSections() {
-      return NowPlayingActivity.this.alphabet;
+      return alphabet;
     }
   }
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.menu_search).setIcon(
-        R.drawable.ic_menu_star);
+        android.R.drawable.ic_menu_search);
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
         R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
@@ -353,7 +334,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
         R.drawable.ic_menu_star);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class))
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }

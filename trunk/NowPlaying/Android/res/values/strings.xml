@@ -20,6 +20,7 @@
     <string name="app_name">Now Playing</string>
     <string name="synopsis">Synopsis</string>
     <string name="options">More Options</string>
+    <string name="noreviews">This review article is not available.</string>
     <!-- Characters that are used for each of the fast-scroll widget that skips directly
         to names starting with this letter.  If your language sorts differently than this,
         please rearrange the alphabet here to be whatever is correct (e.g. Norwegian

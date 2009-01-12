@@ -9,7 +9,6 @@ import android.view.*;
 import android.widget.*;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
-
 import java.util.List;
 
 public class AllReviewsActivity extends ListActivity {
@@ -21,6 +20,7 @@ public class AllReviewsActivity extends ListActivity {
     NowPlayingControllerWrapper.addActivity(this);
     this.reviews = getIntent().getParcelableArrayListExtra("reviews");
     setListAdapter(new ReviewsAdapter(this));
+    
   }
 
   @Override
@@ -30,7 +30,7 @@ public class AllReviewsActivity extends ListActivity {
       final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
       startActivity(intent);
     } else {
-      Toast.makeText(this, "This review article is not available.", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, R.string.noreviews, Toast.LENGTH_SHORT).show();
     }
     super.onListItemClick(l, v, position, id);
   }
@@ -97,7 +97,7 @@ public class AllReviewsActivity extends ListActivity {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
-        android.R.drawable.ic_menu_manage).setIntent(new Intent(this, SettingsActivity.class));
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 }
