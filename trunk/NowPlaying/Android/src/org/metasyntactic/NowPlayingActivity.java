@@ -105,7 +105,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onCreate(savedInstanceState);
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    //  setContentView(R.layout.progressbar_1);
+    // setContentView(R.layout.progressbar_1);
     NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
     final String userLocation = NowPlayingControllerWrapper.getUserLocation();
     if (StringUtilities.isNullOrEmpty(userLocation)) {
@@ -118,7 +118,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     List<Movie> matchingMovies;
     if (this.search != null) {
       matchingMovies = getMatchingMoviesList(search);
-      if (!matchingMovies.isEmpty()) { //&& !this.isGridSetup
+      if (!matchingMovies.isEmpty()) { // && !this.isGridSetup
         this.movies = matchingMovies;
       } else {
         Toast.makeText(this, "No matching movies found", Toast.LENGTH_SHORT).show();
