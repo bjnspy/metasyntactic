@@ -23,34 +23,21 @@
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="64dip">
-                <Button
+                <TextView
+                    android:id="@+id/theater"
                     android:layout_width="wrap_content"
-                    android:layout_height="64dip"
-                    android:layout_marginLeft="8dip"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_menu_allfriends"
-                    android:gravity="center" />
-                <LinearLayout
-                    android:layout_width="0dip"
+                    android:paddingLeft="5px"
+                    android:paddingTop="20px"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_marginRight="4dip"
-                    android:paddingTop="11dip"
-                    android:paddingLeft="4dip">
-                    <TextView
-                        android:id="@+id/theater"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="?android:attr/textColorPrimaryDisableOnly"
-                        android:textStyle="bold"
-                        android:shadowColor="@color/shadow"
-                        android:shadowRadius="2"
-                        android:singleLine="true"
-                        android:ellipsize="end" />
-                </LinearLayout>
+                    android:layout_alignParentLeft="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="?android:attr/textColorPrimaryDisableOnly"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:shadowColor="@color/shadow"
+                    android:shadowRadius="2"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
             </LinearLayout>
             <View
                 android:id="@+id/divider2"
@@ -159,18 +146,18 @@
             android:gravity="center_vertical" />
     </RelativeLayout>
     <TextView
-            android:id="@+id/showtimeslbl"
-            android:layout_below="@id/divider2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:paddingLeft="8dip"
-            android:paddingRight="10dip"
-            android:background="@drawable/dark_header_dithered"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textStyle="bold"
-            android:text="Now Showing"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:id="@+id/showtimeslbl"
+        android:layout_below="@id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dip"
+        android:paddingRight="10dip"
+        android:background="@drawable/dark_header_dithered"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textStyle="bold"
+        android:text="Now Showing"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="1px"
