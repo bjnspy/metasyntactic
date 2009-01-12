@@ -1432,23 +1432,46 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (BOOL) isEnqueued:(Movie*) movie inArray:(NSArray*) array {
-    return [array containsObject:movie];
+- (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue saved:(BOOL) saved {
+    NSArray* array;
+    if (saved) {
+        array = queue.saved;
+    } else {
+        array = queue.movies;
+    }
+    
+    NSInteger index = [array indexOfObject:movie];
+    if (index == NSNotFound) {
+        return @"";
+    }
+    
+    NSString* queueTitle = [self titleForKey:queue.feed.key includeCount:NO];
+    if (saved) {
+        return [NSString stringWithFormat:NSLocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
+    } else {
+        return [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (index + 1), queueTitle];
+    }
 }
 
 
-- (BOOL) isEnqueued:(Movie*) movie inQueue:(Queue*) queue {
-    return
-    [self isEnqueued:movie inArray:queue.movies] ||
-    [self isEnqueued:movie inArray:queue.saved];
+- (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue {
+    NSString* status = @"";
+    if ((status = [self queueStatus:movie inQueue:queue saved:NO]).length > 0 ||
+        (status = [self queueStatus:movie inQueue:queue saved:YES]).length > 0) {
+    }
+    
+    return status;
 }
 
 
-- (BOOL) isEnqueued:(Movie*) movie {
-    return
-    [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache dvdQueueKey]]] ||
-    [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache instantQueueKey]]] ||
-    [self isEnqueued:movie inQueue:[self queueForKey:[NetflixCache atHomeKey]]];
+- (NSString*) queueStatus:(Movie*) movie {
+    NSString* status = @"";
+    if ((status = [self queueStatus:movie inQueue:[self queueForKey:[NetflixCache dvdQueueKey]]]).length > 0 ||
+        (status = [self queueStatus:movie inQueue:[self queueForKey:[NetflixCache instantQueueKey]]]).length > 0 ||
+        (status = [self queueStatus:movie inQueue:[self queueForKey:[NetflixCache atHomeKey]]]).length > 0) {
+    }
+    
+    return status;
 }
 
 

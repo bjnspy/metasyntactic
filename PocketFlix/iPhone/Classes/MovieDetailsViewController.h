@@ -19,8 +19,10 @@
 @interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate> {
 @private
     Movie* movie;
+    
     Movie* netflixMovie;
-
+    NSString* netflixStatus;
+    
     NSString* trailer;
     NSDictionary* websites;
     NSArray* similarMovies;
