@@ -117,7 +117,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if (section == WrittenBySection) {
         return 2;
     } else if (section == MyOtherApplicationsSection) {
-        return 1;
+        return 2;
     } else if (section == GraphicsBySection) {
         return 1;
     } else if (section == ReviewsBySection) {
@@ -232,7 +232,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             cell.text = NSLocalizedString(@"Project website", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
-        cell.text = @"ComiXology";
+        if (row == 0) {
+            cell.text = @"ComiXology";
+        } else {
+            cell.text = @"Your Rights";
+        }
     } else if (section == GraphicsBySection) {
         cell.text = NSLocalizedString(@"Website", nil);
     } else if (section == GeolocationServicesBySection) {
@@ -339,7 +343,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             url = @"http://metasyntactic.googlecode.com";
         }
     } else if (section == MyOtherApplicationsSection) {
-        url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
+        if (row == 0) {
+            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
+        } else {
+            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301494200&mt=8";
+        }
     } else if (section == GraphicsBySection) {
         url = @"http://www.jeffnee.com";
     } else if (section == ReviewsBySection) {

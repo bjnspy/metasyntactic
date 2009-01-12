@@ -17,6 +17,7 @@
 #import "DifferenceEngine.h"
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
+#import "Model.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -104,6 +105,20 @@ static NSString* halfStarString = nil;
 static NSString* starString = nil;
 
 static DifferenceEngine* differenceEngine = nil;
+
+
++ (NSString*) name {
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+}
+
+
++ (NSString*) nameAndVersion {
+    NSString* appName = [self name];
+    NSString* appVersion = [Model version];
+    appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
+    
+    return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
+}
 
 
 + (void) deleteDirectories {
