@@ -12,8 +12,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -43,7 +41,6 @@ public class AllMoviesActivity extends ListActivity {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.moviedetails);
-    
     this.movie = getIntent().getExtras().getParcelable("movie");
     TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
@@ -74,14 +71,12 @@ public class AllMoviesActivity extends ListActivity {
     final Button showtimes = (Button) findViewById(R.id.showtimes);
     showtimes.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
-       final Intent intent = new Intent();
+        final Intent intent = new Intent();
         intent.setClass(AllMoviesActivity.this, ShowtimesActivity.class);
         intent.putExtra("movie", (Parcelable) movie);
         startActivity(intent);
       }
     });
-   
-    
   }
 
   private void populateMovieDetailEntries() {
@@ -181,6 +176,21 @@ public class AllMoviesActivity extends ListActivity {
   }
 
   private class MovieAdapter extends BaseAdapter {
+    @Override
+    public boolean areAllItemsEnabled() {
+      // TODO Auto-generated method stub
+      return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+      // TODO Auto-generated method stub
+      if (position > 4)
+        return true;
+      else
+        return false;
+    }
+
     private final LayoutInflater inflater;
 
     public MovieAdapter() {
@@ -197,9 +207,8 @@ public class AllMoviesActivity extends ListActivity {
       switch (entry.type) {
       case POSTER_SYNOPSIS:
         convertView = this.inflater.inflate(R.layout.moviepostersynopsis, null);
-       
         ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
-         TextView text1 = (TextView) convertView.findViewById(R.id.value1);
+        TextView text1 = (TextView) convertView.findViewById(R.id.value1);
         TextView text2 = (TextView) convertView.findViewById(R.id.value2);
         final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
         if (bytes.length > 0) {
@@ -235,7 +244,7 @@ public class AllMoviesActivity extends ListActivity {
         headerView.setText(entry.name);
         break;
       case ACTION:
-        convertView = this.inflater.inflate(R.layout.dataview, null);
+       convertView = this.inflater.inflate(R.layout.dataview, null);
         final TextView actionView = (TextView) convertView.findViewById(R.id.name);
         actionView.setText(entry.name);
         break;

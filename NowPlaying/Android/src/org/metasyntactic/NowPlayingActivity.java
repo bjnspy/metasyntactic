@@ -8,10 +8,8 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -118,7 +116,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     List<Movie> matchingMovies;
     if (this.search != null) {
       matchingMovies = getMatchingMoviesList(search);
-      if (!matchingMovies.isEmpty()) { // && !this.isGridSetup
+      if (!matchingMovies.isEmpty() && !this.isGridSetup) {
         this.movies = matchingMovies;
       } else {
         Toast.makeText(this, "No matching movies found", Toast.LENGTH_SHORT).show();
