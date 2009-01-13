@@ -182,7 +182,7 @@ public class NowPlayingPreferenceDialog {
     this.positiveButtonListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setStringPreferenceValue(NowPlayingPreferenceDialog.this.textView.getText().toString());
-        Application.refresh(true);
+        context.refresh();
       }
     };
     return this;
