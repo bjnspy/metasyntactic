@@ -4,8 +4,10 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +34,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class SettingsActivity extends ListActivity {
+public class SettingsActivity extends ListActivity implements INowPlaying {
   private List<Theater> theaters;
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
-  private int year;
-  private int month;
-  private int day;
 
   @Override
   public void onCreate(final Bundle savedInstanceState) {
@@ -112,23 +111,17 @@ public class SettingsActivity extends ListActivity {
       final DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(final DatePicker view, final int year, final int monthOfYear,
             final int dayOfMonth) {
-          SettingsActivity.this.year = year;
-          SettingsActivity.this.month = monthOfYear;
-          SettingsActivity.this.day = dayOfMonth;
           final Calendar cal1 = Calendar.getInstance();
-          cal1.set(SettingsActivity.this.year, SettingsActivity.this.month,
-              SettingsActivity.this.day);
+          cal1.set(year, monthOfYear, dayOfMonth);
           NowPlayingControllerWrapper.setSearchDate(cal1.getTime());
-          refresh();
+          SettingsActivity.this.refresh();
         }
       };
       final Date searchDate = NowPlayingControllerWrapper.getSearchDate();
       final Calendar cal = Calendar.getInstance();
       cal.setTime(searchDate);
-      this.year = cal.get(Calendar.YEAR);
-      this.month = cal.get(Calendar.MONTH);
-      this.day = cal.get(Calendar.DAY_OF_MONTH);
-      new DatePickerDialog(this, dateSetListener, this.year, this.month, this.day).show();
+      new DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
+          cal.get(Calendar.DAY_OF_MONTH)).show();
     } else {
       SettingsActivity.this.showDialog(position);
     }
@@ -170,8 +163,7 @@ public class SettingsActivity extends ListActivity {
     settings.setLabel("Search Distance");
     final int distance = NowPlayingControllerWrapper.getSearchDistance();
     // TODO Remove hardcoded values once the controller method for distance
-    // units
-    // is available.
+    // units is available.
     settings.setData(distance + " miles");
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DISTANCE);
     this.detailItems.add(settings);
@@ -228,8 +220,7 @@ public class SettingsActivity extends ListActivity {
         holder.check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
           public void onCheckedChanged(final CompoundButton arg0, final boolean checked) {
             NowPlayingControllerWrapper.setAutoUpdateEnabled(checked);
-            populateSettingsItems();
-            SettingsActivity.this.settingsAdapter.refresh();
+            SettingsActivity.this.refresh();
           }
         });
       }
@@ -308,5 +299,11 @@ public class SettingsActivity extends ListActivity {
   public void refresh() {
     populateSettingsItems();
     this.settingsAdapter.refresh();
+  }
+
+  @Override
+  public Context getContext() {
+    // TODO Auto-generated method stub
+    return this;
   }
 }
