@@ -20,7 +20,6 @@ public class AllReviewsActivity extends ListActivity {
     NowPlayingControllerWrapper.addActivity(this);
     this.reviews = getIntent().getParcelableArrayListExtra("reviews");
     setListAdapter(new ReviewsAdapter(this));
-    
   }
 
   @Override
@@ -68,7 +67,8 @@ public class AllReviewsActivity extends ListActivity {
       holder.author.setText(review.getAuthor());
       holder.source.setText(review.getSource());
       holder.description.setText(review.getText());
-      // todo holder score image set.
+      holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(review.getScore(),
+          NowPlayingControllerWrapper.getScoreType(), AllReviewsActivity.this.getResources()));
       return convertView;
     }
 

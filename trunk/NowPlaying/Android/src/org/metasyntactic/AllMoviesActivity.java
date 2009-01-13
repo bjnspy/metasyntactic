@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -60,6 +61,9 @@ public class AllMoviesActivity extends ListActivity {
         res));
     if (scoreValue != -1) {
       scoreLbl.setText(String.valueOf(scoreValue) + "%");
+    }
+    if (scoreType != ScoreType.RottenTomatoes) {
+      scoreLbl.setTextColor(Color.BLACK);
     }
     TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
     final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
@@ -133,12 +137,10 @@ public class AllMoviesActivity extends ListActivity {
           .getTrailer(AllMoviesActivity.this.movie);
       Intent intent = null;
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
-        
-          intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
-          final MovieDetailEntry entry = new MovieDetailEntry(
-              res.getString(R.string.menu_trailers), null, MovieDetailItemType.ACTION, intent, true);
-          this.movieDetailEntries.add(entry);
-       
+        intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_trailers),
+            null, MovieDetailItemType.ACTION, intent, true);
+        this.movieDetailEntries.add(entry);
       }
     }
     {
@@ -164,7 +166,7 @@ public class AllMoviesActivity extends ListActivity {
       String imdb_url = null;
       imdb_url = NowPlayingControllerWrapper.getIMDbAddress(AllMoviesActivity.this.movie);
       Intent intent = null;
-      if (!StringUtilities.isNullOrEmpty(imdb_url)  && imdb_url.startsWith("http")) {
+      if (!StringUtilities.isNullOrEmpty(imdb_url) && imdb_url.startsWith("http")) {
         intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_imdb),
             null, MovieDetailItemType.ACTION, intent, true);
