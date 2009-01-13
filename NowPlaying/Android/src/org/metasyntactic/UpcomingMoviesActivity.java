@@ -96,7 +96,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       startActivity(intent);
     }
     refresh();
-   
+
   }
 
   @Override
@@ -182,11 +182,10 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     this.intent = new Intent();
     this.intent.setClass(this, AllMoviesActivity.class);
     this.intent.putExtra("Upcoming","yes");
-    		
+
   }
 
   private void populateAlphaMovieSectionsAndPositions() {
-    // TODO Auto-generated method stub
     int i = 0;
     String prevLetter = null;
     final List<String> alphabets = Arrays.asList(this.alphabet);

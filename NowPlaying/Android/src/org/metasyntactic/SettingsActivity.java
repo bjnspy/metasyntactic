@@ -303,7 +303,6 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   public Context getContext() {
-    // TODO Auto-generated method stub
     return this;
   }
 }

@@ -44,16 +44,16 @@ public class AllMoviesActivity extends ListActivity {
     setContentView(R.layout.moviedetails);
     final Bundle extras = getIntent().getExtras();
     this.movie = extras.getParcelable("movie");
-    TextView title = (TextView) findViewById(R.id.title);
+    final TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
-    Button scoreImg = (Button) findViewById(R.id.score);
-    TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
+    final Button scoreImg = (Button) findViewById(R.id.score);
+    final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     if ( !StringUtilities.isNullOrEmpty(extras.getString("Upcoming"))){
       scoreLbl.setVisibility(View.INVISIBLE);
       scoreImg.setVisibility(View.INVISIBLE);
     }
-    
+
     // TextView scoreLabel = (TextView)findViewById(R.id.scoreLabel);
     final Resources res = getResources();
     final Score score = NowPlayingControllerWrapper.getScore(movie);
@@ -71,7 +71,7 @@ public class AllMoviesActivity extends ListActivity {
     if (scoreType != ScoreType.RottenTomatoes) {
       scoreLbl.setTextColor(Color.BLACK);
     }
-    TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
+    final TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
     final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
     final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
     ratingLengthLabel.setText(rating + ". " + length);
@@ -95,7 +95,7 @@ public class AllMoviesActivity extends ListActivity {
     // Add title and synopsis
     {
       final String synopsis = this.movie.getSynopsis();
-      String value;
+      final String value;
       if (!StringUtilities.isNullOrEmpty(synopsis)) {
         value = synopsis;
       } else {
@@ -190,13 +190,11 @@ public class AllMoviesActivity extends ListActivity {
   private class MovieAdapter extends BaseAdapter {
     @Override
     public boolean areAllItemsEnabled() {
-      // TODO Auto-generated method stub
       return false;
     }
 
     @Override
-    public boolean isEnabled(int position) {
-      // TODO Auto-generated method stub
+    public boolean isEnabled(final int position) {
       return AllMoviesActivity.this.movieDetailEntries.get(position).isSelectable();
     }
 
@@ -216,20 +214,20 @@ public class AllMoviesActivity extends ListActivity {
       switch (entry.type) {
       case POSTER_SYNOPSIS:
         convertView = this.inflater.inflate(R.layout.moviepostersynopsis, null);
-        ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
-        TextView text1 = (TextView) convertView.findViewById(R.id.value1);
-        TextView text2 = (TextView) convertView.findViewById(R.id.value2);
+        final ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
+        final TextView text1 = (TextView) convertView.findViewById(R.id.value1);
+        final TextView text2 = (TextView) convertView.findViewById(R.id.value2);
         final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
         if (bytes.length > 0) {
           posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
           posterImage.setBackgroundResource(R.drawable.image_frame);
         }
-        String synopsis = entry.value;
+        final String synopsis = entry.value;
         if (synopsis.length() > 0) {
           // hack to display text on left and bottom or poster
           if (synopsis.length() > 300) {
-            String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(" ", 300));
-            String desc2_text = synopsis.substring(synopsis.lastIndexOf(" ", 300));
+            final String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(" ", 300));
+            final String desc2_text = synopsis.substring(synopsis.lastIndexOf(" ", 300));
             text1.setText(desc1_text);
             text2.setText(desc2_text);
           } else {
@@ -302,7 +300,7 @@ public class AllMoviesActivity extends ListActivity {
     private final boolean selectable;
 
     private MovieDetailEntry(final String name, final String value, final MovieDetailItemType type,
-        final Intent intent, boolean selectable) {
+        final Intent intent, final boolean selectable) {
       this.name = name;
       this.value = value;
       this.type = type;
@@ -329,8 +327,8 @@ public class AllMoviesActivity extends ListActivity {
   }
 
   @Override
-  protected void onListItemClick(ListView l, View v, int position, long id) {
-    Intent intent = movieDetailEntries.get(position).intent;
+  protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
+    final Intent intent = movieDetailEntries.get(position).intent;
     if (intent != null) {
       startActivity(intent);
     }

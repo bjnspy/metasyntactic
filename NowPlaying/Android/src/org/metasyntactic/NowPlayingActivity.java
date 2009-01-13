@@ -42,7 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("unchecked")
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private GridView grid;
   private Intent intent;
@@ -104,18 +103,17 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     // setContentView(R.layout.progressbar_1);
-    NowPlayingControllerWrapper.addActivity(NowPlayingActivity.this);
+    NowPlayingControllerWrapper.addActivity(this);
     final String userLocation = NowPlayingControllerWrapper.getUserLocation();
     if (StringUtilities.isNullOrEmpty(userLocation)) {
       final Intent intent = new Intent();
-      intent.setClass(NowPlayingActivity.this, SettingsActivity.class);
+      intent.setClass(this, SettingsActivity.class);
       startActivity(intent);
     }
     refresh();
     this.search = getIntent().getStringExtra("movie");
-    List<Movie> matchingMovies;
     if (this.search != null) {
-      matchingMovies = getMatchingMoviesList(this.search);
+      final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
       if (!matchingMovies.isEmpty() && !this.isGridSetup) {
         this.movies = matchingMovies;
       } else {
@@ -155,7 +153,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   private void setup() {
-    getAlphabet(NowPlayingActivity.this);
+    getAlphabet(this);
     setContentView(R.layout.moviegrid_anim);
     this.grid = (GridView) findViewById(R.id.grid);
     this.grid.setOnItemClickListener(new OnItemClickListener() {
@@ -229,7 +227,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private class PostersAdapter extends BaseAdapter implements FastScrollGridView.SectionIndexer {
     private final LayoutInflater inflater;
 
-    public PostersAdapter() {
+    private PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(NowPlayingActivity.this);
     }
@@ -352,7 +350,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
     if (item.getItemId() == MovieViewUtilities.MENU_THEATER) {
       final Intent intent = new Intent();
-      intent.setClass(NowPlayingActivity.this, AllTheatersActivity.class);
+      intent.setClass(this, AllTheatersActivity.class);
       startActivity(intent);
       return true;
     }
