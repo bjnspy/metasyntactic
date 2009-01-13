@@ -35,5 +35,6 @@
 
 - (BOOL) isDVDQueue;
 - (BOOL) isInstantQueue;
+- (BOOL) isAtHomeQueue;
 
 @end

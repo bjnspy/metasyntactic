@@ -18,15 +18,15 @@
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
-
+    
     // movies whose details we want to update
     LinkedSet* normalMovies;
     LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
-
+    
     NSCondition* updateDetailsLock;
-
+    
     NSDate* lastQuotaErrorDate;
 }
 
@@ -39,7 +39,7 @@
 - (NSArray*) search:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;
 
-- (BOOL) isEnqueued:(Movie*) movie;
+- (NSString*) queueStatus:(Movie*) movie;
 
 - (void) update;
 

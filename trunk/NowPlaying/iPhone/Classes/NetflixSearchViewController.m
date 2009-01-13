@@ -188,6 +188,11 @@
 }
 
 
+- (void) searchBarSearchButtonClicked:(UISearchBar*) sender {
+    [searchBar resignFirstResponder];
+}
+
+
 - (void) reportResult:(SearchResult*) result {
     NSAssert([NSThread isMainThread], nil);
     [activityIndicatorView stopAnimating];

@@ -814,7 +814,6 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     }
     
     if (![@"ratings_item" isEqual:ratingsItemElment.name]) {
-        NSLog(@"");
         return;
     }
     
@@ -1471,8 +1470,11 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 - (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue {
     NSString* status = @"";
-    if ((status = [self queueStatus:movie inQueue:queue saved:NO]).length > 0 ||
-        (status = [self queueStatus:movie inQueue:queue saved:YES]).length > 0) {
+    
+    if (queue != nil) {
+        if ((status = [self queueStatus:movie inQueue:queue saved:NO]).length > 0 ||
+            (status = [self queueStatus:movie inQueue:queue saved:YES]).length > 0) {
+        }
     }
     
     return status;
