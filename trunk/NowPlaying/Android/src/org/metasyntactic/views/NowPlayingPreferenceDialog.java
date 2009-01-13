@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import org.metasyntactic.Application;
+import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.R;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -23,12 +24,12 @@ public class NowPlayingPreferenceDialog {
   private PreferenceKeys prefKey;
   private int intValue;
   private TextView textView;
-  private final Context context;
+  private final INowPlaying context;
   DialogInterface.OnClickListener positiveButtonListener;
 
   public NowPlayingPreferenceDialog(final Context context) {
     this.builder = new AlertDialog.Builder(context);
-    this.context = context;
+    this.context = (INowPlaying)context;
   }
 
   public Dialog create() {
@@ -52,7 +53,7 @@ public class NowPlayingPreferenceDialog {
   }
 
   public NowPlayingPreferenceDialog setOnItemSelectedListener(final OnItemSelectedListener listener) {
-    this.builder.setOnItemSelectedListener(listener);
+    this.builder.setOnItemSelectedListener(listener);  
     return this;
   }
 
@@ -66,7 +67,7 @@ public class NowPlayingPreferenceDialog {
     this.positiveButtonListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(NowPlayingPreferenceDialog.this.intValue);
-        Application.refresh(true);
+        context.refresh();
       }
     };
     return this;
@@ -82,7 +83,7 @@ public class NowPlayingPreferenceDialog {
     final DialogInterface.OnClickListener listItemListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(Integer.parseInt(distanceValues[which]));
-        Application.refresh(true);
+        context.refresh();
       }
     };
     this.builder.setItems(distanceValues, listItemListener);
