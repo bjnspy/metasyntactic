@@ -218,7 +218,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       Log.i("alphaMovieSectionsMap", "i=" + i + "alphabet=" + firstLetter);
       if (!firstLetter.equals(prevLetter)) {
         this.alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
-        Log.i("alphaMoviePositionMap", "i=" + i + "alphabetIndex="
+        Log
+            .i("alphaMoviePositionMap", "i=" + i + "alphabetIndex="
                 + alphabets.indexOf(firstLetter));
       }
       prevLetter = firstLetter;
@@ -324,7 +325,11 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
 
     public Object[] getSections() {
-      return UpcomingMoviesActivity.this.alphabet;
+      // fast scroll is implemented only for alphabetic sort for release 1.
+      if (NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex() != 0)
+        return UpcomingMoviesActivity.this.alphabet;
+      else
+        return null;
     }
   }
 

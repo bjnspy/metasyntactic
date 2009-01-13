@@ -317,7 +317,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     @Override
     public Object[] getSections() {
-      return alphabet;
+      // fast scroll is implemented only for alphabetic sort for release 1.
+      if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() != 0)
+        return alphabet;
+      else
+        return null;
     }
   }
 
