@@ -28,5 +28,6 @@
     <string name="alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="search">Search</string>
     <string name="search_label">Search Movie</string>
+    <string name="enter_location">Click here and enter location to search for movies.</string>
     <!--  <string name="ratingslengthstr_separator">"."</string>  -->
 </resources>

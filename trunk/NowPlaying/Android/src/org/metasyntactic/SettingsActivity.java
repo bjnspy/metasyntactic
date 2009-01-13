@@ -6,8 +6,8 @@ import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -154,7 +154,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     if (!isNullOrEmpty(location)) {
       settings.setData(location);
     } else {
-      settings.setData("Click here and enter location to search for movies.");
+      final Resources res = SettingsActivity.this.getResources();
+      settings.setData(res.getString(R.string.enter_location));
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.LOCATION);
     this.detailItems.add(settings);
