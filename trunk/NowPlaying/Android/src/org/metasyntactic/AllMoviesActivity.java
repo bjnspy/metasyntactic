@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -26,7 +25,6 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 
-import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -134,17 +132,13 @@ public class AllMoviesActivity extends ListActivity {
       final String trailer_url = NowPlayingControllerWrapper
           .getTrailer(AllMoviesActivity.this.movie);
       Intent intent = null;
-      if (!StringUtilities.isNullOrEmpty(trailer_url)) {
-        try {
-          URL url = new URL(trailer_url);
-          url.getContent();
+      if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
+        
           intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
           final MovieDetailEntry entry = new MovieDetailEntry(
               res.getString(R.string.menu_trailers), null, MovieDetailItemType.ACTION, intent, true);
           this.movieDetailEntries.add(entry);
-        } catch (Exception e) {
-          Log.i("Exception", "Invalid trailer url");
-        }
+       
       }
     }
     {
@@ -170,7 +164,7 @@ public class AllMoviesActivity extends ListActivity {
       String imdb_url = null;
       imdb_url = NowPlayingControllerWrapper.getIMDbAddress(AllMoviesActivity.this.movie);
       Intent intent = null;
-      if (imdb_url != null) {
+      if (!StringUtilities.isNullOrEmpty(imdb_url)  && imdb_url.startsWith("http")) {
         intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_imdb),
             null, MovieDetailItemType.ACTION, intent, true);
