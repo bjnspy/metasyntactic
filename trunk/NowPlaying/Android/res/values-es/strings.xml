@@ -104,7 +104,7 @@
   <string name="release_string">Estreno: %s</string>
   <string name="reviews">Críticas</string>
   <string name="running_time">Duración:</string>
-  <string name="score">Puntaje</string>
+  <string name="score">Crítica</string>
   <string name="search_date">Fecha de búsqueda</string>
   <string name="search_distance">Buscar hasta</string>
   <string name="send_feedback">Enviar comentarios</string>
