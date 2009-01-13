@@ -82,10 +82,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private List<Movie> getMatchingMoviesList(String search2) {
-    String search = search2.toLowerCase();
-    List<Movie> matchingMovies = new ArrayList<Movie>();
-    for (Movie movie : movies) {
+  private List<Movie> getMatchingMoviesList(final String search2) {
+    final String search = search2.toLowerCase();
+    final List<Movie> matchingMovies = new ArrayList<Movie>();
+    for (final Movie movie : this.movies) {
       if (movie.getDisplayTitle().toLowerCase().contains(search)) {
         matchingMovies.add(movie);
       }
@@ -112,10 +112,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       startActivity(intent);
     }
     refresh();
-    this.search = this.getIntent().getStringExtra("movie");
+    this.search = getIntent().getStringExtra("movie");
     List<Movie> matchingMovies;
     if (this.search != null) {
-      matchingMovies = getMatchingMoviesList(search);
+      matchingMovies = getMatchingMoviesList(this.search);
       if (!matchingMovies.isEmpty() && !this.isGridSetup) {
         this.movies = matchingMovies;
       } else {
@@ -146,11 +146,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void getAlphabet(Context context) {
-    String alphabetString = context.getResources().getString(R.string.alphabet);
-    alphabet = new String[alphabetString.length()];
-    for (int i = 0; i < alphabet.length; i++) {
-      alphabet[i] = String.valueOf(alphabetString.charAt(i));
+  private void getAlphabet(final Context context) {
+    final String alphabetString = context.getResources().getString(R.string.alphabet);
+    this.alphabet = new String[alphabetString.length()];
+    for (int i = 0; i < this.alphabet.length; i++) {
+      this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
 
@@ -172,9 +172,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         rotation.setFillAfter(true);
         rotation.setAnimationListener(new AnimationListener() {
           public void onAnimationEnd(final Animation animation) {
-            Animation slide = AnimationUtils.loadAnimation(NowPlayingActivity.this,
+            final Animation slide = AnimationUtils.loadAnimation(NowPlayingActivity.this,
                 R.anim.slide_left);
-            grid.startAnimation(slide);
+            NowPlayingActivity.this.grid.startAnimation(slide);
             NowPlayingActivity.this.grid.setVisibility(View.GONE);
             NowPlayingActivity.this.intent.putExtra("movie",
                 (Parcelable) NowPlayingActivity.this.selectedMovie);
@@ -211,7 +211,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private void populateAlphaMovieSectionsAndPositions() {
     int i = 0;
     String prevLetter = null;
-    List<String> alphabets = Arrays.asList(this.alphabet);
+    final List<String> alphabets = Arrays.asList(this.alphabet);
     for (final Movie movie : this.movies) {
       final String firstLetter = movie.getDisplayTitle().substring(0, 1);
       this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
@@ -300,28 +300,26 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       notifyDataSetChanged();
     }
 
-    @Override
-    public int getPositionForSection(int section) {
-      Integer position = alphaMoviePositionsMap.get(section);
+    public int getPositionForSection(final int section) {
+      final Integer position = NowPlayingActivity.this.alphaMoviePositionsMap.get(section);
       if (position != null) {
-        lastPosition = position;
+        NowPlayingActivity.this.lastPosition = position;
         return position;
       }
-      return lastPosition;
+      return NowPlayingActivity.this.lastPosition;
     }
 
-    @Override
-    public int getSectionForPosition(int position) {
-      return alphaMovieSectionsMap.get(position);
+    public int getSectionForPosition(final int position) {
+      return NowPlayingActivity.this.alphaMovieSectionsMap.get(position);
     }
 
-    @Override
     public Object[] getSections() {
       // fast scroll is implemented only for alphabetic sort for release 1.
-      if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() != 0)
-        return alphabet;
-      else
+      if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() != 0) {
+        return NowPlayingActivity.this.alphabet;
+      } else {
         return null;
+      }
     }
   }
 
