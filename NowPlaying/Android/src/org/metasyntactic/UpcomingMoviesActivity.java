@@ -64,7 +64,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     this.movies = NowPlayingControllerWrapper.getUpcomingMovies();
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
-        .getAllMoviesSelectedSortIndex());
+        .getUpcomingMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
     if (!this.movies.isEmpty() && !this.isGridSetup) {
       setup();
@@ -205,6 +205,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     this.grid.setAdapter(this.postersAdapter);
     this.intent = new Intent();
     this.intent.setClass(this, AllMoviesActivity.class);
+    this.intent.putExtra("Upcoming","yes");
+    		
   }
 
   private void populateAlphaMovieSectionsAndPositions() {
@@ -319,8 +321,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
 
     public int getSectionForPosition(final int position) {
-      Log.i("TEST", "getSectionForPosition" + position + "alphaMovieSectionsMap.get(position)"
-          + UpcomingMoviesActivity.this.alphaMovieSectionsMap.get(position));
       return UpcomingMoviesActivity.this.alphaMovieSectionsMap.get(position);
     }
 

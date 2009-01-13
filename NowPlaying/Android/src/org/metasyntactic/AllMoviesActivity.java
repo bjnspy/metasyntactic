@@ -42,12 +42,18 @@ public class AllMoviesActivity extends ListActivity {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.moviedetails);
-    this.movie = getIntent().getExtras().getParcelable("movie");
+    final Bundle extras = getIntent().getExtras();
+    this.movie = extras.getParcelable("movie");
     TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
     Button scoreImg = (Button) findViewById(R.id.score);
     TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
+    if ( !StringUtilities.isNullOrEmpty(extras.getString("Upcoming"))){
+      scoreLbl.setVisibility(View.INVISIBLE);
+      scoreImg.setVisibility(View.INVISIBLE);
+    }
+    
     // TextView scoreLabel = (TextView)findViewById(R.id.scoreLabel);
     final Resources res = getResources();
     final Score score = NowPlayingControllerWrapper.getScore(movie);
