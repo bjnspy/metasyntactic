@@ -17,6 +17,7 @@
 #import "Feed.h"
 #import "Movie.h"
 #import "NetflixCache.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
 
 @interface Queue()
@@ -39,7 +40,7 @@ property_definition(saved);
     self.etag = nil;
     self.movies = nil;
     self.saved = nil;
-
+    
     [super dealloc];
 }
 
@@ -50,11 +51,11 @@ property_definition(saved);
               saved:(NSArray*) saved_{
     if (self = [super init]) {
         self.feed = feed_;
-        self.etag = [Utilities nonNilString:etag_];
+        self.etag = [StringUtilities nonNilString:etag_];
         self.movies = movies_;
         self.saved = saved_;
     }
-
+    
     return self;
 }
 
@@ -95,6 +96,11 @@ property_definition(saved);
 
 - (BOOL) isInstantQueue {
     return [[NetflixCache instantQueueKey] isEqual:feed.key];
+}
+
+
+- (BOOL) isAtHomeQueue {
+    return [[NetflixCache atHomeKey] isEqual:feed.key];
 }
 
 
