@@ -320,7 +320,9 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         [result addObject:feed.dictionary];
     }
 
-    [FileUtilities writeObject:result toFile:self.feedsFile];
+    if (result.count > 0) {
+        [FileUtilities writeObject:result toFile:self.feedsFile];
+    }
 }
 
 
@@ -736,7 +738,9 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         series = [Movie movieWithDictionary:[FileUtilities readObject:file]];
     } else {
         series = [self downloadMovieWithSeriesKey:seriesKey];
-        [FileUtilities writeObject:series.dictionary toFile:file];
+        if (series != nil) {
+            [FileUtilities writeObject:series.dictionary toFile:file];
+        }
     }
 
     if (series == nil) {
@@ -809,6 +813,11 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         return;
     }
 
+    if (![@"ratings_item" isEqual:ratingsItemElment.name]) {
+        NSLog(@"");
+        return;
+    }
+    
     NSString* userRating = [[ratingsItemElment element:@"user_rating"] text];
     NSString* predictedRating = [[ratingsItemElment element:@"predicted_rating"] text];
 
@@ -942,7 +951,9 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         }
     }
 
-    [FileUtilities writeObject:items toFile:file];
+    if (items.count > 0) {
+        [FileUtilities writeObject:items toFile:file];
+    }
 }
 
 
