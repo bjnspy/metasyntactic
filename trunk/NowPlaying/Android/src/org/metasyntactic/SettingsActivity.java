@@ -61,7 +61,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   @Override
-  protected Dialog onCreateDialog(int id) {
+  protected Dialog onCreateDialog(final int id) {
     Dialog dialog = null;
     switch (id) {
     case 1:
@@ -78,7 +78,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       // The order in which the methods on the NowPlayingPreferenceDialog object
       // are called
       // should not be changed.
-      final String[] distanceValues = this.getResources().getStringArray(
+      final String[] distanceValues = getResources().getStringArray(
           R.array.entries_search_distance_preference);
       dialog = new NowPlayingPreferenceDialog(this).setTitle(this.detailItems.get(2).getLabel())
           .setKey(this.detailItems.get(2).getKey()).setItems(distanceValues).create();
@@ -302,7 +302,6 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     this.settingsAdapter.refresh();
   }
 
-  @Override
   public Context getContext() {
     // TODO Auto-generated method stub
     return this;

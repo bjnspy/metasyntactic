@@ -34,7 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class NowPlayingModel {
-  private final static String VERSION = "7";
+  private final static String VERSION = "8";
   private final static String VERSION_KEY = "VERSION";
   private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -159,17 +159,11 @@ public class NowPlayingModel {
 
   public Date getSearchDate() {
     synchronized (this.preferencesLock) {
-      final String value = this.preferences.getString(SEARCH_DATE_KEY, "");
-      if ("".equals(value)) {
+      final long value = this.preferences.getLong(SEARCH_DATE_KEY, 0);
+      if (0 == value) {
         return DateUtilities.getToday();
       }
-      final DateFormat format = new SimpleDateFormat();
-      Date result;
-      try {
-        result = format.parse(value);
-      } catch (final ParseException e) {
-        throw new RuntimeException(e);
-      }
+      Date result = new Date(value);
       if (result.before(new Date())) {
         result = DateUtilities.getToday();
         setSearchDate(result);
@@ -180,10 +174,8 @@ public class NowPlayingModel {
 
   public void setSearchDate(final Date searchDate) {
     synchronized (this.preferencesLock) {
-      final DateFormat format = new SimpleDateFormat();
-      final String result = format.format(searchDate);
       final SharedPreferences.Editor editor = this.preferences.edit();
-      editor.putString(SEARCH_DATE_KEY, result);
+      editor.putLong(SEARCH_DATE_KEY, searchDate.getTime());
       editor.commit();
     }
     markDataProviderOutOfDate();
