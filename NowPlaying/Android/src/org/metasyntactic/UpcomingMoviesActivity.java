@@ -24,6 +24,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import org.metasyntactic.data.Movie;
@@ -84,10 +85,18 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    setContentView(R.layout.progressbar_1);
+    // setContentView(R.layout.progressbar_1);
+    NowPlayingControllerWrapper.addActivity(UpcomingMoviesActivity.this);
+    final String userLocation = NowPlayingControllerWrapper.getUserLocation();
+    if (StringUtilities.isNullOrEmpty(userLocation)) {
+      final Intent intent = new Intent();
+      intent.setClass(UpcomingMoviesActivity.this, SettingsActivity.class);
+      startActivity(intent);
+    }
+    refresh();
+   
   }
 
   @Override
@@ -107,43 +116,10 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
     registerReceiver(this.broadcastReceiver, new IntentFilter(
         Application.NOW_PLAYING_CHANGED_INTENT));
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
-    }
-    // Hack to show the progress dialog with a immediate return from onResume,
-    // and then continue the work on main UI thread after the ProgressDialog is
-    // visible. Normally, when we are doing work on background thread we wont
-    // need this
-    // hack to show ProgressDialog.
-    final Runnable action = new Runnable() {
-      public void run() {
-        // For the first Activity, we add activity in onResume (which is
-        // different from rest of the Activities in this application).
-        // This is to show progress dialog with a quick return from onCreate(),
-        // onResume(). If we don't do this we would
-        // see a black screen for 1-2 seconds until controller methods complete
-        // executing.
-        if (!UpcomingMoviesActivity.this.activityAdded) {
-          NowPlayingControllerWrapper.addActivity(UpcomingMoviesActivity.this);
-          UpcomingMoviesActivity.this.activityAdded = true;
-          refresh();
-        }
-        final String userLocation = NowPlayingControllerWrapper.getUserLocation();
-        if (StringUtilities.isNullOrEmpty(userLocation)) {
-          final Intent intent = new Intent();
-          intent.setClass(UpcomingMoviesActivity.this, SettingsActivity.class);
-          startActivity(intent);
-        }
-      }
-    };
-    final Handler handler = new Handler();
-    if (this.activityAdded) {
-      handler.post(action);
-    } else {
-      handler.postDelayed(action, 1000);
     }
   }
 
