@@ -469,13 +469,13 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
                                 posterImageView:posterImageView
                                    activityView:posterActivityView];
     }
-    
-    if (row == 1) {
-        return [self createNetflixStatusCell];
-    }
 
-    if (row == 2) {
+    if (row == 1) {
         return [self createNetflixRatingsCell];
+    }
+    
+    if (row == 2) {
+        return [self createNetflixStatusCell];
     }
 
     if (expandedDetails) {
@@ -496,16 +496,16 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     }
     
     if (row == 1) {
-        if (netflixStatus.length > 0) {
-            return self.tableView.rowHeight - 8;
+        if ([self hasNetflixRating]) {
+            return self.tableView.rowHeight;
         } else {
             return 0;
         }
     }
     
     if (row == 2) {
-        if ([self hasNetflixRating]) {
-            return self.tableView.rowHeight;
+        if (netflixStatus.length > 0) {
+            return self.tableView.rowHeight - 8;
         } else {
             return 0;
         }

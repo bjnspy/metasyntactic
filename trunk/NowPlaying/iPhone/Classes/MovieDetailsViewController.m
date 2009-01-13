@@ -671,15 +671,15 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     }
 
     if (row == 1) {
-        return [self createDvdDetailsCell];
+        return [self createNetflixRatingsCell];
     }
     
     if (row == 2) {
         return [self createNetflixStatusCell];
     }
-
+    
     if (row == 3) {
-        return [self createNetflixRatingsCell];
+        return [self createDvdDetailsCell];
     }
 
     if (expandedDetails) {
@@ -698,10 +698,10 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (row == 0) {
         return [MovieOverviewCell heightForMovie:movie model:self.model];
     }
-
+    
     if (row == 1) {
-        if (dvd != nil) {
-            return self.tableView.rowHeight - 14;
+        if ([self hasNetflixRating]) {
+            return self.tableView.rowHeight;
         } else {
             return 0;
         }
@@ -714,10 +714,10 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
             return 0;
         }
     }
-
+    
     if (row == 3) {
-        if ([self hasNetflixRating]) {
-            return self.tableView.rowHeight;
+        if (dvd != nil) {
+            return self.tableView.rowHeight - 14;
         } else {
             return 0;
         }
