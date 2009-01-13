@@ -46,6 +46,11 @@ public class ShowtimesDetailsActivity extends ListActivity {
     setContentView(R.layout.showtimedetails);
     this.movie = getIntent().getExtras().getParcelable("movie");
     this.theater = getIntent().getExtras().getParcelable("theater");
+    populateTheaterDetailItem();
+    final TheaterAdapter theaterAdapter = new TheaterAdapter();
+    setListAdapter(theaterAdapter);
+    final TextView theaterTxt = (TextView) findViewById(R.id.theater);
+    theaterTxt.setText(theater.getName());
   }
 
   @Override
@@ -72,11 +77,6 @@ public class ShowtimesDetailsActivity extends ListActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    populateTheaterDetailItem();
-    final TheaterAdapter theaterAdapter = new TheaterAdapter();
-    setListAdapter(theaterAdapter);
-    final TextView theaterTxt = (TextView) findViewById(R.id.theater);
-    theaterTxt.setText(theater.getName());
   }
 
   private class TheaterAdapter extends BaseAdapter {

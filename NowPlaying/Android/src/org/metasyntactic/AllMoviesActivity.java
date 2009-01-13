@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -25,6 +26,7 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,7 +94,7 @@ public class AllMoviesActivity extends ListActivity {
         value = res.getString(R.string.no_synopsis_available_dot);
       }
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.synopsis), value,
-          MovieDetailItemType.POSTER_SYNOPSIS, null);
+          MovieDetailItemType.POSTER_SYNOPSIS, null, false);
       this.movieDetailEntries.add(entry);
     }
     {
@@ -102,27 +104,29 @@ public class AllMoviesActivity extends ListActivity {
           .getString(R.string.unknown_release_date) : DateFormat.getDateInstance(DateFormat.LONG)
           .format(releaseDate);
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date),
-          releaseDateString, MovieDetailItemType.DATA, null);
+          releaseDateString, MovieDetailItemType.DATA, null, false);
       this.movieDetailEntries.add(entry);
     }
     {
       // Add cast
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast),
           MovieViewUtilities.formatListToString(this.movie.getCast()), MovieDetailItemType.DATA,
-          null);
+          null, false);
       this.movieDetailEntries.add(entry);
     }
     {
       // Add director
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director),
-          MovieViewUtilities.formatListToString(this.movie.getDirectors()),
-          MovieDetailItemType.DATA, null);
-      this.movieDetailEntries.add(entry);
+      final List<String> directors = this.movie.getDirectors();
+      if (directors != null && !directors.isEmpty()) {
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director),
+            MovieViewUtilities.formatListToString(directors), MovieDetailItemType.DATA, null, false);
+        this.movieDetailEntries.add(entry);
+      }
     }
     {
       // Add header
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.options), null,
-          MovieDetailItemType.HEADER, null);
+          MovieDetailItemType.HEADER, null, false);
       this.movieDetailEntries.add(entry);
     }
     {
@@ -131,11 +135,17 @@ public class AllMoviesActivity extends ListActivity {
           .getTrailer(AllMoviesActivity.this.movie);
       Intent intent = null;
       if (!StringUtilities.isNullOrEmpty(trailer_url)) {
-        intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
+        try {
+          URL url = new URL(trailer_url);
+          url.getContent();
+          intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
+          final MovieDetailEntry entry = new MovieDetailEntry(
+              res.getString(R.string.menu_trailers), null, MovieDetailItemType.ACTION, intent, true);
+          this.movieDetailEntries.add(entry);
+        } catch (Exception e) {
+          Log.i("Exception", "Invalid trailer url");
+        }
       }
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_trailers),
-          null, MovieDetailItemType.ACTION, intent);
-      this.movieDetailEntries.add(entry);
     }
     {
       // Add reviews
@@ -146,14 +156,14 @@ public class AllMoviesActivity extends ListActivity {
             .getReviews(AllMoviesActivity.this.movie));
       }
       Intent intent = null;
-      if (reviews.size() > 0) {
+      if (reviews != null && !reviews.isEmpty()) {
         intent = new Intent();
         intent.putParcelableArrayListExtra("reviews", reviews);
         intent.setClass(AllMoviesActivity.this, AllReviewsActivity.class);
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_reviews),
+            null, MovieDetailItemType.ACTION, intent, true);
+        this.movieDetailEntries.add(entry);
       }
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_reviews),
-          null, MovieDetailItemType.ACTION, intent);
-      this.movieDetailEntries.add(entry);
     }
     {
       // Add IMDb link
@@ -162,10 +172,10 @@ public class AllMoviesActivity extends ListActivity {
       Intent intent = null;
       if (imdb_url != null) {
         intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_imdb),
+            null, MovieDetailItemType.ACTION, intent, true);
+        this.movieDetailEntries.add(entry);
       }
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_imdb), null,
-          MovieDetailItemType.ACTION, intent);
-      this.movieDetailEntries.add(entry);
     }
   }
 
@@ -185,10 +195,7 @@ public class AllMoviesActivity extends ListActivity {
     @Override
     public boolean isEnabled(int position) {
       // TODO Auto-generated method stub
-      if (position > 4)
-        return true;
-      else
-        return false;
+      return AllMoviesActivity.this.movieDetailEntries.get(position).isSelectable();
     }
 
     private final LayoutInflater inflater;
@@ -244,7 +251,7 @@ public class AllMoviesActivity extends ListActivity {
         headerView.setText(entry.name);
         break;
       case ACTION:
-       convertView = this.inflater.inflate(R.layout.dataview, null);
+        convertView = this.inflater.inflate(R.layout.dataview, null);
         final TextView actionView = (TextView) convertView.findViewById(R.id.name);
         actionView.setText(entry.name);
         break;
@@ -290,13 +297,19 @@ public class AllMoviesActivity extends ListActivity {
     private final String value;
     private final MovieDetailItemType type;
     private final Intent intent;
+    private final boolean selectable;
 
     private MovieDetailEntry(final String name, final String value, final MovieDetailItemType type,
-        final Intent intent) {
+        final Intent intent, boolean selectable) {
       this.name = name;
       this.value = value;
       this.type = type;
       this.intent = intent;
+      this.selectable = selectable;
+    }
+
+    public boolean isSelectable() {
+      return selectable;
     }
   }
 
