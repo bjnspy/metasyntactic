@@ -28,11 +28,11 @@ public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
   public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
   public final static String host =
-      /*
-      "metaboxoffice6";
-  /*/
-      "metaboxoffice2";
-  //*/
+  /*
+   * "metaboxoffice6"; /
+   */
+  "metaboxoffice2";
+  // */
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
   public static final File dataDirectory = new File(applicationDirectory, "Data");
@@ -52,10 +52,8 @@ public class Application {
   public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
   private static final Pulser pulser;
-
   static {
     createDirectories();
-
     final Runnable runnable = new Runnable() {
       public void run() {
         if (NowPlayingControllerWrapper.isRunning()) {
@@ -70,7 +68,6 @@ public class Application {
   }
 
   private Application() {
-
   }
 
   public static void initialize() {
@@ -79,15 +76,12 @@ public class Application {
   private static List<File> directories() {
     try {
       final List<File> directories = new ArrayList<File>();
-
       for (final Field field : Application.class.getFields()) {
         if (!field.getType().equals(File.class) || root.equals(field.get(null))) {
           continue;
         }
-
         directories.add((File) field.get(null));
       }
-
       return directories;
     } catch (final IllegalAccessException e) {
       throw new RuntimeException(e);
@@ -121,7 +115,6 @@ public class Application {
     if (!item.exists()) {
       return;
     }
-
     if (item.isDirectory()) {
       for (final File child : item.listFiles()) {
         deleteItem(child);
@@ -129,6 +122,7 @@ public class Application {
     } else {
       item.delete();
     }
+
   }
 
   public static boolean useKilometers() {
@@ -149,7 +143,6 @@ public class Application {
       ThreadingUtilities.performOnMainThread(runnable);
       return;
     }
-
     if (force) {
       pulser.forcePulse();
     } else {

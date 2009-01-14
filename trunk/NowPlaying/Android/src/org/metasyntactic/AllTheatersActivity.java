@@ -36,8 +36,6 @@ import java.util.Map;
 
 /** @author mjoshi@google.com (Megha Joshi) */
 public class AllTheatersActivity extends ListActivity implements INowPlaying {
-  public static final int MENU_SORT = 1;
-  public static final int MENU_SETTINGS = 2;
   private int lastPosition;
   private TheatersAdapter adapter;
   private List<Theater> theaters = new ArrayList<Theater>();
@@ -91,7 +89,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   protected void onResume() {
     super.onResume();
-    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.broadcastReceiver, new IntentFilter(
+        Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
   private void setupView() {
@@ -131,9 +130,10 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MENU_SORT, 0, R.string.menu_theater_sort).setIcon(R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_theater_sort).setIcon(
+        R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
@@ -141,13 +141,19 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
-    if (item.getItemId() == MENU_SORT) {
+    if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
           R.string.theaters_select_sort_title).setKey(
           NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT).setEntries(
           R.array.entries_theaters_sort_preference).setPositiveButton(android.R.string.ok)
           .setNegativeButton(android.R.string.cancel);
       builder.show();
+    }
+    if (item.getItemId() == MovieViewUtilities.MENU_MOVIES) {
+      startActivity(new Intent(this, NowPlayingActivity.class));
+    }
+    if (item.getItemId() == MovieViewUtilities.MENU_SETTINGS) {
+      startActivity(new Intent(this, SettingsActivity.class));
     }
     return true;
   }

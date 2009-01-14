@@ -119,7 +119,7 @@ public class MovieViewUtilities {
       if (score >= 60) {
         scoreDrawable = res.getDrawable(R.drawable.fresh);
       } else {
-        scoreDrawable = res.getDrawable(R.drawable.rotten_faded);
+        scoreDrawable = res.getDrawable(R.drawable.rotten_full);
       }
     }
     return scoreDrawable;

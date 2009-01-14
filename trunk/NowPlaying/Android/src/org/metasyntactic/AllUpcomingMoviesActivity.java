@@ -4,26 +4,20 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 
@@ -33,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 /** @author mjoshi@google.com (Megha Joshi) */
-public class AllMoviesActivity extends ListActivity {
+public class AllUpcomingMoviesActivity extends ListActivity {
   /** Called when the activity is first created. */
   private final List<MovieDetailEntry> movieDetailEntries = new ArrayList<MovieDetailEntry>();
   private Movie movie;
@@ -42,7 +36,7 @@ public class AllMoviesActivity extends ListActivity {
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     NowPlayingControllerWrapper.addActivity(this);
-    setContentView(R.layout.moviedetails);
+    setContentView(R.layout.upcomingmoviedetails);
     final Bundle extras = getIntent().getExtras();
     this.movie = extras.getParcelable("movie");
     final Resources res = getResources();
@@ -51,21 +45,6 @@ public class AllMoviesActivity extends ListActivity {
     // Get and set scores text and background image
     Button scoreImg = (Button) findViewById(R.id.score);
     TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
-    final Score score = NowPlayingControllerWrapper.getScore(movie);
-    int scoreValue = -1;
-    if (score != null && !score.getValue().equals("")) {
-      scoreValue = Integer.parseInt(score.getValue());
-    } else {
-    }
-    final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
-    scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType,
-        res));
-    if (scoreValue != -1) {
-      scoreLbl.setText(String.valueOf(scoreValue) + "%");
-    }
-    if (scoreType != ScoreType.RottenTomatoes) {
-      scoreLbl.setTextColor(Color.BLACK);
-    }
     TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
     final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
     final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
@@ -73,19 +52,10 @@ public class AllMoviesActivity extends ListActivity {
     populateMovieDetailEntries();
     final MovieAdapter movieAdapter = new MovieAdapter();
     setListAdapter(movieAdapter);
-    final Button showtimes = (Button) findViewById(R.id.showtimes);
-    showtimes.setOnClickListener(new OnClickListener() {
-      public void onClick(final View arg0) {
-        final Intent intent = new Intent();
-        intent.setClass(AllMoviesActivity.this, ShowtimesActivity.class);
-        intent.putExtra("movie", (Parcelable) movie);
-        startActivity(intent);
-      }
-    });
   }
 
   private void populateMovieDetailEntries() {
-    final Resources res = AllMoviesActivity.this.getResources();
+    final Resources res = AllUpcomingMoviesActivity.this.getResources();
     // TODO move strings to res/strings.xml
     // Add title and synopsis
     {
@@ -135,7 +105,7 @@ public class AllMoviesActivity extends ListActivity {
     {
       // Add trailer
       final String trailer_url = NowPlayingControllerWrapper
-          .getTrailer(AllMoviesActivity.this.movie);
+          .getTrailer(AllUpcomingMoviesActivity.this.movie);
       Intent intent = null;
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
         intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
@@ -148,15 +118,15 @@ public class AllMoviesActivity extends ListActivity {
       // Add reviews
       // doing this as the getReviews() throws NPE instead null return.
       ArrayList<Review> reviews = new ArrayList<Review>();
-      if (NowPlayingControllerWrapper.getScore(AllMoviesActivity.this.movie) != null) {
+      if (NowPlayingControllerWrapper.getScore(AllUpcomingMoviesActivity.this.movie) != null) {
         reviews = new ArrayList<Review>(NowPlayingControllerWrapper
-            .getReviews(AllMoviesActivity.this.movie));
+            .getReviews(AllUpcomingMoviesActivity.this.movie));
       }
       Intent intent = null;
       if (reviews != null && !reviews.isEmpty()) {
         intent = new Intent();
         intent.putParcelableArrayListExtra("reviews", reviews);
-        intent.setClass(AllMoviesActivity.this, AllReviewsActivity.class);
+        intent.setClass(AllUpcomingMoviesActivity.this, AllReviewsActivity.class);
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_reviews),
             null, MovieDetailItemType.ACTION, intent, true);
         this.movieDetailEntries.add(entry);
@@ -165,7 +135,7 @@ public class AllMoviesActivity extends ListActivity {
     {
       // Add IMDb link
       String imdb_url = null;
-      imdb_url = NowPlayingControllerWrapper.getIMDbAddress(AllMoviesActivity.this.movie);
+      imdb_url = NowPlayingControllerWrapper.getIMDbAddress(AllUpcomingMoviesActivity.this.movie);
       Intent intent = null;
       if (!StringUtilities.isNullOrEmpty(imdb_url) && imdb_url.startsWith("http")) {
         intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
@@ -192,14 +162,14 @@ public class AllMoviesActivity extends ListActivity {
     @Override
     public boolean isEnabled(int position) {
       // TODO Auto-generated method stub
-      return AllMoviesActivity.this.movieDetailEntries.get(position).isSelectable();
+      return AllUpcomingMoviesActivity.this.movieDetailEntries.get(position).isSelectable();
     }
 
     private final LayoutInflater inflater;
 
     public MovieAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(AllMoviesActivity.this);
+      this.inflater = LayoutInflater.from(AllUpcomingMoviesActivity.this);
     }
 
     public Object getEntry(final int i) {
@@ -207,7 +177,8 @@ public class AllMoviesActivity extends ListActivity {
     }
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
-      final MovieDetailEntry entry = AllMoviesActivity.this.movieDetailEntries.get(position);
+      final MovieDetailEntry entry = AllUpcomingMoviesActivity.this.movieDetailEntries
+          .get(position);
       switch (entry.type) {
       case POSTER_SYNOPSIS:
         convertView = this.inflater.inflate(R.layout.moviepostersynopsis, null);
@@ -257,7 +228,7 @@ public class AllMoviesActivity extends ListActivity {
     }
 
     public int getCount() {
-      return AllMoviesActivity.this.movieDetailEntries.size();
+      return AllUpcomingMoviesActivity.this.movieDetailEntries.size();
     }
 
     private class MovieViewHolder {
@@ -277,7 +248,7 @@ public class AllMoviesActivity extends ListActivity {
     }
 
     public Object getItem(final int position) {
-      return AllMoviesActivity.this.movieDetailEntries.get(position);
+      return AllUpcomingMoviesActivity.this.movieDetailEntries.get(position);
     }
 
     public long getItemId(final int position) {

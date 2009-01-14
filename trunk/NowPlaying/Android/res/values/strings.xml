@@ -7,12 +7,12 @@
     <string name="menu_theater_sort">Sort Theaters</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_movies">Home</string>
-    <string name="menu_theater">View By Theaters</string>
+    <string name="menu_theater">Theaters</string>
     <string name="menu_trailers">Watch Trailer</string>
     <string name="menu_imdb">Visit IMDb</string>
     <string name="menu_reviews">Read Reviews</string>
     <string name="menu_showtimes">Get Showtimes</string>
-    <string name="menu_upcoming">Upcoming Movies</string>
+    <string name="menu_upcoming">Upcoming</string>
     <string name="menu_search">Search Movie</string>
     <string name="location">Location</string>
     <string name="movies_select_sort_title">Sort Movies by</string>
