@@ -126,9 +126,9 @@ public class Application {
       for (final File child : item.listFiles()) {
         deleteItem(child);
       }
+    } else {
+      item.delete();
     }
-
-    item.delete();
   }
 
   public static boolean useKilometers() {
