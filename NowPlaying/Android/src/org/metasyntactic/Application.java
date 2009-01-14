@@ -96,7 +96,7 @@ public class Application {
   private static void createDirectories() {
     final long start = System.currentTimeMillis();
     for (final File file : directories()) {
-      file.mkdirs();
+      final boolean success = file.mkdirs();
     }
     LogUtilities.logTime(Application.class, "Create Directories", start);
   }

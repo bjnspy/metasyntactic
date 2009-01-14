@@ -15,6 +15,8 @@ package org.metasyntactic.providers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Debug;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
 import org.metasyntactic.Application;
@@ -54,6 +56,7 @@ public class DataProvider {
     final List<Movie> movies = getMovies();
     final List<Theater> theaters = getTheaters();
 
+    //Debug.startMethodTracing("Updating provider");
     final Runnable runnable = new Runnable() {
       public void run() {
         updateBackgroundEntryPoint(movies, theaters);
@@ -81,6 +84,7 @@ public class DataProvider {
   private void updateBackgroundEntryPoint(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
     updateBackgroundEntryPointWorker(currentMovies, currentTheaters);
 
+    //Debug.stopMethodTracing();
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
         final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
