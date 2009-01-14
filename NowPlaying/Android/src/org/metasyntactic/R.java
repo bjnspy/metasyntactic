@@ -13,14 +13,15 @@ public final class R {
         public static final int fade=0x7f040001;
         public static final int fade_gallery_item=0x7f040002;
         public static final int fade_reverse=0x7f040003;
-        public static final int layout_animation_row_right_slide=0x7f040004;
-        public static final int layout_bottom_to_top_slide=0x7f040005;
-        public static final int layout_grid_fade=0x7f040006;
-        public static final int layout_top_to_bottom_slide=0x7f040007;
-        public static final int slide_left=0x7f040008;
-        public static final int slide_right=0x7f040009;
-        public static final int slide_top_to_bottom=0x7f04000a;
-        public static final int wave_scale=0x7f04000b;
+        public static final int layout_animation_row_left_slide=0x7f040004;
+        public static final int layout_animation_row_right_slide=0x7f040005;
+        public static final int layout_bottom_to_top_slide=0x7f040006;
+        public static final int layout_grid_fade=0x7f040007;
+        public static final int layout_top_to_bottom_slide=0x7f040008;
+        public static final int slide_left=0x7f040009;
+        public static final int slide_right=0x7f04000a;
+        public static final int slide_top_to_bottom=0x7f04000b;
+        public static final int wave_scale=0x7f04000c;
     }
     public static final class array {
         /**  Used in auto update location preferences 
@@ -57,7 +58,7 @@ public final class R {
         public static final int view_background=0x7f060006;
     }
     public static final class drawable {
-        public static final int alternate_background=0x7f020037;
+        public static final int alternate_background=0x7f020038;
         public static final int arrow_down=0x7f020000;
         public static final int arrow_down_default=0x7f020001;
         public static final int arrow_down_press=0x7f020002;
@@ -102,7 +103,7 @@ public final class R {
         public static final int rating_yellow=0x7f020029;
         public static final int rotten_faded=0x7f02002a;
         public static final int rotten_full=0x7f02002b;
-        public static final int screen_background_orange=0x7f020036;
+        public static final int screen_background_orange=0x7f020037;
         public static final int scrollbar_handle_accelerated_anim2=0x7f02002c;
         public static final int shape_1=0x7f02002d;
         public static final int shape_5=0x7f02002e;
@@ -110,67 +111,69 @@ public final class R {
         public static final int sym_action_email=0x7f020030;
         public static final int sym_action_map=0x7f020031;
         public static final int theatres=0x7f020032;
-        public static final int transparent_background=0x7f020038;
+        public static final int transparent_background=0x7f020039;
         public static final int up=0x7f020033;
         public static final int up_1=0x7f020034;
         public static final int upcoming=0x7f020035;
+        public static final int upcoming2=0x7f020036;
     }
     public static final class id {
-        public static final int address=0x7f080035;
-        public static final int author=0x7f08001c;
-        public static final int cast=0x7f080015;
-        public static final int castlbl=0x7f080014;
-        public static final int check=0x7f080027;
-        public static final int data=0x7f080025;
-        public static final int desc=0x7f08001e;
-        public static final int detail=0x7f080017;
-        public static final int details=0x7f080018;
+        public static final int address=0x7f080036;
+        public static final int author=0x7f08001d;
+        public static final int bottom_bar=0x7f080008;
+        public static final int cast=0x7f080016;
+        public static final int castlbl=0x7f080015;
+        public static final int check=0x7f080028;
+        public static final int data=0x7f080026;
+        public static final int desc=0x7f08001f;
+        public static final int detail=0x7f080018;
+        public static final int details=0x7f080019;
         public static final int dialogEdit=0x7f080000;
-        public static final int divider=0x7f080009;
+        public static final int divider=0x7f08000a;
         public static final int divider2=0x7f080007;
-        public static final int divider3=0x7f08002b;
-        public static final int divider4=0x7f08002e;
-        public static final int divider5=0x7f080030;
-        public static final int droid=0x7f08001a;
-        public static final int genre=0x7f080013;
-        public static final int genrelbl=0x7f080012;
-        public static final int grid=0x7f08000b;
+        public static final int divider3=0x7f08002c;
+        public static final int divider4=0x7f08002f;
+        public static final int divider5=0x7f080031;
+        public static final int droid=0x7f08001b;
+        public static final int genre=0x7f080014;
+        public static final int genrelbl=0x7f080013;
+        public static final int grid=0x7f08000c;
         public static final int header=0x7f080002;
-        public static final int icon=0x7f080026;
-        public static final int label=0x7f080024;
-        public static final int length=0x7f080011;
-        public static final int linearLayout=0x7f080019;
-        public static final int map=0x7f08002c;
-        public static final int mapicon=0x7f08002d;
-        public static final int maplbl=0x7f08002a;
-        public static final int movie=0x7f080029;
+        public static final int icon=0x7f080027;
+        public static final int label=0x7f080025;
+        public static final int length=0x7f080012;
+        public static final int linearLayout=0x7f08001a;
+        public static final int map=0x7f08002d;
+        public static final int mapicon=0x7f08002e;
+        public static final int maplbl=0x7f08002b;
+        public static final int movie=0x7f08002a;
         public static final int name=0x7f080001;
-        public static final int next=0x7f080023;
-        public static final int phone=0x7f080031;
-        public static final int phoneicon=0x7f080032;
-        public static final int phonelbl=0x7f08002f;
-        public static final int poster=0x7f08000c;
-        public static final int progress_horizontal=0x7f08001b;
-        public static final int rating=0x7f080010;
+        public static final int next=0x7f080024;
+        public static final int phone=0x7f080032;
+        public static final int phoneicon=0x7f080033;
+        public static final int phonelbl=0x7f080030;
+        public static final int poster=0x7f08000d;
+        public static final int progress_horizontal=0x7f08001c;
+        public static final int rating=0x7f080011;
         public static final int ratingLength=0x7f080006;
-        public static final int resultList=0x7f080034;
+        public static final int resultList=0x7f080035;
         public static final int score=0x7f080003;
-        public static final int scoreLabel=0x7f08000f;
+        public static final int scoreLabel=0x7f080010;
         public static final int scorelbl=0x7f080004;
-        public static final int search_bar=0x7f08001f;
-        public static final int search_edit_frame=0x7f080020;
-        public static final int search_go_btn=0x7f080022;
-        public static final int search_src_text=0x7f080021;
-        public static final int showtimes=0x7f080008;
-        public static final int showtimeslbl=0x7f080033;
-        public static final int source=0x7f08001d;
-        public static final int surface_view=0x7f080036;
-        public static final int theater=0x7f080028;
-        public static final int thumbnails=0x7f080016;
+        public static final int search_bar=0x7f080020;
+        public static final int search_edit_frame=0x7f080021;
+        public static final int search_go_btn=0x7f080023;
+        public static final int search_src_text=0x7f080022;
+        public static final int showtimes=0x7f080009;
+        public static final int showtimeslbl=0x7f080034;
+        public static final int source=0x7f08001e;
+        public static final int surface_view=0x7f080037;
+        public static final int theater=0x7f080029;
+        public static final int thumbnails=0x7f080017;
         public static final int title=0x7f080005;
-        public static final int value=0x7f08000a;
-        public static final int value1=0x7f08000d;
-        public static final int value2=0x7f08000e;
+        public static final int value=0x7f08000b;
+        public static final int value1=0x7f08000e;
+        public static final int value2=0x7f08000f;
     }
     public static final class layout {
         public static final int alert_dialog_text_entry=0x7f030000;
@@ -198,7 +201,8 @@ public final class R {
         public static final int theaterlist=0x7f030016;
         public static final int theaters_movie=0x7f030017;
         public static final int theaterview=0x7f030018;
-        public static final int videoview=0x7f030019;
+        public static final int upcomingmoviedetails=0x7f030019;
+        public static final int videoview=0x7f03001a;
     }
     public static final class string {
         /** About

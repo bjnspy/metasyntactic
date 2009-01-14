@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,7 +59,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      refresh();
+      refresh();      
+    }
+  };
+  
+  private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
+      setup();     
     }
   };
 
@@ -102,7 +110,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onCreate(savedInstanceState);
     // Request the progress bar to be shown in the title
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    // setContentView(R.layout.progressbar_1);
+    setContentView(R.layout.progressbar_1);
     NowPlayingControllerWrapper.addActivity(this);
     final String userLocation = NowPlayingControllerWrapper.getUserLocation();
     if (StringUtilities.isNullOrEmpty(userLocation)) {
@@ -139,6 +147,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onResume();
     registerReceiver(this.broadcastReceiver, new IntentFilter(
         Application.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.databroadcastReceiver, new IntentFilter(
+        Application.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }
