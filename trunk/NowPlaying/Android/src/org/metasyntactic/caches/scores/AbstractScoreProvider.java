@@ -70,7 +70,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   protected abstract String getProviderName();
 
   protected NowPlayingModel getModel() {
-    return model;
+    return this.model;
   }
 
   private File scoresFile() {
@@ -453,10 +453,14 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
     ensureMovieMap(movies);
     final String title = getMovieMap().get(movie.getCanonicalTitle());
+    if (isNullOrEmpty(title)) {
+      return Collections.emptyList();
+    }
+
     return FileUtilities.readPersistableList(Review.reader, reviewsFile(title));
   }
 
   @Override protected List<File> getCacheDirectories() {
-    return Collections.singletonList(reviewsDirectory);
+    return Collections.singletonList(this.reviewsDirectory);
   }
 }
