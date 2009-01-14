@@ -185,7 +185,7 @@ public final class CodedInputStream {
    */
   public String readString() throws IOException {
     final int size = readRawVarint32();
-    if (size < this.bufferSize - this.bufferPos && size > 0) {
+    if (size <= this.bufferSize - this.bufferPos && size > 0) {
       // Fast path:  We already have the bytes in a contiguous buffer, so
       //   just copy directly from it.
       final String result = new String(this.buffer, this.bufferPos, size, "UTF-8");
