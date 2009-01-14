@@ -56,6 +56,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
   private String[] alphabet;
+  private String[] score;
+  
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -66,7 +68,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      setup();     
+      if (!NowPlayingActivity.this.isGridSetup) {
+      setup();
+      }
     }
   };
 
@@ -79,11 +83,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
-    if (!this.movies.isEmpty() && !this.isGridSetup) {
-      setup();
-      // set isGridSetup, so that grid is not recreated on every refresh.
-      this.isGridSetup = true;
-    }
+    
     if (this.postersAdapter != null && this.gridAnimationEnded) {
       this.postersAdapter.refreshMovies();
     }
@@ -119,6 +119,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       startActivity(intent);
     }
     refresh();
+    if (movies != null && !movies.isEmpty()) {
+      setup();
+      isGridSetup = true;
+    }
     this.search = getIntent().getStringExtra("movie");
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
@@ -161,9 +165,17 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
+  
+  private void getScores(final Context context) {
+    this.score = new String[11];
+    for (int index = 0, i = 100; i > 0; index++, i-=10) {
+      this.score[index] = i + "%";      
+    }
+  }
 
   private void setup() {
     getAlphabet(this);
+    getScores(this);
     setContentView(R.layout.moviegrid_anim);
     this.grid = (GridView) findViewById(R.id.grid);
     this.grid.setOnItemClickListener(new OnItemClickListener() {
