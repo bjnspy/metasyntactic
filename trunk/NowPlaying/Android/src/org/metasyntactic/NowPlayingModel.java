@@ -34,7 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class NowPlayingModel {
-  private final static String VERSION = "8";
+  private final static String VERSION = "9";
   private final static String VERSION_KEY = "VERSION";
   private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -94,7 +94,7 @@ public class NowPlayingModel {
   }
 
   public void startup() {
-    update();
+    //update();
   }
 
   public void shutdown() {
