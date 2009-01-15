@@ -96,10 +96,12 @@ public class PosterCache extends AbstractCache {
       return data;
     }
 
+    /*
     data = ImdbPosterDownloader.download(movie);
     if (data != null) {
       return data;
     }
+    */
 
     model.getLargePosterCache().downloadFirstPoster(movie);
 
