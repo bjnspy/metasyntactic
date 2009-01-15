@@ -609,7 +609,7 @@ public class DataProvider {
 
     start = System.currentTimeMillis();
     FileUtilities.writeStringToDateMap(result.synchronizationData, getSynchronizationFile());
-    LogUtilities.logTime(DataProvider.class, "Saving Theaters", start);
+    LogUtilities.logTime(DataProvider.class, "Saving Sync Data", start);
 
     start = System.currentTimeMillis();
     final File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());

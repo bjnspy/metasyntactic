@@ -22,6 +22,10 @@ public class CollectionUtilities {
   private CollectionUtilities() {
   }
 
+  public static int size(final byte[] collection) {
+    return collection == null ? 0 : collection.length;
+  }
+
   public static <T> int size(final Collection<T> collection) {
     return collection == null ? 0 : collection.size();
   }

@@ -83,7 +83,7 @@ public class LargePosterCache extends AbstractCache {
 
       final String movie = columns[0];
       final List<String> posters = Arrays.asList(columns).subList(1, columns.length);
-      index.put(movie, posters);
+      index.put(movie.toLowerCase(), posters);
     }
 
     if (!index.isEmpty()) {
@@ -137,7 +137,7 @@ public class LargePosterCache extends AbstractCache {
 
       final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
       for (final String key : index.keySet()) {
-        if (EditDistance.substringSimilar(key.toLowerCase(), lowercaseTitle)) {
+        if (EditDistance.substringSimilar(key, lowercaseTitle)) {
           return index.get(key);
         }
       }

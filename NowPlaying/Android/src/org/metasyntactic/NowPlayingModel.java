@@ -27,6 +27,7 @@ import org.metasyntactic.data.*;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import static org.metasyntactic.utilities.CollectionUtilities.size;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -34,7 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class NowPlayingModel {
-  private final static String VERSION = "10";
+  private final static String VERSION = "11";
   private final static String VERSION_KEY = "VERSION";
   private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -313,15 +314,15 @@ public class NowPlayingModel {
 
   public byte[] getPoster(final Movie movie) {
     byte[] bytes = this.posterCache.getPoster(movie);
-    if (bytes != null) {
+    if (size(bytes) > 0) {
       return bytes;
     }
     bytes = UpcomingCache.getPoster(movie);
-    if (bytes != null) {
+    if (size(bytes) > 0) {
       return bytes;
     }
     bytes = this.largePosterCache.getPoster(movie);
-    if (bytes != null) {
+    if (size(bytes) > 0) {
       return bytes;
     }
     return EMPTY_BYTES;
