@@ -117,7 +117,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if (section == WrittenBySection) {
         return 2;
     } else if (section == MyOtherApplicationsSection) {
-        return 2;
+        return 3;
     } else if (section == GraphicsBySection) {
         return 1;
     } else if (section == ReviewsBySection) {
@@ -234,6 +234,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
             cell.text = @"ComiXology";
+        } else if (row == 1) {
+            cell.text = @"PocketFlix";
         } else {
             cell.text = @"Your Rights";
         }
@@ -345,6 +347,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
             url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
+        } else if (row == 1) {
+            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301386724&mt=8";
         } else {
             url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301494200&mt=8";
         }
