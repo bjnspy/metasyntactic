@@ -18,6 +18,7 @@
 #import "AlertUtilities.h"
 #import "ImageCache.h"
 #import "Feed.h"
+#import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "Model.h"
@@ -183,6 +184,10 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    if (!self.isEditable) {
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    }
+
     self.tableView.rowHeight = 100;
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];

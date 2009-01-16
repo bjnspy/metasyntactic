@@ -14,22 +14,24 @@
 
 #import "AbstractDetailsViewController.h"
 #import "NetflixAddMovieDelegate.h"
+#import "NetflixModifyQueueDelegate.h"
+#import "NetflixMoveMovieDelegate.h"
 #import "TappableImageViewDelegate.h"
 
-@interface MovieDetailsViewController : AbstractDetailsViewController<TappableImageViewDelegate, NetflixAddMovieDelegate, UIActionSheetDelegate> {
+@interface MovieDetailsViewController : AbstractDetailsViewController<UIActionSheetDelegate, TappableImageViewDelegate, NetflixAddMovieDelegate, NetflixModifyQueueDelegate, NetflixMoveMovieDelegate> {
 @private
     Movie* movie;
-    
+
     Movie* netflixMovie;
-    NSString* netflixStatus;
-    
+    BOOL isEnqueued;
+    NetflixRatingsCell* netflixRatingsCell;
+    NSArray* netflixStatusCells;
+
     NSString* trailer;
     NSDictionary* websites;
-    NSArray* similarMovies;
 
     ActionsView* actionsView;
     UIButton* bookmarkButton;
-    NetflixRatingsCell* netflixRatingsCell;
 
     BOOL expandedDetails;
     BOOL shutdown;

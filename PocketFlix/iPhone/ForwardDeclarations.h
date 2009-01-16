@@ -63,6 +63,7 @@
 @class NetflixRatingsCell;
 @class NetflixSearchEngine;
 @class NetflixSearchViewController;
+@class NetflixStatusCell;
 @class NetflixViewController;
 @class NetworkUtilities;
 @class NonClippingView;
@@ -82,6 +83,7 @@
 @class SearchRequest;
 @class SearchResult;
 @class SettingCell;
+@class Status;
 @class TappableImageView;
 @class TappableLabel;
 @class TappableScrollView;

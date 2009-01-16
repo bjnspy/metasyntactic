@@ -230,7 +230,7 @@
     if (section == 0) {
         return NSLocalizedString(@"ACLU Information", nil);
     } else {
-        return NSLocalizedString(@"Encountering Law Enforment", nil);
+        return NSLocalizedString(@"Encountering Law Enforcement", nil);
     }
 
     return nil;

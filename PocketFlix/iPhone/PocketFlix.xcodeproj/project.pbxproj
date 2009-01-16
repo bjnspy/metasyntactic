@@ -189,6 +189,9 @@
 		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
 		74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
+		74F427D60F1FC69D002EECC5 /* DeleteMovie.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F427D50F1FC69D002EECC5 /* DeleteMovie.png */; };
+		74F4280D0F1FC995002EECC5 /* NetflixStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F4280C0F1FC995002EECC5 /* NetflixStatusCell.m */; };
+		74F4292D0F200E60002EECC5 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F4292C0F200E60002EECC5 /* Status.m */; };
 		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
 		74F94FCA0E6BC98800075068 /* CurrentPosition.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA40E6BC98800075068 /* CurrentPosition.png */; };
 		74F94FCB0E6BC98800075068 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F94FA50E6BC98800075068 /* Default.png */; };
@@ -569,6 +572,11 @@
 		74F187200E2710A400AB5E1E /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
 		74F187210E2710A400AB5E1E /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
 		74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		74F427D50F1FC69D002EECC5 /* DeleteMovie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeleteMovie.png; path = Resources/DeleteMovie.png; sourceTree = "<group>"; };
+		74F4280B0F1FC995002EECC5 /* NetflixStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStatusCell.h; sourceTree = "<group>"; };
+		74F4280C0F1FC995002EECC5 /* NetflixStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStatusCell.m; sourceTree = "<group>"; };
+		74F4292B0F200E60002EECC5 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		74F4292C0F200E60002EECC5 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
 		74F94FA40E6BC98800075068 /* CurrentPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CurrentPosition.png; path = Resources/CurrentPosition.png; sourceTree = "<group>"; };
@@ -692,6 +700,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74F427D50F1FC69D002EECC5 /* DeleteMovie.png */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
 				746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */,
 				746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */,
@@ -918,6 +927,8 @@
 				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
 				74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */,
 				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
+				74F4280B0F1FC995002EECC5 /* NetflixStatusCell.h */,
+				74F4280C0F1FC995002EECC5 /* NetflixStatusCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1080,6 +1091,8 @@
 				74A33E530F034C4100E5450A /* MutableNetflixCache.m */,
 				747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */,
 				747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */,
+				74F4292B0F200E60002EECC5 /* Status.h */,
+				74F4292C0F200E60002EECC5 /* Status.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
@@ -1389,6 +1402,7 @@
 				74DD8A980F0ECFDD009DC326 /* NetflixSettings.png in Resources */,
 				741EFEEC0F0F214C002FD93B /* NetflixCredits.png in Resources */,
 				7406A6EE0F101DF400795555 /* NetflixMostPopular.png in Resources */,
+				74F427D60F1FC69D002EECC5 /* DeleteMovie.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1512,6 +1526,8 @@
 				74616EBE0F15DDDF0004B610 /* NetworkUtilities.m in Sources */,
 				74616EBF0F15DDDF0004B610 /* Pulser.m in Sources */,
 				74E00ED20F19440E00C8B9D1 /* Utilities.m in Sources */,
+				74F4280D0F1FC995002EECC5 /* NetflixStatusCell.m in Sources */,
+				74F4292D0F200E60002EECC5 /* Status.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1607,8 +1623,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "AD5458AE-F598-4DA3-A317-DB4020C9CDC7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD5458AE-F598-4DA3-A317-DB4020C9CDC7";
+				PROVISIONING_PROFILE = "D1F468CD-B370-435F-AAC4-1C0A594285BD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D1F468CD-B370-435F-AAC4-1C0A594285BD";
 				SDKROOT = iphoneos2.1;
 			};
 			name = AdHoc;
