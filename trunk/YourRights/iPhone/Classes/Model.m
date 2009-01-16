@@ -32,7 +32,7 @@ static NSArray* links;
 static NSArray* toughQuestions;
 static NSArray* toughAnswers;
 
-static NSString* currentVersion = @"1.0";
+static NSString* currentVersion = @"1.1";
 
 + (void) setupToughQuestions {
     toughQuestions =

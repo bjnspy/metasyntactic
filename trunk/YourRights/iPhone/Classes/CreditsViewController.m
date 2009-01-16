@@ -70,7 +70,7 @@ typedef enum {
     if (section == WrittenBySection) {
         return 2;
     } else if (section == MyOtherApplicationsSection) {
-        return 2;
+        return 3;
     } else if (section == InformationProvidedBySection) {
         return 1;
     } else if (section == LicenseSection) {
@@ -98,8 +98,10 @@ typedef enum {
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
             cell.text = @"Now Playing";
-        } else {
+        } else if (row == 1) {
             cell.text = @"ComiXology";
+        } else {
+            cell.text = @"PocketFlix";
         }
     } else if (section == InformationProvidedBySection) {
         cell.text = NSLocalizedString(@"American Civil Liberties Union", nil);
@@ -194,8 +196,10 @@ typedef enum {
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
             address = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
-        } else {
+        } else if (row == 1) {
             address = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
+        } else {
+            address = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301386724&mt=8";
         }
     } else if (section == InformationProvidedBySection) {
         address = @"http://www.aclu.org";
