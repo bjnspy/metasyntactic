@@ -143,13 +143,11 @@
     NSString* message = [[element element:@"message"] text];
     if (message.length > 0) {
         return message;
+    } else if (element == nil) {
+        NSLog(@"Could not parse Netflix result.", nil);
+        return NSLocalizedString(@"Could not connect to Netflix.", nil);
     } else {
-        if (element == nil) {
-            NSLog(@"Could not parse Netflix result.", nil);
-        } else {
-            NSLog(@"Netflix response had no 'message' element", nil);
-        }
-
+        NSLog(@"Netflix response had no 'message' element", nil);
         return NSLocalizedString(@"An unknown error occurred.", nil);
     }
 }
@@ -178,11 +176,7 @@
                                                               important:YES];
 
     [self checkApiResult:element];
-    if (element == nil) {
-        *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
-        return nil;
-    }
-
+ 
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         *error = [self extractErrorMessage:element];
@@ -258,6 +252,17 @@
                                   argument:arguments
                                       gate:gate
                                    visible:YES];
+}
+
+
+- (void) updateQueue:(Queue*) queue
+     byDeletingMovie:(Movie*) movie
+            delegate:(id<NetflixModifyQueueDelegate>) delegate {
+    [self updateQueue:queue
+     byDeletingMovies:[IdentitySet setWithObject:movie]
+  andReorderingMovies:[IdentitySet set]
+                   to:[NSArray array]
+             delegate:delegate];
 }
 
 
@@ -348,7 +353,7 @@
     if (element == nil) {
         // we failed.  restore the rating to its original value
         NSLog(@"Couldn't parse Netflix response.", nil);
-        return NSLocalizedString(@"An unknown error occurred.", nil);
+        return NSLocalizedString(@"Could not connect to Netflix.", nil);
     }
 
     XmlElement* ratingsItemElement = [element element:@"ratings_item"];
@@ -431,10 +436,6 @@
                         position:(NSInteger) position
                            error:(NSString**) error {
     *error = nil;
-    if (element == nil) {
-        *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
-        return nil;
-    }
 
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
@@ -532,7 +533,7 @@
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-
+    
     [self checkApiResult:element];
 
     NSInteger status = [[[element element:@"status_code"] text] intValue];

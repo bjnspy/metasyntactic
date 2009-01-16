@@ -53,6 +53,13 @@
 }
 
 
++ (IdentitySet*) setWithObject:(id) object {
+    IdentitySet* set = [[[IdentitySet alloc] init] autorelease];
+    [set addObject:object];
+    return set;  
+}
+
+
 - (void) addObject:(id) value {
     [set addObject:[IdentityObject objectWithValue:value]];
 }

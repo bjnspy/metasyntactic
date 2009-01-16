@@ -130,7 +130,7 @@
     self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:NSLocalizedString(@"Open and Authorize", nil) forState:UIControlStateNormal];
     [button setTitle:NSLocalizedString(@"Please wait...", nil) forState:UIControlStateDisabled];
-    
+
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
     UIImage* image = [[UIImage imageNamed:@"BlackButton.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];

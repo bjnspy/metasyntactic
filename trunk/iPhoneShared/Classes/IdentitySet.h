@@ -18,6 +18,7 @@
 }
 
 + (IdentitySet*) set;
++ (IdentitySet*) setWithObject:(id) object;
 + (IdentitySet*) setWithArray:(NSArray*) values;
 
 - (void) addObject:(id) value;
