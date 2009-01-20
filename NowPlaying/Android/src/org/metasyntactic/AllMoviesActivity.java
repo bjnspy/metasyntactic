@@ -216,7 +216,12 @@ public class AllMoviesActivity extends ListActivity {
         TextView text2 = (TextView) convertView.findViewById(R.id.value2);
         final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
         if (bytes.length > 0) {
-          posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+          BitmapFactory.Options options = new BitmapFactory.Options();
+          options.inJustDecodeBounds = false;
+          options.outWidth = 130;
+          options.outHeight = 210;
+          posterImage
+              .setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options));
           posterImage.setBackgroundResource(R.drawable.image_frame);
         }
         String synopsis = entry.value;
