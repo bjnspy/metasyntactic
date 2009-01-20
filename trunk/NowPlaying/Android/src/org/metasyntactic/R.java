@@ -13,14 +13,15 @@ public final class R {
         public static final int fade=0x7f040001;
         public static final int fade_gallery_item=0x7f040002;
         public static final int fade_reverse=0x7f040003;
-        public static final int layout_animation_row_right_slide=0x7f040004;
-        public static final int layout_bottom_to_top_slide=0x7f040005;
-        public static final int layout_grid_fade=0x7f040006;
-        public static final int layout_top_to_bottom_slide=0x7f040007;
-        public static final int slide_left=0x7f040008;
-        public static final int slide_right=0x7f040009;
-        public static final int slide_top_to_bottom=0x7f04000a;
-        public static final int wave_scale=0x7f04000b;
+        public static final int layout_animation_row_left_slide=0x7f040004;
+        public static final int layout_animation_row_right_slide=0x7f040005;
+        public static final int layout_bottom_to_top_slide=0x7f040006;
+        public static final int layout_grid_fade=0x7f040007;
+        public static final int layout_top_to_bottom_slide=0x7f040008;
+        public static final int slide_left=0x7f040009;
+        public static final int slide_right=0x7f04000a;
+        public static final int slide_top_to_bottom=0x7f04000b;
+        public static final int wave_scale=0x7f04000c;
     }
     public static final class array {
         /**  Used in auto update location preferences 
@@ -57,7 +58,7 @@ public final class R {
         public static final int view_background=0x7f060006;
     }
     public static final class drawable {
-        public static final int alternate_background=0x7f020037;
+        public static final int alternate_background=0x7f020038;
         public static final int arrow_down=0x7f020000;
         public static final int arrow_down_default=0x7f020001;
         public static final int arrow_down_press=0x7f020002;
@@ -102,7 +103,7 @@ public final class R {
         public static final int rating_yellow=0x7f020029;
         public static final int rotten_faded=0x7f02002a;
         public static final int rotten_full=0x7f02002b;
-        public static final int screen_background_orange=0x7f020036;
+        public static final int screen_background_orange=0x7f020037;
         public static final int scrollbar_handle_accelerated_anim2=0x7f02002c;
         public static final int shape_1=0x7f02002d;
         public static final int shape_5=0x7f02002e;
@@ -110,10 +111,11 @@ public final class R {
         public static final int sym_action_email=0x7f020030;
         public static final int sym_action_map=0x7f020031;
         public static final int theatres=0x7f020032;
-        public static final int transparent_background=0x7f020038;
+        public static final int transparent_background=0x7f020039;
         public static final int up=0x7f020033;
         public static final int up_1=0x7f020034;
         public static final int upcoming=0x7f020035;
+        public static final int upcoming2=0x7f020036;
     }
     public static final class id {
         public static final int address=0x7f080036;
