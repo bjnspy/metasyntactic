@@ -21,6 +21,7 @@
     UILabel* label;
     NSString* address;
     BOOL showSafariButton;
+    BOOL errorReported;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
