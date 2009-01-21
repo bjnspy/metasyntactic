@@ -26,6 +26,9 @@
 		7406A78C0F104D1D00795555 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A7880F104D1D00795555 /* Controller.m */; };
 		7406A78D0F104D1D00795555 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7406A78A0F104D1D00795555 /* Model.m */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
+		7408FDC80F27C81100BD86B6 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDC70F27C81100BD86B6 /* Status.m */; };
+		7408FDCC0F27C83500BD86B6 /* NSMutableArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */; };
+		7408FDF40F27CAA900BD86B6 /* NetflixStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */; };
 		740B14730E2DCA7B00493FC3 /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */; };
 		740B14BD0E2DCDDB00493FC3 /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */; };
 		740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740C9FE70E3A838E00D7A56B /* ColorCache.m */; };
@@ -368,6 +371,12 @@
 		7406A78A0F104D1D00795555 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
 		74088BD60DCD0AA800954696 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
+		7408FDC60F27C81100BD86B6 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		7408FDC70F27C81100BD86B6 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		7408FDCA0F27C83500BD86B6 /* NSMutableArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+Utilities.h"; path = "../../iPhoneShared/Classes/NSMutableArray+Utilities.h"; sourceTree = SOURCE_ROOT; };
+		7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+Utilities.m"; path = "../../iPhoneShared/Classes/NSMutableArray+Utilities.m"; sourceTree = SOURCE_ROOT; };
+		7408FDF20F27CAA900BD86B6 /* NetflixStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixStatusCell.h; sourceTree = "<group>"; };
+		7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixStatusCell.m; sourceTree = "<group>"; };
 		740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTitleCell.h; sourceTree = "<group>"; };
 		740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTitleCell.m; sourceTree = "<group>"; };
 		740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewBodyCell.h; sourceTree = "<group>"; };
@@ -1114,6 +1123,8 @@
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7408FDCA0F27C83500BD86B6 /* NSMutableArray+Utilities.h */,
+				7408FDCB0F27C83500BD86B6 /* NSMutableArray+Utilities.m */,
 				74616FB70F15E0B70004B610 /* Utilities.h */,
 				74616FB80F15E0B70004B610 /* Utilities.m */,
 				74616F040F15DEF70004B610 /* LocationUtilities.h */,
@@ -1290,6 +1301,8 @@
 				74676D870EFF6E7D00C64100 /* NetflixCell.m */,
 				74EB9BF40EFA3B2A0083DC33 /* NetflixRatingsCell.h */,
 				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
+				7408FDF20F27CAA900BD86B6 /* NetflixStatusCell.h */,
+				7408FDF30F27CAA900BD86B6 /* NetflixStatusCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1490,6 +1503,8 @@
 				74A33E530F034C4100E5450A /* MutableNetflixCache.m */,
 				747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */,
 				747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */,
+				7408FDC60F27C81100BD86B6 /* Status.h */,
+				7408FDC70F27C81100BD86B6 /* Status.m */,
 			);
 			name = Netflix;
 			sourceTree = "<group>";
@@ -2215,6 +2230,9 @@
 				74616EF40F15DE9D0004B610 /* Pulser.m in Sources */,
 				74616F060F15DEF70004B610 /* LocationUtilities.m in Sources */,
 				74616FB90F15E0B70004B610 /* Utilities.m in Sources */,
+				7408FDC80F27C81100BD86B6 /* Status.m in Sources */,
+				7408FDCC0F27C83500BD86B6 /* NSMutableArray+Utilities.m in Sources */,
+				7408FDF40F27CAA900BD86B6 /* NetflixStatusCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -50,7 +50,7 @@
 
 @implementation Model
 
-static NSString* currentVersion = @"1.0.0";
+static NSString* currentVersion = @"1.1.0";
 static NSString* persistenceVersion = @"101";
 
 static NSString* VERSION = @"version";
@@ -322,16 +322,19 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (NSString*) netflixKey {
+    //return @"T10v6ZHFebf6KWFBdAr.5xOQlezhfD5FkwloL4L2Dsf69jBwr3gh4jtDTLTRa0l77CK83SUaIeCBSOqLXWWp60Ug--";
     return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_KEY];
 }
 
 
 - (NSString*) netflixSecret {
+    //return @"nhW7BKyZWTH4";
     return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_SECRET];
 }
 
 
 -(NSString*) netflixUserId {
+    //return @"T1rkk6acm91SZluDiWQhEI9Flb6UBAn6afbFYw9n.msV0-";
     return [[NSUserDefaults standardUserDefaults] objectForKey:NETFLIX_USER_ID];
 }
 
