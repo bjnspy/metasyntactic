@@ -212,7 +212,12 @@
 
 - (void) reportError:(NSError*) error {
     NSAssert([NSThread isMainThread], nil);
-    [AlertUtilities showOkAlert:NSLocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil)];
+#if 0
+    NSString* message = [NSString stringWithFormat:NSLocalizedString(@"Error occurred talking to Netflix. Please try again later. Error was: %@. %@. %@", nil), error, error.localizedDescription, error.userInfo];
+#else
+    NSString* message = NSLocalizedString(@"Error occurred talking to Netflix. Please try again later.", nil);
+#endif
+    [AlertUtilities showOkAlert:message];
 
     [activityIndicator stopAnimating];
     [button removeFromSuperview];
@@ -262,6 +267,7 @@
                                       gate:nil
                                    visible:YES];
 }
+
 
 - (void) requestAccessToken {
     OAConsumer* consumer = [OAConsumer consumerWithKey:@"83k9wpqt34hcka5bfb2kkf8s"

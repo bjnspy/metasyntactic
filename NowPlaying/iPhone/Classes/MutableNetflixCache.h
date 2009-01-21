@@ -39,6 +39,10 @@
        byAddingMovie:(Movie*) movie
             delegate:(id<NetflixAddMovieDelegate>) delegate;
 
+- (void) updateQueue:(Queue*) queue
+     byDeletingMovie:(Movie*) movie
+            delegate:(id<NetflixModifyQueueDelegate>) delegate;
+
 - (void) changeRatingTo:(NSString*) rating
                forMovie:(Movie*) movie
                delegate:(id<NetflixChangeRatingDelegate>) delegate;

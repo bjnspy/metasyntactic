@@ -33,10 +33,12 @@
 #import "MoviesNavigationController.h"
 #import "MutableNetflixCache.h"
 #import "NetflixRatingsCell.h"
+#import "NetflixStatusCell.h"
 #import "AppDelegate.h"
 #import "Model.h"
 #import "PosterCache.h"
 #import "Score.h"
+#import "Status.h"
 #import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
@@ -50,7 +52,9 @@
 @property (retain) Movie* movie;
 @property (retain) DVD* dvd;
 @property (retain) Movie* netflixMovie;
-@property (copy) NSString* netflixStatus;
+@property (retain) NSArray* netflixStatusCells;
+@property (retain) NetflixRatingsCell* netflixRatingsCell;
+@property BOOL isEnqueued;
 @property (retain) NSMutableArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
 @property (copy) NSString* trailer;
@@ -63,7 +67,6 @@
 @property (retain) TappableImageView* posterImageView;
 @property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
 @property (retain) UIButton* bookmarkButton;
-@property (retain) NetflixRatingsCell* netflixRatingsCell;
 @end
 
 
@@ -72,10 +75,14 @@
 const NSInteger ADD_TO_NETFLIX_TAG = 1;
 const NSInteger VISIT_WEBSITES_TAG = 2;
 
+const NSInteger POSTER_TAG = -1;
+
 @synthesize movie;
 @synthesize dvd;
 @synthesize netflixMovie;
-@synthesize netflixStatus;
+@synthesize netflixStatusCells;
+@synthesize netflixRatingsCell;
+@synthesize isEnqueued;
 @synthesize theatersArray;
 @synthesize showtimesArray;
 @synthesize trailer;
@@ -88,13 +95,13 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 @synthesize posterImage;
 @synthesize posterImageView;
 @synthesize bookmarkButton;
-@synthesize netflixRatingsCell;
 
 - (void) dealloc {
     self.movie = nil;
     self.dvd = nil;
     self.netflixMovie = nil;
-    self.netflixStatus = nil;
+    self.netflixStatusCells = nil;
+    self.netflixRatingsCell = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
     self.trailer = nil;
@@ -107,7 +114,6 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     self.posterImage = nil;
     self.posterImageView = nil;
     self.bookmarkButton = nil;
-    self.netflixRatingsCell = nil;
 
     [super dealloc];
 }
@@ -153,7 +159,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 
 - (BOOL) isNetflix {
-    return [movie isNetflix];
+    return movie.isNetflix;
 }
 
 
@@ -180,7 +186,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
         [arguments addObject:[NSNull null]];
     }
 
-    if (netflixMovie != nil && netflixStatus.length == 0) {
+    if (netflixMovie != nil && !self.isEnqueued) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
         [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
         [arguments addObject:[NSNull null]];
@@ -268,10 +274,31 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
+- (void) initializeNetflixStatusCells {
+    NSArray* statuses = [self.model.netflixCache statusesForMovie:movie];
+    
+    NSMutableArray* cells = [NSMutableArray array];
+    for (NSInteger i = 0; i < statuses.count; i++) {
+        Status* status = [statuses objectAtIndex:i];
+        NetflixStatusCell* cell = [[[NetflixStatusCell alloc] initWithStatus:status] autorelease];
+        cell.moveImageView.delegate = self;
+        cell.deleteImageView.delegate = self;
+        
+        cell.moveImageView.tag = 2 * i;
+        cell.deleteImageView.tag = 2 * i + 1;
+        
+        [cells addObject:cell];
+    }
+    
+    self.netflixStatusCells = cells;
+}
+
+
 - (void) initializeData {
     self.netflixMovie = [self.model.netflixCache netflixMovieForMovie:movie];
-    self.netflixStatus = [self.model.netflixCache queueStatus:movie];
-
+    self.isEnqueued = [self.model.netflixCache isEnqueued:movie];
+    [self initializeNetflixStatusCells];
+    
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
         self.trailer = [trailers objectAtIndex:0];
@@ -308,6 +335,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 - (void) setupPosterView {
     self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
     self.posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
+    posterImageView.tag = POSTER_TAG;
     posterImageView.delegate = self;
 }
 
@@ -443,6 +471,10 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (visible) {
         return;
     }
+    
+    if (readonlyMode) {
+        return;
+    }
 
     self.dvd = nil;
     self.theatersArray = nil;
@@ -537,6 +569,9 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     // Header
     NSInteger sections = 1;
 
+    // Netflix
+    sections += 1;
+    
     // theaters
     sections += theatersArray.count;
 
@@ -550,13 +585,15 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 
 - (NSInteger) numberOfRowsInHeaderSection {
-    return 5;
+    return 3;
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == 1 && theatersArray.count > 0) {
+    if (section == 1 && netflixMovie != nil) {
+        return NSLocalizedString(@"Netflix", nil);
+    } else if (section == 2 && theatersArray.count > 0) {
         if ([DateUtilities isToday:self.model.searchDate]) {
             return NSLocalizedString(@"Today", nil);
         } else {
@@ -569,7 +606,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 
 - (NSInteger) getTheaterIndex:(NSInteger) section {
-    return section - 1;
+    return section - 2;
 }
 
 
@@ -579,10 +616,23 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
+- (NSInteger) numberOfRowsInNetflixSection {
+    if (netflixMovie != nil) {
+        return 1 + netflixStatusCells.count;
+    }
+    
+    return 0;
+}
+
+
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return [self numberOfRowsInHeaderSection];
+    }
+    
+    if (section == 1) {
+        return [self numberOfRowsInNetflixSection];
     }
 
     if ([self isTheaterSection:section]) {
@@ -598,7 +648,6 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (dvd == nil) {
         return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     }
-    
     
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.font = [UIFont boldSystemFontOfSize:14];
@@ -629,34 +678,23 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 
 - (UITableViewCell*) createNetflixRatingsCell {
-    if (![self hasNetflixRating]) {
-        return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-    }
-    
     if (netflixRatingsCell == nil) {
         self.netflixRatingsCell =
         [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
                                              model:self.model
                                              movie:movie] autorelease];
     }
-
+    
     return netflixRatingsCell;
 }
 
 
-- (UITableViewCell*) createNetflixStatusCell {
-    if (netflixStatus.length == 0) {
-        return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+- (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
+    if (row == 0) {
+        return [self createNetflixRatingsCell];
+    } else {
+        return [netflixStatusCells objectAtIndex:row - 1];
     }
-    
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-    cell.font = [UIFont boldSystemFontOfSize:14];
-    cell.textAlignment = UITextAlignmentCenter;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;    
-    
-    cell.text = netflixStatus;
-    
-    return cell;
 }
 
 
@@ -669,16 +707,8 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
                                 posterImageView:posterImageView
                                    activityView:posterActivityView];
     }
-
+    
     if (row == 1) {
-        return [self createNetflixRatingsCell];
-    }
-    
-    if (row == 2) {
-        return [self createNetflixStatusCell];
-    }
-    
-    if (row == 3) {
         return [self createDvdDetailsCell];
     }
 
@@ -700,22 +730,6 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     }
     
     if (row == 1) {
-        if ([self hasNetflixRating]) {
-            return self.tableView.rowHeight;
-        } else {
-            return 0;
-        }
-    }
-    
-    if (row == 2) {
-        if (netflixStatus.length > 0) {
-            return self.tableView.rowHeight - 14;
-        } else {
-            return 0;
-        }
-    }
-    
-    if (row == 3) {
         if (dvd != nil) {
             return self.tableView.rowHeight - 14;
         } else {
@@ -728,10 +742,32 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
+- (CGFloat) heightForNetflixRatingRow {
+    if ([self hasNetflixRating]) {
+        return self.tableView.rowHeight;
+    } else {
+        return 0;
+    }
+}
+
+
+- (CGFloat) heightForRowInNetflixSection:(NSInteger) row {
+    if (row == 0) {
+        return [self heightForNetflixRatingRow];
+    } else {
+        return self.tableView.rowHeight;
+    }
+}
+
+
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [self heightForRowInHeaderSection:indexPath.row];
+    }
+    
+    if (indexPath.section == 1) {
+        return [self heightForRowInNetflixSection:indexPath.row];
     }
 
     if ([self isTheaterSection:indexPath.section]) {
@@ -790,7 +826,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 - (UIView*)        tableView:(UITableView*) tableView
       viewForFooterInSection:(NSInteger) section {
-    if (section == 0) {
+    if (section == 1) {
         return actionsView;
     }
 
@@ -800,7 +836,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 - (CGFloat)          tableView:(UITableView*) tableView
       heightForFooterInSection:(NSInteger) section {
-    if (section == 0) {
+    if (section == 1) {
         CGFloat height = [actionsView height];
 
         if (theatersArray.count == 0) {
@@ -851,6 +887,10 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [self cellForHeaderRow:indexPath.row];
+    }
+    
+    if (indexPath.section == 1) {
+        return [self cellForNetflixRow:indexPath.row];
     }
 
     if ([self isTheaterSection:indexPath.section]) {
@@ -958,6 +998,13 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
+- (void) setupStatusCells {
+    for (NetflixStatusCell* cell in netflixStatusCells) {
+        [cell enterReadonlyMode];
+    }
+}
+
+
 - (void) enterReadonlyMode {
     if (readonlyMode) {
         return;
@@ -965,6 +1012,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     readonlyMode = YES;
     [self setupTitle];
     [self setupButtons];
+    [self setupStatusCells];
 }
 
 
@@ -975,30 +1023,46 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (void) addToQueue:(BOOL) instant {
-    [self enterReadonlyMode];
+- (void) netflixOperationSucceeded {
+    [self exitReadonlyMode];
+    [self majorRefresh];
+}
 
-    Queue* queue;
-    if (instant) {
-        queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey]];
-    } else {
-        queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey]];
-    }
 
-    [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self];
+- (void) netflixOperationFailedWithError:(NSString*) error {
+    [AlertUtilities showOkAlert:error];
+    [self exitReadonlyMode];
+    [self majorRefresh];
 }
 
 
 - (void) addSucceeded {
-    [self exitReadonlyMode];
-    [self majorRefresh];
+    [self netflixOperationSucceeded];
 }
 
 
 - (void) addFailedWithError:(NSString*) error {
-    [AlertUtilities showOkAlert:error];
-    [self exitReadonlyMode];
-    [self majorRefresh];
+    [self netflixOperationFailedWithError:error];
+}
+
+
+- (void) moveSucceededForMovie:(Movie*) movie {
+    [self netflixOperationSucceeded];
+}
+
+
+- (void) moveFailedWithError:(NSString*) error {
+    [self netflixOperationFailedWithError:error];
+}
+
+
+- (void) modifySucceeded {
+    [self netflixOperationSucceeded];
+}
+
+
+- (void) modifyFailedWithError:(NSString*) error {
+    [self netflixOperationFailedWithError:error];
 }
 
 
@@ -1006,28 +1070,52 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
     if (readonlyMode) {
         return;
     }
-
+    
+    UIActionSheet* actionSheet =
+    [[[UIActionSheet alloc] initWithTitle:nil
+                                 delegate:self
+                        cancelButtonTitle:nil
+                   destructiveButtonTitle:nil
+                        otherButtonTitles:nil] autorelease];
+    
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"DVD Queue", nil)];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of DVD Queue", nil)];
+    actionSheet.tag = ADD_TO_NETFLIX_TAG;
+    
     NSArray* formats = [self.model.netflixCache formatsForMovie:netflixMovie];
     if (formats.count >= 2 && [formats containsObject:@"instant"]) {
-        UIActionSheet* actionSheet =
-        [[[UIActionSheet alloc] initWithTitle:nil
-                                     delegate:self
-                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                       destructiveButtonTitle:nil
-                            otherButtonTitles:NSLocalizedString(@"DVD/Blu-ray Queue", nil), NSLocalizedString(@"Instant Queue", nil), nil] autorelease];
-        actionSheet.tag = ADD_TO_NETFLIX_TAG;
-
-        [actionSheet showInView:[AppDelegate window]];
-    } else {
-        [self addToQueue:NO];
+        [actionSheet addButtonWithTitle:NSLocalizedString(@"Instant Queue", nil)];
+        [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of Instant Queue", nil)];
     }
+    
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+    
+    [actionSheet showInView:[AppDelegate window]];
 }
 
 
 - (void) didDismissAddToNetflixActionSheet:(UIActionSheet*) actionSheet
                            withButtonIndex:(NSInteger) buttonIndex {
-    if (buttonIndex != actionSheet.cancelButtonIndex) {
-        [self addToQueue:[@"instant" isEqual:[actionSheet buttonTitleAtIndex:buttonIndex]]];
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    if (buttonIndex >= 0 &&  buttonIndex <= 3) {
+        [self enterReadonlyMode];
+        
+        Queue* queue;
+        if (buttonIndex <= 1) {
+            queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey]];
+        } else {
+            queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey]];
+        }
+        
+        if (buttonIndex % 2 == 0) {
+            [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self];
+        } else {
+            [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie toPosition:0 delegate:self];
+        }
     }
 }
 
@@ -1125,7 +1213,7 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 
 - (void)       tableView:(UITableView*) tableView
       didSelectHeaderRow:(NSInteger) row {
-    if (row == 4) {
+    if (row == 2) {
         expandedDetails = !expandedDetails;
 
         NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
@@ -1151,6 +1239,10 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         [self tableView:tableView didSelectHeaderRow:indexPath.row];
+        return;
+    }
+    
+    if (indexPath.section == 1) {
         return;
     }
 
@@ -1193,23 +1285,52 @@ const NSInteger VISIT_WEBSITES_TAG = 2;
 }
 
 
-- (void) imageView:(TappableImageView*) imageView
-         wasTapped:(NSInteger) tapCount {
+- (void) posterImageViewWasTapped {
     if (!UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return;
     }
-
+    
     if (posterCount == 0) {
         return;
     }
-
+    
     [ThreadingUtilities backgroundSelector:@selector(downloadAllPostersForMovie:)
                                   onTarget:self.model.largePosterCache
                                   argument:movie
                                       gate:posterDownloadLock
                                    visible:NO];
-
+    
     [navigationController showPostersView:movie posterCount:posterCount];
+}
+
+
+- (void) moveMovieWasTappedForRow:(NSInteger) row {
+    [self enterReadonlyMode];
+    
+    NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
+    Status* status = [cell status];
+    [self.model.netflixCache updateQueue:status.queue byMovingMovieToTop:status.movie delegate:self];
+}
+
+
+- (void) deleteMovieWasTappedForRow:(NSInteger) row {
+    [self enterReadonlyMode];
+    
+    NetflixStatusCell* cell = [netflixStatusCells objectAtIndex:row];
+    Status* status = [cell status];
+    [self.model.netflixCache updateQueue:status.queue byDeletingMovie:status.movie delegate:self];
+}
+
+
+- (void) imageView:(TappableImageView*) imageView
+         wasTapped:(NSInteger) tapCount {
+    if (imageView.tag == POSTER_TAG) {
+        [self posterImageViewWasTapped];
+    } else if (imageView.tag % 2 == 0) {
+        [self moveMovieWasTappedForRow:imageView.tag / 2];
+    } else {
+        [self deleteMovieWasTappedForRow:imageView.tag / 2];
+    }
 }
 
 @end

@@ -113,6 +113,7 @@
 @class SettingCell;
 @class SettingsNavigationController;
 @class SettingsViewController;
+@class Status;
 @class TappableImageView;
 @class TappableLabel;
 @class TappableScrollView;

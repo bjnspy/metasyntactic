@@ -32,6 +32,7 @@
 #import "Model.h"
 #import "IdentitySet.h"
 #import "Queue.h"
+#import "Status.h"
 #import "StringUtilities.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
@@ -584,6 +585,15 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     
     [NetflixCache processMovieItemList:element movies:movies saved:saved];
     
+    // Hack.  We get duplicated titles in this feed.  So filter them out.
+    if ([feed.key isEqual:[NetflixCache rentalHistoryKey]]) {
+        for (NSInteger i = movies.count - 1; i >= 0; i--) {
+            if ([movies indexOfObject:[movies objectAtIndex:i]] != i) {
+                [movies removeObjectAtIndex:i];
+            }
+        }
+    }
+    
     if (movies.count > 0 || saved.count > 0) {
         Queue* queue = [Queue queueWithFeed:feed
                                        etag:etag
@@ -938,10 +948,6 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     
     NSMutableArray* items = [NSMutableArray array];
     for (XmlElement* itemElement in [channelElement elements:@"item"]) {
-        if (items.count >= 100) {
-            break;
-        }
-        
         NSString* identifier = [[itemElement element:@"link"] text];
         NSRange lastSlashRange = [identifier rangeOfString:@"/" options:NSBackwardsSearch];
         
@@ -1442,53 +1448,107 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue saved:(BOOL) saved {
-    NSArray* array;
-    if (saved) {
-        array = queue.saved;
-    } else {
-        array = queue.movies;
-    }
+/*
+ - (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue saved:(BOOL) saved {
+ NSArray* array;
+ if (saved) {
+ array = queue.saved;
+ } else {
+ array = queue.movies;
+ }
+ 
+ NSInteger index = [array indexOfObject:movie];
+ if (index == NSNotFound) {
+ return @"";
+ }
+ 
+ if (queue.isAtHomeQueue) {
+ return NSLocalizedString(@"At Home", nil);
+ } else {
+ NSString* queueTitle = [self titleForKey:queue.feed.key includeCount:NO];
+ if (saved) {
+ return [NSString stringWithFormat:NSLocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
+ } else {
+ return [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (index + 1), queueTitle];
+ }
+ }
+ }
+ 
+ 
+ - (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue {
+ NSString* status = @"";
+ 
+ if (queue != nil) {
+ if ((status = [self queueStatus:movie inQueue:queue saved:NO]).length > 0 ||
+ (status = [self queueStatus:movie inQueue:queue saved:YES]).length > 0) {
+ }
+ }
+ 
+ return status;
+ }
+ */
+
+
+- (Status*) statusForMovie:(Movie*) movie inQueue:(Queue*) queue {
+    BOOL saved = NO;
+    NSInteger position = NSNotFound;
+    NSString* description = @"";
+    Movie* foundMovie = nil;
     
-    NSInteger index = [array indexOfObject:movie];
-    if (index == NSNotFound) {
-        return @"";
+    if ((position = [queue.movies indexOfObject:movie]) != NSNotFound) {
+        saved = NO;
+        foundMovie = [queue.movies objectAtIndex:position];
+    } else if ((position = [queue.saved indexOfObject:movie]) != NSNotFound) {
+        saved = YES;
+        foundMovie = [queue.saved objectAtIndex:position];
+    } else {
+        return nil;
     }
     
     if (queue.isAtHomeQueue) {
-        return NSLocalizedString(@"At Home", nil);
+        description = NSLocalizedString(@"At Home", nil);
     } else {
         NSString* queueTitle = [self titleForKey:queue.feed.key includeCount:NO];
         if (saved) {
-            return [NSString stringWithFormat:NSLocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
+            description = [NSString stringWithFormat:NSLocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
         } else {
-            return [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (index + 1), queueTitle];
-        }
-    }
-}
-
-
-- (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue {
-    NSString* status = @"";
-    
-    if (queue != nil) {
-        if ((status = [self queueStatus:movie inQueue:queue saved:NO]).length > 0 ||
-            (status = [self queueStatus:movie inQueue:queue saved:YES]).length > 0) {
+            description = [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (position + 1), queueTitle];
         }
     }
     
-    return status;
+    return [Status statusWithQueue:queue
+                             movie:foundMovie
+                       description:description
+                             saved:saved
+                          position:position];
 }
 
 
-- (NSString*) queueStatus:(Movie*) movie {
-    NSString* status = @"";
-    if ((status = [self queueStatus:movie inQueue:[self queueForKey:[NetflixCache dvdQueueKey]]]).length > 0 ||
-        (status = [self queueStatus:movie inQueue:[self queueForKey:[NetflixCache instantQueueKey]]]).length > 0 ||
-        (status = [self queueStatus:movie inQueue:[self queueForKey:[NetflixCache atHomeKey]]]).length > 0) {
+- (NSArray*) statusesForMovie:(Movie*) movie {
+    NSMutableArray* array = nil;
+    NSArray* searchQueues = [NSArray arrayWithObjects:
+                             [self queueForKey:[NetflixCache dvdQueueKey]],
+                             [self queueForKey:[NetflixCache instantQueueKey]],
+                             [self queueForKey:[NetflixCache atHomeKey]],
+                             nil];
+    
+    for (Queue* queue in searchQueues) {
+        Status* status = [self statusForMovie:movie inQueue:queue];
+        if (status != nil) {
+            if (array == nil) {
+                array = [NSMutableArray array];
+            }
+            
+            [array addObject:status];
+        }
     }
     
-    return status;
+    return array;
+}
+
+
+- (BOOL) isEnqueued:(Movie*) movie {
+    return [[self statusesForMovie:movie] count] > 0;
 }
 
 

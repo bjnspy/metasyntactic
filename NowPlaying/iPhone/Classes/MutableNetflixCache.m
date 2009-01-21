@@ -14,6 +14,8 @@
 
 #import "MutableNetflixCache.h"
 
+#import "NSMutableArray+Utilities.h"
+
 #import "Feed.h"
 #import "FileUtilities.h"
 #import "IdentitySet.h"
@@ -143,13 +145,11 @@
     NSString* message = [[element element:@"message"] text];
     if (message.length > 0) {
         return message;
+    } else if (element == nil) {
+        NSLog(@"Could not parse Netflix result.", nil);
+        return NSLocalizedString(@"Could not connect to Netflix.", nil);
     } else {
-        if (element == nil) {
-            NSLog(@"Could not parse Netflix result.", nil);
-        } else {
-            NSLog(@"Netflix response had no 'message' element", nil);
-        }
-        
+        NSLog(@"Netflix response had no 'message' element", nil);
         return NSLocalizedString(@"An unknown error occurred.", nil);
     }
 }
@@ -178,10 +178,6 @@
                                                               important:YES];
     
     [self checkApiResult:element];
-    if (element == nil) {
-        *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
-        return nil;
-    }
     
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
@@ -258,6 +254,17 @@
                                   argument:arguments
                                       gate:gate
                                    visible:YES];
+}
+
+
+- (void) updateQueue:(Queue*) queue
+     byDeletingMovie:(Movie*) movie
+            delegate:(id<NetflixModifyQueueDelegate>) delegate {
+    [self updateQueue:queue
+     byDeletingMovies:[IdentitySet setWithObject:movie]
+  andReorderingMovies:[IdentitySet set]
+                   to:[NSArray array]
+             delegate:delegate];
 }
 
 
@@ -348,7 +355,7 @@
     if (element == nil) {
         // we failed.  restore the rating to its original value
         NSLog(@"Couldn't parse Netflix response.", nil);
-        return NSLocalizedString(@"An unknown error occurred.", nil);
+        return NSLocalizedString(@"Could not connect to Netflix.", nil);
     }
     
     XmlElement* ratingsItemElement = [element element:@"ratings_item"];
@@ -431,10 +438,6 @@
                         position:(NSInteger) position
                            error:(NSString**) error {
     *error = nil;
-    if (element == nil) {
-        *error = NSLocalizedString(@"Could not connect to Netflix.", nil);
-        return nil;
-    }
     
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
@@ -446,23 +449,20 @@
     
     NSMutableArray* addedMovies = [NSMutableArray array];
     NSMutableArray* addedSaved = [NSMutableArray array];
-    [NetflixCache processMovieItemList:[element element:@"resources_created"] movies:addedMovies saved:addedSaved];
+    [NetflixCache processMovieItemList:[element element:@"resources_created"]
+                                movies:addedMovies
+                                 saved:addedSaved];
     
     NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
     NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
-    if (addedMovies.count > 0) {
-        if (position >= 0) {
-            [newMovies insertObject:[addedMovies objectAtIndex:0] atIndex:position];
-        } else {
-            [newMovies addObject:[addedMovies objectAtIndex:0]];
-        }
-    } else if (addedSaved.count > 0) {
-        if (position >= 0) {
-            [newSaved insertObject:[addedSaved objectAtIndex:0] atIndex:position];
-        } else {
-            [newSaved addObject:[addedSaved objectAtIndex:0]];
-        }
+    
+    if (position >= 0) {
+        [newMovies insertObjects:addedMovies atIndex:position];
+    } else {
+        [newMovies addObjectsFromArray:addedMovies];
     }
+    
+    [newSaved addObjectsFromArray:addedSaved];
     
     return [Queue queueWithFeed:queue.feed
                            etag:etag
@@ -628,7 +628,5 @@ NSInteger orderMovies(id t1, id t2, void* context) {
     NSLog(@"Delete/Reorder completed successfully.  Saving queue and reporting.", nil);
     [self saveQueue:finalQueue andReportSuccessToModifyQueueDelegate:delegate];
 }
-
-
 
 @end
