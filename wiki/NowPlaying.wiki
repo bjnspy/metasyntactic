@@ -13,7 +13,7 @@ If anyone would like to help localize this app for foreign languages, let me kno
 
 ==With iPhone and Now Playing, you can read reviews, locate theaters and show times, even purchase tickets.==
 
-===!NowPlaying allows you to:===
+===Now Playing allows you to:===
 
   * browse local theaters by movies, show times, and distance
   * check rating and reviews from [http://www.rottentomatoes.com RottenTomatoes] and [http://www.metacritic.com Metacritic]
