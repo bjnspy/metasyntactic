@@ -17,5 +17,6 @@
 }
 
 + (void) showOkAlert:(NSString*) message;
++ (void) showOkAlert:(NSString*) message withTitle:(NSString*) title;
 
 @end

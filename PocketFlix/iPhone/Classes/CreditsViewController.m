@@ -262,9 +262,9 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
-            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
-        } else if (row == 1) {
             url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8";
+        } else if (row == 1) {
+            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=297414943&mt=8";
         } else {
             url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301494200&mt=8";
         }

@@ -18,8 +18,18 @@
 @implementation AlertUtilities
 
 + (void) showOkAlert:(NSString*) message {
+    [self showOkAlert:message withTitle:nil];
+}
+
+
++ (void) showOkAlert:(NSString*) message
+           withTitle:(NSString*) title {
     NSAssert([NSThread isMainThread], nil);
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+    if (message.length == 0) {
+        message = @"";
+    }
+
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title
                                                      message:message
                                                     delegate:nil
                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
