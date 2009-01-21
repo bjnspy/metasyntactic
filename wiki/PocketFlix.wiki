@@ -1,0 +1,18 @@
+==PocketFlix puts the power of Netflix at your fingertips!==
+
+===With iPhone and PocketFlix you can find movies and manage your Netflix information, all while on the go.  Heard about a great movie from a friend of yours?  Whip out PocketFlix and add it to your Netflix queue with just a few clicks.  You'll never forget about a movie you want to watch now!===
+
+===With PocketFlix you can:===
+
+ * Search for movies and add them to your DVD or Instant queue. 
+ * View and update your Netflix DVD and Instant queue.
+ * Get Netflix recommendations from dozens of movie categories.
+ * Add or update your ratings.
+ * See the most popular movies in Netflix from any genre.
+ * See gorgeous high resolution posters for many movies.
+ * Visit related movie sites like Wikipedia and IMDb without even leaving PocketFlix.
+ * Purchase DVDs directly from Amazon.com
+
+Note: 
+  # A Wi-fi connection is highly recommended the first time you use PocketFlix.
+  # you cannot watch Netflix's 'Instant Watch' movies from your iPhone.  Of course, you can add them to your 'Instant Queue' to watch from a supported device.
