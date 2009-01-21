@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #ifdef __OBJC__
+#import <CFNetwork/CFNetwork.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "ForwardDeclarations.h"
