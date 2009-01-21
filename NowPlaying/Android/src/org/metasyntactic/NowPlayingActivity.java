@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -187,7 +186,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   private void getScores(final Context context) {
     this.score = new String[11];
-    for (int index = 0, i = 100; i > 0; index++, i -= 10) {
+    for (int index = 0, i = 100; i >= 0; index++, i -= 10) {
       this.score[index] = i + "%";
     }
   }
@@ -265,7 +264,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   private void populateScoreMovieSectionsAndPositions() {
     int i = 0;
-    int prevLevel = -1;
+    int prevLevel = 0;
     final List<String> scores = Arrays.asList(this.score);
     for (final Movie movie : this.movies) {
       final Score score = NowPlayingControllerWrapper.getScore(movie);
@@ -369,7 +368,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     public final int getCount() {
       if (NowPlayingActivity.this.movies != null) {
-        return Math.min(100, NowPlayingActivity.this.movies.size());
+        return Math.min(1000, NowPlayingActivity.this.movies.size());
       } else {
         return 0;
       }
@@ -397,9 +396,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
       if (position != null) {
         NowPlayingActivity.this.lastPosition = position;
-        return position;
       }
-      return NowPlayingActivity.this.lastPosition;
+      return lastPosition;
     }
 
     public int getSectionForPosition(final int position) {
