@@ -16,3 +16,10 @@
 Note: 
   # A Wi-fi connection is highly recommended the first time you use PocketFlix.
   # you cannot watch Netflix's 'Instant Watch' movies from your iPhone.  Of course, you can add them to your 'Instant Queue' to watch from a supported device.
+
+[http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image0-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image0.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image1-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image1.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image3-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image3.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image4-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image4.png]
+[http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image2-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/Image2.png] 
+
+==Download Now Playing today from the [http://www.apple.com/iphone/appstore/ iPhone app store].==
+
+For help/suggestions email me: [mailto:cyrusn@stwing.upenn.edu cyrusn@stwing.upenn.edu]
