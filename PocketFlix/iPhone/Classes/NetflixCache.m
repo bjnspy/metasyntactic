@@ -587,7 +587,11 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     // Hack.  We get duplicated titles in this feed.  So filter them out.
     if ([feed.key isEqual:[NetflixCache rentalHistoryKey]]) {
-        
+        for (NSInteger i = movies.count - 1; i >= 0; i--) {
+            if ([movies indexOfObject:[movies objectAtIndex:i]] != i) {
+                [movies removeObjectAtIndex:i];
+            }
+        }
     }
     
     if (movies.count > 0 || saved.count > 0) {
