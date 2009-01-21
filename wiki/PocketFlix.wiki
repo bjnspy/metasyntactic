@@ -17,8 +17,8 @@ Note:
   # A Wi-fi connection is highly recommended the first time you use PocketFlix.
   # you cannot watch Netflix's 'Instant Watch' movies from your iPhone.  Of course, you can add them to your 'Instant Queue' to watch from a supported device.
 
-[http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image0-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image0.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image1-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image1.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image3-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image3.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image4-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image4.png]
-[http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2-Small.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2.png] 
+[http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image0.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image0-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image1.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image1-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image3.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image3-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image4.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image4-Small.png]
+[http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2-Small.png] 
 
 ==Download Now Playing today from the [http://www.apple.com/iphone/appstore/ iPhone app store].==
 
