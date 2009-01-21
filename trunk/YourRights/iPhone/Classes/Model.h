@@ -16,6 +16,8 @@
 
 }
 
++ (NSString*) version;
+
 + (NSArray*) sectionTitles;
 + (NSArray*) shortSectionTitles;
 
