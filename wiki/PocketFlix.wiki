@@ -10,7 +10,7 @@
  * Add or update your ratings.
  * See the most popular movies in Netflix from any genre.
  * See gorgeous high resolution posters for many movies.
- * Visit related movie sites like Wikipedia and IMDb without even leaving PocketFlix.
+ * Visit related movie sites like Wikipedia and IMDb without even leaving !PocketFlix.
  * Purchase DVDs directly from Amazon.com
 
 Note: 
