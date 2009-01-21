@@ -110,7 +110,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
     if (section == WrittenBySection) {
-        return 2;
+        return 3;
     } else if (section == MyOtherApplicationsSection) {
         return 3;
     } else if (section == GraphicsBySection) {
@@ -170,8 +170,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if (section == WrittenBySection) {
         if (row == 0) {
             cell.text = NSLocalizedString(@"Send Feedback", nil);
-        } else {
+        } else if (row == 1) {
             cell.text = NSLocalizedString(@"Project Website", nil);
+        } else {
+            cell.text = NSLocalizedString(@"Write Review", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
@@ -204,6 +206,20 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return NSLocalizedString(@"Localized by:", nil);
     }
 
+    return nil;
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    if (section == WrittenBySection) {
+        return
+        [NSString stringWithFormat:NSLocalizedString(@"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!", nil), [Application name]];
+    } else if (section == MyOtherApplicationsSection) {
+    } else if (section == GraphicsBySection) {
+    } else if (section == LocalizedBySection) {
+    }
+    
     return nil;
 }
 
@@ -257,8 +273,10 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if (section == WrittenBySection) {
         if (row == 0) {
             url = [self.model feedbackUrl];
-        } else {
+        } else if (row == 1) {
             url = @"http://metasyntactic.googlecode.com";
+        } else {
+            url = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301386724&mt=8";
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
