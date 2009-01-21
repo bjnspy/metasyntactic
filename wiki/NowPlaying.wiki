@@ -9,8 +9,6 @@ If anyone would like to help localize this app for foreign languages, let me kno
 
 ----
 
-=Now Playing=
-
 ==The line at the movies starts and ends in your pocket.==
 
 ==With iPhone and Now Playing, you can read reviews, locate theaters and show times, even purchase tickets.==
