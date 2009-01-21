@@ -56,7 +56,7 @@
 + (IdentitySet*) setWithObject:(id) object {
     IdentitySet* set = [[[IdentitySet alloc] init] autorelease];
     [set addObject:object];
-    return set;  
+    return set;
 }
 
 

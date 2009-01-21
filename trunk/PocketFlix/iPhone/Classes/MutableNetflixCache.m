@@ -14,6 +14,8 @@
 
 #import "MutableNetflixCache.h"
 
+#import "NSMutableArray+Utilities.h"
+
 #import "Feed.h"
 #import "FileUtilities.h"
 #import "IdentitySet.h"
@@ -66,7 +68,7 @@
     NSAssert([NSThread isMainThread], nil);
 
     NSLog(@"Reporting queue and success to NetflixMoveMovieDelegate.", nil);
-
+    
     [self reportQueue:[arguments objectAtIndex:0]];
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
@@ -176,7 +178,7 @@
                                                               important:YES];
 
     [self checkApiResult:element];
- 
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         *error = [self extractErrorMessage:element];
@@ -189,10 +191,10 @@
     [movies insertObject:movie atIndex:position];
 
     Queue* finalQueue = [Queue queueWithFeed:queue.feed
-                                           etag:etag
-                                         movies:movies
-                                          saved:queue.saved];
-
+                                        etag:etag
+                                      movies:movies
+                                       saved:queue.saved];
+    
     return finalQueue;
 }
 
@@ -447,23 +449,20 @@
 
     NSMutableArray* addedMovies = [NSMutableArray array];
     NSMutableArray* addedSaved = [NSMutableArray array];
-    [NetflixCache processMovieItemList:[element element:@"resources_created"] movies:addedMovies saved:addedSaved];
+    [NetflixCache processMovieItemList:[element element:@"resources_created"]
+                                movies:addedMovies
+                                 saved:addedSaved];
 
     NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
     NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
-    if (addedMovies.count > 0) {
-        if (position >= 0) {
-            [newMovies insertObject:[addedMovies objectAtIndex:0] atIndex:position];
-        } else {
-            [newMovies addObject:[addedMovies objectAtIndex:0]];
-        }
-    } else if (addedSaved.count > 0) {
-        if (position >= 0) {
-            [newSaved insertObject:[addedSaved objectAtIndex:0] atIndex:position];
-        } else {
-            [newSaved addObject:[addedSaved objectAtIndex:0]];
-        }
+    
+    if (position >= 0) {
+        [newMovies insertObjects:addedMovies atIndex:position];
+    } else {
+        [newMovies addObjectsFromArray:addedMovies];
     }
+
+    [newSaved addObjectsFromArray:addedSaved];
 
     return [Queue queueWithFeed:queue.feed
                            etag:etag
@@ -533,9 +532,9 @@
 
     XmlElement* element = [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                                               important:YES];
-    
-    [self checkApiResult:element];
 
+    [self checkApiResult:element];
+    
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         *error = [self extractErrorMessage:element];

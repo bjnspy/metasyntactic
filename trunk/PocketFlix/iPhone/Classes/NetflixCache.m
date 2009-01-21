@@ -585,6 +585,11 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     [NetflixCache processMovieItemList:element movies:movies saved:saved];
 
+    // Hack.  We get duplicated titles in this feed.  So filter them out.
+    if ([feed.key isEqual:[NetflixCache rentalHistoryKey]]) {
+        
+    }
+    
     if (movies.count > 0 || saved.count > 0) {
         Queue* queue = [Queue queueWithFeed:feed
                                        etag:etag
@@ -1484,15 +1489,18 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     BOOL saved = NO;
     NSInteger position = NSNotFound;
     NSString* description = @"";
+    Movie* foundMovie = nil;
 
     if ((position = [queue.movies indexOfObject:movie]) != NSNotFound) {
         saved = NO;
+        foundMovie = [queue.movies objectAtIndex:position];
     } else if ((position = [queue.saved indexOfObject:movie]) != NSNotFound) {
         saved = YES;
+        foundMovie = [queue.saved objectAtIndex:position];
     } else {
         return nil;
     }
-    
+
     if (queue.isAtHomeQueue) {
         description = NSLocalizedString(@"At Home", nil);
     } else {
@@ -1503,8 +1511,9 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
             description = [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (position + 1), queueTitle];
         }
     }
-    
+
     return [Status statusWithQueue:queue
+                             movie:foundMovie
                        description:description
                              saved:saved
                           position:position];
@@ -1518,18 +1527,18 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
                        [self queueForKey:[NetflixCache instantQueueKey]],
                        [self queueForKey:[NetflixCache atHomeKey]],
                        nil];
-    
+
     for (Queue* queue in searchQueues) {
         Status* status = [self statusForMovie:movie inQueue:queue];
         if (status != nil) {
             if (array == nil) {
                 array = [NSMutableArray array];
             }
-            
+
             [array addObject:status];
         }
     }
-    
+
     return array;
 }
 
