@@ -14,6 +14,7 @@
 
 #import "CreditsViewController.h"
 
+#import "Application.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
 
@@ -68,7 +69,7 @@ typedef enum {
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
     if (section == WrittenBySection) {
-        return 2;
+        return 3;
     } else if (section == MyOtherApplicationsSection) {
         return 3;
     } else if (section == InformationProvidedBySection) {
@@ -92,8 +93,10 @@ typedef enum {
     if (section == WrittenBySection) {
         if (row == 0) {
             cell.text = NSLocalizedString(@"Send Feedback", nil);
-        } else {
+        } else if (row == 1) {
             cell.text = NSLocalizedString(@"Project Website", nil);
+        } else {
+            cell.text = NSLocalizedString(@"Write Review", nil);
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
@@ -130,9 +133,9 @@ typedef enum {
 - (NSString*)      tableView:(UITableView*) tableView
      titleForFooterInSection:(NSInteger) section {
     if (section == WrittenBySection) {
-        return NSLocalizedString(@"This application is not provided by or endorsed by the American Civil Liberties Union.", nil);
+        return [NSString stringWithFormat:NSLocalizedString(@"If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, increase my ability to bring you great new features, and will also make me feel warm and fuzzy inside. Thanks!", nil), [Application name]];
     } else if (section == InformationProvidedBySection) {
-        return NSLocalizedString(
+        return NSLocalizedString(@"This application is not provided by or endorsed by the American Civil Liberties Union.\n\n"
                                  @"This application addresses what rights you  have when you are "
                                  @"stopped, questioned, arrested, or searched by law enforcement "
                                  @"officers. This information is for citizens and  non-citizens. "
@@ -190,8 +193,10 @@ typedef enum {
     if (section == WrittenBySection) {
         if (row == 0) {
             address = [Model feedbackUrl];
-        } else {
+        } else if (row == 1) {
             address = @"http://metasyntactic.googlecode.com";
+        } else {
+            address = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301494200&mt=8";
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
