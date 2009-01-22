@@ -24,13 +24,10 @@ public class AllReviewsActivity extends ListActivity {
 
   @Override
   protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
-    final String review_url = reviews.get(position).getLink();
-    if (review_url != null) {
-      final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
-      startActivity(intent);
-    } else {
-      Toast.makeText(this, R.string.noreviews, Toast.LENGTH_SHORT).show();
-    }
+    final String review_url = this.reviews.get(position).getLink();
+    final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
+    startActivity(intent);
+
     super.onListItemClick(l, v, position, id);
   }
 
@@ -68,7 +65,7 @@ public class AllReviewsActivity extends ListActivity {
       holder.source.setText(review.getSource());
       holder.description.setText(review.getText());
       holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(review.getScore(),
-          NowPlayingControllerWrapper.getScoreType(), AllReviewsActivity.this.getResources()));
+          NowPlayingControllerWrapper.getScoreType(), getResources()));
       return convertView;
     }
 
