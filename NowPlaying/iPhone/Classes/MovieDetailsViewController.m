@@ -54,7 +54,6 @@
 @property (retain) Movie* netflixMovie;
 @property (retain) NSArray* netflixStatusCells;
 @property (retain) NetflixRatingsCell* netflixRatingsCell;
-@property BOOL isEnqueued;
 @property (retain) NSMutableArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
 @property (copy) NSString* trailer;
@@ -82,7 +81,6 @@ const NSInteger POSTER_TAG = -1;
 @synthesize netflixMovie;
 @synthesize netflixStatusCells;
 @synthesize netflixRatingsCell;
-@synthesize isEnqueued;
 @synthesize theatersArray;
 @synthesize showtimesArray;
 @synthesize trailer;
@@ -186,7 +184,7 @@ const NSInteger POSTER_TAG = -1;
         [arguments addObject:[NSNull null]];
     }
 
-    if (netflixMovie != nil && !self.isEnqueued) {
+    if (netflixMovie != nil && netflixStatusCells.count == 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
         [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
         [arguments addObject:[NSNull null]];
@@ -296,7 +294,6 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) initializeData {
     self.netflixMovie = [self.model.netflixCache netflixMovieForMovie:movie];
-    self.isEnqueued = [self.model.netflixCache isEnqueued:movie];
     [self initializeNetflixStatusCells];
     
     NSArray* trailers = [self.model trailersForMovie:movie];
@@ -672,11 +669,6 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (BOOL) hasNetflixRating {
-    return [self isNetflix] && [self.model.netflixCache netflixRatingForMovie:movie].length > 0;
-}
-
-
 - (UITableViewCell*) createNetflixRatingsCell {
     if (netflixRatingsCell == nil) {
         self.netflixRatingsCell =
@@ -743,7 +735,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (CGFloat) heightForNetflixRatingRow {
-    if ([self hasNetflixRating]) {
+    if (netflixMovie != nil) {
         return self.tableView.rowHeight;
     } else {
         return 0;

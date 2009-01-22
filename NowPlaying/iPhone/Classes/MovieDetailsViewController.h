@@ -24,7 +24,6 @@
     DVD* dvd;
         
     Movie* netflixMovie;
-    BOOL isEnqueued;
     NetflixRatingsCell* netflixRatingsCell;
     NSArray* netflixStatusCells;
         
