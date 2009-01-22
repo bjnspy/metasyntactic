@@ -3,12 +3,10 @@
     <string name="menu_movie_sort">Sort Movies</string>
     <string name="menu_theater_sort">Sort Theaters</string>
     <string name="menu_movies">Home</string>
-    <string name="app_name">Now Playing</string>
     <string name="synopsis">Synopsis</string>
     <string name="options">More Options</string>
     <string name="search">Search</string>
-    <string name="search_label">Search Movie</string>
-    <string name="enter_location">Click here and enter location to search for movies.</string>
+    <string name="enter_location">Tap here to enter your search location.</string>
     <string name="on">On</string>
     <string name="off">Off</string>
     <string name="showtimes_for">Showtimes for</string>
