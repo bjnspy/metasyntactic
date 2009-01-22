@@ -6,7 +6,6 @@
     <string name="app_name">Now Playing</string>
     <string name="synopsis">Synopsis</string>
     <string name="options">More Options</string>
-    <string name="noreviews">This review article is not available.</string>
     <string name="search">Search</string>
     <string name="search_label">Search Movie</string>
     <string name="enter_location">Click here and enter location to search for movies.</string>
