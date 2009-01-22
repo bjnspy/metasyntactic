@@ -586,10 +586,19 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (BOOL) hasNetflixRating {
+    return
+    netflixMovie != nil &&
+    [self.model.netflixCache netflixRatingForMovie:netflixMovie].length > 0;
+}
+
+
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == 1 && netflixMovie != nil) {
-        return NSLocalizedString(@"Netflix", nil);
+    if (section == 1) {
+        if ([self hasNetflixRating] || netflixStatusCells.count > 0) {
+            return NSLocalizedString(@"Netflix", nil);
+        }
     } else if (section == 2 && theatersArray.count > 0) {
         if ([DateUtilities isToday:self.model.searchDate]) {
             return NSLocalizedString(@"Today", nil);
@@ -674,7 +683,7 @@ const NSInteger POSTER_TAG = -1;
         self.netflixRatingsCell =
         [[[NetflixRatingsCell alloc] initWithFrame:CGRectZero
                                              model:self.model
-                                             movie:movie] autorelease];
+                                             movie:netflixMovie] autorelease];
     }
     
     return netflixRatingsCell;
@@ -735,7 +744,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (CGFloat) heightForNetflixRatingRow {
-    if (netflixMovie != nil) {
+    if ([self hasNetflixRating]) {
         return self.tableView.rowHeight;
     } else {
         return 0;
@@ -818,7 +827,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (UIView*)        tableView:(UITableView*) tableView
       viewForFooterInSection:(NSInteger) section {
-    if (section == 1) {
+    if (section == 0) {
         return actionsView;
     }
 
@@ -828,14 +837,10 @@ const NSInteger POSTER_TAG = -1;
 
 - (CGFloat)          tableView:(UITableView*) tableView
       heightForFooterInSection:(NSInteger) section {
-    if (section == 1) {
+    if (section == 0) {
         CGFloat height = [actionsView height];
 
-        if (theatersArray.count == 0) {
-            return height + 8;
-        } else {
-            return height + 1;
-        }
+        return height + 1;
     }
 
     return -1;

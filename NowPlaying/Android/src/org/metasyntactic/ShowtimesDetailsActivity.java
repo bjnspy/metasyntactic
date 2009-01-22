@@ -51,7 +51,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     final TheaterAdapter theaterAdapter = new TheaterAdapter();
     setListAdapter(theaterAdapter);
     final TextView theaterTxt = (TextView) findViewById(R.id.theater);
-    theaterTxt.setText(theater.getName());
+    theaterTxt.setText(this.theater.getName());
   }
 
   @Override
@@ -90,20 +90,19 @@ public class ShowtimesDetailsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.showtimes_item, null);
-      final Resources res = ShowtimesDetailsActivity.this.getResources();
+      final Resources res = getResources();
       final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
           .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
           (TextView) convertView.findViewById(R.id.data));
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       switch (ShowtimesDetailsActivity.this.detailItems.get(position).getType()) {
       case NAME_SHOWTIMES:
-        holder.label.setText(res.getString(R.string.showtimes_for) + " " + movie.getDisplayTitle());
+        holder.label.setText(res.getString(R.string.showtimes_for) + " " + ShowtimesDetailsActivity.this.movie.getDisplayTitle());
         final List<Performance> list = NowPlayingControllerWrapper
-            .getPerformancesForMovieAtTheater(ShowtimesDetailsActivity.this.movie, theater);
+            .getPerformancesForMovieAtTheater(ShowtimesDetailsActivity.this.movie, ShowtimesDetailsActivity.this.theater);
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_email));
         String performance = "";
-        if (list != null) {
-          for (final Performance per : list) {
+        for (final Performance per : list) {
             performance += per.getTimeString() + ", ";
           }
           performance = performance.substring(0, performance.length() - 2);
@@ -111,23 +110,21 @@ public class ShowtimesDetailsActivity extends ListActivity {
           final String addr = "user@example.com";
           final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
           intent1.putExtra("subject", res.getString(R.string.showtimes_for) + " "
-              + res.getString(R.string.showtimes_at) + theater.getName());
+              + res.getString(R.string.showtimes_at) + ShowtimesDetailsActivity.this.theater.getName());
           intent1.putExtra("body", performance);
           ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent1);
-        } else {
-          holder.data.setText(res.getString(R.string.unknown));
-        }
+
         break;
       case PHONE:
-        holder.data.setText(theater.getPhoneNumber());
+        holder.data.setText(ShowtimesDetailsActivity.this.theater.getPhoneNumber());
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_call));
         holder.label.setText(res.getString(R.string.call));
         final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
-            + theater.getPhoneNumber()));
+            + ShowtimesDetailsActivity.this.theater.getPhoneNumber()));
         ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent2);
         break;
       case ADDRESS:
-        final String address = theater.getAddress() + ", " + theater.getLocation().getCity();
+        final String address = ShowtimesDetailsActivity.this.theater.getAddress() + ", " + ShowtimesDetailsActivity.this.theater.getLocation().getCity();
         holder.data.setText(address);
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_map));
         holder.label.setText(res.getString(R.string.location));
