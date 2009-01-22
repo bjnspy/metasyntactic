@@ -139,7 +139,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       if (!matchingMovies.isEmpty() && !this.isGridSetup) {
         this.movies = matchingMovies;
       } else {
-        Toast.makeText(this, "No matching movies found", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,
+            this.getResources().getString(R.string.no_results_found_for_string) + this.search,
+            Toast.LENGTH_SHORT).show();
       }
     }
   }
@@ -316,7 +318,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       holder.title.setText(movie.getDisplayTitle());
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
-      holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loading));
+      holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loader2));
       SoftReference<Bitmap> reference = postersMap.get(position);
       if (reference != null) {
         bitmap = reference.get();
@@ -327,8 +329,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
         if (bytes.length > 0) {
           bitmap = createBitmap(holder, bytes);
-          holder.poster.setImageBitmap(bitmap);
-          postersMap.put(position, new SoftReference<Bitmap>(bitmap));
+          if (bitmap != null) {
+            holder.poster.setImageBitmap(bitmap);
+            postersMap.put(position, new SoftReference<Bitmap>(bitmap));
+          }
         }
       }
       convertView
@@ -424,15 +428,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.menu_search).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search_label).setIcon(
         android.R.drawable.ic_menu_search);
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
         R.drawable.ic_menu_switch);
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.menu_theater).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(
         R.drawable.ic_menu_allfriends);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.menu_upcoming).setIcon(
-        R.drawable.upcoming);
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
+        .setIcon(R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
@@ -442,10 +446,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.movies_select_sort_title).setKey(
-          NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
-          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
-          .setNegativeButton(android.R.string.cancel);
+          R.string.menu_movie_sort).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
+          .setEntries(R.array.entries_movies_sort_preference)
+          .setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
       builder.show();
       return true;
     }

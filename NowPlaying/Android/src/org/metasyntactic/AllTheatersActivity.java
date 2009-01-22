@@ -134,7 +134,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_theater_sort).setIcon(
         R.drawable.ic_menu_switch);
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
@@ -143,7 +143,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.theaters_select_sort_title).setKey(
+          R.string.menu_theater_sort).setKey(
           NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT).setEntries(
           R.array.entries_theaters_sort_preference).setPositiveButton(android.R.string.ok)
           .setNegativeButton(android.R.string.cancel);

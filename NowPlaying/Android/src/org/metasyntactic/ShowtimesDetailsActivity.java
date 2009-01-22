@@ -2,6 +2,7 @@ package org.metasyntactic;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -89,13 +90,14 @@ public class ShowtimesDetailsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.showtimes_item, null);
+      final Resources res = ShowtimesDetailsActivity.this.getResources();
       final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
           .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
           (TextView) convertView.findViewById(R.id.data));
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       switch (ShowtimesDetailsActivity.this.detailItems.get(position).getType()) {
       case NAME_SHOWTIMES:
-        holder.label.setText("Showtimes for " + movie.getDisplayTitle());
+        holder.label.setText(res.getString(R.string.showtimes_for) + " " + movie.getDisplayTitle());
         final List<Performance> list = NowPlayingControllerWrapper
             .getPerformancesForMovieAtTheater(ShowtimesDetailsActivity.this.movie, theater);
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_email));
@@ -108,18 +110,18 @@ public class ShowtimesDetailsActivity extends ListActivity {
           holder.data.setText(performance);
           final String addr = "user@example.com";
           final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
-          intent1.putExtra("subject", "ShowTimes for "
-              + ShowtimesDetailsActivity.this.movie.getDisplayTitle() + " at " + theater.getName());
+          intent1.putExtra("subject", res.getString(R.string.showtimes_for) + " "
+              + res.getString(R.string.showtimes_at) + theater.getName());
           intent1.putExtra("body", performance);
           ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent1);
         } else {
-          holder.data.setText("Unknown.");
+          holder.data.setText(res.getString(R.string.unknown));
         }
         break;
       case PHONE:
         holder.data.setText(theater.getPhoneNumber());
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_call));
-        holder.label.setText("Phone");
+        holder.label.setText(res.getString(R.string.call));
         final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
             + theater.getPhoneNumber()));
         ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent2);
@@ -128,7 +130,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
         final String address = theater.getAddress() + ", " + theater.getLocation().getCity();
         holder.data.setText(address);
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_map));
-        holder.label.setText("Address");
+        holder.label.setText(res.getString(R.string.location));
         final Intent intent3 = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
             + address));
         ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent3);
@@ -195,7 +197,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }

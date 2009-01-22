@@ -8,10 +8,8 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -48,7 +46,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private boolean gridAnimationEnded;
   private boolean isGridSetup;
   private List<Movie> movies;
-  private boolean activityAdded;
   private int lastPosition;
   private final Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
@@ -100,14 +97,12 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
   protected void onPause() {
-    Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
@@ -190,12 +185,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     for (final Movie movie : this.movies) {
       final String firstLetter = movie.getDisplayTitle().substring(0, 1);
       this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
-      Log.i("alphaMovieSectionsMap", "i=" + i + "alphabet=" + firstLetter);
       if (!firstLetter.equals(prevLetter)) {
         this.alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
-        Log
-            .i("alphaMoviePositionMap", "i=" + i + "alphabetIndex="
-                + alphabets.indexOf(firstLetter));
       }
       prevLetter = firstLetter;
       i++;
@@ -283,8 +274,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
 
     public int getPositionForSection(final int section) {
-      Log.i("TEST", "getPositionForSection" + section + "alphaMoviePositionsMap.get(section)"
-          + UpcomingMoviesActivity.this.alphaMoviePositionsMap.get(section));
       final Integer position = UpcomingMoviesActivity.this.alphaMoviePositionsMap.get(section);
       if (position != null) {
         UpcomingMoviesActivity.this.lastPosition = position;
@@ -310,7 +299,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }

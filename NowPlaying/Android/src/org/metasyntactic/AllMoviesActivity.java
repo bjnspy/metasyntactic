@@ -53,7 +53,7 @@ public class AllMoviesActivity extends ListActivity {
     TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final Score score = NowPlayingControllerWrapper.getScore(movie);
     int scoreValue = -1;
-    if (score != null && !score.getValue().equals("")) {
+    if (score != null && !StringUtilities.isNullOrEmpty(score.getValue())) {
       scoreValue = Integer.parseInt(score.getValue());
     } else {
     }
@@ -139,7 +139,7 @@ public class AllMoviesActivity extends ListActivity {
       Intent intent = null;
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
         intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
-        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_trailers),
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.play_trailer),
             null, MovieDetailItemType.ACTION, intent, true);
         this.movieDetailEntries.add(entry);
       }
@@ -157,7 +157,7 @@ public class AllMoviesActivity extends ListActivity {
         intent = new Intent();
         intent.putParcelableArrayListExtra("reviews", reviews);
         intent.setClass(AllMoviesActivity.this, AllReviewsActivity.class);
-        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_reviews),
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.read_reviews),
             null, MovieDetailItemType.ACTION, intent, true);
         this.movieDetailEntries.add(entry);
       }
@@ -169,7 +169,7 @@ public class AllMoviesActivity extends ListActivity {
       Intent intent = null;
       if (!StringUtilities.isNullOrEmpty(imdb_url) && imdb_url.startsWith("http")) {
         intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
-        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.menu_imdb),
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.visit_imdb),
             null, MovieDetailItemType.ACTION, intent, true);
         this.movieDetailEntries.add(entry);
       }
@@ -319,7 +319,7 @@ public class AllMoviesActivity extends ListActivity {
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }

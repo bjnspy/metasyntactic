@@ -53,7 +53,9 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
           intent.setClass(SettingsActivity.this, NowPlayingActivity.class);
           startActivity(intent);
         } else {
-          Toast.makeText(SettingsActivity.this, "Location is required", Toast.LENGTH_LONG).show();
+          Toast.makeText(SettingsActivity.this,
+              SettingsActivity.this.getResources().getString(R.string.please_enter_your_location),
+              Toast.LENGTH_LONG).show();
         }
       }
     });
@@ -136,58 +138,54 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   private void populateSettingsItems() {
     this.detailItems = new ArrayList<SettingsItem>();
+    final Resources res = SettingsActivity.this.getResources();
     // auto update location - 0
     SettingsItem settings = new SettingsItem();
-    settings.setLabel("Auto Update Location");
+    settings.setLabel(res.getString(R.string.autoupdate_location));
     final boolean isAutoUpdate = NowPlayingControllerWrapper.isAutoUpdateEnabled();
     if (isAutoUpdate) {
-      settings.setData("On");
+      settings.setData(res.getString(R.string.on));
     } else {
-      settings.setData("Off");
+      settings.setData(res.getString(R.string.off));
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.AUTO_UPDATE_LOCATION);
     this.detailItems.add(settings);
     // location - 1
     settings = new SettingsItem();
-    settings.setLabel("Location");
+    settings.setLabel(res.getString(R.string.location));
     final String location = NowPlayingControllerWrapper.getUserLocation();
     if (!isNullOrEmpty(location)) {
       settings.setData(location);
     } else {
-      final Resources res = SettingsActivity.this.getResources();
       settings.setData(res.getString(R.string.enter_location));
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.LOCATION);
     this.detailItems.add(settings);
     // search distance - 2
     settings = new SettingsItem();
-    settings.setLabel("Search Distance");
+    settings.setLabel(res.getString(R.string.search_distance));
     final int distance = NowPlayingControllerWrapper.getSearchDistance();
     // TODO Remove hardcoded values once the controller method for distance
     // units is available.
-    settings.setData(distance + " miles");
+    settings.setData(distance + " " + res.getString(R.string.miles));
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DISTANCE);
     this.detailItems.add(settings);
     // search date - 3
     settings = new SettingsItem();
-    settings.setLabel("Search Date");
+    settings.setLabel(res.getString(R.string.search_date));
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DATE);
     final Date d1 = NowPlayingControllerWrapper.getSearchDate();
     final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
     if (d1 != null) {
       settings.setData(df.format(d1));
-    } else {
-      settings.setData("Unknown");
     }
     this.detailItems.add(settings);
     // reviews provider - 4
     settings = new SettingsItem();
-    settings.setLabel("Reviews Provider");
+    settings.setLabel(res.getString(R.string.reviews_provider));
     final ScoreType type = NowPlayingControllerWrapper.getScoreType();
     if (type != null) {
       settings.setData(type.toString());
-    } else {
-      settings.setData("Unknown");
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.REVIEWS_PROVIDER);
     this.detailItems.add(settings);
