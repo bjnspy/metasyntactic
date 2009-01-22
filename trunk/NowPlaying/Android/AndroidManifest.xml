@@ -20,7 +20,7 @@
             android:name="ShowtimesDetailsActivity">
         </activity>
         <activity android:theme="@android:style/Theme.Translucent"
-            android:label="@string/search_label"
+            android:label="@string/search"
             android:name="SearchMovieActivity">
         </activity>
 		<activity android:theme = "@android:style/Theme.NoTitleBar"

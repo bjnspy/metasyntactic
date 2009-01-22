@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="menu_movie_sort">Sort Movies</string>
-    <string name="menu_theater_sort">Sort Theaters</string>
+    <string name="app_name">Now Playing</string>
+    <string name="sort_movies">Sort Movies</string>
+    <string name="sort_theaters">Sort Theaters</string>
     <string name="menu_movies">Home</string>
     <string name="synopsis">Synopsis</string>
-    <string name="options">More Options</string>
+    <string name="more_options">More Options</string>
     <string name="search">Search</string>
     <string name="enter_location">Tap here to enter your search location.</string>
     <string name="on">On</string>

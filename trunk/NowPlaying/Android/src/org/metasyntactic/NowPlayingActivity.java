@@ -61,12 +61,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final Map<Integer, Integer> scoreMovieSectionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> scoreMoviePositionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, SoftReference<Bitmap>> postersMap = new HashMap<Integer, SoftReference<Bitmap>>();
-  private final Integer[] bitmapArray = new Integer[30];
-  private int bitmapArrayIndex;
   private String[] alphabet;
   private String[] score;
-  private static final float SHADOW_RADIUS = 12.0f;
-  private static final int SHADOW_COLOR = 0x99000000;
   private static final Paint SHADOW_PAINT = new Paint();
   private static final Paint SCALE_PAINT = new Paint(Paint.ANTI_ALIAS_FLAG
       | Paint.FILTER_BITMAP_FLAG);
@@ -129,9 +125,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       startActivity(intent);
     }
     refresh();
-    if (movies != null && !movies.isEmpty()) {
+    if (this.movies != null && !this.movies.isEmpty()) {
       setup();
-      isGridSetup = true;
+      this.isGridSetup = true;
     }
     this.search = getIntent().getStringExtra("movie");
     if (this.search != null) {
@@ -140,7 +136,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         this.movies = matchingMovies;
       } else {
         Toast.makeText(this,
-            this.getResources().getString(R.string.no_results_found_for_string) + this.search,
+            getResources().getString(R.string.no_results_found_for_string) + this.search,
             Toast.LENGTH_SHORT).show();
       }
     }
@@ -156,7 +152,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   protected void onPause() {
     unregisterReceiver(this.broadcastReceiver);
     unregisterReceiver(this.databroadcastReceiver);
-    for (SoftReference<Bitmap> reference : postersMap.values()) {
+    for (final SoftReference<Bitmap> reference : this.postersMap.values()) {
       Bitmap drawable = reference.get();
       if (drawable != null) {
         drawable = null;
@@ -319,19 +315,19 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loader2));
-      SoftReference<Bitmap> reference = postersMap.get(position);
+      final SoftReference<Bitmap> reference = NowPlayingActivity.this.postersMap.get(position);
       if (reference != null) {
         bitmap = reference.get();
       }
       if (bitmap != null) {
         holder.poster.setImageBitmap(bitmap);
       } else {
-        byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
+        final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
         if (bytes.length > 0) {
           bitmap = createBitmap(holder, bytes);
           if (bitmap != null) {
             holder.poster.setImageBitmap(bitmap);
-            postersMap.put(position, new SoftReference<Bitmap>(bitmap));
+            NowPlayingActivity.this.postersMap.put(position, new SoftReference<Bitmap>(bitmap));
           }
         }
       }
@@ -340,7 +336,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       return convertView;
     }
 
-    private Bitmap createBitmap(final ViewHolder holder, byte[] bytes) {
+    private Bitmap createBitmap(final ViewHolder holder, final byte[] bytes) {
       final BitmapFactory.Options options = new BitmapFactory.Options();
       final int width = 90;
       final int height = 125;
@@ -401,7 +397,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       if (position != null) {
         NowPlayingActivity.this.lastPosition = position;
       }
-      return lastPosition;
+      return NowPlayingActivity.this.lastPosition;
     }
 
     public int getSectionForPosition(final int position) {
@@ -428,9 +424,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search_label).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(
         android.R.drawable.ic_menu_search);
-    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.menu_movie_sort).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(
         R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(
         R.drawable.ic_menu_allfriends);
@@ -446,7 +442,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.menu_movie_sort).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
+          R.string.sort_movies).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
           .setEntries(R.array.entries_movies_sort_preference)
           .setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
       builder.show();
