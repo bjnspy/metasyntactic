@@ -26,7 +26,7 @@
         android:layout_width="130px"
         android:layout_below="@id/divider"
         android:layout_height="210px"
-        android:src="@drawable/loading"
+        android:src="@drawable/loader2"
         android:background="@drawable/image_frame"
         android:layout_alignParentLeft="true"
         android:scaleType="fitXY"

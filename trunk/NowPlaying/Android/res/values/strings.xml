@@ -1,33 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="moviesIconLabel">Now Playing</string>
-    <string name="upcomingIconLabel">Upcoming</string>
-    <string name="theatersIconLabel">Theaters</string>
     <string name="menu_movie_sort">Sort Movies</string>
     <string name="menu_theater_sort">Sort Theaters</string>
-    <string name="menu_settings">Settings</string>
     <string name="menu_movies">Home</string>
-    <string name="menu_theater">Theaters</string>
-    <string name="menu_trailers">Watch Trailer</string>
-    <string name="menu_imdb">Visit IMDb</string>
-    <string name="menu_reviews">Read Reviews</string>
-    <string name="menu_showtimes">Get Showtimes</string>
-    <string name="menu_upcoming">Upcoming</string>
-    <string name="menu_search">Search Movie</string>
-    <string name="location">Location</string>
-    <string name="movies_select_sort_title">Sort Movies by</string>
-    <string name="theaters_select_sort_title">Sort Theaters by</string>
     <string name="app_name">Now Playing</string>
     <string name="synopsis">Synopsis</string>
     <string name="options">More Options</string>
     <string name="noreviews">This review article is not available.</string>
-    <!-- Characters that are used for each of the fast-scroll widget that skips directly
+    <string name="search">Search</string>
+    <string name="search_label">Search Movie</string>
+    <string name="enter_location">Click here and enter location to search for movies.</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="reviews_provider">Reviews Provider</string>
+    <string name="showtimes_for">Showtimes for</string>
+    <string name="showtimes_at">Showtimes at</string>
+    <string name="unknown">Unknown</string>
+    
+     <!-- Characters that are used for each of the fast-scroll widget that skips directly
         to names starting with this letter.  If your language sorts differently than this,
         please rearrange the alphabet here to be whatever is correct (e.g. Norwegian
         has the three additional letters at the end). -->
     <string name="alphabet">\u0020ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="search">Search</string>
-    <string name="search_label">Search Movie</string>
-    <string name="enter_location">Click here and enter location to search for movies.</string>
-    <!--  <string name="ratingslengthstr_separator">"."</string>  -->
+   
 </resources>

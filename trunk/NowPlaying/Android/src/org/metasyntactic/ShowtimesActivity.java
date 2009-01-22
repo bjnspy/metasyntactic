@@ -62,7 +62,6 @@ public class ShowtimesActivity extends ListActivity {
     // Get and set scores text and background image
     Button scoreImg = (Button) findViewById(R.id.score);
     TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
-    // TextView scoreLabel = (TextView)findViewById(R.id.scoreLabel);
     final Resources res = getResources();
     final Score score = NowPlayingControllerWrapper.getScore(movie);
     int scoreValue = -1;
@@ -177,7 +176,7 @@ public class ShowtimesActivity extends ListActivity {
   public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.menu_settings).setIcon(
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
