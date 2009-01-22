@@ -182,7 +182,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     this.detailItems.add(settings);
     // reviews provider - 4
     settings = new SettingsItem();
-    settings.setLabel(res.getString(R.string.reviews_provider));
+    settings.setLabel(res.getString(R.string.reviews));
     final ScoreType type = NowPlayingControllerWrapper.getScoreType();
     if (type != null) {
       settings.setData(type.toString());
