@@ -46,7 +46,6 @@
 @property (retain) Movie* netflixMovie;
 @property (retain) NSArray* netflixStatusCells;
 @property (retain) NetflixRatingsCell* netflixRatingsCell;
-@property BOOL isEnqueued;
 @property (copy) NSString* trailer;
 @property (retain) NSDictionary* websites;
 @property (retain) UIView* actionsView;
@@ -69,7 +68,6 @@ const NSInteger POSTER_TAG = -1;
 @synthesize netflixMovie;
 @synthesize netflixStatusCells;
 @synthesize netflixRatingsCell;
-@synthesize isEnqueued;
 @synthesize trailer;
 @synthesize websites;
 @synthesize actionsView;
@@ -108,7 +106,7 @@ const NSInteger POSTER_TAG = -1;
         [arguments addObject:[NSNull null]];
     }
 
-    if (netflixMovie != nil && !self.isEnqueued) {
+    if (netflixMovie != nil && netflixStatusCells.count == 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(addToQueue)]];
         [titles addObject:NSLocalizedString(@"Add to Netflix", nil)];
         [arguments addObject:[NSNull null]];
@@ -177,9 +175,29 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (void) initializeNetflixStatusCells {
+    NSArray* statuses = [self.model.netflixCache statusesForMovie:movie];
+    
+    NSMutableArray* cells = [NSMutableArray array];
+    for (NSInteger i = 0; i < statuses.count; i++) {
+        Status* status = [statuses objectAtIndex:i];
+        NetflixStatusCell* cell = [[[NetflixStatusCell alloc] initWithStatus:status] autorelease];
+        cell.moveImageView.delegate = self;
+        cell.deleteImageView.delegate = self;
+        
+        cell.moveImageView.tag = 2 * i;
+        cell.deleteImageView.tag = 2 * i + 1;
+        
+        [cells addObject:cell];
+    }
+    
+    self.netflixStatusCells = cells;
+}
+
+
 - (void) initializeData {
     self.netflixMovie = [self.model.netflixCache netflixMovieForMovie:movie];
-    self.isEnqueued = [self.model.netflixCache isEnqueued:movie];
+    [self initializeNetflixStatusCells];
 
     NSArray* trailers = [self.model trailersForMovie:movie];
     if (trailers.count > 0) {
@@ -404,33 +422,12 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (void) initializeNetflixStatusCells {
-    NSArray* statuses = [self.model.netflixCache statusesForMovie:movie];
-
-    NSMutableArray* cells = [NSMutableArray array];
-    for (NSInteger i = 0; i < statuses.count; i++) {
-        Status* status = [statuses objectAtIndex:i];
-        NetflixStatusCell* cell = [[[NetflixStatusCell alloc] initWithStatus:status] autorelease];
-        cell.moveImageView.delegate = self;
-        cell.deleteImageView.delegate = self;
-
-        cell.moveImageView.tag = 2 * i;
-        cell.deleteImageView.tag = 2 * i + 1;
-
-        [cells addObject:cell];
-    }
-
-    self.netflixStatusCells = cells;
-}
-
-
 - (void) majorRefresh {
     if (readonlyMode) {
         return;
     }
 
     [self initializeData];
-    [self initializeNetflixStatusCells];
     [netflixRatingsCell refresh];
     [self.tableView reloadData];
 }

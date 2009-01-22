@@ -835,7 +835,8 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 - (NSDate*) searchDate {
     NSDate* date = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_DATE];
     if (date == nil || [date compare:[NSDate date]] == NSOrderedAscending) {
-        return [DateUtilities today];
+        date = [DateUtilities today];
+        [self setSearchDate:date];
     }
     return date;
 }

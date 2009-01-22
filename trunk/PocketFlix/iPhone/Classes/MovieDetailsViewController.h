@@ -23,7 +23,6 @@
     Movie* movie;
 
     Movie* netflixMovie;
-    BOOL isEnqueued;
     NetflixRatingsCell* netflixRatingsCell;
     NSArray* netflixStatusCells;
 
