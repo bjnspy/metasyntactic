@@ -286,7 +286,6 @@ public final class R {
         /** E-mail listings
          */
         public static final int email_listings=0x7f070035;
-        public static final int enter_location=0x7f070007;
         /** Favorites
          */
         public static final int favorites=0x7f070036;
@@ -552,6 +551,7 @@ public final class R {
          */
         public static final int studio=0x7f07006c;
         public static final int synopsis=0x7f070004;
+        public static final int tap_here_to_enter_your_search_location=0x7f070007;
         /** Theater last reported show times on\n%@.
          */
         public static final int theater_last_reported_show_times_on_string_dot=0x7f07006d;
