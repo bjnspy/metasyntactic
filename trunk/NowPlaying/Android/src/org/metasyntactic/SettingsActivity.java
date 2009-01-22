@@ -157,7 +157,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     if (!isNullOrEmpty(location)) {
       settings.setData(location);
     } else {
-      settings.setData(res.getString(R.string.enter_location));
+      settings.setData(res.getString(R.string.tap_here_to_enter_your_search_location));
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.LOCATION);
     this.detailItems.add(settings);

@@ -7,7 +7,7 @@
     <string name="synopsis">Synopsis</string>
     <string name="more_options">More Options</string>
     <string name="search">Search</string>
-    <string name="enter_location">Tap here to enter your search location.</string>
+    <string name="tap_here_to_enter_your_search_location">Tap here to enter your search location.</string>
     <string name="on">On</string>
     <string name="off">Off</string>
     <string name="showtimes_for">Showtimes for</string>
