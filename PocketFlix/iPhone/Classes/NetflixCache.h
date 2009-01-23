@@ -24,6 +24,10 @@
     LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
+    
+    // people whose details we want to update
+    LinkedSet* prioritizedPeople;
+    LinkedSet* searchPeople;
 
     NSCondition* updateDetailsLock;
 
@@ -36,8 +40,10 @@
 
 - (id) initWithModel:(Model*) model;
 
-- (NSArray*) search:(NSString*) query;
+- (NSArray*) movieSearch:(NSString*) query;
+- (NSArray*) peopleSearch:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;
+- (void) prioritizePerson:(Person*) person;
 
 - (BOOL) isEnqueued:(Movie*) movie;
 - (NSArray*) statusesForMovie:(Movie*) movie;
@@ -55,6 +61,8 @@
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
+- (UIImage*) posterForPerson:(Person*) movie;
+- (UIImage*) smallPosterForPerson:(Person*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;

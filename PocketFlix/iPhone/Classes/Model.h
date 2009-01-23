@@ -67,12 +67,14 @@ enum ViewControllerType {
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
+- (UIImage*) smallPosterForPerson:(Person*) person;
 
 NSInteger compareMoviesByReleaseDateAscending(id t1, id t2, void* context);
 NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void* context);
 NSInteger compareMoviesByTitle(id t1, id t2, void* context);
 
 - (void) prioritizeMovie:(Movie*) movie;
+- (void) prioritizePerson:(Person*) person;
 
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSArray*) trailersForMovie:(Movie*) movie;

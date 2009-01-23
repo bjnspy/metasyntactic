@@ -31,6 +31,7 @@
 #import "AppDelegate.h"
 #import "Model.h"
 #import "IdentitySet.h"
+#import "Person.h"
 #import "Queue.h"
 #import "Status.h"
 #import "StringUtilities.h"
@@ -42,13 +43,15 @@
 @property (retain) NSArray* feedsData;
 @property (retain) NSMutableDictionary* queues;
 @property (retain) LinkedSet* normalMovies;
+@property (retain) LinkedSet* prioritizedPeople;
 @property (retain) LinkedSet* rssMovies;
 @property (retain) LinkedSet* searchMovies;
+@property (retain) LinkedSet* searchPeople;
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) NSCondition* updateDetailsLock;
 @property (retain) NSDate* lastQuotaErrorDate;
 
-- (void) updateDetails:(Movie*) movie;
+- (void) updateMovieDetails:(Movie*) movie;
 @end
 
 
@@ -57,7 +60,8 @@
 static NSString* title_key = @"title";
 static NSString* series_key = @"series";
 static NSString* average_rating_key = @"average_rating";
-static NSString* link_key = @"link_rating";
+static NSString* link_key = @"link";
+static NSString* filmography_key = @"filmography";
 
 static NSString* cast_key = @"cast";
 static NSString* formats_key = @"formats";
@@ -138,8 +142,10 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 @synthesize feedsData;
 @synthesize queues;
 @synthesize normalMovies;
+@synthesize prioritizedPeople;
 @synthesize rssMovies;
 @synthesize searchMovies;
+@synthesize searchPeople;
 @synthesize prioritizedMovies;
 @synthesize updateDetailsLock;
 @synthesize lastQuotaErrorDate;
@@ -148,8 +154,10 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     self.feedsData = nil;
     self.queues = nil;
     self.normalMovies = nil;
+    self.prioritizedPeople = nil;
     self.rssMovies = nil;
     self.searchMovies = nil;
+    self.searchPeople = nil;
     self.prioritizedMovies = nil;
     self.updateDetailsLock = nil;
     self.lastQuotaErrorDate = nil;
@@ -163,8 +171,10 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         self.queues = [NSMutableDictionary dictionary];
 
         self.normalMovies = [LinkedSet set];
+        self.prioritizedPeople = [LinkedSet set];
         self.rssMovies = [LinkedSet set];
         self.searchMovies = [LinkedSet set];
+        self.searchPeople = [LinkedSet set];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.updateDetailsLock = [[[NSCondition alloc] init] autorelease];
 
@@ -529,7 +539,79 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (NSArray*) search:(NSString*) query {
+- (Person*) processPersonItem:(XmlElement*) personElement {
+    NSString* identifier = [[personElement element:@"id"] text];
+    NSString* name = [[personElement element:@"name"] text];
+    NSString* bio = [[personElement element:@"bio"] text];
+    
+    if (identifier.length == 0 || name.length == 0) {
+        return nil;
+    }
+    
+    NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
+    
+    for (XmlElement* linkElement in [personElement elements:@"link"]) {
+        NSString* rel = [linkElement attributeValue:@"rel"];
+        
+        if ([@"http://schemas.netflix.com/catlog/person/filmography" isEqual:rel]) {
+            [additionalFields setObject:[linkElement attributeValue:@"href"] forKey:filmography_key];
+        } else if ([@"alternate" isEqual:rel]) {
+            [additionalFields setObject:[linkElement attributeValue:@"href"] forKey:link_key];
+        }
+    }
+    
+    return [Person personWithIdentifier:identifier
+                                   name:name
+                              biography:bio
+                       additionalFields:additionalFields];
+}
+
+
+- (NSArray*) processPersonItemList:(XmlElement*) element {
+    NSMutableArray* people = [NSMutableArray array];
+    
+    for (XmlElement* personElement in element.children) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            Person* person = [self processPersonItem:personElement];
+            if (person != nil) {
+                [people addObject:person];
+            }
+        }
+        [pool release];
+    }
+    
+    return people;
+}
+
+
+- (NSArray*) peopleSearch:(NSString*) query {
+    OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/people"];
+    
+    NSArray* parameters = [NSArray arrayWithObject:
+                           [OARequestParameter parameterWithName:@"term" value:query]];
+    
+    [request setParameters:parameters];
+    [request prepare];
+    
+    XmlElement* element =
+    [NetworkUtilities xmlWithContentsOfUrlRequest:request
+                                        important:YES];
+    
+    [self checkApiResult:element];
+    
+    NSArray* people = [self processPersonItemList:element];
+    
+    if (people.count > 0) {
+        // download the details for these movies in teh background.
+        [searchPeople setArray:people];
+    }
+    
+    return people;
+}
+
+
+- (NSArray*) movieSearch:(NSString*) query {
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObject:
@@ -660,16 +742,29 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (NSString*) posterFile:(Movie*) movie {
+- (NSString*) moviePosterFile:(Movie*) movie {
     return
     [[[Application netflixPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"jpg"];
 }
 
 
-- (NSString*) smallPosterFile:(Movie*) movie {
+- (NSString*) personPosterFile:(Person*) person {
+    return
+    [[[Application netflixPeoplePostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:person.name]] stringByAppendingPathExtension:@"jpg"];
+}
+
+
+- (NSString*) smallMoviePosterFile:(Movie*) movie {
     NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     fileName = [fileName stringByAppendingString:@"-small.png"];
     return [[Application netflixPostersDirectory] stringByAppendingPathComponent:fileName];
+}
+
+
+- (NSString*) smallPersonPosterFile:(Person*) person {
+    NSString* fileName = [FileUtilities sanitizeFileName:person.name];
+    fileName = [fileName stringByAppendingString:@"-small.png"];
+    return [[Application netflixPeoplePostersDirectory] stringByAppendingPathComponent:fileName];
 }
 
 
@@ -678,7 +773,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         return;
     }
 
-    NSString* path = [self posterFile:movie];
+    NSString* path = [self moviePosterFile:movie];
     if ([FileUtilities fileExists:path]) {
         return;
     }
@@ -757,7 +852,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         return;
     }
 
-    [self updateDetails:series];
+    [self updateMovieDetails:series];
 }
 
 
@@ -1074,7 +1169,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (void) updateDetails:(Movie*) movie {
+- (void) updateMovieDetails:(Movie*) movie {
     if (movie == nil) {
         return;
     }
@@ -1229,21 +1324,40 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
+- (void) prioritizePerson:(Person*) person {    
+    [updateDetailsLock lock];
+    {
+        [prioritizedPeople addObject:person];
+        [updateDetailsLock signal];
+    }
+    [updateDetailsLock unlock];
+}
+
+
+- (void) updatePersonDetails:(Person*) person {
+    
+}
+
+
 - (void) updateDetailsBackgroundEntryPoint {
     while (YES) {
         Movie* movie = nil;
+        Person* person = nil;
         [updateDetailsLock lock];
         {
-            while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
-                   (movie = [searchMovies removeLastObjectAdded]) == nil &&
-                   (movie = [normalMovies removeLastObjectAdded]) == nil &&
-                   (movie = [rssMovies removeLastObjectAdded]) == nil) {
+            while ((movie  = [prioritizedMovies removeLastObjectAdded]) == nil &&
+                   (person = [prioritizedPeople removeLastObjectAdded]) == nil &&
+                   (movie  = [searchMovies removeLastObjectAdded]) == nil &&
+                   (person = [searchPeople removeLastObjectAdded]) == nil &&
+                   (movie  = [normalMovies removeLastObjectAdded]) == nil &&
+                   (movie  = [rssMovies removeLastObjectAdded]) == nil) {
                 [updateDetailsLock wait];
             }
-        }
+        } 
         [updateDetailsLock unlock];
 
-        [self updateDetails:movie];
+        [self updatePersonDetails:person];
+        [self updateMovieDetails:movie];
     }
 }
 
@@ -1278,7 +1392,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 - (UIImage*) posterForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
 
-    NSData* data = [FileUtilities readData:[self posterFile:movie]];
+    NSData* data = [FileUtilities readData:[self moviePosterFile:movie]];
     return [UIImage imageWithData:data];
 }
 
@@ -1286,11 +1400,11 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 - (UIImage*) smallPosterForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
 
-    NSString* smallPosterPath = [self smallPosterFile:movie];
+    NSString* smallPosterPath = [self smallMoviePosterFile:movie];
     NSData* smallPosterData;
 
     if ([FileUtilities size:smallPosterPath] == 0) {
-        NSData* normalPosterData = [FileUtilities readData:[self posterFile:movie]];
+        NSData* normalPosterData = [FileUtilities readData:[self moviePosterFile:movie]];
         smallPosterData = [ImageUtilities scaleImageData:normalPosterData
                                                 toHeight:SMALL_POSTER_HEIGHT];
 
@@ -1300,6 +1414,31 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
 
+    return [UIImage imageWithData:smallPosterData];
+}
+
+
+- (UIImage*) posterForPerson:(Person*) person {
+    NSData* data = [FileUtilities readData:[self personPosterFile:person]];
+    return [UIImage imageWithData:data];
+}
+
+
+- (UIImage*) smallPosterForPerson:(Person*) person {
+    NSString* smallPosterPath = [self smallPersonPosterFile:person];
+    NSData* smallPosterData;
+    
+    if ([FileUtilities size:smallPosterPath] == 0) {
+        NSData* normalPosterData = [FileUtilities readData:[self personPosterFile:person]];
+        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
+                                                toHeight:SMALL_POSTER_HEIGHT];
+        
+        [FileUtilities writeData:smallPosterData
+                          toFile:smallPosterPath];
+    } else {
+        smallPosterData = [FileUtilities readData:smallPosterPath];
+    }
+    
     return [UIImage imageWithData:smallPosterData];
 }
 

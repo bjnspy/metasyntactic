@@ -129,6 +129,9 @@
 		747412910EC7C0B500625001 /* ImageLoading.png in Resources */ = {isa = PBXBuildFile; fileRef = 747412900EC7C0B500625001 /* ImageLoading.png */; };
 		747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747413880EC7F2EC00625001 /* AbstractPosterCell.m */; };
 		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
+		7476FE520F2A5D7F00D71F36 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476FE510F2A5D7F00D71F36 /* Person.m */; };
+		7476FEF80F2A66DF00D71F36 /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476FEF70F2A66DF00D71F36 /* PersonCell.m */; };
+		7476FEFC0F2A671900D71F36 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476FEFB0F2A671900D71F36 /* AbstractImageCell.m */; };
 		747AB7A70EB956B2002438D0 /* DVD.png in Resources */ = {isa = PBXBuildFile; fileRef = 747AB7A60EB956B2002438D0 /* DVD.png */; };
 		747ABB780EBA4228002438D0 /* VideoETALogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 747ABB770EBA4228002438D0 /* VideoETALogo.png */; };
 		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
@@ -474,6 +477,12 @@
 		747413880EC7F2EC00625001 /* AbstractPosterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCell.m; sourceTree = "<group>"; };
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
 		7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
+		7476FE500F2A5D7F00D71F36 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		7476FE510F2A5D7F00D71F36 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		7476FEF60F2A66DF00D71F36 /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
+		7476FEF70F2A66DF00D71F36 /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
+		7476FEFA0F2A671900D71F36 /* AbstractImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractImageCell.h; sourceTree = "<group>"; };
+		7476FEFB0F2A671900D71F36 /* AbstractImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractImageCell.m; sourceTree = "<group>"; };
 		747AB7A60EB956B2002438D0 /* DVD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVD.png; path = Resources/DVD.png; sourceTree = "<group>"; };
 		747ABAF80EBA3DA3002438D0 /* pl */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pl; path = Resources/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747ABB770EBA4228002438D0 /* VideoETALogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = VideoETALogo.png; path = Resources/VideoETALogo.png; sourceTree = "<group>"; };
@@ -926,6 +935,8 @@
 				749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */,
 				749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */,
 				749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */,
+				7476FEFA0F2A671900D71F36 /* AbstractImageCell.h */,
+				7476FEFB0F2A671900D71F36 /* AbstractImageCell.m */,
 				747413870EC7F2EC00625001 /* AbstractPosterCell.h */,
 				747413880EC7F2EC00625001 /* AbstractPosterCell.m */,
 				74676D860EFF6E7D00C64100 /* NetflixCell.h */,
@@ -934,6 +945,8 @@
 				74EB9BF50EFA3B2A0083DC33 /* NetflixRatingsCell.m */,
 				74F4280B0F1FC995002EECC5 /* NetflixStatusCell.h */,
 				74F4280C0F1FC995002EECC5 /* NetflixStatusCell.m */,
+				7476FEF60F2A66DF00D71F36 /* PersonCell.h */,
+				7476FEF70F2A66DF00D71F36 /* PersonCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1217,6 +1230,8 @@
 				7400EFD10EF5935700058CDD /* Feed.m */,
 				747DA10D0EF835A50066B881 /* Queue.h */,
 				747DA10E0EF835A50066B881 /* Queue.m */,
+				7476FE500F2A5D7F00D71F36 /* Person.h */,
+				7476FE510F2A5D7F00D71F36 /* Person.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1534,6 +1549,9 @@
 				74F4280D0F1FC995002EECC5 /* NetflixStatusCell.m in Sources */,
 				74F4292D0F200E60002EECC5 /* Status.m in Sources */,
 				740102420F26F15800258353 /* NSMutableArray+Utilities.m in Sources */,
+				7476FE520F2A5D7F00D71F36 /* Person.m in Sources */,
+				7476FEF80F2A66DF00D71F36 /* PersonCell.m in Sources */,
+				7476FEFC0F2A671900D71F36 /* AbstractImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
