@@ -1,0 +1,106 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* PocketCards */ = {
+		activeExec = 0;
+		executables = (
+			747600100F2A7C0D00D71F36 /* PocketCards */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 747600100F2A7C0D00D71F36 /* PocketCards */;
+		activeSDKPreference = iphonesimulator2.1;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* PocketCards */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* PocketCards */,
+		);
+		codeSenseManager = 747600260F2A7C2400D71F36 /* Code sense */;
+		executables = (
+			747600100F2A7C0D00D71F36 /* PocketCards */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					500,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 254442591;
+			PBXWorkspaceStateSaveDate = 254442591;
+		};
+		perUserProjectItems = {
+			74DE49000F2A7CB50099D6AF /* PBXBookmark */ = 74DE49000F2A7CB50099D6AF /* PBXBookmark */;
+			74DE49010F2A7CB50099D6AF /* PlistBookmark */ = 74DE49010F2A7CB50099D6AF /* PlistBookmark */;
+		};
+		sourceControlManager = 747600250F2A7C2400D71F36 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	747600100F2A7C0D00D71F36 /* PocketCards */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = PocketCards;
+		sourceDirectories = (
+		);
+	};
+	747600250F2A7C2400D71F36 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryName = metasyntactic;
+		};
+	};
+	747600260F2A7C2400D71F36 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	74DE49000F2A7CB50099D6AF /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+	};
+	74DE49010F2A7CB50099D6AF /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = /Projects/metasyntactic/trunk/PocketCards/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+}
