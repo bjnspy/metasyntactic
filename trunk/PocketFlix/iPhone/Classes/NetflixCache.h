@@ -62,6 +62,7 @@
 - (NSString*) userRatingForMovie:(Movie*) movie;
 - (NSArray*) formatsForMovie:(Movie*) movie;
 - (NSArray*) similarMoviesForMovie:(Movie*) movie;
+- (NSString*) netflixAddressForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
 

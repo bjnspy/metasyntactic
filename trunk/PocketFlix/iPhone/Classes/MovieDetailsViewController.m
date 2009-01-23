@@ -121,7 +121,8 @@ const NSInteger POSTER_TAG = -1;
         // show individual buttons
         for (NSString* name in [websites.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
             [selectors addObject:[NSValue valueWithPointer:@selector(visitWebsite:)]];
-            [titles addObject:name];
+            NSString* title = [NSString stringWithFormat:NSLocalizedString(@"Visit %@", nil), name];
+            [titles addObject:title];
             [arguments addObject:[websites objectForKey:name]];
         }
     }
@@ -163,6 +164,11 @@ const NSInteger POSTER_TAG = -1;
     NSString* wikipediaAddress = [self.model wikipediaAddressForMovie:movie];
     if (wikipediaAddress.length > 0) {
         [map setObject:wikipediaAddress forKey:@"Wikipedia"];
+    }
+    
+    NSString* netflixAddress = [self.model netflixAddressForMovie:movie];
+    if (netflixAddress.length > 0) {
+        [map setObject:netflixAddress forKey:@"Netflix"];
     }
 
     self.websites = map;
@@ -529,7 +535,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (UIView*)        tableView:(UITableView*) tableView
       viewForFooterInSection:(NSInteger) section {
-    if (section == 1) {
+    if (section == 0) {
         return actionsView;
     }
 
@@ -539,7 +545,7 @@ const NSInteger POSTER_TAG = -1;
 
 - (CGFloat)          tableView:(UITableView*) tableView
       heightForFooterInSection:(NSInteger) section {
-    if (section == 1) {
+    if (section == 0) {
         CGFloat height = [actionsView height];
 
         return height + 8;
@@ -630,6 +636,7 @@ const NSInteger POSTER_TAG = -1;
         return;
     }
     readonlyMode = YES;
+
     [self setupTitle];
     [self setupButtons];
     [self setupStatusCells];

@@ -363,6 +363,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     [[NSUserDefaults standardUserDefaults] setObject:userId forKey:NETFLIX_USER_ID];
     [[NSUserDefaults standardUserDefaults] setObject:secret forKey:NETFLIX_SECRET];
     [[NSUserDefaults standardUserDefaults] setObject:key forKey:NETFLIX_KEY];
+    [self synchronize];
 }
 
 
@@ -404,6 +405,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
     return [NSMutableSet setWithArray:array];
 }
+
 
 - (void) ensureBookmarkedTitles {
     if (bookmarkedTitlesData == nil) {
@@ -549,6 +551,11 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (NSString*) amazonAddressForMovie:(Movie*) movie {
     return [amazonCache amazonAddressForMovie:movie];
+}
+
+
+- (NSString*) netflixAddressForMovie:(Movie*) movie {
+    return [netflixCache netflixAddressForMovie:movie];
 }
 
 
