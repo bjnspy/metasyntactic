@@ -89,6 +89,7 @@ public class NowPlayingController {
     }
     this.model.setUserAddress(userAddress);
     update();
+    Application.refresh(true);
   }
 
   public Location getLocationForAddress(final String address) {
