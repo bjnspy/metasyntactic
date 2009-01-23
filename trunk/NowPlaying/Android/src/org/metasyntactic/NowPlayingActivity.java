@@ -90,7 +90,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
-    if (this.postersAdapter != null && this.gridAnimationEnded) {
+    if (this.postersAdapter != null) {
       this.postersAdapter.refreshMovies();
     }
   }
@@ -384,6 +384,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     public void refreshMovies() {
       notifyDataSetChanged();
+      FastScrollGridView.getSections();
     }
 
     public int getPositionForSection(final int section) {
@@ -411,7 +412,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
 
     public Object[] getSections() {
-      // fast scroll is implemented only for alphabetic sort for release 1.
+      // fast scroll is implemented only for alphabetic & score sort for release
+      // 1.
       if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() == 0) {
         return NowPlayingActivity.this.alphabet;
       }

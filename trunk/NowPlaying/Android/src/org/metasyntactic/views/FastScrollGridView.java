@@ -40,18 +40,18 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   // Hard coding these for now
   private int mOverlaySize = 104;
   private boolean mDragging;
-  private GridView mGrid;
+  private static GridView mGrid;
   private boolean mScrollCompleted;
   private boolean mThumbVisible;
   private int mVisibleItem;
   private Paint mPaint;
-  private int mGridOffset;
-  private Object[] mSections;
+  private static int mGridOffset;
+  private static Object[] mSections;
   private String mSectionText;
   private boolean mDrawOverlay;
   private ScrollFade mScrollFade;
   private Handler mHandler = new Handler();
-  private BaseAdapter mGridAdapter;
+  private static BaseAdapter mGridAdapter;
   private boolean mChangedBounds;
 
   public interface SectionIndexer {
@@ -191,7 +191,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     }
   }
 
-  private void getSections() {
+  public static void getSections() {
     Adapter adapter = mGrid.getAdapter();
     if (adapter instanceof HeaderViewListAdapter) {
       mGridOffset = ((HeaderViewListAdapter) adapter).getHeadersCount();
