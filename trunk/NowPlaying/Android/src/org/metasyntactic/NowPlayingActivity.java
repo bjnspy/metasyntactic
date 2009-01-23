@@ -204,7 +204,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         // The animation listener is used to trigger the next animation
         final Rotate3dAnimation rotation = new Rotate3dAnimation(90, 0, centerX, centerY, 0.0f,
             true);
-        rotation.setDuration(500);
+        rotation.setDuration(100);
         rotation.setFillAfter(true);
         rotation.setAnimationListener(new AnimationListener() {
           public void onAnimationEnd(final Animation animation) {
