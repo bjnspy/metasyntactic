@@ -25,7 +25,7 @@
     CLLocationCoordinate2D coordinates = location.coordinate;
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
-    NSString* url = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
+    NSString* url = [NSString stringWithFormat:@"http://ws5.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
 
     XmlElement* geonamesElement = [NetworkUtilities xmlWithContentsOfAddress:url important:YES];
     XmlElement* codeElement = [geonamesElement element:@"code"];
@@ -79,12 +79,52 @@
 }
 
 
-+ (Location*) findLocation:(CLLocation*) location {
-    Location* result = [self findLocationWithGeonames:location];
-    if (result == nil) {
-        result = [self findLocationWithGeocoder:location];
++ (Location*) findLocationWithGoogle:(CLLocation*) location {
+    CLLocationCoordinate2D coordinates = location.coordinate;
+    double latitude = coordinates.latitude;
+    double longitude = coordinates.longitude;
+    NSString* url = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%f,%f&output=xml&oe=utf8&sensor=false&key=ABQIAAAAE33gn89pf9QC1N10Oi1IxBTjs0lgCCfZJx1z0ucxfREoQjAihRQgAaDiNU3GwvKqQjMaH59qEdSkAg", latitude, longitude];
+    
+    XmlElement* kmlElement = [NetworkUtilities xmlWithContentsOfAddress:url important:YES];
+    
+    NSString* postalCode = [[kmlElement element:@"PostalCodeNumber" recurse:YES] text];
+    
+    if (postalCode.length == 0) {
+        return nil;
     }
-    return result;
+    
+    NSString* country = [[kmlElement element:@"CountryNameCode" recurse:YES] text];
+    NSString* state = [[kmlElement element:@"AdministrativeAreaName" recurse:YES] text];
+    NSString* city = [[kmlElement element:@"SubAdministrativeAreaName" recurse:YES] text];
+    NSString* locality = [[kmlElement element:@"LocalityName" recurse:YES] text];
+    
+    return  [Location locationWithLatitude:latitude
+                                 longitude:longitude
+                                   address:@""
+                                      city:city.length > 0 ? city : locality
+                                     state:state
+                                postalCode:postalCode
+                                   country:country];
+}
+
+
++ (Location*) findLocation:(CLLocation*) location {
+    Location* result = [self findLocationWithGoogle:location];
+    if (result != nil) {
+        return result;
+    }
+    
+    result = [self findLocationWithGeonames:location];
+    if (result != nil) {
+        return result;
+    }
+    
+    result = [self findLocationWithGeocoder:location];
+    if (result != nil) {
+        return result;
+    }
+    
+    return nil;
 }
 
 @end

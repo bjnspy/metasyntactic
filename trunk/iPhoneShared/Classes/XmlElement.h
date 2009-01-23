@@ -68,6 +68,7 @@
 + (XmlElement*) elementWithDictionary:(NSDictionary*) dictionary;
 
 - (XmlElement*) element:(NSString*) name;
+- (XmlElement*) element:(NSString*) name recurse:(BOOL) recurse;
 - (NSArray*) elements:(NSString*) name;
 
 - (XmlElement*) elementAtIndex:(NSInteger) index;
