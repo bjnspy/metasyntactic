@@ -98,8 +98,8 @@ public class AllUpcomingMoviesActivity extends ListActivity {
     }
     {
       // Add header
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.more_options), null,
-          MovieDetailItemType.HEADER, null, false);
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.more_options),
+          null, MovieDetailItemType.HEADER, null, false);
       this.movieDetailEntries.add(entry);
     }
     {
@@ -185,7 +185,8 @@ public class AllUpcomingMoviesActivity extends ListActivity {
         final ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
         final TextView text1 = (TextView) convertView.findViewById(R.id.value1);
         final TextView text2 = (TextView) convertView.findViewById(R.id.value2);
-        final byte[] bytes = NowPlayingControllerWrapper.getPoster(AllUpcomingMoviesActivity.this.movie);
+        final byte[] bytes = NowPlayingControllerWrapper
+            .getPoster(AllUpcomingMoviesActivity.this.movie);
         if (bytes.length > 0) {
           posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
           posterImage.setBackgroundResource(R.drawable.image_frame);
@@ -234,6 +235,7 @@ public class AllUpcomingMoviesActivity extends ListActivity {
     private class MovieViewHolder {
       private final TextView name;
       private final TextView value;
+
       private MovieViewHolder(final TextView name, final TextView value, final ImageView divider) {
         this.name = name;
         this.value = value;
