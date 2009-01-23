@@ -17,14 +17,21 @@
     NSInteger requestId;
     NSString* value;
     NSArray* movies;
+    NSArray* people;
 }
 
 @property (readonly) NSInteger requestId;
 @property (readonly, copy) NSString* value;
 @property (readonly, retain) NSArray* movies;
+@property (readonly, retain) NSArray* people;
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
                         movies:(NSArray*) movies;
+
++ (SearchResult*) resultWithId:(NSInteger) requestId
+                         value:(NSString*) value
+                        movies:(NSArray*) movies
+                        people:(NSArray*) people;
 
 @end

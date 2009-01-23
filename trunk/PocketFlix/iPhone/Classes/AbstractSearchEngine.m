@@ -154,9 +154,15 @@
 
 
 - (void) reportMovies:(NSArray*) movies {
+    [self reportMovies:movies people:nil];
+}
+
+
+- (void) reportMovies:(NSArray*) movies people:(NSArray*) people {
     SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                                 value:currentlyExecutingRequest.value
-                                               movies:movies];
+                                               movies:movies
+                                               people:people];
     [self performSelectorOnMainThread:@selector(reportResult:) withObject:result waitUntilDone:NO];
 }
 
