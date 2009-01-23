@@ -174,9 +174,24 @@ property_definition(text);
 
 
 - (XmlElement*) element:(NSString*) name_ {
+    return [self element:name_ recurse:NO];
+}
+
+
+- (XmlElement*) element:(NSString*) name_ recurse:(BOOL) recurse {
     for (XmlElement* child in children) {
         if ([name_ isEqualToString:child.name]) {
             return child;
+        }
+    }
+    
+    if (recurse) {
+        XmlElement* result;
+        for (XmlElement* child in children) {
+            result = [child element:name_ recurse:recurse];
+            if (result != nil) {
+                return result;
+            }
         }
     }
 

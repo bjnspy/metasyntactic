@@ -24,7 +24,7 @@
 @implementation NetflixRatingsCell
 
 
-- (void)dealloc {
+- (void) dealloc {
     [super dealloc];
 }
 

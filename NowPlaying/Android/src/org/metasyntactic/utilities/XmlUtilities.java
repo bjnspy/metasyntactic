@@ -69,6 +69,23 @@ public class XmlUtilities {
     return null;
   }
 
+  public static Element element(final Element element, final String name, final boolean recurse) {
+    if (element == null) {
+      return null;
+    }
+
+    if (!recurse) {
+      return element(element, name);
+    }
+
+    final NodeList list = element.getElementsByTagName(name);
+    if (list == null || list.getLength() == 0) {
+      return null;
+    }
+
+    return (Element)list.item(0);
+  }
+
   public static String text(final Element element) {
     if (element == null) {
       return null;

@@ -23,8 +23,10 @@ public class LocationUtilities {
   private LocationUtilities() {
   }
 
-  private static Location findLocationWithGeonames(final double latitude, final double longitude) {
-    final String url = "http://ws.geonames.org/findNearbyPostalCodes?lat=" + latitude + "&lng=" + longitude + "&maxRows=1";
+  private static Location findLocationWithGeonames(final double latitude,
+      final double longitude) {
+    final String url = "http://ws.geonames.org/findNearbyPostalCodes?lat="
+        + latitude + "&lng=" + longitude + "&maxRows=1";
 
     final Element geonamesElement = NetworkUtilities.downloadXml(url, true);
     final Element codeElement = element(geonamesElement, "code");
@@ -42,11 +44,14 @@ public class LocationUtilities {
     final String city = text(element(codeElement, "adminName1"));
     final String state = text(element(codeElement, "adminCode1"));
 
-    return new Location(latitude, longitude, "", city, state, postalCode, country);
+    return new Location(latitude, longitude, "", city, state, postalCode,
+        country);
   }
 
-  private static Location findLocationWithGeocoder(final double latitude, final double longitude) {
-    final String url = "http://geocoder.ca/?latt=" + latitude + "&longt=" + longitude + "&geoit=xml&reverse=Reverse+GeoCode+it";
+  private static Location findLocationWithGeocoder(final double latitude,
+      final double longitude) {
+    final String url = "http://geocoder.ca/?latt=" + latitude + "&longt="
+        + longitude + "&geoit=xml&reverse=Reverse+GeoCode+it";
 
     final Element geodataElement = NetworkUtilities.downloadXml(url, true);
     final String postalCode = text(element(geodataElement, "postal"));
@@ -61,11 +66,45 @@ public class LocationUtilities {
     return new Location(latitude, longitude, "", city, state, postalCode, "CA");
   }
 
-  public static Location findLocation(final double latitude, final double longitude) {
-    Location result = findLocationWithGeonames(latitude, longitude);
-    if (result == null) {
-      result = findLocationWithGeocoder(latitude, longitude);
+  private static Location findLocationWithGoogle(final double latitude,
+      final double longitude) {
+    final String url = "http://maps.google.com/maps/geo?q="
+        + latitude + "," + longitude
+        + "&output=xml&oe=utf8&sensor=false&key=ABQIAAAAE33gn89pf9QC1N10Oi1IxBTjs0lgCCfZJx1z0ucxfREoQjAihRQgAaDiNU3GwvKqQjMaH59qEdSkAg";
+
+    final Element kmlElement = NetworkUtilities.downloadXml(url, true);
+
+    final String postalCode = text(element(kmlElement, "PostalCodeNumber", true));
+
+    if (isNullOrEmpty(postalCode)) {
+      return null;
     }
-    return result;
+
+    final String country = text(element(kmlElement, "CountryNameCode", true));
+    final String state = text(element(kmlElement, "AdministrativeAreaName", true));
+    final String city = text(element(kmlElement, "SubAdministrativeAreaName", true));
+    final String locality = text(element(kmlElement, "LocalityName", true));
+
+    return new Location(latitude, longitude, "", isNullOrEmpty(city) ? locality : city, state, postalCode, country);
+  }
+
+  public static Location findLocation(final double latitude,
+      final double longitude) {
+    Location result = findLocationWithGoogle(latitude, longitude);
+    if (result != null) {
+      return result;
+    }
+
+    result = findLocationWithGeonames(latitude, longitude);
+    if (result != null) {
+      return result;
+    }
+
+    result = findLocationWithGeocoder(latitude, longitude);
+    if (result != null) {
+      return result;
+    }
+
+    return null;
   }
 }
