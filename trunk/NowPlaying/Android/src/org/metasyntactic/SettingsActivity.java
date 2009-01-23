@@ -127,6 +127,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     } else {
       SettingsActivity.this.showDialog(position);
     }
+    
+   
     super.onListItemClick(listView, v, position, id);
   }
 

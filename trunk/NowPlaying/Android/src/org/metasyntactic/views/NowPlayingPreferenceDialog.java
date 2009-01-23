@@ -6,11 +6,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-import org.metasyntactic.Application;
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.R;
