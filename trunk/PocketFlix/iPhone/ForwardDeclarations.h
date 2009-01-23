@@ -70,6 +70,7 @@
 @class AppDelegate;
 @class Controller;
 @class Model;
+@class Person;
 @class PickerEditorViewController;
 @class PointerSet;
 @class PosterCache;

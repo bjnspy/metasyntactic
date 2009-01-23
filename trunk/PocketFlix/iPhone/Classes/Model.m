@@ -592,6 +592,16 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
+- (UIImage*) posterForPerson:(Person*) person {
+    return [netflixCache posterForPerson:person];
+}
+
+
+- (UIImage*) smallPosterForPerson:(Person*) person {
+    return [netflixCache smallPosterForPerson:person];
+}
+
+
 NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void* context) {
     if (t1 == t2) {
         return NSOrderedSame;
@@ -703,6 +713,11 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
     [amazonCache prioritizeMovie:movie];
     [wikipediaCache prioritizeMovie:movie];
     [netflixCache prioritizeMovie:movie];
+}
+
+
+- (void) prioritizePerson:(Person*) person {
+    [netflixCache prioritizePerson:person];
 }
 
 

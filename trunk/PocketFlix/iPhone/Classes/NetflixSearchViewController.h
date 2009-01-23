@@ -23,6 +23,7 @@
     NetflixSearchEngine* searchEngine;
 
     NSArray* movies;
+    NSArray* people;
 
     BOOL visible;
 }

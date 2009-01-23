@@ -44,6 +44,7 @@ static NSString* netflixDirectory = nil;
 static NSString* netflixSeriesDirectory = nil;
 static NSString* netflixQueuesDirectory = nil;
 static NSString* netflixPostersDirectory = nil;
+static NSString* netflixPeoplePostersDirectory = nil;
 static NSString* netflixUserRatingsDirectory = nil;
 static NSString* netflixPredictedRatingsDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
@@ -58,6 +59,7 @@ static NSString** directories[] = {
 &netflixQueuesDirectory,
 &netflixSeriesDirectory,
 &netflixPostersDirectory,
+&netflixPeoplePostersDirectory,
 &netflixUserRatingsDirectory,
 &netflixPredictedRatingsDirectory,
 &netflixSearchDirectory,
@@ -161,6 +163,7 @@ static DifferenceEngine* differenceEngine = nil;
         netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
         netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
         netflixPostersDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Posters"] retain];
+        netflixPeoplePostersDirectory = [[netflixPostersDirectory stringByAppendingPathComponent:@"People"] retain];
         netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
         netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
         netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
@@ -344,6 +347,11 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixPostersDirectory {
     return netflixPostersDirectory;
+}
+
+
++ (NSString*) netflixPeoplePostersDirectory {
+    return netflixPeoplePostersDirectory;
 }
 
 

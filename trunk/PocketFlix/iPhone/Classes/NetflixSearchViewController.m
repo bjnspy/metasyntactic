@@ -19,6 +19,7 @@
 #import "GlobalActivityIndicator.h"
 #import "NetflixCell.h"
 #import "NetflixSearchEngine.h"
+#import "PersonCell.h"
 #import "SearchResult.h"
 
 @interface NetflixSearchViewController()
@@ -27,6 +28,7 @@
 @property (retain) NetflixSearchEngine* searchEngine;
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) NSArray* movies;
+@property (retain) NSArray* people;
 @end
 
 
@@ -37,6 +39,7 @@
 @synthesize searchEngine;
 @synthesize activityIndicatorView;
 @synthesize movies;
+@synthesize people;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -44,6 +47,7 @@
     self.searchEngine = nil;
     self.activityIndicatorView = nil;
     self.movies = nil;
+    self.people = nil;
 
     [super dealloc];
 }
@@ -139,38 +143,74 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+    return 2;
 }
-
+ 
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
-    return movies.count;
+    if (section == 0) {
+        return movies.count;
+    } else {
+        return people.count;
+    }
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (section == 0 && movies.count > 0) {
+        return NSLocalizedString(@"Movies", nil);
+    } else if (section == 1 && people.count > 0) {
+        return NSLocalizedString(@"People", nil);
+    }
+    
+    return nil;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
-    static NSString* reuseIdentifier = @"reuseIdentifier";
+    if (indexPath.section == 0) {
+        static NSString* reuseIdentifier = @"movieReuseIdentifier";
 
-    NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
-                                             reuseIdentifier:reuseIdentifier
-                                                       model:self.model] autorelease];
+        NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
+                                       reuseIdentifier:reuseIdentifier
+                                                 model:self.model] autorelease];
+        }
+        
+        Movie* movie = [movies objectAtIndex:indexPath.row];
+        [cell setMovie:movie owner:self];
+        
+        return cell;
+    } else {
+        static NSString* reuseIdentifier = @"personReuseIdentifier";
+        
+        PersonCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[PersonCell alloc] initWithFrame:CGRectZero
+                                       reuseIdentifier:reuseIdentifier
+                                                 model:self.model] autorelease];
+        }
+        
+        Person* person = [people objectAtIndex:indexPath.row];
+        [cell setPerson:person owner:self];
+        
+        return cell;
     }
-
-    Movie* movie = [movies objectAtIndex:indexPath.row];
-    [cell setMovie:movie owner:self];
-
-    return cell;
 }
 
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    Movie* movie = [movies objectAtIndex:indexPath.row];
-    [navigationController pushMovieDetails:movie animated:YES];
+    if (indexPath.section == 0) {
+        Movie* movie = [movies objectAtIndex:indexPath.row];
+        [navigationController pushMovieDetails:movie animated:YES];
+    } else {
+        
+    }
 }
 
 
@@ -198,6 +238,7 @@
     [activityIndicatorView stopAnimating];
 
     self.movies = result.movies;
+    self.people = result.people;
     [self majorRefresh];
 }
 
