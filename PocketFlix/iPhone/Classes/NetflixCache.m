@@ -57,6 +57,7 @@
 static NSString* title_key = @"title";
 static NSString* series_key = @"series";
 static NSString* average_rating_key = @"average_rating";
+static NSString* link_key = @"link_rating";
 
 static NSString* cast_key = @"cast";
 static NSString* formats_key = @"formats";
@@ -337,7 +338,6 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     NSString* identifier = nil;
     NSString* title = nil;
-    NSString* link = nil;
     NSString* poster = nil;
     NSString* rating = nil;
     NSString* year = nil;
@@ -350,7 +350,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         } else if ([@"link" isEqual:child.name]) {
             NSString* rel = [child attributeValue:@"rel"];
             if ([@"alternate" isEqual:rel]) {
-                link = [child attributeValue:@"href"];
+                [additionalFields setObject:[child attributeValue:@"href"] forKey:link_key];
             } else if ([@"http://schemas.netflix.com/catalog/title" isEqual:rel]) {
                 NSString* title = [child attributeValue:@"href"];
                 if (identifier.length == 0) {
@@ -1346,6 +1346,16 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     movie = [self promoteDiscToSeries:movie];
     NSDictionary* details = [self detailsForMovie:movie];
     return [details objectForKey:formats_key];
+}
+
+
+- (NSString*) netflixAddressForMovie:(Movie*) movie {
+    NSString* address = [movie.additionalFields objectForKey:link_key];
+    if (address.length == 0) {
+        return @"";
+    }
+
+    return address;
 }
 
 
