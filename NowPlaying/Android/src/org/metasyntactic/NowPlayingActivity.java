@@ -118,17 +118,25 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.progressbar_1);
     NowPlayingControllerWrapper.addActivity(this);
+    getUserLocation();
+    refresh();
+    if (this.movies != null && !this.movies.isEmpty()) {
+      setup();
+      this.isGridSetup = true;
+    }
+    showSearchResuts();
+  }
+
+  private void getUserLocation() {
     final String userLocation = NowPlayingControllerWrapper.getUserLocation();
     if (StringUtilities.isNullOrEmpty(userLocation)) {
       final Intent intent = new Intent();
       intent.setClass(this, SettingsActivity.class);
       startActivity(intent);
     }
-    refresh();
-    if (this.movies != null && !this.movies.isEmpty()) {
-      setup();
-      this.isGridSetup = true;
-    }
+  }
+
+  private void showSearchResuts() {
     this.search = getIntent().getStringExtra("movie");
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
@@ -198,32 +206,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       public void onItemClick(final AdapterView parent, final View view, final int position,
           final long id) {
         NowPlayingActivity.this.selectedMovie = NowPlayingActivity.this.movies.get(position);
-        final float centerX = view.getWidth() / 2.0f;
-        final float centerY = view.getHeight() / 2.0f;
-        // Create a new 3D rotation with the supplied parameter
-        // The animation listener is used to trigger the next animation
-        final Rotate3dAnimation rotation = new Rotate3dAnimation(90, 0, centerX, centerY, 0.0f,
-            true);
-        rotation.setDuration(100);
-        rotation.setFillAfter(true);
-        rotation.setAnimationListener(new AnimationListener() {
-          public void onAnimationEnd(final Animation animation) {
-            final Animation slide = AnimationUtils.loadAnimation(NowPlayingActivity.this,
-                R.anim.slide_left);
-            NowPlayingActivity.this.grid.startAnimation(slide);
-            NowPlayingActivity.this.grid.setVisibility(View.GONE);
-            NowPlayingActivity.this.intent.putExtra("movie",
-                (Parcelable) NowPlayingActivity.this.selectedMovie);
-            startActivity(NowPlayingActivity.this.intent);
-          }
-
-          public void onAnimationRepeat(final Animation animation) {
-          }
-
-          public void onAnimationStart(final Animation animation) {
-          }
-        });
-        view.startAnimation(rotation);
+        setupRotationAnimation(view);
       }
     });
     this.grid.setLayoutAnimationListener(new AnimationListener() {
@@ -469,5 +452,33 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       return true;
     }
     return false;
+  }
+
+  private void setupRotationAnimation(final View view) {
+    final float centerX = view.getWidth() / 2.0f;
+    final float centerY = view.getHeight() / 2.0f;
+    // Create a new 3D rotation with the supplied parameter
+    // The animation listener is used to trigger the next animation
+    final Rotate3dAnimation rotation = new Rotate3dAnimation(90, 0, centerX, centerY, 0.0f, true);
+    rotation.setDuration(100);
+    rotation.setFillAfter(true);
+    rotation.setAnimationListener(new AnimationListener() {
+      public void onAnimationEnd(final Animation animation) {
+        final Animation slide = AnimationUtils.loadAnimation(NowPlayingActivity.this,
+            R.anim.slide_left);
+        NowPlayingActivity.this.grid.startAnimation(slide);
+        NowPlayingActivity.this.grid.setVisibility(View.GONE);
+        NowPlayingActivity.this.intent.putExtra("movie",
+            (Parcelable) NowPlayingActivity.this.selectedMovie);
+        startActivity(NowPlayingActivity.this.intent);
+      }
+
+      public void onAnimationRepeat(final Animation animation) {
+      }
+
+      public void onAnimationStart(final Animation animation) {
+      }
+    });
+    view.startAnimation(rotation);
   }
 }
