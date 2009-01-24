@@ -38,13 +38,15 @@ static NSString* amazonDirectory = nil;
 static NSString* wikipediaDirectory = nil;
 static NSString* trailersDirectory = nil;
 static NSString* postersDirectory = nil;
-static NSString* largePostersDirectory = nil;
+static NSString* moviesPostersDirectory = nil;
+static NSString* largeMoviesPostersDirectory = nil;
+static NSString* peoplePostersDirectory = nil;
+static NSString* largePeoplePostersDirectory = nil;
 
 static NSString* netflixDirectory = nil;
 static NSString* netflixSeriesDirectory = nil;
 static NSString* netflixQueuesDirectory = nil;
 static NSString* netflixPostersDirectory = nil;
-static NSString* netflixPeoplePostersDirectory = nil;
 static NSString* netflixUserRatingsDirectory = nil;
 static NSString* netflixPredictedRatingsDirectory = nil;
 static NSString* netflixSearchDirectory = nil;
@@ -59,7 +61,6 @@ static NSString** directories[] = {
 &netflixQueuesDirectory,
 &netflixSeriesDirectory,
 &netflixPostersDirectory,
-&netflixPeoplePostersDirectory,
 &netflixUserRatingsDirectory,
 &netflixPredictedRatingsDirectory,
 &netflixSearchDirectory,
@@ -67,7 +68,10 @@ static NSString** directories[] = {
 &netflixRSSDirectory,
 &trailersDirectory,
 &postersDirectory,
-&largePostersDirectory,
+&moviesPostersDirectory,
+&largeMoviesPostersDirectory,
+&peoplePostersDirectory,
+&largePeoplePostersDirectory,
 };
 
 static NSString* emptyStarString = nil;
@@ -158,12 +162,14 @@ static DifferenceEngine* differenceEngine = nil;
         trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
 
         postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
-        largePostersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LargePosters"] retain];
+        moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
+        largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
+        peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
+        largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];
 
         netflixDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Netflix"] retain];
         netflixQueuesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Queues"] retain];
         netflixPostersDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Posters"] retain];
-        netflixPeoplePostersDirectory = [[netflixPostersDirectory stringByAppendingPathComponent:@"People"] retain];
         netflixSeriesDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Series"] retain];
         netflixDetailsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"Details"] retain];
         netflixUserRatingsDirectory = [[netflixDirectory stringByAppendingPathComponent:@"UserRatings"] retain];
@@ -315,14 +321,25 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (NSString*) postersDirectory {
-    return postersDirectory;
++ (NSString*) moviesPostersDirectory {
+    return moviesPostersDirectory;
 }
 
 
-+ (NSString*) largePostersDirectory {
-    return largePostersDirectory;
++ (NSString*) largeMoviesPostersDirectory {
+    return largeMoviesPostersDirectory;
 }
+
+
++ (NSString*) peoplePostersDirectory {
+    return peoplePostersDirectory;
+}
+
+
++ (NSString*) largePeoplePostersDirectory {
+    return largePeoplePostersDirectory;
+}
+
 
 
 + (NSString*) trailersDirectory {
@@ -347,11 +364,6 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (NSString*) netflixPostersDirectory {
     return netflixPostersDirectory;
-}
-
-
-+ (NSString*) netflixPeoplePostersDirectory {
-    return netflixPeoplePostersDirectory;
 }
 
 

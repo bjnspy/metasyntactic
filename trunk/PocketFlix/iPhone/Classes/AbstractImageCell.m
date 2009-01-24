@@ -111,6 +111,16 @@
             state = NotFound;
         }
     } else {
+        CGSize imageSize = image.size;
+        CGSize frameSize = imageView.frame.size;
+        
+        if (imageSize.height < frameSize.height &&
+            imageSize.width < frameSize.width) {
+            imageView.contentMode = UIViewContentModeCenter;
+        } else {
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+        }
+        
         state = Loaded;
     }
     

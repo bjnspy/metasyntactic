@@ -61,8 +61,6 @@
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (UIImage*) smallPosterForMovie:(Movie*) movie;
-- (UIImage*) posterForPerson:(Person*) movie;
-- (UIImage*) smallPosterForPerson:(Person*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;

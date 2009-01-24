@@ -71,6 +71,7 @@
 @class Controller;
 @class Model;
 @class Person;
+@class PersonPosterCache;
 @class PickerEditorViewController;
 @class PointerSet;
 @class PosterCache;

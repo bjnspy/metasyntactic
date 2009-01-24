@@ -23,8 +23,10 @@
 + (NSString*) imdbDirectory;
 + (NSString*) amazonDirectory;
 + (NSString*) wikipediaDirectory;
-+ (NSString*) postersDirectory;
-+ (NSString*) largePostersDirectory;
++ (NSString*) moviesPostersDirectory;
++ (NSString*) largeMoviesPostersDirectory;
++ (NSString*) peoplePostersDirectory;
++ (NSString*) largePeoplePostersDirectory;
 + (NSString*) trailersDirectory;
 
 + (NSString*) netflixDirectory;
@@ -33,7 +35,6 @@
 + (NSString*) netflixQueuesDirectory;
 + (NSString*) netflixSeriesDirectory;
 + (NSString*) netflixPostersDirectory;
-+ (NSString*) netflixPeoplePostersDirectory;
 + (NSString*) netflixUserRatingsDirectory;
 + (NSString*) netflixPredictedRatingsDirectory;
 + (NSString*) netflixRSSDirectory;

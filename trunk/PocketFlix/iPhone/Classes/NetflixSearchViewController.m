@@ -220,6 +220,7 @@
         [activityIndicatorView stopAnimating];
         [searchEngine invalidateExistingRequests];
         self.movies = [NSArray array];
+        self.people = [NSArray array];
         [self majorRefresh];
     } else {
         [activityIndicatorView startAnimating];

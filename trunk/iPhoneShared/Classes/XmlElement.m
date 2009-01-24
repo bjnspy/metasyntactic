@@ -200,14 +200,34 @@ property_definition(text);
 
 
 - (NSArray*) elements:(NSString*) name_ {
-    NSMutableArray* array = [NSMutableArray array];
+    return [self elements:name_ recurse:NO];
+}
+
+
+- (void) elements:(NSString*) name_
+              recurse:(BOOL) recurse
+               result:(NSMutableArray*) result {
     for (XmlElement* child in children) {
         if ([name_ isEqualToString:child.name]) {
-            [array addObject:child];
+            [result addObject:child];
         }
     }
+    
+    if (recurse) {
+        for (XmlElement* child in children) {
+            [child elements:name_ recurse:recurse result:result];
+        }
+    }
+}
 
-    return array;
+
+- (NSArray*) elements:(NSString*) name_
+              recurse:(BOOL) recurse {
+    NSMutableArray* result = [NSMutableArray array];
+    
+    [self elements:name_ recurse:recurse result:result];
+    
+    return result;
 }
 
 

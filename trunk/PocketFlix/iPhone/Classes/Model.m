@@ -31,6 +31,7 @@
 #import "NetflixViewController.h"
 #import "NetworkUtilities.h"
 #import "AppDelegate.h"
+#import "PersonPosterCache.h"
 #import "PosterCache.h"
 #import "StringUtilities.h"
 #import "TrailerCache.h"
@@ -42,6 +43,7 @@
 @property (retain) AmazonCache* amazonCache;
 @property (retain) WikipediaCache* wikipediaCache;
 @property (retain) PosterCache* posterCache;
+@property (retain) PersonPosterCache* personPosterCache;
 @property (retain) LargePosterCache* largePosterCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) MutableNetflixCache* netflixCache;
@@ -127,6 +129,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize amazonCache;
 @synthesize wikipediaCache;
 @synthesize posterCache;
+@synthesize personPosterCache;
 @synthesize largePosterCache;
 @synthesize trailerCache;
 @synthesize netflixCache;
@@ -138,6 +141,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.amazonCache = nil;
     self.wikipediaCache = nil;
     self.posterCache = nil;
+    self.personPosterCache = nil;
     self.largePosterCache = nil;
     self.trailerCache = nil;
     self.netflixCache = nil;
@@ -301,6 +305,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         [self checkCountry];
         [self loadData];
 
+        self.personPosterCache = [PersonPosterCache cacheWithModel:self];
         self.largePosterCache = [LargePosterCache cacheWithModel:self];
         self.imdbCache = [IMDbCache cacheWithModel:self];
         self.amazonCache = [AmazonCache cacheWithModel:self];
@@ -593,12 +598,12 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (UIImage*) posterForPerson:(Person*) person {
-    return [netflixCache posterForPerson:person];
+    return [personPosterCache posterForPerson:person];
 }
 
 
 - (UIImage*) smallPosterForPerson:(Person*) person {
-    return [netflixCache smallPosterForPerson:person];
+    return [personPosterCache smallPosterForPerson:person];
 }
 
 
@@ -718,6 +723,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
 
 - (void) prioritizePerson:(Person*) person {
     [netflixCache prioritizePerson:person];
+    [personPosterCache prioritizePerson:person];
 }
 
 
