@@ -6,11 +6,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import org.metasyntactic.Application;
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.R;
@@ -68,6 +68,7 @@ public class NowPlayingPreferenceDialog {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(NowPlayingPreferenceDialog.this.intValue);
         context.refresh();
+        Application.refresh();
       }
     };
     return this;
@@ -84,6 +85,7 @@ public class NowPlayingPreferenceDialog {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(Integer.parseInt(distanceValues[which]));
         context.refresh();
+        Application.refresh();
       }
     };
     this.builder.setItems(distanceValues, listItemListener);
@@ -183,6 +185,7 @@ public class NowPlayingPreferenceDialog {
       public void onClick(final DialogInterface dialog, final int which) {
         setStringPreferenceValue(NowPlayingPreferenceDialog.this.textView.getText().toString());
         context.refresh();
+        Application.refresh();
       }
     };
     return this;

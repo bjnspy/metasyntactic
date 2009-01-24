@@ -4,9 +4,12 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +31,7 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
+import java.lang.ref.SoftReference;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,6 +42,12 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   private List<Theater> theaters;
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
+  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
+      refresh();
+    }
+  };
 
   @Override
   public void onCreate(final Bundle savedInstanceState) {
@@ -116,6 +126,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
           final Calendar cal1 = Calendar.getInstance();
           cal1.set(year, monthOfYear, dayOfMonth);
           NowPlayingControllerWrapper.setSearchDate(cal1.getTime());
+          Application.refresh();
           SettingsActivity.this.refresh();
         }
       };
@@ -127,8 +138,6 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     } else {
       SettingsActivity.this.showDialog(position);
     }
-    
-   
     super.onListItemClick(listView, v, position, id);
   }
 
@@ -196,6 +205,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
+    registerReceiver(this.broadcastReceiver, new IntentFilter(
+        Application.NOW_PLAYING_CHANGED_INTENT));
     this.settingsAdapter = new SettingsAdapter();
     setListAdapter(this.settingsAdapter);
   }
@@ -221,6 +232,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         holder.check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
           public void onCheckedChanged(final CompoundButton arg0, final boolean checked) {
             NowPlayingControllerWrapper.setAutoUpdateEnabled(checked);
+            Application.refresh();
             SettingsActivity.this.refresh();
           }
         });
@@ -304,5 +316,11 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   public Context getContext() {
     return this;
+  }
+
+  @Override
+  protected void onPause() {
+    unregisterReceiver(this.broadcastReceiver);
+    super.onPause();
   }
 }

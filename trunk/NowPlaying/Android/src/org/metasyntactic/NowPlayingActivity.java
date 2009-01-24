@@ -11,7 +11,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -90,6 +89,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
+    clearBitmaps();
     if (this.postersAdapter != null) {
       this.postersAdapter.refreshMovies();
     }
@@ -160,14 +160,17 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   protected void onPause() {
     unregisterReceiver(this.broadcastReceiver);
     unregisterReceiver(this.databroadcastReceiver);
+    clearBitmaps();
+    super.onPause();
+  }
+
+  private void clearBitmaps() {
     for (final SoftReference<Bitmap> reference : this.postersMap.values()) {
-      Bitmap drawable = reference.get();
+      final Bitmap drawable = reference.get();
       if (drawable != null) {
-        drawable = null;
         reference.clear();
       }
     }
-    super.onPause();
   }
 
   @Override
@@ -307,7 +310,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       } else {
         final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
         if (bytes.length > 0) {
-          bitmap = createBitmap(holder, bytes);
+          bitmap = createBitmap(bytes);
           if (bitmap != null) {
             holder.poster.setImageBitmap(bitmap);
             NowPlayingActivity.this.postersMap.put(position, new SoftReference<Bitmap>(bitmap));
@@ -316,10 +319,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
       convertView
           .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
+      bitmap = null;
       return convertView;
     }
 
-    private Bitmap createBitmap(final ViewHolder holder, final byte[] bytes) {
+    private Bitmap createBitmap(final byte[] bytes) {
       final BitmapFactory.Options options = new BitmapFactory.Options();
       final int width = 90;
       final int height = 125;
@@ -329,10 +333,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       final int bitmapWidth = options.outWidth;
       final int bitmapHeight = options.outHeight;
       final float scale = Math.min((float) bitmapWidth / (float) width, (float) bitmapHeight
-          / (float) height);
+          / (float) height) * 2;
       options.inJustDecodeBounds = false;
-      options.outWidth = width;
-      options.outHeight = height;
       options.inPreferredConfig = Bitmap.Config.ARGB_8888;
       options.inSampleSize = (int) scale;
       final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
