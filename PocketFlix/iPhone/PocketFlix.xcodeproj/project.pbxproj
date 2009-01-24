@@ -44,6 +44,7 @@
 		741EFEEC0F0F214C002FD93B /* NetflixCredits.png in Resources */ = {isa = PBXBuildFile; fileRef = 741EFEEB0F0F214C002FD93B /* NetflixCredits.png */; };
 		741EFF140F0F24B8002FD93B /* NetflixSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741EFF130F0F24B8002FD93B /* NetflixSettingsViewController.m */; };
 		742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
+		7425BFAF0F2A8AA9007A3BBD /* PersonPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7425BFAE0F2A8AA9007A3BBD /* PersonPosterCache.m */; };
 		7427C1630ED6BCDA00B7BF09 /* RefreshableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */; };
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
@@ -305,6 +306,8 @@
 		741EFF130F0F24B8002FD93B /* NetflixSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSettingsViewController.m; sourceTree = "<group>"; };
 		742445A50E2D2F9800C98F84 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
 		742445A60E2D2F9800C98F84 /* AttributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeCell.m; sourceTree = "<group>"; };
+		7425BFAD0F2A8AA9007A3BBD /* PersonPosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonPosterCache.h; sourceTree = "<group>"; };
+		7425BFAE0F2A8AA9007A3BBD /* PersonPosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonPosterCache.m; sourceTree = "<group>"; };
 		7427C1610ED6BCDA00B7BF09 /* RefreshableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshableTableViewController.h; sourceTree = "<group>"; };
 		7427C1620ED6BCDA00B7BF09 /* RefreshableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshableTableViewController.m; sourceTree = "<group>"; };
 		74286B2F0E83581A00A1E26A /* FandangoPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FandangoPosterDownloader.h; sourceTree = "<group>"; };
@@ -1070,6 +1073,8 @@
 				74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */,
 				7410D73F0EC2C0740079BF1E /* LargePosterCache.h */,
 				7410D7400EC2C0740079BF1E /* LargePosterCache.m */,
+				7425BFAD0F2A8AA9007A3BBD /* PersonPosterCache.h */,
+				7425BFAE0F2A8AA9007A3BBD /* PersonPosterCache.m */,
 			);
 			name = Posters;
 			sourceTree = "<group>";
@@ -1552,6 +1557,7 @@
 				7476FE520F2A5D7F00D71F36 /* Person.m in Sources */,
 				7476FEF80F2A66DF00D71F36 /* PersonCell.m in Sources */,
 				7476FEFC0F2A671900D71F36 /* AbstractImageCell.m in Sources */,
+				7425BFAF0F2A8AA9007A3BBD /* PersonPosterCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

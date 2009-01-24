@@ -32,6 +32,7 @@
 #import "Model.h"
 #import "IdentitySet.h"
 #import "Person.h"
+#import "PersonPosterCache.h"
 #import "Queue.h"
 #import "Status.h"
 #import "StringUtilities.h"
@@ -585,11 +586,32 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
+- (void) addSearchPeople:(NSArray*) people {
+    [updateDetailsLock lock];
+    {
+        [searchPeople setArray:people];
+        [updateDetailsLock signal];
+    }
+    [updateDetailsLock unlock];
+}
+
+
+- (void) addSearchMovies:(NSArray*) movies {
+    [updateDetailsLock lock];
+    {
+        [searchMovies setArray:movies];
+        [updateDetailsLock signal];
+    }
+    [updateDetailsLock unlock];
+}
+
+
 - (NSArray*) peopleSearch:(NSString*) query {
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/people"];
     
-    NSArray* parameters = [NSArray arrayWithObject:
-                           [OARequestParameter parameterWithName:@"term" value:query]];
+    NSArray* parameters = [NSArray arrayWithObjects:
+                           [OARequestParameter parameterWithName:@"term" value:query],
+                           [OARequestParameter parameterWithName:@"max_results" value:@"5"], nil];
     
     [request setParameters:parameters];
     [request prepare];
@@ -604,7 +626,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     
     if (people.count > 0) {
         // download the details for these movies in teh background.
-        [searchPeople setArray:people];
+        [self addSearchPeople:people];
     }
     
     return people;
@@ -613,9 +635,10 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 - (NSArray*) movieSearch:(NSString*) query {
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
-
-    NSArray* parameters = [NSArray arrayWithObject:
-                           [OARequestParameter parameterWithName:@"term" value:query]];
+    
+    NSArray* parameters = [NSArray arrayWithObjects:
+                           [OARequestParameter parameterWithName:@"term" value:query],
+                           [OARequestParameter parameterWithName:@"max_results" value:@"15"], nil];
 
     [request setParameters:parameters];
     [request prepare];
@@ -634,7 +657,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     if (movies.count > 0) {
         // download the details for these movies in teh background.
-        [searchMovies setArray:movies];
+        [self addSearchMovies:movies];
     }
 
     return movies;
@@ -748,27 +771,13 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (NSString*) personPosterFile:(Person*) person {
-    return
-    [[[Application netflixPeoplePostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:person.name]] stringByAppendingPathExtension:@"jpg"];
-}
-
-
 - (NSString*) smallMoviePosterFile:(Movie*) movie {
-    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    fileName = [fileName stringByAppendingString:@"-small.png"];
-    return [[Application netflixPostersDirectory] stringByAppendingPathComponent:fileName];
+    return
+    [[[Application netflixPostersDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"-small.png"];
 }
 
 
-- (NSString*) smallPersonPosterFile:(Person*) person {
-    NSString* fileName = [FileUtilities sanitizeFileName:person.name];
-    fileName = [fileName stringByAppendingString:@"-small.png"];
-    return [[Application netflixPeoplePostersDirectory] stringByAppendingPathComponent:fileName];
-}
-
-
-- (void) updatePoster:(Movie*) movie {
+- (void) updateMoviePoster:(Movie*) movie {
     if (movie.poster.length == 0) {
         return;
     }
@@ -783,6 +792,11 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         [FileUtilities writeData:data toFile:path];
         [AppDelegate minorRefresh];
     }
+}
+
+
+- (void) updatePersonPoster:(Person*) person {
+    [model.personPosterCache update:person];
 }
 
 
@@ -1159,7 +1173,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 - (void) updateAllDiscDetails:(Movie*) movie {
     // we don't download this stuff on a per disc basis.  only for a series.
-    [self updatePoster:movie];
+    [self updateMoviePoster:movie];
     [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
     [self updateRatings:movie];
 
@@ -1191,6 +1205,15 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
     }
     [pool release];
+}
+
+
+- (void) updatePersonDetails:(Person*) person {
+    if (person == nil) {
+        return;
+    }
+    
+    [self updatePersonPoster:person];
 }
 
 
@@ -1334,11 +1357,6 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 }
 
 
-- (void) updatePersonDetails:(Person*) person {
-    
-}
-
-
 - (void) updateDetailsBackgroundEntryPoint {
     while (YES) {
         Movie* movie = nil;
@@ -1414,31 +1432,6 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
         smallPosterData = [FileUtilities readData:smallPosterPath];
     }
 
-    return [UIImage imageWithData:smallPosterData];
-}
-
-
-- (UIImage*) posterForPerson:(Person*) person {
-    NSData* data = [FileUtilities readData:[self personPosterFile:person]];
-    return [UIImage imageWithData:data];
-}
-
-
-- (UIImage*) smallPosterForPerson:(Person*) person {
-    NSString* smallPosterPath = [self smallPersonPosterFile:person];
-    NSData* smallPosterData;
-    
-    if ([FileUtilities size:smallPosterPath] == 0) {
-        NSData* normalPosterData = [FileUtilities readData:[self personPosterFile:person]];
-        smallPosterData = [ImageUtilities scaleImageData:normalPosterData
-                                                toHeight:SMALL_POSTER_HEIGHT];
-        
-        [FileUtilities writeData:smallPosterData
-                          toFile:smallPosterPath];
-    } else {
-        smallPosterData = [FileUtilities readData:smallPosterPath];
-    }
-    
     return [UIImage imageWithData:smallPosterData];
 }
 
@@ -1566,7 +1559,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 - (NSString*) titleForKey:(NSString*) key includeCount:(BOOL) includeCount {
     NSString* title = nil;
     if ([key isEqual:[NetflixCache dvdQueueKey]]) {
-        title = NSLocalizedString(@"DVD/Blu-ray Queue", nil);
+        title = NSLocalizedString(@"Disc Queue", nil);
     } else if ([key isEqual:[NetflixCache instantQueueKey]]) {
         title = NSLocalizedString(@"Instant Queue", nil);
     } else if ([key isEqual:[NetflixCache atHomeKey]]) {

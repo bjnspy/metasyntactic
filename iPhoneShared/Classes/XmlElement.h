@@ -70,6 +70,7 @@
 - (XmlElement*) element:(NSString*) name;
 - (XmlElement*) element:(NSString*) name recurse:(BOOL) recurse;
 - (NSArray*) elements:(NSString*) name;
+- (NSArray*) elements:(NSString*) name recurse:(BOOL) recurse;
 
 - (XmlElement*) elementAtIndex:(NSInteger) index;
 
