@@ -100,11 +100,11 @@ typedef enum {
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
-            cell.text = @"Now Playing";
+            cell.text = @"Now Playing (free)";
         } else if (row == 1) {
-            cell.text = @"ComiXology";
+            cell.text = @"ComiXology ($3.99)";
         } else {
-            cell.text = @"PocketFlix";
+            cell.text = @"PocketFlix ($1.99)";
         }
     } else if (section == InformationProvidedBySection) {
         cell.text = NSLocalizedString(@"American Civil Liberties Union", nil);
