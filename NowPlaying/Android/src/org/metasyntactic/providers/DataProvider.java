@@ -67,6 +67,10 @@ public class DataProvider {
 
   private boolean isUpToDate() {
     final Date lastLookupDate = getLastLookupDate();
+    if (lastLookupDate == null) {
+      return false;
+    }
+
     final int days = Days.daysBetween(lastLookupDate, new Date());
     if (days != 0) {
       return false;
@@ -271,7 +275,14 @@ public class DataProvider {
 
     days = min(max(days, 0), 7);
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    final String address =
+      "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country +
+      "&postalcode=" + location.getPostalCode() +
+      "&language=" + Locale.getDefault().getLanguage() +
+      "&day=" + days +
+      "&format=pb" +
+      "&latitude=" + (int) (location.getLatitude() * 1000000) +
+      "&longitude=" + (int) (location.getLongitude() * 1000000);
 
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
