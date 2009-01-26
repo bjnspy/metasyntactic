@@ -71,7 +71,7 @@ static Pulser* pulser = nil;
     request.timeoutInterval = 120;
     request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
+    [request setValue:@"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)" forHTTPHeaderField:@"User-Agent"];
 
     return request;
 }
