@@ -13,15 +13,14 @@ public final class R {
         public static final int fade=0x7f040001;
         public static final int fade_gallery_item=0x7f040002;
         public static final int fade_reverse=0x7f040003;
-        public static final int layout_animation_row_left_slide=0x7f040004;
-        public static final int layout_animation_row_right_slide=0x7f040005;
-        public static final int layout_bottom_to_top_slide=0x7f040006;
-        public static final int layout_grid_fade=0x7f040007;
-        public static final int layout_top_to_bottom_slide=0x7f040008;
-        public static final int slide_left=0x7f040009;
-        public static final int slide_right=0x7f04000a;
-        public static final int slide_top_to_bottom=0x7f04000b;
-        public static final int wave_scale=0x7f04000c;
+        public static final int layout_animation_row_right_slide=0x7f040004;
+        public static final int layout_bottom_to_top_slide=0x7f040005;
+        public static final int layout_grid_fade=0x7f040006;
+        public static final int layout_top_to_bottom_slide=0x7f040007;
+        public static final int slide_left=0x7f040008;
+        public static final int slide_right=0x7f040009;
+        public static final int slide_top_to_bottom=0x7f04000a;
+        public static final int wave_scale=0x7f04000b;
     }
     public static final class array {
         /**  Used in auto update location preferences 

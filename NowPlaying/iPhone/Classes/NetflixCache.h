@@ -25,6 +25,10 @@
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
     
+    // people whose details we want to update
+    LinkedSet* prioritizedPeople;
+    LinkedSet* searchPeople;
+    
     NSCondition* updateDetailsLock;
     
     NSDate* lastQuotaErrorDate;
@@ -36,8 +40,10 @@
 
 - (id) initWithModel:(Model*) model;
 
-- (NSArray*) search:(NSString*) query;
+- (NSArray*) movieSearch:(NSString*) query;
+- (NSArray*) peopleSearch:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;
+- (void) prioritizePerson:(Person*) person;
 
 - (BOOL) isEnqueued:(Movie*) movie;
 - (NSArray*) statusesForMovie:(Movie*) movie;
@@ -62,6 +68,7 @@
 - (NSString*) userRatingForMovie:(Movie*) movie;
 - (NSArray*) formatsForMovie:(Movie*) movie;
 - (NSArray*) similarMoviesForMovie:(Movie*) movie;
+- (NSString*) netflixAddressForMovie:(Movie*) movie;
 
 - (NSString*) noInformationFound;
 

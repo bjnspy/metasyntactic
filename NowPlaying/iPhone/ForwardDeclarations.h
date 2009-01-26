@@ -88,6 +88,8 @@
 @class AppDelegate;
 @class Controller;
 @class Model;
+@class Person;
+@class PersonPosterCache;
 @class Performance;
 @class PickerEditorViewController;
 @class PointerSet;

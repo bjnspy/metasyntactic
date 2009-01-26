@@ -160,6 +160,21 @@
        upcomingMovies:(NSArray*) upcomingMovies
                  dvds:(NSArray*) dvds
                bluray:(NSArray*) bluray {
+    [self reportResult:movies 
+              theaters:theaters
+        upcomingMovies:upcomingMovies
+                  dvds:dvds
+                bluray:bluray
+                people:[NSArray array]];
+}
+
+
+- (void) reportResult:(NSArray*) movies
+             theaters:(NSArray*) theaters
+       upcomingMovies:(NSArray*) upcomingMovies
+                 dvds:(NSArray*) dvds
+               bluray:(NSArray*) bluray 
+               people:(NSArray*) people {
     SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                                 value:currentlyExecutingRequest.value
                                                movies:movies
