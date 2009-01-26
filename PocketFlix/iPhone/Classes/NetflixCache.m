@@ -1476,9 +1476,18 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (NSArray*) formatsForMovie:(Movie*) movie {
-    movie = [self promoteDiscToSeries:movie];
     NSDictionary* details = [self detailsForMovie:movie];
-    return [details objectForKey:formats_key];
+    NSArray* result = [details objectForKey:formats_key];
+    if (result.count > 0) {
+        return result;
+    }
+
+    Movie* series = [self promoteDiscToSeries:movie];
+    if (series != movie) {
+        return [self formatsForMovie:series];
+    }
+    
+    return [NSArray array];
 }
 
 
