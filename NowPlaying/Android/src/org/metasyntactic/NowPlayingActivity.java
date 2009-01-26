@@ -91,6 +91,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     Collections.sort(this.movies, comparator);
     clearBitmaps();
     if (this.postersAdapter != null) {
+      populateAlphaMovieSectionsAndPositions();
+      populateScoreMovieSectionsAndPositions();
+      FastScrollGridView.getSections();
       this.postersAdapter.refreshMovies();
     }
   }
@@ -353,7 +356,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     public final int getCount() {
       if (NowPlayingActivity.this.movies != null) {
-        return Math.min(1000, NowPlayingActivity.this.movies.size());
+        return Math.min(100, NowPlayingActivity.this.movies.size());
       } else {
         return 0;
       }
@@ -369,7 +372,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     public void refreshMovies() {
       notifyDataSetChanged();
-      FastScrollGridView.getSections();
     }
 
     public int getPositionForSection(final int section) {
