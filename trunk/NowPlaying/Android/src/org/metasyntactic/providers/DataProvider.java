@@ -56,7 +56,7 @@ public class DataProvider {
     final List<Movie> movies = getMovies();
     final List<Theater> theaters = getTheaters();
 
-    //Debug.startMethodTracing("Updating provider");
+    Debug.startMethodTracing("Update_provider");
     final Runnable runnable = new Runnable() {
       public void run() {
         updateBackgroundEntryPoint(movies, theaters);
@@ -88,7 +88,7 @@ public class DataProvider {
   private void updateBackgroundEntryPoint(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
     updateBackgroundEntryPointWorker(currentMovies, currentTheaters);
 
-    //Debug.stopMethodTracing();
+    Debug.stopMethodTracing();
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
         final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
