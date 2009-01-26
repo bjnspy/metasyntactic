@@ -415,6 +415,10 @@ public class UpcomingCache extends AbstractCache {
     Application.refresh();
   }
 
+  public static String getTrailer(final Movie movie) {
+    return FileUtilities.readString(getTrailersFile(movie));
+  }
+
   public static byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(getPosterFile(movie));
   }
