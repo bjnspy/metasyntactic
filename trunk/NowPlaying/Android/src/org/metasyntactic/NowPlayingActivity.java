@@ -199,7 +199,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private void getScores(final Context context) {
     this.score = new String[11];
     for (int index = 0, i = 100; i >= 0; index++, i -= 10) {
-      this.score[index] = String.valueOf(i);
+      this.score[index] = String.valueOf(i) + "%";
     }
   }
 
