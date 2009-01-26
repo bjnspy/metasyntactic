@@ -291,7 +291,12 @@ public class NowPlayingModel {
   }
 
   public static String getTrailer(final Movie movie) {
-    return TrailerCache.getTrailer(movie);
+    final String trailer = TrailerCache.getTrailer(movie);
+    if (!isNullOrEmpty(trailer)) {
+      return trailer;
+    }
+
+    return UpcomingCache.getTrailer(movie);
   }
 
   public Score getScore(final Movie movie) {
