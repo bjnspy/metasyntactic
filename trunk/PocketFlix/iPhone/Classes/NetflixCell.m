@@ -34,6 +34,7 @@
 @property (retain) UILabel* genreLabel;
 @property (retain) UILabel* ratedLabel;
 @property (retain) UILabel* netflixLabel;
+@property (retain) UILabel* formatsLabel;
 @end
 
 
@@ -50,6 +51,7 @@
 @synthesize ratedLabel;
 @synthesize genreLabel;
 @synthesize netflixLabel;
+@synthesize formatsLabel;
 
 - (void) dealloc {
     self.directorTitleLabel = nil;
@@ -63,6 +65,7 @@
     self.ratedLabel = nil;
     self.genreLabel = nil;
     self.netflixLabel = nil;
+    self.formatsLabel = nil;
 
     [super dealloc];
 }
@@ -85,7 +88,8 @@
             castLabel,
             genreLabel,
             ratedLabel,
-            netflixLabel, nil];
+            netflixLabel,
+            formatsLabel, nil];
 }
 
 
@@ -116,6 +120,8 @@
         self.netflixLabel = [self createValueLabel:81 forTitle:netflixTitleLabel];
         netflixLabel.font = [UIFont systemFontOfSize:17];
 
+        self.formatsLabel = [self createValueLabel:81 forTitle:netflixTitleLabel];
+        
         titleWidth = 0;
         for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
@@ -123,7 +129,7 @@
 
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
-            frame.origin.x = (int)(imageView.frame.size.width + 7);
+            frame.origin.x = (int)(imageView.frame.size.width + 2);
             frame.size.width = titleWidth;
             label.frame = frame;
         }
@@ -180,7 +186,8 @@
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
-
+    formatsLabel.text   = [[[[model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
+    
     NSString* rating;
     if (movie.isUnrated) {		
         rating = NSLocalizedString(@"Unrated", nil);		
@@ -216,7 +223,8 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
 
-    if (!selected) {
+    if (selected) {
+    } else {
         [self setNetflixLabelColor];
     }
 }
@@ -228,6 +236,19 @@
 
     [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
     [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
+}
+
+
+- (void) layoutSubviews {
+    [super layoutSubviews];
+
+    [formatsLabel sizeToFit];
+    
+    CGRect frame = self.frame;
+    
+    CGRect formatFrame = formatsLabel.frame;
+    formatFrame.origin.x = frame.size.width - formatFrame.size.width - 5;
+    formatsLabel.frame = formatFrame;
 }
 
 @end

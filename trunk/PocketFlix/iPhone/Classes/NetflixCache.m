@@ -607,6 +607,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (NSArray*) peopleSearch:(NSString*) query {
+    return [NSArray array];
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/people"];
     
     NSArray* parameters = [NSArray arrayWithObjects:

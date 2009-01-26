@@ -27,6 +27,7 @@
     UILabel* genreLabel;
     UILabel* ratedLabel;
     UILabel* netflixLabel;
+    UILabel* formatsLabel;
 
     BOOL userRating;
 }
