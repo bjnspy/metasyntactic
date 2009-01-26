@@ -53,6 +53,10 @@
     if (source == nil) {
         return nil;
     }
+    
+    if (source.size.height <= height) {
+        return data;
+    }
 
     UIImage* result = [self scaleImage:source toHeight:height];
     if (result == nil) {

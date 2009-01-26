@@ -114,8 +114,7 @@
         CGSize imageSize = image.size;
         CGSize frameSize = imageView.frame.size;
         
-        if (imageSize.height < frameSize.height &&
-            imageSize.width < frameSize.width) {
+        if (imageSize.height < frameSize.height) {
             imageView.contentMode = UIViewContentModeCenter;
         } else {
             imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -183,13 +182,13 @@
     CGRect imageFrame = imageView.frame;
     
     CGRect titleFrame = titleLabel.frame;
-    titleFrame.origin.x = (int)(imageFrame.size.width + 7);
+    titleFrame.origin.x = (int)(imageFrame.size.width + 2);
     titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
     titleLabel.frame = titleFrame;
     
     for (UILabel* label in self.valueLabels) {
         CGRect frame = label.frame;
-        frame.origin.x = (int)(imageFrame.size.width + 7 + titleWidth + 5);
+        frame.origin.x = (int)(imageFrame.size.width + 2 + titleWidth + 5);
         frame.size.width = self.contentView.frame.size.width - frame.origin.x;
         label.frame = frame;
     }
