@@ -52,7 +52,7 @@
 
 @implementation Model
 
-static NSString* currentVersion = @"1.1.0";
+static NSString* currentVersion = @"1.2.0";
 static NSString* persistenceVersion = @"102";
 
 static NSString* VERSION = @"version";
