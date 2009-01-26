@@ -98,7 +98,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     mPaint = new Paint();
     mPaint.setAntiAlias(true);
     mPaint.setTextAlign(Paint.Align.CENTER);
-    mPaint.setTextSize(mOverlaySize / 2);
+    mPaint.setTextSize(mOverlaySize / 3);
     mPaint.setColor(0xFFFFFFFF);
     mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
   }
@@ -139,7 +139,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       float descent = paint.descent();
       final RectF rectF = mOverlayPos;
       canvas.drawText(mSectionText, (int) (rectF.left + rectF.right) / 2,
-          (int) (rectF.bottom + rectF.top) / 2 + mOverlaySize / 4 - descent, paint);
+          (int) (rectF.bottom + rectF.top) / 2 + mOverlaySize / 6 - descent, paint);
     } else if (alpha == 0) {
       scrollFade.mStarted = false;
       removeThumb();
