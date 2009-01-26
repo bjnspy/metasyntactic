@@ -199,7 +199,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private void getScores(final Context context) {
     this.score = new String[11];
     for (int index = 0, i = 100; i >= 0; index++, i -= 10) {
-      this.score[index] = i + "%";
+      this.score[index] = String.valueOf(i);
     }
   }
 
@@ -463,15 +463,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     final float centerY = view.getHeight() / 2.0f;
     // Create a new 3D rotation with the supplied parameter
     // The animation listener is used to trigger the next animation
-    final Rotate3dAnimation rotation = new Rotate3dAnimation(90, 0, centerX, centerY, 0.0f, true);
-    rotation.setDuration(100);
+    final Rotate3dAnimation rotation = new Rotate3dAnimation(80, 0, centerX, centerY, 0.0f, true);
+    rotation.setDuration(30);
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
-        final Animation slide = AnimationUtils.loadAnimation(NowPlayingActivity.this,
-            R.anim.slide_left);
-        NowPlayingActivity.this.grid.startAnimation(slide);
-        NowPlayingActivity.this.grid.setVisibility(View.GONE);
         NowPlayingActivity.this.intent.putExtra("movie",
             (Parcelable) NowPlayingActivity.this.selectedMovie);
         startActivity(NowPlayingActivity.this.intent);

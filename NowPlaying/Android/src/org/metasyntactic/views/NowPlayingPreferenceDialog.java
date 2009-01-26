@@ -29,7 +29,7 @@ public class NowPlayingPreferenceDialog {
 
   public NowPlayingPreferenceDialog(final Context context) {
     this.builder = new AlertDialog.Builder(context);
-    this.context = (INowPlaying)context;
+    this.context = (INowPlaying) context;
   }
 
   public Dialog create() {
@@ -53,7 +53,7 @@ public class NowPlayingPreferenceDialog {
   }
 
   public NowPlayingPreferenceDialog setOnItemSelectedListener(final OnItemSelectedListener listener) {
-    this.builder.setOnItemSelectedListener(listener);  
+    this.builder.setOnItemSelectedListener(listener);
     return this;
   }
 
@@ -68,7 +68,6 @@ public class NowPlayingPreferenceDialog {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(NowPlayingPreferenceDialog.this.intValue);
         context.refresh();
-        Application.refresh();
       }
     };
     return this;
@@ -85,7 +84,6 @@ public class NowPlayingPreferenceDialog {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(Integer.parseInt(distanceValues[which]));
         context.refresh();
-        Application.refresh();
       }
     };
     this.builder.setItems(distanceValues, listItemListener);
@@ -185,7 +183,6 @@ public class NowPlayingPreferenceDialog {
       public void onClick(final DialogInterface dialog, final int which) {
         setStringPreferenceValue(NowPlayingPreferenceDialog.this.textView.getText().toString());
         context.refresh();
-        Application.refresh();
       }
     };
     return this;
