@@ -44,4 +44,11 @@
                  dvds:(NSArray*) dvds
                bluray:(NSArray*) bluray;
 
+- (void) reportResult:(NSArray*) movies
+             theaters:(NSArray*) theaters
+       upcomingMovies:(NSArray*) upcomingMovies
+                 dvds:(NSArray*) dvds
+               bluray:(NSArray*) bluray
+               people:(NSArray*) people;
+
 @end

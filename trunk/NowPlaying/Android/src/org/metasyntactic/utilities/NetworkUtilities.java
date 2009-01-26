@@ -18,12 +18,15 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.w3c.dom.Element;
 
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.util.zip.GZIPInputStream;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -116,7 +119,22 @@ public class NetworkUtilities {
     try {
       final ByteArrayOutputStream out = new ByteArrayOutputStream();
       final BufferedOutputStream bufferedOut = new BufferedOutputStream(out, 1 << 13);
-      final BufferedInputStream in = new BufferedInputStream(url.openStream(), 1 << 13);
+
+      final URLConnection connection = url.openConnection();
+      connection.setRequestProperty("Accept-Encoding", "gzip");
+      connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)");
+      connection.connect();
+
+      final InputStream connectionIn = connection.getInputStream();
+      final BufferedInputStream bufferedIn = new BufferedInputStream(connectionIn, 1 << 13);
+      final InputStream in;
+
+      final String contentEncoding = ((HttpURLConnection)connection).getContentEncoding();
+      if ("gzip".equals(contentEncoding)) {
+        in = new GZIPInputStream(bufferedIn, 1 << 13);
+      } else {
+        in = bufferedIn;
+      }
 
       final byte[] bytes = new byte[1 << 16];
       int length;
@@ -128,6 +146,7 @@ public class NetworkUtilities {
       out.flush();
       out.close();
       in.close();
+      connectionIn.close();
 
       return out.toByteArray();
     } catch (final IOException e) {

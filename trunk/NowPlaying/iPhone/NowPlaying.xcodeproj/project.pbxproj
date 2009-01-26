@@ -200,6 +200,8 @@
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
 		74CCF8E70EA800AC009C7A8E /* PackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CCF8E60EA800AC009C7A8E /* PackageDescriptor.m */; };
 		74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */; };
+		74D3CC740F2DB73E0007C783 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3CC730F2DB73E0007C783 /* Person.m */; };
+		74D3CC770F2DB7520007C783 /* PersonPosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D3CC760F2DB7520007C783 /* PersonPosterCache.m */; };
 		74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */; };
 		74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */; };
 		74DD89AA0F0ECE64009DC326 /* NetflixCellBackground-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD89A70F0ECE64009DC326 /* NetflixCellBackground-9.png */; };
@@ -730,6 +732,10 @@
 		74CCF8E60EA800AC009C7A8E /* PackageDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageDescriptor.m; sourceTree = "<group>"; };
 		74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingCache.h; sourceTree = "<group>"; };
 		74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingCache.m; sourceTree = "<group>"; };
+		74D3CC720F2DB73E0007C783 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		74D3CC730F2DB73E0007C783 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		74D3CC750F2DB7520007C783 /* PersonPosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonPosterCache.h; sourceTree = "<group>"; };
+		74D3CC760F2DB7520007C783 /* PersonPosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonPosterCache.m; sourceTree = "<group>"; };
 		74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTitleCell.h; sourceTree = "<group>"; };
 		74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTitleCell.m; sourceTree = "<group>"; };
 		74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDatePickerViewController.h; sourceTree = "<group>"; };
@@ -1429,6 +1435,8 @@
 		7474FE8F0E63595400BAA43D /* Posters */ = {
 			isa = PBXGroup;
 			children = (
+				74D3CC750F2DB7520007C783 /* PersonPosterCache.h */,
+				74D3CC760F2DB7520007C783 /* PersonPosterCache.m */,
 				74088BD50DCD0AA800954696 /* PosterCache.h */,
 				74088BD60DCD0AA800954696 /* PosterCache.m */,
 				74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */,
@@ -1780,6 +1788,8 @@
 		74EB7B3D0EE34373005BD3F0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				74D3CC720F2DB73E0007C783 /* Person.h */,
+				74D3CC730F2DB73E0007C783 /* Person.m */,
 				746A01410DC819270079D89B /* Movie.h */,
 				746A01420DC819270079D89B /* Movie.m */,
 				746A02030DC819430079D89B /* Theater.h */,
@@ -2237,6 +2247,8 @@
 				7408FDC80F27C81100BD86B6 /* Status.m in Sources */,
 				7408FDCC0F27C83500BD86B6 /* NSMutableArray+Utilities.m in Sources */,
 				7408FDF40F27CAA900BD86B6 /* NetflixStatusCell.m in Sources */,
+				74D3CC740F2DB73E0007C783 /* Person.m in Sources */,
+				74D3CC770F2DB7520007C783 /* PersonPosterCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

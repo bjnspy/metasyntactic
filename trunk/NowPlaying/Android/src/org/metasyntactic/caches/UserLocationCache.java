@@ -51,7 +51,7 @@ public class UserLocationCache {
 
     if (location == null) {
       location = downloadAddressLocationFromWebService(massageAddress(userAddress));
-      if (location != null && !location.getCountry().equals(userCountryISO())) {
+      if (location == null || !location.getCountry().equals(userCountryISO())) {
         location = downloadAddressLocationFromWebService(userAddress);
       }
 
@@ -177,7 +177,7 @@ public class UserLocationCache {
     FileUtilities.writePersistable(location, locationFile(address));
   }
 
-  public void reportLocationForAddress(Location location, String address) {
+  public void reportLocationForAddress(final Location location, final String address) {
     saveLocation(location, address);
   }
 }
