@@ -220,4 +220,8 @@ public class LargePosterCache extends AbstractCache {
   public static byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(posterFile(movie, 0));
   }
+
+  public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
+    return posterFile(movie, 0);
+  }
 }

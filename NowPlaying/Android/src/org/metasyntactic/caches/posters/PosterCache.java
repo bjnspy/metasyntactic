@@ -103,7 +103,7 @@ public class PosterCache extends AbstractCache {
     }
     */
 
-    model.getLargePosterCache().downloadFirstPoster(movie);
+    this.model.getLargePosterCache().downloadFirstPoster(movie);
 
     return null;
   }
@@ -128,6 +128,10 @@ public class PosterCache extends AbstractCache {
 
   public byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(posterFile(movie));
+  }
+
+  public File getPosterFile_safeToCallFromBackground(final Movie movie) {
+    return posterFile(movie);
   }
 
   public void prioritizeMovie(final Movie movie) {

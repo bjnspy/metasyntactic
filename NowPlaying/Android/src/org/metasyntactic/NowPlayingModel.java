@@ -29,6 +29,7 @@ import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.CollectionUtilities.size;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -331,6 +332,26 @@ public class NowPlayingModel {
       return bytes;
     }
     return EMPTY_BYTES;
+  }
+
+
+  public File getPosterFile_safeToCallFromBackground(final Movie movie) {
+    File file = this.posterCache.getPosterFile_safeToCallFromBackground(movie);
+    if (file != null && file.exists()) {
+      return file;
+    }
+
+    file = UpcomingCache.getPosterFile_safeToCallFromBackground(movie);
+    if (file != null && file.exists()) {
+      return file;
+    }
+
+    file = this.largePosterCache.getPosterFile_safeToCallFromBackground(movie);
+    if (file != null && file.exists()) {
+      return file;
+    }
+
+    return null;
   }
 
   public String getSynopsis(final Movie movie) {
