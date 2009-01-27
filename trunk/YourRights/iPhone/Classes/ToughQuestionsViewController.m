@@ -19,20 +19,31 @@
 #import "ToughAnswerViewController.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
+#import "YourRightsNavigationController.h"
 
 @interface ToughQuestionsViewController()
+@property (assign) YourRightsNavigationController* navigationController;
 @end
 
 
 @implementation ToughQuestionsViewController
 
+@synthesize navigationController;
+
 - (void) dealloc {
+    self.navigationController = nil;
     [super dealloc];
 }
 
 
-- (id) init {
+- (Model*) model {
+    return navigationController.model;
+}
+
+
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.navigationController = navigationController_;
         self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Tough Questions", nil)];
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
     }
@@ -69,12 +80,12 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section {
-    return [Model toughQuestions].count;
+    return [self.model toughQuestions].count;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSString* text = [[Model toughQuestions] objectAtIndex:indexPath.row];
+    NSString* text = [[self.model toughQuestions] objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -85,13 +96,13 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    return [WrappableCell height:[[Model toughQuestions] objectAtIndex:indexPath.row] accessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    return [WrappableCell height:[[self.model toughQuestions] objectAtIndex:indexPath.row] accessoryType:UITableViewCellAccessoryDisclosureIndicator];
 }
 
 
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSString* question = [[Model toughQuestions] objectAtIndex:indexPath.row];
-    NSString* answer = [Model answerForToughQuestion:question];
+    NSString* question = [[self.model toughQuestions] objectAtIndex:indexPath.row];
+    NSString* answer = [self.model answerForToughQuestion:question];
     ToughAnswerViewController* controller = [[[ToughAnswerViewController alloc] initWithQuestion:question answer:answer] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
 }

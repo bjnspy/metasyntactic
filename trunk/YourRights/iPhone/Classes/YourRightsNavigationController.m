@@ -16,29 +16,39 @@
 
 #import "RootViewController.h"
 #import "SectionViewController.h"
+#import "YourRightsAppDelegate.h"
 
 @interface YourRightsNavigationController()
+@property (assign) YourRightsAppDelegate* appDelegate;
 @property (retain) SectionViewController* viewController;
 @end
 
 @implementation YourRightsNavigationController
 
+@synthesize appDelegate;
 @synthesize viewController;
 
 - (void) dealloc {
+    self.appDelegate = nil;
     self.viewController = nil;
     
     [super dealloc];
 }
 
 
-- (id) init {
+- (id) initWithAppDelegate:(YourRightsAppDelegate*) appDelegate_ {
     if (self = [super init]) {
-        self.viewController = [[[SectionViewController alloc] init] autorelease];
+        self.appDelegate = appDelegate_;
+        self.viewController = [[[SectionViewController alloc] initWithNavigationController:self] autorelease];
         [self pushViewController:viewController animated:NO];
     }
     
     return self;
+}
+
+
+- (Model*) model {
+    return appDelegate.model;
 }
 
 @end

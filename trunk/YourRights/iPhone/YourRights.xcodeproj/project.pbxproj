@@ -36,6 +36,9 @@
 		742DC05F0F1336510079E6B0 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC05E0F1336510079E6B0 /* CreditsViewController.m */; };
 		742DC0690F1337ED0079E6B0 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */; };
 		742DC06C0F1337FF0079E6B0 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC06B0F1337FF0079E6B0 /* Utilities.m */; };
+		745A09230F2ED55A002F64C6 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09220F2ED55A002F64C6 /* Controller.m */; };
+		745A09360F2ED647002F64C6 /* ACLUNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09350F2ED647002F64C6 /* ACLUNewsController.m */; };
+		745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A093B0F2ED905002F64C6 /* AbstractCache.m */; };
 		7462953A0F135CF90073F830 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 746295390F135CF90073F830 /* License.txt */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +97,12 @@
 		742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
 		742DC06A0F1337FF0079E6B0 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		742DC06B0F1337FF0079E6B0 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		745A09210F2ED55A002F64C6 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		745A09220F2ED55A002F64C6 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		745A09340F2ED647002F64C6 /* ACLUNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUNewsController.h; sourceTree = "<group>"; };
+		745A09350F2ED647002F64C6 /* ACLUNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUNewsController.m; sourceTree = "<group>"; };
+		745A093A0F2ED905002F64C6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractCache.h; path = ../../PocketFlix/iPhone/Classes/AbstractCache.h; sourceTree = SOURCE_ROOT; };
+		745A093B0F2ED905002F64C6 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractCache.m; path = ../../PocketFlix/iPhone/Classes/AbstractCache.m; sourceTree = SOURCE_ROOT; };
 		746295390F135CF90073F830 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,11 +125,14 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				745A09390F2ED8ED002F64C6 /* Caches */,
 				742DC0660F1337D40079E6B0 /* Utilities */,
 				742DBC290F12FD2A0079E6B0 /* Collections */,
 				742DB8150F120DC30079E6B0 /* UI */,
 				1D3623240D0F684500981E51 /* YourRightsAppDelegate.h */,
 				1D3623250D0F684500981E51 /* YourRightsAppDelegate.m */,
+				745A09210F2ED55A002F64C6 /* Controller.h */,
+				745A09220F2ED55A002F64C6 /* Controller.m */,
 				742DB7820F12095C0079E6B0 /* Model.h */,
 				742DB7830F12095C0079E6B0 /* Model.m */,
 				742DBB850F12D4AC0079E6B0 /* Decision.h */,
@@ -186,6 +198,8 @@
 		742DB8150F120DC30079E6B0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */,
+				742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */,
 				742DC05D0F1336510079E6B0 /* CreditsViewController.h */,
 				742DC05E0F1336510079E6B0 /* CreditsViewController.m */,
 				742DBE340F1321030079E6B0 /* WebViewController.h */,
@@ -194,8 +208,6 @@
 				742DB87F0F12A6650079E6B0 /* WrappableCell.m */,
 				742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */,
 				742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */,
-				742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */,
-				742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */,
 				742DB77F0F1209540079E6B0 /* QuestionsViewController.h */,
 				742DB7800F1209540079E6B0 /* QuestionsViewController.m */,
 				742DB8160F120DD10079E6B0 /* ViewControllerUtilities.h */,
@@ -214,6 +226,8 @@
 				742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */,
 				742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */,
 				742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */,
+				745A09340F2ED647002F64C6 /* ACLUNewsController.h */,
+				745A09350F2ED647002F64C6 /* ACLUNewsController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -238,6 +252,15 @@
 				742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		745A09390F2ED8ED002F64C6 /* Caches */ = {
+			isa = PBXGroup;
+			children = (
+				745A093A0F2ED905002F64C6 /* AbstractCache.h */,
+				745A093B0F2ED905002F64C6 /* AbstractCache.m */,
+			);
+			name = Caches;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +341,9 @@
 				742DC06C0F1337FF0079E6B0 /* Utilities.m in Sources */,
 				740101A50F26EB0B00258353 /* AlertUtilities.m in Sources */,
 				7401029E0F276D2700258353 /* Application.m in Sources */,
+				745A09230F2ED55A002F64C6 /* Controller.m in Sources */,
+				745A09360F2ED647002F64C6 /* ACLUNewsController.m in Sources */,
+				745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

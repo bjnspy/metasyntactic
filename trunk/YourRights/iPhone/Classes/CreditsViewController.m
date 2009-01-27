@@ -17,9 +17,10 @@
 #import "Application.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
+#import "YourRightsNavigationController.h"
 
 @interface CreditsViewController()
-@property (assign) UINavigationController* navigationController;
+@property (assign) YourRightsNavigationController* navigationController;
 @end
 
 
@@ -42,12 +43,17 @@ typedef enum {
 }
 
 
-- (id) initWithNavigationController:(UINavigationController*) navigationController_ {
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
     }
     
     return self;
+}
+
+
+- (Model*) model {
+    return navigationController.model;
 }
 
 
@@ -100,7 +106,7 @@ typedef enum {
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
-            cell.text = @"Now Playing (free)";
+            cell.text = @"Now Playing (Free)";
         } else if (row == 1) {
             cell.text = @"ComiXology ($3.99)";
         } else {
@@ -192,7 +198,7 @@ typedef enum {
     NSString* address = nil;
     if (section == WrittenBySection) {
         if (row == 0) {
-            address = [Model feedbackUrl];
+            address = [self.model feedbackUrl];
         } else if (row == 1) {
             address = @"http://metasyntactic.googlecode.com";
         } else {

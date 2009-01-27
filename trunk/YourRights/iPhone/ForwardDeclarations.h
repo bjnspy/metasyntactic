@@ -15,6 +15,8 @@
 @class CreditsViewController;
 @class Decision;
 @class GreatestHitsViewController;
+@class Model;
 @class MultiDictionary;
 @class SectionViewController;
+@class YourRightsAppDelegate;
 @class YourRightsNavigationController;

@@ -14,6 +14,7 @@
 
 @interface QuestionsViewController : UITableViewController {
 @private
+    YourRightsNavigationController* navigationController;
     NSString* sectionTitle;
     NSString* preamble;
     NSArray* questions;
@@ -21,6 +22,7 @@
     NSArray* links;
 }
 
-- (id) initWithSectionTitle:(NSString*) sectionTitle;
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController
+                       sectionTitle:(NSString*) sectionTitle;
 
 @end

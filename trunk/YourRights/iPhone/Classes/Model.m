@@ -32,7 +32,7 @@ static NSArray* links;
 static NSArray* toughQuestions;
 static NSArray* toughAnswers;
 
-static NSString* currentVersion = @"1.1.0";
+static NSString* currentVersion = @"1.2.0";
 
 + (NSString*) version {
     return currentVersion;
@@ -804,42 +804,42 @@ static NSString* currentVersion = @"1.1.0";
 }
 
 
-+ (NSArray*) sectionTitles {
+- (NSArray*) sectionTitles {
     return sectionTitles;
 }
 
 
-+ (NSArray*) shortSectionTitles {
+- (NSArray*) shortSectionTitles {
     return shortSectionTitles;
 }
 
 
-+ (NSString*) shortSectionTitleForSectionTitle:(NSString*) sectionTitle {
+- (NSString*) shortSectionTitleForSectionTitle:(NSString*) sectionTitle {
     return [shortSectionTitles objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
 }
 
 
-+ (NSString*) preambleForSectionTitle:(NSString*) sectionTitle {
+- (NSString*) preambleForSectionTitle:(NSString*) sectionTitle {
     return [preambles objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
 }
 
 
-+ (NSArray*) questionsForSectionTitle:(NSString*) sectionTitle {
+- (NSArray*) questionsForSectionTitle:(NSString*) sectionTitle {
     return [questions objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
 }
 
 
-+ (NSArray*) otherResourcesForSectionTitle:(NSString*) sectionTitle {
+- (NSArray*) otherResourcesForSectionTitle:(NSString*) sectionTitle {
     return [otherResources objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
 }
 
 
-+ (NSArray*) answersForSectionTitle:(NSString*) sectionTitle {
+- (NSArray*) answersForSectionTitle:(NSString*) sectionTitle {
     return [answers objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
 }
 
 
-+ (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
+- (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
     NSArray* questions = [self questionsForSectionTitle:sectionTitle];
     NSArray* specificAnswers = [self answersForSectionTitle:sectionTitle];
     
@@ -861,13 +861,13 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 }
 
 
-+ (NSArray*) linksForSectionTitle:(NSString*) sectionTitle {
+- (NSArray*) linksForSectionTitle:(NSString*) sectionTitle {
     NSArray* result = [sectionLinks objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
     return [result sortedArrayUsingFunction:compareLinks context:NULL];   
 }
 
 
-+ (NSArray*) linksForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
+- (NSArray*) linksForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
     NSArray* questions = [self questionsForSectionTitle:sectionTitle];
     NSArray* specificLinks = [links objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
     if (specificLinks.count == 0) {
@@ -879,27 +879,27 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 }
 
 
-+ (NSArray*) toughQuestions {
+- (NSArray*) toughQuestions {
     return toughQuestions;
 }
 
 
-+ (NSString*) answerForToughQuestion:(NSString*) question {
+- (NSString*) answerForToughQuestion:(NSString*) question {
     return [toughAnswers objectAtIndex:[toughQuestions indexOfObject:question]];
 }
 
 
-+ (NSInteger) greatestHitsSortIndex {
+- (NSInteger) greatestHitsSortIndex {
     return 0;
 }
 
 
-+ (void) setGreatestHitsSortIndex:(NSInteger) index {
+- (void) setGreatestHitsSortIndex:(NSInteger) index {
     
 }
 
 
-+ (NSString*) feedbackUrl {
+- (NSString*) feedbackUrl {
     NSString* body = [NSString stringWithFormat:@"\n\nVersion: %@\nCountry: %@\nLanguage: %@",
                       currentVersion,
                       [LocaleUtilities englishCountry],

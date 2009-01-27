@@ -19,8 +19,10 @@
 #import "MultiDictionary.h"
 #import "Decision.h"
 #import "WebViewController.h"
+#import "YourRightsNavigationController.h"
 
 @interface GreatestHitsViewController()
+@property (assign) YourRightsNavigationController* navigationController;
 @property (retain) NSArray* sectionTitles;
 @property (retain) NSArray* indexTitles;
 @property (retain) MultiDictionary* sectionTitleToDecisions;
@@ -30,18 +32,25 @@
 
 @implementation GreatestHitsViewController
 
+@synthesize navigationController;
 @synthesize sectionTitles;
 @synthesize sectionTitleToDecisions;
 @synthesize segmentedControl;
 @synthesize indexTitles;
 
 - (void)dealloc {
+    self.navigationController = nil;
     self.sectionTitles = nil;
     self.sectionTitleToDecisions = nil;
     self.segmentedControl = nil;
     self.indexTitles = nil;
 
     [super dealloc];
+}
+
+
+- (Model*) model {
+    return navigationController.model;
 }
 
 
@@ -54,7 +63,7 @@
                                      NSLocalizedString(@"Defender", nil), nil]] autorelease];
     
     control.segmentedControlStyle = UISegmentedControlStyleBar;
-    control.selectedSegmentIndex = [Model greatestHitsSortIndex];
+    control.selectedSegmentIndex = [self.model greatestHitsSortIndex];
     
     [control addTarget:self
                 action:@selector(onSortOrderChanged:)
@@ -68,8 +77,9 @@
 }
 
 
-- (id) init {
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.navigationController = navigationController_;
         self.segmentedControl = [self setupSegmentedControl];
         
         self.indexTitles =
@@ -295,7 +305,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
-    [Model setGreatestHitsSortIndex:segmentedControl.selectedSegmentIndex];
+    [self.model setGreatestHitsSortIndex:segmentedControl.selectedSegmentIndex];
     [self majorRefresh];
 }
 

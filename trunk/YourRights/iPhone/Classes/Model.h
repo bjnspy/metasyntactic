@@ -18,24 +18,26 @@
 
 + (NSString*) version;
 
-+ (NSArray*) sectionTitles;
-+ (NSArray*) shortSectionTitles;
+- (NSArray*) sectionTitles;
+- (NSArray*) shortSectionTitles;
 
-+ (NSArray*) toughQuestions;
-+ (NSString*) answerForToughQuestion:(NSString*) question;
+- (NSArray*) toughQuestions;
+- (NSString*) answerForToughQuestion:(NSString*) question;
 
-+ (NSString*) shortSectionTitleForSectionTitle:(NSString*) sectionTitle;
+- (NSString*) shortSectionTitleForSectionTitle:(NSString*) sectionTitle;
 
-+ (NSString*) preambleForSectionTitle:(NSString*) sectionTitle;
-+ (NSArray*) questionsForSectionTitle:(NSString*) sectionTitle;
-+ (NSArray*) otherResourcesForSectionTitle:(NSString*) sectionTitle;
-+ (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle;
-+ (NSArray*) linksForSectionTitle:(NSString*) sectionTitle;
-+ (NSArray*) linksForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle;
+- (NSString*) preambleForSectionTitle:(NSString*) sectionTitle;
+- (NSArray*) questionsForSectionTitle:(NSString*) sectionTitle;
+- (NSArray*) otherResourcesForSectionTitle:(NSString*) sectionTitle;
+- (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle;
+- (NSArray*) linksForSectionTitle:(NSString*) sectionTitle;
+- (NSArray*) linksForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle;
 
-+ (NSInteger) greatestHitsSortIndex;
-+ (void) setGreatestHitsSortIndex:(NSInteger) index;
+- (NSInteger) greatestHitsSortIndex;
+- (void) setGreatestHitsSortIndex:(NSInteger) index;
 
-+ (NSString*) feedbackUrl;
+- (NSString*) feedbackUrl;
+
+//+ (NSArray*) 
 
 @end
