@@ -41,7 +41,10 @@ static NSString* scoresDirectory = nil;
 static NSString* reviewsDirectory = nil;
 static NSString* trailersDirectory = nil;
 static NSString* postersDirectory = nil;
-static NSString* largePostersDirectory = nil;
+static NSString* moviesPostersDirectory = nil;
+static NSString* largeMoviesPostersDirectory = nil;
+static NSString* peoplePostersDirectory = nil;
+static NSString* largePeoplePostersDirectory = nil;
 
 static NSString* dvdDirectory = nil;
 static NSString* dvdDetailsDirectory = nil;
@@ -92,7 +95,10 @@ static NSString** directories[] = {
 &reviewsDirectory,
 &trailersDirectory,
 &postersDirectory,
-&largePostersDirectory,
+&moviesPostersDirectory,
+&largeMoviesPostersDirectory,
+&peoplePostersDirectory,
+&largePeoplePostersDirectory,
 &upcomingDirectory,
 &upcomingCastDirectory,
 &upcomingPostersDirectory,
@@ -193,7 +199,10 @@ static DifferenceEngine* differenceEngine = nil;
         trailersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Trailers"] retain];
 
         postersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"Posters"] retain];
-        largePostersDirectory = [[cacheDirectory stringByAppendingPathComponent:@"LargePosters"] retain];
+        moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
+        largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
+        peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
+        largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];        
 
         dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
         dvdDetailsDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Details"] retain];
@@ -373,13 +382,23 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-+ (NSString*) postersDirectory {
-    return postersDirectory;
++ (NSString*) moviesPostersDirectory {
+    return moviesPostersDirectory;
 }
 
 
-+ (NSString*) largePostersDirectory {
-    return largePostersDirectory;
++ (NSString*) largeMoviesPostersDirectory {
+    return largeMoviesPostersDirectory;
+}
+
+
++ (NSString*) peoplePostersDirectory {
+    return peoplePostersDirectory;
+}
+
+
++ (NSString*) largePeoplePostersDirectory {
+    return largePeoplePostersDirectory;
 }
 
 

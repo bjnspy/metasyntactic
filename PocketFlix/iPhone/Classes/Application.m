@@ -341,7 +341,6 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 
-
 + (NSString*) trailersDirectory {
     return trailersDirectory;
 }

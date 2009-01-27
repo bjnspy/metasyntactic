@@ -63,6 +63,7 @@ static NSString* series_key = @"series";
 static NSString* average_rating_key = @"average_rating";
 static NSString* link_key = @"link";
 static NSString* filmography_key = @"filmography";
+static NSString* availability_key = @"availability";
 
 static NSString* cast_key = @"cast";
 static NSString* formats_key = @"formats";
@@ -72,6 +73,7 @@ static NSString* directors_key = @"directors";
 
 static NSArray* mostPopularTitles = nil;
 static NSDictionary* mostPopularTitlesToAddresses = nil;
+static NSDictionary* availabilityMap = nil;
 
 + (NSArray*) mostPopularTitles {
     return mostPopularTitles;
@@ -137,6 +139,48 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
                                      forKeys:mostPopularTitles] retain];
         
         NSAssert(mostPopularTitles.count == mostPopularTitlesToAddresses.count, @"");
+        
+        /*
+         <category_item term=""/>
+         <category_item term="available now"/>
+         <category_item term="saved"/>
+         <category_item term="possible short wait"/>
+         <category_item term="short wait"/>
+         <category_item term="long wait"/>
+         <category_item term="very long wait"/>
+         <category_item term="available soon"/>
+         <category_item term="not rentable"/>
+         <category_item term="release date is unknown; availability is not guaranteed."/>
+         <category_item term="release date is unknown."/>
+         <category_item term="availability date is unknown."/>
+         */
+        availabilityMap =
+        [[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
+                                              NSLocalizedString(@"Awaiting Release", nil),
+                                              NSLocalizedString(@"Available Now", nil),
+                                              NSLocalizedString(@"Saved", nil),
+                                              NSLocalizedString(@"Short Wait", nil),
+                                              NSLocalizedString(@"Short Wait", nil),
+                                              NSLocalizedString(@"Long Wait", nil),
+                                              NSLocalizedString(@"Long Wait", nil),
+                                              NSLocalizedString(@"Available Soon", nil),
+                                              NSLocalizedString(@"Not Rentable", nil),
+                                              NSLocalizedString(@"Unknown Release Date", nil),
+                                              NSLocalizedString(@"Unknown Release Date", nil),
+                                              NSLocalizedString(@"Unknown Release Date", nil), nil]
+                                     forKeys:[NSArray arrayWithObjects:
+                                              @"awaiting release",
+                                              @"available now",
+                                              @"saved",
+                                              @"possible short wait",
+                                              @"short wait",
+                                              @"long wait",
+                                              @"very long wait",
+                                              @"available soon",
+                                              @"not rentable",
+                                              @"release date is unknown; availability is not guaranteed.",
+                                              @"release date is unknown.",
+                                              @"availability date is unknown.", nil]] retain];
     }
 }
 
@@ -392,7 +436,9 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
             } else if ([@"http://api.netflix.com/categories/genres" isEqual:scheme]) {
                 [genres addObject:[child attributeValue:@"label"]];
             } else if ([@"http://api.netflix.com/categories/queue_availability" isEqual:scheme]) {
-                save = [[child attributeValue:@"label"] isEqual:@"saved"];
+                NSString* label = [child attributeValue:@"label"];
+                save = [label isEqual:@"saved"];
+                [additionalFields setObject:label forKey:availability_key];
             }
         } else if ([@"release_year" isEqual:child.name]) {
             year = child.text;
@@ -797,7 +843,7 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (void) updatePersonPoster:(Person*) person {
-    //[model.personPosterCache update:person];
+    [model.personPosterCache update:person];
 }
 
 
@@ -841,7 +887,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (Movie*) downloadRSSMovieWithSeriesIdentifier:(NSString*) identifier {
-    NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats,similars", identifier];
+    //NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats,similars", identifier];
+    NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats", identifier];
     return [self downloadMovieWithSeriesKey:seriesKey];
 }
 
@@ -1104,7 +1151,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (Movie*) downloadRSSMovieWithIdentifier:(NSString*) identifier {
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats,similars", identifier];
+    //NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats,similars", identifier];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats", identifier];
     
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request prepare];
@@ -1175,7 +1223,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 - (void) updateAllDiscDetails:(Movie*) movie {
     // we don't download this stuff on a per disc basis.  only for a series.
     [self updateMoviePoster:movie];
-    [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
+    //[self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
+    [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats"];
     [self updateRatings:movie];
     
     [model.imdbCache updateMovie:movie];
@@ -1498,6 +1547,18 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
     }
     
     return address;
+}
+
+
+- (NSString*) availabilityForMovie:(Movie*) movie {
+    NSString* availability = [movie.additionalFields objectForKey:availability_key];
+    NSString* result = [availabilityMap objectForKey:availability];
+    
+    if (result.length == 0) {
+        return @"";
+    }
+    
+    return result;
 }
 
 
