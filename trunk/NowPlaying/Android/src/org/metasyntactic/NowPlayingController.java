@@ -21,6 +21,7 @@ import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -183,6 +184,10 @@ public class NowPlayingController {
 
   public byte[] getPoster(final Movie movie) {
     return this.model.getPoster(movie);
+  }
+
+  public File getPosterFile_safeToCallFromBackground(final Movie movie) {
+    return this.model.getPosterFile_safeToCallFromBackground(movie);
   }
 
   public String getSynopsis(final Movie movie) {

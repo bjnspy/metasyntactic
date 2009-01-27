@@ -301,6 +301,10 @@ public class UpcomingCache extends AbstractCache {
     return new File(Application.upcomingPostersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
+  public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
+    return getPosterFile(movie);
+  }
+
   private static File getSynopsisFile(final Movie movie) {
     return new File(Application.upcomingSynopsesDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }

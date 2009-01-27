@@ -23,6 +23,7 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import static org.metasyntactic.utilities.SetUtilities.any;
 
+import java.io.File;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -242,6 +243,15 @@ public class NowPlayingControllerWrapper {
   public static byte[] getPoster(final Movie movie) {
     checkInstance();
     return instance.getPoster(movie);
+  }
+
+  public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
+    final NowPlayingController localInstance = instance;
+    if (localInstance == null) {
+      return null;
+    }
+
+    return localInstance.getPosterFile_safeToCallFromBackground(movie);
   }
 
   public static String getSynopsis(final Movie movie) {
