@@ -145,7 +145,7 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 2;
 }
- 
+
 
 // Customize the number of rows in the table view.
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
@@ -164,7 +164,7 @@
     } else if (section == 1 && people.count > 0) {
         return NSLocalizedString(@"People", nil);
     }
-    
+
     return nil;
 }
 
@@ -180,24 +180,24 @@
                                        reuseIdentifier:reuseIdentifier
                                                  model:self.model] autorelease];
         }
-        
+
         Movie* movie = [movies objectAtIndex:indexPath.row];
         [cell setMovie:movie owner:self];
-        
+
         return cell;
     } else {
         static NSString* reuseIdentifier = @"personReuseIdentifier";
-        
+
         PersonCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[PersonCell alloc] initWithFrame:CGRectZero
                                        reuseIdentifier:reuseIdentifier
                                                  model:self.model] autorelease];
         }
-        
+
         Person* person = [people objectAtIndex:indexPath.row];
         [cell setPerson:person owner:self];
-        
+
         return cell;
     }
 }
@@ -209,7 +209,7 @@
         Movie* movie = [movies objectAtIndex:indexPath.row];
         [navigationController pushMovieDetails:movie animated:YES];
     } else {
-        
+
     }
 }
 

@@ -21,18 +21,18 @@
     UILabel* genreTitleLabel;
     UILabel* ratedTitleLabel;
     UILabel* netflixTitleLabel;
-    
+
     UILabel* directorLabel;
     UILabel* castLabel;
     UILabel* genreLabel;
     UILabel* ratedLabel;
     UILabel* netflixLabel;
-    
+
     UILabel* availabilityLabel;
     UILabel* formatsLabel;
-    
+
     TappableImageView* tappableArrow;
-    
+
     BOOL userRating;
 }
 

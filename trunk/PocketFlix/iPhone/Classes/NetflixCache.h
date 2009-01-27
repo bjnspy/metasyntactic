@@ -24,7 +24,7 @@
     LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
-    
+
     // people whose details we want to update
     LinkedSet* prioritizedPeople;
     LinkedSet* searchPeople;

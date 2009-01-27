@@ -22,11 +22,11 @@
 @private
     Movie* movie;
     DVD* dvd;
-        
+
     Movie* netflixMovie;
     NetflixRatingsCell* netflixRatingsCell;
     NSArray* netflixStatusCells;
-        
+
     NSMutableArray* theatersArray;
     NSMutableArray* showtimesArray;
     NSString* trailer;

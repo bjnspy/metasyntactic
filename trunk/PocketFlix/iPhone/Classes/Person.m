@@ -30,7 +30,7 @@ property_definition(additionalFields);
     self.name = nil;
     self.biography = nil;
     self.additionalFields = nil;
-    
+
     [super dealloc];
 }
 
@@ -45,7 +45,7 @@ property_definition(additionalFields);
         self.biography = [StringUtilities nonNilString:biography_];
         self.additionalFields = additionalFields_;
     }
-     
+
     return self;
 }
 
@@ -59,8 +59,8 @@ property_definition(additionalFields);
                                      biography:biography
                               additionalFields:additionalFields] autorelease];
 }
-            
-            
+
+
 + (Person*) personWithDictionary:(NSDictionary*) dictionary {
     return [Person personWithIdentifier:[dictionary objectForKey:identifier_key]
                                    name:[dictionary objectForKey:name_key]
@@ -91,7 +91,7 @@ property_definition(additionalFields);
 
 - (BOOL) isEqual:(id) anObject {
     Person* other = anObject;
-    
+
     return [identifier isEqual:other.identifier];
 }
 

@@ -184,7 +184,7 @@ property_definition(text);
             return child;
         }
     }
-    
+
     if (recurse) {
         XmlElement* result;
         for (XmlElement* child in children) {
@@ -212,7 +212,7 @@ property_definition(text);
             [result addObject:child];
         }
     }
-    
+
     if (recurse) {
         for (XmlElement* child in children) {
             [child elements:name_ recurse:recurse result:result];
@@ -224,9 +224,9 @@ property_definition(text);
 - (NSArray*) elements:(NSString*) name_
               recurse:(BOOL) recurse {
     NSMutableArray* result = [NSMutableArray array];
-    
+
     [self elements:name_ recurse:recurse result:result];
-    
+
     return result;
 }
 

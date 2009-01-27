@@ -31,7 +31,7 @@
             delegate:(id<SearchEngineDelegate>) delegate_ {
     if (self = [super initWithModel:model_ delegate:delegate_]) {
     }
-    
+
     return self;
 }
 
@@ -47,7 +47,7 @@
     if ([self abortEarly]) { return; }
     NSArray* people = [model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
     if ([self abortEarly]) { return; }
-    
+
     [self reportResult:movies
               theaters:[NSArray array]
         upcomingMovies:[NSArray array]

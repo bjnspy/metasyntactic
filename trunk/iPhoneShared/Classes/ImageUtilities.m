@@ -53,7 +53,7 @@
     if (source == nil) {
         return nil;
     }
-    
+
     if (source.size.height <= height) {
         return data;
     }

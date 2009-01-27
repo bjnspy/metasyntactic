@@ -165,7 +165,7 @@ const NSInteger POSTER_TAG = -1;
     if (wikipediaAddress.length > 0) {
         [map setObject:wikipediaAddress forKey:@"Wikipedia"];
     }
-    
+
     NSString* netflixAddress = [self.model netflixAddressForMovie:movie];
     if (netflixAddress.length > 0) {
         [map setObject:netflixAddress forKey:@"Netflix"];
@@ -183,20 +183,20 @@ const NSInteger POSTER_TAG = -1;
 
 - (void) initializeNetflixStatusCells {
     NSArray* statuses = [self.model.netflixCache statusesForMovie:movie];
-    
+
     NSMutableArray* cells = [NSMutableArray array];
     for (NSInteger i = 0; i < statuses.count; i++) {
         Status* status = [statuses objectAtIndex:i];
         NetflixStatusCell* cell = [[[NetflixStatusCell alloc] initWithStatus:status] autorelease];
         cell.moveImageView.delegate = self;
         cell.deleteImageView.delegate = self;
-        
+
         cell.moveImageView.tag = 2 * i;
         cell.deleteImageView.tag = 2 * i + 1;
-        
+
         [cells addObject:cell];
     }
-    
+
     self.netflixStatusCells = cells;
 }
 

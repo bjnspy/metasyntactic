@@ -36,7 +36,7 @@
     self.description = nil;
     self.saved = NO;
     self.position = 0;
-    
+
     [super dealloc];
 }
 
@@ -53,7 +53,7 @@
         self.saved = saved_;
         self.position = position_;
     }
-    
+
     return self;
 }
 

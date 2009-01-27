@@ -139,7 +139,7 @@ static NSDictionary* availabilityMap = nil;
                                      forKeys:mostPopularTitles] retain];
 
         NSAssert(mostPopularTitles.count == mostPopularTitlesToAddresses.count, @"");
-    
+
     /*
      <category_item term=""/>
      <category_item term="available now"/>
@@ -590,23 +590,23 @@ static NSDictionary* availabilityMap = nil;
     NSString* identifier = [[personElement element:@"id"] text];
     NSString* name = [[personElement element:@"name"] text];
     NSString* bio = [[personElement element:@"bio"] text];
-    
+
     if (identifier.length == 0 || name.length == 0) {
         return nil;
     }
-    
+
     NSMutableDictionary* additionalFields = [NSMutableDictionary dictionary];
-    
+
     for (XmlElement* linkElement in [personElement elements:@"link"]) {
         NSString* rel = [linkElement attributeValue:@"rel"];
-        
+
         if ([@"http://schemas.netflix.com/catlog/person/filmography" isEqual:rel]) {
             [additionalFields setObject:[linkElement attributeValue:@"href"] forKey:filmography_key];
         } else if ([@"alternate" isEqual:rel]) {
             [additionalFields setObject:[linkElement attributeValue:@"href"] forKey:link_key];
         }
     }
-    
+
     return [Person personWithIdentifier:identifier
                                    name:name
                               biography:bio
@@ -616,7 +616,7 @@ static NSDictionary* availabilityMap = nil;
 
 - (NSArray*) processPersonItemList:(XmlElement*) element {
     NSMutableArray* people = [NSMutableArray array];
-    
+
     for (XmlElement* personElement in element.children) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
@@ -627,7 +627,7 @@ static NSDictionary* availabilityMap = nil;
         }
         [pool release];
     }
-    
+
     return people;
 }
 
@@ -655,34 +655,34 @@ static NSDictionary* availabilityMap = nil;
 - (NSArray*) peopleSearch:(NSString*) query {
     return [NSArray array];
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/people"];
-    
+
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:query],
                            [OARequestParameter parameterWithName:@"max_results" value:@"5"], nil];
-    
+
     [request setParameters:parameters];
     [request prepare];
-    
+
     XmlElement* element =
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
-    
+
     [self checkApiResult:element];
-    
+
     NSArray* people = [self processPersonItemList:element];
-    
+
     if (people.count > 0) {
         // download the details for these movies in teh background.
         [self addSearchPeople:people];
     }
-    
+
     return people;
 }
 
 
 - (NSArray*) movieSearch:(NSString*) query {
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
-    
+
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:query],
                            [OARequestParameter parameterWithName:@"max_results" value:@"15"], nil];
@@ -745,7 +745,7 @@ static NSDictionary* availabilityMap = nil;
             }
         }
     }
-    
+
     if (movies.count > 0 || saved.count > 0) {
         Queue* queue = [Queue queueWithFeed:feed
                                        etag:etag
@@ -1262,7 +1262,7 @@ static NSDictionary* availabilityMap = nil;
     if (person == nil) {
         return;
     }
-    
+
     [self updatePersonPoster:person];
 }
 
@@ -1397,7 +1397,7 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (void) prioritizePerson:(Person*) person {    
+- (void) prioritizePerson:(Person*) person {
     [updateDetailsLock lock];
     {
         [prioritizedPeople addObject:person];
@@ -1421,7 +1421,7 @@ static NSDictionary* availabilityMap = nil;
                    (movie  = [rssMovies removeLastObjectAdded]) == nil) {
                 [updateDetailsLock wait];
             }
-        } 
+        }
         [updateDetailsLock unlock];
 
         [self updatePersonDetails:person];
@@ -1535,7 +1535,7 @@ static NSDictionary* availabilityMap = nil;
     if (series != movie) {
         return [self formatsForMovie:series];
     }
-    
+
     return [NSArray array];
 }
 
@@ -1553,11 +1553,11 @@ static NSDictionary* availabilityMap = nil;
 - (NSString*) availabilityForMovie:(Movie*) movie {
     NSString* availability = [movie.additionalFields objectForKey:availability_key];
     NSString* result = [availabilityMap objectForKey:availability];
-    
+
     if (result.length == 0) {
         return @"";
     }
-    
+
     return result;
 }
 

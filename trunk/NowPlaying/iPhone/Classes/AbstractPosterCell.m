@@ -27,7 +27,7 @@
 
 - (void) dealloc {
     self.movie = nil;
-    
+
     [super dealloc];
 }
 
@@ -37,7 +37,7 @@
                model:(Model*) model_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier model:model_]) {
     }
-    
+
     return self;
 }
 
@@ -65,13 +65,13 @@
                        owner:(id) owner  {
     // switching to a new movie.  update everything.
     self.movie = movie_;
-    
+
     for (UILabel* label in self.allLabels) {
         [label removeFromSuperview];
     }
-    
+
     [self clearImage];
-    
+
     [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];
     [self performSelector:@selector(loadMovie:) withObject:owner afterDelay:0];
 }
@@ -84,7 +84,7 @@
     } else {
         titleLabel.text = movie_.displayTitle;
     }
-    
+
     if (movie == movie_) {
         [self onSetSameMovie:movie_ owner:owner];
     } else {

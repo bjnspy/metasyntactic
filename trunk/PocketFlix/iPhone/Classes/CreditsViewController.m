@@ -218,7 +218,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == GraphicsBySection) {
     } else if (section == LocalizedBySection) {
     }
-    
+
     return nil;
 }
 

@@ -16,7 +16,7 @@
 @private
     TappableImageView* deleteImageView;
     TappableImageView* moveImageView;
-    
+
     Status* status;
 }
 
