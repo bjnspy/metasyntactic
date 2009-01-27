@@ -403,7 +403,7 @@ public class FileUtilities {
   }
 
   public static byte[] readBytes(final File file) {
-    if (!file.exists()) {
+    if (file == null || !file.exists()) {
       return new byte[0];
     }
 
