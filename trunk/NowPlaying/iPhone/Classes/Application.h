@@ -25,8 +25,10 @@
 + (NSString*) amazonDirectory;
 + (NSString*) wikipediaDirectory;
 + (NSString*) userLocationsDirectory;
-+ (NSString*) postersDirectory;
-+ (NSString*) largePostersDirectory;
++ (NSString*) moviesPostersDirectory;
++ (NSString*) largeMoviesPostersDirectory;
++ (NSString*) peoplePostersDirectory;
++ (NSString*) largePeoplePostersDirectory;
 + (NSString*) scoresDirectory;
 + (NSString*) reviewsDirectory;
 + (NSString*) trailersDirectory;

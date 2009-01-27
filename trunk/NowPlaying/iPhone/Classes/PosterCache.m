@@ -73,13 +73,13 @@
 
 - (NSString*) posterFilePath:(Movie*) movie {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    return [[[Application postersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
+    return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
 - (NSString*) smallPosterFilePath:(Movie*) movie {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
-    return [[[Application postersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
+    return [[[Application moviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingString:@"-small.png"];
 }
 
 

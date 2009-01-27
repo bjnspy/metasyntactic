@@ -61,6 +61,7 @@
 @property (retain) IMDbCache* imdbCache;
 @property (retain) AmazonCache* amazonCache;
 @property (retain) WikipediaCache* wikipediaCache;
+@property (retain) PersonPosterCache* personPosterCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) LargePosterCache* largePosterCache;
 @property (retain) ScoreCache* scoreCache;
@@ -75,7 +76,7 @@
 @implementation Model
 
 static NSString* currentVersion = @"2.6.0";
-static NSString* persistenceVersion = @"102";
+static NSString* persistenceVersion = @"104";
 
 static NSString* VERSION = @"version";
 
@@ -204,6 +205,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize imdbCache;
 @synthesize amazonCache;
 @synthesize wikipediaCache;
+@synthesize personPosterCache;
 @synthesize posterCache;
 @synthesize largePosterCache;
 @synthesize scoreCache;
@@ -222,6 +224,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     self.imdbCache = nil;
     self.amazonCache = nil;
     self.wikipediaCache = nil;
+    self.personPosterCache = nil;
     self.posterCache = nil;
     self.largePosterCache = nil;
     self.scoreCache = nil;

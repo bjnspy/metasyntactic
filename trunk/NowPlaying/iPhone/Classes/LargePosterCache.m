@@ -69,7 +69,7 @@ const int START_YEAR = 1912;
                        index:(NSInteger) index {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d", index];
-    return [[[Application largePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
+    return [[[Application largeMoviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
 
@@ -77,7 +77,7 @@ const int START_YEAR = 1912;
                             index:(NSInteger) index {
     NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     sanitizedTitle = [sanitizedTitle stringByAppendingFormat:@"-%d-small", index];
-    return [[[Application largePostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"png"];
+    return [[[Application largeMoviesPostersDirectory] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"png"];
 }
 
 
@@ -145,7 +145,7 @@ const int START_YEAR = 1912;
 
 - (NSString*) indexFile:(NSInteger) year {
     NSString* file = [NSString stringWithFormat:@"%d.plist", year];
-    return [[Application largePostersDirectory] stringByAppendingPathComponent:file];
+    return [[Application largeMoviesPostersDirectory] stringByAppendingPathComponent:file];
 }
 
 
