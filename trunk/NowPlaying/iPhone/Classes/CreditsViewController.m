@@ -239,7 +239,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         } else if (row == 1) {
             cell.text = @"PocketFlix ($1.99)";
         } else {
-            cell.text = @"Your Rights (free)";
+            cell.text = @"Your Rights (Free)";
         }
     } else if (section == GraphicsBySection) {
         cell.text = NSLocalizedString(@"Website", nil);

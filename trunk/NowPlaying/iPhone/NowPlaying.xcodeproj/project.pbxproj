@@ -77,6 +77,7 @@
 		744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
 		745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
+		745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A08850F2EB444002F64C6 /* AbstractImageCell.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
 		74616D330F15D3260004B610 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 74616D080F15D3260004B610 /* COPYING */; };
 		74616D340F15D3260004B610 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74616D120F15D3260004B610 /* xmlparse.c */; };
@@ -476,6 +477,8 @@
 		745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
 		7457FE910E21A41A00929D3E /* Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Performance.m; sourceTree = "<group>"; };
+		745A08840F2EB444002F64C6 /* AbstractImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractImageCell.h; sourceTree = "<group>"; };
+		745A08850F2EB444002F64C6 /* AbstractImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractImageCell.m; sourceTree = "<group>"; };
 		745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		745E203A0E58858A00105751 /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
 		745E203B0E58858A00105751 /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
@@ -1300,6 +1303,8 @@
 				749142A80E7629C900CC42A8 /* CollapsedMovieDetailsCell.m */,
 				749142AA0E7629D500CC42A8 /* ExpandedMovieDetailsCell.h */,
 				749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */,
+				745A08840F2EB444002F64C6 /* AbstractImageCell.h */,
+				745A08850F2EB444002F64C6 /* AbstractImageCell.m */,
 				747413870EC7F2EC00625001 /* AbstractPosterCell.h */,
 				747413880EC7F2EC00625001 /* AbstractPosterCell.m */,
 				747AB85F0EB963AE002438D0 /* DVDCell.h */,
@@ -2249,6 +2254,7 @@
 				7408FDF40F27CAA900BD86B6 /* NetflixStatusCell.m in Sources */,
 				74D3CC740F2DB73E0007C783 /* Person.m in Sources */,
 				74D3CC770F2DB7520007C783 /* PersonPosterCache.m in Sources */,
+				745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

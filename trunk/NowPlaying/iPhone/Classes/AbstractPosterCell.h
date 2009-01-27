@@ -12,26 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-typedef enum {
-    Loading,
-    NotFound,
-    Loaded
-} ImageState;
+#import "AbstractImageCell.h"
 
-
-@interface AbstractPosterCell : UITableViewCell {
+@interface AbstractPosterCell : AbstractImageCell {
 @protected
-    Model* model;
     Movie* movie;
-
-    ImageState state;
-    UIImageView* imageLoadingView;
-    UIImageView* imageView;
-
-    UIActivityIndicatorView* activityView;
-
-    UILabel* titleLabel;
-    CGFloat titleWidth;
 }
 
 @property (retain) Movie* movie;
@@ -39,9 +24,6 @@ typedef enum {
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(Model*) model_;
-
-- (void) loadImage;
-- (void) clearImage;
 
 - (void) setMovie:(Movie*) movie owner:(id) owner;
 
