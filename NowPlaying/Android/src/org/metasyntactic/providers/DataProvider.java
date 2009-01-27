@@ -56,7 +56,6 @@ public class DataProvider {
     final List<Movie> movies = getMovies();
     final List<Theater> theaters = getTheaters();
 
-    Debug.startMethodTracing("Update_provider");
     final Runnable runnable = new Runnable() {
       public void run() {
         updateBackgroundEntryPoint(movies, theaters);
@@ -86,6 +85,8 @@ public class DataProvider {
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
+    Debug.startMethodTracing("provider_start", 50000000);
+
     updateBackgroundEntryPointWorker(currentMovies, currentTheaters);
 
     Debug.stopMethodTracing();
@@ -105,10 +106,12 @@ public class DataProvider {
       return;
     }
 
+    Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
     final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
+    Debug.stopMethodTracing();
 
     if (location == null) {
       // this should be impossible.  we only update if the user has entered a
@@ -291,13 +294,18 @@ public class DataProvider {
 
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
+      Debug.startMethodTracing("parse_from", 50000000);
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
+      Debug.stopMethodTracing();
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
       return null;
     }
 
-    return processTheaterListings(theaterListings, location, theaterNames);
+    Debug.startMethodTracing("processListings", 50000000);
+    final LookupResult result = processTheaterListings(theaterListings, location, theaterNames);
+    Debug.stopMethodTracing();
+    return result;
   }
 
   private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
