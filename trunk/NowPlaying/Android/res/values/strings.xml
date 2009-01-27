@@ -12,6 +12,9 @@
     <string name="off">Off</string>
     <string name="showtimes_for">Showtimes for</string>
     <string name="showtimes_at">Showtimes at</string>
+    <string name="order_tickets">Order tickets for</string>
+    <string name="buy_tickets">Buy Tickets</string>
+    <string name="get_showtimes">Get Showtimes</string>
     
      <!-- Characters that are used for each of the fast-scroll widget that skips directly
         to names starting with this letter.  If your language sorts differently than this,
