@@ -16,9 +16,10 @@
 @private
     UIWindow *window;
     YourRightsNavigationController* navigationController;
+    Model* model;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (readonly, retain) Model* model;
 
 @end
-

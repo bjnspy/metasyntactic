@@ -14,25 +14,30 @@
 
 #import "YourRightsAppDelegate.h"
 
+#import "Model.h"
 #import "YourRightsNavigationController.h"
 
 @interface YourRightsAppDelegate()
 @property (retain) YourRightsNavigationController* navigationController;
+@property (retain) Model* model;
 @end
 
 @implementation YourRightsAppDelegate
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize model;
 
 - (void) dealloc {
     self.window = nil;
     self.navigationController = nil;
+    self.model = nil;
     [super dealloc];
 }
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application {  
-    self.navigationController = [[[YourRightsNavigationController alloc] init] autorelease];
+    self.navigationController = [[[YourRightsNavigationController alloc] initWithAppDelegate:self] autorelease];
+    self.model = [[[Model alloc] init] autorelease];
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 }

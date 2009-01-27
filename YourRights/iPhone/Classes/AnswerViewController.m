@@ -17,8 +17,10 @@
 #import "ViewControllerUtilities.h"
 #import "WebViewController.h"
 #import "WrappableCell.h"
+#import "YourRightsNavigationController.h"
 
 @interface AnswerViewController()
+@property (assign) YourRightsNavigationController* navigationController;
 @property (copy) NSString* sectionTitle;
 @property (copy) NSString* question;
 @property (copy) NSString* answer;
@@ -28,12 +30,14 @@
 
 @implementation AnswerViewController
 
+@synthesize navigationController;
 @synthesize sectionTitle;
 @synthesize question;
 @synthesize answer;
 @synthesize links;
 
-- (void)dealloc {
+- (void) dealloc {
+    self.navigationController = nil;
     self.sectionTitle = nil;
     self.question = nil;
     self.answer = nil;
@@ -42,14 +46,21 @@
 }
 
 
-- (id) initWithSectionTitle:(NSString*) sectionTitle_
+- (Model*) model {
+    return navigationController.model;
+}
+
+
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
+                       sectionTitle:(NSString*) sectionTitle_
                    question:(NSString*) question_
                      answer:(NSString*) answer_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.navigationController = navigationController_;
         self.sectionTitle = sectionTitle_;
         self.question = question_;
         self.answer = answer_;
-        self.links = [Model linksForQuestion:question withSectionTitle:sectionTitle];
+        self.links = [self.model linksForQuestion:question withSectionTitle:sectionTitle];
     }
     
     return self;

@@ -14,9 +14,9 @@
 
 @interface CreditsViewController : UITableViewController {
 @private
-    UINavigationController* navigationController;
+    YourRightsNavigationController* navigationController;
 }
 
-- (id) initWithNavigationController:(UINavigationController*) navigationController;
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController;
 
 @end

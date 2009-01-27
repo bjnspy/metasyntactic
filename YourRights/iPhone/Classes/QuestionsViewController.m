@@ -19,8 +19,10 @@
 #import "ViewControllerUtilities.h"
 #import "WebViewController.h"
 #import "WrappableCell.h"
+#import "YourRightsNavigationController.h"
 
 @interface QuestionsViewController()
+@property (assign) YourRightsNavigationController* navigationController;
 @property (copy) NSString* sectionTitle;
 @property (copy) NSString* preamble;
 @property (retain) NSArray* questions;
@@ -31,6 +33,7 @@
 
 @implementation QuestionsViewController
 
+@synthesize navigationController;
 @synthesize sectionTitle;
 @synthesize preamble;
 @synthesize questions;
@@ -38,6 +41,7 @@
 @synthesize links;
 
 - (void)dealloc {
+    self.navigationController = nil;
     self.sectionTitle = nil;
     self.preamble = nil;
     self.questions = nil;
@@ -48,15 +52,22 @@
 }
 
 
-- (id) initWithSectionTitle:(NSString*) sectionTitle_ {
+- (Model*) model {
+    return navigationController.model;
+}
+
+
+- (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_
+                       sectionTitle:(NSString*) sectionTitle_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.navigationController = navigationController_;
         self.sectionTitle = sectionTitle_;
-        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:[Model shortSectionTitleForSectionTitle:sectionTitle]];
+        self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:[self.model shortSectionTitleForSectionTitle:sectionTitle]];
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
-        self.preamble = [Model preambleForSectionTitle:sectionTitle];
-        self.questions = [Model questionsForSectionTitle:sectionTitle];
-        self.otherResources = [Model otherResourcesForSectionTitle:sectionTitle];
-        self.links = [Model linksForSectionTitle:sectionTitle];
+        self.preamble = [self.model preambleForSectionTitle:sectionTitle];
+        self.questions = [self.model questionsForSectionTitle:sectionTitle];
+        self.otherResources = [self.model otherResourcesForSectionTitle:sectionTitle];
+        self.links = [self.model linksForSectionTitle:sectionTitle];
     }
     
     return self;
@@ -159,8 +170,11 @@
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
     } else if (indexPath.section == 1) {
         NSString* question = [questions objectAtIndex:indexPath.row];
-        NSString* answer = [Model answerForQuestion:question withSectionTitle:sectionTitle];
-        AnswerViewController* controller = [[[AnswerViewController alloc] initWithSectionTitle:sectionTitle question:question answer:answer] autorelease];
+        NSString* answer = [self.model answerForQuestion:question withSectionTitle:sectionTitle];
+        AnswerViewController* controller = [[[AnswerViewController alloc] initWithNavigationController:navigationController
+                                                                                          sectionTitle:sectionTitle
+                                                                                              question:question
+                                                                                                answer:answer] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.section == 2) {
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];   
