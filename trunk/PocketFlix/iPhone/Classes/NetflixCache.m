@@ -63,6 +63,7 @@ static NSString* series_key = @"series";
 static NSString* average_rating_key = @"average_rating";
 static NSString* link_key = @"link";
 static NSString* filmography_key = @"filmography";
+static NSString* availability_key = @"availability";
 
 static NSString* cast_key = @"cast";
 static NSString* formats_key = @"formats";
@@ -392,7 +393,10 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
             } else if ([@"http://api.netflix.com/categories/genres" isEqual:scheme]) {
                 [genres addObject:[child attributeValue:@"label"]];
             } else if ([@"http://api.netflix.com/categories/queue_availability" isEqual:scheme]) {
-                save = [[child attributeValue:@"label"] isEqual:@"saved"];
+                NSString* label = [child attributeValue:@"label"];
+                save = [label isEqual:@"saved"];
+                
+                [additionalFields setObject:label forKey:availability_key];
             }
         } else if ([@"release_year" isEqual:child.name]) {
             year = child.text;
@@ -841,7 +845,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (Movie*) downloadRSSMovieWithSeriesIdentifier:(NSString*) identifier {
-    NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats,similars", identifier];
+    //NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats,similars", identifier];
+    NSString* seriesKey = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/series/%@?expand=synopsis,cast,directors,formats", identifier];
     return [self downloadMovieWithSeriesKey:seriesKey];
 }
 
@@ -1104,7 +1109,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 
 
 - (Movie*) downloadRSSMovieWithIdentifier:(NSString*) identifier {
-    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats,similars", identifier];
+    //NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats,similars", identifier];
+    NSString* address = [NSString stringWithFormat:@"http://api.netflix.com/catalog/titles/movies/%@?expand=synopsis,cast,directors,formats", identifier];
 
     OAMutableURLRequest* request = [self createURLRequest:address];
     [request prepare];
@@ -1175,7 +1181,8 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
 - (void) updateAllDiscDetails:(Movie*) movie {
     // we don't download this stuff on a per disc basis.  only for a series.
     [self updateMoviePoster:movie];
-    [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
+    //[self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats,similars"];
+    [self updateSpecificDiscDetails:movie expand:@"synopsis,cast,directors,formats"];
     [self updateRatings:movie];
 
     [model.imdbCache updateMovie:movie];

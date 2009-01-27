@@ -14,6 +14,7 @@
 
 #import "AppDelegate.h"
 
+#import "AlertUtilities.h"
 #import "Controller.h"
 #import "Model.h"
 #import "Pulser.h"
@@ -59,6 +60,11 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
+    if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
+        [AlertUtilities showOkAlert:@"Zombies enabled!"];
+    }
+    
+    
     appDelegate = self;
 
     self.model = [Model model];
