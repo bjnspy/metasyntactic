@@ -344,8 +344,7 @@ typedef enum {
     } else {
         if (indexPath.row == 0) {
             NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
-            NSURL* url = [NSURL URLWithString:address];
-            [[UIApplication sharedApplication] openURL:url];
+            [Application openBrowser:address];
         } else if (indexPath.row == 1) {
             NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:navigationController] autorelease];
             [navigationController pushViewController:controller animated:YES];

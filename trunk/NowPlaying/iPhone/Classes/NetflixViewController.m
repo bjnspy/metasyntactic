@@ -159,8 +159,7 @@ typedef enum {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.label.backgroundColor = [UIColor clearColor];
     cell.textColor = [UIColor whiteColor];
-    cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
-
+    
     NSInteger row = indexPath.row;
     if (self.hasAccount) {
         switch (row) {
@@ -198,10 +197,16 @@ typedef enum {
                 cell.accessoryView = nil;
                 break;
         }
+        
+        cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
     } else {
         if (indexPath.row == 0) {
-            cell.text = NSLocalizedString(@"Log In to Netflix", nil);
+            cell.text = NSLocalizedString(@"Sign Up for New Account", nil);
+            cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
+        } else if (indexPath.row == 1) {
+            cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+            cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
         }
     }
 
@@ -311,6 +316,9 @@ typedef enum {
         [self didSelectLoggedInRow:indexPath.row];
     } else {
         if (indexPath.row == 0) {
+            NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
+            [Application openBrowser:address];
+        } else if (indexPath.row == 1) {
             NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:navigationController] autorelease];
             [navigationController pushViewController:controller animated:YES];
         }
