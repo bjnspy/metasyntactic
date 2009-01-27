@@ -27,10 +27,18 @@
     UILabel* genreLabel;
     UILabel* ratedLabel;
     UILabel* netflixLabel;
+    
+    UILabel* availabilityLabel;
     UILabel* formatsLabel;
 
+    TappableImageView* tappableArrow;
+    
     BOOL userRating;
 }
+
+
+@property (readonly, retain) TappableImageView* tappableArrow;
+
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier

@@ -254,27 +254,13 @@
 }
 
 
-- (TappableImageView*) tappableArrow {
-    UIImage* image = [ImageCache upArrow];
-    TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
-    imageView.delegate = self;
-    imageView.contentMode = UIViewContentModeCenter;
-
-    CGRect frame = imageView.frame;
-    frame.size.height += 20;
-    imageView.frame = frame;
-
-    return imageView;
-}
-
-
-- (void) setAccessoryForCell:(UITableViewCell*) cell
+- (void) setAccessoryForCell:(NetflixCell*) cell
                  atIndexPath:(NSIndexPath*) path {
     if (self.isEditable) {
         if (path.section == 1 || path.row == 0) {
             cell.accessoryView = nil;
         } else {
-            cell.accessoryView = [self tappableArrow];
+            cell.accessoryView = cell.tappableArrow;
         }
     } else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -303,6 +289,7 @@
         cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
                                              reuseIdentifier:reuseIdentifier
                                                        model:self.model] autorelease];
+        cell.tappableArrow.delegate = self;
     }
 
     [self setAccessoryForCell:cell atIndexPath:indexPath];
@@ -322,7 +309,7 @@
 
 - (void) resetVisibleAccessories {
     for (NSIndexPath* path in self.tableView.indexPathsForVisibleRows) {
-        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:path];
+        id cell = [self.tableView cellForRowAtIndexPath:path];
         [self setAccessoryForCell:cell atIndexPath:path];
     }
 }

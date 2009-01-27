@@ -22,6 +22,7 @@
 #import "Movie.h"
 #import "NetflixCache.h"
 #import "Model.h"
+#import "TappableImageView.h"
 
 @interface NetflixCell()
 @property (retain) UILabel* directorTitleLabel;
@@ -34,7 +35,9 @@
 @property (retain) UILabel* genreLabel;
 @property (retain) UILabel* ratedLabel;
 @property (retain) UILabel* netflixLabel;
+@property (retain) UILabel* availabilityLabel;
 @property (retain) UILabel* formatsLabel;
+@property (retain) TappableImageView* tappableArrow;
 @end
 
 
@@ -51,7 +54,10 @@
 @synthesize ratedLabel;
 @synthesize genreLabel;
 @synthesize netflixLabel;
+@synthesize availabilityLabel;
 @synthesize formatsLabel;
+
+@synthesize tappableArrow;
 
 - (void) dealloc {
     self.directorTitleLabel = nil;
@@ -65,7 +71,12 @@
     self.ratedLabel = nil;
     self.genreLabel = nil;
     self.netflixLabel = nil;
+    
+    self.availabilityLabel = nil;
     self.formatsLabel = nil;
+    
+    tappableArrow.delegate = nil;
+    self.tappableArrow = nil;
 
     [super dealloc];
 }
@@ -89,12 +100,27 @@
             genreLabel,
             ratedLabel,
             netflixLabel,
-            formatsLabel, nil];
+            availabilityLabel,
+            formatsLabel,
+            nil];
 }
 
 
 - (NSArray*) allLabels {
     return [self.titleLabels arrayByAddingObjectsFromArray:self.valueLabels];
+}
+
+
+- (void) setupTappableArrow {
+    UIImage* image = [ImageCache upArrow];
+    TappableImageView* view = [[[TappableImageView alloc] initWithImage:image] autorelease];
+    view.contentMode = UIViewContentModeCenter;
+    
+    CGRect frame = view.frame;
+    frame.size.height += 80;
+    view.frame = frame;
+    
+    self.tappableArrow = view;
 }
 
 
@@ -120,6 +146,7 @@
         self.netflixLabel = [self createValueLabel:81 forTitle:netflixTitleLabel];
         netflixLabel.font = [UIFont systemFontOfSize:17];
 
+        self.availabilityLabel = [self createValueLabel:67 forTitle:ratedTitleLabel];
         self.formatsLabel = [self createValueLabel:81 forTitle:netflixTitleLabel];
         
         titleWidth = 0;
@@ -133,6 +160,8 @@
             frame.size.width = titleWidth;
             label.frame = frame;
         }
+        
+        [self setupTappableArrow];
     }
 
     return self;
@@ -187,6 +216,7 @@
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
     formatsLabel.text   = [[[[model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
+    availabilityLabel.text = [model.netflixCache availabilityForMovie:movie];
     
     NSString* rating;
     if (movie.isUnrated) {		
@@ -242,13 +272,39 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
+    [availabilityLabel sizeToFit];
     [formatsLabel sizeToFit];
     
     CGRect frame = self.frame;
     
-    CGRect formatFrame = formatsLabel.frame;
-    formatFrame.origin.x = frame.size.width - formatFrame.size.width - 5;
-    formatsLabel.frame = formatFrame;
+    {
+        CGRect formatFrame = formatsLabel.frame;
+        formatFrame.origin.x = frame.size.width - formatFrame.size.width - 5;
+        formatsLabel.frame = formatFrame;
+    }
+    
+    {
+        CGRect availabilityFrame = availabilityLabel.frame;
+        availabilityFrame.origin.x = frame.size.width - availabilityFrame.size.width - 5;
+        availabilityLabel.frame = availabilityFrame;
+    }
+}
+
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+
+    [UIView beginAnimations:nil context:NULL];
+    {
+        if (editing) {
+            availabilityLabel.alpha = 0;
+            formatsLabel.alpha = 0;
+        } else {
+            availabilityLabel.alpha = 1;
+            formatsLabel.alpha = 1;
+        }
+    }
+    [UIView commitAnimations];
 }
 
 @end
