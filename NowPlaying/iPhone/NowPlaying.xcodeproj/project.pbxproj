@@ -52,6 +52,7 @@
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
 		742C07B30F08B0890087F4E0 /* AmazonCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 742C07B20F08B0890087F4E0 /* AmazonCache.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
+		742E03080F2FA460003C159E /* NetflixCredits.png in Resources */ = {isa = PBXBuildFile; fileRef = 742E03070F2FA460003C159E /* NetflixCredits.png */; };
 		743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743394100E61E52000D285F0 /* MovieOverviewCell.m */; };
 		74365DB20E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74365DAB0E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m */; };
 		74365DB30E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74365DAD0E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.m */; };
@@ -424,6 +425,7 @@
 		742C07B20F08B0890087F4E0 /* AmazonCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonCache.m; sourceTree = "<group>"; };
 		742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
 		742CA71F0DD6616600A69B79 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
+		742E03070F2FA460003C159E /* NetflixCredits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NetflixCredits.png; sourceTree = "<group>"; };
 		743394100E61E52000D285F0 /* MovieOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieOverviewCell.m; sourceTree = "<group>"; };
 		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74365DAA0E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorPool_DescriptorIntPair.h; sourceTree = "<group>"; };
@@ -1395,6 +1397,7 @@
 		7471E1FF0EFA0D67000490CA /* Netflix */ = {
 			isa = PBXGroup;
 			children = (
+				742E03070F2FA460003C159E /* NetflixCredits.png */,
 				7414A5FA0F1414F7003163B3 /* NetflixMostPopular.png */,
 				741648DB0EFC5D15000EC7B5 /* ClearRating.png */,
 				74EB9C1C0EFA3ED80083DC33 /* RedStar-0.0.png */,
@@ -2027,6 +2030,7 @@
 				7414A5FB0F1414F7003163B3 /* NetflixMostPopular.png in Resources */,
 				74616D330F15D3260004B610 /* COPYING in Resources */,
 				7408FEC40F28519D00BD86B6 /* DeleteMovie.png in Resources */,
+				742E03080F2FA460003C159E /* NetflixCredits.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
