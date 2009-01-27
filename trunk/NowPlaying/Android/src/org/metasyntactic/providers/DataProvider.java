@@ -85,11 +85,8 @@ public class DataProvider {
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
-    Debug.startMethodTracing("provider_start", 50000000);
-
     updateBackgroundEntryPointWorker(currentMovies, currentTheaters);
 
-    Debug.stopMethodTracing();
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
         final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();

@@ -73,6 +73,7 @@ static NSString* directors_key = @"directors";
 
 static NSArray* mostPopularTitles = nil;
 static NSDictionary* mostPopularTitlesToAddresses = nil;
+static NSDictionary* availabilityMap = nil;
 
 + (NSArray*) mostPopularTitles {
     return mostPopularTitles;
@@ -138,6 +139,48 @@ static NSDictionary* mostPopularTitlesToAddresses = nil;
                                      forKeys:mostPopularTitles] retain];
 
         NSAssert(mostPopularTitles.count == mostPopularTitlesToAddresses.count, @"");
+    
+    /*
+     <category_item term=""/>
+     <category_item term="available now"/>
+     <category_item term="saved"/>
+     <category_item term="possible short wait"/>
+     <category_item term="short wait"/>
+     <category_item term="long wait"/>
+     <category_item term="very long wait"/>
+     <category_item term="available soon"/>
+     <category_item term="not rentable"/>
+     <category_item term="release date is unknown; availability is not guaranteed."/>
+     <category_item term="release date is unknown."/>
+     <category_item term="availability date is unknown."/>
+     */
+        availabilityMap =
+        [[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
+                                              NSLocalizedString(@"Awaiting Release", nil),
+                                              NSLocalizedString(@"Available Now", nil),
+                                              NSLocalizedString(@"Saved", nil),
+                                              NSLocalizedString(@"Short Wait", nil),
+                                              NSLocalizedString(@"Short Wait", nil),
+                                              NSLocalizedString(@"Long Wait", nil),
+                                              NSLocalizedString(@"Long Wait", nil),
+                                              NSLocalizedString(@"Available Soon", nil),
+                                              NSLocalizedString(@"Not Rentable", nil),
+                                              NSLocalizedString(@"Unknown Release Date", nil),
+                                              NSLocalizedString(@"Unknown Release Date", nil),
+                                              NSLocalizedString(@"Unknown Release Date", nil), nil]
+                                     forKeys:[NSArray arrayWithObjects:
+                                              @"awaiting release",
+                                              @"available now",
+                                              @"saved",
+                                              @"possible short wait",
+                                              @"short wait",
+                                              @"long wait",
+                                              @"very long wait",
+                                              @"available soon",
+                                              @"not rentable",
+                                              @"release date is unknown; availability is not guaranteed.",
+                                              @"release date is unknown.",
+                                              @"availability date is unknown.", nil]] retain];
     }
 }
 
