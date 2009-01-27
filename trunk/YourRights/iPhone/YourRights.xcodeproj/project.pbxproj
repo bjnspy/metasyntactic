@@ -39,6 +39,7 @@
 		745A09230F2ED55A002F64C6 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09220F2ED55A002F64C6 /* Controller.m */; };
 		745A09360F2ED647002F64C6 /* ACLUNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09350F2ED647002F64C6 /* ACLUNewsController.m */; };
 		745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A093B0F2ED905002F64C6 /* AbstractCache.m */; };
+		745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09DD0F2EE190002F64C6 /* RSSCache.m */; };
 		7462953A0F135CF90073F830 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 746295390F135CF90073F830 /* License.txt */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,8 @@
 		745A09350F2ED647002F64C6 /* ACLUNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUNewsController.m; sourceTree = "<group>"; };
 		745A093A0F2ED905002F64C6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractCache.h; path = ../../PocketFlix/iPhone/Classes/AbstractCache.h; sourceTree = SOURCE_ROOT; };
 		745A093B0F2ED905002F64C6 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractCache.m; path = ../../PocketFlix/iPhone/Classes/AbstractCache.m; sourceTree = SOURCE_ROOT; };
+		745A09DC0F2EE190002F64C6 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
+		745A09DD0F2EE190002F64C6 /* RSSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSCache.m; sourceTree = "<group>"; };
 		746295390F135CF90073F830 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -259,6 +262,8 @@
 			children = (
 				745A093A0F2ED905002F64C6 /* AbstractCache.h */,
 				745A093B0F2ED905002F64C6 /* AbstractCache.m */,
+				745A09DC0F2EE190002F64C6 /* RSSCache.h */,
+				745A09DD0F2EE190002F64C6 /* RSSCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				745A09230F2ED55A002F64C6 /* Controller.m in Sources */,
 				745A09360F2ED647002F64C6 /* ACLUNewsController.m in Sources */,
 				745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */,
+				745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
