@@ -11,7 +11,7 @@
     NSString* identifier;
     NSString* name;
     NSString* biography;
-    NSDictionary* additionalFields; 
+    NSDictionary* additionalFields;
 }
 
 @property (readonly, copy) NSString* identifier;

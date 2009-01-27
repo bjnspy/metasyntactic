@@ -47,7 +47,7 @@
     if ([self abortEarly]) { return; }
     NSArray* people = [model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
     if ([self abortEarly]) { return; }
-    
+
     [self reportMovies:movies people:people];
 }
 

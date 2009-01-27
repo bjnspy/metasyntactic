@@ -27,7 +27,7 @@
     self.person = nil;
     self.bioTitleLabel = nil;
     self.bioLabel = nil;
-    
+
     [super dealloc];
 }
 
@@ -50,12 +50,12 @@
         self.bioTitleLabel = [self createTitleLabel:NSLocalizedString(@"Bio:", nil) yPosition:22];
         self.bioLabel = [self createValueLabel:22 + 1 forTitle:bioTitleLabel];
         bioLabel.numberOfLines = 0;
-        
+
         titleWidth = 0;
         for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
         }
-        
+
         for (UILabel* label in self.titleLabels) {
             CGRect frame = label.frame;
             frame.origin.x = (int)(imageView.frame.size.width + 7);
@@ -63,7 +63,7 @@
             label.frame = frame;
         }
     }
-    
+
     return self;
 }
 
@@ -91,13 +91,13 @@
                        owner:(id) owner  {
     // switching to a new movie.  update everything.
     self.person = person_;
-    
+
     for (UILabel* label in self.allLabels) {
         [label removeFromSuperview];
     }
-    
+
     [self clearImage];
-    
+
     [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadPerson:) object:owner];
     [self performSelector:@selector(loadPerson:) withObject:owner afterDelay:0];
 }
@@ -106,7 +106,7 @@
 - (void) setPerson:(Person*) person_
             owner:(id) owner {
     titleLabel.text = person_.name;
-    
+
     if (person == person_) {
         [self onSetSamePerson:person_ owner:owner];
     } else {
@@ -122,14 +122,14 @@
 
 - (void) loadPerson:(id) owner {
     [self loadImage];
-    
+
     NSString* biography = person.biography;
     bioLabel.text = biography.length > 0 ? biography : NSLocalizedString(@"No biography available.", nil);
-    
+
     for (UILabel* label in self.allLabels) {
         [self.contentView addSubview:label];
     }
-    
+
     [self setNeedsLayout];
 }
 
@@ -141,11 +141,11 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGRect bioFrame = bioLabel.frame;
-    
+
     CGFloat height = self.contentView.frame.size.height - bioFrame.origin.y;
-    
+
     CGSize size = [bioLabel.text sizeWithFont:bioLabel.font constrainedToSize:CGSizeMake(bioFrame.size.width, height) lineBreakMode:UILineBreakModeWordWrap];
     bioFrame.size = size;
     bioLabel.frame = bioFrame;

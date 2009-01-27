@@ -71,10 +71,10 @@
     self.ratedLabel = nil;
     self.genreLabel = nil;
     self.netflixLabel = nil;
-    
+
     self.availabilityLabel = nil;
     self.formatsLabel = nil;
-    
+
     tappableArrow.delegate = nil;
     self.tappableArrow = nil;
 
@@ -115,11 +115,11 @@
     UIImage* image = [ImageCache upArrow];
     TappableImageView* view = [[[TappableImageView alloc] initWithImage:image] autorelease];
     view.contentMode = UIViewContentModeCenter;
-    
+
     CGRect frame = view.frame;
     frame.size.height += 80;
     view.frame = frame;
-    
+
     self.tappableArrow = view;
 }
 
@@ -148,7 +148,7 @@
 
         self.availabilityLabel = [self createValueLabel:67 forTitle:ratedTitleLabel];
         self.formatsLabel = [self createValueLabel:81 forTitle:netflixTitleLabel];
-        
+
         titleWidth = 0;
         for (UILabel* label in self.titleLabels) {
             titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
@@ -160,7 +160,7 @@
             frame.size.width = titleWidth;
             label.frame = frame;
         }
-        
+
         [self setupTappableArrow];
     }
 
@@ -217,7 +217,7 @@
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
     formatsLabel.text   = [[[[model.netflixCache formatsForMovie:movie] sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@"/"] stringByReplacingOccurrencesOfString:@"/i" withString:@"/I"];
     availabilityLabel.text = [model.netflixCache availabilityForMovie:movie];
-    
+
     NSString* rating;
     if (movie.isUnrated) {		
         rating = NSLocalizedString(@"Unrated", nil);		
@@ -239,7 +239,7 @@
     for (UILabel* label in self.allLabels) {
         [self.contentView addSubview:label];
     }
-    
+
     [self setNeedsLayout];
 }
 
@@ -274,15 +274,15 @@
 
     [availabilityLabel sizeToFit];
     [formatsLabel sizeToFit];
-    
+
     CGRect frame = self.frame;
-    
+
     {
         CGRect formatFrame = formatsLabel.frame;
         formatFrame.origin.x = frame.size.width - formatFrame.size.width - 5;
         formatsLabel.frame = formatFrame;
     }
-    
+
     {
         CGRect availabilityFrame = availabilityLabel.frame;
         availabilityFrame.origin.x = frame.size.width - availabilityFrame.size.width - 5;

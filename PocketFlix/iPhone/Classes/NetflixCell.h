@@ -27,12 +27,12 @@
     UILabel* genreLabel;
     UILabel* ratedLabel;
     UILabel* netflixLabel;
-    
+
     UILabel* availabilityLabel;
     UILabel* formatsLabel;
 
     TappableImageView* tappableArrow;
-    
+
     BOOL userRating;
 }
 

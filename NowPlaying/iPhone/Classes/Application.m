@@ -122,7 +122,7 @@ static DifferenceEngine* differenceEngine = nil;
     NSString* appName = [self name];
     NSString* appVersion = [Model version];
     appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
-    
+
     return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
 }
 
@@ -202,7 +202,7 @@ static DifferenceEngine* differenceEngine = nil;
         moviesPostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"Movies"] retain];
         largeMoviesPostersDirectory = [[moviesPostersDirectory stringByAppendingPathComponent:@"Large"] retain];
         peoplePostersDirectory = [[postersDirectory stringByAppendingPathComponent:@"People"] retain];
-        largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];        
+        largePeoplePostersDirectory = [[peoplePostersDirectory stringByAppendingPathComponent:@"Large"] retain];
 
         dvdDirectory = [[cacheDirectory stringByAppendingPathComponent:@"DVD"] retain];
         dvdDetailsDirectory = [[dvdDirectory stringByAppendingPathComponent:@"Details"] retain];

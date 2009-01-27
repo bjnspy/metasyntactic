@@ -75,7 +75,7 @@
 
 @implementation Model
 
-static NSString* currentVersion = @"2.6.0";
+static NSString* currentVersion = @"3.0.0";
 static NSString* persistenceVersion = @"104";
 
 static NSString* VERSION = @"version";

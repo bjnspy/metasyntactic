@@ -232,16 +232,16 @@
 
 - (void) webView:(UIWebView*) webView_ didFailLoadWithError:(NSError*) error {
     [self webViewDidFinishLoad:webView_];
-    
+
     if (errorReported) {
         return;
     }
-    
+
     if (error.domain == NSURLErrorDomain && error.code == -1009) {
         NSString* title = NSLocalizedString(@"Cannot Open Page", nil);
         NSString* message =
         [NSString stringWithFormat:NSLocalizedString(@"%@ cannot open the page because it is not connected to the Internet.", nil), [Application name]];
-        
+
         [AlertUtilities showOkAlert:message withTitle:title];
         errorReported = YES;
     }

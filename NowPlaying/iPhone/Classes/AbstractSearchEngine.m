@@ -160,7 +160,7 @@
        upcomingMovies:(NSArray*) upcomingMovies
                  dvds:(NSArray*) dvds
                bluray:(NSArray*) bluray {
-    [self reportResult:movies 
+    [self reportResult:movies
               theaters:theaters
         upcomingMovies:upcomingMovies
                   dvds:dvds
@@ -173,7 +173,7 @@
              theaters:(NSArray*) theaters
        upcomingMovies:(NSArray*) upcomingMovies
                  dvds:(NSArray*) dvds
-               bluray:(NSArray*) bluray 
+               bluray:(NSArray*) bluray
                people:(NSArray*) people {
     SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                                 value:currentlyExecutingRequest.value

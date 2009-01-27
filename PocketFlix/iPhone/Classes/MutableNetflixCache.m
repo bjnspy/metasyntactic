@@ -68,7 +68,7 @@
     NSAssert([NSThread isMainThread], nil);
 
     NSLog(@"Reporting queue and success to NetflixMoveMovieDelegate.", nil);
-    
+
     [self reportQueue:[arguments objectAtIndex:0]];
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixMoveMovieDelegate> delegate = [arguments objectAtIndex:2];
@@ -194,7 +194,7 @@
                                         etag:etag
                                       movies:movies
                                        saved:queue.saved];
-    
+
     return finalQueue;
 }
 
@@ -455,7 +455,7 @@
 
     NSMutableArray* newMovies = [NSMutableArray arrayWithArray:queue.movies];
     NSMutableArray* newSaved = [NSMutableArray arrayWithArray:queue.saved];
-    
+
     if (position >= 0) {
         [newMovies insertObjects:addedMovies atIndex:position];
     } else {
@@ -534,7 +534,7 @@
                                                               important:YES];
 
     [self checkApiResult:element];
-    
+
     NSInteger status = [[[element element:@"status_code"] text] intValue];
     if (status < 200 || status >= 300) {
         *error = [self extractErrorMessage:element];
