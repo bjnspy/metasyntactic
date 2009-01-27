@@ -438,7 +438,6 @@ static NSDictionary* availabilityMap = nil;
             } else if ([@"http://api.netflix.com/categories/queue_availability" isEqual:scheme]) {
                 NSString* label = [child attributeValue:@"label"];
                 save = [label isEqual:@"saved"];
-                
                 [additionalFields setObject:label forKey:availability_key];
             }
         } else if ([@"release_year" isEqual:child.name]) {
@@ -1548,6 +1547,18 @@ static NSDictionary* availabilityMap = nil;
     }
 
     return address;
+}
+
+
+- (NSString*) availabilityForMovie:(Movie*) movie {
+    NSString* availability = [movie.additionalFields objectForKey:availability_key];
+    NSString* result = [availabilityMap objectForKey:availability];
+    
+    if (result.length == 0) {
+        return @"";
+    }
+    
+    return result;
 }
 
 

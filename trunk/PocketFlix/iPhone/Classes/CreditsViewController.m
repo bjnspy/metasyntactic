@@ -177,11 +177,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         }
     } else if (section == MyOtherApplicationsSection) {
         if (row == 0) {
-            cell.text = @"Now Playing (free)";
+            cell.text = @"Now Playing (Free)";
         } else if (row == 1) {
             cell.text = @"ComiXology ($3.99)";
         } else {
-            cell.text = @"Your Rights (free)";
+            cell.text = @"Your Rights (Free)";
         }
     } else if (section == GraphicsBySection) {
         cell.text = NSLocalizedString(@"Website", nil);
