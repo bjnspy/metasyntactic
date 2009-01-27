@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Paint;
+
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -62,9 +61,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final Map<Integer, SoftReference<Bitmap>> postersMap = new HashMap<Integer, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
-  private static final Paint SHADOW_PAINT = new Paint();
-  private static final Paint SCALE_PAINT = new Paint(Paint.ANTI_ALIAS_FLAG
-      | Paint.FILTER_BITMAP_FLAG);
+  private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -90,6 +87,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         .getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
     clearBitmaps();
+    // mTask = new LoadPostersTask().execute(null);
     if (this.postersAdapter != null) {
       populateAlphaMovieSectionsAndPositions();
       populateScoreMovieSectionsAndPositions();
@@ -156,6 +154,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
+    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+      mTask.cancel(true);
+    }
     super.onDestroy();
   }
 
@@ -313,7 +314,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       } else {
         final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
         if (bytes.length > 0) {
-          bitmap = createBitmap(bytes);
+          bitmap = createBitmap(position, bytes);
           if (bitmap != null) {
             holder.poster.setImageBitmap(bitmap);
             NowPlayingActivity.this.postersMap.put(position, new SoftReference<Bitmap>(bitmap));
@@ -324,24 +325,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
           .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       bitmap = null;
       return convertView;
-    }
-
-    private Bitmap createBitmap(final byte[] bytes) {
-      final BitmapFactory.Options options = new BitmapFactory.Options();
-      final int width = 90;
-      final int height = 125;
-      // Get the dimensions only.
-      options.inJustDecodeBounds = true;
-      BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-      final int bitmapWidth = options.outWidth;
-      final int bitmapHeight = options.outHeight;
-      final float scale = Math.min((float) bitmapWidth / (float) width, (float) bitmapHeight
-          / (float) height) * 2;
-      options.inJustDecodeBounds = false;
-      options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-      options.inSampleSize = (int) scale;
-      final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-      return bitmap;
     }
 
     private class ViewHolder {
@@ -480,5 +463,47 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
     });
     view.startAnimation(rotation);
+  }
+
+  private class LoadPostersTask extends UserTask<Void, Void, Void> {
+    @Override
+    public Void doInBackground(Void... params) {
+      // TODO Auto-generated method stub
+      Bitmap bitmap = null;
+      for (int i = 0; i < movies.size(); i++) {
+        final SoftReference<Bitmap> reference = NowPlayingActivity.this.postersMap.get(i);
+        if (reference != null) {
+          bitmap = reference.get();
+        }
+        if (bitmap == null) {
+          final byte[] bytes = NowPlayingControllerWrapper.getPoster(movies.get(i));
+          if (bytes.length > 0) {
+            bitmap = createBitmap(i, bytes);
+            if (bitmap != null) {
+              NowPlayingActivity.this.postersMap.put(i, new SoftReference<Bitmap>(bitmap));
+            }
+          }
+        }
+      }
+      return null;
+    }
+  }
+
+  private Bitmap createBitmap(int position, final byte[] bytes) {
+    final BitmapFactory.Options options = new BitmapFactory.Options();
+    final int width = 90;
+    final int height = 125;
+    // Get the dimensions only.
+    options.inJustDecodeBounds = true;
+    BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+    final int bitmapWidth = options.outWidth;
+    final int bitmapHeight = options.outHeight;
+    final float scale = Math.min((float) bitmapWidth / (float) width, (float) bitmapHeight
+        / (float) height) * 2;
+    options.inJustDecodeBounds = false;
+    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+    options.inSampleSize = (int) scale;
+    final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+    return bitmap;
   }
 }

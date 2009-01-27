@@ -43,7 +43,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-   //   refresh();
+      refresh();
     }
   };
 
