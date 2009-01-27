@@ -140,20 +140,6 @@ static NSDictionary* availabilityMap = nil;
 
         NSAssert(mostPopularTitles.count == mostPopularTitlesToAddresses.count, @"");
 
-        /*
-         <category_item term=""/>
-         <category_item term="available now"/>
-         <category_item term="saved"/>
-         <category_item term="possible short wait"/>
-         <category_item term="short wait"/>
-         <category_item term="long wait"/>
-         <category_item term="very long wait"/>
-         <category_item term="available soon"/>
-         <category_item term="not rentable"/>
-         <category_item term="release date is unknown; availability is not guaranteed."/>
-         <category_item term="release date is unknown."/>
-         <category_item term="availability date is unknown."/>
-         */
         availabilityMap =
         [[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
                                               NSLocalizedString(@"Awaiting Release", nil),

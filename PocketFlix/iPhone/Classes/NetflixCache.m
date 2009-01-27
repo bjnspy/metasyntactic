@@ -140,20 +140,6 @@ static NSDictionary* availabilityMap = nil;
 
         NSAssert(mostPopularTitles.count == mostPopularTitlesToAddresses.count, @"");
 
-    /*
-     <category_item term=""/>
-     <category_item term="available now"/>
-     <category_item term="saved"/>
-     <category_item term="possible short wait"/>
-     <category_item term="short wait"/>
-     <category_item term="long wait"/>
-     <category_item term="very long wait"/>
-     <category_item term="available soon"/>
-     <category_item term="not rentable"/>
-     <category_item term="release date is unknown; availability is not guaranteed."/>
-     <category_item term="release date is unknown."/>
-     <category_item term="availability date is unknown."/>
-     */
         availabilityMap =
         [[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
                                               NSLocalizedString(@"Awaiting Release", nil),
@@ -1659,47 +1645,6 @@ static NSDictionary* availabilityMap = nil;
 - (NSString*) titleForKey:(NSString*) key {
     return [self titleForKey:key includeCount:YES];
 }
-
-
-/*
-- (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue saved:(BOOL) saved {
-    NSArray* array;
-    if (saved) {
-        array = queue.saved;
-    } else {
-        array = queue.movies;
-    }
-
-    NSInteger index = [array indexOfObject:movie];
-    if (index == NSNotFound) {
-        return @"";
-    }
-
-    if (queue.isAtHomeQueue) {
-        return NSLocalizedString(@"At Home", nil);
-    } else {
-        NSString* queueTitle = [self titleForKey:queue.feed.key includeCount:NO];
-        if (saved) {
-            return [NSString stringWithFormat:NSLocalizedString(@"Saved in %@", @"Saved in Instant Queue"), queueTitle];
-        } else {
-            return [NSString stringWithFormat:NSLocalizedString(@"#%d in %@", @"#15 in Instant Queue"), (index + 1), queueTitle];
-        }
-    }
-}
-
-
-- (NSString*) queueStatus:(Movie*) movie inQueue:(Queue*) queue {
-    NSString* status = @"";
-
-    if (queue != nil) {
-        if ((status = [self queueStatus:movie inQueue:queue saved:NO]).length > 0 ||
-            (status = [self queueStatus:movie inQueue:queue saved:YES]).length > 0) {
-        }
-    }
-
-    return status;
-}
-*/
 
 
 - (Status*) statusForMovie:(Movie*) movie inQueue:(Queue*) queue {
