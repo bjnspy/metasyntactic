@@ -23,17 +23,14 @@
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
-#import "UpcomingMoviesAndDVDNavigationController.h"
 
 @interface ApplicationTabBarController()
 @property (assign) AppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-//@property (retain) UpcomingMoviesAndDVDNavigationController* upcomingMoviesAndDVDNavigationController;
 @property (retain) DVDNavigationController* dvdNavigationController;
 @property (retain) NetflixNavigationController* netflixNavigationController;
-//@property (retain) SettingsNavigationController* settingsNavigationController;
 @end
 
 
@@ -42,20 +39,16 @@
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
 @synthesize upcomingMoviesNavigationController;
-//@synthesize upcomingMoviesAndDVDNavigationController;
 @synthesize dvdNavigationController;
 @synthesize netflixNavigationController;
-//@synthesize settingsNavigationController;
 @synthesize appDelegate;
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
     self.upcomingMoviesNavigationController = nil;
-    //self.upcomingMoviesAndDVDNavigationController = nil;
     self.dvdNavigationController = nil;
     self.netflixNavigationController = nil;
-    //self.settingsNavigationController = nil;
     self.appDelegate = nil;
 
     [super dealloc];
@@ -89,17 +82,6 @@
 }
 
 
-/*
-- (UINavigationController*) loadUpcomingMoviesAndDVDNavigationController {
-    if (upcomingMoviesAndDVDNavigationController == nil) {
-        self.upcomingMoviesAndDVDNavigationController = [[[UpcomingMoviesAndDVDNavigationController alloc] initWithTabBarController:self] autorelease];
-    }
-
-    return upcomingMoviesAndDVDNavigationController;
-}
- */
-
-
 - (UINavigationController*) loadDVDNavigationController {
     if (dvdNavigationController == nil) {
         self.dvdNavigationController = [[[DVDNavigationController alloc] initWithTabBarController:self] autorelease];
@@ -116,17 +98,6 @@
 
     return netflixNavigationController;
 }
-
-
-/*
-- (UINavigationController*) loadSettingsNavigationController {
-    if (settingsNavigationController == nil) {
-        self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
-    }
-
-    return settingsNavigationController;
-}
- */
 
 
 - (id) initWithAppDelegate:(AppDelegate*) appDel {
@@ -210,20 +181,12 @@
 
 
 - (void) switchToUpcoming {
-    //if (self.model.netflixEnabled) {
-    //    self.selectedViewController = [self loadUpcomingMoviesAndDVDNavigationController];
-    //} else {
-        self.selectedViewController = [self loadUpcomingMoviesNavigationController];
-    //}
+    self.selectedViewController = [self loadUpcomingMoviesNavigationController];
 }
 
 
 - (void) switchToDVD {
-    //if (self.model.netflixEnabled) {
-    //    self.selectedViewController = [self loadUpcomingMoviesAndDVDNavigationController];
-    //} else {
-        self.selectedViewController = [self loadDVDNavigationController];
-    //}
+    self.selectedViewController = [self loadDVDNavigationController];
 }
 
 
@@ -240,11 +203,9 @@
         [NSArray arrayWithObjects:
          [self loadMoviesNavigationController],
          [self loadTheatersNavigationController],
-         //[self loadUpcomingMoviesAndDVDNavigationController],
          [self loadUpcomingMoviesNavigationController],
          [self loadDVDNavigationController],
          [self loadNetflixNavigationController],
-         //[self loadSettingsNavigationController],
          nil];
     } else {
         controllers =
@@ -253,21 +214,17 @@
          [self loadTheatersNavigationController],
          [self loadUpcomingMoviesNavigationController],
          [self loadDVDNavigationController],
-         //[self loadSettingsNavigationController],
          nil];
     }
 
     [self setViewControllers:controllers animated:animated.boolValue];
 
     // Such an awful hack.  For some reason, changing the view controllers
-    // causes the tab bar to be 'stuck' selecting the settings view controller.
+    // causes the tab bar to be 'stuck' selecting the current view controller.
     // in that case, we switch to another tab and back to unstick it.
-    /*
-    if (self.selectedIndex == 4) {
-        self.selectedIndex = 1;
-        self.selectedIndex = 4;
-    }
-     */
+    NSInteger index = self.selectedIndex;
+    self.selectedIndex = (index + 1) % self.viewControllers.count;
+    self.selectedIndex = index;
 }
 
 

@@ -76,20 +76,20 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {    
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-    [self.controller.locationManager addLocationSpinner:self.navigationItem];
-    
-    [self majorRefresh];
-}
-
-
 - (void) majorRefresh {
     [self.tableView reloadData];
 }
 
 
 - (void) minorRefresh {
+    [self majorRefresh];
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {    
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    [self.controller.locationManager addLocationSpinner:self.navigationItem];
+    
     [self majorRefresh];
 }
 
