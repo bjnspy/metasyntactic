@@ -104,7 +104,7 @@
     self.navigationItem.titleView = segmentedControl;
 
     self.title = NSLocalizedString(@"Upcoming", nil);
-    tableView.rowHeight = 100;
+    self.tableView.rowHeight = 100;
 }
 
 
@@ -127,7 +127,7 @@
 
 - (UITableViewCell*) createCell:(Movie*) movie {
     static NSString* reuseIdentifier = @"reuseIdentifier";
-    id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                          reuseIdentifier:reuseIdentifier
@@ -140,13 +140,13 @@
 
 
 - (void) majorRefresh {
-    tableView.rowHeight = 100;
+    self.tableView.rowHeight = 100;
     [super majorRefresh];
 }
 
 
 - (void) minorRefreshWorker {
-    for (id cell in tableView.visibleCells) {
+    for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
     }
 }

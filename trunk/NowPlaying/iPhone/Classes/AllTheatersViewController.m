@@ -332,7 +332,7 @@
 
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
-    self.visibleIndexPaths = [tableView indexPathsForVisibleRows];
+    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
 
     self.segmentedControl = nil;
     self.sortedTheaters = nil;
@@ -401,7 +401,7 @@
 
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
-    TheaterNameCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[TheaterNameCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                        reuseIdentifier:reuseIdentifier
@@ -470,7 +470,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [GlobalActivityIndicator setCurrentViewController:self];
-    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self majorRefresh];
 }
@@ -482,13 +482,13 @@
 
 - (void) majorRefreshWorker {
     [self sortTheaters];
-    [tableView reloadData];
+    [self.tableView reloadData];
 
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < tableView.numberOfSections &&
-            path.row >= 0 && path.row < [tableView numberOfRowsInSection:path.section]) {
-            [tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
+            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
+            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
 
         self.visibleIndexPaths = nil;

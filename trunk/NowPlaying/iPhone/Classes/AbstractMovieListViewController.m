@@ -362,7 +362,7 @@
 
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
-    self.visibleIndexPaths = [tableView indexPathsForVisibleRows];
+    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
 
     self.sortedMovies = nil;
     self.sectionTitles = nil;
@@ -385,7 +385,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
 
@@ -396,13 +396,13 @@
 
 - (void) majorRefreshWorker {
     [self sortMovies];
-    [tableView reloadData];
+    [self.tableView reloadData];
 
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < tableView.numberOfSections &&
-            path.row >= 0 && path.row < [tableView numberOfRowsInSection:path.section]) {
-            [tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0]
+        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
+            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
+            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0]
                                   atScrollPosition:UITableViewScrollPositionTop
                                           animated:NO];
         }

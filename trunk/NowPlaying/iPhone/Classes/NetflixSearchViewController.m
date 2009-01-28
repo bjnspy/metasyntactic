@@ -96,19 +96,19 @@
 
 
 - (void) majorRefreshWorker {
-    [tableView reloadData];
+    [self.tableView reloadData];
 }
 
 
 - (void) minorRefreshWorker {
-    for (id cell in tableView.visibleCells) {
+    for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    tableView.rowHeight = 100;
+    self.tableView.rowHeight = 100;
     [super viewWillAppear:animated];
     [self majorRefresh];
 }
@@ -154,7 +154,7 @@
          cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
-    NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
                                              reuseIdentifier:reuseIdentifier

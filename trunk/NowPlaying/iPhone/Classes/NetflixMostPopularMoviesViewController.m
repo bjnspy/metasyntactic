@@ -82,13 +82,13 @@
 
 - (void) majorRefreshWorker {
     [self initializeData];
-    [tableView reloadData];
+    [self.tableView reloadData];
 
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < tableView.numberOfSections &&
-            path.row >= 0 && path.row < [tableView numberOfRowsInSection:path.section]) {
-            [tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
+            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
+            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
 
         self.visibleIndexPaths = nil;
@@ -97,7 +97,7 @@
 
 
 - (void) minorRefreshWorker {
-    for (id cell in tableView.visibleCells) {
+    for (id cell in self.tableView.visibleCells) {
         [cell refresh];
     }
 }
@@ -106,9 +106,9 @@
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
-    tableView.rowHeight = 100;
+    self.tableView.rowHeight = 100;
     [super viewWillAppear:animated];
-    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
 
@@ -137,7 +137,7 @@
 
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
-    self.visibleIndexPaths = [tableView indexPathsForVisibleRows];
+    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
 
     [super didReceiveMemoryWarning];
 }
@@ -158,7 +158,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
-    NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    NetflixCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
                                    reuseIdentifier:reuseIdentifier
