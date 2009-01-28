@@ -78,6 +78,7 @@
 
 - (void) majorRefresh {
     [self.tableView reloadData];
+    self.tableView.rowHeight = 43;
 }
 
 
@@ -113,7 +114,7 @@
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"About", nil), NSLocalizedString(@"Send Feedback", nil)];
+    NSString* text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];
     cell.text = text;
 
     return cell;
