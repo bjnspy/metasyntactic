@@ -12,17 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMovieListViewController.h"
-
-#import "FlippableViewControllerDelegate.h"
-
-@interface UpcomingMoviesViewController : AbstractMovieListViewController {
-@private
-    UISegmentedControl* segmentedControl;
-}
-
-- (id) initWithNavigationController:(UpcomingMoviesNavigationController*) navigationController;
-
-- (BOOL) sortingByTitle;
-
+@protocol TappableActivityIndicatorViewDelegate
+- (void) imageView:(TappableActivityIndicatorView*) imageView
+         wasTapped:(NSInteger) tapCount;
 @end

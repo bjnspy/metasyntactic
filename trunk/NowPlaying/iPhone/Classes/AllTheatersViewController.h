@@ -14,7 +14,9 @@
 
 #import "RefreshableTableViewController.h"
 
-@interface AllTheatersViewController : RefreshableTableViewController {
+#import "FlippableViewControllerDelegate.h"
+
+@interface AllTheatersViewController : RefreshableTableViewController<FlippableViewControllerDelegate> {
 @private
     TheatersNavigationController* navigationController;
     UISegmentedControl* segmentedControl;

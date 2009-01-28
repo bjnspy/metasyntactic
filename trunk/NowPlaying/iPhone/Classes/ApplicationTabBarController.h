@@ -18,10 +18,10 @@
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-    UpcomingMoviesAndDVDNavigationController* upcomingMoviesAndDVDNavigationController;
+    //UpcomingMoviesAndDVDNavigationController* upcomingMoviesAndDVDNavigationController;
     DVDNavigationController* dvdNavigationController;
     NetflixNavigationController* netflixNavigationController;
-    SettingsNavigationController* settingsNavigationController;
+    //SettingsNavigationController* settingsNavigationController;
 }
 
 + (ApplicationTabBarController*) controllerWithAppDelegate:(AppDelegate*) appDelegate;
@@ -31,8 +31,6 @@
 
 - (void) majorRefresh;
 - (void) minorRefresh;
-
-- (void) popNavigationControllersToRoot;
 
 - (void) switchToMovies;
 - (void) switchToTheaters;

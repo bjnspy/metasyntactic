@@ -12,8 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface RefreshableTableViewController : UITableViewController {
+@interface RefreshableTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
+@protected
+    UITableView* tableView;
 }
+
+@property (readonly, retain) UITableView* tableView;
+
+- (id) initWithStyle:(UITableViewStyle) style;
 
 - (void) majorRefresh;
 - (void) minorRefresh;

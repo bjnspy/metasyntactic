@@ -15,45 +15,86 @@
 #import "GlobalActivityIndicator.h"
 
 #import "AppDelegate.h"
+#import "FlippableViewControllerDelegate.h"
+#import "Pulser.h"
+#import "TappableActivityIndicatorView.h"
 
 @implementation GlobalActivityIndicator
 
 static NSLock* gate = nil;
-static UIActivityIndicatorView* activityIndicatorView = nil;
-static UIView* activityView = nil;
-static GlobalActivityIndicator* indicator = nil;
+static TappableActivityIndicatorView* activityIndicatorView = nil;
 
 static NSInteger totalBackgroundTaskCount = 0;
 static NSInteger visibleBackgroundTaskCount = 0;
+
+static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
+
++ (UIView*) activityView {
+    return activityIndicatorView;
+}
+
+
++ (void) update {
+    if (viewController == nil) {
+        return;
+    }
+    
+    [gate lock];
+    {
+        if (visibleBackgroundTaskCount > 0) {
+            [activityIndicatorView startAnimating];
+            viewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView] autorelease];
+        } else {
+            [activityIndicatorView stopAnimating];
+            UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+            [infoButton addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
+            
+            infoButton.contentMode = UIViewContentModeCenter;
+            CGRect frame = infoButton.frame;
+            frame.size.width += 4;
+            infoButton.frame = frame;
+            viewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+        }
+    }
+    [gate unlock];
+}
+
+
++ (void) flipView:(id) sender {
+    if (viewController != nil) {
+        [viewController flipView];
+    }
+}
+
+
++ (void) setCurrentViewController:(UIViewController<FlippableViewControllerDelegate>*) controller {
+    [controller retain];
+    [viewController release];
+    viewController = controller;
+    
+    [self update];
+}
+
 
 + (void) initialize {
     if (self == [GlobalActivityIndicator class]) {
         gate = [[NSRecursiveLock alloc] init];
 
-        activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        activityIndicatorView = [[TappableActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        activityIndicatorView.delegate = self;
+        [activityIndicatorView startAnimating];        
+        
+        activityIndicatorView.contentMode = UIViewContentModeCenter;
         CGRect frame = activityIndicatorView.frame;
         frame.size.width += 4;
-
-        activityView = [[UIView alloc] initWithFrame:frame];
-        [activityView addSubview:activityIndicatorView];
-
-        indicator = [[GlobalActivityIndicator alloc] init];
+        activityIndicatorView.frame = frame;
     }
 }
 
 
-+ (UIView*) activityView {
-    return activityView;
-}
-
-
-- (void) startIndicator {
-    [activityIndicatorView startAnimating];
-}
-
-
-- (void) stopIndicator {
-    [activityIndicatorView stopAnimating];
++ (void) imageView:(TappableActivityIndicatorView*) imageView
+         wasTapped:(NSInteger) tapCount {
+    [self flipView:nil];
 }
 
 
@@ -61,12 +102,12 @@ static NSInteger visibleBackgroundTaskCount = 0;
     [gate lock];
     {
         totalBackgroundTaskCount++;
-
+        
         if (isVisible) {
             visibleBackgroundTaskCount++;
 
             if (visibleBackgroundTaskCount == 1) {
-                [indicator performSelectorOnMainThread:@selector(startIndicator) withObject:nil waitUntilDone:NO];
+                [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
             }
         }
     }
@@ -83,10 +124,10 @@ static NSInteger visibleBackgroundTaskCount = 0;
             visibleBackgroundTaskCount--;
 
             if (visibleBackgroundTaskCount == 0) {
-                [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
+                [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
             }
         }
-
+      
         [AppDelegate minorRefresh];
     }
     [gate unlock];

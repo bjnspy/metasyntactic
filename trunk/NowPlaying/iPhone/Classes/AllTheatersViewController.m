@@ -21,6 +21,7 @@
 #import "Location.h"
 #import "MultiDictionary.h"
 #import "Model.h"
+#import "SettingsViewController.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
@@ -331,7 +332,7 @@
 
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
+    self.visibleIndexPaths = [tableView indexPathsForVisibleRows];
 
     self.segmentedControl = nil;
     self.sortedTheaters = nil;
@@ -390,7 +391,7 @@
 }
 
 
-- (UITableViewCell*) tableView:(UITableView*) tableView
+- (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self outOfBounds:indexPath]) {
         return [[[UITableView alloc] init] autorelease];
@@ -400,7 +401,7 @@
 
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
-    TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    TheaterNameCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[TheaterNameCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                        reuseIdentifier:reuseIdentifier
@@ -468,9 +469,8 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    [GlobalActivityIndicator setCurrentViewController:self];
+    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:animated];
 
     [self majorRefresh];
 }
@@ -482,13 +482,13 @@
 
 - (void) majorRefreshWorker {
     [self sortTheaters];
-    [self.tableView reloadData];
+    [tableView reloadData];
 
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        if (path.section >= 0 && path.section < tableView.numberOfSections &&
+            path.row >= 0 && path.row < [tableView numberOfRowsInSection:path.section]) {
+            [tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
 
         self.visibleIndexPaths = nil;
@@ -498,6 +498,12 @@
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [self majorRefresh];
+}
+
+
+- (void) flipView {
+    UIViewController* controller = [[[SettingsViewController alloc] initWithNavigationController:self.navigationController] autorelease];
+    [navigationController pushViewController:controller animated:YES];
 }
 
 @end

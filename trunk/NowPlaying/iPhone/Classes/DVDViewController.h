@@ -14,7 +14,7 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "TappableLabelDelegate.h"
+#import "FlippableViewControllerDelegate.h"
 
 @interface DVDViewController : AbstractMovieListViewController {
 @private

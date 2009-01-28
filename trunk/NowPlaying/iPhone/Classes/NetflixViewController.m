@@ -63,9 +63,9 @@ typedef enum {
 
 
 - (void) setupTableStyle {
-    self.tableView.rowHeight = ROW_HEIGHT;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [ColorCache netflixRed];
+    tableView.rowHeight = ROW_HEIGHT;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = [ColorCache netflixRed];
 }
 
 
@@ -83,7 +83,6 @@ typedef enum {
 - (Model*) model {
     return navigationController.model;
 }
-
 
 - (Controller*) controller {
     return navigationController.controller;
@@ -110,7 +109,7 @@ typedef enum {
 - (void) majorRefreshWorker {
     [self setupTableStyle];
     [self setupTitle];
-    [self.tableView reloadData];
+    [tableView reloadData];
 }
 
 
@@ -120,7 +119,7 @@ typedef enum {
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
 
@@ -242,7 +241,7 @@ typedef enum {
 
 - (void)         alertView:(UIAlertView*) alertView
       clickedButtonAtIndex:(NSInteger) index {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
     if (index != alertView.cancelButtonIndex) {
         [self.controller setNetflixKey:nil secret:nil userId:nil];
         [Application resetNetflixDirectories];

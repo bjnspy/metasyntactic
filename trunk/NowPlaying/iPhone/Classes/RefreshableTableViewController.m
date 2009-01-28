@@ -14,19 +14,42 @@
 
 #import "RefreshableTableViewController.h"
 
+@interface RefreshableTableViewController()
+@property (retain) UITableView* tableView;
+@end
+
 
 @implementation RefreshableTableViewController
 
-- (void)dealloc {
+@synthesize tableView;
+
+- (void) dealloc {
+    self.tableView = nil;
     [super dealloc];
 }
 
 
 - (id) initWithStyle:(UITableViewStyle) style {
-    if (self = [super initWithStyle:style]) {
+    if (self = [super init]) {
+        self.tableView = [[[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:style] autorelease];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        
+        // add the subviews and set their resize behavior
+        tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    CGRect rect = [UIScreen mainScreen].bounds;
+    
+    self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
+    self.view.autoresizesSubviews = YES;
+    
+    [self.view addSubview:tableView];   
 }
 
 
@@ -45,7 +68,7 @@
                                              selector:selector
                                                object:nil];
 
-    if (self.tableView.dragging || self.tableView.decelerating) {
+    if (tableView.dragging || tableView.decelerating) {
         [self performSelector:selector withObject:nil afterDelay:1];
         return;
     }
@@ -61,6 +84,18 @@
 
 - (void) minorRefresh {
     [self refreshWithSelector:@selector(minorRefresh) subclassSelector:@selector(minorRefreshWorker)];
+}
+
+
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (NSInteger) tableView:(UITableView*) tableView
+  numberOfRowsInSection:(NSInteger) section {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 @end

@@ -96,19 +96,19 @@
 
 
 - (void) majorRefreshWorker {
-    [self.tableView reloadData];
+    [tableView reloadData];
 }
 
 
 - (void) minorRefreshWorker {
-    for (id cell in self.tableView.visibleCells) {
+    for (id cell in tableView.visibleCells) {
         [cell refresh];
     }
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.tableView.rowHeight = 100;
+    tableView.rowHeight = 100;
     [super viewWillAppear:animated];
     [self majorRefresh];
 }
@@ -150,7 +150,8 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView_
+         cellForRowAtIndexPath:(NSIndexPath *) indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
     NetflixCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];

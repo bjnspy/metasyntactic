@@ -20,6 +20,7 @@
 #import "DVDCell.h"
 #import "DVDFilterViewController.h"
 #import "DVDNavigationController.h"
+#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "TappableLabel.h"
 
@@ -110,6 +111,12 @@
 }
 
 
+- (void) viewWillAppear:(BOOL) animated {
+    [GlobalActivityIndicator setCurrentViewController:self];
+    [super viewWillAppear:animated];
+}
+
+
 - (UISegmentedControl*) createSegmentedControl {
     UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:
                                     [NSArray arrayWithObjects:
@@ -131,34 +138,14 @@
 }
 
 
-- (void) setupFlipUpButton {
-    self.flipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage* image = [UIImage imageNamed:@"FlipUp-Normal.png"];
-
-    [flipButton setImage:image forState:UIControlStateNormal];
-    [flipButton setImage:[UIImage imageNamed:@"FlipUp-Highlighted.png"] forState:UIControlStateHighlighted];
-    [flipButton setImage:[UIImage imageNamed:@"FlipUp-Highlighted.png"] forState:(UIControlStateHighlighted | UIControlStateSelected)];
-    [flipButton setImage:[UIImage imageNamed:@"FlipUp-Selected.png"] forState:UIControlStateSelected];
-    [flipButton addTarget:self action:@selector(flipUpDown:) forControlEvents:UIControlEventTouchUpInside];
-
-    CGRect frame = flipButton.frame;
-    frame.size = image.size;
-    flipButton.frame = frame;
-
-    UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:flipButton] autorelease];
-    self.navigationItem.rightBarButtonItem = item;
-}
-
-
 - (void) loadView {
     [super loadView];
 
     scrollToCurrentDateOnRefresh = YES;
-    [self setupFlipUpButton];
     self.segmentedControl = [self createSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
 
-    self.tableView.rowHeight = 100;
+    tableView.rowHeight = 100;
 }
 
 
@@ -177,7 +164,7 @@
 
 - (UITableViewCell*) createCell:(Movie*) movie {
     static NSString* reuseIdentifier = @"reuseIdentifier";
-    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                reuseIdentifier:reuseIdentifier
@@ -201,13 +188,13 @@
 - (void) majorRefresh {
     [self setupTitle];
 
-    self.tableView.rowHeight = 100;
+    tableView.rowHeight = 100;
     [super majorRefresh];
 }
 
 
 - (void) minorRefreshWorker {
-    for (id cell in self.tableView.visibleCells) {
+    for (id cell in tableView.visibleCells) {
         [cell loadImage];
     }
 }
@@ -215,44 +202,6 @@
 
 - (UIViewController*) createFilterViewController {
     return [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
-}
-
-
-- (void) flipUpDown:(id) sender {
-    flipButton.selected = !flipButton.selected;
-
-    if (superView == nil) {
-        self.superView = self.tableView.superview;
-    }
-
-    if (filterViewController == nil) {
-        self.filterViewController = [self createFilterViewController];
-        UIView* dvdView = filterViewController.view;
-        CGRect frame = dvdView.frame;
-        frame.origin.y -= 20;
-        dvdView.frame = frame;
-    }
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDuration:1];
-
-        if (flipButton.selected) {
-            [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp
-                                   forView:superView
-                                     cache:YES];
-            self.cachedTableView = self.tableView;
-            [self.tableView removeFromSuperview];
-            [superView addSubview:filterViewController.view];
-        } else {
-            [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
-                                   forView:superView
-                                     cache:YES];
-            [filterViewController.view removeFromSuperview];
-            [superView addSubview:self.cachedTableView];
-        }
-    }
-    [UIView commitAnimations];
 }
 
 @end

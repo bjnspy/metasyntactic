@@ -207,7 +207,6 @@
         return;
     }
 
-    [appDelegate.tabBarController popNavigationControllersToRoot];
     [self.model setSearchDate:searchDate];
 
     [self markDataProviderOutOfDate];
@@ -220,7 +219,6 @@
         return;
     }
 
-    [appDelegate.tabBarController popNavigationControllersToRoot];
     [self.model setUserAddress:userAddress];
 
     [self markDataProviderOutOfDate];

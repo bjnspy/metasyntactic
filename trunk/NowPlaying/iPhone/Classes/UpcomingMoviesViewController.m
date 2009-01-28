@@ -104,7 +104,7 @@
     self.navigationItem.titleView = segmentedControl;
 
     self.title = NSLocalizedString(@"Upcoming", nil);
-    self.tableView.rowHeight = 100;
+    tableView.rowHeight = 100;
 }
 
 
@@ -120,14 +120,14 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    [GlobalActivityIndicator setCurrentViewController:self];
     [super viewWillAppear:animated];
 }
 
 
 - (UITableViewCell*) createCell:(Movie*) movie {
     static NSString* reuseIdentifier = @"reuseIdentifier";
-    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                          reuseIdentifier:reuseIdentifier
@@ -140,13 +140,13 @@
 
 
 - (void) majorRefresh {
-    self.tableView.rowHeight = 100;
+    tableView.rowHeight = 100;
     [super majorRefresh];
 }
 
 
 - (void) minorRefreshWorker {
-    for (id cell in self.tableView.visibleCells) {
+    for (id cell in tableView.visibleCells) {
         [cell loadImage];
     }
 }

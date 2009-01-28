@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface SettingsViewController : UITableViewController {
+#import "RefreshableTableViewController.h"
+
+@interface SettingsViewController : RefreshableTableViewController {
 @private
     SettingsNavigationController* navigationController;
 }
 
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
-
-- (void) majorRefresh;
 
 - (Model*) model;
 - (Controller*) controller;

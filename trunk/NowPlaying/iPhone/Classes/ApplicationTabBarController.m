@@ -14,6 +14,7 @@
 
 #import "ApplicationTabBarController.h"
 
+#import "AllMoviesViewController.h"
 #import "DVDNavigationController.h"
 #import "MoviesNavigationController.h"
 #import "NetflixNavigationController.h"
@@ -29,10 +30,10 @@
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
-@property (retain) UpcomingMoviesAndDVDNavigationController* upcomingMoviesAndDVDNavigationController;
+//@property (retain) UpcomingMoviesAndDVDNavigationController* upcomingMoviesAndDVDNavigationController;
 @property (retain) DVDNavigationController* dvdNavigationController;
 @property (retain) NetflixNavigationController* netflixNavigationController;
-@property (retain) SettingsNavigationController* settingsNavigationController;
+//@property (retain) SettingsNavigationController* settingsNavigationController;
 @end
 
 
@@ -41,20 +42,20 @@
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
 @synthesize upcomingMoviesNavigationController;
-@synthesize upcomingMoviesAndDVDNavigationController;
+//@synthesize upcomingMoviesAndDVDNavigationController;
 @synthesize dvdNavigationController;
 @synthesize netflixNavigationController;
-@synthesize settingsNavigationController;
+//@synthesize settingsNavigationController;
 @synthesize appDelegate;
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
     self.upcomingMoviesNavigationController = nil;
-    self.upcomingMoviesAndDVDNavigationController = nil;
+    //self.upcomingMoviesAndDVDNavigationController = nil;
     self.dvdNavigationController = nil;
     self.netflixNavigationController = nil;
-    self.settingsNavigationController = nil;
+    //self.settingsNavigationController = nil;
     self.appDelegate = nil;
 
     [super dealloc];
@@ -88,6 +89,7 @@
 }
 
 
+/*
 - (UINavigationController*) loadUpcomingMoviesAndDVDNavigationController {
     if (upcomingMoviesAndDVDNavigationController == nil) {
         self.upcomingMoviesAndDVDNavigationController = [[[UpcomingMoviesAndDVDNavigationController alloc] initWithTabBarController:self] autorelease];
@@ -95,6 +97,7 @@
 
     return upcomingMoviesAndDVDNavigationController;
 }
+ */
 
 
 - (UINavigationController*) loadDVDNavigationController {
@@ -115,6 +118,7 @@
 }
 
 
+/*
 - (UINavigationController*) loadSettingsNavigationController {
     if (settingsNavigationController == nil) {
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
@@ -122,6 +126,7 @@
 
     return settingsNavigationController;
 }
+ */
 
 
 - (id) initWithAppDelegate:(AppDelegate*) appDel {
@@ -131,7 +136,8 @@
         [self resetTabs:NO];
 
         if (self.model.userAddress.length == 0) {
-            self.selectedViewController = [self loadSettingsNavigationController];
+            self.selectedViewController = [self loadMoviesNavigationController];
+            [moviesNavigationController.allMoviesViewController flipView];
         } else {
             AbstractNavigationController* controller;
             if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
@@ -193,12 +199,6 @@
 }
 
 
-- (void) popNavigationControllersToRoot {
-    [moviesNavigationController popToRootViewControllerAnimated:YES];
-    [theatersNavigationController popToRootViewControllerAnimated:YES];
-}
-
-
 - (void) switchToMovies {
     self.selectedViewController = [self loadMoviesNavigationController];
 }
@@ -210,20 +210,20 @@
 
 
 - (void) switchToUpcoming {
-    if (self.model.netflixEnabled) {
-        self.selectedViewController = [self loadUpcomingMoviesAndDVDNavigationController];
-    } else {
+    //if (self.model.netflixEnabled) {
+    //    self.selectedViewController = [self loadUpcomingMoviesAndDVDNavigationController];
+    //} else {
         self.selectedViewController = [self loadUpcomingMoviesNavigationController];
-    }
+    //}
 }
 
 
 - (void) switchToDVD {
-    if (self.model.netflixEnabled) {
-        self.selectedViewController = [self loadUpcomingMoviesAndDVDNavigationController];
-    } else {
+    //if (self.model.netflixEnabled) {
+    //    self.selectedViewController = [self loadUpcomingMoviesAndDVDNavigationController];
+    //} else {
         self.selectedViewController = [self loadDVDNavigationController];
-    }
+    //}
 }
 
 
@@ -240,9 +240,12 @@
         [NSArray arrayWithObjects:
          [self loadMoviesNavigationController],
          [self loadTheatersNavigationController],
-         [self loadUpcomingMoviesAndDVDNavigationController],
+         //[self loadUpcomingMoviesAndDVDNavigationController],
+         [self loadUpcomingMoviesNavigationController],
+         [self loadDVDNavigationController],
          [self loadNetflixNavigationController],
-         [self loadSettingsNavigationController], nil];
+         //[self loadSettingsNavigationController],
+         nil];
     } else {
         controllers =
         [NSArray arrayWithObjects:
@@ -250,7 +253,8 @@
          [self loadTheatersNavigationController],
          [self loadUpcomingMoviesNavigationController],
          [self loadDVDNavigationController],
-         [self loadSettingsNavigationController], nil];
+         //[self loadSettingsNavigationController],
+         nil];
     }
 
     [self setViewControllers:controllers animated:animated.boolValue];
@@ -258,10 +262,12 @@
     // Such an awful hack.  For some reason, changing the view controllers
     // causes the tab bar to be 'stuck' selecting the settings view controller.
     // in that case, we switch to another tab and back to unstick it.
+    /*
     if (self.selectedIndex == 4) {
         self.selectedIndex = 1;
         self.selectedIndex = 4;
     }
+     */
 }
 
 

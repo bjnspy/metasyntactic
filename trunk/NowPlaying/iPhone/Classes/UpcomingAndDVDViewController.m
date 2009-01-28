@@ -87,7 +87,7 @@
     id cell = nil;
     if ([dvds containsObject:movie]) {
         static NSString* reuseIdentifier = @"dvdReuseIdentifier";
-        cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                    reuseIdentifier:reuseIdentifier
@@ -95,7 +95,7 @@
         }
     } else {
         static NSString* reuseIdentifier = @"upcomingReuseIdentifier";
-        cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                    reuseIdentifier:reuseIdentifier
