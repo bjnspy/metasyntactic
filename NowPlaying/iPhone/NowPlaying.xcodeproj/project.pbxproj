@@ -161,8 +161,6 @@
 		747D969F0F3034D0000B5A68 /* TappableActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D969E0F3034D0000B5A68 /* TappableActivityIndicatorView.m */; };
 		747D98CE0F3047E7000B5A68 /* Netflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 747D98CD0F3047E7000B5A68 /* Netflix.png */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
-		747DA9370EF9A9040066B881 /* UpcomingAndDVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA9360EF9A9040066B881 /* UpcomingAndDVDViewController.m */; };
-		747DA93C0EF9AB4C0066B881 /* UpcomingMoviesAndDVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA93B0EF9AB4C0066B881 /* UpcomingMoviesAndDVDNavigationController.m */; };
 		747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */; };
 		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
 		747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC650EF9F4130066B881 /* AbstractSearchEngine.m */; };
@@ -310,7 +308,6 @@
 		74E17FCA0E95FEFE00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC60E95FEFE00F8D0D3 /* MethodDescriptor.m */; };
 		74E17FCB0E95FEFE00F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */; };
 		74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */; };
-		74E6313E0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */; };
 		74EB9A9E0EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */; };
 		74EB9A9F0EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */; };
 		74EB9AA00EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */; };
@@ -657,10 +654,6 @@
 		747DA10D0EF835A50066B881 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		747DA10E0EF835A50066B881 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		747DA5530EF88E180066B881 /* NetflixModifyQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixModifyQueueDelegate.h; sourceTree = "<group>"; };
-		747DA9350EF9A9040066B881 /* UpcomingAndDVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingAndDVDViewController.h; sourceTree = "<group>"; };
-		747DA9360EF9A9040066B881 /* UpcomingAndDVDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingAndDVDViewController.m; sourceTree = "<group>"; };
-		747DA93A0EF9AB4C0066B881 /* UpcomingMoviesAndDVDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesAndDVDNavigationController.h; sourceTree = "<group>"; };
-		747DA93B0EF9AB4C0066B881 /* UpcomingMoviesAndDVDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesAndDVDNavigationController.m; sourceTree = "<group>"; };
 		747DAC0D0EF9D9F50066B881 /* NetflixSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchViewController.h; sourceTree = "<group>"; };
 		747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetflixSearchViewController.m; sourceTree = "<group>"; };
 		747DAC570EF9F1B40066B881 /* NetflixSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixSearchEngine.h; sourceTree = "<group>"; };
@@ -907,8 +900,6 @@
 		74E62FBC0EFD78F9002EE26B /* BackgroundInvocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation2.h; sourceTree = "<group>"; };
 		74E62FBD0EFD78F9002EE26B /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
 		74E630990EFD85ED002EE26B /* NetflixChangeRatingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetflixChangeRatingDelegate.h; sourceTree = "<group>"; };
-		74E6313C0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingAndDVDFilterViewController.h; sourceTree = "<group>"; };
-		74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingAndDVDFilterViewController.m; sourceTree = "<group>"; };
 		74EB9A950EFA110D0083DC33 /* NetflixCellSelectedBackground-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-0.png"; path = "Resources/NetflixCellSelectedBackground-0.png"; sourceTree = "<group>"; };
 		74EB9A960EFA110D0083DC33 /* NetflixCellSelectedBackground-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-1.png"; path = "Resources/NetflixCellSelectedBackground-1.png"; sourceTree = "<group>"; };
 		74EB9A970EFA110D0083DC33 /* NetflixCellSelectedBackground-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NetflixCellSelectedBackground-2.png"; path = "Resources/NetflixCellSelectedBackground-2.png"; sourceTree = "<group>"; };
@@ -1254,8 +1245,6 @@
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
 				747AB7AC0EB95750002438D0 /* DVDNavigationController.h */,
 				747AB7AD0EB95750002438D0 /* DVDNavigationController.m */,
-				747DA93A0EF9AB4C0066B881 /* UpcomingMoviesAndDVDNavigationController.h */,
-				747DA93B0EF9AB4C0066B881 /* UpcomingMoviesAndDVDNavigationController.m */,
 				74E031310EF4C2D400B2D2BA /* NetflixNavigationController.h */,
 				74E031320EF4C2D400B2D2BA /* NetflixNavigationController.m */,
 			);
@@ -1512,12 +1501,8 @@
 			children = (
 				747AB7A90EB956DC002438D0 /* DVDViewController.h */,
 				747AB7AA0EB956DC002438D0 /* DVDViewController.m */,
-				747DA9350EF9A9040066B881 /* UpcomingAndDVDViewController.h */,
-				747DA9360EF9A9040066B881 /* UpcomingAndDVDViewController.m */,
 				74FF70B90EC9710600B0D534 /* DVDFilterViewController.h */,
 				74FF70BA0EC9710600B0D534 /* DVDFilterViewController.m */,
-				74E6313C0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.h */,
-				74E6313D0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m */,
 			);
 			name = DVD;
 			sourceTree = "<group>";
@@ -2206,8 +2191,6 @@
 				7400EFEF0EF59D7800058CDD /* NetflixFeedsViewController.m in Sources */,
 				7400F19D0EF5AF1700058CDD /* NetflixQueueViewController.m in Sources */,
 				747DA10F0EF835A50066B881 /* Queue.m in Sources */,
-				747DA9370EF9A9040066B881 /* UpcomingAndDVDViewController.m in Sources */,
-				747DA93C0EF9AB4C0066B881 /* UpcomingMoviesAndDVDNavigationController.m in Sources */,
 				747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */,
 				747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */,
 				747DAC660EF9F4130066B881 /* AbstractSearchEngine.m in Sources */,
@@ -2215,7 +2198,6 @@
 				741649000EFC61A7000EC7B5 /* NetflixRecommendationsViewController.m in Sources */,
 				7416496D0EFC94AC000EC7B5 /* NetflixGenreRecommendationsViewController.m in Sources */,
 				74E62FBE0EFD78F9002EE26B /* BackgroundInvocation2.m in Sources */,
-				74E6313E0EFD8F8B002EE26B /* UpcomingAndDVDFilterViewController.m in Sources */,
 				74676D880EFF6E7D00C64100 /* NetflixCell.m in Sources */,
 				74A33E4A0F034B8100E5450A /* AbstractNetflixCache.m in Sources */,
 				74A33E540F034C4100E5450A /* MutableNetflixCache.m in Sources */,
