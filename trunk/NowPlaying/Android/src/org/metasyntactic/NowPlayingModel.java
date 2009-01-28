@@ -115,10 +115,10 @@ public class NowPlayingModel {
 
   private void updatePrimaryCaches() {
     this.dataProvider.update();
-    this.scoreCache.update();
   }
 
   public void updateSecondaryCaches() {
+    this.scoreCache.update();
     this.trailerCache.update(getMovies());
     this.posterCache.update(getMovies());
     this.upcomingCache.update();

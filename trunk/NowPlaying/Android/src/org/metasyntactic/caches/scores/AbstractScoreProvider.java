@@ -132,46 +132,24 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
 
   public void update() {
     updateScores();
-    updateReviews();
   }
 
   private void updateScores() {
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        updateScoresBackgroundEntryPoint();
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, this.lock, true/*visible*/);
-  }
-
-  private void updateReviews() {
-    final Map<String, Score> scoreMap = getScores();
-
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        updateReviewsBackgroundEntryPoint(scoreMap);
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Reviews", runnable, this.lock, false/*visible*/);
-  }
-
-  private void updateScoresBackgroundEntryPoint() {
     final long start = System.currentTimeMillis();
-    updateScoresBackgroundEntryPointWorker();
+    Map<String,Score> map = updateScoresWorker();
     LogUtilities.logTime(getClass(), "Update Scores", start);
+
+    if (map == null) {
+      map = loadScores();
+    }
+    updateReviewsWorker(map);
   }
 
-  private void updateReviewsBackgroundEntryPoint(final Map<String, Score> scoreMap) {
-    final long start = System.currentTimeMillis();
-    updateReviewsBackgroundEntryPointWorker(scoreMap);
-    LogUtilities.logTime(getClass(), "Update Reviews", start);
-  }
-
-  private void updateScoresBackgroundEntryPointWorker() {
+  private Map<String,Score> updateScoresWorker() {
     final File hashFile = hashFile();
     if (hashFile.exists()) {
       if (Math.abs(hashFile.lastModified() - new Date().getTime()) < Constants.ONE_DAY) {
-        return;
+        return null;
       }
     }
 
@@ -179,25 +157,27 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     final String serverHash = lookupServerHash();
 
     if (isNullOrEmpty(serverHash)) {
-      return;
+      return null;
     }
 
     if ("0".equals(serverHash)) {
-      return;
+      return null;
     }
 
     if (localHash.equals(serverHash)) {
-      return;
+      return null;
     }
 
     final Map<String, Score> result = lookupServerScores();
 
     if (CollectionUtilities.isEmpty(result)) {
-      return;
+      return null;
     }
 
     saveResult(serverHash, result);
     reportResult(serverHash, result);
+
+    return result;
   }
 
   private void saveResult(final String serverHash, final Map<String, Score> result) {
@@ -223,8 +203,6 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     this.movies = null;
 
     Application.refresh(true);
-
-    updateReviews();
   }
 
   public Score getScore(final List<Movie> movies, final Movie movie) {
@@ -299,7 +277,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     return new File(this.reviewsDirectory, FileUtilities.sanitizeFileName(title) + "-Hash");
   }
 
-  private void updateReviewsBackgroundEntryPointWorker(final Map<String, Score> scoresMap) {
+  private void updateReviewsWorker(final Map<String, Score> scoresMap) {
     final Set<Score> scoresWithoutReviews = new TreeSet<Score>();
     final Set<Score> scoresWithReviews = new TreeSet<Score>();
 
