@@ -14,10 +14,12 @@
 
 #import "RefreshableTableViewController.h"
 
-@interface AbstractMovieListViewController : RefreshableTableViewController {
+#import "FlippableViewControllerDelegate.h"
+
+@interface AbstractMovieListViewController : RefreshableTableViewController<FlippableViewControllerDelegate> {
 @protected
     AbstractNavigationController* navigationController;
-
+    
     NSArray* sortedMovies;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;

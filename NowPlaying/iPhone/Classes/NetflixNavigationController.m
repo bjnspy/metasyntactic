@@ -33,7 +33,7 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        self.tabBarItem.image = [UIImage imageNamed:@"DVD.png"];
+        self.tabBarItem.image = [UIImage imageNamed:@"Netflix.png"];
         self.title = NSLocalizedString(@"Netflix", nil); //195.175.105
         self.navigationBar.tintColor = [UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1];
     }

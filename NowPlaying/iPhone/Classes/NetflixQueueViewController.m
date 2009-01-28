@@ -94,7 +94,7 @@
         [self.navigationItem setHidesBackButton:NO animated:NO];
         UIBarButtonItem* left;
         UIBarButtonItem* right;
-        if (self.tableView.editing) {
+        if (tableView.editing) {
             left = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancel:)] autorelease];
             right = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(onSave:)] autorelease];
         } else if (self.isEditable) {
@@ -157,18 +157,18 @@
 
 
 - (void) majorRefreshWorker {
-    if (self.tableView.editing || readonlyMode) {
+    if (tableView.editing || readonlyMode) {
         return;
     }
 
     [self initializeData];
-    [self.tableView reloadData];
+    [tableView reloadData];
 
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
-        if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
-            path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
-            [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        if (path.section >= 0 && path.section < tableView.numberOfSections &&
+            path.row >= 0 && path.row < [tableView numberOfRowsInSection:path.section]) {
+            [tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
 
         self.visibleIndexPaths = nil;
@@ -177,15 +177,15 @@
 
 
 - (void) minorRefreshWorker {
-    for (id cell in self.tableView.visibleCells) {
+    for (id cell in tableView.visibleCells) {
         [cell refresh];
     }
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.tableView.rowHeight = 100;
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    tableView.rowHeight = 100;
+    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
 
@@ -215,7 +215,7 @@
 
     // Store the currently visible cells so we can scroll back to them when
     // we're reloaded.
-    self.visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
+    self.visibleIndexPaths = [tableView indexPathsForVisibleRows];
 
     [super didReceiveMemoryWarning];
 }
@@ -286,7 +286,7 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell*) tableView:(UITableView*) tableView
+- (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self indexPathOutOfBounds:indexPath]) {
         return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
@@ -317,8 +317,8 @@
 
 
 - (void) resetVisibleAccessories {
-    for (NSIndexPath* path in self.tableView.indexPathsForVisibleRows) {
-        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:path];
+    for (NSIndexPath* path in tableView.indexPathsForVisibleRows) {
+        UITableViewCell* cell = [tableView cellForRowAtIndexPath:path];
         [self setAccessoryForCell:cell atIndexPath:path];
     }
 }
@@ -342,7 +342,7 @@
 - (void) upArrowTappedForRowAtIndexPath:(NSIndexPath*) indexPath {
     [self enterReadonlyMode];
 
-    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
     [activityIndicator startAnimating];
     cell.accessoryView = activityIndicator;
@@ -356,7 +356,7 @@
     self.queue = [self.model.netflixCache queueForFeed:feed];
     NSInteger row = [mutableMovies indexOfObjectIdenticalTo:movie];
 
-    [self.tableView beginUpdates];
+    [tableView beginUpdates];
     {
         NSIndexPath* firstRow = [NSIndexPath indexPathForRow:0 inSection:0];
         NSIndexPath* currentRow = [NSIndexPath indexPathForRow:row inSection:0];
@@ -364,10 +364,10 @@
         [mutableMovies removeObjectAtIndex:row];
         [mutableMovies insertObject:movie atIndex:0];
 
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:currentRow] withRowAnimation:UITableViewRowAnimationBottom];
-        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:firstRow] withRowAnimation:UITableViewRowAnimationTop];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:currentRow] withRowAnimation:UITableViewRowAnimationBottom];
+        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:firstRow] withRowAnimation:UITableViewRowAnimationTop];
     }
-    [self.tableView endUpdates];
+    [tableView endUpdates];
 
     [self exitReadonlyMode];
 }
@@ -389,16 +389,16 @@
 }
 
 
-- (void)            tableView:(UITableView*) tableView
+- (void)            tableView:(UITableView*) tableView_
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (readonlyMode) {
-        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
+        [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:NO];
         return;
     }
 
     if (upArrowTapped) {
         upArrowTapped = NO;
-        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
+        [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:NO];
         [self upArrowTappedForRowAtIndexPath:indexPath];
     } else {
         if ([self indexPathOutOfBounds:indexPath]) {
@@ -418,7 +418,7 @@
 
 
 
-- (BOOL)          tableView:(UITableView*) tableView
+- (BOOL)          tableView:(UITableView*) tableView_
       canEditRowAtIndexPath:(NSIndexPath*) indexPath {
     return tableView.editing;
 }
@@ -431,7 +431,7 @@
 
 
 // Override to support editing the table view.
-- (void)       tableView:(UITableView*) tableView
+- (void)       tableView:(UITableView*) tableView_
       commitEditingStyle:(UITableViewCellEditingStyle) editingStyle
        forRowAtIndexPath:(NSIndexPath*) indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -474,13 +474,13 @@
 - (void) onEdit:(id) sender {
     self.reorderedMovies = [IdentitySet set];
     self.deletedMovies = [IdentitySet set];
-    [self.tableView setEditing:YES animated:YES];
+    [tableView setEditing:YES animated:YES];
     [self setupButtons];
 }
 
 
 - (void) onCancel:(id) sender {
-    [self.tableView setEditing:NO animated:YES];
+    [tableView setEditing:NO animated:YES];
     [self majorRefresh];
 }
 
@@ -490,7 +490,7 @@
         // user didn't do anything.  same as a cancel:
         [self onCancel:sender];
     } else {
-        [self.tableView setEditing:NO animated:YES];
+        [tableView setEditing:NO animated:YES];
         [self enterReadonlyMode];
 
         [self.model.netflixCache updateQueue:queue byDeletingMovies:deletedMovies andReorderingMovies:reorderedMovies to:mutableMovies delegate:self];

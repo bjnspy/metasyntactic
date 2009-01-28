@@ -84,7 +84,7 @@
 
 - (void) majorRefreshWorker {
     [self initializeData];
-    [self.tableView reloadData];
+    [tableView reloadData];
 }
 
 
@@ -93,8 +93,8 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
 

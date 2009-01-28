@@ -98,7 +98,6 @@
     }
 
     [self.controller setScoreProviderIndex:selectPath.row];
-    [navigationController.tabBarController popNavigationControllersToRoot];
     [navigationController popViewControllerAnimated:YES];
 }
 

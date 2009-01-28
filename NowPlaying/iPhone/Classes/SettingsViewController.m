@@ -77,18 +77,21 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-
+- (void) viewWillAppear:(BOOL) animated {    
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self majorRefresh];
 }
 
 
-- (void) majorRefresh {
+- (void) majorRefreshWorker {
     self.tableView.rowHeight = 38;
     [self.tableView reloadData];
+}
+
+
+- (void) minorRefreshWorker {
+    [self majorRefreshWorker];
 }
 
 

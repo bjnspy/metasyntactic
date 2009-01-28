@@ -14,6 +14,7 @@
 
 @protocol DataProvider;
 @protocol DataProviderUpdateDelegate;
+@protocol FlippableViewControllerDelegate;
 @protocol NetflixChangeRatingDelegate;
 @protocol NetflixAddMovieDelegate;
 @protocol NetflixMoveMovieDelegate;
@@ -23,6 +24,7 @@
 @protocol TappableImageViewDelegate;
 @protocol TappableLabelDelegate;
 @protocol TappableScrollViewDelegate;
+@protocol TappableActivityIndicatorViewDelegate;
 
 @class OAToken;
 
@@ -116,6 +118,7 @@
 @class SettingsNavigationController;
 @class SettingsViewController;
 @class Status;
+@class TappableActivityIndicatorView;
 @class TappableImageView;
 @class TappableLabel;
 @class TappableScrollView;

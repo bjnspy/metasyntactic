@@ -14,6 +14,8 @@
 
 #import "AbstractMovieListViewController.h"
 
+#import "FlippableViewControllerDelegate.h"
+
 @interface AllMoviesViewController : AbstractMovieListViewController {
 @private
     UISegmentedControl* segmentedControl;
