@@ -13,31 +13,54 @@
 //limitations under the License.
 package org.metasyntactic.providers;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Debug;
+import android.util.Log;
 
 import com.google.protobuf.InvalidProtocolBufferException;
+
 import org.apache.commons.collections.map.MultiValueMap;
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.data.*;
+import org.metasyntactic.data.FavoriteTheater;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
 import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.time.Hours;
-import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
-import org.metasyntactic.utilities.*;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.ExceptionUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
 
 import java.io.File;
-import static java.lang.Math.max;
-import static java.lang.Math.min;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class DataProvider {
   private final Object lock = new Object();
@@ -100,12 +123,14 @@ public class DataProvider {
     if (isUpToDate()) {
       return;
     }
-    // Debug.startMethodTracing("downloadUserLocation", 50000000);
+    Log.i("DEBUG", "Started downloadUserLocation trace");
+     Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
     final Location location = this.model.getUserLocationCache()
         .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
-    // Debug.stopMethodTracing();
+     Debug.stopMethodTracing();
+     Log.i("DEBUG", "Stopped downloadUserLocation trace");
     if (location == null) {
       // this should be impossible. we only update if the user has entered a
       // valid location
@@ -258,16 +283,20 @@ public class DataProvider {
     }
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
-      // Debug.startMethodTracing("parse_from", 50000000);
+      Log.i("DEBUG", "Started parse from trace");
+       Debug.startMethodTracing("parse_from", 50000000);
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-      // Debug.stopMethodTracing();
+       Debug.stopMethodTracing();
+       Log.i("DEBUG", "Stopped parse from trace");
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
       return null;
     }
-    // Debug.startMethodTracing("processListings", 50000000);
+    Log.i("DEBUG", "Started processListings trace");
+     Debug.startMethodTracing("processListings", 50000000);
     final LookupResult result = processTheaterListings(theaterListings, location, theaterNames);
-    // Debug.stopMethodTracing();
+     Debug.stopMethodTracing();
+     Log.i("DEBUG", "Stopped processListings trace");
     return result;
   }
 
