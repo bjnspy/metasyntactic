@@ -114,7 +114,8 @@ static NSString* NETFLIX_LAST_NAME                      = @"netflixLastName";
 static NSString* NETFLIX_CAN_INSTANT_WATCH              = @"netflixCanInstantWatch";
 static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredFormats";
 static NSString* SCREEN_ROTATION_DISABLED               = @"screenRotationDisabled";
-
+static NSString* FIRST_LAUNCH_DATE                      = @"firstLaunchDate";
+static NSString* HAS_SHOWN_WRITE_REVIEW_REQUEST         = @"hasShownWriteReviewRequest";
 
 static NSString** ALL_KEYS[] = {
 &VERSION,
@@ -182,6 +183,11 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &NETFLIX_ENABLED,
 &NETFLIX_CAN_INSTANT_WATCH,
 &SCREEN_ROTATION_DISABLED,
+&HAS_SHOWN_WRITE_REVIEW_REQUEST,
+};
+
+static NSString** DATE_KEYS_TO_MIGRATE[] = {
+&FIRST_LAUNCH_DATE,
 };
 
 static NSString** STRING_ARRAY_KEYS_TO_MIGRATE[] = {
@@ -325,6 +331,14 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             [result setObject:previousValue forKey:key];
         }
     }
+    
+    for (NSInteger i = 0; i < ArrayLength(DATE_KEYS_TO_MIGRATE); i++) {
+        NSString* key = *DATE_KEYS_TO_MIGRATE[i];
+        id previousValue = [defaults objectForKey:key];
+        if ([previousValue isKindOfClass:[NSDate class]]) {
+            [result setObject:previousValue forKey:key];
+        }
+    }
 
     for (NSInteger i = 0; i < ArrayLength(BOOLEAN_KEYS_TO_MIGRATE); i++) {
         NSString* key = *BOOLEAN_KEYS_TO_MIGRATE[i];
@@ -461,10 +475,49 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
+- (void) checkDate {
+    NSDate* firstLaunchDate = [[NSUserDefaults standardUserDefaults] objectForKey:FIRST_LAUNCH_DATE];
+    if (firstLaunchDate == nil) {
+        firstLaunchDate = [NSDate date];
+        [[NSUserDefaults standardUserDefaults] setObject:firstLaunchDate forKey:FIRST_LAUNCH_DATE];
+        [self synchronize];
+    }
+    
+    NSTimeInterval interval = ABS([firstLaunchDate timeIntervalSinceNow]);
+    if (interval < (30 * ONE_DAY)) {
+        return;
+    }
+        
+    BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
+    if (hasShown) {
+        return;
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
+    [self synchronize];
+    
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"A message from Cyrus", nil)
+                                                     message:NSLocalizedString(@"Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)", nil)
+                                                    delegate:self
+                                           cancelButtonTitle:NSLocalizedString(@"No Thanks", nil)
+                                           otherButtonTitles:NSLocalizedString(@"Write Review", nil), nil] autorelease];
+    
+    [alert show];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        [Application openBrowser:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284939567&mt=8"];
+    }
+}
+
+
 - (id) init {
     if (self = [super init]) {
         [self checkCountry];
         [self loadData];
+        [self checkDate];
 
         self.userLocationCache = [UserLocationCache cache];
         self.largePosterCache = [LargePosterCache cacheWithModel:self];

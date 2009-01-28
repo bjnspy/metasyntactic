@@ -19,7 +19,7 @@ enum ViewControllerType {
     Tickets = 4
 };
 
-@interface Model : NSObject {
+@interface Model : NSObject<UIAlertViewDelegate> {
 @private
     UserLocationCache* userLocationCache;
     BlurayCache* blurayCache;
