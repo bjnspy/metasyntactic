@@ -23,6 +23,6 @@
 + (BOOL) hasVisibleBackgroundTasks;
 + (BOOL) hasBackgroundTasks;
 
-+ (void) setCurrentViewController:(UIViewController<FlippableViewControllerDelegate>*) viewController;
++ (void) setCurrentViewController:(UIViewController<InfoViewControllerDelegate>*) viewController;
 
 @end

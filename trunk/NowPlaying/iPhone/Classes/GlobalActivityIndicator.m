@@ -15,7 +15,7 @@
 #import "GlobalActivityIndicator.h"
 
 #import "AppDelegate.h"
-#import "FlippableViewControllerDelegate.h"
+#import "InfoViewControllerDelegate.h"
 #import "Pulser.h"
 #import "TappableActivityIndicatorView.h"
 
@@ -27,7 +27,7 @@ static TappableActivityIndicatorView* activityIndicatorView = nil;
 static NSInteger totalBackgroundTaskCount = 0;
 static NSInteger visibleBackgroundTaskCount = 0;
 
-static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
+static UIViewController<InfoViewControllerDelegate>* viewController = nil;
 
 + (UIView*) activityView {
     return activityIndicatorView;
@@ -47,7 +47,7 @@ static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
         } else {
             [activityIndicatorView stopAnimating];
             UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
-            [infoButton addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
+            [infoButton addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
             
             infoButton.contentMode = UIViewContentModeCenter;
             CGRect frame = infoButton.frame;
@@ -66,14 +66,14 @@ static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
 }
 
 
-+ (void) flipView:(id) sender {
++ (void) showInfo:(id) sender {
     if (viewController != nil) {
-        [viewController flipView];
+        [viewController showInfo];
     }
 }
 
 
-+ (void) setCurrentViewController:(UIViewController<FlippableViewControllerDelegate>*) controller {
++ (void) setCurrentViewController:(UIViewController<InfoViewControllerDelegate>*) controller {
     [controller retain];
     [viewController release];
     viewController = controller;
@@ -100,7 +100,7 @@ static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
 
 + (void) imageView:(TappableActivityIndicatorView*) imageView
          wasTapped:(NSInteger) tapCount {
-    [self flipView:nil];
+    [self showInfo:nil];
 }
 
 

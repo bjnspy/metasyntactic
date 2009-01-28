@@ -108,7 +108,7 @@
 
         if (self.model.userAddress.length == 0) {
             self.selectedViewController = [self loadMoviesNavigationController];
-            [moviesNavigationController.allMoviesViewController flipView];
+            [moviesNavigationController.allMoviesViewController showInfo];
         } else {
             AbstractNavigationController* controller;
             if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
@@ -229,16 +229,15 @@
 
 
 - (void) resetTabs:(BOOL) animated {
+    NSArray* currentControllers = self.viewControllers;
+    [self setTabs:[NSNumber numberWithBool:NO]];
+    
     if (animated) {
-        NSArray* currentControllers = self.viewControllers;
-        [self setTabs:[NSNumber numberWithBool:NO]];
         self.viewControllers = currentControllers;
 
         // fade out, then fade in
         [self setViewControllers:[NSArray array] animated:YES];
         [self performSelector:@selector(setTabs:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.5];
-    } else {
-        [self setTabs:[NSNumber numberWithBool:animated]];
     }
 }
 

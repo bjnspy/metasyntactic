@@ -14,7 +14,7 @@
 
 @protocol DataProvider;
 @protocol DataProviderUpdateDelegate;
-@protocol FlippableViewControllerDelegate;
+@protocol InfoViewControllerDelegate;
 @protocol NetflixChangeRatingDelegate;
 @protocol NetflixAddMovieDelegate;
 @protocol NetflixMoveMovieDelegate;

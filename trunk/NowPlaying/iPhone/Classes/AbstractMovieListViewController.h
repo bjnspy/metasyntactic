@@ -14,9 +14,9 @@
 
 #import "RefreshableTableViewController.h"
 
-#import "FlippableViewControllerDelegate.h"
+#import "InfoViewControllerDelegate.h"
 
-@interface AbstractMovieListViewController : RefreshableTableViewController<FlippableViewControllerDelegate> {
+@interface AbstractMovieListViewController : RefreshableTableViewController<InfoViewControllerDelegate> {
 @protected
     AbstractNavigationController* navigationController;
     
