@@ -124,7 +124,11 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+        return YES;
+    }
+    
+    return self.model.screenRotationEnabled;
 }
 
 

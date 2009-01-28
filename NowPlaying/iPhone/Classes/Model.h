@@ -66,6 +66,9 @@ enum ViewControllerType {
 
 - (void) update;
 
+- (BOOL) screenRotationEnabled;
+- (void) setScreenRotationEnabled:(BOOL) enabled;
+
 - (BOOL) netflixEnabled;
 - (void) setNetflixEnabled:(BOOL) enabled;
 - (NSString*) netflixKey;
