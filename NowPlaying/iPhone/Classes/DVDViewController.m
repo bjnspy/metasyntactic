@@ -145,7 +145,7 @@
     self.segmentedControl = [self createSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
 
-    tableView.rowHeight = 100;
+    self.tableView.rowHeight = 100;
 }
 
 
@@ -164,7 +164,7 @@
 
 - (UITableViewCell*) createCell:(Movie*) movie {
     static NSString* reuseIdentifier = @"reuseIdentifier";
-    id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[DVDCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                reuseIdentifier:reuseIdentifier
@@ -188,13 +188,13 @@
 - (void) majorRefresh {
     [self setupTitle];
 
-    tableView.rowHeight = 100;
+    self.tableView.rowHeight = 100;
     [super majorRefresh];
 }
 
 
 - (void) minorRefreshWorker {
-    for (id cell in tableView.visibleCells) {
+    for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
     }
 }
