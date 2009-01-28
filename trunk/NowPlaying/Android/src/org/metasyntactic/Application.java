@@ -56,6 +56,7 @@ public class Application {
   private static Pulser pulser;
   static {
     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+      createDirectories();
       final Runnable runnable = new Runnable() {
         public void run() {
           if (NowPlayingControllerWrapper.isRunning()) {
