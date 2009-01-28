@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,11 +29,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
 
+import java.io.File;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +88,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         .getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
     clearBitmaps();
-    // mTask = new LoadPostersTask().execute(null);
+    mTask = new LoadPostersTask().execute(null);
     if (this.postersAdapter != null) {
       populateAlphaMovieSectionsAndPositions();
       populateScoreMovieSectionsAndPositions();
@@ -476,11 +477,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
           bitmap = reference.get();
         }
         if (bitmap == null) {
-          final byte[] bytes = NowPlayingControllerWrapper.getPoster(movies.get(i));
-          if (bytes.length > 0) {
-            bitmap = createBitmap(i, bytes);
-            if (bitmap != null) {
-              NowPlayingActivity.this.postersMap.put(i, new SoftReference<Bitmap>(bitmap));
+          File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movies
+              .get(i));
+          if (file != null) {
+            final byte[] bytes = FileUtilities.readBytes(file);
+            if (bytes != null && bytes.length > 0) {
+              bitmap = createBitmap(i, bytes);
+              if (bitmap != null) {
+                NowPlayingActivity.this.postersMap.put(i, new SoftReference<Bitmap>(bitmap));
+              }
             }
           }
         }
