@@ -666,7 +666,7 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSArray*)  :(NSString*) query {
+- (NSArray*) movieSearch:(NSString*) query {
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
