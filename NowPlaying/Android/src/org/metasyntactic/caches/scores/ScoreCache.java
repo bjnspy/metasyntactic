@@ -61,18 +61,22 @@ public class ScoreCache extends AbstractCache {
     }
   }
 
-  private ScoreProvider getCurrentScoreProvider() {
-    if (this.model.getScoreType().equals(ScoreType.Google)) {
+  private ScoreProvider getScoreProvider(final ScoreType type) {
+    if (type.equals(ScoreType.Google)) {
       return this.googleScoreProvider;
-    } else if (this.model.getScoreType().equals(ScoreType.Metacritic)) {
+    } else if (type.equals(ScoreType.Metacritic)) {
       return this.metacriticScoreProvider;
-    } else if (this.model.getScoreType().equals(ScoreType.RottenTomatoes)) {
+    } else if (type.equals(ScoreType.RottenTomatoes)) {
       return this.rottenTomatoesScoreProvider;
-    } else if (this.model.getScoreType().equals(ScoreType.None)) {
+    } else if (type.equals(ScoreType.None)) {
       return this.noneScoreProvider;
     } else {
       throw new RuntimeException();
     }
+  }
+
+  private ScoreProvider getCurrentScoreProvider() {
+    return getScoreProvider(this.model.getScoreType());
   }
 
   public Score getScore(final List<Movie> movies, final Movie movie) {
@@ -80,10 +84,16 @@ public class ScoreCache extends AbstractCache {
   }
 
   public void update() {
+    final ScoreType scoreType = this.model.getScoreType();
     final Runnable runnable = new Runnable() {
       public void run() {
+        final ScoreProvider primaryScoreProvider = getScoreProvider(scoreType);
+        primaryScoreProvider.update();
+
         for (final ScoreProvider provider : getProviders()) {
-          provider.update();
+          if (provider != primaryScoreProvider) {
+            provider.update();
+          }
         }
       }
     };
@@ -92,17 +102,7 @@ public class ScoreCache extends AbstractCache {
   }
 
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
-    if (this.model.getScoreType().equals(ScoreType.Google)) {
-      return this.googleScoreProvider.getReviews(movies, movie);
-    } else if (this.model.getScoreType().equals(ScoreType.Metacritic)) {
-      return this.metacriticScoreProvider.getReviews(movies, movie);
-    } else if (this.model.getScoreType().equals(ScoreType.RottenTomatoes)) {
-      return this.metacriticScoreProvider.getReviews(movies, movie);
-    } else if (this.model.getScoreType().equals(ScoreType.None)) {
-      return this.noneScoreProvider.getReviews(movies, movie);
-    } else {
-      throw new RuntimeException();
-    }
+    return getScoreProvider(this.model.getScoreType()).getReviews(movies, movie);
   }
 
   public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
