@@ -129,8 +129,8 @@ public class NetworkUtilities {
       final BufferedInputStream bufferedIn = new BufferedInputStream(connectionIn, 1 << 13);
       final InputStream in;
 
-      final String contentEncoding = ((HttpURLConnection)connection).getContentEncoding();
-      if ("gzip".equals(contentEncoding)) {
+      final String contentEncoding = StringUtilities.nonNullString(((HttpURLConnection)connection).getContentEncoding());
+      if (contentEncoding.toLowerCase().contains("gzip")) {
         in = new GZIPInputStream(bufferedIn, 1 << 13);
       } else {
         in = bufferedIn;
