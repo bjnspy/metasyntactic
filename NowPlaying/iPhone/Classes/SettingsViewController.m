@@ -131,6 +131,7 @@
 
         NSString* key = @"";
         NSString* value = @"";
+        NSString* placeholder = @"";
         if (row == 0) {
             key = NSLocalizedString(@"Location", nil);
             Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
@@ -139,6 +140,7 @@
             } else {
                 value = location.postalCode;
             }
+            placeholder = NSLocalizedString(@"Tap to enter location", nil);
         } else if (row == 1) {
             key = NSLocalizedString(@"Search Distance", nil);
 
@@ -174,7 +176,7 @@
                 value = NSLocalizedString(@"Neither", nil);
             }
         }
-
+        cell.placeholder = placeholder;
         [cell setKey:key value:value hideSeparator:NO];
 
         return cell;

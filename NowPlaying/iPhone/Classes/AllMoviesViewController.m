@@ -90,6 +90,7 @@
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller {
     if (self = [super initWithNavigationController:controller]) {
+        self.title = NSLocalizedString(@"Movies", nil);
     }
 
     return self;
@@ -101,8 +102,6 @@
 
     self.segmentedControl = [self setupSegmentedControl];
     self.navigationItem.titleView = segmentedControl;
-
-    self.title = NSLocalizedString(@"Movies", nil);
 }
 
 

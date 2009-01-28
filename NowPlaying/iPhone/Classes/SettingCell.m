@@ -21,6 +21,7 @@
 @property (retain) UILabel* valueLabel;
 @property (retain) UILabel* separatorLine;
 @property (retain) UIFont* cachedFont;
+@property (retain) NSString* value;
 @end
 
 
@@ -30,12 +31,16 @@
 @synthesize valueLabel;
 @synthesize separatorLine;
 @synthesize cachedFont;
+@synthesize placeholder;
+@synthesize value;
 
 - (void) dealloc {
     self.keyLabel = nil;
     self.valueLabel = nil;
     self.separatorLine = nil;
     self.cachedFont = nil;
+    self.placeholder = nil;
+    self.value = nil;
 
     [super dealloc];
 }
@@ -99,11 +104,29 @@
 }
 
 
+- (void) setValueColor {
+    if (value.length > 0) {
+        valueLabel.textColor = [ColorCache commandColor];
+    } else {
+        valueLabel.textColor = [UIColor lightGrayColor];
+    }   
+}
+
+
 - (void) setKey:(NSString*) key
-          value:(NSString*) value
+          value:(NSString*) value_
   hideSeparator:(BOOL) hideSeparator  {
+    self.value = value_;
+    
     keyLabel.text = key;
-    valueLabel.text = value;
+    
+    if (value.length > 0) {
+        valueLabel.text = value;
+    } else {
+        valueLabel.text = placeholder;
+    }
+    
+    [self setValueColor];
 
     [separatorLine removeFromSuperview];
     if (hideSeparator) {
@@ -122,7 +145,7 @@
         valueLabel.textColor = [UIColor whiteColor];
     } else {
         keyLabel.textColor = [UIColor blackColor];
-        valueLabel.textColor = [ColorCache commandColor];
+        [self setValueColor];
     }
 }
 

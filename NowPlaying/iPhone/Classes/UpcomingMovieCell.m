@@ -123,7 +123,7 @@
         self.directorLabel = [self createValueLabel:22];
 
         self.castTitleLabel = [self createTitleLabel:NSLocalizedString(@"Cast:", nil) yPosition:37];
-        self.castLabel = [self createValueLabel:37];
+        self.castLabel = [self createValueLabel:38];
         castLabel.numberOfLines = 0;
 
         self.genreTitleLabel = [self createTitleLabel:NSLocalizedString(@"Genre:", nil) yPosition:67];
