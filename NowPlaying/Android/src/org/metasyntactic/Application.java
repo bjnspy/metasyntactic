@@ -15,6 +15,8 @@ package org.metasyntactic;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
+
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 
@@ -51,20 +53,21 @@ public class Application {
   public static final File upcomingPostersDirectory = new File(upcomingDirectory, "Posters");
   public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
-  private static final Pulser pulser;
+  private static Pulser pulser;
   static {
-    createDirectories();
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        if (NowPlayingControllerWrapper.isRunning()) {
-          final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
-          if (context != null) {
-            context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
+    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+      final Runnable runnable = new Runnable() {
+        public void run() {
+          if (NowPlayingControllerWrapper.isRunning()) {
+            final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+            if (context != null) {
+              context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
+            }
           }
         }
-      }
-    };
-    pulser = new Pulser(runnable, 5);
+      };
+      pulser = new Pulser(runnable, 5);
+    }
   }
 
   private Application() {
@@ -122,7 +125,6 @@ public class Application {
     } else {
       item.delete();
     }
-
   }
 
   public static boolean useKilometers() {

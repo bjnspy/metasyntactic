@@ -1,15 +1,19 @@
 package org.metasyntactic;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,8 +32,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
@@ -116,17 +120,27 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    // Request the progress bar to be shown in the title
-    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    setContentView(R.layout.progressbar_1);
-    NowPlayingControllerWrapper.addActivity(this);
-    getUserLocation();
-    refresh();
-    if (this.movies != null && !this.movies.isEmpty()) {
-      setup();
-      this.isGridSetup = true;
+    // check for sdcard mounted properly
+    if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
+          android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+              NowPlayingActivity.this.finish();
+            }
+          }).show();
+    } else {
+      // Request the progress bar to be shown in the title
+      requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+      setContentView(R.layout.progressbar_1);
+      NowPlayingControllerWrapper.addActivity(this);
+      getUserLocation();
+      refresh();
+      if (this.movies != null && !this.movies.isEmpty()) {
+        setup();
+        this.isGridSetup = true;
+      }
+      showSearchResuts();
     }
-    showSearchResuts();
   }
 
   private void getUserLocation() {
