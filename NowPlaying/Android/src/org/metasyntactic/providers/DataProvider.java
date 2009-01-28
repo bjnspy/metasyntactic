@@ -340,7 +340,7 @@ public class DataProvider {
   private boolean is24HourTime(final List<NowPlaying.ShowtimeProto> showtimes) {
     for (final NowPlaying.ShowtimeProto proto : showtimes) {
       final String time = proto.getTime();
-      if (time.length() != 5 || time.indexOf(":") != 2) {
+      if (time.length() != 5 || time.charAt(2) != ':') {
         return false;
       }
     }
