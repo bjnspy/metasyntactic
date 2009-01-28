@@ -113,6 +113,7 @@ static NSString* NETFLIX_FIRST_NAME                     = @"netflixFirstName";
 static NSString* NETFLIX_LAST_NAME                      = @"netflixLastName";
 static NSString* NETFLIX_CAN_INSTANT_WATCH              = @"netflixCanInstantWatch";
 static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredFormats";
+static NSString* SCREEN_ROTATION_DISABLED               = @"screenRotationDisabled";
 
 
 static NSString** ALL_KEYS[] = {
@@ -180,6 +181,7 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &USE_NORMAL_FONTS,
 &NETFLIX_ENABLED,
 &NETFLIX_CAN_INSTANT_WATCH,
+&SCREEN_ROTATION_DISABLED,
 };
 
 static NSString** STRING_ARRAY_KEYS_TO_MIGRATE[] = {
@@ -525,6 +527,16 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (id<DataProvider>) dataProvider {
     return dataProvider;
+}
+
+
+- (BOOL) screenRotationEnabled {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:SCREEN_ROTATION_DISABLED];
+}
+
+
+- (void) setScreenRotationEnabled:(BOOL) enabled {
+    [[NSUserDefaults standardUserDefaults] setBool:!enabled forKey:SCREEN_ROTATION_DISABLED];
 }
 
 

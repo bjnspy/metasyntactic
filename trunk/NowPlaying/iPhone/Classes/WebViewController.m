@@ -17,6 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
 #import "Application.h"
+#import "Model.h"
 #import "ViewControllerUtilities.h"
 
 #define NAVIGATE_BACK_ITEM 1
@@ -64,6 +65,16 @@
     }
 
     return self;
+}
+
+
+- (Model*) model {
+    return navigationController.model;
+}
+
+
+- (Controller*) controller {
+    return navigationController.controller;
 }
 
 
@@ -171,7 +182,11 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+        return YES;
+    }
+    
+    return self.model.screenRotationEnabled;
 }
 
 

@@ -17,6 +17,7 @@
 #import "AbstractNavigationController.h"
 #import "ApplicationTabBarController.h"
 #import "DVDCell.h"
+#import "Model.h"
 #import "MovieTitleCell.h"
 #import "AppDelegate.h"
 #import "SearchEngine.h"
@@ -111,7 +112,11 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+        return YES;
+    }
+    
+    return self.model.screenRotationEnabled;
 }
 
 

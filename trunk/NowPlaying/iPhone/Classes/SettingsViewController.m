@@ -104,7 +104,7 @@
     if (section == 0) {
         return 1;
     } else {
-        return 9;
+        return 10;
     }
 }
 
@@ -180,7 +180,7 @@
         [cell setKey:key value:value hideSeparator:NO];
 
         return cell;
-    } else if (row >= 5 && row <= 8) {
+    } else if (row >= 5 && row <= 9) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -203,6 +203,10 @@
             on = self.model.prioritizeBookmarks;
             selector = @selector(onPrioritizeBookmarksChanged:);
         } else if (row == 8) {
+            text = NSLocalizedString(@"Screen Rotation", nil);
+            on = self.model.screenRotationEnabled;
+            selector = @selector(onScreenRotationEnabledChanged:);
+        } else if (row == 9) {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
@@ -241,6 +245,11 @@
 
 - (void) onAutoUpdateChanged:(id) sender {
     [self.controller setAutoUpdateLocation:!self.model.autoUpdateLocation];
+}
+
+
+- (void) onScreenRotationEnabledChanged:(id) sender {
+    [self.model setScreenRotationEnabled:!self.model.screenRotationEnabled];
 }
 
 
