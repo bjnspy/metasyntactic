@@ -34,7 +34,7 @@ static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
 }
 
 
-+ (void) update {
++ (void) forceUpdate {
     if (viewController == nil) {
         return;
     }
@@ -60,6 +60,12 @@ static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
 }
 
 
++ (void) tryUpdate {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(forceUpdate) object:nil];
+    [self performSelector:@selector(forceUpdate) withObject:nil afterDelay:2];
+}
+
+
 + (void) flipView:(id) sender {
     if (viewController != nil) {
         [viewController flipView];
@@ -72,7 +78,7 @@ static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
     [viewController release];
     viewController = controller;
     
-    [self update];
+    [self forceUpdate];
 }
 
 
@@ -106,10 +112,13 @@ static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
         if (isVisible) {
             visibleBackgroundTaskCount++;
 
-            if (visibleBackgroundTaskCount == 1) {
-                [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-            }
+//            if (visibleBackgroundTaskCount == 1) {
+//            [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
+//            }
         }
+        
+        [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
+
     }
     [gate unlock];
 }
@@ -123,11 +132,12 @@ static UIViewController<FlippableViewControllerDelegate>* viewController = nil;
         if (isVisible) {
             visibleBackgroundTaskCount--;
 
-            if (visibleBackgroundTaskCount == 0) {
-                [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-            }
+            //if (visibleBackgroundTaskCount == 0) {
+            //[self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
+            //}
         }
       
+        [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
         [AppDelegate minorRefresh];
     }
     [gate unlock];
