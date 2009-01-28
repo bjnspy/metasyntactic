@@ -14,23 +14,26 @@
 package org.metasyntactic.caches.scores;
 
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
+import org.metasyntactic.threading.ThreadingUtilities;
 
 import android.sax.RootElement;
 
+import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
-public class ScoreCache {
+public class ScoreCache extends AbstractCache {
   private final ScoreProvider rottenTomatoesScoreProvider;
   private final ScoreProvider metacriticScoreProvider;
   private final ScoreProvider googleScoreProvider;
   private final ScoreProvider noneScoreProvider;
-  private final NowPlayingModel model;
 
   public ScoreCache(final NowPlayingModel model) {
-    this.model = model;
+    super(model);
     this.rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(model);
     this.metacriticScoreProvider = new MetacriticScoreProvider(model);
     this.googleScoreProvider = new GoogleScoreProvider(model);
@@ -77,9 +80,15 @@ public class ScoreCache {
   }
 
   public void update() {
-    for (final ScoreProvider provider : getProviders()) {
-      provider.update();
-    }
+    final Runnable runnable = new Runnable() {
+      public void run() {
+        for (final ScoreProvider provider : getProviders()) {
+          provider.update();
+        }
+      }
+    };
+
+    ThreadingUtilities.performOnBackgroundThread("Update score providers", runnable, this.lock, true);
   }
 
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
@@ -106,5 +115,10 @@ public class ScoreCache {
     for (final ScoreProvider provider : getProviders()) {
       provider.clearStaleData();
     }
+  }
+
+  @Override
+  protected List<File> getCacheDirectories() {
+    return Collections.emptyList();
   }
 }

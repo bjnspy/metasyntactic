@@ -138,7 +138,7 @@ public class DataProvider {
     }
     start = System.currentTimeMillis();
     final LookupResult result = lookupLocation(location, null);
-    LogUtilities.logTime(DataProvider.class, "Lookup Theaters", start);
+    LogUtilities.logTime(DataProvider.class, "Lookup Location", start);
     if (result == null || isEmpty(result.movies) || isEmpty(result.theaters)) {
       return;
     }
