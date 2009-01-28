@@ -103,12 +103,12 @@ public class DataProvider {
       return;
     }
 
-    //Debug.startMethodTracing("downloadUserLocation", 50000000);
+   // Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
     final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
-    //Debug.stopMethodTracing();
+   // Debug.stopMethodTracing();
 
     if (location == null) {
       // this should be impossible.  we only update if the user has entered a
@@ -291,9 +291,9 @@ public class DataProvider {
 
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
-      //Debug.startMethodTracing("parse_from", 50000000);
+      Debug.startMethodTracing("parse_from", 50000000);
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-      //Debug.stopMethodTracing();
+      Debug.stopMethodTracing();
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
       return null;
