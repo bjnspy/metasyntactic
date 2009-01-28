@@ -14,7 +14,7 @@
 
 #import "RefreshableTableViewController.h"
 
-@interface SettingsViewController : RefreshableTableViewController {
+@interface SettingsViewController : UITableViewController {
 @private
     SettingsNavigationController* navigationController;
 }

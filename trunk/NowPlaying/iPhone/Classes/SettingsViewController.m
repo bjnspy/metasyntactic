@@ -19,6 +19,7 @@
 #import "ColorCache.h"
 #import "CreditsViewController.h"
 #import "DateUtilities.h"
+#import "DVDFilterViewController.h"
 #import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "LocationManager.h"
@@ -69,8 +70,6 @@
         appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
 
         self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
-
-        [self.controller.locationManager addLocationSpinner:self.navigationItem];
     }
 
     return self;
@@ -79,19 +78,19 @@
 
 - (void) viewWillAppear:(BOOL) animated {    
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-
+    [self.controller.locationManager addLocationSpinner:self.navigationItem];
+    
     [self majorRefresh];
 }
 
 
-- (void) majorRefreshWorker {
-    self.tableView.rowHeight = 38;
+- (void) majorRefresh {
     [self.tableView reloadData];
 }
 
 
-- (void) minorRefreshWorker {
-    [self majorRefreshWorker];
+- (void) minorRefresh {
+    [self majorRefresh];
 }
 
 
@@ -103,9 +102,9 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 8;
-    } else {
         return 1;
+    } else {
+        return 9;
     }
 }
 
@@ -122,7 +121,7 @@
 
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
-    if (row >= 0 && row <= 3) {
+    if (row >= 0 && row <= 4) {
         static NSString* reuseIdentifier = @"reuseIdentifier";
         SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
@@ -162,12 +161,24 @@
         } else if (row == 3) {
             key = NSLocalizedString(@"Reviews", nil);
             value = self.model.currentScoreProvider;
+        } else if (row == 4) {
+            key = NSLocalizedString(@"DVD/Blu-ray", nil);
+            
+            if (self.model.dvdMoviesShowBoth) {
+                value = NSLocalizedString(@"Both", nil);
+            } else if (self.model.dvdMoviesShowOnlyDVDs) {
+                value = NSLocalizedString(@"DVD Only", nil);
+            } else if (self.model.dvdMoviesShowOnlyBluray) {
+                value = NSLocalizedString(@"Blu-ray Only", nil);
+            } else {
+                value = NSLocalizedString(@"Neither", nil);
+            }
         }
 
         [cell setKey:key value:value hideSeparator:NO];
 
         return cell;
-    } else if (row >= 4 && row <= 7) {
+    } else if (row >= 5 && row <= 8) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -177,19 +188,19 @@
         NSString* text;
         BOOL on;
         SEL selector;
-        if (row == 4) {
+        if (row == 5) {
             text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
-        } else if (row == 5) {
+        } else if (row == 6) {
             text = NSLocalizedString(@"Netflix", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.netflixEnabled;
             selector = @selector(onNetflixEnabledChanged:);
-        } else if (row == 6) {
+        } else if (row == 7) {
             text = NSLocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.prioritizeBookmarks;
             selector = @selector(onPrioritizeBookmarksChanged:);
-        } else if (row == 7) {
+        } else if (row == 8) {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
@@ -208,7 +219,7 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
           cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         return [self cellForSettingsRow:indexPath.row];
     } else {
         return [self cellForFooterRow:indexPath.row];
@@ -328,15 +339,18 @@
         ScoreProviderViewController* controller =
         [[[ScoreProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
         [navigationController pushViewController:controller animated:YES];
+    } else if (row == 4) {
+        DVDFilterViewController* controller = [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
+        [navigationController pushViewController:controller animated:YES];
     }
 }
 
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         [self didSelectSettingsRow:indexPath.row];
-    } else if (indexPath.section == 1) {
+    } else {
         [self didSelectCreditsRow:indexPath.row];
     }
 }
@@ -355,16 +369,16 @@
 }
 
 
+/*
 - (UIView*)        tableView:(UITableView*) tableView
        viewForFooterInSection:(NSInteger) section {
     return [[[UIView alloc] init] autorelease];
 }
 
-
 - (CGFloat)          tableView:(UITableView*) tableView
       heightForFooterInSection:(NSInteger) section {
     return -5;
 }
-
+ */
 
 @end
