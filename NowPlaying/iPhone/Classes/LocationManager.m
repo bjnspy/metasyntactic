@@ -214,7 +214,7 @@
 
 - (void) addLocationSpinner:(UINavigationItem*) navigationItem_ {
     self.navigationItem = navigationItem_;
-    navigationItem.leftBarButtonItem = buttonItem;
+    navigationItem.rightBarButtonItem = buttonItem;
 }
 
 @end
