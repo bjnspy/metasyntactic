@@ -185,15 +185,16 @@
 }
 
 
-- (void) majorRefresh {
+- (void) majorRefreshWorker {
+    [super majorRefreshWorker];
     [self setupTitle];
 
     self.tableView.rowHeight = 100;
-    [super majorRefresh];
 }
 
 
 - (void) minorRefreshWorker {
+    [super minorRefreshWorker];
     for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
     }

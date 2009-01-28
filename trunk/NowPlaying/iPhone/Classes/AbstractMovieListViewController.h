@@ -38,4 +38,7 @@
 - (Model*) model;
 - (Controller*) controller;
 
+- (void) majorRefreshWorker;
+- (void) minorRefreshWorker;
+
 @end

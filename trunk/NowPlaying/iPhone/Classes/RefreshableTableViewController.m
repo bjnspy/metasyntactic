@@ -16,8 +16,6 @@
 
 @implementation RefreshableTableViewController
 
-@synthesize tableView;
-
 - (void) dealloc {
     [super dealloc];
 }
