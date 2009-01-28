@@ -157,9 +157,9 @@
 		747B4C230EE110D000F6FB1F /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B4C220EE110D000F6FB1F /* AbstractCache.m */; };
 		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
 		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
-		747D96330F303168000B5A68 /* FlippableViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D96320F303168000B5A68 /* FlippableViewControllerDelegate.m */; };
 		747D969F0F3034D0000B5A68 /* TappableActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D969E0F3034D0000B5A68 /* TappableActivityIndicatorView.m */; };
 		747D98CE0F3047E7000B5A68 /* Netflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 747D98CD0F3047E7000B5A68 /* Netflix.png */; };
+		747D9B6C0F30F960000B5A68 /* InfoViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D9B6B0F30F960000B5A68 /* InfoViewControllerDelegate.m */; };
 		747DA10F0EF835A50066B881 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DA10E0EF835A50066B881 /* Queue.m */; };
 		747DAC0F0EF9D9F50066B881 /* NetflixSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC0E0EF9D9F50066B881 /* NetflixSearchViewController.m */; };
 		747DAC590EF9F1B40066B881 /* NetflixSearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 747DAC580EF9F1B40066B881 /* NetflixSearchEngine.m */; };
@@ -643,12 +643,12 @@
 		747CA13A0E8591B600A09E89 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
 		747CA1BF0E8594C300A09E89 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
 		747CA1C00E8594C300A09E89 /* LocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCache.m; sourceTree = "<group>"; };
-		747D96310F303168000B5A68 /* FlippableViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippableViewControllerDelegate.h; sourceTree = "<group>"; };
-		747D96320F303168000B5A68 /* FlippableViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippableViewControllerDelegate.m; sourceTree = "<group>"; };
 		747D969D0F3034D0000B5A68 /* TappableActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableActivityIndicatorView.h; sourceTree = "<group>"; };
 		747D969E0F3034D0000B5A68 /* TappableActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TappableActivityIndicatorView.m; sourceTree = "<group>"; };
 		747D96A40F30354D000B5A68 /* TappableActivityIndicatorViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TappableActivityIndicatorViewDelegate.h; sourceTree = "<group>"; };
 		747D98CD0F3047E7000B5A68 /* Netflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Netflix.png; path = Resources/Netflix.png; sourceTree = "<group>"; };
+		747D9B6A0F30F960000B5A68 /* InfoViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewControllerDelegate.h; sourceTree = "<group>"; };
+		747D9B6B0F30F960000B5A68 /* InfoViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewControllerDelegate.m; sourceTree = "<group>"; };
 		747D9DF80EF714960066B881 /* hi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = hi; path = Resources/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747D9E3E0EF724240066B881 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		747DA10D0EF835A50066B881 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -1262,6 +1262,8 @@
 				74E031770EF4C5D000B2D2BA /* Netflix */,
 				744245BA0E89DA0F00ACDBCF /* Search */,
 				74A863F20E64F255003A2249 /* Settings */,
+				747D9B6A0F30F960000B5A68 /* InfoViewControllerDelegate.h */,
+				747D9B6B0F30F960000B5A68 /* InfoViewControllerDelegate.m */,
 				74EC963D0EE5DCF1004E044E /* AbstractDetailsViewController.h */,
 				74EC963E0EE5DCF1004E044E /* AbstractDetailsViewController.m */,
 				74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */,
@@ -1276,8 +1278,6 @@
 				747E21070EED99B0005B638A /* WebViewController.m */,
 				74616EDB0F15DE7D0004B610 /* ViewControllerUtilities.h */,
 				74616EDC0F15DE7D0004B610 /* ViewControllerUtilities.m */,
-				747D96310F303168000B5A68 /* FlippableViewControllerDelegate.h */,
-				747D96320F303168000B5A68 /* FlippableViewControllerDelegate.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2257,8 +2257,8 @@
 				74D3CC740F2DB73E0007C783 /* Person.m in Sources */,
 				74D3CC770F2DB7520007C783 /* PersonPosterCache.m in Sources */,
 				745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */,
-				747D96330F303168000B5A68 /* FlippableViewControllerDelegate.m in Sources */,
 				747D969F0F3034D0000B5A68 /* TappableActivityIndicatorView.m in Sources */,
+				747D9B6C0F30F960000B5A68 /* InfoViewControllerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -501,7 +501,7 @@
 }
 
 
-- (void) flipView {
+- (void) showInfo {
     UIViewController* controller = [[[SettingsViewController alloc] initWithNavigationController:self.navigationController] autorelease];
     [navigationController pushViewController:controller animated:YES];
 }
