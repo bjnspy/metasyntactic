@@ -103,6 +103,15 @@
 }
 
 
+- (void) setupTitle {
+    if (self.model.dvdMoviesShowOnlyBluray) {
+        self.title = NSLocalizedString(@"Blu-ray", nil);
+    } else {
+        self.title = NSLocalizedString(@"DVD", nil);
+    }
+}
+
+
 - (id) initWithNavigationController:(AbstractNavigationController*) controller {
     if (self = [super initWithNavigationController:controller]) {
         [self setupTitle];
@@ -174,15 +183,6 @@
 
     [cell setMovie:movie owner:self];
     return cell;
-}
-
-
-- (void) setupTitle {
-    if (self.model.dvdMoviesShowOnlyBluray) {
-        self.title = NSLocalizedString(@"Blu-ray", nil);
-    } else {
-        self.title = NSLocalizedString(@"DVD", nil);
-    }
 }
 
 
