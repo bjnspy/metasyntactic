@@ -122,12 +122,12 @@ public class DataProvider {
       return;
     }
     // Log.i("DEBUG", "Started downloadUserLocation trace");
-    Debug.startMethodTracing("downloadUserLocation", 50000000);
+    //Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
     final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
-    Debug.stopMethodTracing();
+    //Debug.stopMethodTracing();
     // Log.i("DEBUG", "Stopped downloadUserLocation trace");
     if (location == null) {
       // this should be impossible. we only update if the user has entered a
@@ -280,18 +280,18 @@ public class DataProvider {
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
       // Log.i("DEBUG", "Started parse from trace");
-      Debug.startMethodTracing("parse_from", 50000000);
+      //Debug.startMethodTracing("parse_from", 50000000);
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-      Debug.stopMethodTracing();
+      //Debug.stopMethodTracing();
       // Log.i("DEBUG", "Stopped parse from trace");
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
       return null;
     }
     // Log.i("DEBUG", "Started processListings trace");
-    Debug.startMethodTracing("processListings", 50000000);
+    //Debug.startMethodTracing("processListings", 50000000);
     final LookupResult result = processTheaterListings(theaterListings, location, theaterNames);
-    Debug.stopMethodTracing();
+    //Debug.stopMethodTracing();
     // Log.i("DEBUG", "Stopped processListings trace");
     return result;
   }

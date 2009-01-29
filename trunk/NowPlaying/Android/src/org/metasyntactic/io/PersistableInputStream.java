@@ -64,15 +64,12 @@ public class PersistableInputStream {
     return this.buffer8.getDouble(0);
   }
 
-  private char[] chars;
   private byte[] bytes;
   private ByteBuffer byteBuffer;
   private CharBuffer charBuffer;
 
   private void initializeBuffers(final int byteCount) {
     this.bytes = new byte[byteCount];
-    this.chars = new char[byteCount / 2];
-
     this.byteBuffer = ByteBuffer.wrap(this.bytes);
     this.charBuffer = this.byteBuffer.asCharBuffer();
   }
@@ -85,14 +82,16 @@ public class PersistableInputStream {
       initializeBuffers(Math.max(byteCount, this.bytes.length * 2));
     }
 
+    this.charBuffer.limit(charCount);
     this.in.read(this.bytes, 0, byteCount);
 
     this.byteBuffer.position(0);
     this.charBuffer.position(0);
 
-    this.charBuffer.get(this.chars, 0, charCount);
+    return this.charBuffer.toString();
+    //this.charBuffer.get(this.chars, 0, charCount);
 
-    return new String(this.chars, 0, charCount);
+    //return new String(this.chars, 0, charCount);
   }
 
   public <T extends Persistable> T readPersistable(final Persistable.Reader<T> reader) throws IOException {
