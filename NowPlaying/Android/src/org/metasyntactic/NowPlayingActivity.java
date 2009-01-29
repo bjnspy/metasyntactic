@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -156,14 +155,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.search = getIntent().getStringExtra("movie");
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
-      if (!matchingMovies.isEmpty() && !this.isGridSetup) {
+      if (!matchingMovies.isEmpty() && this.isGridSetup) {
         this.movies = matchingMovies;
       } else {
         Toast.makeText(this,
-            getResources().getString(R.string.no_results_found_for_string) + this.search,
+            getResources().getString(R.string.no_results_found_for) + this.search,
             Toast.LENGTH_SHORT).show();
       }
     }
+  
   }
 
   @Override
@@ -462,7 +462,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     // Create a new 3D rotation with the supplied parameter
     // The animation listener is used to trigger the next animation
     final Rotate3dAnimation rotation = new Rotate3dAnimation(80, 0, centerX, centerY, 0.0f, true);
-    rotation.setDuration(30);
+    rotation.setDuration(20);
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
