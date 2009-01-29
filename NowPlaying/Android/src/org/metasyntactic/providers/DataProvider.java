@@ -123,14 +123,14 @@ public class DataProvider {
     if (isUpToDate()) {
       return;
     }
-    Log.i("DEBUG", "Started downloadUserLocation trace");
-     Debug.startMethodTracing("downloadUserLocation", 50000000);
+    //Log.i("DEBUG", "Started downloadUserLocation trace");
+    //Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
     final Location location = this.model.getUserLocationCache()
         .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
-     Debug.stopMethodTracing();
-     Log.i("DEBUG", "Stopped downloadUserLocation trace");
+    //Debug.stopMethodTracing();
+    //Log.i("DEBUG", "Stopped downloadUserLocation trace");
     if (location == null) {
       // this should be impossible. we only update if the user has entered a
       // valid location
@@ -283,20 +283,20 @@ public class DataProvider {
     }
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
-      Log.i("DEBUG", "Started parse from trace");
-       Debug.startMethodTracing("parse_from", 50000000);
+      //Log.i("DEBUG", "Started parse from trace");
+      //Debug.startMethodTracing("parse_from", 50000000);
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-       Debug.stopMethodTracing();
-       Log.i("DEBUG", "Stopped parse from trace");
+      //Debug.stopMethodTracing();
+      //Log.i("DEBUG", "Stopped parse from trace");
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
       return null;
     }
-    Log.i("DEBUG", "Started processListings trace");
-     Debug.startMethodTracing("processListings", 50000000);
+    //Log.i("DEBUG", "Started processListings trace");
+    //Debug.startMethodTracing("processListings", 50000000);
     final LookupResult result = processTheaterListings(theaterListings, location, theaterNames);
-     Debug.stopMethodTracing();
-     Log.i("DEBUG", "Stopped processListings trace");
+    //Debug.stopMethodTracing();
+    //Log.i("DEBUG", "Stopped processListings trace");
     return result;
   }
 
