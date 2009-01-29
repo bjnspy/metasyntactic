@@ -27,6 +27,7 @@ import java.util.Date;
 
 public class Performance implements Parcelable, Persistable {
   private static final long serialVersionUID = -3891926085016033570L;
+  /*
   private final static SimpleDateFormat format = new SimpleDateFormat("h:mma");
 
   static {
@@ -34,35 +35,32 @@ public class Performance implements Parcelable, Persistable {
     symbols.setAmPmStrings(new String[]{"am", "pm"});
     format.setDateFormatSymbols(symbols);
   }
+  */
 
-  private final Date time;
+  private final String time;
   private final String url;
 
   public void persistTo(final PersistableOutputStream out) throws IOException {
-    out.writeDate(time);
+    out.writeString(time);
     out.writeString(url);
   }
 
   public static final Reader<Performance> reader = new AbstractPersistable.AbstractReader<Performance>() {
     public Performance read(final PersistableInputStream in) throws IOException {
-      final Date time = in.readDate();
+      final String time = in.readString();
       final String url = in.readString();
 
       return new Performance(time, url);
     }
   };
 
-  public Performance(final Date time, final String url) {
+  public Performance(final String time, final String url) {
     this.time = time;
     this.url = url;
   }
 
-  public Date getTime() {
+  public String getTime() {
     return time;
-  }
-
-  public String getTimeString() {
-    return format.format(getTime());
   }
 
   public String getUrl() {
@@ -80,7 +78,7 @@ public class Performance implements Parcelable, Persistable {
 
   public static final Creator<Performance> CREATOR = new Creator<Performance>() {
     public Performance createFromParcel(final Parcel source) {
-      final Date time = (Date) source.readValue(Date.class.getClassLoader());
+      final String time = source.readString();
       final String url = source.readString();
       return new Performance(time, url);
     }
