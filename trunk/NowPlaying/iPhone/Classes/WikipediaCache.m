@@ -51,7 +51,8 @@
         [ThreadingUtilities backgroundSelector:@selector(updateAddressBackgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
-                                       visible:NO];
+                                       visible:NO
+                                          name:@"UpdateWikipedia"];
     }
 
     return self;

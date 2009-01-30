@@ -294,14 +294,6 @@
 }
 
 
-- (void) updateIndex {
-    [ThreadingUtilities backgroundSelector:@selector(updateIndexBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:gate
-                                   visible:YES];
-}
-
-
 - (NSString*) castFile:(Movie*) movie {
     return [[[Application upcomingCastDirectory] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
@@ -331,7 +323,7 @@
 }
 
 
-- (void) updateIndexBackgroundEntryPoint {
+- (void) updateIndexBackgroundEntryPointWorker {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
 
     if (lastLookupDate != nil) {
@@ -370,25 +362,27 @@
 }
 
 
-- (void) updateDetails {
-    NSAssert([NSThread isMainThread], @"");
-    NSArray* arguments = [NSArray arrayWithObjects:self.movies, self.studioKeys, self.titleKeys, nil];
-    [ThreadingUtilities backgroundSelector:@selector(updateDetailsInBackgroundEntryPoint:)
+- (void) updateIndexBackgroundEntryPoint {
+    [self updateIndexBackgroundEntryPointWorker];
+    
+    [ThreadingUtilities backgroundSelector:@selector(updateDetailsInBackgroundEntryPoint)
                                   onTarget:self
-                                  argument:arguments
                                       gate:gate
-                                   visible:NO];
+                                   visible:NO
+                                      name:@"Upcoming-UpdateDetails"];
 }
 
 
 - (void) update {
-    //return;
     if (model.userAddress.length == 0) {
         return;
     }
 
-    [self updateIndex];
-    [self updateDetails];
+    [ThreadingUtilities backgroundSelector:@selector(updateIndexBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:gate
+                                   visible:YES
+                                      name:@"Upcoming-UpdateIndex"];
 }
 
 
@@ -422,7 +416,6 @@
     self.studioKeysData = [arguments objectAtIndex:2];
     self.titleKeysData = [arguments objectAtIndex:3];
 
-    [self updateDetails];
     [AppDelegate majorRefresh];
 }
 
@@ -565,15 +558,15 @@
 }
 
 
-- (void) updateDetailsInBackgroundEntryPoint:(NSArray*) arguments {
-    NSArray* movies = [arguments objectAtIndex:0];
+- (void) updateDetailsInBackgroundEntryPoint {
+    NSArray* movies = [[self loadMovies] allValues];
     if (movies.count == 0) {
         return;
     }
 
     NSMutableArray* mutableMovies = [NSMutableArray arrayWithArray:movies];
-    NSDictionary* studios = [arguments objectAtIndex:1];
-    NSDictionary* titles = [arguments objectAtIndex:2];
+    NSDictionary* studios = [self loadStudioKeys];
+    NSDictionary* titles = [self loadTitleKeys];
 
     Movie* movie;
     while ((movie = [self getNextMovie:mutableMovies]) != nil) {

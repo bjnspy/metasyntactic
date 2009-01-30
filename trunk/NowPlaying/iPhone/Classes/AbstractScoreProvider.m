@@ -174,26 +174,12 @@
 }
 
 
-- (void) updateScores {
+- (void) update {
     [ThreadingUtilities backgroundSelector:@selector(updateScoresBackgroundEntryPoint)
                                   onTarget:self
                                       gate:gate
-                                   visible:YES];
-}
-
-
-- (void) updateReviews {
-    [ThreadingUtilities backgroundSelector:@selector(updateReviewsBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:self.scores
-                                      gate:gate
-                                   visible:NO];
-}
-
-
-- (void) update {
-    [self updateScores];
-    [self updateReviews];
+                                   visible:YES
+                                      name:[NSString stringWithFormat:@"%@-UpdateScores", [self providerName]]];
 }
 
 
@@ -209,37 +195,36 @@
 }
 
 
-- (void) updateScoresBackgroundEntryPoint {
+- (void) updateScoresBackgroundEntryPointWorker {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
-
+    
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
             return;
         }
     }
-
+    
     NSString* localHash = self.hash;
     NSString* serverHash = [self lookupServerHash];
-
+    
     if (serverHash.length == 0 ||
         [serverHash isEqual:@"0"] ||
         [serverHash isEqual:localHash]) {
         return;
     }
-
+    
     NSDictionary* result = [self lookupServerScores];
     if (result.count == 0) {
         return;
     }
-
+    
     [self saveScores:result hash:serverHash];
-
+    
     [ThreadingUtilities foregroundSelector:@selector(reportResult:withHash:)
                                   onTarget:self
                                   argument:result
                                   argument:serverHash];
 }
-
 
 
 - (void) reportResult:(NSDictionary*) result withHash:(NSString*) hash {
@@ -250,8 +235,6 @@
     self.movieMapData = nil;
     self.movies = nil;
     [AppDelegate majorRefresh:YES];
-
-    [self updateReviews];
 }
 
 
@@ -266,7 +249,8 @@
                                       argument:scores
                                       argument:movies
                                           gate:movieMapLock
-                                       visible:YES];
+                                       visible:YES
+                                          name:@"EnsureMovieMap"];
     }
 }
 
@@ -459,7 +443,6 @@
         return;
     }
 
-
     NSString* title = score.canonicalTitle;
     if (reviews.count == 0) {
         // we got no reviews.  only save that fact if we don't currently have
@@ -528,7 +511,8 @@
 }
 
 
-- (void) updateReviewsBackgroundEntryPoint:(NSDictionary*) scoresMap {
+- (void) updateReviewsBackgroundEntryPoint {
+    NSDictionary* scoresMap = [self loadScores];
     NSMutableArray* scoresWithoutReviews = [NSMutableArray array];
     NSMutableArray* scoresWithReviews = [NSMutableArray array];
 
@@ -548,6 +532,18 @@
 
     [self downloadReviews:scoresWithoutReviews scoresMap:scoresMap];
     [self downloadReviews:scoresWithReviews scoresMap:scoresMap];
+}
+
+
+- (void) updateScoresBackgroundEntryPoint {
+    [self updateScoresBackgroundEntryPointWorker];
+    
+    [ThreadingUtilities backgroundSelector:@selector(updateReviewsBackgroundEntryPoint)
+                                  onTarget:self
+                                  argument:nil
+                                      gate:gate
+                                   visible:NO
+                                      name:[NSString stringWithFormat:@"%@-UpdateReviews", [self providerName]]];
 }
 
 

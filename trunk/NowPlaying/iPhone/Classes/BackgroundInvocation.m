@@ -19,6 +19,7 @@
 @interface BackgroundInvocation()
 @property (retain) id<NSLocking> gate;
 @property BOOL visible;
+@property (copy) NSString* name;
 @end
 
 
@@ -26,10 +27,12 @@
 
 @synthesize gate;
 @synthesize visible;
+@synthesize name;
 
 - (void) dealloc {
     self.gate = nil;
     self.visible = NO;
+    self.name = nil;
 
     [super dealloc];
 }
@@ -39,10 +42,12 @@
              selector:(SEL) selector_
              argument:(id) argument_
                  gate:(id<NSLocking>) gate_
-              visible:(BOOL) visible_ {
+              visible:(BOOL) visible_
+                 name:(NSString*) name_ {
     if (self = [super initWithTarget:target_ selector:selector_ argument:argument_]) {
         self.gate = gate_;
         self.visible = visible_;
+        self.name = name_;
     }
 
     return self;
@@ -53,12 +58,14 @@
                                       selector:(SEL) selector
                                       argument:(id) argument
                                           gate:(id<NSLocking>) gate
-                                       visible:(BOOL) visible {
+                                       visible:(BOOL) visible
+                                          name:(NSString*) name {
     return [[[BackgroundInvocation alloc] initWithTarget:target
                                                 selector:selector
                                                 argument:argument
                                                     gate:gate
-                                                 visible:visible] autorelease];
+                                                 visible:visible
+                                                    name:name] autorelease];
 }
 
 
@@ -68,6 +75,8 @@
 
 
 - (void) runWorker {
+    [[NSThread currentThread] setName:name];
+
     if (visible) {
         [NSThread setThreadPriority:0.25];
     } else {

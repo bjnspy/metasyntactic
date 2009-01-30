@@ -20,18 +20,21 @@
                    argument:(id) argument1
                    argument:(id) argument2
                        gate:(id<NSLocking>) gate
-                    visible:(BOOL) visible;
+                    visible:(BOOL) visible
+                       name:(NSString*) name;
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
                    argument:(id) argument
                        gate:(id<NSLocking>) gate
-                    visible:(BOOL) visible;
+                    visible:(BOOL) visible
+                       name:(NSString*) name;
 
 + (void) backgroundSelector:(SEL) selector
                    onTarget:(id) target
                        gate:(id<NSLocking>) gate
-                    visible:(BOOL) visible;
+                    visible:(BOOL) visible
+                       name:(NSString*) name;
 
 + (void) foregroundSelector:(SEL) selector
                    onTarget:(id) target

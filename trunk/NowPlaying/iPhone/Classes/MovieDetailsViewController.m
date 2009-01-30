@@ -515,7 +515,8 @@ const NSInteger POSTER_TAG = -1;
                                   onTarget:self
                                   argument:posterDownloadLock
                                       gate:nil
-                                   visible:NO];
+                                   visible:NO
+                                      name:@"MovieDetails-DownloadPoster"];
 }
 
 
@@ -1295,7 +1296,8 @@ const NSInteger POSTER_TAG = -1;
                                   onTarget:self.model.largePosterCache
                                   argument:movie
                                       gate:posterDownloadLock
-                                   visible:NO];
+                                   visible:NO
+                                      name:@"DownloadAllPostersForMovie"];
 
     [navigationController showPostersView:movie posterCount:posterCount];
 }
