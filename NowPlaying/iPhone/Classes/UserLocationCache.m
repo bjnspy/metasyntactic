@@ -55,7 +55,8 @@
                                   onTarget:self
                                   argument:userAddress
                                       gate:gate
-                                   visible:YES];
+                                   visible:YES
+                                      name:@"UpdateUserAddressLocation"];
 }
 
 

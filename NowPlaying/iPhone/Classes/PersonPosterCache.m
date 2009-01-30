@@ -60,7 +60,8 @@
         [ThreadingUtilities backgroundSelector:@selector(updatePostersBackgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
-                                       visible:NO];
+                                       visible:NO
+                                          name:@"PersonPoster-Update"];
     }
 
     return self;

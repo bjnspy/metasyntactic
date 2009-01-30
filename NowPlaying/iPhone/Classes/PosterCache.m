@@ -67,7 +67,8 @@
                                   onTarget:self
                                   argument:[NSArray arrayWithArray:movies]
                                       gate:gate
-                                   visible:NO];
+                                   visible:NO
+                                      name:@"UpdatePosterCache"];
 }
 
 

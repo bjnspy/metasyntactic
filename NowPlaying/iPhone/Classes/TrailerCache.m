@@ -85,7 +85,8 @@
                                   onTarget:self
                                   argument:movies
                                       gate:gate
-                                   visible:NO];
+                                   visible:NO
+                                      name:@"UpdateTrailers"];
 }
 
 

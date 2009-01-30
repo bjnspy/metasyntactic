@@ -51,7 +51,8 @@
         [ThreadingUtilities backgroundSelector:@selector(updateAddressBackgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
-                                       visible:NO];
+                                       visible:NO
+                                          name:@"Amazon-Update"];
     }
 
     return self;
@@ -122,6 +123,7 @@
 
 
 - (void) updateAddressBackgroundEntryPoint {
+    NSAssert(![NSThread isMainThread], nil);
     while (YES) {
         Movie* movie = nil;
         [gate lock];

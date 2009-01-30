@@ -80,7 +80,7 @@
 - (void) reportQueueAndModifyQueueError:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
 
-    NSLog(@"Reporting queue and success to NetflixModifyQueueDelegate.", nil);
+    NSLog(@"Reporting queue and failure to NetflixModifyQueueDelegate.", nil);
 
     [self reportQueue:[arguments objectAtIndex:0]];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:1];
@@ -237,7 +237,8 @@
                                   onTarget:self
                                   argument:arguments
                                       gate:gate
-                                   visible:YES];
+                                   visible:YES
+                                      name:@"MoveMovieToTopOfQueue"];
 }
 
 
@@ -253,7 +254,8 @@
                                   onTarget:self
                                   argument:arguments
                                       gate:gate
-                                   visible:YES];
+                                   visible:YES
+                                      name:@"ModifyQueue"];
 }
 
 
@@ -276,7 +278,8 @@
                                   onTarget:self
                                   argument:arguments
                                       gate:gate
-                                   visible:YES];
+                                   visible:YES
+                                      name:@"ChangeRating"];
 }
 
 
@@ -422,7 +425,8 @@
                                   onTarget:self
                                   argument:arguments
                                       gate:gate
-                                   visible:YES];
+                                   visible:YES
+                                      name:@"AddMovieToQueue"];
 }
 
 

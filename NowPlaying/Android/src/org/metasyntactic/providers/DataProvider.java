@@ -280,18 +280,18 @@ public class DataProvider {
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
       // Log.i("DEBUG", "Started parse from trace");
-      //Debug.startMethodTracing("parse_from", 50000000);
+      Debug.startMethodTracing("parse_from", 50000000);
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-      //Debug.stopMethodTracing();
+      Debug.stopMethodTracing();
       // Log.i("DEBUG", "Stopped parse from trace");
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
       return null;
     }
     // Log.i("DEBUG", "Started processListings trace");
-    //Debug.startMethodTracing("processListings", 50000000);
+    Debug.startMethodTracing("processListings", 50000000);
     final LookupResult result = processTheaterListings(theaterListings, location, theaterNames);
-    //Debug.stopMethodTracing();
+    Debug.stopMethodTracing();
     // Log.i("DEBUG", "Stopped processListings trace");
     return result;
   }
@@ -358,10 +358,6 @@ public class DataProvider {
     return result;
   }
 
-  private boolean hasTimeSuffix(final String time) {
-    return time.endsWith("am") || time.endsWith("pm");
-  }
-
   private boolean is24HourTime(final List<NowPlaying.ShowtimeProto> showtimes) {
     for (final NowPlaying.ShowtimeProto proto : showtimes) {
       final String time = proto.getTime();
@@ -370,14 +366,6 @@ public class DataProvider {
       }
     }
     return true;
-  }
-
-  private Time createDate(final int hour, final int minute) {
-    if (hour >= 12) {
-      return new Time(hour - 12, minute, false);
-    } else {
-      return new Time(hour, minute, true);
-    }
   }
 
   private List<String> processTimes(final List<NowPlaying.ShowtimeProto> showtimes) {

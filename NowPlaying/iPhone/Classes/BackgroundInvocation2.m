@@ -35,12 +35,14 @@
              argument:(id) argument1_
              argument:(id) argument2_
                  gate:(id<NSLocking>) gate_
-              visible:(BOOL) visible_ {
+              visible:(BOOL) visible_
+                 name:(NSString*) name_ {
     if (self = [super initWithTarget:target_
                             selector:selector_
                             argument:argument1_
                                 gate:gate_
-                             visible:visible_]) {
+                             visible:visible_
+                                name:name_]) {
         self.argument2 = argument2_;
     }
 
@@ -53,13 +55,15 @@
                                        argument:(id) argument1
                                        argument:(id) argument2
                                            gate:(id<NSLocking>) gate
-                                        visible:(BOOL) visible {
+                                        visible:(BOOL) visible
+                                           name:(NSString*) name {
     return [[[BackgroundInvocation2 alloc] initWithTarget:target
                                                  selector:selector
                                                  argument:argument1
                                                  argument:argument2
                                                      gate:gate
-                                                  visible:visible] autorelease];
+                                                  visible:visible
+                                                     name:name] autorelease];
 }
 
 

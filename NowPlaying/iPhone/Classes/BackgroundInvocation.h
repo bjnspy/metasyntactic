@@ -18,18 +18,21 @@
 @protected
     id<NSLocking> gate;
     BOOL visible;
+    NSString* name;
 }
 
 - (id) initWithTarget:(id) target
              selector:(SEL) selector
              argument:(id) argument
                  gate:(id<NSLocking>) gate
-              visible:(BOOL) visible;
+              visible:(BOOL) visible
+                 name:(NSString*) name;
 
 + (BackgroundInvocation*) invocationWithTarget:(id) target
                                       selector:(SEL) selector
                                       argument:(id) argument
                                           gate:(id<NSLocking>) gate
-                                       visible:(BOOL) visible;
+                                       visible:(BOOL) visible
+                                          name:(NSString*) name;
 
 @end

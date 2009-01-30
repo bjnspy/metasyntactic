@@ -111,10 +111,6 @@ static UIViewController<InfoViewControllerDelegate>* viewController = nil;
         
         if (isVisible) {
             visibleBackgroundTaskCount++;
-
-//            if (visibleBackgroundTaskCount == 1) {
-//            [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-//            }
         }
         
         [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
@@ -131,10 +127,6 @@ static UIViewController<InfoViewControllerDelegate>* viewController = nil;
 
         if (isVisible) {
             visibleBackgroundTaskCount--;
-
-            //if (visibleBackgroundTaskCount == 0) {
-            //[self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-            //}
         }
       
         [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];

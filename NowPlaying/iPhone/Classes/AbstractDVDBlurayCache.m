@@ -158,30 +158,17 @@
 }
 
 
-- (void) updateMovies {
-    [ThreadingUtilities backgroundSelector:@selector(updateMoviesBackgroundEntryPoint)
-                                  onTarget:self
-                                      gate:gate
-                                   visible:YES];
-}
-
-
-- (void) updateDetails {
-    [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:self.movies
-                                      gate:gate
-                                   visible:NO];
-}
-
-
 - (void) update {
     if (model.userAddress.length == 0) {
         return;
     }
 
-    [self updateMovies];
-    [self updateDetails];
+    
+    [ThreadingUtilities backgroundSelector:@selector(updateMoviesBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:gate
+                                   visible:YES
+                                      name:@"DVD/Blu-ray-UpdateMovies"];
 }
 
 
@@ -357,7 +344,7 @@
 }
 
 
-- (void) updateMoviesBackgroundEntryPoint {
+- (void) updateMoviesBackgroundEntryPointWorker {
     NSDate* lastUpdateDate = [FileUtilities modificationDate:self.moviesFile];
     if (lastUpdateDate != nil) {
         if (ABS(lastUpdateDate.timeIntervalSinceNow) < (3 * ONE_DAY)) {
@@ -386,6 +373,18 @@
 }
 
 
+- (void) updateMoviesBackgroundEntryPoint {
+    [self updateMoviesBackgroundEntryPointWorker];
+    
+    [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
+                                  onTarget:self
+                                  argument:nil
+                                      gate:gate
+                                   visible:NO
+                                      name:@"DVD/Blu-ray-UpdateDetails"];
+}
+
+
 - (void) saveBookmarks {
     [model setBookmarkedDVD:self.bookmarks.allValues];
 }
@@ -411,7 +410,6 @@
     [self saveBookmarks];
 
     [self setMovies:movies];
-    [self updateDetails];
     [AppDelegate majorRefresh];
 }
 
@@ -484,8 +482,8 @@
 }
 
 
-- (void) updateDetailsBackgroundEntryPoint:(NSArray*) movies {
-    NSMutableArray* videos = [NSMutableArray arrayWithArray:movies];
+- (void) updateDetailsBackgroundEntryPoint {
+    NSMutableArray* videos = [NSMutableArray arrayWithArray:[self loadMovies]];
 
     Movie* movie;
     while ((movie = [self getNextMovie:videos]) != nil) {

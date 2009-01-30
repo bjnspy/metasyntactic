@@ -82,7 +82,7 @@
     [NSString stringWithFormat:
      NSLocalizedString(@"%@ does not store your Netflix username and password.\n\n"
                        @"We will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended "
-                       @"the first time you use %@.", nil), [Application name], [Application name]];
+                       @"the first time you use Netflix on %@.", nil), [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];
@@ -165,7 +165,8 @@
     [ThreadingUtilities backgroundSelector:@selector(requestAuthorizationToken)
                                   onTarget:self
                                       gate:nil
-                                   visible:YES];
+                                   visible:YES
+                                      name:@"RequestAuthorizationToken"];
 }
 
 
@@ -246,7 +247,7 @@
 }
 
 
-- (void)viewDidAppear:(BOOL) animated {
+- (void) viewDidAppear:(BOOL) animated {
     if (!didShowBrowser) {
         return;
     }
@@ -260,7 +261,8 @@
     [ThreadingUtilities backgroundSelector:@selector(requestAccessToken)
                                   onTarget:self
                                       gate:nil
-                                   visible:YES];
+                                   visible:YES
+                                      name:@"RequestAccessToken"];
 }
 
 - (void) requestAccessToken {
