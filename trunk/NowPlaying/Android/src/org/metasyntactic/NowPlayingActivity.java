@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,12 +22,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 
 import org.metasyntactic.data.Movie;
@@ -34,9 +36,11 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.views.CustomGridView;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
+import org.metasyntactic.views.FastScrollGridView.ScrollFade;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -49,22 +53,23 @@ import java.util.List;
 import java.util.Map;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
-  private GridView grid;
+  private CustomGridView grid;
   private Intent intent;
   private Movie selectedMovie;
   private PostersAdapter postersAdapter;
   private boolean gridAnimationEnded;
   private boolean isGridSetup;
-  private List<Movie> movies;
+  private static List<Movie> movies;
   private int lastPosition;
   private String search;
   private final Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> scoreMovieSectionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> scoreMoviePositionsMap = new HashMap<Integer, Integer>();
-  private final Map<Integer, SoftReference<Bitmap>> postersMap = new HashMap<Integer, SoftReference<Bitmap>>();
+  private static final Map<Integer, SoftReference<Bitmap>> postersMap = new HashMap<Integer, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
+  /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
@@ -90,14 +95,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
-    clearBitmaps();
-    mTask = new LoadPostersTask().execute(null);
+    // clearBitmaps();
     if (this.postersAdapter != null) {
       populateAlphaMovieSectionsAndPositions();
       populateScoreMovieSectionsAndPositions();
       FastScrollGridView.getSections();
       this.postersAdapter.refreshMovies();
     }
+    mTask = new LoadPostersTask().execute(null);
   }
 
   private List<Movie> getMatchingMoviesList(final String search2) {
@@ -158,12 +163,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       if (!matchingMovies.isEmpty() && this.isGridSetup) {
         this.movies = matchingMovies;
       } else {
-        Toast.makeText(this,
-            getResources().getString(R.string.no_results_found_for) + this.search,
+        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search,
             Toast.LENGTH_SHORT).show();
       }
     }
-  
   }
 
   @Override
@@ -172,6 +175,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
       mTask.cancel(true);
     }
+    clearBitmaps();
     super.onDestroy();
   }
 
@@ -179,7 +183,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   protected void onPause() {
     unregisterReceiver(this.broadcastReceiver);
     unregisterReceiver(this.databroadcastReceiver);
-    clearBitmaps();
     super.onPause();
   }
 
@@ -223,7 +226,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     getAlphabet(this);
     getScores(this);
     setContentView(R.layout.moviegrid_anim);
-    this.grid = (GridView) findViewById(R.id.grid);
+    this.grid = (CustomGridView) findViewById(R.id.grid);
+    TaskManager taskManager = new TaskManager();
+    this.grid.setOnScrollListener(taskManager);
     this.grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position,
           final long id) {
@@ -315,7 +320,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
       final Movie movie = NowPlayingActivity.this.movies.get(position
           % NowPlayingActivity.this.movies.size());
-      NowPlayingControllerWrapper.prioritizeMovie(movie);
+      // NowPlayingControllerWrapper.prioritizeMovie(movie);
       holder.title.setText(movie.getDisplayTitle());
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
@@ -326,16 +331,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
       if (bitmap != null) {
         holder.poster.setImageBitmap(bitmap);
-      } else {
-        final byte[] bytes = NowPlayingControllerWrapper.getPoster(movie);
-        if (bytes.length > 0) {
-          bitmap = createBitmap(position, bytes);
-          if (bitmap != null) {
-            holder.poster.setImageBitmap(bitmap);
-            NowPlayingActivity.this.postersMap.put(position, new SoftReference<Bitmap>(bitmap));
-          }
-        }
-      }
+      } /*
+         * else { final byte[] bytes =
+         * NowPlayingControllerWrapper.getPoster(movie); if (bytes.length > 0) {
+         * bitmap = createBitmap(position, bytes); if (bitmap != null) {
+         * holder.poster.setImageBitmap(bitmap);
+         * NowPlayingActivity.this.postersMap.put(position, new SoftReference<Bitmap>(bitmap)); } } }
+         */
       convertView
           .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       bitmap = null;
@@ -483,14 +485,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private class LoadPostersTask extends UserTask<Void, Void, Void> {
     @Override
     public Void doInBackground(Void... params) {
-      // TODO Auto-generated method stub
       Bitmap bitmap = null;
       for (int i = 0; i < movies.size(); i++) {
-        final SoftReference<Bitmap> reference = NowPlayingActivity.this.postersMap.get(i);
+        final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(i);
         if (reference != null) {
           bitmap = reference.get();
         }
-        if (bitmap == null) {
+        if (reference == null || bitmap == null) {
           File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movies
               .get(i));
           if (file != null) {
@@ -498,7 +499,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             if (bytes != null && bytes.length > 0) {
               bitmap = createBitmap(i, bytes);
               if (bitmap != null) {
-                NowPlayingActivity.this.postersMap.put(i, new SoftReference<Bitmap>(bitmap));
+                NowPlayingActivity.postersMap.put(i, new SoftReference<Bitmap>(bitmap));
               }
             }
           }
@@ -506,9 +507,17 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
       return null;
     }
+
+    @Override
+    public void onPostExecute(Void result) {
+      // TODO Auto-generated method stub
+      super.onPostExecute(result);
+      if (NowPlayingActivity.this.postersAdapter != null)
+        NowPlayingActivity.this.postersAdapter.refreshMovies();
+    }
   }
 
-  private Bitmap createBitmap(int position, final byte[] bytes) {
+  private static Bitmap createBitmap(int position, final byte[] bytes) {
     final BitmapFactory.Options options = new BitmapFactory.Options();
     final int width = 90;
     final int height = 125;
@@ -524,5 +533,23 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     options.inSampleSize = (int) scale;
     final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     return bitmap;
+  }
+
+  private class TaskManager implements OnScrollListener {
+    private boolean isTaskRunning;
+
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+      if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && !isTaskRunning) {
+        NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
+        isTaskRunning = true;
+      } else {
+        NowPlayingActivity.this.mTask.cancel(true);
+        isTaskRunning = false;
+      }
+    }
+
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+        int totalItemCount) {
+    }
   }
 }
