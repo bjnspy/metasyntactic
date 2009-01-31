@@ -16,11 +16,13 @@ import android.widget.AbsListView;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.HeaderViewListAdapter;
 import android.widget.GridView;
+import android.widget.HeaderViewListAdapter;
 import android.widget.AbsListView.OnScrollListener;
 
 import org.metasyntactic.R;
+import org.metasyntactic.UserTask;
+import org.metasyntactic.NowPlayingActivity;
 
 /**
  * FastScrollView is meant for embedding {@link GridView}s that contain a large

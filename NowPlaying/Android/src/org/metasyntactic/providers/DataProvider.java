@@ -280,18 +280,18 @@ public class DataProvider {
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
       // Log.i("DEBUG", "Started parse from trace");
-      Debug.startMethodTracing("parse_from", 50000000);
+     // Debug.startMethodTracing("parse_from", 50000000);
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-      Debug.stopMethodTracing();
+     // Debug.stopMethodTracing();
       // Log.i("DEBUG", "Stopped parse from trace");
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
       return null;
     }
     // Log.i("DEBUG", "Started processListings trace");
-    Debug.startMethodTracing("processListings", 50000000);
+  //  Debug.startMethodTracing("processListings", 50000000);
     final LookupResult result = processTheaterListings(theaterListings, location, theaterNames);
-    Debug.stopMethodTracing();
+  //  Debug.stopMethodTracing();
     // Log.i("DEBUG", "Stopped processListings trace");
     return result;
   }

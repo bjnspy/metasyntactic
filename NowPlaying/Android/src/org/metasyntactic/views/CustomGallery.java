@@ -34,6 +34,7 @@ public class CustomGallery extends Gallery {
   public CustomGallery(final Context context, final AttributeSet attrs) {
     super(context, attrs);
   }
+  
 
   @Override public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float velocityX, final float velocityY) {
     if (velocityX > 0) {

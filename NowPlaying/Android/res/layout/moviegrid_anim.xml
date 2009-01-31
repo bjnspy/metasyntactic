@@ -12,11 +12,12 @@
     android:paddingRight="0px"
     android:orientation="vertical">
     <org.metasyntactic.views.FastScrollGridView
+        android:id="@+id/fastScroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="bottom"
         android:layoutAnimation="@anim/layout_top_to_bottom_slide">
-        <GridView
+        <org.metasyntactic.views.CustomGridView
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/grid"
             android:layout_width="fill_parent"

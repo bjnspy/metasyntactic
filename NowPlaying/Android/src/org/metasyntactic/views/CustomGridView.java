@@ -17,26 +17,25 @@ package org.metasyntactic.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.AbsListView;
 import android.widget.GridView;
+import android.widget.AbsListView.OnScrollListener;
+
+import org.metasyntactic.NowPlayingActivity;
 
 /**
  * A gallery of the different styles of buttons.
  */
 public class CustomGridView extends GridView {
-  public CustomGridView(final Context context) {
+  public CustomGridView(Context context) {
     super(context);
-    setFocusableInTouchMode(true);
   }
 
-  public CustomGridView(final Context context, final AttributeSet attrs, final int defStyle) {
+  public CustomGridView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    setFocusableInTouchMode(true);
   }
 
-  public CustomGridView(final Context context, final AttributeSet attrs) {
+  public CustomGridView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    setFocusable(true);
-    setFocusableInTouchMode(true);
   }
-  
 }
