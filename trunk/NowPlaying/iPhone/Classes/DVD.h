@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface DVD : NSObject {
+@interface DVD : NSObject<NSCopying, NSCoding> {
 @private
     NSString* canonicalTitle;
     NSString* price;

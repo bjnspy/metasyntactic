@@ -273,7 +273,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) initializeNetflixStatusCells {
-    NSArray* statuses = [self.model.netflixCache statusesForMovie:movie];
+    NSArray* statuses = [self.model.netflixCache statusesForMovie:netflixMovie];
 
     NSMutableArray* cells = [NSMutableArray array];
     for (NSInteger i = 0; i < statuses.count; i++) {
@@ -515,8 +515,7 @@ const NSInteger POSTER_TAG = -1;
                                   onTarget:self
                                   argument:posterDownloadLock
                                       gate:nil
-                                   visible:NO
-                                      name:@"MovieDetails-DownloadPoster"];
+                                   visible:NO];
 }
 
 
@@ -1296,8 +1295,7 @@ const NSInteger POSTER_TAG = -1;
                                   onTarget:self.model.largePosterCache
                                   argument:movie
                                       gate:posterDownloadLock
-                                   visible:NO
-                                      name:@"DownloadAllPostersForMovie"];
+                                   visible:NO];
 
     [navigationController showPostersView:movie posterCount:posterCount];
 }

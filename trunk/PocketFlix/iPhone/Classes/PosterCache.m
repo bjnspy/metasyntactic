@@ -32,15 +32,21 @@
 
 @interface PosterCache()
 @property (retain) LinkedSet* prioritizedMovies;
+@property (retain) LinkedSet* moviesWithLinks;
+@property (retain) LinkedSet* moviesWithoutLinks;
 @end
 
 
 @implementation PosterCache
 
 @synthesize prioritizedMovies;
+@synthesize moviesWithLinks;
+@synthesize moviesWithoutLinks;
 
 - (void) dealloc {
     self.prioritizedMovies = nil;
+    self.moviesWithLinks = nil;
+    self.moviesWithoutLinks = nil;
 
     [super dealloc];
 }
@@ -49,6 +55,13 @@
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
+        self.moviesWithLinks = [LinkedSet set];
+        self.moviesWithoutLinks = [LinkedSet set];
+
+        [ThreadingUtilities backgroundSelector:@selector(backgroundEntryPoint)
+                                      onTarget:self
+                                          gate:nil
+                                       visible:NO];
     }
 
     return self;
@@ -61,11 +74,20 @@
 
 
 - (void) update:(NSArray*) movies {
-    [ThreadingUtilities backgroundSelector:@selector(backgroundEntryPoint:)
-                                  onTarget:self
-                                  argument:[NSArray arrayWithArray:movies]
-                                      gate:gate
-                                   visible:NO];
+    [gate lock];
+    {
+        // movies with poster links download faster. try them first.
+        for (Movie* movie in movies) {
+            if (movie.poster.length == 0) {
+                [moviesWithoutLinks addObject:movie];
+            } else {
+                [moviesWithLinks addObject:movie];
+            }
+        }
+
+        [gate signal];
+    }
+    [gate unlock];
 }
 
 
@@ -146,60 +168,35 @@
 }
 
 
-- (Movie*) getNextMovie:(NSMutableArray*) movies {
-    Movie* movie;
-
-    while ((movie = [prioritizedMovies removeLastObjectAdded]) != nil) {
-        if (![FileUtilities fileExists:[self posterFilePath:movie]]) {
-            return movie;
-        }
-    }
-
-    if (movies.count > 0) {
-        movie = [[[movies lastObject] retain] autorelease];
-        [movies removeLastObject];
-        return movie;
-    }
-
-    return nil;
-}
-
-
-- (void) downloadPosters:(NSMutableArray*) movies
-              postalCode:(NSString*) postalCode {
-    Movie* movie;
-    while ((movie = [self getNextMovie:movies]) != nil) {
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        {
-            [self downloadPoster:movie postalCode:postalCode];
-        }
-        [autoreleasePool release];
-    }
-}
-
-
 - (void) prioritizeMovie:(Movie*) movie {
-    [prioritizedMovies addObject:movie];
+    [gate lock];
+    {
+        [prioritizedMovies addObject:movie];
+        [gate signal];
+    }
+    [gate unlock];
 }
 
 
-- (void) backgroundEntryPoint:(NSArray*) movies {
-    // movies with poster links download faster. try them first.
-    NSMutableArray* moviesWithPosterLinks = [NSMutableArray array];
-    NSMutableArray* moviesWithoutPosterLinks = [NSMutableArray array];
+- (void) backgroundEntryPoint {
+    while (YES) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            Movie* movie = nil;
+            [gate lock];
+            {
+                while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
+                       (movie = [moviesWithLinks removeLastObjectAdded]) == nil &&
+                       (movie = [moviesWithoutLinks removeLastObjectAdded]) == nil) {
+                    [gate wait];
+                }
+            }
+            [gate unlock];
 
-    for (Movie* movie in movies) {
-        if (movie.poster.length == 0) {
-            [moviesWithoutPosterLinks addObject:movie];
-        } else {
-            [moviesWithPosterLinks addObject:movie];
+            [self downloadPoster:movie postalCode:@"10009"];
         }
+        [pool release];
     }
-
-    NSString* postalCode = @"10009";
-
-    [self downloadPosters:moviesWithPosterLinks postalCode:postalCode];
-    [self downloadPosters:moviesWithoutPosterLinks postalCode:postalCode];
 }
 
 

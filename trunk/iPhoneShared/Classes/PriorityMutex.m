@@ -60,7 +60,7 @@
     {
         highTaskRunningCount--;
         if (highTaskRunningCount == 0) {
-            // wake up all a low pri thread that is waiting
+            // wake up a low pri thread that is waiting
             // don't wake them all up as we don't want to
             // move right back into a condition where all the
             // low pri threads are consuming all the resources
@@ -85,7 +85,7 @@
 - (void) unlockLow {
     [gate lock];
     {
-        // wake up other low pri hreads that might have been waiting.
+        // wake up another low pri thread that might have been waiting.
         [gate signal];
     }
     [gate unlock];

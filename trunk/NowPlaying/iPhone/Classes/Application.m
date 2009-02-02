@@ -159,8 +159,7 @@ static DifferenceEngine* differenceEngine = nil;
     [ThreadingUtilities backgroundSelector:@selector(emptyTrashBackgroundEntryPoint)
                                   onTarget:self
                                       gate:nil
-                                   visible:NO
-                                      name:@"EmptyTrash"];
+                                   visible:NO];
 }
 
 

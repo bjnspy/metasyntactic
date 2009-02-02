@@ -68,6 +68,11 @@
 
 
 - (void) runWorker {
+    NSString* className = NSStringFromClass([target class]);
+    NSString* selectorName = NSStringFromSelector(selector);
+    NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
+    [[NSThread currentThread] setName:name];
+
     if (visible) {
         [NSThread setThreadPriority:0.25];
     } else {

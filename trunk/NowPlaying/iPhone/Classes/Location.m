@@ -77,6 +77,16 @@ property_definition(country);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithLatitude:[coder decodeDoubleForKey:latitude_key]
+                        longitude:[coder decodeDoubleForKey:longitude_key] address:[coder decodeObjectForKey:address_key]
+                             city:[coder decodeObjectForKey:city_key]
+                            state:[coder decodeObjectForKey:state_key]
+                       postalCode:[coder decodeObjectForKey:postalCode_key]
+                          country:[coder decodeObjectForKey:country_key]];
+}
+
+
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary {
     return [self locationWithLatitude:[[dictionary objectForKey:latitude_key] doubleValue]
                             longitude:[[dictionary objectForKey:longitude_key] doubleValue]
@@ -108,6 +118,17 @@ property_definition(country);
 + (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude {
     return [Location locationWithLatitude:latitude longitude:longitude address:nil city:nil state:nil postalCode:nil country:nil];
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeDouble:latitude    forKey:latitude_key];
+    [coder encodeDouble:longitude   forKey:longitude_key];
+    [coder encodeObject:address     forKey:address_key];
+    [coder encodeObject:city        forKey:city_key];
+    [coder encodeObject:state       forKey:state_key];
+    [coder encodeObject:postalCode  forKey:postalCode_key];
+    [coder encodeObject:country     forKey:country_key];
 }
 
 

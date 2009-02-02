@@ -56,6 +56,14 @@ property_definition(additionalFields);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
+                               name:[coder decodeObjectForKey:name_key]
+                          biography:[coder decodeObjectForKey:biography_key]
+                   additionalFields:[coder decodeObjectForKey:additionalFields_key]];
+}
+
+
 + (Person*) personWithIdentifier:(NSString*) identifier
                             name:(NSString*) name
                        biography:(NSString*) biography
@@ -82,6 +90,14 @@ property_definition(additionalFields);
     [result setObject:biography         forKey:biography_key];
     [result setObject:additionalFields  forKey:additionalFields_key];
     return result;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:identifier        forKey:identifier_key];
+    [coder encodeObject:name              forKey:name_key];
+    [coder encodeObject:biography         forKey:biography_key];
+    [coder encodeObject:additionalFields  forKey:additionalFields_key];
 }
 
 

@@ -60,6 +60,14 @@ property_definition(saved);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithFeed:[coder decodeObjectForKey:feed_key]
+                         etag:[coder decodeObjectForKey:etag_key]
+                       movies:[coder decodeObjectForKey:movies_key]
+                        saved:[coder decodeObjectForKey:saved_key]];
+}
+
+
 + (Queue*) queueWithFeed:(Feed*) feed
                     etag:(NSString*) etag
                   movies:(NSArray*) movies
@@ -81,11 +89,19 @@ property_definition(saved);
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:feed.dictionary forKey:feed_key];
-    [result setObject:etag forKey:etag_key];
-    [result setObject:[Movie encodeArray:movies] forKey:movies_key];
-    [result setObject:[Movie encodeArray:saved] forKey:saved_key];
+    [result setObject:feed.dictionary               forKey:feed_key];
+    [result setObject:etag                          forKey:etag_key];
+    [result setObject:[Movie encodeArray:movies]    forKey:movies_key];
+    [result setObject:[Movie encodeArray:saved]     forKey:saved_key];
     return result;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:feed    forKey:feed_key];
+    [coder encodeObject:etag    forKey:etag_key];
+    [coder encodeObject:movies  forKey:movies_key];
+    [coder encodeObject:saved   forKey:saved_key];
 }
 
 

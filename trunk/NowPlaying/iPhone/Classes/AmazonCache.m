@@ -51,8 +51,7 @@
         [ThreadingUtilities backgroundSelector:@selector(updateAddressBackgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
-                                       visible:NO
-                                          name:@"Amazon-Update"];
+                                       visible:NO];
     }
 
     return self;

@@ -77,7 +77,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     [self majorRefresh];
 }

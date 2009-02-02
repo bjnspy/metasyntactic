@@ -34,4 +34,6 @@
 
 - (void) removeAllObjects;
 
+- (NSInteger) count;
+
 @end

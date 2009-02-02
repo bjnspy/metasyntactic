@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Performance : NSObject {
+@interface Performance : NSObject<NSCopying, NSCoding> {
 @private
     NSDate* time;
     NSString* url;

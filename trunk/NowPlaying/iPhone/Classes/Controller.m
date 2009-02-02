@@ -147,8 +147,7 @@
     [ThreadingUtilities backgroundSelector:@selector(determineLocationBackgroundEntryPoint)
                                   onTarget:self
                                       gate:determineLocationLock
-                                   visible:YES
-                                      name:@"DetermineLocation"];
+                                   visible:YES];
 }
 
 

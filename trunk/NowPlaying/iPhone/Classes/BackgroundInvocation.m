@@ -19,7 +19,6 @@
 @interface BackgroundInvocation()
 @property (retain) id<NSLocking> gate;
 @property BOOL visible;
-@property (copy) NSString* name;
 @end
 
 
@@ -27,12 +26,10 @@
 
 @synthesize gate;
 @synthesize visible;
-@synthesize name;
 
 - (void) dealloc {
     self.gate = nil;
     self.visible = NO;
-    self.name = nil;
 
     [super dealloc];
 }
@@ -42,12 +39,10 @@
              selector:(SEL) selector_
              argument:(id) argument_
                  gate:(id<NSLocking>) gate_
-              visible:(BOOL) visible_
-                 name:(NSString*) name_ {
+              visible:(BOOL) visible_ {
     if (self = [super initWithTarget:target_ selector:selector_ argument:argument_]) {
         self.gate = gate_;
         self.visible = visible_;
-        self.name = name_;
     }
 
     return self;
@@ -58,14 +53,12 @@
                                       selector:(SEL) selector
                                       argument:(id) argument
                                           gate:(id<NSLocking>) gate
-                                       visible:(BOOL) visible
-                                          name:(NSString*) name {
+                                       visible:(BOOL) visible {
     return [[[BackgroundInvocation alloc] initWithTarget:target
                                                 selector:selector
                                                 argument:argument
                                                     gate:gate
-                                                 visible:visible
-                                                    name:name] autorelease];
+                                                 visible:visible] autorelease];
 }
 
 
@@ -75,6 +68,9 @@
 
 
 - (void) runWorker {
+    NSString* className = NSStringFromClass([target class]);
+    NSString* selectorName = NSStringFromSelector(selector);
+    NSString* name = [NSString stringWithFormat:@"%@-%@", className, selectorName];
     [[NSThread currentThread] setName:name];
 
     if (visible) {

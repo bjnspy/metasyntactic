@@ -237,8 +237,7 @@
                                   onTarget:self
                                   argument:arguments
                                       gate:gate
-                                   visible:YES
-                                      name:@"MoveMovieToTopOfQueue"];
+                                   visible:YES];
 }
 
 
@@ -254,8 +253,7 @@
                                   onTarget:self
                                   argument:arguments
                                       gate:gate
-                                   visible:YES
-                                      name:@"ModifyQueue"];
+                                   visible:YES];
 }
 
 
@@ -278,8 +276,7 @@
                                   onTarget:self
                                   argument:arguments
                                       gate:gate
-                                   visible:YES
-                                      name:@"ChangeRating"];
+                                   visible:YES];
 }
 
 
@@ -425,8 +422,7 @@
                                   onTarget:self
                                   argument:arguments
                                       gate:gate
-                                   visible:YES
-                                      name:@"AddMovieToQueue"];
+                                   visible:YES];
 }
 
 

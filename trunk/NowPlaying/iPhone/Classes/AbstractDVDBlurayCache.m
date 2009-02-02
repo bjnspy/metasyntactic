@@ -167,8 +167,7 @@
     [ThreadingUtilities backgroundSelector:@selector(updateMoviesBackgroundEntryPoint)
                                   onTarget:self
                                       gate:gate
-                                   visible:YES
-                                      name:@"DVD/Blu-ray-UpdateMovies"];
+                                   visible:YES];
 }
 
 
@@ -380,8 +379,7 @@
                                   onTarget:self
                                   argument:nil
                                       gate:gate
-                                   visible:NO
-                                      name:@"DVD/Blu-ray-UpdateDetails"];
+                                   visible:NO];
 }
 
 

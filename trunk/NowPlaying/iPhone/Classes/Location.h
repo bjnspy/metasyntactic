@@ -14,7 +14,7 @@
 
 #define UNKNOWN_DISTANCE FLT_MAX
 
-@interface Location : NSObject<NSCopying> {
+@interface Location : NSObject<NSCopying, NSCoding> {
 @private
     double latitude;
     double longitude;

@@ -71,6 +71,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 }
 
@@ -80,9 +81,7 @@
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text =
     [NSString stringWithFormat:
-    NSLocalizedString(@"%@ does not store your Netflix username and password.\n\n"
-                      @"We will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended "
-                      @"the first time you use %@.", nil), [Application name], [Application name]];
+    NSLocalizedString(@"%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.", nil), [Application name], [Application name]];
 
     messageLabel.numberOfLines = 0;
     messageLabel.textColor = [UIColor whiteColor];
@@ -315,9 +314,7 @@
     statusLabel.text = @"";
     messageLabel.text =
     [NSString stringWithFormat:
-    NSLocalizedString(@"Success! %@ was granted access to your Netflix "
-                      "account. You will now be able to add movies to your queue, "
-                      "see what's new and what's recommended for you, and much more!", nil), [Application name]];
+    NSLocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [Application name]];
 
     [self.controller setNetflixKey:token.key secret:token.secret userId:[token.fields objectForKey:@"user_id"]];
 }

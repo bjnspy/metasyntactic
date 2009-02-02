@@ -53,7 +53,8 @@
 @property (retain) UIImage* posterImage;
 @property (retain) TappableImageView* posterImageView;
 @property (retain) ActivityIndicatorViewWithBackground* posterActivityView;
-@property (retain) UIButton* bookmarkButton;
+@property (retain) CollapsedMovieDetailsCell* collapsedMovieDetailsCell;
+@property (retain) ExpandedMovieDetailsCell* expandedMovieDetailsCell;
 @end
 
 
@@ -75,7 +76,8 @@ const NSInteger POSTER_TAG = -1;
 @synthesize posterDownloadLock;
 @synthesize posterImage;
 @synthesize posterImageView;
-@synthesize bookmarkButton;
+@synthesize collapsedMovieDetailsCell;
+@synthesize expandedMovieDetailsCell;
 
 - (void) dealloc {
     self.movie = nil;
@@ -89,7 +91,8 @@ const NSInteger POSTER_TAG = -1;
     self.posterDownloadLock = nil;
     self.posterImage = nil;
     self.posterImageView = nil;
-    self.bookmarkButton = nil;
+    self.collapsedMovieDetailsCell = nil;
+    self.expandedMovieDetailsCell = nil;
 
     [super dealloc];
 }
@@ -240,55 +243,6 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
-- (BOOL) isBookmarked {
-    return [self.model isBookmarked:movie];
-}
-
-
-- (void) addBookmark {
-    [self.model addBookmark:movie];
-}
-
-
-- (void) removeBookmark {
-    [self.model removeBookmark:movie];
-}
-
-
-- (void) setBookmarkImage {
-    self.bookmarkButton.selected = [self isBookmarked];
-}
-
-
-- (void) switchBookmark:(id) sender {
-    if ([self isBookmarked]) {
-        [self removeBookmark];
-    } else {
-        [self addBookmark];
-    }
-
-    [self setBookmarkImage];
-}
-
-
-- (void) initializeBookmarkButton {
-    self.bookmarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bookmarkButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
-    [bookmarkButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
-
-    [bookmarkButton addTarget:self action:@selector(switchBookmark:) forControlEvents:UIControlEventTouchUpInside];
-
-    CGRect frame = bookmarkButton.frame;
-    frame.size = [ImageCache emptyStarImage].size;
-    frame.size.width += 10;
-    frame.size.height += 10;
-    bookmarkButton.frame = frame;
-
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:bookmarkButton] autorelease];
-    [self setBookmarkImage];
-}
-
-
 - (void) setupTitle {
     if (readonlyMode) {
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
@@ -319,8 +273,9 @@ const NSInteger POSTER_TAG = -1;
         [self.navigationItem setRightBarButtonItem:right animated:YES];
         [self.navigationItem setHidesBackButton:YES animated:YES];
     } else {
+        UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+        [self.navigationItem setRightBarButtonItem:right animated:YES];
         [self.navigationItem setHidesBackButton:NO animated:YES];
-        [self initializeBookmarkButton];
     }
 }
 
@@ -397,7 +352,7 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    [super viewWillAppear:animated];
 
     [self startup];
     [self majorRefresh];
@@ -473,6 +428,30 @@ const NSInteger POSTER_TAG = -1;
 }
 
 
+- (UITableViewCell*) createExpandedMovieDetailsCell {
+    if (expandedMovieDetailsCell == nil) {
+        self.expandedMovieDetailsCell = 
+        [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                                   model:self.model
+                                                   movie:movie] autorelease];
+    }
+    
+    return expandedMovieDetailsCell;
+}
+
+
+- (UITableViewCell*) createCollapsedMovieDetailsCell {
+    if (collapsedMovieDetailsCell == nil) {
+        self.collapsedMovieDetailsCell = 
+        [[[CollapsedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                                    model:self.model
+                                                    movie:movie] autorelease];
+    }
+    
+    return collapsedMovieDetailsCell;
+}
+
+
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie
@@ -484,13 +463,9 @@ const NSInteger POSTER_TAG = -1;
     }
 
     if (expandedDetails) {
-        return [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                          model:self.model
-                                                          movie:movie] autorelease];
+        return [self createExpandedMovieDetailsCell];
     } else {
-        return [[[CollapsedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                           model:self.model
-                                                           movie:movie] autorelease];
+        return [self createCollapsedMovieDetailsCell];
     }
 }
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Movie : NSObject<NSCopying> {
+@interface Movie : NSObject<NSCopying, NSCoding> {
 @private
     NSString* identifier;
     NSString* canonicalTitle;

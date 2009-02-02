@@ -83,6 +83,16 @@ property_definition(movieTitles);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
+                               name:[coder decodeObjectForKey:name_key]
+                        phoneNumber:[coder decodeObjectForKey:phoneNumber_key]
+                           location:[coder decodeObjectForKey:location_key]
+                originatingLocation:[coder decodeObjectForKey:originatingLocation_key]
+                        movieTitles:[coder decodeObjectForKey:movieTitles_key]];
+}
+
+
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
                        phoneNumber:(NSString*) phoneNumber
@@ -107,6 +117,16 @@ property_definition(movieTitles);
     [dictionary setObject:originatingLocation.dictionary    forKey:originatingLocation_key];
     [dictionary setObject:movieTitles                       forKey:movieTitles_key];
     return dictionary;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:identifier          forKey:identifier_key];
+    [coder encodeObject:name                forKey:name_key];
+    [coder encodeObject:phoneNumber         forKey:phoneNumber_key];
+    [coder encodeObject:location            forKey:location_key];
+    [coder encodeObject:originatingLocation forKey:originatingLocation_key];
+    [coder encodeObject:movieTitles         forKey:movieTitles_key];
 }
 
 

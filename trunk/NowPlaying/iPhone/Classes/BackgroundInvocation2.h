@@ -24,7 +24,6 @@
                                        argument:(id) argument1
                                        argument:(id) argument2
                                            gate:(id<NSLocking>) gate
-                                        visible:(BOOL) visible
-                                           name:(NSString*) name;
+                                        visible:(BOOL) visible;
 
 @end

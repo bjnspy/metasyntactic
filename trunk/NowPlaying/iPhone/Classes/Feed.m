@@ -49,6 +49,13 @@ property_definition(name);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithUrl:[coder decodeObjectForKey:url_key]
+                         key:[coder decodeObjectForKey:key_key]
+                        name:[coder decodeObjectForKey:name_key]];
+}
+
+
 + (Feed*) feedWithUrl:(NSString*) url key:(NSString*) key name:(NSString*) name {
     return [[[Feed alloc] initWithUrl:url key:key name:name] autorelease];
 }
@@ -67,6 +74,18 @@ property_definition(name);
     [result setObject:key   forKey:key_key];
     [result setObject:name  forKey:name_key];
     return result;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:url   forKey:url_key];
+    [coder encodeObject:key   forKey:key_key];
+    [coder encodeObject:name  forKey:name_key];
+}
+
+
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
 }
 
 

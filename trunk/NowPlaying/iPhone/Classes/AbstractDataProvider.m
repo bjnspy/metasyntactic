@@ -389,8 +389,7 @@
                                   onTarget:self
                                   argument:request
                                       gate:gate
-                                   visible:YES
-                                      name:@"UpdateDataProvider"];
+                                   visible:YES];
 
 
 }

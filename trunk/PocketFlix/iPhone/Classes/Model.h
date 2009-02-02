@@ -12,13 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-enum ViewControllerType {
-    MovieDetails = 1,
-    TheaterDetails = 2,
-    Reviews = 3,
-    Tickets = 4
-};
-
 @interface Model : NSObject {
 @private
     IMDbCache* imdbCache;
@@ -29,8 +22,6 @@ enum ViewControllerType {
     LargePosterCache* largePosterCache;
     TrailerCache* trailerCache;
     MutableNetflixCache* netflixCache;
-
-    NSMutableSet* bookmarkedTitlesData;
 }
 
 @property (readonly, retain) IMDbCache* imdbCache;
@@ -56,9 +47,6 @@ enum ViewControllerType {
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 - (void) setNetflixFirstName:(NSString*) firstName lastName:(NSString*) lastName canInstantWatch:(BOOL) canInstantWatch preferredFormats:(NSArray*) preferredFormats;
 
-- (BOOL) prioritizeBookmarks;
-- (void) setPrioritizeBookmarks:(BOOL) value;
-
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
@@ -81,21 +69,9 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context);
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSArray*) trailersForMovie:(Movie*) movie;
 
-- (NSSet*) bookmarkedTitles;
-- (BOOL) isBookmarked:(Movie*) movie;
-- (void) addBookmark:(Movie*) movie;
-- (void) removeBookmark:(Movie*) movie;
-
-- (NSArray*) bookmarkedMovies;
-- (NSArray*) bookmarkedUpcoming;
-- (NSArray*) bookmarkedDVD;
-- (NSArray*) bookmarkedBluray;
-- (void) setBookmarkedMovies:(NSArray*) array;
-- (void) setBookmarkedUpcoming:(NSArray*) array;
-- (void) setBookmarkedDVD:(NSArray*) array;
-- (void) setBookmarkedBluray:(NSArray*) array;
-
 - (NSString*) noInformationFound;
 - (NSString*) feedbackUrl;
+
+- (BOOL) isBookmarked:(Movie*) movie;
 
 @end

@@ -17,7 +17,7 @@
 
 @implementation RefreshableTableViewController
 
-- (void)dealloc {
+- (void) dealloc {
     [super dealloc];
 }
 

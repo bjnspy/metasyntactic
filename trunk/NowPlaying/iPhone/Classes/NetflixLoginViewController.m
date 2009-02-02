@@ -165,8 +165,7 @@
     [ThreadingUtilities backgroundSelector:@selector(requestAuthorizationToken)
                                   onTarget:self
                                       gate:nil
-                                   visible:YES
-                                      name:@"RequestAuthorizationToken"];
+                                   visible:YES];
 }
 
 
@@ -261,8 +260,7 @@
     [ThreadingUtilities backgroundSelector:@selector(requestAccessToken)
                                   onTarget:self
                                       gate:nil
-                                   visible:YES
-                                      name:@"RequestAccessToken"];
+                                   visible:YES];
 }
 
 - (void) requestAccessToken {

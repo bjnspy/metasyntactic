@@ -184,12 +184,13 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+
     if (!self.isEditable) {
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     }
 
     self.tableView.rowHeight = 100;
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
 

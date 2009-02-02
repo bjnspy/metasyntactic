@@ -178,8 +178,7 @@
     [ThreadingUtilities backgroundSelector:@selector(updateScoresBackgroundEntryPoint)
                                   onTarget:self
                                       gate:gate
-                                   visible:YES
-                                      name:[NSString stringWithFormat:@"%@-UpdateScores", [self providerName]]];
+                                   visible:YES];
 }
 
 
@@ -249,8 +248,7 @@
                                       argument:scores
                                       argument:movies
                                           gate:movieMapLock
-                                       visible:YES
-                                          name:@"EnsureMovieMap"];
+                                       visible:YES];
     }
 }
 
@@ -542,8 +540,7 @@
                                   onTarget:self
                                   argument:nil
                                       gate:gate
-                                   visible:NO
-                                      name:[NSString stringWithFormat:@"%@-UpdateReviews", [self providerName]]];
+                                   visible:NO];
 }
 
 

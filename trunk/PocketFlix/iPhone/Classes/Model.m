@@ -47,7 +47,6 @@
 @property (retain) LargePosterCache* largePosterCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) MutableNetflixCache* netflixCache;
-@property (retain) NSMutableSet* bookmarkedTitlesData;
 @end
 
 @implementation Model
@@ -57,12 +56,6 @@ static NSString* persistenceVersion = @"104";
 
 static NSString* VERSION = @"version";
 
-static NSString* BOOKMARKED_TITLES                      = @"bookmarkedTitles";
-static NSString* BOOKMARKED_MOVIES                      = @"bookmarkedMovies";
-static NSString* BOOKMARKED_UPCOMING                    = @"bookmarkedUpcoming";
-static NSString* BOOKMARKED_DVD                         = @"bookmarkedDVD";
-static NSString* BOOKMARKED_BLURAY                      = @"bookmarkedBluray";
-static NSString* PRIORITIZE_BOOKMARKS                   = @"prioritizeBookmarks";
 static NSString* RUN_COUNT                              = @"runCount";
 static NSString* UNSUPPORTED_COUNTRY                    = @"unsupportedCountry";
 static NSString* NETFLIX_KEY                            = @"netflixKey";
@@ -76,12 +69,6 @@ static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredForm
 
 static NSString** ALL_KEYS[] = {
 &VERSION,
-&BOOKMARKED_TITLES,
-&BOOKMARKED_MOVIES,
-&BOOKMARKED_UPCOMING,
-&BOOKMARKED_DVD,
-&BOOKMARKED_BLURAY,
-&PRIORITIZE_BOOKMARKS,
 &RUN_COUNT,
 &NETFLIX_KEY,
 &NETFLIX_SECRET,
@@ -106,24 +93,16 @@ static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
 };
 
 static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
-&PRIORITIZE_BOOKMARKS,
 &NETFLIX_CAN_INSTANT_WATCH,
 };
 
 static NSString** STRING_ARRAY_KEYS_TO_MIGRATE[] = {
-&BOOKMARKED_TITLES,
 &NETFLIX_PREFERRED_FORMATS,
 };
 
 static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
-&BOOKMARKED_MOVIES,
-&BOOKMARKED_UPCOMING,
-&BOOKMARKED_DVD,
-&BOOKMARKED_BLURAY,
 };
 
-
-@synthesize bookmarkedTitlesData;
 
 @synthesize imdbCache;
 @synthesize amazonCache;
@@ -135,8 +114,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 @synthesize netflixCache;
 
 - (void) dealloc {
-    self.bookmarkedTitlesData = nil;
-
     self.imdbCache = nil;
     self.amazonCache = nil;
     self.wikipediaCache = nil;
@@ -152,11 +129,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 + (NSString*) version {
     return currentVersion;
-}
-
-
-+ (void) saveBookmarkedTitles:(NSSet*) bookmarkedTitles {
-    [[NSUserDefaults standardUserDefaults] setObject:bookmarkedTitles.allObjects forKey:BOOKMARKED_TITLES];
 }
 
 
@@ -392,113 +364,6 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
-- (BOOL) prioritizeBookmarks {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:PRIORITIZE_BOOKMARKS];
-}
-
-
-- (void) setPrioritizeBookmarks:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:PRIORITIZE_BOOKMARKS];
-}
-
-
-- (NSMutableSet*) loadBookmarkedTitles {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:BOOKMARKED_TITLES];
-    if (array.count == 0) {
-        return [NSMutableSet set];
-    }
-
-    return [NSMutableSet setWithArray:array];
-}
-
-
-- (void) ensureBookmarkedTitles {
-    if (bookmarkedTitlesData == nil) {
-        self.bookmarkedTitlesData = [self loadBookmarkedTitles];
-    }
-}
-
-
-- (BOOL) isBookmarked:(Movie*) movie {
-    [self ensureBookmarkedTitles];
-    return [bookmarkedTitlesData containsObject:movie.canonicalTitle];
-}
-
-
-- (NSSet*) bookmarkedTitles {
-    [self ensureBookmarkedTitles];
-    return bookmarkedTitlesData;
-}
-
-
-- (void) addBookmark:(Movie*) movie {
-    [self ensureBookmarkedTitles];
-    [bookmarkedTitlesData addObject:movie.canonicalTitle];
-    [Model saveBookmarkedTitles:bookmarkedTitlesData];
-}
-
-
-- (void) removeBookmark:(Movie*) movie {
-    [self ensureBookmarkedTitles];
-    [bookmarkedTitlesData removeObject:movie.canonicalTitle];
-    [Model saveBookmarkedTitles:bookmarkedTitlesData];
-}
-
-
-- (NSArray*) bookmarkedItems:(NSString*) key {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-    if (array.count == 0) {
-        return [NSArray array];
-    }
-
-    NSMutableArray* result = [NSMutableArray array];
-    for (NSDictionary* dictionary in array) {
-        [result addObject:[Movie movieWithDictionary:dictionary]];
-    }
-    return result;
-}
-
-
-- (NSArray*) bookmarkedMovies {
-    return [self bookmarkedItems:BOOKMARKED_MOVIES];
-}
-
-
-- (NSArray*) bookmarkedUpcoming {
-    return [self bookmarkedItems:BOOKMARKED_UPCOMING];
-}
-
-
-- (NSArray*) bookmarkedDVD {
-    return [self bookmarkedItems:BOOKMARKED_DVD];
-}
-
-
-- (NSArray*) bookmarkedBluray {
-    return [self bookmarkedItems:BOOKMARKED_BLURAY];
-}
-
-
-- (void) setBookmarkedMovies:(NSArray*) array {
-    [Model saveMovies:array key:BOOKMARKED_MOVIES];
-}
-
-
-- (void) setBookmarkedUpcoming:(NSArray*) array {
-    [Model saveMovies:array key:BOOKMARKED_UPCOMING];
-}
-
-
-- (void) setBookmarkedDVD:(NSArray*) array {
-    [Model saveMovies:array key:BOOKMARKED_DVD];
-}
-
-
-- (void) setBookmarkedBluray:(NSArray*) array {
-    [Model saveMovies:array key:BOOKMARKED_BLURAY];
-}
-
-
 - (NSDate*) releaseDateForMovie:(Movie*) movie {
     return movie.releaseDate;
 }
@@ -643,19 +508,8 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
         return NSOrderedSame;
     }
 
-    Model* model = context;
-
     Movie* movie1 = t1;
     Movie* movie2 = t2;
-
-    BOOL movie1Bookmarked = [model isBookmarked:movie1];
-    BOOL movie2Bookmarked = [model isBookmarked:movie2];
-
-    if (movie1Bookmarked && !movie2Bookmarked) {
-        return NSOrderedAscending;
-    } else if (movie2Bookmarked && !movie1Bookmarked) {
-        return NSOrderedDescending;
-    }
 
     return [movie1.displayTitle compare:movie2.displayTitle options:NSCaseInsensitiveSearch];
 }
@@ -733,7 +587,10 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
 
-    body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@", self.netflixUserId, self.netflixKey, self.netflixSecret];
+    body = [body stringByAppendingFormat:@"\n\nNetflix:\nUser ID: %@\nKey: %@\nSecret: %@",
+            [StringUtilities nonNilString:self.netflixUserId],
+            [StringUtilities nonNilString:self.netflixKey],
+            [StringUtilities nonNilString:self.netflixSecret]];
 
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {
@@ -745,6 +602,11 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
     NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
     NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
     return result;
+}
+
+
+- (BOOL) isBookmarked:(Movie*) movie {
+    return NO;
 }
 
 @end

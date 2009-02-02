@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FavoriteTheater : NSObject {
+@interface FavoriteTheater : NSObject<NSCopying, NSCoding> {
 @private
     NSString* name;
     Location* originatingLocation;

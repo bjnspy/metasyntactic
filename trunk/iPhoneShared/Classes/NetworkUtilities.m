@@ -38,6 +38,21 @@ static Pulser* pulser = nil;
 }
 
 
++ (NSURLRequest*) createRequest:(NSURL*) url {
+    if (url == nil) {
+        return nil;
+    }
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.timeoutInterval = 120;
+    request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setValue:@"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)" forHTTPHeaderField:@"User-Agent"];
+    
+    return request;
+}
+
+
 + (void) updateNetworkActivityIndicator {
     [gate lock];
     {
@@ -62,24 +77,10 @@ static Pulser* pulser = nil;
 }
 
 
-+ (NSURLRequest*) createRequest:(NSURL*) url {
-    if (url == nil) {
-        return nil;
-    }
-
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-    request.timeoutInterval = 120;
-    request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setValue:@"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)" forHTTPHeaderField:@"User-Agent"];
-
-    return request;
-}
-
-
 + (NSString*) stringWithContentsOfUrl:(NSURL*) url
                             important:(BOOL) important {
-    return [self stringWithContentsOfUrlRequest:[self createRequest:url] important:important];
+    return [self stringWithContentsOfUrlRequest:[self createRequest:url]
+                                      important:important];
 }
 
 
@@ -95,7 +96,6 @@ static Pulser* pulser = nil;
         return nil;
     }
 
-    //return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
     NSString* result = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if (result != nil) {
         return result;
@@ -132,7 +132,9 @@ static Pulser* pulser = nil;
 
 + (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url
                            important:(BOOL) important {
-    return [self xmlWithContentsOfUrl:url important:important response:NULL];
+    return [self xmlWithContentsOfUrl:url
+                            important:important
+                             response:NULL];
 }
 
 
@@ -267,7 +269,9 @@ static Pulser* pulser = nil;
 
 + (NSData*) dataWithContentsOfUrlRequest:(NSURLRequest*) request
                                important:(BOOL) important {
-    return [self dataWithContentsOfUrlRequest:request important:important response:NULL];
+    return [self dataWithContentsOfUrlRequest:request
+                                    important:important
+                                     response:NULL];
 }
 
 
