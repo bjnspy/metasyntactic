@@ -204,4 +204,15 @@
     [gate unlock];
 }
 
+
+- (NSInteger) count {
+    NSInteger result;
+    [gate lock];
+    {
+        result = valueToNode.count;
+    }
+    [gate unlock];
+    return result;
+}
+
 @end

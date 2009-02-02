@@ -715,8 +715,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				74F427D50F1FC69D002EECC5 /* DeleteMovie.png */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
+				740224540E53F323006C58A2 /* Localizable.strings */,
+				74F427D50F1FC69D002EECC5 /* DeleteMovie.png */,
 				746A1BDC0EF1950A00CF38C9 /* Navigate-Back.png */,
 				746A1BDD0EF1950B00CF38C9 /* Navigate-Forward.png */,
 				745F37570EE99B4500636D8E /* Bookmark-Active.png */,
@@ -725,9 +728,6 @@
 				74EC99030EE5F874004E044E /* FlipUp-Normal.png */,
 				74EC99040EE5F874004E044E /* FlipUp-Selected.png */,
 				74EC959C0EE5C610004E044E /* BlackButton.png */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
-				740224540E53F323006C58A2 /* Localizable.strings */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				744AF54C0EC42A40008B5B35 /* BlackCircle.png */,
 				74F94FA40E6BC98800075068 /* CurrentPosition.png */,

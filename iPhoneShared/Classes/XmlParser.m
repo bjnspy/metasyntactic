@@ -151,6 +151,10 @@ void characterDataHandler(void* userData,
 
 
 + (XmlElement*) parse:(NSData*) data {
+    if (data == nil) {
+        return nil;
+    }
+    
     XmlElement* result = nil;
 
     [gate lock];

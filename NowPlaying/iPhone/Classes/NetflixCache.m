@@ -212,8 +212,7 @@ static NSDictionary* availabilityMap = nil;
         [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
-                                       visible:NO
-                                          name:@"Netflix-UpdateDetails"];
+                                       visible:NO];
     }
 
     return self;
@@ -314,8 +313,7 @@ static NSDictionary* availabilityMap = nil;
         [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint)
                                       onTarget:self
                                           gate:gate
-                                       visible:YES
-                                          name:@"Netflix-Update"];
+                                       visible:YES];
     }
 }
 
@@ -1353,8 +1351,7 @@ static NSDictionary* availabilityMap = nil;
     [ThreadingUtilities backgroundSelector:@selector(downloadRSS)
                                   onTarget:self
                                       gate:nil // no lock.
-                                   visible:NO
-                                      name:@"DownloadRSS"];
+                                   visible:NO];
 }
 
 
@@ -1829,8 +1826,7 @@ static NSDictionary* availabilityMap = nil;
                                   onTarget:self
                                   argument:movies
                                       gate:nil // no gate.  we'll take the gate for each movie
-                                   visible:NO
-                                      name:@"LookupNetflixMoviesForLocalMovies"];
+                                   visible:NO];
 }
 
 

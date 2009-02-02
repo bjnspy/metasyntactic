@@ -46,6 +46,12 @@ property_definition(originatingLocation);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithName:[coder decodeObjectForKey:name_key]
+          originatingLocation:[coder decodeObjectForKey:originatingLocation_key]];
+}
+
+
 + (FavoriteTheater*) theaterWithName:(NSString*) name
                  originatingLocation:(Location*) originatingLocation {
     return [[[FavoriteTheater alloc] initWithName:name
@@ -72,6 +78,17 @@ property_definition(originatingLocation);
     [result setObject:name                              forKey:name_key];
     [result setObject:originatingLocation.dictionary    forKey:originatingLocation_key];
     return result;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:name                forKey:name_key];
+    [coder encodeObject:originatingLocation forKey:originatingLocation_key];
+}
+
+
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
 }
 
 

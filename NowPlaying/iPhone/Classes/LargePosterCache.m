@@ -53,8 +53,7 @@ const int START_YEAR = 1912;
         [ThreadingUtilities backgroundSelector:@selector(updateIndices)
                                       onTarget:self
                                           gate:nil
-                                       visible:NO
-                                          name:@"LargePosterCache-UpdateIndices"];
+                                       visible:NO];
     }
 
     return self;

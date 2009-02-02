@@ -222,6 +222,11 @@ const double LOAD_DELAY = 1;
     }
 
     if (scrollView.dragging || scrollView.decelerating) {
+        // should this be 'afterDelay:0'?  That way we do it on the next run
+        // loop cycle (which should happen after dragging/decelerating is done).
+        // 1/30/09. Right now, i'm going with 'no'.  I'm not totally certain if this
+        // won't call back into us immediately, and i don't want to peg the CPU
+        // while dragging.  Waiting a sec is safer.
         [self performSelector:@selector(addImageToView:) withObject:arguments afterDelay:1];
         return;
     }
@@ -230,7 +235,8 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) loadPage:(NSInteger) page delay:(double) delay {
+- (void) loadPage:(NSInteger) page
+            delay:(double) delay {
     if (page < 0 || page >= posterCount) {
         return;
     }
@@ -259,12 +265,12 @@ const double LOAD_DELAY = 1;
     } else {
         [self createDownloadViews:pageView page:page];
         NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
-        [self performSelector:@selector(loadPoster:) withObject:indexAndPageView
+        [self performSelector:@selector(loadPoster:)
+                   withObject:indexAndPageView
                    afterDelay:delay];
     }
 
     [scrollView addSubview:pageView];
-
     [pageNumberToView setObject:pageView forKey:pageNumber];
 }
 
@@ -288,7 +294,9 @@ const double LOAD_DELAY = 1;
 
     UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index.intValue];
     if (image == nil) {
-        [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:LOAD_DELAY];
+        [self performSelector:@selector(loadPoster:)
+                   withObject:indexAndPageView
+                   afterDelay:LOAD_DELAY];
     } else {
         UIView* pageView = [indexAndPageView objectAtIndex:1];
         NSArray* arguments = [NSArray arrayWithObjects:index, image, pageView, nil];

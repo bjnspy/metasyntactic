@@ -127,8 +127,8 @@ typedef enum {
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
 
@@ -169,6 +169,7 @@ typedef enum {
 
     cell.label.backgroundColor = [UIColor clearColor];
     cell.textColor = [UIColor whiteColor];
+    cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
 
     if (self.hasAccount) {
         switch (row) {
@@ -201,7 +202,7 @@ typedef enum {
                 cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
                 break;
             case AboutSendFeedbackSection:
-                cell.text = NSLocalizedString(@"About / Send Feedback", nil);
+                cell.text = [NSString stringWithFormat:@"%@ / %@", NSLocalizedString(@"Send Feedback", nil), NSLocalizedString(@"Write Review", nil)];
                 cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
                 break;
             case LogOutSection:
@@ -210,16 +211,17 @@ typedef enum {
                 cell.accessoryView = nil;
                 break;
         }
-        
-        cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
     } else {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 2) {
             cell.text = NSLocalizedString(@"Sign Up for New Account", nil);
-            cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
+            cell.image = [UIImage imageNamed:@"NetflixSettings.png"];
+            cell.accessoryView = nil;
         } else if (indexPath.row == 1) {
+            cell.text = NSLocalizedString(@"Send Feedback", nil);
+            cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
+        } else if (indexPath.row == 0) {
             cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
             cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
-            cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
         }
     }
 
@@ -342,10 +344,13 @@ typedef enum {
     if (self.hasAccount) {
         [self didSelectLoggedInRow:indexPath.row];
     } else {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 2) {
             NSString* address = @"http://click.linksynergy.com/fs-bin/click?id=eOCwggduPKg&offerid=161458.10000264&type=3&subid=0";
             [Application openBrowser:address];
         } else if (indexPath.row == 1) {
+            CreditsViewController* controller = [[[CreditsViewController alloc] initWithModel:self.model] autorelease];
+            [navigationController pushViewController:controller animated:YES];
+        } else if (indexPath.row == 0) {
             NetflixLoginViewController* controller = [[[NetflixLoginViewController alloc] initWithNavigationController:navigationController] autorelease];
             [navigationController pushViewController:controller animated:YES];
         }

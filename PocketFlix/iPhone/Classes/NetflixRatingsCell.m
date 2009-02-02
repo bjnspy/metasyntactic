@@ -21,36 +21,50 @@
 #import "Movie.h"
 #import "TappableImageView.h"
 
+@interface NetflixRatingsCell()
+@property (retain) NSMutableArray* imageViews;
+@end
+
 @implementation NetflixRatingsCell
 
+@synthesize imageViews;
 
-- (void)dealloc {
+- (void) dealloc {
+    self.imageViews = nil;
+
     [super dealloc];
 }
 
+/*
+ - (void) clearImages {
+ for (UIView* view in self.contentView.subviews) {
+ [view removeFromSuperview];
+ }
+ }
+ */
+
 
 - (void) setupNetflixRating {
+    //[self clearImages];
+
     CGFloat rating = [[model.netflixCache netflixRatingForMovie:movie] floatValue];
 
-    for (NSInteger i = -1; i < 5; i++) {
+    for (NSInteger i = 0; i < 5; i++) {
         UIImage* image;
-        if (i == -1) {
-            image = [UIImage imageNamed:@"ClearRating.png"];
+
+        CGFloat value = rating - i;
+        if (value < 0.2) {
+            image = [UIImage imageNamed:@"RedStar-0.0.png"];
+        } else if (value < 0.4) {
+            image = [UIImage imageNamed:@"RedStar-0.2.png"];
+        } else if (value < 0.6) {
+            image = [UIImage imageNamed:@"RedStar-0.4.png"];
+        } else if (value < 0.8) {
+            image = [UIImage imageNamed:@"RedStar-0.6.png"];
+        } else if (value < 1) {
+            image = [UIImage imageNamed:@"RedStar-0.8.png"];
         } else {
-            CGFloat value = rating - i;
-            if (value < 0.2) {
-                image = [UIImage imageNamed:@"RedStar-0.0.png"];
-            } else if (value < 0.4) {
-                image = [UIImage imageNamed:@"RedStar-0.2.png"];
-            } else if (value < 0.6) {
-                image = [UIImage imageNamed:@"RedStar-0.4.png"];
-            } else if (value < 0.8) {
-                image = [UIImage imageNamed:@"RedStar-0.6.png"];
-            } else if (value < 1) {
-                image = [UIImage imageNamed:@"RedStar-0.8.png"];
-            } else {
-                image = [UIImage imageNamed:@"RedStar-1.0.png"];
-            }
+            image = [UIImage imageNamed:@"RedStar-1.0.png"];
         }
 
         TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
@@ -64,15 +78,18 @@
         rect.size.height += 10;
         NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
 
-        rect.origin.x = (halfWayPoint - 115) + (40 * (i + 1));
+        rect.origin.x = (halfWayPoint - 135) + (40 * (i + 1));
         imageView.frame = rect;
 
         [self.contentView addSubview:imageView];
+        [imageViews addObject:imageView];
     }
 }
 
 
 - (void) setupUserRating:(NSString*) userRating {
+    //[self clearImages];
+
     CGFloat rating = [userRating floatValue];
 
     for (NSInteger i = -1; i < 5; i++) {
@@ -103,14 +120,22 @@
         imageView.frame = rect;
 
         [self.contentView addSubview:imageView];
+        [imageViews addObject:imageView];
     }
 }
 
 
-- (void) setupRating {
+- (void) clearRating {
     for (UIView* view in self.contentView.subviews) {
         [view removeFromSuperview];
     }
+    
+    [imageViews removeAllObjects];
+}
+
+
+- (void) setupRating {
+    [self clearRating];
 
     NSString* userRating = [model.netflixCache userRatingForMovie:movie];
     if (userRating.length > 0) {
@@ -127,15 +152,11 @@
     if (self = [super initWithFrame:frame
                               model:model_
                               movie:movie_]) {
+        self.imageViews = [NSMutableArray array];
         [self setupRating];
     }
 
     return self;
-}
-
-
-- (void) layoutSubviews {
-    [super layoutSubviews];
 }
 
 
@@ -149,6 +170,7 @@
     }
 
     // change the UI:
+    [self clearRating];
     if (value == 0) {
         [self setupNetflixRating];
     } else {

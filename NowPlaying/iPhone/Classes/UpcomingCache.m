@@ -368,8 +368,7 @@
     [ThreadingUtilities backgroundSelector:@selector(updateDetailsInBackgroundEntryPoint)
                                   onTarget:self
                                       gate:gate
-                                   visible:NO
-                                      name:@"Upcoming-UpdateDetails"];
+                                   visible:NO];
 }
 
 
@@ -381,8 +380,7 @@
     [ThreadingUtilities backgroundSelector:@selector(updateIndexBackgroundEntryPoint)
                                   onTarget:self
                                       gate:gate
-                                   visible:YES
-                                      name:@"Upcoming-UpdateIndex"];
+                                   visible:YES];
 }
 
 

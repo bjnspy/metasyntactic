@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Queue : NSObject {
+@interface Queue : NSObject<NSCoding> {
 @private
     Feed* feed;
     NSString* etag;

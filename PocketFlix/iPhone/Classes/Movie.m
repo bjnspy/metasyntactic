@@ -147,6 +147,24 @@ static NSString* articles[] = {
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
+                     canonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
+                       displayTitle:[coder decodeObjectForKey:displayTitle_key]
+                             rating:[coder decodeObjectForKey:rating_key]
+                             length:[coder decodeIntegerForKey:length_key]
+                        releaseDate:[coder decodeObjectForKey:releaseDate_key]
+                        imdbAddress:[coder decodeObjectForKey:imdbAddress_key]
+                             poster:[coder decodeObjectForKey:poster_key]
+                           synopsis:[coder decodeObjectForKey:synopsis_key]
+                             studio:[coder decodeObjectForKey:studio_key]
+                          directors:[coder decodeObjectForKey:directors_key]
+                               cast:[coder decodeObjectForKey:cast_key]
+                             genres:[coder decodeObjectForKey:genres_key]
+                   additionalFields:[coder decodeObjectForKey:additionalFields_key]];
+}
+
+
 + (BOOL) isStringDictionary:(id) dictionary {
     if (dictionary == nil) {
         return YES;
@@ -307,6 +325,24 @@ static NSString* articles[] = {
     [dictionary setValue:genres                             forKey:genres_key];
     [dictionary setValue:additionalFields                   forKey:additionalFields_key];
     return dictionary;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:identifier          forKey:identifier_key];
+    [coder encodeObject:canonicalTitle      forKey:canonicalTitle_key];
+    [coder encodeObject:displayTitle        forKey:displayTitle_key];
+    [coder encodeObject:rating              forKey:rating_key];
+    [coder encodeInteger:length             forKey:length_key];
+    [coder encodeObject:releaseDate         forKey:releaseDate_key];
+    [coder encodeObject:imdbAddress         forKey:imdbAddress_key];
+    [coder encodeObject:poster              forKey:poster_key];
+    [coder encodeObject:synopsis            forKey:synopsis_key];
+    [coder encodeObject:studio              forKey:studio_key];
+    [coder encodeObject:directors           forKey:directors_key];
+    [coder encodeObject:cast                forKey:cast_key];
+    [coder encodeObject:genres              forKey:genres_key];
+    [coder encodeObject:additionalFields    forKey:additionalFields_key];
 }
 
 

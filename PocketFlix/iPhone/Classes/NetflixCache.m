@@ -700,6 +700,7 @@ static NSDictionary* availabilityMap = nil;
 - (void) downloadQueue:(Feed*) feed {
     // first download and check the feed's current etag against the current one.
     if (![self etagChanged:feed]) {
+        NSLog(@"Etag unchanged for %@.  Skipping download.", feed.key);
         return;
     }
 
@@ -756,12 +757,37 @@ static NSDictionary* availabilityMap = nil;
 
 - (void) downloadQueues:(NSArray*) feeds {
     for (Feed* feed in feeds) {
+        // Take teh lock for each feed we download.  That way if it's taking a
+        // long time, the user can still do the the other operations the user
+        // asks us to do (move movies, change ratings, etc.).
+        [gate lock];
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             [self downloadQueue:feed];
         }
         [pool release];
+        [gate unlock];
     }
+
+    [updateDetailsLock lock];
+    {
+        for (NSInteger i = self.feeds.count - 1; i >= 0; i--) {
+            Feed* feed = [self.feeds objectAtIndex:i];
+
+            Queue* queue = [self queueForFeed:feed];
+            if (queue != nil) {
+                [normalMovies addObjectsFromArray:queue.saved];
+                [normalMovies addObjectsFromArray:queue.movies];
+            }
+        }
+        [updateDetailsLock signal];
+    }
+    [updateDetailsLock unlock];
+
+    [ThreadingUtilities backgroundSelector:@selector(downloadRSS)
+                                  onTarget:self
+                                      gate:nil // no lock.
+                                   visible:NO];
 }
 
 
@@ -1324,34 +1350,19 @@ static NSDictionary* availabilityMap = nil;
     [self downloadUserData];
 
     NSArray* feeds = [self downloadFeeds];
+
     if (feeds.count > 0) {
         [self saveFeeds:feeds];
         [self performSelectorOnMainThread:@selector(reportFeeds:)
                                withObject:feeds
                             waitUntilDone:NO];
-
-        [self downloadQueues:feeds];
     }
 
-    [updateDetailsLock lock];
-    {
-        for (NSInteger i = self.feeds.count - 1; i >= 0; i--) {
-            Feed* feed = [self.feeds objectAtIndex:i];
-
-            Queue* queue = [self queueForFeed:feed];
-            if (queue != nil) {
-                [normalMovies addObjectsFromArray:queue.saved];
-                [normalMovies addObjectsFromArray:queue.movies];
-            }
-        }
-        [updateDetailsLock signal];
-    }
-    [updateDetailsLock unlock];
-
-    [ThreadingUtilities backgroundSelector:@selector(downloadRSS)
+    [ThreadingUtilities backgroundSelector:@selector(downloadQueues:)
                                   onTarget:self
-                                      gate:nil // no lock.
-                                   visible:NO];
+                                  argument:feeds
+                                      gate:nil // no gate.  we'll take it for each feed we download.
+                                   visible:YES];
 }
 
 

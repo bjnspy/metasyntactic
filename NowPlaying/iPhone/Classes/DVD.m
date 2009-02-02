@@ -62,6 +62,15 @@ property_definition(url);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithCanonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
+                                  price:[coder decodeObjectForKey:price_key]
+                                 format:[coder decodeObjectForKey:format_key]
+                                  discs:[coder decodeObjectForKey:discs_key]
+                                    url:[coder decodeObjectForKey:url_key]];
+}
+
+
 + (DVD*) dvdWithCanonicalTitle:(NSString*) canonicalTitle
                          price:(NSString*) price
                         format:(NSString*) format
@@ -105,6 +114,20 @@ property_definition(url);
     [result setObject:discs             forKey:discs_key];
     [result setObject:url               forKey:url_key];
     return result;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:canonicalTitle    forKey:canonicalTitle_key];
+    [coder encodeObject:price             forKey:price_key];
+    [coder encodeObject:format            forKey:format_key];
+    [coder encodeObject:discs             forKey:discs_key];
+    [coder encodeObject:url               forKey:url_key];
+}
+
+
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
 }
 
 @end

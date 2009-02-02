@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Person : NSObject<NSCopying> {
+@interface Person : NSObject<NSCopying, NSCoding> {
 @private
     NSString* identifier;
     NSString* name;

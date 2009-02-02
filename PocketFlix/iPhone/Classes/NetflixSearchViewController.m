@@ -112,9 +112,13 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.tableView.rowHeight = 100;
     [super viewWillAppear:animated];
+    self.tableView.rowHeight = 100;
     [self majorRefresh];
+
+    if (searchBar.text.length == 0) {
+        [searchBar becomeFirstResponder];
+    }
 }
 
 

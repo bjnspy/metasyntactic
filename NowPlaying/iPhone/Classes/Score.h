@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Score : NSObject {
+@interface Score : NSObject<NSCopying, NSCoding> {
 @private
     NSString* canonicalTitle;
     NSString* synopsis;

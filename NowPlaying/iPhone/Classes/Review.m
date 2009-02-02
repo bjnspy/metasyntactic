@@ -59,6 +59,15 @@ property_definition(source);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithText:[coder decodeObjectForKey:text_key]
+                        score:[coder decodeIntegerForKey:score_key]
+                         link:[coder decodeObjectForKey:link_key]
+                       author:[coder decodeObjectForKey:author_key]
+                       source:[coder decodeObjectForKey:source_key]];
+}
+
+
 + (Review*) reviewWithText:(NSString*) text
                      score:(NSInteger) score
                       link:(NSString*) link
@@ -89,6 +98,20 @@ property_definition(source);
     [dict setObject:author                          forKey:author_key];
     [dict setObject:source                          forKey:source_key];
     return dict;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeInteger:score  forKey:score_key];
+    [coder encodeObject:link    forKey:link_key];
+    [coder encodeObject:text    forKey:text_key];
+    [coder encodeObject:author  forKey:author_key];
+    [coder encodeObject:source  forKey:source_key];
+}
+
+
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
 }
 
 

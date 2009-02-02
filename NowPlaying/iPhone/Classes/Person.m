@@ -1,10 +1,16 @@
+// Copyright 2008 Cyrus Najmabadi
 //
-//  Person.m
-//  PocketFlix
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 1/23/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #import "Person.h"
 
@@ -50,6 +56,14 @@ property_definition(additionalFields);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
+                               name:[coder decodeObjectForKey:name_key]
+                          biography:[coder decodeObjectForKey:biography_key]
+                   additionalFields:[coder decodeObjectForKey:additionalFields_key]];
+}
+
+
 + (Person*) personWithIdentifier:(NSString*) identifier
                             name:(NSString*) name
                        biography:(NSString*) biography
@@ -76,6 +90,14 @@ property_definition(additionalFields);
     [result setObject:biography         forKey:biography_key];
     [result setObject:additionalFields  forKey:additionalFields_key];
     return result;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:identifier        forKey:identifier_key];
+    [coder encodeObject:name              forKey:name_key];
+    [coder encodeObject:biography         forKey:biography_key];
+    [coder encodeObject:additionalFields  forKey:additionalFields_key];
 }
 
 

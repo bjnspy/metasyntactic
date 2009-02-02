@@ -63,6 +63,15 @@ property_definition(identifier);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithCanonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
+                               synopsis:[coder decodeObjectForKey:synopsis_key]
+                                  score:[coder decodeObjectForKey:score_key]
+                               provider:[coder decodeObjectForKey:provider_key]
+                             identifier:[coder decodeObjectForKey:identifier_key]];
+}
+
+
 + (Score*) scoreWithTitle:(NSString*) title
                  synopsis:(NSString*) synopsis
                     score:(NSString*) score
@@ -93,6 +102,20 @@ property_definition(identifier);
     [dictionary setObject:provider          forKey:provider_key];
     [dictionary setObject:identifier        forKey:identifier_key];
     return dictionary;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:canonicalTitle    forKey:canonicalTitle_key];
+    [coder encodeObject:synopsis          forKey:synopsis_key];
+    [coder encodeObject:score             forKey:score_key];
+    [coder encodeObject:provider          forKey:provider_key];
+    [coder encodeObject:identifier        forKey:identifier_key];
+}
+
+
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
 }
 
 

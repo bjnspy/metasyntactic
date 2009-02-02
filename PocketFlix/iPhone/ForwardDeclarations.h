@@ -56,7 +56,6 @@
 @class MovieDetailsViewController;
 @class MovieOverviewCell;
 @class MutableNetflixCache;
-@class MovieShowtimesCell;
 @class MultiDictionary;
 @class NetflixCache;
 @class NetflixNavigationController;

@@ -14,6 +14,7 @@
 
 #import "AppDelegate.h"
 
+#import "AlertUtilities.h"
 #import "ApplicationTabBarController.h"
 #import "LocationManager.h"
 #import "Controller.h"
@@ -60,6 +61,10 @@ static AppDelegate* appDelegate = nil;
 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
+    if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
+        [AlertUtilities showOkAlert:@"Zombies enabled!"];
+    }
+
     appDelegate = self;
 
     self.model = [Model model];

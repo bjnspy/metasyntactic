@@ -17,6 +17,8 @@
 #import "TappableImageViewDelegate.h"
 
 @interface NetflixRatingsCell : AbstractMovieDetailsCell<TappableImageViewDelegate, NetflixChangeRatingDelegate> {
+@private
+    NSMutableArray* imageViews;
 }
 
 - (id) initWithFrame:(CGRect) frame

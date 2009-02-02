@@ -49,6 +49,12 @@ property_definition(url);
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithTime:[coder decodeObjectForKey:time_key]
+                          url:[coder decodeObjectForKey:url_key]];
+}
+
+
 + (Performance*) performanceWithTime:(NSDate*) time
                                  url:(NSString*) url {
     return [[[Performance alloc] initWithTime:time
@@ -69,6 +75,17 @@ property_definition(url);
     [dictionary setObject:url forKey:url_key];
 
     return dictionary;
+}
+
+
+- (void) encodeWithCoder:(NSCoder*) coder {
+    [coder encodeObject:time forKey:time_key];
+    [coder encodeObject:url forKey:url_key];
+}
+
+
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
 }
 
 

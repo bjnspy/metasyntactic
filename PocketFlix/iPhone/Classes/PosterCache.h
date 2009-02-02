@@ -16,6 +16,8 @@
 
 @interface PosterCache : AbstractCache {
 @private
+    LinkedSet* moviesWithLinks;
+    LinkedSet* moviesWithoutLinks;
     LinkedSet* prioritizedMovies;
 }
 

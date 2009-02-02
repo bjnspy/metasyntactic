@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Review : NSObject {
+@interface Review : NSObject<NSCopying, NSCoding> {
 @private
     NSInteger score;
     NSString* link;

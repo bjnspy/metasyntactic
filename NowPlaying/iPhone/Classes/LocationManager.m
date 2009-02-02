@@ -165,8 +165,7 @@
                                           onTarget:self
                                           argument:newLocation
                                               gate:gate
-                                           visible:YES
-                                              name:@"FindLocation"];
+                                           visible:YES];
         }
     }
 }
