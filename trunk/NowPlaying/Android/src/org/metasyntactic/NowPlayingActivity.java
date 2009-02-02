@@ -490,7 +490,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     public Void doInBackground(Void... params) {
       Bitmap bitmap = null;
       for (int i = 0; i < movies.size(); i++) {
-        final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(i);
+        final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movies.get(i).getCanonicalTitle());
         if (reference != null) {
           bitmap = reference.get();
         }
@@ -500,7 +500,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
           if (file != null) {
             final byte[] bytes = FileUtilities.readBytes(file);
             if (bytes != null && bytes.length > 0) {
-              bitmap = createBitmap(i, bytes);
+              bitmap = createBitmap(bytes);
               if (bitmap != null) {
                 NowPlayingActivity.postersMap.put(movies.get(i).getCanonicalTitle(), new SoftReference<Bitmap>(bitmap));
               }
@@ -520,7 +520,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private static Bitmap createBitmap(int position, final byte[] bytes) {
+  private static Bitmap createBitmap(final byte[] bytes) {
     final BitmapFactory.Options options = new BitmapFactory.Options();
     final int width = 90;
     final int height = 125;
