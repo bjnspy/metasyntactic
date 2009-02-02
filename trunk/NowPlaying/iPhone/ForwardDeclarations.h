@@ -87,6 +87,7 @@
 @class NetworkUtilities;
 @class NonClippingView;
 @class NoneScoreProvider;
+@class NotificationCenter;
 @class AppDelegate;
 @class Controller;
 @class Model;

@@ -150,6 +150,7 @@
 		74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
 		747413890EC7F2EC00625001 /* AbstractPosterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 747413880EC7F2EC00625001 /* AbstractPosterCell.m */; };
 		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
+		7477B3250F378CBA00FED03B /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477B3240F378CBA00FED03B /* NotificationCenter.m */; };
 		7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */; };
 		747AB7AB0EB956DC002438D0 /* DVDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AA0EB956DC002438D0 /* DVDViewController.m */; };
 		747AB7AE0EB95750002438D0 /* DVDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB7AD0EB95750002438D0 /* DVDNavigationController.m */; };
@@ -628,6 +629,8 @@
 		747413880EC7F2EC00625001 /* AbstractPosterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPosterCell.m; sourceTree = "<group>"; };
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
 		7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
+		7477B3230F378CBA00FED03B /* NotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenter.h; sourceTree = "<group>"; };
+		7477B3240F378CBA00FED03B /* NotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenter.m; sourceTree = "<group>"; };
 		7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
 		7479D8350E65255F00D91649 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
 		747AB7A90EB956DC002438D0 /* DVDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVDViewController.h; sourceTree = "<group>"; };
@@ -1218,6 +1221,8 @@
 				740245660E78488D00ECE1B4 /* Views */,
 				749144B50E76537900CC42A8 /* GlobalActivityIndicator.h */,
 				749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */,
+				7477B3230F378CBA00FED03B /* NotificationCenter.h */,
+				7477B3240F378CBA00FED03B /* NotificationCenter.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -2253,6 +2258,7 @@
 				745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */,
 				747D969F0F3034D0000B5A68 /* TappableActivityIndicatorView.m in Sources */,
 				747D9F220F3369A7000B5A68 /* NetflixMovieListViewController.m in Sources */,
+				7477B3250F378CBA00FED03B /* NotificationCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2433,7 +2439,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = DefaultProfileUuid;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F78E6FF-6C7C-4CD6-A29F-42831F670392";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CC983AB4-CCF9-42DD-A673-354A77C39FC7";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;
@@ -2461,7 +2467,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F78E6FF-6C7C-4CD6-A29F-42831F670392";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CC983AB4-CCF9-42DD-A673-354A77C39FC7";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Release;

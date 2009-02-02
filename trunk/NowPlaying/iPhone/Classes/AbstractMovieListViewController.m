@@ -346,12 +346,25 @@
 }
 
 
+- (void) initializeInfoButton {
+    UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+    [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+    
+    infoButton.contentMode = UIViewContentModeCenter;
+    CGRect frame = infoButton.frame;
+    frame.size.width += 4;
+    infoButton.frame = frame;
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+}
+
+
 - (void) loadView {
     [super loadView];
 
     self.sortedMovies = [NSArray array];
 
     [self initializeSearchButton];
+    [self initializeInfoButton];
 }
 
 

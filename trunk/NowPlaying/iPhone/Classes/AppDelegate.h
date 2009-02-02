@@ -16,7 +16,8 @@
 @private
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
-
+    NotificationCenter* notificationCenter;
+    
     Model* model;
     Controller* controller;
     Pulser* minorRefreshPulser;
@@ -25,6 +26,7 @@
 
 @property (readonly, nonatomic, retain) UIWindow* window;
 @property (readonly, retain) ApplicationTabBarController* tabBarController;
+@property (readonly, retain) NotificationCenter* notificationCenter;
 @property (readonly, retain) Controller* controller;
 @property (readonly, retain) Model* model;
 
@@ -33,5 +35,6 @@
 + (void) majorRefresh:(BOOL) force;
 
 + (UIWindow*) window;
++ (NotificationCenter*) notificationCenter;
 
 @end

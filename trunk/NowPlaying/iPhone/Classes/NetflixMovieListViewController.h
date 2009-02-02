@@ -12,15 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface GlobalActivityIndicator : NSObject {
+#import "RefreshableTableViewController.h"
+
+@interface NetflixMovieListViewController : RefreshableTableViewController {
+@protected
+    UIToolbar* toolbar;
 }
-
-+ (UIView*) activityView;
-
-+ (void) addBackgroundTask:(BOOL) isVisible;
-+ (void) removeBackgroundTask:(BOOL) isVisible;
-
-+ (BOOL) hasVisibleBackgroundTasks;
-+ (BOOL) hasBackgroundTasks;
 
 @end

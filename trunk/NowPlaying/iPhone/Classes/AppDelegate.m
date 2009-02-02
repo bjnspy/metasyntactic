@@ -17,6 +17,7 @@
 #import "AlertUtilities.h"
 #import "ApplicationTabBarController.h"
 #import "LocationManager.h"
+#import "NotificationCenter.h"
 #import "Controller.h"
 #import "Model.h"
 #import "Pulser.h"
@@ -25,6 +26,7 @@
 @interface AppDelegate()
 @property (nonatomic, retain) UIWindow* window;
 @property (retain) ApplicationTabBarController* tabBarController;
+@property (retain) NotificationCenter* notificationCenter;
 @property (retain) Controller* controller;
 @property (retain) Model* model;
 @property (retain) Pulser* majorRefreshPulser;
@@ -38,6 +40,7 @@ static AppDelegate* appDelegate = nil;
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize notificationCenter;
 @synthesize controller;
 @synthesize model;
 @synthesize majorRefreshPulser;
@@ -46,6 +49,7 @@ static AppDelegate* appDelegate = nil;
 - (void) dealloc {
     self.window = nil;
     self.tabBarController = nil;
+    self.notificationCenter = nil;
     self.controller = nil;
     self.model = nil;
     self.majorRefreshPulser = nil;
@@ -71,11 +75,14 @@ static AppDelegate* appDelegate = nil;
     self.controller = [Controller controllerWithAppDelegate:self];
 
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
+    self.notificationCenter = [NotificationCenter centerWithWindow:window];
+    
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
+    [notificationCenter addToWindow];
 
     [controller start];
 }
@@ -127,6 +134,21 @@ static AppDelegate* appDelegate = nil;
 
 + (UIWindow*) window {
     return appDelegate.window;
+}
+
+
++ (NotificationCenter*) notificationCenter {
+    return appDelegate.notificationCenter;
+}
+
+
+- (void)application:(UIApplication *)application willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation duration:(NSTimeInterval)duration {
+    [notificationCenter willChangeStatusBarOrientation:newStatusBarOrientation];
+}
+
+
+- (void)application:(UIApplication *)application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
+    [notificationCenter didChangeStatusBarOrientation:oldStatusBarOrientation];
 }
 
 @end
