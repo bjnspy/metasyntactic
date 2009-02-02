@@ -85,6 +85,20 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       }
     }
   };
+  private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
+    private boolean isTaskRunning;
+
+    public void onReceive(Context context, Intent intent) {
+      if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction()) && !isTaskRunning) {
+        NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
+        isTaskRunning = true;
+      }
+      if (Application.SCROLLING_INTENT.equals(intent.getAction()) && isTaskRunning) {
+        NowPlayingActivity.this.mTask.cancel(true);
+        isTaskRunning = false;
+      }
+    }
+  };
 
   /** Updates display of the list of movies. */
   public void refresh() {
@@ -183,6 +197,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   protected void onPause() {
     unregisterReceiver(this.broadcastReceiver);
     unregisterReceiver(this.databroadcastReceiver);
+    unregisterReceiver(this.scrollStatebroadcastReceiver);
     super.onPause();
   }
 
@@ -202,6 +217,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         Application.NOW_PLAYING_CHANGED_INTENT));
     registerReceiver(this.databroadcastReceiver, new IntentFilter(
         Application.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
+        Application.SCROLLING_INTENT));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
+        Application.NOT_SCROLLING_INTENT));
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }
@@ -227,9 +246,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     getScores(this);
     setContentView(R.layout.moviegrid_anim);
     this.grid = (CustomGridView) findViewById(R.id.grid);
-    TaskManager taskManager = new TaskManager();
-    this.grid.setOnScrollListener(taskManager);
-    
     this.grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position,
           final long id) {
@@ -237,8 +253,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         setupRotationAnimation(view);
       }
     });
-    
-    
     this.grid.setLayoutAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
         NowPlayingActivity.this.gridAnimationEnded = true;
@@ -328,19 +342,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loader2));
-      final SoftReference<Bitmap> reference = NowPlayingActivity.this.postersMap.get(movies.get(position).getCanonicalTitle());
+      final SoftReference<Bitmap> reference = NowPlayingActivity.this.postersMap.get(movies.get(
+          position).getCanonicalTitle());
       if (reference != null) {
         bitmap = reference.get();
       }
       if (bitmap != null) {
         holder.poster.setImageBitmap(bitmap);
-      } /*
-         * else { final byte[] bytes =
-         * NowPlayingControllerWrapper.getPoster(movie); if (bytes.length > 0) {
-         * bitmap = createBitmap(position, bytes); if (bitmap != null) {
-         * holder.poster.setImageBitmap(bitmap);
-         * NowPlayingActivity.this.postersMap.put(position, new SoftReference<Bitmap>(bitmap)); } } }
-         */
+      }
       convertView
           .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       bitmap = null;
@@ -490,7 +499,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     public Void doInBackground(Void... params) {
       Bitmap bitmap = null;
       for (int i = 0; i < movies.size(); i++) {
-        final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movies.get(i).getCanonicalTitle());
+        final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movies.get(i)
+            .getCanonicalTitle());
         if (reference != null) {
           bitmap = reference.get();
         }
@@ -502,7 +512,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             if (bytes != null && bytes.length > 0) {
               bitmap = createBitmap(bytes);
               if (bitmap != null) {
-                NowPlayingActivity.postersMap.put(movies.get(i).getCanonicalTitle(), new SoftReference<Bitmap>(bitmap));
+                NowPlayingActivity.postersMap.put(movies.get(i).getCanonicalTitle(),
+                    new SoftReference<Bitmap>(bitmap));
               }
             }
           }
@@ -513,7 +524,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     @Override
     public void onPostExecute(Void result) {
-      // TODO Auto-generated method stub
       super.onPostExecute(result);
       if (NowPlayingActivity.this.postersAdapter != null)
         NowPlayingActivity.this.postersAdapter.refreshMovies();
@@ -536,23 +546,5 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     options.inSampleSize = (int) scale;
     final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     return bitmap;
-  }
-
-  private class TaskManager implements OnScrollListener {
-    private boolean isTaskRunning;
-
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-      if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && !isTaskRunning) {
-        NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
-        isTaskRunning = true;
-      } else {
-        NowPlayingActivity.this.mTask.cancel(true);
-        isTaskRunning = false;
-      }
-    }
-
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-        int totalItemCount) {
-    }
   }
 }

@@ -1,6 +1,7 @@
 package org.metasyntactic.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -20,6 +21,7 @@ import android.widget.GridView;
 import android.widget.HeaderViewListAdapter;
 import android.widget.AbsListView.OnScrollListener;
 
+import org.metasyntactic.Application;
 import org.metasyntactic.R;
 import org.metasyntactic.UserTask;
 import org.metasyntactic.NowPlayingActivity;
@@ -55,6 +57,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   private Handler mHandler = new Handler();
   private static BaseAdapter mGridAdapter;
   private boolean mChangedBounds;
+  private Context context;
 
   public interface SectionIndexer {
     Object[] getSections();
@@ -88,6 +91,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
 
   private void init(Context context) {
     // Get both the scrollbar states drawables
+    this.context = context;
     final Resources res = context.getResources();
     useThumbDrawable(res.getDrawable(R.drawable.scrollbar_handle_accelerated_anim2));
     mOverlayDrawable = res.getDrawable(R.drawable.dialog_full_dark);
@@ -165,13 +169,12 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   }
 
   public void onScrollStateChanged(AbsListView view, int scrollState) {
-   /* if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && !isTaskRunning) {
-      NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
-      isTaskRunning = true;
+    if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+       context.sendBroadcast(new Intent(Application.NOT_SCROLLING_INTENT));
     } else {
-      NowPlayingActivity.this.mTask.cancel(true);
-      isTaskRunning = false;
-    }*/
+      context.sendBroadcast(new Intent(Application.SCROLLING_INTENT));
+    }     
+    
   }
 
   public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
