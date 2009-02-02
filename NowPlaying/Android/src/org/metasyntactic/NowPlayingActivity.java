@@ -66,7 +66,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final Map<Integer, Integer> alphaMoviePositionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> scoreMovieSectionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> scoreMoviePositionsMap = new HashMap<Integer, Integer>();
-  private static final Map<Integer, SoftReference<Bitmap>> postersMap = new HashMap<Integer, SoftReference<Bitmap>>();
+  private static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
   /* This task is controlled by the TaskManager based on the scrolling state */
@@ -229,6 +229,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.grid = (CustomGridView) findViewById(R.id.grid);
     TaskManager taskManager = new TaskManager();
     this.grid.setOnScrollListener(taskManager);
+    
     this.grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position,
           final long id) {
@@ -236,6 +237,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         setupRotationAnimation(view);
       }
     });
+    
+    
     this.grid.setLayoutAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
         NowPlayingActivity.this.gridAnimationEnded = true;
@@ -325,7 +328,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loader2));
-      final SoftReference<Bitmap> reference = NowPlayingActivity.this.postersMap.get(position);
+      final SoftReference<Bitmap> reference = NowPlayingActivity.this.postersMap.get(movies.get(position).getCanonicalTitle());
       if (reference != null) {
         bitmap = reference.get();
       }
@@ -499,7 +502,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
             if (bytes != null && bytes.length > 0) {
               bitmap = createBitmap(i, bytes);
               if (bitmap != null) {
-                NowPlayingActivity.postersMap.put(i, new SoftReference<Bitmap>(bitmap));
+                NowPlayingActivity.postersMap.put(movies.get(i).getCanonicalTitle(), new SoftReference<Bitmap>(bitmap));
               }
             }
           }

@@ -165,6 +165,13 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   }
 
   public void onScrollStateChanged(AbsListView view, int scrollState) {
+   /* if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && !isTaskRunning) {
+      NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
+      isTaskRunning = true;
+    } else {
+      NowPlayingActivity.this.mTask.cancel(true);
+      isTaskRunning = false;
+    }*/
   }
 
   public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
