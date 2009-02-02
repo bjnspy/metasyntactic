@@ -104,6 +104,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public void refresh() {
     if (this.search == null) {
       this.movies = NowPlayingControllerWrapper.getMovies();
+      Log.i("Movies", "Size of list: " + movies.size());
+      for (int i = 0; i < movies.size(); i++) {
+        Log.i("Movies", "Movie at position:  " + i + " is " + movies.get(i).getDisplayTitle());
+      }
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
