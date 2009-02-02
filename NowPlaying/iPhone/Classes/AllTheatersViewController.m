@@ -298,6 +298,18 @@
 }
 
 
+- (void) initializeInfoButton {
+    UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+    [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+    
+    infoButton.contentMode = UIViewContentModeCenter;
+    CGRect frame = infoButton.frame;
+    frame.size.width += 4;
+    infoButton.frame = frame;
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+}
+
+
 - (void) loadView {
     [super loadView];
 
@@ -305,6 +317,7 @@
 
     [self initializeSegmentedControl];
     [self initializeSearchButton];
+    [self initializeInfoButton];
 
     self.navigationItem.titleView = segmentedControl;
 
@@ -469,7 +482,6 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [GlobalActivityIndicator setCurrentViewController:self];
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self majorRefresh];

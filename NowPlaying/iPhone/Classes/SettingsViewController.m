@@ -77,7 +77,7 @@
 
 
 - (void) majorRefresh {
-    self.tableView.rowHeight = 41;
+    self.tableView.rowHeight = 42;
     [self.tableView reloadData];
 }
 

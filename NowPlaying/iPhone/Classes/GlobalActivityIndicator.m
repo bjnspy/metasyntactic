@@ -17,43 +17,31 @@
 #import "AppDelegate.h"
 #import "InfoViewControllerDelegate.h"
 #import "Pulser.h"
+#import "NotificationCenter.h"
 #import "TappableActivityIndicatorView.h"
 
 @implementation GlobalActivityIndicator
 
 static NSLock* gate = nil;
-static TappableActivityIndicatorView* activityIndicatorView = nil;
 
+static BOOL firstTime = YES;
 static NSInteger totalBackgroundTaskCount = 0;
 static NSInteger visibleBackgroundTaskCount = 0;
 
-static UIViewController<InfoViewControllerDelegate>* viewController = nil;
-
 + (UIView*) activityView {
-    return activityIndicatorView;
+    return nil;
+    //return activityIndicatorView;
 }
 
 
 + (void) forceUpdate {
-    if (viewController == nil) {
-        return;
-    }
-    
     [gate lock];
     {
         if (visibleBackgroundTaskCount > 0) {
-            [activityIndicatorView startAnimating];
-            viewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView] autorelease];
+            firstTime = NO;
+            [[AppDelegate notificationCenter] showNotification:NSLocalizedString(@"Updating", nil)];
         } else {
-            [activityIndicatorView stopAnimating];
-            UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
-            [infoButton addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
-            
-            infoButton.contentMode = UIViewContentModeCenter;
-            CGRect frame = infoButton.frame;
-            frame.size.width += 4;
-            infoButton.frame = frame;
-            viewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+            [[AppDelegate notificationCenter] hideNotification];
         }
     }
     [gate unlock];
@@ -61,46 +49,14 @@ static UIViewController<InfoViewControllerDelegate>* viewController = nil;
 
 
 + (void) tryUpdate {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(forceUpdate) object:nil];
     [self performSelector:@selector(forceUpdate) withObject:nil afterDelay:2];
-}
-
-
-+ (void) showInfo:(id) sender {
-    if (viewController != nil) {
-        [viewController showInfo];
-    }
-}
-
-
-+ (void) setCurrentViewController:(UIViewController<InfoViewControllerDelegate>*) controller {
-    [controller retain];
-    [viewController release];
-    viewController = controller;
-    
-    [self forceUpdate];
 }
 
 
 + (void) initialize {
     if (self == [GlobalActivityIndicator class]) {
         gate = [[NSRecursiveLock alloc] init];
-
-        activityIndicatorView = [[TappableActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        activityIndicatorView.delegate = self;
-        [activityIndicatorView startAnimating];        
-        
-        activityIndicatorView.contentMode = UIViewContentModeCenter;
-        CGRect frame = activityIndicatorView.frame;
-        frame.size.width += 4;
-        activityIndicatorView.frame = frame;
     }
-}
-
-
-+ (void) imageView:(TappableActivityIndicatorView*) imageView
-         wasTapped:(NSInteger) tapCount {
-    [self showInfo:nil];
 }
 
 
@@ -113,8 +69,11 @@ static UIViewController<InfoViewControllerDelegate>* viewController = nil;
             visibleBackgroundTaskCount++;
         }
         
-        [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
-
+        if (visibleBackgroundTaskCount > 0 && firstTime) {
+            [self performSelectorOnMainThread:@selector(forceUpdate) withObject:nil waitUntilDone:NO];
+        } else {
+            [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
+        }
     }
     [gate unlock];
 }

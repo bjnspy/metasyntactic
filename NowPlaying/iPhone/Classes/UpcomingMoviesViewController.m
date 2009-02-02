@@ -120,7 +120,6 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [GlobalActivityIndicator setCurrentViewController:self];
     [super viewWillAppear:animated];
 }
 

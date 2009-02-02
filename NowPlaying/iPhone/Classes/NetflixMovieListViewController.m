@@ -12,15 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface GlobalActivityIndicator : NSObject {
+#import "NetflixMovieListViewController.h"
+
+@interface NetflixMovieListViewController()
+@property (retain) UIToolbar* toolbar;
+@end
+
+@implementation NetflixMovieListViewController
+
+@synthesize toolbar;
+
+- (void) dealloc {
+    self.toolbar = nil;
+    [super dealloc];
 }
 
-+ (UIView*) activityView;
 
-+ (void) addBackgroundTask:(BOOL) isVisible;
-+ (void) removeBackgroundTask:(BOOL) isVisible;
-
-+ (BOOL) hasVisibleBackgroundTasks;
-+ (BOOL) hasBackgroundTasks;
+- (void) loadView {
+    [super loadView];
+    
+    //self.toolbar = [[[UIToolbar alloc] init] autorelease];
+}
 
 @end
