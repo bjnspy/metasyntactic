@@ -218,8 +218,8 @@ public class AllMoviesActivity extends ListActivity {
         if (bytes.length > 0) {
           final BitmapFactory.Options options = new BitmapFactory.Options();
           options.inJustDecodeBounds = false;
-          options.outWidth = 130;
-          options.outHeight = 200;
+          options.outWidth = 130 - (130%14);
+          options.outHeight = 200 - (200%14);
           posterImage
               .setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options));
           posterImage.setBackgroundResource(R.drawable.image_frame);
