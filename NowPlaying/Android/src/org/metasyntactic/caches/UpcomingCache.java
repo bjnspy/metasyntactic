@@ -119,7 +119,6 @@ public class UpcomingCache extends AbstractCache {
       return;
     }
 
-    updateDetails();
     updateIndex();
   }
 
@@ -149,6 +148,8 @@ public class UpcomingCache extends AbstractCache {
     final long start = System.currentTimeMillis();
     updateIndexBackgroundEntryPointWorker();
     LogUtilities.logTime(UpcomingCache.class, "Update Index", start);
+
+    this.updateDetails();
   }
 
   private void updateIndexBackgroundEntryPointWorker() {
@@ -208,8 +209,6 @@ public class UpcomingCache extends AbstractCache {
     this.movies = movies;
     this.studioKeys = studioKeys;
     this.titleKeys = titleKeys;
-
-    updateDetails();
   }
 
   private static void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios, final Map<String, String> titles) {

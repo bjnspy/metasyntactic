@@ -21,6 +21,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
+import org.metasyntactic.utilities.StringUtilities;
+
 public class PersistableOutputStream {
   private final OutputStream out;
   private byte[] bytes;
@@ -67,7 +69,8 @@ public class PersistableOutputStream {
     this.out.write(this.bytes8);
   }
 
-  public void writeString(final String s) throws IOException {
+  public void writeString(final String string) throws IOException {
+    final String s = StringUtilities.nonNullString(string);
     final int charCount = s.length();
     final int byteCount = charCount * 2;
 

@@ -76,6 +76,10 @@ public class PersistableInputStream {
 
   public String readString() throws IOException {
     final int charCount = readInt();
+    if (charCount == 0) {
+      return "";
+    }
+
     final int byteCount = charCount * 2;
 
     if (byteCount > this.bytes.length) {
