@@ -33,7 +33,7 @@
                     android:textStyle="bold"
                     android:paddingLeft="2px"
                     android:paddingTop="7px"
-                    
+                    android:textColor="#FFFFFF"
                     android:layout_gravity="center"
                     android:gravity="center" />
             </FrameLayout>

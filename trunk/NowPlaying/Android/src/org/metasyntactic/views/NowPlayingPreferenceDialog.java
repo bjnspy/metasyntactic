@@ -58,6 +58,7 @@ public class NowPlayingPreferenceDialog {
   }
 
   public NowPlayingPreferenceDialog setEntries(final int items) {
+    NowPlayingPreferenceDialog.this.intValue = getIntPreferenceValue();
     final DialogInterface.OnClickListener radioButtonListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         NowPlayingPreferenceDialog.this.intValue = which;
