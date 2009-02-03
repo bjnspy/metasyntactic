@@ -15,7 +15,10 @@
 #ifdef __OBJC__
 #import <CFNetwork/CFNetwork.h>
 #import <Foundation/Foundation.h>
+#import <SystemConfiguration/SCNetworkReachability.h>
 #import <UIKit/UIKit.h>
+#import <netinet/in.h>
+#import "expat.h"
 #import "ForwardDeclarations.h"
 #import "Macros.h"
 #endif

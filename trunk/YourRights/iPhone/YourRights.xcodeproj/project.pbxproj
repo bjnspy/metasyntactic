@@ -51,6 +51,19 @@
 		74954D300F38CEB600E79E24 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D2F0F38CEB600E79E24 /* GlobalActivityIndicator.m */; };
 		74954D3B0F38CEF100E79E24 /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D380F38CEF100E79E24 /* PriorityMutex.m */; };
 		74954D3C0F38CEF100E79E24 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D3A0F38CEF100E79E24 /* Pulser.m */; };
+		74954D8B0F38D4B000E79E24 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D8A0F38D4B000E79E24 /* NetworkUtilities.m */; };
+		74954D950F38D4DA00E79E24 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D8E0F38D4DA00E79E24 /* XmlDocument.m */; };
+		74954D960F38D4DA00E79E24 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D900F38D4DA00E79E24 /* XmlElement.m */; };
+		74954D970F38D4DA00E79E24 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D920F38D4DA00E79E24 /* XmlParser.m */; };
+		74954D980F38D4DA00E79E24 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D940F38D4DA00E79E24 /* XmlSerializer.m */; };
+		74954DAF0F38D4F700E79E24 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 74954DA70F38D4F700E79E24 /* xmlparse.c */; };
+		74954DB00F38D4F700E79E24 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = 74954DA80F38D4F700E79E24 /* xmlrole.c */; };
+		74954DB10F38D4F700E79E24 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 74954DAA0F38D4F700E79E24 /* xmltok.c */; };
+		74954DB20F38D4F700E79E24 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 74954DAC0F38D4F700E79E24 /* xmltok_impl.c */; };
+		74954DB30F38D4F700E79E24 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 74954DAE0F38D4F700E79E24 /* xmltok_ns.c */; };
+		74954DBB0F38D53300E79E24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */; };
+		74954DF60F38D9C000E79E24 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954DF50F38D9C000E79E24 /* Item.m */; };
+		74954E090F38DBF100E79E24 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954E080F38DBF100E79E24 /* StringUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +151,41 @@
 		74954D380F38CEF100E79E24 /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriorityMutex.m; path = ../../iPhoneShared/Classes/PriorityMutex.m; sourceTree = SOURCE_ROOT; };
 		74954D390F38CEF100E79E24 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pulser.h; path = ../../iPhoneShared/Classes/Pulser.h; sourceTree = SOURCE_ROOT; };
 		74954D3A0F38CEF100E79E24 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pulser.m; path = ../../iPhoneShared/Classes/Pulser.m; sourceTree = SOURCE_ROOT; };
+		74954D890F38D4B000E79E24 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkUtilities.h; path = ../../iPhoneShared/Classes/NetworkUtilities.h; sourceTree = SOURCE_ROOT; };
+		74954D8A0F38D4B000E79E24 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkUtilities.m; path = ../../iPhoneShared/Classes/NetworkUtilities.m; sourceTree = SOURCE_ROOT; };
+		74954D8D0F38D4DA00E79E24 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlDocument.h; path = ../../iPhoneShared/Classes/XmlDocument.h; sourceTree = SOURCE_ROOT; };
+		74954D8E0F38D4DA00E79E24 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlDocument.m; path = ../../iPhoneShared/Classes/XmlDocument.m; sourceTree = SOURCE_ROOT; };
+		74954D8F0F38D4DA00E79E24 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlElement.h; path = ../../iPhoneShared/Classes/XmlElement.h; sourceTree = SOURCE_ROOT; };
+		74954D900F38D4DA00E79E24 /* XmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlElement.m; path = ../../iPhoneShared/Classes/XmlElement.m; sourceTree = SOURCE_ROOT; };
+		74954D910F38D4DA00E79E24 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlParser.h; path = ../../iPhoneShared/Classes/XmlParser.h; sourceTree = SOURCE_ROOT; };
+		74954D920F38D4DA00E79E24 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlParser.m; path = ../../iPhoneShared/Classes/XmlParser.m; sourceTree = SOURCE_ROOT; };
+		74954D930F38D4DA00E79E24 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlSerializer.h; path = ../../iPhoneShared/Classes/XmlSerializer.h; sourceTree = SOURCE_ROOT; };
+		74954D940F38D4DA00E79E24 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XmlSerializer.m; path = ../../iPhoneShared/Classes/XmlSerializer.m; sourceTree = SOURCE_ROOT; };
+		74954D9B0F38D4F700E79E24 /* amigaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = amigaconfig.h; path = ../../iPhoneShared/External/Expat/amigaconfig.h; sourceTree = SOURCE_ROOT; };
+		74954D9C0F38D4F700E79E24 /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = ../../iPhoneShared/External/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
+		74954D9D0F38D4F700E79E24 /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = ../../iPhoneShared/External/Expat/asciitab.h; sourceTree = SOURCE_ROOT; };
+		74954D9E0F38D4F700E79E24 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = ../../iPhoneShared/External/Expat/expat.h; sourceTree = SOURCE_ROOT; };
+		74954D9F0F38D4F700E79E24 /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = ../../iPhoneShared/External/Expat/expat_external.h; sourceTree = SOURCE_ROOT; };
+		74954DA00F38D4F700E79E24 /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = ../../iPhoneShared/External/Expat/iasciitab.h; sourceTree = SOURCE_ROOT; };
+		74954DA10F38D4F700E79E24 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = ../../iPhoneShared/External/Expat/internal.h; sourceTree = SOURCE_ROOT; };
+		74954DA20F38D4F700E79E24 /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = latin1tab.h; path = ../../iPhoneShared/External/Expat/latin1tab.h; sourceTree = SOURCE_ROOT; };
+		74954DA30F38D4F700E79E24 /* macconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = macconfig.h; path = ../../iPhoneShared/External/Expat/macconfig.h; sourceTree = SOURCE_ROOT; };
+		74954DA40F38D4F700E79E24 /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nametab.h; path = ../../iPhoneShared/External/Expat/nametab.h; sourceTree = SOURCE_ROOT; };
+		74954DA50F38D4F700E79E24 /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = ../../iPhoneShared/External/Expat/utf8tab.h; sourceTree = SOURCE_ROOT; };
+		74954DA60F38D4F700E79E24 /* winconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = winconfig.h; path = ../../iPhoneShared/External/Expat/winconfig.h; sourceTree = SOURCE_ROOT; };
+		74954DA70F38D4F700E79E24 /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlparse.c; path = ../../iPhoneShared/External/Expat/xmlparse.c; sourceTree = SOURCE_ROOT; };
+		74954DA80F38D4F700E79E24 /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlrole.c; path = ../../iPhoneShared/External/Expat/xmlrole.c; sourceTree = SOURCE_ROOT; };
+		74954DA90F38D4F700E79E24 /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmlrole.h; path = ../../iPhoneShared/External/Expat/xmlrole.h; sourceTree = SOURCE_ROOT; };
+		74954DAA0F38D4F700E79E24 /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok.c; path = ../../iPhoneShared/External/Expat/xmltok.c; sourceTree = SOURCE_ROOT; };
+		74954DAB0F38D4F700E79E24 /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = ../../iPhoneShared/External/Expat/xmltok.h; sourceTree = SOURCE_ROOT; };
+		74954DAC0F38D4F700E79E24 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = ../../iPhoneShared/External/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
+		74954DAD0F38D4F700E79E24 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = ../../iPhoneShared/External/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
+		74954DAE0F38D4F700E79E24 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = ../../iPhoneShared/External/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		74954DF40F38D9C000E79E24 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		74954DF50F38D9C000E79E24 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		74954E070F38DBF100E79E24 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtilities.h; path = ../../iPhoneShared/Classes/StringUtilities.h; sourceTree = SOURCE_ROOT; };
+		74954E080F38DBF100E79E24 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtilities.m; path = ../../iPhoneShared/Classes/StringUtilities.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +198,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				740101C10F26EB8300258353 /* CFNetwork.framework in Frameworks */,
+				74954DBB0F38D53300E79E24 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +208,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				74954D990F38D4DD00E79E24 /* External */,
+				74954DEF0F38D9A300E79E24 /* Data */,
+				74954D8C0F38D4C600E79E24 /* XML */,
 				745A09390F2ED8ED002F64C6 /* Caches */,
 				74954CE70F38CCBC00E79E24 /* Threading */,
 				742DC0660F1337D40079E6B0 /* Utilities */,
@@ -170,8 +222,6 @@
 				745A09220F2ED55A002F64C6 /* Controller.m */,
 				742DB7820F12095C0079E6B0 /* Model.h */,
 				742DB7830F12095C0079E6B0 /* Model.m */,
-				742DBB850F12D4AC0079E6B0 /* Decision.h */,
-				742DBB860F12D4AC0079E6B0 /* Decision.m */,
 				7401029C0F276D2700258353 /* Application.h */,
 				7401029D0F276D2700258353 /* Application.m */,
 			);
@@ -223,6 +273,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */,
 				740101C00F26EB8300258353 /* CFNetwork.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -257,6 +308,10 @@
 		742DC0660F1337D40079E6B0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74954E070F38DBF100E79E24 /* StringUtilities.h */,
+				74954E080F38DBF100E79E24 /* StringUtilities.m */,
+				74954D890F38D4B000E79E24 /* NetworkUtilities.h */,
+				74954D8A0F38D4B000E79E24 /* NetworkUtilities.m */,
 				74954CDE0F38CC9500E79E24 /* FileUtilities.h */,
 				74954CDF0F38CC9500E79E24 /* FileUtilities.m */,
 				740101A30F26EB0B00258353 /* AlertUtilities.h */,
@@ -352,6 +407,67 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		74954D8C0F38D4C600E79E24 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				74954D8D0F38D4DA00E79E24 /* XmlDocument.h */,
+				74954D8E0F38D4DA00E79E24 /* XmlDocument.m */,
+				74954D8F0F38D4DA00E79E24 /* XmlElement.h */,
+				74954D900F38D4DA00E79E24 /* XmlElement.m */,
+				74954D910F38D4DA00E79E24 /* XmlParser.h */,
+				74954D920F38D4DA00E79E24 /* XmlParser.m */,
+				74954D930F38D4DA00E79E24 /* XmlSerializer.h */,
+				74954D940F38D4DA00E79E24 /* XmlSerializer.m */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
+		74954D990F38D4DD00E79E24 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				74954D9A0F38D4E200E79E24 /* expat */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		74954D9A0F38D4E200E79E24 /* expat */ = {
+			isa = PBXGroup;
+			children = (
+				74954D9B0F38D4F700E79E24 /* amigaconfig.h */,
+				74954D9C0F38D4F700E79E24 /* ascii.h */,
+				74954D9D0F38D4F700E79E24 /* asciitab.h */,
+				74954D9E0F38D4F700E79E24 /* expat.h */,
+				74954D9F0F38D4F700E79E24 /* expat_external.h */,
+				74954DA00F38D4F700E79E24 /* iasciitab.h */,
+				74954DA10F38D4F700E79E24 /* internal.h */,
+				74954DA20F38D4F700E79E24 /* latin1tab.h */,
+				74954DA30F38D4F700E79E24 /* macconfig.h */,
+				74954DA40F38D4F700E79E24 /* nametab.h */,
+				74954DA50F38D4F700E79E24 /* utf8tab.h */,
+				74954DA60F38D4F700E79E24 /* winconfig.h */,
+				74954DA70F38D4F700E79E24 /* xmlparse.c */,
+				74954DA80F38D4F700E79E24 /* xmlrole.c */,
+				74954DA90F38D4F700E79E24 /* xmlrole.h */,
+				74954DAA0F38D4F700E79E24 /* xmltok.c */,
+				74954DAB0F38D4F700E79E24 /* xmltok.h */,
+				74954DAC0F38D4F700E79E24 /* xmltok_impl.c */,
+				74954DAD0F38D4F700E79E24 /* xmltok_impl.h */,
+				74954DAE0F38D4F700E79E24 /* xmltok_ns.c */,
+			);
+			name = expat;
+			sourceTree = "<group>";
+		};
+		74954DEF0F38D9A300E79E24 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				742DBB850F12D4AC0079E6B0 /* Decision.h */,
+				742DBB860F12D4AC0079E6B0 /* Decision.m */,
+				74954DF40F38D9C000E79E24 /* Item.h */,
+				74954DF50F38D9C000E79E24 /* Item.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,6 +560,18 @@
 				74954D300F38CEB600E79E24 /* GlobalActivityIndicator.m in Sources */,
 				74954D3B0F38CEF100E79E24 /* PriorityMutex.m in Sources */,
 				74954D3C0F38CEF100E79E24 /* Pulser.m in Sources */,
+				74954D8B0F38D4B000E79E24 /* NetworkUtilities.m in Sources */,
+				74954D950F38D4DA00E79E24 /* XmlDocument.m in Sources */,
+				74954D960F38D4DA00E79E24 /* XmlElement.m in Sources */,
+				74954D970F38D4DA00E79E24 /* XmlParser.m in Sources */,
+				74954D980F38D4DA00E79E24 /* XmlSerializer.m in Sources */,
+				74954DAF0F38D4F700E79E24 /* xmlparse.c in Sources */,
+				74954DB00F38D4F700E79E24 /* xmlrole.c in Sources */,
+				74954DB10F38D4F700E79E24 /* xmltok.c in Sources */,
+				74954DB20F38D4F700E79E24 /* xmltok_impl.c in Sources */,
+				74954DB30F38D4F700E79E24 /* xmltok_ns.c in Sources */,
+				74954DF60F38D9C000E79E24 /* Item.m in Sources */,
+				74954E090F38DBF100E79E24 /* StringUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,12 @@
 
 #import "RSSCache.h"
 
+#import "Application.h"
+#import "FileUtilities.h"
+#import "Item.h"
+#import "NetworkUtilities.h"
+#import "ThreadingUtilities.h"
+#import "XmlElement.h"
 
 @implementation RSSCache
 
@@ -93,7 +99,87 @@ static NSDictionary* titleToIdentifier;
 
 
 - (void) update {
+    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint) onTarget:self gate:gate visible:YES];
+}
+
+
+- (NSString*) feedFile:(NSString*) identifier {
+    NSString* name = [FileUtilities sanitizeFileName:identifier];
+    return [[[Application rssDirectory] stringByAppendingPathComponent:name] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (Item*) processItem:(XmlElement*) itemElement {
+    NSString* title = [itemElement attributeValue:@"title"];
+    NSString* link = [itemElement attributeValue:@"link"];
+    NSString* description = [itemElement attributeValue:@"description"];
+    NSString* date = [itemElement attributeValue:@"pubDate"];
+    NSString* author = [itemElement attributeValue:@"author"];
     
+    if (title.length == 0) {
+        return nil;
+    }
+    
+    return [Item itemWithTitle:title link:link description:description date:date author:author];
+}
+
+
+- (NSArray*) downloadFeed:(NSString*) identifier {
+    XmlElement* rssElement = [NetworkUtilities xmlWithContentsOfAddress:identifier important:NO];
+    XmlElement* channelElement = [rssElement element:@"channel"];
+    
+    NSMutableArray* items = [NSMutableArray array];
+    
+    for (XmlElement* itemElement in [channelElement elements:@"item"]) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            Item* item = [self processItem:itemElement];
+            if (item != nil) {
+                [items addObject:item];
+            }
+        }
+        [pool release];
+    }
+    
+    return items;
+}
+
+
+- (void) saveItems:(NSArray*) items toFile:(NSString*) file {
+    NSMutableArray* result = [NSMutableArray array];
+    
+    for (Item* item in items) {
+        [result addObject:item.dictionary];
+    }
+    
+    [FileUtilities writeObject:result toFile:file];
+}
+
+
+- (void) updateTitle:(NSString*) title {
+    NSString* identifier = [titleToIdentifier objectForKey:title];
+    NSString* file = [self feedFile:identifier];
+    
+    if ([FileUtilities fileExists:file]) {
+        NSDate* modificationDate = [FileUtilities modificationDate:file];
+        
+        if (ABS(modificationDate.timeIntervalSinceNow) < ONE_DAY) {
+            return;
+        }
+    }
+    
+    NSArray* items = [self downloadFeed:identifier];
+    
+    if (items.count > 0) {
+        [self saveItems:items toFile:file];
+    }
+}
+
+
+- (void) updateBackgroundEntryPoint {
+    for (NSString* title in titles) {
+        [self updateTitle:title];
+    }
 }
 
 
