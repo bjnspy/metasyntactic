@@ -110,11 +110,11 @@ static NSDictionary* titleToIdentifier;
 
 
 - (Item*) processItem:(XmlElement*) itemElement {
-    NSString* title = [itemElement attributeValue:@"title"];
-    NSString* link = [itemElement attributeValue:@"link"];
-    NSString* description = [itemElement attributeValue:@"description"];
-    NSString* date = [itemElement attributeValue:@"pubDate"];
-    NSString* author = [itemElement attributeValue:@"author"];
+    NSString* title = [[itemElement element:@"title"] text];
+    NSString* link = [[itemElement element:@"link"] text];
+    NSString* description = [[itemElement element:@"description"] text];
+    NSString* date = [[itemElement element:@"pubDate"] text];
+    NSString* author = [[itemElement element:@"author"] text];
     
     if (title.length == 0) {
         return nil;
