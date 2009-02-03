@@ -18,20 +18,23 @@
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
-
+    
     // movies whose details we want to update
     LinkedSet* normalMovies;
     LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
-
+    
     // people whose details we want to update
     LinkedSet* prioritizedPeople;
     LinkedSet* searchPeople;
-
+    
     NSCondition* updateDetailsLock;
-
+    
     NSDate* lastQuotaErrorDate;
+    
+@protected
+    NSMutableDictionary* presubmitRatings;
 }
 
 @property (readonly, retain) NSDate* lastQuotaErrorDate;
