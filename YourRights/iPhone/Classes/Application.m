@@ -35,7 +35,7 @@ static NSString** directories[] = {
     {
         for (int i = 0; i < ArrayLength(directories); i++) {
             NSString* directory = *directories[i];
-            
+
             if (directory != nil) {
                 [self moveItemToTrash:directory];
             }
@@ -50,7 +50,7 @@ static NSString** directories[] = {
     {
         for (int i = 0; i < ArrayLength(directories); i++) {
             NSString* directory = *directories[i];
-            
+
             [FileUtilities createDirectory:directory];
         }
     }
@@ -68,7 +68,7 @@ static NSString** directories[] = {
 
 + (void) initializeDirectories {
     tempDirectory = [NSTemporaryDirectory() retain];
-    
+
     {
         NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, /*expandTilde:*/YES);
         NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
@@ -76,7 +76,7 @@ static NSString** directories[] = {
         [FileUtilities createDirectory:directory];
         cacheDirectory = [directory retain];
     }
-    
+
     {
         NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
         NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
@@ -84,13 +84,13 @@ static NSString** directories[] = {
         [FileUtilities createDirectory:directory];
         supportDirectory = [directory retain];
     }
-    
+
     {
         NSString* directory = [cacheDirectory stringByAppendingPathComponent:@"Trash"];
         [FileUtilities createDirectory:directory];
         trashDirectory = [directory retain];
     }
-    
+
     {
         rssDirectory = [[cacheDirectory stringByAppendingPathComponent:@"RSS"] retain];
 
@@ -102,9 +102,9 @@ static NSString** directories[] = {
 + (void) initialize {
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
-        
+
         [self initializeDirectories];
-        
+
         [self emptyTrash];
     }
 }
@@ -134,12 +134,12 @@ static NSString** directories[] = {
         if ((rand() % 1000) < 50) {
             NSString* path = [directory stringByAppendingPathComponent:name];
             NSDictionary* attributes = [FileUtilities attributesOfItemAtPath:path];
-            
+
             if ([[attributes objectForKey:NSFileType] isEqual:NSFileTypeDirectory]) {
                 // don't delete folders
                 continue;
             }
-            
+
             NSDate* lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
             if (lastModifiedDate != nil) {
                 if (ABS(lastModifiedDate.timeIntervalSinceNow) > CACHE_LIMIT) {
@@ -156,7 +156,7 @@ static NSString** directories[] = {
     {
         for (NSInteger i = 0; i < ArrayLength(directories); i++) {
             NSString* directory = *directories[i];
-            
+
             [self clearStaleData:directory];
         }
     }
@@ -176,20 +176,20 @@ static NSString** directories[] = {
 + (NSString*) uniqueDirectory:(NSString*) parentDirectory
                        create:(BOOL) create {
     NSString* finalDir;
-    
+
     [gate lock];
     {
         do {
             NSString* random = [Application randomString];
             finalDir = [parentDirectory stringByAppendingPathComponent:random];
         } while ([[NSFileManager defaultManager] fileExistsAtPath:finalDir]);
-        
+
         if (create) {
             [FileUtilities createDirectory:finalDir];
         }
     }
     [gate unlock];
-    
+
     return finalDir;
 }
 
@@ -248,7 +248,7 @@ static NSString** directories[] = {
     NSString* appName = [self name];
     NSString* appVersion = [Model version];
     appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
-    
+
     return [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
 }
 

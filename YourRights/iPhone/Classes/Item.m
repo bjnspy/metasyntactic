@@ -33,7 +33,7 @@ property_definition(author);
     self.description = nil;
     self.date = nil;
     self.author = nil;
-    
+
     [super dealloc];
 }
 
@@ -50,7 +50,7 @@ property_definition(author);
         self.date = [StringUtilities nonNilString:date_];
         self.author = [StringUtilities nonNilString:author_];
     }
-    
+
     return self;
 }
 
@@ -102,7 +102,7 @@ property_definition(author);
     [coder encodeObject:link          forKey:link_key];
     [coder encodeObject:description   forKey:description_key];
     [coder encodeObject:date          forKey:date_key];
-    [coder encodeObject:author        forKey:author_key]; 
+    [coder encodeObject:author        forKey:author_key];
 }
 
 

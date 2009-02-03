@@ -17,7 +17,7 @@
     UIWindow *window;
     YourRightsNavigationController* navigationController;
     Model* model;
-    
+
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
 }

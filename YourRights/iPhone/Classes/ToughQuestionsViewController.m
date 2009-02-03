@@ -47,7 +47,7 @@
         self.navigationItem.titleView = [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Tough Questions", nil)];
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease]] autorelease];
     }
-    
+
     return self;
 }
 
@@ -86,10 +86,10 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [[self.model toughQuestions] objectAtIndex:indexPath.row];
-    
+
     UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
 }
 

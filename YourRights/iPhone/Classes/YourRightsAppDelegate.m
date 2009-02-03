@@ -45,16 +45,16 @@ static YourRightsAppDelegate* appDelegate = nil;
 }
 
 
-- (void) applicationDidFinishLaunching:(UIApplication*) application {  
+- (void) applicationDidFinishLaunching:(UIApplication*) application {
     appDelegate = self;
 
     self.navigationController = [[[YourRightsNavigationController alloc] initWithAppDelegate:self] autorelease];
 
     self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
-    
+
     self.model = [[[Model alloc] init] autorelease];
-    
+
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 }
@@ -65,7 +65,7 @@ static YourRightsAppDelegate* appDelegate = nil;
         [self performSelectorOnMainThread:@selector(majorRefresh:) withObject:force waitUntilDone:NO];
         return;
     }
-    
+
     if (force.boolValue) {
         [majorRefreshPulser forcePulse];
     } else {
@@ -89,7 +89,7 @@ static YourRightsAppDelegate* appDelegate = nil;
         [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
         return;
     }
-    
+
     [minorRefreshPulser tryPulse];
 }
 

@@ -41,6 +41,6 @@
 
 - (NSString*) feedbackUrl;
 
-//+ (NSArray*) 
+//+ (NSArray*)
 
 @end

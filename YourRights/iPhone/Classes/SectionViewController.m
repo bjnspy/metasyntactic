@@ -58,17 +58,17 @@
         self.navigationController = navigationController_;
         self.navigationItem.titleView =
         [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
-    
+
         UIButton* button = [UIButton buttonWithType:UIButtonTypeInfoLight];
         CGRect frame = button.frame;
         frame.size.width += 10;
         button.frame = frame;
-        
+
         [button addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
-            
+
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
     }
-    
+
     return self;
 }
 
@@ -77,7 +77,7 @@
     if (creditsViewController != nil) {
         return;
     }
-    
+
     self.creditsViewController = [[[CreditsViewController alloc] initWithNavigationController:self.navigationController] autorelease];
     self.creditsViewController.view.frame = tableView.frame;
 }
@@ -85,11 +85,11 @@
 
 - (void) flipView:(id) sender {
     [self createCreditsView];
-    
+
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:1];
-        
+
         if (tableView.superview) {
             [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
                                    forView:self.view
@@ -112,22 +112,22 @@
     UITableView* table = [[[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain] autorelease];
     table.delegate = self;
     table.dataSource = self;
-    
+
     // add the subviews and set their resize behavior
     table.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
+
     return table;
 }
 
 
 - (void) loadView {
     CGRect rect = [UIScreen mainScreen].bounds;
-    
+
     self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
     self.view.autoresizesSubviews = YES;
-    
+
     self.tableView = [self createTableView:rect];
-    
+
     [self.view addSubview:tableView];
 }
 
@@ -179,9 +179,9 @@
             return NSLocalizedString(@"The ACLU Is / Is Not", nil);
         } else {
             return NSLocalizedString(@"ACLU 100 Greatest Hits", nil);
-        } 
+        }
     } else {
-        return [[self.model sectionTitles] objectAtIndex:indexPath.row]; 
+        return [[self.model sectionTitles] objectAtIndex:indexPath.row];
     }
 }
 
@@ -191,14 +191,14 @@
     if (indexPath.section == 0) {
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         return cell;
     } else {
         text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
-        
+
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         return cell;
     }
 }
@@ -207,7 +207,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self titleForIndexPath:indexPath];
-    
+
     if (indexPath.section == 0) {
         return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
