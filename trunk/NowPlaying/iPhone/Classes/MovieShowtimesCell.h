@@ -14,18 +14,22 @@
 
 @interface MovieShowtimesCell : UITableViewCell {
 @private
+    Model* model;
     UILabel* showtimesLabel;
 
-    NSArray* showtimes;
-    BOOL useSmallFonts;
+    NSArray* showtimesData;
 }
 
+- (id)  initWithFrame:(CGRect) frame
+      reuseIdentifier:(NSString*) reuseIdentifier
+                model:(Model*) model;
+
 - (void) setStale:(BOOL) stale;
-- (void) setShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts;
+- (void) setShowtimes:(NSArray*) showtimes;
 
 + (NSString*) showtimesString:(NSArray*) showtimes;
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes
                          stale:(BOOL) stale
-                 useSmallFonts:(BOOL) useSmallFonts;
+                         model:(Model*) model;
 
 @end

@@ -272,11 +272,11 @@
         id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                              reuseIdentifier:reuseIdentifier] autorelease];
+                                              reuseIdentifier:reuseIdentifier
+                                                        model:self.model] autorelease];
         }
 
-        [cell setShowtimes:[movieShowtimes objectAtIndex:index]
-             useSmallFonts:self.model.useSmallFonts];
+        [cell setShowtimes:[movieShowtimes objectAtIndex:index]];
 
         return cell;
     }
@@ -313,7 +313,7 @@
         } else {
             return [MovieShowtimesCell heightForShowtimes:[movieShowtimes objectAtIndex:section]
                                                     stale:NO
-                                            useSmallFonts:self.model.useSmallFonts] + 18;
+                                                    model:self.model] + 18;
         }
     }
 }
@@ -461,7 +461,8 @@
     if (section == 1) {
         if (movies.count > 0 ) {
             if ([self.model isStale:theater]) {
-                return [WarningView view:[self.model showtimesRetrievedOnString:theater]];
+                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]
+                                           model:self.model];
             }
         }
     }

@@ -14,11 +14,12 @@
 
 @interface WarningView : UIView {
 @private
+    Model* model;
     UIImageView* imageView;
     UILabel* label;
 }
 
-+ (WarningView*) view:(NSString*) text;
++ (WarningView*) viewWithText:(NSString*) text model:(Model*) model;
 
 - (CGFloat) height;
 
