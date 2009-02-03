@@ -364,7 +364,7 @@
 
 - (void) updateIndexBackgroundEntryPoint {
     [self updateIndexBackgroundEntryPointWorker];
-    
+
     [ThreadingUtilities backgroundSelector:@selector(updateDetailsInBackgroundEntryPoint)
                                   onTarget:self
                                       gate:gate

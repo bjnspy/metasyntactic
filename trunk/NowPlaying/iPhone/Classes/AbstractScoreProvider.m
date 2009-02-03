@@ -196,29 +196,29 @@
 
 - (void) updateScoresBackgroundEntryPointWorker {
     NSDate* lastLookupDate = [FileUtilities modificationDate:self.hashFile];
-    
+
     if (lastLookupDate != nil) {
         if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
             return;
         }
     }
-    
+
     NSString* localHash = self.hash;
     NSString* serverHash = [self lookupServerHash];
-    
+
     if (serverHash.length == 0 ||
         [serverHash isEqual:@"0"] ||
         [serverHash isEqual:localHash]) {
         return;
     }
-    
+
     NSDictionary* result = [self lookupServerScores];
     if (result.count == 0) {
         return;
     }
-    
+
     [self saveScores:result hash:serverHash];
-    
+
     [ThreadingUtilities foregroundSelector:@selector(reportResult:withHash:)
                                   onTarget:self
                                   argument:result
@@ -535,7 +535,7 @@
 
 - (void) updateScoresBackgroundEntryPoint {
     [self updateScoresBackgroundEntryPointWorker];
-    
+
     [ThreadingUtilities backgroundSelector:@selector(updateReviewsBackgroundEntryPoint)
                                   onTarget:self
                                   argument:nil

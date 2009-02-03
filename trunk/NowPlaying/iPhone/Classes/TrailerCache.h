@@ -19,7 +19,7 @@
     LinkedSet* prioritizedMovies;
     LinkedSet* moviesWithoutTrailers;
     LinkedSet* moviesWithTrailers;
-    
+
     NSDictionary* index;
     NSArray* indexKeys;
 }

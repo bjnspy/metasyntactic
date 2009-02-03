@@ -163,7 +163,7 @@
         return;
     }
 
-    
+
     [ThreadingUtilities backgroundSelector:@selector(updateMoviesBackgroundEntryPoint)
                                   onTarget:self
                                       gate:gate
@@ -374,7 +374,7 @@
 
 - (void) updateMoviesBackgroundEntryPoint {
     [self updateMoviesBackgroundEntryPointWorker];
-    
+
     [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
                                   onTarget:self
                                   argument:nil

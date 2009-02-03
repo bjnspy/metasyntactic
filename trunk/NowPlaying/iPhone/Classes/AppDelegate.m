@@ -76,7 +76,7 @@ static AppDelegate* appDelegate = nil;
 
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
     self.notificationCenter = [NotificationCenter centerWithWindow:window];
-    
+
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 

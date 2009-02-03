@@ -140,7 +140,7 @@
     CGRect frame = self.view.frame;
     CGRect buttonFrame = button.frame;
     buttonFrame.origin.x = 10;
-    buttonFrame.origin.y = 315;
+    buttonFrame.origin.y = 300;
     buttonFrame.size.width = frame.size.width - 20;
     buttonFrame.size.height = image.size.height;
     button.frame = buttonFrame;
