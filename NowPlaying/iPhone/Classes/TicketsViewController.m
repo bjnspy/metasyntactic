@@ -189,7 +189,8 @@
     if (section == 1) {
         if (performances.count > 0 ) {
             if ([self.model isStale:theater]) {
-                return [WarningView view:[self.model showtimesRetrievedOnString:theater]];
+                return [WarningView viewWithText:[self.model showtimesRetrievedOnString:theater]
+                                           model:self.model];
             }
         }
     }

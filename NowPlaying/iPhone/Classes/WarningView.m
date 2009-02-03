@@ -17,8 +17,10 @@
 #import "ColorCache.h"
 #import "FontCache.h"
 #import "ImageCache.h"
+#import "Model.h"
 
 @interface WarningView()
+@property (retain) Model* model;
 @property (retain) UIImageView* imageView;
 @property (retain) UILabel* label;
 @end
@@ -26,13 +28,15 @@
 
 @implementation WarningView
 
-@synthesize imageView;
-@synthesize label;
-
 const NSInteger LABEL_X = 52;
 const NSInteger TOP_BUFFER = 5;
 
+@synthesize model;
+@synthesize imageView;
+@synthesize label;
+
 - (void) dealloc {
+    self.model = nil;
     self.imageView = nil;
     self.label = nil;
 
@@ -40,8 +44,9 @@ const NSInteger TOP_BUFFER = 5;
 }
 
 
-- (id) init:(NSString*) text {
+- (id) initWithText:(NSString*) text model:(Model*) model_ {
     if (self = [super initWithFrame:CGRectZero]) {
+        self.model = model_;
         self.autoresizesSubviews = YES;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
@@ -65,8 +70,8 @@ const NSInteger TOP_BUFFER = 5;
 }
 
 
-+ (WarningView*) view:(NSString*) text {
-    return [[[WarningView alloc] init:text] autorelease];
++ (WarningView*) viewWithText:(NSString*) text model:(Model*) model {
+    return [[[WarningView alloc] initWithText:text model:model] autorelease];
 }
 
 - (void) layoutSubviews {
@@ -94,7 +99,8 @@ const NSInteger TOP_BUFFER = 5;
     double imageHeight = [ImageCache warning32x32].size.height;
 
     double width;
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+    if ([model screenRotationEnabled] &&
+        UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
         width = [UIScreen mainScreen].bounds.size.width;

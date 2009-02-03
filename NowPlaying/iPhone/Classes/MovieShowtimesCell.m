@@ -17,24 +17,28 @@
 #import "DateUtilities.h"
 #import "FontCache.h"
 #import "ImageCache.h"
+#import "Model.h"
 #import "Performance.h"
 
 @interface MovieShowtimesCell()
+@property (retain) Model* model;
 @property (retain) UILabel* showtimesLabel;
-@property (retain) NSArray* showtimes;
+@property (retain) NSArray* showtimesData;
 @property BOOL useSmallFonts;
 @end
 
 
 @implementation MovieShowtimesCell
 
+@synthesize model;
 @synthesize showtimesLabel;
-@synthesize showtimes;
+@synthesize showtimesData;
 @synthesize useSmallFonts;
 
 - (void) dealloc {
+    self.model = nil;
     self.showtimesLabel = nil;
-    self.showtimes = nil;
+    self.showtimesData = nil;
     self.useSmallFonts = NO;
 
     [super dealloc];
@@ -69,12 +73,13 @@
 
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes
                          stale:(BOOL) stale
-                 useSmallFonts:(BOOL) useSmallFonts {
+                         model:(Model*) model {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
-    UIFont* font = [MovieShowtimesCell showtimesFont:useSmallFonts];
+    UIFont* font = [MovieShowtimesCell showtimesFont:model.useSmallFonts];
 
     double width;
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+    if ([model screenRotationEnabled] &&
+        UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
         width = [UIScreen mainScreen].bounds.size.width;
@@ -97,9 +102,11 @@
 
 
 - (id)  initWithFrame:(CGRect) frame
-      reuseIdentifier:(NSString*) reuseIdentifier {
+      reuseIdentifier:(NSString*) reuseIdentifier
+                model:(Model*) model_ {
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier]) {
+        self.model = model_;
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -139,21 +146,19 @@
     width -= 18; // accessory
 
     showtimesFrame.size.width = width;
-    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimes
+    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimesData
                                                                   stale:(self.image != nil)
-                                                          useSmallFonts:useSmallFonts];
+                                                                  model:model];
 
     showtimesLabel.frame = showtimesFrame;
 }
 
 
-- (void) setShowtimes:(NSArray*) showtimes_
-        useSmallFonts:(BOOL) useSmallFonts_ {
-    self.showtimes = showtimes_;
-    self.useSmallFonts = useSmallFonts_;
+- (void) setShowtimes:(NSArray*) showtimes_ {
+    self.showtimesData = showtimes_;
 
-    showtimesLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
-    showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimes];
+    showtimesLabel.font = [MovieShowtimesCell showtimesFont:model.useSmallFonts];
+    showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimesData];
 }
 
 

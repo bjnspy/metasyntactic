@@ -781,7 +781,7 @@ const NSInteger POSTER_TAG = -1;
 
             return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:theaterIndex]
                                                     stale:[self.model isStale:theater]
-                                            useSmallFonts:self.model.useSmallFonts] + 18;
+                                                    model:self.model] + 18;
         }
     }
 
@@ -810,15 +810,15 @@ const NSInteger POSTER_TAG = -1;
         id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                              reuseIdentifier:reuseIdentifier] autorelease];
+                                              reuseIdentifier:reuseIdentifier
+                                                        model:self.model] autorelease];
         }
 
         Theater* theater = [theatersArray objectAtIndex:theaterIndex];
         BOOL stale = [self.model isStale:theater];
         [cell setStale:stale];
 
-        [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]
-             useSmallFonts:self.model.useSmallFonts];
+        [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]];
 
         return cell;
     }
