@@ -12,13 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class CreditsViewController;
-@class Decision;
-@class GreatestHitsViewController;
-@class Model;
-@class MultiDictionary;
-@class Pulser;
-@class RSSCache;
-@class SectionViewController;
-@class YourRightsAppDelegate;
-@class YourRightsNavigationController;
+#import "BackgroundInvocation.h"
+
+@interface BackgroundInvocation2 : BackgroundInvocation {
+@private
+    id argument2;
+}
+
++ (BackgroundInvocation2*) invocationWithTarget:(id) target
+                                       selector:(SEL) selector
+                                       argument:(id) argument1
+                                       argument:(id) argument2
+                                           gate:(id<NSLocking>) gate
+                                        visible:(BOOL) visible;
+
+@end

@@ -41,6 +41,16 @@
 		745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A093B0F2ED905002F64C6 /* AbstractCache.m */; };
 		745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09DD0F2EE190002F64C6 /* RSSCache.m */; };
 		7462953A0F135CF90073F830 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 746295390F135CF90073F830 /* License.txt */; };
+		74954CE00F38CC9500E79E24 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954CDF0F38CC9500E79E24 /* FileUtilities.m */; };
+		74954CEE0F38CCE000E79E24 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954CE90F38CCE000E79E24 /* Invocation.m */; };
+		74954CEF0F38CCE000E79E24 /* Invocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954CEB0F38CCE000E79E24 /* Invocation2.m */; };
+		74954CF00F38CCE000E79E24 /* MainThreadGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954CED0F38CCE000E79E24 /* MainThreadGate.m */; };
+		74954CF30F38CCF600E79E24 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954CF20F38CCF600E79E24 /* ThreadingUtilities.m */; };
+		74954D230F38CE3000E79E24 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D200F38CE3000E79E24 /* BackgroundInvocation.m */; };
+		74954D240F38CE3000E79E24 /* BackgroundInvocation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D220F38CE3000E79E24 /* BackgroundInvocation2.m */; };
+		74954D300F38CEB600E79E24 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D2F0F38CEB600E79E24 /* GlobalActivityIndicator.m */; };
+		74954D3B0F38CEF100E79E24 /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D380F38CEF100E79E24 /* PriorityMutex.m */; };
+		74954D3C0F38CEF100E79E24 /* Pulser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954D3A0F38CEF100E79E24 /* Pulser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +117,27 @@
 		745A09DC0F2EE190002F64C6 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
 		745A09DD0F2EE190002F64C6 /* RSSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSCache.m; sourceTree = "<group>"; };
 		746295390F135CF90073F830 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		74954CDE0F38CC9500E79E24 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileUtilities.h; path = ../../iPhoneShared/Classes/FileUtilities.h; sourceTree = SOURCE_ROOT; };
+		74954CDF0F38CC9500E79E24 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileUtilities.m; path = ../../iPhoneShared/Classes/FileUtilities.m; sourceTree = SOURCE_ROOT; };
+		74954CE80F38CCE000E79E24 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invocation.h; path = ../../iPhoneShared/Classes/Invocation.h; sourceTree = SOURCE_ROOT; };
+		74954CE90F38CCE000E79E24 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invocation.m; path = ../../iPhoneShared/Classes/Invocation.m; sourceTree = SOURCE_ROOT; };
+		74954CEA0F38CCE000E79E24 /* Invocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invocation2.h; path = ../../iPhoneShared/Classes/Invocation2.h; sourceTree = SOURCE_ROOT; };
+		74954CEB0F38CCE000E79E24 /* Invocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invocation2.m; path = ../../iPhoneShared/Classes/Invocation2.m; sourceTree = SOURCE_ROOT; };
+		74954CEC0F38CCE000E79E24 /* MainThreadGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainThreadGate.h; path = ../../iPhoneShared/Classes/MainThreadGate.h; sourceTree = SOURCE_ROOT; };
+		74954CED0F38CCE000E79E24 /* MainThreadGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainThreadGate.m; path = ../../iPhoneShared/Classes/MainThreadGate.m; sourceTree = SOURCE_ROOT; };
+		74954CF10F38CCF600E79E24 /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
+		74954CF20F38CCF600E79E24 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
+		74954D040F38CD2700E79E24 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		74954D1F0F38CE2F00E79E24 /* BackgroundInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation.h; sourceTree = "<group>"; };
+		74954D200F38CE3000E79E24 /* BackgroundInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation.m; sourceTree = "<group>"; };
+		74954D210F38CE3000E79E24 /* BackgroundInvocation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation2.h; sourceTree = "<group>"; };
+		74954D220F38CE3000E79E24 /* BackgroundInvocation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation2.m; sourceTree = "<group>"; };
+		74954D2E0F38CEB600E79E24 /* GlobalActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalActivityIndicator.h; sourceTree = "<group>"; };
+		74954D2F0F38CEB600E79E24 /* GlobalActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalActivityIndicator.m; sourceTree = "<group>"; };
+		74954D370F38CEF100E79E24 /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriorityMutex.h; path = ../../iPhoneShared/Classes/PriorityMutex.h; sourceTree = SOURCE_ROOT; };
+		74954D380F38CEF100E79E24 /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriorityMutex.m; path = ../../iPhoneShared/Classes/PriorityMutex.m; sourceTree = SOURCE_ROOT; };
+		74954D390F38CEF100E79E24 /* Pulser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pulser.h; path = ../../iPhoneShared/Classes/Pulser.h; sourceTree = SOURCE_ROOT; };
+		74954D3A0F38CEF100E79E24 /* Pulser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pulser.m; path = ../../iPhoneShared/Classes/Pulser.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				745A09390F2ED8ED002F64C6 /* Caches */,
+				74954CE70F38CCBC00E79E24 /* Threading */,
 				742DC0660F1337D40079E6B0 /* Utilities */,
 				742DBC290F12FD2A0079E6B0 /* Collections */,
 				742DB8150F120DC30079E6B0 /* UI */,
@@ -169,6 +201,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				74954D040F38CD2700E79E24 /* Macros.h */,
 				32CA4F630368D1EE00C91783 /* YourRights_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -201,36 +234,13 @@
 		742DB8150F120DC30079E6B0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */,
-				742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */,
-				742DC05D0F1336510079E6B0 /* CreditsViewController.h */,
-				742DC05E0F1336510079E6B0 /* CreditsViewController.m */,
-				742DBE340F1321030079E6B0 /* WebViewController.h */,
-				742DBE350F1321030079E6B0 /* WebViewController.m */,
-				742DB87E0F12A6650079E6B0 /* WrappableCell.h */,
-				742DB87F0F12A6650079E6B0 /* WrappableCell.m */,
-				742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */,
-				742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */,
-				742DB77F0F1209540079E6B0 /* QuestionsViewController.h */,
-				742DB7800F1209540079E6B0 /* QuestionsViewController.m */,
+				74954D2E0F38CEB600E79E24 /* GlobalActivityIndicator.h */,
+				74954D2F0F38CEB600E79E24 /* GlobalActivityIndicator.m */,
+				74954D2C0F38CE5E00E79E24 /* TableViewCells */,
+				74954D2B0F38CE4A00E79E24 /* ViewControllers */,
+				74954D2A0F38CE3F00E79E24 /* NavigationControllers */,
 				742DB8160F120DD10079E6B0 /* ViewControllerUtilities.h */,
 				742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */,
-				742DB8B10F12A7190079E6B0 /* AnswerViewController.h */,
-				742DB8B20F12A7190079E6B0 /* AnswerViewController.m */,
-				742DBAB10F12C6D80079E6B0 /* RootViewController.h */,
-				742DBAB20F12C6D80079E6B0 /* RootViewController.m */,
-				742DBB1F0F12CD240079E6B0 /* ToughQuestionsViewController.h */,
-				742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */,
-				742DBB610F12D29D0079E6B0 /* ToughAnswerViewController.h */,
-				742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */,
-				742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */,
-				742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */,
-				742DBCE90F1309BE0079E6B0 /* DecisionCell.h */,
-				742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */,
-				742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */,
-				742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */,
-				745A09340F2ED647002F64C6 /* ACLUNewsController.h */,
-				745A09350F2ED647002F64C6 /* ACLUNewsController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -247,12 +257,16 @@
 		742DC0660F1337D40079E6B0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				74954CDE0F38CC9500E79E24 /* FileUtilities.h */,
+				74954CDF0F38CC9500E79E24 /* FileUtilities.m */,
 				740101A30F26EB0B00258353 /* AlertUtilities.h */,
 				740101A40F26EB0B00258353 /* AlertUtilities.m */,
 				742DC06A0F1337FF0079E6B0 /* Utilities.h */,
 				742DC06B0F1337FF0079E6B0 /* Utilities.m */,
 				742DC0670F1337ED0079E6B0 /* LocaleUtilities.h */,
 				742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */,
+				74954D390F38CEF100E79E24 /* Pulser.h */,
+				74954D3A0F38CEF100E79E24 /* Pulser.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -266,6 +280,76 @@
 				745A09DD0F2EE190002F64C6 /* RSSCache.m */,
 			);
 			name = Caches;
+			sourceTree = "<group>";
+		};
+		74954CE70F38CCBC00E79E24 /* Threading */ = {
+			isa = PBXGroup;
+			children = (
+				74954D370F38CEF100E79E24 /* PriorityMutex.h */,
+				74954D380F38CEF100E79E24 /* PriorityMutex.m */,
+				74954D1F0F38CE2F00E79E24 /* BackgroundInvocation.h */,
+				74954D200F38CE3000E79E24 /* BackgroundInvocation.m */,
+				74954D210F38CE3000E79E24 /* BackgroundInvocation2.h */,
+				74954D220F38CE3000E79E24 /* BackgroundInvocation2.m */,
+				74954CF10F38CCF600E79E24 /* ThreadingUtilities.h */,
+				74954CF20F38CCF600E79E24 /* ThreadingUtilities.m */,
+				74954CE80F38CCE000E79E24 /* Invocation.h */,
+				74954CE90F38CCE000E79E24 /* Invocation.m */,
+				74954CEA0F38CCE000E79E24 /* Invocation2.h */,
+				74954CEB0F38CCE000E79E24 /* Invocation2.m */,
+				74954CEC0F38CCE000E79E24 /* MainThreadGate.h */,
+				74954CED0F38CCE000E79E24 /* MainThreadGate.m */,
+			);
+			name = Threading;
+			sourceTree = "<group>";
+		};
+		74954D2A0F38CE3F00E79E24 /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */,
+				742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */,
+			);
+			name = NavigationControllers;
+			sourceTree = "<group>";
+		};
+		74954D2B0F38CE4A00E79E24 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				742DC05D0F1336510079E6B0 /* CreditsViewController.h */,
+				742DC05E0F1336510079E6B0 /* CreditsViewController.m */,
+				742DBE340F1321030079E6B0 /* WebViewController.h */,
+				742DBE350F1321030079E6B0 /* WebViewController.m */,
+				742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */,
+				742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */,
+				742DB77F0F1209540079E6B0 /* QuestionsViewController.h */,
+				742DB7800F1209540079E6B0 /* QuestionsViewController.m */,
+				742DB8B10F12A7190079E6B0 /* AnswerViewController.h */,
+				742DB8B20F12A7190079E6B0 /* AnswerViewController.m */,
+				742DBAB10F12C6D80079E6B0 /* RootViewController.h */,
+				742DBAB20F12C6D80079E6B0 /* RootViewController.m */,
+				742DBB1F0F12CD240079E6B0 /* ToughQuestionsViewController.h */,
+				742DBB200F12CD240079E6B0 /* ToughQuestionsViewController.m */,
+				742DBB610F12D29D0079E6B0 /* ToughAnswerViewController.h */,
+				742DBB620F12D29D0079E6B0 /* ToughAnswerViewController.m */,
+				742DBC260F12FD1C0079E6B0 /* GreatestHitsViewController.h */,
+				742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */,
+				742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */,
+				742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */,
+				745A09340F2ED647002F64C6 /* ACLUNewsController.h */,
+				745A09350F2ED647002F64C6 /* ACLUNewsController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		74954D2C0F38CE5E00E79E24 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				742DB87E0F12A6650079E6B0 /* WrappableCell.h */,
+				742DB87F0F12A6650079E6B0 /* WrappableCell.m */,
+				742DBCE90F1309BE0079E6B0 /* DecisionCell.h */,
+				742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,6 +434,16 @@
 				745A09360F2ED647002F64C6 /* ACLUNewsController.m in Sources */,
 				745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */,
 				745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */,
+				74954CE00F38CC9500E79E24 /* FileUtilities.m in Sources */,
+				74954CEE0F38CCE000E79E24 /* Invocation.m in Sources */,
+				74954CEF0F38CCE000E79E24 /* Invocation2.m in Sources */,
+				74954CF00F38CCE000E79E24 /* MainThreadGate.m in Sources */,
+				74954CF30F38CCF600E79E24 /* ThreadingUtilities.m in Sources */,
+				74954D230F38CE3000E79E24 /* BackgroundInvocation.m in Sources */,
+				74954D240F38CE3000E79E24 /* BackgroundInvocation2.m in Sources */,
+				74954D300F38CEB600E79E24 /* GlobalActivityIndicator.m in Sources */,
+				74954D3B0F38CEF100E79E24 /* PriorityMutex.m in Sources */,
+				74954D3C0F38CEF100E79E24 /* Pulser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

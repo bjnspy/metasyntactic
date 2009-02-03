@@ -13,7 +13,8 @@
 // limitations under the License.
 
 @interface Model : NSObject {
-
+@private
+    RSSCache* rssCache;
 }
 
 + (NSString*) version;
