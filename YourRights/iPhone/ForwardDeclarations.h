@@ -20,5 +20,7 @@
 @class Pulser;
 @class RSSCache;
 @class SectionViewController;
+@class XmlDocument;
+@class XmlElement;
 @class YourRightsAppDelegate;
 @class YourRightsNavigationController;

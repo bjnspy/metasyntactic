@@ -15,6 +15,7 @@
 
 + (void) moveItemToTrash:(NSString*) path;
 
++ (NSString*) rssDirectory;
 + (NSString*) tempDirectory;
 + (NSString*) trashDirectory;
 
