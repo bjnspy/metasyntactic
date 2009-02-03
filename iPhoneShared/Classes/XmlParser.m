@@ -154,7 +154,7 @@ void characterDataHandler(void* userData,
     if (data == nil) {
         return nil;
     }
-    
+
     XmlElement* result = nil;
 
     [gate lock];

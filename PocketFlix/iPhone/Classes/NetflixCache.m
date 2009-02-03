@@ -51,6 +51,7 @@
 @property (retain) LinkedSet* prioritizedMovies;
 @property (retain) NSCondition* updateDetailsLock;
 @property (retain) NSDate* lastQuotaErrorDate;
+@property (retain) NSMutableDictionary* presubmitRatings;
 
 - (void) updateMovieDetails:(Movie*) movie;
 @end
@@ -180,6 +181,7 @@ static NSDictionary* availabilityMap = nil;
 @synthesize prioritizedMovies;
 @synthesize updateDetailsLock;
 @synthesize lastQuotaErrorDate;
+@synthesize presubmitRatings;
 
 - (void) dealloc {
     self.feedsData = nil;
@@ -192,6 +194,7 @@ static NSDictionary* availabilityMap = nil;
     self.prioritizedMovies = nil;
     self.updateDetailsLock = nil;
     self.lastQuotaErrorDate = nil;
+    self.presubmitRatings = nil;
 
     [super dealloc];
 }
@@ -208,6 +211,7 @@ static NSDictionary* availabilityMap = nil;
         self.searchPeople = [LinkedSet set];
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.updateDetailsLock = [[[NSCondition alloc] init] autorelease];
+        self.presubmitRatings = [NSMutableDictionary dictionary];
 
         [ThreadingUtilities backgroundSelector:@selector(updateDetailsBackgroundEntryPoint)
                                       onTarget:self
@@ -1517,6 +1521,11 @@ static NSDictionary* availabilityMap = nil;
 - (NSString*) userRatingForMovie:(Movie*) movie {
     movie = [self promoteDiscToSeries:movie];
 
+    NSString* presubmitRating = [presubmitRatings objectForKey:movie];
+    if (presubmitRating != nil) {
+        return presubmitRating;
+    }
+    
     return [FileUtilities readObject:[self userRatingsFile:movie]];
 }
 
