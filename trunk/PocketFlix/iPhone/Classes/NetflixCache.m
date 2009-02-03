@@ -1525,7 +1525,7 @@ static NSDictionary* availabilityMap = nil;
     if (presubmitRating != nil) {
         return presubmitRating;
     }
-    
+
     return [FileUtilities readObject:[self userRatingsFile:movie]];
 }
 

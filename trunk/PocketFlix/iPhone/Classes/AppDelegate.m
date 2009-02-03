@@ -63,7 +63,7 @@ static AppDelegate* appDelegate = nil;
     if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
         [AlertUtilities showOkAlert:@"Zombies enabled!"];
     }
-    
+
     appDelegate = self;
 
     self.model = [Model model];
