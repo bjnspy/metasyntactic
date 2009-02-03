@@ -22,6 +22,7 @@
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "NetflixAddMovieDelegate.h"
+#import "NetflixChangeRatingDelegate.h"
 #import "NetflixModifyQueueDelegate.h"
 #import "NetflixMoveMovieDelegate.h"
 #import "Model.h"
@@ -110,6 +111,27 @@
     id<NetflixAddMovieDelegate> delegate = [arguments objectAtIndex:1];
 
     [delegate addSucceeded];
+}
+
+
+- (void) reportChangeRatingFailure:(NSArray*) arguments {
+    NSAssert([NSThread isMainThread], nil);
+    
+    Movie* movie = [arguments objectAtIndex:0];
+    id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:1];
+    NSString* message = [arguments objectAtIndex:2];
+    
+    [presubmitRatings removeObjectForKey:movie];
+    [delegate changeFailedWithError:message];
+}
+
+
+- (void) reportChangeRatingSuccess:(NSArray*) arguments {
+    Movie* movie = [arguments objectAtIndex:1];
+    id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
+    
+    [presubmitRatings removeObjectForKey:movie];
+    [delegate changeSucceeded];
 }
 
 
@@ -271,6 +293,9 @@
 - (void) changeRatingTo:(NSString*) rating
                forMovie:(Movie*) movie
                delegate:(id<NetflixChangeRatingDelegate>) delegate {
+    movie = [self promoteDiscToSeries:movie];
+    [presubmitRatings setObject:rating forKey:movie];
+
     NSArray* arguments = [NSArray arrayWithObjects:rating, movie, delegate, nil];
     [ThreadingUtilities backgroundSelector:@selector(changeRatingBackgroundEntryPoint:)
                                   onTarget:self
@@ -389,25 +414,24 @@
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
 
-    movie = [self promoteDiscToSeries:movie];
     NSString* userRatingsFile = [self userRatingsFile:movie];
     NSString* existingUserRating = [StringUtilities nonNilString:[FileUtilities readObject:userRatingsFile]];
 
     NSLog(@"Changing rating for '%@' from '%@' to '%@'.", movie.canonicalTitle, existingUserRating, rating);
 
     // First, persist the change so that the UI picks it up
-    [FileUtilities writeObject:rating toFile:userRatingsFile];
 
     NSString* message = [self changeRatingTo:rating forMovieWorker:movie];
     if (message.length > 0) {
         NSLog(@"Changing rating failed. Restoring existing rating.", nil);
-        [FileUtilities writeObject:existingUserRating toFile:userRatingsFile];
-        [(id)delegate performSelectorOnMainThread:@selector(changeFailedWithError:) withObject:message waitUntilDone:NO];
+        NSArray* failureArguments = [NSArray arrayWithObjects:movie, delegate, message];
+        [self performSelectorOnMainThread:@selector(reportChangeRatingFailure:) withObject:failureArguments waitUntilDone:NO];
         return;
     }
 
     NSLog(@"Changing rating succeeded.", nil);
-    [(id)delegate performSelectorOnMainThread:@selector(changeSucceeded) withObject:nil waitUntilDone:NO];
+    [FileUtilities writeObject:rating toFile:userRatingsFile];
+    [self performSelectorOnMainThread:@selector(reportChangeRatingSuccess:) withObject:arguments waitUntilDone:NO];
 }
 
 

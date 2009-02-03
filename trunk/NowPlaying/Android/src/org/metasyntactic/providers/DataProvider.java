@@ -143,9 +143,11 @@ public class DataProvider {
     start = System.currentTimeMillis();
     addMissingData(result, location, currentMovies, currentTheaters);
     LogUtilities.logTime(DataProvider.class, "Add missing data", start);
+
     start = System.currentTimeMillis();
     lookupMissingFavorites(result);
     LogUtilities.logTime(DataProvider.class, "Lookup Missing Theaters", start);
+
     reportResult(result);
     saveResult(result);
   }

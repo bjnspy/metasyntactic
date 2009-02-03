@@ -41,19 +41,19 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   private final List<String> genres;
 
   public void persistTo(final PersistableOutputStream out) throws IOException {
-    out.writeString(identifier);
-    out.writeString(canonicalTitle);
-    out.writeString(displayTitle);
-    out.writeString(rating);
-    out.writeInt(length);
-    out.writeString(imdbAddress);
-    out.writeDate(releaseDate);
-    out.writeString(poster);
-    out.writeString(synopsis);
-    out.writeString(studio);
-    out.writeStringCollection(directors);
-    out.writeStringCollection(cast);
-    out.writeStringCollection(genres);
+    out.writeString(this.identifier);
+    out.writeString(this.canonicalTitle);
+    out.writeString(this.displayTitle);
+    out.writeString(this.rating);
+    out.writeInt(this.length);
+    out.writeString(this.imdbAddress);
+    out.writeDate(this.releaseDate);
+    out.writeString(this.poster);
+    out.writeString(this.synopsis);
+    out.writeString(this.studio);
+    out.writeStringCollection(this.directors);
+    out.writeStringCollection(this.cast);
+    out.writeStringCollection(this.genres);
   }
 
   public static final Reader<Movie> reader = new AbstractPersistable.AbstractReader<Movie>() {
@@ -99,55 +99,55 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   }
 
   public String getIdentifier() {
-    return identifier;
+    return this.identifier;
   }
 
   public String getCanonicalTitle() {
-    return canonicalTitle;
+    return this.canonicalTitle;
   }
 
   public String getDisplayTitle() {
-    return displayTitle;
+    return this.displayTitle;
   }
 
   public String getRating() {
-    return rating;
+    return this.rating;
   }
 
   public int getLength() {
-    return length;
+    return this.length;
   }
 
   public String getIMDbAddress() {
-    return imdbAddress;
+    return this.imdbAddress;
   }
 
   public Date getReleaseDate() {
-    return releaseDate;
+    return this.releaseDate;
   }
 
   public String getPoster() {
-    return poster;
+    return this.poster;
   }
 
   public String getSynopsis() {
-    return synopsis;
+    return this.synopsis;
   }
 
   public String getStudio() {
-    return studio;
+    return this.studio;
   }
 
   public List<String> getDirectors() {
-    return Collections.unmodifiableList(directors);
+    return Collections.unmodifiableList(this.directors);
   }
 
   public List<String> getCast() {
-    return Collections.unmodifiableList(cast);
+    return Collections.unmodifiableList(this.cast);
   }
 
   public List<String> getGenres() {
-    return Collections.unmodifiableList(genres);
+    return Collections.unmodifiableList(this.genres);
   }
 
   @Override public boolean equals(final Object o) {
@@ -160,7 +160,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
 
     final Movie movie = (Movie) o;
 
-    if (canonicalTitle != null ? !canonicalTitle.equals(movie.canonicalTitle) : movie.canonicalTitle != null) {
+    if (this.canonicalTitle != null ? !this.canonicalTitle.equals(movie.canonicalTitle) : movie.canonicalTitle != null) {
       return false;
     }
 
@@ -168,7 +168,11 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   }
 
   @Override public int hashCode() {
-    return canonicalTitle != null ? canonicalTitle.hashCode() : 0;
+    return this.canonicalTitle != null ? this.canonicalTitle.hashCode() : 0;
+  }
+
+  @Override public String toString() {
+    return this.canonicalTitle;
   }
 
   private final static String[] prefixArticles;
@@ -217,19 +221,19 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
   }
 
   public void writeToParcel(final Parcel dest, final int flags) {
-    dest.writeString(identifier);
-    dest.writeString(canonicalTitle);
-    dest.writeString(displayTitle);
-    dest.writeString(rating);
-    dest.writeInt(length);
-    dest.writeString(imdbAddress);
-    dest.writeValue(releaseDate);
-    dest.writeString(poster);
-    dest.writeString(synopsis);
-    dest.writeString(studio);
-    dest.writeStringList(directors);
-    dest.writeStringList(cast);
-    dest.writeStringList(genres);
+    dest.writeString(this.identifier);
+    dest.writeString(this.canonicalTitle);
+    dest.writeString(this.displayTitle);
+    dest.writeString(this.rating);
+    dest.writeInt(this.length);
+    dest.writeString(this.imdbAddress);
+    dest.writeValue(this.releaseDate);
+    dest.writeString(this.poster);
+    dest.writeString(this.synopsis);
+    dest.writeString(this.studio);
+    dest.writeStringList(this.directors);
+    dest.writeStringList(this.cast);
+    dest.writeStringList(this.genres);
   }
 
   public static final Creator<Movie> CREATOR = new Creator<Movie>() {
