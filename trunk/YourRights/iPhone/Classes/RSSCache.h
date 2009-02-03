@@ -9,12 +9,14 @@
 #import "AbstractCache.h"
 
 @interface RSSCache : AbstractCache {
-
+@private
+    NSMutableDictionary* titleToItems;
 }
 
 + (RSSCache*) cacheWithModel:(Model*) model;
 
 - (void) update;
+- (NSArray*) itemsForTitle:(NSString*) title;
 
 + (NSArray*) titles;
 

@@ -6,19 +6,29 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "ACLUNewsController.h"
+#import "ACLUNewsViewController.h"
 
-@interface ACLUNewsController()
+#import "ACLUArticlesViewController.h"
+#import "GlobalActivityIndicator.h"
+#import "Model.h"
+#import "NetworkUtilities.h"
+#import "RSSCache.h"
+#import "YourRightsNavigationController.h"
+
+@interface ACLUNewsViewController()
 @property (assign) YourRightsNavigationController* navigationController;
+@property (retain) NSMutableArray* titlesWithArticles;
 @end
 
 
-@implementation ACLUNewsController
+@implementation ACLUNewsViewController
 
 @synthesize navigationController;
+@synthesize titlesWithArticles;
 
 - (void) dealloc {
     self.navigationController = nil;
+    self.titlesWithArticles = nil;
     [super dealloc];
 }
 
@@ -26,6 +36,7 @@
 - (id) initWithNavigationController:(YourRightsNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
+        self.title = NSLocalizedString(@"News", nil);
     }
     
     return self;
@@ -40,11 +51,32 @@
 }
 */
 
-/*
+
+- (Model*) model {
+    return navigationController.model;
+}
+
+
+- (void) majorRefresh {
+    self.titlesWithArticles = [NSMutableArray array];
+    
+    for (NSString* title in [RSSCache titles]) {
+        NSArray* items = [self.model.rssCache itemsForTitle:title];
+        if (items.count > 0) {
+            [titlesWithArticles addObject:title];
+        }
+    }
+    
+    [self.tableView reloadData];
+}
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    [self majorRefresh];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -74,40 +106,57 @@
     // Release anything that's not essential, such as cached data
 }
 
-#pragma mark Table view methods
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return MAX(titlesWithArticles.count, 1);
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    if (titlesWithArticles.count == 0) {
+        return 0;
+    }
+    
+    return 1;
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+       titleForHeaderInSection:(NSInteger) section {
+    if (section == 0 && titlesWithArticles.count == 0) {
+        if ([GlobalActivityIndicator hasVisibleBackgroundTasks]) {
+            return NSLocalizedString(@"Downloading data", nil);
+        } else if (![NetworkUtilities isNetworkAvailable]) {
+            return NSLocalizedString(@"Network unavailable", nil);
+        } else {
+            return NSLocalizedString(@"No information found", nil);
+        }
+    }
+    
+    return nil;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString* reuseIdentifier = @"reuseIdentifier";
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
     
-    // Set up the cell...
-
+    NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
+    cell.text = title;    
+        
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+    NSString* title = [[RSSCache titles] objectAtIndex:indexPath.section];
+    ACLUArticlesViewController* controller = [[[ACLUArticlesViewController alloc] initWithNavigationController:navigationController title:title] autorelease];
+    [navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -148,6 +197,11 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+ */
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
 
 @end

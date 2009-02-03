@@ -17,6 +17,8 @@
     RSSCache* rssCache;
 }
 
+@property (readonly, retain) RSSCache* rssCache;
+
 + (NSString*) version;
 
 - (NSArray*) sectionTitles;
