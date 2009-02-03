@@ -138,7 +138,7 @@ typedef enum {
     if (interfaceOrientation == UIInterfaceOrientationPortrait) {
         return YES;
     }
-    
+
     return self.model.screenRotationEnabled;
 }
 
@@ -162,7 +162,7 @@ typedef enum {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.label.backgroundColor = [UIColor clearColor];
     cell.textColor = [UIColor whiteColor];
-    
+
     NSInteger row = indexPath.row;
     if (self.hasAccount) {
         switch (row) {
@@ -200,7 +200,7 @@ typedef enum {
                 cell.accessoryView = nil;
                 break;
         }
-        
+
         cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
     } else {
         if (indexPath.row == 0) {

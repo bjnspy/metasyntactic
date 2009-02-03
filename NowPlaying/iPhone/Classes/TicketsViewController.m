@@ -34,7 +34,7 @@
 @interface TicketsViewController()
 @property (retain) Movie* movie;
 @property (retain) Theater* theater;
-@property (retain) NSMutableArray* performances;
+@property (retain) NSArray* performances;
 @end
 
 
@@ -55,7 +55,7 @@
 
 - (void) initializeData {
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
-    self.performances = [NSMutableArray array];
+    NSMutableArray* result = [NSMutableArray array];
 
     NSDate* now = [DateUtilities currentTime];
 
@@ -75,8 +75,10 @@
             }
         }
 
-        [performances addObject:performance];
+        [result addObject:performance];
     }
+    
+    self.performances = result;
 }
 
 

@@ -231,7 +231,7 @@
 - (void) resetTabs:(BOOL) animated {
     NSArray* currentControllers = self.viewControllers;
     [self setTabs:[NSNumber numberWithBool:NO]];
-    
+
     if (animated) {
         self.viewControllers = currentControllers;
 

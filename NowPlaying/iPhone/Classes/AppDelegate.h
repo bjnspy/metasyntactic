@@ -17,7 +17,7 @@
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
     NotificationCenter* notificationCenter;
-    
+
     Model* model;
     Controller* controller;
     Pulser* minorRefreshPulser;

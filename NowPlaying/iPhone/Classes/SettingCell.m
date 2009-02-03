@@ -109,7 +109,7 @@
         valueLabel.textColor = [ColorCache commandColor];
     } else {
         valueLabel.textColor = [UIColor lightGrayColor];
-    }   
+    }
 }
 
 
@@ -117,15 +117,15 @@
           value:(NSString*) value_
   hideSeparator:(BOOL) hideSeparator  {
     self.value = value_;
-    
+
     keyLabel.text = key;
-    
+
     if (value.length > 0) {
         valueLabel.text = value;
     } else {
         valueLabel.text = placeholder;
     }
-    
+
     [self setValueColor];
 
     [separatorLine removeFromSuperview];

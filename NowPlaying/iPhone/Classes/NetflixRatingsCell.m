@@ -39,12 +39,12 @@
 
 - (void) setupNetflixRating {
     //[self clearImages];
-    
+
     CGFloat rating = [[model.netflixCache netflixRatingForMovie:movie] floatValue];
 
     for (NSInteger i = 0; i < 5; i++) {
         UIImage* image;
-        
+
         CGFloat value = rating - i;
         if (value < 0.2) {
             image = [UIImage imageNamed:@"RedStar-0.0.png"];

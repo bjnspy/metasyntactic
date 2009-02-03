@@ -87,10 +87,10 @@
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {    
+- (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self.controller.locationManager addLocationSpinner:self.navigationItem];
-    
+
     [self majorRefresh];
 }
 
@@ -166,7 +166,7 @@
             value = self.model.currentScoreProvider;
         } else if (row == 4) {
             key = NSLocalizedString(@"DVD/Blu-ray", nil);
-            
+
             if (self.model.dvdMoviesShowBoth) {
                 value = NSLocalizedString(@"Both", nil);
             } else if (self.model.dvdMoviesShowOnlyDVDs) {

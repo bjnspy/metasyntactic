@@ -64,11 +64,11 @@ static NSInteger visibleBackgroundTaskCount = 0;
     [gate lock];
     {
         totalBackgroundTaskCount++;
-        
+
         if (isVisible) {
             visibleBackgroundTaskCount++;
         }
-        
+
         if (visibleBackgroundTaskCount > 0 && firstTime) {
             [self performSelectorOnMainThread:@selector(forceUpdate) withObject:nil waitUntilDone:NO];
         } else {
@@ -87,7 +87,7 @@ static NSInteger visibleBackgroundTaskCount = 0;
         if (isVisible) {
             visibleBackgroundTaskCount--;
         }
-      
+
         [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
         [AppDelegate minorRefresh];
     }

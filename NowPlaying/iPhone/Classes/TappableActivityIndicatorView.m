@@ -30,7 +30,7 @@
     if (self = [super initWithActivityIndicatorStyle:style]) {
         self.userInteractionEnabled = YES;
     }
-    
+
     return self;
 }
 

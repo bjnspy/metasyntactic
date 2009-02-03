@@ -75,7 +75,7 @@
 
 @implementation Model
 
-static NSString* currentVersion = @"3.0.0";
+static NSString* currentVersion = @"3.1.0";
 static NSString* persistenceVersion = @"104";
 
 static NSString* VERSION = @"version";
@@ -331,7 +331,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
             [result setObject:previousValue forKey:key];
         }
     }
-    
+
     for (NSInteger i = 0; i < ArrayLength(DATE_KEYS_TO_MIGRATE); i++) {
         NSString* key = *DATE_KEYS_TO_MIGRATE[i];
         id previousValue = [defaults objectForKey:key];
@@ -482,26 +482,26 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
         [[NSUserDefaults standardUserDefaults] setObject:firstLaunchDate forKey:FIRST_LAUNCH_DATE];
         [self synchronize];
     }
-    
-    NSTimeInterval interval = ABS([firstLaunchDate timeIntervalSinceNow]);
+
+    NSTimeInterval interval = ABS(firstLaunchDate.timeIntervalSinceNow);
     if (interval < (30 * ONE_DAY)) {
         return;
     }
-        
+
     BOOL hasShown = [[NSUserDefaults standardUserDefaults] boolForKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
     if (hasShown) {
         return;
     }
-    
+
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HAS_SHOWN_WRITE_REVIEW_REQUEST];
     [self synchronize];
-    
+
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"A message from Cyrus", nil)
                                                      message:NSLocalizedString(@"Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)", nil)
                                                     delegate:self
                                            cancelButtonTitle:NSLocalizedString(@"No Thanks", nil)
                                            otherButtonTitles:NSLocalizedString(@"Write Review", nil), nil] autorelease];
-    
+
     [alert show];
 }
 

@@ -19,7 +19,7 @@
 @interface AbstractMovieListViewController : RefreshableTableViewController<InfoViewControllerDelegate> {
 @protected
     AbstractNavigationController* navigationController;
-    
+
     NSArray* sortedMovies;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;

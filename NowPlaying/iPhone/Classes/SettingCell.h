@@ -19,7 +19,7 @@
     UILabel* separatorLine;
 
     UIFont* cachedFont;
-    
+
     NSString* value;
     NSString* placeholder;
 }
