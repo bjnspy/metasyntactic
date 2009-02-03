@@ -172,14 +172,14 @@
 - (NSString*) titleForIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return NSLocalizedString(@"Tough Questions about ACLU positions", nil);
-        } else if (indexPath.row == 1) {
-            return NSLocalizedString(@"The ACLU Is / Is Not", nil);
-        } else if (indexPath.row == 2) {
-            return NSLocalizedString(@"ACLU 100 Greatest Hits", nil);
-        } else {
             return NSLocalizedString(@"ACLU News", nil);
-        }
+        } else if (indexPath.row == 1) {
+            return NSLocalizedString(@"Tough Questions about ACLU positions", nil);
+        } else if (indexPath.row == 2) {
+            return NSLocalizedString(@"The ACLU Is / Is Not", nil);
+        } else {
+            return NSLocalizedString(@"ACLU 100 Greatest Hits", nil);
+        } 
     } else {
         return [[self.model sectionTitles] objectAtIndex:indexPath.row]; 
     }
@@ -219,13 +219,13 @@
 
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 1) {
             ToughQuestionsViewController* controller = [[[ToughQuestionsViewController alloc] initWithNavigationController:navigationController] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
-        } else if (indexPath.row == 1) {
+        } else if (indexPath.row == 2) {
             ACLUInfoViewController* controller = [[[ACLUInfoViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 3) {
             GreatestHitsViewController* controller = [[[GreatestHitsViewController alloc] initWithNavigationController:navigationController] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         }
