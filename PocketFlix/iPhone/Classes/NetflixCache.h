@@ -32,7 +32,7 @@
     NSCondition* updateDetailsLock;
 
     NSDate* lastQuotaErrorDate;
-    
+
 @protected
     NSMutableDictionary* presubmitRatings;
 }

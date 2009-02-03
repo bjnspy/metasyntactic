@@ -42,7 +42,7 @@
     TappableImageView* posterImageView;
     ActivityIndicatorViewWithBackground* posterActivityView;
     NSInteger posterCount;
-    
+
     CollapsedMovieDetailsCell* collapsedMovieDetailsCell;
     ExpandedMovieDetailsCell* expandedMovieDetailsCell;
 }

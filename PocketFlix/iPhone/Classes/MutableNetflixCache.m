@@ -116,11 +116,11 @@
 
 - (void) reportChangeRatingFailure:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
-    
+
     Movie* movie = [arguments objectAtIndex:0];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:1];
     NSString* message = [arguments objectAtIndex:2];
-    
+
     [presubmitRatings removeObjectForKey:movie];
     [delegate changeFailedWithError:message];
 }
@@ -129,7 +129,7 @@
 - (void) reportChangeRatingSuccess:(NSArray*) arguments {
     Movie* movie = [arguments objectAtIndex:1];
     id<NetflixChangeRatingDelegate> delegate = [arguments objectAtIndex:2];
-    
+
     [presubmitRatings removeObjectForKey:movie];
     [delegate changeSucceeded];
 }

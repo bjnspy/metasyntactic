@@ -430,24 +430,24 @@ const NSInteger POSTER_TAG = -1;
 
 - (UITableViewCell*) createExpandedMovieDetailsCell {
     if (expandedMovieDetailsCell == nil) {
-        self.expandedMovieDetailsCell = 
+        self.expandedMovieDetailsCell =
         [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                    model:self.model
                                                    movie:movie] autorelease];
     }
-    
+
     return expandedMovieDetailsCell;
 }
 
 
 - (UITableViewCell*) createCollapsedMovieDetailsCell {
     if (collapsedMovieDetailsCell == nil) {
-        self.collapsedMovieDetailsCell = 
+        self.collapsedMovieDetailsCell =
         [[[CollapsedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                     model:self.model
                                                     movie:movie] autorelease];
     }
-    
+
     return collapsedMovieDetailsCell;
 }
 
