@@ -34,16 +34,16 @@
 - (id) initWithTitle:(NSString*) title_ {
     if (self = [super initWithFrame:CGRectZero]) {
         self.title = title_;
-        
+
         self.label = [[[UILabel alloc] init] autorelease];
         label.text = title;
         label.numberOfLines = 0;
         label.lineBreakMode = UILineBreakModeWordWrap;
         label.font = [UIFont boldSystemFontOfSize:20];
-    
+
         [self.contentView addSubview:label];
     }
-    
+
     return self;
 }
 
@@ -51,7 +51,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     CGRect frame = self.contentView.frame;
-    
+
     label.frame = CGRectMake(10, 10, frame.size.width - 20, [WrappableCell height:title accessoryType:self.accessoryType] - 20);
 }
 
@@ -75,16 +75,16 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
     width -= 20; // normal content view
-    
+
     if (accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
         width -= 10;
     }
-    
+
     CGSize size = CGSizeMake(width, 2000);
     size = [title sizeWithFont:[UIFont boldSystemFontOfSize:20]
             constrainedToSize:size
             lineBreakMode:UILineBreakModeWordWrap];
-    
+
     return size.height + 20;
 }
 

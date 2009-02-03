@@ -31,7 +31,7 @@
 - (void) dealloc {
     self.appDelegate = nil;
     self.viewController = nil;
-    
+
     [super dealloc];
 }
 
@@ -42,7 +42,7 @@
         self.viewController = [[[SectionViewController alloc] initWithNavigationController:self] autorelease];
         [self pushViewController:viewController animated:NO];
     }
-    
+
     return self;
 }
 

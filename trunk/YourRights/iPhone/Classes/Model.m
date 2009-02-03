@@ -57,7 +57,7 @@ static NSString* currentVersion = @"1.2.0";
      NSLocalizedString(@"Why is the ACLU against drug testing of employees?", nil),
      NSLocalizedString(@"Why does the ACLU help rapists and child molesters?", nil),
      NSLocalizedString(@"Why did the ACLU defend NAMBLA?", nil), nil] retain];
-    
+
     toughAnswers =
     [[NSArray arrayWithObjects:
      NSLocalizedString(@"The ACLU’s client is the Bill of Rights, not any particular person or group. We defend its principles – basic "
@@ -127,7 +127,7 @@ static NSString* currentVersion = @"1.2.0";
                        @"is central to true freedom of speech: those who do wrong are responsible for what they do; those who speak "
                        @"about it are not. It is easy to defend freedom of speech when the message is something many people find at least "
                        @"reasonable. But the defense of freedom of speech is most critical when the message is one most people find "
-                       @"repulsive. That was true when the Nazis marched in Skokie. It remains true today.", nil), nil] retain];    
+                       @"repulsive. That was true when the Nazis marched in Skokie. It remains true today.", nil), nil] retain];
 }
 
 
@@ -141,7 +141,7 @@ static NSString* currentVersion = @"1.2.0";
                           NSLocalizedString(@"Additional Information for Non-Citizens", nil),
                           NSLocalizedString(@"Rights at Airports and Other Ports of Entry into the United States", nil),
                           NSLocalizedString(@"Charitable Donations and Religious Practices", nil), nil] retain];
-        
+
         shortSectionTitles = [[NSArray arrayWithObjects:
                                NSLocalizedString(@"Questioning", nil),
                                NSLocalizedString(@"Stops and Arrests", nil),
@@ -149,13 +149,13 @@ static NSString* currentVersion = @"1.2.0";
                                NSLocalizedString(@"Info for Non-Citizens", nil),
                                NSLocalizedString(@"Rights at Airports", nil),
                                NSLocalizedString(@"Charitable Donations", nil), nil] retain];
-        
-        
+
+
         preambles = [[NSArray arrayWithObjects:
                       @"",
                       @"",
                       @"",
-                      NSLocalizedString(@"In the United States, non-citizens are persons who do not have U.S. " 
+                      NSLocalizedString(@"In the United States, non-citizens are persons who do not have U.S. "
                                         @"citizenship, including lawful permanent residents, refugees and asylum "
                                         @"seekers, persons who have permission to come to the U.S. for reasons "
                                         @"like work, school or travel, and those without legal immigration status of "
@@ -173,14 +173,14 @@ static NSString* currentVersion = @"1.2.0";
                                         @"can stop you based on citizenship or travel itinerary at the border and search "
                                         @"all bags.", nil),
                       @"", nil] retain];
-        
+
         otherResources = [[NSArray arrayWithObjects:
                            [NSArray array],
                            [NSArray array],
                            [NSArray array],
                            [NSArray array],
                            [NSArray arrayWithObjects:
-                            NSLocalizedString(@"DHS Office for Civil Rights and Civil Liberties\n" 
+                            NSLocalizedString(@"DHS Office for Civil Rights and Civil Liberties\n"
                                               @"http://www.dhs.gov/xabout/structure/editorial_0373.shtm "
                                               @"Investigates abuses of civil rights, civil liberties, and profiling "
                                               @"on the basis of race, ethnicity, or religion by employees and "
@@ -217,8 +217,8 @@ static NSString* currentVersion = @"1.2.0";
                           @"airconsumer@ost.dot.gov",
                           @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm", nil],
                          [NSArray array], nil] retain];
-        
-        NSArray* questioningQuestions = 
+
+        NSArray* questioningQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What kind of law enforcement officers might try to question me?", nil),
          NSLocalizedString(@"Do I have to answer questions asked by law  enforcement officers?", nil),
@@ -230,8 +230,8 @@ static NSString* currentVersion = @"1.2.0";
                            @"subpoena is a written order for youabout information you may have.)", nil),
          NSLocalizedString(@"What if I am asked to meet with officers for a "
                            @"“counter-terrorism interview”?", nil), nil];
-        
-        NSArray* questioningAnswers = 
+
+        NSArray* questioningAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You could be questioned by a variety of law enforcement "
                            @"officers, including state or local police officers, Joint Terrorism "
@@ -243,7 +243,7 @@ static NSString* currentVersion = @"1.2.0";
          NSLocalizedString(@"No. You have the constitutional right to remain silent. In "
                            @"general, you do not have to talk to law enforcement officers (or "
                            @"anyone else), even if you do not feel free to walk away from the "
-                           @"officer, you are arrested, or you are in jail. You cannot be punished " 
+                           @"officer, you are arrested, or you are in jail. You cannot be punished "
                            @"for refusing to answer a question. It is a good idea to "
                            @"talk to a lawyer before agreeing to answer questions. In general, "
                            @"only a judge can order you to answer questions. "
@@ -276,7 +276,7 @@ static NSString* currentVersion = @"1.2.0";
                            @"have already answered some questions, you can refuse to answer other "
                            @"questions until you have a lawyer.", nil),
          NSLocalizedString(@"If a law enforcement officer threatens to get a subpoena, you still do "
-                           @"not have to answer the officer’s questions right then and there, and anything " 
+                           @"not have to answer the officer’s questions right then and there, and anything "
                            @"you do say can be used against you. The officer may or may not "
                            @"succeed in getting the subpoena. If you receive a subpoena or an officer "
                            @"threatens to get one for you, you should call a lawyer right away. If you "
@@ -290,16 +290,16 @@ static NSString* currentVersion = @"1.2.0";
                            @"for any reason, you have the right to remain silent. No matter what, "
                            @"assume that nothing you say is off the record. And remember that it is a "
                            @"criminal offense to knowingly lie to an officer.", nil), nil];
-        
-        NSArray* stopsAndArrestsQuestions = 
+
+        NSArray* stopsAndArrestsQuestions =
         [NSArray arrayWithObjects:
-         NSLocalizedString(@"What if law enforcement officers stop me on the street?", nil), 
-         NSLocalizedString(@"What if law enforcement officers stop me in my car?", nil), 
-         NSLocalizedString(@"What should I do if law enforcement officers arrest me?", nil), 
-         NSLocalizedString(@"Do I have to answer questions if I have been arrested?", nil), 
+         NSLocalizedString(@"What if law enforcement officers stop me on the street?", nil),
+         NSLocalizedString(@"What if law enforcement officers stop me in my car?", nil),
+         NSLocalizedString(@"What should I do if law enforcement officers arrest me?", nil),
+         NSLocalizedString(@"Do I have to answer questions if I have been arrested?", nil),
          NSLocalizedString(@"What if I am treated badly by law enforcement officers?", nil), nil];
-        
-        NSArray* stopsAndArrestsAnswers = 
+
+        NSArray* stopsAndArrestsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You do not have to answer any questions. You can say, “I do "
                            @"not want to talk to you” and walk away calmly. Or, if you do not "
@@ -310,7 +310,7 @@ static NSString* currentVersion = @"1.2.0";
                            @"Being detained is not the same as being arrested, though an "
                            @"arrest could follow. The police can pat down the outside of "
                            @"your clothing only if they have “reasonable suspicion” (i.e., an "
-                           @"objective reason to suspect) that you might be armed and dangerous. " 
+                           @"objective reason to suspect) that you might be armed and dangerous. "
                            @"If they search any more than this, say clearly, “I do not "
                            @"consent to a search.” If they keep searching anyway, do not "
                            @"physically resist them. You do not need to answer any questions "
@@ -321,9 +321,9 @@ static NSString* currentVersion = @"1.2.0";
          NSLocalizedString(@"Keep your hands where the police can see them. You must "
                            @"show your drivers license, registration and proof of insurance "
                            @"if you are asked for these documents. Officers can also ask "
-                           @"you to step outside of the car, and they may separate passengers " 
+                           @"you to step outside of the car, and they may separate passengers "
                            @"and drivers from each other to question them and "
-                           @"compare their answers, but no one has to answer any questions. " 
+                           @"compare their answers, but no one has to answer any questions. "
                            @"The police cannot search your car unless you give them "
                            @"your consent, which you do not have to give, or unless they "
                            @"have “probable cause” to believe (i.e., knowledge of facts sufficient "
@@ -332,7 +332,7 @@ static NSString* currentVersion = @"1.2.0";
                            @"that you have evidence of a crime in your car. If you do not "
                            @"want your car searched, clearly state that you do not consent. "
                            @"The officer cannot use your refusal to give consent as a basis "
-                           @"for doing a search.", nil), 
+                           @"for doing a search.", nil),
          NSLocalizedString(@"The officer must advise you of your constitutional rights to "
                            @"remain silent, to an attorney, and to have an attorney appointed "
                            @"if you cannot afford one. You should exercise all these "
@@ -344,11 +344,11 @@ static NSString* currentVersion = @"1.2.0";
                            @"to your lawyer, but they can listen to calls you make to other people. You "
                            @"must be taken before a judge as soon as possible-generally within 48 "
                            @"hours of your arrest at the latest.  (See Section 4 for information about "
-                           @"arrests for noncriminal immigration violations.)", nil), 
+                           @"arrests for noncriminal immigration violations.)", nil),
          NSLocalizedString(@"No. If you are arrested, you do not have to answer any questions or "
                            @"volunteer any information. Ask for a lawyer right away. Repeat this "
                            @"request to every officer who tries to talk to or question you. You should "
-                           @"always talk to a lawyer before you decide to answer any questions.", nil), 
+                           @"always talk to a lawyer before you decide to answer any questions.", nil),
          NSLocalizedString(@"Write down the officer’s badge number, name or other identifying "
                            @"information. You have a right to ask the officer for this information. Try to "
                            @"find witnesses and their names and phone numbers. If you are injured, "
@@ -356,29 +356,29 @@ static NSString* currentVersion = @"1.2.0";
                            @"can. Call a lawyer or contact your local ACLU office. You should also "
                            @"make a complaint to the law enforcement office responsible for the "
                            @"treatment.", nil), nil];
-        
-        
-        NSArray* searchesAndWarrantsQuestions = 
+
+
+        NSArray* searchesAndWarrantsQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Can law enforcement officers search my home or office?", nil),
-         NSLocalizedString(@"What are warrants and what should I make sure they say?", nil), 
-         NSLocalizedString(@"What should I do if officers come to my house?", nil), 
-         NSLocalizedString(@"Do I have to answer questions if law enforcement officers have a search or arrest warrant?", nil), 
-         NSLocalizedString(@"What if law enforcement officers do not have a search warrant?", nil), 
+         NSLocalizedString(@"What are warrants and what should I make sure they say?", nil),
+         NSLocalizedString(@"What should I do if officers come to my house?", nil),
+         NSLocalizedString(@"Do I have to answer questions if law enforcement officers have a search or arrest warrant?", nil),
+         NSLocalizedString(@"What if law enforcement officers do not have a search warrant?", nil),
          NSLocalizedString(@"What if law enforcement officers tell me they will come back "
-                           @"with a search warrant if I do not let them in?", nil), 
+                           @"with a search warrant if I do not let them in?", nil),
          NSLocalizedString(@"What if law enforcement officers do not have a search "
                            @"warrant, but they insist on searching my home even "
                            @"after I object?", nil), nil];
-        
-        NSArray* searchesAndWarrantsAnswers = 
+
+        NSArray* searchesAndWarrantsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Law enforcement officers can search your home only if they "
                            @"have a warrant or your consent. In your absence, the police can "
                            @"search your home based on the consent of your roommate or a "
                            @"guest if the police reasonably believe that person has the "
                            @"authority to consent. Law enforcement officers can search your "
-                           @"office only if they have a warrant or the consent of the employer. " 
+                           @"office only if they have a warrant or the consent of the employer. "
                            @"If your employer consents to a search of your office, law "
                            @"enforcement officers can search your workspace whether you "
                            @"consent or not.", nil),
@@ -407,7 +407,7 @@ static NSString* currentVersion = @"1.2.0";
                            @"arrest or search warrant. A warrant of deportation/removal, "
                            @"for example, is a kind of administrativewarrant and doesnot "
                            @"grant the same authority to enter a home or other building to "
-                           @"do a search or make an arrest.", nil), 
+                           @"do a search or make an arrest.", nil),
          NSLocalizedString(@"If law enforcement officers knock on your door, instead of opening "
                            @"the door, ask through the door if they have a warrant. If the answer is "
                            @"no, do not let them into your home and do not answer any questions or "
@@ -428,17 +428,17 @@ static NSString* currentVersion = @"1.2.0";
                            @"to, you should. Take notes, including names, badge numbers, which "
                            @"agency each officer is from, where they searched and what they took. If "
                            @"others are present, have them act as witnesses to watch carefully what "
-                           @"is happening.", nil), 
+                           @"is happening.", nil),
          NSLocalizedString(@"No. Neither a search nor arrest warrant means you have to answer "
-                           @"questions.", nil), 
+                           @"questions.", nil),
          NSLocalizedString(@"You do not have to let law enforcement officers search your home, "
                            @"and you do not have to answer their questions. Law enforcement officers "
                            @"cannot get a warrant based on your refusal, nor can they punish you for "
-                           @"refusing to give consent.", nil), 
+                           @"refusing to give consent.", nil),
          NSLocalizedString(@"You can still tell them that you do not consent to the search and that "
-                           @"they need to get a warrant. The officers may or may not succeed in getting " 
+                           @"they need to get a warrant. The officers may or may not succeed in getting "
                            @"a warrant if they follow through and ask the court for one, but once "
-                           @"you give your consent, they do not need to try to get the court’s permission " 
+                           @"you give your consent, they do not need to try to get the court’s permission "
                            @"to do the search.", nil),
          NSLocalizedString(@"You should not interfere with the search in any way because "
                            @"you could get arrested. But you should say clearly that you "
@@ -447,35 +447,35 @@ static NSString* currentVersion = @"1.2.0";
                            @"that you are not giving permission for the search. Call your "
                            @"lawyer as soon as possible. Take note of the names and badge "
                            @"numbers of the searching officers", nil), nil];
-        
-        
-        NSArray* nonCitizensQuestions = 
+
+
+        NSArray* nonCitizensQuestions =
         [NSArray arrayWithObjects:
-         NSLocalizedString(@"What types of law enforcement officers may try to question me?", nil), 
-         NSLocalizedString(@"What can I do if law enforcement officers want to question me?", nil), 
-         NSLocalizedString(@"Do I have to answer questions about whether I am a U.S. citizen, " 
+         NSLocalizedString(@"What types of law enforcement officers may try to question me?", nil),
+         NSLocalizedString(@"What can I do if law enforcement officers want to question me?", nil),
+         NSLocalizedString(@"Do I have to answer questions about whether I am a U.S. citizen, "
                            @"where I was born, where I live, where I am from, or other "
-                           @"questions about my immigration status?", nil), 
-         NSLocalizedString(@"Do I have to show officers my immigration documents?", nil), 
-         NSLocalizedString(@"What should I do if there is an immigration raid where I work?", nil), 
+                           @"questions about my immigration status?", nil),
+         NSLocalizedString(@"Do I have to show officers my immigration documents?", nil),
+         NSLocalizedString(@"What should I do if there is an immigration raid where I work?", nil),
          NSLocalizedString(@"What can I do if immigration officers are arresting me and I "
                            @"have children in my care or my children need to be picked up "
-                           @"and taken care of?", nil), 
-         NSLocalizedString(@"What should I do if immigration officers arrest me?", nil), 
+                           @"and taken care of?", nil),
+         NSLocalizedString(@"What should I do if immigration officers arrest me?", nil),
          NSLocalizedString(@"Do I have the right to talk to a lawyer before answering any "
                            @"law enforcement officers’ questions or signing any immigration "
-                           @"papers?", nil), 
+                           @"papers?", nil),
          NSLocalizedString(@"If I am arrested for immigration violations, do I have "
                            @"the right to a hearing before an immigration judge to "
-                           @"defend myself against deportation charges?", nil), 
-         NSLocalizedString(@"Can I be detained while my immigration case is happening?", nil), 
-         NSLocalizedString(@"Can I call my consulate if I am arrested?", nil), 
+                           @"defend myself against deportation charges?", nil),
+         NSLocalizedString(@"Can I be detained while my immigration case is happening?", nil),
+         NSLocalizedString(@"Can I call my consulate if I am arrested?", nil),
          NSLocalizedString(@"What happens if I give up my right to a hearing or "
-                           @"leave the U.S. before the hearing is over?", nil), 
-         NSLocalizedString(@"What should I do if I want to contact immigration officials?", nil), 
+                           @"leave the U.S. before the hearing is over?", nil),
+         NSLocalizedString(@"What should I do if I want to contact immigration officials?", nil),
          NSLocalizedString(@"What if I am charged with a crime?", nil), nil];
-        
-        NSArray* nonCitizensAnswers = 
+
+        NSArray* nonCitizensAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Different kinds of law enforcement officers might question you or ask "
                            @"you to agree to an interview where they would ask questions about your "
@@ -485,7 +485,7 @@ static NSString* currentVersion = @"1.2.0";
          NSLocalizedString(@"You have the same right to be silent that U.S. citizens have, so the "
                            @"general rule is that you do not have to answer any questions that a law "
                            @"enforcement officer asks you. However, there are exceptions to this at "
-                           @"ports of entry, such as airports and borders (see Section 5).", nil), 
+                           @"ports of entry, such as airports and borders (see Section 5).", nil),
          NSLocalizedString(@"You do not have to answer any of the above questions if you do not "
                            @"want to answer them. But do not falsely claim U.S. citizenship. It is "
                            @"almost always a good idea to speak with a lawyer before you answer "
@@ -498,13 +498,13 @@ static NSString* currentVersion = @"1.2.0";
                            @"authorized to be in the U.S. for a particular reason or activity, usually for "
                            @"a limited period of time, such as a person with a tourist, student, or "
                            @"work visa), there is one limited exception to the rule that non-citizens "
-                           @"who are already in the U.S. do not have to answer law enforcement " 
+                           @"who are already in the U.S. do not have to answer law enforcement "
                            @"officers’ questions: immigration officers can require "
-                           @"nonimmigrants to provide information related to their immigration " 
+                           @"nonimmigrants to provide information related to their immigration "
                            @"status. However, even if you are a nonimmigrant, you can still "
                            @"say that you would like to have your lawyer with you before you "
                            @"answer questions, and you have the right to stay silent if your "
-                           @"answer to a question could be used against you in a criminal case.", nil), 
+                           @"answer to a question could be used against you in a criminal case.", nil),
          NSLocalizedString(@"The law requires non-citizens who are 18 or older and who "
                            @"have been issued valid U.S. immigration documents to carry "
                            @"those documents with them at all times. (These immigration "
@@ -532,7 +532,7 @@ static NSString* currentVersion = @"1.2.0";
                            @"status or whether you have documents. If you tell an immigration "
                            @"officer that you are not a U.S. citizen and you then cannot "
                            @"produce valid U.S. immigration documents, there is a very good "
-                           @"chance you will be arrested.", nil), 
+                           @"chance you will be arrested.", nil),
          NSLocalizedString(@"If your workplace is raided, it may not be clear to you "
                            @"whether you are free to leave. Either way, you have the right to "
                            @"remain silent-you do not have to answer questions about your "
@@ -543,12 +543,12 @@ static NSString* currentVersion = @"1.2.0";
                            @"you are in the U.S. illegally and you will likely be arrested. The safer "
                            @"course is to continue with your work or calmly ask if you may leave, and "
                            @"to not answer any questions you do not want to answer. (If you are a "
-                           @"“nonimmigrant,” see above.)", nil), 
+                           @"“nonimmigrant,” see above.)", nil),
          NSLocalizedString(@"If you have children with you when you are arrested, ask the officers "
                            @"if you can call a family member or friend to come take care of them "
                            @"before the officers take you away. If you are arrested when your children "
                            @"are at school or elsewhere, call a friend or family member as soon as "
-                           @"possible so that a responsible adult will be able to take care of them.", nil), 
+                           @"possible so that a responsible adult will be able to take care of them.", nil),
          NSLocalizedString(@"Assert your rights.Non-citizens have rights that are important for "
                            @"their immigration cases. You do not have to answer questions. You can "
                            @"tell the officer you want to speak with a lawyer. You do not have to sign "
@@ -559,14 +559,14 @@ static NSString* currentVersion = @"1.2.0";
                            @"There may be options for you that the immigration officers will "
                            @"not explain to you. You should talk to a lawyer before signing anything or "
                            @"making a decision about your situation. If possible, carry with you the "
-                           @"name and telephone number of a lawyer who will take your calls.", nil), 
+                           @"name and telephone number of a lawyer who will take your calls.", nil),
          NSLocalizedString(@"Yes. You have the right to call a lawyer or your family if you are "
                            @"detained, and you have the right to be visited by a lawyer in detention. "
                            @"You have the right to have your attorney with you at any hearing before "
-                           @"an immigration judge. You do not have the right to a government-" 
+                           @"an immigration judge. You do not have the right to a government-"
                            @"appointed attorney for immigration proceedings, but immigration "
                            @"officials must give you a list of free or low-cost legal service providers. "
-                           @"You have the right to hire your own immigration attorney.", nil), 
+                           @"You have the right to hire your own immigration attorney.", nil),
          NSLocalizedString(@"Yes. In most cases only an immigration judge can order you "
                            @"deported. But if you waive your rights, sign something called a "
                            @"“Stipulated Removal Order,” or take “voluntary departure,” "
@@ -580,18 +580,18 @@ static NSString* currentVersion = @"1.2.0";
                            @"that you tell the officer (and contact a lawyer) immediately if "
                            @"you fear persecution or torture in your home country-you have "
                            @"additional rights if you have this fear, and you may be able to "
-                           @"win the right to stay here.", nil), 
+                           @"win the right to stay here.", nil),
          NSLocalizedString(@"In many cases, you will be detained, but most people are "
                            @"eligible to be released on bond or other reporting conditions. If "
                            @"you are denied release after you are arrested for an immigration "
                            @"violation, ask for a bond hearing before an immigration "
                            @"judge. In many cases, an immigration judge can order that you "
-                           @"be releasedor that your bond be lowered.", nil), 
+                           @"be releasedor that your bond be lowered.", nil),
          NSLocalizedString(@"Yes. Non-citizens arrested in the U.S. have the right to call "
                            @"their consulate or to have the law enforcement officer tell the "
                            @"consulate of your arrest. Law enforcement must let your consulate "
                            @"visit or speak with you if consular officials decide to do so. "
-                           @"Your consulate might help you find a lawyer or offer other help.", nil), 
+                           @"Your consulate might help you find a lawyer or offer other help.", nil),
          NSLocalizedString(@"If you are deported, you could lose your eligibility for certain "
                            @"immigration benefits, and you could be barred from returning "
                            @"to the U.S. for a number of years or, in some cases, permanently. "
@@ -604,18 +604,18 @@ static NSString* currentVersion = @"1.2.0";
                            @"because even with voluntary departure, there can be bars to returning, "
                            @"and you may be eligible for relief in immigration court. You should "
                            @"always talk to an immigration lawyer before you decide to give up your "
-                           @"right to a hearing.", nil), 
+                           @"right to a hearing.", nil),
          NSLocalizedString(@"Always try to talk to a lawyer before contacting immigration officials, "
                            @"even on the phone. Many immigration officials view “enforcement” as "
                            @"their primary job and will not explain all of your options to you, and you "
-                           @"could have a problem with your immigration status without knowing it.", nil), 
+                           @"could have a problem with your immigration status without knowing it.", nil),
          NSLocalizedString(@"Criminal convictions can make you deportable. You should always "
                            @"speak with your lawyer about the effect that a conviction or plea could "
                            @"have on your immigration status. Do not agree to a plea bargain without "
                            @"understanding if it could make you deportable or ineligible for relief or "
                            @"for citizenship.", nil), nil];
-        
-        NSArray* portsOfEntryQuestions = 
+
+        NSArray* portsOfEntryQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What types of officers could I encounter at the airport and at the border?", nil),
          NSLocalizedString(@"If I am entering the U.S. with valid travel papers, can "
@@ -641,8 +641,8 @@ static NSString* currentVersion = @"1.2.0";
                            @"employees singled me out because of my race, ethnicity, "
                            @"or religion or that I was mistreated in other ways, what "
                            @"information should I record during and after the incident?", nil), nil];
-        
-        NSArray* portsOfEntryAnswers = 
+
+        NSArray* portsOfEntryAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You may encounter any of the full range of law enforcement "
                            @"officers listed above in Section 1. In particular, at airports and "
@@ -658,7 +658,7 @@ static NSString* currentVersion = @"1.2.0";
          NSLocalizedString(@"Yes. At airports, law enforcement officers have the power to "
                            @"determine whether or not you have the right or permission to "
                            @"enter or return to the U.S.", nil),
-         NSLocalizedString(@"If you are a U.S. citizen, you have the right to have an attorney " 
+         NSLocalizedString(@"If you are a U.S. citizen, you have the right to have an attorney "
                            @"present for any questioning. If you are a non-citizen, you "
                            @"generally do not have the right to an attorney when you have "
                            @"arrived at an airport or another port of entry and an immigration "
@@ -667,7 +667,7 @@ static NSString* currentVersion = @"1.2.0";
                            @"the questions relate to anything other than your immigration "
                            @"status. You can ask an officer if he or she will allow you to "
                            @"answer extended questioning at a later time, but the request may or may "
-                           @"not be granted. If you are not a U.S. citizen and an officer says you " 
+                           @"not be granted. If you are not a U.S. citizen and an officer says you "
                            @"cannot come into the U.S., but you fear that you will be persecuted or "
                            @"tortured if sent back to the country you came from, tell the officer about "
                            @"your fear and say that you want asylum.", nil),
@@ -685,13 +685,13 @@ static NSString* currentVersion = @"1.2.0";
                            @"and requiring removal of religious head coverings, such as a turban or "
                            @"hijab, is that if an alarm goes off when you walk through the metal "
                            @"detector the TSA officer may then use a hand-wand to determine if the "
-                           @"alarm is coming from your religious head covering. If the alarm is coming " 
+                           @"alarm is coming from your religious head covering. If the alarm is coming "
                            @"from your religious head covering the TSA officer may want to "
                            @"pat-down or have you remove your religious head covering. You have the "
                            @"right to request that this pat-down or removal occur in a private area. If "
                            @"no alarm goes off when you go through the metal detector the TSA officer "
                            @"may nonetheless determine that additional screening is required for "
-                           @"non-metallic items. Additional screening cannot be required on a " 
+                           @"non-metallic items. Additional screening cannot be required on a "
                            @"discriminatory basis (because of race, gender, religion, national origin or "
                            @"ancestry). The TSA officer will ask you if he or she can pat-down your "
                            @"religious head covering. If you do not want the TSA officer to touch your "
@@ -707,13 +707,13 @@ static NSString* currentVersion = @"1.2.0";
          NSLocalizedString(@"A strip search at the border is not a routine search and "
                            @"must be supported by “reasonable suspicion,” and must be "
                            @"done in a private area.", nil),
-         NSLocalizedString(@"The pilot of an airplane has the right to refuse to fly a " 
+         NSLocalizedString(@"The pilot of an airplane has the right to refuse to fly a "
                            @"passenger if he or she believes the passenger is a threat to the "
                            @"safety of the flight. The pilot’s decision must be reasonable and "
                            @"based on observations of you, not stereotypes.", nil),
          NSLocalizedString(@"If you believe you are mistakenly on a list you should contact "
                            @"the Transportation Security Administration and file an inquiry "
-                           @"using the Traveler Redress Inquiry Process. The form is available at " 
+                           @"using the Traveler Redress Inquiry Process. The form is available at "
                            @"http://www.tsa.gov/travelers/customer/redress/index.shtm. "
                            @"You should also fill out a complaint form with the ACLU at "
                            @"http://www.aclu.org/noflycomplaint. If you think there may be "
@@ -733,8 +733,8 @@ static NSString* currentVersion = @"1.2.0";
                            @"and file a complaint with the U.S. Department of "
                            @"Transportation at "
                            @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm.", nil), nil];
-        
-        NSArray* portsOfEntryLinks = 
+
+        NSArray* portsOfEntryLinks =
         [NSArray arrayWithObjects:
          [NSArray array],
          [NSArray array],
@@ -748,27 +748,27 @@ static NSString* currentVersion = @"1.2.0";
          [NSArray arrayWithObjects:@"http://www.tsa.gov/travelers/customer/redress/index.shtm", @"http://www.aclu.org/noflycomplaint", nil],
          [NSArray arrayWithObjects:@"http://www.aclu.org/airlineprofiling", @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm", nil],
          nil];
-        
-        NSArray* charitableDonationsQuestions = 
+
+        NSArray* charitableDonationsQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Can I give to a charity organization without becoming a "
-                           @"terror suspect?", nil), 
+                           @"terror suspect?", nil),
          NSLocalizedString(@"Is it safe for me to practice my religion in religious "
-                           @"institutions or public places?", nil), 
+                           @"institutions or public places?", nil),
          NSLocalizedString(@"What else can I do to be prepared?", nil), nil];
-        
-        NSArray* charitableDonationsAnswers = 
+
+        NSArray* charitableDonationsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Yes. You should continue to give money to the causes you believe "
-                           @"in, but you should be careful in choosing which charities to support." 
+                           @"in, but you should be careful in choosing which charities to support."
                            @"For helpful tips, see Muslim Advocates’ guide on charitable giving: "
-                           @"http://www.muslimadvocates.org/documents/safe_donating.html.", nil), 
+                           @"http://www.muslimadvocates.org/documents/safe_donating.html.", nil),
          NSLocalizedString(@"Yes. Worshipping as you want is your constitutional right. You "
                            @"have the right to go to a place of worship, attend and hear sermons "
                            @"and religious lectures, participate in community activities, and pray "
                            @"in public. While there have been news stories recently about people "
                            @"being unfairly singled out for doing these things, the law is on your "
-                           @"side to protect you.", nil), 
+                           @"side to protect you.", nil),
          NSLocalizedString(@"You should keep informed about issues that matter to you by "
                            @"going to the library, reading the news, surfing the internet, and "
                            @"speaking out about what is important to you. In case of emergency, "
@@ -776,15 +776,15 @@ static NSString* currentVersion = @"1.2.0";
                            @"relative that anyone in the family can call if they need help, as well "
                            @"as the number of an attorney. If you are a non-citizen, remember to "
                            @"carry your immigration documents with you.", nil), nil];
-        
-        NSArray* charitableDonationsLinks = 
+
+        NSArray* charitableDonationsLinks =
         [NSArray arrayWithObjects:
          [NSArray arrayWithObjects:@"http://www.muslimadvocates.org/documents/safe_donating.html", nil],
          [NSArray array],
          [NSArray array], nil];
-        
+
         questions = [[NSArray arrayWithObjects:
-                      questioningQuestions, 
+                      questioningQuestions,
                       stopsAndArrestsQuestions,
                       searchesAndWarrantsQuestions,
                       nonCitizensQuestions,
@@ -797,7 +797,7 @@ static NSString* currentVersion = @"1.2.0";
                     nonCitizensAnswers,
                     portsOfEntryAnswers,
                     charitableDonationsAnswers, nil] retain];
-        
+
         links = [[NSArray arrayWithObjects:
                  [NSArray array],
                  [NSArray array],
@@ -819,16 +819,16 @@ static NSString* currentVersion = @"1.2.0";
 
 - (void) updateCaches:(NSNumber*) number {
     NSInteger value = [number integerValue];
-    
+
     switch (value) {
         case 0:
             [rssCache update];
             break;
-            
+
         default:
             return;
     }
-    
+
     [self performSelector:@selector(updateCaches:)
                withObject:[NSNumber numberWithInt:value + 1]
                afterDelay:1];
@@ -840,7 +840,7 @@ static NSString* currentVersion = @"1.2.0";
         self.rssCache = [RSSCache cacheWithModel:self];
         [self updateCaches:[NSNumber numberWithInt:0]];
     }
-    
+
     return self;
 }
 
@@ -883,7 +883,7 @@ static NSString* currentVersion = @"1.2.0";
 - (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
     NSArray* questions = [self questionsForSectionTitle:sectionTitle];
     NSArray* specificAnswers = [self answersForSectionTitle:sectionTitle];
-    
+
     return [specificAnswers objectAtIndex:[questions indexOfObject:question]];
 }
 
@@ -891,7 +891,7 @@ static NSString* currentVersion = @"1.2.0";
 NSInteger compareLinks(id link1, id link2, void* context) {
     NSRange range1 = [link1 rangeOfString:@"@"];
     NSRange range2 = [link2 rangeOfString:@"@"];
-    
+
     if (range1.length > 0 && range2.length == 0) {
         return NSOrderedDescending;
     } else if (range2.length > 0 && range1.length == 0) {
@@ -904,7 +904,7 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 
 - (NSArray*) linksForSectionTitle:(NSString*) sectionTitle {
     NSArray* result = [sectionLinks objectAtIndex:[sectionTitles indexOfObject:sectionTitle]];
-    return [result sortedArrayUsingFunction:compareLinks context:NULL];   
+    return [result sortedArrayUsingFunction:compareLinks context:NULL];
 }
 
 
@@ -936,7 +936,7 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 
 
 - (void) setGreatestHitsSortIndex:(NSInteger) index {
-    
+
 }
 
 
@@ -945,9 +945,9 @@ NSInteger compareLinks(id link1, id link2, void* context) {
                       currentVersion,
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
-    
+
     NSString* subject = @"Your%20Rights%20Feedback";
-    
+
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
     NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
     return result;

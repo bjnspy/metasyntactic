@@ -38,7 +38,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.sectionTitles = 
+        self.sectionTitles =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Your Rights When Encountering Law Enforcement", nil),
          NSLocalizedString(@"Tough Question about ACLU positions", nil),
@@ -48,7 +48,7 @@
         self.navigationItem.titleView =
         [ViewControllerUtilities viewControllerTitleLabel:NSLocalizedString(@"Know Your Rights", nil)];
     }
-    
+
     return self;
 }
 
@@ -97,7 +97,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:[sectionTitles objectAtIndex:indexPath.section]] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
 }
 

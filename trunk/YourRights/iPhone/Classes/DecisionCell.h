@@ -15,7 +15,7 @@
 @interface DecisionCell : UITableViewCell {
 @private
     Decision* decision;
-    
+
     UILabel* titleLabel;
     UILabel* synopsisLabel;
     UILabel* categoryLabel;
@@ -23,7 +23,7 @@
 
 - (id) initWithReuseIdentifier:(NSString*) reuseIdentifier;
 
-+ (CGFloat) height:(Decision*) decision owner:(GreatestHitsViewController*) owner; 
++ (CGFloat) height:(Decision*) decision owner:(GreatestHitsViewController*) owner;
 - (void) setDecision:(Decision*) decision owner:(GreatestHitsViewController*) owner;
 
 @end

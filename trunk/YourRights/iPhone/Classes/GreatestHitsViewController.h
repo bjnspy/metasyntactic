@@ -17,7 +17,7 @@
     YourRightsNavigationController* navigationController;
     NSArray* sectionTitles;
     MultiDictionary* sectionTitleToDecisions;
-    
+
     UISegmentedControl* segmentedControl;
     NSArray* indexTitles;
 }

@@ -38,7 +38,7 @@
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"News", nil);
     }
-    
+
     return self;
 }
 
@@ -59,14 +59,14 @@
 
 - (void) majorRefresh {
     self.titlesWithArticles = [NSMutableArray array];
-    
+
     for (NSString* title in [RSSCache titles]) {
         NSArray* items = [self.model.rssCache itemsForTitle:title];
         if (items.count > 0) {
             [titlesWithArticles addObject:title];
         }
     }
-    
+
     [self.tableView reloadData];
 }
 
@@ -116,7 +116,7 @@
     if (titlesWithArticles.count == 0) {
         return 0;
     }
-    
+
     return 1;
 }
 
@@ -132,7 +132,7 @@
             return NSLocalizedString(@"No information found", nil);
         }
     }
-    
+
     return nil;
 }
 
@@ -140,15 +140,15 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
-    
+
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
-    cell.text = title;    
-        
+    cell.text = title;
+
     return cell;
 }
 
@@ -172,14 +172,14 @@
 /*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 */
 

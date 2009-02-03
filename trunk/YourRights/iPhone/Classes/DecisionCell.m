@@ -42,18 +42,18 @@
         self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 2, 0, 20)] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:20];
         titleLabel.adjustsFontSizeToFitWidth = YES;
-        
+
         self.synopsisLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 26, 0, 12)] autorelease];
         synopsisLabel.font = [UIFont systemFontOfSize:12];
         synopsisLabel.textColor = [UIColor darkGrayColor];
         synopsisLabel.numberOfLines = 0;
         synopsisLabel.lineBreakMode = UILineBreakModeWordWrap;
-        
+
         self.categoryLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         categoryLabel.font = [UIFont systemFontOfSize:12];
         categoryLabel.textColor = [UIColor darkGrayColor];
         categoryLabel.textAlignment = UITextAlignmentRight;
-        
+
         [self.contentView addSubview:titleLabel];
         [self.contentView addSubview:synopsisLabel];
         [self.contentView addSubview:categoryLabel];
@@ -70,25 +70,25 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
     width -= 35;
-    
+
     return width;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGFloat width = [DecisionCell width:decision];
 
     CGRect titleFrame = titleLabel.frame;
     titleFrame.size.width = width;
     titleLabel.frame = titleFrame;
-    
+
     CGSize size = [synopsisLabel.text sizeWithFont:synopsisLabel.font constrainedToSize:CGSizeMake(width, 2000) lineBreakMode:synopsisLabel.lineBreakMode];
     CGRect synopsisFrame = synopsisLabel.frame;
     synopsisFrame.size = size;
     synopsisLabel.frame = synopsisFrame;
-    
+
     CGRect categoryFrame = categoryLabel.frame;
     categoryFrame.origin.y = synopsisFrame.origin.y + synopsisFrame.size.height;
     categoryFrame.size.width = width;
@@ -112,23 +112,23 @@
 
 - (void) setDecision:(Decision*) decision_ owner:(GreatestHitsViewController*) owner {
     self.decision = decision_;
-    
+
     if ([owner sortingByCategory]) {
         categoryLabel.text = @"";
     } else {
         categoryLabel.text = [Decision categoryString:decision.category];
     }
     [categoryLabel sizeToFit];
-    
+
     synopsisLabel.text = decision.synopsis;
-    
+
     if ([owner sortingByYear]) {
         titleLabel.text = decision.title;
     } else {
         titleLabel.text = [NSString stringWithFormat:@"%@ (%d)", decision.title, decision.year];
     }
     [titleLabel sizeToFit];
-    
+
     [self setNeedsLayout];
 }
 
@@ -137,12 +137,12 @@
 + (CGFloat) height:(Decision*) decision owner:(GreatestHitsViewController*) owner {
     CGFloat width = [self width:decision];
     CGSize size = [decision.synopsis sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(width, 2000) lineBreakMode:UILineBreakModeWordWrap];
-    
+
     CGFloat height = 26/*top of title */ + size.height + 4/*+2 on the top and bottom*/;
     if (![owner sortingByCategory]) {
         height += 14/*categoryLabel*/;
     }
-    
+
     return height;
 }
 

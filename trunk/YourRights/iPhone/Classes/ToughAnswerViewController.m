@@ -41,7 +41,7 @@
         self.question = question_;
         self.answer = answer_;
     }
-    
+
     return self;
 }
 
@@ -86,14 +86,14 @@
     if (indexPath.section == 0) {
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:question] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         return cell;
     } else {
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:answer] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         return cell;
-    } 
+    }
 }
 
 
@@ -119,7 +119,7 @@
     } else if (section == 1) {
         return NSLocalizedString(@"Answer", nil);
     }
-    
+
     return nil;
 }
 

@@ -69,7 +69,7 @@
         self.otherResources = [self.model otherResourcesForSectionTitle:sectionTitle];
         self.links = [self.model linksForSectionTitle:sectionTitle];
     }
-    
+
     return self;
 }
 
@@ -118,21 +118,21 @@
     if (indexPath.section == 0) {
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:preamble] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         return cell;
     } else if (indexPath.section == 1) {
         NSString* text = [questions objectAtIndex:indexPath.row];
-        
+
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         return cell;
     } else if (indexPath.section == 2) {
         NSString* text = [otherResources objectAtIndex:indexPath.row];
-        
+
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         return cell;
     } else {
         NSString* link = [links objectAtIndex:indexPath.row];
@@ -177,12 +177,12 @@
                                                                                                 answer:answer] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.section == 2) {
-        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];   
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
     } else {
         NSString* link = [links objectAtIndex:indexPath.row];
         if ([link rangeOfString:@"@"].length > 0) {
             link = [NSString stringWithFormat:@"mailto:%@", link];
-            
+
             NSURL* url = [NSURL URLWithString:link];
             [[UIApplication sharedApplication] openURL:url];
         } else {
@@ -206,7 +206,7 @@
     } else if (section == 3 && links.count > 0) {
         return NSLocalizedString(@"Useful Links", nil);
     }
-    
+
     return nil;
 }
 

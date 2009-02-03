@@ -36,7 +36,7 @@
 
 - (id) init {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.isArray = 
+        self.isArray =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"A non-governmental, non-profit, independent organization.", nil),
          NSLocalizedString(@"A membership organization that anyone can join for $20/yr.", nil),
@@ -64,11 +64,11 @@
                            @"coalitions where the issues "
                            @"support/advance civil liberties and civil "
                            @"rights.", nil),
-         NSLocalizedString(@"A representatively-run organization. " 
+         NSLocalizedString(@"A representatively-run organization. "
                            @"The members elect board member "
                            @"representatives who vote on policy.", nil), nil];
-        
-        self.isNotArray = 
+
+        self.isNotArray =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"A government agency.", nil),
          NSLocalizedString(@"A lawyers group.", nil),
@@ -99,7 +99,7 @@
          NSLocalizedString(@"An organization that has members who "
                            @"vote directly on ACLU policy.", nil), nil];
     }
-    
+
     return self;
 }
 
@@ -131,14 +131,14 @@
     } else {
         text = [isNotArray objectAtIndex:indexPath.row];
     }
-    
+
     return text;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* text = [self textForIndexPath:indexPath];
-    
+
     WrappableCell* cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
     return cell;
 }
@@ -147,7 +147,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self textForIndexPath:indexPath];
-    
+
     return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
 }
 
