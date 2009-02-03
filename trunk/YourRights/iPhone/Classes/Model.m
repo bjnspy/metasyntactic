@@ -16,7 +16,12 @@
 
 #import "Decision.h"
 #import "LocaleUtilities.h"
+#import "RSSCache.h"
 #import "Utilities.h"
+
+@interface Model()
+@property (retain) RSSCache* rssCache;
+@end
 
 @implementation Model
 
@@ -801,6 +806,42 @@ static NSString* currentVersion = @"1.2.0";
                  portsOfEntryLinks,
                   charitableDonationsLinks, nil] retain];
     }
+}
+
+
+@synthesize rssCache;
+
+- (void) dealloc {
+    self.rssCache = nil;
+    [super dealloc];
+}
+
+
+- (void) updateCaches:(NSNumber*) number {
+    NSInteger value = [number integerValue];
+    
+    switch (value) {
+        case 0:
+            [rssCache update];
+            break;
+            
+        default:
+            return;
+    }
+    
+    [self performSelector:@selector(updateCaches:)
+               withObject:[NSNumber numberWithInt:value + 1]
+               afterDelay:1];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+        self.rssCache = [RSSCache cacheWithModel:self];
+        [self updateCaches:[NSNumber numberWithInt:0]];
+    }
+    
+    return self;
 }
 
 

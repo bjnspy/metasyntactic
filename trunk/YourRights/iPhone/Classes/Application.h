@@ -13,4 +13,9 @@
 + (NSString*) name;
 + (NSString*) nameAndVersion;
 
++ (void) moveItemToTrash:(NSString*) path;
+
++ (NSString*) tempDirectory;
++ (NSString*) trashDirectory;
+
 @end

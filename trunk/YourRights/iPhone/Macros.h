@@ -12,13 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class CreditsViewController;
-@class Decision;
-@class GreatestHitsViewController;
-@class Model;
-@class MultiDictionary;
-@class Pulser;
-@class RSSCache;
-@class SectionViewController;
-@class YourRightsAppDelegate;
-@class YourRightsNavigationController;
+#define ArrayLength(x) (sizeof(x)/sizeof(*(x)))
+
+#define ONE_MINUTE (60.0)
+#define ONE_HOUR   (60.0 * ONE_MINUTE)
+#define ONE_DAY    (24.0 * ONE_HOUR)
+#define ONE_WEEK   (7.0 * ONE_DAY)
+#define ONE_MONTH  (30.5 * ONE_DAY)
+#define ONE_YEAR   (365.0 * ONE_DAY)
+
+#define property_definition(x) static NSString* x ## _key = @#x; @synthesize x
+
+#define CACHE_LIMIT (30.0 * ONE_DAY)

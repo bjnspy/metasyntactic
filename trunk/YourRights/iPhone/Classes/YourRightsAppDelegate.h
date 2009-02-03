@@ -17,9 +17,16 @@
     UIWindow *window;
     YourRightsNavigationController* navigationController;
     Model* model;
+    
+    Pulser* minorRefreshPulser;
+    Pulser* majorRefreshPulser;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (readonly, retain) Model* model;
+
++ (void) minorRefresh;
++ (void) majorRefresh;
++ (void) majorRefresh:(BOOL) force;
 
 @end

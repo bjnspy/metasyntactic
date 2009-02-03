@@ -17,4 +17,5 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "ForwardDeclarations.h"
+#import "Macros.h"
 #endif

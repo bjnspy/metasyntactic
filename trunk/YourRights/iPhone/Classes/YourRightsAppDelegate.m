@@ -15,31 +15,86 @@
 #import "YourRightsAppDelegate.h"
 
 #import "Model.h"
+#import "Pulser.h"
 #import "YourRightsNavigationController.h"
 
 @interface YourRightsAppDelegate()
 @property (retain) YourRightsNavigationController* navigationController;
 @property (retain) Model* model;
+@property (retain) Pulser* majorRefreshPulser;
+@property (retain) Pulser* minorRefreshPulser;
 @end
 
 @implementation YourRightsAppDelegate
 
+static YourRightsAppDelegate* appDelegate = nil;
+
 @synthesize window;
 @synthesize navigationController;
 @synthesize model;
+@synthesize majorRefreshPulser;
+@synthesize minorRefreshPulser;
 
 - (void) dealloc {
     self.window = nil;
     self.navigationController = nil;
     self.model = nil;
+    self.majorRefreshPulser = nil;
+    self.minorRefreshPulser = nil;
     [super dealloc];
 }
 
+
 - (void) applicationDidFinishLaunching:(UIApplication*) application {  
+    appDelegate = self;
+
+    self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
+    self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
+    
     self.navigationController = [[[YourRightsNavigationController alloc] initWithAppDelegate:self] autorelease];
     self.model = [[[Model alloc] init] autorelease];
+    
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
+}
+
+
+- (void) majorRefresh:(NSNumber*) force {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(majorRefresh:) withObject:force waitUntilDone:NO];
+        return;
+    }
+    
+    if (force.boolValue) {
+        [majorRefreshPulser forcePulse];
+    } else {
+        [majorRefreshPulser tryPulse];
+    }
+}
+
+
++ (void) majorRefresh:(BOOL) force {
+    [appDelegate majorRefresh:[NSNumber numberWithBool:force]];
+}
+
+
++ (void) majorRefresh {
+    [self majorRefresh:NO];
+}
+
+
+- (void) minorRefresh {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(minorRefresh) withObject:nil waitUntilDone:NO];
+        return;
+    }
+    
+    [minorRefreshPulser tryPulse];
+}
+
+
++ (void) minorRefresh {
+    [appDelegate minorRefresh];
 }
 
 

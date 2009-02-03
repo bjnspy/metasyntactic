@@ -12,13 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class CreditsViewController;
-@class Decision;
-@class GreatestHitsViewController;
-@class Model;
-@class MultiDictionary;
-@class Pulser;
-@class RSSCache;
-@class SectionViewController;
-@class YourRightsAppDelegate;
-@class YourRightsNavigationController;
+@interface GlobalActivityIndicator : NSObject {
+}
+
++ (UIView*) activityView;
+
++ (void) addBackgroundTask:(BOOL) isVisible;
++ (void) removeBackgroundTask:(BOOL) isVisible;
+
++ (BOOL) hasVisibleBackgroundTasks;
++ (BOOL) hasBackgroundTasks;
+
+@end
