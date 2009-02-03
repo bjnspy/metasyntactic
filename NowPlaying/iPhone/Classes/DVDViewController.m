@@ -195,6 +195,10 @@
 
 - (void) minorRefreshWorker {
     [super minorRefreshWorker];
+    if (!visible) {
+        return;
+    }
+    
     for (id cell in self.tableView.visibleCells) {
         [cell loadImage];
     }
