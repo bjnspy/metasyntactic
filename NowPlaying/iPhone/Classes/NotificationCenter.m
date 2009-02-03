@@ -9,19 +9,19 @@
 #import "NotificationCenter.h"
 
 @interface NotificationCenter()
-@property (retain) UIWindow* window;
+@property (retain) UIView* view;
 @property (retain) UILabel* notificationLabel;
 @property (retain) UILabel* blackLabel;
 @end
 
 @implementation NotificationCenter
 
-@synthesize window;
+@synthesize view;
 @synthesize notificationLabel;
 @synthesize blackLabel;
 
 - (void) dealloc {
-    self.window = nil;
+    self.view = nil;
     self.notificationLabel = nil;
     self.blackLabel = nil;
 
@@ -29,11 +29,11 @@
 }
 
 
-- (id) initWithWindow:(UIWindow*) window_ {
+- (id) initWithView:(UIView*) view_ {
     if (self = [super init]) {
-        self.window = window_;
+        self.view = view_;
 
-        self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 16)] autorelease];
+        self.notificationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 16)] autorelease];
         notificationLabel.font = [UIFont boldSystemFontOfSize:12];
         notificationLabel.textAlignment = UITextAlignmentCenter;
         notificationLabel.textColor = [UIColor whiteColor];
@@ -42,7 +42,7 @@
         notificationLabel.alpha = 0;
         notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
 
-        self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 417, 320, 1)] autorelease];
+        self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 1)] autorelease];
         blackLabel.backgroundColor = [UIColor blackColor];
     }
 
@@ -50,14 +50,14 @@
 }
 
 
-+ (NotificationCenter*) centerWithWindow:(UIWindow*) window {
-    return [[[NotificationCenter alloc] initWithWindow:window] autorelease];
++ (NotificationCenter*) centerWithView:(UIView*) view {
+    return [[[NotificationCenter alloc] initWithView:view] autorelease];
 }
 
 
-- (void) addToWindow {
-    [window addSubview:notificationLabel];
-    [window addSubview:blackLabel];
+- (void) addToView {
+    [view addSubview:notificationLabel];
+    [view addSubview:blackLabel];
 }
 
 
@@ -96,7 +96,7 @@
 
 - (void) showLabels {
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        [self addToWindow];
+        [self addToView];
         [self showNotification:notificationLabel.text];
     }
 }

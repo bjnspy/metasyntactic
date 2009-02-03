@@ -75,14 +75,14 @@ static AppDelegate* appDelegate = nil;
     self.controller = [Controller controllerWithAppDelegate:self];
 
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
-    self.notificationCenter = [NotificationCenter centerWithWindow:window];
-
+    
     self.majorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:tabBarController action:@selector(minorRefresh) pulseInterval:5];
 
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
-    [notificationCenter addToWindow];
+    self.notificationCenter = [NotificationCenter centerWithView:tabBarController.view];
+    [notificationCenter addToView];
 
     [controller start];
 }

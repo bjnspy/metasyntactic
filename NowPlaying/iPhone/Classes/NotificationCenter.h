@@ -8,15 +8,15 @@
 
 @interface NotificationCenter : NSObject {
 @private
-    UIWindow* window;
+    UIView* view;
     UILabel* background;
     UILabel* notificationLabel;
     UILabel* blackLabel;
 }
 
-+ (NotificationCenter*) centerWithWindow:(UIWindow*) window;
++ (NotificationCenter*) centerWithView:(UIView*) view;
 
-- (void) addToWindow;
+- (void) addToView;
 - (void) showNotification:(NSString*) message;
 - (void) hideNotification;
 
