@@ -81,7 +81,7 @@
 - (void) reportQueueAndModifyQueueError:(NSArray*) arguments {
     NSAssert([NSThread isMainThread], nil);
 
-    NSLog(@"Reporting queue and success to NetflixModifyQueueDelegate.", nil);
+    NSLog(@"Reporting queue and failure to NetflixModifyQueueDelegate.", nil);
 
     [self reportQueue:[arguments objectAtIndex:0]];
     id<NetflixModifyQueueDelegate> delegate = [arguments objectAtIndex:1];
