@@ -6,9 +6,10 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-@interface ACLUNewsController : UITableViewController {
+@interface ACLUNewsViewController : UITableViewController {
 @private
     YourRightsNavigationController* navigationController;
+    NSMutableArray* titlesWithArticles;
 }
 
 

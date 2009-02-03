@@ -65,14 +65,13 @@ static AppDelegate* appDelegate = nil;
     }
 
     appDelegate = self;
-
-    self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
-    self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
     
     self.model = [Model model];
     self.controller = [Controller controllerWithAppDelegate:self];
 
     self.navigationController = [[[NetflixNavigationController alloc] initWithAppDelegate:self] autorelease];
+    self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
+    self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
     
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];

@@ -37,7 +37,6 @@
 		742DC0690F1337ED0079E6B0 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */; };
 		742DC06C0F1337FF0079E6B0 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC06B0F1337FF0079E6B0 /* Utilities.m */; };
 		745A09230F2ED55A002F64C6 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09220F2ED55A002F64C6 /* Controller.m */; };
-		745A09360F2ED647002F64C6 /* ACLUNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09350F2ED647002F64C6 /* ACLUNewsController.m */; };
 		745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A093B0F2ED905002F64C6 /* AbstractCache.m */; };
 		745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09DD0F2EE190002F64C6 /* RSSCache.m */; };
 		7462953A0F135CF90073F830 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 746295390F135CF90073F830 /* License.txt */; };
@@ -64,6 +63,11 @@
 		74954DBB0F38D53300E79E24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74954DBA0F38D53300E79E24 /* SystemConfiguration.framework */; };
 		74954DF60F38D9C000E79E24 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954DF50F38D9C000E79E24 /* Item.m */; };
 		74954E090F38DBF100E79E24 /* StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954E080F38DBF100E79E24 /* StringUtilities.m */; };
+		74954E4D0F38DECA00E79E24 /* ACLUNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954E4C0F38DECA00E79E24 /* ACLUNewsViewController.m */; };
+		74954E970F38E14600E79E24 /* ACLUArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */; };
+		74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */; };
+		74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */; };
+		74954FE30F38EAA900E79E24 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954FE20F38EAA900E79E24 /* FontCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,8 +127,6 @@
 		742DC06B0F1337FF0079E6B0 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		745A09210F2ED55A002F64C6 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		745A09220F2ED55A002F64C6 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
-		745A09340F2ED647002F64C6 /* ACLUNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUNewsController.h; sourceTree = "<group>"; };
-		745A09350F2ED647002F64C6 /* ACLUNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUNewsController.m; sourceTree = "<group>"; };
 		745A093A0F2ED905002F64C6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractCache.h; path = ../../PocketFlix/iPhone/Classes/AbstractCache.h; sourceTree = SOURCE_ROOT; };
 		745A093B0F2ED905002F64C6 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractCache.m; path = ../../PocketFlix/iPhone/Classes/AbstractCache.m; sourceTree = SOURCE_ROOT; };
 		745A09DC0F2EE190002F64C6 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
@@ -186,6 +188,16 @@
 		74954DF50F38D9C000E79E24 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		74954E070F38DBF100E79E24 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtilities.h; path = ../../iPhoneShared/Classes/StringUtilities.h; sourceTree = SOURCE_ROOT; };
 		74954E080F38DBF100E79E24 /* StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtilities.m; path = ../../iPhoneShared/Classes/StringUtilities.m; sourceTree = SOURCE_ROOT; };
+		74954E4B0F38DECA00E79E24 /* ACLUNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUNewsViewController.h; sourceTree = "<group>"; };
+		74954E4C0F38DECA00E79E24 /* ACLUNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUNewsViewController.m; sourceTree = "<group>"; };
+		74954E950F38E14600E79E24 /* ACLUArticlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLUArticlesViewController.h; sourceTree = "<group>"; };
+		74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLUArticlesViewController.m; sourceTree = "<group>"; };
+		74954F320F38E5F400E79E24 /* ArticleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTitleCell.h; sourceTree = "<group>"; };
+		74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTitleCell.m; sourceTree = "<group>"; };
+		74954FD80F38EA3500E79E24 /* ArticleBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleBodyCell.h; sourceTree = "<group>"; };
+		74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleBodyCell.m; sourceTree = "<group>"; };
+		74954FE10F38EAA900E79E24 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
+		74954FE20F38EAA900E79E24 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -285,13 +297,13 @@
 		742DB8150F120DC30079E6B0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				74954D2E0F38CEB600E79E24 /* GlobalActivityIndicator.h */,
-				74954D2F0F38CEB600E79E24 /* GlobalActivityIndicator.m */,
-				74954D2C0F38CE5E00E79E24 /* TableViewCells */,
-				74954D2B0F38CE4A00E79E24 /* ViewControllers */,
 				74954D2A0F38CE3F00E79E24 /* NavigationControllers */,
+				74954D2B0F38CE4A00E79E24 /* ViewControllers */,
+				74954D2C0F38CE5E00E79E24 /* TableViewCells */,
 				742DB8160F120DD10079E6B0 /* ViewControllerUtilities.h */,
 				742DB8170F120DD10079E6B0 /* ViewControllerUtilities.m */,
+				74954D2E0F38CEB600E79E24 /* GlobalActivityIndicator.h */,
+				74954D2F0F38CEB600E79E24 /* GlobalActivityIndicator.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -329,6 +341,7 @@
 		745A09390F2ED8ED002F64C6 /* Caches */ = {
 			isa = PBXGroup;
 			children = (
+				74954FE00F38EA8800E79E24 /* UI */,
 				745A093A0F2ED905002F64C6 /* AbstractCache.h */,
 				745A093B0F2ED905002F64C6 /* AbstractCache.m */,
 				745A09DC0F2EE190002F64C6 /* RSSCache.h */,
@@ -370,6 +383,8 @@
 		74954D2B0F38CE4A00E79E24 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				74954E4B0F38DECA00E79E24 /* ACLUNewsViewController.h */,
+				74954E4C0F38DECA00E79E24 /* ACLUNewsViewController.m */,
 				742DC05D0F1336510079E6B0 /* CreditsViewController.h */,
 				742DC05E0F1336510079E6B0 /* CreditsViewController.m */,
 				742DBE340F1321030079E6B0 /* WebViewController.h */,
@@ -390,8 +405,8 @@
 				742DBC270F12FD1C0079E6B0 /* GreatestHitsViewController.m */,
 				742DBF180F132AD50079E6B0 /* ACLUInfoViewController.h */,
 				742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */,
-				745A09340F2ED647002F64C6 /* ACLUNewsController.h */,
-				745A09350F2ED647002F64C6 /* ACLUNewsController.m */,
+				74954E950F38E14600E79E24 /* ACLUArticlesViewController.h */,
+				74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -403,6 +418,10 @@
 				742DB87F0F12A6650079E6B0 /* WrappableCell.m */,
 				742DBCE90F1309BE0079E6B0 /* DecisionCell.h */,
 				742DBCEA0F1309BE0079E6B0 /* DecisionCell.m */,
+				74954F320F38E5F400E79E24 /* ArticleTitleCell.h */,
+				74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */,
+				74954FD80F38EA3500E79E24 /* ArticleBodyCell.h */,
+				74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -466,6 +485,15 @@
 				74954DF50F38D9C000E79E24 /* Item.m */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		74954FE00F38EA8800E79E24 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				74954FE10F38EAA900E79E24 /* FontCache.h */,
+				74954FE20F38EAA900E79E24 /* FontCache.m */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,7 +575,6 @@
 				740101A50F26EB0B00258353 /* AlertUtilities.m in Sources */,
 				7401029E0F276D2700258353 /* Application.m in Sources */,
 				745A09230F2ED55A002F64C6 /* Controller.m in Sources */,
-				745A09360F2ED647002F64C6 /* ACLUNewsController.m in Sources */,
 				745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */,
 				745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */,
 				74954CE00F38CC9500E79E24 /* FileUtilities.m in Sources */,
@@ -572,6 +599,11 @@
 				74954DB30F38D4F700E79E24 /* xmltok_ns.c in Sources */,
 				74954DF60F38D9C000E79E24 /* Item.m in Sources */,
 				74954E090F38DBF100E79E24 /* StringUtilities.m in Sources */,
+				74954E4D0F38DECA00E79E24 /* ACLUNewsViewController.m in Sources */,
+				74954E970F38E14600E79E24 /* ACLUArticlesViewController.m in Sources */,
+				74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */,
+				74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */,
+				74954FE30F38EAA900E79E24 /* FontCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

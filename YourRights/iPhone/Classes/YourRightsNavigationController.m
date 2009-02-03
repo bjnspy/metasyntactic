@@ -51,4 +51,23 @@
     return appDelegate.model;
 }
 
+
+- (void) refresh:(SEL) selector {
+    for (id controller in self.viewControllers) {
+        if ([controller respondsToSelector:selector]) {
+            [controller performSelector:selector];
+        }
+    }
+}
+
+
+- (void) majorRefresh {
+    [self refresh:@selector(majorRefresh)];
+}
+
+
+- (void) minorRefresh {
+    [self refresh:@selector(minorRefresh)];
+}
+
 @end

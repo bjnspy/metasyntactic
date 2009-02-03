@@ -48,10 +48,11 @@ static YourRightsAppDelegate* appDelegate = nil;
 - (void) applicationDidFinishLaunching:(UIApplication*) application {  
     appDelegate = self;
 
+    self.navigationController = [[[YourRightsNavigationController alloc] initWithAppDelegate:self] autorelease];
+
     self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
     
-    self.navigationController = [[[YourRightsNavigationController alloc] initWithAppDelegate:self] autorelease];
     self.model = [[[Model alloc] init] autorelease];
     
     [window addSubview:navigationController.view];

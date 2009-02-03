@@ -14,6 +14,12 @@
 #import "NetworkUtilities.h"
 #import "ThreadingUtilities.h"
 #import "XmlElement.h"
+#import "YourRightsAppDelegate.h"
+
+@interface RSSCache()
+@property (retain) NSMutableDictionary* titleToItems;
+@end
+
 
 @implementation RSSCache
 
@@ -80,13 +86,17 @@ static NSDictionary* titleToIdentifier;
 }
 
 
+@synthesize titleToItems;
+
 - (void) dealloc {
+    self.titleToItems = nil;
     [super dealloc];
 }
 
 
 - (id) initWithModel:(Model*) model_ {
     if (self = [super initWithModel:model_]) {
+        self.titleToItems = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -99,7 +109,10 @@ static NSDictionary* titleToIdentifier;
 
 
 - (void) update {
-    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint) onTarget:self gate:gate visible:YES];
+    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint)
+                                  onTarget:self
+                                      gate:gate
+                                   visible:YES];
 }
 
 
@@ -172,7 +185,18 @@ static NSDictionary* titleToIdentifier;
     
     if (items.count > 0) {
         [self saveItems:items toFile:file];
+        NSArray* arguments = [NSArray arrayWithObjects:title, items, nil];
+        [self performSelectorOnMainThread:@selector(reportFeed:) withObject:arguments waitUntilDone:NO];
     }
+}
+
+
+- (void) reportFeed:(NSArray*) arguments {
+    NSString* title = [arguments objectAtIndex:0];
+    NSArray* items = [arguments objectAtIndex:1];
+    
+    [titleToItems setObject:items forKey:title];
+    [YourRightsAppDelegate majorRefresh];
 }
 
 
@@ -180,6 +204,34 @@ static NSDictionary* titleToIdentifier;
     for (NSString* title in titles) {
         [self updateTitle:title];
     }
+}
+
+
+- (NSArray*) loadItemsForTitle:(NSString*) title {
+    NSString* identifier = [titleToIdentifier objectForKey:title];
+    NSString* file = [self feedFile:identifier];
+    NSArray* encoded = [FileUtilities readObject:file];
+    if (encoded.count == 0) {
+        return [NSArray array];
+    }
+    
+    NSMutableArray* items = [NSMutableArray array];
+    for (NSDictionary* dictionary in encoded) {
+        [items addObject:[Item itemWithDictionary:dictionary]];
+    }
+    
+    return items;
+}
+
+
+- (NSArray*) itemsForTitle:(NSString*) title {
+    NSArray* result = [titleToItems objectForKey:title];
+    if (result == nil) {
+        result = [self loadItemsForTitle:title];
+        [titleToItems setObject:result forKey:title];
+    }
+    
+    return result;
 }
 
 

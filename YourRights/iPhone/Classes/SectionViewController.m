@@ -15,7 +15,9 @@
 #import "SectionViewController.h"
 
 #import "ACLUInfoViewController.h"
+#import "ACLUNewsViewController.h"
 #import "CreditsViewController.h"
+#import "GlobalActivityIndicator.h"
 #import "GreatestHitsViewController.h"
 #import "Model.h"
 #import "QuestionsViewController.h"
@@ -63,11 +65,8 @@
         button.frame = frame;
         
         [button addTarget:self action:@selector(flipView:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)] autorelease];
-        
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:view] autorelease];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
+            
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
     }
     
     return self;
@@ -134,7 +133,7 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+    return NO;
 }
 
 
@@ -150,6 +149,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
     [self majorRefresh];
 }
 
@@ -219,15 +219,18 @@
 
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row == 1) {
+        if (indexPath.row == 0) {
+            ACLUNewsViewController* controller = [[[ACLUNewsViewController alloc] initWithNavigationController:navigationController] autorelease];
+            [navigationController pushViewController:controller animated:YES];
+        } else if (indexPath.row == 1) {
             ToughQuestionsViewController* controller = [[[ToughQuestionsViewController alloc] initWithNavigationController:navigationController] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
+            [navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 2) {
             ACLUInfoViewController* controller = [[[ACLUInfoViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
+            [navigationController pushViewController:controller animated:YES];
         } else if (indexPath.row == 3) {
             GreatestHitsViewController* controller = [[[GreatestHitsViewController alloc] initWithNavigationController:navigationController] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
+            [navigationController pushViewController:controller animated:YES];
         }
     } else {
         NSString* text = [[self.model sectionTitles] objectAtIndex:indexPath.row];
