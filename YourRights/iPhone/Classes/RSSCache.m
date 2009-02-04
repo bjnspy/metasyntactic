@@ -152,6 +152,10 @@ static NSDictionary* titleToIdentifier;
             }
         }
         [pool release];
+        
+        if (items.count >= 75) {
+            break;
+        }
     }
 
     return items;

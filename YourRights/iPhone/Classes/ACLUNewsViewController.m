@@ -147,8 +147,10 @@
     }
 
     NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];
-    cell.text = title;
+    NSArray* items = [self.model.rssCache itemsForTitle:title];
 
+    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), title, items.count];
+    
     return cell;
 }
 
