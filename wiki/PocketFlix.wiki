@@ -21,5 +21,6 @@ Note:
 [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2-Small.png] 
 
 ==Download !PocketFlix today from the [http://www.apple.com/iphone/appstore/ iPhone app store].==
+[http://click.linksynergy.com/fs-bin/stat?id=eOCwggduPKg&offerid=146261&type=3&subid=0&tmpid=1826&RD_PARM1=http%253A%252F%252Fitunes.apple.com%252FWebObjects%252FMZStore.woa%252Fwa%252FviewSoftware%253Fid%253D301386724%2526mt%253D8%2526partnerId%253D30 test]
 
 For help/suggestions email me: [mailto:cyrusn@stwing.upenn.edu cyrusn@stwing.upenn.edu]
