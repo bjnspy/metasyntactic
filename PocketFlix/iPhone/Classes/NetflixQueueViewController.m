@@ -136,14 +136,14 @@
 
 
 - (void) setupTitle {
-    UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+    NSString* text;
     if (readonlyMode) {
-        label.text = NSLocalizedString(@"Please Wait", nil);
+        text = NSLocalizedString(@"Please Wait", nil);
     } else {
-        label.text = [self.model.netflixCache titleForKey:feedKey includeCount:NO];
+        text = [self.model.netflixCache titleForKey:feedKey includeCount:NO];
     }
-
-    self.navigationItem.titleView = label;
+    
+    self.title = text;
 }
 
 
