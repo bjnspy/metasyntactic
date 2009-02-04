@@ -1,4 +1,4 @@
-==!PocketFlix puts the power of Netflix at your fingertips!==
+==Put the power of Netflix at your fingertips!==
 
 ===With iPhone and !PocketFlix you can find movies and manage your Netflix information, all while on the go.  Heard about a great movie from a friend of yours?  Whip out !PocketFlix and add it to your Netflix queue with just a few clicks.  You'll never forget about a movie you want to watch now!===
 
