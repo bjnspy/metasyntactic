@@ -37,8 +37,8 @@ property_definition(name);
 
 
 - (id) initWithUrl:(NSString*) url_
-                 key:(NSString*) key_
-                name:(NSString*) name_ {
+               key:(NSString*) key_
+              name:(NSString*) name_ {
     if (self = [super init]) {
         self.url = url_;
         self.key = key_;
@@ -81,6 +81,11 @@ property_definition(name);
     [coder encodeObject:url   forKey:url_key];
     [coder encodeObject:key   forKey:key_key];
     [coder encodeObject:name  forKey:name_key];
+}
+
+
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
 }
 
 

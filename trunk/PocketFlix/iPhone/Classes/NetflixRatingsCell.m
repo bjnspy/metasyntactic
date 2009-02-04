@@ -35,13 +35,15 @@
     [super dealloc];
 }
 
-/*
- - (void) clearImages {
- for (UIView* view in self.contentView.subviews) {
- [view removeFromSuperview];
- }
- }
- */
+
+- (NSInteger) halfWayPoint {
+    if ([model screenRotationEnabled] &&
+        UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
+        return 230;
+    } else {
+        return 150;
+    }
+}
 
 
 - (void) setupNetflixRating {
@@ -76,7 +78,7 @@
         rect.origin.y = 5;
         rect.size.width += 10;
         rect.size.height += 10;
-        NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
+        NSInteger halfWayPoint = [self halfWayPoint];
 
         rect.origin.x = (halfWayPoint - 135) + (40 * (i + 1));
         imageView.frame = rect;
@@ -114,7 +116,7 @@
         rect.origin.y = 5;
         rect.size.width += 10;
         rect.size.height += 10;
-        NSInteger halfWayPoint = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? 230 : 150;
+        NSInteger halfWayPoint = [self halfWayPoint];
 
         rect.origin.x = (halfWayPoint - 115) + (40 * (i + 1));
         imageView.frame = rect;

@@ -80,7 +80,11 @@
 
 
 - (void) update:(NSArray*) movies {
-    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint:) onTarget:self argument:movies gate:nil visible:NO];
+    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint:)
+                                  onTarget:self
+                                  argument:movies
+                                      gate:nil
+                                   visible:NO];
 }
 
 
@@ -167,7 +171,7 @@
         NSString* location = [values objectAtIndex:2];
 
         [result setObject:[NSArray arrayWithObjects:studio, location, nil]
-                  forKey:fullTitle.lowercaseString];
+                   forKey:fullTitle.lowercaseString];
     }
 
     self.index = result;

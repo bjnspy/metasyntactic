@@ -16,6 +16,7 @@
 
 #import "DateUtilities.h"
 #import "Location.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
 
 @interface Theater()
@@ -71,9 +72,9 @@ property_definition(movieTitles);
       originatingLocation:(Location*) originatingLocation_
               movieTitles:(NSArray*) movieTitles_ {
     if (self = [self init]) {
-        self.identifier = [Utilities nonNilString:identifier_];
-        self.name = [[Utilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.phoneNumber = [Utilities nonNilString:phoneNumber_];
+        self.identifier = [StringUtilities nonNilString:identifier_];
+        self.name = [[StringUtilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.phoneNumber = [StringUtilities nonNilString:phoneNumber_];
         self.location = location_;
         self.originatingLocation = originatingLocation_;
         self.movieTitles = [Utilities nonNilArray:movieTitles_];

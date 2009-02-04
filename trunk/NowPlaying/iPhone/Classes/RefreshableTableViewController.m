@@ -14,6 +14,7 @@
 
 #import "RefreshableTableViewController.h"
 
+
 @implementation RefreshableTableViewController
 
 - (void) dealloc {
@@ -24,7 +25,7 @@
 - (id) initWithStyle:(UITableViewStyle) style {
     if (self = [super initWithStyle:style]) {
     }
-
+    
     return self;
 }
 
@@ -43,12 +44,12 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self
                                              selector:selector
                                                object:nil];
-
+    
     if (self.tableView.dragging || self.tableView.decelerating) {
         [self performSelector:selector withObject:nil afterDelay:1];
         return;
     }
-
+    
     [self performSelector:subclassSelector];
 }
 
@@ -60,18 +61,6 @@
 
 - (void) minorRefresh {
     [self refreshWithSelector:@selector(minorRefresh) subclassSelector:@selector(minorRefreshWorker)];
-}
-
-
-- (UITableViewCell*) tableView:(UITableView*) tableView
-         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (NSInteger) tableView:(UITableView*) tableView
-  numberOfRowsInSection:(NSInteger) section {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 @end

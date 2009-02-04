@@ -19,6 +19,7 @@
 #import "Location.h"
 #import "LocationUtilities.h"
 #import "NetworkUtilities.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -65,7 +66,7 @@
 
 
 - (Location*) downloadAddressLocationFromWebServiceWorker:(NSString*) address {
-    NSString* escapedAddress = [Utilities stringByAddingPercentEscapes:address];
+    NSString* escapedAddress = [StringUtilities stringByAddingPercentEscapes:address];
     if (escapedAddress != nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
 

@@ -29,6 +29,7 @@
 #import "AppDelegate.h"
 #import "Model.h"
 #import "PointerSet.h"
+#import "StringUtilities.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -429,7 +430,7 @@
     }
 
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupCachedResource?q=%@",
-                         [Application host], [Utilities stringByAddingPercentEscapes:movie.poster]];
+                         [Application host], [StringUtilities stringByAddingPercentEscapes:movie.poster]];
 
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:address important:NO];
     if (data != nil) {

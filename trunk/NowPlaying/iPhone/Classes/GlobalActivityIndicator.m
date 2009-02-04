@@ -15,22 +15,38 @@
 #import "GlobalActivityIndicator.h"
 
 #import "AppDelegate.h"
-#import "InfoViewControllerDelegate.h"
 #import "Pulser.h"
-#import "NotificationCenter.h"
-#import "TappableActivityIndicatorView.h"
 
 @implementation GlobalActivityIndicator
 
-static NSLock* gate = nil;
+static id target = nil;
+static SEL startIndicatorSelector = 0;
+static SEL stopIndicatorSelector = 0;
+
+static NSLock* gate;
 
 static BOOL firstTime = YES;
-static NSInteger totalBackgroundTaskCount = 0;
-static NSInteger visibleBackgroundTaskCount = 0;
+static NSInteger totalBackgroundTaskCount;
+static NSInteger visibleBackgroundTaskCount;
 
-+ (UIView*) activityView {
-    return nil;
-    //return activityIndicatorView;
+
++ (void) initialize {
+    if (self == [GlobalActivityIndicator class]) {
+        gate = [[NSRecursiveLock alloc] init];
+    }
+}
+
+
++ (void)           setTarget:(id) target_
+      startIndicatorSelector:(SEL) startIndicatorSelector_
+       stopIndicatorSelector:(SEL) stopIndicatorSelector_ {
+    [gate lock];
+    {
+        target = target_;
+        startIndicatorSelector = startIndicatorSelector_;
+        stopIndicatorSelector = stopIndicatorSelector_;
+    }
+    [gate unlock];
 }
 
 
@@ -39,9 +55,13 @@ static NSInteger visibleBackgroundTaskCount = 0;
     {
         if (visibleBackgroundTaskCount > 0) {
             firstTime = NO;
-            [[AppDelegate notificationCenter] showNotification:NSLocalizedString(@"Updating", nil)];
+            if (target != nil) {
+                [target performSelector:startIndicatorSelector];
+            }
         } else {
-            [[AppDelegate notificationCenter] hideNotification];
+            if (target != nil) {
+                [target performSelector:stopIndicatorSelector];
+            }
         }
     }
     [gate unlock];
@@ -49,14 +69,9 @@ static NSInteger visibleBackgroundTaskCount = 0;
 
 
 + (void) tryUpdate {
-    [self performSelector:@selector(forceUpdate) withObject:nil afterDelay:2];
-}
-
-
-+ (void) initialize {
-    if (self == [GlobalActivityIndicator class]) {
-        gate = [[NSRecursiveLock alloc] init];
-    }
+    [self performSelector:@selector(forceUpdate)
+               withObject:nil
+               afterDelay:3];
 }
 
 
@@ -89,19 +104,30 @@ static NSInteger visibleBackgroundTaskCount = 0;
         }
 
         [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
-        [AppDelegate minorRefresh];
     }
     [gate unlock];
 }
 
 
 + (BOOL) hasVisibleBackgroundTasks {
-    return visibleBackgroundTaskCount > 0;
+    BOOL result;
+    [gate lock];
+    {
+        result = visibleBackgroundTaskCount > 0;
+    }
+    [gate unlock];
+    return result;
 }
 
 
 + (BOOL) hasBackgroundTasks {
-    return totalBackgroundTaskCount > 0;
+    BOOL result;
+    [gate lock];
+    {
+        result = totalBackgroundTaskCount > 0;
+    }
+    [gate unlock];
+    return result;
 }
 
 @end

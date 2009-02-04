@@ -15,6 +15,7 @@
 #import "NetflixFeedsViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "AppDelegate.h"
 #import "AutoResizingCell.h"
 #import "Feed.h"
 #import "GlobalActivityIndicator.h"
@@ -43,10 +44,11 @@
 
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
-                           feedKeys:(NSArray*) feedKeys_ {
+                           feedKeys:(NSArray*) feedKeys_
+                              title:(NSString*) title_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
-        self.title = NSLocalizedString(@"Queues", nil);
+        self.title = title_;
         self.feedKeys = feedKeys_;
     }
 
@@ -75,7 +77,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     [self majorRefresh];
 }
 
@@ -91,7 +93,11 @@
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+        return YES;
+    }
+
+    return self.model.screenRotationEnabled;
 }
 
 

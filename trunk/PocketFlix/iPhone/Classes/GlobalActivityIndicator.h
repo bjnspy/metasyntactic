@@ -13,9 +13,12 @@
 // limitations under the License.
 
 @interface GlobalActivityIndicator : NSObject {
+@private
 }
 
-+ (UIView*) activityView;
++ (void)         setTarget:(id) target
+    startIndicatorSelector:(SEL) startIndicatorSelector
+     stopIndicatorSelector:(SEL) stopIndicatorSelector;
 
 + (void) addBackgroundTask:(BOOL) isVisible;
 + (void) removeBackgroundTask:(BOOL) isVisible;

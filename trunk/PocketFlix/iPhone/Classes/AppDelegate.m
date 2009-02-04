@@ -16,6 +16,7 @@
 
 #import "AlertUtilities.h"
 #import "Controller.h"
+#import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "Pulser.h"
 #import "TappableImageView.h"
@@ -28,6 +29,8 @@
 @property (retain) Model* model;
 @property (retain) Pulser* majorRefreshPulser;
 @property (retain) Pulser* minorRefreshPulser;
+@property (retain) UIActivityIndicatorView* globalActivityIndicatorView;
+@property (retain) UIView* globalActivityView;
 @end
 
 
@@ -41,6 +44,8 @@ static AppDelegate* appDelegate = nil;
 @synthesize model;
 @synthesize majorRefreshPulser;
 @synthesize minorRefreshPulser;
+@synthesize globalActivityIndicatorView;
+@synthesize globalActivityView;
 
 - (void) dealloc {
     self.window = nil;
@@ -49,6 +54,8 @@ static AppDelegate* appDelegate = nil;
     self.model = nil;
     self.majorRefreshPulser = nil;
     self.minorRefreshPulser = nil;
+    self.globalActivityIndicatorView = nil;
+    self.globalActivityView = nil;
 
     [super dealloc];
 }
@@ -59,20 +66,36 @@ static AppDelegate* appDelegate = nil;
 }
 
 
+- (void) setupGlobalActivityIndicator {
+    self.globalActivityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] retain];
+    CGRect frame = globalActivityIndicatorView.frame;
+    frame.size.width += 4;
+
+    self.globalActivityView = [[[UIView alloc] initWithFrame:frame] retain];
+    [globalActivityView addSubview:globalActivityIndicatorView];
+    
+    [GlobalActivityIndicator setTarget:globalActivityIndicatorView
+                startIndicatorSelector:@selector(startAnimating)
+                 stopIndicatorSelector:@selector(stopAnimating)];
+}
+
+
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     if (getenv("NSZombieEnabled") || getenv("NSAutoreleaseFreedObjectCheckEnabled")) {
         [AlertUtilities showOkAlert:@"Zombies enabled!"];
     }
 
     appDelegate = self;
-    
+
+    [self setupGlobalActivityIndicator];
+
     self.model = [Model model];
     self.controller = [Controller controllerWithAppDelegate:self];
 
     self.navigationController = [[[NetflixNavigationController alloc] initWithAppDelegate:self] autorelease];
     self.majorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(majorRefresh) pulseInterval:5];
     self.minorRefreshPulser = [Pulser pulserWithTarget:navigationController action:@selector(minorRefresh) pulseInterval:5];
-    
+
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 
@@ -126,6 +149,11 @@ static AppDelegate* appDelegate = nil;
 
 + (UIWindow*) window {
     return appDelegate.window;
+}
+
+
++ (UIView*) globalActivityView {
+    return appDelegate.globalActivityView;
 }
 
 @end

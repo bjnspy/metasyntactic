@@ -14,6 +14,7 @@
 
 #import "ReviewsViewController.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "GlobalActivityIndicator.h"
 #import "MoviesNavigationController.h"
@@ -100,7 +101,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     [self majorRefresh];
 }
 

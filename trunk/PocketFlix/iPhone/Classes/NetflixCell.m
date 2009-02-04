@@ -261,7 +261,7 @@
 
 
 - (void) onSetSameMovie:(Movie*) movie_
-                   owner:(id) owner  {
+                  owner:(id) owner  {
     [super onSetSameMovie:movie_ owner:owner];
 
     [NSThread cancelPreviousPerformRequestsWithTarget:self selector:@selector(loadMovie:) object:owner];

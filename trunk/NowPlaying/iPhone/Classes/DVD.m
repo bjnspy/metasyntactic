@@ -15,6 +15,7 @@
 #import "DVD.h"
 
 #import "Movie.h";
+#import "StringUtilities.h"
 #import "Utilities.h"
 
 @interface DVD()
@@ -51,11 +52,11 @@ property_definition(url);
                         discs:(NSString*) discs_
                           url:(NSString*) url_ {
     if (self = [super init]) {
-        self.canonicalTitle = [Utilities nonNilString:canonicalTitle_];
-        self.price = [Utilities nonNilString:price_];
-        self.format = [Utilities nonNilString:format_];
-        self.discs = [Utilities nonNilString:discs_];
-        self.url = [Utilities nonNilString:url_];
+        self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
+        self.price = [StringUtilities nonNilString:price_];
+        self.format = [StringUtilities nonNilString:format_];
+        self.discs = [StringUtilities nonNilString:discs_];
+        self.url = [StringUtilities nonNilString:url_];
     }
 
     return self;

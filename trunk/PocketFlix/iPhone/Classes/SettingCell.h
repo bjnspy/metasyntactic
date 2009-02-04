@@ -19,7 +19,12 @@
     UILabel* separatorLine;
 
     UIFont* cachedFont;
+
+    NSString* value;
+    NSString* placeholder;
 }
+
+@property (retain) NSString* placeholder;
 
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier;

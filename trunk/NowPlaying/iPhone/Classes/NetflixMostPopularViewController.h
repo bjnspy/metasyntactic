@@ -17,6 +17,8 @@
     AbstractNavigationController* navigationController;
 
     NSDictionary* titleToCount;
+
+    BOOL visible;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;

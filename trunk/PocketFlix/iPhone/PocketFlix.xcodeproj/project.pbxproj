@@ -54,7 +54,6 @@
 		744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
 		744247070E89F7C300ACDBCF /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247060E89F7C300ACDBCF /* SearchResult.m */; };
 		74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */; };
-		744592040E6CA017002D05C3 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744592030E6CA017002D05C3 /* WarningView.m */; };
 		744592070E6CA06C002D05C3 /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 744592060E6CA06C002D05C3 /* Warning-32x32.png */; };
 		744AF54D0EC42A40008B5B35 /* BlackCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 744AF54C0EC42A40008B5B35 /* BlackCircle.png */; };
 		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
@@ -328,8 +327,6 @@
 		74447C580DC840D100CC146C /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
 		74447C590DC840D100CC146C /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
 		744483150E5B8EB300E4B2CE /* en_GB */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_GB; path = Resources/en_GB.lproj/Localizable.strings; sourceTree = "<group>"; };
-		744592020E6CA017002D05C3 /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
-		744592030E6CA017002D05C3 /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
 		744592060E6CA06C002D05C3 /* Warning-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-32x32.png"; path = "Resources/Warning-32x32.png"; sourceTree = "<group>"; };
 		744815060E8610A1004AFB83 /* en_AU */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en_AU; path = Resources/en_AU.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744AF54C0EC42A40008B5B35 /* BlackCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackCircle.png; path = Resources/BlackCircle.png; sourceTree = "<group>"; };
@@ -800,8 +797,6 @@
 		740245660E78488D00ECE1B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				744592020E6CA017002D05C3 /* WarningView.h */,
-				744592030E6CA017002D05C3 /* WarningView.m */,
 				740245670E7848BF00ECE1B4 /* ActionsView.h */,
 				740245680E7848BF00ECE1B4 /* ActionsView.m */,
 				74AEAFDA0EC0DEDD00C0CF32 /* TappableImageView.h */,
@@ -1458,7 +1453,6 @@
 				745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */,
 				743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */,
 				7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */,
-				744592040E6CA017002D05C3 /* WarningView.m in Sources */,
 				749142A90E7629C900CC42A8 /* CollapsedMovieDetailsCell.m in Sources */,
 				749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */,
 				749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */,

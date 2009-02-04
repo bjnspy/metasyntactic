@@ -273,7 +273,7 @@ const NSInteger POSTER_TAG = -1;
         [self.navigationItem setRightBarButtonItem:right animated:YES];
         [self.navigationItem setHidesBackButton:YES animated:YES];
     } else {
-        UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+        UIBarButtonItem* right = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
         [self.navigationItem setRightBarButtonItem:right animated:YES];
         [self.navigationItem setHidesBackButton:NO animated:YES];
     }

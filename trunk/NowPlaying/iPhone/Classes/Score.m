@@ -52,11 +52,11 @@ property_definition(identifier);
                      provider:(NSString*) provider_
                    identifier:(NSString*) identifier_ {
     if (self = [super init]) {
-        self.canonicalTitle = [Utilities nonNilString:canonicalTitle_];
-        self.score = [Utilities nonNilString:score_];
-        self.synopsis = [Utilities nonNilString:synopsis_];
+        self.canonicalTitle = [StringUtilities nonNilString:canonicalTitle_];
+        self.score = [StringUtilities nonNilString:score_];
+        self.synopsis = [StringUtilities nonNilString:synopsis_];
         self.provider = provider_;
-        self.identifier = [Utilities nonNilString:identifier_];
+        self.identifier = [StringUtilities nonNilString:identifier_];
     }
 
     return self;

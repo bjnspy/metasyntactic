@@ -13,10 +13,7 @@
 // limitations under the License.
 
 @interface RefreshableTableViewController : UITableViewController {
-@protected
 }
-
-- (id) initWithStyle:(UITableViewStyle) style;
 
 - (void) majorRefresh;
 - (void) minorRefresh;
