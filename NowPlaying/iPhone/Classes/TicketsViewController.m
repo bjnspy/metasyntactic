@@ -15,6 +15,7 @@
 #import "TicketsViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "AppDelegate.h"
 #import "Application.h"
 #import "AttributeCell.h"
 #import "ColorCache.h"
@@ -26,6 +27,7 @@
 #import "Model.h"
 #import "Performance.h"
 #import "SearchDatePickerViewController.h"
+#import "StringUtilities.h"
 #import "Theater.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
@@ -77,7 +79,7 @@
 
         [result addObject:performance];
     }
-    
+
     self.performances = result;
 }
 
@@ -135,7 +137,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
 
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
@@ -340,8 +342,8 @@
                                            performances:performances]];
 
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                     [Utilities stringByAddingPercentEscapes:theaterAndDate],
-                     [Utilities stringByAddingPercentEscapes:body]];
+                     [StringUtilities stringByAddingPercentEscapes:theaterAndDate],
+                     [StringUtilities stringByAddingPercentEscapes:body]];
 
     [Application openBrowser:url];
 }

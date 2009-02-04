@@ -20,6 +20,7 @@
     NetflixSearchViewController* searchViewController;
 
     BOOL visible;
+    NSInteger mostPopularTitleCount;
 }
 
 - (id) initWithNavigationController:(NetflixNavigationController*) navigationController;

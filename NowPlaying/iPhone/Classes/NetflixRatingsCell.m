@@ -21,20 +21,19 @@
 #import "Movie.h"
 #import "TappableImageView.h"
 
+@interface NetflixRatingsCell()
+@property (retain) NSMutableArray* imageViews;
+@end
+
 @implementation NetflixRatingsCell
 
+@synthesize imageViews;
 
 - (void) dealloc {
+    self.imageViews = nil;
+
     [super dealloc];
 }
-
-/*
-- (void) clearImages {
-    for (UIView* view in self.contentView.subviews) {
-        [view removeFromSuperview];
-    }
-}
- */
 
 
 - (NSInteger) halfWayPoint {
@@ -85,6 +84,7 @@
         imageView.frame = rect;
 
         [self.contentView addSubview:imageView];
+        [imageViews addObject:imageView];
     }
 }
 
@@ -122,6 +122,7 @@
         imageView.frame = rect;
 
         [self.contentView addSubview:imageView];
+        [imageViews addObject:imageView];
     }
 }
 
@@ -130,6 +131,8 @@
     for (UIView* view in self.contentView.subviews) {
         [view removeFromSuperview];
     }
+
+    [imageViews removeAllObjects];
 }
 
 
@@ -151,15 +154,11 @@
     if (self = [super initWithFrame:frame
                               model:model_
                               movie:movie_]) {
+        self.imageViews = [NSMutableArray array];
         [self setupRating];
     }
 
     return self;
-}
-
-
-- (void) layoutSubviews {
-    [super layoutSubviews];
 }
 
 

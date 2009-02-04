@@ -18,6 +18,7 @@
 #import "FileUtilities.h"
 #import "LocaleUtilities.h"
 #import "Model.h"
+#import "StringUtilities.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -584,7 +585,7 @@ static DifferenceEngine* differenceEngine = nil;
         phoneNumber = [phoneNumber substringToIndex:xRange.location];
     }
 
-    NSString* urlString = [NSString stringWithFormat:@"tel:%@", [Utilities stringByAddingPercentEscapes:phoneNumber]];
+    NSString* urlString = [NSString stringWithFormat:@"tel:%@", [StringUtilities stringByAddingPercentEscapes:phoneNumber]];
 
     [self openBrowser:urlString];
 }

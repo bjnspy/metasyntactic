@@ -609,4 +609,9 @@ NSInteger compareMoviesByTitle(id t1, id t2, void* context) {
     return NO;
 }
 
+
+- (BOOL) screenRotationEnabled {
+    return YES;
+}
+
 @end

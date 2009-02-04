@@ -24,6 +24,7 @@
 #import "MovieShowtimesCell.h"
 #import "MovieTitleCell.h"
 #import "Model.h"
+#import "StringUtilities.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
 #import "Utilities.h"
@@ -360,8 +361,8 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                     [Utilities stringByAddingPercentEscapes:theaterAndDate],
-                     [Utilities stringByAddingPercentEscapes:body]];
+                     [StringUtilities stringByAddingPercentEscapes:theaterAndDate],
+                     [StringUtilities stringByAddingPercentEscapes:body]];
 
     [Application openBrowser:url];
 }

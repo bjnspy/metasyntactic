@@ -15,6 +15,7 @@
 #import "Performance.h"
 
 #import "DateUtilities.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
 
 @interface Performance()
@@ -42,7 +43,7 @@ property_definition(url);
                 url:(NSString*) url_ {
     if (self = [super init]) {
         self.time = time_;
-        self.url = [Utilities nonNilString:url_];
+        self.url = [StringUtilities nonNilString:url_];
     }
 
     return self;

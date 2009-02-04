@@ -25,7 +25,7 @@
 - (id) initWithStyle:(UITableViewStyle) style {
     if (self = [super initWithStyle:style]) {
     }
-
+    
     return self;
 }
 
@@ -44,12 +44,12 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self
                                              selector:selector
                                                object:nil];
-
+    
     if (self.tableView.dragging || self.tableView.decelerating) {
         [self performSelector:selector withObject:nil afterDelay:1];
         return;
     }
-
+    
     [self performSelector:subclassSelector];
 }
 

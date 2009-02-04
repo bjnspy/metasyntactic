@@ -14,6 +14,8 @@
 
 #import "ActionsView.h"
 
+#import "Model.h"
+
 @interface ActionsView()
 @property (assign) id target;
 @property (retain) NSArray* selectors;
@@ -107,13 +109,14 @@
 }
 
 
-- (CGSize) sizeThatFits:(CGSize) size {
+- (CGSize) sizeThatFits:(CGSize) size withModel:(Model*) model {
     if (buttons.count == 0) {
         return CGSizeZero;
     }
 
     double width;
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+    if ([model screenRotationEnabled] &&
+        UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
         width = [UIScreen mainScreen].bounds.size.width;

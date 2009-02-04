@@ -147,6 +147,24 @@ static NSString* articles[] = {
 }
 
 
+- (id) initWithCoder:(NSCoder*) coder {
+    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
+                     canonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
+                       displayTitle:[coder decodeObjectForKey:displayTitle_key]
+                             rating:[coder decodeObjectForKey:rating_key]
+                             length:[coder decodeIntegerForKey:length_key]
+                        releaseDate:[coder decodeObjectForKey:releaseDate_key]
+                        imdbAddress:[coder decodeObjectForKey:imdbAddress_key]
+                             poster:[coder decodeObjectForKey:poster_key]
+                           synopsis:[coder decodeObjectForKey:synopsis_key]
+                             studio:[coder decodeObjectForKey:studio_key]
+                          directors:[coder decodeObjectForKey:directors_key]
+                               cast:[coder decodeObjectForKey:cast_key]
+                             genres:[coder decodeObjectForKey:genres_key]
+                   additionalFields:[coder decodeObjectForKey:additionalFields_key]];
+}
+
+
 + (BOOL) isStringDictionary:(id) dictionary {
     if (dictionary == nil) {
         return YES;
@@ -269,24 +287,6 @@ static NSString* articles[] = {
                                  cast:cast
                                genres:genres
                      additionalFields:nil];
-}
-
-
-- (id) initWithCoder:(NSCoder*) coder {
-    return [self initWithIdentifier:[coder decodeObjectForKey:identifier_key]
-                     canonicalTitle:[coder decodeObjectForKey:canonicalTitle_key]
-                       displayTitle:[coder decodeObjectForKey:displayTitle_key]
-                             rating:[coder decodeObjectForKey:rating_key]
-                             length:[coder decodeIntegerForKey:length_key]
-                        releaseDate:[coder decodeObjectForKey:releaseDate_key]
-                        imdbAddress:[coder decodeObjectForKey:imdbAddress_key]
-                             poster:[coder decodeObjectForKey:poster_key]
-                           synopsis:[coder decodeObjectForKey:synopsis_key]
-                             studio:[coder decodeObjectForKey:studio_key]
-                          directors:[coder decodeObjectForKey:directors_key]
-                               cast:[coder decodeObjectForKey:cast_key]
-                             genres:[coder decodeObjectForKey:genres_key]
-                   additionalFields:[coder decodeObjectForKey:additionalFields_key]];
 }
 
 

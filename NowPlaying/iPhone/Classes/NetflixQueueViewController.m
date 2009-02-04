@@ -16,9 +16,10 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
+#import "AppDelegate.h"
 #import "ImageCache.h"
 #import "Feed.h"
-#import "MovieTitleCell.h"
+#import "GlobalActivityIndicator.h"
 #import "MutableNetflixCache.h"
 #import "NetflixCell.h"
 #import "Model.h"
@@ -188,8 +189,13 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+
+    if (!self.isEditable) {
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
+    }
+
     self.tableView.rowHeight = 100;
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
 
@@ -258,27 +264,13 @@
 }
 
 
-- (TappableImageView*) tappableArrow {
-    UIImage* image = [ImageCache upArrow];
-    TappableImageView* imageView = [[[TappableImageView alloc] initWithImage:image] autorelease];
-    imageView.delegate = self;
-    imageView.contentMode = UIViewContentModeCenter;
-
-    CGRect frame = imageView.frame;
-    frame.size.height += 20;
-    imageView.frame = frame;
-
-    return imageView;
-}
-
-
-- (void) setAccessoryForCell:(UITableViewCell*) cell
+- (void) setAccessoryForCell:(NetflixCell*) cell
                  atIndexPath:(NSIndexPath*) path {
     if (self.isEditable) {
         if (path.section == 1 || path.row == 0) {
             cell.accessoryView = nil;
         } else {
-            cell.accessoryView = [self tappableArrow];
+            cell.accessoryView = cell.tappableArrow;
         }
     } else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -294,7 +286,7 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell*) tableView:(UITableView*) tableView_
+- (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if ([self indexPathOutOfBounds:indexPath]) {
         return [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
@@ -302,11 +294,12 @@
 
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
-    NetflixCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
                                              reuseIdentifier:reuseIdentifier
                                                        model:self.model] autorelease];
+        cell.tappableArrow.delegate = self;
     }
 
     [self setAccessoryForCell:cell atIndexPath:indexPath];
@@ -326,7 +319,7 @@
 
 - (void) resetVisibleAccessories {
     for (NSIndexPath* path in self.tableView.indexPathsForVisibleRows) {
-        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:path];
+        id cell = [self.tableView cellForRowAtIndexPath:path];
         [self setAccessoryForCell:cell atIndexPath:path];
     }
 }
@@ -397,7 +390,7 @@
 }
 
 
-- (void)            tableView:(UITableView*) tableView_
+- (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (readonlyMode) {
         [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
@@ -426,9 +419,9 @@
 
 
 
-- (BOOL)          tableView:(UITableView*) tableView_
+- (BOOL)          tableView:(UITableView*) tableView
       canEditRowAtIndexPath:(NSIndexPath*) indexPath {
-    return self.tableView.editing;
+    return tableView.editing;
 }
 
 
@@ -439,7 +432,7 @@
 
 
 // Override to support editing the table view.
-- (void)       tableView:(UITableView*) tableView_
+- (void)       tableView:(UITableView*) tableView
       commitEditingStyle:(UITableViewCellEditingStyle) editingStyle
        forRowAtIndexPath:(NSIndexPath*) indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -455,7 +448,7 @@
         [deletedMovies addObject:movie];
         [reorderedMovies removeObject:movie];
 
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
     }
 }
 

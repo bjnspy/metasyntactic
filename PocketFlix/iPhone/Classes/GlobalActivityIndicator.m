@@ -15,45 +15,63 @@
 #import "GlobalActivityIndicator.h"
 
 #import "AppDelegate.h"
+#import "Pulser.h"
 
 @implementation GlobalActivityIndicator
 
-static NSLock* gate = nil;
-static UIActivityIndicatorView* activityIndicatorView = nil;
-static UIView* activityView = nil;
-static GlobalActivityIndicator* indicator = nil;
+static id target = nil;
+static SEL startIndicatorSelector = 0;
+static SEL stopIndicatorSelector = 0;
 
-static NSInteger totalBackgroundTaskCount = 0;
-static NSInteger visibleBackgroundTaskCount = 0;
+static NSLock* gate;
+
+static BOOL firstTime = YES;
+static NSInteger totalBackgroundTaskCount;
+static NSInteger visibleBackgroundTaskCount;
+
 
 + (void) initialize {
     if (self == [GlobalActivityIndicator class]) {
         gate = [[NSRecursiveLock alloc] init];
-
-        activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        CGRect frame = activityIndicatorView.frame;
-        frame.size.width += 4;
-
-        activityView = [[UIView alloc] initWithFrame:frame];
-        [activityView addSubview:activityIndicatorView];
-
-        indicator = [[GlobalActivityIndicator alloc] init];
     }
 }
 
 
-+ (UIView*) activityView {
-    return activityView;
++ (void)           setTarget:(id) target_
+      startIndicatorSelector:(SEL) startIndicatorSelector_
+       stopIndicatorSelector:(SEL) stopIndicatorSelector_ {
+    [gate lock];
+    {
+        target = target_;
+        startIndicatorSelector = startIndicatorSelector_;
+        stopIndicatorSelector = stopIndicatorSelector_;
+    }
+    [gate unlock];
 }
 
 
-- (void) startIndicator {
-    [activityIndicatorView startAnimating];
++ (void) forceUpdate {
+    [gate lock];
+    {
+        if (visibleBackgroundTaskCount > 0) {
+            firstTime = NO;
+            if (target != nil) {
+                [target performSelector:startIndicatorSelector];
+            }
+        } else {
+            if (target != nil) {
+                [target performSelector:stopIndicatorSelector];
+            }
+        }
+    }
+    [gate unlock];
 }
 
 
-- (void) stopIndicator {
-    [activityIndicatorView stopAnimating];
++ (void) tryUpdate {
+    [self performSelector:@selector(forceUpdate)
+               withObject:nil
+               afterDelay:3];
 }
 
 
@@ -64,10 +82,12 @@ static NSInteger visibleBackgroundTaskCount = 0;
 
         if (isVisible) {
             visibleBackgroundTaskCount++;
+        }
 
-            if (visibleBackgroundTaskCount == 1) {
-                [indicator performSelectorOnMainThread:@selector(startIndicator) withObject:nil waitUntilDone:NO];
-            }
+        if (visibleBackgroundTaskCount > 0 && firstTime) {
+            [self performSelectorOnMainThread:@selector(forceUpdate) withObject:nil waitUntilDone:NO];
+        } else {
+            [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
         }
     }
     [gate unlock];
@@ -81,25 +101,33 @@ static NSInteger visibleBackgroundTaskCount = 0;
 
         if (isVisible) {
             visibleBackgroundTaskCount--;
-
-            if (visibleBackgroundTaskCount == 0) {
-                [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
-            }
         }
 
-        [AppDelegate minorRefresh];
+        [self performSelectorOnMainThread:@selector(tryUpdate) withObject:nil waitUntilDone:NO];
     }
     [gate unlock];
 }
 
 
 + (BOOL) hasVisibleBackgroundTasks {
-    return visibleBackgroundTaskCount > 0;
+    BOOL result;
+    [gate lock];
+    {
+        result = visibleBackgroundTaskCount > 0;
+    }
+    [gate unlock];
+    return result;
 }
 
 
 + (BOOL) hasBackgroundTasks {
-    return totalBackgroundTaskCount > 0;
+    BOOL result;
+    [gate lock];
+    {
+        result = totalBackgroundTaskCount > 0;
+    }
+    [gate unlock];
+    return result;
 }
 
 @end

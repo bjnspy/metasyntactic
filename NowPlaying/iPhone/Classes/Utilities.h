@@ -37,9 +37,6 @@
 
 + (NSDictionary*) nonNilDictionary:(NSDictionary*) dictionary;
 + (NSArray*) nonNilArray:(NSArray*) array;
-+ (NSString*) nonNilString:(NSString*) string;
-
-+ (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
 + (NSString*) generateShowtimeLinks:(Model*) model
                               movie:(Movie*) movie

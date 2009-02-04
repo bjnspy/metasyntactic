@@ -25,6 +25,7 @@
 #import "NowPlaying.pb.h"
 #import "Model.h"
 #import "Performance.h"
+#import "StringUtilities.h"
 #import "Theater.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -415,7 +416,7 @@
                          [Application host],
                          country,
                          [LocaleUtilities isoLanguage],
-                         [Utilities stringByAddingPercentEscapes:location.postalCode],
+                         [StringUtilities stringByAddingPercentEscapes:location.postalCode],
                          day,
                          (int)(location.latitude * 1000000),
                          (int)(location.longitude * 1000000)];

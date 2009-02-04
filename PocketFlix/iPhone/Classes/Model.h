@@ -37,6 +37,8 @@
 
 + (NSString*) version;
 
+- (BOOL) screenRotationEnabled;
+
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;
 - (NSString*) netflixUserId;

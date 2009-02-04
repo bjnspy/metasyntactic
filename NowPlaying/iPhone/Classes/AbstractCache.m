@@ -14,8 +14,6 @@
 
 #import "AbstractCache.h"
 
-#import "FileUtilities.h"
-
 @interface AbstractCache()
 @property (retain) Model* model;
 @property (retain) NSCondition* gate;

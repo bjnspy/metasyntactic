@@ -15,6 +15,7 @@
 #import "NetflixMostPopularMoviesViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "AppDelegate.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
@@ -108,11 +109,9 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
-
-    self.tableView.rowHeight = 100;
     [super viewWillAppear:animated];
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
+    self.tableView.rowHeight = 100;
     [self majorRefresh];
 }
 

@@ -17,8 +17,6 @@
 + (NotificationCenter*) centerWithView:(UIView*) view;
 
 - (void) addToView;
-- (void) showNotification:(NSString*) message;
-- (void) hideNotification;
 
 - (void) willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation;
 - (void) didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation;

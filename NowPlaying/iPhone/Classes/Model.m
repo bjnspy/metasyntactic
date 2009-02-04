@@ -44,6 +44,7 @@
 #import "Score.h"
 #import "ScoreCache.h"
 #import "SettingsViewController.h"
+#import "StringUtilities.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -1661,12 +1662,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void* context) {
 
     NSString* subject;
     if ([LocaleUtilities isJapanese]) {
-        subject = [Utilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
+        subject = [StringUtilities stringByAddingPercentEscapes:@"Now Playingのフィードバック"];
     } else {
         subject = @"Now%20Playing%20Feedback";
     }
 
-    NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
+    NSString* encodedBody = [StringUtilities stringByAddingPercentEscapes:body];
     NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
     return result;
 }

@@ -15,6 +15,7 @@
 #import "Location.h"
 
 #import "Application.h"
+#import "StringUtilities.h"
 #import "Utilities.h"
 
 @interface Location()
@@ -61,11 +62,11 @@ property_definition(country);
     if (self = [super init]) {
         latitude        = latitude_;
         longitude       = longitude_;
-        self.address    = [Utilities nonNilString:address_];
-        self.city       = [Utilities nonNilString:city_];
-        self.state      = [Utilities nonNilString:state_];
-        self.postalCode = [Utilities nonNilString:postalCode_];
-        self.country    = [Utilities nonNilString:country_];
+        self.address    = [StringUtilities nonNilString:address_];
+        self.city       = [StringUtilities nonNilString:city_];
+        self.state      = [StringUtilities nonNilString:state_];
+        self.postalCode = [StringUtilities nonNilString:postalCode_];
+        self.country    = [StringUtilities nonNilString:country_];
 
         if ([country isEqual:@"US"] && [postalCode rangeOfString:@"-"].length > 0) {
             NSRange range = [postalCode rangeOfString:@"-"];
@@ -272,7 +273,7 @@ property_definition(country);
     }
 
 
-    NSString* encoded = [Utilities stringByAddingPercentEscapes:arguments];
+    NSString* encoded = [StringUtilities stringByAddingPercentEscapes:arguments];
     if (encoded != nil) {
         return [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", encoded];
     } else {

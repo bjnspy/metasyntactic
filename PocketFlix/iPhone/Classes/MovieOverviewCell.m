@@ -248,7 +248,8 @@
 
 - (CGFloat) height {
     double width;
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+    if ([model screenRotationEnabled] &&
+        UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
         width = [UIScreen mainScreen].bounds.size.width;

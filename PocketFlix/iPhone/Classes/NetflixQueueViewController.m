@@ -16,6 +16,7 @@
 
 #import "AbstractNavigationController.h"
 #import "AlertUtilities.h"
+#import "AppDelegate.h"
 #import "ImageCache.h"
 #import "Feed.h"
 #import "GlobalActivityIndicator.h"
@@ -191,7 +192,7 @@
     [super viewWillAppear:animated];
 
     if (!self.isEditable) {
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     }
 
     self.tableView.rowHeight = 100;
@@ -210,7 +211,11 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+        return YES;
+    }
+
+    return self.model.screenRotationEnabled;
 }
 
 

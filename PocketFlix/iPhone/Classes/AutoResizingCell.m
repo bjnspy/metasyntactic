@@ -88,7 +88,7 @@
 
 
 - (void) setSelected:(BOOL) selected
-             animated:(BOOL) animated {
+            animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
         label.textColor = [UIColor whiteColor];

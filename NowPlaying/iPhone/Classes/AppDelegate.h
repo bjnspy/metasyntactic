@@ -22,6 +22,8 @@
     Controller* controller;
     Pulser* minorRefreshPulser;
     Pulser* majorRefreshPulser;
+
+    UIView* globalActivityView;
 }
 
 @property (readonly, nonatomic, retain) UIWindow* window;
@@ -36,5 +38,7 @@
 
 + (UIWindow*) window;
 + (NotificationCenter*) notificationCenter;
+
++ (UIView*) globalActivityView;
 
 @end

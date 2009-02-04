@@ -440,7 +440,7 @@
           toPosition:(NSInteger) position
             delegate:(id<NetflixAddMovieDelegate>) delegate {
     NSArray* arguments =
-        [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, nil];
+    [NSArray arrayWithObjects:queue, movie, [NSNumber numberWithInt:position], delegate, nil];
 
     [ThreadingUtilities backgroundSelector:@selector(addMovieToQueueBackgroundEntryPoint:)
                                   onTarget:self

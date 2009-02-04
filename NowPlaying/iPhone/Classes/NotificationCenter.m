@@ -6,6 +6,7 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+#import "GlobalActivityIndicator.h"
 #import "NotificationCenter.h"
 
 @interface NotificationCenter()
@@ -29,6 +30,12 @@
 }
 
 
+- (void) addToView {
+    [view addSubview:notificationLabel];
+    [view addSubview:blackLabel];
+}
+
+
 - (id) initWithView:(UIView*) view_ {
     if (self = [super init]) {
         self.view = view_;
@@ -41,9 +48,16 @@
         notificationLabel.shadowOffset = CGSizeMake(0, 1);
         notificationLabel.alpha = 0;
         notificationLabel.backgroundColor = [UIColor colorWithRed:46.0/256.0 green:46.0/256.0 blue:46.0/256.0 alpha:1];
+        notificationLabel.text = NSLocalizedString(@"Updating", nil);
 
         self.blackLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 397, 320, 1)] autorelease];
         blackLabel.backgroundColor = [UIColor blackColor];
+
+        [GlobalActivityIndicator setTarget:self
+                    startIndicatorSelector:@selector(showNotification)
+                     stopIndicatorSelector:@selector(hideNotification)];
+
+        [self addToView];
     }
 
     return self;
@@ -55,15 +69,7 @@
 }
 
 
-- (void) addToView {
-    [view addSubview:notificationLabel];
-    [view addSubview:blackLabel];
-}
-
-
-- (void) showNotification:(NSString*) message {
-    notificationLabel.text = message;
-
+- (void) showNotification {
     [UIView beginAnimations:nil context:NULL];
     {
         notificationLabel.alpha = blackLabel.alpha = 1;
@@ -97,7 +103,7 @@
 - (void) showLabels {
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         [self addToView];
-        [self showNotification:notificationLabel.text];
+        [self showNotification];
     }
 }
 

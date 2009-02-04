@@ -123,6 +123,7 @@
 
 
 - (void) updateAddressBackgroundEntryPoint {
+    NSAssert(![NSThread isMainThread], nil);
     while (YES) {
         Movie* movie = nil;
         [gate lock];

@@ -14,6 +14,7 @@
 
 #import "NetflixViewController.h"
 
+#import "AppDelegate.h"
 #import "Application.h"
 #import "AutoResizingCell.h"
 #import "ColorCache.h"
@@ -106,9 +107,21 @@ typedef enum {
 }
 
 
+- (void) determinePopularMovieCount {
+    NSInteger result = 0;
+    for (NSString* title in [NetflixCache mostPopularTitles]) {
+        NSInteger count = [self.model.netflixCache movieCountForRSSTitle:title];
+        result += count;
+    }
+
+    mostPopularTitleCount = result;
+}
+
+
 - (void) majorRefreshWorker {
     [self setupTableStyle];
     [self setupTitle];
+    [self determinePopularMovieCount];
     [self.tableView reloadData];
 }
 
@@ -118,7 +131,7 @@ typedef enum {
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
     [self majorRefresh];
 }
@@ -171,7 +184,11 @@ typedef enum {
                 cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
                 break;
             case MostPopularSection:
-                cell.text = NSLocalizedString(@"Most Popular", nil);
+                if (mostPopularTitleCount == 0) {
+                    cell.text = NSLocalizedString(@"Most Popular", nil);
+                } else {
+                    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), NSLocalizedString(@"Most Popular", nil), mostPopularTitleCount];
+                }
                 cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
                 break;
             case DVDSection:
@@ -272,7 +289,8 @@ typedef enum {
 
     NetflixFeedsViewController* controller =
     [[[NetflixFeedsViewController alloc] initWithNavigationController:navigationController
-                                                             feedKeys:keys] autorelease];
+                                                             feedKeys:keys
+                                                                title:NSLocalizedString(@"Rental History", nil)] autorelease];
     [navigationController pushViewController:controller animated:YES];
 }
 

@@ -39,6 +39,7 @@
 #import "PosterCache.h"
 #import "Score.h"
 #import "Status.h"
+#import "StringUtilities.h"
 #import "TappableImageView.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
@@ -1192,8 +1193,8 @@ const NSInteger POSTER_TAG = -1;
     }
 
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                     [Utilities stringByAddingPercentEscapes:movieAndDate],
-                     [Utilities stringByAddingPercentEscapes:body]];
+                     [StringUtilities stringByAddingPercentEscapes:movieAndDate],
+                     [StringUtilities stringByAddingPercentEscapes:body]];
 
     [Application openBrowser:url];
 }

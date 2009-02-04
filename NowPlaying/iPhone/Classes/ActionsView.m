@@ -136,7 +136,6 @@
 
     BOOL oddNumberOfButtons = ((buttons.count % 2) == 1);
 
-    //int lastRow = (buttons.count - 1) / 2;
     for (int i = 0; i < buttons.count; i++) {
         UIButton* button = [buttons objectAtIndex:i];
 

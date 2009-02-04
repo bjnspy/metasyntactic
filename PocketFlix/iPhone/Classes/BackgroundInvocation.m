@@ -14,6 +14,7 @@
 
 #import "BackgroundInvocation.h"
 
+#import "AppDelegate.h"
 #import "GlobalActivityIndicator.h"
 
 @interface BackgroundInvocation()
@@ -86,6 +87,8 @@
     }
     [GlobalActivityIndicator removeBackgroundTask:visible];
     [gate unlock];
+
+    [AppDelegate minorRefresh];
 }
 
 

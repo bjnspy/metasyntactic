@@ -154,15 +154,6 @@
 }
 
 
-+ (NSString*) nonNilString:(NSString*) string {
-    if (string == nil) {
-        return @"";
-    }
-
-    return string;
-}
-
-
 + (NSString*)                      string:(NSString*) string
       byAddingPercentEscapesUsingEncoding:(NSStringEncoding) encoding {
     string = [string stringByAddingPercentEscapesUsingEncoding:encoding];

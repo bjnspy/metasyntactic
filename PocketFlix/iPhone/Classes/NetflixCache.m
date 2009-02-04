@@ -1705,10 +1705,10 @@ static NSDictionary* availabilityMap = nil;
 - (NSArray*) statusesForMovie:(Movie*) movie {
     NSMutableArray* array = nil;
     NSArray* searchQueues = [NSArray arrayWithObjects:
-                       [self queueForKey:[NetflixCache dvdQueueKey]],
-                       [self queueForKey:[NetflixCache instantQueueKey]],
-                       [self queueForKey:[NetflixCache atHomeKey]],
-                       nil];
+                             [self queueForKey:[NetflixCache dvdQueueKey]],
+                             [self queueForKey:[NetflixCache instantQueueKey]],
+                             [self queueForKey:[NetflixCache atHomeKey]],
+                             nil];
 
     for (Queue* queue in searchQueues) {
         Status* status = [self statusForMovie:movie inQueue:queue];

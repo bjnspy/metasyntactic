@@ -150,6 +150,9 @@
 
     NSString* title = NSLocalizedString(@"Genre:", nil);
     NSString* value = [genres componentsJoinedByString:@", "];
+    if (value.length == 0) {
+        return;
+    }
 
     [self addTitle:title andValue:value];
 }
@@ -281,7 +284,9 @@
     NSArray* labels = [titleToValueLabels objectsForKey:lastTitle];
     UILabel* lastLabel = labels.lastObject;
 
-    return lastLabel.frame.origin.y + lastLabel.frame.size.height + 7;
+    NSInteger y = lastLabel.frame.origin.y;
+    NSInteger height = lastLabel.frame.size.height;
+    return y + height + 7;
 }
 
 @end
