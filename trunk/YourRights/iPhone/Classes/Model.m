@@ -37,7 +37,7 @@ static NSArray* links;
 static NSArray* toughQuestions;
 static NSArray* toughAnswers;
 
-static NSString* currentVersion = @"1.2.0";
+static NSString* currentVersion = @"1.3.0";
 
 + (NSString*) version {
     return currentVersion;

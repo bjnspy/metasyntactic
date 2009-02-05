@@ -24,7 +24,6 @@
 @property (retain) Model* model;
 @property (retain) UILabel* showtimesLabel;
 @property (retain) NSArray* showtimesData;
-@property BOOL useSmallFonts;
 @end
 
 
@@ -33,13 +32,11 @@
 @synthesize model;
 @synthesize showtimesLabel;
 @synthesize showtimesData;
-@synthesize useSmallFonts;
 
 - (void) dealloc {
     self.model = nil;
     self.showtimesLabel = nil;
     self.showtimesData = nil;
-    self.useSmallFonts = NO;
 
     [super dealloc];
 }
