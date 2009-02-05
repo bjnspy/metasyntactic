@@ -490,11 +490,18 @@ public class DataProvider {
   }
 
   private List<Movie> loadMovies() {
-    final List<Movie> result = FileUtilities.readPersistableList(Movie.reader, getMoviesFile());
-    if (result == null) {
+    final List<Movie> movies = FileUtilities.readPersistableList(Movie.reader, getMoviesFile());
+    if (movies == null) {
       return Collections.emptyList();
     }
-    return result;
+
+    // hack.  ensure no duplicates
+    final Map<String,Movie> map = new HashMap<String,Movie>();
+    for (final Movie movie : movies) {
+      map.put(movie.getIdentifier(), movie);
+    }
+
+    return new ArrayList<Movie>(map.values());
   }
 
   public List<Movie> getMovies() {
