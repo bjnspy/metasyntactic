@@ -34,6 +34,7 @@ public class AllReviewsActivity extends ListActivity {
   @Override
   protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
+    MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
   }
 

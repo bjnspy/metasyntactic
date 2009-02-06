@@ -14,14 +14,17 @@
 package org.metasyntactic.utilities;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
+
 import org.metasyntactic.R;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 
+import java.lang.ref.SoftReference;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +41,6 @@ public class MovieViewUtilities {
   public static final int MENU_SHOWTIMES = 9;
   public static final int MENU_SEARCH = 10;
   public static final int MENU_SEND_FEEDBACK = 11;
-  
   // Constants for movies sort
   private final static int MovieTitle = 0;
   private final static int Release = 1;
@@ -46,6 +48,12 @@ public class MovieViewUtilities {
   private final static int TheaterName = 0;
   private final static int Distance = 1;
   private static String currentHeader;
+  private static SoftReference<Drawable> rotten_full_drawable;
+  private static SoftReference<Drawable> rating_unknown_drawable;
+  private static SoftReference<Drawable> fresh_drawable;
+  private static SoftReference<Drawable> rating_red_drawable;
+  private static SoftReference<Drawable> rating_green_drawable;
+  private static SoftReference<Drawable> rating_yellow_drawable;
 
   private MovieViewUtilities() {
   }
@@ -116,12 +124,20 @@ public class MovieViewUtilities {
 
   private static Drawable formatRottenTomatoesDrawable(final int score, final Resources res) {
     Drawable scoreDrawable = null;
-    scoreDrawable = res.getDrawable(R.drawable.rating_unknown);
+    if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null)
+      rating_unknown_drawable = new SoftReference<Drawable>(res
+          .getDrawable(R.drawable.rating_unknown));
+    scoreDrawable = rating_unknown_drawable.get();
     if (score >= 0 && score <= 100) {
       if (score >= 60) {
-        scoreDrawable = res.getDrawable(R.drawable.fresh);
+        if (fresh_drawable == null || fresh_drawable.get() == null)
+          fresh_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.fresh));
+        scoreDrawable = fresh_drawable.get();
       } else {
-        scoreDrawable = res.getDrawable(R.drawable.rotten_full);
+        if (rotten_full_drawable == null || rotten_full_drawable.get() == null)
+          rotten_full_drawable = new SoftReference<Drawable>(res
+              .getDrawable(R.drawable.rotten_full));
+        scoreDrawable = rotten_full_drawable.get();
       }
     }
     return scoreDrawable;
@@ -129,13 +145,24 @@ public class MovieViewUtilities {
 
   private static Drawable formatBasicSquareDrawable(final int score, final Resources res) {
     Drawable scoreDrawable = null;
-    scoreDrawable = res.getDrawable(R.drawable.rating_unknown);
+    if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null)
+      rating_unknown_drawable = new SoftReference<Drawable>(res
+          .getDrawable(R.drawable.rating_unknown));
+    scoreDrawable = rating_unknown_drawable.get();
     if (score >= 0 && score <= 40) {
-      scoreDrawable = res.getDrawable(R.drawable.rating_red);
+      if (rating_red_drawable == null || rating_red_drawable.get() == null)
+        rating_red_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_red));
+      scoreDrawable = rating_red_drawable.get();
     } else if (score > 40 && score <= 60) {
-      scoreDrawable = res.getDrawable(R.drawable.rating_yellow);
+      if (rating_yellow_drawable == null || rating_yellow_drawable.get() == null)
+        rating_yellow_drawable = new SoftReference<Drawable>(res
+            .getDrawable(R.drawable.rating_yellow));
+      scoreDrawable = rating_yellow_drawable.get();
     } else if (score > 60 && score <= 100) {
-      scoreDrawable = res.getDrawable(R.drawable.rating_green);
+      if (rating_green_drawable == null || rating_green_drawable.get() == null)
+        rating_green_drawable = new SoftReference<Drawable>(res
+            .getDrawable(R.drawable.rating_green));
+      scoreDrawable = rating_green_drawable.get();
     }
     return scoreDrawable;
   }
@@ -219,5 +246,20 @@ public class MovieViewUtilities {
       }
     }
     return null;
+  }
+
+  public static void cleanUpDrawables() {
+    if (rotten_full_drawable != null && rotten_full_drawable.get() != null)
+      rotten_full_drawable.get().setCallback(null);
+    if (fresh_drawable != null && fresh_drawable.get() != null)
+      fresh_drawable.get().setCallback(null);
+    if (rating_unknown_drawable != null && rating_unknown_drawable.get() != null)
+      rating_unknown_drawable.get().setCallback(null);
+    if (rating_yellow_drawable != null && rating_yellow_drawable.get() != null)
+      rating_yellow_drawable.get().setCallback(null);
+    if (rating_red_drawable != null && rating_red_drawable.get() != null)
+      rating_red_drawable.get().setCallback(null);
+    if (rating_green_drawable != null && rating_green_drawable.get() != null)
+      rating_green_drawable.get().setCallback(null);
   }
 }

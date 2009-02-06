@@ -128,8 +128,8 @@ public class AllMoviesActivity extends ListActivity {
     }
     {
       // Add header
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.more_options), null,
-          MovieDetailItemType.HEADER, null, false);
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.more_options),
+          null, MovieDetailItemType.HEADER, null, false);
       this.movieDetailEntries.add(entry);
     }
     {
@@ -179,6 +179,7 @@ public class AllMoviesActivity extends ListActivity {
   @Override
   protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
+    MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
   }
 
@@ -218,8 +219,10 @@ public class AllMoviesActivity extends ListActivity {
         if (bytes.length > 0) {
           final BitmapFactory.Options options = new BitmapFactory.Options();
           options.inJustDecodeBounds = false;
-          options.outWidth = 130 - (130%14);
-          options.outHeight = 200 - (200%14);
+          // set the image size to be multiple of text size (14)
+          options.outWidth = 130 - (130 % 14);
+          options.outHeight = 200 - (200 % 14);
+          options.inSampleSize = 2;
           posterImage
               .setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options));
           posterImage.setBackgroundResource(R.drawable.image_frame);
@@ -268,6 +271,7 @@ public class AllMoviesActivity extends ListActivity {
     private class MovieViewHolder {
       private final TextView name;
       private final TextView value;
+
       private MovieViewHolder(final TextView name, final TextView value, final ImageView divider) {
         this.name = name;
         this.value = value;
