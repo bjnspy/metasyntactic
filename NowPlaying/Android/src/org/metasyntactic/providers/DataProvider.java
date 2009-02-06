@@ -349,8 +349,8 @@ public class DataProvider {
           continue;
         }
         String url = showtimes.get(i).getUrl();
-        if (url != null && url.startsWith("m=")) {
-          url = "http://iphone.fandango.com/tms.asp?a=11586&" + url;
+        if (url != null && url.startsWith("tid=")) {
+          url = "http://www.fandango.com/redirect.aspx?" + url + "&a=11584&source=google";
         }
         final Performance performance = new Performance(time, url);
         performances.add(performance);
