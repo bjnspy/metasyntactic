@@ -127,7 +127,7 @@ public class DataProvider {
     final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
-    //Debug.stopMethodTracing();
+    //Debug.stopMethodTracing();kno
     // Log.i("DEBUG", "Stopped downloadUserLocation trace");
     if (location == null) {
       // this should be impossible. we only update if the user has entered a
@@ -272,9 +272,12 @@ public class DataProvider {
     int days = Days.daysBetween(DateUtilities.getToday(), this.model.getSearchDate());
     days = min(max(days, 0), 7);
     final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country
-        + "&postalcode=" + location.getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days
-        + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude="
-        + (int) (location.getLongitude() * 1000000);
+        + "&postalcode=" + location.getPostalCode()
+        + "&language=" + Locale.getDefault().getLanguage()
+        + "&day=" + days
+        + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000)
+        + "&longitude=" + (int) (location.getLongitude() * 1000000)
+        + "&device=android";
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
       return null;

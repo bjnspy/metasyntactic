@@ -82,7 +82,11 @@ public class LargePosterCache extends AbstractCache {
       }
 
       final String movie = columns[0];
-      final List<String> posters = Arrays.asList(columns).subList(1, columns.length);
+      final ArrayList<String> posters = new ArrayList<String>(columns.length - 1);
+      for (int i = 1; i < columns.length; i++) {
+        posters.add(columns[i]);
+      }
+
       index.put(movie.toLowerCase(), posters);
     }
 
