@@ -360,7 +360,10 @@ public class UpcomingCache extends AbstractCache {
     }
 
     final String synopsis = values[0];
-    final List<String> cast = Arrays.asList(values).subList(1, values.length);
+    final ArrayList<String> cast = new ArrayList<String>(values.length - 1);
+    for (int i = 1; i < values.length; i++) {
+      cast.add(values[i]);
+    }
 
     if (!synopsis.startsWith("No synopsis")) {
       FileUtilities.writeString(synopsis, file);
