@@ -38,7 +38,7 @@ public class PosterCache extends AbstractCache {
   }
 
   private File posterFile(final Movie movie) {
-    return new File(Application.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
+    return new File(Application.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + ".jpg"));
   }
 
   public void update(final List<Movie> movies) {

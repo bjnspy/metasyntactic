@@ -13,6 +13,8 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import static org.apache.commons.collections.CollectionUtils.size;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
@@ -25,7 +27,9 @@ import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.utilities.difference.EditDistance;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -214,11 +218,54 @@ public class LargePosterCache extends AbstractCache {
       return;
     }
 
-    final byte[] bytes = NetworkUtilities.download(urls.get(index), false);
+    byte[] bytes = NetworkUtilities.download(urls.get(index), false);
     if (bytes != null) {
+      bytes = resizePoster(bytes);
       FileUtilities.writeBytes(bytes, file);
       Application.refresh();
     }
+  }
+
+  private static byte[] resizePoster(final byte[] bytes) {
+    final BitmapFactory.Options options1 = new BitmapFactory.Options();
+    options1.inJustDecodeBounds = true;
+    BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options1);
+
+    final int width = options1.outWidth;
+    final int height = options1.outHeight;
+
+    if (height <= 480 && width <= 480) {
+      return bytes;
+    }
+
+    double scale = 0.0;
+    if (height > width) {
+      // portrait
+      scale = height / 480.0;
+    } else {
+      // landscape
+      scale = width / 480.0;
+    }
+
+    final BitmapFactory.Options options2 = new BitmapFactory.Options();
+    options2.inPreferredConfig = Bitmap.Config.ARGB_8888;
+    options2.inSampleSize = (int) scale;
+    Bitmap scaledBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options2);
+    // This will give us a scaled bitmap, but still not resized to the dimensions
+    // that we want.
+
+    scaledBitmap = Bitmap.createScaledBitmap(scaledBitmap, (int) (width / scale), (int) (height / scale), true);
+    final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(bytes.length);
+    scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteOut);
+
+    try {
+      byteOut.flush();
+      byteOut.close();
+    } catch (final IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    return byteOut.toByteArray();
   }
 
   public static byte[] getPoster(final Movie movie) {
