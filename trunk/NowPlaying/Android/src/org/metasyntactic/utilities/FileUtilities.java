@@ -297,27 +297,19 @@ public class FileUtilities {
       return null;
     }
 
-    if (USE_PERSISTABLE) {
-      try {
-        return new String(readBytes(file), "UTF-8");
-      } catch (final UnsupportedEncodingException e) {
-        throw new RuntimeException(e);
-      }
-    } else {
-      return readObject(file);
+    try {
+      return new String(readBytes(file), "UTF-8");
+    } catch (final UnsupportedEncodingException e) {
+      throw new RuntimeException(e);
     }
   }
 
   public static void writeString(final String s, final File file) {
-    if (USE_PERSISTABLE) {
-      try {
-        writeBytes(s.getBytes("UTF-8"), file);
-      } catch (final IOException e) {
-        ExceptionUtilities.log(FileUtilities.class, "writeString", e);
-        throw new RuntimeException(e);
-      }
-    } else {
-      writeObject(s, file);
+    try {
+      writeBytes(s.getBytes("UTF-8"), file);
+    } catch (final IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "writeString", e);
+      throw new RuntimeException(e);
     }
   }
 
