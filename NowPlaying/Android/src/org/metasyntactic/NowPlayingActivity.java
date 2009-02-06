@@ -55,7 +55,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private Intent intent;
   private Movie selectedMovie;
   private PostersAdapter postersAdapter;
-  private boolean gridAnimationEnded;
   private boolean isGridSetup;
   private static List<Movie> movies;
   private int lastPosition;
@@ -67,7 +66,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
-  private boolean isTaskRunning;
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -85,14 +83,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
-    public void onReceive(Context context, Intent intent) {
-      if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction()) &&  mTask.getStatus() != UserTask.Status.RUNNING) {
+    public void onReceive(final Context context, final Intent intent) {
+      if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction()) &&  NowPlayingActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
-        isTaskRunning = true;
       }
-      if (Application.SCROLLING_INTENT.equals(intent.getAction()) && mTask.getStatus() == UserTask.Status.RUNNING) {
+      if (Application.SCROLLING_INTENT.equals(intent.getAction()) && NowPlayingActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask.cancel(true);
-        isTaskRunning = false;
       }
     }
   };
@@ -112,7 +108,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       FastScrollGridView.getSections();
       this.postersAdapter.refreshMovies();
     }
-    mTask = new LoadPostersTask().execute(null);
+    this.mTask = new LoadPostersTask().execute(null);
   }
 
   private List<Movie> getMatchingMoviesList(final String search2) {
@@ -138,7 +134,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
           android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
+            public void onClick(final DialogInterface dialog, final int whichButton) {
               NowPlayingActivity.this.finish();
             }
           }).show();
@@ -173,8 +169,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       if (!matchingMovies.isEmpty() && this.isGridSetup) {
         this.movies = matchingMovies;
         // cancel task so that it doesnt try to load the complete set of movies.
-        if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
-          mTask.cancel(true);
+        if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+          this.mTask.cancel(true);
         }
       } else {
         Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search,
@@ -186,8 +182,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onDestroy() {
     NowPlayingControllerWrapper.removeActivity(this);
-    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
-      mTask.cancel(true);
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
     }
     clearBitmaps();
     super.onDestroy();
@@ -198,8 +194,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     unregisterReceiver(this.broadcastReceiver);
     unregisterReceiver(this.databroadcastReceiver);
     unregisterReceiver(this.scrollStatebroadcastReceiver);
-    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
-      mTask.cancel(true);
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
     }
     super.onPause();
   }
@@ -216,7 +212,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
-    
+
     registerReceiver(this.broadcastReceiver, new IntentFilter(
         Application.NOW_PLAYING_CHANGED_INTENT));
     registerReceiver(this.databroadcastReceiver, new IntentFilter(
@@ -260,7 +256,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     });
     this.grid.setLayoutAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
-        NowPlayingActivity.this.gridAnimationEnded = true;
       }
 
       public void onAnimationRepeat(final Animation animation) {
@@ -523,7 +518,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   private class LoadPostersTask extends UserTask<Void, Void, Void> {
     @Override
-    public Void doInBackground(Void... params) {
+    public Void doInBackground(final Void... params) {
       Bitmap bitmap = null;
       for (int i = 0; i < movies.size(); i++) {
         final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movies.get(i)
@@ -532,7 +527,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
           bitmap = reference.get();
         }
         if (reference == null || bitmap == null) {
-          File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movies
+          final File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movies
               .get(i));
           if (file != null) {
             final byte[] bytes = FileUtilities.readBytes(file);
@@ -550,14 +545,17 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
 
     @Override
-    public void onPostExecute(Void result) {
+    public void onPostExecute(final Void result) {
       super.onPostExecute(result);
-      if (NowPlayingActivity.this.postersAdapter != null)
+      if (NowPlayingActivity.this.postersAdapter != null) {
         NowPlayingActivity.this.postersAdapter.refreshMovies();
+      }
     }
   }
 
   private static Bitmap createBitmap(final byte[] bytes) {
+    return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    /*
     final BitmapFactory.Options options = new BitmapFactory.Options();
     final int width = 90;
     final int height = 125;
@@ -573,5 +571,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     options.inSampleSize = (int) scale;
     final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     return bitmap;
+    */
   }
 }

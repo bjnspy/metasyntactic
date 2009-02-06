@@ -60,10 +60,13 @@ public class FileUtilities {
   public static <T> T readObject(final File file) {
     try {
       final byte[] bytes = readBytes(file);
+      if (bytes.length == 0) {
+        return null;
+      }
       final ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
       return (T) in.readObject();
     } catch (final IOException e) {
-      throw new RuntimeException(e);
+      return null;
     } catch (final ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
@@ -71,6 +74,11 @@ public class FileUtilities {
 
   public static void writeObject(final Object object, final File file) {
     try {
+      if (object == null) {
+        writeBytes(new byte[0], file);
+        return;
+      }
+
       final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
       final ObjectOutputStream out = new ObjectOutputStream(byteOut);
 
@@ -554,11 +562,14 @@ public class FileUtilities {
         data = new byte[0];
       }
 
-      final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file), 1 << 13);
+      final File tempFile = Application.createTempFile();
+      final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 1 << 13);
       out.write(data);
 
       out.flush();
       out.close();
+
+      tempFile.renameTo(file);
     } catch (final IOException e) {
       ExceptionUtilities.log(FileUtilities.class, "writeBytes", e);
       throw new RuntimeException(e);
