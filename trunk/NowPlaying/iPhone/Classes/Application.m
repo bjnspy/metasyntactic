@@ -601,7 +601,7 @@ static DifferenceEngine* differenceEngine = nil;
 #if !TARGET_IPHONE_SIMULATOR
     return @"metaboxoffice2";
 #endif
-    //*
+    /*
     return @"metaboxoffice6";
     /*/
      return @"metaboxoffice2";
