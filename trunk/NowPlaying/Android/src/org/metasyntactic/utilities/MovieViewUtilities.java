@@ -37,6 +37,8 @@ public class MovieViewUtilities {
   public static final int MENU_IMDB = 8;
   public static final int MENU_SHOWTIMES = 9;
   public static final int MENU_SEARCH = 10;
+  public static final int MENU_SEND_FEEDBACK = 11;
+  
   // Constants for movies sort
   private final static int MovieTitle = 0;
   private final static int Release = 1;
