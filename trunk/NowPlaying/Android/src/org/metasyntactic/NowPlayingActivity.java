@@ -86,11 +86,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     public void onReceive(Context context, Intent intent) {
-      if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction()) && !isTaskRunning) {
+      if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction()) &&  mTask.getStatus() != UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
         isTaskRunning = true;
       }
-      if (Application.SCROLLING_INTENT.equals(intent.getAction()) && isTaskRunning) {
+      if (Application.SCROLLING_INTENT.equals(intent.getAction()) && mTask.getStatus() == UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask.cancel(true);
         isTaskRunning = false;
       }
@@ -198,6 +198,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     unregisterReceiver(this.broadcastReceiver);
     unregisterReceiver(this.databroadcastReceiver);
     unregisterReceiver(this.scrollStatebroadcastReceiver);
+    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+      mTask.cancel(true);
+    }
     super.onPause();
   }
 
@@ -213,6 +216,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
+    
     registerReceiver(this.broadcastReceiver, new IntentFilter(
         Application.NOW_PLAYING_CHANGED_INTENT));
     registerReceiver(this.databroadcastReceiver, new IntentFilter(
@@ -224,6 +228,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }
+   // refresh();
   }
 
   private void getAlphabet(final Context context) {
