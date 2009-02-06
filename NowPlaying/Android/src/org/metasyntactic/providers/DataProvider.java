@@ -17,8 +17,10 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.R;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Debug;
 import android.util.Log;
 
@@ -117,6 +119,15 @@ public class DataProvider {
     });
   }
 
+  private void broadcastUpdate(final int id) {
+    final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+    if (context != null) {
+      final String message = context.getResources().getString(id);
+      final Intent intent = new Intent(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS).putExtra("message", message);
+      context.sendBroadcast(intent);
+    }
+  }
+
   private void updateBackgroundEntryPointWorker(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
     if (isUpToDate()) {
       return;
@@ -124,10 +135,11 @@ public class DataProvider {
     // Log.i("DEBUG", "Started downloadUserLocation trace");
     //Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
+    broadcastUpdate(R.string.finding_location);
     final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
-    //Debug.stopMethodTracing();kno
+    //Debug.stopMethodTracing();
     // Log.i("DEBUG", "Stopped downloadUserLocation trace");
     if (location == null) {
       // this should be impossible. we only update if the user has entered a
@@ -145,6 +157,7 @@ public class DataProvider {
     LogUtilities.logTime(DataProvider.class, "Add missing data", start);
 
     start = System.currentTimeMillis();
+    broadcastUpdate(R.string.finding_favorites);
     lookupMissingFavorites(result);
     LogUtilities.logTime(DataProvider.class, "Lookup Missing Theaters", start);
 
@@ -275,13 +288,16 @@ public class DataProvider {
         + "&postalcode=" + location.getPostalCode()
         + "&language=" + Locale.getDefault().getLanguage()
         + "&day=" + days
-        + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000)
+        + "&format=pb"
+        + "&latitude=" + (int) (location.getLatitude() * 1000000)
         + "&longitude=" + (int) (location.getLongitude() * 1000000)
         + "&device=android";
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
       return null;
     }
+
+    broadcastUpdate(R.string.searching_location);
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
       // Log.i("DEBUG", "Started parse from trace");
@@ -539,9 +555,11 @@ public class DataProvider {
 
   private void saveResult(final LookupResult result) {
     long start = System.currentTimeMillis();
+    broadcastUpdate(R.string.downloading_movie_information);
     FileUtilities.writePersistableCollection(result.movies, getMoviesFile());
     LogUtilities.logTime(DataProvider.class, "Saving Movies", start);
     start = System.currentTimeMillis();
+    broadcastUpdate(R.string.downloading_theater_information);
     FileUtilities.writePersistableCollection(result.theaters, getTheatersFile());
     LogUtilities.logTime(DataProvider.class, "Saving Theaters", start);
     start = System.currentTimeMillis();
@@ -550,6 +568,8 @@ public class DataProvider {
     start = System.currentTimeMillis();
     final File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
     tempFolder.mkdirs();
+
+    broadcastUpdate(R.string.downloading_local_performances);
     for (final String theaterName : result.performances.keySet()) {
       final Map<String, List<Performance>> value = result.performances.get(theaterName);
       FileUtilities.writeStringToListOfPersistables(value, getPerformancesFile(tempFolder, theaterName));

@@ -28,10 +28,11 @@ import java.util.List;
 
 public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
+  public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS = "NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS";
   public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
   public final static String SCROLLING_INTENT = "SCROLLING_INTENT";
   public final static String NOT_SCROLLING_INTENT = "NOT_SCROLLING_INTENT";
-  
+
   public final static String host =
   /*
    * "metaboxoffice6"; /
