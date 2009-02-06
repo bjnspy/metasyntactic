@@ -17,6 +17,8 @@
     <string name="get_showtimes">Get Showtimes</string>
     <string name="insert_sdcard">Please insert sdcard</string>
     <string name="no_results_found_for">No results found for </string>
+    <string name="feedback">Feedback for NowPlaying(Android) </string>
+    <string name="enter_feedback">Enter your feedback here....... </string>
     
      <!-- Characters that are used for each of the fast-scroll widget that skips directly
         to names starting with this letter.  If your language sorts differently than this,

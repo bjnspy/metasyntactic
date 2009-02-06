@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -22,13 +24,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 
 import org.metasyntactic.data.Movie;
@@ -40,7 +40,6 @@ import org.metasyntactic.views.CustomGridView;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
-import org.metasyntactic.views.FastScrollGridView.ScrollFade;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -133,7 +132,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
     return matchingMovies;
   }
-
+  
   public Context getContext() {
     return this;
   }
@@ -437,6 +436,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         R.drawable.ic_menu_allfriends);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
         .setIcon(R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback)
+    .setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
@@ -469,6 +470,22 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       final Intent intent = new Intent();
       intent.setClass(this, SearchMovieActivity.class);
       startActivity(intent);
+      return true;
+    }
+    if (item.getItemId() == MovieViewUtilities.MENU_SEND_FEEDBACK) {
+      final Resources res = NowPlayingActivity.this.getResources();
+      final String addr = "cyrusn@google.com, mjoshi@google.com";
+      final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
+      intent1.putExtra("subject", res.getString(R.string.feedback));
+      String body;
+      body = res.getString(R.string.enter_feedback);
+      body += res.getString(R.string.settings);
+      body += ": " + res.getString(R.string.autoupdate_location) + ":" + NowPlayingControllerWrapper.isAutoUpdateEnabled();
+      body += ", " + res.getString(R.string.location) + ":" + NowPlayingControllerWrapper.getUserLocation();
+      body += ", " + res.getString(R.string.search_distance) + ":" + NowPlayingControllerWrapper.getSearchDistance();
+      body += ", " + res.getString(R.string.reviews) + ":" + NowPlayingControllerWrapper.getScoreType();
+      intent1.putExtra("body", body);
+      startActivity(intent1);
       return true;
     }
     return false;
