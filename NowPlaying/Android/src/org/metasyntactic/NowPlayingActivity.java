@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,6 +67,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
+  private boolean isTaskRunning;
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -85,8 +85,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
-    private boolean isTaskRunning;
-
     public void onReceive(Context context, Intent intent) {
       if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction()) && !isTaskRunning) {
         NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
@@ -103,16 +101,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public void refresh() {
     if (this.search == null) {
       this.movies = NowPlayingControllerWrapper.getMovies();
-      Log.i("Movies", "Size of list: " + movies.size());
-      for (int i = 0; i < movies.size(); i++) {
-        Log.i("Movies", "Movie at position:  " + i + " is " + movies.get(i).getDisplayTitle());
-      }
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
-    // clearBitmaps();
     if (this.postersAdapter != null) {
       populateAlphaMovieSectionsAndPositions();
       populateScoreMovieSectionsAndPositions();
@@ -132,7 +125,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
     return matchingMovies;
   }
-  
+
   public Context getContext() {
     return this;
   }
@@ -179,6 +172,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
       if (!matchingMovies.isEmpty() && this.isGridSetup) {
         this.movies = matchingMovies;
+        // cancel task so that it doesnt try to load the complete set of movies.
+        if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+          mTask.cancel(true);
+        }
       } else {
         Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search,
             Toast.LENGTH_SHORT).show();
@@ -436,8 +433,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         R.drawable.ic_menu_allfriends);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
         .setIcon(R.drawable.upcoming);
-    menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback)
-    .setIcon(R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
+        R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
@@ -480,10 +477,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       String body;
       body = res.getString(R.string.enter_feedback);
       body += res.getString(R.string.settings);
-      body += ": " + res.getString(R.string.autoupdate_location) + ":" + NowPlayingControllerWrapper.isAutoUpdateEnabled();
-      body += ", " + res.getString(R.string.location) + ":" + NowPlayingControllerWrapper.getUserLocation();
-      body += ", " + res.getString(R.string.search_distance) + ":" + NowPlayingControllerWrapper.getSearchDistance();
-      body += ", " + res.getString(R.string.reviews) + ":" + NowPlayingControllerWrapper.getScoreType();
+      body += ": " + res.getString(R.string.autoupdate_location) + ":"
+          + NowPlayingControllerWrapper.isAutoUpdateEnabled();
+      body += ", " + res.getString(R.string.location) + ":"
+          + NowPlayingControllerWrapper.getUserLocation();
+      body += ", " + res.getString(R.string.search_distance) + ":"
+          + NowPlayingControllerWrapper.getSearchDistance();
+      body += ", " + res.getString(R.string.reviews) + ":"
+          + NowPlayingControllerWrapper.getScoreType();
       intent1.putExtra("body", body);
       startActivity(intent1);
       return true;
