@@ -226,6 +226,8 @@ public class LargePosterCache extends AbstractCache {
     }
   }
 
+  private final static int MAX_DIMENSION = 240;
+
   private static byte[] resizePoster(final byte[] bytes) {
     final BitmapFactory.Options options1 = new BitmapFactory.Options();
     options1.inJustDecodeBounds = true;
@@ -234,17 +236,17 @@ public class LargePosterCache extends AbstractCache {
     final int width = options1.outWidth;
     final int height = options1.outHeight;
 
-    if (height <= 480 && width <= 480) {
+    if (height <= MAX_DIMENSION && width <= MAX_DIMENSION) {
       return bytes;
     }
 
     double scale = 0.0;
     if (height > width) {
       // portrait
-      scale = height / 480.0;
+      scale = (double)height / MAX_DIMENSION;
     } else {
       // landscape
-      scale = width / 480.0;
+      scale = (double)width / MAX_DIMENSION;
     }
 
     final BitmapFactory.Options options2 = new BitmapFactory.Options();
