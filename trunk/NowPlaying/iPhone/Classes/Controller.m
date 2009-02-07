@@ -249,6 +249,22 @@
 }
 
 
+- (void) setDvdBlurayEnabled:(BOOL) value {
+    [self.model setDvdBlurayEnabled:value];
+    [appDelegate.tabBarController resetTabs:YES];
+    [AppDelegate majorRefresh:YES];
+    [self.model updateDVDCache];
+}
+
+
+- (void) setUpcomingEnabled:(BOOL) value {
+    [self.model setUpcomingEnabled:value];
+    [appDelegate.tabBarController resetTabs:YES];
+    [AppDelegate majorRefresh:YES];
+    [self.model updateUpcomingCache];
+}
+
+
 - (void) setNetflixEnabled:(BOOL) value {
     [self.model setNetflixEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];

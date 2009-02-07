@@ -376,6 +376,10 @@
     if (model.userAddress.length == 0) {
         return;
     }
+    
+    if (!model.upcomingEnabled) {
+        return;
+    }
 
     [ThreadingUtilities backgroundSelector:@selector(updateIndexBackgroundEntryPoint)
                                   onTarget:self

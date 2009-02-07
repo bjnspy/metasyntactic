@@ -76,7 +76,7 @@
 
 @implementation Model
 
-static NSString* currentVersion = @"3.1.0";
+static NSString* currentVersion = @"3.2.0";
 static NSString* persistenceVersion = @"104";
 
 static NSString* VERSION = @"version";
@@ -117,6 +117,8 @@ static NSString* NETFLIX_PREFERRED_FORMATS              = @"netflixPreferredForm
 static NSString* SCREEN_ROTATION_DISABLED               = @"screenRotationDisabled";
 static NSString* FIRST_LAUNCH_DATE                      = @"firstLaunchDate";
 static NSString* HAS_SHOWN_WRITE_REVIEW_REQUEST         = @"hasShownWriteReviewRequest";
+static NSString* DVD_BLURAY_DISABLED                    = @"dvdBlurayDisabled";
+static NSString* UPCOMING_DISABLED                      = @"upcomingDisabled";
 
 static NSString** ALL_KEYS[] = {
 &VERSION,
@@ -151,7 +153,9 @@ static NSString** ALL_KEYS[] = {
 &NETFLIX_FIRST_NAME,
 &NETFLIX_LAST_NAME,
 &NETFLIX_CAN_INSTANT_WATCH,
-&NETFLIX_PREFERRED_FORMATS
+&NETFLIX_PREFERRED_FORMATS,
+&DVD_BLURAY_DISABLED,
+&UPCOMING_DISABLED,
 };
 
 
@@ -185,6 +189,8 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &NETFLIX_CAN_INSTANT_WATCH,
 &SCREEN_ROTATION_DISABLED,
 &HAS_SHOWN_WRITE_REVIEW_REQUEST,
+&DVD_BLURAY_DISABLED,
+&UPCOMING_DISABLED,
 };
 
 static NSString** DATE_KEYS_TO_MIGRATE[] = {
@@ -591,6 +597,26 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) setScreenRotationEnabled:(BOOL) enabled {
     [[NSUserDefaults standardUserDefaults] setBool:!enabled forKey:SCREEN_ROTATION_DISABLED];
+}
+
+
+- (BOOL) dvdBlurayEnabled {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:DVD_BLURAY_DISABLED];
+}
+
+
+- (void) setDvdBlurayEnabled:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:DVD_BLURAY_DISABLED];
+}
+
+
+- (BOOL) upcomingEnabled {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:UPCOMING_DISABLED];
+}
+
+
+- (void) setUpcomingEnabled:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:UPCOMING_DISABLED];
 }
 
 

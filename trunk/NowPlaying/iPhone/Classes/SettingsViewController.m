@@ -96,7 +96,7 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 2;
+    return 4;
 }
 
 
@@ -104,13 +104,17 @@
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return 1;
+    } else if (section == 1) {
+        return 9;
+    } else if (section == 2) {
+        return 1;
     } else {
-        return 10;
+        return 2;
     }
 }
 
 
-- (UITableViewCell*) cellForFooterRow:(NSInteger) row {
+- (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -122,7 +126,7 @@
 
 
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
-    if (row >= 0 && row <= 4) {
+    if (row >= 0 && row <= 3) {
         static NSString* reuseIdentifier = @"reuseIdentifier";
         SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
@@ -164,24 +168,12 @@
         } else if (row == 3) {
             key = NSLocalizedString(@"Reviews", nil);
             value = self.model.currentScoreProvider;
-        } else if (row == 4) {
-            key = NSLocalizedString(@"DVD/Blu-ray", nil);
-
-            if (self.model.dvdMoviesShowBoth) {
-                value = NSLocalizedString(@"Both", nil);
-            } else if (self.model.dvdMoviesShowOnlyDVDs) {
-                value = NSLocalizedString(@"DVD Only", nil);
-            } else if (self.model.dvdMoviesShowOnlyBluray) {
-                value = NSLocalizedString(@"Blu-ray Only", nil);
-            } else {
-                value = NSLocalizedString(@"Neither", nil);
-            }
         }
         cell.placeholder = placeholder;
         [cell setKey:key value:value hideSeparator:NO];
 
         return cell;
-    } else if (row >= 5 && row <= 9) {
+    } else if (row >= 4 && row <= 8) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -191,23 +183,23 @@
         NSString* text;
         BOOL on;
         SEL selector;
-        if (row == 5) {
+        if (row == 4) {
             text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'automatically update the user's location with GPS information'");
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
-        } else if (row == 6) {
+        } else if (row == 5) {
             text = NSLocalizedString(@"Netflix", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.netflixEnabled;
             selector = @selector(onNetflixEnabledChanged:);
-        } else if (row == 7) {
+        } else if (row == 6) {
             text = NSLocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.prioritizeBookmarks;
             selector = @selector(onPrioritizeBookmarksChanged:);
-        } else if (row == 8) {
+        } else if (row == 7) {
             text = NSLocalizedString(@"Screen Rotation", nil);
             on = self.model.screenRotationEnabled;
             selector = @selector(onScreenRotationEnabledChanged:);
-        } else if (row == 9) {
+        } else if (row == 8) {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
@@ -224,12 +216,83 @@
 }
 
 
+- (UITableViewCell*) cellForUpcomingRow:(NSInteger) row {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    cell.accessoryView = picker;
+    
+    NSString* text = NSLocalizedString(@"Enabled", nil);
+    BOOL on = self.model.upcomingEnabled;
+    SEL selector = @selector(onUpcomingEnabledChanged:);
+    
+    [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
+    picker.on = on;
+    cell.text = text;
+    
+    return cell;
+}
+
+
+- (UITableViewCell*) cellForDvdBlurayRow:(NSInteger) row {
+    if (row == 0) {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        cell.accessoryView = picker;
+        
+        NSString* text = NSLocalizedString(@"Enabled", nil);
+        BOOL on = self.model.dvdBlurayEnabled;
+        SEL selector = @selector(onDvdBlurayEnabledChanged:);
+        
+        [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
+        picker.on = on;
+        cell.text = text;
+        
+        return cell;
+    } else {
+        static NSString* reuseIdentifier = @"reuseIdentifier";
+        SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[SettingCell alloc] initWithFrame:CGRectZero
+                                       reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
+        NSString* key = @"";
+        NSString* value = @"";
+        NSString* placeholder = @"";
+        
+        key = NSLocalizedString(@"Show", nil);
+        if (self.model.dvdMoviesShowBoth) {
+            value = NSLocalizedString(@"Both", nil);
+        } else if (self.model.dvdMoviesShowOnlyDVDs) {
+            value = NSLocalizedString(@"DVD Only", nil);
+        } else if (self.model.dvdMoviesShowOnlyBluray) {
+            value = NSLocalizedString(@"Blu-ray Only", nil);
+        } else {
+            value = NSLocalizedString(@"Neither", nil);
+        }
+        
+        cell.placeholder = placeholder;
+        [cell setKey:key value:value hideSeparator:NO];
+        
+        return cell;
+    }
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
           cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        return [self cellForHeaderRow:indexPath.row];
+    } else if (indexPath.section == 1) {
         return [self cellForSettingsRow:indexPath.row];
+    } else if (indexPath.section == 2) {
+        return [self cellForUpcomingRow:indexPath.row];
     } else {
-        return [self cellForFooterRow:indexPath.row];
+        return [self cellForDvdBlurayRow:indexPath.row];
     }
 }
 
@@ -241,6 +304,16 @@
         NSString* message = NSLocalizedString(@"This is the first release of Netflix support in Now Playing. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button above.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)", nil);
         [AlertUtilities showOkAlert:message];
     }
+}
+
+
+- (void) onUpcomingEnabledChanged:(id) sender {
+    [self.controller setUpcomingEnabled:!self.model.upcomingEnabled];
+}
+
+
+- (void) onDvdBlurayEnabledChanged:(id) sender {
+    [self.controller setDvdBlurayEnabled:!self.model.dvdBlurayEnabled];
 }
 
 
@@ -351,7 +424,17 @@
         ScoreProviderViewController* controller =
         [[[ScoreProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
         [navigationController pushViewController:controller animated:YES];
-    } else if (row == 4) {
+    }
+}
+
+
+- (void) didSelectUpcomingRow:(NSInteger) row {
+    
+}
+
+
+- (void) didSelectDvdBlurayRow:(NSInteger) row {
+    if (row == 1) {
         DVDFilterViewController* controller = [[[DVDFilterViewController alloc] initWithNavigationController:navigationController] autorelease];
         [navigationController pushViewController:controller animated:YES];
     }
@@ -360,10 +443,14 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 1) {
-        [self didSelectSettingsRow:indexPath.row];
-    } else {
+    if (indexPath.section == 0) {
         [self didSelectCreditsRow:indexPath.row];
+    } else if (indexPath.section == 1) {
+        [self didSelectSettingsRow:indexPath.row];
+    } else if (indexPath.section == 2) {
+        [self didSelectUpcomingRow:indexPath.row];
+    } else {
+        [self didSelectDvdBlurayRow:indexPath.row];
     }
 }
 
@@ -378,6 +465,18 @@
 - (void) onSearchRadiusChanged:(NSString*) radius {
     [self.controller setSearchRadius:radius.intValue];
     [self.tableView reloadData];
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (section == 2) {
+        return NSLocalizedString(@"Upcoming", nil);
+    } else if (section == 3) {
+        return NSLocalizedString(@"DVD/Bluray", nil);
+    }
+    
+    return nil;
 }
 
 

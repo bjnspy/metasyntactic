@@ -196,25 +196,18 @@
 
 
 - (void) setTabs:(NSNumber*) animated {
-    NSArray* controllers;
-
+    NSMutableArray* controllers = [NSMutableArray array];
+    
+    [controllers addObject:[self loadMoviesNavigationController]];
+    [controllers addObject:[self loadTheatersNavigationController]];
+    if (self.model.upcomingEnabled) {
+        [controllers addObject:[self loadUpcomingMoviesNavigationController]];
+    }
+    if (self.model.dvdBlurayEnabled) {
+        [controllers addObject:[self loadDVDNavigationController]];
+    }
     if (self.model.netflixEnabled) {
-        controllers =
-        [NSArray arrayWithObjects:
-         [self loadMoviesNavigationController],
-         [self loadTheatersNavigationController],
-         [self loadUpcomingMoviesNavigationController],
-         [self loadDVDNavigationController],
-         [self loadNetflixNavigationController],
-         nil];
-    } else {
-        controllers =
-        [NSArray arrayWithObjects:
-         [self loadMoviesNavigationController],
-         [self loadTheatersNavigationController],
-         [self loadUpcomingMoviesNavigationController],
-         [self loadDVDNavigationController],
-         nil];
+        [controllers addObject:[self loadNetflixNavigationController]];
     }
 
     [self setViewControllers:controllers animated:animated.boolValue];
