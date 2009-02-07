@@ -216,8 +216,9 @@
     // causes the tab bar to be 'stuck' selecting the current view controller.
     // in that case, we switch to another tab and back to unstick it.
     NSInteger index = self.selectedIndex;
-    self.selectedIndex = (index + 1) % self.viewControllers.count;
-    self.selectedIndex = index;
+    NSInteger tabCount = self.viewControllers.count;
+    self.selectedIndex = (index + 1) % tabCount;
+    self.selectedIndex = MAX(MIN(index, tabCount - 1), 0);
 }
 
 
