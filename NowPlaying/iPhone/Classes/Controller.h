@@ -33,7 +33,11 @@
 - (void) setSearchRadius:(NSInteger) radius;
 - (void) setScoreProviderIndex:(NSInteger) index;
 - (void) setAutoUpdateLocation:(BOOL) value;
+
+- (void) setDvdBlurayEnabled:(BOOL) value;
+- (void) setUpcomingEnabled:(BOOL) value;
 - (void) setNetflixEnabled:(BOOL) value;
+
 - (void) setNetflixKey:(NSString*) key secret:(NSString*) secret userId:(NSString*) userId;
 
 + (Controller*) controllerWithAppDelegate:(AppDelegate*) appDelegate;

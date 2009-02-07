@@ -163,7 +163,10 @@
     if (model.userAddress.length == 0) {
         return;
     }
-
+    
+    if (!model.dvdBlurayEnabled) {
+        return;
+    }
 
     [ThreadingUtilities backgroundSelector:@selector(updateMoviesBackgroundEntryPoint)
                                   onTarget:self

@@ -65,12 +65,19 @@ enum ViewControllerType {
 + (NSString*) version;
 
 - (void) update;
+- (void) updateDVDCache;
+- (void) updateUpcomingCache;
 
 - (BOOL) screenRotationEnabled;
 - (void) setScreenRotationEnabled:(BOOL) enabled;
 
+- (BOOL) dvdBlurayEnabled;
+- (BOOL) upcomingEnabled;
 - (BOOL) netflixEnabled;
-- (void) setNetflixEnabled:(BOOL) enabled;
+- (void) setDvdBlurayEnabled:(BOOL) value;
+- (void) setUpcomingEnabled:(BOOL) value;
+- (void) setNetflixEnabled:(BOOL) value;
+
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;
 - (NSString*) netflixUserId;
