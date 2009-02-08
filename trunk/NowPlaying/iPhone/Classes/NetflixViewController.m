@@ -63,10 +63,26 @@ typedef enum {
 }
 
 
+- (Model*) model {
+    return navigationController.model;
+}
+
+
+- (Controller*) controller {
+    return navigationController.controller;
+}
+
+
 - (void) setupTableStyle {
     self.tableView.rowHeight = ROW_HEIGHT;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [ColorCache netflixRed];
+    
+    if ([self.model.netflixTheme isEqual:@"IronMan"]) {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.backgroundColor = [ColorCache netflixRed];
+    } else {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 
@@ -78,15 +94,6 @@ typedef enum {
         [self setupTableStyle];
     }
     return self;
-}
-
-
-- (Model*) model {
-    return navigationController.model;
-}
-
-- (Controller*) controller {
-    return navigationController.controller;
 }
 
 
@@ -171,6 +178,13 @@ typedef enum {
 }
 
 
+- (UIImage*) imageNamed:(NSString*) name {
+    NSString* fullName = [NSString stringWithFormat:@"%@-%@", self.model.netflixTheme, name];
+    
+    return [UIImage imageNamed:fullName];
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.label.backgroundColor = [UIColor clearColor];
@@ -181,7 +195,7 @@ typedef enum {
         switch (row) {
             case SearchSection:
                 cell.text = NSLocalizedString(@"Search", nil);
-                cell.image = [UIImage imageNamed:@"NetflixSearch.png"];
+                cell.image = [self imageNamed:@"NetflixSearch.png"];
                 break;
             case MostPopularSection:
                 if (mostPopularTitleCount == 0) {
@@ -189,44 +203,44 @@ typedef enum {
                 } else {
                     cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), NSLocalizedString(@"Most Popular", nil), mostPopularTitleCount];
                 }
-                cell.image = [UIImage imageNamed:@"NetflixMostPopular.png"];
+                cell.image = [self imageNamed:@"NetflixMostPopular.png"];
                 break;
             case DVDSection:
                 cell.text = [self.netflixCache titleForKey:[NetflixCache dvdQueueKey]];
-                cell.image = [UIImage imageNamed:@"NetflixDVDQueue.png"];
+                cell.image = [self imageNamed:@"NetflixDVDQueue.png"];
                 break;
             case InstantSection:
                 cell.text = [self.netflixCache titleForKey:[NetflixCache instantQueueKey]];
-                cell.image = [UIImage imageNamed:@"NetflixInstantQueue.png"];
+                cell.image = [self imageNamed:@"NetflixInstantQueue.png"];
                 break;
             case RecommendationsSection:
                 cell.text = [self.netflixCache titleForKey:[NetflixCache recommendationKey]];
-                cell.image = [UIImage imageNamed:@"NetflixRecommendations.png"];
+                cell.image = [self imageNamed:@"NetflixRecommendations.png"];
                 break;
             case AtHomeSection:
                 cell.text = [self.netflixCache titleForKey:[NetflixCache atHomeKey]];
-                cell.image = [UIImage imageNamed:@"NetflixHome.png"];
+                cell.image = [self imageNamed:@"NetflixHome.png"];
                 break;
             case RentalHistorySection:
                 cell.text = NSLocalizedString(@"Rental History", nil);
-                cell.image = [UIImage imageNamed:@"NetflixHistory.png"];
+                cell.image = [self imageNamed:@"NetflixHistory.png"];
                 break;
             case LogOutSection:
                 cell.text = NSLocalizedString(@"Log Out of Netflix", nil);
-                cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
+                cell.image = [self imageNamed:@"NetflixLogOff.png"];
                 cell.accessoryView = nil;
                 break;
         }
 
-        cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
+        cell.accessoryView = [[[UIImageView alloc] initWithImage:[self imageNamed:@"NetflixChevron.png"]] autorelease];
     } else {
         if (indexPath.row == 0) {
             cell.text = NSLocalizedString(@"Sign Up for New Account", nil);
-            cell.image = [UIImage imageNamed:@"NetflixCredits.png"];
+            cell.image = [self imageNamed:@"NetflixCredits.png"];
         } else if (indexPath.row == 1) {
             cell.text = NSLocalizedString(@"Log In to Existing Account", nil);
-            cell.image = [UIImage imageNamed:@"NetflixLogOff.png"];
-            cell.accessoryView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NetflixChevron.png"]] autorelease];
+            cell.image = [self imageNamed:@"NetflixLogOff.png"];
+            cell.accessoryView = [[[UIImageView alloc] initWithImage:[self imageNamed:@"NetflixChevron.png"]] autorelease];
         }
     }
 
@@ -237,8 +251,8 @@ typedef enum {
 
     NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
     NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
-    UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundName]] autorelease];
-    UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:selectedBackgroundName]] autorelease];
+    UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[self imageNamed:backgroundName]] autorelease];
+    UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:[self imageNamed:selectedBackgroundName]] autorelease];
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     cell.backgroundView = backgroundView;

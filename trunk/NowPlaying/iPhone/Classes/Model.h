@@ -78,6 +78,10 @@ enum ViewControllerType {
 - (void) setUpcomingEnabled:(BOOL) value;
 - (void) setNetflixEnabled:(BOOL) value;
 
+- (NSString*) netflixTheme;
+- (void) setNetflixTheme:(NSString*) theme;
+- (NSArray*) netflixThemes;
+
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;
 - (NSString*) netflixUserId;
