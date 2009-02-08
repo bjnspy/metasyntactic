@@ -514,8 +514,7 @@
 
 
 - (void) showInfo {
-    UIViewController* controller = [[[SettingsViewController alloc] initWithNavigationController:self.navigationController] autorelease];
-    [navigationController pushViewController:controller animated:YES];
+    [navigationController pushInfoControllerAnimated:YES];
 }
 
 @end

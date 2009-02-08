@@ -90,7 +90,6 @@
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    searchBar.tintColor = [ColorCache netflixYellow];
 
     [searchBar sizeToFit];
 
@@ -114,7 +113,13 @@
 }
 
 
+- (void) setupTintColor {
+    searchBar.tintColor = self.navigationController.navigationBar.tintColor;
+}
+
+
 - (void) viewWillAppear:(BOOL) animated {
+    [self setupTintColor];
     [super viewWillAppear:animated];
     self.tableView.rowHeight = 100;
     [self majorRefresh];

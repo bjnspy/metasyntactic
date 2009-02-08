@@ -641,6 +641,11 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 }
 
 
+- (BOOL) isIronManTheme {
+    return [self.netflixTheme isEqual:@"IronMan"];
+}
+
+
 - (BOOL) netflixEnabled {
     return [[NSUserDefaults standardUserDefaults] boolForKey:NETFLIX_ENABLED];
 }

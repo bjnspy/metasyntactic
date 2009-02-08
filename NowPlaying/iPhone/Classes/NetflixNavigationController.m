@@ -33,7 +33,7 @@
 
 
 - (void) setupTintColor {
-    if ([self.model.netflixTheme isEqual:@"IronMan"]) {
+    if (self.model.isIronManTheme) {
         self.navigationBar.tintColor = [UIColor colorWithRed:195.0/255.0 green:175.0/255.0 blue:105.0/255.0 alpha:1];
     } else {
         self.navigationBar.tintColor = nil;

@@ -45,6 +45,9 @@
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
 - (void) pushBrowser:(NSString*) address showSafariButton:(BOOL) showSafariButton animated:(BOOL) animated;
 
+- (void) pushInfoControllerAnimated:(BOOL) animated;
+- (void) popInfoControllerAnimated:(BOOL) animated;
+
 - (void) navigateToLastViewedPage;
 
 - (void) showSearchView;
