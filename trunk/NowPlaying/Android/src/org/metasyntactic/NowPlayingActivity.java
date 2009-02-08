@@ -554,7 +554,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   private static Bitmap createBitmap(final byte[] bytes) {
-    return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    try {
+      return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    } catch (final OutOfMemoryError e) {
+      return null;
+    }
     /*
     final BitmapFactory.Options options = new BitmapFactory.Options();
     final int width = 90;

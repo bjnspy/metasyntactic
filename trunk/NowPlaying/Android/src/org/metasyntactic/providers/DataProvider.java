@@ -120,12 +120,17 @@ public class DataProvider {
   }
 
   private void broadcastUpdate(final int id) {
-    final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
-    if (context != null) {
-      final String message = context.getResources().getString(id);
-      final Intent intent = new Intent(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS).putExtra("message", message);
-      context.sendBroadcast(intent);
-    }
+    ThreadingUtilities.performOnMainThread(new Runnable() {
+      public void run() {
+        final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+        if (context != null) {
+          final String message = context.getResources().getString(id);
+          final Intent intent = new Intent(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS).putExtra("message",
+              message);
+          context.sendBroadcast(intent);
+        }
+      }
+    });
   }
 
   private void updateBackgroundEntryPointWorker(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
@@ -133,13 +138,13 @@ public class DataProvider {
       return;
     }
     // Log.i("DEBUG", "Started downloadUserLocation trace");
-    //Debug.startMethodTracing("downloadUserLocation", 50000000);
+    // Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
     broadcastUpdate(R.string.finding_location);
     final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
-    //Debug.stopMethodTracing();
+    // Debug.stopMethodTracing();
     // Log.i("DEBUG", "Stopped downloadUserLocation trace");
     if (location == null) {
       // this should be impossible. we only update if the user has entered a
@@ -285,13 +290,9 @@ public class DataProvider {
     int days = Days.daysBetween(DateUtilities.getToday(), this.model.getSearchDate());
     days = min(max(days, 0), 7);
     final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country
-        + "&postalcode=" + location.getPostalCode()
-        + "&language=" + Locale.getDefault().getLanguage()
-        + "&day=" + days
-        + "&format=pb"
-        + "&latitude=" + (int) (location.getLatitude() * 1000000)
-        + "&longitude=" + (int) (location.getLongitude() * 1000000)
-        + "&device=android";
+        + "&postalcode=" + location.getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days
+        + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude="
+        + (int) (location.getLongitude() * 1000000) + "&device=android";
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
       return null;
@@ -301,18 +302,18 @@ public class DataProvider {
     NowPlaying.TheaterListingsProto theaterListings = null;
     try {
       // Log.i("DEBUG", "Started parse from trace");
-     // Debug.startMethodTracing("parse_from", 50000000);
+      // Debug.startMethodTracing("parse_from", 50000000);
       theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-     // Debug.stopMethodTracing();
+      // Debug.stopMethodTracing();
       // Log.i("DEBUG", "Stopped parse from trace");
     } catch (final InvalidProtocolBufferException e) {
       ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
       return null;
     }
     // Log.i("DEBUG", "Started processListings trace");
-  //  Debug.startMethodTracing("processListings", 50000000);
+    // Debug.startMethodTracing("processListings", 50000000);
     final LookupResult result = processTheaterListings(theaterListings, location, theaterNames);
-  //  Debug.stopMethodTracing();
+    // Debug.stopMethodTracing();
     // Log.i("DEBUG", "Stopped processListings trace");
     return result;
   }
@@ -514,8 +515,8 @@ public class DataProvider {
       return Collections.emptyList();
     }
 
-    // hack.  ensure no duplicates
-    final Map<String,Movie> map = new HashMap<String,Movie>();
+    // hack. ensure no duplicates
+    final Map<String, Movie> map = new HashMap<String, Movie>();
     for (final Movie movie : movies) {
       map.put(movie.getIdentifier(), movie);
     }
