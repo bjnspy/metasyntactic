@@ -119,6 +119,7 @@ static NSString* FIRST_LAUNCH_DATE                      = @"firstLaunchDate";
 static NSString* HAS_SHOWN_WRITE_REVIEW_REQUEST         = @"hasShownWriteReviewRequest";
 static NSString* DVD_BLURAY_DISABLED                    = @"dvdBlurayDisabled";
 static NSString* UPCOMING_DISABLED                      = @"upcomingDisabled";
+static NSString* NETFLIX_THEME                          = @"netflixTheme";
 
 static NSString** ALL_KEYS[] = {
 &VERSION,
@@ -166,6 +167,7 @@ static NSString** STRING_KEYS_TO_MIGRATE[] = {
 &NETFLIX_USER_ID,
 &NETFLIX_FIRST_NAME,
 &NETFLIX_LAST_NAME,
+&NETFLIX_THEME,
 };
 
 static NSString** INTEGER_KEYS_TO_MIGRATE[] = {
@@ -617,6 +619,25 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) setUpcomingEnabled:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:!value forKey:UPCOMING_DISABLED];
+}
+
+
+- (NSString*) netflixTheme {
+    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:NETFLIX_THEME];
+    if (![[self netflixThemes] containsObject:result]) {
+        return [[self netflixThemes] objectAtIndex:1];
+    }
+    return result;
+}
+
+
+- (void) setNetflixTheme:(NSString*) value {
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:NETFLIX_THEME];
+}
+
+
+- (NSArray*) netflixThemes {
+    return [NSArray arrayWithObjects:@"Plain", @"IronMan", nil]; 
 }
 
 

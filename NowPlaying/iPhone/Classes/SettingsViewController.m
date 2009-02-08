@@ -27,6 +27,7 @@
 #import "AppDelegate.h"
 #import "Controller.h"
 #import "Model.h"
+#import "NetflixThemeViewController.h"
 #import "ScoreProviderViewController.h"
 #import "SearchDatePickerViewController.h"
 #import "SettingCell.h"
@@ -96,7 +97,7 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 4;
+    return 5;
 }
 
 
@@ -105,12 +106,16 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return 9;
+        return 8;
     } else if (section == 2) {
         return 1;
-    } else {
+    } else if (section == 3) {
+        return 2;
+    } else if (section == 4) {
         return 2;
     }
+    
+    return 0;
 }
 
 
@@ -125,15 +130,48 @@
 }
 
 
+- (UITableViewCell*) createToggleCellWithText:(NSString*) text
+                                           on:(BOOL) on
+                                     selector:(SEL) selector {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    cell.accessoryView = picker;
+
+    [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
+    picker.on = on;
+    cell.text = text;
+    
+    return cell;  
+}
+
+
+- (UITableViewCell*) createSettingCellWithKey:(NSString*) key
+                                        value:(NSString*) value 
+                                  placeholder:(NSString*) placeholder {
+    static NSString* reuseIdentifier = @"reuseIdentifier";
+    SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[SettingCell alloc] initWithFrame:CGRectZero
+                                   reuseIdentifier:reuseIdentifier] autorelease];
+    }
+
+    cell.placeholder = placeholder;
+    [cell setKey:key value:value hideSeparator:NO];
+    
+    return cell;
+}
+
+
+- (UITableViewCell*) createSettingCellWithKey:(NSString*) key
+                                        value:(NSString*) value {
+    return [self createSettingCellWithKey:key value:value placeholder:@""];
+}
+
+
 - (UITableViewCell*) cellForSettingsRow:(NSInteger) row {
     if (row >= 0 && row <= 3) {
-        static NSString* reuseIdentifier = @"reuseIdentifier";
-        SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        if (cell == nil) {
-            cell = [[[SettingCell alloc] initWithFrame:CGRectZero
-                                       reuseIdentifier:reuseIdentifier] autorelease];
-        }
-
         NSString* key = @"";
         NSString* value = @"";
         NSString* placeholder = @"";
@@ -169,17 +207,9 @@
             key = NSLocalizedString(@"Reviews", nil);
             value = self.model.currentScoreProvider;
         }
-        cell.placeholder = placeholder;
-        [cell setKey:key value:value hideSeparator:NO];
-
-        return cell;
-    } else if (row >= 4 && row <= 8) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        cell.accessoryView = picker;
-
+        
+        return [self createSettingCellWithKey:key value:value placeholder:placeholder];
+    } else if (row >= 4 && row <= 7) {
         NSString* text;
         BOOL on;
         SEL selector;
@@ -188,28 +218,20 @@
             on = self.model.autoUpdateLocation;
             selector = @selector(onAutoUpdateChanged:);
         } else if (row == 5) {
-            text = NSLocalizedString(@"Netflix", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
-            on = self.model.netflixEnabled;
-            selector = @selector(onNetflixEnabledChanged:);
-        } else if (row == 6) {
             text = NSLocalizedString(@"Prioritize Bookmarks", @"This string has to be small enough to be visible with a picker switch next to it.  It means 'sort bookmarked movies at the top of all lists'");
             on = self.model.prioritizeBookmarks;
             selector = @selector(onPrioritizeBookmarksChanged:);
-        } else if (row == 7) {
+        } else if (row == 6) {
             text = NSLocalizedString(@"Screen Rotation", nil);
             on = self.model.screenRotationEnabled;
             selector = @selector(onScreenRotationEnabledChanged:);
-        } else if (row == 8) {
+        } else if (row == 7) {
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
         }
-
-        [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
-        picker.on = on;
-        cell.text = text;
-
-        return cell;
+        
+        return [self createToggleCellWithText:text on:on selector:selector];
     }
 
     return nil;
@@ -217,54 +239,21 @@
 
 
 - (UITableViewCell*) cellForUpcomingRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-    cell.accessoryView = picker;
-    
-    NSString* text = NSLocalizedString(@"Enabled", nil);
-    BOOL on = self.model.upcomingEnabled;
-    SEL selector = @selector(onUpcomingEnabledChanged:);
-    
-    [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
-    picker.on = on;
-    cell.text = text;
-    
-    return cell;
+    return [self createToggleCellWithText:NSLocalizedString(@"Enabled", nil)
+                                       on:self.model.upcomingEnabled
+                                 selector:@selector(onUpcomingEnabledChanged:)];
 }
 
 
 - (UITableViewCell*) cellForDvdBlurayRow:(NSInteger) row {
     if (row == 0) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        cell.accessoryView = picker;
-        
-        NSString* text = NSLocalizedString(@"Enabled", nil);
-        BOOL on = self.model.dvdBlurayEnabled;
-        SEL selector = @selector(onDvdBlurayEnabledChanged:);
-        
-        [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
-        picker.on = on;
-        cell.text = text;
-        
-        return cell;
+        return [self createToggleCellWithText:NSLocalizedString(@"Enabled", nil)
+                                           on:self.model.dvdBlurayEnabled
+                                     selector:@selector(onDvdBlurayEnabledChanged:)];
     } else {
-        static NSString* reuseIdentifier = @"reuseIdentifier";
-        SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        if (cell == nil) {
-            cell = [[[SettingCell alloc] initWithFrame:CGRectZero
-                                       reuseIdentifier:reuseIdentifier] autorelease];
-        }
-        
-        NSString* key = @"";
+        NSString* key = NSLocalizedString(@"Show", nil);;
         NSString* value = @"";
-        NSString* placeholder = @"";
         
-        key = NSLocalizedString(@"Show", nil);
         if (self.model.dvdMoviesShowBoth) {
             value = NSLocalizedString(@"Both", nil);
         } else if (self.model.dvdMoviesShowOnlyDVDs) {
@@ -275,10 +264,19 @@
             value = NSLocalizedString(@"Neither", nil);
         }
         
-        cell.placeholder = placeholder;
-        [cell setKey:key value:value hideSeparator:NO];
-        
-        return cell;
+        return [self createSettingCellWithKey:key value:value];
+    }
+}
+
+
+- (UITableViewCell*) cellForNetflixRow:(NSInteger) row {
+    if (row == 0) {
+        return [self createToggleCellWithText:NSLocalizedString(@"Enabled", nil)
+                                           on:self.model.netflixEnabled
+                                     selector:@selector(onNetflixEnabledChanged:)];
+    } else {
+        return [self createSettingCellWithKey:NSLocalizedString(@"Theme", nil)
+                                        value:self.model.netflixTheme];
     }
 }
 
@@ -291,8 +289,10 @@
         return [self cellForSettingsRow:indexPath.row];
     } else if (indexPath.section == 2) {
         return [self cellForUpcomingRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == 3) {
         return [self cellForDvdBlurayRow:indexPath.row];
+    } else {
+        return [self cellForNetflixRow:indexPath.row];
     }
 }
 
@@ -441,6 +441,14 @@
 }
 
 
+- (void) didSelectNetflixRow:(NSInteger) row {
+    if (row == 1) {
+        NetflixThemeViewController* controller = [[[NetflixThemeViewController alloc] initWithNavigationController:navigationController] autorelease];
+        [navigationController pushViewController:controller animated:YES];
+    }
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
@@ -449,8 +457,10 @@
         [self didSelectSettingsRow:indexPath.row];
     } else if (indexPath.section == 2) {
         [self didSelectUpcomingRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == 3) {
         [self didSelectDvdBlurayRow:indexPath.row];
+    } else {
+        [self didSelectNetflixRow:indexPath.row];
     }
 }
 
@@ -474,6 +484,8 @@
         return NSLocalizedString(@"Upcoming", nil);
     } else if (section == 3) {
         return NSLocalizedString(@"DVD/Bluray", nil);
+    } else if (section == 4) {
+        return NSLocalizedString(@"Netflix", nil);
     }
     
     return nil;
