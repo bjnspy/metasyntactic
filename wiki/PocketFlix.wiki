@@ -2,6 +2,8 @@
 
 ===With iPhone and !PocketFlix you can find movies and manage your Netflix information, all while on the go.  Heard about a great movie from a friend of yours?  Whip out !PocketFlix and add it to your Netflix queue with just a few clicks.  You'll never forget about a movie you want to watch now!===
 
+===Download !PocketFlix today from the [http://click.linksynergy.com/fs-bin/stat?id=eOCwggduPKg&offerid=146261&type=3&subid=0&tmpid=1826&RD_PARM1=http%253A%252F%252Fitunes.apple.com%252FWebObjects%252FMZStore.woa%252Fwa%252FviewSoftware%253Fid%253D301386724%2526mt%253D8%2526partnerId%253D30 iPhone App Store].===
+
 ===With !PocketFlix you can:===
 
  * Search for movies and add them to your DVD or Instant queue. 
@@ -19,7 +21,5 @@ Note:
 
 [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image0.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image0-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image1.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image1-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image3.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image3-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image4.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image4-Small.png]
 [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2-Small.png] 
-
-==Download !PocketFlix today from the [http://click.linksynergy.com/fs-bin/stat?id=eOCwggduPKg&offerid=146261&type=3&subid=0&tmpid=1826&RD_PARM1=http%253A%252F%252Fitunes.apple.com%252FWebObjects%252FMZStore.woa%252Fwa%252FviewSoftware%253Fid%253D301386724%2526mt%253D8%2526partnerId%253D30 iPhone App Store].==
 
 For help/suggestions email me: [mailto:cyrusn@stwing.upenn.edu cyrusn@stwing.upenn.edu]
