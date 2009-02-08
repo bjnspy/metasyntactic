@@ -21,6 +21,7 @@
 #import "AppDelegate.h"
 #import "Model.h"
 #import "SettingsNavigationController.h"
+#import "SettingsViewController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
 
@@ -108,7 +109,7 @@
 
         if (self.model.userAddress.length == 0) {
             self.selectedViewController = [self loadMoviesNavigationController];
-            [moviesNavigationController.allMoviesViewController showInfo];
+            [moviesNavigationController pushInfoControllerAnimated:NO];
         } else {
             AbstractNavigationController* controller;
             if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
@@ -136,7 +137,11 @@
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
     [self.model setSelectedTabBarViewControllerIndex:self.selectedIndex];
-    if ([viewController isKindOfClass:[UINavigationController class]]) {
+    
+    if ([viewController isKindOfClass:[AbstractNavigationController class]]) {
+        AbstractNavigationController* navigationController = (id)viewController;
+        [navigationController popInfoControllerAnimated:NO];
+        
         [self.model saveNavigationStack:(id)viewController];
     }
 }

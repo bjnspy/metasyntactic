@@ -81,6 +81,7 @@ enum ViewControllerType {
 - (NSString*) netflixTheme;
 - (void) setNetflixTheme:(NSString*) theme;
 - (NSArray*) netflixThemes;
+- (BOOL) isIronManTheme;
 
 - (NSString*) netflixKey;
 - (NSString*) netflixSecret;

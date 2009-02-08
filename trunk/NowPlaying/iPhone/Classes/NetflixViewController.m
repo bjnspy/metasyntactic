@@ -28,6 +28,7 @@
 #import "NetflixQueueViewController.h"
 #import "NetflixSearchViewController.h"
 #import "Model.h"
+#import "SettingsViewController.h"
 #import "Queue.h"
 #import "ViewControllerUtilities.h"
 
@@ -125,7 +126,20 @@ typedef enum {
 }
 
 
+- (void) initializeInfoButton {
+    UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
+    [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+    
+    infoButton.contentMode = UIViewContentModeCenter;
+    CGRect frame = infoButton.frame;
+    frame.size.width += 4;
+    infoButton.frame = frame;
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
+}
+
+
 - (void) majorRefreshWorker {
+    [self initializeInfoButton];
     [self setupTableStyle];
     [self setupTitle];
     [self determinePopularMovieCount];
@@ -188,7 +202,13 @@ typedef enum {
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.label.backgroundColor = [UIColor clearColor];
-    cell.textColor = [UIColor whiteColor];
+    cell.selectedTextColor = [UIColor whiteColor];
+    
+    if (self.model.isIronManTheme) {
+        cell.textColor = [UIColor whiteColor];
+    } else {
+        cell.textColor = [UIColor blackColor];
+    }
 
     NSInteger row = indexPath.row;
     if (self.hasAccount) {
@@ -249,14 +269,16 @@ typedef enum {
         cell.accessoryView = nil;
     }
 
-    NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
-    NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
-    UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[self imageNamed:backgroundName]] autorelease];
-    UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:[self imageNamed:selectedBackgroundName]] autorelease];
-    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    cell.backgroundView = backgroundView;
-    cell.selectedBackgroundView = selectedBackgroundView;
+    if (self.model.isIronManTheme) {
+        NSString* backgroundName = [NSString stringWithFormat:@"NetflixCellBackground-%d.png", row];
+        NSString* selectedBackgroundName = [NSString stringWithFormat:@"NetflixCellSelectedBackground-%d.png", row];
+        UIImageView* backgroundView = [[[UIImageView alloc] initWithImage:[self imageNamed:backgroundName]] autorelease];
+        UIImageView* selectedBackgroundView = [[[UIImageView alloc] initWithImage:[self imageNamed:selectedBackgroundName]] autorelease];
+        backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        cell.backgroundView = backgroundView;
+        cell.selectedBackgroundView = selectedBackgroundView;
+    }
 
     return cell;
 }
@@ -358,6 +380,11 @@ typedef enum {
             [navigationController pushViewController:controller animated:YES];
         }
     }
+}
+
+
+- (void) showInfo {
+    [navigationController pushInfoControllerAnimated:YES];
 }
 
 @end

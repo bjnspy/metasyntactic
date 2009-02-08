@@ -21,6 +21,7 @@
 #import "PostersViewController.h"
 #import "ReviewsViewController.h"
 #import "SearchViewController.h"
+#import "SettingsViewController.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -279,6 +280,28 @@
 
 - (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
     [self pushBrowser:address showSafariButton:YES animated:animated];
+}
+
+
+- (void) pushInfoControllerAnimated:(BOOL) animated {
+    UIViewController* controller = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
+    [self pushViewController:controller animated:YES];
+}
+
+
+- (void) popInfoControllerAnimated:(BOOL) animated {
+    NSInteger index = -1;
+    for (NSInteger i = 0; i < self.viewControllers.count; i++) {
+        if ([[self.viewControllers objectAtIndex:i] isKindOfClass:[SettingsViewController class]]) {
+            index = i;
+            break;
+        }
+    }
+    
+    if (index > 0) {
+        UIViewController* controller = [self.viewControllers objectAtIndex:index - 1];
+        [self popToViewController:controller animated:animated];
+    }
 }
 
 @end
