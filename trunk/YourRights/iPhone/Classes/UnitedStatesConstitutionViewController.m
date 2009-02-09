@@ -14,6 +14,8 @@
 #import "Constitution.h"
 #import "ConstitutionAmendmentViewController.h"
 #import "ConstitutionArticleViewController.h"
+#import "ConstitutionSignersViewController.h"
+#import "WrappableCell.h"
 
 @interface UnitedStatesConstitutionViewController()
 @property (assign) YourRightsNavigationController* navigationController;
@@ -51,37 +53,29 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 2;
+        return 1;
     } else if (section == 1) {
         return constitution.articles.count;
     } else if (section == 2) {
         return constitution.amendments.count;
+    } else if (section == 3) {
+        return 1;
     }
     
     return 0;
 }
 
 
-- (UITableViewCell*) cellForInformationRow:(NSInteger) row {
-    static NSString *reuseIdentifier = @"reuseIdentifier";
-    
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
-    }
-    
-    if (row == 0) {
-        cell.text = NSLocalizedString(@"Preamble", nil);
-    } else {
-        cell.text = NSLocalizedString(@"Signers", nil);
-    }
+- (UITableViewCell*) cellForPreambleRow:(NSInteger) row {
+    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:constitution.preamble] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -117,19 +111,35 @@
 }
 
 
+- (UITableViewCell*) cellForInformationRow:(NSInteger) row {
+    static NSString *reuseIdentifier = @"reuseIdentifier";
+    
+    AutoResizingCell *cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+    }
+    
+    cell.text = NSLocalizedString(@"Signers", nil);
+    
+    return cell;
+}
+
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return [self cellForInformationRow:indexPath.row];
+        return [self cellForPreambleRow:indexPath.row];
     } else if (indexPath.section == 1) {
         return [self cellForArticlesRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == 2) {
         return [self cellForAmendmentsRow:indexPath.row];
+    } else {
+        return [self cellForInformationRow:indexPath.row];
     }
 }
 
 
-- (void) didSelectInformationRow:(NSInteger) row {
+- (void) didSelectPreambleRow:(NSInteger) row {
     
 }
 
@@ -148,13 +158,21 @@
 }
 
 
+- (void) didSelectInformationRow:(NSInteger) row {
+    ConstitutionSignersViewController* controller = [[[ConstitutionSignersViewController alloc] initWithNavigationController:navigationController signers:constitution.signers] autorelease];
+    [navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        [self didSelectInformationRow:indexPath.row];
+        [self didSelectPreambleRow:indexPath.row];
     } else if (indexPath.section == 1) {
         [self didSelectArticlesRow:indexPath.row];
-    } else {
+    } else if (indexPath.section == 2) {
         [self didSelectAmendmentsRow:indexPath.row];
+    } else {
+        [self didSelectInformationRow:indexPath.row];
     }
 }
 
@@ -162,14 +180,26 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
-        return NSLocalizedString(@"Information", nil);
+        return NSLocalizedString(@"Preamble", nil);
     } else if (section == 1) {
         return NSLocalizedString(@"Articles", nil);
-    } else {
+    } else if (section == 2) {
         return NSLocalizedString(@"Amendments", nil);
+    } else {
+        return NSLocalizedString(@"Information", nil);
     }
     
     return nil;
+}
+
+
+- (CGFloat)         tableView:(UITableView*) tableView
+      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+    if (indexPath.section == 0) {
+        return [WrappableCell height:constitution.preamble accessoryType:UITableViewCellAccessoryNone];
+    } else {
+        return tableView.rowHeight;
+    }
 }
 
 

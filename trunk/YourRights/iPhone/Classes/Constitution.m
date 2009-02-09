@@ -13,7 +13,7 @@
 @property (copy) NSString* preamble;
 @property (retain) NSArray* articles;
 @property (retain) NSArray* amendments;
-@property (retain) NSArray* signers;
+@property (retain) MultiDictionary* signers;
 @end
 
 @implementation Constitution
@@ -39,7 +39,7 @@
               preamble:(NSString*) preamble_
               articles:(NSArray*) articles_
             amendments:(NSArray*) amendments_ 
-               signers:(NSArray*) signers_ {
+               signers:(MultiDictionary*) signers_ {
     if (self = [super init]) {
         self.country = country_;
         self.preamble = preamble_;
@@ -56,7 +56,7 @@
                                  preamble:(NSString*) preamble_
                                  articles:(NSArray*) articles_
                                amendments:(NSArray*) amendments_ 
-                                  signers:(NSArray*) signers_ {
+                                  signers:(MultiDictionary*) signers_ {
     return [[[Constitution alloc] initWithCountry:country_
                                          preamble:preamble_
                                          articles:articles_

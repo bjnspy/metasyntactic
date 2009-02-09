@@ -19,6 +19,7 @@
 #import "Constitution.h"
 #import "Decision.h"
 #import "LocaleUtilities.h"
+#import "MultiDictionary.h"
 #import "RSSCache.h"
 #import "Section.h"
 #import "Utilities.h"
@@ -414,11 +415,25 @@ static NSArray* constitutions;
      amendment21, amendment22, amendment23, amendment24, amendment25,
      amendment26, amendment27, nil];
     
+    MultiDictionary* signers = [MultiDictionary dictionary];
+    [signers addObjects:[NSArray arrayWithObjects:@"G. Washington", @"John Blair", @"James Madison Jr.", nil] forKey:@"Virginia"];
+    [signers addObjects:[NSArray arrayWithObjects:@"John Langdon", @"Nicholas Gilman", nil] forKey:@"New Hampshire"];
+    [signers addObjects:[NSArray arrayWithObjects:@"Nathaniel Gorham", @"Rufus King", nil] forKey:@"Massachusetts"];
+    [signers addObjects:[NSArray arrayWithObjects:@"Wm: Saml. Johnson", @"Roger Sherman", nil] forKey:@"Connecticut"];
+    [signers addObject:@"Alexander Hamilton" forKey:@"New York"];
+    [signers addObjects:[NSArray arrayWithObjects:@"Wil: Livingston", @"David Brearly", @"Wm. Paterson", @"Jona: Dayton", nil] forKey:@"New Jersey"];
+    [signers addObjects:[NSArray arrayWithObjects:@"B. Franklin", @"Thomas Mifflin", @"Robt. Morris", @"Geo. Clymer", @"Thos. FitzSimons", @"Jared Ingersoll", @"James Wilson", @"Gouv Morris", nil] forKey:@"Pennsylvania"];
+    [signers addObjects:[NSArray arrayWithObjects:@"Geo: Read", @"Gunning Bedford jun", @"John Dickinson", @"Richard Bassett", @"Jaco: Broom", nil] forKey:@"Delaware"];
+    [signers addObjects:[NSArray arrayWithObjects:@"James McHenry", @"Dan of St Thos. Jenifer", @"Danl Carroll", nil] forKey:@"Maryland"];
+    [signers addObjects:[NSArray arrayWithObjects:@"Wm. Blount", @"Richd. Dobbs Spaight", @"Hu Williamson", nil] forKey:@"North Carolina"];
+    [signers addObjects:[NSArray arrayWithObjects:@"J. Rutledge", @"Charles Cotesworth Pinckney", @"Charles Pinckney", @"Pierce Butler", nil] forKey:@"South Carolina"];
+    [signers addObjects:[NSArray arrayWithObjects:@"William Few", @"Abr Baldwin", nil] forKey:@"Georgia"];
+
     return [Constitution constitutionWithCountry:country
                                         preamble:NSLocalizedString(@"We the people of the United States, in order to form a more perfect union, establish justice, insure domestic tranquility, provide for the common defense, promote the general welfare, and secure the blessings of liberty to ourselves and our posterity, do ordain and establish this Constitution for the United States of America.", nil)
                                         articles:articles
                                       amendments:amendments
-                                         signers:[NSArray array]];
+                                         signers:signers];
 }
 
 
