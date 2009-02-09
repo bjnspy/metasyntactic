@@ -12,6 +12,7 @@
 #import "Section.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
+#import "YourRightsNavigationController.h"
 
 @interface ConstitutionArticleViewController()
 @property (assign) YourRightsNavigationController* navigationController;
@@ -52,7 +53,7 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return article.sections.count;
+    return article.sections.count + 1;
 }
 
 
@@ -61,9 +62,9 @@
     return 1;
 }
 
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Section* section = [article.sections objectAtIndex:indexPath.section];
+
+- (UITableViewCell*) cellForSectionRow:(NSInteger) row {
+    Section* section = [article.sections objectAtIndex:row];
     WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -71,24 +72,52 @@
 }
 
 
+- (UITableViewCell*) cellForLinksRow:(NSInteger) row {
+    UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
+    cell.text = @"Wikipedia";
+    return cell;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section < article.sections.count) {
+        return [self cellForSectionRow:indexPath.section];
+    } else {
+        return [self cellForLinksRow:indexPath.row];
+    }
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.section < article.sections.count) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    } else {
+        [navigationController pushBrowser:article.link animated:YES];
+    }
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    return [NSString stringWithFormat:NSLocalizedString(@"Section %d", nil), section + 1];
+    if (section < article.sections.count) {
+        return [NSString stringWithFormat:NSLocalizedString(@"Section %d", nil), section + 1];
+    } else {
+        return NSLocalizedString(@"Links", nil);
+    }
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView
-       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    Section* section = [article.sections objectAtIndex:indexPath.section];
-    
-    NSString* text = section.text;
-    
-    return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
+      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+    if (indexPath.section < article.sections.count) {
+        Section* section = [article.sections objectAtIndex:indexPath.section];
+        
+        NSString* text = section.text;
+        
+        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
+    } else {
+        return tableView.rowHeight;
+    }
 }
 
 

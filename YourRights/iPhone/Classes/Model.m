@@ -142,6 +142,7 @@ static NSArray* constitutions;
     NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:@"US"];
     Article* article1 =
     [Article articleWithTitle:NSLocalizedString(@"The Legislative Branch", nil)
+                         link:@"http://en.wikipedia.org/wiki/Article_One_of_the_United_States_Constitution"
                      sections:[NSArray arrayWithObjects:
                                [Section sectionWithText:NSLocalizedString(@"All legislative powers herein granted shall be vested in a Congress of the United States, which shall consist of a Senate and House of Representatives.", nil)],
                                [Section sectionWithText:NSLocalizedString(@"The House of Representatives shall be composed of members chosen every second year by the people of the several states, and the electors in each state shall have the qualifications requisite for electors of the most numerous branch of the state legislature.\n\n"
@@ -199,6 +200,7 @@ static NSArray* constitutions;
     
     Article* article2 =
     [Article articleWithTitle:NSLocalizedString(@"The Presidency", nil)
+                         link:@"http://en.wikipedia.org/wiki/Article_Two_of_the_United_States_Constitution"
                      sections:[NSArray arrayWithObjects:
                                [Section sectionWithText:NSLocalizedString(@"The executive power shall be vested in a President of the United States of America. He shall hold his office during the term of four years, and, together with the Vice President, chosen for the same term, be elected, as follows:\n\n"
                                                                           @"Each state shall appoint, in such manner as the Legislature thereof may direct, a number of electors, equal to the whole number of Senators and Representatives to which the State may be entitled in the Congress: but no Senator or Representative, or person holding an office of trust or profit under the United States, shall be appointed an elector.\n\n"
@@ -216,6 +218,7 @@ static NSArray* constitutions;
     
     Article* article3 =
     [Article articleWithTitle:NSLocalizedString(@"The Judiciary", nil)
+                         link:@"http://en.wikipedia.org/wiki/Article_Three_of_the_United_States_Constitution"
                      sections:[NSArray arrayWithObjects:
                                [Section sectionWithText:NSLocalizedString(@"The judicial power of the United States, shall be vested in one Supreme Court, and in such inferior courts as the Congress may from time to time ordain and establish. The judges, both of the supreme and inferior courts, shall hold their offices during good behaviour, and shall, at stated times, receive for their services, a compensation, which shall not be diminished during their continuance in office.", nil)],
                                [Section sectionWithText:NSLocalizedString(@"The judicial power shall extend to all cases, in law and equity, arising under this Constitution, the laws of the United States, and treaties made, or which shall be made, under their authority;--to all cases affecting ambassadors, other public ministers and consuls;--to all cases of admiralty and maritime jurisdiction;--to controversies to which the United States shall be a party;--to controversies between two or more states;--between a state and citizens of another state;--between citizens of different states;--between citizens of the same state claiming lands under grants of different states, and between a state, or the citizens thereof, and foreign states, citizens or subjects.\n\n"
@@ -227,6 +230,7 @@ static NSArray* constitutions;
     
     Article* article4 =
     [Article articleWithTitle:NSLocalizedString(@"The States", nil)
+                         link:@"http://en.wikipedia.org/wiki/Article_Four_of_the_United_States_Constitution"
                      sections:[NSArray arrayWithObjects:
                                [Section sectionWithText:NSLocalizedString(@"Full faith and credit shall be given in each state to the public acts, records, and judicial proceedings of every other state. And the Congress may by general laws prescribe the manner in which such acts, records, and proceedings shall be proved, and the effect thereof.", nil)],
                                [Section sectionWithText:NSLocalizedString(@"The citizens of each state shall be entitled to all privileges and immunities of citizens in the several states.\n\n"
@@ -239,12 +243,14 @@ static NSArray* constitutions;
     
     Article* article5 =
     [Article articleWithTitle:NSLocalizedString(@"The Amendment Process", nil)
+                         link:@"http://en.wikipedia.org/wiki/Article_Five_of_the_United_States_Constitution"
                      sections:[NSArray arrayWithObjects:
                                [Section sectionWithText:NSLocalizedString(@"The Congress, whenever two thirds of both houses shall deem it necessary, shall propose amendments to this Constitution, or, on the application of the legislatures of two thirds of the several states, shall call a convention for proposing amendments, which, in either case, shall be valid to all intents and purposes, as part of this Constitution, when ratified by the legislatures of three fourths of the several states, or by conventions in three fourths thereof, as the one or the other mode of ratification may be proposed by the Congress; provided that no amendment which may be made prior to the year one thousand eight hundred and eight shall in any manner affect the first and fourth clauses in the ninth section of the first article; and that no state, without its consent, shall be deprived of its equal suffrage in the Senate.", nil)],
                                nil]];
     
     Article* article6 =
     [Article articleWithTitle:NSLocalizedString(@"Legal Status of the Constitution", nil)
+                         link:@"http://en.wikipedia.org/wiki/Article_Six_of_the_United_States_Constitution"
                      sections:[NSArray arrayWithObjects:
                                [Section sectionWithText:NSLocalizedString(@"All debts contracted and engagements entered into, before the adoption of this Constitution, shall be as valid against the United States under this Constitution, as under the Confederation.\n\n"
                                                                           @"This Constitution, and the laws of the United States which shall be made in pursuance thereof; and all treaties made, or which shall be made, under the authority of the United States, shall be the supreme law of the land; and the judges in every state shall be bound thereby, anything in the Constitution or laws of any State to the contrary notwithstanding.\n\n"
@@ -253,6 +259,7 @@ static NSArray* constitutions;
     
     Article* article7 =
     [Article articleWithTitle:NSLocalizedString(@"Ratification", nil)
+                         link:@"http://en.wikipedia.org/wiki/Article_Seven_of_the_United_States_Constitution"
                      sections:[NSArray arrayWithObjects:
                                [Section sectionWithText:NSLocalizedString(@"The ratification of the conventions of nine states, shall be sufficient for the establishment of this Constitution between the states so ratifying the same.", nil)],
                                nil]];
@@ -260,60 +267,74 @@ static NSArray* constitutions;
     Amendment* amendment1 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Religion, Speech, Press", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/First_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof; or abridging the freedom of speech, or of the press; or the right of the people peaceably to assemble, and to petition the government for a redress of grievances.", nil)];
     Amendment* amendment2 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Right to Bear Arms", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Second_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"A well regulated militia, being necessary to the security of a free state, the right of the people to keep and bear arms, shall not be infringed.", nil)];
     Amendment* amendment3 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Quartering of Troops", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Third_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"No soldier shall, in time of peace be quartered in any house, without the consent of the owner, nor in time of war, but in a manner to be prescribed by law.", nil)];
     Amendment* amendment4 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Search and Seizure", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Fourth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated, and no warrants shall issue, but upon probable cause, supported by oath or affirmation, and particularly describing the place to be searched, and the persons or things to be seized.", nil)];
     Amendment* amendment5 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Due Process", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Fifth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"No person shall be held to answer for a capital, or otherwise infamous crime, unless on a presentment or indictment of a grand jury, except in cases arising in the land or naval forces, or in the militia, when in actual service in time of war or public danger; nor shall any person be subject for the same offense to be twice put in jeopardy of life or limb; nor shall be compelled in any criminal case to be a witness against himself, nor be deprived of life, liberty, or property, without due process of law; nor shall private property be taken for public use, without just compensation.", nil)];
     Amendment* amendment6 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Right to Counsel", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Sixth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"In all criminal prosecutions, the accused shall enjoy the right to a speedy and public trial, by an impartial jury of the state and district wherein the crime shall have been committed, which district shall have been previously ascertained by law, and to be informed of the nature and cause of the accusation; to be confronted with the witnesses against him; to have compulsory process for obtaining witnesses in his favor, and to have the assistance of counsel for his defense.", nil)];
     Amendment* amendment7 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Jury Trial", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Seventh_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"In suits at common law, where the value in controversy shall exceed twenty dollars, the right of trial by jury shall be preserved, and no fact tried by a jury, shall be otherwise reexamined in any court of the United States, than according to the rules of the common law.", nil)];
     Amendment* amendment8 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Cruel and Unusual Punishment", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Eighth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"Excessive bail shall not be required, nor excessive fines imposed, nor cruel and unusual punishments inflicted.", nil)];
     Amendment* amendment9 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Non-Enumerated Rights", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Ninth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"The enumeration in the Constitution, of certain rights, shall not be construed to deny or disparage others retained by the people.", nil)];
     Amendment* amendment10 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"States Rights", nil)
                                 year:1791
+                                link:@"http://en.wikipedia.org/wiki/Tenth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"The powers not delegated to the United States by the Constitution, nor prohibited by it to the states, are reserved to the states respectively, or to the people.", nil)];
     Amendment* amendment11 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Suits Against a State", nil)
                                 year:1795
+                                link:@"http://en.wikipedia.org/wiki/Eleventh_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"The judicial power of the United States shall not be construed to extend to any suit in law or equity, commenced or prosecuted against one of the United States by citizens of another state, or by citizens or subjects of any foreign state.", nil)];
     Amendment* amendment12 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"President and VP Election", nil)
                                 year:1804
+                                link:@"http://en.wikipedia.org/wiki/Twelfth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"The electors shall meet in their respective states and vote by ballot for President and Vice-President, one of whom, at least, shall not be an inhabitant of the same state with themselves; they shall name in their ballots the person voted for as President, and in distinct ballots the person voted for as Vice-President, and they shall make distinct lists of all persons voted for as President, and of all persons voted for as Vice-President, and of the number of votes for each, which lists they shall sign and certify, and transmit sealed to the seat of the government of the United States, directed to the President of the Senate;--The President of the Senate shall, in the presence of the Senate and House of Representatives, open all the certificates and the votes shall then be counted;--the person having the greatest number of votes for President, shall be the President, if such number be a majority of the whole number of electors appointed; and if no person have such majority, then from the persons having the highest numbers not exceeding three on the list of those voted for as President, the House of Representatives shall choose immediately, by ballot, the President. But in choosing the President, the votes shall be taken by states, the representation from each state having one vote; a quorum for this purpose shall consist of a member or members from two-thirds of the states, and a majority of all the states shall be necessary to a choice. And if the House of Representatives shall not choose a President whenever the right of choice shall devolve upon them, before the fourth day of March next following, then the Vice-President shall act as President, as in the case of the death or other constitutional disability of the President. The person having the greatest number of votes as Vice-President, shall be the Vice-President, if such number be a majority of the whole number of electors appointed, and if no person have a majority, then from the two highest numbers on the list, the Senate shall choose the Vice-President; a quorum for the purpose shall consist of two-thirds of the whole number of Senators, and a majority of the whole number shall be necessary to a choice. But no person constitutionally ineligible to the office of President shall be eligible to that of Vice-President of the United States.", nil)];
     Amendment* amendment13 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Abolition of Slavery", nil)
                                 year:1865
+                                link:@"http://en.wikipedia.org/wiki/Thirteenth_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"Neither slavery nor involuntary servitude, except as a punishment for crime whereof the party shall have been duly convicted, shall exist within the United States, or any place subject to their jurisdiction.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"Congress shall have power to enforce this article by appropriate legislation.", nil)], nil]];
     Amendment* amendment14 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Equal Protection", nil)
                                 year:1868
+                                link:@"http://en.wikipedia.org/wiki/Fourteenth_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"All persons born or naturalized in the United States, and subject to the jurisdiction thereof, are citizens of the United States and of the state wherein they reside. No state shall make or enforce any law which shall abridge the privileges or immunities of citizens of the United States; nor shall any state deprive any person of life, liberty, or property, without due process of law; nor deny to any person within its jurisdiction the equal protection of the laws.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"Representatives shall be apportioned among the several states according to their respective numbers, counting the whole number of persons in each state, excluding Indians not taxed. But when the right to vote at any election for the choice of electors for President and Vice President of the United States, Representatives in Congress, the executive and judicial officers of a state, or the members of the legislature thereof, is denied to any of the male inhabitants of such state, being twenty-one years of age, and citizens of the United States, or in any way abridged, except for participation in rebellion, or other crime, the basis of representation therein shall be reduced in the proportion which the number of such male citizens shall bear to the whole number of male citizens twenty-one years of age in such state.", nil)],
@@ -323,22 +344,26 @@ static NSArray* constitutions;
     Amendment* amendment15 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Race Rights", nil)
                                 year:1870
+                                link:@"http://en.wikipedia.org/wiki/Fifteenth_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"The right of citizens of the United States to vote shall not be denied or abridged by the United States or by any state on account of race, color, or previous condition of servitude.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"The Congress shall have power to enforce this article by appropriate legislation.", nil)], nil]];
     Amendment* amendment16 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Income Tax", nil)
                                 year:1913
+                                link:@"http://en.wikipedia.org/wiki/Sixteenth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"The Congress shall have power to lay and collect taxes on incomes, from whatever source derived, without apportionment among the several states, and without regard to any census or enumeration.", nil)];
     Amendment* amendment17 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Election of Senators", nil)
                                 year:1913
+                                link:@"http://en.wikipedia.org/wiki/Seventeenth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"The Senate of the United States shall be composed of two Senators from each state, elected by the people thereof, for six years; and each Senator shall have one vote. The electors in each state shall have the qualifications requisite for electors of the most numerous branch of the state legislatures.\n\n"
                                                        @"When vacancies happen in the representation of any state in the Senate, the executive authority of such state shall issue writs of election to fill such vacancies: Provided, that the legislature of any state may empower the executive thereof to make temporary appointments until the people fill the vacancies by election as the legislature may direct.\n\n"
                                                        @"This amendment shall not be so construed as to affect the election or term of any Senator chosen before it becomes valid as part of the Constitution.", nil)];
     Amendment* amendment18 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Prohibition", nil)
                                 year:1919
+                                link:@"http://en.wikipedia.org/wiki/Eighteenth_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"After one year from the ratification of this article the manufacture, sale, or transportation of intoxicating liquors within, the importation thereof into, or the exportation thereof from the United States and all territory subject to the jurisdiction thereof for beverage purposes is hereby prohibited.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"The Congress and the several states shall have concurrent power to enforce this article by appropriate legislation.", nil)],
@@ -346,11 +371,13 @@ static NSArray* constitutions;
     Amendment* amendment19 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Women's Rights", nil)
                                 year:1920
+                                link:@"http://en.wikipedia.org/wiki/Nineteenth_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"The right of citizens of the United States to vote shall not be denied or abridged by the United States or by any state on account of sex.\n\n"
                                                        @"Congress shall have power to enforce this article by appropriate legislation.", nil)];
     Amendment* amendment20 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Presidential Succession", nil)
                                 year:1933
+                                link:@"http://en.wikipedia.org/wiki/Twentieth_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"The terms of the President and Vice President shall end at noon on the 20th day of January, and the terms of Senators and Representatives at noon on the 3d day of January, of the years in which such terms would have ended if this article had not been ratified; and the terms of their successors shall then begin.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"The Congress shall assemble at least once in every year, and such meeting shall begin at noon on the 3d day of January, unless they shall by law appoint a different day.", nil)],
@@ -361,6 +388,7 @@ static NSArray* constitutions;
     Amendment* amendment21 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Repeal of Prohibition", nil)
                                 year:1933
+                                link:@"http://en.wikipedia.org/wiki/Twenty-first_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"The eighteenth article of amendment to the Constitution of the United States is hereby repealed.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"The transportation or importation into any state, territory, or possession of the United States for delivery or use therein of intoxicating liquors, in violation of the laws thereof, is hereby prohibited.", nil)],
@@ -368,12 +396,14 @@ static NSArray* constitutions;
     Amendment* amendment22 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Presidential Term Limit", nil)
                                 year:1951
+                                link:@"http://en.wikipedia.org/wiki/Twenty-second_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"No person shall be elected to the office of the President more than twice, and no person who has held the office of President, or acted as President, for more than two years of a term to which some other person was elected President shall be elected to the office of the President more than once. But this article shall not apply to any person holding the office of President when this article was proposed by the Congress, and shall not prevent any person who may be holding the office of President, or acting as President, during the term within which this article becomes operative from holding the office of President or acting as President during the remainder of such term.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"This article shall be inoperative unless it shall have been ratified as an amendment to the Constitution by the legislatures of three-fourths of the several states within seven years from the date of its submission to the states by the Congress.", nil)], nil]];
     Amendment* amendment23 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"D.C. Vote", nil)
                                 year:1961
+                                link:@"http://en.wikipedia.org/wiki/Twenty-third_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"The District constituting the seat of government of the United States shall appoint in such manner as the Congress may direct:\n\n"
                                                                                  @"A number of electors of President and Vice President equal to the whole number of Senators and Representatives in Congress to which the District would be entitled if it were a state, but in no event more than the least populous state; they shall be in addition to those appointed by the states, but they shall be considered, for the purposes of the election of President and Vice President, to be electors appointed by a state; and they shall meet in the District and perform such duties as provided by the twelfth article of amendment.", nil)],
@@ -382,12 +412,14 @@ static NSArray* constitutions;
     Amendment* amendment24 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Poll Tax", nil)
                                 year:1964
+                                link:@"http://en.wikipedia.org/wiki/Twenty-fourth_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"The right of citizens of the United States to vote in any primary or other election for President or Vice President, for electors for President or Vice President, or for Senator or Representative in Congress, shall not be denied or abridged by the United States or any state by reason of failure to pay any poll tax or other tax.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"The Congress shall have power to enforce this article by appropriate legislation.", nil)], nil]];
     Amendment* amendment25 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Presidential Succession", nil)
                                 year:1967
+                                link:@"http://en.wikipedia.org/wiki/Twenty-fifth_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"In case of the removal of the President from office or of his death or resignation, the Vice President shall become President.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"Whenever there is a vacancy in the office of the Vice President, the President shall nominate a Vice President who shall take office upon confirmation by a majority vote of both Houses of Congress.", nil)],
@@ -397,12 +429,14 @@ static NSArray* constitutions;
     Amendment* amendment26 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Vote at Age 18", nil)
                                 year:1971
+                                link:@"http://en.wikipedia.org/wiki/Twenty-sixth_Amendment_to_the_United_States_Constitution"
                             sections:[NSArray arrayWithObjects:
                                       [Section sectionWithText:NSLocalizedString(@"The right of citizens of the United States, who are 18 years of age or older, to vote, shall not be denied or abridged by the United States or any state on account of age.", nil)],
                                       [Section sectionWithText:NSLocalizedString(@"The Congress shall have the power to enforce this article by appropriate legislation.", nil)], nil]];
     Amendment* amendment27 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Congressional Compensation", nil)
                                 year:1992
+                                link:@"http://en.wikipedia.org/wiki/Twenty-seventh_Amendment_to_the_United_States_Constitution"
                                 text:NSLocalizedString(@"No law, varying the compensation for the services of the Senators and Representatives, shall take effect, until an election of Representatives shall have intervened.", nil)];
     
     NSArray* articles = [NSArray arrayWithObjects:article1, article2, article3, article4, article5, article6, article7, nil];

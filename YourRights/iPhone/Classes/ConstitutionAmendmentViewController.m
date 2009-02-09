@@ -12,6 +12,7 @@
 #import "Section.h"
 #import "ViewControllerUtilities.h"
 #import "WrappableCell.h"
+#import "YourRightsNavigationController.h"
 
 @interface ConstitutionAmendmentViewController()
 @property (assign) YourRightsNavigationController* navigationController;
@@ -51,7 +52,7 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return amendment.sections.count;
+    return amendment.sections.count + 1;
 }
 
 
@@ -63,40 +64,58 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Section* section = [amendment.sections objectAtIndex:indexPath.section];
-    WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
+    if (indexPath.section < amendment.sections.count) {
+        Section* section = [amendment.sections objectAtIndex:indexPath.section];
+        WrappableCell *cell = [[[WrappableCell alloc] initWithTitle:section.text] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    } else {
+        UITableViewCell* cell = [[[UITableViewCell alloc] init] autorelease];
+        cell.text = @"Wikipedia";
+        return cell;
+    }
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.section < amendment.sections.count) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    } else {
+        [navigationController pushBrowser:amendment.link animated:YES];
+    }
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (section == 0) {
-        if (amendment.sections.count == 1) {
-            return [NSString stringWithFormat:@"%d", amendment.year];
+    if (section < amendment.sections.count) {
+        if (section == 0) {
+            if (amendment.sections.count == 1) {
+                return [NSString stringWithFormat:@"%d", amendment.year];
+            } else {
+                return [NSString stringWithFormat:@"%d. Section %d", amendment.year, section + 1];
+            }
         } else {
-            return [NSString stringWithFormat:@"%d. Section %d", amendment.year, section + 1];
+            return [NSString stringWithFormat:NSLocalizedString(@"Section %d", nil), section + 1];
         }
     } else {
-        return [NSString stringWithFormat:NSLocalizedString(@"Section %d", nil), section + 1];
+        return NSLocalizedString(@"Links", nil);
     }
 }
 
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    Section* section = [amendment.sections objectAtIndex:indexPath.section];
-    
-    NSString* text = section.text;
-    
-    return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
+    if (indexPath.section < amendment.sections.count) {
+        Section* section = [amendment.sections objectAtIndex:indexPath.section];
+        
+        NSString* text = section.text;
+        
+        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryNone];
+    } else {
+        return tableView.rowHeight;
+    }
 }
 
 @end

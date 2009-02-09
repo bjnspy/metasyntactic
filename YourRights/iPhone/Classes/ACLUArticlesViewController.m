@@ -86,8 +86,7 @@
     if (indexPath.section < items.count) {
         Item* item = [items objectAtIndex:indexPath.section];
         if (item.link) {
-            WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:navigationController address:item.link showSafariButton:YES] autorelease];
-            [navigationController pushViewController:controller animated:YES];
+            [navigationController pushBrowser:item.link animated:YES];
         }
     }
 }
