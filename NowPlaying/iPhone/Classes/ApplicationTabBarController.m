@@ -138,11 +138,8 @@
       didSelectViewController:(UIViewController*) viewController {
     [self.model setSelectedTabBarViewControllerIndex:self.selectedIndex];
     
-    if ([viewController isKindOfClass:[AbstractNavigationController class]]) {
-        AbstractNavigationController* navigationController = (id)viewController;
-        [navigationController popInfoControllerAnimated:NO];
-        
-        [self.model saveNavigationStack:(id)viewController];
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        [self.model saveNavigationStack:(UINavigationController*)viewController];
     }
 }
 
@@ -237,6 +234,15 @@
         // fade out, then fade in
         [self setViewControllers:[NSArray array] animated:YES];
         [self performSelector:@selector(setTabs:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.5];
+    }
+    
+    UIViewController* currentViewController = self.selectedViewController;
+    for (UIViewController* viewController in currentControllers) {
+        if (viewController != currentViewController &&
+            [viewController isKindOfClass:[AbstractNavigationController class]]) {
+            AbstractNavigationController* navigationController = (id)viewController;
+            [navigationController popInfoControllerAnimated:NO];
+        }
     }
 }
 
