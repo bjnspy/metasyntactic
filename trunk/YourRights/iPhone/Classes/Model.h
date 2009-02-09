@@ -41,6 +41,7 @@
 
 - (NSString*) feedbackUrl;
 
+- (NSArray*) constitutions;
 //+ (NSArray*)
 
 @end

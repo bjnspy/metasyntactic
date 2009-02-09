@@ -12,19 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class Amendment;
-@class Article;
-@class Constitution;
-@class CreditsViewController;
-@class Decision;
-@class GreatestHitsViewController;
-@class Item;
-@class Model;
-@class MultiDictionary;
-@class Pulser;
-@class RSSCache;
-@class SectionViewController;
-@class XmlDocument;
-@class XmlElement;
-@class YourRightsAppDelegate;
-@class YourRightsNavigationController;
+@interface AutoResizingCell : UITableViewCell {
+@private
+    UILabel* label;
+    UIColor* textColorData;
+}
+
+@property (readonly, retain) UILabel* label;
+
+@end
