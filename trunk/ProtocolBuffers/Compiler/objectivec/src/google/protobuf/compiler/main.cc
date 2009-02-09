@@ -43,10 +43,9 @@ int main(int argc, char* argv[]) {
   cli.RegisterGenerator("--python_out", &py_generator,
                         "Generate Python source file.");
 
-  // ObjectiveC Python
-  google::protobuf::compiler::objectivec::ObjectiveCGenerator objectivec_generator;
-  cli.RegisterGenerator("--objectivec_out", &objectivec_generator,
-                        "Generate ObjectiveC source file.");
-
+  // Proto2 Objective-C
+  google::protobuf::compiler::objectivec::ObjectiveCGenerator objc_generator;
+  cli.RegisterGenerator("--objc_out", &objc_generator,
+                        "Generate Objective-C source file.");
   return cli.Run(argc, argv);
 }
