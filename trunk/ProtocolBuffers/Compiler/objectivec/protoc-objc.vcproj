@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="protoc-objc"
-	ProjectGUID="{3C9E5D11-4F3A-4E9B-8471-A00E15D0F0EA}"
+	ProjectGUID="{1738D5F6-ED1E-47E0-B2F0-456864B93C1E}"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="131072"
 	>
@@ -40,7 +40,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/wd4244 /wd4267 /wd4018 /wd4355 /wd4800 /wd4251 /wd4996 /wd4146 /wd4305"
 				Optimization="0"
-				AdditionalIncludeDirectories="./src;../src;."
+				AdditionalIncludeDirectories="../src;.;./src"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -186,7 +186,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\src\google\protobuf\compiler\main.cc"
+				RelativePath=".\src\google\protobuf\compiler\main.cc"
 				>
 			</File>
 		</Filter>
