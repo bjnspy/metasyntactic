@@ -17,35 +17,41 @@
 // Author: kenton@google.com (Kenton Varda)
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
-//
-// Generates ObjectiveC code for a given .proto file.
 
-#ifndef GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_GENERATOR_H__
-#define GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_GENERATOR_H__
+#ifndef GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_EXTENSION_H__
+#define GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_EXTENSION_H__
 
-#include <string>
-#include <google/protobuf/compiler/code_generator.h>
+#include <google/protobuf/stubs/common.h>
 
 namespace google {
+namespace protobuf {
+  class FieldDescriptor;       // descriptor.h
+  namespace io {
+    class Printer;             // printer.h
+  }
+}
+
 namespace protobuf {
 namespace compiler {
 namespace objectivec {
 
-class LIBPROTOC_EXPORT ObjectiveCGenerator : public CodeGenerator {
+class ExtensionGenerator {
  public:
-  ObjectiveCGenerator();
-  ~ObjectiveCGenerator();
+  explicit ExtensionGenerator(string classname, const FieldDescriptor* descriptor);
+  ~ExtensionGenerator();
 
-  bool Generate(const FileDescriptor* file,
-                const string& parameter,
-                OutputDirectory* output_directory,
-                string* error) const;
+  void GenerateMembersHeader(io::Printer* printer);
+  void GenerateMembersSource(io::Printer* printer);
+  void GenerateFieldsSource(io::Printer* printer);
+  void GenerateInitializationSource(io::Printer* printer);
 
  private:
-  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ObjectiveCGenerator);
+  string classname_;
+  const FieldDescriptor* descriptor_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ExtensionGenerator);
 };
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf
 }  // namespace google
-#endif  // GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_GENERATOR_H__
+#endif  // GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_MESSAGE_H__
