@@ -179,15 +179,7 @@ public class AllMoviesActivity extends ListActivity {
         final TextView text2 = (TextView) convertView.findViewById(R.id.value2);
         final byte[] bytes = NowPlayingControllerWrapper.getPoster(AllMoviesActivity.this.movie);
         if (bytes.length > 0) {
-          /*
-          final BitmapFactory.Options options = new BitmapFactory.Options();
-          options.inJustDecodeBounds = false;
-          // set the image size to be multiple of text size (14)
-          options.outWidth = 130 - 130 % 14;
-          options.outHeight = 200 - 200 % 14;
-          options.inSampleSize = 2;
-          posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options));
-          */
+          
           posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
 
           posterImage.setBackgroundResource(R.drawable.image_frame);
@@ -195,9 +187,9 @@ public class AllMoviesActivity extends ListActivity {
         final String synopsis = entry.value;
         if (synopsis.length() > 0) {
           // hack to display text on left and bottom or poster
-          if (synopsis.length() > 285) {
-            final String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(" ", 285));
-            final String desc2_text = synopsis.substring(synopsis.lastIndexOf(" ", 285));
+          if (synopsis.length() > 289) {
+            final String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(" ", 289));
+            final String desc2_text = synopsis.substring(synopsis.lastIndexOf(" ", 289));
             text1.setText(desc1_text);
             text2.setText(desc2_text);
           } else {
