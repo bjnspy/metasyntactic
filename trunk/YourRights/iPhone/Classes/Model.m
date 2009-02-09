@@ -53,87 +53,87 @@ static NSArray* constitutions;
 + (void) setupToughQuestions {
     toughQuestions =
     [[NSArray arrayWithObjects:
-     NSLocalizedString(@"Why do you defend Nazis and the Klan?", nil),
-     NSLocalizedString(@"You’re all a bunch of liberals, aren’t you?", nil),
-     NSLocalizedString(@"Why does the ACLU support cross burning?", nil),
-     NSLocalizedString(@"Why does the ACLU support pornography? Why are you in favor of child porn?", nil),
-     NSLocalizedString(@"Why doesn’t the ACLU support gun ownership/gun control?", nil),
-     NSLocalizedString(@"Why does the ACLU support the rights of criminals but not victims of crime?", nil),
-     NSLocalizedString(@"Why is the ACLU against God/Christianity/the Bible?", nil),
-     NSLocalizedString(@"Why is the ACLU against drug testing of employees?", nil),
-     NSLocalizedString(@"Why does the ACLU help rapists and child molesters?", nil),
-     NSLocalizedString(@"Why did the ACLU defend NAMBLA?", nil), nil] retain];
-
+      NSLocalizedString(@"Why do you defend Nazis and the Klan?", nil),
+      NSLocalizedString(@"You’re all a bunch of liberals, aren’t you?", nil),
+      NSLocalizedString(@"Why does the ACLU support cross burning?", nil),
+      NSLocalizedString(@"Why does the ACLU support pornography? Why are you in favor of child porn?", nil),
+      NSLocalizedString(@"Why doesn’t the ACLU support gun ownership/gun control?", nil),
+      NSLocalizedString(@"Why does the ACLU support the rights of criminals but not victims of crime?", nil),
+      NSLocalizedString(@"Why is the ACLU against God/Christianity/the Bible?", nil),
+      NSLocalizedString(@"Why is the ACLU against drug testing of employees?", nil),
+      NSLocalizedString(@"Why does the ACLU help rapists and child molesters?", nil),
+      NSLocalizedString(@"Why did the ACLU defend NAMBLA?", nil), nil] retain];
+    
     toughAnswers =
     [[NSArray arrayWithObjects:
-     NSLocalizedString(@"The ACLU’s client is the Bill of Rights, not any particular person or group. We defend its principles – basic "
-                       @"rights of citizens – whenever these are threatened. We do not believe that you can pick and chose when to "
-                       @"uphold rights. If a right can be taken away from one person, it can be taken away from anyone. When you deny "
-                       @"a right to someone with whom you disagree, you pave the way for that right to be denied to yourself or someone "
-                       @"whom you strongly support. For example, the principle by which the Ku Klux Klan has the right to march is the "
-                       @"same one that allows civil rights activists to march against racism.", nil),
-     NSLocalizedString(@"The ACLU is a nonpartisan group. We have defended and worked with people all across the political spectrum, "
-                       @"from Rev. Jerry Falwell and Oliver North to radio host Rush Limbaugh and former Republican member of "
-                       @"Congress Bob Barr. The ACLU strongly supports women’s right to choose abortion, yet we have also assisted "
-                       @"anti-abortion activists when police used excessive force in arresting them. The ACLU has won support from "
-                       @"women’s groups for our stand on women’s rights, but has angered some feminists for our First Amendment "
-                       @"stand on pornography.", nil),
-     NSLocalizedString(@"The ACLU condemns all forms of racism. However, the ACLU does believe that in some specific cases, the "
-                       @"First Amendment protects the burning of a cross. People have the right to be bigots and to make extreme, "
-                       @"symbolic statements of their bigotry. Burning a cross on one’s own lawn in the middle of the day without "
-                       @"making specific threats against anybody is an example of this. That’s why the ACLU opposes laws that say any "
-                       @"and all instances of cross burning are illegal. Such laws are too broad and vague and have the result of "
-                       @"preventing people from exercising their rights to free speech. As an answer to racist speech, the ACLU "
-                       @"advocates more speech directed against racism, not the suppression of speech.", nil),
-     NSLocalizedString(@"The ACLU does not support pornography. But we do oppose virtually all forms of censorship. Possessing "
-                       @"books or films should not make one a criminal. Once society starts censoring “bad” ideas, it becomes very "
-                       @"difficult to draw the line. Your idea of what is offensive may be a lot different from your neighbor’s. In fact, the "
-                       @"ACLU does take a very purist approach in opposing censorship. Our policy is that possessing even "
-                       @"pornographic material about children should not itself be a crime. The way to deal with this issue is to prosecute "
-                       @"the makers of child pornography for exploiting minors.", nil),
-     NSLocalizedString(@"The national ACLU is neutral on the issue of gun control. We believe the Second Amendment does not confer "
-                       @"an unlimited right upon individuals to own guns or other weapons, nor does it prohibit reasonable regulation of "
-                       @"gun ownership, such as licensing and registration. This, like all ACLU policies, is set by the board of directors, "
-                       @"a group of ACLU members.", nil),
-     NSLocalizedString(@"The ACLU supports everybody’s rights. Citizens are outraged by crime and understandably want criminals "
-                       @"caught and prosecuted. The ACLU simply believes that the rights to fair treatment and due process must be "
-                       @"respected for people accused of crimes. Respecting these rights does not cause crime, nor does it hinder police "
-                       @"from pursuing criminals. It should, and does in fact, cause police to avoid sloppy procedures.", nil),
-     NSLocalizedString(@"The ACLU strongly supports our country’s guarantee that all people have the right to practice their own "
-                       @"religion, as well as the right not to practice any religion. The best way to ensure religious freedom for all is to "
-                       @"keep the government out of the business of pushing religion on anybody. The ACLU strongly supports the "
-                       @"separation of church and state. In practice, this means that people may practice their religion – just not with "
-                       @"government funding or sponsorship. This simple principle in no way banishes or weakens religion. It only "
-                       @"means that no one should have somebody else’s religion forced on him or her, even if most other people in a "
-                       @"community support that religion.", nil),
-     NSLocalizedString(@"The ACLU, of course, believes that employers have the right to discipline and fire workers who fail to perform "
-                       @"on the job. However, the ACLU does oppose indiscriminate urine testing because the process is both unfair and "
-                       @"unnecessary. Having someone urinate in a cup is a degrading and uncertain procedure that violates personal "
-                       @"privacy. Further, drug tests do not measure impaired job performance. A positive drug test simply indicates that "
-                       @"a person may have taken drugs at some time in the past – not that they are failing to perform properly in their "
-                       @"assigned work. And the accuracy of some drug tests is notoriously unreliable. The ACLU especially objects to "
-                       @"mass random drug testing of workers. There is no reason that a person should have to prove he or she is "
-                       @"“innocent” of taking drugs when there is no evidence that he or she has done so. In general, what workers do off "
-                       @"the job should be their own business so long as they are performing satisfactorily at work.", nil),
-     NSLocalizedString(@"Of course, the ACLU supports the prosecution and conviction of rapists and child molesters. They should "
-                       @"receive appropriate punishment – especially for repeat offenders. But like all convicted felons, they are entitled "
-                       @"to some basic constitutional protections. In this regard the ACLU opposes the Community Protection Act "
-                       @"passed by the Washington Legislature. It calls for locking up an individual indefinitely – potentially for life – "
-                       @"after he has served his prison term. The punishment is based not on additional wrongful acts, but on speculation "
-                       @"that the person may commit illegal acts in the future. This is unconstitutional preventive detention. It is based on "
-                       @"the unscientific notion that society can predict with any reasonable standard of accuracy how a particular "
-                       @"individual will act at some unspecified time.", nil),
-     NSLocalizedString(@"In representing NAMBLA, the ACLU does not advocate sexual relationships between adults and children. In "
-                       @"celebrated cases, the ACLU has stood up for everyone from Oliver North to the National Socialist Party. In "
-                       @"spite of all that, the ACLU has never advocated Christianity, ritual animal sacrifice, trading arms for hostages or "
-                       @"genocide. What we do advocate is robust freedom of speech. This lawsuit strikes at the heart of freedom of "
-                       @"speech. The defense of freedom of speech is most critical when the message is one most people find repulsive. "
-                       @"The case is based on a shocking murder. But the lawsuit says the crime is the responsibility not of those who "
-                       @"committed the murder, but of someone who posted vile material on the Internet. The principle is as simple as it "
-                       @"is central to true freedom of speech: those who do wrong are responsible for what they do; those who speak "
-                       @"about it are not. It is easy to defend freedom of speech when the message is something many people find at least "
-                       @"reasonable. But the defense of freedom of speech is most critical when the message is one most people find "
-                       @"repulsive. That was true when the Nazis marched in Skokie. It remains true today.", nil), nil] retain];
+      NSLocalizedString(@"The ACLU’s client is the Bill of Rights, not any particular person or group. We defend its principles – basic "
+                        @"rights of citizens – whenever these are threatened. We do not believe that you can pick and chose when to "
+                        @"uphold rights. If a right can be taken away from one person, it can be taken away from anyone. When you deny "
+                        @"a right to someone with whom you disagree, you pave the way for that right to be denied to yourself or someone "
+                        @"whom you strongly support. For example, the principle by which the Ku Klux Klan has the right to march is the "
+                        @"same one that allows civil rights activists to march against racism.", nil),
+      NSLocalizedString(@"The ACLU is a nonpartisan group. We have defended and worked with people all across the political spectrum, "
+                        @"from Rev. Jerry Falwell and Oliver North to radio host Rush Limbaugh and former Republican member of "
+                        @"Congress Bob Barr. The ACLU strongly supports women’s right to choose abortion, yet we have also assisted "
+                        @"anti-abortion activists when police used excessive force in arresting them. The ACLU has won support from "
+                        @"women’s groups for our stand on women’s rights, but has angered some feminists for our First Amendment "
+                        @"stand on pornography.", nil),
+      NSLocalizedString(@"The ACLU condemns all forms of racism. However, the ACLU does believe that in some specific cases, the "
+                        @"First Amendment protects the burning of a cross. People have the right to be bigots and to make extreme, "
+                        @"symbolic statements of their bigotry. Burning a cross on one’s own lawn in the middle of the day without "
+                        @"making specific threats against anybody is an example of this. That’s why the ACLU opposes laws that say any "
+                        @"and all instances of cross burning are illegal. Such laws are too broad and vague and have the result of "
+                        @"preventing people from exercising their rights to free speech. As an answer to racist speech, the ACLU "
+                        @"advocates more speech directed against racism, not the suppression of speech.", nil),
+      NSLocalizedString(@"The ACLU does not support pornography. But we do oppose virtually all forms of censorship. Possessing "
+                        @"books or films should not make one a criminal. Once society starts censoring “bad” ideas, it becomes very "
+                        @"difficult to draw the line. Your idea of what is offensive may be a lot different from your neighbor’s. In fact, the "
+                        @"ACLU does take a very purist approach in opposing censorship. Our policy is that possessing even "
+                        @"pornographic material about children should not itself be a crime. The way to deal with this issue is to prosecute "
+                        @"the makers of child pornography for exploiting minors.", nil),
+      NSLocalizedString(@"The national ACLU is neutral on the issue of gun control. We believe the Second Amendment does not confer "
+                        @"an unlimited right upon individuals to own guns or other weapons, nor does it prohibit reasonable regulation of "
+                        @"gun ownership, such as licensing and registration. This, like all ACLU policies, is set by the board of directors, "
+                        @"a group of ACLU members.", nil),
+      NSLocalizedString(@"The ACLU supports everybody’s rights. Citizens are outraged by crime and understandably want criminals "
+                        @"caught and prosecuted. The ACLU simply believes that the rights to fair treatment and due process must be "
+                        @"respected for people accused of crimes. Respecting these rights does not cause crime, nor does it hinder police "
+                        @"from pursuing criminals. It should, and does in fact, cause police to avoid sloppy procedures.", nil),
+      NSLocalizedString(@"The ACLU strongly supports our country’s guarantee that all people have the right to practice their own "
+                        @"religion, as well as the right not to practice any religion. The best way to ensure religious freedom for all is to "
+                        @"keep the government out of the business of pushing religion on anybody. The ACLU strongly supports the "
+                        @"separation of church and state. In practice, this means that people may practice their religion – just not with "
+                        @"government funding or sponsorship. This simple principle in no way banishes or weakens religion. It only "
+                        @"means that no one should have somebody else’s religion forced on him or her, even if most other people in a "
+                        @"community support that religion.", nil),
+      NSLocalizedString(@"The ACLU, of course, believes that employers have the right to discipline and fire workers who fail to perform "
+                        @"on the job. However, the ACLU does oppose indiscriminate urine testing because the process is both unfair and "
+                        @"unnecessary. Having someone urinate in a cup is a degrading and uncertain procedure that violates personal "
+                        @"privacy. Further, drug tests do not measure impaired job performance. A positive drug test simply indicates that "
+                        @"a person may have taken drugs at some time in the past – not that they are failing to perform properly in their "
+                        @"assigned work. And the accuracy of some drug tests is notoriously unreliable. The ACLU especially objects to "
+                        @"mass random drug testing of workers. There is no reason that a person should have to prove he or she is "
+                        @"“innocent” of taking drugs when there is no evidence that he or she has done so. In general, what workers do off "
+                        @"the job should be their own business so long as they are performing satisfactorily at work.", nil),
+      NSLocalizedString(@"Of course, the ACLU supports the prosecution and conviction of rapists and child molesters. They should "
+                        @"receive appropriate punishment – especially for repeat offenders. But like all convicted felons, they are entitled "
+                        @"to some basic constitutional protections. In this regard the ACLU opposes the Community Protection Act "
+                        @"passed by the Washington Legislature. It calls for locking up an individual indefinitely – potentially for life – "
+                        @"after he has served his prison term. The punishment is based not on additional wrongful acts, but on speculation "
+                        @"that the person may commit illegal acts in the future. This is unconstitutional preventive detention. It is based on "
+                        @"the unscientific notion that society can predict with any reasonable standard of accuracy how a particular "
+                        @"individual will act at some unspecified time.", nil),
+      NSLocalizedString(@"In representing NAMBLA, the ACLU does not advocate sexual relationships between adults and children. In "
+                        @"celebrated cases, the ACLU has stood up for everyone from Oliver North to the National Socialist Party. In "
+                        @"spite of all that, the ACLU has never advocated Christianity, ritual animal sacrifice, trading arms for hostages or "
+                        @"genocide. What we do advocate is robust freedom of speech. This lawsuit strikes at the heart of freedom of "
+                        @"speech. The defense of freedom of speech is most critical when the message is one most people find repulsive. "
+                        @"The case is based on a shocking murder. But the lawsuit says the crime is the responsibility not of those who "
+                        @"committed the murder, but of someone who posted vile material on the Internet. The principle is as simple as it "
+                        @"is central to true freedom of speech: those who do wrong are responsible for what they do; those who speak "
+                        @"about it are not. It is easy to defend freedom of speech when the message is something many people find at least "
+                        @"reasonable. But the defense of freedom of speech is most critical when the message is one most people find "
+                        @"repulsive. That was true when the Nazis marched in Skokie. It remains true today.", nil), nil] retain];
 }
 
 
@@ -141,79 +141,120 @@ static NSArray* constitutions;
     NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:@"US"];
     Article* article1 =
     [Article articleWithTitle:NSLocalizedString(@"The Legislative Branch", nil)
-                 sections:[NSArray arrayWithObjects:
-                           [Section sectionWithText:NSLocalizedString(@"All legislative powers herein granted shall be vested in a Congress of the United States, which shall consist of a Senate and House of Representatives.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"The House of Representatives shall be composed of members chosen every second year by the people of the several states, and the electors in each state shall have the qualifications requisite for electors of the most numerous branch of the state legislature.\n\n"
-                                                                      @"No person shall be a Representative who shall not have attained to the age of twenty five years, and been seven years a citizen of the United States, and who shall not, when elected, be an inhabitant of that state in which he shall be chosen.\n\n"
-                                                                      @"Representatives and direct taxes shall be apportioned among the several states which may be included within this union, according to their respective numbers, which shall be determined by adding to the whole number of free persons, including those bound to service for a term of years, and excluding Indians not taxed, three fifths of all other Persons. The actual Enumeration shall be made within three years after the first meeting of the Congress of the United States, and within every subsequent term of ten years, in such manner as they shall by law direct. The number of Representatives shall not exceed one for every thirty thousand, but each state shall have at least one Representative; and until such enumeration shall be made, the state of New Hampshire shall be entitled to chuse three, Massachusetts eight, Rhode Island and Providence Plantations one, Connecticut five, New York six, New Jersey four, Pennsylvania eight, Delaware one, Maryland six, Virginia ten, North Carolina five, South Carolina five, and Georgia three.\n\n"
-                                                                      @"When vacancies happen in the Representation from any state, the executive authority thereof shall issue writs of election to fill such vacancies.\n\n"
-                                                                      @"The House of Representatives shall choose their speaker and other officers; and shall have the sole power of impeachment.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"The Senate of the United States shall be composed of two Senators from each state, chosen by the legislature thereof, for six years; and each Senator shall have one vote.\n\n"
-                                                                      @"Immediately after they shall be assembled in consequence of the first election, they shall be divided as equally as may be into three classes. The seats of the Senators of the first class shall be vacated at the expiration of the second year, of the second class at the expiration of the fourth year, and the third class at the expiration of the sixth year, so that one third may be chosen every second year; and if vacancies happen by resignation, or otherwise, during the recess of the legislature of any state, the executive thereof may make temporary appointments until the next meeting of the legislature, which shall then fill such vacancies.\n\n"
-                                                                      @"No person shall be a Senator who shall not have attained to the age of thirty years, and been nine years a citizen of the United States and who shall not, when elected, be an inhabitant of that state for which he shall be chosen.\n\n"
-                                                                      @"The Vice President of the United States shall be President of the Senate, but shall have no vote, unless they be equally divided.\n\n"
-                                                                      @"The Senate shall choose their other officers, and also a President pro tempore, in the absence of the Vice President, or when he shall exercise the office of President of the United States.\n\n"
-                                                                      @"The Senate shall have the sole power to try all impeachments. When sitting for that purpose, they shall be on oath or affirmation. When the President of the United States is tried, the Chief Justice shall preside: And no person shall be convicted without the concurrence of two thirds of the members present.\n\n"
-                                                                      @"Judgment in cases of impeachment shall not extend further than to removal from office, and disqualification to hold and enjoy any office of honor, trust or profit under the United States: but the party convicted shall nevertheless be liable and subject to indictment, trial, judgment and punishment, according to law.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"The times, places and manner of holding elections for Senators and Representatives, shall be prescribed in each state by the legislature thereof; but the Congress may at any time by law make or alter such regulations, except as to the places of choosing Senators.\n\n"
-                                                                      @"The Congress shall assemble at least once in every year, and such meeting shall be on the first Monday in December, unless they shall by law appoint a different day.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"Each House shall be the judge of the elections, returns and qualifications of its own members, and a majority of each shall constitute a quorum to do business; but a smaller number may adjourn from day to day, and may be authorized to compel the attendance of absent members, in such manner, and under such penalties as each House may provide.\n\n"
-                                                                      @"Each House may determine the rules of its proceedings, punish its members for disorderly behavior, and, with the concurrence of two thirds, expel a member.\n\n"
-                                                                      @"Each House shall keep a journal of its proceedings, and from time to time publish the same, excepting such parts as may in their judgment require secrecy; and the yeas and nays of the members of either House on any question shall, at the desire of one fifth of those present, be entered on the journal.\n\n"
-                                                                      @"Neither House, during the session of Congress, shall, without the consent of the other, adjourn for more than three days, nor to any other place than that in which the two Houses shall be sitting.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"The Senators and Representatives shall receive a compensation for their services, to be ascertained by law, and paid out of the treasury of the United States. They shall in all cases, except treason, felony and breach of the peace, be privileged from arrest during their attendance at the session of their respective Houses, and in going to and returning from the same; and for any speech or debate in either House, they shall not be questioned in any other place.\n\n"
-                                                                      @"No Senator or Representative shall, during the time for which he was elected, be appointed to any civil office under the authority of the United States, which shall have been created, or the emoluments whereof shall have been increased during such time: and no person holding any office under the United States, shall be a member of either House during his continuance in office.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"All bills for raising revenue shall originate in the House of Representatives; but the Senate may propose or concur with amendments as on other Bills.\n\n"
-                                                                      @"Every bill which shall have passed the House of Representatives and the Senate, shall, before it become a law, be presented to the President of the United States; if he approve he shall sign it, but if not he shall return it, with his objections to that House in which it shall have originated, who shall enter the objections at large on their journal, and proceed to reconsider it. If after such reconsideration two thirds of that House shall agree to pass the bill, it shall be sent, together with the objections, to the other House, by which it shall likewise be reconsidered, and if approved by two thirds of that House, it shall become a law. But in all such cases the votes of both Houses shall be determined by yeas and nays, and the names of the persons voting for and against the bill shall be entered on the journal of each House respectively. If any bill shall not be returned by the President within ten days (Sundays excepted) after it shall have been presented to him, the same shall be a law, in like manner as if he had signed it, unless the Congress by their adjournment prevent its return, in which case it shall not be a law.\n\n"
-                                                                      @"Every order, resolution, or vote to which the concurrence of the Senate and House of Representatives may be necessary (except on a question of adjournment) shall be presented to the President of the United States; and before the same shall take effect, shall be approved by him, or being disapproved by him, shall be repassed by two thirds of the Senate and House of Representatives, according to the rules and limitations prescribed in the case of a bill.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"The Congress shall have power to lay and collect taxes, duties, imposts and excises, to pay the debts and provide for the common defense and general welfare of the United States; but all duties, imposts and excises shall be uniform throughout the United States;\n\n"
-                                                                      @"To borrow money on the credit of the United States;\n\n"
-                                                                      @"To regulate commerce with foreign nations, and among the several states, and with the Indian tribes;\n\n"
-                                                                      @"To establish a uniform rule of naturalization, and uniform laws on the subject of bankruptcies throughout the United States;\n\n"
-                                                                      @"To coin money, regulate the value thereof, and of foreign coin, and fix the standard of weights and measures;\n\n"
-                                                                      @"To provide for the punishment of counterfeiting the securities and current coin of the United States;\n\n"
-                                                                      @"To establish post offices and post roads;\n\n"
-                                                                      @"To promote the progress of science and useful arts, by securing for limited times to authors and inventors the exclusive right to their respective writings and discoveries;\n\n"
-                                                                      @"To constitute tribunals inferior to the Supreme Court;\n\n"
-                                                                      @"To define and punish piracies and felonies committed on the high seas, and offenses against the law of nations;\n\n"
-                                                                      @"To declare war, grant letters of marque and reprisal, and make rules concerning captures on land and water;\n\n"
-                                                                      @"To raise and support armies, but no appropriation of money to that use shall be for a longer term than two years;\n\n"
-                                                                      @"To provide and maintain a navy;\n\n"
-                                                                      @"To make rules for the government and regulation of the land and naval forces;\n\n"
-                                                                      @"To provide for calling forth the militia to execute the laws of the union, suppress insurrections and repel invasions;\n\n"
-                                                                      @"To provide for organizing, arming, and disciplining, the militia, and for governing such part of them as may be employed in the service of the United States, reserving to the states respectively, the appointment of the officers, and the authority of training the militia according to the discipline prescribed by Congress;\n\n"
-                                                                      @"To exercise exclusive legislation in all cases whatsoever, over such District (not exceeding ten miles square) as may, by cession of particular states, and the acceptance of Congress, become the seat of the government of the United States, and to exercise like authority over all places purchased by the consent of the legislature of the state in which the same shall be, for the erection of forts, magazines, arsenals, dockyards, and other needful buildings;--And\n\n"
-                                                                      @"To make all laws which shall be necessary and proper for carrying into execution the foregoing powers, and all other powers vested by this Constitution in the government of the United States, or in any department or officer thereof.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"The migration or importation of such persons as any of the states now existing shall think proper to admit, shall not be prohibited by the Congress prior to the year one thousand eight hundred and eight, but a tax or duty may be imposed on such importation, not exceeding ten dollars for each person.\n\n"
-                                                                      @"The privilege of the writ of habeas corpus shall not be suspended, unless when in cases of rebellion or invasion the public safety may require it.\n\n"
-                                                                      @"No bill of attainder or ex post facto Law shall be passed.\n\n"
-                                                                      @"No capitation, or other direct, tax shall be laid, unless in proportion to the census or enumeration herein before directed to be taken.\n\n"
-                                                                      @"No tax or duty shall be laid on articles exported from any state.\n\n"
-                                                                      @"No preference shall be given by any regulation of commerce or revenue to the ports of one state over those of another: nor shall vessels bound to, or from, one state, be obliged to enter, clear or pay duties in another.\n\n"
-                                                                      @"No money shall be drawn from the treasury, but in consequence of appropriations made by law; and a regular statement and account of receipts and expenditures of all public money shall be published from time to time.\n\n"
-                                                                      @"No title of nobility shall be granted by the United States: and no person holding any office of profit or trust under them, shall, without the consent of the Congress, accept of any present, emolument, office, or title, of any kind whatever, from any king, prince, or foreign state.", nil)],
-                           [Section sectionWithText:NSLocalizedString(@"No state shall enter into any treaty, alliance, or confederation; grant letters of marque and reprisal; coin money; emit bills of credit; make anything but gold and silver coin a tender in payment of debts; pass any bill of attainder, ex post facto law, or law impairing the obligation of contracts, or grant any title of nobility.\n\n"
-                                                                      @"No state shall, without the consent of the Congress, lay any imposts or duties on imports or exports, except what may be absolutely necessary for executing it's inspection laws: and the net produce of all duties and imposts, laid by any state on imports or exports, shall be for the use of the treasury of the United States; and all such laws shall be subject to the revision and control of the Congress.\n\n"
-                                                                      @"No state shall, without the consent of Congress, lay any duty of tonnage, keep troops, or ships of war in time of peace, enter into any agreement or compact with another state, or with a foreign power, or engage in war, unless actually invaded, or in such imminent danger as will not admit of delay.", nil)], nil]];
-
+                     sections:[NSArray arrayWithObjects:
+                               [Section sectionWithText:NSLocalizedString(@"All legislative powers herein granted shall be vested in a Congress of the United States, which shall consist of a Senate and House of Representatives.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The House of Representatives shall be composed of members chosen every second year by the people of the several states, and the electors in each state shall have the qualifications requisite for electors of the most numerous branch of the state legislature.\n\n"
+                                                                          @"No person shall be a Representative who shall not have attained to the age of twenty five years, and been seven years a citizen of the United States, and who shall not, when elected, be an inhabitant of that state in which he shall be chosen.\n\n"
+                                                                          @"Representatives and direct taxes shall be apportioned among the several states which may be included within this union, according to their respective numbers, which shall be determined by adding to the whole number of free persons, including those bound to service for a term of years, and excluding Indians not taxed, three fifths of all other Persons. The actual Enumeration shall be made within three years after the first meeting of the Congress of the United States, and within every subsequent term of ten years, in such manner as they shall by law direct. The number of Representatives shall not exceed one for every thirty thousand, but each state shall have at least one Representative; and until such enumeration shall be made, the state of New Hampshire shall be entitled to chuse three, Massachusetts eight, Rhode Island and Providence Plantations one, Connecticut five, New York six, New Jersey four, Pennsylvania eight, Delaware one, Maryland six, Virginia ten, North Carolina five, South Carolina five, and Georgia three.\n\n"
+                                                                          @"When vacancies happen in the Representation from any state, the executive authority thereof shall issue writs of election to fill such vacancies.\n\n"
+                                                                          @"The House of Representatives shall choose their speaker and other officers; and shall have the sole power of impeachment.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The Senate of the United States shall be composed of two Senators from each state, chosen by the legislature thereof, for six years; and each Senator shall have one vote.\n\n"
+                                                                          @"Immediately after they shall be assembled in consequence of the first election, they shall be divided as equally as may be into three classes. The seats of the Senators of the first class shall be vacated at the expiration of the second year, of the second class at the expiration of the fourth year, and the third class at the expiration of the sixth year, so that one third may be chosen every second year; and if vacancies happen by resignation, or otherwise, during the recess of the legislature of any state, the executive thereof may make temporary appointments until the next meeting of the legislature, which shall then fill such vacancies.\n\n"
+                                                                          @"No person shall be a Senator who shall not have attained to the age of thirty years, and been nine years a citizen of the United States and who shall not, when elected, be an inhabitant of that state for which he shall be chosen.\n\n"
+                                                                          @"The Vice President of the United States shall be President of the Senate, but shall have no vote, unless they be equally divided.\n\n"
+                                                                          @"The Senate shall choose their other officers, and also a President pro tempore, in the absence of the Vice President, or when he shall exercise the office of President of the United States.\n\n"
+                                                                          @"The Senate shall have the sole power to try all impeachments. When sitting for that purpose, they shall be on oath or affirmation. When the President of the United States is tried, the Chief Justice shall preside: And no person shall be convicted without the concurrence of two thirds of the members present.\n\n"
+                                                                          @"Judgment in cases of impeachment shall not extend further than to removal from office, and disqualification to hold and enjoy any office of honor, trust or profit under the United States: but the party convicted shall nevertheless be liable and subject to indictment, trial, judgment and punishment, according to law.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The times, places and manner of holding elections for Senators and Representatives, shall be prescribed in each state by the legislature thereof; but the Congress may at any time by law make or alter such regulations, except as to the places of choosing Senators.\n\n"
+                                                                          @"The Congress shall assemble at least once in every year, and such meeting shall be on the first Monday in December, unless they shall by law appoint a different day.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"Each House shall be the judge of the elections, returns and qualifications of its own members, and a majority of each shall constitute a quorum to do business; but a smaller number may adjourn from day to day, and may be authorized to compel the attendance of absent members, in such manner, and under such penalties as each House may provide.\n\n"
+                                                                          @"Each House may determine the rules of its proceedings, punish its members for disorderly behavior, and, with the concurrence of two thirds, expel a member.\n\n"
+                                                                          @"Each House shall keep a journal of its proceedings, and from time to time publish the same, excepting such parts as may in their judgment require secrecy; and the yeas and nays of the members of either House on any question shall, at the desire of one fifth of those present, be entered on the journal.\n\n"
+                                                                          @"Neither House, during the session of Congress, shall, without the consent of the other, adjourn for more than three days, nor to any other place than that in which the two Houses shall be sitting.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The Senators and Representatives shall receive a compensation for their services, to be ascertained by law, and paid out of the treasury of the United States. They shall in all cases, except treason, felony and breach of the peace, be privileged from arrest during their attendance at the session of their respective Houses, and in going to and returning from the same; and for any speech or debate in either House, they shall not be questioned in any other place.\n\n"
+                                                                          @"No Senator or Representative shall, during the time for which he was elected, be appointed to any civil office under the authority of the United States, which shall have been created, or the emoluments whereof shall have been increased during such time: and no person holding any office under the United States, shall be a member of either House during his continuance in office.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"All bills for raising revenue shall originate in the House of Representatives; but the Senate may propose or concur with amendments as on other Bills.\n\n"
+                                                                          @"Every bill which shall have passed the House of Representatives and the Senate, shall, before it become a law, be presented to the President of the United States; if he approve he shall sign it, but if not he shall return it, with his objections to that House in which it shall have originated, who shall enter the objections at large on their journal, and proceed to reconsider it. If after such reconsideration two thirds of that House shall agree to pass the bill, it shall be sent, together with the objections, to the other House, by which it shall likewise be reconsidered, and if approved by two thirds of that House, it shall become a law. But in all such cases the votes of both Houses shall be determined by yeas and nays, and the names of the persons voting for and against the bill shall be entered on the journal of each House respectively. If any bill shall not be returned by the President within ten days (Sundays excepted) after it shall have been presented to him, the same shall be a law, in like manner as if he had signed it, unless the Congress by their adjournment prevent its return, in which case it shall not be a law.\n\n"
+                                                                          @"Every order, resolution, or vote to which the concurrence of the Senate and House of Representatives may be necessary (except on a question of adjournment) shall be presented to the President of the United States; and before the same shall take effect, shall be approved by him, or being disapproved by him, shall be repassed by two thirds of the Senate and House of Representatives, according to the rules and limitations prescribed in the case of a bill.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The Congress shall have power to lay and collect taxes, duties, imposts and excises, to pay the debts and provide for the common defense and general welfare of the United States; but all duties, imposts and excises shall be uniform throughout the United States;\n\n"
+                                                                          @"To borrow money on the credit of the United States;\n\n"
+                                                                          @"To regulate commerce with foreign nations, and among the several states, and with the Indian tribes;\n\n"
+                                                                          @"To establish a uniform rule of naturalization, and uniform laws on the subject of bankruptcies throughout the United States;\n\n"
+                                                                          @"To coin money, regulate the value thereof, and of foreign coin, and fix the standard of weights and measures;\n\n"
+                                                                          @"To provide for the punishment of counterfeiting the securities and current coin of the United States;\n\n"
+                                                                          @"To establish post offices and post roads;\n\n"
+                                                                          @"To promote the progress of science and useful arts, by securing for limited times to authors and inventors the exclusive right to their respective writings and discoveries;\n\n"
+                                                                          @"To constitute tribunals inferior to the Supreme Court;\n\n"
+                                                                          @"To define and punish piracies and felonies committed on the high seas, and offenses against the law of nations;\n\n"
+                                                                          @"To declare war, grant letters of marque and reprisal, and make rules concerning captures on land and water;\n\n"
+                                                                          @"To raise and support armies, but no appropriation of money to that use shall be for a longer term than two years;\n\n"
+                                                                          @"To provide and maintain a navy;\n\n"
+                                                                          @"To make rules for the government and regulation of the land and naval forces;\n\n"
+                                                                          @"To provide for calling forth the militia to execute the laws of the union, suppress insurrections and repel invasions;\n\n"
+                                                                          @"To provide for organizing, arming, and disciplining, the militia, and for governing such part of them as may be employed in the service of the United States, reserving to the states respectively, the appointment of the officers, and the authority of training the militia according to the discipline prescribed by Congress;\n\n"
+                                                                          @"To exercise exclusive legislation in all cases whatsoever, over such District (not exceeding ten miles square) as may, by cession of particular states, and the acceptance of Congress, become the seat of the government of the United States, and to exercise like authority over all places purchased by the consent of the legislature of the state in which the same shall be, for the erection of forts, magazines, arsenals, dockyards, and other needful buildings;--And\n\n"
+                                                                          @"To make all laws which shall be necessary and proper for carrying into execution the foregoing powers, and all other powers vested by this Constitution in the government of the United States, or in any department or officer thereof.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The migration or importation of such persons as any of the states now existing shall think proper to admit, shall not be prohibited by the Congress prior to the year one thousand eight hundred and eight, but a tax or duty may be imposed on such importation, not exceeding ten dollars for each person.\n\n"
+                                                                          @"The privilege of the writ of habeas corpus shall not be suspended, unless when in cases of rebellion or invasion the public safety may require it.\n\n"
+                                                                          @"No bill of attainder or ex post facto Law shall be passed.\n\n"
+                                                                          @"No capitation, or other direct, tax shall be laid, unless in proportion to the census or enumeration herein before directed to be taken.\n\n"
+                                                                          @"No tax or duty shall be laid on articles exported from any state.\n\n"
+                                                                          @"No preference shall be given by any regulation of commerce or revenue to the ports of one state over those of another: nor shall vessels bound to, or from, one state, be obliged to enter, clear or pay duties in another.\n\n"
+                                                                          @"No money shall be drawn from the treasury, but in consequence of appropriations made by law; and a regular statement and account of receipts and expenditures of all public money shall be published from time to time.\n\n"
+                                                                          @"No title of nobility shall be granted by the United States: and no person holding any office of profit or trust under them, shall, without the consent of the Congress, accept of any present, emolument, office, or title, of any kind whatever, from any king, prince, or foreign state.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"No state shall enter into any treaty, alliance, or confederation; grant letters of marque and reprisal; coin money; emit bills of credit; make anything but gold and silver coin a tender in payment of debts; pass any bill of attainder, ex post facto law, or law impairing the obligation of contracts, or grant any title of nobility.\n\n"
+                                                                          @"No state shall, without the consent of the Congress, lay any imposts or duties on imports or exports, except what may be absolutely necessary for executing it's inspection laws: and the net produce of all duties and imposts, laid by any state on imports or exports, shall be for the use of the treasury of the United States; and all such laws shall be subject to the revision and control of the Congress.\n\n"
+                                                                          @"No state shall, without the consent of Congress, lay any duty of tonnage, keep troops, or ships of war in time of peace, enter into any agreement or compact with another state, or with a foreign power, or engage in war, unless actually invaded, or in such imminent danger as will not admit of delay.", nil)], nil]];
+    
     Article* article2 =
     [Article articleWithTitle:NSLocalizedString(@"The Presidency", nil)
-                 sections:nil];
+                     sections:[NSArray arrayWithObjects:
+                               [Section sectionWithText:NSLocalizedString(@"The executive power shall be vested in a President of the United States of America. He shall hold his office during the term of four years, and, together with the Vice President, chosen for the same term, be elected, as follows:\n\n"
+                                                                          @"Each state shall appoint, in such manner as the Legislature thereof may direct, a number of electors, equal to the whole number of Senators and Representatives to which the State may be entitled in the Congress: but no Senator or Representative, or person holding an office of trust or profit under the United States, shall be appointed an elector.\n\n"
+                                                                          @"The electors shall meet in their respective states, and vote by ballot for two persons, of whom one at least shall not be an inhabitant of the same state with themselves. And they shall make a list of all the persons voted for, and of the number of votes for each; which list they shall sign and certify, and transmit sealed to the seat of the government of the United States, directed to the President of the Senate. The President of the Senate shall, in the presence of the Senate and House of Representatives, open all the certificates, and the votes shall then be counted. The person having the greatest number of votes shall be the President, if such number be a majority of the whole number of electors appointed; and if there be more than one who have such majority, and have an equal number of votes, then the House of Representatives shall immediately choose by ballot one of them for President; and if no person have a majority, then from the five highest on the list the said House shall in like manner choose the President. But in choosing the President, the votes shall be taken by States, the representation from each state having one vote; A quorum for this purpose shall consist of a member or members from two thirds of the states, and a majority of all the states shall be necessary to a choice. In every case, after the choice of the President, the person having the greatest number of votes of the electors shall be the Vice President. But if there should remain two or more who have equal votes, the Senate shall choose from them by ballot the Vice President.\n\n"
+                                                                          @"The Congress may determine the time of choosing the electors, and the day on which they shall give their votes; which day shall be the same throughout the United States.\n\n"
+                                                                          @"No person except a natural born citizen, or a citizen of the United States, at the time of the adoption of this Constitution, shall be eligible to the office of President; neither shall any person be eligible to that office who shall not have attained to the age of thirty five years, and been fourteen Years a resident within the United States.\n\n"
+                                                                          @"In case of the removal of the President from office, or of his death, resignation, or inability to discharge the powers and duties of the said office, the same shall devolve on the Vice President, and the Congress may by law provide for the case of removal, death, resignation or inability, both of the President and Vice President, declaring what officer shall then act as President, and such officer shall act accordingly, until the disability be removed, or a President shall be elected.\n\n"
+                                                                          @"The President shall, at stated times, receive for his services, a compensation, which shall neither be increased nor diminished during the period for which he shall have been elected, and he shall not receive within that period any other emolument from the United States, or any of them.\n\n"
+                                                                          @"Before he enter on the execution of his office, he shall take the following oath or affirmation:--'I do solemnly swear (or affirm) that I will faithfully execute the office of President of the United States, and will to the best of my ability, preserve, protect and defend the Constitution of the United States.'", nil)],           
+                               [Section sectionWithText:NSLocalizedString(@"The President shall be commander in chief of the Army and Navy of the United States, and of the militia of the several states, when called into the actual service of the United States; he may require the opinion, in writing, of the principal officer in each of the executive departments, upon any subject relating to the duties of their respective offices, and he shall have power to grant reprieves and pardons for offenses against the United States, except in cases of impeachment.\n\n"
+                                                                          @"He shall have power, by and with the advice and consent of the Senate, to make treaties, provided two thirds of the Senators present concur; and he shall nominate, and by and with the advice and consent of the Senate, shall appoint ambassadors, other public ministers and consuls, judges of the Supreme Court, and all other officers of the United States, whose appointments are not herein otherwise provided for, and which shall be established by law: but the Congress may by law vest the appointment of such inferior officers, as they think proper, in the President alone, in the courts of law, or in the heads of departments.\n\n"
+                                                                          @"The President shall have power to fill up all vacancies that may happen during the recess of the Senate, by granting commissions which shall expire at the end of their next session.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"He shall from time to time give to the Congress information of the state of the union, and recommend to their consideration such measures as he shall judge necessary and expedient; he may, on extraordinary occasions, convene both Houses, or either of them, and in case of disagreement between them, with respect to the time of adjournment, he may adjourn them to such time as he shall think proper; he shall receive ambassadors and other public ministers; he shall take care that the laws be faithfully executed, and shall commission all the officers of the United States.", nil)], 
+                               [Section sectionWithText:NSLocalizedString(@"The President, Vice President and all civil officers of the United States, shall be removed from office on impeachment for, and conviction of, treason, bribery, or other high crimes and misdemeanors.", nil)], nil]];
+    
     Article* article3 =
     [Article articleWithTitle:NSLocalizedString(@"The Judiciary", nil)
-                 sections:nil];
+                     sections:[NSArray arrayWithObjects:
+                               [Section sectionWithText:NSLocalizedString(@"The judicial power of the United States, shall be vested in one Supreme Court, and in such inferior courts as the Congress may from time to time ordain and establish. The judges, both of the supreme and inferior courts, shall hold their offices during good behaviour, and shall, at stated times, receive for their services, a compensation, which shall not be diminished during their continuance in office.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The judicial power shall extend to all cases, in law and equity, arising under this Constitution, the laws of the United States, and treaties made, or which shall be made, under their authority;--to all cases affecting ambassadors, other public ministers and consuls;--to all cases of admiralty and maritime jurisdiction;--to controversies to which the United States shall be a party;--to controversies between two or more states;--between a state and citizens of another state;--between citizens of different states;--between citizens of the same state claiming lands under grants of different states, and between a state, or the citizens thereof, and foreign states, citizens or subjects.\n\n"
+                                                                          @"In all cases affecting ambassadors, other public ministers and consuls, and those in which a state shall be party, the Supreme Court shall have original jurisdiction. In all the other cases before mentioned, the Supreme Court shall have appellate jurisdiction, both as to law and fact, with such exceptions, and under such regulations as the Congress shall make.\n\n"
+                                                                          @"The trial of all crimes, except in cases of impeachment, shall be by jury; and such trial shall be held in the state where the said crimes shall have been committed; but when not committed within any state, the trial shall be at such place or places as the Congress may by law have directed.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"Treason against the United States, shall consist only in levying war against them, or in adhering to their enemies, giving them aid and comfort. No person shall be convicted of treason unless on the testimony of two witnesses to the same overt act, or on confession in open court.\n\n"
+                                                                          @"The Congress shall have power to declare the punishment of treason, but no attainder of treason shall work corruption of blood, or forfeiture except during the life of the person attainted.", nil)],
+                               nil]];
+    
     Article* article4 =
     [Article articleWithTitle:NSLocalizedString(@"The States", nil)
-                 sections:nil];
+                     sections:[NSArray arrayWithObjects:
+                               [Section sectionWithText:NSLocalizedString(@"Full faith and credit shall be given in each state to the public acts, records, and judicial proceedings of every other state. And the Congress may by general laws prescribe the manner in which such acts, records, and proceedings shall be proved, and the effect thereof.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The citizens of each state shall be entitled to all privileges and immunities of citizens in the several states.\n\n"
+                                                                          @"A person charged in any state with treason, felony, or other crime, who shall flee from justice, and be found in another state, shall on demand of the executive authority of the state from which he fled, be delivered up, to be removed to the state having jurisdiction of the crime.\n\n"
+                                                                          @"No person held to service or labor in one state, under the laws thereof, escaping into another, shall, in consequence of any law or regulation therein, be discharged from such service or labor, but shall be delivered up on claim of the party to whom such service or labor may be due.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"New states may be admitted by the Congress into this union; but no new states shall be formed or erected within the jurisdiction of any other state; nor any state be formed by the junction of two or more states, or parts of states, without the consent of the legislatures of the states concerned as well as of the Congress.\n\n"
+                                                                          @"The Congress shall have power to dispose of and make all needful rules and regulations respecting the territory or other property belonging to the United States; and nothing in this Constitution shall be so construed as to prejudice any claims of the United States, or of any particular state.", nil)],
+                               [Section sectionWithText:NSLocalizedString(@"The United States shall guarantee to every state in this union a republican form of government, and shall protect each of them against invasion; and on application of the legislature, or of the executive (when the legislature cannot be convened) against domestic violence.", nil)],
+                               nil]];
+    
     Article* article5 =
     [Article articleWithTitle:NSLocalizedString(@"The Amendment Process", nil)
-                 sections:nil];
+                     sections:[NSArray arrayWithObjects:
+                               [Section sectionWithText:NSLocalizedString(@"The Congress, whenever two thirds of both houses shall deem it necessary, shall propose amendments to this Constitution, or, on the application of the legislatures of two thirds of the several states, shall call a convention for proposing amendments, which, in either case, shall be valid to all intents and purposes, as part of this Constitution, when ratified by the legislatures of three fourths of the several states, or by conventions in three fourths thereof, as the one or the other mode of ratification may be proposed by the Congress; provided that no amendment which may be made prior to the year one thousand eight hundred and eight shall in any manner affect the first and fourth clauses in the ninth section of the first article; and that no state, without its consent, shall be deprived of its equal suffrage in the Senate.", nil)],
+                               nil]];
+    
     Article* article6 =
     [Article articleWithTitle:NSLocalizedString(@"Legal Status of the Constitution", nil)
-                 sections:nil];
+                     sections:[NSArray arrayWithObjects:
+                               [Section sectionWithText:NSLocalizedString(@"All debts contracted and engagements entered into, before the adoption of this Constitution, shall be as valid against the United States under this Constitution, as under the Confederation.\n\n"
+                                                                          @"This Constitution, and the laws of the United States which shall be made in pursuance thereof; and all treaties made, or which shall be made, under the authority of the United States, shall be the supreme law of the land; and the judges in every state shall be bound thereby, anything in the Constitution or laws of any State to the contrary notwithstanding.\n\n"
+                                                                          @"The Senators and Representatives before mentioned, and the members of the several state legislatures, and all executive and judicial officers, both of the United States and of the several states, shall be bound by oath or affirmation, to support this Constitution; but no religious test shall ever be required as a qualification to any office or public trust under the United States.", nil)],
+                               nil]];
+    
     Article* article7 =
     [Article articleWithTitle:NSLocalizedString(@"Ratification", nil)
-                 sections:nil];
+                     sections:[NSArray arrayWithObjects:
+                               [Section sectionWithText:NSLocalizedString(@"The ratification of the conventions of nine states, shall be sufficient for the establishment of this Constitution between the states so ratifying the same.", nil)],
+                               nil]];
     
     Amendment* amendment1 =
     [Amendment amendmentWithSynopsis:NSLocalizedString(@"Religion, Speech, Press", nil)
@@ -384,7 +425,7 @@ static NSArray* constitutions;
 + (void) setupConstitutions {
     constitutions =
     [[NSArray arrayWithObjects:
-     [self setupUnitedStatesConstitution],
+      [self setupUnitedStatesConstitution],
       nil] retain];
 }
 
@@ -400,7 +441,7 @@ static NSArray* constitutions;
                           NSLocalizedString(@"Additional Information for Non-Citizens", nil),
                           NSLocalizedString(@"Rights at Airports and Other Ports of Entry into the United States", nil),
                           NSLocalizedString(@"Charitable Donations and Religious Practices", nil), nil] retain];
-
+        
         shortSectionTitles = [[NSArray arrayWithObjects:
                                NSLocalizedString(@"Questioning", nil),
                                NSLocalizedString(@"Stops and Arrests", nil),
@@ -408,8 +449,8 @@ static NSArray* constitutions;
                                NSLocalizedString(@"Info for Non-Citizens", nil),
                                NSLocalizedString(@"Rights at Airports", nil),
                                NSLocalizedString(@"Charitable Donations", nil), nil] retain];
-
-
+        
+        
         preambles = [[NSArray arrayWithObjects:
                       @"",
                       @"",
@@ -432,7 +473,7 @@ static NSArray* constitutions;
                                         @"can stop you based on citizenship or travel itinerary at the border and search "
                                         @"all bags.", nil),
                       @"", nil] retain];
-
+        
         otherResources = [[NSArray arrayWithObjects:
                            [NSArray array],
                            [NSArray array],
@@ -463,7 +504,7 @@ static NSArray* constitutions;
                                               @"Immigration and Customs Enforcement (ICE), U.S. Border "
                                               @"Patrol, Customs and Border Protection, and National Guard.", nil), nil],
                            [NSArray array], nil] retain];
-
+        
         sectionLinks = [[NSArray arrayWithObjects:
                          [NSArray array],
                          [NSArray array],
@@ -476,7 +517,7 @@ static NSArray* constitutions;
                           @"airconsumer@ost.dot.gov",
                           @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm", nil],
                          [NSArray array], nil] retain];
-
+        
         NSArray* questioningQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What kind of law enforcement officers might try to question me?", nil),
@@ -489,7 +530,7 @@ static NSArray* constitutions;
                            @"subpoena is a written order for youabout information you may have.)", nil),
          NSLocalizedString(@"What if I am asked to meet with officers for a "
                            @"“counter-terrorism interview”?", nil), nil];
-
+        
         NSArray* questioningAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You could be questioned by a variety of law enforcement "
@@ -549,7 +590,7 @@ static NSArray* constitutions;
                            @"for any reason, you have the right to remain silent. No matter what, "
                            @"assume that nothing you say is off the record. And remember that it is a "
                            @"criminal offense to knowingly lie to an officer.", nil), nil];
-
+        
         NSArray* stopsAndArrestsQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What if law enforcement officers stop me on the street?", nil),
@@ -557,7 +598,7 @@ static NSArray* constitutions;
          NSLocalizedString(@"What should I do if law enforcement officers arrest me?", nil),
          NSLocalizedString(@"Do I have to answer questions if I have been arrested?", nil),
          NSLocalizedString(@"What if I am treated badly by law enforcement officers?", nil), nil];
-
+        
         NSArray* stopsAndArrestsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You do not have to answer any questions. You can say, “I do "
@@ -615,8 +656,8 @@ static NSArray* constitutions;
                            @"can. Call a lawyer or contact your local ACLU office. You should also "
                            @"make a complaint to the law enforcement office responsible for the "
                            @"treatment.", nil), nil];
-
-
+        
+        
         NSArray* searchesAndWarrantsQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Can law enforcement officers search my home or office?", nil),
@@ -629,7 +670,7 @@ static NSArray* constitutions;
          NSLocalizedString(@"What if law enforcement officers do not have a search "
                            @"warrant, but they insist on searching my home even "
                            @"after I object?", nil), nil];
-
+        
         NSArray* searchesAndWarrantsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Law enforcement officers can search your home only if they "
@@ -706,8 +747,8 @@ static NSArray* constitutions;
                            @"that you are not giving permission for the search. Call your "
                            @"lawyer as soon as possible. Take note of the names and badge "
                            @"numbers of the searching officers", nil), nil];
-
-
+        
+        
         NSArray* nonCitizensQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What types of law enforcement officers may try to question me?", nil),
@@ -733,7 +774,7 @@ static NSArray* constitutions;
                            @"leave the U.S. before the hearing is over?", nil),
          NSLocalizedString(@"What should I do if I want to contact immigration officials?", nil),
          NSLocalizedString(@"What if I am charged with a crime?", nil), nil];
-
+        
         NSArray* nonCitizensAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Different kinds of law enforcement officers might question you or ask "
@@ -873,7 +914,7 @@ static NSArray* constitutions;
                            @"have on your immigration status. Do not agree to a plea bargain without "
                            @"understanding if it could make you deportable or ineligible for relief or "
                            @"for citizenship.", nil), nil];
-
+        
         NSArray* portsOfEntryQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"What types of officers could I encounter at the airport and at the border?", nil),
@@ -900,7 +941,7 @@ static NSArray* constitutions;
                            @"employees singled me out because of my race, ethnicity, "
                            @"or religion or that I was mistreated in other ways, what "
                            @"information should I record during and after the incident?", nil), nil];
-
+        
         NSArray* portsOfEntryAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"You may encounter any of the full range of law enforcement "
@@ -992,7 +1033,7 @@ static NSArray* constitutions;
                            @"and file a complaint with the U.S. Department of "
                            @"Transportation at "
                            @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm.", nil), nil];
-
+        
         NSArray* portsOfEntryLinks =
         [NSArray arrayWithObjects:
          [NSArray array],
@@ -1007,7 +1048,7 @@ static NSArray* constitutions;
          [NSArray arrayWithObjects:@"http://www.tsa.gov/travelers/customer/redress/index.shtm", @"http://www.aclu.org/noflycomplaint", nil],
          [NSArray arrayWithObjects:@"http://www.aclu.org/airlineprofiling", @"http://airconsumer.ost.dot.gov/DiscrimComplaintsContacts.htm", nil],
          nil];
-
+        
         NSArray* charitableDonationsQuestions =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Can I give to a charity organization without becoming a "
@@ -1015,7 +1056,7 @@ static NSArray* constitutions;
          NSLocalizedString(@"Is it safe for me to practice my religion in religious "
                            @"institutions or public places?", nil),
          NSLocalizedString(@"What else can I do to be prepared?", nil), nil];
-
+        
         NSArray* charitableDonationsAnswers =
         [NSArray arrayWithObjects:
          NSLocalizedString(@"Yes. You should continue to give money to the causes you believe "
@@ -1035,13 +1076,13 @@ static NSArray* constitutions;
                            @"relative that anyone in the family can call if they need help, as well "
                            @"as the number of an attorney. If you are a non-citizen, remember to "
                            @"carry your immigration documents with you.", nil), nil];
-
+        
         NSArray* charitableDonationsLinks =
         [NSArray arrayWithObjects:
          [NSArray arrayWithObjects:@"http://www.muslimadvocates.org/documents/safe_donating.html", nil],
          [NSArray array],
          [NSArray array], nil];
-
+        
         questions = [[NSArray arrayWithObjects:
                       questioningQuestions,
                       stopsAndArrestsQuestions,
@@ -1056,13 +1097,13 @@ static NSArray* constitutions;
                     nonCitizensAnswers,
                     portsOfEntryAnswers,
                     charitableDonationsAnswers, nil] retain];
-
+        
         links = [[NSArray arrayWithObjects:
-                 [NSArray array],
-                 [NSArray array],
-                 [NSArray array],
-                 [NSArray array],
-                 portsOfEntryLinks,
+                  [NSArray array],
+                  [NSArray array],
+                  [NSArray array],
+                  [NSArray array],
+                  portsOfEntryLinks,
                   charitableDonationsLinks, nil] retain];
     }
 }
@@ -1078,16 +1119,16 @@ static NSArray* constitutions;
 
 - (void) updateCaches:(NSNumber*) number {
     NSInteger value = [number integerValue];
-
+    
     switch (value) {
         case 0:
             [rssCache update];
             break;
-
+            
         default:
             return;
     }
-
+    
     [self performSelector:@selector(updateCaches:)
                withObject:[NSNumber numberWithInt:value + 1]
                afterDelay:1];
@@ -1099,7 +1140,7 @@ static NSArray* constitutions;
         self.rssCache = [RSSCache cacheWithModel:self];
         [self updateCaches:[NSNumber numberWithInt:0]];
     }
-
+    
     return self;
 }
 
@@ -1142,7 +1183,7 @@ static NSArray* constitutions;
 - (NSString*) answerForQuestion:(NSString*) question withSectionTitle:(NSString*) sectionTitle {
     NSArray* questions = [self questionsForSectionTitle:sectionTitle];
     NSArray* specificAnswers = [self answersForSectionTitle:sectionTitle];
-
+    
     return [specificAnswers objectAtIndex:[questions indexOfObject:question]];
 }
 
@@ -1150,7 +1191,7 @@ static NSArray* constitutions;
 NSInteger compareLinks(id link1, id link2, void* context) {
     NSRange range1 = [link1 rangeOfString:@"@"];
     NSRange range2 = [link2 rangeOfString:@"@"];
-
+    
     if (range1.length > 0 && range2.length == 0) {
         return NSOrderedDescending;
     } else if (range2.length > 0 && range1.length == 0) {
@@ -1173,7 +1214,7 @@ NSInteger compareLinks(id link1, id link2, void* context) {
     if (specificLinks.count == 0) {
         return [NSArray array];
     }
-
+    
     NSArray* result = [specificLinks objectAtIndex:[questions indexOfObject:question]];
     return [result sortedArrayUsingFunction:compareLinks context:NULL];
 }
@@ -1195,7 +1236,7 @@ NSInteger compareLinks(id link1, id link2, void* context) {
 
 
 - (void) setGreatestHitsSortIndex:(NSInteger) index {
-
+    
 }
 
 
@@ -1204,9 +1245,9 @@ NSInteger compareLinks(id link1, id link2, void* context) {
                       currentVersion,
                       [LocaleUtilities englishCountry],
                       [LocaleUtilities englishLanguage]];
-
+    
     NSString* subject = @"Your%20Rights%20Feedback";
-
+    
     NSString* encodedBody = [Utilities stringByAddingPercentEscapes:body];
     NSString* result = [NSString stringWithFormat:@"mailto:cyrus.najmabadi@gmail.com?subject=%@&body=%@", subject, encodedBody];
     return result;
