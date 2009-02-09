@@ -16,6 +16,7 @@
 
 #import "RootViewController.h"
 #import "SectionViewController.h"
+#import "WebViewController.h"
 #import "YourRightsAppDelegate.h"
 
 @interface YourRightsNavigationController()
@@ -68,6 +69,17 @@
 
 - (void) minorRefresh {
     [self refresh:@selector(minorRefresh)];
+}
+
+
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated {
+    [self pushBrowser:address animated:animated showSafariButton:YES];
+}
+
+
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated showSafariButton:(BOOL) showSafariButton {
+    WebViewController* controller = [[[WebViewController alloc] initWithNavigationController:(id)self.navigationController address:address showSafariButton:showSafariButton] autorelease];
+    [self pushViewController:controller animated:animated];   
 }
 
 @end

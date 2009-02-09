@@ -25,4 +25,7 @@
 - (void) majorRefresh;
 - (void) minorRefresh;
 
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated;
+- (void) pushBrowser:(NSString*) address animated:(BOOL) animated showSafariButton:(BOOL) showSafariButton;
+
 @end
