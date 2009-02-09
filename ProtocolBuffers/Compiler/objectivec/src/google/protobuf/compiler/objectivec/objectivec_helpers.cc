@@ -22,6 +22,7 @@
 
 #include <google/protobuf/stubs/hash.h>
 #include <google/protobuf/compiler/objectivec/objectivec_helpers.h>
+#include <google/protobuf/objectivec-descriptor.pb.h>
 #include <google/protobuf/descriptor.pb.h>
 #include <google/protobuf/stubs/strutil.h>
 
@@ -113,8 +114,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   string FilePath(const FileDescriptor* file) {
     string path = FileName(file);
 
-    if (file->options().objectivec_package() != "") {
-      path = file->options().objectivec_package() + "/" + path;
+    if (file->options().HasExtension(objectivec_file_options)) {
+      ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
+     
+      if (options.objectivec_package() != "") {
+        path = options.objectivec_package() + "/" + path;
+      } 
     }
 
     return path;
@@ -122,16 +127,25 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   string FileClassName(const FileDescriptor* file) {
-    return
-      file->options().objectivec_class_prefix() +
-      FileName(file) +
-      "Root";
+    if (file->options().HasExtension(objectivec_file_options)) {
+      ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
+     
+      return options.objectivec_class_prefix() + FileName(file) + "Root";
+    } else {
+      return FileName(file) + "Root";
+    }
   }
 
 
   string ToObjectiveCName(const string& full_name, const FileDescriptor* file) {
     string result;
-    result += file->options().objectivec_class_prefix();
+
+    if (file->options().HasExtension(objectivec_file_options)) {
+      ObjectiveCFileOptions options = file->options().GetExtension(objectivec_file_options);
+     
+      result += options.objectivec_class_prefix();
+    }
+
     result += full_name;
     return result;
   }
@@ -158,21 +172,41 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   
 
   string ClassName(const Descriptor* descriptor) {
-    string name = descriptor->file()->options().objectivec_class_prefix();
+    string name;
+    
+    if (descriptor->file()->options().HasExtension(objectivec_file_options)) {
+      ObjectiveCFileOptions options = descriptor->file()->options().GetExtension(objectivec_file_options);
+
+      name += options.objectivec_class_prefix();
+    }
+
     name += ClassNameWorker(descriptor);
     return name;
   }
 
 
   string ClassName(const EnumDescriptor* descriptor) {
-    string name = descriptor->file()->options().objectivec_class_prefix();
+    string name;
+    
+    if (descriptor->file()->options().HasExtension(objectivec_file_options)) {
+      ObjectiveCFileOptions options = descriptor->file()->options().GetExtension(objectivec_file_options);
+
+      name += options.objectivec_class_prefix();
+    }
     name += ClassNameWorker(descriptor);
     return name;
   }
 
 
   string ClassName(const ServiceDescriptor* descriptor) {
-    string name = descriptor->file()->options().objectivec_class_prefix();
+    string name;
+    
+    if (descriptor->file()->options().HasExtension(objectivec_file_options)) {
+      ObjectiveCFileOptions options = descriptor->file()->options().GetExtension(objectivec_file_options);
+
+      name += options.objectivec_class_prefix();
+    }
+
     name += descriptor->name();
     return name;
   }
