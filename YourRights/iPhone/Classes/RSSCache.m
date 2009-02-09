@@ -206,7 +206,11 @@ static NSDictionary* titleToIdentifier;
 
 - (void) updateBackgroundEntryPoint {
     for (NSString* title in titles) {
-        [self updateTitle:title];
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        {
+            [self updateTitle:title];
+        }
+        [pool release];
     }
 }
 

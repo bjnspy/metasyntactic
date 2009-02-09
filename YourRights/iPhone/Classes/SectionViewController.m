@@ -16,12 +16,14 @@
 
 #import "ACLUInfoViewController.h"
 #import "ACLUNewsViewController.h"
+#import "Constitution.h"
 #import "CreditsViewController.h"
 #import "GlobalActivityIndicator.h"
 #import "GreatestHitsViewController.h"
 #import "Model.h"
 #import "QuestionsViewController.h"
 #import "ToughQuestionsViewController.h"
+#import "UnitedStatesConstitutionViewController.h"
 #import "WrappableCell.h"
 #import "ViewControllerUtilities.h"
 #import "YourRightsNavigationController.h"
@@ -155,13 +157,15 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
+        return self.model.constitutions.count;
+    } else if (section == 1) {
         return 4;
     } else {
         return [[self.model sectionTitles] count];
@@ -171,6 +175,8 @@
 
 - (NSString*) titleForIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
+        return [[self.model.constitutions objectAtIndex:indexPath.row] country];
+    } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             return NSLocalizedString(@"ACLU News", nil);
         } else if (indexPath.row == 1) {
@@ -188,7 +194,13 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSString* text = [self titleForIndexPath:indexPath];
+    
     if (indexPath.section == 0) {
+        UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        return cell;
+    } else if (indexPath.section == 1) {
         UITableViewCell *cell = [[[WrappableCell alloc] initWithTitle:text] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -210,6 +222,8 @@
 
     if (indexPath.section == 0) {
         return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    } else if (indexPath.section == 1) {
+        return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, text];
         return [WrappableCell height:text accessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -217,8 +231,14 @@
 }
 
 
-- (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
+        Constitution* constitution = [self.model.constitutions objectAtIndex:indexPath.row];
+        UnitedStatesConstitutionViewController* controller = [[[UnitedStatesConstitutionViewController alloc] initWithNavigationController:navigationController
+                                                                                                                              constitution:constitution] autorelease];
+        [navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             ACLUNewsViewController* controller = [[[ACLUNewsViewController alloc] initWithNavigationController:navigationController] autorelease];
             [navigationController pushViewController:controller animated:YES];
@@ -244,6 +264,8 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
+        return NSLocalizedString(@"Constitutions", nil);
+    } else if (section == 1) {
         return NSLocalizedString(@"ACLU Information", nil);
     } else {
         return NSLocalizedString(@"Encountering Law Enforcement", nil);

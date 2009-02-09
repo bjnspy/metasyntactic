@@ -16,6 +16,11 @@
 		740101A50F26EB0B00258353 /* AlertUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 740101A40F26EB0B00258353 /* AlertUtilities.m */; };
 		740101C10F26EB8300258353 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740101C00F26EB8300258353 /* CFNetwork.framework */; };
 		7401029E0F276D2700258353 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 7401029D0F276D2700258353 /* Application.m */; };
+		740E8C760F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8C750F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m */; };
+		740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */; };
+		740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D6A0F3FE93A00798E0C /* Amendment.m */; };
+		740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */; };
+		740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */; };
 		742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */; };
 		742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */; };
 		742DB7810F1209540079E6B0 /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB7800F1209540079E6B0 /* QuestionsViewController.m */; };
@@ -36,6 +41,9 @@
 		742DC05F0F1336510079E6B0 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC05E0F1336510079E6B0 /* CreditsViewController.m */; };
 		742DC0690F1337ED0079E6B0 /* LocaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */; };
 		742DC06C0F1337FF0079E6B0 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DC06B0F1337FF0079E6B0 /* Utilities.m */; };
+		743D96F80F3FAB5400BA0784 /* Constitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96F70F3FAB5400BA0784 /* Constitution.m */; };
+		743D96FC0F3FAC1B00BA0784 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96FB0F3FAC1B00BA0784 /* Article.m */; };
+		743D96FF0F3FADB800BA0784 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96FE0F3FADB800BA0784 /* Section.m */; };
 		745A09230F2ED55A002F64C6 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09220F2ED55A002F64C6 /* Controller.m */; };
 		745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A093B0F2ED905002F64C6 /* AbstractCache.m */; };
 		745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09DD0F2EE190002F64C6 /* RSSCache.m */; };
@@ -85,6 +93,16 @@
 		740101C00F26EB8300258353 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7401029C0F276D2700258353 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		7401029D0F276D2700258353 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		740E8C740F3FD7A700798E0C /* UnitedStatesConstitutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedStatesConstitutionViewController.h; sourceTree = "<group>"; };
+		740E8C750F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedStatesConstitutionViewController.m; sourceTree = "<group>"; };
+		740E8D180F3FE56D00798E0C /* ConstitutionArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionArticleViewController.h; sourceTree = "<group>"; };
+		740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionArticleViewController.m; sourceTree = "<group>"; };
+		740E8D690F3FE93A00798E0C /* Amendment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amendment.h; sourceTree = "<group>"; };
+		740E8D6A0F3FE93A00798E0C /* Amendment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Amendment.m; sourceTree = "<group>"; };
+		740E8DB30F3FEEA100798E0C /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
+		740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
+		740E8E200F3FF51E00798E0C /* ConstitutionAmendmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionAmendmentViewController.h; sourceTree = "<group>"; };
+		740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
 		742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
 		742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionViewController.m; sourceTree = "<group>"; };
 		742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
@@ -125,6 +143,12 @@
 		742DC0680F1337ED0079E6B0 /* LocaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleUtilities.m; sourceTree = "<group>"; };
 		742DC06A0F1337FF0079E6B0 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		742DC06B0F1337FF0079E6B0 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		743D96F60F3FAB5400BA0784 /* Constitution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constitution.h; sourceTree = "<group>"; };
+		743D96F70F3FAB5400BA0784 /* Constitution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constitution.m; sourceTree = "<group>"; };
+		743D96FA0F3FAC1B00BA0784 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
+		743D96FB0F3FAC1B00BA0784 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
+		743D96FD0F3FADB800BA0784 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		743D96FE0F3FADB800BA0784 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
 		745A09210F2ED55A002F64C6 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		745A09220F2ED55A002F64C6 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
 		745A093A0F2ED905002F64C6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractCache.h; path = ../../PocketFlix/iPhone/Classes/AbstractCache.h; sourceTree = SOURCE_ROOT; };
@@ -383,14 +407,14 @@
 		74954D2B0F38CE4A00E79E24 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */,
+				742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */,
 				74954E4B0F38DECA00E79E24 /* ACLUNewsViewController.h */,
 				74954E4C0F38DECA00E79E24 /* ACLUNewsViewController.m */,
 				742DC05D0F1336510079E6B0 /* CreditsViewController.h */,
 				742DC05E0F1336510079E6B0 /* CreditsViewController.m */,
 				742DBE340F1321030079E6B0 /* WebViewController.h */,
 				742DBE350F1321030079E6B0 /* WebViewController.m */,
-				742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */,
-				742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */,
 				742DB77F0F1209540079E6B0 /* QuestionsViewController.h */,
 				742DB7800F1209540079E6B0 /* QuestionsViewController.m */,
 				742DB8B10F12A7190079E6B0 /* AnswerViewController.h */,
@@ -407,6 +431,12 @@
 				742DBF190F132AD50079E6B0 /* ACLUInfoViewController.m */,
 				74954E950F38E14600E79E24 /* ACLUArticlesViewController.h */,
 				74954E960F38E14600E79E24 /* ACLUArticlesViewController.m */,
+				740E8C740F3FD7A700798E0C /* UnitedStatesConstitutionViewController.h */,
+				740E8C750F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m */,
+				740E8D180F3FE56D00798E0C /* ConstitutionArticleViewController.h */,
+				740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */,
+				740E8E200F3FF51E00798E0C /* ConstitutionAmendmentViewController.h */,
+				740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -422,6 +452,8 @@
 				74954F560F38E7BC00E79E24 /* ArticleTitleCell.m */,
 				74954FD80F38EA3500E79E24 /* ArticleBodyCell.h */,
 				74954FD90F38EA3500E79E24 /* ArticleBodyCell.m */,
+				740E8DB30F3FEEA100798E0C /* AutoResizingCell.h */,
+				740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -483,6 +515,14 @@
 				742DBB860F12D4AC0079E6B0 /* Decision.m */,
 				74954DF40F38D9C000E79E24 /* Item.h */,
 				74954DF50F38D9C000E79E24 /* Item.m */,
+				743D96F60F3FAB5400BA0784 /* Constitution.h */,
+				743D96F70F3FAB5400BA0784 /* Constitution.m */,
+				743D96FA0F3FAC1B00BA0784 /* Article.h */,
+				743D96FB0F3FAC1B00BA0784 /* Article.m */,
+				743D96FD0F3FADB800BA0784 /* Section.h */,
+				743D96FE0F3FADB800BA0784 /* Section.m */,
+				740E8D690F3FE93A00798E0C /* Amendment.h */,
+				740E8D6A0F3FE93A00798E0C /* Amendment.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -604,6 +644,14 @@
 				74954F570F38E7BC00E79E24 /* ArticleTitleCell.m in Sources */,
 				74954FDA0F38EA3500E79E24 /* ArticleBodyCell.m in Sources */,
 				74954FE30F38EAA900E79E24 /* FontCache.m in Sources */,
+				743D96F80F3FAB5400BA0784 /* Constitution.m in Sources */,
+				743D96FC0F3FAC1B00BA0784 /* Article.m in Sources */,
+				743D96FF0F3FADB800BA0784 /* Section.m in Sources */,
+				740E8C760F3FD7A700798E0C /* UnitedStatesConstitutionViewController.m in Sources */,
+				740E8D1A0F3FE56D00798E0C /* ConstitutionArticleViewController.m in Sources */,
+				740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */,
+				740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */,
+				740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
