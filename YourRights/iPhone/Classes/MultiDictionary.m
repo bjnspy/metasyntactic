@@ -79,12 +79,12 @@
 
 
 - (NSArray*) allKeys {
-    return [dictionary allKeys];
+    return dictionary.allKeys;
 }
 
 
 - (NSArray*) allValues {
-    return [dictionary allValues];
+    return dictionary.allValues;
 }
 
 

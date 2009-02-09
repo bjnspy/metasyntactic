@@ -21,6 +21,7 @@
 		740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8D6A0F3FE93A00798E0C /* Amendment.m */; };
 		740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */; };
 		740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */; };
+		740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */; };
 		742DB5D60F11FB0C0079E6B0 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */; };
 		742DB5D90F11FB330079E6B0 /* YourRightsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB5D80F11FB330079E6B0 /* YourRightsNavigationController.m */; };
 		742DB7810F1209540079E6B0 /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742DB7800F1209540079E6B0 /* QuestionsViewController.m */; };
@@ -103,6 +104,8 @@
 		740E8DB40F3FEEA100798E0C /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
 		740E8E200F3FF51E00798E0C /* ConstitutionAmendmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionAmendmentViewController.h; sourceTree = "<group>"; };
 		740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionAmendmentViewController.m; sourceTree = "<group>"; };
+		740E8EDE0F40A53700798E0C /* ConstitutionSignersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstitutionSignersViewController.h; sourceTree = "<group>"; };
+		740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstitutionSignersViewController.m; sourceTree = "<group>"; };
 		742DB5D40F11FB0C0079E6B0 /* SectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionViewController.h; sourceTree = "<group>"; };
 		742DB5D50F11FB0C0079E6B0 /* SectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionViewController.m; sourceTree = "<group>"; };
 		742DB5D70F11FB330079E6B0 /* YourRightsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRightsNavigationController.h; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 				740E8D190F3FE56D00798E0C /* ConstitutionArticleViewController.m */,
 				740E8E200F3FF51E00798E0C /* ConstitutionAmendmentViewController.h */,
 				740E8E210F3FF51E00798E0C /* ConstitutionAmendmentViewController.m */,
+				740E8EDE0F40A53700798E0C /* ConstitutionSignersViewController.h */,
+				740E8EDF0F40A53700798E0C /* ConstitutionSignersViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 				740E8D6B0F3FE93A00798E0C /* Amendment.m in Sources */,
 				740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */,
 				740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */,
+				740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
