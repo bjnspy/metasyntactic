@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -78,7 +79,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver progressbroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-     progress_update.setText(intent.getStringExtra("message"));
+      progress_update.setText(intent.getStringExtra("message"));
     }
   };
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
@@ -91,10 +92,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     public void onReceive(final Context context, final Intent intent) {
-      if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction()) &&  NowPlayingActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
+      if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction())
+          && NowPlayingActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
       }
-      if (Application.SCROLLING_INTENT.equals(intent.getAction()) && NowPlayingActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      if (Application.SCROLLING_INTENT.equals(intent.getAction())
+          && NowPlayingActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask.cancel(true);
       }
     }
@@ -114,6 +117,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       populateScoreMovieSectionsAndPositions();
       FastScrollGridView.getSections();
       this.postersAdapter.refreshMovies();
+    }
+    // cancel task so that it doesnt try to load old set of movies
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
     }
     this.mTask = new LoadPostersTask().execute(null);
   }
@@ -149,7 +156,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // Request the progress bar to be shown in the title
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
       setContentView(R.layout.progressbar_1);
-      progress_update = (TextView)findViewById(R.id.progress_update);
+      progress_update = (TextView) findViewById(R.id.progress_update);
       NowPlayingControllerWrapper.addActivity(this);
       getUserLocation();
       refresh();
@@ -221,7 +228,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
-
     registerReceiver(this.broadcastReceiver, new IntentFilter(
         Application.NOW_PLAYING_CHANGED_INTENT));
     registerReceiver(this.databroadcastReceiver, new IntentFilter(
@@ -235,7 +241,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }
-   // refresh();
+     refresh();
   }
 
   private void getAlphabet(final Context context) {
@@ -530,6 +536,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private class LoadPostersTask extends UserTask<Void, Void, Void> {
     @Override
     public Void doInBackground(final Void... params) {
+      Log.i("TEST", "task executing");
       Bitmap bitmap = null;
       for (int i = 0; i < movies.size(); i++) {
         final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movies.get(i)
@@ -538,8 +545,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
           bitmap = reference.get();
         }
         if (reference == null || bitmap == null) {
-          final File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movies
-              .get(i));
+          final File file = NowPlayingControllerWrapper
+              .getPosterFile_safeToCallFromBackground(movies.get(i));
           if (file != null) {
             final byte[] bytes = FileUtilities.readBytes(file);
             if (bytes != null && bytes.length > 0) {
@@ -571,21 +578,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       return null;
     }
     /*
-    final BitmapFactory.Options options = new BitmapFactory.Options();
-    final int width = 90;
-    final int height = 125;
-    // Get the dimensions only.
-    options.inJustDecodeBounds = true;
-    BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-    final int bitmapWidth = options.outWidth;
-    final int bitmapHeight = options.outHeight;
-    final float scale = Math.min((float) bitmapWidth / (float) width, (float) bitmapHeight
-        / (float) height) * 2;
-    options.inJustDecodeBounds = false;
-    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-    options.inSampleSize = (int) scale;
-    final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-    return bitmap;
-    */
+     * final BitmapFactory.Options options = new BitmapFactory.Options(); final
+     * int width = 90; final int height = 125; // Get the dimensions only.
+     * options.inJustDecodeBounds = true; BitmapFactory.decodeByteArray(bytes,
+     * 0, bytes.length, options); final int bitmapWidth = options.outWidth;
+     * final int bitmapHeight = options.outHeight; final float scale =
+     * Math.min((float) bitmapWidth / (float) width, (float) bitmapHeight /
+     * (float) height) * 2; options.inJustDecodeBounds = false;
+     * options.inPreferredConfig = Bitmap.Config.ARGB_8888; options.inSampleSize =
+     * (int) scale; final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
+     * 0, bytes.length, options); return bitmap;
+     */
   }
 }
