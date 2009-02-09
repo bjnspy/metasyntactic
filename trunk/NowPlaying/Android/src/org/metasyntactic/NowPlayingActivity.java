@@ -66,12 +66,19 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
+  private TextView progress_update;
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
       refresh();
+    }
+  };
+  private final BroadcastReceiver progressbroadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
+     progress_update.setText(intent.getStringExtra("message"));
     }
   };
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
@@ -142,6 +149,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // Request the progress bar to be shown in the title
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
       setContentView(R.layout.progressbar_1);
+      progress_update = (TextView)findViewById(R.id.progress_update);
       NowPlayingControllerWrapper.addActivity(this);
       getUserLocation();
       refresh();
@@ -194,6 +202,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     unregisterReceiver(this.broadcastReceiver);
     unregisterReceiver(this.databroadcastReceiver);
     unregisterReceiver(this.scrollStatebroadcastReceiver);
+    unregisterReceiver(this.progressbroadcastReceiver);
     if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
       this.mTask.cancel(true);
     }
@@ -221,6 +230,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         Application.SCROLLING_INTENT));
     registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
         Application.NOT_SCROLLING_INTENT));
+    registerReceiver(this.progressbroadcastReceiver, new IntentFilter(
+        Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }

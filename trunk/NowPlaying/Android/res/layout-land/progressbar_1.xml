@@ -9,7 +9,7 @@
         android:id="@+id/droid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60px"
+        android:layout_marginTop="40px"
         android:layout_marginBottom="30px"
         android:src="@drawable/movie_droid"
         android:layout_gravity="center_horizontal" />
@@ -19,5 +19,18 @@
         android:layout_width="250px"
         android:indeterminate="true"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/progress_update"
+        android:layout_width="wrap_content"
+        android:paddingLeft="5px"
+        android:paddingTop="5px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorPrimaryDisableOnly"
+        android:layout_centerVertical="true"
+        android:shadowColor="@color/shadow"
+        android:shadowRadius="2"
+        android:ellipsize="end" />
 </LinearLayout>
