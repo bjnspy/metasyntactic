@@ -79,7 +79,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver progressbroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      progress_update.setText(intent.getStringExtra("message"));
+      NowPlayingActivity.this.progress_update.setText(intent.getStringExtra("message"));
     }
   };
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
@@ -156,7 +156,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // Request the progress bar to be shown in the title
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
       setContentView(R.layout.progressbar_1);
-      progress_update = (TextView) findViewById(R.id.progress_update);
+      this.progress_update = (TextView) findViewById(R.id.progress_update);
       NowPlayingControllerWrapper.addActivity(this);
       getUserLocation();
       refresh();

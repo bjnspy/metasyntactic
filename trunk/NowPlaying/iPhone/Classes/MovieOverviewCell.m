@@ -279,7 +279,8 @@
     UIImage* posterImage = [MovieDetailsViewController posterForMovie:movie model:model];
     TappableImageView* posterImageView = [[[TappableImageView alloc] initWithImage:posterImage] autorelease];
 
-    MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie model:model
+    MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie
+                                                         model:model
                                                          frame:[UIScreen mainScreen].applicationFrame
                                                    posterImage:posterImage
                                                posterImageView:posterImageView

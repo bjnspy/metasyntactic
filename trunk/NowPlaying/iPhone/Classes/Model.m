@@ -637,7 +637,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 
 - (NSArray*) netflixThemes {
-    return [NSArray arrayWithObjects:@"Plain", @"IronMan", nil]; 
+    return [NSArray arrayWithObjects:@"Plain", @"IronMan", nil];
 }
 
 

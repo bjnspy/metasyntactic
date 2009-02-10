@@ -376,7 +376,7 @@
     if (model.userAddress.length == 0) {
         return;
     }
-    
+
     if (!model.upcomingEnabled) {
         return;
     }

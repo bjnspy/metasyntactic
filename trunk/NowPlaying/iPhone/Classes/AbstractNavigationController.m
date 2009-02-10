@@ -297,7 +297,7 @@
             break;
         }
     }
-    
+
     if (index > 0) {
         UIViewController* controller = [self.viewControllers objectAtIndex:index - 1];
         [self popToViewController:controller animated:animated];

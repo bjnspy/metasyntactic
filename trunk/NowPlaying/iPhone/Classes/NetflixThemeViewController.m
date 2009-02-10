@@ -29,7 +29,7 @@
 
 - (void) dealloc {
     self.navigationController = nil;
-    
+
     [super dealloc];
 }
 
@@ -39,7 +39,7 @@
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Theme", nil);
     }
-    
+
     return self;
 }
 
@@ -68,7 +68,7 @@
 - (void) setCheckmarkForCell:(UITableViewCell*) cell
                        atRow:(NSInteger) row {
     cell.accessoryType = UITableViewCellAccessoryNone;
-    
+
     if ([self.model.netflixTheme isEqual:[self.model.netflixThemes objectAtIndex:row]]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -82,10 +82,10 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     cell.text = [self.model.netflixThemes objectAtIndex:indexPath.row];
     [self setCheckmarkForCell:cell atRow:indexPath.row];
-    
+
     return cell;
 }
 
@@ -95,14 +95,14 @@
     [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
 
     [self.model setNetflixTheme:[self.model.netflixThemes objectAtIndex:selectPath.row]];
-    
+
     for (int i = 0; i < self.model.netflixThemes.count; i++) {
         NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
-        
+
         [self setCheckmarkForCell:cell atRow:i];
     }
-    
+
     [AppDelegate majorRefresh:YES];
 }
 
