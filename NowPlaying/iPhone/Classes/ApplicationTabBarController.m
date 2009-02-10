@@ -137,7 +137,7 @@
 - (void)     tabBarController:(UITabBarController*) tabBarController
       didSelectViewController:(UIViewController*) viewController {
     [self.model setSelectedTabBarViewControllerIndex:self.selectedIndex];
-    
+
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         [self.model saveNavigationStack:(UINavigationController*)viewController];
     }
@@ -199,7 +199,7 @@
 
 - (void) setTabs:(NSNumber*) animated {
     NSMutableArray* controllers = [NSMutableArray array];
-    
+
     [controllers addObject:[self loadMoviesNavigationController]];
     [controllers addObject:[self loadTheatersNavigationController]];
     if (self.model.upcomingEnabled) {
@@ -235,7 +235,7 @@
         [self setViewControllers:[NSArray array] animated:YES];
         [self performSelector:@selector(setTabs:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.5];
     }
-    
+
     UIViewController* currentViewController = self.selectedViewController;
     for (UIViewController* viewController in currentControllers) {
         if (viewController != currentViewController &&

@@ -226,10 +226,13 @@ const NSInteger POSTER_TAG = -1;
 
 + (UIImage*) posterForMovie:(Movie*) movie model:(Model*) model {
     UIImage* image = [model posterForMovie:movie];
-    if (image == nil) {
-        image = [ImageCache imageNotAvailable];
+    CGSize size = image.size;
+
+    if (size.height > 0 && size.width > 0) {
+        return image;
     }
-    return image;
+
+    return [ImageCache imageNotAvailable];
 }
 
 
@@ -268,7 +271,13 @@ const NSInteger POSTER_TAG = -1;
 
 
 - (void) updateImage {
-    self.posterImage = [MovieDetailsViewController posterForMovie:movie model:self.model];
+    UIImage* image = [MovieDetailsViewController posterForMovie:movie model:self.model];
+    if (posterImage != nil) {
+        // we currently have a poster.  only replace it if we have something better
+        if (image != nil && image != [ImageCache imageNotAvailable]) {
+            self.posterImage = image;
+        }
+    }
     self.posterImageView.image = posterImage;
 }
 

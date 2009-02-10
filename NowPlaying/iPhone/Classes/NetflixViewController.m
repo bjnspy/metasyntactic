@@ -76,7 +76,7 @@ typedef enum {
 
 - (void) setupTableStyle {
     self.tableView.rowHeight = ROW_HEIGHT;
-    
+
     if ([self.model.netflixTheme isEqual:@"IronMan"]) {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = [ColorCache netflixRed];
@@ -129,7 +129,7 @@ typedef enum {
 - (void) initializeInfoButton {
     UIButton* infoButton = [[UIButton buttonWithType:UIButtonTypeInfoLight] retain];
     [infoButton addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
-    
+
     infoButton.contentMode = UIViewContentModeCenter;
     CGRect frame = infoButton.frame;
     frame.size.width += 4;
@@ -194,7 +194,7 @@ typedef enum {
 
 - (UIImage*) imageNamed:(NSString*) name {
     NSString* fullName = [NSString stringWithFormat:@"%@-%@", self.model.netflixTheme, name];
-    
+
     return [UIImage imageNamed:fullName];
 }
 
@@ -203,7 +203,7 @@ typedef enum {
     AutoResizingCell* cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.label.backgroundColor = [UIColor clearColor];
     cell.selectedTextColor = [UIColor whiteColor];
-    
+
     if (self.model.isIronManTheme) {
         cell.textColor = [UIColor whiteColor];
     } else {

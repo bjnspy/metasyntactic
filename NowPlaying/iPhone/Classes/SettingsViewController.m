@@ -114,7 +114,7 @@
     } else if (section == 4) {
         return 2;
     }
-    
+
     return 0;
 }
 
@@ -135,20 +135,20 @@
                                      selector:(SEL) selector {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.accessoryView = picker;
 
     [picker addTarget:self action:selector forControlEvents:UIControlEventValueChanged];
     picker.on = on;
     cell.text = text;
-    
-    return cell;  
+
+    return cell;
 }
 
 
 - (UITableViewCell*) createSettingCellWithKey:(NSString*) key
-                                        value:(NSString*) value 
+                                        value:(NSString*) value
                                   placeholder:(NSString*) placeholder {
     static NSString* reuseIdentifier = @"reuseIdentifier";
     SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
@@ -159,7 +159,7 @@
 
     cell.placeholder = placeholder;
     [cell setKey:key value:value hideSeparator:NO];
-    
+
     return cell;
 }
 
@@ -207,7 +207,7 @@
             key = NSLocalizedString(@"Reviews", nil);
             value = self.model.currentScoreProvider;
         }
-        
+
         return [self createSettingCellWithKey:key value:value placeholder:placeholder];
     } else if (row >= 4 && row <= 7) {
         NSString* text;
@@ -230,7 +230,7 @@
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
         }
-        
+
         return [self createToggleCellWithText:text on:on selector:selector];
     }
 
@@ -253,7 +253,7 @@
     } else {
         NSString* key = NSLocalizedString(@"Show", nil);;
         NSString* value = @"";
-        
+
         if (self.model.dvdMoviesShowBoth) {
             value = NSLocalizedString(@"Both", nil);
         } else if (self.model.dvdMoviesShowOnlyDVDs) {
@@ -263,7 +263,7 @@
         } else {
             value = NSLocalizedString(@"Neither", nil);
         }
-        
+
         return [self createSettingCellWithKey:key value:value];
     }
 }
@@ -429,7 +429,7 @@
 
 
 - (void) didSelectUpcomingRow:(NSInteger) row {
-    
+
 }
 
 
@@ -487,7 +487,7 @@
     } else if (section == 4) {
         return NSLocalizedString(@"Netflix", nil);
     }
-    
+
     return nil;
 }
 
