@@ -23,9 +23,9 @@
 #import "RottenTomatoesScoreProvider.h"
 #import "Score.h"
 #import "ScoreProvider.h"
+#import "ThreadingUtilities.h"
 
 @interface ScoreCache()
-@property (assign) Model* model;
 @property (retain) id<ScoreProvider> rottenTomatoesScoreProvider;
 @property (retain) id<ScoreProvider> metacriticScoreProvider;
 @property (retain) id<ScoreProvider> googleScoreProvider;
@@ -34,14 +34,12 @@
 
 @implementation ScoreCache
 
-@synthesize model;
 @synthesize rottenTomatoesScoreProvider;
 @synthesize metacriticScoreProvider;
 @synthesize googleScoreProvider;
 @synthesize noneScoreProvider;
 
 - (void) dealloc {
-    self.model = nil;
     self.rottenTomatoesScoreProvider = nil;
     self.metacriticScoreProvider = nil;
     self.googleScoreProvider = nil;
@@ -52,9 +50,7 @@
 
 
 - (id) initWithModel:(Model*) model_ {
-    if (self = [super init]) {
-        self.model = model_;
-
+    if (self = [super initWithModel:model_]) {
         self.rottenTomatoesScoreProvider = [RottenTomatoesScoreProvider providerWithModel:model];
         self.metacriticScoreProvider = [MetacriticScoreProvider providerWithModel:model];
         self.googleScoreProvider = [GoogleScoreProvider providerWithModel:model];
@@ -123,9 +119,23 @@
     if (model.userAddress.length == 0) {
         return;
     }
+    
+    id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
+    [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint:)
+                                  onTarget:self
+                                  argument:currentScoreProvider
+                                      gate:gate
+                                   visible:NO];
+}
+
+
+- (void) updateBackgroundEntryPoint:(id<ScoreProvider>) currentScoreProvider {
+    [currentScoreProvider update];
 
     for (id<ScoreProvider> provider in self.scoreProviders) {
-        [provider update];
+        if (provider != currentScoreProvider) {
+            [provider update];
+        }
     }
 }
 

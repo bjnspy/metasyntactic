@@ -12,16 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ScoreCache : NSObject {
+#import "AbstractCache.h"
+
+@interface ScoreCache : AbstractCache {
 @private
-    Model* model;
     id<ScoreProvider> rottenTomatoesScoreProvider;
     id<ScoreProvider> metacriticScoreProvider;
     id<ScoreProvider> googleScoreProvider;
     id<ScoreProvider> noneScoreProvider;
 }
-
-@property (readonly, assign) Model* model;
 
 + (ScoreCache*) cacheWithModel:(Model*) model;
 
