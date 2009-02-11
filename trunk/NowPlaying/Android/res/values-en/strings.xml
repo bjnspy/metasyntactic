@@ -24,7 +24,7 @@
   <!--%@ %@-->
   <string name="string_string">%s %s</string>
   <!--%@ (%@)-->
-  <string name="string_string">%s (%s)</string>
+  <string name="string_paren_string">%s (%s)</string>
   <!--%@ (No Online Ticketing)-->
   <string name="string_no_online_ticketing">%s (No Online Ticketing)</string>
   <!--%@ cannot open the page because it is not connected to the Internet.-->
@@ -216,7 +216,7 @@
   <!--Netflix-->
   <string name="netflix">Netflix</string>
   <!--Netflix:-->
-  <string name="netflix">Netflix:</string>
+  <string name="netflix_colon">Netflix:</string>
   <!--Network unavailable-->
   <string name="network_unavailable">Network unavailable</string>
   <!--New 'Instant Watch'-->
@@ -383,8 +383,6 @@
   <string name="unknown_distance">Unknown Distance</string>
   <!--Unknown Release Date-->
   <string name="unknown_release_date">Unknown Release Date</string>
-  <!--Unknown release date-->
-  <string name="unknown_release_date">Unknown release date</string>
   <!--Unrated-->
   <string name="unrated">Unrated</string>
   <!--Upcoming-->

@@ -165,14 +165,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   @Override
-  protected void onNewIntent(Intent intent) {
+  protected void onNewIntent(final Intent intent) {
     // TODO Auto-generated method stub
     super.onNewIntent(intent);
     this.search = intent.getStringExtra("movie");
     if (this.search != null) {
       this.bottomBar.setVisibility(View.VISIBLE);
     } else {
-      bottomBar.setVisibility(View.GONE);
+      this.bottomBar.setVisibility(View.GONE);
     }
   }
 
@@ -282,9 +282,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
     final Button allMovies = (Button) findViewById(R.id.all_movies);
     allMovies.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View arg0) {
-        Intent intent = new Intent();
+      public void onClick(final View arg0) {
+        final Intent intent = new Intent();
         intent.setClass(NowPlayingActivity.this, NowPlayingActivity.class);
         NowPlayingActivity.this.startActivity(intent);
       }
