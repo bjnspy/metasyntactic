@@ -209,7 +209,7 @@
                 [sectionTitles insertObject:starString atIndex:0];
             }
         } else {
-            NSString* title = NSLocalizedString(@"Unknown release date", nil);
+            NSString* title = NSLocalizedString(@"Unknown Release Ddate", nil);
             NSDate* releaseDate = [self.model releaseDateForMovie:movie];
 
             if (releaseDate != nil) {
