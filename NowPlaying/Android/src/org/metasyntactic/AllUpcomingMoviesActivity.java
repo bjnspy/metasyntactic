@@ -76,13 +76,13 @@ public class AllUpcomingMoviesActivity extends ListActivity {
       final String releaseDateString = releaseDate == null ? res
           .getString(R.string.unknown_release_date) : DateFormat.getDateInstance(DateFormat.LONG)
           .format(releaseDate);
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date),
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.release_date_colon),
           releaseDateString, MovieDetailItemType.DATA, null, false);
       this.movieDetailEntries.add(entry);
     }
     {
       // Add cast
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast),
+      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.cast_colon),
           MovieViewUtilities.formatListToString(this.movie.getCast()), MovieDetailItemType.DATA,
           null, false);
       this.movieDetailEntries.add(entry);
@@ -91,7 +91,7 @@ public class AllUpcomingMoviesActivity extends ListActivity {
       // Add director
       final List<String> directors = this.movie.getDirectors();
       if (directors != null && !directors.isEmpty()) {
-        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director),
+        final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.director_colon),
             MovieViewUtilities.formatListToString(directors), MovieDetailItemType.DATA, null, false);
         this.movieDetailEntries.add(entry);
       }
