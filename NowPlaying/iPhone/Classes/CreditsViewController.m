@@ -36,7 +36,7 @@ typedef enum {
     TicketSalesBySection,
     MovieDetailsBySection,
     GeolocationServicesBySection,
-    DVDDetailsBySection,
+    DVDDetailsSection,
     LocalizedBySection,
     LicenseSection,
     LastSection = LicenseSection
@@ -128,7 +128,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return 1;
     } else if (section == GeolocationServicesBySection) {
         return 3;
-    } else if (section == DVDDetailsBySection) {
+    } else if (section == DVDDetailsSection) {
         return 2;
     } else if (section == LocalizedBySection) {
         return localizers.count;
@@ -158,7 +158,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         if (row == 0) {
             return [UIImage imageNamed:@"YahooLogo.png"];
         }
-    } else if (section == DVDDetailsBySection) {
+    } else if (section == DVDDetailsSection) {
         if (row == 0) {
             return [UIImage imageNamed:@"VideoETALogo.png"];
         } else {
@@ -278,8 +278,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return NSLocalizedString(@"Movie details provided by:", nil);
     } else if (section == GeolocationServicesBySection) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
-    } else if (section == DVDDetailsBySection) {
-        return NSLocalizedString(@"DVD/Blu-ray details provided by:", nil);
+    } else if (section == DVDDetailsSection) {
+        return NSLocalizedString(@"DVD/Blu-ray details:", nil);
     } else if (section == LocalizedBySection) {
         return NSLocalizedString(@"Localized by:", nil);
     }
@@ -303,7 +303,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsBySection) {
+    if (indexPath.section >= WrittenBySection && indexPath.section <= DVDDetailsSection) {
         return UITableViewCellAccessoryDetailDisclosureButton;
     } else if (indexPath.section == LocalizedBySection) {
         return UITableViewCellAccessoryNone;
@@ -383,7 +383,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         } else {
             url = @"http://geocoder.ca";
         }
-    } else if (section == DVDDetailsBySection) {
+    } else if (section == DVDDetailsSection) {
         if (row == 0) {
             url = @"http://www.videoeta.com";
         } else {

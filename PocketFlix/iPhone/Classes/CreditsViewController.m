@@ -32,6 +32,7 @@ typedef enum {
     WrittenBySection,
     MyOtherApplicationsSection,
     GraphicsBySection,
+    DVDDetailsSection,
     LocalizedBySection,
     LicenseSection,
     LastSection = LicenseSection
@@ -115,6 +116,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return 3;
     } else if (section == GraphicsBySection) {
         return 1;
+    } else if (section == DVDDetailsSection) {
+        return 1;
     } else if (section == LocalizedBySection) {
         return localizers.count;
     } else if (section == LicenseSection) {
@@ -125,13 +128,30 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 }
 
 
+- (UIImage*) getImage:(NSIndexPath*) indexPath {
+    NSInteger section = indexPath.section;
+    
+    if (section == DVDDetailsSection) {
+       return [UIImage imageNamed:@"DeliveredByNetflix.png"];
+    }
+    
+    return nil;
+}
+
+
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+    UIImage* image = [self getImage:indexPath];
     CGFloat height = tableView.rowHeight;
-    if (indexPath.section == LocalizedBySection) {
+    if (image != nil) {
+        CGFloat imageHeight = image.size.height + 10;
+        if (imageHeight > height) {
+            height = imageHeight;
+        }
+    } else if (indexPath.section == LocalizedBySection) {
         return tableView.rowHeight - 14;
     }
-
+    
     return height;
 }
 
@@ -167,7 +187,18 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    if (section == WrittenBySection) {
+    UIImage* image = [self getImage:indexPath];
+    
+    if (image != nil) {
+        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        
+        NSInteger x = (self.tableView.contentSize.width - image.size.width) / 2 - 20;
+        NSInteger y = ([self tableView:tableView heightForRowAtIndexPath:indexPath] - image.size.height) / 2;
+        
+        imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
+        
+        [cell.contentView addSubview:imageView];
+    } else if (section == WrittenBySection) {
         if (row == 0) {
             cell.text = NSLocalizedString(@"Send Feedback", nil);
         } else if (row == 1) {
@@ -200,6 +231,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         return NSLocalizedString(@"Written by Cyrus Najmabadi", nil);
     } else if (section == MyOtherApplicationsSection) {
         return NSLocalizedString(@"My other applications", nil);
+    } else if (section == DVDDetailsSection) {
+        return NSLocalizedString(@"DVD/Blu-ray details:", nil);
     } else if (section == GraphicsBySection) {
         return NSLocalizedString(@"Graphics by David Steinberger", nil);
     } else if (section == LocalizedBySection) {
