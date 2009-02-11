@@ -27,7 +27,6 @@ static MainThreadGate* gate;
 }
 
 
-
 + (void) createDirectory:(NSString*) directory {
     [gate lock];
     {

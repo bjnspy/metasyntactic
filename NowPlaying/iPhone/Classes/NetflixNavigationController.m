@@ -45,6 +45,7 @@
     if (self = [super initWithTabBarController:controller]) {
         self.tabBarItem.image = [UIImage imageNamed:@"Netflix.png"];
         self.title = NSLocalizedString(@"Netflix", nil);
+        [self setupTintColor];
     }
 
     return self;

@@ -245,8 +245,6 @@ static DifferenceEngine* differenceEngine = nil;
         differenceEngine = [[DifferenceEngine engine] retain];
 
         [self initializeDirectories];
-        [self moveItemToTrash:supportDirectory];
-
         [self emptyTrash];
     }
 }
