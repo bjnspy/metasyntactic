@@ -106,12 +106,12 @@
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie inMovies:(NSArray*) movies {
-    id<ScoreProvider> provider = self.currentScoreProvider;
-    if (provider == rottenTomatoesScoreProvider) {
-        provider = metacriticScoreProvider;
+    id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
+    if (currentScoreProvider == rottenTomatoesScoreProvider) {
+        currentScoreProvider = metacriticScoreProvider;
     }
 
-    return [provider reviewsForMovie:movie inMovies:movies];
+    return [currentScoreProvider reviewsForMovie:movie inMovies:movies];
 }
 
 
@@ -121,6 +121,7 @@
     }
     
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
+
     [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint:)
                                   onTarget:self
                                   argument:currentScoreProvider
