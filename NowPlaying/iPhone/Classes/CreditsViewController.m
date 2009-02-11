@@ -129,7 +129,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == GeolocationServicesBySection) {
         return 3;
     } else if (section == DVDDetailsBySection) {
-        return 1;
+        return 2;
     } else if (section == LocalizedBySection) {
         return localizers.count;
     } else if (section == LicenseSection) {
@@ -159,7 +159,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             return [UIImage imageNamed:@"YahooLogo.png"];
         }
     } else if (section == DVDDetailsBySection) {
-        return [UIImage imageNamed:@"VideoETALogo.png"];
+        if (row == 0) {
+            return [UIImage imageNamed:@"VideoETALogo.png"];
+        } else {
+            return [UIImage imageNamed:@"DeliveredByNetflix.png"];
+        }
     }
 
     return nil;
@@ -380,7 +384,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
             url = @"http://geocoder.ca";
         }
     } else if (section == DVDDetailsBySection) {
-        url = @"http://www.videoeta.com";
+        if (row == 0) {
+            url = @"http://www.videoeta.com";
+        } else {
+            url = @"http://www.netflix.com";
+        }
     } else if (section == LocalizedBySection) {
         return;
     } else if (section == LicenseSection) {
