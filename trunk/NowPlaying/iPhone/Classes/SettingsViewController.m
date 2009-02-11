@@ -483,7 +483,7 @@
     if (section == 2) {
         return NSLocalizedString(@"Upcoming", nil);
     } else if (section == 3) {
-        return NSLocalizedString(@"DVD/Bluray", nil);
+        return NSLocalizedString(@"DVD/Blu-ray", nil);
     } else if (section == 4) {
         return NSLocalizedString(@"Netflix", nil);
     }

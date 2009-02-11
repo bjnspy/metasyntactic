@@ -132,7 +132,7 @@
     NSString* title = [[NetflixCache mostPopularTitles] objectAtIndex:indexPath.section];
     NSNumber* count = [titleToCount objectForKey:title];
 
-    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), title, count.integerValue];
+    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), title, count];
     return cell;
 }
 

@@ -221,7 +221,7 @@ typedef enum {
                 if (mostPopularTitleCount == 0) {
                     cell.text = NSLocalizedString(@"Most Popular", nil);
                 } else {
-                    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%d)", nil), NSLocalizedString(@"Most Popular", nil), mostPopularTitleCount];
+                    cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), NSLocalizedString(@"Most Popular", nil), [NSNumber numberWithInteger:mostPopularTitleCount]];
                 }
                 cell.image = [self imageNamed:@"NetflixMostPopular.png"];
                 break;
