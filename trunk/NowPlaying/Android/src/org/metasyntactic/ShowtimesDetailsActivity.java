@@ -136,7 +136,6 @@ public class ShowtimesDetailsActivity extends ListActivity {
         final String addr = "user@example.com";
         final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
         intent1.putExtra("subject", res.getString(R.string.showtimes_for) + " "
-            + res.getString(R.string.showtimes_at)
             + ShowtimesDetailsActivity.this.theater.getName());
         intent1.putExtra("body", performance);
         ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent1);

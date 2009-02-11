@@ -15,18 +15,20 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -67,7 +69,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
-  private TextView progress_update;
+  private TextView progressUpdate;
+  private RelativeLayout bottomBar;
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -79,7 +82,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver progressbroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      NowPlayingActivity.this.progress_update.setText(intent.getStringExtra("message"));
+      NowPlayingActivity.this.progressUpdate.setText(intent.getStringExtra("message"));
     }
   };
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
@@ -156,15 +159,20 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // Request the progress bar to be shown in the title
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
       setContentView(R.layout.progressbar_1);
-      this.progress_update = (TextView) findViewById(R.id.progress_update);
+      this.progressUpdate = (TextView) findViewById(R.id.progress_update);
       NowPlayingControllerWrapper.addActivity(this);
-      getUserLocation();
-      refresh();
-      if (this.movies != null && !this.movies.isEmpty()) {
-        setup();
-        this.isGridSetup = true;
-      }
-      showSearchResuts();
+    }
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    // TODO Auto-generated method stub
+    super.onNewIntent(intent);
+    this.search = intent.getStringExtra("movie");
+    if (this.search != null) {
+      this.bottomBar.setVisibility(View.VISIBLE);
+    } else {
+      bottomBar.setVisibility(View.GONE);
     }
   }
 
@@ -177,11 +185,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void showSearchResuts() {
-    this.search = getIntent().getStringExtra("movie");
+  private void getSearchResuts() {
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
-      if (!matchingMovies.isEmpty() && this.isGridSetup) {
+      if (!matchingMovies.isEmpty()) {
         this.movies = matchingMovies;
         // cancel task so that it doesnt try to load the complete set of movies.
         if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
@@ -241,7 +248,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }
-     refresh();
+    getUserLocation();
+    if (this.movies != null && !this.movies.isEmpty()) {
+      setup();
+      this.isGridSetup = true;
+    }
+    getSearchResuts();
+    refresh();
   }
 
   private void getAlphabet(final Context context) {
@@ -263,6 +276,19 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     getAlphabet(this);
     getScores(this);
     setContentView(R.layout.moviegrid_anim);
+    this.bottomBar = (RelativeLayout) findViewById(R.id.bottom_bar);
+    if (this.search == null) {
+      this.bottomBar.setVisibility(View.GONE);
+    }
+    final Button allMovies = (Button) findViewById(R.id.all_movies);
+    allMovies.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View arg0) {
+        Intent intent = new Intent();
+        intent.setClass(NowPlayingActivity.this, NowPlayingActivity.class);
+        NowPlayingActivity.this.startActivity(intent);
+      }
+    });
     this.grid = (CustomGridView) findViewById(R.id.grid);
     this.grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position,
@@ -451,7 +477,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
         .setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
-        R.drawable.upcoming);
+        android.R.drawable.ic_menu_send);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
         .setAlphabeticShortcut('s');
@@ -492,21 +518,27 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
       intent1.putExtra("subject", res.getString(R.string.feedback));
       String body;
-      body = res.getString(R.string.enter_feedback);
-      body += res.getString(R.string.settings);
-      body += ": " + res.getString(R.string.autoupdate_location) + ":"
-          + NowPlayingControllerWrapper.isAutoUpdateEnabled();
-      body += ", " + res.getString(R.string.location) + ":"
-          + NowPlayingControllerWrapper.getUserLocation();
-      body += ", " + res.getString(R.string.search_distance) + ":"
-          + NowPlayingControllerWrapper.getSearchDistance();
-      body += ", " + res.getString(R.string.reviews) + ":"
-          + NowPlayingControllerWrapper.getScoreType();
+      body = getUserSettings(res);
       intent1.putExtra("body", body);
       startActivity(intent1);
       return true;
     }
     return false;
+  }
+
+  private String getUserSettings(final Resources res) {
+    String body;
+    body = "\n\n\n\n";
+    body += res.getString(R.string.settings);
+    body += "\n" + res.getString(R.string.autoupdate_location) + ": "
+        + NowPlayingControllerWrapper.isAutoUpdateEnabled();
+    body += "\n" + res.getString(R.string.location) + ": "
+        + NowPlayingControllerWrapper.getUserLocation();
+    body += "\n" + res.getString(R.string.search_distance) + ": "
+        + NowPlayingControllerWrapper.getSearchDistance();
+    body += "\n" + res.getString(R.string.reviews) + ": "
+        + NowPlayingControllerWrapper.getScoreType();
+    return body;
   }
 
   private void setupRotationAnimation(final View view) {
@@ -536,7 +568,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private class LoadPostersTask extends UserTask<Void, Void, Void> {
     @Override
     public Void doInBackground(final Void... params) {
-      Log.i("TEST", "task executing");
       Bitmap bitmap = null;
       for (int i = 0; i < movies.size(); i++) {
         final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movies.get(i)

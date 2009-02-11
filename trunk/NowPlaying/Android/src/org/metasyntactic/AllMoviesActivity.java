@@ -187,9 +187,9 @@ public class AllMoviesActivity extends ListActivity {
         final String synopsis = entry.value;
         if (synopsis.length() > 0) {
           // hack to display text on left and bottom or poster
-          if (synopsis.length() > 289) {
-            final String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(" ", 289));
-            final String desc2_text = synopsis.substring(synopsis.lastIndexOf(" ", 289));
+          if (synopsis.length() > 270) {
+            final String desc1_text = synopsis.substring(0, synopsis.lastIndexOf(" ", 270));
+            final String desc2_text = synopsis.substring(synopsis.lastIndexOf(" ", 270));
             text1.setText(desc1_text);
             text2.setText(desc2_text);
           } else {
