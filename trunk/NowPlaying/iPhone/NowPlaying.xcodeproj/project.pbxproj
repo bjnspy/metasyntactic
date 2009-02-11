@@ -119,6 +119,7 @@
 		744AF5510EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF5500EC42A5A008B5B35 /* ActivityIndicatorViewWithBackground.m */; };
 		744AF7FB0EC4DC1F008B5B35 /* BlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */; };
 		744AF8430EC4DF12008B5B35 /* AbstractDVDBlurayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */; };
+		744CA2B00F4373B7000DC92A /* DeliveredByNetflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */; };
 		745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745A08860F2EB444002F64C6 /* AbstractImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A08850F2EB444002F64C6 /* AbstractImageCell.m */; };
@@ -533,6 +534,7 @@
 		744AF7FA0EC4DC1F008B5B35 /* BlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurayCache.m; sourceTree = "<group>"; };
 		744AF8410EC4DF12008B5B35 /* AbstractDVDBlurayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDVDBlurayCache.h; sourceTree = "<group>"; };
 		744AF8420EC4DF12008B5B35 /* AbstractDVDBlurayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDVDBlurayCache.m; sourceTree = "<group>"; };
+		744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeliveredByNetflix.png; path = Resources/DeliveredByNetflix.png; sourceTree = "<group>"; };
 		745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
 		745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
@@ -1058,6 +1060,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				744CA2AF0F4373B7000DC92A /* DeliveredByNetflix.png */,
 				7471E1FF0EFA0D67000490CA /* Netflix */,
 				747D98CD0F3047E7000B5A68 /* Netflix.png */,
 				7408FEC30F28519D00BD86B6 /* DeleteMovie.png */,
@@ -2100,6 +2103,7 @@
 				743D95210F3F6DFB00BA0784 /* IronMan-NetflixSettings.png in Resources */,
 				743D95B90F3F761900BA0784 /* IronMan-NetflixCredits.png in Resources */,
 				743D95BB0F3F766500BA0784 /* Plain-NetflixCredits.png in Resources */,
+				744CA2B00F4373B7000DC92A /* DeliveredByNetflix.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
