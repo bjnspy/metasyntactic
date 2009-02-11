@@ -64,11 +64,11 @@
 - (void) unlock {
     [condition lock];
     {
-        NSAssert(mainThreadRunning || backgroundThreadRunning, @"");
-
         if ([NSThread isMainThread]) {
+            NSAssert(mainThreadRunning, @"");
             mainThreadRunning = NO;
         } else {
+            NSAssert(backgroundThreadRunning, @"");
             backgroundThreadRunning = NO;
         }
 
