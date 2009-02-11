@@ -48,6 +48,7 @@ import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -567,7 +568,14 @@ public class DataProvider {
     FileUtilities.writeStringToDateMap(result.synchronizationData, getSynchronizationFile());
     LogUtilities.logTime(DataProvider.class, "Saving Sync Data", start);
     start = System.currentTimeMillis();
-    final File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
+    File tempFile;
+    try {
+      tempFile = File.createTempFile("DP", "T1" + Math.random());
+    } catch (final IOException e) {
+      throw new RuntimeException(e);
+    }
+    final File tempDirectory = tempFile.getParentFile();
+    final File tempFolder = new File(tempDirectory, "T2" + Math.random());
     tempFolder.mkdirs();
 
     broadcastUpdate(R.string.downloading_local_performances);
