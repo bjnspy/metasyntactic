@@ -24,9 +24,9 @@
   <!--%@ %@-->
   <string name="string_string">%s %s</string>
   <!--%@ (%@)-->
-  <string name="string_string">%s (%s)</string>
+  <string name="string_parenstringparen">%s (%s)</string>
   <!--%@ (No Online Ticketing)-->
-  <string name="string_no_online_ticketing">%s (No Online Ticketing)</string>
+  <string name="string_parenno_online_ticketingparen">%s (No Online Ticketing)</string>
   <!--%@ cannot open the page because it is not connected to the Internet.-->
   <string name="string_cannot_open_the_page_because_it_is_not">%s cannot open the page because it is not connected to the Internet.</string>
   <!--%@ does not store your Netflix username and password.\n\nWe will open a Netflix webpage for you to authorize this app on your account.\n\nA Wi-fi connection is recommended the first time you use Netflix on %@.-->
@@ -90,7 +90,7 @@
   <!--Cannot Open Page-->
   <string name="cannot_open_page">Cannot Open Page</string>
   <!--Cast:-->
-  <string name="cast">Cast:</string>
+  <string name="castcolon">Cast:</string>
   <!--Change date-->
   <string name="change_date">Change date</string>
   <!--Children & Family-->
@@ -102,7 +102,7 @@
   <!--Comedy-->
   <string name="comedy">Comedy</string>
   <!--Could not change rating:\n\n%@-->
-  <string name="could_not_change_rating_string">Could not change rating:\n\n%s</string>
+  <string name="could_not_change_ratingcolon_string">Could not change rating:\n\n%s</string>
   <!--Could not connect to Netflix.-->
   <string name="could_not_connect_to_netflix_dot">Could not connect to Netflix.</string>
   <!--Could not find location.-->
@@ -116,13 +116,13 @@
   <!--DVD/Blu-ray-->
   <string name="dvdbluray">DVD/Blu-ray</string>
   <!--DVD/Blu-ray details provided by:-->
-  <string name="dvdbluray_details_provided_by">DVD/Blu-ray details provided by:</string>
+  <string name="dvdbluray_details_provided_bycolon">DVD/Blu-ray details provided by:</string>
   <!--Data for future dates may be incomplete. Reset the search date to the current date to see full listings.-->
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">Data for future dates may be incomplete. Reset the search date to the current date to see full listings.</string>
   <!--Director:-->
-  <string name="director">Director:</string>
+  <string name="directorcolon">Director:</string>
   <!--Directors:-->
-  <string name="directors">Directors:</string>
+  <string name="directorscolon">Directors:</string>
   <!--Disc Queue-->
   <string name="disc_queue">Disc Queue</string>
   <!--Distance-->
@@ -154,13 +154,13 @@
   <!--Foreign-->
   <string name="foreign">Foreign</string>
   <!--Format:-->
-  <string name="format">Format:</string>
+  <string name="formatcolon">Format:</string>
   <!--Gay & Lesbian-->
   <string name="gay_lesbian">Gay &amp; Lesbian</string>
   <!--Genre:-->
-  <string name="genre">Genre:</string>
+  <string name="genrecolon">Genre:</string>
   <!--Geolocation services provided by:-->
-  <string name="geolocation_services_provided_by">Geolocation services provided by:</string>
+  <string name="geolocation_services_provided_bycolon">Geolocation services provided by:</string>
   <!--Graphics by Jeffrey Nee-->
   <string name="graphics_by_jeffrey_nee">Graphics by Jeffrey Nee</string>
   <!--Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)-->
@@ -186,7 +186,7 @@
   <!--Local results unavailable-->
   <string name="local_results_unavailable">Local results unavailable</string>
   <!--Localized by:-->
-  <string name="localized_by">Localized by:</string>
+  <string name="localized_bycolon">Localized by:</string>
   <!--Location-->
   <string name="location">Location</string>
   <!--Log In to Existing Account-->
@@ -200,9 +200,9 @@
   <!--Most Popular-->
   <string name="most_popular">Most Popular</string>
   <!--Movie details provided by:-->
-  <string name="movie_details_provided_by">Movie details provided by:</string>
+  <string name="movie_details_provided_bycolon">Movie details provided by:</string>
   <!--Movie reviews provided by:-->
-  <string name="movie_reviews_provided_by">Movie reviews provided by:</string>
+  <string name="movie_reviews_provided_bycolon">Movie reviews provided by:</string>
   <!--Movies-->
   <string name="movies">Movies</string>
   <!--Music & Musicals-->
@@ -216,7 +216,7 @@
   <!--Netflix-->
   <string name="netflix">Netflix</string>
   <!--Netflix:-->
-  <string name="netflix">Netflix:</string>
+  <string name="netflixcolon">Netflix:</string>
   <!--Network unavailable-->
   <string name="network_unavailable">Network unavailable</string>
   <!--New 'Instant Watch'-->
@@ -270,7 +270,7 @@
   <!--Rated %@-->
   <string name="rated_string">Rated %s</string>
   <!--Rated:-->
-  <string name="rated">Rated:</string>
+  <string name="ratedcolon">Rated:</string>
   <!--Read reviews-->
   <string name="read_reviews">Read reviews</string>
   <!--Really close by-->
@@ -288,13 +288,13 @@
   <!--Release-->
   <string name="release">Release</string>
   <!--Release date:-->
-  <string name="release_date">Release date:</string>
+  <string name="release_datecolon">Release date:</string>
   <!--Release: %@-->
-  <string name="release_string">Release: %s</string>
+  <string name="releasecolon_string">Release: %s</string>
   <!--Rental History-->
   <string name="rental_history">Rental History</string>
   <!--Reordering queue failed:\n\n%@-->
-  <string name="reordering_queue_failed_string">Reordering queue failed:\n\n%s</string>
+  <string name="reordering_queue_failedcolon_string">Reordering queue failed:\n\n%s</string>
   <!--Requesting access-->
   <string name="requesting_access">Requesting access</string>
   <!--Requesting authorization-->
@@ -304,7 +304,7 @@
   <!--Romance-->
   <string name="romance">Romance</string>
   <!--Running time:-->
-  <string name="running_time">Running time:</string>
+  <string name="running_timecolon">Running time:</string>
   <!--Safari-->
   <string name="safari">Safari</string>
   <!--Saved-->
@@ -344,7 +344,7 @@
   <!--Sports & Fitness-->
   <string name="sports_fitness">Sports &amp; Fitness</string>
   <!--Studio:-->
-  <string name="studio">Studio:</string>
+  <string name="studiocolon">Studio:</string>
   <!--Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!-->
   <string name="success_string_was_granted_access_to_your_netflix">Success! %s was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!</string>
   <!--Tap to enter location-->
@@ -366,7 +366,7 @@
   <!--Thrillers-->
   <string name="thrillers">Thrillers</string>
   <!--Ticket sales provided by:-->
-  <string name="ticket_sales_provided_by">Ticket sales provided by:</string>
+  <string name="ticket_sales_provided_bycolon">Ticket sales provided by:</string>
   <!--Title-->
   <string name="title">Title</string>
   <!--Today-->
@@ -404,7 +404,7 @@
   <!--Yes-->
   <string name="yes">Yes</string>
   <!--Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.-->
-  <string name="your_strings_country_is_set_to_string_full_support">Your %s's country is set to: %s\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
+  <string name="your_strings_country_is_set_tocolon_string_full">Your %s's country is set to: %s\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.</string>
   <!--kilometer-->
   <string name="kilometer">kilometer</string>
   <!--kilometers-->
