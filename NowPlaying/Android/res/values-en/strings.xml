@@ -24,7 +24,7 @@
   <!--%@ %@-->
   <string name="string_string">%s %s</string>
   <!--%@ (%@)-->
-  <string name="string_paren_string">%s (%s)</string>
+  <string name="string_string">%s (%s)</string>
   <!--%@ (No Online Ticketing)-->
   <string name="string_no_online_ticketing">%s (No Online Ticketing)</string>
   <!--%@ cannot open the page because it is not connected to the Internet.-->
@@ -216,7 +216,7 @@
   <!--Netflix-->
   <string name="netflix">Netflix</string>
   <!--Netflix:-->
-  <string name="netflix_colon">Netflix:</string>
+  <string name="netflix">Netflix:</string>
   <!--Network unavailable-->
   <string name="network_unavailable">Network unavailable</string>
   <!--New 'Instant Watch'-->
