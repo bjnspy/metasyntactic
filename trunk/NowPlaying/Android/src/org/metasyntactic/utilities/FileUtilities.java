@@ -562,7 +562,7 @@ public class FileUtilities {
         data = new byte[0];
       }
 
-      final File tempFile = Application.createTempFile();
+      final File tempFile = createTempFile();
       final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 1 << 13);
       out.write(data);
 
@@ -574,5 +574,25 @@ public class FileUtilities {
       ExceptionUtilities.log(FileUtilities.class, "writeBytes", e);
       throw new RuntimeException(e);
     }
+  }
+
+  private static File createTempFile() {
+      Application.tempDirectory.mkdirs();
+      while (true) {
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+          sb.append((char)('a' + (int)(Math.random() * 25)));
+        }
+
+        final File file = new File(Application.tempDirectory, sb.toString());
+        if (!file.exists()) {
+          try {
+            file.createNewFile();
+          } catch (final IOException e) {
+            throw new RuntimeException(e);
+          }
+          return file;
+        }
+      }
   }
 }
