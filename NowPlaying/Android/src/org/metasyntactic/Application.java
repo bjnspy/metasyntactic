@@ -162,7 +162,7 @@ public class Application {
       while (true) {
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
-          sb.append('a' + (int)(Math.random() * 25));
+          sb.append((char)('a' + (int)(Math.random() * 25)));
         }
 
         final File file = new File(tempDirectory, sb.toString());
