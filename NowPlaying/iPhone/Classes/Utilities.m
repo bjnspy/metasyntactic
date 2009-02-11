@@ -76,7 +76,7 @@
     if ([element attributeValue:@"year"] == nil) {
         return [element attributeValue:@"name"];
     } else {
-        return [NSString stringWithFormat:@"%@ (%@)", [element attributeValue:@"name"], [element attributeValue:@"year"]];
+        return [NSString stringWithFormat:NSLocalizedString(@"%@ (%@)", nil), [element attributeValue:@"name"], [element attributeValue:@"year"]];
     }
 }
 

@@ -161,8 +161,8 @@
     NSInteger count = [[genreToMovies objectsForKey:genre] count];
     cell.text =
     [NSString stringWithFormat:
-     NSLocalizedString(@"%@ (%d)", @"name and count.  i.e.: Drama (58)"),
-     genre, count];
+     NSLocalizedString(@"%@ (%@)", nil),
+     genre, [NSNumber numberWithInteger:count]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
