@@ -45,7 +45,6 @@ public class Application {
   public static final File performancesDirectory = new File(dataDirectory, "Performances");
   public static final File trailersDirectory = new File(applicationDirectory, "Trailers");
   public static final File userLocationsDirectory = new File(applicationDirectory, "UserLocations");
-  public static final File tempDirectory = new File(applicationDirectory, "Temp");
   public static final File scoresDirectory = new File(applicationDirectory, "Scores");
   public static final File reviewsDirectory = new File(applicationDirectory, "Reviews");
   public static final File imdbDirectory = new File(applicationDirectory, "IMDb");

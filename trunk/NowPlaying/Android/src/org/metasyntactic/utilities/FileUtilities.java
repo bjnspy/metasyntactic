@@ -572,7 +572,7 @@ public class FileUtilities {
       tempFile.renameTo(file);
     } catch (final IOException e) {
       ExceptionUtilities.log(FileUtilities.class, "writeBytes", e);
-      return;
+      throw new RuntimeException(e);
     }
   }
 }
