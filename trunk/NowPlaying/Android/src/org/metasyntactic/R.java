@@ -275,7 +275,7 @@ public final class R {
         public static final int cannot_open_page=0x7f070045;
         /** Cast:
          */
-        public static final int castcolon=0x7f070046;
+        public static final int cast_colon=0x7f070046;
         /** Change date
          */
         public static final int change_date=0x7f070047;
@@ -293,7 +293,7 @@ public final class R {
         public static final int comedy=0x7f07004b;
         /** Could not change rating:\n\n%@
          */
-        public static final int could_not_change_ratingcolon_string=0x7f07004c;
+        public static final int could_not_change_rating_colon_string=0x7f07004c;
         /** Could not connect to Netflix.
          */
         public static final int could_not_connect_to_netflix_dot=0x7f07004d;
@@ -305,10 +305,10 @@ public final class R {
         public static final int data_for_future_dates_may_be_incomplete_dot_reset=0x7f070054;
         /** Director:
          */
-        public static final int directorcolon=0x7f070055;
+        public static final int director_colon=0x7f070055;
         /** Directors:
          */
-        public static final int directorscolon=0x7f070056;
+        public static final int directors_colon=0x7f070056;
         /** Disc Queue
          */
         public static final int disc_queue=0x7f070057;
@@ -353,7 +353,7 @@ public final class R {
         public static final int dvdbluray=0x7f070052;
         /** DVD/Blu-ray details provided by:
          */
-        public static final int dvdbluray_details_provided_bycolon=0x7f070053;
+        public static final int dvdbluray_details_provided_by_colon=0x7f070053;
         public static final int email=0x7f07005e;
         /** E-mail listings
          */
@@ -385,16 +385,16 @@ public final class R {
         public static final int foreign=0x7f070066;
         /** Format:
          */
-        public static final int formatcolon=0x7f070067;
+        public static final int format_colon=0x7f070067;
         /** Gay & Lesbian
          */
         public static final int gay_lesbian=0x7f070068;
         /** Genre:
          */
-        public static final int genrecolon=0x7f070069;
+        public static final int genre_colon=0x7f070069;
         /** Geolocation services provided by:
          */
-        public static final int geolocation_services_provided_bycolon=0x7f07006a;
+        public static final int geolocation_services_provided_by_colon=0x7f07006a;
         public static final int get_showtimes=0x7f07000f;
         /** Graphics by Jeffrey Nee
          */
@@ -448,7 +448,7 @@ public final class R {
         public static final int local_results_unavailable=0x7f07007b;
         /** Localized by:
          */
-        public static final int localized_bycolon=0x7f07007c;
+        public static final int localized_by_colon=0x7f07007c;
         /** Location
          */
         public static final int location=0x7f07007d;
@@ -477,10 +477,10 @@ public final class R {
         public static final int most_popular=0x7f070082;
         /** Movie details provided by:
          */
-        public static final int movie_details_provided_bycolon=0x7f070083;
+        public static final int movie_details_provided_by_colon=0x7f070083;
         /** Movie reviews provided by:
          */
-        public static final int movie_reviews_provided_bycolon=0x7f070084;
+        public static final int movie_reviews_provided_by_colon=0x7f070084;
         /** Movies
          */
         public static final int movies=0x7f070085;
@@ -501,7 +501,7 @@ public final class R {
         public static final int netflix=0x7f07008a;
         /** Netflix:
          */
-        public static final int netflixcolon=0x7f07008b;
+        public static final int netflix_colon=0x7f07008b;
         /** Network unavailable
          */
         public static final int network_unavailable=0x7f07008c;
@@ -621,12 +621,12 @@ public final class R {
         /** Project website
          */
         public static final int project_website=0x7f0700a5;
+        /** Rated:
+         */
+        public static final int rated_colon=0x7f0700a7;
         /** Rated %@
          */
         public static final int rated_string=0x7f0700a6;
-        /** Rated:
-         */
-        public static final int ratedcolon=0x7f0700a7;
         /** Read reviews
          */
         public static final int read_reviews=0x7f0700a8;
@@ -651,18 +651,18 @@ public final class R {
         /** Release
          */
         public static final int release=0x7f0700af;
-        /** Release date:
-         */
-        public static final int release_datecolon=0x7f0700b0;
         /** Release: %@
          */
-        public static final int releasecolon_string=0x7f0700b1;
+        public static final int release_colon_string=0x7f0700b1;
+        /** Release date:
+         */
+        public static final int release_date_colon=0x7f0700b0;
         /** Rental History
          */
         public static final int rental_history=0x7f0700b2;
         /** Reordering queue failed:\n\n%@
          */
-        public static final int reordering_queue_failedcolon_string=0x7f0700b3;
+        public static final int reordering_queue_failed_colon_string=0x7f0700b3;
         /** Requesting access
          */
         public static final int requesting_access=0x7f0700b4;
@@ -677,7 +677,7 @@ public final class R {
         public static final int romance=0x7f0700b7;
         /** Running time:
          */
-        public static final int running_timecolon=0x7f0700b8;
+        public static final int running_time_colon=0x7f0700b8;
         /** Safari
          */
         public static final int safari=0x7f0700b9;
@@ -751,16 +751,16 @@ public final class R {
         public static final int string_dot_string=0x7f070023;
         /** %@ (No Online Ticketing)
          */
-        public static final int string_parenno_online_ticketingparen=0x7f070020;
+        public static final int string_paren_no_online_ticketing_paren=0x7f070020;
         /** %@ (%@)
          */
-        public static final int string_parenstringparen=0x7f07001f;
+        public static final int string_paren_string_paren=0x7f07001f;
         /** %@ %@
          */
         public static final int string_string=0x7f07001e;
         /** Studio:
          */
-        public static final int studiocolon=0x7f0700cb;
+        public static final int studio_colon=0x7f0700cb;
         /** Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!
          */
         public static final int success_string_was_granted_access_to_your_netflix=0x7f0700cc;
@@ -795,7 +795,7 @@ public final class R {
         public static final int thrillers=0x7f0700d4;
         /** Ticket sales provided by:
          */
-        public static final int ticket_sales_provided_bycolon=0x7f0700d5;
+        public static final int ticket_sales_provided_by_colon=0x7f0700d5;
         /** Title
          */
         public static final int title=0x7f0700d6;
@@ -854,6 +854,6 @@ public final class R {
         public static final int yesterday=0x7f0700e9;
         /** Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.
          */
-        public static final int your_strings_country_is_set_tocolon_string_full=0x7f0700ea;
+        public static final int your_strings_country_is_set_to_colon_string_full=0x7f0700ea;
     }
 }

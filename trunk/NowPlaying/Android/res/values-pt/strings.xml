@@ -16,7 +16,7 @@
 -->
 <resources>
   <string name="string_string">%s %s</string>
-  <string name="string_parenno_online_ticketingparen">%s (Reserva Online Indisponível)</string>
+  <string name="string_paren_no_online_ticketing_paren">%s (Reserva Online Indisponível)</string>
   <string name="string_dot_string">%s. %s</string>
   <string name="number_string">%d %s</string>
   <string name="number_hours">%d horas</string>
@@ -34,19 +34,19 @@
   <string name="about">Sobre</string>
   <string name="autoupdate_location">Refrescar Localização</string>
   <string name="call">Telef.</string>
-  <string name="castcolon">Elenco:</string>
+  <string name="cast_colon">Elenco:</string>
   <string name="change_date">Alterar data</string>
   <string name="citystate_or_postal_code">Ciudad/Estado o código postal</string>
   <string name="could_not_find_location_dot">Não foi possível determinar posição.</string>
   <string name="data_for_future_dates_may_be_incomplete_dot_reset">A informação para datas futuras pode conter incorrecções. Utilize a data de hoje para obter informação mais precisa.</string>
-  <string name="directorcolon">Realização:</string>
-  <string name="directorscolon">Realização:</string>
+  <string name="director_colon">Realização:</string>
+  <string name="directors_colon">Realização:</string>
   <string name="distance">Distância</string>
   <string name="email">E-mail</string>
   <string name="email_listings">Enviar por E-mail</string>
   <string name="favorites">Favoritos</string>
-  <string name="genrecolon">Género</string>
-  <string name="geolocation_services_provided_bycolon">Serviço de Geo referênciação por:</string>
+  <string name="genre_colon">Género</string>
+  <string name="geolocation_services_provided_by_colon">Serviço de Geo referênciação por:</string>
   <string name="graphics_by_jeffrey_nee">Gráficos por Jeffrey Nee</string>
   <string name="last_friday">Ultima Sexta</string>
   <string name="last_monday">Ultima Segunda</string>
@@ -58,11 +58,11 @@
   <string name="less_than_number_string_away">A menos de %d %s</string>
   <string name="less_than_one_string_away">A menos de 1 %s</string>
   <string name="license">Licença</string>
-  <string name="localized_bycolon">Traduzido por:</string>
+  <string name="localized_by_colon">Traduzido por:</string>
   <string name="location">Localização</string>
   <string name="map">Morada</string>
-  <string name="movie_details_provided_bycolon">Informação sobre filmes por:</string>
-  <string name="movie_reviews_provided_bycolon">Críticas sobre filmes por:</string>
+  <string name="movie_details_provided_by_colon">Informação sobre filmes por:</string>
+  <string name="movie_reviews_provided_by_colon">Críticas sobre filmes por:</string>
   <string name="movies">Filmes</string>
   <string name="name">Nome</string>
   <string name="no_information_found">Não foi encontrada informação</string>
@@ -76,15 +76,15 @@
   <string name="please_enter_your_location">Introduza o seu código postal</string>
   <string name="project_website">Site do Projecto</string>
   <string name="rated_string">Classificação %s</string>
-  <string name="ratedcolon">Classificação:</string>
+  <string name="rated_colon">Classificação:</string>
   <string name="read_reviews">Ler críticas</string>
   <string name="really_close_by">Muito próximos</string>
   <string name="really_far_away">Muito distantes</string>
   <string name="release">Estreia</string>
-  <string name="release_datecolon">Data de Estreia:</string>
-  <string name="releasecolon_string">Estreia:</string>
+  <string name="release_date_colon">Data de Estreia:</string>
+  <string name="release_colon_string">Estreia:</string>
   <string name="reviews">Críticas</string>
-  <string name="running_timecolon">Duração:</string>
+  <string name="running_time_colon">Duração:</string>
   <string name="score">Pontuação</string>
   <string name="search_date">Data</string>
   <string name="search_distance">Raio de pesquisa</string>
@@ -96,7 +96,7 @@
   <string name="theater_providers_often_limit_the_maximum_search">A distância de pesquisa pode estar limitada pelo serviço que fornece a informação. Consequentemente alguns cinemas podem não constar dos resultados mesmo que o raio de pesquisa seja muito elevado.</string>
   <string name="theaters">Cinemas</string>
   <string name="this_theater_has_not_yet_reported_its_show_times"/>
-  <string name="ticket_sales_provided_bycolon">Venda de bilhetes por:</string>
+  <string name="ticket_sales_provided_by_colon">Venda de bilhetes por:</string>
   <string name="title">Título</string>
   <string name="today">Hoje</string>
   <string name="unknown_distance">Distância desconhecida</string>
