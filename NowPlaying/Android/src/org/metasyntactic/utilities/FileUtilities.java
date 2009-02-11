@@ -562,7 +562,7 @@ public class FileUtilities {
         data = new byte[0];
       }
 
-      final File tempFile = File.createTempFile("WB", "T" + Math.random());
+      final File tempFile = File.createTempFile("WBT", "T" + Math.random());
       final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 1 << 13);
       out.write(data);
 
