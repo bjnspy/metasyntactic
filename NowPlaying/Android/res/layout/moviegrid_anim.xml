@@ -14,15 +14,18 @@
     <org.metasyntactic.views.FastScrollGridView
         android:id="@+id/fastScroll"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_gravity="bottom"
         android:layoutAnimation="@anim/layout_top_to_bottom_slide">
         <org.metasyntactic.views.CustomGridView
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/grid"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+        
             android:horizontalSpacing="10dip"
+             android:layout_height="wrap_content"
+        android:layout_weight="1"
             android:verticalSpacing="15dip"
             android:numColumns="3"
             android:drawSelectorOnTop="false"
@@ -31,4 +34,20 @@
             android:animationCache="false"
             android:layoutAnimation="@anim/layout_grid_fade" />
     </org.metasyntactic.views.FastScrollGridView>
+     <RelativeLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="50px"
+        
+        android:background="@android:drawable/bottom_bar"
+        android:paddingRight="0px"
+        android:paddingLeft="0px">
+        <Button
+            android:id="@+id/all_movies"
+            android:layout_width="160px"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/all_movies" />
+    </RelativeLayout>
 </LinearLayout>
