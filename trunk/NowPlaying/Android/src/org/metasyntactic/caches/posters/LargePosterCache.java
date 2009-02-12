@@ -22,6 +22,7 @@ import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.CollectionUtilities;
+import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -107,7 +108,7 @@ public class LargePosterCache extends AbstractCache {
       index = FileUtilities.readStringToListOfStrings(getIndexFile(year));
     }
 
-    if (!index.isEmpty()) {
+    if (!isEmpty(index)) {
       synchronized (this.yearToMovieMapLock) {
         this.yearToMovieMap.put(year, index);
       }

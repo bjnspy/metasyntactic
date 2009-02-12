@@ -45,8 +45,8 @@
 		743D96F80F3FAB5400BA0784 /* Constitution.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96F70F3FAB5400BA0784 /* Constitution.m */; };
 		743D96FC0F3FAC1B00BA0784 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96FB0F3FAC1B00BA0784 /* Article.m */; };
 		743D96FF0F3FADB800BA0784 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 743D96FE0F3FADB800BA0784 /* Section.m */; };
+		7442261C0F44870600787F33 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7442261B0F44870600787F33 /* AbstractCache.m */; };
 		745A09230F2ED55A002F64C6 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09220F2ED55A002F64C6 /* Controller.m */; };
-		745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A093B0F2ED905002F64C6 /* AbstractCache.m */; };
 		745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A09DD0F2EE190002F64C6 /* RSSCache.m */; };
 		7462953A0F135CF90073F830 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 746295390F135CF90073F830 /* License.txt */; };
 		74954CE00F38CC9500E79E24 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74954CDF0F38CC9500E79E24 /* FileUtilities.m */; };
@@ -152,10 +152,10 @@
 		743D96FB0F3FAC1B00BA0784 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
 		743D96FD0F3FADB800BA0784 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
 		743D96FE0F3FADB800BA0784 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		7442261A0F44870600787F33 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
+		7442261B0F44870600787F33 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		745A09210F2ED55A002F64C6 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		745A09220F2ED55A002F64C6 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
-		745A093A0F2ED905002F64C6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractCache.h; path = ../../PocketFlix/iPhone/Classes/AbstractCache.h; sourceTree = SOURCE_ROOT; };
-		745A093B0F2ED905002F64C6 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractCache.m; path = ../../PocketFlix/iPhone/Classes/AbstractCache.m; sourceTree = SOURCE_ROOT; };
 		745A09DC0F2EE190002F64C6 /* RSSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSCache.h; sourceTree = "<group>"; };
 		745A09DD0F2EE190002F64C6 /* RSSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSCache.m; sourceTree = "<group>"; };
 		746295390F135CF90073F830 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
@@ -368,9 +368,9 @@
 		745A09390F2ED8ED002F64C6 /* Caches */ = {
 			isa = PBXGroup;
 			children = (
+				7442261A0F44870600787F33 /* AbstractCache.h */,
+				7442261B0F44870600787F33 /* AbstractCache.m */,
 				74954FE00F38EA8800E79E24 /* UI */,
-				745A093A0F2ED905002F64C6 /* AbstractCache.h */,
-				745A093B0F2ED905002F64C6 /* AbstractCache.m */,
 				745A09DC0F2EE190002F64C6 /* RSSCache.h */,
 				745A09DD0F2EE190002F64C6 /* RSSCache.m */,
 			);
@@ -620,7 +620,6 @@
 				740101A50F26EB0B00258353 /* AlertUtilities.m in Sources */,
 				7401029E0F276D2700258353 /* Application.m in Sources */,
 				745A09230F2ED55A002F64C6 /* Controller.m in Sources */,
-				745A093C0F2ED905002F64C6 /* AbstractCache.m in Sources */,
 				745A09DE0F2EE190002F64C6 /* RSSCache.m in Sources */,
 				74954CE00F38CC9500E79E24 /* FileUtilities.m in Sources */,
 				74954CEE0F38CCE000E79E24 /* Invocation.m in Sources */,
@@ -658,6 +657,7 @@
 				740E8DB50F3FEEA100798E0C /* AutoResizingCell.m in Sources */,
 				740E8E220F3FF51E00798E0C /* ConstitutionAmendmentViewController.m in Sources */,
 				740E8EE00F40A53700798E0C /* ConstitutionSignersViewController.m in Sources */,
+				7442261C0F44870600787F33 /* AbstractCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,8 +700,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "C705AAA6-73D0-4979-A66D-ED0067C5A9D2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C705AAA6-73D0-4979-A66D-ED0067C5A9D2";
+				PROVISIONING_PROFILE = "5E0C5555-4DD8-4F8D-9E35-BF3CD2D26C2A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5E0C5555-4DD8-4F8D-9E35-BF3CD2D26C2A";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = AdHoc;
@@ -750,15 +750,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Cyrus Najmabadi";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyrus Najmabadi";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Cyrus Najmabadi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Cyrus Najmabadi";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "CC983AB4-CCF9-42DD-A673-354A77C39FC7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CC983AB4-CCF9-42DD-A673-354A77C39FC7";
+				PROVISIONING_PROFILE = "5E0C5555-4DD8-4F8D-9E35-BF3CD2D26C2A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5E0C5555-4DD8-4F8D-9E35-BF3CD2D26C2A";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;

@@ -227,6 +227,10 @@
             if (!skip) {
                 [self downloadTrailers:movie engine:engine];
             }
+            
+            if (!isPriority) {
+                [NSThread sleepForTimeInterval:1];
+            }
         }
         [pool release];
     }

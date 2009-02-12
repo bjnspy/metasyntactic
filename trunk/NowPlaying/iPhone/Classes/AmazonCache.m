@@ -126,16 +126,23 @@
     NSAssert(![NSThread isMainThread], nil);
     while (YES) {
         Movie* movie = nil;
+        BOOL isPriority = NO;
         [gate lock];
         {
+            NSInteger count = prioritizedMovies.count; 
             while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
                    (movie = [normalMovies removeLastObjectAdded]) == nil) {
                 [gate wait];
             }
+            isPriority = count != prioritizedMovies.count;
         }
         [gate unlock];
 
         [self updateAddress:movie];
+        
+        if (!isPriority) {
+            [NSThread sleepForTimeInterval:1];
+        }
     }
 }
 

@@ -42,7 +42,7 @@ static NSArray* links;
 static NSArray* toughQuestions;
 static NSArray* toughAnswers;
 
-static NSString* currentVersion = @"1.3.0";
+static NSString* currentVersion = @"1.4.0";
 
 static NSArray* constitutions;
 
