@@ -161,6 +161,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       setContentView(R.layout.progressbar_1);
       this.progressUpdate = (TextView) findViewById(R.id.progress_update);
       NowPlayingControllerWrapper.addActivity(this);
+      refresh();
     }
   }
 
@@ -171,9 +172,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.search = intent.getStringExtra("movie");
     if (this.search != null) {
       this.bottomBar.setVisibility(View.VISIBLE);
-    } else {
-      this.bottomBar.setVisibility(View.GONE);
-    }
+    } 
   }
 
   private void getUserLocation() {
@@ -508,6 +507,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (item.getItemId() == MovieViewUtilities.MENU_SEARCH) {
       final Intent intent = new Intent();
       intent.setClass(this, SearchMovieActivity.class);
+      intent.putExtra("activity", "NowPlayingActivity");
       startActivity(intent);
       return true;
     }

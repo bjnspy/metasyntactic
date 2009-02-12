@@ -30,6 +30,7 @@
 		</activity>
 		<activity 
             android:label="Upcoming Movies"
+            android:launchMode="singleTask"
             android:name="UpcomingMoviesActivity">
         </activity>
 		<activity android:theme = "@android:style/Theme.NoTitleBar"

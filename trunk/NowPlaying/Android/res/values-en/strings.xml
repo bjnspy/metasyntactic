@@ -35,6 +35,9 @@
   <string name="string_dot_string">%s. %s</string>
   <!--%d %@-->
   <string name="number_string">%d %s</string>
+  
+  <string name="visit_imdb">Visit IMDb</string>
+  
   <!--%d hours-->
   <string name="number_hours">%d hours</string>
   <!--%d minutes-->
