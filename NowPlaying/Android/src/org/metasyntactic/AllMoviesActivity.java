@@ -79,6 +79,7 @@ public class AllMoviesActivity extends ListActivity {
           null, false);
       this.movieDetailEntries.add(entry);
     }
+
     {
       // Add director
       final List<String> directors = this.movie.getDirectors();
