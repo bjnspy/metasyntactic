@@ -15,6 +15,7 @@
 #import "ACLUNewsViewController.h"
 
 #import "ACLUArticlesViewController.h"
+#import "AutoResizingCell.h"
 #import "GlobalActivityIndicator.h"
 #import "Model.h"
 #import "NetworkUtilities.h"
@@ -147,9 +148,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* reuseIdentifier = @"reuseIdentifier";
 
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    AutoResizingCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
 
     NSString* title = [titlesWithArticles objectAtIndex:indexPath.section];

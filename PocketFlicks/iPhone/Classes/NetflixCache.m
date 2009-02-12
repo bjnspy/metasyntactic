@@ -149,7 +149,7 @@ static NSDictionary* availabilityMap = nil;
                                               NSLocalizedString(@"Short Wait", nil),
                                               NSLocalizedString(@"Short Wait", nil),
                                               NSLocalizedString(@"Long Wait", nil),
-                                              NSLocalizedString(@"Long Wait", nil),
+                                              NSLocalizedString(@"Very Long Wait", nil),
                                               NSLocalizedString(@"Available Soon", nil),
                                               NSLocalizedString(@"Not Rentable", nil),
                                               NSLocalizedString(@"Unknown Release Date", nil),

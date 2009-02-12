@@ -183,17 +183,24 @@
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
             Movie* movie = nil;
+            BOOL isPriority = NO;
             [gate lock];
             {
+                NSInteger count = prioritizedMovies.count;
                 while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
                        (movie = [moviesWithLinks removeLastObjectAdded]) == nil &&
                        (movie = [moviesWithoutLinks removeLastObjectAdded]) == nil) {
                     [gate wait];
                 }
+                isPriority = count != prioritizedMovies.count;
             }
             [gate unlock];
 
             [self downloadPoster:movie postalCode:@"10009"];
+            
+            if (!isPriority) {
+                [NSThread sleepForTimeInterval:1];
+            }
         }
         [pool release];
     }
