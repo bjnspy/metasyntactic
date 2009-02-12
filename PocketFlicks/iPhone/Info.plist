@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>PocketFlix</string>
+	<string>PocketFlicks</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>CFBundleExecutable</key>
