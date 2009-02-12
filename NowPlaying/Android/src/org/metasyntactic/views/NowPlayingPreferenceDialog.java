@@ -124,6 +124,8 @@ public class NowPlayingPreferenceDialog {
     switch (this.prefKey) {
     case MOVIES_SORT:
       return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
+    case UPCOMING_MOVIES_SORT:
+      return NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex();
     case THEATERS_SORT:
       return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
     case SEARCH_DISTANCE:
@@ -149,6 +151,9 @@ public class NowPlayingPreferenceDialog {
     case MOVIES_SORT:
       NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(prefValue);
       break;
+    case UPCOMING_MOVIES_SORT:
+      NowPlayingControllerWrapper.setUpcomingMoviesSelectedSortIndex(prefValue);
+      break;
     case THEATERS_SORT:
       NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(prefValue);
       break;
@@ -173,7 +178,7 @@ public class NowPlayingPreferenceDialog {
   }
 
   public enum PreferenceKeys {
-    MOVIES_SORT, THEATERS_SORT, LOCATION, SEARCH_DISTANCE, SEARCH_DATE, REVIEWS_PROVIDER, AUTO_UPDATE_LOCATION
+    MOVIES_SORT, UPCOMING_MOVIES_SORT, THEATERS_SORT, LOCATION, SEARCH_DISTANCE, SEARCH_DATE, REVIEWS_PROVIDER, AUTO_UPDATE_LOCATION
   }
 
   public NowPlayingPreferenceDialog setTextView(final View textEntryView) {

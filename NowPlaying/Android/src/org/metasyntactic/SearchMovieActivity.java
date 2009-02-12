@@ -19,6 +19,7 @@ import android.widget.EditText;
 /** @author mjoshi@google.com (Megha Joshi) */
 public class SearchMovieActivity extends Activity implements View.OnClickListener {
   private EditText mSearchText;
+  private static String activityName;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -27,6 +28,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     mSearchText = (EditText) findViewById(R.id.search_src_text);
     mSearchText.setOnClickListener(this);
     findViewById(R.id.search_go_btn).setOnClickListener(this);
+    activityName = this.getIntent().getStringExtra("activity");
   }
 
   // View.OnClickListener
@@ -62,7 +64,10 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
       String label) {
     if (!StringUtilities.isNullOrEmpty(search) || !StringUtilities.isNullOrEmpty(label)) {
       Intent intent = new Intent();
-      intent.setClass(activity, NowPlayingActivity.class);
+      if (activityName.equals("NowPlayingActivity"))
+        intent.setClass(activity, NowPlayingActivity.class);
+      else
+        intent.setClass(activity, UpcomingMoviesActivity.class);
       intent.putExtra("movie", search);
       activity.startActivity(intent);
     }
