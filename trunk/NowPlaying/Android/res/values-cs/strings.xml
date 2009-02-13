@@ -185,7 +185,7 @@
   <string name="send_feedback">Zaslat komentář</string>
   <string name="settings">Nastavení</string>
   <string name="short_wait">Krátké čekání</string>
-  <string name="show">Představení</string>
+  <string name="show">Zobrazit</string>
   <string name="show_number_hidden_theaters">Zobrazit %d skrytých kin</string>
   <string name="show_one_hidden_theater">Zobrazit jedno skryté kino</string>
   <string name="show_times_retrieved_on_string_dot">Termíny představení byla načtena %s.</string>
