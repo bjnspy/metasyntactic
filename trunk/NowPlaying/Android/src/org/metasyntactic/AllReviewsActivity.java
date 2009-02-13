@@ -56,17 +56,16 @@ public class AllReviewsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.reviewview, null);
-      final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView
-          .findViewById(R.id.score), (TextView) convertView.findViewById(R.id.author),
-          (TextView) convertView.findViewById(R.id.source), (TextView) convertView
-              .findViewById(R.id.desc));
+      final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score),
+          (TextView) convertView.findViewById(R.id.author), (TextView) convertView.findViewById(R.id.source),
+          (TextView) convertView.findViewById(R.id.desc));
       convertView.setTag(holder);
       final Review review = AllReviewsActivity.this.reviews.get(position);
       holder.author.setText(review.getAuthor());
       holder.source.setText(review.getSource());
       holder.description.setText(review.getText());
-      holder.score.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(review.getScore(),
-          NowPlayingControllerWrapper.getScoreType(), getResources()));
+      holder.score.setBackgroundDrawable(MovieViewUtilities
+          .formatBasicSquareDrawable(review.getScore(), getResources()));
       return convertView;
     }
 
@@ -92,10 +91,10 @@ public class AllReviewsActivity extends ListActivity {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
-        R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
+        new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
+        .setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 }
