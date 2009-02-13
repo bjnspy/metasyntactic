@@ -16,13 +16,12 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
 
-public class Review implements Parcelable, Persistable {
+public class Review extends AbstractPersistable implements Parcelable {
   private static final long serialVersionUID = -1500254001711613076L;
   private final String text;
   private final int score;
@@ -38,7 +37,7 @@ public class Review implements Parcelable, Persistable {
     out.writeString(source);
   }
 
-  public static final Reader<Review> reader = new AbstractPersistable.AbstractReader<Review>() {
+  public static final Reader<Review> reader = new AbstractReader<Review>() {
     public Review read(final PersistableInputStream in) throws IOException {
       final String text = in.readString();
       final int score = in.readInt();

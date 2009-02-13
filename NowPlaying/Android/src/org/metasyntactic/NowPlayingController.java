@@ -17,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
@@ -55,7 +56,7 @@ public class NowPlayingController {
     if (isNullOrEmpty(this.model.getUserAddress())) {
       return;
     }
-    final Location location = this.model.getUserLocationCache()
+    final Location location = UserLocationCache
         .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
     if (location == null) {
       ThreadingUtilities.performOnMainThread(new Runnable() {
@@ -93,8 +94,8 @@ public class NowPlayingController {
     Application.refresh(true);
   }
 
-  public Location getLocationForAddress(final String address) {
-    return this.model.getUserLocationCache().locationForUserAddress(address);
+  public static Location getLocationForAddress(final String address) {
+    return UserLocationCache.locationForUserAddress(address);
   }
 
   public int getSearchDistance() {
@@ -145,16 +146,16 @@ public class NowPlayingController {
     return this.model.getTheaters();
   }
 
-  public String getTrailer(final Movie movie) {
-    return this.model.getTrailer(movie);
+  public static String getTrailer(final Movie movie) {
+    return NowPlayingModel.getTrailer(movie);
   }
 
   public List<Review> getReviews(final Movie movie) {
     return this.model.getReviews(movie);
   }
 
-  public String getIMDbAddress(final Movie movie) {
-    return this.model.getIMDbAddress(movie);
+  public static String getIMDbAddress(final Movie movie) {
+    return NowPlayingModel.getIMDbAddress(movie);
   }
 
   public List<Theater> getTheatersShowingMovie(final Movie movie) {

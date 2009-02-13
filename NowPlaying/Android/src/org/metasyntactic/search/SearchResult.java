@@ -17,6 +17,7 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 
 import java.util.List;
+import java.util.Collections;
 
 public class SearchResult {
   private final int requestId;
@@ -25,7 +26,7 @@ public class SearchResult {
   private final List<Theater> theaters;
   private final List<Movie> upcomingMovies;
 
-  public SearchResult(int requestId, String value, List<Movie> movies, List<Theater> theaters, List<Movie> upcomingMovies) {
+  public SearchResult(final int requestId, final String value, final List<Movie> movies, final List<Theater> theaters, final List<Movie> upcomingMovies) {
     this.requestId = requestId;
     this.value = value;
     this.movies = movies;
@@ -42,14 +43,14 @@ public class SearchResult {
   }
 
   public List<Movie> getMovies() {
-    return movies;
+    return Collections.unmodifiableList(movies);
   }
 
   public List<Theater> getTheaters() {
-    return theaters;
+    return Collections.unmodifiableList(theaters);
   }
 
   public List<Movie> getUpcomingMovies() {
-    return upcomingMovies;
+    return Collections.unmodifiableList(upcomingMovies);
   }
 }

@@ -17,14 +17,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
 import java.util.*;
 
-public class Movie implements Parcelable, Persistable, Comparable<Movie> {
+public class Movie extends AbstractPersistable implements Parcelable, Comparable<Movie> {
   private static final long serialVersionUID = 4570788252867866289L;
   private final String identifier;
   private final String canonicalTitle;
@@ -56,7 +55,7 @@ public class Movie implements Parcelable, Persistable, Comparable<Movie> {
     out.writeStringCollection(this.genres);
   }
 
-  public static final Reader<Movie> reader = new AbstractPersistable.AbstractReader<Movie>() {
+  public static final Reader<Movie> reader = new AbstractReader<Movie>() {
     public Movie read(final PersistableInputStream in) throws IOException {
       final String identifier = in.readString();
       final String canonicalTitle = in.readString();

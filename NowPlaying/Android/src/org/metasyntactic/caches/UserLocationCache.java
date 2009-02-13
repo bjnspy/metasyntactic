@@ -27,9 +27,6 @@ import java.util.Locale;
 public class UserLocationCache {
   private final Object lock = new Object();
 
-  public UserLocationCache() {
-  }
-
   public void downloadUserAddressLocation(final String userAddress) {
     final Runnable runnable = new Runnable() {
       public void run() {
@@ -40,7 +37,7 @@ public class UserLocationCache {
     performOnBackgroundThread("Download User Address", runnable, this.lock, true/*visible*/);
   }
 
-  public Location downloadUserAddressLocationBackgroundEntryPoint(final String userAddress) {
+  public static Location downloadUserAddressLocationBackgroundEntryPoint(final String userAddress) {
     assert ThreadingUtilities.isBackgroundThread();
 
     if (isNullOrEmpty(userAddress)) {
@@ -92,7 +89,7 @@ public class UserLocationCache {
     return null;
   }
 
-  public Location locationForUserAddress(final String userAddress) {
+  public static Location locationForUserAddress(final String userAddress) {
     if (isNullOrEmpty(userAddress)) {
       return null;
     }
@@ -129,7 +126,7 @@ public class UserLocationCache {
     return null;
   }
 
-  private Location downloadAddressLocationFromWebService(final String address) {
+  private static Location downloadAddressLocationFromWebService(final String address) {
     if (isNullOrEmpty(address)) {
       return null;
     }
@@ -148,7 +145,7 @@ public class UserLocationCache {
     return result;
   }
 
-  private Location downloadAddressLocationFromWebServiceWorker(final String address) {
+  private static Location downloadAddressLocationFromWebServiceWorker(final String address) {
     final String escapedAddress = "http://" + Application.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(
         address);
 
@@ -157,7 +154,7 @@ public class UserLocationCache {
     return processResult(element);
   }
 
-  private Location loadLocation(final String address) {
+  private static Location loadLocation(final String address) {
     if (!isNullOrEmpty(address)) {
       return FileUtilities.readPersistable(Location.reader, locationFile(address));
     }
@@ -165,11 +162,11 @@ public class UserLocationCache {
     return null;
   }
 
-  private File locationFile(final String address) {
+  private static File locationFile(final String address) {
     return new File(Application.userLocationsDirectory, FileUtilities.sanitizeFileName(address));
   }
 
-  private void saveLocation(final Location location, final String address) {
+  private static void saveLocation(final Location location, final String address) {
     if (location == null || isNullOrEmpty(address)) {
       return;
     }
@@ -177,7 +174,7 @@ public class UserLocationCache {
     FileUtilities.writePersistable(location, locationFile(address));
   }
 
-  public void reportLocationForAddress(final Location location, final String address) {
+  public static void reportLocationForAddress(final Location location, final String address) {
     saveLocation(location, address);
   }
 }

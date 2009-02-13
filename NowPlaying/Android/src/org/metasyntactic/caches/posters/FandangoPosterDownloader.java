@@ -32,6 +32,10 @@ public class FandangoPosterDownloader {
   private static String lastPostalCode;
   private static Map<String, String> movieNameToPosterMap;
 
+  private FandangoPosterDownloader() {
+
+  }
+
   public static byte[] download(final Movie movie, final String postalCode) {
     createMovieMap(postalCode);
 
@@ -47,7 +51,7 @@ public class FandangoPosterDownloader {
     String posterUrl = movieNameToPosterMap.get(key);
     final int lastSlashIndex = posterUrl.lastIndexOf('/');
     if (lastSlashIndex > 0) {
-      posterUrl = posterUrl.substring(0, lastSlashIndex) + "/" + StringUtilities.urlEncode(
+      posterUrl = posterUrl.substring(0, lastSlashIndex) + '/' + StringUtilities.urlEncode(
           posterUrl.substring(lastSlashIndex + 1));
     }
 
@@ -68,8 +72,8 @@ public class FandangoPosterDownloader {
     calendar.setTime(new Date());
 
     final String url = "http://" + Application.host + ".appspot.com/LookupTheaterListings?q=" + trimPostalCode(
-        postalCode) + "&date=" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(
-        Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
+        postalCode) + "&date=" + calendar.get(Calendar.YEAR) + '-' + (calendar.get(
+        Calendar.MONTH) + 1) + '-' + calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
 
     final Element element = NetworkUtilities.downloadXml(url, false);
     processFandangoElement(element);
@@ -100,7 +104,7 @@ public class FandangoPosterDownloader {
   }
 
   private static String trimPostalCode(final String postalCode) {
-    final StringBuffer buffer = new StringBuffer();
+    final StringBuilder buffer = new StringBuilder();
     for (final char c : postalCode.toCharArray()) {
       if (Character.isLetterOrDigit(c)) {
         buffer.append(c);

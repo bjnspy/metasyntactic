@@ -21,7 +21,6 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +102,7 @@ public class Application {
   private static void createDirectories() {
     final long start = System.currentTimeMillis();
     for (final File file : directories()) {
-      final boolean success = file.mkdirs();
+      file.mkdirs();
     }
     LogUtilities.logTime(Application.class, "Create Directories", start);
   }

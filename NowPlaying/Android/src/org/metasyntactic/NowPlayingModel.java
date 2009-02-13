@@ -30,9 +30,6 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static org.metasyntactic.utilities.CollectionUtilities.size;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class NowPlayingModel {
@@ -183,8 +180,8 @@ public class NowPlayingModel {
     markDataProviderOutOfDate();
   }
 
-  private void markDataProviderOutOfDate() {
-    this.dataProvider.markOutOfDate();
+  private static void markDataProviderOutOfDate() {
+    DataProvider.markOutOfDate();
   }
 
   public int getSelectedTabIndex() {
@@ -287,7 +284,7 @@ public class NowPlayingModel {
     return this.dataProvider.getTheaters();
   }
 
-  public List<FavoriteTheater> getFavoriteTheaters() {
+  public static List<FavoriteTheater> getFavoriteTheaters() {
     return Collections.emptyList();
   }
 
@@ -318,8 +315,8 @@ public class NowPlayingModel {
 
   private final static byte[] EMPTY_BYTES = new byte[0];
 
-  public byte[] getPoster(final Movie movie) {
-    byte[] bytes = this.posterCache.getPoster(movie);
+  public static byte[] getPoster(final Movie movie) {
+    byte[] bytes = PosterCache.getPoster(movie);
     if (size(bytes) > 0) {
       return bytes;
     }
@@ -327,7 +324,7 @@ public class NowPlayingModel {
     if (size(bytes) > 0) {
       return bytes;
     }
-    bytes = this.largePosterCache.getPoster(movie);
+    bytes = LargePosterCache.getPoster(movie);
     if (size(bytes) > 0) {
       return bytes;
     }
@@ -335,8 +332,8 @@ public class NowPlayingModel {
   }
 
 
-  public File getPosterFile_safeToCallFromBackground(final Movie movie) {
-    File file = this.posterCache.getPosterFile_safeToCallFromBackground(movie);
+  public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
+    File file = PosterCache.getPosterFile_safeToCallFromBackground(movie);
     if (file != null && file.exists()) {
       return file;
     }
@@ -346,7 +343,7 @@ public class NowPlayingModel {
       return file;
     }
 
-    file = this.largePosterCache.getPosterFile_safeToCallFromBackground(movie);
+    file = LargePosterCache.getPosterFile_safeToCallFromBackground(movie);
     if (file != null && file.exists()) {
       return file;
     }
@@ -428,8 +425,8 @@ public class NowPlayingModel {
     return this.dataProvider.getPerformancesForMovieInTheater(movie, theater);
   }
 
-  public void reportLocationForAddress(final Location location, final String address) {
-    this.userLocationCache.reportLocationForAddress(location, address);
+  public static void reportLocationForAddress(final Location location, final String address) {
+    UserLocationCache.reportLocationForAddress(location, address);
   }
 
   public List<Movie> getUpcomingMovies() {

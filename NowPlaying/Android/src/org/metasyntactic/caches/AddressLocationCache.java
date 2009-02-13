@@ -31,7 +31,7 @@ public class AddressLocationCache {
     final Map<Theater, Double> map = new HashMap<Theater, Double>();
 
     for (final Theater theater : theaters) {
-      double d;
+      final double d;
       if (location == null) {
         d = Location.UNKNOWN_DISTANCE;
       } else {

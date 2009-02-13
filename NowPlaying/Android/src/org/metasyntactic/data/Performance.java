@@ -16,16 +16,12 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class Performance implements Parcelable, Persistable {
+public class Performance extends AbstractPersistable implements Parcelable {
   private static final long serialVersionUID = -3891926085016033570L;
   /*
   private final static SimpleDateFormat format = new SimpleDateFormat("h:mma");
@@ -45,7 +41,7 @@ public class Performance implements Parcelable, Persistable {
     out.writeString(url);
   }
 
-  public static final Reader<Performance> reader = new AbstractPersistable.AbstractReader<Performance>() {
+  public static final Reader<Performance> reader = new AbstractReader<Performance>() {
     public Performance read(final PersistableInputStream in) throws IOException {
       final String time = in.readString();
       final String url = in.readString();

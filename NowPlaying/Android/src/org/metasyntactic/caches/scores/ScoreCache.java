@@ -20,8 +20,6 @@ import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
 
-import android.sax.RootElement;
-
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
@@ -49,7 +47,9 @@ public class ScoreCache extends AbstractCache {
     };
   }
 
+  @Override
   public void shutdown() {
+    super.shutdown();
     for (final ScoreProvider provider : getProviders()) {
       provider.shutdown();
     }
@@ -108,7 +108,7 @@ public class ScoreCache extends AbstractCache {
     if (provider == this.rottenTomatoesScoreProvider) {
       provider = this.metacriticScoreProvider;
     }
-    return this.metacriticScoreProvider.getReviews(movies, movie);
+    return provider.getReviews(movies, movie);
   }
 
   public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
@@ -117,7 +117,9 @@ public class ScoreCache extends AbstractCache {
     }
   }
 
+  @Override
   public void clearStaleData() {
+    super.clearStaleData();
     for (final ScoreProvider provider : getProviders()) {
       provider.clearStaleData();
     }

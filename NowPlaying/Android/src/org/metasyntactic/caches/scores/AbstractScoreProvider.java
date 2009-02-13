@@ -217,11 +217,11 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   private void ensureMovieMap(final List<Movie> movies) {
     if (movies != this.movies) {
       this.movies = movies;
-      final Map<String, Score> scores = getScores();
+      final Map<String, Score> localScores = getScores();
 
       final Runnable runnable = new Runnable() {
         public void run() {
-          regenerateMovieMap(movies, scores);
+          regenerateMovieMap(movies, localScores);
         }
       };
       ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, this.movieMapLock, true);
@@ -286,12 +286,12 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
 
     for (final Map.Entry<String, Score> entry : scoresMap.entrySet()) {
       final File file = reviewsFile(entry.getKey());
-      if (!file.exists()) {
-        scoresWithoutReviews.add(entry.getValue());
-      } else {
+      if (file.exists()) {
         if (FileUtilities.daysSinceNow(file) > 2 * Constants.ONE_DAY) {
           scoresWithReviews.add(entry.getValue());
         }
+      } else {
+        scoresWithoutReviews.add(entry.getValue());
       }
     }
 
@@ -347,9 +347,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
       country = location.getCountry();
     }
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "" + "&provider=" + score.getProvider() + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
-
-    return address;
+    return "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
   }
 
   private void downloadReviews(final Score score, final Location location) {
@@ -389,7 +387,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
   }
 
-  private List<Review> downloadReviewContents(final Location location, final Score score) {
+  private static List<Review> downloadReviewContents(final Location location, final Score score) {
     final String address = serverReviewsAddress(location, score);
     final Element element = NetworkUtilities.downloadXml(address, false);
     if (element == null) {

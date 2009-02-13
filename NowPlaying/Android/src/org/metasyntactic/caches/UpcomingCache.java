@@ -78,18 +78,18 @@ public class UpcomingCache extends AbstractCache {
       if (list == null) {
         list = Collections.emptyList();
       }
-      for (final Iterator<Movie> i = list.iterator(); i.hasNext();) {
-        final Movie movie = i.next();
+      for (final Iterator<Movie> iterator = list.iterator(); iterator.hasNext();) {
+        final Movie movie = iterator.next();
 
         if (movie.getReleaseDate() != null && movie.getReleaseDate().compareTo(today) < 0) {
-          i.remove();
+          iterator.remove();
         }
       }
 
       this.movies = list;
     }
 
-    return this.movies;
+    return Collections.unmodifiableList(this.movies);
   }
 
   private Map<String, String> getStudioKeys() {
@@ -123,13 +123,13 @@ public class UpcomingCache extends AbstractCache {
   }
 
   private void updateDetails() {
-    final List<Movie> movies = getMovies();
-    final Map<String, String> studioKeys = getStudioKeys();
-    final Map<String, String> titleKeys = getTitleKeys();
+    final List<Movie> localMovies = getMovies();
+    final Map<String, String> localStudioKeys = getStudioKeys();
+    final Map<String, String> localTitleKeys = getTitleKeys();
 
     final Runnable runnable = new Runnable() {
       public void run() {
-        updateDetailsBackgroundEntryPoint(movies, studioKeys, titleKeys);
+        updateDetailsBackgroundEntryPoint(localMovies, localStudioKeys, localTitleKeys);
       }
     };
     ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, this.lock, false);
@@ -153,9 +153,9 @@ public class UpcomingCache extends AbstractCache {
   }
 
   private void updateIndexBackgroundEntryPointWorker() {
-    final Map<String, String> studioKeys = new HashMap<String, String>();
-    final Map<String, String> titleKeys = new HashMap<String, String>();
-    final List<Movie> movies = new ArrayList<Movie>();
+    final Map<String, String> localStudioKeys = new HashMap<String, String>();
+    final Map<String, String> localTitleKeys = new HashMap<String, String>();
+    final List<Movie> localMovies = new ArrayList<Movie>();
 
     final File indexFile = hashFile();
     if (indexFile.exists()) {
@@ -181,19 +181,19 @@ public class UpcomingCache extends AbstractCache {
     LogUtilities.logTime(DataProvider.class, "Update Index - Download Xml", start);
 
     start = System.currentTimeMillis();
-    processResultElement(resultElement, movies, studioKeys, titleKeys);
+    processResultElement(resultElement, localMovies, localStudioKeys, localTitleKeys);
     LogUtilities.logTime(DataProvider.class, "Update Index - Process Xml", start);
     if (this.shutdown) {
       return;
     }
-    if (movies.isEmpty()) {
+    if (localMovies.isEmpty()) {
       return;
     }
 
-    reportResults(serverHash, movies, studioKeys, titleKeys);
+    reportResults(serverHash, localMovies, localStudioKeys, localTitleKeys);
 
     start = System.currentTimeMillis();
-    saveResults(serverHash, movies, studioKeys, titleKeys);
+    saveResults(serverHash, localMovies, localStudioKeys, localTitleKeys);
     LogUtilities.logTime(DataProvider.class, "Update Index - Save Results", start);
   }
 
@@ -233,7 +233,7 @@ public class UpcomingCache extends AbstractCache {
   }
 
   private void processMovieElement(final Element movieElement, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
-    Date releaseDate = null;
+    final Date releaseDate;
     try {
       releaseDate = this.formatter.parse(movieElement.getAttribute("date"));
     } catch (final ParseException e) {
@@ -249,9 +249,10 @@ public class UpcomingCache extends AbstractCache {
     final String studioKey = movieElement.getAttribute("studioKey");
     final String titleKey = movieElement.getAttribute("titleKey");
 
-    final Movie movie = new Movie(valueOf(identifier++), title, rating, 0, "", releaseDate, poster, "", studio, directors,
+    final Movie movie = new Movie(valueOf(identifier), title, rating, 0, "", releaseDate, poster, "", studio, directors,
                                   cast, genres);
 
+    identifier++;
     movies.add(movie);
     studioKeys.put(movie.getCanonicalTitle(), studioKey);
     titleKeys.put(movie.getCanonicalTitle(), titleKey);
@@ -365,10 +366,8 @@ public class UpcomingCache extends AbstractCache {
     }
 
     final String synopsis = values[0];
-    final ArrayList<String> cast = new ArrayList<String>(values.length - 1);
-    for (int i = 1; i < values.length; i++) {
-      cast.add(values[i]);
-    }
+    final Collection<String> cast = new ArrayList<String>(values.length - 1);
+    cast.addAll(Arrays.asList(values).subList(1, values.length));
 
     if (!synopsis.startsWith("No synopsis")) {
       FileUtilities.writeString(synopsis, file);

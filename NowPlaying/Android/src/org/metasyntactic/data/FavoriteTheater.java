@@ -16,14 +16,13 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.utilities.StringUtilities;
 
 import java.io.IOException;
 
-public class FavoriteTheater implements Parcelable, Persistable {
+public class FavoriteTheater extends AbstractPersistable implements Parcelable {
   private static final long serialVersionUID = 7339380828909301638L;
   private final String name;
   private final Location originatingLocation;
@@ -33,7 +32,7 @@ public class FavoriteTheater implements Parcelable, Persistable {
     out.writePersistable(originatingLocation);
   }
 
-  public static final Reader<FavoriteTheater> reader = new AbstractPersistable.AbstractReader<FavoriteTheater>() {
+  public static final Reader<FavoriteTheater> reader = new AbstractReader<FavoriteTheater>() {
     public FavoriteTheater read(final PersistableInputStream in) throws IOException {
       final String name = in.readString();
       final Location originatingLocation = in.readPersistable(Location.reader);

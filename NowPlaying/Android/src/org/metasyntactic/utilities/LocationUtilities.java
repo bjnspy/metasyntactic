@@ -69,7 +69,7 @@ public class LocationUtilities {
   private static Location findLocationWithGoogle(final double latitude,
       final double longitude) {
     final String url = "http://maps.google.com/maps/geo?q="
-        + latitude + "," + longitude
+        + latitude + ',' + longitude
         + "&output=xml&oe=utf8&sensor=false&key=ABQIAAAAE33gn89pf9QC1N10Oi1IxBTjs0lgCCfZJx1z0ucxfREoQjAihRQgAaDiNU3GwvKqQjMaH59qEdSkAg";
 
     final Element kmlElement = NetworkUtilities.downloadXml(url, true);

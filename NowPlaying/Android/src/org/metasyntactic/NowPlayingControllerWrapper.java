@@ -126,7 +126,7 @@ public class NowPlayingControllerWrapper {
 
   public static Location getLocationForAddress(final String address) {
     checkInstance();
-    return instance.getLocationForAddress(address);
+    return NowPlayingController.getLocationForAddress(address);
   }
 
   public static int getSearchDistance() {
@@ -196,7 +196,7 @@ public class NowPlayingControllerWrapper {
 
   public static String getTrailer(final Movie movie) {
     checkInstance();
-    return instance.getTrailer(movie);
+    return NowPlayingController.getTrailer(movie);
   }
 
   public static List<Review> getReviews(final Movie movie) {
@@ -206,7 +206,7 @@ public class NowPlayingControllerWrapper {
 
   public static String getIMDbAddress(final Movie movie) {
     checkInstance();
-    return instance.getIMDbAddress(movie);
+    return NowPlayingController.getIMDbAddress(movie);
   }
 
   public static List<Theater> getTheatersShowingMovie(final Movie movie) {

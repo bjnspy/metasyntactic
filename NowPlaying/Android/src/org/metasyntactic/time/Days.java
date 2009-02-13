@@ -24,9 +24,9 @@ public class Days {
   private Days() {
   }
 
-  private static long getUnixDay(final Calendar c) {
-    final long offset = c.get(Calendar.ZONE_OFFSET) + c.get(Calendar.DST_OFFSET);
-    return (long) Math.floor((double) (c.getTime().getTime() + offset) / (double) MILLISECS_PER_DAY);
+  private static long getUnixDay(final Calendar calendar) {
+    final long offset = calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET);
+    return (long) Math.floor((double) (calendar.getTime().getTime() + offset) / (double) MILLISECS_PER_DAY);
   }
 
   public static int daysBetween(final Date d1, final Date d2) {
