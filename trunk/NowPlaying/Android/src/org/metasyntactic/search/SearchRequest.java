@@ -40,26 +40,26 @@ public class SearchRequest {
   }
 
   public int getRequestId() {
-    return requestId;
+    return this.requestId;
   }
 
   public String getValue() {
-    return value;
+    return this.value;
   }
 
   public String getLowercaseValue() {
-    return lowercaseValue;
+    return this.lowercaseValue;
   }
 
   public List<Movie> getMovies() {
-    return Collections.unmodifiableList(movies);
+    return this.movies;
   }
 
   public List<Theater> getTheaters() {
-    return Collections.unmodifiableList(theaters);
+    return this.theaters;
   }
 
   public List<Movie> getUpcomingMovies() {
-    return Collections.unmodifiableList(upcomingMovies);
+    return this.upcomingMovies;
   }
 }
