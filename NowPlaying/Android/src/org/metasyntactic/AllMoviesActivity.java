@@ -44,7 +44,7 @@ public class AllMoviesActivity extends ListActivity {
   }
 
   private void populateMovieDetailEntries() {
-    final Resources res = this.getResources();
+    final Resources res = getResources();
     // Add title and synopsis
     {
       final String synopsis = NowPlayingControllerWrapper.getSynopsis(this.movie);

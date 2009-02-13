@@ -50,7 +50,7 @@ public class Score extends AbstractPersistable implements Parcelable, Comparable
   };
 
   private Score(final String canonicalTitle, final String synopsis, final String value, final String provider,
-                final String identifier, final boolean ignored) {
+                final String identifier, @SuppressWarnings("unused") final boolean ignored) {
     this.canonicalTitle = canonicalTitle;
     this.synopsis = synopsis;
     this.value = value;
