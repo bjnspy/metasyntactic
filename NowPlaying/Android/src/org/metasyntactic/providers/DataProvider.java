@@ -73,6 +73,7 @@ public class DataProvider {
   private List<Theater> theaters;
   private Map<String, Date> synchronizationData;
   private Map<String, Map<String, List<Performance>>> performances;
+  private boolean shutdown;
 
   public DataProvider(final NowPlayingModel model) {
     this.model = model;
@@ -135,9 +136,9 @@ public class DataProvider {
   }
 
   private void updateBackgroundEntryPointWorker(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
-    if (isUpToDate()) {
-      return;
-    }
+    if (isUpToDate()) { return; }
+    if (this.shutdown) { return; }
+
     // Log.i("DEBUG", "Started downloadUserLocation trace");
     // Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
@@ -153,17 +154,20 @@ public class DataProvider {
       return;
     }
     start = System.currentTimeMillis();
+    if (this.shutdown) { return; }
     final LookupResult result = lookupLocation(location, null);
     LogUtilities.logTime(DataProvider.class, "Lookup Location", start);
     if (result == null || isEmpty(result.movies) || isEmpty(result.theaters)) {
       return;
     }
     start = System.currentTimeMillis();
+    if (this.shutdown) { return; }
     addMissingData(result, location, currentMovies, currentTheaters);
     LogUtilities.logTime(DataProvider.class, "Add missing data", start);
 
     start = System.currentTimeMillis();
     broadcastUpdate(R.string.finding_favorites);
+    if (this.shutdown) { return; }
     lookupMissingFavorites(result);
     LogUtilities.logTime(DataProvider.class, "Lookup Missing Theaters", start);
 
@@ -631,7 +635,7 @@ public class DataProvider {
   }
 
   public void shutdown() {
-    // NYI
+    this.shutdown = true;
   }
 
   public void markOutOfDate() {
