@@ -32,7 +32,6 @@ public class Performance extends AbstractPersistable implements Parcelable {
     format.setDateFormatSymbols(symbols);
   }
   */
-
   private final String time;
   private final String url;
 

@@ -23,7 +23,7 @@ import java.util.Date;
 
 public class ThreadingUtilities {
   private ThreadingUtilities() {
-    
+
   }
 
   public static boolean isMainThread() {
@@ -42,7 +42,8 @@ public class ThreadingUtilities {
     }
   }
 
-  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock, final boolean visible) {
+  public static void performOnBackgroundThread(final String name, final Runnable runnable, final Object lock,
+                                               final boolean visible) {
     final Object lock2 = lock == null ? new Object() : lock;
 
     final Thread t = new HandlerThread(name) {

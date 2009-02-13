@@ -13,6 +13,8 @@
 // limitations under the License.
 package org.metasyntactic.io;
 
+import org.metasyntactic.utilities.StringUtilities;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
@@ -20,8 +22,6 @@ import java.nio.CharBuffer;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-
-import org.metasyntactic.utilities.StringUtilities;
 
 public class PersistableOutputStream {
   private final OutputStream out;

@@ -16,6 +16,7 @@ package org.metasyntactic.caches.scores;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.protobuf.NowPlaying;
@@ -41,7 +42,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
   }
 
   private String getUrl() {
-    final Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
         getModel().getUserAddress());
 
     if (isNullOrEmpty(location.getPostalCode())) {

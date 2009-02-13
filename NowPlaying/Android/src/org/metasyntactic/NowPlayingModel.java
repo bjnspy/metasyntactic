@@ -25,9 +25,9 @@ import org.metasyntactic.caches.scores.ScoreCache;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.providers.DataProvider;
+import static org.metasyntactic.utilities.CollectionUtilities.size;
 import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import static org.metasyntactic.utilities.CollectionUtilities.size;
 
 import java.io.File;
 import java.util.*;
@@ -330,7 +330,6 @@ public class NowPlayingModel {
     }
     return EMPTY_BYTES;
   }
-
 
   public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
     File file = PosterCache.getPosterFile_safeToCallFromBackground(movie);

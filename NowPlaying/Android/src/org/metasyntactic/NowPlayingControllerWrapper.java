@@ -36,6 +36,7 @@ public class NowPlayingControllerWrapper {
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
   private static NowPlayingController instance;
   private static LocationTracker locationTracker;
+
   static {
     Application.initialize();
   }
@@ -49,8 +50,7 @@ public class NowPlayingControllerWrapper {
     GlobalActivityIndicator.addActivity(activity);
     if (activities.size() == 1) {
       if (instance == null) {
-        Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
-            "First activity created.  Starting controller");
+        Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity created.  Starting controller");
         instance = new NowPlayingController(activity.getApplicationContext());
         instance.startup();
       }
@@ -64,8 +64,7 @@ public class NowPlayingControllerWrapper {
     activities.remove(activity);
     if (activities.isEmpty()) {
       if (instance != null) {
-        Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
-            "Last activity destroyed.  Stopping controller");
+        Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");
         instance.shutdown();
         instance = null;
       }
@@ -219,8 +218,7 @@ public class NowPlayingControllerWrapper {
     return instance.getMoviesAtTheater(theater);
   }
 
-  public static List<Performance> getPerformancesForMovieAtTheater(final Movie movie,
-      final Theater theater) {
+  public static List<Performance> getPerformancesForMovieAtTheater(final Movie movie, final Theater theater) {
     checkInstance();
     return instance.getPerformancesForMovieAtTheater(movie, theater);
   }
@@ -242,7 +240,7 @@ public class NowPlayingControllerWrapper {
 
   public static byte[] getPoster(final Movie movie) {
     checkInstance();
-    return instance.getPoster(movie);
+    return NowPlayingController.getPoster(movie);
   }
 
   public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
@@ -251,7 +249,7 @@ public class NowPlayingControllerWrapper {
       return null;
     }
 
-    return localInstance.getPosterFile_safeToCallFromBackground(movie);
+    return NowPlayingController.getPosterFile_safeToCallFromBackground(movie);
   }
 
   public static String getSynopsis(final Movie movie) {

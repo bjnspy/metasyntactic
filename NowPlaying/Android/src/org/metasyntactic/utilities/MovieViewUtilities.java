@@ -14,15 +14,15 @@
 package org.metasyntactic.utilities;
 
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
-
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import org.metasyntactic.R;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.lang.ref.SoftReference;
 import java.text.DateFormat;
@@ -63,13 +63,12 @@ public class MovieViewUtilities {
    * 13, the ratings string is "Rated PG-13.". If a movie is unrated then the
    * ratings string is "Unrated."
    *
-   * @param rating
-   *          Movie rating.
-   * @param res
-   *          Context resources handle.
+   * @param rating Movie rating.
+   * @param res    Context resources handle.
+   * @return the formatted rating
    */
   public static String formatRatings(final String rating, final Resources res) {
-    if (rating.equals("")) {
+    if (isNullOrEmpty(rating)) {
       return res.getString(R.string.unrated);
     } else {
       return res.getString(R.string.rated_string, rating);
@@ -80,10 +79,9 @@ public class MovieViewUtilities {
    * Formats the movie length for display. The movie length is displayed as "x
    * hours y minutes".
    *
-   * @param length
-   *          Movie length in minutes.
-   * @param res
-   *          Context resources handle.
+   * @param length Movie length in minutes.
+   * @param res    Context resources handle.
+   * @return the formatted length
    */
   public static String formatLength(final int length, final Resources res) {
     String hoursString = "";
@@ -106,11 +104,11 @@ public class MovieViewUtilities {
   }
 
   public static String formatListToString(final List<String> list) {
-    if (list != null && list.size() > 0) {
+    if (isEmpty(list)) {
+      return "Unknown";
+    } else {
       final String listStr = list.toString();
       return listStr.substring(1, listStr.length() - 1);
-    } else {
-      return "Unknown";
     }
   }
 
@@ -122,11 +120,10 @@ public class MovieViewUtilities {
   }
 
   private static Drawable formatRottenTomatoesDrawable(final int score, final Resources res) {
-    Drawable scoreDrawable = null;
     if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null) {
       rating_unknown_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_unknown));
     }
-    scoreDrawable = rating_unknown_drawable.get();
+    Drawable scoreDrawable = rating_unknown_drawable.get();
     if (score >= 0 && score <= 100) {
       if (score >= 60) {
         if (fresh_drawable == null || fresh_drawable.get() == null) {
@@ -144,11 +141,10 @@ public class MovieViewUtilities {
   }
 
   public static Drawable formatBasicSquareDrawable(final int score, final Resources res) {
-    Drawable scoreDrawable = null;
     if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null) {
       rating_unknown_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_unknown));
     }
-    scoreDrawable = rating_unknown_drawable.get();
+    Drawable scoreDrawable = rating_unknown_drawable.get();
     if (score >= 0 && score <= 40) {
       if (rating_red_drawable == null || rating_red_drawable.get() == null) {
         rating_red_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_red));
@@ -170,79 +166,79 @@ public class MovieViewUtilities {
 
   public static String getHeader(final List<Movie> movies, final int position, final int sortIndex) {
     switch (sortIndex) {
-    case MovieTitle:
-      if (position == 0) {
-        return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
-      }
-      if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
-        return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
-      }
-      break;
-    case Release:
-      final Date d1 = movies.get(position).getReleaseDate();
-      final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-      String dateStr;
-      if (d1 != null) {
-        dateStr = df.format(d1);
-      } else {
-        dateStr = null;
-      }
-      if (position == 0) {
-        return dateStr;
-      }
-      final Date d2 = movies.get(position - 1).getReleaseDate();
-      if (d2 != null && d1 != null && !d1.equals(d2)) {
-        return dateStr;
-      }
-      return null;
+      case MovieTitle:
+        if (position == 0) {
+          return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
+        }
+        if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
+          return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
+        }
+        break;
+      case Release:
+        final Date d1 = movies.get(position).getReleaseDate();
+        final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
+        String dateStr;
+        if (d1 != null) {
+          dateStr = df.format(d1);
+        } else {
+          dateStr = null;
+        }
+        if (position == 0) {
+          return dateStr;
+        }
+        final Date d2 = movies.get(position - 1).getReleaseDate();
+        if (d2 != null && d1 != null && !d1.equals(d2)) {
+          return dateStr;
+        }
+        return null;
     }
     return null;
   }
 
   public static String getTheaterHeader(final List<Theater> theaters, final int position, final int sortIndex,
-      final Address address) {
+                                        final Address address) {
     switch (sortIndex) {
-    case TheaterName:
-      if (position == 0) {
-        return String.valueOf(theaters.get(position).getName().charAt(0));
-      }
-      if (theaters.get(position).getName().charAt(0) != theaters.get(position - 1).getName().charAt(0)) {
-        return String.valueOf(theaters.get(position).getName().charAt(0));
-      }
-      break;
-    case Distance:
-      // todo (mjoshi) fix this ...incorrect headers are returned, and its slow.
-      final Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null,
-          null);
-      final double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
-      // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
-      if (dist_m1 <= 2 && dist_m1 >= 0 && currentHeader != "Less than 2 miles") {
-        currentHeader = "Less than 2 miles";
-        return currentHeader;
-      }
-      if (dist_m1 <= 5 && dist_m1 >= 2 && currentHeader != "Less than 5 miles") {
-        currentHeader = "Less than 5 miles";
-        return currentHeader;
-      }
-      if (dist_m1 <= 10 && dist_m1 >= 5 && currentHeader != "Less than 10 miles") {
-        currentHeader = "Less than 10 miles";
-        return currentHeader;
-      }
-      if (dist_m1 <= 25 && dist_m1 >= 10 && currentHeader != "Less than 25 miles") {
-        currentHeader = "Less than 25 miles";
-        return currentHeader;
-      }
-      if (dist_m1 <= 50 && dist_m1 >= 25 && currentHeader != "Less than 50 miles") {
-        currentHeader = "Less than 50 miles";
-        return currentHeader;
-      }
-      if (dist_m1 <= 100 && dist_m1 >= 50 && currentHeader != "Less than 100 miles") {
-        currentHeader = "Less than 100 miles";
-        return currentHeader;
-      }
-      if (position == 0) {
-        return currentHeader;
-      }
+      case TheaterName:
+        if (position == 0) {
+          return String.valueOf(theaters.get(position).getName().charAt(0));
+        }
+        if (theaters.get(position).getName().charAt(0) != theaters.get(position - 1).getName().charAt(0)) {
+          return String.valueOf(theaters.get(position).getName().charAt(0));
+        }
+        break;
+      case Distance:
+        // todo (mjoshi) fix this ...incorrect headers are returned, and its slow.
+        final Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null,
+                                                   null, null);
+        final double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
+        // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
+        if (dist_m1 <= 2 && dist_m1 >= 0 && !currentHeader.equals("Less than 2 miles")) {
+          currentHeader = "Less than 2 miles";
+          return currentHeader;
+        }
+        if (dist_m1 <= 5 && dist_m1 >= 2 && !currentHeader.equals("Less than 5 miles")) {
+          currentHeader = "Less than 5 miles";
+          return currentHeader;
+        }
+        if (dist_m1 <= 10 && dist_m1 >= 5 && !currentHeader.equals("Less than 10 miles")) {
+          currentHeader = "Less than 10 miles";
+          return currentHeader;
+        }
+        if (dist_m1 <= 25 && dist_m1 >= 10 && !currentHeader.equals("Less than 25 miles")) {
+          currentHeader = "Less than 25 miles";
+          return currentHeader;
+        }
+        if (dist_m1 <= 50 && dist_m1 >= 25 && !currentHeader.equals("Less than 50 miles")) {
+          currentHeader = "Less than 50 miles";
+          return currentHeader;
+        }
+        if (dist_m1 <= 100 && dist_m1 >= 50 && !currentHeader.equals("Less than 100 miles")) {
+          currentHeader = "Less than 100 miles";
+          return currentHeader;
+        }
+        if (position == 0) {
+          return currentHeader;
+        }
     }
     return null;
   }

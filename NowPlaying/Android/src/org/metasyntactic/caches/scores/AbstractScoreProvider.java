@@ -17,6 +17,7 @@ import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
+import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
@@ -135,20 +136,26 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   private void updateScores() {
-    if (this.shutdown) { return; }
+    if (this.shutdown) {
+      return;
+    }
     final long start = System.currentTimeMillis();
-    Map<String,Score> map = updateScoresWorker();
+    Map<String, Score> map = updateScoresWorker();
     LogUtilities.logTime(getClass(), "Update Scores", start);
 
-    if (this.shutdown) { return; }
+    if (this.shutdown) {
+      return;
+    }
     if (map == null) {
       map = loadScores();
     }
-    if (this.shutdown) { return; }
+    if (this.shutdown) {
+      return;
+    }
     updateReviewsWorker(map);
   }
 
-  private Map<String,Score> updateScoresWorker() {
+  private Map<String, Score> updateScoresWorker() {
     final File hashFile = hashFile();
     if (hashFile.exists()) {
       if (Math.abs(hashFile.lastModified() - new Date().getTime()) < Constants.ONE_DAY) {
@@ -300,7 +307,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   private void downloadReviews(final Set<Score> scores, final Map<String, Score> scoresMap) {
-    final Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
         getModel().getUserAddress());
 
     if (location == null) {

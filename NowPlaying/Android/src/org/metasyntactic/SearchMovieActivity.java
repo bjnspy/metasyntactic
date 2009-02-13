@@ -1,28 +1,29 @@
 package org.metasyntactic;
 
-import org.metasyntactic.utilities.StringUtilities;
-
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import org.metasyntactic.utilities.StringUtilities;
 
 /**
  * This activity shows a text field to ask the user to enter search terms and
  * then start the ThreadActivity with the correct postData to invoke a search.
  */
-/** @author mjoshi@google.com (Megha Joshi) */
+
+/**
+ * @author mjoshi@google.com (Megha Joshi)
+ */
 public class SearchMovieActivity extends Activity implements View.OnClickListener {
   private EditText mSearchText;
   private static String activityName;
 
   @Override
-  public void onCreate(Bundle icicle) {
+  public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
     setContentView(R.layout.search_bar);
     mSearchText = (EditText) findViewById(R.id.search_src_text);
@@ -32,18 +33,18 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   }
 
   // View.OnClickListener
-  public final void onClick(View v) {
+  public final void onClick(final View v) {
     if (mSearchText.length() != 0) {
       performSearch();
     }
   }
 
   @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
+  public boolean onCreateOptionsMenu(final Menu menu) {
     super.onCreateOptionsMenu(menu);
-    menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY)
-        .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-          public boolean onMenuItemClick(MenuItem item) {
+    menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY).setOnMenuItemClickListener(
+        new MenuItem.OnMenuItemClickListener() {
+          public boolean onMenuItemClick(final MenuItem item) {
             performSearch();
             return true;
           }
@@ -52,22 +53,23 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   }
 
   private void performSearch() {
-    String searchTerm = mSearchText.getText().toString();
+    final String searchTerm = mSearchText.getText().toString();
     privatePerformSearch(this, getText(R.string.search) + " : " + searchTerm, searchTerm, null);
   }
 
-  static public void performLabel(Activity activity, String label, String title) {
+  static public void performLabel(final Activity activity, final String label, final String title) {
     privatePerformSearch(activity, title, null, label);
   }
 
-  private static void privatePerformSearch(Activity activity, String title, String search,
-      String label) {
+  private static void privatePerformSearch(final Activity activity, final String title, final String search,
+                                           final String label) {
     if (!StringUtilities.isNullOrEmpty(search) || !StringUtilities.isNullOrEmpty(label)) {
-      Intent intent = new Intent();
-      if (activityName.equals("NowPlayingActivity"))
+      final Intent intent = new Intent();
+      if ("NowPlayingActivity".equals(activityName)) {
         intent.setClass(activity, NowPlayingActivity.class);
-      else
+      } else {
         intent.setClass(activity, UpcomingMoviesActivity.class);
+      }
       intent.putExtra("movie", search);
       activity.startActivity(intent);
     }

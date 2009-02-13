@@ -146,7 +146,7 @@ public class LargePosterCache extends AbstractCache {
       }
 
       final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
-      for (final Map.Entry<String,List<String>> entry : index.entrySet()) {
+      for (final Map.Entry<String, List<String>> entry : index.entrySet()) {
         if (EditDistance.substringSimilar(entry.getKey(), lowercaseTitle)) {
           return entry.getValue();
         }
@@ -245,10 +245,10 @@ public class LargePosterCache extends AbstractCache {
     final double scale;
     if (height > width) {
       // portrait
-      scale = (double)height / MAX_DIMENSION;
+      scale = (double) height / MAX_DIMENSION;
     } else {
       // landscape
-      scale = (double)width / MAX_DIMENSION;
+      scale = (double) width / MAX_DIMENSION;
     }
 
     final BitmapFactory.Options options2 = new BitmapFactory.Options();

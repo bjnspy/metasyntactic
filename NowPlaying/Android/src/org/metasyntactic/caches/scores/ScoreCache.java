@@ -39,12 +39,7 @@ public class ScoreCache extends AbstractCache {
   }
 
   private ScoreProvider[] getProviders() {
-    return new ScoreProvider[] {
-        this.rottenTomatoesScoreProvider,
-        this.metacriticScoreProvider,
-        this.googleScoreProvider,
-        this.noneScoreProvider
-    };
+    return new ScoreProvider[]{this.rottenTomatoesScoreProvider, this.metacriticScoreProvider, this.googleScoreProvider, this.noneScoreProvider};
   }
 
   @Override
@@ -87,12 +82,16 @@ public class ScoreCache extends AbstractCache {
     final ScoreType scoreType = this.model.getScoreType();
     final Runnable runnable = new Runnable() {
       public void run() {
-        if (ScoreCache.this.shutdown) { return; }
+        if (ScoreCache.this.shutdown) {
+          return;
+        }
         final ScoreProvider primaryScoreProvider = getScoreProvider(scoreType);
         primaryScoreProvider.update();
 
         for (final ScoreProvider provider : getProviders()) {
-          if (ScoreCache.this.shutdown) { return; }
+          if (ScoreCache.this.shutdown) {
+            return;
+          }
           if (provider != primaryScoreProvider) {
             provider.update();
           }

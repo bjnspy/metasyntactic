@@ -202,7 +202,7 @@ public class FileUtilities {
   }
 
   public static <T extends Persistable> Map<String, T> readStringToPersistableMap(final Persistable.Reader<T> reader,
-      final File file) {
+                                                                                  final File file) {
     if (!file.exists()) {
       return Collections.emptyMap();
     }
@@ -362,7 +362,8 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> List<T> readPersistableList(final Persistable.Reader<T> reader, final File file) {
+  public static <T extends Persistable> List<T> readPersistableList(final Persistable.Reader<T> reader,
+                                                                    final File file) {
     if (!file.exists()) {
       return Collections.emptyList();
     }
@@ -436,7 +437,8 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> void writeStringToListOfPersistables(Map<String, List<T>> map, final File file) {
+  public static <T extends Persistable> void writeStringToListOfPersistables(Map<String, List<T>> map,
+                                                                             final File file) {
     map = nonNullMap(map);
 
     if (USE_PERSISTABLE) {

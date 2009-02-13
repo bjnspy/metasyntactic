@@ -63,7 +63,10 @@ public class SearchEngine {
       }
 
       final String lowercaseText = StringUtilities.toASCII(text).toLowerCase();
-      final int index = lowercaseText.indexOf(currentlyExecutingRequest.getLowercaseValue());
+      final int index;
+      synchronized (gate) {
+        index = lowercaseText.indexOf(currentlyExecutingRequest.getLowercaseValue());
+      }
 
       if (index > 0) {
         // make sure it's matching the start of a word
@@ -97,7 +100,11 @@ public class SearchEngine {
 
   private List<Movie> findMovies() {
     final List<Movie> result = new ArrayList<Movie>();
-    for (final Movie movie : currentlyExecutingRequest.getMovies()) {
+    final List<Movie> movies;
+    synchronized (gate) {
+      movies = currentlyExecutingRequest.getMovies();
+    }
+    for (final Movie movie : movies) {
       if (movieMatches(movie)) {
         result.add(movie);
       }
@@ -108,7 +115,11 @@ public class SearchEngine {
 
   private List<Theater> findTheaters() {
     final List<Theater> result = new ArrayList<Theater>();
-    for (final Theater theater : currentlyExecutingRequest.getTheaters()) {
+    final List<Theater> theaters;
+    synchronized (gate) {
+      theaters = currentlyExecutingRequest.getTheaters();
+    }
+    for (final Theater theater : theaters) {
       if (theaterMatches(theater)) {
         result.add(theater);
       }
@@ -119,7 +130,11 @@ public class SearchEngine {
 
   private List<Movie> findUpcomingMovies() {
     final List<Movie> result = new ArrayList<Movie>();
-    for (final Movie movie : currentlyExecutingRequest.getUpcomingMovies()) {
+    final List<Movie> movies;
+    synchronized (gate) {
+      movies = currentlyExecutingRequest.getUpcomingMovies();
+    }
+    for (final Movie movie : movies) {
       if (movieMatches(movie)) {
         result.add(movie);
       }
@@ -144,9 +159,13 @@ public class SearchEngine {
       return;
     }
 
-    final SearchResult result = new SearchResult(currentlyExecutingRequest.getRequestId(),
-                                                 currentlyExecutingRequest.getValue(), movies, theaters,
-                                                 upcomingMovies);
+    final int id;
+    final String value;
+    synchronized (gate) {
+      id = currentlyExecutingRequest.getRequestId();
+      value = currentlyExecutingRequest.getValue();
+    }
+    final SearchResult result = new SearchResult(id, value, movies, theaters, upcomingMovies);
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
         reportResult(result);
