@@ -539,14 +539,7 @@ public class DataProvider {
     FileUtilities.writeStringToDateMap(result.synchronizationData, getSynchronizationFile());
     LogUtilities.logTime(DataProvider.class, "Saving Sync Data", start);
     start = System.currentTimeMillis();
-    final File tempFile;
-    try {
-      tempFile = File.createTempFile("DPT", "T1" + Math.random());
-    } catch (final IOException e) {
-      throw new RuntimeException(e);
-    }
-    final File tempDirectory = tempFile.getParentFile();
-    final File tempFolder = new File(tempDirectory, "T2" + Math.random());
+    final File tempFolder = new File(Application.tempDirectory, "DPT" + Math.random());
     tempFolder.mkdirs();
 
     broadcastUpdate(R.string.downloading_local_performances);

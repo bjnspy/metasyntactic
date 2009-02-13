@@ -13,10 +13,12 @@
 //limitations under the License.
 package org.metasyntactic.utilities;
 
+import org.metasyntactic.Application;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.time.Days;
+
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullCollection;
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
 
@@ -564,7 +566,7 @@ public class FileUtilities {
         data = EMPTY_BYTE_ARRAY;
       }
 
-      final File tempFile = File.createTempFile("WBT", "T" + Math.random());
+      final File tempFile = File.createTempFile("WBT", "T" + Math.random(), Application.tempDirectory);
       final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 1 << 13);
       out.write(data);
 
