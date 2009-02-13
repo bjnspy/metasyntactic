@@ -500,7 +500,7 @@ public class DataProvider {
     if (this.movies == null) {
       this.movies = loadMovies();
     }
-    return Collections.unmodifiableList(this.movies);
+    return this.movies;
   }
 
   private static Map<String, Date> loadSynchronizationData() {
@@ -594,7 +594,7 @@ public class DataProvider {
     if (this.theaters == null) {
       this.theaters = loadTheaters();
     }
-    return Collections.unmodifiableList(this.theaters);
+    return this.theaters;
   }
 
   public Date synchronizationDateForTheater(final String theaterName) {
