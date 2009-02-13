@@ -6,6 +6,8 @@ import android.content.*;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Criteria;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -72,13 +74,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context context, final Intent intent) {
-      if (Application.NOT_SCROLLING_INTENT.equals(
-          intent.getAction()) && NowPlayingActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
+      if (Application.NOT_SCROLLING_INTENT.equals(intent.getAction())
+          && NowPlayingActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
       }
-      if (Application.SCROLLING_INTENT.equals(
-          intent.getAction()) && NowPlayingActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      if (Application.SCROLLING_INTENT.equals(intent.getAction())
+          && NowPlayingActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask.cancel(true);
       }
     }
@@ -138,13 +141,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       refresh();
     } else {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok,
-                                                                                       new DialogInterface.OnClickListener() {
-                                                                                         public void onClick(
-                                                                                             final DialogInterface dialog,
-                                                                                             final int whichButton) {
-                                                                                           NowPlayingActivity.this.finish();
-                                                                                         }
-                                                                                       }).show();
+          new DialogInterface.OnClickListener() {
+            public void onClick(final DialogInterface dialog, final int whichButton) {
+              NowPlayingActivity.this.finish();
+            }
+          }).show();
     }
   }
 
@@ -170,8 +171,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
       if (matchingMovies.isEmpty()) {
-        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search,
-                       Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search, Toast.LENGTH_SHORT)
+            .show();
       } else {
         movies = matchingMovies;
         // cancel task so that it doesnt try to load the complete set of movies.
@@ -220,8 +221,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     registerReceiver(this.databroadcastReceiver, new IntentFilter(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
     registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(Application.SCROLLING_INTENT));
     registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(Application.NOT_SCROLLING_INTENT));
-    registerReceiver(this.progressbroadcastReceiver,
-                     new IntentFilter(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
+    registerReceiver(this.progressbroadcastReceiver, new IntentFilter(
+        Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }
@@ -323,7 +324,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER,
-                                                                          Movie.SCORE_ORDER);
+      Movie.SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter implements FastScrollGridView.SectionIndexer {
     private final LayoutInflater inflater;
@@ -344,8 +345,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
-        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title),
-                                (ImageView) convertView.findViewById(R.id.poster));
+        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title), (ImageView) convertView
+            .findViewById(R.id.poster));
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
@@ -445,19 +446,18 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming).setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
         android.R.drawable.ic_menu_send);
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
+        .setIntent(new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.sort_movies).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
-          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
-          android.R.string.cancel);
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(R.string.sort_movies)
+          .setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
+              R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
+              android.R.string.cancel);
       builder.show();
       return true;
     }
@@ -496,8 +496,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private static String getUserSettings(final Resources res) {
     String body = "\n\n\n\n";
     body += res.getString(R.string.settings);
-    body += '\n' + res.getString(
-        R.string.autoupdate_location) + ": " + NowPlayingControllerWrapper.isAutoUpdateEnabled();
+    body += '\n' + res.getString(R.string.autoupdate_location) + ": "
+        + NowPlayingControllerWrapper.isAutoUpdateEnabled();
     body += '\n' + res.getString(R.string.location) + ": " + NowPlayingControllerWrapper.getUserLocation();
     body += '\n' + res.getString(R.string.search_distance) + ": " + NowPlayingControllerWrapper.getSearchDistance();
     body += '\n' + res.getString(R.string.reviews) + ": " + NowPlayingControllerWrapper.getScoreType();
@@ -574,9 +574,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
      * 0, bytes.length, options); final int bitmapWidth = options.outWidth;
      * final int bitmapHeight = options.outHeight; final float scale =
      * Math.min((float) bitmapWidth / (float) width, (float) bitmapHeight /
-     * (float) height) * 2; options.inJustDecodeBounds = false;
-     * options.inPreferredConfig = Bitmap.Config.ARGB_8888; options.inSampleSize =
-     * (int) scale; final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
+     * (float) height) 2; options.inJustDecodeBounds = false;
+     * options.inPreferredConfig = Bitmap.Config.ARGB_8888; options.inSampleSize
+     * = (int) scale; final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
      * 0, bytes.length, options); return bitmap;
      */
   }
