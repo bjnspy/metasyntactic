@@ -83,7 +83,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   }
 
   private void setupView() {
-    this.theaters = NowPlayingControllerWrapper.getTheaters();
+    this.theaters = new ArrayList<Theater>(NowPlayingControllerWrapper.getTheaters());
     setContentView(R.layout.theaterlist);
     final ListView list = getListView();
     final String userPostalCode = NowPlayingControllerWrapper.getUserLocation();

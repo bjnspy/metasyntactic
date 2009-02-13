@@ -89,7 +89,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
    */
   public void refresh() {
     if (this.search == null) {
-      movies = NowPlayingControllerWrapper.getMovies();
+      movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getMovies());
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
@@ -481,7 +481,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       return true;
     }
     if (item.getItemId() == MovieViewUtilities.MENU_SEND_FEEDBACK) {
-      final Resources res = this.getResources();
+      final Resources res = getResources();
       final String addr = "cyrusn@google.com";
       final Intent localIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
       localIntent.putExtra("subject", res.getString(R.string.feedback));
