@@ -69,7 +69,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private static final Map<String, SoftReference<Bitmap>> postersMap = new HashMap<String, SoftReference<Bitmap>>();
   private String[] alphabet;
   private String[] score;
-  private TextView progressUpdate;
   private RelativeLayout bottomBar;
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
@@ -151,14 +150,14 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   }
 
   @Override
-  protected void onNewIntent(Intent intent) {
+  protected void onNewIntent(final Intent intent) {
     // TODO Auto-generated method stub
     super.onNewIntent(intent);
     this.search = intent.getStringExtra("movie");
     if (this.search != null) {
       this.bottomBar.setVisibility(View.VISIBLE);
     } else {
-      bottomBar.setVisibility(View.GONE);
+      this.bottomBar.setVisibility(View.GONE);
     }
   }
 
@@ -262,9 +261,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
     final Button UpcomingMovies = (Button) findViewById(R.id.all_movies);
     UpcomingMovies.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View arg0) {
-        Intent intent = new Intent();
+      public void onClick(final View arg0) {
+        final Intent intent = new Intent();
         intent.setClass(UpcomingMoviesActivity.this, UpcomingMoviesActivity.class);
         UpcomingMoviesActivity.this.startActivity(intent);
       }
@@ -285,7 +283,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       public void onAnimationRepeat(final Animation animation) {
       }
 
-      public void onAnimationStart(final Animation arg0) {
+      public void onAnimationStart(final Animation arg) {
       }
     });
     populateAlphaMovieSectionsAndPositions();
@@ -480,21 +478,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       return true;
     }
     return false;
-  }
-
-  private String getUserSettings(final Resources res) {
-    String body;
-    body = "\n\n\n\n";
-    body += res.getString(R.string.settings);
-    body += "\n" + res.getString(R.string.autoupdate_location) + ": "
-        + NowPlayingControllerWrapper.isAutoUpdateEnabled();
-    body += "\n" + res.getString(R.string.location) + ": "
-        + NowPlayingControllerWrapper.getUserLocation();
-    body += "\n" + res.getString(R.string.search_distance) + ": "
-        + NowPlayingControllerWrapper.getSearchDistance();
-    body += "\n" + res.getString(R.string.reviews) + ": "
-        + NowPlayingControllerWrapper.getScoreType();
-    return body;
   }
 
   private void setupRotationAnimation(final View view) {

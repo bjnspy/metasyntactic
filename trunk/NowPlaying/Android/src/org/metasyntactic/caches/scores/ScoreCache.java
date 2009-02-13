@@ -91,6 +91,9 @@ public class ScoreCache extends AbstractCache {
         primaryScoreProvider.update();
 
         for (final ScoreProvider provider : getProviders()) {
+          if (ScoreCache.this.shutdown) {
+            return;
+          }
           if (provider != primaryScoreProvider) {
             provider.update();
           }
