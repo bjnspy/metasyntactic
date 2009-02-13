@@ -62,11 +62,11 @@ public class MovieViewUtilities {
    * Formats the movie rating for display. For example if a movie is rated PG
    * 13, the ratings string is "Rated PG-13.". If a movie is unrated then the
    * ratings string is "Unrated."
-   * 
+   *
    * @param rating
-   *            Movie rating.
+   *          Movie rating.
    * @param res
-   *            Context resources handle.
+   *          Context resources handle.
    */
   public static String formatRatings(final String rating, final Resources res) {
     if (rating.equals("")) {
@@ -79,11 +79,11 @@ public class MovieViewUtilities {
   /**
    * Formats the movie length for display. The movie length is displayed as "x
    * hours y minutes".
-   * 
+   *
    * @param length
-   *            Movie length in minutes.
+   *          Movie length in minutes.
    * @param res
-   *            Context resources handle.
+   *          Context resources handle.
    */
   public static String formatLength(final int length, final Resources res) {
     String hoursString = "";
@@ -105,7 +105,7 @@ public class MovieViewUtilities {
     return res.getString(R.string.string_string, hoursString, minutesString);
   }
 
-  public static String formatListToString(List<String> list) {
+  public static String formatListToString(final List<String> list) {
     if (list != null && list.size() > 0) {
       final String listStr = list.toString();
       return listStr.substring(1, listStr.length() - 1);
@@ -114,54 +114,33 @@ public class MovieViewUtilities {
     }
   }
 
-  public static Drawable formatScoreDrawable(final int score, final ScoreType scoreType,
-      final Resources res) {
-    if (scoreType == ScoreType.RottenTomatoes) {
-      return formatRottenTomatoesDrawable(score, res);
-    }
+  public static Drawable formatScoreDrawable(final int score, final ScoreType scoreType, final Resources res) {
+    // if (scoreType == ScoreType.RottenTomatoes) {
+    // return formatRottenTomatoesDrawable(score, res);
+    // }
     return formatBasicSquareDrawable(score, res);
-  }
-
-  private static Drawable formatRottenTomatoesDrawable(final int score, final Resources res) {
-    Drawable scoreDrawable = null;
-    if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null)
-      rating_unknown_drawable = new SoftReference<Drawable>(res
-          .getDrawable(R.drawable.rating_unknown));
-    scoreDrawable = rating_unknown_drawable.get();
-    if (score >= 0 && score <= 100) {
-      if (score >= 60) {
-        if (fresh_drawable == null || fresh_drawable.get() == null)
-          fresh_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.fresh));
-        scoreDrawable = fresh_drawable.get();
-      } else {
-        if (rotten_full_drawable == null || rotten_full_drawable.get() == null)
-          rotten_full_drawable = new SoftReference<Drawable>(res
-              .getDrawable(R.drawable.rotten_full));
-        scoreDrawable = rotten_full_drawable.get();
-      }
-    }
-    return scoreDrawable;
   }
 
   private static Drawable formatBasicSquareDrawable(final int score, final Resources res) {
     Drawable scoreDrawable = null;
-    if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null)
-      rating_unknown_drawable = new SoftReference<Drawable>(res
-          .getDrawable(R.drawable.rating_unknown));
+    if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null) {
+      rating_unknown_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_unknown));
+    }
     scoreDrawable = rating_unknown_drawable.get();
     if (score >= 0 && score <= 40) {
-      if (rating_red_drawable == null || rating_red_drawable.get() == null)
+      if (rating_red_drawable == null || rating_red_drawable.get() == null) {
         rating_red_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_red));
+      }
       scoreDrawable = rating_red_drawable.get();
     } else if (score > 40 && score <= 60) {
-      if (rating_yellow_drawable == null || rating_yellow_drawable.get() == null)
-        rating_yellow_drawable = new SoftReference<Drawable>(res
-            .getDrawable(R.drawable.rating_yellow));
+      if (rating_yellow_drawable == null || rating_yellow_drawable.get() == null) {
+        rating_yellow_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_yellow));
+      }
       scoreDrawable = rating_yellow_drawable.get();
     } else if (score > 60 && score <= 100) {
-      if (rating_green_drawable == null || rating_green_drawable.get() == null)
-        rating_green_drawable = new SoftReference<Drawable>(res
-            .getDrawable(R.drawable.rating_green));
+      if (rating_green_drawable == null || rating_green_drawable.get() == null) {
+        rating_green_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_green));
+      }
       scoreDrawable = rating_green_drawable.get();
     }
     return scoreDrawable;
@@ -173,8 +152,7 @@ public class MovieViewUtilities {
       if (position == 0) {
         return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
       }
-      if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1)
-          .getDisplayTitle().charAt(0)) {
+      if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
         return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
       }
       break;
@@ -199,22 +177,21 @@ public class MovieViewUtilities {
     return null;
   }
 
-  public static String getTheaterHeader(final List<Theater> theaters, final int position,
-      final int sortIndex, final Address address) {
+  public static String getTheaterHeader(final List<Theater> theaters, final int position, final int sortIndex,
+      final Address address) {
     switch (sortIndex) {
     case TheaterName:
       if (position == 0) {
         return String.valueOf(theaters.get(position).getName().charAt(0));
       }
-      if (theaters.get(position).getName().charAt(0) != theaters.get(position - 1).getName()
-          .charAt(0)) {
+      if (theaters.get(position).getName().charAt(0) != theaters.get(position - 1).getName().charAt(0)) {
         return String.valueOf(theaters.get(position).getName().charAt(0));
       }
       break;
     case Distance:
       // todo (mjoshi) fix this ...incorrect headers are returned, and its slow.
-      final Location userLocation = new Location(address.getLatitude(), address.getLongitude(),
-          null, null, null, null, null);
+      final Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null, null,
+          null);
       final double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
       // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
       if (dist_m1 <= 2 && dist_m1 >= 0 && currentHeader != "Less than 2 miles") {
@@ -249,17 +226,23 @@ public class MovieViewUtilities {
   }
 
   public static void cleanUpDrawables() {
-    if (rotten_full_drawable != null && rotten_full_drawable.get() != null)
+    if (rotten_full_drawable != null && rotten_full_drawable.get() != null) {
       rotten_full_drawable.get().setCallback(null);
-    if (fresh_drawable != null && fresh_drawable.get() != null)
+    }
+    if (fresh_drawable != null && fresh_drawable.get() != null) {
       fresh_drawable.get().setCallback(null);
-    if (rating_unknown_drawable != null && rating_unknown_drawable.get() != null)
+    }
+    if (rating_unknown_drawable != null && rating_unknown_drawable.get() != null) {
       rating_unknown_drawable.get().setCallback(null);
-    if (rating_yellow_drawable != null && rating_yellow_drawable.get() != null)
+    }
+    if (rating_yellow_drawable != null && rating_yellow_drawable.get() != null) {
       rating_yellow_drawable.get().setCallback(null);
-    if (rating_red_drawable != null && rating_red_drawable.get() != null)
+    }
+    if (rating_red_drawable != null && rating_red_drawable.get() != null) {
       rating_red_drawable.get().setCallback(null);
-    if (rating_green_drawable != null && rating_green_drawable.get() != null)
+    }
+    if (rating_green_drawable != null && rating_green_drawable.get() != null) {
       rating_green_drawable.get().setCallback(null);
+    }
   }
 }

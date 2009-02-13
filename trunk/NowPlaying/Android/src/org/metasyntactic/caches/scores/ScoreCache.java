@@ -87,13 +87,12 @@ public class ScoreCache extends AbstractCache {
     final ScoreType scoreType = this.model.getScoreType();
     final Runnable runnable = new Runnable() {
       public void run() {
+        if (ScoreCache.this.shutdown) { return; }
         final ScoreProvider primaryScoreProvider = getScoreProvider(scoreType);
         primaryScoreProvider.update();
 
         for (final ScoreProvider provider : getProviders()) {
-          if (ScoreCache.this.shutdown) {
-            return;
-          }
+          if (ScoreCache.this.shutdown) { return; }
           if (provider != primaryScoreProvider) {
             provider.update();
           }
@@ -105,7 +104,11 @@ public class ScoreCache extends AbstractCache {
   }
 
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
-    return getScoreProvider(this.model.getScoreType()).getReviews(movies, movie);
+    ScoreProvider provider = getScoreProvider(this.model.getScoreType());
+    if (provider == this.rottenTomatoesScoreProvider) {
+      provider = this.metacriticScoreProvider;
+    }
+    return this.metacriticScoreProvider.getReviews(movies, movie);
   }
 
   public void prioritizeMovie(final List<Movie> movies, final Movie movie) {

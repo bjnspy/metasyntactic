@@ -135,13 +135,16 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   private void updateScores() {
+    if (this.shutdown) { return; }
     final long start = System.currentTimeMillis();
     Map<String,Score> map = updateScoresWorker();
     LogUtilities.logTime(getClass(), "Update Scores", start);
 
+    if (this.shutdown) { return; }
     if (map == null) {
       map = loadScores();
     }
+    if (this.shutdown) { return; }
     updateReviewsWorker(map);
   }
 
