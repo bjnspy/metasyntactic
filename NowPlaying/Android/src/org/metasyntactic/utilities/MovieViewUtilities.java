@@ -115,13 +115,35 @@ public class MovieViewUtilities {
   }
 
   public static Drawable formatScoreDrawable(final int score, final ScoreType scoreType, final Resources res) {
-    // if (scoreType == ScoreType.RottenTomatoes) {
-    // return formatRottenTomatoesDrawable(score, res);
-    // }
+    if (scoreType == ScoreType.RottenTomatoes) {
+      return formatRottenTomatoesDrawable(score, res);
+    }
     return formatBasicSquareDrawable(score, res);
   }
 
-  private static Drawable formatBasicSquareDrawable(final int score, final Resources res) {
+  private static Drawable formatRottenTomatoesDrawable(final int score, final Resources res) {
+    Drawable scoreDrawable = null;
+    if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null) {
+      rating_unknown_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_unknown));
+    }
+    scoreDrawable = rating_unknown_drawable.get();
+    if (score >= 0 && score <= 100) {
+      if (score >= 60) {
+        if (fresh_drawable == null || fresh_drawable.get() == null) {
+          fresh_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.fresh));
+        }
+        scoreDrawable = fresh_drawable.get();
+      } else {
+        if (rotten_full_drawable == null || rotten_full_drawable.get() == null) {
+          rotten_full_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rotten_full));
+        }
+        scoreDrawable = rotten_full_drawable.get();
+      }
+    }
+    return scoreDrawable;
+  }
+
+  public static Drawable formatBasicSquareDrawable(final int score, final Resources res) {
     Drawable scoreDrawable = null;
     if (rating_unknown_drawable == null || rating_unknown_drawable.get() == null) {
       rating_unknown_drawable = new SoftReference<Drawable>(res.getDrawable(R.drawable.rating_unknown));
