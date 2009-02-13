@@ -42,7 +42,9 @@ public class LocationTracker implements LocationListener {
       final Criteria criteria = new Criteria();
       criteria.setAccuracy(Criteria.ACCURACY_COARSE);
       final String provider = this.locationManager.getBestProvider(criteria, true);
-      this.locationManager.requestLocationUpdates(provider, 5 * 60 * 1000, 1000, this);
+      if (provider != null) {
+        this.locationManager.requestLocationUpdates(provider, 5 * 60 * 1000, 1000, this);
+      }
     }
   }
 
