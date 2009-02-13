@@ -216,7 +216,7 @@ public class NowPlayingModel {
 
   public int getAllTheatersSelectedSortIndex() {
     synchronized (this.preferencesLock) {
-      return this.preferences.getInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, 0);
+      return this.preferences.getInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, 1);
     }
   }
 
