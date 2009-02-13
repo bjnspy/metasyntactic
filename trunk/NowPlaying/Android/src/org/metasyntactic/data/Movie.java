@@ -76,7 +76,10 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
     }
   };
 
-  private Movie(final String identifier, final String canonicalTitle, final String displayTitle, final String rating, final int length, final String imdbAddress, final Date releaseDate, final String poster, final String synopsis, final String studio, final List<String> directors, final List<String> cast, final List<String> genres) {
+  private Movie(final String identifier, final String canonicalTitle, final String displayTitle, final String rating,
+                final int length, final String imdbAddress, final Date releaseDate, final String poster,
+                final String synopsis, final String studio, final List<String> directors, final List<String> cast,
+                final List<String> genres) {
     this.identifier = identifier;
     this.canonicalTitle = canonicalTitle;
     this.rating = rating;
@@ -92,7 +95,9 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
     this.displayTitle = displayTitle;
   }
 
-  public Movie(final String identifier, final String title, final String rating, final int length, final String imdbAddress, final Date releaseDate, final String poster, final String synopsis, final String studio, final List<String> directors, final List<String> cast, final List<String> genres) {
+  public Movie(final String identifier, final String title, final String rating, final int length,
+               final String imdbAddress, final Date releaseDate, final String poster, final String synopsis,
+               final String studio, final List<String> directors, final List<String> cast, final List<String> genres) {
     this(identifier, makeCanonical(title), makeDisplay(title), rating, length, imdbAddress, releaseDate, poster,
          synopsis, studio, directors, cast, genres);
   }
@@ -159,7 +164,8 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
 
     final Movie movie = (Movie) o;
 
-    if (this.canonicalTitle != null ? !this.canonicalTitle.equals(movie.canonicalTitle) : movie.canonicalTitle != null) {
+    if (this.canonicalTitle != null ? !this.canonicalTitle.equals(
+        movie.canonicalTitle) : movie.canonicalTitle != null) {
       return false;
     }
 

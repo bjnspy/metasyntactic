@@ -57,7 +57,8 @@ public class Location extends AbstractPersistable implements Parcelable {
     }
   };
 
-  public Location(final double latitude, final double longitude, final String address, final String city, final String state, final String postalCode, final String country) {
+  public Location(final double latitude, final double longitude, final String address, final String city,
+                  final String state, final String postalCode, final String country) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.address = nonNullString(address);

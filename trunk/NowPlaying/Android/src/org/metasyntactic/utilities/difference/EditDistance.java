@@ -15,8 +15,8 @@ package org.metasyntactic.utilities.difference;
 
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import java.util.List;
 import java.util.Collection;
+import java.util.List;
 
 public class EditDistance {
   private EditDistance() {

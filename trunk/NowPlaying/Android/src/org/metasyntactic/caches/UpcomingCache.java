@@ -26,10 +26,10 @@ import static org.metasyntactic.utilities.XmlUtilities.children;
 import org.w3c.dom.Element;
 
 import java.io.File;
+import static java.lang.String.valueOf;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import static java.lang.String.valueOf;
 
 public class UpcomingCache extends AbstractCache {
   private static int identifier;
@@ -197,7 +197,8 @@ public class UpcomingCache extends AbstractCache {
     LogUtilities.logTime(DataProvider.class, "Update Index - Save Results", start);
   }
 
-  private void reportResults(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void reportResults(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys,
+                             final Map<String, String> titleKeys) {
     final Runnable runnable = new Runnable() {
       public void run() {
         reportResultsOnMainThread(serverHash, movies, studioKeys, titleKeys);
@@ -206,14 +207,16 @@ public class UpcomingCache extends AbstractCache {
     ThreadingUtilities.performOnMainThread(runnable);
   }
 
-  private void reportResultsOnMainThread(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void reportResultsOnMainThread(final String serverHash, final List<Movie> movies,
+                                         final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     this.hash = serverHash;
     this.movies = movies;
     this.studioKeys = studioKeys;
     this.titleKeys = titleKeys;
   }
 
-  private static void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios, final Map<String, String> titles) {
+  private static void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios,
+                                  final Map<String, String> titles) {
     FileUtilities.writePersistableCollection(movies, moviesFile());
     FileUtilities.writeStringToStringMap(studios, studiosFile());
     FileUtilities.writeStringToStringMap(titles, titlesFile());
@@ -223,7 +226,8 @@ public class UpcomingCache extends AbstractCache {
     FileUtilities.writeString(serverHash, hashFile());
   }
 
-  private void processResultElement(final Element resultElement, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void processResultElement(final Element resultElement, final List<Movie> movies,
+                                    final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     for (final Element movieElement : children(resultElement)) {
       if (this.shutdown) {
         return;
@@ -232,7 +236,8 @@ public class UpcomingCache extends AbstractCache {
     }
   }
 
-  private void processMovieElement(final Element movieElement, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void processMovieElement(final Element movieElement, final List<Movie> movies,
+                                   final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     final Date releaseDate;
     try {
       releaseDate = this.formatter.parse(movieElement.getAttribute("date"));
@@ -266,13 +271,15 @@ public class UpcomingCache extends AbstractCache {
     return result;
   }
 
-  private void updateDetailsBackgroundEntryPoint(final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void updateDetailsBackgroundEntryPoint(final List<Movie> movies, final Map<String, String> studioKeys,
+                                                 final Map<String, String> titleKeys) {
     final long start = System.currentTimeMillis();
     updateDetailsBackgroundEntryPointWorker(movies, studioKeys, titleKeys);
     LogUtilities.logTime(UpcomingCache.class, "Update Details", start);
   }
 
-  private void updateDetailsBackgroundEntryPointWorker(final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
+  private void updateDetailsBackgroundEntryPointWorker(final List<Movie> movies, final Map<String, String> studioKeys,
+                                                       final Map<String, String> titleKeys) {
     if (movies.isEmpty()) {
       return;
     }

@@ -13,18 +13,10 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.OnHierarchyChangeListener;
-import android.widget.AbsListView;
-import android.widget.Adapter;
-import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
-import android.widget.GridView;
-import android.widget.HeaderViewListAdapter;
+import android.widget.*;
 import android.widget.AbsListView.OnScrollListener;
-
 import org.metasyntactic.Application;
 import org.metasyntactic.R;
-import org.metasyntactic.UserTask;
-import org.metasyntactic.NowPlayingActivity;
 
 /**
  * FastScrollView is meant for embedding {@link GridView}s that contain a large
@@ -33,8 +25,7 @@ import org.metasyntactic.NowPlayingActivity;
  * touch-mode. Only one child can be added to this view group and it must be a
  * {@link GridView}, with an adapter that is derived from {@link BaseAdapter}.
  */
-public class FastScrollGridView extends FrameLayout implements OnScrollListener,
-    OnHierarchyChangeListener {
+public class FastScrollGridView extends FrameLayout implements OnScrollListener, OnHierarchyChangeListener {
   private Drawable mCurrentThumb;
   private Drawable mOverlayDrawable;
   private int mThumbH;
@@ -145,7 +136,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       float descent = paint.descent();
       final RectF rectF = mOverlayPos;
       canvas.drawText(mSectionText, (int) (rectF.left + rectF.right) / 2,
-          (int) (rectF.bottom + rectF.top) / 2 + mOverlaySize / 6 - descent, paint);
+                      (int) (rectF.bottom + rectF.top) / 2 + mOverlaySize / 6 - descent, paint);
     } else if (alpha == 0) {
       scrollFade.mStarted = false;
       removeThumb();
@@ -170,15 +161,13 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
 
   public void onScrollStateChanged(AbsListView view, int scrollState) {
     if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-       context.sendBroadcast(new Intent(Application.NOT_SCROLLING_INTENT));
+      context.sendBroadcast(new Intent(Application.NOT_SCROLLING_INTENT));
     } else {
       context.sendBroadcast(new Intent(Application.SCROLLING_INTENT));
-    }     
-    
+    }
   }
 
-  public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-      int totalItemCount) {
+  public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
     if (totalItemCount - visibleItemCount > 0 && !mDragging) {
       mThumbY = ((getHeight() - mThumbH) * firstVisibleItem) / (totalItemCount - visibleItemCount);
       if (mChangedBounds) {
@@ -234,8 +223,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   @Override
   public boolean onInterceptTouchEvent(MotionEvent ev) {
     if (mThumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
-      if (ev.getX() > getWidth() - mThumbW && ev.getY() >= mThumbY
-          && ev.getY() <= mThumbY + mThumbH) {
+      if (ev.getX() > getWidth() - mThumbW && ev.getY() >= mThumbY && ev.getY() <= mThumbY + mThumbH) {
         mDragging = true;
         return true;
       }
@@ -290,8 +278,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       // sure that there is really a Q at Q's position. If not, move
       // further down...
       int nextNextSection = nextSection + 1;
-      while (nextNextSection < nSections
-          && baseAdapter.getPositionForSection(nextNextSection) == nextIndex) {
+      while (nextNextSection < nSections && baseAdapter.getPositionForSection(nextNextSection) == nextIndex) {
         nextNextSection++;
         nextSection++;
       }
@@ -302,8 +289,9 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       float fNext = (float) nextSection / nSections;
       index = prevIndex + (int) ((nextIndex - prevIndex) * (position - fPrev) / (fNext - fPrev));
       // Don't overflow
-      if (index > count - 1)
+      if (index > count - 1) {
         index = count - 1;
+      }
       mGrid.setSelection(index + mGridOffset);
     } else {
       int index = (int) (position * count);
@@ -312,8 +300,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     }
     if (sectionIndex >= 0) {
       String text = mSectionText = sections[sectionIndex].toString();
-      mDrawOverlay = (text.length() != 1 || text.charAt(0) != ' ')
-          && sectionIndex < sections.length;
+      mDrawOverlay = (text.length() != 1 || text.charAt(0) != ' ') && sectionIndex < sections.length;
     } else {
       mDrawOverlay = false;
     }
@@ -329,8 +316,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   @Override
   public boolean onTouchEvent(MotionEvent me) {
     if (me.getAction() == MotionEvent.ACTION_DOWN) {
-      if (me.getX() > getWidth() - mThumbW && me.getY() >= mThumbY
-          && me.getY() <= mThumbY + mThumbH) {
+      if (me.getX() > getWidth() - mThumbW && me.getY() >= mThumbY && me.getY() <= mThumbY + mThumbH) {
         mDragging = true;
         if (mGridAdapter == null && mGrid != null) {
           getSections();

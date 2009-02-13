@@ -36,7 +36,7 @@ public class DateUtilities {
   }
 
   private DateUtilities() {
-    
+
   }
 
   public static Date getToday() {

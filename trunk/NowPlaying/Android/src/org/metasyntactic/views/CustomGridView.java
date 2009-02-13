@@ -17,11 +17,7 @@ package org.metasyntactic.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.AbsListView;
 import android.widget.GridView;
-import android.widget.AbsListView.OnScrollListener;
-
-import org.metasyntactic.NowPlayingActivity;
 
 /**
  * A gallery of the different styles of buttons.

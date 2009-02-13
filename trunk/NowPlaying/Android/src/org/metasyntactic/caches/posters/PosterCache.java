@@ -16,6 +16,7 @@ package org.metasyntactic.caches.posters;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
+import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
@@ -109,7 +110,7 @@ public class PosterCache extends AbstractCache {
   }
 
   private byte[] downloadPosterFromFandango(final Movie movie) {
-    final Location location = this.model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
         this.model.getUserAddress());
 
     final String country = location == null ? "" : location.getCountry();
@@ -126,7 +127,6 @@ public class PosterCache extends AbstractCache {
   protected List<File> getCacheDirectories() {
     return Collections.singletonList(Application.postersDirectory);
   }
-
 
   public static byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(posterFile(movie));

@@ -16,7 +16,6 @@ package org.metasyntactic;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
-
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 
@@ -31,12 +30,11 @@ public class Application {
   public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
   public final static String SCROLLING_INTENT = "SCROLLING_INTENT";
   public final static String NOT_SCROLLING_INTENT = "NOT_SCROLLING_INTENT";
-
   public final static String host =
-  /*
-   * "metaboxoffice6"; /
-   */
-  "metaboxoffice2";
+      /*
+      * "metaboxoffice6"; /
+      */
+      "metaboxoffice2";
   // */
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
@@ -56,6 +54,7 @@ public class Application {
   public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
   public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
   private static Pulser pulser;
+
   static {
     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
       createDirectories();

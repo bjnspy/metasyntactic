@@ -13,10 +13,10 @@
 // limitations under the License.
 package org.metasyntactic.collections;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.HashSet;
 
 public class BoundedPrioritySet<T> {
   private final Object lock = new Object();

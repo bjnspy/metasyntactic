@@ -1,13 +1,12 @@
 package org.metasyntactic.data;
 
-import java.io.IOException;
-
-import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.PersistableOutputStream;
-import org.metasyntactic.io.PersistableInputStream;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.io.AbstractPersistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
+
+import java.io.IOException;
 
 public class Time extends AbstractPersistable implements Parcelable, Comparable<Time> {
   private static final long serialVersionUID = -1817535617950348044L;
@@ -84,7 +83,6 @@ public class Time extends AbstractPersistable implements Parcelable, Comparable<
       return new Time[size];
     }
   };
-
   private String timeString;
 
   @Override
@@ -102,7 +100,7 @@ public class Time extends AbstractPersistable implements Parcelable, Comparable<
       return false;
     }
 
-    return object instanceof Time && compareTo((Time)object) == 0;
+    return object instanceof Time && compareTo((Time) object) == 0;
   }
 
   @Override

@@ -13,53 +13,28 @@
 //limitations under the License.
 package org.metasyntactic.providers;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import org.metasyntactic.R;
 import android.content.Context;
 import android.content.Intent;
-
 import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.apache.commons.collections.map.MultiValueMap;
-import org.metasyntactic.Application;
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.*;
 import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.data.FavoriteTheater;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
+import org.metasyntactic.data.*;
 import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.time.Hours;
-import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.ExceptionUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
+import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
+import org.metasyntactic.utilities.*;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class DataProvider {
   private final Object lock = new Object();
@@ -123,7 +98,7 @@ public class DataProvider {
         if (context != null) {
           final String message = context.getResources().getString(id);
           final Intent intent = new Intent(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS).putExtra("message",
-              message);
+                                                                                                          message);
           context.sendBroadcast(intent);
         }
       }
@@ -131,8 +106,12 @@ public class DataProvider {
   }
 
   private void updateBackgroundEntryPointWorker(final List<Movie> currentMovies, final List<Theater> currentTheaters) {
-    if (isUpToDate()) { return; }
-    if (this.shutdown) { return; }
+    if (isUpToDate()) {
+      return;
+    }
+    if (this.shutdown) {
+      return;
+    }
 
     // Log.i("DEBUG", "Started downloadUserLocation trace");
     // Debug.startMethodTracing("downloadUserLocation", 50000000);
@@ -149,20 +128,26 @@ public class DataProvider {
       return;
     }
     start = System.currentTimeMillis();
-    if (this.shutdown) { return; }
+    if (this.shutdown) {
+      return;
+    }
     final LookupResult result = lookupLocation(location, null);
     LogUtilities.logTime(DataProvider.class, "Lookup Location", start);
     if (result == null || isEmpty(result.movies) || isEmpty(result.theaters)) {
       return;
     }
     start = System.currentTimeMillis();
-    if (this.shutdown) { return; }
+    if (this.shutdown) {
+      return;
+    }
     addMissingData(result, location, currentMovies, currentTheaters);
     LogUtilities.logTime(DataProvider.class, "Add missing data", start);
 
     start = System.currentTimeMillis();
     broadcastUpdate(R.string.finding_favorites);
-    if (this.shutdown) { return; }
+    if (this.shutdown) {
+      return;
+    }
     lookupMissingFavorites(result);
     LogUtilities.logTime(DataProvider.class, "Lookup Missing Theaters", start);
 
@@ -171,7 +156,7 @@ public class DataProvider {
   }
 
   private void addMissingData(final LookupResult result, final Location location, final List<Movie> currentMovies,
-      final List<Theater> currentTheaters) {
+                              final List<Theater> currentTheaters) {
     // Ok. so if:
     // a) the user is doing their main search
     // b) we do not find data for a theater that should be showing up
@@ -217,7 +202,7 @@ public class DataProvider {
     if (lookupResult == null) {
       return;
     }
-    final List<FavoriteTheater> favoriteTheaters = this.model.getFavoriteTheaters();
+    final List<FavoriteTheater> favoriteTheaters = NowPlayingModel.getFavoriteTheaters();
     if (favoriteTheaters.isEmpty()) {
       return;
     }
@@ -241,14 +226,13 @@ public class DataProvider {
       lookupResult.performances.putAll(favoritesLookupResult.performances);
       // the theater may refer to movies that we don't know about.
       for (final Map.Entry<String, Map<String, List<Performance>>> stringMapEntry : favoritesLookupResult.performances.entrySet()) {
-        addMissingMovies(stringMapEntry.getValue(), lookupResult, movieTitles,
-            favoritesLookupResult.movies);
+        addMissingMovies(stringMapEntry.getValue(), lookupResult, movieTitles, favoritesLookupResult.movies);
       }
     }
   }
 
   private static void addMissingMovies(final Map<String, List<Performance>> performances, final LookupResult result,
-      final Set<String> existingMovieTitles, final List<Movie> currentMovies) {
+                                       final Set<String> existingMovieTitles, final List<Movie> currentMovies) {
     if (isEmpty(performances)) {
       return;
     }
@@ -285,14 +269,11 @@ public class DataProvider {
     if (isNullOrEmpty(location.getPostalCode())) {
       return null;
     }
-    final String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location
-        .getCountry();
+    final String country = isNullOrEmpty(
+        location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
     int days = Days.daysBetween(DateUtilities.getToday(), this.model.getSearchDate());
     days = min(max(days, 0), 7);
-    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country
-        + "&postalcode=" + location.getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days
-        + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude="
-        + (int) (location.getLongitude() * 1000000) + "&device=android";
+    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&postalcode=" + location.getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000) + "&device=android";
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
       return null;
@@ -346,7 +327,7 @@ public class DataProvider {
       }
       final String poster = "";
       final Movie movie = new Movie(identifier, title, rating, length, imdbAddress, releaseDate, poster, synopsis, "",
-          directors, cast, genres);
+                                    directors, cast, genres);
       movieIdToMovieMap.put(identifier, movie);
     }
     return movieIdToMovieMap;
@@ -425,10 +406,9 @@ public class DataProvider {
     final String phone = theater.getPhone();
     final double latitude = theater.getLatitude();
     final double longitude = theater.getLongitude();
-    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList = theaterAndMovieShowtimes
-        .getMovieAndShowtimesList();
+    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimesList = theaterAndMovieShowtimes.getMovieAndShowtimesList();
     Map<String, List<Performance>> movieToShowtimesMap = processMovieAndShowtimesList(movieAndShowtimesList,
-        movieIdToMovieMap);
+                                                                                      movieIdToMovieMap);
     synchronizationData.put(name, DateUtilities.getToday());
     if (movieToShowtimesMap.isEmpty()) {
       // no showtime information available. fallback to anything we've
@@ -443,8 +423,8 @@ public class DataProvider {
     }
     final Location location = new Location(latitude, longitude, address, city, state, postalCode, country);
     performances.put(name, movieToShowtimesMap);
-    theaters.add(new Theater(identifier, name, address, phone, location, originatingLocation, new HashSet<String>(
-        movieToShowtimesMap.keySet())));
+    theaters.add(new Theater(identifier, name, address, phone, location, originatingLocation,
+                             new HashSet<String>(movieToShowtimesMap.keySet())));
   }
 
   private LookupResult processTheaterAndMovieShowtimes(
@@ -455,20 +435,20 @@ public class DataProvider {
     final Map<String, Map<String, List<Performance>>> localPerformances = new HashMap<String, Map<String, List<Performance>>>();
     final Map<String, Date> localSynchronizationData = new HashMap<String, Date>();
     for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto proto : theaterAndMovieShowtimes) {
-      processTheaterAndMovieShowtimes(proto, localTheaters, localPerformances, localSynchronizationData, originatingLocation,
-          theaterNames, movieIdToMovieMap);
+      processTheaterAndMovieShowtimes(proto, localTheaters, localPerformances, localSynchronizationData,
+                                      originatingLocation, theaterNames, movieIdToMovieMap);
     }
     return new LookupResult(null, localTheaters, localPerformances, localSynchronizationData);
   }
 
   private LookupResult processTheaterListings(final NowPlaying.TheaterListingsProto element,
-      final Location originatingLocation, final Collection<String> theaterNames) {
+                                              final Location originatingLocation,
+                                              final Collection<String> theaterNames) {
     final List<NowPlaying.MovieProto> movieProtos = element.getMoviesList();
-    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element
-        .getTheaterAndMovieShowtimesList();
+    final List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList();
     final Map<String, Movie> movieIdToMovieMap = processMovies(movieProtos);
     final LookupResult result = processTheaterAndMovieShowtimes(theaterAndMovieShowtimes, originatingLocation,
-        theaterNames, movieIdToMovieMap);
+                                                                theaterNames, movieIdToMovieMap);
     final List<Movie> localMovies = new ArrayList<Movie>(movieIdToMovieMap.values());
     return new LookupResult(localMovies, result.theaters, result.performances, result.synchronizationData);
   }
@@ -585,7 +565,7 @@ public class DataProvider {
     Map<String, List<Performance>> theaterPerformances = this.performances.get(theater.getName());
     if (theaterPerformances == null) {
       theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
-          getPerformancesFile(theater.getName()));
+                                                                         getPerformancesFile(theater.getName()));
       this.performances.put(theater.getName(), theaterPerformances);
     }
     return theaterPerformances;

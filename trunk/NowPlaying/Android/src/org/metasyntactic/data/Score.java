@@ -49,7 +49,8 @@ public class Score extends AbstractPersistable implements Parcelable, Comparable
     }
   };
 
-  private Score(final String canonicalTitle, final String synopsis, final String value, final String provider, final String identifier, final boolean ignored) {
+  private Score(final String canonicalTitle, final String synopsis, final String value, final String provider,
+                final String identifier, final boolean ignored) {
     this.canonicalTitle = canonicalTitle;
     this.synopsis = synopsis;
     this.value = value;
@@ -57,7 +58,8 @@ public class Score extends AbstractPersistable implements Parcelable, Comparable
     this.identifier = identifier;
   }
 
-  public Score(final String title, final String synopsis, final String value, final String provider, final String identifier) {
+  public Score(final String title, final String synopsis, final String value, final String provider,
+               final String identifier) {
     this(Movie.makeCanonical(title), synopsis, value, provider, identifier, true);
   }
 
@@ -131,7 +133,7 @@ public class Score extends AbstractPersistable implements Parcelable, Comparable
       return false;
     }
 
-    return this.compareTo((Score)object) == 0;
+    return this.compareTo((Score) object) == 0;
   }
 
   @Override

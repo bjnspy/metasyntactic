@@ -1,9 +1,9 @@
 package org.metasyntactic.views;
 
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
 import android.graphics.Camera;
 import android.graphics.Matrix;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 
 /**
  * An animation that rotates the view on the Y axis between two specified
@@ -27,20 +27,15 @@ public class Rotate3dAnimation extends Animation {
    * translation on the Z axis (depth) is performed. The length of the
    * translation can be specified, as well as whether the translation should be
    * reversed in time.
-   * 
-   * @param fromDegrees
-   *            the start angle of the 3D rotation
-   * @param toDegrees
-   *            the end angle of the 3D rotation
-   * @param centerX
-   *            the X center of the 3D rotation
-   * @param centerY
-   *            the Y center of the 3D rotation
-   * @param reverse
-   *            true if the translation should be reversed, false otherwise
+   *
+   * @param fromDegrees the start angle of the 3D rotation
+   * @param toDegrees   the end angle of the 3D rotation
+   * @param centerX     the X center of the 3D rotation
+   * @param centerY     the Y center of the 3D rotation
+   * @param reverse     true if the translation should be reversed, false otherwise
    */
-  public Rotate3dAnimation(float fromDegrees, float toDegrees, float centerX, float centerY,
-      float depthZ, boolean reverse) {
+  public Rotate3dAnimation(float fromDegrees, float toDegrees, float centerX, float centerY, float depthZ,
+                           boolean reverse) {
     mFromDegrees = fromDegrees;
     mToDegrees = toDegrees;
     mCenterX = centerX;

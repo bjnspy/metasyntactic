@@ -27,7 +27,7 @@ public class ImdbPosterDownloader {
   }
 
   private ImdbPosterDownloader() {
-    
+
   }
 
   private static String getImdbId(final Movie movie) {

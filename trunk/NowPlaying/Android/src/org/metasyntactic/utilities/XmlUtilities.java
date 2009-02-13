@@ -83,7 +83,7 @@ public class XmlUtilities {
       return null;
     }
 
-    return (Element)list.item(0);
+    return (Element) list.item(0);
   }
 
   public static String text(final Element element) {

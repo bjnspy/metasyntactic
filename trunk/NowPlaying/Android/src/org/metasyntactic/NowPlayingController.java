@@ -16,8 +16,8 @@ package org.metasyntactic;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
@@ -56,8 +56,8 @@ public class NowPlayingController {
     if (isNullOrEmpty(this.model.getUserAddress())) {
       return;
     }
-    final Location location = UserLocationCache
-        .downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
+        this.model.getUserAddress());
     if (location == null) {
       ThreadingUtilities.performOnMainThread(new Runnable() {
         public void run() {
@@ -74,11 +74,13 @@ public class NowPlayingController {
     if (context == null) {
       return;
     }
-    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot)
-        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-          public void onClick(final DialogInterface dialogInterface, final int i) {
-          }
-        }).show();
+    new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot).setPositiveButton(R.string.ok,
+                                                                                                        new DialogInterface.OnClickListener() {
+                                                                                                          public void onClick(
+                                                                                                              final DialogInterface dialogInterface,
+                                                                                                              final int i) {
+                                                                                                          }
+                                                                                                        }).show();
   }
 
   public String getUserAddress() {
@@ -183,12 +185,12 @@ public class NowPlayingController {
     return this.model.getScore(movie);
   }
 
-  public byte[] getPoster(final Movie movie) {
-    return this.model.getPoster(movie);
+  public static byte[] getPoster(final Movie movie) {
+    return NowPlayingModel.getPoster(movie);
   }
 
-  public File getPosterFile_safeToCallFromBackground(final Movie movie) {
-    return this.model.getPosterFile_safeToCallFromBackground(movie);
+  public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
+    return NowPlayingModel.getPosterFile_safeToCallFromBackground(movie);
   }
 
   public String getSynopsis(final Movie movie) {
@@ -216,8 +218,8 @@ public class NowPlayingController {
     update();
   }
 
-  public void reportLocationForAddress(final Location location, final String displayString) {
-    this.model.reportLocationForAddress(location, displayString);
+  public static void reportLocationForAddress(final Location location, final String displayString) {
+    NowPlayingModel.reportLocationForAddress(location, displayString);
   }
 
   public List<Movie> getUpcomingMovies() {

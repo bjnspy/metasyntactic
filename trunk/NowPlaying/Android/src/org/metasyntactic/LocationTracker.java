@@ -81,7 +81,7 @@ public class LocationTracker implements LocationListener {
       return;
     }
     final String displayString = location.toDisplayString();
-    this.controller.reportLocationForAddress(location, displayString);
+    NowPlayingController.reportLocationForAddress(location, displayString);
     this.controller.setUserAddress(displayString);
   }
 

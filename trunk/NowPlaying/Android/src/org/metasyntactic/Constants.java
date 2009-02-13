@@ -13,12 +13,12 @@
 //limitations under the License.
 package org.metasyntactic;
 
-public class Constants {
-  public final static long ONE_SECOND = 1000;
-  public final static long ONE_MINUTE = 60 * ONE_SECOND;
-  public final static long ONE_HOUR = 60 * ONE_MINUTE;
-  public final static long ONE_DAY = 24 * ONE_HOUR;
-  public final static long ONE_WEEK = 7 * ONE_DAY;
-  public final static long FOUR_WEEKS = 4 * ONE_WEEK;
-  public final static long CACHE_LIMIT = 30 * ONE_DAY;
+public interface Constants {
+  long ONE_SECOND = 1000;
+  long ONE_MINUTE = 60 * ONE_SECOND;
+  long ONE_HOUR = 60 * ONE_MINUTE;
+  long ONE_DAY = 24 * ONE_HOUR;
+  long ONE_WEEK = 7 * ONE_DAY;
+  long FOUR_WEEKS = 4 * ONE_WEEK;
+  long CACHE_LIMIT = 30 * ONE_DAY;
 }

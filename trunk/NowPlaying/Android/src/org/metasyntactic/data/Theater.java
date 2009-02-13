@@ -59,7 +59,8 @@ public class Theater extends AbstractPersistable implements Parcelable {
     }
   };
 
-  public Theater(final String identifier, final String name, final String address, final String phoneNumber, final Location location, final Location originatingLocation, final Set<String> movieTitles) {
+  public Theater(final String identifier, final String name, final String address, final String phoneNumber,
+                 final Location location, final Location originatingLocation, final Set<String> movieTitles) {
     this.identifier = identifier;
     this.name = nonNullString(name);
     this.address = nonNullString(address);
