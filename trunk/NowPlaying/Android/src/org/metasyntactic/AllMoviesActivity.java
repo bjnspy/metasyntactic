@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
+import android.util.Log;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
@@ -39,6 +40,7 @@ public class AllMoviesActivity extends ListActivity {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.moviedetails);
   }
@@ -124,6 +126,8 @@ public class AllMoviesActivity extends ListActivity {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
@@ -280,6 +284,8 @@ public class AllMoviesActivity extends ListActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+
     final Bundle extras = getIntent().getExtras();
     this.movie = extras.getParcelable("movie");
     final Resources res = getResources();
@@ -318,5 +324,10 @@ public class AllMoviesActivity extends ListActivity {
         startActivity(intent);
       }
     });
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
   }
 }

@@ -13,6 +13,7 @@ import android.view.*;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.util.Log;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.threading.ThreadingUtilities;
@@ -62,23 +63,29 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     getAlphabet(this);
     setupView();
   }
 
   @Override protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
+    
     unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
 
   @Override protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
     registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
 

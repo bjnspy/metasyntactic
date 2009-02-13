@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.util.Log;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.StringUtilities;
@@ -41,7 +42,9 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
+
     setContentView(R.layout.settings);
     final Button next = (Button) findViewById(R.id.next);
     next.setOnClickListener(new OnClickListener() {
@@ -126,6 +129,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+   
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -188,6 +193,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+
     registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     this.settingsAdapter = new SettingsAdapter();
     setListAdapter(this.settingsAdapter);
@@ -301,6 +308,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   @Override
   protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }

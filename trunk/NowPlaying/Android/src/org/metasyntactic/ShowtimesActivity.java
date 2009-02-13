@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.util.Log;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
@@ -44,13 +45,17 @@ public class ShowtimesActivity extends ListActivity {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
+
     setContentView(R.layout.theaters_movie);
     this.movie = getIntent().getExtras().getParcelable("movie");
   }
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+   
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
@@ -84,10 +89,17 @@ public class ShowtimesActivity extends ListActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+
     bindView();
     // populateTheaterDetailItems();
     final TheaterListAdapter theaterAdapter = new TheaterListAdapter();
     setListAdapter(theaterAdapter);
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
   }
 
   private class TheaterListAdapter extends BaseAdapter {

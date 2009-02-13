@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.util.Log;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
 
@@ -24,9 +25,20 @@ public class AllReviewsActivity extends ListActivity {
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     this.reviews = getIntent().getParcelableArrayListExtra("reviews");
     setListAdapter(new ReviewsAdapter(this));
+  }
+
+  @Override protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
   }
 
   @Override
@@ -40,6 +52,8 @@ public class AllReviewsActivity extends ListActivity {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
