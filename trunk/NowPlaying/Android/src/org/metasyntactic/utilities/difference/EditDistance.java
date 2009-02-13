@@ -124,7 +124,7 @@ public class EditDistance {
   }
 
   public static int findClosestMatchIndex(final String string, final List<String> list) {
-    int bestIndex = -1;
+    int bestIndex;
 
     if ((bestIndex = list.indexOf(string)) != -1) {
       return bestIndex;

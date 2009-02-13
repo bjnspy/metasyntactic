@@ -25,6 +25,10 @@ import java.util.Map;
 public class ApplePosterDownloader {
   private static Map<String, String> movieNameToPosterMap;
 
+  private ApplePosterDownloader() {
+    
+  }
+
   public static byte[] download(final Movie movie) {
     createMap();
 

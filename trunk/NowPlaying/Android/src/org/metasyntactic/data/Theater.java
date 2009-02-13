@@ -17,7 +17,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.utilities.DateUtilities;
@@ -26,7 +25,7 @@ import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 import java.io.IOException;
 import java.util.*;
 
-public class Theater implements Parcelable, Persistable {
+public class Theater extends AbstractPersistable implements Parcelable {
   private static final long serialVersionUID = 8020194452818140040L;
   private final String identifier;
   private final String name;
@@ -46,7 +45,7 @@ public class Theater implements Parcelable, Persistable {
     out.writeStringCollection(movieTitles);
   }
 
-  public static final Reader<Theater> reader = new AbstractPersistable.AbstractReader<Theater>() {
+  public static final Reader<Theater> reader = new AbstractReader<Theater>() {
     public Theater read(final PersistableInputStream in) throws IOException {
       final String identifier = in.readString();
       final String name = in.readString();

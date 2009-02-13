@@ -13,7 +13,6 @@
 //limitations under the License.
 package org.metasyntactic.utilities;
 
-import org.metasyntactic.Application;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
@@ -27,6 +26,7 @@ import java.util.*;
 public class FileUtilities {
   private static final boolean USE_PERSISTABLE = false;
   private static final Object lock = new Object();
+  private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
 
   private FileUtilities() {
   }
@@ -65,7 +65,7 @@ public class FileUtilities {
       }
       final ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
       return (T) in.readObject();
-    } catch (final IOException e) {
+    } catch (final IOException ignored) {
       return null;
     } catch (final ClassNotFoundException e) {
       throw new RuntimeException(e);
@@ -75,7 +75,7 @@ public class FileUtilities {
   public static void writeObject(final Object object, final File file) {
     try {
       if (object == null) {
-        writeBytes(new byte[0], file);
+        writeBytes(EMPTY_BYTE_ARRAY, file);
         return;
       }
 
@@ -117,7 +117,7 @@ public class FileUtilities {
         throw new RuntimeException(e);
       }
     } else {
-      return FileUtilities.readObject(file);
+      return readObject(file);
     }
   }
 
@@ -171,7 +171,7 @@ public class FileUtilities {
         throw new RuntimeException(e);
       }
     } else {
-      return FileUtilities.readObject(file);
+      return readObject(file);
     }
   }
 
@@ -523,7 +523,7 @@ public class FileUtilities {
 
   private static byte[] readBytesWorker(final File file) {
     if (file == null || !file.exists()) {
-      return new byte[0];
+      return EMPTY_BYTE_ARRAY;
     }
 
     try {
@@ -559,7 +559,7 @@ public class FileUtilities {
   public static void writeBytesWorker(byte[] data, final File file) {
     try {
       if (data == null) {
-        data = new byte[0];
+        data = EMPTY_BYTE_ARRAY;
       }
 
       final File tempFile = File.createTempFile("WBT", "T" + Math.random());

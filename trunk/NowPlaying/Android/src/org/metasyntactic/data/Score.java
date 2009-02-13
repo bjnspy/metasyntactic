@@ -16,13 +16,12 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
 
-public class Score implements Parcelable, Persistable, Comparable<Score> {
+public class Score extends AbstractPersistable implements Parcelable, Comparable<Score> {
   private static final long serialVersionUID = -22337839093764822L;
   private final String canonicalTitle;
   private final String synopsis;
@@ -38,7 +37,7 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
     out.writeString(identifier);
   }
 
-  public static final Reader<Score> reader = new AbstractPersistable.AbstractReader<Score>() {
+  public static final Reader<Score> reader = new AbstractReader<Score>() {
     public Score read(final PersistableInputStream in) throws IOException {
       final String canonicalTitle = in.readString();
       final String synopsis = in.readString();
@@ -120,5 +119,23 @@ public class Score implements Parcelable, Persistable, Comparable<Score> {
 
   public int compareTo(final Score score) {
     return getCanonicalTitle().compareTo(score.getCanonicalTitle());
+  }
+
+  @Override
+  public boolean equals(final Object object) {
+    if (object == null) {
+      return false;
+    }
+
+    if (!(object instanceof Score)) {
+      return false;
+    }
+
+    return this.compareTo((Score)object) == 0;
+  }
+
+  @Override
+  public int hashCode() {
+    return getCanonicalTitle().hashCode();
   }
 }

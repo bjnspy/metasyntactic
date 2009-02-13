@@ -19,11 +19,12 @@ import org.metasyntactic.data.Theater;
 import static org.metasyntactic.utilities.StringUtilities.toASCII;
 
 import java.util.List;
+import java.util.Collections;
 
 public class SearchRequest {
   private final int requestId;
   private final String value;
-  private String lowercaseValue;
+  private final String lowercaseValue;
   private final List<Movie> movies;
   private final List<Theater> theaters;
   private final List<Movie> upcomingMovies;
@@ -51,14 +52,14 @@ public class SearchRequest {
   }
 
   public List<Movie> getMovies() {
-    return movies;
+    return Collections.unmodifiableList(movies);
   }
 
   public List<Theater> getTheaters() {
-    return theaters;
+    return Collections.unmodifiableList(theaters);
   }
 
   public List<Movie> getUpcomingMovies() {
-    return upcomingMovies;
+    return Collections.unmodifiableList(upcomingMovies);
   }
 }

@@ -109,12 +109,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   /** Updates display of the list of movies. */
   public void refresh() {
     if (this.search == null) {
-      this.movies = NowPlayingControllerWrapper.getMovies();
+      movies = NowPlayingControllerWrapper.getMovies();
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
-    Collections.sort(this.movies, comparator);
+    Collections.sort(movies, comparator);
     if (this.postersAdapter != null) {
       populateAlphaMovieSectionsAndPositions();
       populateScoreMovieSectionsAndPositions();
@@ -131,7 +131,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private List<Movie> getMatchingMoviesList(final String search2) {
     final String search = search2.toLowerCase();
     final List<Movie> matchingMovies = new ArrayList<Movie>();
-    for (final Movie movie : this.movies) {
+    for (final Movie movie : movies) {
       if (movie.getDisplayTitle().toLowerCase().contains(search)) {
         matchingMovies.add(movie);
       }
@@ -172,7 +172,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.search = intent.getStringExtra("movie");
     if (this.search != null) {
       this.bottomBar.setVisibility(View.VISIBLE);
-    } 
+    }
   }
 
   private void getUserLocation() {
@@ -188,7 +188,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
       if (!matchingMovies.isEmpty()) {
-        this.movies = matchingMovies;
+        movies = matchingMovies;
         // cancel task so that it doesnt try to load the complete set of movies.
         if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
           this.mTask.cancel(true);
@@ -223,7 +223,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   private void clearBitmaps() {
-    for (final SoftReference<Bitmap> reference : this.postersMap.values()) {
+    for (final SoftReference<Bitmap> reference : postersMap.values()) {
       final Bitmap drawable = reference.get();
       if (drawable != null) {
         reference.clear();
@@ -248,7 +248,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       this.grid.setVisibility(View.VISIBLE);
     }
     getUserLocation();
-    if (this.movies != null && !this.movies.isEmpty()) {
+    if (movies != null && !movies.isEmpty()) {
       setup();
       this.isGridSetup = true;
     }
@@ -264,16 +264,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void getScores(final Context context) {
+  private void getScores() {
     this.score = new String[11];
     for (int index = 0, i = 100; i >= 0; index++, i -= 10) {
-      this.score[index] = String.valueOf(i) + "%";
+      this.score[index] = i + "%";
     }
   }
 
   private void setup() {
     getAlphabet(this);
-    getScores(this);
+    getScores();
     setContentView(R.layout.moviegrid_anim);
     this.bottomBar = (RelativeLayout) findViewById(R.id.bottom_bar);
     if (this.search == null) {
@@ -291,7 +291,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position,
           final long id) {
-        NowPlayingActivity.this.selectedMovie = NowPlayingActivity.this.movies.get(position);
+        NowPlayingActivity.this.selectedMovie = movies.get(position);
         setupRotationAnimation(view);
       }
     });
@@ -317,7 +317,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     int i = 0;
     String prevLetter = null;
     final List<String> alphabets = Arrays.asList(this.alphabet);
-    for (final Movie movie : this.movies) {
+    for (final Movie movie : movies) {
       final String firstLetter = movie.getDisplayTitle().substring(0, 1);
       this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
       if (!firstLetter.equals(prevLetter)) {
@@ -332,7 +332,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     int i = 0;
     int prevLevel = 0;
     final List<String> scores = Arrays.asList(this.score);
-    for (final Movie movie : this.movies) {
+    for (final Movie movie : movies) {
       final Score score = NowPlayingControllerWrapper.getScore(movie);
       final int scoreValue = score == null ? 0 : score.getScoreValue();
       final int scoreLevel = scoreValue / 10 * 10;
@@ -376,14 +376,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         // and the ImageView.
         holder = (ViewHolder) convertView.getTag();
       }
-      final Movie movie = NowPlayingActivity.this.movies.get(position
-          % NowPlayingActivity.this.movies.size());
+      final Movie movie = movies.get(position
+          % movies.size());
       // NowPlayingControllerWrapper.prioritizeMovie(movie);
       holder.title.setText(movie.getDisplayTitle());
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loader2));
-      final SoftReference<Bitmap> reference = NowPlayingActivity.this.postersMap.get(movies.get(
+      final SoftReference<Bitmap> reference = postersMap.get(movies.get(
           position).getCanonicalTitle());
       if (reference != null) {
         bitmap = reference.get();
@@ -408,15 +408,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
 
     public final int getCount() {
-      if (NowPlayingActivity.this.movies != null) {
-        return Math.min(100, NowPlayingActivity.this.movies.size());
+      if (movies != null) {
+        return Math.min(100, movies.size());
       } else {
         return 0;
       }
     }
 
     public final Object getItem(final int position) {
-      return NowPlayingActivity.this.movies.get(position % NowPlayingActivity.this.movies.size());
+      return movies.get(position % movies.size());
     }
 
     public final long getItemId(final int position) {
@@ -513,13 +513,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
     if (item.getItemId() == MovieViewUtilities.MENU_SEND_FEEDBACK) {
       final Resources res = NowPlayingActivity.this.getResources();
-      final String addr = "cyrusn@google.com, mjoshi@google.com";
-      final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
-      intent1.putExtra("subject", res.getString(R.string.feedback));
-      String body;
-      body = getUserSettings(res);
-      intent1.putExtra("body", body);
-      startActivity(intent1);
+      final String addr = "cyrusn@google.com";
+      final Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
+      intent.putExtra("subject", res.getString(R.string.feedback));
+      final String body = getUserSettings(res);
+      intent.putExtra("body", body);
+      startActivity(intent);
       return true;
     }
     return false;

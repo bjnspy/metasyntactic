@@ -22,6 +22,10 @@ import org.metasyntactic.ui.GlobalActivityIndicator;
 import java.util.Date;
 
 public class ThreadingUtilities {
+  private ThreadingUtilities() {
+    
+  }
+
   public static boolean isMainThread() {
     return Looper.getMainLooper().equals(Looper.myLooper());
   }
@@ -42,7 +46,9 @@ public class ThreadingUtilities {
     final Object lock2 = lock == null ? new Object() : lock;
 
     final Thread t = new HandlerThread(name) {
-      @Override public void run() {
+      @Override
+      public void run() {
+        super.run();
         Looper.prepare();
         synchronized (lock2) {
           try {

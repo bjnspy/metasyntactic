@@ -18,7 +18,6 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.w3c.dom.Element;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -129,7 +128,7 @@ public class NetworkUtilities {
       final BufferedInputStream bufferedIn = new BufferedInputStream(connectionIn, 1 << 13);
       final InputStream in;
 
-      final String contentEncoding = StringUtilities.nonNullString(((HttpURLConnection)connection).getContentEncoding());
+      final String contentEncoding = StringUtilities.nonNullString(connection.getContentEncoding());
       if (contentEncoding.toLowerCase().contains("gzip")) {
         in = new GZIPInputStream(bufferedIn, 1 << 13);
       } else {

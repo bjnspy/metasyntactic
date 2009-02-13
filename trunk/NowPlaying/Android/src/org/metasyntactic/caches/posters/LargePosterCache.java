@@ -87,10 +87,8 @@ public class LargePosterCache extends AbstractCache {
       }
 
       final String movie = columns[0];
-      final ArrayList<String> posters = new ArrayList<String>(columns.length - 1);
-      for (int i = 1; i < columns.length; i++) {
-        posters.add(columns[i]);
-      }
+      final List<String> posters = new ArrayList<String>(columns.length - 1);
+      posters.addAll(Arrays.asList(columns).subList(1, columns.length));
 
       index.put(movie.toLowerCase(), posters);
     }
@@ -116,9 +114,9 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private static int getYearForDate(final Date date) {
-    final Calendar c = Calendar.getInstance();
-    c.setTime(date);
-    return c.get(Calendar.YEAR);
+    final Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+    return calendar.get(Calendar.YEAR);
   }
 
   private static int getCurrentYear() {
@@ -148,9 +146,9 @@ public class LargePosterCache extends AbstractCache {
       }
 
       final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
-      for (final String key : index.keySet()) {
-        if (EditDistance.substringSimilar(key, lowercaseTitle)) {
-          return index.get(key);
+      for (final Map.Entry<String,List<String>> entry : index.entrySet()) {
+        if (EditDistance.substringSimilar(entry.getKey(), lowercaseTitle)) {
+          return entry.getValue();
         }
       }
     }
@@ -209,7 +207,7 @@ public class LargePosterCache extends AbstractCache {
 
   private static File posterFile(final Movie movie, final int index) {
     return new File(Application.postersLargeDirectory,
-                    FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + "-" + index + ".jpg"));
+                    FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + '-' + index + ".jpg"));
   }
 
   private static void downloadPosterForMovie(final Movie movie, final List<String> urls, final int index) {
@@ -244,7 +242,7 @@ public class LargePosterCache extends AbstractCache {
       return bytes;
     }
 
-    double scale = 0.0;
+    final double scale;
     if (height > width) {
       // portrait
       scale = (double)height / MAX_DIMENSION;

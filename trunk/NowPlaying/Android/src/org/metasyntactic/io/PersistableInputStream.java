@@ -13,8 +13,6 @@
 // limitations under the License.
 package org.metasyntactic.io;
 
-import android.util.Log;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;

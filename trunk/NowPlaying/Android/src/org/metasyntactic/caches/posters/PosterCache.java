@@ -37,7 +37,7 @@ public class PosterCache extends AbstractCache {
     super(model);
   }
 
-  private File posterFile(final Movie movie) {
+  private static File posterFile(final Movie movie) {
     return new File(Application.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + ".jpg"));
   }
 
@@ -122,15 +122,17 @@ public class PosterCache extends AbstractCache {
     return FandangoPosterDownloader.download(movie, postalCode);
   }
 
+  @Override
   protected List<File> getCacheDirectories() {
     return Collections.singletonList(Application.postersDirectory);
   }
 
-  public byte[] getPoster(final Movie movie) {
+
+  public static byte[] getPoster(final Movie movie) {
     return FileUtilities.readBytes(posterFile(movie));
   }
 
-  public File getPosterFile_safeToCallFromBackground(final Movie movie) {
+  public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
     return posterFile(movie);
   }
 

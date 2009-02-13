@@ -83,7 +83,7 @@ public class SearchEngine {
     final List<String> strings = new ArrayList<String>();
     strings.add(movie.getCanonicalTitle());
     strings.addAll(movie.getDirectors());
-    strings.addAll(model.getCast(movie));
+    strings.addAll(NowPlayingModel.getCast(movie));
     strings.addAll(movie.getGenres());
     return listMatches(strings);
   }

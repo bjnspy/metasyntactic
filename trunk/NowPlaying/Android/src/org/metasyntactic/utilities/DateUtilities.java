@@ -17,7 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtilities {
-  private static Date today;
+  private final static Date today;
 
   static {
     final Date dt = new Date();
@@ -33,6 +33,10 @@ public class DateUtilities {
     c2.set(Calendar.HOUR_OF_DAY, 12);
 
     today = c2.getTime();
+  }
+
+  private DateUtilities() {
+    
   }
 
   public static Date getToday() {

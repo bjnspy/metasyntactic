@@ -17,7 +17,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.Application;
 import org.metasyntactic.io.AbstractPersistable;
-import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 import static org.metasyntactic.utilities.StringUtilities.nonNullString;
@@ -25,7 +24,7 @@ import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 import java.io.IOException;
 import static java.lang.Math.*;
 
-public class Location implements Parcelable, Persistable {
+public class Location extends AbstractPersistable implements Parcelable {
   private static final long serialVersionUID = 5329395050075385028L;
   private final double latitude;
   private final double longitude;
@@ -45,7 +44,7 @@ public class Location implements Parcelable, Persistable {
     out.writeString(country);
   }
 
-  public static final Reader<Location> reader = new AbstractPersistable.AbstractReader<Location>() {
+  public static final Reader<Location> reader = new AbstractReader<Location>() {
     public Location read(final PersistableInputStream in) throws IOException {
       final double latitude = in.readDouble();
       final double longitude = in.readDouble();
