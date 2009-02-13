@@ -19,6 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
+import android.util.Log;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.FileUtilities;
@@ -131,6 +132,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     // check for sdcard mounted properly
     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
       // Request the progress bar to be shown in the title
@@ -185,6 +187,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+   
     NowPlayingControllerWrapper.removeActivity(this);
     if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
       this.mTask.cancel(true);
@@ -195,6 +199,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
+
     unregisterReceiver(this.broadcastReceiver);
     unregisterReceiver(this.databroadcastReceiver);
     unregisterReceiver(this.scrollStatebroadcastReceiver);
@@ -217,6 +223,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+
     registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
     registerReceiver(this.databroadcastReceiver, new IntentFilter(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
     registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(Application.SCROLLING_INTENT));

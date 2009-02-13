@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
+import android.util.Log;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
@@ -47,7 +48,9 @@ public class ShowtimesDetailsActivity extends ListActivity {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
+
     setContentView(R.layout.showtimedetails);
     this.movie = getIntent().getExtras().getParcelable("movie");
     this.theater = getIntent().getExtras().getParcelable("theater");
@@ -76,6 +79,8 @@ public class ShowtimesDetailsActivity extends ListActivity {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+   
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -98,6 +103,12 @@ public class ShowtimesDetailsActivity extends ListActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
   }
 
   private class TheaterAdapter extends BaseAdapter {

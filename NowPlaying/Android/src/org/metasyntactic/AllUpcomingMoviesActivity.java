@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import android.util.Log;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
@@ -34,7 +35,9 @@ public class AllUpcomingMoviesActivity extends ListActivity {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
+
     setContentView(R.layout.upcomingmoviedetails);
     final Bundle extras = getIntent().getExtras();
     this.movie = extras.getParcelable("movie");
@@ -51,6 +54,16 @@ public class AllUpcomingMoviesActivity extends ListActivity {
     populateMovieDetailEntries();
     final MovieAdapter movieAdapter = new MovieAdapter();
     setListAdapter(movieAdapter);
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
+  }
+
+  @Override protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
   }
 
   private void populateMovieDetailEntries() {
@@ -132,6 +145,8 @@ public class AllUpcomingMoviesActivity extends ListActivity {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+    
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }

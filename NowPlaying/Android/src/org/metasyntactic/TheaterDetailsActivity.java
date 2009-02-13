@@ -15,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.util.Log;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
@@ -33,10 +34,22 @@ public class TheaterDetailsActivity extends ListActivity {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
+
     setContentView(R.layout.theaterdetails);
     this.theater = getIntent().getExtras().getParcelable("theater");
     bindView();
+  }
+
+  @Override protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
   }
 
   @Override
@@ -51,6 +64,8 @@ public class TheaterDetailsActivity extends ListActivity {
 
   @Override
   protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }

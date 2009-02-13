@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.util.Log;
 import org.metasyntactic.utilities.StringUtilities;
 
 /**
@@ -25,11 +26,31 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   @Override
   public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
+    Log.i(getClass().getSimpleName(), "onCreate");
+    NowPlayingControllerWrapper.addActivity(this);
+
     setContentView(R.layout.search_bar);
     mSearchText = (EditText) findViewById(R.id.search_src_text);
     mSearchText.setOnClickListener(this);
     findViewById(R.id.search_go_btn).setOnClickListener(this);
     activityName = this.getIntent().getStringExtra("activity");
+  }
+
+  @Override protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+   
+    NowPlayingControllerWrapper.removeActivity(this);
+    super.onDestroy();
+  }
+
+  @Override protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
   }
 
   // View.OnClickListener
