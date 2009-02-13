@@ -39,6 +39,7 @@ public class Application {
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
   public static final File dataDirectory = new File(applicationDirectory, "Data");
+  public static final File tempDirectory = new File(applicationDirectory, "Temp");
   public static final File performancesDirectory = new File(dataDirectory, "Performances");
   public static final File trailersDirectory = new File(applicationDirectory, "Trailers");
   public static final File userLocationsDirectory = new File(applicationDirectory, "UserLocations");
