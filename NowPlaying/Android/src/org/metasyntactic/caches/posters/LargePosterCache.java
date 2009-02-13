@@ -128,6 +128,9 @@ public class LargePosterCache extends AbstractCache {
   private void updateIndices() {
     final int currentYear = getCurrentYear();
     for (int year = currentYear + 1; year >= START_YEAR; year--) {
+      if (this.shutdown) {
+        return;
+      }
       ensureIndex(year, year >= currentYear - 1 || year <= currentYear + 1);
     }
   }

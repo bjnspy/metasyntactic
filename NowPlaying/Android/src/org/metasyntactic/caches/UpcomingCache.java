@@ -183,7 +183,9 @@ public class UpcomingCache extends AbstractCache {
     start = System.currentTimeMillis();
     processResultElement(resultElement, movies, studioKeys, titleKeys);
     LogUtilities.logTime(DataProvider.class, "Update Index - Process Xml", start);
-
+    if (this.shutdown) {
+      return;
+    }
     if (movies.isEmpty()) {
       return;
     }
@@ -223,6 +225,9 @@ public class UpcomingCache extends AbstractCache {
 
   private void processResultElement(final Element resultElement, final List<Movie> movies, final Map<String, String> studioKeys, final Map<String, String> titleKeys) {
     for (final Element movieElement : children(resultElement)) {
+      if (this.shutdown) {
+        return;
+      }
       processMovieElement(movieElement, movies, studioKeys, titleKeys);
     }
   }
