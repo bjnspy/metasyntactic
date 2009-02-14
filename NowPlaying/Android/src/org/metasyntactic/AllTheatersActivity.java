@@ -78,7 +78,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
-    
+
     unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
