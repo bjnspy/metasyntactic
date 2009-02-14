@@ -49,7 +49,6 @@ public class ThreadingUtilities {
     final Thread t = new HandlerThread(name) {
       @Override
       public void run() {
-        super.run();
         Looper.prepare();
         synchronized (lock2) {
           try {
