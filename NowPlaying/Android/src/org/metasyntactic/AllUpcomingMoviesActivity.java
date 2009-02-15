@@ -67,7 +67,7 @@ public class AllUpcomingMoviesActivity extends ListActivity {
   }
 
   private void populateMovieDetailEntries() {
-    final Resources res = this.getResources();
+    final Resources res = getResources();
     // Add title and synopsis
     {
       final String synopsis = NowPlayingControllerWrapper.getSynopsis(this.movie);
@@ -137,7 +137,7 @@ public class AllUpcomingMoviesActivity extends ListActivity {
     final String imdb_url = NowPlayingControllerWrapper.getIMDbAddress(this.movie);
     if (!StringUtilities.isNullOrEmpty(imdb_url) && imdb_url.startsWith("http")) {
       final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.visit_imdb), null,
+      final MovieDetailEntry entry = new MovieDetailEntry("IMDb", null,
                                                           MovieDetailItemType.ACTION, intent, true);
       this.movieDetailEntries.add(entry);
     }
@@ -146,7 +146,7 @@ public class AllUpcomingMoviesActivity extends ListActivity {
   @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-    
+
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }

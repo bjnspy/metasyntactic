@@ -401,13 +401,13 @@ public final class R {
         public static final int graphics_by_jeffrey_nee=0x7f07006b;
         /** Help keep Now Playing free!\n\nAs a longtime Now Playing user, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside.\n\nThanks so much!\n(this will only be shown once)
          */
-        public static final int help_keep_now_playing_free_as_a_longtime_now=0x7f0700ef;
+        public static final int help_keep_now_playing_free_as_a_longtime_now=0x7f0700ee;
         /** Horror
          */
         public static final int horror=0x7f07006c;
         /** If you like %@, please consider writing a small review for the iTunes store. It will help new users discover this app, allow me to bring you great new features, keep things ad free, and will make me feel fuzzy inside. Thanks!
          */
-        public static final int if_you_like_string_please_consider_writing_a_small=0x7f0700f0;
+        public static final int if_you_like_string_please_consider_writing_a_small=0x7f0700ef;
         /** Independent
          */
         public static final int independent=0x7f07006d;
@@ -417,10 +417,10 @@ public final class R {
         public static final int instant_queue=0x7f07006e;
         /** kilometer
          */
-        public static final int kilometer=0x7f0700eb;
+        public static final int kilometer=0x7f0700ea;
         /** kilometers
          */
-        public static final int kilometers=0x7f0700ec;
+        public static final int kilometers=0x7f0700eb;
         public static final int last_friday=0x7f07006f;
         public static final int last_monday=0x7f070070;
         public static final int last_saturday=0x7f070071;
@@ -467,10 +467,10 @@ public final class R {
         public static final int menu_movies=0x7f070003;
         /** mile
          */
-        public static final int mile=0x7f0700ed;
+        public static final int mile=0x7f0700ec;
         /** miles
          */
-        public static final int miles=0x7f0700ee;
+        public static final int miles=0x7f0700ed;
         public static final int more_options=0x7f070005;
         /** Most Popular
          */
@@ -786,7 +786,7 @@ public final class R {
         public static final int theme=0x7f0700d2;
         /** This is the first release of Netflix support in Now Playing. Please help improve Now Playing by reporting any issues you find using the 'Send Feedback' button above.\n\nWi-fi access is recommended when using Netflix the first time.\n\nThanks!\n\nThe Management (a.k.a. Cyrus)
          */
-        public static final int this_is_the_first_release_of_netflix_support_in=0x7f0700f1;
+        public static final int this_is_the_first_release_of_netflix_support_in=0x7f0700f0;
         /** This theater has not yet reported its show times. When they become available, %@ will retrieve them automatically.
          */
         public static final int this_theater_has_not_yet_reported_its_show_times=0x7f0700d3;
@@ -835,25 +835,25 @@ public final class R {
         /** Use Small Fonts
          */
         public static final int use_small_fonts=0x7f0700e2;
-        public static final int visit_imdb=0x7f0700e3;
+        public static final int visit_imdb=0x7f0700f1;
         /** Website
          */
-        public static final int website=0x7f0700e4;
+        public static final int website=0x7f0700e3;
         /** Websites
          */
-        public static final int websites=0x7f0700e5;
+        public static final int websites=0x7f0700e4;
         /** Write Review
          */
-        public static final int write_review=0x7f0700e6;
+        public static final int write_review=0x7f0700e5;
         /** Written by Cyrus Najmabadi
          */
-        public static final int written_by_cyrus_najmabadi=0x7f0700e7;
+        public static final int written_by_cyrus_najmabadi=0x7f0700e6;
         /** Yes
          */
-        public static final int yes=0x7f0700e8;
-        public static final int yesterday=0x7f0700e9;
+        public static final int yes=0x7f0700e7;
+        public static final int yesterday=0x7f0700e8;
         /** Your %@'s country is set to: %@\n\nFull support for Now Playing is coming soon to your country, and several features are already available for you to use today! When more features become ready, you will automatically be notified of updates.
          */
-        public static final int your_strings_country_is_set_to_colon_string_full=0x7f0700ea;
+        public static final int your_strings_country_is_set_to_colon_string_full=0x7f0700e9;
     }
 }

@@ -118,7 +118,7 @@ public class AllMoviesActivity extends ListActivity {
     final String imdb_url = NowPlayingControllerWrapper.getIMDbAddress(this.movie);
     if (!StringUtilities.isNullOrEmpty(imdb_url) && imdb_url.startsWith("http")) {
       final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
-      final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.visit_imdb), null,
+      final MovieDetailEntry entry = new MovieDetailEntry("IMDb", null,
                                                           MovieDetailItemType.ACTION, intent, true);
       this.movieDetailEntries.add(entry);
     }

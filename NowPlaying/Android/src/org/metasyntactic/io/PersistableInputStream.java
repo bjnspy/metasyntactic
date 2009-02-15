@@ -24,24 +24,28 @@ public class PersistableInputStream {
 
   public PersistableInputStream(final InputStream in) {
     this.in = in;
-    initializeBuffers(1 << 11);
   }
 
   public void close() throws IOException {
     this.in.close();
   }
 
-  private void readEntireArray(final byte[] bytes) throws IOException {
+  private byte[] spareBytes = new byte[1 << 11];
+  private void readArray(final byte[] bytes, final int length) throws IOException {
     int position = 0;
 
     while (true) {
-      final int read = this.in.read(bytes, position, bytes.length - position);
-      if (read + position == bytes.length) {
+      final int read = this.in.read(bytes, position, length - position);
+      if (read + position == length) {
         break;
       }
 
       position += read;
     }
+  }
+
+  private void readEntireArray(final byte[] bytes) throws IOException {
+    readArray(bytes, bytes.length);
   }
 
   private final byte[] bytes4 = new byte[4];
@@ -64,22 +68,20 @@ public class PersistableInputStream {
     return this.buffer8.getDouble(0);
   }
 
-  private byte[] bytes;
-  private ByteBuffer byteBuffer;
-  private CharBuffer charBuffer;
-
-  private void initializeBuffers(final int byteCount) {
-    this.bytes = new byte[byteCount];
-    this.byteBuffer = ByteBuffer.wrap(this.bytes);
-    this.charBuffer = this.byteBuffer.asCharBuffer();
-  }
-
   public String readString() throws IOException {
-    final int charCount = readInt();
-    if (charCount == 0) {
+    final int byteCount = readInt();
+    if (byteCount == 0) {
       return "";
     }
 
+    if (byteCount > this.spareBytes.length) {
+      this.spareBytes = new byte[Math.max(this.spareBytes.length * 2, byteCount)];
+    }
+
+    readArray(this.spareBytes, byteCount);
+
+    return new String(this.spareBytes, 0, byteCount, "UTF-8");
+    /*
     final int byteCount = charCount * 2;
 
     if (byteCount > this.bytes.length) {
@@ -96,6 +98,8 @@ public class PersistableInputStream {
     //this.charBuffer.get(this.chars, 0, charCount);
 
     //return new String(this.chars, 0, charCount);
+     *
+     */
   }
 
   public <T extends Persistable> T readPersistable(final Persistable.Reader<T> reader) throws IOException {
