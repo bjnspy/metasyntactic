@@ -15,6 +15,7 @@
 #import "PostersViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "AppDelegate.h"
 #import "ColorCache.h"
 #import "LargePosterCache.h"
 #import "NonClippingView.h"
@@ -36,6 +37,7 @@
 const double TRANSLUCENCY_LEVEL = 0.9;
 const int ACTIVITY_INDICATOR_TAG = -1;
 const int LABEL_TAG = -2;
+const int IMAGE_TAG = -3;
 const double LOAD_DELAY = 1;
 
 @synthesize navigationController;
@@ -50,7 +52,7 @@ const double LOAD_DELAY = 1;
     self.movie = nil;
     self.topBar = nil;
     self.scrollView = nil;
-
+    
     [super dealloc];
 }
 
@@ -62,10 +64,10 @@ const double LOAD_DELAY = 1;
         self.navigationController = navigationController_;
         self.movie = movie_;
         posterCount = posterCount_;
-
+        
         self.pageNumberToView = [NSMutableDictionary dictionary];
     }
-
+    
     return self;
 }
 
@@ -89,13 +91,13 @@ const double LOAD_DELAY = 1;
     downloadingLabel.font = [UIFont boldSystemFontOfSize:24];
     downloadingLabel.textColor = [UIColor whiteColor];
     [downloadingLabel sizeToFit];
-
+    
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     CGRect labelFrame = downloadingLabel.frame;
     labelFrame.origin.x = (int)((frame.size.width - labelFrame.size.width) / 2.0);
     labelFrame.origin.y = (int)((frame.size.height - labelFrame.size.height) / 2.0);
     downloadingLabel.frame = labelFrame;
-
+    
     return downloadingLabel;
 }
 
@@ -105,16 +107,16 @@ const double LOAD_DELAY = 1;
     activityIndicator.tag = ACTIVITY_INDICATOR_TAG;
     activityIndicator.hidesWhenStopped = YES;
     [activityIndicator sizeToFit];
-
+    
     CGRect labelFrame = label.frame;
     CGRect activityFrame = activityIndicator.frame;
-
+    
     activityFrame.origin.x = (int)(labelFrame.origin.x - activityFrame.size.width) - 5;
     activityFrame.origin.y = (int)(labelFrame.origin.y + (labelFrame.size.height / 2) - (activityFrame.size.height / 2));
     activityIndicator.frame = activityFrame;
-
+    
     [activityIndicator startAnimating];
-
+    
     return activityIndicator;
 }
 
@@ -128,16 +130,16 @@ const double LOAD_DELAY = 1;
     }
     UILabel* downloadingLabel = [self createDownloadingLabel:text];
     UIActivityIndicatorView* activityIndicator = [self createActivityIndicator:downloadingLabel];
-
+    
     CGRect frame = activityIndicator.frame;
     double width = frame.size.width;
     frame.origin.x = (int)(frame.origin.x + width / 2);
     activityIndicator.frame = frame;
-
+    
     frame = downloadingLabel.frame;
     frame.origin.x = (int)(frame.origin.x + width / 2);
     downloadingLabel.frame = frame;
-
+    
     [pageView addSubview:activityIndicator];
     [pageView addSubview:downloadingLabel];
 }
@@ -145,15 +147,16 @@ const double LOAD_DELAY = 1;
 
 - (UIImageView*) createImageView:(UIImage*) image {
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+    imageView.tag = IMAGE_TAG;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-
+    
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
-
+    
     if (image.size.width > image.size.height) {
         int offset = (int)((frame.size.height - frame.size.width) / 2.0);
         CGRect imageFrame = CGRectMake(-offset, offset + 5, frame.size.height, frame.size.width - 10);
-
+        
         imageView.frame = imageFrame;
         imageView.transform = CGAffineTransformMakeRotation(M_PI / 2);
     } else {
@@ -161,7 +164,7 @@ const double LOAD_DELAY = 1;
         imageView.frame = imageFrame;
         imageView.clipsToBounds = YES;
     }
-
+    
     return imageView;
 }
 
@@ -169,7 +172,7 @@ const double LOAD_DELAY = 1;
 - (TappableScrollView*) createScrollView {
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
-
+    
     self.scrollView = [[[TappableScrollView alloc] initWithFrame:frame] autorelease];
     scrollView.delegate = self;
     scrollView.tapDelegate = self;
@@ -181,10 +184,10 @@ const double LOAD_DELAY = 1;
     scrollView.directionalLockEnabled = YES;
     scrollView.autoresizingMask = 0;
     scrollView.backgroundColor = [UIColor blackColor];
-
+    
     frame.size.width *= posterCount;
     scrollView.contentSize = frame.size;
-
+    
     return scrollView;
 }
 
@@ -193,7 +196,7 @@ const double LOAD_DELAY = 1;
     id view = [pageView viewWithTag:ACTIVITY_INDICATOR_TAG];
     [view stopAnimating];
     [view removeFromSuperview];
-
+    
     view = [pageView viewWithTag:LABEL_TAG];
     [view removeFromSuperview];
 }
@@ -201,11 +204,11 @@ const double LOAD_DELAY = 1;
 
 - (void) addImage:(UIImage*) image toView:(UIView*) pageView {
     [self disableActivityIndicator:pageView];
-
+    
     UIImageView* imageView = [self createImageView:image];
     [pageView addSubview:imageView];
     imageView.alpha = 0;
-
+    
     [UIView beginAnimations:nil context:NULL];
     {
         imageView.alpha = 1;
@@ -220,51 +223,57 @@ const double LOAD_DELAY = 1;
         index.intValue > (currentPage + 1)) {
         return;
     }
-
+    
     if (scrollView.dragging || scrollView.decelerating) {
+        // should this be 'afterDelay:0'?  That way we do it on the next run
+        // loop cycle (which should happen after dragging/decelerating is done).
+        // 1/30/09. Right now, i'm going with 'no'.  I'm not totally certain if this
+        // won't call back into us immediately, and i don't want to peg the CPU
+        // while dragging.  Waiting a sec is safer.
         [self performSelector:@selector(addImageToView:) withObject:arguments afterDelay:1];
         return;
     }
-
+    
     [self addImage:[arguments objectAtIndex:1] toView:[arguments objectAtIndex:2]];
 }
 
 
-- (void) loadPage:(NSInteger) page delay:(double) delay {
+- (void) loadPage:(NSInteger) page
+            delay:(double) delay {
     if (page < 0 || page >= posterCount) {
         return;
     }
-
+    
     NSNumber* pageNumber = [NSNumber numberWithInt:page];
     if ([pageNumberToView objectForKey:pageNumber] != nil) {
         return;
     }
-
+    
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
     frame.origin.x = page * frame.size.width;
-
+    
     UIView* pageView = [[[UIView alloc] initWithFrame:frame] autorelease];
     pageView.backgroundColor = [UIColor blackColor];
     pageView.tag = page;
     pageView.clipsToBounds = YES;
-
+    
     UIImage* image = nil;
     if (delay == 0) {
         image = [self.model.largePosterCache posterForMovie:movie index:page];
     }
-
+    
     if (image != nil) {
         [self addImage:image toView:pageView];
     } else {
         [self createDownloadViews:pageView page:page];
         NSArray* indexAndPageView = [NSArray arrayWithObjects:[NSNumber numberWithInt:page], pageView, nil];
-        [self performSelector:@selector(loadPoster:) withObject:indexAndPageView
+        [self performSelector:@selector(loadPoster:)
+                   withObject:indexAndPageView
                    afterDelay:delay];
     }
-
+    
     [scrollView addSubview:pageView];
-
     [pageNumberToView setObject:pageView forKey:pageNumber];
 }
 
@@ -273,22 +282,24 @@ const double LOAD_DELAY = 1;
     if (shutdown) {
         return;
     }
-
+    
     NSNumber* index = [indexAndPageView objectAtIndex:0];
-
+    
     if (index.intValue < (currentPage - 1) ||
         index.intValue > (currentPage + 1)) {
         return;
     }
-
+    
     if (scrollView.dragging || scrollView.decelerating) {
         [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:1];
         return;
     }
-
+    
     UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index.intValue];
     if (image == nil) {
-        [self performSelector:@selector(loadPoster:) withObject:indexAndPageView afterDelay:LOAD_DELAY];
+        [self performSelector:@selector(loadPoster:)
+                   withObject:indexAndPageView
+                   afterDelay:LOAD_DELAY];
     } else {
         UIView* pageView = [indexAndPageView objectAtIndex:1];
         NSArray* arguments = [NSArray arrayWithObjects:index, image, pageView, nil];
@@ -301,7 +312,7 @@ const double LOAD_DELAY = 1;
     NSString* title =
     [NSString stringWithFormat:
      NSLocalizedString(@"%d of %d", nil), (currentPage + 1), posterCount];
-
+    
     UILabel* label = [[[UILabel alloc] init] autorelease];
     label.text = title;
     label.font = [UIFont boldSystemFontOfSize:20];
@@ -310,44 +321,45 @@ const double LOAD_DELAY = 1;
     label.opaque = NO;
     label.shadowColor = [UIColor darkGrayColor];
     [label sizeToFit];
-
+    
     NSMutableArray* items = [NSMutableArray array];
-
+    
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onActionTapped:)] autorelease]];
+    
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-
+    
     UIBarButtonItem* leftArrow = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"LeftArrow.png"]
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(onLeftTapped:)] autorelease];
     [items addObject:leftArrow];
-
+    
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-
+    
     UIBarItem* titleItem = [[[UIBarButtonItem alloc] initWithCustomView:label] autorelease];
     [items addObject:titleItem];
-
+    
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-
+    
     UIBarButtonItem* rightArrow = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"RightArrow.png"]
                                                                     style:UIBarButtonItemStylePlain
                                                                    target:self
                                                                    action:@selector(onRightTapped:)] autorelease];
     [items addObject:rightArrow];
-
-
+    
+    
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-
+    
     UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
     [items addObject:doneItem];
-
+    
     [topBar setItems:items animated:YES];
-
+    
     if (currentPage <= 0) {
         leftArrow.enabled = NO;
     }
-
+    
     if (currentPage >= (posterCount - 1)) {
         rightArrow.enabled = NO;
     }
@@ -359,12 +371,12 @@ const double LOAD_DELAY = 1;
         if (pageNumber.intValue < (currentPage - 1) || pageNumber.intValue > (currentPage + 1)) {
             UIView* pageView = [pageNumberToView objectForKey:pageNumber];
             [self disableActivityIndicator:pageView];
-
+            
             [pageView removeFromSuperview];
             [pageNumberToView removeObjectForKey:pageNumber];
         }
     }
-
+    
     [self loadPage:currentPage - 1 delay:LOAD_DELAY];
     [self loadPage:currentPage     delay:LOAD_DELAY];
     [self loadPage:currentPage + 1 delay:LOAD_DELAY];
@@ -374,7 +386,7 @@ const double LOAD_DELAY = 1;
 - (void) setPage:(NSInteger) page {
     if (page != currentPage) {
         currentPage = page;
-
+        
         [self setupTopBar];
         [self clearAndLoadPages];
     }
@@ -399,7 +411,7 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) onRightTapped:(id) argument {
+- (void) onRightTapped:(id) sender {
     CGRect rect = [UIScreen mainScreen].applicationFrame;
     rect.origin.y = 0;
     rect.origin.x = (currentPage + 1) * rect.size.width;
@@ -409,7 +421,7 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) onLeftTapped:(id) argument {
+- (void) onLeftTapped:(id) sender {
     CGRect rect = [UIScreen mainScreen].applicationFrame;
     rect.origin.y = 0;
     rect.origin.x = (currentPage - 1) * rect.size.width;
@@ -419,35 +431,81 @@ const double LOAD_DELAY = 1;
 }
 
 
+- (void) onActionTapped:(id) sender {
+    UIActionSheet* actionSheet;
+    if (posterCount > 1 && [self.model.largePosterCache allPostersDownloadedForMovie:movie]) {
+        actionSheet =
+        [[[UIActionSheet alloc] initWithTitle:nil
+                                     delegate:self
+                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                       destructiveButtonTitle:nil
+                            otherButtonTitles:NSLocalizedString(@"Save to Photo Library", nil),
+          NSLocalizedString(@"Save All to Photo Library", nil), nil] autorelease];        
+    } else {
+        actionSheet =
+        [[[UIActionSheet alloc] initWithTitle:nil
+                                     delegate:self
+                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                       destructiveButtonTitle:nil
+                            otherButtonTitles:NSLocalizedString(@"Save to Photo Library", nil), nil] autorelease];
+    }
+    
+    [actionSheet showInView:[AppDelegate window]];
+}
+
+
+- (void) saveImage:(NSInteger) index {
+    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index];
+    if (image != nil) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, NULL);
+    }    
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    if (buttonIndex == 0) {
+        [self saveImage:currentPage];
+    } else {
+        for (NSInteger i = 0; i < posterCount; i++) {
+            [self saveImage:i];
+        }
+    }
+}
+
+
 - (void) loadView {
     [super loadView];
-
+    
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     frame.origin.y = 0;
     NonClippingView* view = [[[NonClippingView alloc] initWithFrame:frame] autorelease];
-
+    
     [self createScrollView];
-
+    
     {
         self.topBar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
         topBar.barStyle = UIBarStyleBlackTranslucent;
         [self setupTopBar];
         [topBar sizeToFit];
-
+        
         CGRect topBarFrame = topBar.frame;
         topBarFrame.origin.y = frame.size.height - topBarFrame.size.height;
         topBar.frame = topBarFrame;
-
+        
         [self showToolBar];
     }
-
+    
     // load the first two pages.  Try to load the first one immediately.
     [self loadPage:0 delay:0];
     [self loadPage:1 delay:LOAD_DELAY];
-
+    
     [view addSubview:scrollView];
     [view addSubview:topBar];
-
+    
     self.view = view;
 }
 
@@ -487,7 +545,7 @@ const double LOAD_DELAY = 1;
 - (void) scrollViewDidEndDecelerating:(UIScrollView*) view {
     CGFloat pageWidth = scrollView.frame.size.width;
     NSInteger page = (NSInteger)((scrollView.contentOffset.x + pageWidth / 2) / pageWidth);
-
+    
     [self setPage:page];
 }
 

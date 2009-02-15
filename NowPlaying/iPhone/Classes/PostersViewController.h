@@ -14,19 +14,19 @@
 
 #import "TappableScrollViewDelegate.h"
 
-@interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate> {
+@interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
 @private
     AbstractNavigationController* navigationController;
     Movie* movie;
-
+    
     TappableScrollView* scrollView;
-
+    
     NSInteger currentPage;
     NSInteger posterCount;
     NSMutableDictionary* pageNumberToView;
-
+    
     UIToolbar* topBar;
-
+    
     BOOL shutdown;
 }
 
