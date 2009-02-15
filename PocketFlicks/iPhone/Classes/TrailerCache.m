@@ -47,7 +47,7 @@
     self.moviesWithTrailers = nil;
     self.index = nil;
     self.indexKeys = nil;
-    
+
     [super dealloc];
 }
 
@@ -57,13 +57,13 @@
         self.prioritizedMovies = [LinkedSet setWithCountLimit:8];
         self.moviesWithoutTrailers = [LinkedSet set];
         self.moviesWithTrailers = [LinkedSet set];
-        
+
         [ThreadingUtilities backgroundSelector:@selector(backgroundEntryPoint)
                                       onTarget:self
                                           gate:nil
                                        visible:NO];
     }
-    
+
     return self;
 }
 
@@ -93,7 +93,7 @@
     {
         for (Movie* movie in movies) {
             NSDate* downloadDate = [FileUtilities modificationDate:[self trailerFile:movie]];
-            
+
             if (downloadDate == nil) {
                 [moviesWithoutTrailers addObject:movie];
             } else {
@@ -102,7 +102,7 @@
                 }
             }
         }
-        
+
         [gate signal];
     }
     [gate unlock];
@@ -117,11 +117,11 @@
         [FileUtilities writeObject:[NSArray array] toFile:[self trailerFile:movie]];
         return;
     }
-    
+
     NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
     NSString* studio = [studioAndLocation objectAtIndex:0];
     NSString* location = [studioAndLocation objectAtIndex:1];
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url
                                                                    important:NO];
@@ -129,7 +129,7 @@
         // didn't get any data.  ignore this for now.
         return;
     }
-    
+
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
     NSMutableArray* final = [NSMutableArray array];
     for (NSString* trailer in trailers) {
@@ -137,9 +137,9 @@
             [final addObject:trailer];
         }
     }
-    
+
     [FileUtilities writeObject:final toFile:[self trailerFile:movie]];
-    
+
     if (final.count > 0) {
         [AppDelegate minorRefresh];
     }
@@ -158,22 +158,22 @@
 
 - (void) generateIndex:(NSString*) indexText {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    
+
     NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSArray* values = [row componentsSeparatedByString:@"\t"];
         if (values.count != 3) {
             continue;
         }
-        
+
         NSString* fullTitle = [values objectAtIndex:0];
         NSString* studio = [values objectAtIndex:1];
         NSString* location = [values objectAtIndex:2];
-        
+
         [result setObject:[NSArray arrayWithObjects:studio, location, nil]
                    forKey:fullTitle.lowercaseString];
     }
-    
+
     self.index = result;
     self.indexKeys = index.allKeys;
 }
@@ -183,17 +183,17 @@
     if (movie == nil) {
         return;
     }
-    
+
     if (index == nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
         NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
         if (indexText == nil) {
             return;
         }
-        
+
         [self generateIndex:indexText];
     }
-    
+
     [self downloadTrailersWorker:movie
                           engine:engine];
 }
@@ -201,7 +201,7 @@
 
 - (void) backgroundEntryPoint {
     DifferenceEngine* engine = [DifferenceEngine engine];
-    
+
     while (YES) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         {
@@ -215,11 +215,11 @@
                        (movie = [moviesWithTrailers removeLastObjectAdded]) == nil) {
                     [gate wait];
                 }
-                
+
                 isPriority = prioritizedMovies.count != count;
             }
             [gate unlock];
-            
+
             // we enqueue lots of priority movies when the user scrolls.  but to
             // be easy on the disk, we only check if we need to do anything when
             // we're on the background.
@@ -227,7 +227,7 @@
             if (!skip) {
                 [self downloadTrailers:movie engine:engine];
             }
-            
+
             if (!isPriority) {
                 [NSThread sleepForTimeInterval:0.25];
             }

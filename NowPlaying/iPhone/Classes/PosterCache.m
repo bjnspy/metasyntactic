@@ -197,7 +197,7 @@
             [gate unlock];
 
             [self downloadPoster:movie postalCode:@"10009"];
-            
+
             if (!isPriority) {
                 [NSThread sleepForTimeInterval:0.25];
             }

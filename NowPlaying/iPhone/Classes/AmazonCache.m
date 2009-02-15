@@ -129,7 +129,7 @@
         BOOL isPriority = NO;
         [gate lock];
         {
-            NSInteger count = prioritizedMovies.count; 
+            NSInteger count = prioritizedMovies.count;
             while ((movie = [prioritizedMovies removeLastObjectAdded]) == nil &&
                    (movie = [normalMovies removeLastObjectAdded]) == nil) {
                 [gate wait];
@@ -139,7 +139,7 @@
         [gate unlock];
 
         [self updateAddress:movie];
-        
+
         if (!isPriority) {
             [NSThread sleepForTimeInterval:0.25];
         }

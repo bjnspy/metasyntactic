@@ -674,7 +674,7 @@ static NSDictionary* availabilityMap = nil;
     if (error != NULL) {
         *error = nil;
     }
-    
+
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
@@ -687,14 +687,14 @@ static NSDictionary* availabilityMap = nil;
     XmlElement* element =
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
-    
+
     [self checkApiResult:element];
 
     if (element == nil) {
         *error = [self extractErrorMessage:element];
         return nil;
     }
-    
+
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
     [NetflixCache processMovieItemList:element movies:movies saved:saved];
@@ -1759,7 +1759,7 @@ static NSDictionary* availabilityMap = nil;
                                         important:YES];
 
     [self checkApiResult:element];
-    
+
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
     [NetflixCache processMovieItemList:element movies:movies saved:saved];

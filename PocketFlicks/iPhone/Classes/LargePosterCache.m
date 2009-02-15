@@ -367,13 +367,13 @@ const int START_YEAR = 1912;
 
 - (BOOL) allPostersDownloadedForMovie:(Movie*) movie {
     NSInteger posterCount = [self posterCountForMovie:movie];
-    
+
     for (NSInteger i = 0; i < posterCount; i++) {
         if (![FileUtilities fileExists:[self posterFilePath:movie index:i]]) {
             return NO;
         }
     }
-    
+
     return YES;
 }
 

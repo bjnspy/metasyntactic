@@ -142,7 +142,7 @@
     } else {
         text = [self.model.netflixCache titleForKey:feedKey includeCount:NO];
     }
-    
+
     self.title = text;
 }
 
