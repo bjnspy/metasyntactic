@@ -501,7 +501,7 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
     if (hasShown) {
         return;
     }
-    
+
     // only 5% chance of showing it to them.
     if ((rand() % 1000) > 50) {
         return;

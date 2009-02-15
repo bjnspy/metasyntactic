@@ -18,15 +18,15 @@
 @private
     AbstractNavigationController* navigationController;
     Movie* movie;
-    
+
     TappableScrollView* scrollView;
-    
+
     NSInteger currentPage;
     NSInteger posterCount;
     NSMutableDictionary* pageNumberToView;
-    
+
     UIToolbar* topBar;
-    
+
     BOOL shutdown;
     BOOL saving;
 }

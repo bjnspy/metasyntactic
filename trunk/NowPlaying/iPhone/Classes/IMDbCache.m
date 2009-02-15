@@ -141,9 +141,9 @@
             isPriority = count != prioritizedMovies.count;
         }
         [gate unlock];
-        
+
         [self updateAddress:movie];
-        
+
         if (!isPriority) {
             [NSThread sleepForTimeInterval:0.25];
         }

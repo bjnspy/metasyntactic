@@ -73,7 +73,7 @@ static AppDelegate* appDelegate = nil;
 
     self.globalActivityView = [[[UIView alloc] initWithFrame:frame] retain];
     [globalActivityView addSubview:globalActivityIndicatorView];
-    
+
     [GlobalActivityIndicator setTarget:globalActivityIndicatorView
                 startIndicatorSelector:@selector(startAnimating)
                  stopIndicatorSelector:@selector(stopAnimating)];

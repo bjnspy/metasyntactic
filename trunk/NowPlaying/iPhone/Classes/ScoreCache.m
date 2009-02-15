@@ -119,7 +119,7 @@
     if (model.userAddress.length == 0) {
         return;
     }
-    
+
     id<ScoreProvider> currentScoreProvider = self.currentScoreProvider;
 
     [ThreadingUtilities backgroundSelector:@selector(updateBackgroundEntryPoint:)

@@ -130,11 +130,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
-    
+
     if (section == DVDDetailsSection) {
        return [UIImage imageNamed:@"DeliveredByNetflix.png"];
     }
-    
+
     return nil;
 }
 
@@ -151,7 +151,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (indexPath.section == LocalizedBySection) {
         return tableView.rowHeight - 14;
     }
-    
+
     return height;
 }
 
@@ -188,15 +188,15 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     UIImage* image = [self getImage:indexPath];
-    
+
     if (image != nil) {
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        
+
         NSInteger x = (self.tableView.contentSize.width - image.size.width) / 2 - 20;
         NSInteger y = ([self tableView:tableView heightForRowAtIndexPath:indexPath] - image.size.height) / 2;
-        
+
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
-        
+
         [cell.contentView addSubview:imageView];
     } else if (section == WrittenBySection) {
         if (row == 0) {
