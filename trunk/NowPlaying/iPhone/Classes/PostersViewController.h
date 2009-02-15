@@ -28,6 +28,7 @@
     UIToolbar* topBar;
     
     BOOL shutdown;
+    BOOL saving;
 }
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController
