@@ -43,7 +43,7 @@
 
 - (id) initWithModel:(Model*) model;
 
-- (NSArray*) movieSearch:(NSString*) query;
+- (NSArray*) movieSearch:(NSString*) query error:(NSString**) error;
 - (NSArray*) peopleSearch:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;
 - (void) prioritizePerson:(Person*) person;
@@ -87,7 +87,9 @@
 - (NSString*) userRatingsFile:(Movie*) movie;
 - (NSString*) downloadEtag:(Feed*) feed;
 - (void) reportQueue:(Queue*) queue;
+
 - (void) checkApiResult:(XmlElement*) result;
+- (NSString*) extractErrorMessage:(XmlElement*) element;
 
 + (void) processMovieItemList:(XmlElement*) element
                        movies:(NSMutableArray*) movies

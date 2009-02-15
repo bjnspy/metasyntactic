@@ -18,21 +18,21 @@
 @private
     NSArray* feedsData;
     NSMutableDictionary* queues;
-
+    
     // movies whose details we want to update
     LinkedSet* normalMovies;
     LinkedSet* rssMovies;
     LinkedSet* searchMovies;
     LinkedSet* prioritizedMovies;
-
+    
     // people whose details we want to update
     LinkedSet* prioritizedPeople;
     LinkedSet* searchPeople;
-
+    
     NSCondition* updateDetailsLock;
-
+    
     NSDate* lastQuotaErrorDate;
-
+    
 @protected
     NSMutableDictionary* presubmitRatings;
 }
@@ -43,7 +43,7 @@
 
 - (id) initWithModel:(Model*) model;
 
-- (NSArray*) movieSearch:(NSString*) query;
+- (NSArray*) movieSearch:(NSString*) query error:(NSString**) error;
 - (NSArray*) peopleSearch:(NSString*) query;
 - (void) prioritizeMovie:(Movie*) movie;
 - (void) prioritizePerson:(Person*) person;
@@ -87,7 +87,9 @@
 - (NSString*) userRatingsFile:(Movie*) movie;
 - (NSString*) downloadEtag:(Feed*) feed;
 - (void) reportQueue:(Queue*) queue;
+
 - (void) checkApiResult:(XmlElement*) result;
+- (NSString*) extractErrorMessage:(XmlElement*) element;
 
 + (void) processMovieItemList:(XmlElement*) element
                        movies:(NSMutableArray*) movies

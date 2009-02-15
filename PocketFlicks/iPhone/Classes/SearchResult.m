@@ -20,6 +20,7 @@
 @interface SearchResult()
 @property NSInteger requestId;
 @property (copy) NSString* value;
+@property (copy) NSString* error;
 @property (retain) NSArray* movies;
 @property (retain) NSArray* people;
 @end
@@ -29,12 +30,14 @@
 
 @synthesize requestId;
 @synthesize value;
+@synthesize error;
 @synthesize movies;
 @synthesize people;
 
 - (void) dealloc {
     self.requestId = 0;
     self.value = nil;
+    self.error = nil;
     self.movies = nil;
     self.people = nil;
 
@@ -44,11 +47,13 @@
 
 - (id) initWithId:(NSInteger) requestId_
             value:(NSString*) value_
+            error:(NSString*) error_
            movies:(NSArray*) movies_
            people:(NSArray*) people_ {
     if (self = [super init]) {
         self.requestId = requestId_;
         self.value = value_;
+        self.error = error_;
         self.movies = [Utilities nonNilArray:movies_];
         self.people = [Utilities nonNilArray:people_];
     }
@@ -59,17 +64,24 @@
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
+                         error:(NSString*) error
                         movies:(NSArray*) movies {
-    return [SearchResult resultWithId:requestId value:value movies:movies people:nil];
+    return [SearchResult resultWithId:requestId
+                                value:value
+                                error:error
+                               movies:movies
+                               people:nil];
 }
 
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
+                         error:(NSString*) error
                         movies:(NSArray*) movies
                         people:(NSArray*) people {
     return [[[SearchResult alloc] initWithId:requestId
                                        value:value
+                                       error:error
                                       movies:movies
                                       people:people] autorelease];
 }

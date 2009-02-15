@@ -43,12 +43,13 @@
 
 
 - (void) search {
-    NSArray* movies = [model.netflixCache movieSearch:currentlyExecutingRequest.lowercaseValue];
+    NSString* error = nil;
+    NSArray* movies = [model.netflixCache movieSearch:currentlyExecutingRequest.lowercaseValue error:&error];
     if ([self abortEarly]) { return; }
     NSArray* people = [model.netflixCache peopleSearch:currentlyExecutingRequest.lowercaseValue];
     if ([self abortEarly]) { return; }
 
-    [self reportMovies:movies people:people];
+    [self reportError:error movies:movies people:people];
 }
 
 @end

@@ -140,7 +140,7 @@
         [self updateAddress:movie];
         
         if (!isPriority) {
-            [NSThread sleepForTimeInterval:1];
+            [NSThread sleepForTimeInterval:0.25];
         }
     }
 }

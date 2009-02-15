@@ -670,12 +670,16 @@ static NSDictionary* availabilityMap = nil;
 }
 
 
-- (NSArray*) movieSearch:(NSString*) query {
+- (NSArray*) movieSearch:(NSString*) query error:(NSString**) error {
+    if (error != NULL) {
+        *error = nil;
+    }
+    
     OAMutableURLRequest* request = [self createURLRequest:@"http://api.netflix.com/catalog/titles"];
 
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:query],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"15"], nil];
+                           [OARequestParameter parameterWithName:@"max_results" value:@"25"], nil];
 
     [request setParameters:parameters];
     [request prepare];
@@ -683,9 +687,14 @@ static NSDictionary* availabilityMap = nil;
     XmlElement* element =
     [NetworkUtilities xmlWithContentsOfUrlRequest:request
                                         important:YES];
-
+    
     [self checkApiResult:element];
 
+    if (element == nil) {
+        *error = [self extractErrorMessage:element];
+        return nil;
+    }
+    
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
     [NetflixCache processMovieItemList:element movies:movies saved:saved];
@@ -1750,7 +1759,7 @@ static NSDictionary* availabilityMap = nil;
                                         important:YES];
 
     [self checkApiResult:element];
-
+    
     NSMutableArray* movies = [NSMutableArray array];
     NSMutableArray* saved = [NSMutableArray array];
     [NetflixCache processMovieItemList:element movies:movies saved:saved];
@@ -1840,6 +1849,20 @@ static NSDictionary* availabilityMap = nil;
     if ([@"Over queries per day limit" isEqual:message]) {
         self.lastQuotaErrorDate = [NSDate date];
         [AppDelegate minorRefresh];
+    }
+}
+
+
+- (NSString*) extractErrorMessage:(XmlElement*) element {
+    NSString* message = [[element element:@"message"] text];
+    if (message.length > 0) {
+        return message;
+    } else if (element == nil) {
+        NSLog(@"Could not parse Netflix result.", nil);
+        return NSLocalizedString(@"Could not connect to Netflix.", nil);
+    } else {
+        NSLog(@"Netflix response had no 'message' element", nil);
+        return NSLocalizedString(@"An unknown error occurred.", nil);
     }
 }
 

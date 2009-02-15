@@ -29,6 +29,7 @@
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) NSArray* movies;
 @property (retain) NSArray* people;
+@property (copy) NSString* error;
 @end
 
 
@@ -40,6 +41,7 @@
 @synthesize activityIndicatorView;
 @synthesize movies;
 @synthesize people;
+@synthesize error;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -48,6 +50,7 @@
     self.activityIndicatorView = nil;
     self.movies = nil;
     self.people = nil;
+    self.error = nil;
 
     [super dealloc];
 }
@@ -151,7 +154,7 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 2;
+    return 3;
 }
 
 
@@ -159,8 +162,10 @@
 - (NSInteger) tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return movies.count;
-    } else {
+    } else if (section == 1) {
         return people.count;
+    } else {
+        return 0;
     }
 }
 
@@ -171,6 +176,8 @@
         return NSLocalizedString(@"Movies", nil);
     } else if (section == 1 && people.count > 0) {
         return NSLocalizedString(@"People", nil);
+    } else if (section == 2 && error.length > 0) {
+        return error;
     }
 
     return nil;
@@ -224,6 +231,8 @@
 
 - (void) searchBar:(UISearchBar*) searchBar
      textDidChange:(NSString*) searchText {
+    self.error = nil;
+
     if (searchText.length == 0) {
         [activityIndicatorView stopAnimating];
         [searchEngine invalidateExistingRequests];
@@ -248,6 +257,7 @@
 
     self.movies = result.movies;
     self.people = result.people;
+    self.error = result.error;
     [self majorRefresh];
 }
 
