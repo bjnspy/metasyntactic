@@ -679,7 +679,7 @@ static NSDictionary* availabilityMap = nil;
     
     NSArray* parameters = [NSArray arrayWithObjects:
                            [OARequestParameter parameterWithName:@"term" value:query],
-                           [OARequestParameter parameterWithName:@"max_results" value:@"15"], nil];
+                           [OARequestParameter parameterWithName:@"max_results" value:@"25"], nil];
     
     [request setParameters:parameters];
     [request prepare];
@@ -690,8 +690,7 @@ static NSDictionary* availabilityMap = nil;
     
     [self checkApiResult:element];
     
-    NSInteger status = [[[element element:@"status_code"] text] intValue];
-    if (status < 200 || status >= 300) {
+    if (element == nil) {
         *error = [self extractErrorMessage:element];
         return nil;
     }

@@ -440,14 +440,14 @@ const double LOAD_DELAY = 1;
                             cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                        destructiveButtonTitle:nil
                             otherButtonTitles:NSLocalizedString(@"Save to Photo Library", nil),
-                                              NSLocalizedString(@"Save All to Photo Library", nil)] autorelease];        
+                                              NSLocalizedString(@"Save All to Photo Library", nil), nil] autorelease];        
     } else {
         actionSheet =
         [[[UIActionSheet alloc] initWithTitle:nil
                                      delegate:self
                             cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                        destructiveButtonTitle:nil
-                            otherButtonTitles:NSLocalizedString(@"Save to Photo Library", nil)] autorelease];
+                            otherButtonTitles:NSLocalizedString(@"Save to Photo Library", nil), nil] autorelease];
     }
     
     [actionSheet showInView:[AppDelegate window]];
