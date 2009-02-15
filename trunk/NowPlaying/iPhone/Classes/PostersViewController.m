@@ -22,6 +22,7 @@
 #import "Model.h"
 #import "TappableScrollView.h"
 #import "TappableScrollViewDelegate.h"
+#import "ThreadingUtilities.h"
 
 @interface PostersViewController()
 @property (assign) AbstractNavigationController* navigationController;
@@ -454,10 +455,17 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) saveImage:(NSInteger) index {
-    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index];
+- (void) saveImage:(NSNumber*) number {
+    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:number.integerValue];
     if (image != nil) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, NULL);
+    }    
+}
+
+
+- (void) saveAllImages {
+    for (NSInteger i = 0; i < posterCount; i++) {
+        [self saveImage:[NSNumber numberWithInteger:i]];
     }    
 }
 
@@ -468,11 +476,16 @@ const double LOAD_DELAY = 1;
     }
     
     if (buttonIndex == 0) {
-        [self saveImage:currentPage];
+        [ThreadingUtilities backgroundSelector:@selector(saveImage:)
+                                      onTarget:self
+                                      argument:[NSNumber numberWithInteger:currentPage]
+                                          gate:nil
+                                       visible:YES];
     } else {
-        for (NSInteger i = 0; i < posterCount; i++) {
-            [self saveImage:i];
-        }
+        [ThreadingUtilities backgroundSelector:@selector(saveAllImages)
+                                      onTarget:self
+                                          gate:nil
+                                       visible:YES];
     }
 }
 
