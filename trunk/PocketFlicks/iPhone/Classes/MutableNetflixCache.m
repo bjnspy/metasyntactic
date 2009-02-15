@@ -163,20 +163,6 @@
 }
 
 
-- (NSString*) extractErrorMessage:(XmlElement*) element {
-    NSString* message = [[element element:@"message"] text];
-    if (message.length > 0) {
-        return message;
-    } else if (element == nil) {
-        NSLog(@"Could not parse Netflix result.", nil);
-        return NSLocalizedString(@"Could not connect to Netflix.", nil);
-    } else {
-        NSLog(@"Netflix response had no 'message' element", nil);
-        return NSLocalizedString(@"An unknown error occurred.", nil);
-    }
-}
-
-
 - (Queue*) moveMovie:(Movie*) movie
           toPosition:(NSInteger) position
              inQueue:(Queue*) queue

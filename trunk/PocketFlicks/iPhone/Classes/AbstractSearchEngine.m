@@ -153,14 +153,15 @@
 }
 
 
-- (void) reportMovies:(NSArray*) movies {
-    [self reportMovies:movies people:nil];
+- (void) reportError:(NSString*) error movies:(NSArray*) movies {
+    [self reportError:error movies:movies people:nil];
 }
 
 
-- (void) reportMovies:(NSArray*) movies people:(NSArray*) people {
+- (void) reportError:(NSString*) error movies:(NSArray*) movies people:(NSArray*) people {
     SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                                 value:currentlyExecutingRequest.value
+                                                error:error
                                                movies:movies
                                                people:people];
     [self performSelectorOnMainThread:@selector(reportResult:) withObject:result waitUntilDone:NO];

@@ -252,7 +252,7 @@
 - (void) setDvdBlurayEnabled:(BOOL) value {
     [self.model setDvdBlurayEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];
-    [AppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh];
     [self.model updateDVDCache];
 }
 
@@ -260,7 +260,7 @@
 - (void) setUpcomingEnabled:(BOOL) value {
     [self.model setUpcomingEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];
-    [AppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh];
     [self.model updateUpcomingCache];
 }
 
@@ -269,7 +269,7 @@
     [self.model setNetflixEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];
     [Application resetNetflixDirectories];
-    [AppDelegate majorRefresh:YES];
+    [AppDelegate majorRefresh];
     [self spawnNetflixThread];
 }
 

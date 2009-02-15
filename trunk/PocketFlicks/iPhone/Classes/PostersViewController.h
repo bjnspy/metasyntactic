@@ -14,7 +14,7 @@
 
 #import "TappableScrollViewDelegate.h"
 
-@interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate> {
+@interface PostersViewController : UIViewController<TappableScrollViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate> {
 @private
     AbstractNavigationController* navigationController;
     Movie* movie;

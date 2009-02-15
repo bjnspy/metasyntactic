@@ -229,7 +229,7 @@
             }
             
             if (!isPriority) {
-                [NSThread sleepForTimeInterval:1];
+                [NSThread sleepForTimeInterval:0.25];
             }
         }
         [pool release];

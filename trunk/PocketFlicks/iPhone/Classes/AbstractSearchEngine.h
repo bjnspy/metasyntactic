@@ -38,7 +38,7 @@
 
 - (BOOL) abortEarly;
 
-- (void) reportMovies:(NSArray*) movies;
-- (void) reportMovies:(NSArray*) movies people:(NSArray*) people;
+- (void) reportError:(NSString*) error movies:(NSArray*) movies;
+- (void) reportError:(NSString*) error movies:(NSArray*) movies people:(NSArray*) people;
 
 @end

@@ -95,7 +95,7 @@
     NSArray* movies = [self findMovies];
     if ([self abortEarly]) { return; }
 
-    [self reportMovies:movies];
+    [self reportError:nil movies:movies];
 }
 
 @end

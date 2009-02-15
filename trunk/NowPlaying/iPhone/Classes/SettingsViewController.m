@@ -110,9 +110,17 @@
     } else if (section == 2) {
         return 1;
     } else if (section == 3) {
-        return 2;
+        if (self.model.dvdBlurayEnabled) {
+            return 2;
+        } else {
+            return 1;
+        }
     } else if (section == 4) {
-        return 2;
+        if (self.model.netflixEnabled) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 
     return 0;

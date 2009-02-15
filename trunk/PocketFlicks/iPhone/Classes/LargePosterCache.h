@@ -30,6 +30,7 @@
 
 - (void) downloadFirstPosterForMovie:(Movie*) movie;
 - (void) downloadAllPostersForMovie:(Movie*) movie;
+- (BOOL) allPostersDownloadedForMovie:(Movie*) movie;
 - (NSInteger) posterCountForMovie:(Movie*) movie;
 
 @end

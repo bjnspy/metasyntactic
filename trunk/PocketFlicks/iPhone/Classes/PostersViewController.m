@@ -15,6 +15,7 @@
 #import "PostersViewController.h"
 
 #import "AbstractNavigationController.h"
+#import "AppDelegate.h"
 #import "ColorCache.h"
 #import "LargePosterCache.h"
 #import "NonClippingView.h"
@@ -36,6 +37,7 @@
 const double TRANSLUCENCY_LEVEL = 0.9;
 const int ACTIVITY_INDICATOR_TAG = -1;
 const int LABEL_TAG = -2;
+const int IMAGE_TAG = -3;
 const double LOAD_DELAY = 1;
 
 @synthesize navigationController;
@@ -145,6 +147,7 @@ const double LOAD_DELAY = 1;
 
 - (UIImageView*) createImageView:(UIImage*) image {
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+    imageView.tag = IMAGE_TAG;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
 
     CGRect frame = [UIScreen mainScreen].applicationFrame;
@@ -321,7 +324,8 @@ const double LOAD_DELAY = 1;
 
     NSMutableArray* items = [NSMutableArray array];
 
-    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onActionTapped:)] autorelease]];
+    
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
@@ -407,7 +411,7 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) onRightTapped:(id) argument {
+- (void) onRightTapped:(id) sender {
     CGRect rect = [UIScreen mainScreen].applicationFrame;
     rect.origin.y = 0;
     rect.origin.x = (currentPage + 1) * rect.size.width;
@@ -417,13 +421,59 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) onLeftTapped:(id) argument {
+- (void) onLeftTapped:(id) sender {
     CGRect rect = [UIScreen mainScreen].applicationFrame;
     rect.origin.y = 0;
     rect.origin.x = (currentPage - 1) * rect.size.width;
     [scrollView scrollRectToVisible:rect animated:YES];
     [self setPage:currentPage - 1];
     [self showToolBar];
+}
+    
+    
+- (void) onActionTapped:(id) sender {
+    UIActionSheet* actionSheet;
+    if (posterCount > 1 && [self.model.largePosterCache allPostersDownloadedForMovie:movie]) {
+        actionSheet =
+        [[[UIActionSheet alloc] initWithTitle:nil
+                                     delegate:self
+                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                       destructiveButtonTitle:nil
+                            otherButtonTitles:NSLocalizedString(@"Save to Photo Library", nil),
+                                              NSLocalizedString(@"Save All to Photo Library", nil)] autorelease];        
+    } else {
+        actionSheet =
+        [[[UIActionSheet alloc] initWithTitle:nil
+                                     delegate:self
+                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                       destructiveButtonTitle:nil
+                            otherButtonTitles:NSLocalizedString(@"Save to Photo Library", nil)] autorelease];
+    }
+    
+    [actionSheet showInView:[AppDelegate window]];
+}
+
+
+- (void) saveImage:(NSInteger) index {
+    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index];
+    if (image != nil) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, NULL);
+    }    
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    if (buttonIndex == 0) {
+        [self saveImage:currentPage];
+    } else {
+        for (NSInteger i = 0; i < posterCount; i++) {
+            [self saveImage:i];
+        }
+    }
 }
 
 

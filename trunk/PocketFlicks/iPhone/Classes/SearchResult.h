@@ -16,21 +16,25 @@
 @private
     NSInteger requestId;
     NSString* value;
+    NSString* error;
     NSArray* movies;
     NSArray* people;
 }
 
 @property (readonly) NSInteger requestId;
 @property (readonly, copy) NSString* value;
+@property (readonly, copy) NSString* error;
 @property (readonly, retain) NSArray* movies;
 @property (readonly, retain) NSArray* people;
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
+                         error:(NSString*) error
                         movies:(NSArray*) movies;
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
                          value:(NSString*) value
+                         error:(NSString*) error
                         movies:(NSArray*) movies
                         people:(NSArray*) people;
 

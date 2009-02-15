@@ -24,6 +24,7 @@
 
     NSArray* movies;
     NSArray* people;
+    NSString* error;
 
     BOOL visible;
 }
