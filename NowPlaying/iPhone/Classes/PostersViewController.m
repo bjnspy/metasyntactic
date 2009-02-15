@@ -29,7 +29,8 @@
 @property (retain) Movie* movie;
 @property (retain) NSMutableDictionary* pageNumberToView;
 @property (retain) TappableScrollView* scrollView;
-@property (retain) UIToolbar* topBar;
+@property (retain) UIToolbar* toolbar;
+@property (retain) UILabel* savingLabel;
 @end
 
 
@@ -44,15 +45,17 @@ const double LOAD_DELAY = 1;
 @synthesize navigationController;
 @synthesize pageNumberToView;
 @synthesize movie;
-@synthesize topBar;
+@synthesize toolbar;
 @synthesize scrollView;
+@synthesize savingLabel;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.pageNumberToView = nil;
     self.movie = nil;
-    self.topBar = nil;
+    self.toolbar = nil;
     self.scrollView = nil;
+    self.savingLabel = nil;
 
     [super dealloc];
 }
@@ -309,32 +312,38 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) setupSavingTopBar {
-    UILabel* label = [[[UILabel alloc] init] autorelease];
-    label.text = NSLocalizedString(@"Saving", nil);
-    label.font = [UIFont boldSystemFontOfSize:20];
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor clearColor];
-    label.opaque = NO;
-    label.shadowColor = [UIColor darkGrayColor];
-    [label sizeToFit];
+- (void) setupSavingToolbar {
+    self.savingLabel = [[[UILabel alloc] init] autorelease];
+    savingLabel.font = [UIFont boldSystemFontOfSize:20];
+    savingLabel.textColor = [UIColor whiteColor];
+    savingLabel.backgroundColor = [UIColor clearColor];
+    savingLabel.opaque = NO;
+    savingLabel.shadowColor = [UIColor darkGrayColor];
+    savingLabel.text = NSLocalizedString(@"Saving", nil);
+    [savingLabel sizeToFit];
 
     NSMutableArray* items = [NSMutableArray array];
 
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-    [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:label] autorelease]];
+    [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:savingLabel] autorelease]];
 
-    UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-    [activityIndicator startAnimating];
-
-    [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:activityIndicator] autorelease]];
+    UIActivityIndicatorView* savingActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    [savingActivityIndicator startAnimating];
+    
+    [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:savingActivityIndicator] autorelease]];
     [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-    [topBar setItems:items animated:YES];
+    [toolbar setItems:items animated:YES];
 }
 
 
-- (void) setupNormalTopBar {
+- (void) updateSavingToolbar:(NSString*) text {
+    savingLabel.text = text;
+    [savingLabel sizeToFit];
+}
+
+
+- (void) setupNormalToolbar {
     NSString* title =
     [NSString stringWithFormat:
      NSLocalizedString(@"%d of %d", nil), (currentPage + 1), posterCount];
@@ -380,7 +389,7 @@ const double LOAD_DELAY = 1;
     UIBarButtonItem* doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneTapped:)] autorelease];
     [items addObject:doneItem];
 
-    [topBar setItems:items animated:YES];
+    [toolbar setItems:items animated:YES];
 
     if (currentPage <= 0) {
         leftArrow.enabled = NO;
@@ -392,12 +401,11 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) setupTopBar {
+- (void) setupToolbar {
     if (saving) {
-        [self setupSavingTopBar];
-    } else {
-        [self setupNormalTopBar];
+        return;
     }
+    [self setupNormalToolbar];
 }
 
 
@@ -422,16 +430,20 @@ const double LOAD_DELAY = 1;
     if (page != currentPage) {
         currentPage = page;
 
-        [self setupTopBar];
+        [self setupToolbar];
         [self clearAndLoadPages];
     }
 }
 
 
 - (void) hideToolBar {
+    if (saving) {
+        return;
+    }
+
     [UIView beginAnimations:nil context:NULL];
     {
-        topBar.alpha = 0;
+        toolbar.alpha = 0;
     }
     [UIView commitAnimations];
 }
@@ -440,7 +452,7 @@ const double LOAD_DELAY = 1;
 - (void) showToolBar {
     [UIView beginAnimations:nil context:NULL];
     {
-        topBar.alpha = TRANSLUCENCY_LEVEL;
+        toolbar.alpha = TRANSLUCENCY_LEVEL;
     }
     [UIView commitAnimations];
 }
@@ -489,31 +501,52 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) saveImage:(NSInteger) index {
+- (void) reportSingleSave:(NSNumber*) number {
+    NSString* text = [NSString stringWithFormat:NSLocalizedString(@"Saving %d of %d", nil), number.integerValue + 1, posterCount];
+    [self updateSavingToolbar:text];
+}
+
+
+- (void) saveImage:(NSInteger) index
+         nextIndex:(NSInteger) nextIndex {
     UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index];
-    if (image != nil) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, NULL);
-    }
+    if (image == nil) {
+        [self performSelectorOnMainThread:@selector(onSavingComplete) withObject:nil waitUntilDone:NO];
+    } else {
+        if (nextIndex != -1) {
+            [self performSelectorOnMainThread:@selector(reportSingleSave:) withObject:[NSNumber numberWithInteger:index] waitUntilDone:NO];
+        }
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (void*)nextIndex);
+    } 
+}
+
+
+- (void)                 image:(UIImage *)image
+      didFinishSavingWithError:(NSError *)error
+                   contextInfo:(void *)contextInfo {
+    NSInteger nextIndex = (NSInteger)contextInfo;
+    [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:) 
+                                  onTarget:self
+                                  argument:[NSNumber numberWithInteger:nextIndex]
+                                      gate:nil
+                                   visible:YES];
 }
 
 
 - (void) onSavingComplete {
     saving = NO;
-    [self setupTopBar];
+    [self setupToolbar];
 }
 
 
-- (void) saveAllImages {
-    for (NSInteger i = 0; i < posterCount; i++) {
-        [self saveImage:i];
-    }
-    [self performSelectorOnMainThread:@selector(onSavingComplete) withObject:nil waitUntilDone:NO];
+- (void) saveMultipleImages:(NSNumber*) startNumber {
+    NSInteger startIndex = startNumber.integerValue;
+    [self saveImage:startIndex nextIndex:startIndex + 1];
 }
 
 
 - (void) saveSingleImage:(NSNumber*) number {
-    [self saveImage:number.integerValue];
-    [self performSelectorOnMainThread:@selector(onSavingComplete) withObject:nil waitUntilDone:NO];
+    [self saveImage:number.integerValue nextIndex:-1];
 }
 
 
@@ -527,7 +560,7 @@ const double LOAD_DELAY = 1;
     }
 
     saving = YES;
-    [self setupTopBar];
+    [self setupSavingToolbar];
 
     if (buttonIndex == 0) {
         [ThreadingUtilities backgroundSelector:@selector(saveSingleImage:)
@@ -536,8 +569,9 @@ const double LOAD_DELAY = 1;
                                           gate:nil
                                        visible:YES];
     } else {
-        [ThreadingUtilities backgroundSelector:@selector(saveAllImages)
+        [ThreadingUtilities backgroundSelector:@selector(saveMultipleImages:)
                                       onTarget:self
+                                      argument:[NSNumber numberWithInteger:0]
                                           gate:nil
                                        visible:YES];
     }
@@ -554,14 +588,14 @@ const double LOAD_DELAY = 1;
     [self createScrollView];
 
     {
-        self.topBar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
-        topBar.barStyle = UIBarStyleBlackTranslucent;
-        [self setupTopBar];
-        [topBar sizeToFit];
+        self.toolbar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
+        toolbar.barStyle = UIBarStyleBlackTranslucent;
+        [self setupToolbar];
+        [toolbar sizeToFit];
 
-        CGRect topBarFrame = topBar.frame;
+        CGRect topBarFrame = toolbar.frame;
         topBarFrame.origin.y = frame.size.height - topBarFrame.size.height;
-        topBar.frame = topBarFrame;
+        toolbar.frame = topBarFrame;
 
         [self showToolBar];
     }
@@ -571,7 +605,7 @@ const double LOAD_DELAY = 1;
     [self loadPage:1 delay:LOAD_DELAY];
 
     [view addSubview:scrollView];
-    [view addSubview:topBar];
+    [view addSubview:toolbar];
 
     self.view = view;
 }
@@ -599,7 +633,7 @@ const double LOAD_DELAY = 1;
         // just dismiss us
         [self dismiss];
     } else {
-        if (topBar.alpha == 0) {
+        if (toolbar.alpha == 0) {
             [self showToolBar];
         } else {
             [self hideToolBar];
