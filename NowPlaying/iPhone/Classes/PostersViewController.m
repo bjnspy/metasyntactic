@@ -309,7 +309,32 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) setupTopBar {
+- (void) setupSavingTopBar {
+    UILabel* label = [[[UILabel alloc] init] autorelease];
+    label.text = NSLocalizedString(@"Saving", nil);
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.opaque = NO;
+    label.shadowColor = [UIColor darkGrayColor];
+    [label sizeToFit];
+    
+    NSMutableArray* items = [NSMutableArray array];
+        
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+    [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:label] autorelease]];
+
+    UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    [activityIndicator startAnimating];
+    
+    [items addObject:[[[UIBarButtonItem alloc] initWithCustomView:activityIndicator] autorelease]];
+    [items addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+
+    [topBar setItems:items animated:YES];
+}
+
+
+- (void) setupNormalTopBar {
     NSString* title =
     [NSString stringWithFormat:
      NSLocalizedString(@"%d of %d", nil), (currentPage + 1), posterCount];
@@ -363,6 +388,15 @@ const double LOAD_DELAY = 1;
     
     if (currentPage >= (posterCount - 1)) {
         rightArrow.enabled = NO;
+    } 
+}
+
+
+- (void) setupTopBar {
+    if (saving) {
+        [self setupSavingTopBar];
+    } else {
+        [self setupNormalTopBar];
     }
 }
 
@@ -455,18 +489,31 @@ const double LOAD_DELAY = 1;
 }
 
 
-- (void) saveImage:(NSNumber*) number {
-    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:number.integerValue];
+- (void) saveImage:(NSInteger) index {
+    UIImage* image = [self.model.largePosterCache posterForMovie:movie index:index];
     if (image != nil) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, NULL);
     }    
 }
 
 
+- (void) onSavingComplete {
+    saving = NO;
+    [self setupTopBar];
+}
+
+
 - (void) saveAllImages {
     for (NSInteger i = 0; i < posterCount; i++) {
-        [self saveImage:[NSNumber numberWithInteger:i]];
-    }    
+        [self saveImage:i];
+    }
+    [self performSelectorOnMainThread:@selector(onSavingComplete) withObject:nil waitUntilDone:NO];
+}
+
+
+- (void) saveSingleImage:(NSNumber*) number {
+    [self saveImage:number.integerValue];
+    [self performSelectorOnMainThread:@selector(onSavingComplete) withObject:nil waitUntilDone:NO];
 }
 
 
@@ -475,8 +522,15 @@ const double LOAD_DELAY = 1;
         return;
     }
     
+    if (saving) {
+        return;
+    }
+    
+    saving = YES;
+    [self setupTopBar];
+
     if (buttonIndex == 0) {
-        [ThreadingUtilities backgroundSelector:@selector(saveImage:)
+        [ThreadingUtilities backgroundSelector:@selector(saveSingleImage:)
                                       onTarget:self
                                       argument:[NSNumber numberWithInteger:currentPage]
                                           gate:nil
@@ -537,6 +591,10 @@ const double LOAD_DELAY = 1;
 - (void) scrollView:(TappableScrollView*) scrollView
           wasTapped:(NSInteger) tapCount
             atPoint:(CGPoint) point {
+    if (saving) {
+        return;
+    }
+    
     if (posterCount == 1) {
         // just dismiss us
         [self dismiss];
