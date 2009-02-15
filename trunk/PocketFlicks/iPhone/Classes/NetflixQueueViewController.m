@@ -297,8 +297,8 @@
     NetflixCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[NetflixCell alloc] initWithFrame:CGRectZero
-                                             reuseIdentifier:reuseIdentifier
-                                                       model:self.model] autorelease];
+                                   reuseIdentifier:reuseIdentifier
+                                             model:self.model] autorelease];
         cell.tappableArrow.delegate = self;
     }
 

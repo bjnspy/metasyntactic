@@ -310,7 +310,6 @@
     [NSString stringWithFormat:
      NSLocalizedString(@"Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!", nil), [Application name]];
 
-
     [self.controller setNetflixKey:token.key secret:token.secret userId:[token.fields objectForKey:@"user_id"]];
 }
 
