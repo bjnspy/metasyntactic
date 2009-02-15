@@ -33,7 +33,8 @@ import java.io.File;
 import java.util.*;
 
 public class NowPlayingModel {
-  private final static String VERSION = "13";
+  private final static String VERSION = "14";
+
   private final static String VERSION_KEY = "VERSION";
   private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";

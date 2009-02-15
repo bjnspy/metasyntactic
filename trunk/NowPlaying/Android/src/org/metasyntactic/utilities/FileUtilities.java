@@ -26,7 +26,7 @@ import java.io.*;
 import java.util.*;
 
 public class FileUtilities {
-  private static final boolean USE_PERSISTABLE = false;
+  private static final boolean USE_PERSISTABLE = true;
   private static final Object lock = new Object();
   private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
 

@@ -71,6 +71,7 @@ public class PersistableOutputStream {
 
   public void writeString(final String string) throws IOException {
     final String s = StringUtilities.nonNullString(string);
+    /*
     final int charCount = s.length();
     final int byteCount = charCount * 2;
 
@@ -85,6 +86,11 @@ public class PersistableOutputStream {
     this.charBuffer.put(s);
 
     this.out.write(this.bytes, 0, byteCount);
+    */
+
+    final byte[] stringBytes = s.getBytes("UTF-8");
+    writeInt(stringBytes.length);
+    this.out.write(stringBytes, 0, stringBytes.length);
   }
 
   public void writePersistable(final Persistable persistable) throws IOException {
