@@ -245,6 +245,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
 
     for (final Movie movie : movies) {
+      if (this.shutdown) { return; }
       final String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
       final int index = EditDistance.findClosestMatchIndex(lowercaseTitle, lowercaseTitles);
 
