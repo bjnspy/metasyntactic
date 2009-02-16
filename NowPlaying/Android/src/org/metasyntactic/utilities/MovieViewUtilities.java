@@ -212,27 +212,27 @@ public class MovieViewUtilities {
                                                    null, null);
         final double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
         // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
-        if (dist_m1 <= 2 && dist_m1 >= 0 && !currentHeader.equals("Less than 2 miles")) {
+        if (dist_m1 <= 2 && dist_m1 >= 0 && !"Less than 2 miles".equals(currentHeader)) {
           currentHeader = "Less than 2 miles";
           return currentHeader;
         }
-        if (dist_m1 <= 5 && dist_m1 >= 2 && !currentHeader.equals("Less than 5 miles")) {
+        if (dist_m1 <= 5 && dist_m1 >= 2 && !"Less than 5 miles".equals(currentHeader)) {
           currentHeader = "Less than 5 miles";
           return currentHeader;
         }
-        if (dist_m1 <= 10 && dist_m1 >= 5 && !currentHeader.equals("Less than 10 miles")) {
+        if (dist_m1 <= 10 && dist_m1 >= 5 && !"Less than 10 miles".equals(currentHeader)) {
           currentHeader = "Less than 10 miles";
           return currentHeader;
         }
-        if (dist_m1 <= 25 && dist_m1 >= 10 && !currentHeader.equals("Less than 25 miles")) {
+        if (dist_m1 <= 25 && dist_m1 >= 10 && !"Less than 25 miles".equals(currentHeader)) {
           currentHeader = "Less than 25 miles";
           return currentHeader;
         }
-        if (dist_m1 <= 50 && dist_m1 >= 25 && !currentHeader.equals("Less than 50 miles")) {
+        if (dist_m1 <= 50 && dist_m1 >= 25 && !"Less than 50 miles".equals(currentHeader)) {
           currentHeader = "Less than 50 miles";
           return currentHeader;
         }
-        if (dist_m1 <= 100 && dist_m1 >= 50 && !currentHeader.equals("Less than 100 miles")) {
+        if (dist_m1 <= 100 && dist_m1 >= 50 && !"Less than 100 miles".equals(currentHeader)) {
           currentHeader = "Less than 100 miles";
           return currentHeader;
         }
