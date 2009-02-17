@@ -19,6 +19,7 @@
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
+#import "MutableNetflixCache.h"
 #import "NetflixCache.h"
 #import "NetflixCell.h"
 #import "Model.h"
@@ -92,6 +93,12 @@
 
 
 - (void) majorRefreshWorker {
+    // do nothing.  we don't want to refresh the view (because it causes an
+    // ugly flash).  Instead, just refresh things when teh view becomes visible
+}
+
+
+- (void) internalRefresh {
     [self initializeData];
     [self.tableView reloadData];
 
@@ -122,7 +129,7 @@
     [super viewWillAppear:animated];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[AppDelegate globalActivityView]] autorelease];
     self.tableView.rowHeight = 100;
-    [self majorRefresh];
+    [self internalRefresh];
 }
 
 
@@ -194,6 +201,16 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie = [movies objectAtIndex:indexPath.row];
     [navigationController pushMovieDetails:movie animated:YES];
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (movies.count == 0) {
+        return self.model.netflixCache.noInformationFound;
+    }
+    
+    return nil;
 }
 
 @end

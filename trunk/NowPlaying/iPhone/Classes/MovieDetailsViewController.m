@@ -72,8 +72,10 @@
 
 @implementation MovieDetailsViewController
 
-const NSInteger ADD_TO_NETFLIX_TAG = 1;
-const NSInteger VISIT_WEBSITES_TAG = 2;
+const NSInteger ADD_TO_NETFLIX_DISC_QUEUE_TAG = 1;
+const NSInteger ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG = 2;
+const NSInteger ADD_TO_NETFLIX_INSTANT_QUEUE_TAG = 3;
+const NSInteger VISIT_WEBSITES_TAG = 4;
 
 const NSInteger POSTER_TAG = -1;
 
@@ -1077,71 +1079,107 @@ const NSInteger POSTER_TAG = -1;
     if (readonlyMode) {
         return;
     }
-
+    
     UIActionSheet* actionSheet =
     [[[UIActionSheet alloc] initWithTitle:nil
                                  delegate:self
                         cancelButtonTitle:nil
                    destructiveButtonTitle:nil
                         otherButtonTitles:nil] autorelease];
-
-    [actionSheet addButtonWithTitle:NSLocalizedString(@"DVD Queue", nil)];
-    [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of DVD Queue", nil)];
-    actionSheet.tag = ADD_TO_NETFLIX_TAG;
-
+    
     NSArray* formats = [self.model.netflixCache formatsForMovie:netflixMovie];
-    if (formats.count >= 2 && [formats containsObject:@"instant"]) {
+    
+    if ([formats containsObject:@"instant"]) {
+        if (formats.count == 1) {
+            actionSheet.tag == ADD_TO_NETFLIX_INSTANT_QUEUE_TAG;
+        } else {
+            actionSheet.tag == ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG;
+        }
+    } else {
+        actionSheet.tag == ADD_TO_NETFLIX_DISC_QUEUE_TAG;
+    }
+
+    // we always offer the Disc queue unless the movie is instant-only.
+    // (rare, but it does happen).
+    if (!(formats.count == 1 && [formats containsObject:@"instant"])) {
+        [actionSheet addButtonWithTitle:NSLocalizedString(@"Disc Queue", nil)];
+        [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of Disc Queue", nil)];
+    }
+    
+    if ([formats containsObject:@"instant"]) {
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Instant Queue", nil)];
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Top of Instant Queue", nil)];
     }
-
+    
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
-
+    
     [actionSheet showInView:[AppDelegate window]];
 }
 
 
-- (void) didDismissAddToNetflixActionSheet:(UIActionSheet*) actionSheet
-                           withButtonIndex:(NSInteger) buttonIndex {
-    if (buttonIndex == actionSheet.cancelButtonIndex) {
-        return;
+- (void) didDismissAddToNetflixQueue:(Queue*) queue
+                     withButtonIndex:(NSInteger) buttonIndex {
+    [self enterReadonlyMode];
+    if (buttonIndex % 2 == 0) {
+        [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self];
+    } else {
+        [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie toPosition:0 delegate:self];
     }
+}
 
-    if (buttonIndex >= 0 &&  buttonIndex <= 3) {
-        [self enterReadonlyMode];
 
-        Queue* queue;
-        if (buttonIndex <= 1) {
-            queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey]];
-        } else {
-            queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey]];
-        }
+- (void) didDismissAddToNetflixDiscQueueActionSheet:(UIActionSheet*) actionSheet
+                                    withButtonIndex:(NSInteger) buttonIndex {
+    Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey]];
+    [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
+}
 
-        if (buttonIndex % 2 == 0) {
-            [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie delegate:self];
-        } else {
-            [self.model.netflixCache updateQueue:queue byAddingMovie:netflixMovie toPosition:0 delegate:self];
-        }
+
+- (void) didDismissAddToNetflixInstantQueueActionSheet:(UIActionSheet*) actionSheet
+                                       withButtonIndex:(NSInteger) buttonIndex {
+    Queue* queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey]];
+    [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
+    
+}
+
+
+- (void) didDismissAddToNetflixDiscOrInstantQueueActionSheet:(UIActionSheet*) actionSheet
+                                             withButtonIndex:(NSInteger) buttonIndex {
+    Queue* queue;
+    if (buttonIndex <= 1) {
+        queue = [self.model.netflixCache queueForKey:[NetflixCache dvdQueueKey]];
+    } else {
+        queue = [self.model.netflixCache queueForKey:[NetflixCache instantQueueKey]];
     }
+    [self didDismissAddToNetflixQueue:queue withButtonIndex:buttonIndex];
 }
 
 
 - (void) didDismissVisitWebsitesActionSheet:(UIActionSheet*) actionSheet
                             withButtonIndex:(NSInteger) buttonIndex {
-    if (buttonIndex != actionSheet.cancelButtonIndex) {
-        NSString* url = [websites objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
-        [navigationController pushBrowser:url animated:YES];
-    }
+    NSString* url = [websites objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
+    [navigationController pushBrowser:url animated:YES];
 }
 
 
 - (void)            actionSheet:(UIActionSheet*) actionSheet
-      didDismissWithButtonIndex:(NSInteger) buttonIndex {
-    if (actionSheet.tag == ADD_TO_NETFLIX_TAG) {
-        [self didDismissAddToNetflixActionSheet:actionSheet
-                                withButtonIndex:buttonIndex];
-    } else {
+      didDismissWithButtonIndex:(NSInteger) buttonIndex {    
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    if (actionSheet.tag == ADD_TO_NETFLIX_DISC_QUEUE_TAG) {
+        [self didDismissAddToNetflixDiscQueueActionSheet:actionSheet
+                                         withButtonIndex:buttonIndex];
+    } else if (actionSheet.tag == ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG) {
+        [self didDismissAddToNetflixDiscOrInstantQueueActionSheet:actionSheet
+                                                  withButtonIndex:buttonIndex];
+        
+    } else if (actionSheet.tag == ADD_TO_NETFLIX_INSTANT_QUEUE_TAG) {
+        [self didDismissAddToNetflixInstantQueueActionSheet:actionSheet
+                                            withButtonIndex:buttonIndex];
+    } else if (actionSheet.tag == VISIT_WEBSITES_TAG) {
         [self didDismissVisitWebsitesActionSheet:actionSheet
                                  withButtonIndex:buttonIndex];
     }

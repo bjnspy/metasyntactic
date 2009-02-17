@@ -158,20 +158,26 @@
 
 
 - (void) majorRefreshWorker {
+    // do nothing.  we don't want to refresh the view (because it causes an
+    // ugly flash).  Instead, just refresh things when teh view becomes visible
+}
+
+
+- (void) internalRefresh {
     if (self.tableView.editing || readonlyMode) {
         return;
     }
-
+    
     [self initializeData];
     [self.tableView reloadData];
-
+    
     if (visibleIndexPaths.count > 0) {
         NSIndexPath* path = [visibleIndexPaths objectAtIndex:0];
         if (path.section >= 0 && path.section < self.tableView.numberOfSections &&
             path.row >= 0 && path.row < [self.tableView numberOfRowsInSection:path.section]) {
             [self.tableView scrollToRowAtIndexPath:[visibleIndexPaths objectAtIndex:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
-
+        
         self.visibleIndexPaths = nil;
     }
 }
@@ -196,7 +202,7 @@
     }
 
     self.tableView.rowHeight = 100;
-    [self majorRefresh];
+    [self internalRefresh];
 }
 
 
@@ -381,7 +387,7 @@
     [self exitReadonlyMode];
 
     // make sure we're in a good state.
-    [self majorRefresh];
+    [self internalRefresh];
 }
 
 
@@ -482,7 +488,7 @@
 
 - (void) onCancel:(id) sender {
     [self.tableView setEditing:NO animated:YES];
-    [self majorRefresh];
+    [self internalRefresh];
 }
 
 
