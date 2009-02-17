@@ -14,11 +14,13 @@
 package org.metasyntactic;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.*;
 import android.os.Environment;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.activities.R;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -58,7 +60,7 @@ public class NowPlayingApplication extends Application {
   private static Pulser pulser;
 
   static {
-    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+    if (FileUtilities.isSDCardAccessible()) {
       createDirectories();
       final Runnable runnable = new Runnable() {
         public void run() {
@@ -72,6 +74,35 @@ public class NowPlayingApplication extends Application {
       };
       pulser = new Pulser(runnable, 5);
     }
+  }
+
+  public NowPlayingApplication() {
+
+  }
+
+  private final BroadcastReceiver unmountedReceiver = new BroadcastReceiver() {
+    @Override public void onReceive(Context context, Intent intent) {
+      FileUtilities.setSDCardAccessible(false);
+    }
+  };
+
+  private final BroadcastReceiver mountedReceiver = new BroadcastReceiver() {
+    @Override public void onReceive(Context context, Intent intent) {
+      FileUtilities.setSDCardAccessible(true);
+    }
+  };
+
+  private final BroadcastReceiver ejectReceiver = new BroadcastReceiver() {
+    @Override public void onReceive(Context context, Intent intent) {
+      FileUtilities.setSDCardAccessible(true);
+    }
+  };
+
+  @Override public void onCreate() {
+    super.onCreate();
+    this.registerReceiver(unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
+    this.registerReceiver(mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
+    this.registerReceiver(ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
   }
 
   public static void initialize() {
