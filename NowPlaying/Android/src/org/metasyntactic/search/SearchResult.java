@@ -16,7 +16,6 @@ package org.metasyntactic.search;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 
-import java.util.Collections;
 import java.util.List;
 
 public class SearchResult {

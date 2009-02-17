@@ -51,7 +51,8 @@ public class NowPlayingControllerWrapper {
     Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity added: " + activity.getClass().getSimpleName());
 
     if (activities.size() == 1) {
-      Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity added: " + activity.getClass().getSimpleName());
+      Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
+            "First activity added: " + activity.getClass().getSimpleName());
 
       if (instance == null) {
         Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity created.  Starting controller");
@@ -66,11 +67,12 @@ public class NowPlayingControllerWrapper {
     checkThread();
     GlobalActivityIndicator.removeActivity(activity);
     activities.remove(activity);
-    Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity destroyed: " + activity.getClass().getSimpleName());
-
+    Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
+          "Activity destroyed: " + activity.getClass().getSimpleName());
 
     if (activities.isEmpty()) {
-      Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed: " + activity.getClass().getSimpleName());
+      Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
+            "Last activity destroyed: " + activity.getClass().getSimpleName());
 
       if (instance != null) {
         Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");
