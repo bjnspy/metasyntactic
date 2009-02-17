@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
-public class AllMoviesActivity extends ListActivity {
+public class MovieDetailsActivity extends ListActivity {
   /**
    * Called when the activity is first created.
    */
@@ -148,14 +148,14 @@ public class AllMoviesActivity extends ListActivity {
 
     @Override
     public boolean isEnabled(final int position) {
-      return AllMoviesActivity.this.movieDetailEntries.get(position).isSelectable();
+      return MovieDetailsActivity.this.movieDetailEntries.get(position).isSelectable();
     }
 
     private final LayoutInflater inflater;
 
     private MovieAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(AllMoviesActivity.this);
+      this.inflater = LayoutInflater.from(MovieDetailsActivity.this);
     }
 
     public Object getEntry(final int i) {
@@ -163,22 +163,22 @@ public class AllMoviesActivity extends ListActivity {
     }
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
-      final MovieDetailEntry entry = AllMoviesActivity.this.movieDetailEntries.get(position);
+      final MovieDetailEntry entry = MovieDetailsActivity.this.movieDetailEntries.get(position);
       switch (entry.type) {
       case POSTER_SYNOPSIS:
         convertView = this.inflater.inflate(R.layout.moviepostersynopsis, null);
         final ImageView posterImage = (ImageView) convertView.findViewById(R.id.poster);
         final TextView text1 = (TextView) convertView.findViewById(R.id.value1);
         final TextView text2 = (TextView) convertView.findViewById(R.id.value2);
-        final byte[] bytes = NowPlayingControllerWrapper.getPoster(AllMoviesActivity.this.movie);
+        final byte[] bytes = NowPlayingControllerWrapper.getPoster(MovieDetailsActivity.this.movie);
         if (bytes.length > 0) {
           posterImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
           posterImage.setBackgroundResource(R.drawable.image_frame);
         }
         final String synopsis = entry.value;
         if (synopsis.length() > 0) {
-          TextPaint paint = text1.getPaint();
-          int orientation = getResources().getConfiguration().orientation;
+          final TextPaint paint = text1.getPaint();
+          final int orientation = getResources().getConfiguration().orientation;
           int textViewWidth;
           if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // textViewWidth = screenWidth - posterWidth - paddingLeft -
@@ -187,11 +187,11 @@ public class AllMoviesActivity extends ListActivity {
           } else {
             textViewWidth = 320 - 126 - 5 - 5 - 5;
           }
-          android.text.Layout l = new StaticLayout(synopsis, paint, textViewWidth,
+          final android.text.Layout l = new StaticLayout(synopsis, paint, textViewWidth,
               Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
           // height of poster is 182px
-          int line = l.getLineForVertical(182);
-          int off = l.getLineStart(line + 1);
+          final int line = l.getLineForVertical(182);
+          final int off = l.getLineStart(line + 1);
           final String desc1_text = synopsis.substring(0, off);
           final String desc2_text = synopsis.substring(off, synopsis.length());
           text1.setText(desc1_text);
@@ -223,7 +223,7 @@ public class AllMoviesActivity extends ListActivity {
     }
 
     public int getCount() {
-      return AllMoviesActivity.this.movieDetailEntries.size();
+      return MovieDetailsActivity.this.movieDetailEntries.size();
     }
 
     private class MovieViewHolder {
@@ -241,7 +241,7 @@ public class AllMoviesActivity extends ListActivity {
     }
 
     public Object getItem(final int position) {
-      return AllMoviesActivity.this.movieDetailEntries.get(position);
+      return MovieDetailsActivity.this.movieDetailEntries.get(position);
     }
 
     public long getItemId(final int position) {
@@ -335,8 +335,8 @@ public class AllMoviesActivity extends ListActivity {
     showtimes.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         final Intent intent = new Intent();
-        intent.setClass(AllMoviesActivity.this, ShowtimesActivity.class);
-        intent.putExtra("movie", (Parcelable) AllMoviesActivity.this.movie);
+        intent.setClass(MovieDetailsActivity.this, ShowtimesActivity.class);
+        intent.putExtra("movie", (Parcelable) MovieDetailsActivity.this.movie);
         startActivity(intent);
       }
     });
