@@ -87,7 +87,7 @@ public class NowPlayingModel {
       editor.clear();
       editor.putString(VERSION_KEY, VERSION);
       editor.commit();
-      Application.reset();
+      NowPlayingApplication.reset();
       this.scoreCache.createDirectories();
     }
   }
@@ -196,7 +196,7 @@ public class NowPlayingModel {
       editor.putInt(SELECTED_TAB_INDEX_KEY, index);
       editor.commit();
     }
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   public int getAllMoviesSelecetedSortIndex() {
@@ -211,7 +211,7 @@ public class NowPlayingModel {
       editor.putInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   public int getAllTheatersSelectedSortIndex() {
@@ -226,7 +226,7 @@ public class NowPlayingModel {
       editor.putInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   public int getUpcomingMoviesSelectedSortIndex() {
@@ -241,7 +241,7 @@ public class NowPlayingModel {
       editor.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
       editor.commit();
     }
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   public ScoreType getScoreType() {

@@ -13,7 +13,7 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
@@ -54,8 +54,8 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   private final BoundedPrioritySet<MovieAndMap> prioritizedMovies = new BoundedPrioritySet<MovieAndMap>(9);
   private List<Movie> movies;
   private Map<String, String> movieMap_doNotAccessDirectly;
-  private final File providerDirectory = new File(Application.scoresDirectory, getProviderName());
-  private final File reviewsDirectory = new File(Application.reviewsDirectory, getProviderName());
+  private final File providerDirectory = new File(NowPlayingApplication.scoresDirectory, getProviderName());
+  private final File reviewsDirectory = new File(NowPlayingApplication.reviewsDirectory, getProviderName());
 
   protected AbstractScoreProvider(final NowPlayingModel model) {
     super(model);
@@ -212,7 +212,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     this.movieMap_doNotAccessDirectly = null;
     this.movies = null;
 
-    Application.refresh(true);
+    NowPlayingApplication.refresh(true);
   }
 
   public Score getScore(final List<Movie> movies, final Movie movie) {
@@ -275,7 +275,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   private void reportMovieMap(final Map<String, String> result, final List<Movie> movies) {
     this.movieMap_doNotAccessDirectly = result;
     this.movies = movies;
-    Application.refresh(true);
+    NowPlayingApplication.refresh(true);
   }
 
   protected abstract String lookupServerHash();
@@ -357,7 +357,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
       country = location.getCountry();
     }
 
-    return "http://" + Application.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    return "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
   }
 
   private void downloadReviews(final Score score, final Location location) {
@@ -393,7 +393,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
       }
 
       save(score.getCanonicalTitle(), reviews, serverHash);
-      Application.refresh();
+      NowPlayingApplication.refresh();
     }
   }
 

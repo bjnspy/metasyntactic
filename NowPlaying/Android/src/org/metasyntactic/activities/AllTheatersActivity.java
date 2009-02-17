@@ -14,7 +14,7 @@ import android.view.*;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.data.Location;
@@ -89,7 +89,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
-    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
 
   private void setupView() {

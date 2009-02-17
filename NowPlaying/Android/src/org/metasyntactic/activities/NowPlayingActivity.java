@@ -18,7 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.UserTask;
@@ -79,11 +79,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      if (Application.NOT_SCROLLING_INTENT.equals(
+      if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(
           intent.getAction()) && NowPlayingActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
       }
-      if (Application.SCROLLING_INTENT.equals(
+      if (NowPlayingApplication.SCROLLING_INTENT.equals(
           intent.getAction()) && NowPlayingActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask.cancel(true);
       }
@@ -229,12 +229,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
 
-    registerReceiver(this.broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
-    registerReceiver(this.databroadcastReceiver, new IntentFilter(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(Application.SCROLLING_INTENT));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(Application.NOT_SCROLLING_INTENT));
+    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.databroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
     registerReceiver(this.progressbroadcastReceiver,
-                     new IntentFilter(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
+                     new IntentFilter(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }

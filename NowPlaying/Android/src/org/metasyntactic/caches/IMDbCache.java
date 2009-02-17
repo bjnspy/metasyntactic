@@ -13,7 +13,7 @@
 //limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
@@ -35,7 +35,7 @@ public class IMDbCache extends AbstractCache {
   }
 
   private static File movieFilePath(final Movie movie) {
-    return new File(Application.imdbDirectory, movieFileName(movie));
+    return new File(NowPlayingApplication.imdbDirectory, movieFileName(movie));
   }
 
   public void update(final List<Movie> movies) {
@@ -77,7 +77,7 @@ public class IMDbCache extends AbstractCache {
       }
     }
 
-    final String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
+    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
         movie.getCanonicalTitle());
 
     final String imdbAddress = NetworkUtilities.downloadString(url, false);
@@ -86,7 +86,7 @@ public class IMDbCache extends AbstractCache {
     }
 
     FileUtilities.writeString(imdbAddress, movieFilePath(movie));
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   public static String getIMDbAddress(final Movie movie) {
@@ -94,6 +94,6 @@ public class IMDbCache extends AbstractCache {
   }
 
   @Override protected List<File> getCacheDirectories() {
-    return Collections.singletonList(Application.imdbDirectory);
+    return Collections.singletonList(NowPlayingApplication.imdbDirectory);
   }
 }

@@ -13,11 +13,13 @@
 //limitations under the License.
 package org.metasyntactic.utilities;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.time.Days;
+
+import android.os.Environment;
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullCollection;
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
 
@@ -28,6 +30,18 @@ public class FileUtilities {
   private static final boolean USE_PERSISTABLE = true;
   private static final Object lock = new Object();
   private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+
+  private static boolean sdcardAccessible = true;
+
+  static {
+    sdcardAccessible = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+  }
+
+  public static void setSDCardAccessible(final boolean sdcardAccessible) {
+    synchronized (lock) {
+      FileUtilities.sdcardAccessible = sdcardAccessible;
+    }
+  }
 
   private FileUtilities() {
   }
@@ -525,7 +539,7 @@ public class FileUtilities {
   }
 
   private static byte[] readBytesWorker(final File file) {
-    if (file == null || !file.exists()) {
+    if (file == null || !file.exists() || !sdcardAccessible) {
       return EMPTY_BYTE_ARRAY;
     }
 
@@ -561,11 +575,15 @@ public class FileUtilities {
 
   public static void writeBytesWorker(byte[] data, final File file) {
     try {
+      if (!sdcardAccessible) {
+        return;
+      }
+
       if (data == null) {
         data = EMPTY_BYTE_ARRAY;
       }
 
-      final File tempFile = File.createTempFile("WBT", "T" + Math.random(), Application.tempDirectory);
+      final File tempFile = File.createTempFile("WBT", "T" + Math.random(), NowPlayingApplication.tempDirectory);
       final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 1 << 13);
       out.write(data);
 

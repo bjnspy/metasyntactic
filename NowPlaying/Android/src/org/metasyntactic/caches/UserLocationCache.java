@@ -13,7 +13,7 @@
 //limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnBackgroundThread;
@@ -146,7 +146,7 @@ public class UserLocationCache {
   }
 
   private static Location downloadAddressLocationFromWebServiceWorker(final String address) {
-    final String escapedAddress = "http://" + Application.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(
+    final String escapedAddress = "http://" + NowPlayingApplication.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(
         address);
 
     final Element element = NetworkUtilities.downloadXml(escapedAddress, true);
@@ -163,7 +163,7 @@ public class UserLocationCache {
   }
 
   private static File locationFile(final String address) {
-    return new File(Application.userLocationsDirectory, FileUtilities.sanitizeFileName(address));
+    return new File(NowPlayingApplication.userLocationsDirectory, FileUtilities.sanitizeFileName(address));
   }
 
   private static void saveLocation(final Location location, final String address) {

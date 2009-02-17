@@ -38,7 +38,7 @@ public class NowPlayingControllerWrapper {
   private static LocationTracker locationTracker;
 
   static {
-    Application.initialize();
+    NowPlayingApplication.initialize();
   }
 
   private NowPlayingControllerWrapper() {

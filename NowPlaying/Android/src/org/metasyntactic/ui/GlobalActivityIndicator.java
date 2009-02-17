@@ -14,7 +14,7 @@
 package org.metasyntactic.ui;
 
 import android.app.Activity;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import static org.metasyntactic.threading.ThreadingUtilities.isBackgroundThread;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnMainThread;
 
@@ -130,7 +130,7 @@ public class GlobalActivityIndicator {
         stopNetworkIndicator();
       }
 
-      Application.refresh();
+      NowPlayingApplication.refresh();
     }
   }
 }

@@ -15,7 +15,7 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.io.AbstractPersistable;
 import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
@@ -150,7 +150,7 @@ public class Location extends AbstractPersistable implements Parcelable {
 
     double distance = acos(sin(lat2) * sin(lat1) + cos(lat2) * cos(lat1) * cos(diff));
 
-    if (Application.useKilometers()) {
+    if (NowPlayingApplication.useKilometers()) {
       distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
     } else {
       distance *= GREAT_CIRCLE_RADIUS_MILES;

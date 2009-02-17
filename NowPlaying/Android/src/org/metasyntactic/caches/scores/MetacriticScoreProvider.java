@@ -13,7 +13,7 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.NetworkUtilities;
@@ -33,13 +33,13 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
   }
 
   @Override protected String lookupServerHash() {
-    final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
+    final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
   @Override protected Map<String, Score> lookupServerScores() {
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml";
+    final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml";
     final Element resultElement = NetworkUtilities.downloadXml(address, true);
 
     if (resultElement != null) {

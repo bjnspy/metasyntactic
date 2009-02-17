@@ -14,7 +14,7 @@
 package org.metasyntactic.caches.scores;
 
 import com.google.protobuf.InvalidProtocolBufferException;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.data.Location;
@@ -57,7 +57,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     //Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 
-    return "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    return "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
   }
 
   @Override protected String lookupServerHash() {
