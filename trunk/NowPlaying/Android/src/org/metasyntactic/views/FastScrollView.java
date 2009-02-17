@@ -31,20 +31,21 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
   private int mThumbY;
   private RectF mOverlayPos;
   // Hard coding these for now
-  private final int mOverlaySize = 104;
+  private int mOverlayWidth = 310;
+  private int mOverlayHeight = 85;
   private boolean mDragging;
-  private ListView mList;
+  private static ListView mList;
   private boolean mScrollCompleted;
   private boolean mThumbVisible;
   private int mVisibleItem;
   private Paint mPaint;
-  private int mListOffset;
-  private Object[] mSections;
+  private static int mListOffset;
+  private static Object[] mSections;
   private String mSectionText;
   private boolean mDrawOverlay;
   private ScrollFade mScrollFade;
-  private final Handler mHandler = new Handler();
-  private BaseAdapter mListAdapter;
+  private Handler mHandler = new Handler();
+  private static BaseAdapter mListAdapter;
   private boolean mChangedBounds;
 
   public interface SectionIndexer {
@@ -55,178 +56,177 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     int getSectionForPosition(int position);
   }
 
-  public FastScrollView(final Context context) {
+  public FastScrollView(Context context) {
     super(context);
     init(context);
   }
 
-  public FastScrollView(final Context context, final AttributeSet attrs) {
+  public FastScrollView(Context context, AttributeSet attrs) {
     super(context, attrs);
     init(context);
   }
 
-  public FastScrollView(final Context context, final AttributeSet attrs, final int defStyle) {
+  public FastScrollView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     init(context);
   }
 
-  private void useThumbDrawable(final Drawable drawable) {
-    this.mCurrentThumb = drawable;
-    this.mThumbW = 64; // mCurrentThumb.getIntrinsicWidth();
-    this.mThumbH = 52; // mCurrentThumb.getIntrinsicHeight();
-    this.mChangedBounds = true;
+  private void useThumbDrawable(Drawable drawable) {
+    mCurrentThumb = drawable;
+    mThumbW = 64; // mCurrentThumb.getIntrinsicWidth();
+    mThumbH = 52; // mCurrentThumb.getIntrinsicHeight();
+    mChangedBounds = true;
   }
 
-  private void init(final Context context) {
+  private void init(Context context) {
     // Get both the scrollbar states drawables
     final Resources res = context.getResources();
     useThumbDrawable(res.getDrawable(R.drawable.scrollbar_handle_accelerated_anim2));
-    this.mOverlayDrawable = res.getDrawable(R.drawable.dialog_full_dark);
-    this.mScrollCompleted = true;
+    mOverlayDrawable = res.getDrawable(R.drawable.dialog_full_dark);
+    mScrollCompleted = true;
     setWillNotDraw(false);
     // Need to know when the ListView is added
     setOnHierarchyChangeListener(this);
-    this.mOverlayPos = new RectF();
-    this.mScrollFade = new ScrollFade();
-    this.mPaint = new Paint();
-    this.mPaint.setAntiAlias(true);
-    this.mPaint.setTextAlign(Paint.Align.CENTER);
-    this.mPaint.setTextSize(this.mOverlaySize / 2);
-    this.mPaint.setColor(0xFFFFFFFF);
-    this.mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+    mOverlayPos = new RectF();
+    mScrollFade = new ScrollFade();
+    mPaint = new Paint();
+    mPaint.setAntiAlias(true);
+    mPaint.setTextAlign(Paint.Align.CENTER);
+    mPaint.setTextSize(mOverlayHeight / 4);
+    mPaint.setColor(0xFFFFFFFF);
+    mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
   }
 
   private void removeThumb() {
-    this.mThumbVisible = false;
+    mThumbVisible = false;
     // Draw one last time to remove thumb
     invalidate();
   }
 
   @Override
-  public void draw(final Canvas canvas) {
+  public void draw(Canvas canvas) {
     super.draw(canvas);
-    if (!this.mThumbVisible) {
+    if (!mThumbVisible) {
       // No need to draw the rest
       return;
     }
-    final int y = this.mThumbY;
+    final int y = mThumbY;
     final int viewWidth = getWidth();
-    final FastScrollView.ScrollFade scrollFade = this.mScrollFade;
+    final FastScrollView.ScrollFade scrollFade = mScrollFade;
     int alpha = -1;
     if (scrollFade.mStarted) {
       alpha = scrollFade.getAlpha();
       if (alpha < ScrollFade.ALPHA_MAX / 2) {
-        this.mCurrentThumb.setAlpha(alpha * 2);
+        mCurrentThumb.setAlpha(alpha * 2);
       }
-      final int left = viewWidth - this.mThumbW * alpha / ScrollFade.ALPHA_MAX;
-      this.mCurrentThumb.setBounds(left, 0, viewWidth, this.mThumbH);
-      this.mChangedBounds = true;
+      int left = viewWidth - (mThumbW * alpha) / ScrollFade.ALPHA_MAX;
+      mCurrentThumb.setBounds(left, 0, viewWidth, mThumbH);
+      mChangedBounds = true;
     }
     canvas.translate(0, y);
-    this.mCurrentThumb.draw(canvas);
+    mCurrentThumb.draw(canvas);
     canvas.translate(0, -y);
     // If user is dragging the scroll bar, draw the alphabet overlay
-    if (this.mDragging && this.mDrawOverlay) {
-      this.mOverlayDrawable.draw(canvas);
-      final Paint paint = this.mPaint;
-      final float descent = paint.descent();
-      final RectF rectF = this.mOverlayPos;
-      canvas.drawText(this.mSectionText, (int) (rectF.left + rectF.right) / 2,
-                      (int) (rectF.bottom + rectF.top) / 2 + this.mOverlaySize / 4 - descent, paint);
+    if (mDragging && mDrawOverlay) {
+      mOverlayDrawable.draw(canvas);
+      final Paint paint = mPaint;
+      float descent = paint.descent();
+      final RectF rectF = mOverlayPos;
+      canvas.drawText(mSectionText, (int) (rectF.left + rectF.right) / 2,
+                      (int) (rectF.bottom + rectF.top) / 2 + mOverlayHeight / 6 - descent, paint);
     } else if (alpha == 0) {
       scrollFade.mStarted = false;
       removeThumb();
     } else {
-      invalidate(viewWidth - this.mThumbW, y, viewWidth, y + this.mThumbH);
+      invalidate(viewWidth - mThumbW, y, viewWidth, y + mThumbH);
     }
   }
 
   @Override
-  protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    if (this.mCurrentThumb != null) {
-      this.mCurrentThumb.setBounds(w - this.mThumbW, 0, w, this.mThumbH);
+    if (mCurrentThumb != null) {
+      mCurrentThumb.setBounds(w - mThumbW, 0, w, mThumbH);
     }
-    final RectF pos = this.mOverlayPos;
-    pos.left = (w - this.mOverlaySize) / 2;
-    pos.right = pos.left + this.mOverlaySize;
+    final RectF pos = mOverlayPos;
+    pos.left = (w - mOverlayWidth) / 2;
+    pos.right = pos.left + mOverlayWidth;
     pos.top = h / 10; // 10% from top
-    pos.bottom = pos.top + this.mOverlaySize;
-    this.mOverlayDrawable.setBounds((int) pos.left, (int) pos.top, (int) pos.right, (int) pos.bottom);
+    pos.bottom = pos.top + mOverlayHeight;
+    mOverlayDrawable.setBounds((int) pos.left, (int) pos.top, (int) pos.right, (int) pos.bottom);
   }
 
-  public void onScrollStateChanged(final AbsListView view, final int scrollState) {
+  public void onScrollStateChanged(AbsListView view, int scrollState) {
   }
 
-  public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount,
-                       final int totalItemCount) {
-    if (totalItemCount - visibleItemCount > 0 && !this.mDragging) {
-      this.mThumbY = (getHeight() - this.mThumbH) * firstVisibleItem / (totalItemCount - visibleItemCount);
-      if (this.mChangedBounds) {
+  public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+    if (totalItemCount - visibleItemCount > 0 && !mDragging) {
+      mThumbY = ((getHeight() - mThumbH) * firstVisibleItem) / (totalItemCount - visibleItemCount);
+      if (mChangedBounds) {
         final int viewWidth = getWidth();
-        this.mCurrentThumb.setBounds(viewWidth - this.mThumbW, 0, viewWidth, this.mThumbH);
-        this.mChangedBounds = false;
+        mCurrentThumb.setBounds(viewWidth - mThumbW, 0, viewWidth, mThumbH);
+        mChangedBounds = false;
       }
     }
-    this.mScrollCompleted = true;
-    if (firstVisibleItem == this.mVisibleItem) {
+    mScrollCompleted = true;
+    if (firstVisibleItem == mVisibleItem) {
       return;
     }
-    this.mVisibleItem = firstVisibleItem;
-    if (!this.mThumbVisible || this.mScrollFade.mStarted) {
-      this.mThumbVisible = true;
-      this.mCurrentThumb.setAlpha(ScrollFade.ALPHA_MAX);
+    mVisibleItem = firstVisibleItem;
+    if (!mThumbVisible || mScrollFade.mStarted) {
+      mThumbVisible = true;
+      mCurrentThumb.setAlpha(ScrollFade.ALPHA_MAX);
     }
-    this.mHandler.removeCallbacks(this.mScrollFade);
-    this.mScrollFade.mStarted = false;
-    if (!this.mDragging) {
-      this.mHandler.postDelayed(this.mScrollFade, 1500);
+    mHandler.removeCallbacks(mScrollFade);
+    mScrollFade.mStarted = false;
+    if (!mDragging) {
+      mHandler.postDelayed(mScrollFade, 1500);
     }
   }
 
-  private void getSections() {
-    Adapter adapter = this.mList.getAdapter();
+  public static void getSections() {
+    Adapter adapter = mList.getAdapter();
     if (adapter instanceof HeaderViewListAdapter) {
-      this.mListOffset = ((HeaderViewListAdapter) adapter).getHeadersCount();
+      mListOffset = ((HeaderViewListAdapter) adapter).getHeadersCount();
       adapter = ((HeaderViewListAdapter) adapter).getWrappedAdapter();
     }
     if (adapter instanceof SectionIndexer) {
-      this.mListAdapter = (BaseAdapter) adapter;
-      this.mSections = ((SectionIndexer) this.mListAdapter).getSections();
+      mListAdapter = (BaseAdapter) adapter;
+      mSections = ((SectionIndexer) mListAdapter).getSections();
     }
   }
 
-  public void onChildViewAdded(final View parent, final View child) {
+  public void onChildViewAdded(View parent, View child) {
     if (child instanceof ListView) {
-      this.mList = (ListView) child;
-      this.mList.setOnScrollListener(this);
+      mList = (ListView) child;
+      mList.setOnScrollListener(this);
       getSections();
     }
   }
 
-  public void onChildViewRemoved(final View parent, final View child) {
-    if (child == this.mList) {
-      this.mList = null;
-      this.mListAdapter = null;
-      this.mSections = null;
+  public void onChildViewRemoved(View parent, View child) {
+    if (child == mList) {
+      mList = null;
+      mListAdapter = null;
+      mSections = null;
     }
   }
 
   @Override
-  public boolean onInterceptTouchEvent(final MotionEvent ev) {
-    if (this.mThumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
-      if (ev.getX() > getWidth() - this.mThumbW && ev.getY() >= this.mThumbY && ev.getY() <= this.mThumbY + this.mThumbH) {
-        this.mDragging = true;
+  public boolean onInterceptTouchEvent(MotionEvent ev) {
+    if (mThumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
+      if (ev.getX() > getWidth() - mThumbW && ev.getY() >= mThumbY && ev.getY() <= mThumbY + mThumbH) {
+        mDragging = true;
         return true;
       }
     }
     return false;
   }
 
-  private void scrollTo(final float position) {
-    final int count = this.mList.getCount();
-    this.mScrollCompleted = false;
-    final Object[] sections = this.mSections;
+  private void scrollTo(float position) {
+    int count = mList.getCount();
+    mScrollCompleted = false;
+    final Object[] sections = mSections;
     int sectionIndex;
     if (sections != null && sections.length > 1) {
       final int nSections = sections.length;
@@ -235,7 +235,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
         section = nSections - 1;
       }
       sectionIndex = section;
-      final SectionIndexer baseAdapter = (SectionIndexer) this.mListAdapter;
+      final SectionIndexer baseAdapter = (SectionIndexer) mListAdapter;
       int index = baseAdapter.getPositionForSection(section);
       // Given the expected section and index, the following code will
       // try to account for missing sections (no names starting with..)
@@ -277,65 +277,65 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
       // Compute the beginning and ending scroll range percentage of the
       // currently visible letter. This could be equal to or greater than
       // (1 / nSections).
-      final float fPrev = (float) prevSection / nSections;
-      final float fNext = (float) nextSection / nSections;
+      float fPrev = (float) prevSection / nSections;
+      float fNext = (float) nextSection / nSections;
       index = prevIndex + (int) ((nextIndex - prevIndex) * (position - fPrev) / (fNext - fPrev));
       // Don't overflow
       if (index > count - 1) {
         index = count - 1;
       }
-      this.mList.setSelectionFromTop(index + this.mListOffset, 0);
+      mList.setSelectionFromTop(index + mListOffset, 0);
     } else {
-      final int index = (int) (position * count);
-      this.mList.setSelectionFromTop(index + this.mListOffset, 0);
+      int index = (int) (position * count);
+      mList.setSelectionFromTop(index + mListOffset, 0);
       sectionIndex = -1;
     }
     if (sectionIndex >= 0) {
-      final String text = this.mSectionText = sections[sectionIndex].toString();
-      this.mDrawOverlay = (text.length() != 1 || text.charAt(0) != ' ') && sectionIndex < sections.length;
+      String text = mSectionText = sections[sectionIndex].toString();
+      mDrawOverlay = (text.length() != 1 || text.charAt(0) != ' ') && sectionIndex < sections.length;
     } else {
-      this.mDrawOverlay = false;
+      mDrawOverlay = false;
     }
   }
 
   private void cancelFling() {
     // Cancel the list fling
-    final MotionEvent cancelFling = MotionEvent.obtain(0, 0, MotionEvent.ACTION_CANCEL, 0, 0, 0);
-    this.mList.onTouchEvent(cancelFling);
+    MotionEvent cancelFling = MotionEvent.obtain(0, 0, MotionEvent.ACTION_CANCEL, 0, 0, 0);
+    mList.onTouchEvent(cancelFling);
     cancelFling.recycle();
   }
 
   @Override
-  public boolean onTouchEvent(final MotionEvent me) {
+  public boolean onTouchEvent(MotionEvent me) {
     if (me.getAction() == MotionEvent.ACTION_DOWN) {
-      if (me.getX() > getWidth() - this.mThumbW && me.getY() >= this.mThumbY && me.getY() <= this.mThumbY + this.mThumbH) {
-        this.mDragging = true;
-        if (this.mListAdapter == null && this.mList != null) {
+      if (me.getX() > getWidth() - mThumbW && me.getY() >= mThumbY && me.getY() <= mThumbY + mThumbH) {
+        mDragging = true;
+        if (mListAdapter == null && mList != null) {
           getSections();
         }
         cancelFling();
         return true;
       }
     } else if (me.getAction() == MotionEvent.ACTION_UP) {
-      if (this.mDragging) {
-        this.mDragging = false;
-        final Handler handler = this.mHandler;
-        handler.removeCallbacks(this.mScrollFade);
-        handler.postDelayed(this.mScrollFade, 1000);
+      if (mDragging) {
+        mDragging = false;
+        final Handler handler = mHandler;
+        handler.removeCallbacks(mScrollFade);
+        handler.postDelayed(mScrollFade, 1000);
         return true;
       }
     } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
-      if (this.mDragging) {
+      if (mDragging) {
         final int viewHeight = getHeight();
-        this.mThumbY = (int) me.getY() - this.mThumbH + 10;
-        if (this.mThumbY < 0) {
-          this.mThumbY = 0;
-        } else if (this.mThumbY + this.mThumbH > viewHeight) {
-          this.mThumbY = viewHeight - this.mThumbH;
+        mThumbY = (int) me.getY() - mThumbH + 10;
+        if (mThumbY < 0) {
+          mThumbY = 0;
+        } else if (mThumbY + mThumbH > viewHeight) {
+          mThumbY = viewHeight - mThumbH;
         }
         // If the previous scrollTo is still pending
-        if (this.mScrollCompleted) {
-          scrollTo((float) this.mThumbY / (viewHeight - this.mThumbH));
+        if (mScrollCompleted) {
+          scrollTo((float) mThumbY / (viewHeight - mThumbH));
         }
         return true;
       }
@@ -351,36 +351,36 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     static final long FADE_DURATION = 200;
 
     void startFade() {
-      this.mFadeDuration = FADE_DURATION;
-      this.mStartTime = SystemClock.uptimeMillis();
-      this.mStarted = true;
+      mFadeDuration = FADE_DURATION;
+      mStartTime = SystemClock.uptimeMillis();
+      mStarted = true;
     }
 
     int getAlpha() {
-      if (!this.mStarted) {
+      if (!mStarted) {
         return ALPHA_MAX;
       }
       int alpha;
-      final long now = SystemClock.uptimeMillis();
-      if (now > this.mStartTime + this.mFadeDuration) {
+      long now = SystemClock.uptimeMillis();
+      if (now > mStartTime + mFadeDuration) {
         alpha = 0;
       } else {
-        alpha = (int) (ALPHA_MAX - (now - this.mStartTime) * ALPHA_MAX / this.mFadeDuration);
+        alpha = (int) (ALPHA_MAX - ((now - mStartTime) * ALPHA_MAX) / mFadeDuration);
       }
       return alpha;
     }
 
     public void run() {
-      if (!this.mStarted) {
+      if (!mStarted) {
         startFade();
         invalidate();
       }
       if (getAlpha() > 0) {
-        final int y = FastScrollView.this.mThumbY;
+        final int y = mThumbY;
         final int viewWidth = getWidth();
-        invalidate(viewWidth - FastScrollView.this.mThumbW, y, viewWidth, y + FastScrollView.this.mThumbH);
+        invalidate(viewWidth - mThumbW, y, viewWidth, y + mThumbH);
       } else {
-        this.mStarted = false;
+        mStarted = false;
         removeThumb();
       }
     }
