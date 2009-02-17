@@ -10,7 +10,8 @@
     <string name="tap_here_to_enter_your_search_location">Tap here to enter your search location.</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-    <string name="showtimes_for">Showtimes for</string>
+    <!--$%@. %@ - Showtimes for Bolt at Century 16.-->
+    <string name="showtimes_for">Showtimes for %s at %s</string>
     <string name="showtimes_at">Showtimes at</string>
     <string name="order_tickets">Order tickets for</string>
     <string name="all_movies">All Movies</string>

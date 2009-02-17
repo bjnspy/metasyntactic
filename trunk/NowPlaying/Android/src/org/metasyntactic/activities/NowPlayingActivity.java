@@ -172,7 +172,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void getSearchResuts() {
+  private void getSearchResults() {
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
       if (matchingMovies.isEmpty()) {
@@ -243,7 +243,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       setup();
       this.isGridSetup = true;
     }
-    getSearchResuts();
+    getSearchResults();
     refresh();
   }
 
@@ -286,16 +286,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         setupRotationAnimation(view);
       }
     });
-    this.grid.setLayoutAnimationListener(new AnimationListener() {
-      public void onAnimationEnd(final Animation animation) {
-      }
-
-      public void onAnimationRepeat(final Animation animation) {
-      }
-
-      public void onAnimationStart(final Animation arg0) {
-      }
-    });
+    
     populateAlphaMovieSectionsAndPositions();
     populateScoreMovieSectionsAndPositions();
     this.postersAdapter = new PostersAdapter();

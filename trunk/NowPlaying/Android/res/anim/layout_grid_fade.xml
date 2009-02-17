@@ -3,6 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:rowDelay="50%"
     android:columnDelay="50%"
-    android:duration="300"
+    android:duration="150"
     android:directionPriority="row"
     android:animation="@anim/wave_scale" />

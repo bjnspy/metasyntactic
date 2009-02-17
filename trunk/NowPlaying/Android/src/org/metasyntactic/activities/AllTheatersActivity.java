@@ -157,11 +157,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   private void getDistances() {
     this.distance = new String[6];
-    distance[0] = this.getResources().getString(R.string.less_than_number_string_away, 2, "miles");
-    distance[1] = this.getResources().getString(R.string.less_than_number_string_away, 5, "miles");
-    distance[2] = this.getResources().getString(R.string.less_than_number_string_away, 10, "miles");
-    distance[3] = this.getResources().getString(R.string.less_than_number_string_away, 25, "miles");
-    distance[4] = this.getResources().getString(R.string.less_than_number_string_away, 50, "miles");
+    distance[0] = this.getResources().getString(R.string.less_than_number_string_away, 2, this.getResources().getString(R.string.miles));
+    distance[1] = this.getResources().getString(R.string.less_than_number_string_away, 5, this.getResources().getString(R.string.miles));
+    distance[2] = this.getResources().getString(R.string.less_than_number_string_away, 10, this.getResources().getString(R.string.miles));
+    distance[3] = this.getResources().getString(R.string.less_than_number_string_away, 25, this.getResources().getString(R.string.miles));
+    distance[4] = this.getResources().getString(R.string.less_than_number_string_away, 50, this.getResources().getString(R.string.miles));
     distance[5] = this.getResources()
         .getString(R.string.less_than_number_string_away, 100, "miles");
   }
