@@ -296,6 +296,7 @@ public class MovieDetailsActivity extends ListActivity {
     Log.i(getClass().getSimpleName(), "onResume");
     final Bundle extras = getIntent().getExtras();
     this.movie = extras.getParcelable("movie");
+    NowPlayingControllerWrapper.prioritizeMovie(movie);
     final Resources res = getResources();
     final TextView title = (TextView) findViewById(R.id.title);
     title.setText(this.movie.getDisplayTitle());

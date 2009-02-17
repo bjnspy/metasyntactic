@@ -394,6 +394,9 @@ public class NowPlayingModel {
   }
 
   public void prioritizeMovie(final Movie movie) {
+    if (movie == null) {
+      return;
+    }
     this.posterCache.prioritizeMovie(movie);
     this.scoreCache.prioritizeMovie(getMovies(), movie);
     this.trailerCache.prioritizeMovie(movie);
