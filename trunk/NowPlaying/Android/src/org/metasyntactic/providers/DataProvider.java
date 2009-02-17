@@ -17,7 +17,11 @@ import android.content.Context;
 import android.content.Intent;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
-import org.metasyntactic.*;
+import org.metasyntactic.Application;
+import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.data.*;
 import org.metasyntactic.protobuf.NowPlaying;
@@ -29,13 +33,11 @@ import org.metasyntactic.utilities.*;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
-import java.io.IOException;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import org.metasyntactic.activities.R;
 
 public class DataProvider {
   private final Object lock = new Object();

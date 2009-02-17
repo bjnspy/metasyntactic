@@ -6,18 +6,17 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import android.util.Log;
+import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.activities.R;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -139,8 +138,7 @@ public class AllUpcomingMoviesActivity extends ListActivity {
     final String imdb_url = NowPlayingControllerWrapper.getIMDbAddress(this.movie);
     if (!StringUtilities.isNullOrEmpty(imdb_url) && imdb_url.startsWith("http")) {
       final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(imdb_url));
-      final MovieDetailEntry entry = new MovieDetailEntry("IMDb", null,
-                                                          MovieDetailItemType.ACTION, intent, true);
+      final MovieDetailEntry entry = new MovieDetailEntry("IMDb", null, MovieDetailItemType.ACTION, intent, true);
       this.movieDetailEntries.add(entry);
     }
   }

@@ -4,14 +4,13 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.util.Log;
-import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.activities.R;
+import org.metasyntactic.utilities.StringUtilities;
 
 /**
  * This activity shows a text field to ask the user to enter search terms and

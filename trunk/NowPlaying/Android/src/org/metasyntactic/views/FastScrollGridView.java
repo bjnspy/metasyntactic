@@ -167,7 +167,8 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     }
   }
 
-  public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, final int totalItemCount) {
+  public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount,
+                       final int totalItemCount) {
     if (totalItemCount - visibleItemCount > 0 && !this.mDragging) {
       this.mThumbY = (getHeight() - this.mThumbH) * firstVisibleItem / (totalItemCount - visibleItemCount);
       if (this.mChangedBounds) {

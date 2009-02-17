@@ -16,12 +16,12 @@ package org.metasyntactic;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import org.metasyntactic.activities.R;
 
 import java.io.File;
 import java.util.Date;

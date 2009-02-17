@@ -18,7 +18,6 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 import static org.metasyntactic.utilities.StringUtilities.toASCII;
 
-import java.util.Collections;
 import java.util.List;
 
 public class SearchRequest {

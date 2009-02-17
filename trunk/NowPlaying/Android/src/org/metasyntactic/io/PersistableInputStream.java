@@ -16,7 +16,6 @@ package org.metasyntactic.io;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.util.*;
 
 public class PersistableInputStream {
@@ -31,6 +30,7 @@ public class PersistableInputStream {
   }
 
   private byte[] spareBytes = new byte[1 << 11];
+
   private void readArray(final byte[] bytes, final int length) throws IOException {
     int position = 0;
 
