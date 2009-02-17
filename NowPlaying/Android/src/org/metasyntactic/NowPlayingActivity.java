@@ -188,7 +188,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-   
+
     NowPlayingControllerWrapper.removeActivity(this);
     if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
       this.mTask.cancel(true);
@@ -296,7 +296,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     this.postersAdapter = new PostersAdapter();
     this.grid.setAdapter(this.postersAdapter);
     this.intent = new Intent();
-    this.intent.setClass(this, AllMoviesActivity.class);
+    this.intent.setClass(this, MovieDetailsActivity.class);
   }
 
   private void populateAlphaMovieSectionsAndPositions() {

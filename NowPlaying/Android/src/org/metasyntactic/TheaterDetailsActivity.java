@@ -56,7 +56,7 @@ public class TheaterDetailsActivity extends ListActivity {
   protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final Movie movie = this.movies.get(position);
     final Intent intent = new Intent();
-    intent.setClass(this, AllMoviesActivity.class);
+    intent.setClass(this, MovieDetailsActivity.class);
     intent.putExtra("movie", (Parcelable) movie);
     startActivity(intent);
     super.onListItemClick(listView, view, position, id);
