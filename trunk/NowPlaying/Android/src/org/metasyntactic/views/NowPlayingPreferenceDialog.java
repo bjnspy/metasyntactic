@@ -11,7 +11,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.R;
+import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.scores.ScoreType;
 
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class NowPlayingPreferenceDialog {
   }
 
   public Dialog create() {
-    return builder.create();
+    return this.builder.create();
   }
 
   public NowPlayingPreferenceDialog setIcon(final Drawable icon) {
@@ -65,7 +65,7 @@ public class NowPlayingPreferenceDialog {
     this.positiveButtonListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(NowPlayingPreferenceDialog.this.intValue);
-        context.refresh();
+        NowPlayingPreferenceDialog.this.context.refresh();
       }
     };
     return this;
@@ -81,7 +81,7 @@ public class NowPlayingPreferenceDialog {
     final DialogInterface.OnClickListener listItemListener = new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setIntPreferenceValue(Integer.parseInt(distanceValues[which]));
-        context.refresh();
+        NowPlayingPreferenceDialog.this.context.refresh();
       }
     };
     this.builder.setItems(distanceValues, listItemListener);
@@ -185,7 +185,7 @@ public class NowPlayingPreferenceDialog {
     this.positiveButtonListener = new OnClickListener() {
       public void onClick(final DialogInterface dialog, final int which) {
         setStringPreferenceValue(NowPlayingPreferenceDialog.this.textView.getText().toString());
-        context.refresh();
+        NowPlayingPreferenceDialog.this.context.refresh();
       }
     };
     return this;

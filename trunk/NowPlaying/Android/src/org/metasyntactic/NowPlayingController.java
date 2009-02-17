@@ -21,6 +21,7 @@ import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.activities.R;
 
 import java.io.File;
 import java.util.Date;

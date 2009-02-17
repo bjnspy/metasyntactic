@@ -35,6 +35,7 @@ import static java.lang.Math.min;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import org.metasyntactic.activities.R;
 
 public class DataProvider {
   private final Object lock = new Object();

@@ -1,4 +1,4 @@
-package org.metasyntactic;
+package org.metasyntactic.activities;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -20,6 +20,8 @@ import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.activities.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +82,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
   @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-   
+
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }

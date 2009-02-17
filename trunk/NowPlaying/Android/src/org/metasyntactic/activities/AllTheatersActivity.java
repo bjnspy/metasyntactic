@@ -1,4 +1,4 @@
-package org.metasyntactic;
+package org.metasyntactic.activities;
 
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
@@ -20,6 +20,10 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.views.FastScrollView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
+import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.Application;
+import org.metasyntactic.activities.R;
 
 import java.io.IOException;
 import java.util.*;
@@ -124,7 +128,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       i++;
     }
   }
-  
+
   private void populateDistanceTheaterSectionsAndPositions() {
     int i = 0;
     String prevLetter = null;

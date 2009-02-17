@@ -1,4 +1,4 @@
-package org.metasyntactic;
+package org.metasyntactic.activities;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.util.Log;
 import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.activities.R;
 
 /**
  * This activity shows a text field to ask the user to enter search terms and
@@ -30,15 +32,15 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     NowPlayingControllerWrapper.addActivity(this);
 
     setContentView(R.layout.search_bar);
-    mSearchText = (EditText) findViewById(R.id.search_src_text);
-    mSearchText.setOnClickListener(this);
+    this.mSearchText = (EditText) findViewById(R.id.search_src_text);
+    this.mSearchText.setOnClickListener(this);
     findViewById(R.id.search_go_btn).setOnClickListener(this);
-    activityName = this.getIntent().getStringExtra("activity");
+    activityName = getIntent().getStringExtra("activity");
   }
 
   @Override protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-   
+
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
@@ -55,7 +57,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
 
   // View.OnClickListener
   public final void onClick(final View v) {
-    if (mSearchText.length() != 0) {
+    if (this.mSearchText.length() != 0) {
       performSearch();
     }
   }
@@ -74,7 +76,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   }
 
   private void performSearch() {
-    final String searchTerm = mSearchText.getText().toString();
+    final String searchTerm = this.mSearchText.getText().toString();
     privatePerformSearch(this, getText(R.string.search) + " : " + searchTerm, searchTerm, null);
   }
 

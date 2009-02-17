@@ -1,4 +1,4 @@
-package org.metasyntactic;
+package org.metasyntactic.activities;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -20,6 +20,8 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.activities.R;
 
 import java.util.ArrayList;
 import java.util.List;
