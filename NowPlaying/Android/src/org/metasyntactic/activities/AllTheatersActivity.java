@@ -10,10 +10,15 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
@@ -25,17 +30,27 @@ import org.metasyntactic.views.FastScrollView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
 public class AllTheatersActivity extends ListActivity implements INowPlaying {
   private int lastPosition;
+  private int lastSection;
   private TheatersAdapter adapter;
   private List<Theater> theaters = new ArrayList<Theater>();
   private final Map<Integer, Integer> alphaTheaterSectionsMap = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> alphaTheaterPositionsMap = new HashMap<Integer, Integer>();
+  private final Map<Integer, Integer> distanceTheaterSectionsMap = new HashMap<Integer, Integer>();
+  private final Map<Integer, Integer> distanceTheaterPositionsMap = new HashMap<Integer, Integer>();
+  private String[] distance;
   private String[] alphabet;
   private Location userLocation;
   private Address userAddress;
@@ -61,7 +76,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   // The order of items in this array should match the
   // entries_theater_sort_preference array in res/values/arrays.xml
   @SuppressWarnings("unchecked")
-  private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(this.TITLE_ORDER, this.DISTANCE_ORDER);
+  private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(this.TITLE_ORDER,
+      this.DISTANCE_ORDER);
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -69,27 +85,30 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     getAlphabet(this);
+    getDistances();
     setupView();
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
-  @Override protected void onPause() {
+  @Override
+  protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
-
     unregisterReceiver(this.broadcastReceiver);
     super.onPause();
   }
 
-  @Override protected void onResume() {
+  @Override
+  protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
-    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.broadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
 
   private void setupView() {
@@ -102,10 +121,10 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     } catch (final IOException e) {
       throw new RuntimeException(e);
     }
-    this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress.getLongitude(), null, null, null,
-                                     null, null);
-    Collections.sort(this.theaters,
-                     this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
+    this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress
+        .getLongitude(), null, null, null, null, null);
+    Collections.sort(this.theaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper
+        .getAllTheatersSelectedSortIndex()));
     populateAlphaTheaterSectionsAndPositions();
     populateDistanceTheaterSectionsAndPositions();
     // Set up Movies adapter
@@ -120,34 +139,63 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     for (final Theater theater : this.theaters) {
       final String firstLetter = theater.getName().substring(0, 1);
       this.alphaTheaterSectionsMap.put(i, alphabets.indexOf(firstLetter));
-      if (!firstLetter.equals(prevLetter)) {
+      if (prevLetter == null || !firstLetter.equals(prevLetter)) {
         this.alphaTheaterPositionsMap.put(alphabets.indexOf(firstLetter), i);
       }
       prevLetter = firstLetter;
       i++;
     }
+    for (i = 0; i < alphabets.size(); i++) {
+      if (this.alphaTheaterPositionsMap.get(i) == null) {
+        if (i == 0)
+          this.alphaTheaterPositionsMap.put(i, 0);
+        else
+          this.alphaTheaterPositionsMap.put(i, this.alphaTheaterPositionsMap.get(i - 1));
+      }
+    }
+  }
+
+  private void getDistances() {
+    this.distance = new String[6];
+    distance[0] = this.getResources().getString(R.string.less_than_number_string_away, 2, "miles");
+    distance[1] = this.getResources().getString(R.string.less_than_number_string_away, 5, "miles");
+    distance[2] = this.getResources().getString(R.string.less_than_number_string_away, 10, "miles");
+    distance[3] = this.getResources().getString(R.string.less_than_number_string_away, 25, "miles");
+    distance[4] = this.getResources().getString(R.string.less_than_number_string_away, 50, "miles");
+    distance[5] = this.getResources()
+        .getString(R.string.less_than_number_string_away, 100, "miles");
   }
 
   private void populateDistanceTheaterSectionsAndPositions() {
     int i = 0;
-    String prevLetter = null;
-    final List<String> alphabets = Arrays.asList(this.alphabet);
+    int prevLevel = 0;
+    final List<String> distances = Arrays.asList(this.distance);
     for (final Theater theater : this.theaters) {
-      final String firstLetter = theater.getName().substring(0, 1);
-      this.alphaTheaterSectionsMap.put(i, alphabets.indexOf(firstLetter));
-      if (!firstLetter.equals(prevLetter)) {
-        this.alphaTheaterPositionsMap.put(alphabets.indexOf(firstLetter), i);
+      final double distance = userLocation.distanceTo(theater.getLocation());
+      final int distanceLevel = MovieViewUtilities.getDistanceLevel(distance);
+      this.distanceTheaterSectionsMap.put(i, distanceLevel);
+      if (prevLevel == 0 || distanceLevel != prevLevel) {
+        this.distanceTheaterPositionsMap.put(distanceLevel, i);
       }
-      prevLetter = firstLetter;
+      prevLevel = distanceLevel;
       i++;
+    }
+    for (i = 0; i < distances.size(); i++) {
+      if (this.distanceTheaterPositionsMap.get(i) == null) {
+        if (i == 0)
+          this.distanceTheaterPositionsMap.put(i, 0);
+        else
+          this.distanceTheaterPositionsMap.put(i, this.distanceTheaterPositionsMap.get(i - 1));
+      }
     }
   }
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
-        new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_theaters).setIcon(R.drawable.ic_menu_switch);
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
+        R.drawable.ic_menu_home).setIntent(new Intent(this, AllTheatersActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_theaters).setIcon(
+        R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
@@ -157,13 +205,13 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.sort_theaters).setKey(NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT).setEntries(
-          R.array.entries_theaters_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
-          android.R.string.cancel);
+          R.string.sort_theaters).setKey(NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT)
+          .setEntries(R.array.entries_theaters_sort_preference).setPositiveButton(
+              android.R.string.ok).setNegativeButton(android.R.string.cancel);
       builder.show();
     }
     if (item.getItemId() == MovieViewUtilities.MENU_MOVIES) {
-      startActivity(new Intent(this, NowPlayingActivity.class));
+      startActivity(new Intent(this, AllTheatersActivity.class));
     }
     if (item.getItemId() == MovieViewUtilities.MENU_SETTINGS) {
       startActivity(new Intent(this, SettingsActivity.class));
@@ -196,13 +244,10 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       // Creates a MovieViewHolder and store references to the
       // children
       // views we want to bind data to.
-      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.address),
-                                                         (TextView) convertView.findViewById(R.id.title));
+      final MovieViewHolder holder = new MovieViewHolder((TextView) convertView
+          .findViewById(R.id.address), (TextView) convertView.findViewById(R.id.title));
       // Bind the data efficiently with the holder.
       final Theater theater = AllTheatersActivity.this.theaters.get(position);
-      final String headerText = MovieViewUtilities.getTheaterHeader(AllTheatersActivity.this.theaters, position,
-                                                                    NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex(),
-                                                                    AllTheatersActivity.this.userAddress);
       holder.title.setText(theater.getName());
       holder.address.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
       return convertView;
@@ -232,20 +277,41 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
 
     public int getPositionForSection(final int section) {
-      final Integer position = AllTheatersActivity.this.alphaTheaterPositionsMap.get(section);
+      Integer position = null;
+      if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 0) {
+        position = AllTheatersActivity.this.alphaTheaterPositionsMap.get(section);
+      }
+      if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 1) {
+        position = AllTheatersActivity.this.distanceTheaterPositionsMap.get(section);
+      }
       if (position != null) {
         AllTheatersActivity.this.lastPosition = position;
-        return position;
       }
       return AllTheatersActivity.this.lastPosition;
     }
 
     public int getSectionForPosition(final int position) {
-      return AllTheatersActivity.this.alphaTheaterSectionsMap.get(position);
+      Integer section = null;
+      if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 0) {
+        section = AllTheatersActivity.this.alphaTheaterSectionsMap.get(position);
+      }
+      if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 1) {
+        section = AllTheatersActivity.this.distanceTheaterSectionsMap.get(position);
+      }
+      if (section != null) {
+        AllTheatersActivity.this.lastSection = section;
+      }
+      return AllTheatersActivity.this.lastSection;
     }
 
     public Object[] getSections() {
-      return AllTheatersActivity.this.alphabet;
+      if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 0) {
+        return AllTheatersActivity.this.alphabet;
+      }
+      if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 1) {
+        return AllTheatersActivity.this.distance;
+      }
+      return null;
     }
   }
 
@@ -264,13 +330,17 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       return;
     }
     final List<Theater> localTheaters = NowPlayingControllerWrapper.getTheaters();
-    Collections.sort(localTheaters,
-                     this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
+    Collections.sort(localTheaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper
+        .getAllTheatersSelectedSortIndex()));
+    populateAlphaTheaterSectionsAndPositions();
+    populateDistanceTheaterSectionsAndPositions();
+    FastScrollView.getSections();
     this.adapter.refreshTheaters(localTheaters);
   }
 
   @Override
-  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
+  protected void onListItemClick(final ListView listView, final View view, final int position,
+      final long id) {
     final Theater theater = this.theaters.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, TheaterDetailsActivity.class);

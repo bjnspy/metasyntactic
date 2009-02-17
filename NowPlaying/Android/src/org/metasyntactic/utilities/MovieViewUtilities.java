@@ -195,52 +195,31 @@ public class MovieViewUtilities {
     return null;
   }
 
-  public static String getTheaterHeader(final List<Theater> theaters, final int position, final int sortIndex,
-                                        final Address address) {
-    switch (sortIndex) {
-      case TheaterName:
-        if (position == 0) {
-          return String.valueOf(theaters.get(position).getName().charAt(0));
-        }
-        if (theaters.get(position).getName().charAt(0) != theaters.get(position - 1).getName().charAt(0)) {
-          return String.valueOf(theaters.get(position).getName().charAt(0));
-        }
-        break;
-      case Distance:
-        // todo (mjoshi) fix this ...incorrect headers are returned, and its slow.
-        final Location userLocation = new Location(address.getLatitude(), address.getLongitude(), null, null, null,
-                                                   null, null);
-        final double dist_m1 = userLocation.distanceTo(theaters.get(position).getLocation());
+  public static int getDistanceLevel(double distance) {
+   
         // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
-        if (dist_m1 <= 2 && dist_m1 >= 0 && !"Less than 2 miles".equals(currentHeader)) {
-          currentHeader = "Less than 2 miles";
-          return currentHeader;
+        if (distance <= 2 && distance >= 0 ) {
+          return 0;
         }
-        if (dist_m1 <= 5 && dist_m1 >= 2 && !"Less than 5 miles".equals(currentHeader)) {
-          currentHeader = "Less than 5 miles";
-          return currentHeader;
+        if (distance <= 5 && distance >= 2 ){
+          return 1;
         }
-        if (dist_m1 <= 10 && dist_m1 >= 5 && !"Less than 10 miles".equals(currentHeader)) {
-          currentHeader = "Less than 10 miles";
-          return currentHeader;
+        if (distance <= 10 && distance >= 5 ) {
+           return 2;
         }
-        if (dist_m1 <= 25 && dist_m1 >= 10 && !"Less than 25 miles".equals(currentHeader)) {
-          currentHeader = "Less than 25 miles";
-          return currentHeader;
+        if (distance <= 25 && distance >= 10) {
+          return 3;
         }
-        if (dist_m1 <= 50 && dist_m1 >= 25 && !"Less than 50 miles".equals(currentHeader)) {
-          currentHeader = "Less than 50 miles";
-          return currentHeader;
+        if (distance <= 50 && distance >= 25) {
+          
+          return 4;
         }
-        if (dist_m1 <= 100 && dist_m1 >= 50 && !"Less than 100 miles".equals(currentHeader)) {
-          currentHeader = "Less than 100 miles";
-          return currentHeader;
+        if (distance <= 100 && distance >= 50 ) {
+          
+          return 5;
         }
-        if (position == 0) {
-          return currentHeader;
-        }
-    }
-    return null;
+        
+    return 5;
   }
 
   public static void cleanUpDrawables() {
