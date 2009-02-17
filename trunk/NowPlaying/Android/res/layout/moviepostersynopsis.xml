@@ -25,36 +25,36 @@
         android:id="@+id/poster"
         android:layout_width="126px"
         android:layout_below="@id/divider"
-        android:layout_height="196px"
+        android:layout_height="182px"
         android:src="@drawable/loader2"
         android:background="@drawable/image_frame"
         android:layout_alignParentLeft="true"
         android:scaleType="fitXY"
         android:layout_marginLeft="5px"
+        android:layout_marginTop="5px"
         android:layout_marginBottom="5px" />
     <TextView
         android:id="@+id/value1"
         android:layout_below="@id/divider"
         android:layout_width="fill_parent"
-        android:paddingLeft="8dip"
+        android:layout_marginLeft="5px"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/poster"
-        android:gravity="center_vertical"
+        android:layout_gravity="top"
+        android:gravity="top"
         android:singleLine="false"
         android:textSize="14px"
         android:textColor="?android:attr/textColorPrimary"
-        android:paddingRight="6dip"
-        />
+        android:layout_marginRight="5px" />
     <TextView
         android:id="@+id/value2"
         android:layout_width="fill_parent"
-        android:paddingLeft="8dip"
+        android:layout_marginLeft="5px"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:layout_below="@id/poster"
         android:singleLine="false"
         android:textSize="14px"
         android:textColor="?android:attr/textColorPrimary"
-        android:paddingRight="6dip"
-        android:paddingBottom="8dip" />
+        android:layout_marginRight="5px"
+        android:layout_marginBottom="5px" />
 </RelativeLayout>

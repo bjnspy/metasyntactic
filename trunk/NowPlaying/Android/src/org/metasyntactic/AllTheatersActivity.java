@@ -104,12 +104,28 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     Collections.sort(this.theaters,
                      this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     populateAlphaTheaterSectionsAndPositions();
+    populateDistanceTheaterSectionsAndPositions();
     // Set up Movies adapter
     this.adapter = new TheatersAdapter();
     list.setAdapter(this.adapter);
   }
 
   private void populateAlphaTheaterSectionsAndPositions() {
+    int i = 0;
+    String prevLetter = null;
+    final List<String> alphabets = Arrays.asList(this.alphabet);
+    for (final Theater theater : this.theaters) {
+      final String firstLetter = theater.getName().substring(0, 1);
+      this.alphaTheaterSectionsMap.put(i, alphabets.indexOf(firstLetter));
+      if (!firstLetter.equals(prevLetter)) {
+        this.alphaTheaterPositionsMap.put(alphabets.indexOf(firstLetter), i);
+      }
+      prevLetter = firstLetter;
+      i++;
+    }
+  }
+  
+  private void populateDistanceTheaterSectionsAndPositions() {
     int i = 0;
     String prevLetter = null;
     final List<String> alphabets = Arrays.asList(this.alphabet);
