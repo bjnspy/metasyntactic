@@ -43,6 +43,10 @@ public class FileUtilities {
     }
   }
 
+  public static boolean isSDCardAccessible() {
+    return sdcardAccessible;
+  }
+
   private FileUtilities() {
   }
 
