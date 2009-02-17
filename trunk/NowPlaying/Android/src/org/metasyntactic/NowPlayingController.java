@@ -57,8 +57,8 @@ public class NowPlayingController {
     if (isNullOrEmpty(this.model.getUserAddress())) {
       return;
     }
-    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
-        this.model.getUserAddress());
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(this.model
+        .getUserAddress());
     if (location == null) {
       ThreadingUtilities.performOnMainThread(new Runnable() {
         public void run() {
@@ -76,12 +76,10 @@ public class NowPlayingController {
       return;
     }
     new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot).setPositiveButton(R.string.ok,
-                                                                                                        new DialogInterface.OnClickListener() {
-                                                                                                          public void onClick(
-                                                                                                              final DialogInterface dialogInterface,
-                                                                                                              final int i) {
-                                                                                                          }
-                                                                                                        }).show();
+        new DialogInterface.OnClickListener() {
+          public void onClick(final DialogInterface dialogInterface, final int i) {
+          }
+        }).show();
   }
 
   public String getUserAddress() {
@@ -94,7 +92,7 @@ public class NowPlayingController {
     }
     this.model.setUserAddress(userAddress);
     update();
-    Application.refresh(true);
+    NowPlayingApplication.refresh(true);
   }
 
   public static Location getLocationForAddress(final String address) {

@@ -13,7 +13,7 @@
 //limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
@@ -38,11 +38,11 @@ public class TrailerCache extends AbstractCache {
   }
 
   private static File trailerFilePath(final Movie movie) {
-    return new File(Application.trailersDirectory, trailerFileName(movie));
+    return new File(NowPlayingApplication.trailersDirectory, trailerFileName(movie));
   }
 
   @Override protected List<File> getCacheDirectories() {
-    return Collections.singletonList(Application.trailersDirectory);
+    return Collections.singletonList(NowPlayingApplication.trailersDirectory);
   }
 
   @SuppressWarnings("unchecked")
@@ -81,7 +81,7 @@ public class TrailerCache extends AbstractCache {
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
     final List<List<Movie>> orderedMovies = getOrderedMovies(movies);
 
-    final String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?q=index";
+    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTrailerListings?q=index";
     final String indexText = NetworkUtilities.downloadString(url, false);
     if (indexText == null) {
       return;
@@ -110,7 +110,7 @@ public class TrailerCache extends AbstractCache {
     final String studio = studioAndLocation.get(0);
     final String location = studioAndLocation.get(1);
 
-    final String url = "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
+    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
     final String trailersString = NetworkUtilities.downloadString(url, false);
 
     if (trailersString == null) {
@@ -120,7 +120,7 @@ public class TrailerCache extends AbstractCache {
 
     final List<String> trailers = Arrays.asList(trailersString.split("\n"));
     FileUtilities.writeString(trailers.get(0), trailerFilePath(movie));
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   private void downloadTrailers(final List<Movie> movies, final Map<String, List<String>> index) {

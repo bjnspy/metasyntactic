@@ -13,7 +13,7 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.NetworkUtilities;
@@ -33,13 +33,13 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
   }
 
   @Override protected String lookupServerHash() {
-    final String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
+    final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
   @Override protected Map<String, Score> lookupServerScores() {
     final Element resultElement = NetworkUtilities.downloadXml(
-        "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml", true);
+        "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml", true);
     if (resultElement != null) {
       final Map<String, Score> ratings = new HashMap<String, Score>();
 

@@ -17,7 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.NowPlayingModel;
@@ -87,7 +87,7 @@ public class DataProvider {
       public void run() {
         final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
         if (context != null) {
-          context.sendBroadcast(new Intent(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
+          context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
         }
         DataProvider.this.model.updateSecondaryCaches();
       }
@@ -100,7 +100,7 @@ public class DataProvider {
         final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
         if (context != null) {
           final String message = context.getResources().getString(id);
-          final Intent intent = new Intent(Application.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS).putExtra("message",
+          final Intent intent = new Intent(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS).putExtra("message",
                                                                                                           message);
           context.sendBroadcast(intent);
         }
@@ -265,7 +265,7 @@ public class DataProvider {
     this.theaters = result.theaters;
     this.synchronizationData = result.synchronizationData;
     this.performances = result.performances;
-    Application.refresh(true);
+    NowPlayingApplication.refresh(true);
   }
 
   private LookupResult lookupLocation(final Location location, final Collection<String> theaterNames) {
@@ -276,7 +276,7 @@ public class DataProvider {
         location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
     int days = Days.daysBetween(DateUtilities.getToday(), this.model.getSearchDate());
     days = min(max(days, 0), 7);
-    final String address = "http://" + Application.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&postalcode=" + location.getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000) + "&device=android";
+    final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&postalcode=" + location.getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000) + "&device=android";
     final byte[] data = NetworkUtilities.download(address, true);
     if (data == null) {
       return null;
@@ -457,19 +457,19 @@ public class DataProvider {
   }
 
   private static File getMoviesFile() {
-    return new File(Application.dataDirectory, "Movies");
+    return new File(NowPlayingApplication.dataDirectory, "Movies");
   }
 
   private static File getTheatersFile() {
-    return new File(Application.dataDirectory, "Theaters");
+    return new File(NowPlayingApplication.dataDirectory, "Theaters");
   }
 
   private static File getSynchronizationFile() {
-    return new File(Application.dataDirectory, "Synchronization");
+    return new File(NowPlayingApplication.dataDirectory, "Synchronization");
   }
 
   private static File getLastLookupDateFile() {
-    return new File(Application.dataDirectory, "lastLookupDate");
+    return new File(NowPlayingApplication.dataDirectory, "lastLookupDate");
   }
 
   private static Date getLastLookupDate() {
@@ -526,7 +526,7 @@ public class DataProvider {
   }
 
   private static File getPerformancesFile(final String theaterName) {
-    return getPerformancesFile(Application.performancesDirectory, theaterName);
+    return getPerformancesFile(NowPlayingApplication.performancesDirectory, theaterName);
   }
 
   private static void saveResult(final LookupResult result) {
@@ -542,7 +542,7 @@ public class DataProvider {
     FileUtilities.writeStringToDateMap(result.synchronizationData, getSynchronizationFile());
     LogUtilities.logTime(DataProvider.class, "Saving Sync Data", start);
     start = System.currentTimeMillis();
-    final File tempFolder = new File(Application.tempDirectory, "DPT" + Math.random());
+    final File tempFolder = new File(NowPlayingApplication.tempDirectory, "DPT" + Math.random());
     tempFolder.mkdirs();
 
     broadcastUpdate(R.string.downloading_local_performances);
@@ -550,8 +550,8 @@ public class DataProvider {
       final Map<String, List<Performance>> value = entry.getValue();
       FileUtilities.writeStringToListOfPersistables(value, getPerformancesFile(tempFolder, entry.getKey()));
     }
-    Application.deleteDirectory(Application.performancesDirectory);
-    tempFolder.renameTo(Application.performancesDirectory);
+    NowPlayingApplication.deleteDirectory(NowPlayingApplication.performancesDirectory);
+    tempFolder.renameTo(NowPlayingApplication.performancesDirectory);
     LogUtilities.logTime(DataProvider.class, "Saving Performances", start);
     // this has to happen last.
     setLastLookupDate();

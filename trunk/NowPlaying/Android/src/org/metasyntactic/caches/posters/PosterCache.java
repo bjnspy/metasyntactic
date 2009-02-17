@@ -13,7 +13,7 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.caches.UserLocationCache;
@@ -39,7 +39,7 @@ public class PosterCache extends AbstractCache {
   }
 
   private static File posterFile(final Movie movie) {
-    return new File(Application.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + ".jpg"));
+    return new File(NowPlayingApplication.postersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + ".jpg"));
   }
 
   public void update(final List<Movie> movies) {
@@ -77,7 +77,7 @@ public class PosterCache extends AbstractCache {
     final byte[] data = downloadPosterWorker(movie);
     if (data != null) {
       FileUtilities.writeBytes(data, posterFile(movie));
-      Application.refresh();
+      NowPlayingApplication.refresh();
     }
   }
 
@@ -125,7 +125,7 @@ public class PosterCache extends AbstractCache {
 
   @Override
   protected List<File> getCacheDirectories() {
-    return Collections.singletonList(Application.postersDirectory);
+    return Collections.singletonList(NowPlayingApplication.postersDirectory);
   }
 
   public static byte[] getPoster(final Movie movie) {

@@ -13,7 +13,7 @@
 // limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
@@ -45,19 +45,19 @@ public class UpcomingCache extends AbstractCache {
   }
 
   private static File hashFile() {
-    return new File(Application.upcomingDirectory, "Hash");
+    return new File(NowPlayingApplication.upcomingDirectory, "Hash");
   }
 
   private static File moviesFile() {
-    return new File(Application.upcomingDirectory, "Movies");
+    return new File(NowPlayingApplication.upcomingDirectory, "Movies");
   }
 
   private static File studiosFile() {
-    return new File(Application.upcomingDirectory, "Studios");
+    return new File(NowPlayingApplication.upcomingDirectory, "Studios");
   }
 
   private static File titlesFile() {
-    return new File(Application.upcomingDirectory, "Titles");
+    return new File(NowPlayingApplication.upcomingDirectory, "Titles");
   }
 
   private String getHash() {
@@ -168,7 +168,7 @@ public class UpcomingCache extends AbstractCache {
 
     final String localHash = getHash();
     final String serverHash_ = NetworkUtilities.downloadString(
-        "http://" + Application.host + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
+        "http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
     final String serverHash = serverHash_ == null ? "0" : serverHash_;
 
     if (localHash.equals(serverHash)) {
@@ -177,7 +177,7 @@ public class UpcomingCache extends AbstractCache {
 
     long start = System.currentTimeMillis();
     final Element resultElement = NetworkUtilities.downloadXml(
-        "http://" + Application.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
+        "http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
     LogUtilities.logTime(DataProvider.class, "Update Index - Download Xml", start);
     if (this.shutdown) {
       return;
@@ -305,15 +305,15 @@ public class UpcomingCache extends AbstractCache {
   }
 
   private static File getCastFile(final Movie movie) {
-    return new File(Application.upcomingCastDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
+    return new File(NowPlayingApplication.upcomingCastDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
   private static File getIMDbFile(final Movie movie) {
-    return new File(Application.upcomingImdbDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
+    return new File(NowPlayingApplication.upcomingImdbDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
   private static File getPosterFile(final Movie movie) {
-    return new File(Application.upcomingPostersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
+    return new File(NowPlayingApplication.upcomingPostersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
   public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
@@ -321,11 +321,11 @@ public class UpcomingCache extends AbstractCache {
   }
 
   private static File getSynopsisFile(final Movie movie) {
-    return new File(Application.upcomingSynopsesDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
+    return new File(NowPlayingApplication.upcomingSynopsesDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
   private static File getTrailersFile(final Movie movie) {
-    return new File(Application.upcomingTrailersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
+    return new File(NowPlayingApplication.upcomingTrailersDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle()));
   }
 
   private static void updateTrailers(final Movie movie, final String studioKey, final String titleKey) {
@@ -337,7 +337,7 @@ public class UpcomingCache extends AbstractCache {
     }
 
     final String trailersString = NetworkUtilities.downloadString(
-        "http://" + Application.host + ".appspot.com/LookupTrailerListings?studio=" + studioKey + "&name=" + titleKey,
+        "http://" + NowPlayingApplication.host + ".appspot.com/LookupTrailerListings?studio=" + studioKey + "&name=" + titleKey,
         false);
 
     if (isNullOrEmpty(trailersString)) {
@@ -351,7 +351,7 @@ public class UpcomingCache extends AbstractCache {
 
     FileUtilities.writeString(trailers[0], file);
 
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   private static void updateSynopsisAndCast(final Movie movie, final String studioKey, final String titleKey) {
@@ -363,7 +363,7 @@ public class UpcomingCache extends AbstractCache {
     }
 
     final String result = NetworkUtilities.downloadString(
-        "http://" + Application.host + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey,
+        "http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?format=2&studio=" + studioKey + "&name=" + titleKey,
         false);
 
     if (isNullOrEmpty(result)) {
@@ -381,7 +381,7 @@ public class UpcomingCache extends AbstractCache {
 
     if (!synopsis.startsWith("No synopsis")) {
       FileUtilities.writeString(synopsis, file);
-      Application.refresh();
+      NowPlayingApplication.refresh();
     }
 
     if (!cast.isEmpty()) {
@@ -406,7 +406,7 @@ public class UpcomingCache extends AbstractCache {
 
     FileUtilities.writeBytes(data, file);
 
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   private static void updateImdb(final Movie movie) {
@@ -423,7 +423,7 @@ public class UpcomingCache extends AbstractCache {
     }
 
     final String imdbAddress = NetworkUtilities.downloadString(
-        "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
+        "http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q=" + StringUtilities.urlEncode(
             movie.getCanonicalTitle()), false);
 
     if (isNullOrEmpty(imdbAddress)) {
@@ -432,7 +432,7 @@ public class UpcomingCache extends AbstractCache {
 
     FileUtilities.writeString(imdbAddress, file);
 
-    Application.refresh();
+    NowPlayingApplication.refresh();
   }
 
   public static String getTrailer(final Movie movie) {
@@ -456,9 +456,9 @@ public class UpcomingCache extends AbstractCache {
   }
 
   @Override protected List<File> getCacheDirectories() {
-    return Arrays.asList(Application.upcomingCastDirectory, Application.upcomingImdbDirectory,
-                         Application.upcomingPostersDirectory, Application.upcomingSynopsesDirectory,
-                         Application.upcomingTrailersDirectory);
+    return Arrays.asList(NowPlayingApplication.upcomingCastDirectory, NowPlayingApplication.upcomingImdbDirectory,
+                         NowPlayingApplication.upcomingPostersDirectory, NowPlayingApplication.upcomingSynopsesDirectory,
+                         NowPlayingApplication.upcomingTrailersDirectory);
   }
 
   public static List<String> getCast(final Movie movie) {

@@ -13,7 +13,7 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
@@ -51,7 +51,7 @@ public class ApplePosterDownloader {
     }
 
     final String index = NetworkUtilities.downloadString(
-        "http://" + Application.host + ".appspot.com/LookupPosterListings", false);
+        "http://" + NowPlayingApplication.host + ".appspot.com/LookupPosterListings", false);
     if (isNullOrEmpty(index)) {
       return;
     }

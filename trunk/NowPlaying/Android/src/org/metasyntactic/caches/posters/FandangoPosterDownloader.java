@@ -13,7 +13,7 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -71,7 +71,7 @@ public class FandangoPosterDownloader {
     final Calendar calendar = Calendar.getInstance();
     calendar.setTime(new Date());
 
-    final String url = "http://" + Application.host + ".appspot.com/LookupTheaterListings?q=" + trimPostalCode(
+    final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings?q=" + trimPostalCode(
         postalCode) + "&date=" + calendar.get(Calendar.YEAR) + '-' + (calendar.get(
         Calendar.MONTH) + 1) + '-' + calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
 

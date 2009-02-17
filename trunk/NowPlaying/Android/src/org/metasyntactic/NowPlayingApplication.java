@@ -13,6 +13,7 @@
 // limitations under the License.
 package org.metasyntactic;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
@@ -24,7 +25,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Application {
+public class NowPlayingApplication extends Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
   public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS = "NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS";
   public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
@@ -73,16 +74,13 @@ public class Application {
     }
   }
 
-  private Application() {
-  }
-
   public static void initialize() {
   }
 
   private static List<File> directories() {
     try {
       final List<File> directories = new ArrayList<File>();
-      for (final Field field : Application.class.getFields()) {
+      for (final Field field : NowPlayingApplication.class.getFields()) {
         if (!field.getType().equals(File.class) || root.equals(field.get(null))) {
           continue;
         }
@@ -104,13 +102,13 @@ public class Application {
     for (final File file : directories()) {
       file.mkdirs();
     }
-    LogUtilities.logTime(Application.class, "Create Directories", start);
+    LogUtilities.logTime(NowPlayingApplication.class, "Create Directories", start);
   }
 
   private static void deleteDirectories() {
     final long start = System.currentTimeMillis();
     deleteDirectory(applicationDirectory);
-    LogUtilities.logTime(Application.class, "Delete Directories", start);
+    LogUtilities.logTime(NowPlayingApplication.class, "Delete Directories", start);
   }
 
   public static void deleteDirectory(final File directory) {

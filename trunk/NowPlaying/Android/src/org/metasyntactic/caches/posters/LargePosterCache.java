@@ -16,7 +16,7 @@ package org.metasyntactic.caches.posters;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import static org.apache.commons.collections.CollectionUtils.size;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
@@ -53,11 +53,11 @@ public class LargePosterCache extends AbstractCache {
 
   @Override
   protected List<File> getCacheDirectories() {
-    return Collections.singletonList(Application.postersLargeDirectory);
+    return Collections.singletonList(NowPlayingApplication.postersLargeDirectory);
   }
 
   public static File getIndexFile(final int year) {
-    return new File(Application.postersLargeDirectory, year + ".index");
+    return new File(NowPlayingApplication.postersLargeDirectory, year + ".index");
   }
 
   private static Map<String, List<String>> ensureIndexWorker(final int year, final boolean updateIfStale) {
@@ -72,7 +72,7 @@ public class LargePosterCache extends AbstractCache {
       }
     }
 
-    final String address = "http://" + Application.host + ".appspot.com/LookupPosterListings?provider=imp&year=" + year;
+    final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupPosterListings?provider=imp&year=" + year;
     final String result = NetworkUtilities.downloadString(address, false);
 
     if (StringUtilities.isNullOrEmpty(result)) {
@@ -206,7 +206,7 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private static File posterFile(final Movie movie, final int index) {
-    return new File(Application.postersLargeDirectory,
+    return new File(NowPlayingApplication.postersLargeDirectory,
                     FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + '-' + index + ".jpg"));
   }
 
@@ -224,7 +224,7 @@ public class LargePosterCache extends AbstractCache {
     if (bytes != null) {
       bytes = resizePoster(bytes);
       FileUtilities.writeBytes(bytes, file);
-      Application.refresh();
+      NowPlayingApplication.refresh();
     }
   }
 

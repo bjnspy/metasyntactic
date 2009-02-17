@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup.OnHierarchyChangeListener;
 import android.widget.*;
 import android.widget.AbsListView.OnScrollListener;
-import org.metasyntactic.Application;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.activities.R;
 
 /**
@@ -161,9 +161,9 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
 
   public void onScrollStateChanged(final AbsListView view, final int scrollState) {
     if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-      this.context.sendBroadcast(new Intent(Application.NOT_SCROLLING_INTENT));
+      this.context.sendBroadcast(new Intent(NowPlayingApplication.NOT_SCROLLING_INTENT));
     } else {
-      this.context.sendBroadcast(new Intent(Application.SCROLLING_INTENT));
+      this.context.sendBroadcast(new Intent(NowPlayingApplication.SCROLLING_INTENT));
     }
   }
 
