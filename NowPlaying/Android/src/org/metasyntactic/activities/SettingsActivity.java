@@ -1,4 +1,4 @@
-package org.metasyntactic;
+package org.metasyntactic.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -21,6 +21,10 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
+import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.activities.R;
+import org.metasyntactic.Application;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -122,7 +126,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       new DatePickerDialog(this, dateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
                            cal.get(Calendar.DAY_OF_MONTH)).show();
     } else {
-      this.showDialog(position);
+      showDialog(position);
     }
     super.onListItemClick(listView, v, position, id);
   }
@@ -130,14 +134,14 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-   
+
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   private void populateSettingsItems() {
     this.detailItems = new ArrayList<SettingsItem>();
-    final Resources res = this.getResources();
+    final Resources res = getResources();
     // auto update location - 0
     SettingsItem settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.autoupdate_location));

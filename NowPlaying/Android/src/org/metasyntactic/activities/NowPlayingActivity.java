@@ -1,4 +1,4 @@
-package org.metasyntactic;
+package org.metasyntactic.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,6 +29,7 @@ import org.metasyntactic.views.CustomGridView;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
+import org.metasyntactic.*;
 
 import java.io.File;
 import java.lang.ref.SoftReference;

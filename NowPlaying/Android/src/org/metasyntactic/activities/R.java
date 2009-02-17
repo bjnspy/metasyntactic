@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package org.metasyntactic;
+package org.metasyntactic.activities;
 
 public final class R {
     public static final class anim {

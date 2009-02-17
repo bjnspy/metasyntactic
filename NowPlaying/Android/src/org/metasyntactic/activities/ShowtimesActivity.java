@@ -1,4 +1,4 @@
-package org.metasyntactic;
+package org.metasyntactic.activities;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -21,16 +21,14 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.CollectionUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.activities.R;
 
 import java.util.List;
 
 public class ShowtimesActivity extends ListActivity {
   private List<Theater> theaters;
   private Movie movie;
-
-  private enum TheaterDetailItemType {
-    NAME_SHOWTIMES, ADDRESS, PHONE
-  }
 
   @Override
   protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
@@ -55,7 +53,7 @@ public class ShowtimesActivity extends ListActivity {
   @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-   
+
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
