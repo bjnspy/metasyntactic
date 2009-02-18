@@ -44,7 +44,7 @@ public class NetworkUtilities {
     }
   }
 
-  private final static String[] charsets = {"UTF-8", "ISO-8859-1",};
+  private final static String[] charsets = { "UTF-8", "ISO-8859-1", };
 
   public static String downloadString(final URL url, final boolean important) {
     final byte[] bytes = download(url, important);

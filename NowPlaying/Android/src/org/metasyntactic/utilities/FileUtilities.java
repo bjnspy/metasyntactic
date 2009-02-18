@@ -75,8 +75,7 @@ public class FileUtilities {
     return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9' || c == ' ' || c == '-' || c == '.';
   }
 
-  @SuppressWarnings("unchecked")
-  public static <T> T readObject(final File file) {
+  @SuppressWarnings("unchecked") public static <T> T readObject(final File file) {
     try {
       final byte[] bytes = readBytes(file);
       if (bytes.length == 0) {
@@ -222,8 +221,7 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> Map<String, T> readStringToPersistableMap(final Persistable.Reader<T> reader,
-                                                                                  final File file) {
+  public static <T extends Persistable> Map<String, T> readStringToPersistableMap(final Persistable.Reader<T> reader, final File file) {
     if (!file.exists()) {
       return Collections.emptyMap();
     }
@@ -314,7 +312,8 @@ public class FileUtilities {
 
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
-        ExceptionUtilities.log(FileUtilities.class, "writeStringCollection", e);;
+        ExceptionUtilities.log(FileUtilities.class, "writeStringCollection", e);
+        ;
       }
     } else {
       writeObject(collection, file);
@@ -381,8 +380,7 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> List<T> readPersistableList(final Persistable.Reader<T> reader,
-                                                                    final File file) {
+  public static <T extends Persistable> List<T> readPersistableList(final Persistable.Reader<T> reader, final File file) {
     if (!file.exists()) {
       return Collections.emptyList();
     }
@@ -427,8 +425,7 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> Map<String, List<T>> readStringToListOfPersistables(
-      final Persistable.Reader<T> reader, final File file) {
+  public static <T extends Persistable> Map<String, List<T>> readStringToListOfPersistables(final Persistable.Reader<T> reader, final File file) {
     if (!file.exists()) {
       return Collections.emptyMap();
     }
@@ -456,8 +453,7 @@ public class FileUtilities {
     }
   }
 
-  public static <T extends Persistable> void writeStringToListOfPersistables(Map<String, List<T>> map,
-                                                                             final File file) {
+  public static <T extends Persistable> void writeStringToListOfPersistables(Map<String, List<T>> map, final File file) {
     map = nonNullMap(map);
 
     if (USE_PERSISTABLE) {

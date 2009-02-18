@@ -44,22 +44,22 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
   }
 
   private String getUrl() {
-    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
-        getModel().getUserAddress());
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserAddress());
 
     if (location == null || isNullOrEmpty(location.getPostalCode())) {
       return null;
     }
 
-    final String country = isNullOrEmpty(
-        location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
+    final String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
 
-    //Debug.startMethodTracing("getUrlDaysBetween", 1 << 24);
+    // Debug.startMethodTracing("getUrlDaysBetween", 1 << 24);
     int days = Days.daysBetween(new Date(), getModel().getSearchDate());
-    //Debug.stopMethodTracing();
+    // Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 
-    return "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    return "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language="
+    + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude="
+    + (int) (location.getLongitude() * 1000000);
   }
 
   @Override protected String lookupServerHash() {

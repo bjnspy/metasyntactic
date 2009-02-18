@@ -51,8 +51,7 @@ public class LargePosterCache extends AbstractCache {
     }, null, false);
   }
 
-  @Override
-  protected List<File> getCacheDirectories() {
+  @Override protected List<File> getCacheDirectories() {
     return Collections.singletonList(NowPlayingApplication.postersLargeDirectory);
   }
 
@@ -175,11 +174,9 @@ public class LargePosterCache extends AbstractCache {
       final int releaseYear = getYearForDate(date);
 
       List<String> result;
-      if (size(result = getPosterUrls(movie, releaseYear)) > 0 || size(
-          result = getPosterUrls(movie, releaseYear - 1)) > 0 || size(
-          result = getPosterUrls(movie, releaseYear - 2)) > 0 || size(
-          result = getPosterUrls(movie, releaseYear + 1)) > 0 || size(
-          result = getPosterUrls(movie, releaseYear + 2)) > 0) {
+      if (size(result = getPosterUrls(movie, releaseYear)) > 0 || size(result = getPosterUrls(movie, releaseYear - 1)) > 0
+          || size(result = getPosterUrls(movie, releaseYear - 2)) > 0 || size(result = getPosterUrls(movie, releaseYear + 1)) > 0
+          || size(result = getPosterUrls(movie, releaseYear + 2)) > 0) {
         return result;
       }
     } else {
@@ -206,8 +203,7 @@ public class LargePosterCache extends AbstractCache {
   }
 
   private static File posterFile(final Movie movie, final int index) {
-    return new File(NowPlayingApplication.postersLargeDirectory,
-                    FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + '-' + index + ".jpg"));
+    return new File(NowPlayingApplication.postersLargeDirectory, FileUtilities.sanitizeFileName(movie.getCanonicalTitle() + '-' + index + ".jpg"));
   }
 
   private static void downloadPosterForMovie(final Movie movie, final List<String> urls, final int index) {
@@ -255,7 +251,8 @@ public class LargePosterCache extends AbstractCache {
     options2.inPreferredConfig = Bitmap.Config.ARGB_8888;
     options2.inSampleSize = (int) scale;
     Bitmap scaledBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options2);
-    // This will give us a scaled bitmap, but still not resized to the dimensions
+    // This will give us a scaled bitmap, but still not resized to the
+    // dimensions
     // that we want.
 
     scaledBitmap = Bitmap.createScaledBitmap(scaledBitmap, (int) (width / scale), (int) (height / scale), true);

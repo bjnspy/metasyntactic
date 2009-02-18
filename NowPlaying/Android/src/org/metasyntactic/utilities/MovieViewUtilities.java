@@ -15,13 +15,10 @@ package org.metasyntactic.utilities;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.location.Address;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Theater;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.lang.ref.SoftReference;
@@ -62,9 +59,11 @@ public class MovieViewUtilities {
    * Formats the movie rating for display. For example if a movie is rated PG
    * 13, the ratings string is "Rated PG-13.". If a movie is unrated then the
    * ratings string is "Unrated."
-   *
-   * @param rating Movie rating.
-   * @param res    Context resources handle.
+   * 
+   * @param rating
+   *          Movie rating.
+   * @param res
+   *          Context resources handle.
    * @return the formatted rating
    */
   public static String formatRatings(final String rating, final Resources res) {
@@ -78,9 +77,11 @@ public class MovieViewUtilities {
   /**
    * Formats the movie length for display. The movie length is displayed as "x
    * hours y minutes".
-   *
-   * @param length Movie length in minutes.
-   * @param res    Context resources handle.
+   * 
+   * @param length
+   *          Movie length in minutes.
+   * @param res
+   *          Context resources handle.
    * @return the formatted length
    */
   public static String formatLength(final int length, final Resources res) {
@@ -166,59 +167,59 @@ public class MovieViewUtilities {
 
   public static String getHeader(final List<Movie> movies, final int position, final int sortIndex) {
     switch (sortIndex) {
-      case MovieTitle:
-        if (position == 0) {
-          return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
-        }
-        if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
-          return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
-        }
-        break;
-      case Release:
-        final Date d1 = movies.get(position).getReleaseDate();
-        final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-        String dateStr;
-        if (d1 != null) {
-          dateStr = df.format(d1);
-        } else {
-          dateStr = null;
-        }
-        if (position == 0) {
-          return dateStr;
-        }
-        final Date d2 = movies.get(position - 1).getReleaseDate();
-        if (d2 != null && d1 != null && !d1.equals(d2)) {
-          return dateStr;
-        }
-        return null;
+    case MovieTitle:
+      if (position == 0) {
+        return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
+      }
+      if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
+        return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
+      }
+      break;
+    case Release:
+      final Date d1 = movies.get(position).getReleaseDate();
+      final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
+      String dateStr;
+      if (d1 != null) {
+        dateStr = df.format(d1);
+      } else {
+        dateStr = null;
+      }
+      if (position == 0) {
+        return dateStr;
+      }
+      final Date d2 = movies.get(position - 1).getReleaseDate();
+      if (d2 != null && d1 != null && !d1.equals(d2)) {
+        return dateStr;
+      }
+      return null;
     }
     return null;
   }
 
-  public static int getDistanceLevel(double distance) {
-   
-        // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
-        if (distance <= 2 && distance >= 0 ) {
-          return 0;
-        }
-        if (distance <= 5 && distance >= 2 ){
-          return 1;
-        }
-        if (distance <= 10 && distance >= 5 ) {
-           return 2;
-        }
-        if (distance <= 25 && distance >= 10) {
-          return 3;
-        }
-        if (distance <= 50 && distance >= 25) {
-          
-          return 4;
-        }
-        if (distance <= 100 && distance >= 50 ) {
-          
-          return 5;
-        }
-        
+  public static int getDistanceLevel(final double distance) {
+
+    // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
+    if (distance <= 2 && distance >= 0) {
+      return 0;
+    }
+    if (distance <= 5 && distance >= 2) {
+      return 1;
+    }
+    if (distance <= 10 && distance >= 5) {
+      return 2;
+    }
+    if (distance <= 25 && distance >= 10) {
+      return 3;
+    }
+    if (distance <= 50 && distance >= 25) {
+
+      return 4;
+    }
+    if (distance <= 100 && distance >= 50) {
+
+      return 5;
+    }
+
     return 5;
   }
 

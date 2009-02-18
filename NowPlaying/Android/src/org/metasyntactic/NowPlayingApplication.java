@@ -14,14 +14,10 @@
 package org.metasyntactic;
 
 import android.app.Application;
-import android.app.AlertDialog;
 import android.content.*;
-import android.os.Environment;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.activities.R;
-
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -36,10 +32,10 @@ public class NowPlayingApplication extends Application {
   public final static String SCROLLING_INTENT = "SCROLLING_INTENT";
   public final static String NOT_SCROLLING_INTENT = "NOT_SCROLLING_INTENT";
   public final static String host =
-      /*
-      * "metaboxoffice6"; /
-      */
-      "metaboxoffice2";
+    /*
+     * "metaboxoffice6"; /
+     */
+    "metaboxoffice2";
   // */
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
@@ -83,19 +79,19 @@ public class NowPlayingApplication extends Application {
   }
 
   private final BroadcastReceiver unmountedReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context contextfinal , final Intent intent) {
+    @Override public void onReceive(final Context contextfinal, final Intent intent) {
       FileUtilities.setSDCardAccessible(false);
     }
   };
 
   private final BroadcastReceiver mountedReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context contextfinal , final Intent intent) {
+    @Override public void onReceive(final Context contextfinal, final Intent intent) {
       FileUtilities.setSDCardAccessible(true);
     }
   };
 
   private final BroadcastReceiver ejectReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context contextfinal , final Intent intent) {
+    @Override public void onReceive(final Context contextfinal, final Intent intent) {
       FileUtilities.setSDCardAccessible(true);
     }
   };

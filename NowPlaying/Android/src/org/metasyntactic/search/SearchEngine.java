@@ -24,13 +24,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class SearchEngine {
-  // only accessed from the main thread.  needs no lock.
+  // only accessed from the main thread. needs no lock.
   private final NowPlayingModel model;
   private final SearchEngineDelegate delegate;
-  // accessed from both threads.  needs lock
+  // accessed from both threads. needs lock
   private int currentRequestId;
   private SearchRequest nextSearchRequest;
-  // only accessed from the background thread.  needs no lock
+  // only accessed from the background thread. needs no lock
   private SearchRequest currentlyExecutingRequest;
   private final Object gate = new Object();
 
@@ -42,7 +42,7 @@ public class SearchEngine {
       public void run() {
         try {
           searchThreadEntryPoint();
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
           throw new RuntimeException(e);
         }
       }
@@ -51,8 +51,8 @@ public class SearchEngine {
   }
 
   private boolean abortEarly() {
-    synchronized (gate) {
-      return currentlyExecutingRequest.getRequestId() != currentRequestId;
+    synchronized (this.gate) {
+      return this.currentlyExecutingRequest.getRequestId() != this.currentRequestId;
     }
   }
 
@@ -64,8 +64,8 @@ public class SearchEngine {
 
       final String lowercaseText = StringUtilities.toASCII(text).toLowerCase();
       final int index;
-      synchronized (gate) {
-        index = lowercaseText.indexOf(currentlyExecutingRequest.getLowercaseValue());
+      synchronized (this.gate) {
+        index = lowercaseText.indexOf(this.currentlyExecutingRequest.getLowercaseValue());
       }
 
       if (index > 0) {
@@ -101,8 +101,8 @@ public class SearchEngine {
   private List<Movie> findMovies() {
     final List<Movie> result = new ArrayList<Movie>();
     final List<Movie> movies;
-    synchronized (gate) {
-      movies = currentlyExecutingRequest.getMovies();
+    synchronized (this.gate) {
+      movies = this.currentlyExecutingRequest.getMovies();
     }
     for (final Movie movie : movies) {
       if (movieMatches(movie)) {
@@ -116,8 +116,8 @@ public class SearchEngine {
   private List<Theater> findTheaters() {
     final List<Theater> result = new ArrayList<Theater>();
     final List<Theater> theaters;
-    synchronized (gate) {
-      theaters = currentlyExecutingRequest.getTheaters();
+    synchronized (this.gate) {
+      theaters = this.currentlyExecutingRequest.getTheaters();
     }
     for (final Theater theater : theaters) {
       if (theaterMatches(theater)) {
@@ -131,8 +131,8 @@ public class SearchEngine {
   private List<Movie> findUpcomingMovies() {
     final List<Movie> result = new ArrayList<Movie>();
     final List<Movie> movies;
-    synchronized (gate) {
-      movies = currentlyExecutingRequest.getUpcomingMovies();
+    synchronized (this.gate) {
+      movies = this.currentlyExecutingRequest.getUpcomingMovies();
     }
     for (final Movie movie : movies) {
       if (movieMatches(movie)) {
@@ -161,9 +161,9 @@ public class SearchEngine {
 
     final int id;
     final String value;
-    synchronized (gate) {
-      id = currentlyExecutingRequest.getRequestId();
-      value = currentlyExecutingRequest.getValue();
+    synchronized (this.gate) {
+      id = this.currentlyExecutingRequest.getRequestId();
+      value = this.currentlyExecutingRequest.getValue();
     }
     final SearchResult result = new SearchResult(id, value, movies, theaters, upcomingMovies);
     ThreadingUtilities.performOnMainThread(new Runnable() {
@@ -175,12 +175,12 @@ public class SearchEngine {
 
   private void searchThreadEntryPoint() throws InterruptedException {
     while (true) {
-      synchronized (gate) {
-        while (nextSearchRequest == null) {
-          gate.wait();
+      synchronized (this.gate) {
+        while (this.nextSearchRequest == null) {
+          this.gate.wait();
         }
 
-        this.currentlyExecutingRequest = nextSearchRequest;
+        this.currentlyExecutingRequest = this.nextSearchRequest;
         this.nextSearchRequest = null;
       }
 
@@ -190,26 +190,26 @@ public class SearchEngine {
   }
 
   public void submitRequest(final String string) {
-    synchronized (gate) {
-      currentRequestId++;
-      this.nextSearchRequest = new SearchRequest(currentRequestId, string, model);
-      gate.notifyAll();
+    synchronized (this.gate) {
+      this.currentRequestId++;
+      this.nextSearchRequest = new SearchRequest(this.currentRequestId, string, this.model);
+      this.gate.notifyAll();
     }
   }
 
   private void reportResult(final SearchResult result) {
-    synchronized (gate) {
-      if (result.getRequestId() != currentRequestId) {
+    synchronized (this.gate) {
+      if (result.getRequestId() != this.currentRequestId) {
         return;
       }
     }
 
-    delegate.reportResult(result);
+    this.delegate.reportResult(result);
   }
 
   public void invalidateExistingRequests() {
-    synchronized (gate) {
-      currentRequestId++;
+    synchronized (this.gate) {
+      this.currentRequestId++;
       this.nextSearchRequest = null;
     }
   }

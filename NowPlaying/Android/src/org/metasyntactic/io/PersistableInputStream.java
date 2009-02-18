@@ -86,23 +86,19 @@ public class PersistableInputStream {
 
     return new String(this.spareBytes, 0, byteCount, "UTF-8");
     /*
-    final int byteCount = charCount * 2;
-
-    if (byteCount > this.bytes.length) {
-      initializeBuffers(Math.max(byteCount, this.bytes.length * 2));
-    }
-
-    this.charBuffer.limit(charCount);
-    this.in.read(this.bytes, 0, byteCount);
-
-    this.byteBuffer.position(0);
-    this.charBuffer.position(0);
-
-    return this.charBuffer.toString();
-    //this.charBuffer.get(this.chars, 0, charCount);
-
-    //return new String(this.chars, 0, charCount);
-     *
+     * final int byteCount = charCount 2;
+     * 
+     * if (byteCount > this.bytes.length) {
+     * initializeBuffers(Math.max(byteCount, this.bytes.length 2)); }
+     * 
+     * this.charBuffer.limit(charCount); this.in.read(this.bytes, 0, byteCount);
+     * 
+     * this.byteBuffer.position(0); this.charBuffer.position(0);
+     * 
+     * return this.charBuffer.toString(); //this.charBuffer.get(this.chars, 0,
+     * charCount);
+     * 
+     * //return new String(this.chars, 0, charCount);
      */
   }
 

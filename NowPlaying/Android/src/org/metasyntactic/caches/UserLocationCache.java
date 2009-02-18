@@ -34,7 +34,7 @@ public class UserLocationCache {
       }
     };
 
-    performOnBackgroundThread("Download User Address", runnable, this.lock, true/*visible*/);
+    performOnBackgroundThread("Download User Address", runnable, this.lock, true/* visible */);
   }
 
   public static Location downloadUserAddressLocationBackgroundEntryPoint(final String userAddress) {
@@ -76,7 +76,7 @@ public class UserLocationCache {
   private static String massageAddress(String userAddress) {
     userAddress = userAddress.trim();
     if (userAddress.length() <= 8 && containsNumber(userAddress)) {
-      // possibly a postal code.  append the country to help make it unique
+      // possibly a postal code. append the country to help make it unique
 
       // we append the US name for the country here since that's what the
       // backend prefers
@@ -114,8 +114,7 @@ public class UserLocationCache {
 
       if (!isNullOrEmpty(latitude) && !isNullOrEmpty(longitude)) {
         try {
-          return new Location(Double.parseDouble(latitude), Double.parseDouble(longitude), address, city, state,
-                              postalCode, country);
+          return new Location(Double.parseDouble(latitude), Double.parseDouble(longitude), address, city, state, postalCode, country);
         } catch (final NumberFormatException e) {
           ExceptionUtilities.log(UserLocationCache.class, "processResult", e);
           return null;
@@ -136,8 +135,8 @@ public class UserLocationCache {
       if (isNullOrEmpty(result.getPostalCode())) {
         final Location resultLocation = LocationUtilities.findLocation(result.getLatitude(), result.getLongitude());
         if (!isNullOrEmpty(resultLocation.getPostalCode())) {
-          return new Location(result.getLatitude(), result.getLongitude(), result.getAddress(), result.getCity(),
-                              result.getState(), resultLocation.getPostalCode(), result.getCountry());
+          return new Location(result.getLatitude(), result.getLongitude(), result.getAddress(), result.getCity(), result.getState(), resultLocation
+              .getPostalCode(), result.getCountry());
         }
       }
     }
@@ -146,8 +145,7 @@ public class UserLocationCache {
   }
 
   private static Location downloadAddressLocationFromWebServiceWorker(final String address) {
-    final String escapedAddress = "http://" + NowPlayingApplication.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(
-        address);
+    final String escapedAddress = "http://" + NowPlayingApplication.host + ".appspot.com/LookupLocation?q=" + StringUtilities.urlEncode(address);
 
     final Element element = NetworkUtilities.downloadXml(escapedAddress, true);
 

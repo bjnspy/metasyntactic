@@ -24,8 +24,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   private EditText mSearchText;
   private static String activityName;
 
-  @Override
-  public void onCreate(final Bundle icicle) {
+  @Override public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
@@ -68,8 +67,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
     super.onCreateOptionsMenu(menu);
     menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY).setOnMenuItemClickListener(
         new MenuItem.OnMenuItemClickListener() {
@@ -90,8 +88,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     privatePerformSearch(activity, title, null, label);
   }
 
-  private static void privatePerformSearch(final Activity activity, final String title, final String search,
-                                           final String label) {
+  private static void privatePerformSearch(final Activity activity, final String title, final String search, final String label) {
     if (!StringUtilities.isNullOrEmpty(search) || !StringUtilities.isNullOrEmpty(label)) {
       final Intent intent = new Intent();
       if ("NowPlayingActivity".equals(activityName)) {

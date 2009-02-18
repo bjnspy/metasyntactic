@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -17,7 +16,7 @@ import org.metasyntactic.caches.scores.ScoreType;
 import java.util.Arrays;
 import java.util.List;
 
-public class NowPlayingPreferenceDialog extends AlertDialog{
+public class NowPlayingPreferenceDialog extends AlertDialog {
   private final AlertDialog.Builder builder;
   private PreferenceKeys prefKey;
   private int intValue;
@@ -34,8 +33,6 @@ public class NowPlayingPreferenceDialog extends AlertDialog{
   public Dialog create() {
     return this.builder.create();
   }
-
- 
 
   public NowPlayingPreferenceDialog setNegativeButton(final int textId, final OnClickListener listener) {
     this.builder.setNegativeButton(textId, listener);
@@ -64,8 +61,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog{
     return this;
   }
 
-  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem,
-                                                          final OnClickListener listener) {
+  private NowPlayingPreferenceDialog setSingleChoiceItems(final int items, final int checkedItem, final OnClickListener listener) {
     this.builder.setSingleChoiceItems(items, checkedItem, listener);
     return this;
   }
@@ -81,15 +77,13 @@ public class NowPlayingPreferenceDialog extends AlertDialog{
     return this;
   }
 
-  /*public NowPlayingPreferenceDialog setTitle(final int title) {
-    this.builder.setTitle(title);
-    return this;
-  }
-
-  public NowPlayingPreferenceDialog setTitle(final CharSequence title) {
-    this.builder.setTitle(title);
-    return this;
-  }*/
+  /*
+   * public NowPlayingPreferenceDialog setTitle(final int title) {
+   * this.builder.setTitle(title); return this; }
+   * 
+   * public NowPlayingPreferenceDialog setTitle(final CharSequence title) {
+   * this.builder.setTitle(title); return this; }
+   */
 
   public NowPlayingPreferenceDialog setPositiveButton(final int textId) {
     this.builder.setPositiveButton(textId, this.positiveButtonListener);
@@ -106,64 +100,64 @@ public class NowPlayingPreferenceDialog extends AlertDialog{
     return this;
   }
 
-  public void show() {
+  @Override public void show() {
     this.builder.show();
   }
 
   private int getIntPreferenceValue() {
     switch (this.prefKey) {
-      case MOVIES_SORT:
-        return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
-      case UPCOMING_MOVIES_SORT:
-        return NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex();
-      case THEATERS_SORT:
-        return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
-      case SEARCH_DISTANCE:
-        return NowPlayingControllerWrapper.getSearchDistance();
-      case REVIEWS_PROVIDER:
-        return this.scoreTypes.indexOf(NowPlayingControllerWrapper.getScoreType());
-      case AUTO_UPDATE_LOCATION:
-        return this.autoUpdate.indexOf(NowPlayingControllerWrapper.isAutoUpdateEnabled());
+    case MOVIES_SORT:
+      return NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex();
+    case UPCOMING_MOVIES_SORT:
+      return NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex();
+    case THEATERS_SORT:
+      return NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex();
+    case SEARCH_DISTANCE:
+      return NowPlayingControllerWrapper.getSearchDistance();
+    case REVIEWS_PROVIDER:
+      return this.scoreTypes.indexOf(NowPlayingControllerWrapper.getScoreType());
+    case AUTO_UPDATE_LOCATION:
+      return this.autoUpdate.indexOf(NowPlayingControllerWrapper.isAutoUpdateEnabled());
     }
     return 0;
   }
 
   private String getStringPreferenceValue() {
     switch (this.prefKey) {
-      case LOCATION:
-        return NowPlayingControllerWrapper.getUserLocation();
+    case LOCATION:
+      return NowPlayingControllerWrapper.getUserLocation();
     }
     return null;
   }
 
   private void setIntPreferenceValue(final int prefValue) {
     switch (this.prefKey) {
-      case MOVIES_SORT:
-        NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(prefValue);
-        break;
-      case UPCOMING_MOVIES_SORT:
-        NowPlayingControllerWrapper.setUpcomingMoviesSelectedSortIndex(prefValue);
-        break;
-      case THEATERS_SORT:
-        NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(prefValue);
-        break;
-      case SEARCH_DISTANCE:
-        NowPlayingControllerWrapper.setSearchDistance(prefValue);
-        break;
-      case REVIEWS_PROVIDER:
-        NowPlayingControllerWrapper.setScoreType(this.scoreTypes.get(prefValue));
-        break;
-      case AUTO_UPDATE_LOCATION:
-        NowPlayingControllerWrapper.setAutoUpdateEnabled(this.autoUpdate.get(prefValue));
-        break;
+    case MOVIES_SORT:
+      NowPlayingControllerWrapper.setAllMoviesSelectedSortIndex(prefValue);
+      break;
+    case UPCOMING_MOVIES_SORT:
+      NowPlayingControllerWrapper.setUpcomingMoviesSelectedSortIndex(prefValue);
+      break;
+    case THEATERS_SORT:
+      NowPlayingControllerWrapper.setAllTheatersSelectedSortIndex(prefValue);
+      break;
+    case SEARCH_DISTANCE:
+      NowPlayingControllerWrapper.setSearchDistance(prefValue);
+      break;
+    case REVIEWS_PROVIDER:
+      NowPlayingControllerWrapper.setScoreType(this.scoreTypes.get(prefValue));
+      break;
+    case AUTO_UPDATE_LOCATION:
+      NowPlayingControllerWrapper.setAutoUpdateEnabled(this.autoUpdate.get(prefValue));
+      break;
     }
   }
 
   private void setStringPreferenceValue(final String prefValue) {
     switch (this.prefKey) {
-      case LOCATION:
-        NowPlayingControllerWrapper.setUserLocation(prefValue);
-        break;
+    case LOCATION:
+      NowPlayingControllerWrapper.setUserLocation(prefValue);
+      break;
     }
   }
 
@@ -186,19 +180,16 @@ public class NowPlayingPreferenceDialog extends AlertDialog{
 
   // Work around to make handling of scoretype,auto_update same as sort
   // preference, as both are choicetypes.
-  private final List<ScoreType> scoreTypes = Arrays.asList(ScoreType.Google, ScoreType.Metacritic,
-                                                           ScoreType.RottenTomatoes);
+  private final List<ScoreType> scoreTypes = Arrays.asList(ScoreType.Google, ScoreType.Metacritic, ScoreType.RottenTomatoes);
   private final List<Boolean> autoUpdate = Arrays.asList(Boolean.TRUE, Boolean.FALSE);
 
-  @Override
-  public void setTitle(CharSequence title) {
+  @Override public void setTitle(final CharSequence title) {
     // TODO Auto-generated method stub
     super.setTitle(title);
     this.builder.setTitle(title);
   }
 
-  @Override
-  public void setTitle(int titleId) {
+  @Override public void setTitle(final int titleId) {
     // TODO Auto-generated method stub
     super.setTitle(titleId);
     this.builder.setTitle(titleId);
