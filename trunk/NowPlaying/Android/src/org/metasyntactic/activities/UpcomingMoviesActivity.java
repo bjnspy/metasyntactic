@@ -139,6 +139,57 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   }
 
   @Override
+  protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+
+    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
+    if (this.isGridSetup) {
+      this.grid.setVisibility(View.VISIBLE);
+    }
+    getUserLocation();
+    if (this.movies != null && !this.movies.isEmpty()) {
+      setup();
+      this.isGridSetup = true;
+    }
+    getSearchResuts();
+    refresh();
+  }
+
+  @Override
+  protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
+
+    unregisterReceiver(this.broadcastReceiver);
+    unregisterReceiver(this.scrollStatebroadcastReceiver);
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
+    }
+    super.onPause();
+  }
+
+  @Override
+  protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+
+    NowPlayingControllerWrapper.removeActivity(this);
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
+    }
+    clearBitmaps();
+    super.onDestroy();
+  }
+
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
+  }
+
+  @Override
   protected void onNewIntent(final Intent intent) {
     super.onNewIntent(intent);
     this.search = intent.getStringExtra("movie");
@@ -174,30 +225,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override
-  protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
-
-    NowPlayingControllerWrapper.removeActivity(this);
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
-    }
-    clearBitmaps();
-    super.onDestroy();
-  }
-
-  @Override
-  protected void onPause() {
-    Log.i(getClass().getSimpleName(), "onPause");
-
-    unregisterReceiver(this.broadcastReceiver);
-    unregisterReceiver(this.scrollStatebroadcastReceiver);
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
-    }
-    super.onPause();
-  }
-
   private static void clearBitmaps() {
     for (final SoftReference<Bitmap> reference : postersMap.values()) {
       final Bitmap drawable = reference.get();
@@ -205,26 +232,6 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         reference.clear();
       }
     }
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
-
-    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
-    if (this.isGridSetup) {
-      this.grid.setVisibility(View.VISIBLE);
-    }
-    getUserLocation();
-    if (this.movies != null && !this.movies.isEmpty()) {
-      setup();
-      this.isGridSetup = true;
-    }
-    getSearchResuts();
-    refresh();
   }
 
   private void getAlphabet(final Context context) {

@@ -43,21 +43,28 @@ public class AllReviewsActivity extends ListActivity {
   }
 
   @Override
-  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
-    final String review_url = this.reviews.get(position).getLink();
-    final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
-    startActivity(intent);
-
-    super.onListItemClick(listView, view, position, id);
-  }
-
-  @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
+  }
+
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
+  }
+
+  @Override
+  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
+    final String review_url = this.reviews.get(position).getLink();
+    final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
+    startActivity(intent);
+
+    super.onListItemClick(listView, view, position, id);
   }
 
   private class ReviewsAdapter extends BaseAdapter {
