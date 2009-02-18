@@ -112,33 +112,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
-    // check for sdcard mounted properly
-    if (FileUtilities.isSDCardAccessible()) {
-      // Request the progress bar to be shown in the title
-      requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-      setContentView(R.layout.progressbar_1);
-      this.progressUpdate = (TextView) findViewById(R.id.progress_update);
-      NowPlayingControllerWrapper.addActivity(this);
-      getUserLocation();
-      refresh();
-      if (movies != null && !movies.isEmpty()) {
-        setup();
-        this.isGridSetup = true;
-      }
-    } else {
-      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok,
-          new DialogInterface.OnClickListener() {
-            public void onClick(final DialogInterface dialog, final int whichButton) {
-              NowPlayingActivity.this.finish();
-            }
-          }).show();
-    }
-  }
-
+  
   @Override
   protected void onResume() {
     super.onResume();
@@ -189,7 +163,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   public Object onRetainNonConfigurationInstance() {
     Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    final Object result = new Object();
+    final Object result = this.search;
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
   }
@@ -199,14 +173,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
    */
   public void refresh() {
     if (this.search == null) {
+    }
+    if (this.search == null) {
       movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getMovies());
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     if (this.postersAdapter != null) {
-      populateAlphaMovieSectionsAndPositions();
-      populateScoreMovieSectionsAndPositions();
+      // populateAlphaMovieSectionsAndPositions();
+      // populateScoreMovieSectionsAndPositions();
       FastScrollGridView.getSections();
       this.postersAdapter.refreshMovies();
     }
@@ -230,6 +206,34 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   public Context getContext() {
     return this;
+  }
+
+  @Override
+  public void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
+    this.search = (String) getLastNonConfigurationInstance();
+    // check for sdcard mounted properly
+    if (FileUtilities.isSDCardAccessible()) {
+      // Request the progress bar to be shown in the title
+      requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+      setContentView(R.layout.progressbar_1);
+      this.progressUpdate = (TextView) findViewById(R.id.progress_update);
+      NowPlayingControllerWrapper.addActivity(this);
+      getUserLocation();
+      refresh();
+      if (movies != null && !movies.isEmpty()) {
+        setup();
+        this.isGridSetup = true;
+      }
+    } else {
+      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
+          android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(final DialogInterface dialog, final int whichButton) {
+              NowPlayingActivity.this.finish();
+            }
+          }).show();
+    }
   }
 
   @Override
