@@ -14,6 +14,7 @@
     <string name="showtimes_for">Showtimes for %s at %s</string>
     <string name="showtimes_at">Showtimes at</string>
     <string name="order_tickets">Order tickets for</string>
+    <string name="find_location_automatically">Find Location Automatically</string>
     <string name="all_movies">All Movies</string>
     <string name="buy_tickets">Buy Tickets</string>
     <string name="get_showtimes">Get Showtimes</string>

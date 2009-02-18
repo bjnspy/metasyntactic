@@ -452,10 +452,11 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.sort_movies).setKey(NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(
           R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
           android.R.string.cancel);
+      builder.setTitle(
+          R.string.sort_movies);
       builder.show();
       return true;
     }

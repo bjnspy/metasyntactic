@@ -4,11 +4,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
+
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.activities.R;
@@ -17,7 +17,7 @@ import org.metasyntactic.caches.scores.ScoreType;
 import java.util.Arrays;
 import java.util.List;
 
-public class NowPlayingPreferenceDialog {
+public class NowPlayingPreferenceDialog extends AlertDialog{
   private final AlertDialog.Builder builder;
   private PreferenceKeys prefKey;
   private int intValue;
@@ -26,6 +26,7 @@ public class NowPlayingPreferenceDialog {
   DialogInterface.OnClickListener positiveButtonListener;
 
   public NowPlayingPreferenceDialog(final Context context) {
+    super(context);
     this.builder = new AlertDialog.Builder(context);
     this.context = (INowPlaying) context;
   }
@@ -34,15 +35,7 @@ public class NowPlayingPreferenceDialog {
     return this.builder.create();
   }
 
-  public NowPlayingPreferenceDialog setIcon(final Drawable icon) {
-    this.builder.setIcon(icon);
-    return this;
-  }
-
-  public NowPlayingPreferenceDialog setInverseBackgroundForced(final boolean useInverseBackground) {
-    this.builder.setInverseBackgroundForced(useInverseBackground);
-    return this;
-  }
+ 
 
   public NowPlayingPreferenceDialog setNegativeButton(final int textId, final OnClickListener listener) {
     this.builder.setNegativeButton(textId, listener);
@@ -88,7 +81,7 @@ public class NowPlayingPreferenceDialog {
     return this;
   }
 
-  public NowPlayingPreferenceDialog setTitle(final int title) {
+  /*public NowPlayingPreferenceDialog setTitle(final int title) {
     this.builder.setTitle(title);
     return this;
   }
@@ -96,7 +89,7 @@ public class NowPlayingPreferenceDialog {
   public NowPlayingPreferenceDialog setTitle(final CharSequence title) {
     this.builder.setTitle(title);
     return this;
-  }
+  }*/
 
   public NowPlayingPreferenceDialog setPositiveButton(final int textId) {
     this.builder.setPositiveButton(textId, this.positiveButtonListener);
@@ -196,4 +189,18 @@ public class NowPlayingPreferenceDialog {
   private final List<ScoreType> scoreTypes = Arrays.asList(ScoreType.Google, ScoreType.Metacritic,
                                                            ScoreType.RottenTomatoes);
   private final List<Boolean> autoUpdate = Arrays.asList(Boolean.TRUE, Boolean.FALSE);
+
+  @Override
+  public void setTitle(CharSequence title) {
+    // TODO Auto-generated method stub
+    super.setTitle(title);
+    this.builder.setTitle(title);
+  }
+
+  @Override
+  public void setTitle(int titleId) {
+    // TODO Auto-generated method stub
+    super.setTitle(titleId);
+    this.builder.setTitle(titleId);
+  }
 }
