@@ -196,8 +196,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.search != null) {
       this.bottomBar.setVisibility(View.VISIBLE);
     }
-    // getSearchResults();
-    // refresh();
+    getSearchResults();
+    refresh();
   }
 
   private void getUserLocation() {
@@ -275,8 +275,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
     }
-    getSearchResults();
-    this.postersAdapter.refreshMovies();
+    // getSearchResults();
   }
 
   private void getAlphabet(final Context context) {
