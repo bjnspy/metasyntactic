@@ -123,6 +123,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     final String trailer_url = NowPlayingControllerWrapper.getTrailer(this.movie);
     if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
       final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
+      intent.setType("video/*");
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.play_trailer),
           null, MovieDetailItemType.ACTION, intent, true);
       this.movieDetailEntries.add(entry);
