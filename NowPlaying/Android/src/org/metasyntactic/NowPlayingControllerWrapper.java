@@ -67,9 +67,9 @@ public class NowPlayingControllerWrapper {
         Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity created.  Starting controller");
         instance = new NowPlayingController(activity.getApplicationContext());
         instance.startup();
+        restartLocationTracker();
       }
     }
-    restartLocationTracker();
   }
 
   public static void removeActivity(final Activity activity) {
@@ -87,9 +87,9 @@ public class NowPlayingControllerWrapper {
         Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");
         instance.shutdown();
         instance = null;
+        restartLocationTracker();
       }
     }
-    restartLocationTracker();
   }
 
   private static void restartLocationTracker() {
