@@ -27,6 +27,8 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -45,7 +47,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
         getModel().getUserAddress());
 
-    if (isNullOrEmpty(location.getPostalCode())) {
+    if (location == null || isNullOrEmpty(location.getPostalCode())) {
       return null;
     }
 
@@ -62,12 +64,18 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
 
   @Override protected String lookupServerHash() {
     String address = getUrl();
+    if (isNullOrEmpty(address)) {
+      return address;
+    }
     address += "&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
   @Override protected Map<String, Score> lookupServerScores() {
     final String address = getUrl();
+    if (isNullOrEmpty(address)) {
+      return Collections.emptyMap();
+    }
     final byte[] data = NetworkUtilities.download(address, true);
 
     if (data != null) {
