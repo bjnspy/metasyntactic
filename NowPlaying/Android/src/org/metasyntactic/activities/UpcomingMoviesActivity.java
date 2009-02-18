@@ -346,7 +346,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         holder = (ViewHolder) convertView.getTag();
       }
       final Movie movie = UpcomingMoviesActivity.this.movies.get(position % UpcomingMoviesActivity.this.movies.size());
-      // NowPlayingControllerWrapper.prioritizeMovie(movie);
+      NowPlayingControllerWrapper.prioritizeMovie(movie);
       holder.title.setText(movie.getDisplayTitle());
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
