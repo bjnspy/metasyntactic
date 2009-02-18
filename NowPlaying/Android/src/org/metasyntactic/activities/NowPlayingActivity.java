@@ -2,7 +2,11 @@ package org.metasyntactic.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,14 +16,26 @@ import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import org.metasyntactic.NowPlayingApplication;
+
 import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.UserTask;
 import org.metasyntactic.data.Movie;
@@ -34,7 +50,13 @@ import org.metasyntactic.views.Rotate3dAnimation;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private CustomGridView grid;
@@ -90,79 +112,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
 
-    @Override
-  public void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
-    // check for sdcard mounted properly
-    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-      // Request the progress bar to be shown in the title
-      requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-      setContentView(R.layout.progressbar_1);
-      this.progressUpdate = (TextView) findViewById(R.id.progress_update);
-      NowPlayingControllerWrapper.addActivity(this);
-      refresh();
-    } else {
-      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
-          android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(final DialogInterface dialog, final int whichButton) {
-              NowPlayingActivity.this.finish();
-            }
-          }).show();
-    }
-  }
-
   @Override
-  protected void onResume() {
-    super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
-    registerReceiver(this.broadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-    registerReceiver(this.databroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.SCROLLING_INTENT));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOT_SCROLLING_INTENT));
-    registerReceiver(this.progressbroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
-    if (this.isGridSetup) {
-      this.grid.setVisibility(View.VISIBLE);
-    }
-    getUserLocation();
-    if (movies != null && !movies.isEmpty()) {
-      setup();
-      this.isGridSetup = true;
-    }
-    getSearchResults();
-    refresh();
-  }
-
-  @Override
-  protected void onPause() {
-    Log.i(getClass().getSimpleName(), "onPause");
-    unregisterReceiver(this.broadcastReceiver);
-    unregisterReceiver(this.databroadcastReceiver);
-    unregisterReceiver(this.scrollStatebroadcastReceiver);
-    unregisterReceiver(this.progressbroadcastReceiver);
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
-    }
-    super.onPause();
-  }
-
-  @Override
-  protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
-    NowPlayingControllerWrapper.removeActivity(this);
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
-    }
-    clearBitmaps();
-    super.onDestroy();
-  }
-
-  @Override public Object onRetainNonConfigurationInstance() {
+  public Object onRetainNonConfigurationInstance() {
     Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
@@ -208,6 +159,36 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     return this;
   }
 
+  /**
+   * Called when the activity is first created.
+   */
+  @Override
+  public void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
+    // check for sdcard mounted properly
+    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+      // Request the progress bar to be shown in the title
+      requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+      setContentView(R.layout.progressbar_1);
+      this.progressUpdate = (TextView) findViewById(R.id.progress_update);
+      NowPlayingControllerWrapper.addActivity(this);
+      getUserLocation();
+      refresh();
+      if (movies != null && !movies.isEmpty()) {
+        setup();
+        this.isGridSetup = true;
+      }
+    } else {
+      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
+          android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(final DialogInterface dialog, final int whichButton) {
+              NowPlayingActivity.this.finish();
+            }
+          }).show();
+    }
+  }
+
   @Override
   protected void onNewIntent(final Intent intent) {
     super.onNewIntent(intent);
@@ -215,6 +196,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.search != null) {
       this.bottomBar.setVisibility(View.VISIBLE);
     }
+    // getSearchResults();
+    // refresh();
   }
 
   private void getUserLocation() {
@@ -242,6 +225,30 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
+  @Override
+  protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+    NowPlayingControllerWrapper.removeActivity(this);
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
+    }
+    clearBitmaps();
+    super.onDestroy();
+  }
+
+  @Override
+  protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
+    unregisterReceiver(this.broadcastReceiver);
+    unregisterReceiver(this.databroadcastReceiver);
+    unregisterReceiver(this.scrollStatebroadcastReceiver);
+    unregisterReceiver(this.progressbroadcastReceiver);
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
+    }
+    super.onPause();
+  }
+
   private static void clearBitmaps() {
     for (final SoftReference<Bitmap> reference : postersMap.values()) {
       final Bitmap drawable = reference.get();
@@ -249,6 +256,27 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         reference.clear();
       }
     }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+    registerReceiver(this.broadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.databroadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
+        NowPlayingApplication.SCROLLING_INTENT));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOT_SCROLLING_INTENT));
+    registerReceiver(this.progressbroadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
+    if (this.isGridSetup) {
+      this.grid.setVisibility(View.VISIBLE);
+    }
+    getSearchResults();
+    this.postersAdapter.refreshMovies();
   }
 
   private void getAlphabet(final Context context) {
@@ -290,7 +318,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         setupRotationAnimation(view);
       }
     });
-
     populateAlphaMovieSectionsAndPositions();
     populateScoreMovieSectionsAndPositions();
     this.postersAdapter = new PostersAdapter();
