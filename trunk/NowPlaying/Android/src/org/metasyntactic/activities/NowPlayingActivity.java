@@ -12,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -79,28 +78,24 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
   private final BroadcastReceiver progressbroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       NowPlayingActivity.this.progressUpdate.setText(intent.getStringExtra("message"));
     }
   };
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       if (!NowPlayingActivity.this.isGridSetup) {
         setup();
       }
     }
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())
           && NowPlayingActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
         NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
@@ -111,8 +106,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
     if (FileUtilities.isSDCardAccessible()) {
@@ -129,8 +123,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   }
 
-  @Override
-  protected void onPause() {
+  @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
     if (FileUtilities.isSDCardAccessible()) {
       unregisterReceiver(this.broadcastReceiver);
@@ -144,8 +137,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onPause();
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
     if (FileUtilities.isSDCardAccessible()) {
       NowPlayingControllerWrapper.removeActivity(this);
@@ -157,8 +149,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onDestroy();
   }
 
-  @Override
-  public Object onRetainNonConfigurationInstance() {
+  @Override public Object onRetainNonConfigurationInstance() {
     Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = this.search;
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
@@ -205,8 +196,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     return this;
   }
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     this.search = (String) getLastNonConfigurationInstance();
@@ -232,8 +222,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override
-  protected void onNewIntent(final Intent intent) {
+  @Override protected void onNewIntent(final Intent intent) {
     super.onNewIntent(intent);
     this.search = intent.getStringExtra("movie");
     if (this.search != null) {
@@ -485,8 +474,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(android.R.drawable.ic_menu_search);
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(R.drawable.ic_menu_allfriends);
@@ -497,11 +485,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
-          .setEntries(R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
+      .setEntries(R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
       builder.setTitle(R.string.sort_movies);
       builder.show();
       return true;
@@ -572,8 +559,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   private class LoadPostersTask extends UserTask<Void, Void, Void> {
-    @Override
-    public Void doInBackground(final Void... params) {
+    @Override public Void doInBackground(final Void... params) {
       Bitmap bitmap = null;
       for (final Movie movie : movies) {
         final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movie.getCanonicalTitle());
@@ -596,8 +582,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       return null;
     }
 
-    @Override
-    public void onPostExecute(final Void result) {
+    @Override public void onPostExecute(final Void result) {
       super.onPostExecute(result);
       if (NowPlayingActivity.this.postersAdapter != null) {
         NowPlayingActivity.this.postersAdapter.refreshMovies();

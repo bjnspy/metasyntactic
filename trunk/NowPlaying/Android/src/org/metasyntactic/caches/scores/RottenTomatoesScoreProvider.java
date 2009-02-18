@@ -38,8 +38,8 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
   }
 
   @Override protected Map<String, Score> lookupServerScores() {
-    final Element resultElement = NetworkUtilities.downloadXml(
-        "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml", true);
+    final Element resultElement = NetworkUtilities.downloadXml("http://" + NowPlayingApplication.host
+        + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml", true);
     if (resultElement != null) {
       final Map<String, Score> ratings = new HashMap<String, Score>();
 

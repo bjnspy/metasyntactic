@@ -54,19 +54,18 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
-      if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(
-          intent.getAction()) && UpcomingMoviesActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
+      if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())
+          && UpcomingMoviesActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
         UpcomingMoviesActivity.this.mTask = UpcomingMoviesActivity.this.new LoadPostersTask().execute(null);
       }
-      if (NowPlayingApplication.SCROLLING_INTENT.equals(
-          intent.getAction()) && UpcomingMoviesActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction())
+          && UpcomingMoviesActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
         UpcomingMoviesActivity.this.mTask.cancel(true);
       }
     }
@@ -80,8 +79,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       this.movies = NowPlayingControllerWrapper.getUpcomingMovies();
     }
     // sort movies according to the default sort preference.
-    final Comparator<Movie> comparator = MOVIE_ORDER.get(
-        NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex());
+    final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex());
     Collections.sort(this.movies, comparator);
     if (this.postersAdapter != null) {
       populateAlphaMovieSectionsAndPositions();
@@ -104,6 +102,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         matchingMovies.add(movie);
       }
     }
+
     return matchingMovies;
   }
 
@@ -114,8 +113,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   /**
    * Called when the activity is first created.
    */
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
@@ -127,19 +125,15 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       NowPlayingControllerWrapper.addActivity(this);
       refresh();
     } else {
-      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok,
-                                                                                       new DialogInterface.OnClickListener() {
-                                                                                         public void onClick(
-                                                                                             final DialogInterface dialog,
-                                                                                             final int whichButton) {
-                                                                                           UpcomingMoviesActivity.this.finish();
-                                                                                         }
-                                                                                       }).show();
+      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        public void onClick(final DialogInterface dialog, final int whichButton) {
+          UpcomingMoviesActivity.this.finish();
+        }
+      }).show();
     }
   }
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
 
@@ -158,8 +152,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     refresh();
   }
 
-  @Override
-  protected void onPause() {
+  @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
 
     unregisterReceiver(this.broadcastReceiver);
@@ -170,8 +163,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     super.onPause();
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
@@ -189,8 +181,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     return result;
   }
 
-  @Override
-  protected void onNewIntent(final Intent intent) {
+  @Override protected void onNewIntent(final Intent intent) {
     super.onNewIntent(intent);
     this.search = intent.getStringExtra("movie");
     if (this.search != null) {
@@ -213,8 +204,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
       if (matchingMovies.isEmpty()) {
-        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search,
-                       Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search, Toast.LENGTH_SHORT).show();
       } else {
         this.movies = matchingMovies;
         // cancel task so that it doesnt try to load the complete set of movies.
@@ -322,8 +312,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER,
-                                                                          Movie.SCORE_ORDER);
+  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter implements FastScrollGridView.SectionIndexer {
     private final LayoutInflater inflater;
@@ -344,8 +333,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
-        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title),
-                                (ImageView) convertView.findViewById(R.id.poster));
+        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title), (ImageView) convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
@@ -437,26 +425,22 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
         new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(android.R.drawable.ic_menu_search);
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(R.drawable.ic_menu_switch);
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
         new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(
-          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
-          android.R.string.cancel);
-      builder.setTitle(
-          R.string.sort_movies);
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(
+          NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference).setPositiveButton(
+              android.R.string.ok).setNegativeButton(android.R.string.cancel);
+      builder.setTitle(R.string.sort_movies);
       builder.show();
       return true;
     }
@@ -494,8 +478,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   }
 
   private class LoadPostersTask extends UserTask<Void, Void, Void> {
-    @Override
-    public Void doInBackground(final Void... params) {
+    @Override public Void doInBackground(final Void... params) {
       Bitmap bitmap = null;
       for (final Movie movie : UpcomingMoviesActivity.this.movies) {
         final SoftReference<Bitmap> reference = UpcomingMoviesActivity.postersMap.get(movie.getCanonicalTitle());
@@ -518,8 +501,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       return null;
     }
 
-    @Override
-    public void onPostExecute(final Void result) {
+    @Override public void onPostExecute(final Void result) {
       super.onPostExecute(result);
       if (UpcomingMoviesActivity.this.postersAdapter != null) {
         UpcomingMoviesActivity.this.postersAdapter.refreshMovies();
@@ -540,9 +522,9 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
      * 0, bytes.length, options); final int bitmapWidth = options.outWidth;
      * final int bitmapHeight = options.outHeight; final float scale =
      * Math.min((float) bitmapWidth / (float) width, (float) bitmapHeight /
-     * (float) height) * 2; options.inJustDecodeBounds = false;
-     * options.inPreferredConfig = Bitmap.Config.ARGB_8888; options.inSampleSize =
-     * (int) scale; final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
+     * (float) height) 2; options.inJustDecodeBounds = false;
+     * options.inPreferredConfig = Bitmap.Config.ARGB_8888; options.inSampleSize
+     * = (int) scale; final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
      * 0, bytes.length, options); return bitmap;
      */
   }

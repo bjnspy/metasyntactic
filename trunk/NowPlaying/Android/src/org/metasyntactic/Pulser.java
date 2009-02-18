@@ -30,7 +30,7 @@ public class Pulser {
   }
 
   private void tryPulse(final Date date) {
-    //Log.i("tryPulse", "pulse tried");
+    // Log.i("tryPulse", "pulse tried");
     if (date.before(this.lastPulseTime)) {
       // we sent out a pulse after this one. just disregard this pulse
       // Log.i(Pulser.class.getName(), "Pulse at " + date + " < last pulse at "

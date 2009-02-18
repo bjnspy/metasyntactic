@@ -31,8 +31,7 @@ public class ImdbPosterDownloader {
   }
 
   private static String getImdbId(final Movie movie) {
-    final String url = "http://www.trynt.com/movie-imdb-api/v2/?t=" + StringUtilities.urlEncode(
-        movie.getCanonicalTitle());
+    final String url = "http://www.trynt.com/movie-imdb-api/v2/?t=" + StringUtilities.urlEncode(movie.getCanonicalTitle());
     final Element tryntElement = NetworkUtilities.downloadXml(url, false);
 
     return text(element(element(tryntElement, "movie-imdb"), "matched-id"));

@@ -27,42 +27,44 @@ public class Rotate3dAnimation extends Animation {
    * translation on the Z axis (depth) is performed. The length of the
    * translation can be specified, as well as whether the translation should be
    * reversed in time.
-   *
-   * @param fromDegrees the start angle of the 3D rotation
-   * @param toDegrees   the end angle of the 3D rotation
-   * @param centerX     the X center of the 3D rotation
-   * @param centerY     the Y center of the 3D rotation
-   * @param reverse     true if the translation should be reversed, false otherwise
+   * 
+   * @param fromDegrees
+   *          the start angle of the 3D rotation
+   * @param toDegrees
+   *          the end angle of the 3D rotation
+   * @param centerX
+   *          the X center of the 3D rotation
+   * @param centerY
+   *          the Y center of the 3D rotation
+   * @param reverse
+   *          true if the translation should be reversed, false otherwise
    */
-  public Rotate3dAnimation(float fromDegrees, float toDegrees, float centerX, float centerY, float depthZ,
-                           boolean reverse) {
-    mFromDegrees = fromDegrees;
-    mToDegrees = toDegrees;
-    mCenterX = centerX;
-    mCenterY = centerY;
-    mDepthZ = depthZ;
-    mReverse = reverse;
+  public Rotate3dAnimation(final float fromDegrees, final float toDegrees, final float centerX, final float centerY, final float depthZ, final boolean reverse) {
+    this.mFromDegrees = fromDegrees;
+    this.mToDegrees = toDegrees;
+    this.mCenterX = centerX;
+    this.mCenterY = centerY;
+    this.mDepthZ = depthZ;
+    this.mReverse = reverse;
   }
 
-  @Override
-  public void initialize(int width, int height, int parentWidth, int parentHeight) {
+  @Override public void initialize(final int width, final int height, final int parentWidth, final int parentHeight) {
     super.initialize(width, height, parentWidth, parentHeight);
-    mCamera = new Camera();
+    this.mCamera = new Camera();
   }
 
-  @Override
-  protected void applyTransformation(float interpolatedTime, Transformation t) {
-    final float fromDegrees = mFromDegrees;
-    float degrees = fromDegrees + ((mToDegrees - fromDegrees) * interpolatedTime);
-    final float centerX = mCenterX;
-    final float centerY = mCenterY;
-    final Camera camera = mCamera;
+  @Override protected void applyTransformation(final float interpolatedTime, final Transformation t) {
+    final float fromDegrees = this.mFromDegrees;
+    final float degrees = fromDegrees + (this.mToDegrees - fromDegrees) * interpolatedTime;
+    final float centerX = this.mCenterX;
+    final float centerY = this.mCenterY;
+    final Camera camera = this.mCamera;
     final Matrix matrix = t.getMatrix();
     camera.save();
-    if (mReverse) {
-      camera.translate(0.0f, 0.0f, mDepthZ * interpolatedTime);
+    if (this.mReverse) {
+      camera.translate(0.0f, 0.0f, this.mDepthZ * interpolatedTime);
     } else {
-      camera.translate(0.0f, 0.0f, mDepthZ * (1.0f - interpolatedTime));
+      camera.translate(0.0f, 0.0f, this.mDepthZ * (1.0f - interpolatedTime));
     }
     camera.rotateY(degrees);
     camera.getMatrix(matrix);

@@ -39,11 +39,10 @@ public class ScoreCache extends AbstractCache {
   }
 
   private ScoreProvider[] getProviders() {
-    return new ScoreProvider[]{this.rottenTomatoesScoreProvider, this.metacriticScoreProvider, this.googleScoreProvider, this.noneScoreProvider};
+    return new ScoreProvider[] { this.rottenTomatoesScoreProvider, this.metacriticScoreProvider, this.googleScoreProvider, this.noneScoreProvider };
   }
 
-  @Override
-  public void shutdown() {
+  @Override public void shutdown() {
     super.shutdown();
     for (final ScoreProvider provider : getProviders()) {
       provider.shutdown();
@@ -116,16 +115,14 @@ public class ScoreCache extends AbstractCache {
     }
   }
 
-  @Override
-  public void clearStaleData() {
+  @Override public void clearStaleData() {
     super.clearStaleData();
     for (final ScoreProvider provider : getProviders()) {
       provider.clearStaleData();
     }
   }
 
-  @Override
-  protected List<File> getCacheDirectories() {
+  @Override protected List<File> getCacheDirectories() {
     return Collections.emptyList();
   }
 }

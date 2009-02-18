@@ -12,11 +12,35 @@ public final class NowPlaying {
   private static final com.google.protobuf.Descriptors.FileDescriptor descriptor = buildDescriptor();
 
   private static com.google.protobuf.Descriptors.FileDescriptor buildDescriptor() {
-    java.lang.String descriptorData = "\n\020NowPlaying.proto\"M\n\rShowtimeProto\022\014\n\004T" + "ime\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021" + "\n\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!" + "\n\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Ven" + "dor\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMovieP" + "roto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022" + "\016\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Gen" + "re\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRati" + "ng\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t" + "\022\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubb" + "ed\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDa" + "te\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030" + "\001 \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001" + "(\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPosta" + "lCode\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 " + "\001(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001" + "\"\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(" + "\0132\013.MovieProto\022U\n\030TheaterAndMovieShowtim" + "es\030\006 \003(\01323.TheaterListingsProto.TheaterA" + "ndMovieShowtimesProto\032\200\002\n\035TheaterAndMovi" + "eShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theat" + "erProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.The" + "aterListingsProto.TheaterAndMovieShowtim" + "esProto.MovieAndShowtimesProto\032X\n\026MovieA" + "ndShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(" + "\t\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto" + "\"\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002" + " \001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n" + "\007Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Aut" + "hor\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPr" + "oto\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProtoB\002H\001";
+    final java.lang.String descriptorData = "\n\020NowPlaying.proto\"M\n\rShowtimeProto\022\014\n\004T"
+      + "ime\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021"
+      + "\n\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!" + "\n\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Ven"
+      + "dor\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMovieP"
+      + "roto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022"
+      + "\016\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Gen"
+      + "re\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRati"
+      + "ng\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t"
+      + "\022\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubb"
+      + "ed\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDa"
+      + "te\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030"
+      + "\001 \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001"
+      + "(\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPosta"
+      + "lCode\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 "
+      + "\001(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001"
+      + "\"\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(" + "\0132\013.MovieProto\022U\n\030TheaterAndMovieShowtim"
+      + "es\030\006 \003(\01323.TheaterListingsProto.TheaterA" + "ndMovieShowtimesProto\032\200\002\n\035TheaterAndMovi"
+      + "eShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theat" + "erProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.The"
+      + "aterListingsProto.TheaterAndMovieShowtim" + "esProto.MovieAndShowtimesProto\032X\n\026MovieA"
+      + "ndShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(" + "\t\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto"
+      + "\"\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002"
+      + " \001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n"
+      + "\007Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Aut"
+      + "hor\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPr"
+      + "oto\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProtoB\002H\001";
     try {
       return com.google.protobuf.Descriptors.FileDescriptor.internalBuildGeneratedFileFrom(descriptorData,
-                                                                                           new com.google.protobuf.Descriptors.FileDescriptor[]{});
-    } catch (Exception e) {
+          new com.google.protobuf.Descriptors.FileDescriptor[] {});
+    } catch (final Exception e) {
       throw new RuntimeException("Failed to parse protocol buffer descriptor for " + "\"NowPlaying.proto\".", e);
     }
   }
@@ -40,7 +64,7 @@ public final class NowPlaying {
       return NowPlaying.internal_static_ShowtimeProto_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
       return NowPlaying.internal_static_ShowtimeProto_fieldAccessorTable;
     }
 
@@ -49,11 +73,11 @@ public final class NowPlaying {
     private java.lang.String time_ = "";
 
     public boolean hasTime() {
-      return hasTime;
+      return this.hasTime;
     }
 
     public java.lang.String getTime() {
-      return time_;
+      return this.time_;
     }
 
     // optional string Url = 2;
@@ -61,61 +85,61 @@ public final class NowPlaying {
     private java.lang.String url_ = "";
 
     public boolean hasUrl() {
-      return hasUrl;
+      return this.hasUrl;
     }
 
     public java.lang.String getUrl() {
-      return url_;
+      return this.url_;
     }
 
     // repeated string Dubbed = 3;
     private java.util.List<java.lang.String> dubbed_ = java.util.Collections.emptyList();
 
     public java.util.List<java.lang.String> getDubbedList() {
-      return dubbed_;
+      return this.dubbed_;
     }
 
     public int getDubbedCount() {
-      return dubbed_.size();
+      return this.dubbed_.size();
     }
 
-    public java.lang.String getDubbed(int index) {
-      return dubbed_.get(index);
+    public java.lang.String getDubbed(final int index) {
+      return this.dubbed_.get(index);
     }
 
     // repeated string Subtitled = 4;
     private java.util.List<java.lang.String> subtitled_ = java.util.Collections.emptyList();
 
     public java.util.List<java.lang.String> getSubtitledList() {
-      return subtitled_;
+      return this.subtitled_;
     }
 
     public int getSubtitledCount() {
-      return subtitled_.size();
+      return this.subtitled_.size();
     }
 
-    public java.lang.String getSubtitled(int index) {
-      return subtitled_.get(index);
+    public java.lang.String getSubtitled(final int index) {
+      return this.subtitled_.get(index);
     }
 
-    public final boolean isInitialized() {
-      if (!hasTime) {
+    @Override public final boolean isInitialized() {
+      if (!this.hasTime) {
         return false;
       }
       return true;
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (hasTime()) {
         output.writeString(1, getTime());
       }
       if (hasUrl()) {
         output.writeString(2, getUrl());
       }
-      for (java.lang.String element : getDubbedList()) {
+      for (final java.lang.String element : getDubbedList()) {
         output.writeString(3, element);
       }
-      for (java.lang.String element : getSubtitledList()) {
+      for (final java.lang.String element : getSubtitledList()) {
         output.writeString(4, element);
       }
       getUnknownFields().writeTo(output);
@@ -123,8 +147,8 @@ public final class NowPlaying {
 
     private int memoizedSerializedSize = -1;
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+    @Override public int getSerializedSize() {
+      int size = this.memoizedSerializedSize;
       if (size != -1) {
         return size;
       }
@@ -136,53 +160,50 @@ public final class NowPlaying {
       if (hasUrl()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(2, getUrl());
       }
-      for (java.lang.String element : getDubbedList()) {
+      for (final java.lang.String element : getDubbedList()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(3, element);
       }
-      for (java.lang.String element : getSubtitledList()) {
+      for (final java.lang.String element : getSubtitledList()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(4, element);
       }
       size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      this.memoizedSerializedSize = size;
       return size;
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ShowtimeProto parseFrom(final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(com.google.protobuf.ByteString data,
-                                                     com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ShowtimeProto parseFrom(final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ShowtimeProto parseFrom(final byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(byte[] data,
-                                                     com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ShowtimeProto parseFrom(final byte[] data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(java.io.InputStream input) throws java.io.IOException {
+    public static NowPlaying.ShowtimeProto parseFrom(final java.io.InputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(java.io.InputStream input,
-                                                     com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.ShowtimeProto parseFrom(final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.ShowtimeProto parseFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.ShowtimeProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                     com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.ShowtimeProto parseFrom(final com.google.protobuf.CodedInputStream input,
+        final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -194,7 +215,7 @@ public final class NowPlaying {
       return new Builder();
     }
 
-    public static Builder newBuilder(NowPlaying.ShowtimeProto prototype) {
+    public static Builder newBuilder(final NowPlaying.ShowtimeProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
 
@@ -205,20 +226,20 @@ public final class NowPlaying {
 
       NowPlaying.ShowtimeProto result = new NowPlaying.ShowtimeProto();
 
-      protected NowPlaying.ShowtimeProto internalGetResult() {
-        return result;
+      @Override protected NowPlaying.ShowtimeProto internalGetResult() {
+        return this.result;
       }
 
-      public Builder clear() {
-        result = new NowPlaying.ShowtimeProto();
+      @Override public Builder clear() {
+        this.result = new NowPlaying.ShowtimeProto();
         return this;
       }
 
-      public Builder clone() {
-        return new Builder().mergeFrom(result);
+      @Override public Builder clone() {
+        return new Builder().mergeFrom(this.result);
       }
 
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return NowPlaying.ShowtimeProto.getDescriptor();
       }
 
@@ -228,31 +249,31 @@ public final class NowPlaying {
 
       public NowPlaying.ShowtimeProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result);
+          throw new com.google.protobuf.UninitializedMessageException(this.result);
         }
         return buildPartial();
       }
 
       private NowPlaying.ShowtimeProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
 
       public NowPlaying.ShowtimeProto buildPartial() {
-        if (result.dubbed_ != java.util.Collections.EMPTY_LIST) {
-          result.dubbed_ = java.util.Collections.unmodifiableList(result.dubbed_);
+        if (this.result.dubbed_ != java.util.Collections.EMPTY_LIST) {
+          this.result.dubbed_ = java.util.Collections.unmodifiableList(this.result.dubbed_);
         }
-        if (result.subtitled_ != java.util.Collections.EMPTY_LIST) {
-          result.subtitled_ = java.util.Collections.unmodifiableList(result.subtitled_);
+        if (this.result.subtitled_ != java.util.Collections.EMPTY_LIST) {
+          this.result.subtitled_ = java.util.Collections.unmodifiableList(this.result.subtitled_);
         }
-        NowPlaying.ShowtimeProto returnMe = result;
-        result = null;
+        final NowPlaying.ShowtimeProto returnMe = this.result;
+        this.result = null;
         return returnMe;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
+      @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.ShowtimeProto) {
           return mergeFrom((NowPlaying.ShowtimeProto) other);
         } else {
@@ -261,7 +282,7 @@ public final class NowPlaying {
         }
       }
 
-      public Builder mergeFrom(NowPlaying.ShowtimeProto other) {
+      public Builder mergeFrom(final NowPlaying.ShowtimeProto other) {
         if (other == NowPlaying.ShowtimeProto.getDefaultInstance()) {
           return this;
         }
@@ -272,179 +293,178 @@ public final class NowPlaying {
           setUrl(other.getUrl());
         }
         if (!other.dubbed_.isEmpty()) {
-          if (result.dubbed_.isEmpty()) {
-            result.dubbed_ = new java.util.ArrayList<java.lang.String>();
+          if (this.result.dubbed_.isEmpty()) {
+            this.result.dubbed_ = new java.util.ArrayList<java.lang.String>();
           }
-          result.dubbed_.addAll(other.dubbed_);
+          this.result.dubbed_.addAll(other.dubbed_);
         }
         if (!other.subtitled_.isEmpty()) {
-          if (result.subtitled_.isEmpty()) {
-            result.subtitled_ = new java.util.ArrayList<java.lang.String>();
+          if (this.result.subtitled_.isEmpty()) {
+            this.result.subtitled_ = new java.util.ArrayList<java.lang.String>();
           }
-          result.subtitled_.addAll(other.subtitled_);
+          this.result.subtitled_.addAll(other.subtitled_);
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
         return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                               com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      throws java.io.IOException {
+        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
         while (true) {
-          int tag = input.readTag();
+          final int tag = input.readTag();
           switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
+          case 0:
+            setUnknownFields(unknownFields.build());
+            return this;
+          default: {
+            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+              setUnknownFields(unknownFields.build());
               return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                return this;
-              }
-              break;
             }
-            case 10: {
-              setTime(input.readString());
-              break;
-            }
-            case 18: {
-              setUrl(input.readString());
-              break;
-            }
-            case 26: {
-              addDubbed(input.readString());
-              break;
-            }
-            case 34: {
-              addSubtitled(input.readString());
-              break;
-            }
+            break;
+          }
+          case 10: {
+            setTime(input.readString());
+            break;
+          }
+          case 18: {
+            setUrl(input.readString());
+            break;
+          }
+          case 26: {
+            addDubbed(input.readString());
+            break;
+          }
+          case 34: {
+            addSubtitled(input.readString());
+            break;
+          }
           }
         }
       }
 
       // required string Time = 1;
       public boolean hasTime() {
-        return result.hasTime();
+        return this.result.hasTime();
       }
 
       public java.lang.String getTime() {
-        return result.getTime();
+        return this.result.getTime();
       }
 
-      public Builder setTime(java.lang.String value) {
-        result.hasTime = true;
-        result.time_ = value;
+      public Builder setTime(final java.lang.String value) {
+        this.result.hasTime = true;
+        this.result.time_ = value;
         return this;
       }
 
       public Builder clearTime() {
-        result.hasTime = false;
-        result.time_ = "";
+        this.result.hasTime = false;
+        this.result.time_ = "";
         return this;
       }
 
       // optional string Url = 2;
       public boolean hasUrl() {
-        return result.hasUrl();
+        return this.result.hasUrl();
       }
 
       public java.lang.String getUrl() {
-        return result.getUrl();
+        return this.result.getUrl();
       }
 
-      public Builder setUrl(java.lang.String value) {
-        result.hasUrl = true;
-        result.url_ = value;
+      public Builder setUrl(final java.lang.String value) {
+        this.result.hasUrl = true;
+        this.result.url_ = value;
         return this;
       }
 
       public Builder clearUrl() {
-        result.hasUrl = false;
-        result.url_ = "";
+        this.result.hasUrl = false;
+        this.result.url_ = "";
         return this;
       }
 
       // repeated string Dubbed = 3;
       public java.util.List<java.lang.String> getDubbedList() {
-        return java.util.Collections.unmodifiableList(result.dubbed_);
+        return java.util.Collections.unmodifiableList(this.result.dubbed_);
       }
 
       public int getDubbedCount() {
-        return result.getDubbedCount();
+        return this.result.getDubbedCount();
       }
 
-      public java.lang.String getDubbed(int index) {
-        return result.getDubbed(index);
+      public java.lang.String getDubbed(final int index) {
+        return this.result.getDubbed(index);
       }
 
-      public Builder setDubbed(int index, java.lang.String value) {
-        result.dubbed_.set(index, value);
+      public Builder setDubbed(final int index, final java.lang.String value) {
+        this.result.dubbed_.set(index, value);
         return this;
       }
 
-      public Builder addDubbed(java.lang.String value) {
-        if (result.dubbed_.isEmpty()) {
-          result.dubbed_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addDubbed(final java.lang.String value) {
+        if (this.result.dubbed_.isEmpty()) {
+          this.result.dubbed_ = new java.util.ArrayList<java.lang.String>();
         }
-        result.dubbed_.add(value);
+        this.result.dubbed_.add(value);
         return this;
       }
 
-      public Builder addAllDubbed(java.lang.Iterable<? extends java.lang.String> values) {
-        if (result.dubbed_.isEmpty()) {
-          result.dubbed_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addAllDubbed(final java.lang.Iterable<? extends java.lang.String> values) {
+        if (this.result.dubbed_.isEmpty()) {
+          this.result.dubbed_ = new java.util.ArrayList<java.lang.String>();
         }
-        super.addAll(values, result.dubbed_);
+        super.addAll(values, this.result.dubbed_);
         return this;
       }
 
       public Builder clearDubbed() {
-        result.dubbed_ = java.util.Collections.emptyList();
+        this.result.dubbed_ = java.util.Collections.emptyList();
         return this;
       }
 
       // repeated string Subtitled = 4;
       public java.util.List<java.lang.String> getSubtitledList() {
-        return java.util.Collections.unmodifiableList(result.subtitled_);
+        return java.util.Collections.unmodifiableList(this.result.subtitled_);
       }
 
       public int getSubtitledCount() {
-        return result.getSubtitledCount();
+        return this.result.getSubtitledCount();
       }
 
-      public java.lang.String getSubtitled(int index) {
-        return result.getSubtitled(index);
+      public java.lang.String getSubtitled(final int index) {
+        return this.result.getSubtitled(index);
       }
 
-      public Builder setSubtitled(int index, java.lang.String value) {
-        result.subtitled_.set(index, value);
+      public Builder setSubtitled(final int index, final java.lang.String value) {
+        this.result.subtitled_.set(index, value);
         return this;
       }
 
-      public Builder addSubtitled(java.lang.String value) {
-        if (result.subtitled_.isEmpty()) {
-          result.subtitled_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addSubtitled(final java.lang.String value) {
+        if (this.result.subtitled_.isEmpty()) {
+          this.result.subtitled_ = new java.util.ArrayList<java.lang.String>();
         }
-        result.subtitled_.add(value);
+        this.result.subtitled_.add(value);
         return this;
       }
 
-      public Builder addAllSubtitled(java.lang.Iterable<? extends java.lang.String> values) {
-        if (result.subtitled_.isEmpty()) {
-          result.subtitled_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addAllSubtitled(final java.lang.Iterable<? extends java.lang.String> values) {
+        if (this.result.subtitled_.isEmpty()) {
+          this.result.subtitled_ = new java.util.ArrayList<java.lang.String>();
         }
-        super.addAll(values, result.subtitled_);
+        super.addAll(values, this.result.subtitled_);
         return this;
       }
 
       public Builder clearSubtitled() {
-        result.subtitled_ = java.util.Collections.emptyList();
+        this.result.subtitled_ = java.util.Collections.emptyList();
         return this;
       }
     }
@@ -469,7 +489,7 @@ public final class NowPlaying {
       return NowPlaying.internal_static_AllShowtimesProto_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
       return NowPlaying.internal_static_AllShowtimesProto_fieldAccessorTable;
     }
 
@@ -477,15 +497,15 @@ public final class NowPlaying {
     private java.util.List<NowPlaying.ShowtimeProto> showtimes_ = java.util.Collections.emptyList();
 
     public java.util.List<NowPlaying.ShowtimeProto> getShowtimesList() {
-      return showtimes_;
+      return this.showtimes_;
     }
 
     public int getShowtimesCount() {
-      return showtimes_.size();
+      return this.showtimes_.size();
     }
 
-    public NowPlaying.ShowtimeProto getShowtimes(int index) {
-      return showtimes_.get(index);
+    public NowPlaying.ShowtimeProto getShowtimes(final int index) {
+      return this.showtimes_.get(index);
     }
 
     // optional string Vendor = 2;
@@ -493,11 +513,11 @@ public final class NowPlaying {
     private java.lang.String vendor_ = "";
 
     public boolean hasVendor() {
-      return hasVendor;
+      return this.hasVendor;
     }
 
     public java.lang.String getVendor() {
-      return vendor_;
+      return this.vendor_;
     }
 
     // optional string Captioning = 3;
@@ -505,15 +525,15 @@ public final class NowPlaying {
     private java.lang.String captioning_ = "";
 
     public boolean hasCaptioning() {
-      return hasCaptioning;
+      return this.hasCaptioning;
     }
 
     public java.lang.String getCaptioning() {
-      return captioning_;
+      return this.captioning_;
     }
 
-    public final boolean isInitialized() {
-      for (NowPlaying.ShowtimeProto element : getShowtimesList()) {
+    @Override public final boolean isInitialized() {
+      for (final NowPlaying.ShowtimeProto element : getShowtimesList()) {
         if (!element.isInitialized()) {
           return false;
         }
@@ -521,8 +541,8 @@ public final class NowPlaying {
       return true;
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
-      for (NowPlaying.ShowtimeProto element : getShowtimesList()) {
+    @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+      for (final NowPlaying.ShowtimeProto element : getShowtimesList()) {
         output.writeMessage(1, element);
       }
       if (hasVendor()) {
@@ -536,14 +556,14 @@ public final class NowPlaying {
 
     private int memoizedSerializedSize = -1;
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+    @Override public int getSerializedSize() {
+      int size = this.memoizedSerializedSize;
       if (size != -1) {
         return size;
       }
 
       size = 0;
-      for (NowPlaying.ShowtimeProto element : getShowtimesList()) {
+      for (final NowPlaying.ShowtimeProto element : getShowtimesList()) {
         size += com.google.protobuf.CodedOutputStream.computeMessageSize(1, element);
       }
       if (hasVendor()) {
@@ -553,46 +573,44 @@ public final class NowPlaying {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(3, getCaptioning());
       }
       size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      this.memoizedSerializedSize = size;
       return size;
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.AllShowtimesProto parseFrom(final com.google.protobuf.ByteString data)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(com.google.protobuf.ByteString data,
-                                                         com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.AllShowtimesProto parseFrom(final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.AllShowtimesProto parseFrom(final byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(byte[] data,
-                                                         com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.AllShowtimesProto parseFrom(final byte[] data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(java.io.InputStream input) throws java.io.IOException {
+    public static NowPlaying.AllShowtimesProto parseFrom(final java.io.InputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(java.io.InputStream input,
-                                                         com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.AllShowtimesProto parseFrom(final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.AllShowtimesProto parseFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.AllShowtimesProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                         com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.AllShowtimesProto parseFrom(final com.google.protobuf.CodedInputStream input,
+        final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -604,7 +622,7 @@ public final class NowPlaying {
       return new Builder();
     }
 
-    public static Builder newBuilder(NowPlaying.AllShowtimesProto prototype) {
+    public static Builder newBuilder(final NowPlaying.AllShowtimesProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
 
@@ -615,20 +633,20 @@ public final class NowPlaying {
 
       NowPlaying.AllShowtimesProto result = new NowPlaying.AllShowtimesProto();
 
-      protected NowPlaying.AllShowtimesProto internalGetResult() {
-        return result;
+      @Override protected NowPlaying.AllShowtimesProto internalGetResult() {
+        return this.result;
       }
 
-      public Builder clear() {
-        result = new NowPlaying.AllShowtimesProto();
+      @Override public Builder clear() {
+        this.result = new NowPlaying.AllShowtimesProto();
         return this;
       }
 
-      public Builder clone() {
-        return new Builder().mergeFrom(result);
+      @Override public Builder clone() {
+        return new Builder().mergeFrom(this.result);
       }
 
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return NowPlaying.AllShowtimesProto.getDescriptor();
       }
 
@@ -638,28 +656,28 @@ public final class NowPlaying {
 
       public NowPlaying.AllShowtimesProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result);
+          throw new com.google.protobuf.UninitializedMessageException(this.result);
         }
         return buildPartial();
       }
 
       private NowPlaying.AllShowtimesProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
 
       public NowPlaying.AllShowtimesProto buildPartial() {
-        if (result.showtimes_ != java.util.Collections.EMPTY_LIST) {
-          result.showtimes_ = java.util.Collections.unmodifiableList(result.showtimes_);
+        if (this.result.showtimes_ != java.util.Collections.EMPTY_LIST) {
+          this.result.showtimes_ = java.util.Collections.unmodifiableList(this.result.showtimes_);
         }
-        NowPlaying.AllShowtimesProto returnMe = result;
-        result = null;
+        final NowPlaying.AllShowtimesProto returnMe = this.result;
+        this.result = null;
         return returnMe;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
+      @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.AllShowtimesProto) {
           return mergeFrom((NowPlaying.AllShowtimesProto) other);
         } else {
@@ -668,15 +686,15 @@ public final class NowPlaying {
         }
       }
 
-      public Builder mergeFrom(NowPlaying.AllShowtimesProto other) {
+      public Builder mergeFrom(final NowPlaying.AllShowtimesProto other) {
         if (other == NowPlaying.AllShowtimesProto.getDefaultInstance()) {
           return this;
         }
         if (!other.showtimes_.isEmpty()) {
-          if (result.showtimes_.isEmpty()) {
-            result.showtimes_ = new java.util.ArrayList<NowPlaying.ShowtimeProto>();
+          if (this.result.showtimes_.isEmpty()) {
+            this.result.showtimes_ = new java.util.ArrayList<NowPlaying.ShowtimeProto>();
           }
-          result.showtimes_.addAll(other.showtimes_);
+          this.result.showtimes_.addAll(other.showtimes_);
         }
         if (other.hasVendor()) {
           setVendor(other.getVendor());
@@ -684,140 +702,139 @@ public final class NowPlaying {
         if (other.hasCaptioning()) {
           setCaptioning(other.getCaptioning());
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
         return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                               com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      throws java.io.IOException {
+        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
         while (true) {
-          int tag = input.readTag();
+          final int tag = input.readTag();
           switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
+          case 0:
+            setUnknownFields(unknownFields.build());
+            return this;
+          default: {
+            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+              setUnknownFields(unknownFields.build());
               return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                return this;
-              }
-              break;
             }
-            case 10: {
-              NowPlaying.ShowtimeProto.Builder subBuilder = NowPlaying.ShowtimeProto.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addShowtimes(subBuilder.buildPartial());
-              break;
-            }
-            case 18: {
-              setVendor(input.readString());
-              break;
-            }
-            case 26: {
-              setCaptioning(input.readString());
-              break;
-            }
+            break;
+          }
+          case 10: {
+            final NowPlaying.ShowtimeProto.Builder subBuilder = NowPlaying.ShowtimeProto.newBuilder();
+            input.readMessage(subBuilder, extensionRegistry);
+            addShowtimes(subBuilder.buildPartial());
+            break;
+          }
+          case 18: {
+            setVendor(input.readString());
+            break;
+          }
+          case 26: {
+            setCaptioning(input.readString());
+            break;
+          }
           }
         }
       }
 
       // repeated .ShowtimeProto Showtimes = 1;
       public java.util.List<NowPlaying.ShowtimeProto> getShowtimesList() {
-        return java.util.Collections.unmodifiableList(result.showtimes_);
+        return java.util.Collections.unmodifiableList(this.result.showtimes_);
       }
 
       public int getShowtimesCount() {
-        return result.getShowtimesCount();
+        return this.result.getShowtimesCount();
       }
 
-      public NowPlaying.ShowtimeProto getShowtimes(int index) {
-        return result.getShowtimes(index);
+      public NowPlaying.ShowtimeProto getShowtimes(final int index) {
+        return this.result.getShowtimes(index);
       }
 
-      public Builder setShowtimes(int index, NowPlaying.ShowtimeProto value) {
-        result.showtimes_.set(index, value);
+      public Builder setShowtimes(final int index, final NowPlaying.ShowtimeProto value) {
+        this.result.showtimes_.set(index, value);
         return this;
       }
 
-      public Builder setShowtimes(int index, NowPlaying.ShowtimeProto.Builder builderForValue) {
-        result.showtimes_.set(index, builderForValue.build());
+      public Builder setShowtimes(final int index, final NowPlaying.ShowtimeProto.Builder builderForValue) {
+        this.result.showtimes_.set(index, builderForValue.build());
         return this;
       }
 
-      public Builder addShowtimes(NowPlaying.ShowtimeProto value) {
-        if (result.showtimes_.isEmpty()) {
-          result.showtimes_ = new java.util.ArrayList<NowPlaying.ShowtimeProto>();
+      public Builder addShowtimes(final NowPlaying.ShowtimeProto value) {
+        if (this.result.showtimes_.isEmpty()) {
+          this.result.showtimes_ = new java.util.ArrayList<NowPlaying.ShowtimeProto>();
         }
-        result.showtimes_.add(value);
+        this.result.showtimes_.add(value);
         return this;
       }
 
-      public Builder addShowtimes(NowPlaying.ShowtimeProto.Builder builderForValue) {
-        if (result.showtimes_.isEmpty()) {
-          result.showtimes_ = new java.util.ArrayList<NowPlaying.ShowtimeProto>();
+      public Builder addShowtimes(final NowPlaying.ShowtimeProto.Builder builderForValue) {
+        if (this.result.showtimes_.isEmpty()) {
+          this.result.showtimes_ = new java.util.ArrayList<NowPlaying.ShowtimeProto>();
         }
-        result.showtimes_.add(builderForValue.build());
+        this.result.showtimes_.add(builderForValue.build());
         return this;
       }
 
-      public Builder addAllShowtimes(java.lang.Iterable<? extends NowPlaying.ShowtimeProto> values) {
-        if (result.showtimes_.isEmpty()) {
-          result.showtimes_ = new java.util.ArrayList<NowPlaying.ShowtimeProto>();
+      public Builder addAllShowtimes(final java.lang.Iterable<? extends NowPlaying.ShowtimeProto> values) {
+        if (this.result.showtimes_.isEmpty()) {
+          this.result.showtimes_ = new java.util.ArrayList<NowPlaying.ShowtimeProto>();
         }
-        super.addAll(values, result.showtimes_);
+        super.addAll(values, this.result.showtimes_);
         return this;
       }
 
       public Builder clearShowtimes() {
-        result.showtimes_ = java.util.Collections.emptyList();
+        this.result.showtimes_ = java.util.Collections.emptyList();
         return this;
       }
 
       // optional string Vendor = 2;
       public boolean hasVendor() {
-        return result.hasVendor();
+        return this.result.hasVendor();
       }
 
       public java.lang.String getVendor() {
-        return result.getVendor();
+        return this.result.getVendor();
       }
 
-      public Builder setVendor(java.lang.String value) {
-        result.hasVendor = true;
-        result.vendor_ = value;
+      public Builder setVendor(final java.lang.String value) {
+        this.result.hasVendor = true;
+        this.result.vendor_ = value;
         return this;
       }
 
       public Builder clearVendor() {
-        result.hasVendor = false;
-        result.vendor_ = "";
+        this.result.hasVendor = false;
+        this.result.vendor_ = "";
         return this;
       }
 
       // optional string Captioning = 3;
       public boolean hasCaptioning() {
-        return result.hasCaptioning();
+        return this.result.hasCaptioning();
       }
 
       public java.lang.String getCaptioning() {
-        return result.getCaptioning();
+        return this.result.getCaptioning();
       }
 
-      public Builder setCaptioning(java.lang.String value) {
-        result.hasCaptioning = true;
-        result.captioning_ = value;
+      public Builder setCaptioning(final java.lang.String value) {
+        this.result.hasCaptioning = true;
+        this.result.captioning_ = value;
         return this;
       }
 
       public Builder clearCaptioning() {
-        result.hasCaptioning = false;
-        result.captioning_ = "";
+        this.result.hasCaptioning = false;
+        this.result.captioning_ = "";
         return this;
       }
     }
@@ -842,7 +859,7 @@ public final class NowPlaying {
       return NowPlaying.internal_static_MovieProto_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
       return NowPlaying.internal_static_MovieProto_fieldAccessorTable;
     }
 
@@ -851,11 +868,11 @@ public final class NowPlaying {
     private java.lang.String identifier_ = "";
 
     public boolean hasIdentifier() {
-      return hasIdentifier;
+      return this.hasIdentifier;
     }
 
     public java.lang.String getIdentifier() {
-      return identifier_;
+      return this.identifier_;
     }
 
     // optional string Title = 2;
@@ -863,11 +880,11 @@ public final class NowPlaying {
     private java.lang.String title_ = "";
 
     public boolean hasTitle() {
-      return hasTitle;
+      return this.hasTitle;
     }
 
     public java.lang.String getTitle() {
-      return title_;
+      return this.title_;
     }
 
     // optional int32 Length = 3;
@@ -875,11 +892,11 @@ public final class NowPlaying {
     private int length_ = 0;
 
     public boolean hasLength() {
-      return hasLength;
+      return this.hasLength;
     }
 
     public int getLength() {
-      return length_;
+      return this.length_;
     }
 
     // optional string Language = 4;
@@ -887,11 +904,11 @@ public final class NowPlaying {
     private java.lang.String language_ = "";
 
     public boolean hasLanguage() {
-      return hasLanguage;
+      return this.hasLanguage;
     }
 
     public java.lang.String getLanguage() {
-      return language_;
+      return this.language_;
     }
 
     // optional string Genre = 5;
@@ -899,11 +916,11 @@ public final class NowPlaying {
     private java.lang.String genre_ = "";
 
     public boolean hasGenre() {
-      return hasGenre;
+      return this.hasGenre;
     }
 
     public java.lang.String getGenre() {
-      return genre_;
+      return this.genre_;
     }
 
     // optional string Description = 6;
@@ -911,11 +928,11 @@ public final class NowPlaying {
     private java.lang.String description_ = "";
 
     public boolean hasDescription() {
-      return hasDescription;
+      return this.hasDescription;
     }
 
     public java.lang.String getDescription() {
-      return description_;
+      return this.description_;
     }
 
     // optional string RawRating = 8;
@@ -923,11 +940,11 @@ public final class NowPlaying {
     private java.lang.String rawRating_ = "";
 
     public boolean hasRawRating() {
-      return hasRawRating;
+      return this.hasRawRating;
     }
 
     public java.lang.String getRawRating() {
-      return rawRating_;
+      return this.rawRating_;
     }
 
     // optional int32 Score = 9;
@@ -935,11 +952,11 @@ public final class NowPlaying {
     private int score_ = 0;
 
     public boolean hasScore() {
-      return hasScore;
+      return this.hasScore;
     }
 
     public int getScore() {
-      return score_;
+      return this.score_;
     }
 
     // optional string IMDbUrl = 10;
@@ -947,71 +964,71 @@ public final class NowPlaying {
     private java.lang.String iMDbUrl_ = "";
 
     public boolean hasIMDbUrl() {
-      return hasIMDbUrl;
+      return this.hasIMDbUrl;
     }
 
     public java.lang.String getIMDbUrl() {
-      return iMDbUrl_;
+      return this.iMDbUrl_;
     }
 
     // repeated string Director = 11;
     private java.util.List<java.lang.String> director_ = java.util.Collections.emptyList();
 
     public java.util.List<java.lang.String> getDirectorList() {
-      return director_;
+      return this.director_;
     }
 
     public int getDirectorCount() {
-      return director_.size();
+      return this.director_.size();
     }
 
-    public java.lang.String getDirector(int index) {
-      return director_.get(index);
+    public java.lang.String getDirector(final int index) {
+      return this.director_.get(index);
     }
 
     // repeated string Cast = 12;
     private java.util.List<java.lang.String> cast_ = java.util.Collections.emptyList();
 
     public java.util.List<java.lang.String> getCastList() {
-      return cast_;
+      return this.cast_;
     }
 
     public int getCastCount() {
-      return cast_.size();
+      return this.cast_.size();
     }
 
-    public java.lang.String getCast(int index) {
-      return cast_.get(index);
+    public java.lang.String getCast(final int index) {
+      return this.cast_.get(index);
     }
 
     // repeated string Dubbed = 13;
     private java.util.List<java.lang.String> dubbed_ = java.util.Collections.emptyList();
 
     public java.util.List<java.lang.String> getDubbedList() {
-      return dubbed_;
+      return this.dubbed_;
     }
 
     public int getDubbedCount() {
-      return dubbed_.size();
+      return this.dubbed_.size();
     }
 
-    public java.lang.String getDubbed(int index) {
-      return dubbed_.get(index);
+    public java.lang.String getDubbed(final int index) {
+      return this.dubbed_.get(index);
     }
 
     // repeated string Subtitled = 14;
     private java.util.List<java.lang.String> subtitled_ = java.util.Collections.emptyList();
 
     public java.util.List<java.lang.String> getSubtitledList() {
-      return subtitled_;
+      return this.subtitled_;
     }
 
     public int getSubtitledCount() {
-      return subtitled_.size();
+      return this.subtitled_.size();
     }
 
-    public java.lang.String getSubtitled(int index) {
-      return subtitled_.get(index);
+    public java.lang.String getSubtitled(final int index) {
+      return this.subtitled_.get(index);
     }
 
     // optional string ReleaseDate = 15;
@@ -1019,18 +1036,18 @@ public final class NowPlaying {
     private java.lang.String releaseDate_ = "";
 
     public boolean hasReleaseDate() {
-      return hasReleaseDate;
+      return this.hasReleaseDate;
     }
 
     public java.lang.String getReleaseDate() {
-      return releaseDate_;
+      return this.releaseDate_;
     }
 
-    public final boolean isInitialized() {
+    @Override public final boolean isInitialized() {
       return true;
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (hasIdentifier()) {
         output.writeString(1, getIdentifier());
       }
@@ -1058,16 +1075,16 @@ public final class NowPlaying {
       if (hasIMDbUrl()) {
         output.writeString(10, getIMDbUrl());
       }
-      for (java.lang.String element : getDirectorList()) {
+      for (final java.lang.String element : getDirectorList()) {
         output.writeString(11, element);
       }
-      for (java.lang.String element : getCastList()) {
+      for (final java.lang.String element : getCastList()) {
         output.writeString(12, element);
       }
-      for (java.lang.String element : getDubbedList()) {
+      for (final java.lang.String element : getDubbedList()) {
         output.writeString(13, element);
       }
-      for (java.lang.String element : getSubtitledList()) {
+      for (final java.lang.String element : getSubtitledList()) {
         output.writeString(14, element);
       }
       if (hasReleaseDate()) {
@@ -1078,8 +1095,8 @@ public final class NowPlaying {
 
     private int memoizedSerializedSize = -1;
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+    @Override public int getSerializedSize() {
+      int size = this.memoizedSerializedSize;
       if (size != -1) {
         return size;
       }
@@ -1112,62 +1129,59 @@ public final class NowPlaying {
       if (hasIMDbUrl()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(10, getIMDbUrl());
       }
-      for (java.lang.String element : getDirectorList()) {
+      for (final java.lang.String element : getDirectorList()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(11, element);
       }
-      for (java.lang.String element : getCastList()) {
+      for (final java.lang.String element : getCastList()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(12, element);
       }
-      for (java.lang.String element : getDubbedList()) {
+      for (final java.lang.String element : getDubbedList()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(13, element);
       }
-      for (java.lang.String element : getSubtitledList()) {
+      for (final java.lang.String element : getSubtitledList()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(14, element);
       }
       if (hasReleaseDate()) {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(15, getReleaseDate());
       }
       size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      this.memoizedSerializedSize = size;
       return size;
     }
 
-    public static NowPlaying.MovieProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.MovieProto parseFrom(final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(com.google.protobuf.ByteString data,
-                                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.MovieProto parseFrom(final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.MovieProto parseFrom(final byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(byte[] data,
-                                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.MovieProto parseFrom(final byte[] data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(java.io.InputStream input) throws java.io.IOException {
+    public static NowPlaying.MovieProto parseFrom(final java.io.InputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(java.io.InputStream input,
-                                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.MovieProto parseFrom(final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.MovieProto parseFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.MovieProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                  com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.MovieProto parseFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -1179,7 +1193,7 @@ public final class NowPlaying {
       return new Builder();
     }
 
-    public static Builder newBuilder(NowPlaying.MovieProto prototype) {
+    public static Builder newBuilder(final NowPlaying.MovieProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
 
@@ -1190,20 +1204,20 @@ public final class NowPlaying {
 
       NowPlaying.MovieProto result = new NowPlaying.MovieProto();
 
-      protected NowPlaying.MovieProto internalGetResult() {
-        return result;
+      @Override protected NowPlaying.MovieProto internalGetResult() {
+        return this.result;
       }
 
-      public Builder clear() {
-        result = new NowPlaying.MovieProto();
+      @Override public Builder clear() {
+        this.result = new NowPlaying.MovieProto();
         return this;
       }
 
-      public Builder clone() {
-        return new Builder().mergeFrom(result);
+      @Override public Builder clone() {
+        return new Builder().mergeFrom(this.result);
       }
 
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return NowPlaying.MovieProto.getDescriptor();
       }
 
@@ -1213,37 +1227,37 @@ public final class NowPlaying {
 
       public NowPlaying.MovieProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result);
+          throw new com.google.protobuf.UninitializedMessageException(this.result);
         }
         return buildPartial();
       }
 
       private NowPlaying.MovieProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
 
       public NowPlaying.MovieProto buildPartial() {
-        if (result.director_ != java.util.Collections.EMPTY_LIST) {
-          result.director_ = java.util.Collections.unmodifiableList(result.director_);
+        if (this.result.director_ != java.util.Collections.EMPTY_LIST) {
+          this.result.director_ = java.util.Collections.unmodifiableList(this.result.director_);
         }
-        if (result.cast_ != java.util.Collections.EMPTY_LIST) {
-          result.cast_ = java.util.Collections.unmodifiableList(result.cast_);
+        if (this.result.cast_ != java.util.Collections.EMPTY_LIST) {
+          this.result.cast_ = java.util.Collections.unmodifiableList(this.result.cast_);
         }
-        if (result.dubbed_ != java.util.Collections.EMPTY_LIST) {
-          result.dubbed_ = java.util.Collections.unmodifiableList(result.dubbed_);
+        if (this.result.dubbed_ != java.util.Collections.EMPTY_LIST) {
+          this.result.dubbed_ = java.util.Collections.unmodifiableList(this.result.dubbed_);
         }
-        if (result.subtitled_ != java.util.Collections.EMPTY_LIST) {
-          result.subtitled_ = java.util.Collections.unmodifiableList(result.subtitled_);
+        if (this.result.subtitled_ != java.util.Collections.EMPTY_LIST) {
+          this.result.subtitled_ = java.util.Collections.unmodifiableList(this.result.subtitled_);
         }
-        NowPlaying.MovieProto returnMe = result;
-        result = null;
+        final NowPlaying.MovieProto returnMe = this.result;
+        this.result = null;
         return returnMe;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
+      @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.MovieProto) {
           return mergeFrom((NowPlaying.MovieProto) other);
         } else {
@@ -1252,7 +1266,7 @@ public final class NowPlaying {
         }
       }
 
-      public Builder mergeFrom(NowPlaying.MovieProto other) {
+      public Builder mergeFrom(final NowPlaying.MovieProto other) {
         if (other == NowPlaying.MovieProto.getDefaultInstance()) {
           return this;
         }
@@ -1284,480 +1298,479 @@ public final class NowPlaying {
           setIMDbUrl(other.getIMDbUrl());
         }
         if (!other.director_.isEmpty()) {
-          if (result.director_.isEmpty()) {
-            result.director_ = new java.util.ArrayList<java.lang.String>();
+          if (this.result.director_.isEmpty()) {
+            this.result.director_ = new java.util.ArrayList<java.lang.String>();
           }
-          result.director_.addAll(other.director_);
+          this.result.director_.addAll(other.director_);
         }
         if (!other.cast_.isEmpty()) {
-          if (result.cast_.isEmpty()) {
-            result.cast_ = new java.util.ArrayList<java.lang.String>();
+          if (this.result.cast_.isEmpty()) {
+            this.result.cast_ = new java.util.ArrayList<java.lang.String>();
           }
-          result.cast_.addAll(other.cast_);
+          this.result.cast_.addAll(other.cast_);
         }
         if (!other.dubbed_.isEmpty()) {
-          if (result.dubbed_.isEmpty()) {
-            result.dubbed_ = new java.util.ArrayList<java.lang.String>();
+          if (this.result.dubbed_.isEmpty()) {
+            this.result.dubbed_ = new java.util.ArrayList<java.lang.String>();
           }
-          result.dubbed_.addAll(other.dubbed_);
+          this.result.dubbed_.addAll(other.dubbed_);
         }
         if (!other.subtitled_.isEmpty()) {
-          if (result.subtitled_.isEmpty()) {
-            result.subtitled_ = new java.util.ArrayList<java.lang.String>();
+          if (this.result.subtitled_.isEmpty()) {
+            this.result.subtitled_ = new java.util.ArrayList<java.lang.String>();
           }
-          result.subtitled_.addAll(other.subtitled_);
+          this.result.subtitled_.addAll(other.subtitled_);
         }
         if (other.hasReleaseDate()) {
           setReleaseDate(other.getReleaseDate());
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
         return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                               com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      throws java.io.IOException {
+        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
         while (true) {
-          int tag = input.readTag();
+          final int tag = input.readTag();
           switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
+          case 0:
+            setUnknownFields(unknownFields.build());
+            return this;
+          default: {
+            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+              setUnknownFields(unknownFields.build());
               return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                return this;
-              }
-              break;
             }
-            case 10: {
-              setIdentifier(input.readString());
-              break;
-            }
-            case 18: {
-              setTitle(input.readString());
-              break;
-            }
-            case 24: {
-              setLength(input.readInt32());
-              break;
-            }
-            case 34: {
-              setLanguage(input.readString());
-              break;
-            }
-            case 42: {
-              setGenre(input.readString());
-              break;
-            }
-            case 50: {
-              setDescription(input.readString());
-              break;
-            }
-            case 66: {
-              setRawRating(input.readString());
-              break;
-            }
-            case 72: {
-              setScore(input.readInt32());
-              break;
-            }
-            case 82: {
-              setIMDbUrl(input.readString());
-              break;
-            }
-            case 90: {
-              addDirector(input.readString());
-              break;
-            }
-            case 98: {
-              addCast(input.readString());
-              break;
-            }
-            case 106: {
-              addDubbed(input.readString());
-              break;
-            }
-            case 114: {
-              addSubtitled(input.readString());
-              break;
-            }
-            case 122: {
-              setReleaseDate(input.readString());
-              break;
-            }
+            break;
+          }
+          case 10: {
+            setIdentifier(input.readString());
+            break;
+          }
+          case 18: {
+            setTitle(input.readString());
+            break;
+          }
+          case 24: {
+            setLength(input.readInt32());
+            break;
+          }
+          case 34: {
+            setLanguage(input.readString());
+            break;
+          }
+          case 42: {
+            setGenre(input.readString());
+            break;
+          }
+          case 50: {
+            setDescription(input.readString());
+            break;
+          }
+          case 66: {
+            setRawRating(input.readString());
+            break;
+          }
+          case 72: {
+            setScore(input.readInt32());
+            break;
+          }
+          case 82: {
+            setIMDbUrl(input.readString());
+            break;
+          }
+          case 90: {
+            addDirector(input.readString());
+            break;
+          }
+          case 98: {
+            addCast(input.readString());
+            break;
+          }
+          case 106: {
+            addDubbed(input.readString());
+            break;
+          }
+          case 114: {
+            addSubtitled(input.readString());
+            break;
+          }
+          case 122: {
+            setReleaseDate(input.readString());
+            break;
+          }
           }
         }
       }
 
       // optional string Identifier = 1;
       public boolean hasIdentifier() {
-        return result.hasIdentifier();
+        return this.result.hasIdentifier();
       }
 
       public java.lang.String getIdentifier() {
-        return result.getIdentifier();
+        return this.result.getIdentifier();
       }
 
-      public Builder setIdentifier(java.lang.String value) {
-        result.hasIdentifier = true;
-        result.identifier_ = value;
+      public Builder setIdentifier(final java.lang.String value) {
+        this.result.hasIdentifier = true;
+        this.result.identifier_ = value;
         return this;
       }
 
       public Builder clearIdentifier() {
-        result.hasIdentifier = false;
-        result.identifier_ = "";
+        this.result.hasIdentifier = false;
+        this.result.identifier_ = "";
         return this;
       }
 
       // optional string Title = 2;
       public boolean hasTitle() {
-        return result.hasTitle();
+        return this.result.hasTitle();
       }
 
       public java.lang.String getTitle() {
-        return result.getTitle();
+        return this.result.getTitle();
       }
 
-      public Builder setTitle(java.lang.String value) {
-        result.hasTitle = true;
-        result.title_ = value;
+      public Builder setTitle(final java.lang.String value) {
+        this.result.hasTitle = true;
+        this.result.title_ = value;
         return this;
       }
 
       public Builder clearTitle() {
-        result.hasTitle = false;
-        result.title_ = "";
+        this.result.hasTitle = false;
+        this.result.title_ = "";
         return this;
       }
 
       // optional int32 Length = 3;
       public boolean hasLength() {
-        return result.hasLength();
+        return this.result.hasLength();
       }
 
       public int getLength() {
-        return result.getLength();
+        return this.result.getLength();
       }
 
-      public Builder setLength(int value) {
-        result.hasLength = true;
-        result.length_ = value;
+      public Builder setLength(final int value) {
+        this.result.hasLength = true;
+        this.result.length_ = value;
         return this;
       }
 
       public Builder clearLength() {
-        result.hasLength = false;
-        result.length_ = 0;
+        this.result.hasLength = false;
+        this.result.length_ = 0;
         return this;
       }
 
       // optional string Language = 4;
       public boolean hasLanguage() {
-        return result.hasLanguage();
+        return this.result.hasLanguage();
       }
 
       public java.lang.String getLanguage() {
-        return result.getLanguage();
+        return this.result.getLanguage();
       }
 
-      public Builder setLanguage(java.lang.String value) {
-        result.hasLanguage = true;
-        result.language_ = value;
+      public Builder setLanguage(final java.lang.String value) {
+        this.result.hasLanguage = true;
+        this.result.language_ = value;
         return this;
       }
 
       public Builder clearLanguage() {
-        result.hasLanguage = false;
-        result.language_ = "";
+        this.result.hasLanguage = false;
+        this.result.language_ = "";
         return this;
       }
 
       // optional string Genre = 5;
       public boolean hasGenre() {
-        return result.hasGenre();
+        return this.result.hasGenre();
       }
 
       public java.lang.String getGenre() {
-        return result.getGenre();
+        return this.result.getGenre();
       }
 
-      public Builder setGenre(java.lang.String value) {
-        result.hasGenre = true;
-        result.genre_ = value;
+      public Builder setGenre(final java.lang.String value) {
+        this.result.hasGenre = true;
+        this.result.genre_ = value;
         return this;
       }
 
       public Builder clearGenre() {
-        result.hasGenre = false;
-        result.genre_ = "";
+        this.result.hasGenre = false;
+        this.result.genre_ = "";
         return this;
       }
 
       // optional string Description = 6;
       public boolean hasDescription() {
-        return result.hasDescription();
+        return this.result.hasDescription();
       }
 
       public java.lang.String getDescription() {
-        return result.getDescription();
+        return this.result.getDescription();
       }
 
-      public Builder setDescription(java.lang.String value) {
-        result.hasDescription = true;
-        result.description_ = value;
+      public Builder setDescription(final java.lang.String value) {
+        this.result.hasDescription = true;
+        this.result.description_ = value;
         return this;
       }
 
       public Builder clearDescription() {
-        result.hasDescription = false;
-        result.description_ = "";
+        this.result.hasDescription = false;
+        this.result.description_ = "";
         return this;
       }
 
       // optional string RawRating = 8;
       public boolean hasRawRating() {
-        return result.hasRawRating();
+        return this.result.hasRawRating();
       }
 
       public java.lang.String getRawRating() {
-        return result.getRawRating();
+        return this.result.getRawRating();
       }
 
-      public Builder setRawRating(java.lang.String value) {
-        result.hasRawRating = true;
-        result.rawRating_ = value;
+      public Builder setRawRating(final java.lang.String value) {
+        this.result.hasRawRating = true;
+        this.result.rawRating_ = value;
         return this;
       }
 
       public Builder clearRawRating() {
-        result.hasRawRating = false;
-        result.rawRating_ = "";
+        this.result.hasRawRating = false;
+        this.result.rawRating_ = "";
         return this;
       }
 
       // optional int32 Score = 9;
       public boolean hasScore() {
-        return result.hasScore();
+        return this.result.hasScore();
       }
 
       public int getScore() {
-        return result.getScore();
+        return this.result.getScore();
       }
 
-      public Builder setScore(int value) {
-        result.hasScore = true;
-        result.score_ = value;
+      public Builder setScore(final int value) {
+        this.result.hasScore = true;
+        this.result.score_ = value;
         return this;
       }
 
       public Builder clearScore() {
-        result.hasScore = false;
-        result.score_ = 0;
+        this.result.hasScore = false;
+        this.result.score_ = 0;
         return this;
       }
 
       // optional string IMDbUrl = 10;
       public boolean hasIMDbUrl() {
-        return result.hasIMDbUrl();
+        return this.result.hasIMDbUrl();
       }
 
       public java.lang.String getIMDbUrl() {
-        return result.getIMDbUrl();
+        return this.result.getIMDbUrl();
       }
 
-      public Builder setIMDbUrl(java.lang.String value) {
-        result.hasIMDbUrl = true;
-        result.iMDbUrl_ = value;
+      public Builder setIMDbUrl(final java.lang.String value) {
+        this.result.hasIMDbUrl = true;
+        this.result.iMDbUrl_ = value;
         return this;
       }
 
       public Builder clearIMDbUrl() {
-        result.hasIMDbUrl = false;
-        result.iMDbUrl_ = "";
+        this.result.hasIMDbUrl = false;
+        this.result.iMDbUrl_ = "";
         return this;
       }
 
       // repeated string Director = 11;
       public java.util.List<java.lang.String> getDirectorList() {
-        return java.util.Collections.unmodifiableList(result.director_);
+        return java.util.Collections.unmodifiableList(this.result.director_);
       }
 
       public int getDirectorCount() {
-        return result.getDirectorCount();
+        return this.result.getDirectorCount();
       }
 
-      public java.lang.String getDirector(int index) {
-        return result.getDirector(index);
+      public java.lang.String getDirector(final int index) {
+        return this.result.getDirector(index);
       }
 
-      public Builder setDirector(int index, java.lang.String value) {
-        result.director_.set(index, value);
+      public Builder setDirector(final int index, final java.lang.String value) {
+        this.result.director_.set(index, value);
         return this;
       }
 
-      public Builder addDirector(java.lang.String value) {
-        if (result.director_.isEmpty()) {
-          result.director_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addDirector(final java.lang.String value) {
+        if (this.result.director_.isEmpty()) {
+          this.result.director_ = new java.util.ArrayList<java.lang.String>();
         }
-        result.director_.add(value);
+        this.result.director_.add(value);
         return this;
       }
 
-      public Builder addAllDirector(java.lang.Iterable<? extends java.lang.String> values) {
-        if (result.director_.isEmpty()) {
-          result.director_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addAllDirector(final java.lang.Iterable<? extends java.lang.String> values) {
+        if (this.result.director_.isEmpty()) {
+          this.result.director_ = new java.util.ArrayList<java.lang.String>();
         }
-        super.addAll(values, result.director_);
+        super.addAll(values, this.result.director_);
         return this;
       }
 
       public Builder clearDirector() {
-        result.director_ = java.util.Collections.emptyList();
+        this.result.director_ = java.util.Collections.emptyList();
         return this;
       }
 
       // repeated string Cast = 12;
       public java.util.List<java.lang.String> getCastList() {
-        return java.util.Collections.unmodifiableList(result.cast_);
+        return java.util.Collections.unmodifiableList(this.result.cast_);
       }
 
       public int getCastCount() {
-        return result.getCastCount();
+        return this.result.getCastCount();
       }
 
-      public java.lang.String getCast(int index) {
-        return result.getCast(index);
+      public java.lang.String getCast(final int index) {
+        return this.result.getCast(index);
       }
 
-      public Builder setCast(int index, java.lang.String value) {
-        result.cast_.set(index, value);
+      public Builder setCast(final int index, final java.lang.String value) {
+        this.result.cast_.set(index, value);
         return this;
       }
 
-      public Builder addCast(java.lang.String value) {
-        if (result.cast_.isEmpty()) {
-          result.cast_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addCast(final java.lang.String value) {
+        if (this.result.cast_.isEmpty()) {
+          this.result.cast_ = new java.util.ArrayList<java.lang.String>();
         }
-        result.cast_.add(value);
+        this.result.cast_.add(value);
         return this;
       }
 
-      public Builder addAllCast(java.lang.Iterable<? extends java.lang.String> values) {
-        if (result.cast_.isEmpty()) {
-          result.cast_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addAllCast(final java.lang.Iterable<? extends java.lang.String> values) {
+        if (this.result.cast_.isEmpty()) {
+          this.result.cast_ = new java.util.ArrayList<java.lang.String>();
         }
-        super.addAll(values, result.cast_);
+        super.addAll(values, this.result.cast_);
         return this;
       }
 
       public Builder clearCast() {
-        result.cast_ = java.util.Collections.emptyList();
+        this.result.cast_ = java.util.Collections.emptyList();
         return this;
       }
 
       // repeated string Dubbed = 13;
       public java.util.List<java.lang.String> getDubbedList() {
-        return java.util.Collections.unmodifiableList(result.dubbed_);
+        return java.util.Collections.unmodifiableList(this.result.dubbed_);
       }
 
       public int getDubbedCount() {
-        return result.getDubbedCount();
+        return this.result.getDubbedCount();
       }
 
-      public java.lang.String getDubbed(int index) {
-        return result.getDubbed(index);
+      public java.lang.String getDubbed(final int index) {
+        return this.result.getDubbed(index);
       }
 
-      public Builder setDubbed(int index, java.lang.String value) {
-        result.dubbed_.set(index, value);
+      public Builder setDubbed(final int index, final java.lang.String value) {
+        this.result.dubbed_.set(index, value);
         return this;
       }
 
-      public Builder addDubbed(java.lang.String value) {
-        if (result.dubbed_.isEmpty()) {
-          result.dubbed_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addDubbed(final java.lang.String value) {
+        if (this.result.dubbed_.isEmpty()) {
+          this.result.dubbed_ = new java.util.ArrayList<java.lang.String>();
         }
-        result.dubbed_.add(value);
+        this.result.dubbed_.add(value);
         return this;
       }
 
-      public Builder addAllDubbed(java.lang.Iterable<? extends java.lang.String> values) {
-        if (result.dubbed_.isEmpty()) {
-          result.dubbed_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addAllDubbed(final java.lang.Iterable<? extends java.lang.String> values) {
+        if (this.result.dubbed_.isEmpty()) {
+          this.result.dubbed_ = new java.util.ArrayList<java.lang.String>();
         }
-        super.addAll(values, result.dubbed_);
+        super.addAll(values, this.result.dubbed_);
         return this;
       }
 
       public Builder clearDubbed() {
-        result.dubbed_ = java.util.Collections.emptyList();
+        this.result.dubbed_ = java.util.Collections.emptyList();
         return this;
       }
 
       // repeated string Subtitled = 14;
       public java.util.List<java.lang.String> getSubtitledList() {
-        return java.util.Collections.unmodifiableList(result.subtitled_);
+        return java.util.Collections.unmodifiableList(this.result.subtitled_);
       }
 
       public int getSubtitledCount() {
-        return result.getSubtitledCount();
+        return this.result.getSubtitledCount();
       }
 
-      public java.lang.String getSubtitled(int index) {
-        return result.getSubtitled(index);
+      public java.lang.String getSubtitled(final int index) {
+        return this.result.getSubtitled(index);
       }
 
-      public Builder setSubtitled(int index, java.lang.String value) {
-        result.subtitled_.set(index, value);
+      public Builder setSubtitled(final int index, final java.lang.String value) {
+        this.result.subtitled_.set(index, value);
         return this;
       }
 
-      public Builder addSubtitled(java.lang.String value) {
-        if (result.subtitled_.isEmpty()) {
-          result.subtitled_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addSubtitled(final java.lang.String value) {
+        if (this.result.subtitled_.isEmpty()) {
+          this.result.subtitled_ = new java.util.ArrayList<java.lang.String>();
         }
-        result.subtitled_.add(value);
+        this.result.subtitled_.add(value);
         return this;
       }
 
-      public Builder addAllSubtitled(java.lang.Iterable<? extends java.lang.String> values) {
-        if (result.subtitled_.isEmpty()) {
-          result.subtitled_ = new java.util.ArrayList<java.lang.String>();
+      public Builder addAllSubtitled(final java.lang.Iterable<? extends java.lang.String> values) {
+        if (this.result.subtitled_.isEmpty()) {
+          this.result.subtitled_ = new java.util.ArrayList<java.lang.String>();
         }
-        super.addAll(values, result.subtitled_);
+        super.addAll(values, this.result.subtitled_);
         return this;
       }
 
       public Builder clearSubtitled() {
-        result.subtitled_ = java.util.Collections.emptyList();
+        this.result.subtitled_ = java.util.Collections.emptyList();
         return this;
       }
 
       // optional string ReleaseDate = 15;
       public boolean hasReleaseDate() {
-        return result.hasReleaseDate();
+        return this.result.hasReleaseDate();
       }
 
       public java.lang.String getReleaseDate() {
-        return result.getReleaseDate();
+        return this.result.getReleaseDate();
       }
 
-      public Builder setReleaseDate(java.lang.String value) {
-        result.hasReleaseDate = true;
-        result.releaseDate_ = value;
+      public Builder setReleaseDate(final java.lang.String value) {
+        this.result.hasReleaseDate = true;
+        this.result.releaseDate_ = value;
         return this;
       }
 
       public Builder clearReleaseDate() {
-        result.hasReleaseDate = false;
-        result.releaseDate_ = "";
+        this.result.hasReleaseDate = false;
+        this.result.releaseDate_ = "";
         return this;
       }
     }
@@ -1782,7 +1795,7 @@ public final class NowPlaying {
       return NowPlaying.internal_static_TheaterProto_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
       return NowPlaying.internal_static_TheaterProto_fieldAccessorTable;
     }
 
@@ -1791,11 +1804,11 @@ public final class NowPlaying {
     private java.lang.String identifier_ = "";
 
     public boolean hasIdentifier() {
-      return hasIdentifier;
+      return this.hasIdentifier;
     }
 
     public java.lang.String getIdentifier() {
-      return identifier_;
+      return this.identifier_;
     }
 
     // optional string Name = 2;
@@ -1803,11 +1816,11 @@ public final class NowPlaying {
     private java.lang.String name_ = "";
 
     public boolean hasName() {
-      return hasName;
+      return this.hasName;
     }
 
     public java.lang.String getName() {
-      return name_;
+      return this.name_;
     }
 
     // optional string StreetAddress = 3;
@@ -1815,11 +1828,11 @@ public final class NowPlaying {
     private java.lang.String streetAddress_ = "";
 
     public boolean hasStreetAddress() {
-      return hasStreetAddress;
+      return this.hasStreetAddress;
     }
 
     public java.lang.String getStreetAddress() {
-      return streetAddress_;
+      return this.streetAddress_;
     }
 
     // optional string City = 4;
@@ -1827,11 +1840,11 @@ public final class NowPlaying {
     private java.lang.String city_ = "";
 
     public boolean hasCity() {
-      return hasCity;
+      return this.hasCity;
     }
 
     public java.lang.String getCity() {
-      return city_;
+      return this.city_;
     }
 
     // optional string State = 5;
@@ -1839,11 +1852,11 @@ public final class NowPlaying {
     private java.lang.String state_ = "";
 
     public boolean hasState() {
-      return hasState;
+      return this.hasState;
     }
 
     public java.lang.String getState() {
-      return state_;
+      return this.state_;
     }
 
     // optional string PostalCode = 6;
@@ -1851,11 +1864,11 @@ public final class NowPlaying {
     private java.lang.String postalCode_ = "";
 
     public boolean hasPostalCode() {
-      return hasPostalCode;
+      return this.hasPostalCode;
     }
 
     public java.lang.String getPostalCode() {
-      return postalCode_;
+      return this.postalCode_;
     }
 
     // optional string Country = 7;
@@ -1863,11 +1876,11 @@ public final class NowPlaying {
     private java.lang.String country_ = "";
 
     public boolean hasCountry() {
-      return hasCountry;
+      return this.hasCountry;
     }
 
     public java.lang.String getCountry() {
-      return country_;
+      return this.country_;
     }
 
     // optional string Phone = 8;
@@ -1875,11 +1888,11 @@ public final class NowPlaying {
     private java.lang.String phone_ = "";
 
     public boolean hasPhone() {
-      return hasPhone;
+      return this.hasPhone;
     }
 
     public java.lang.String getPhone() {
-      return phone_;
+      return this.phone_;
     }
 
     // optional double Latitude = 9;
@@ -1887,11 +1900,11 @@ public final class NowPlaying {
     private double latitude_ = 0D;
 
     public boolean hasLatitude() {
-      return hasLatitude;
+      return this.hasLatitude;
     }
 
     public double getLatitude() {
-      return latitude_;
+      return this.latitude_;
     }
 
     // optional double Longitude = 10;
@@ -1899,18 +1912,18 @@ public final class NowPlaying {
     private double longitude_ = 0D;
 
     public boolean hasLongitude() {
-      return hasLongitude;
+      return this.hasLongitude;
     }
 
     public double getLongitude() {
-      return longitude_;
+      return this.longitude_;
     }
 
-    public final boolean isInitialized() {
+    @Override public final boolean isInitialized() {
       return true;
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (hasIdentifier()) {
         output.writeString(1, getIdentifier());
       }
@@ -1946,8 +1959,8 @@ public final class NowPlaying {
 
     private int memoizedSerializedSize = -1;
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+    @Override public int getSerializedSize() {
+      int size = this.memoizedSerializedSize;
       if (size != -1) {
         return size;
       }
@@ -1984,46 +1997,43 @@ public final class NowPlaying {
         size += com.google.protobuf.CodedOutputStream.computeDoubleSize(10, getLongitude());
       }
       size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      this.memoizedSerializedSize = size;
       return size;
     }
 
-    public static NowPlaying.TheaterProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterProto parseFrom(final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(com.google.protobuf.ByteString data,
-                                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterProto parseFrom(final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterProto parseFrom(final byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(byte[] data,
-                                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterProto parseFrom(final byte[] data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(java.io.InputStream input) throws java.io.IOException {
+    public static NowPlaying.TheaterProto parseFrom(final java.io.InputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(java.io.InputStream input,
-                                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.TheaterProto parseFrom(final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.TheaterProto parseFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.TheaterProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                    com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.TheaterProto parseFrom(final com.google.protobuf.CodedInputStream input,
+        final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -2035,7 +2045,7 @@ public final class NowPlaying {
       return new Builder();
     }
 
-    public static Builder newBuilder(NowPlaying.TheaterProto prototype) {
+    public static Builder newBuilder(final NowPlaying.TheaterProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
 
@@ -2046,20 +2056,20 @@ public final class NowPlaying {
 
       NowPlaying.TheaterProto result = new NowPlaying.TheaterProto();
 
-      protected NowPlaying.TheaterProto internalGetResult() {
-        return result;
+      @Override protected NowPlaying.TheaterProto internalGetResult() {
+        return this.result;
       }
 
-      public Builder clear() {
-        result = new NowPlaying.TheaterProto();
+      @Override public Builder clear() {
+        this.result = new NowPlaying.TheaterProto();
         return this;
       }
 
-      public Builder clone() {
-        return new Builder().mergeFrom(result);
+      @Override public Builder clone() {
+        return new Builder().mergeFrom(this.result);
       }
 
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return NowPlaying.TheaterProto.getDescriptor();
       }
 
@@ -2069,25 +2079,25 @@ public final class NowPlaying {
 
       public NowPlaying.TheaterProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result);
+          throw new com.google.protobuf.UninitializedMessageException(this.result);
         }
         return buildPartial();
       }
 
       private NowPlaying.TheaterProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
 
       public NowPlaying.TheaterProto buildPartial() {
-        NowPlaying.TheaterProto returnMe = result;
-        result = null;
+        final NowPlaying.TheaterProto returnMe = this.result;
+        this.result = null;
         return returnMe;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
+      @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.TheaterProto) {
           return mergeFrom((NowPlaying.TheaterProto) other);
         } else {
@@ -2096,7 +2106,7 @@ public final class NowPlaying {
         }
       }
 
-      public Builder mergeFrom(NowPlaying.TheaterProto other) {
+      public Builder mergeFrom(final NowPlaying.TheaterProto other) {
         if (other == NowPlaying.TheaterProto.getDefaultInstance()) {
           return this;
         }
@@ -2130,282 +2140,281 @@ public final class NowPlaying {
         if (other.hasLongitude()) {
           setLongitude(other.getLongitude());
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
         return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                               com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      throws java.io.IOException {
+        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
         while (true) {
-          int tag = input.readTag();
+          final int tag = input.readTag();
           switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
+          case 0:
+            setUnknownFields(unknownFields.build());
+            return this;
+          default: {
+            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+              setUnknownFields(unknownFields.build());
               return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                return this;
-              }
-              break;
             }
-            case 10: {
-              setIdentifier(input.readString());
-              break;
-            }
-            case 18: {
-              setName(input.readString());
-              break;
-            }
-            case 26: {
-              setStreetAddress(input.readString());
-              break;
-            }
-            case 34: {
-              setCity(input.readString());
-              break;
-            }
-            case 42: {
-              setState(input.readString());
-              break;
-            }
-            case 50: {
-              setPostalCode(input.readString());
-              break;
-            }
-            case 58: {
-              setCountry(input.readString());
-              break;
-            }
-            case 66: {
-              setPhone(input.readString());
-              break;
-            }
-            case 73: {
-              setLatitude(input.readDouble());
-              break;
-            }
-            case 81: {
-              setLongitude(input.readDouble());
-              break;
-            }
+            break;
+          }
+          case 10: {
+            setIdentifier(input.readString());
+            break;
+          }
+          case 18: {
+            setName(input.readString());
+            break;
+          }
+          case 26: {
+            setStreetAddress(input.readString());
+            break;
+          }
+          case 34: {
+            setCity(input.readString());
+            break;
+          }
+          case 42: {
+            setState(input.readString());
+            break;
+          }
+          case 50: {
+            setPostalCode(input.readString());
+            break;
+          }
+          case 58: {
+            setCountry(input.readString());
+            break;
+          }
+          case 66: {
+            setPhone(input.readString());
+            break;
+          }
+          case 73: {
+            setLatitude(input.readDouble());
+            break;
+          }
+          case 81: {
+            setLongitude(input.readDouble());
+            break;
+          }
           }
         }
       }
 
       // optional string Identifier = 1;
       public boolean hasIdentifier() {
-        return result.hasIdentifier();
+        return this.result.hasIdentifier();
       }
 
       public java.lang.String getIdentifier() {
-        return result.getIdentifier();
+        return this.result.getIdentifier();
       }
 
-      public Builder setIdentifier(java.lang.String value) {
-        result.hasIdentifier = true;
-        result.identifier_ = value;
+      public Builder setIdentifier(final java.lang.String value) {
+        this.result.hasIdentifier = true;
+        this.result.identifier_ = value;
         return this;
       }
 
       public Builder clearIdentifier() {
-        result.hasIdentifier = false;
-        result.identifier_ = "";
+        this.result.hasIdentifier = false;
+        this.result.identifier_ = "";
         return this;
       }
 
       // optional string Name = 2;
       public boolean hasName() {
-        return result.hasName();
+        return this.result.hasName();
       }
 
       public java.lang.String getName() {
-        return result.getName();
+        return this.result.getName();
       }
 
-      public Builder setName(java.lang.String value) {
-        result.hasName = true;
-        result.name_ = value;
+      public Builder setName(final java.lang.String value) {
+        this.result.hasName = true;
+        this.result.name_ = value;
         return this;
       }
 
       public Builder clearName() {
-        result.hasName = false;
-        result.name_ = "";
+        this.result.hasName = false;
+        this.result.name_ = "";
         return this;
       }
 
       // optional string StreetAddress = 3;
       public boolean hasStreetAddress() {
-        return result.hasStreetAddress();
+        return this.result.hasStreetAddress();
       }
 
       public java.lang.String getStreetAddress() {
-        return result.getStreetAddress();
+        return this.result.getStreetAddress();
       }
 
-      public Builder setStreetAddress(java.lang.String value) {
-        result.hasStreetAddress = true;
-        result.streetAddress_ = value;
+      public Builder setStreetAddress(final java.lang.String value) {
+        this.result.hasStreetAddress = true;
+        this.result.streetAddress_ = value;
         return this;
       }
 
       public Builder clearStreetAddress() {
-        result.hasStreetAddress = false;
-        result.streetAddress_ = "";
+        this.result.hasStreetAddress = false;
+        this.result.streetAddress_ = "";
         return this;
       }
 
       // optional string City = 4;
       public boolean hasCity() {
-        return result.hasCity();
+        return this.result.hasCity();
       }
 
       public java.lang.String getCity() {
-        return result.getCity();
+        return this.result.getCity();
       }
 
-      public Builder setCity(java.lang.String value) {
-        result.hasCity = true;
-        result.city_ = value;
+      public Builder setCity(final java.lang.String value) {
+        this.result.hasCity = true;
+        this.result.city_ = value;
         return this;
       }
 
       public Builder clearCity() {
-        result.hasCity = false;
-        result.city_ = "";
+        this.result.hasCity = false;
+        this.result.city_ = "";
         return this;
       }
 
       // optional string State = 5;
       public boolean hasState() {
-        return result.hasState();
+        return this.result.hasState();
       }
 
       public java.lang.String getState() {
-        return result.getState();
+        return this.result.getState();
       }
 
-      public Builder setState(java.lang.String value) {
-        result.hasState = true;
-        result.state_ = value;
+      public Builder setState(final java.lang.String value) {
+        this.result.hasState = true;
+        this.result.state_ = value;
         return this;
       }
 
       public Builder clearState() {
-        result.hasState = false;
-        result.state_ = "";
+        this.result.hasState = false;
+        this.result.state_ = "";
         return this;
       }
 
       // optional string PostalCode = 6;
       public boolean hasPostalCode() {
-        return result.hasPostalCode();
+        return this.result.hasPostalCode();
       }
 
       public java.lang.String getPostalCode() {
-        return result.getPostalCode();
+        return this.result.getPostalCode();
       }
 
-      public Builder setPostalCode(java.lang.String value) {
-        result.hasPostalCode = true;
-        result.postalCode_ = value;
+      public Builder setPostalCode(final java.lang.String value) {
+        this.result.hasPostalCode = true;
+        this.result.postalCode_ = value;
         return this;
       }
 
       public Builder clearPostalCode() {
-        result.hasPostalCode = false;
-        result.postalCode_ = "";
+        this.result.hasPostalCode = false;
+        this.result.postalCode_ = "";
         return this;
       }
 
       // optional string Country = 7;
       public boolean hasCountry() {
-        return result.hasCountry();
+        return this.result.hasCountry();
       }
 
       public java.lang.String getCountry() {
-        return result.getCountry();
+        return this.result.getCountry();
       }
 
-      public Builder setCountry(java.lang.String value) {
-        result.hasCountry = true;
-        result.country_ = value;
+      public Builder setCountry(final java.lang.String value) {
+        this.result.hasCountry = true;
+        this.result.country_ = value;
         return this;
       }
 
       public Builder clearCountry() {
-        result.hasCountry = false;
-        result.country_ = "";
+        this.result.hasCountry = false;
+        this.result.country_ = "";
         return this;
       }
 
       // optional string Phone = 8;
       public boolean hasPhone() {
-        return result.hasPhone();
+        return this.result.hasPhone();
       }
 
       public java.lang.String getPhone() {
-        return result.getPhone();
+        return this.result.getPhone();
       }
 
-      public Builder setPhone(java.lang.String value) {
-        result.hasPhone = true;
-        result.phone_ = value;
+      public Builder setPhone(final java.lang.String value) {
+        this.result.hasPhone = true;
+        this.result.phone_ = value;
         return this;
       }
 
       public Builder clearPhone() {
-        result.hasPhone = false;
-        result.phone_ = "";
+        this.result.hasPhone = false;
+        this.result.phone_ = "";
         return this;
       }
 
       // optional double Latitude = 9;
       public boolean hasLatitude() {
-        return result.hasLatitude();
+        return this.result.hasLatitude();
       }
 
       public double getLatitude() {
-        return result.getLatitude();
+        return this.result.getLatitude();
       }
 
-      public Builder setLatitude(double value) {
-        result.hasLatitude = true;
-        result.latitude_ = value;
+      public Builder setLatitude(final double value) {
+        this.result.hasLatitude = true;
+        this.result.latitude_ = value;
         return this;
       }
 
       public Builder clearLatitude() {
-        result.hasLatitude = false;
-        result.latitude_ = 0D;
+        this.result.hasLatitude = false;
+        this.result.latitude_ = 0D;
         return this;
       }
 
       // optional double Longitude = 10;
       public boolean hasLongitude() {
-        return result.hasLongitude();
+        return this.result.hasLongitude();
       }
 
       public double getLongitude() {
-        return result.getLongitude();
+        return this.result.getLongitude();
       }
 
-      public Builder setLongitude(double value) {
-        result.hasLongitude = true;
-        result.longitude_ = value;
+      public Builder setLongitude(final double value) {
+        this.result.hasLongitude = true;
+        this.result.longitude_ = value;
         return this;
       }
 
       public Builder clearLongitude() {
-        result.hasLongitude = false;
-        result.longitude_ = 0D;
+        this.result.hasLongitude = false;
+        this.result.longitude_ = 0D;
         return this;
       }
     }
@@ -2430,7 +2439,7 @@ public final class NowPlaying {
       return NowPlaying.internal_static_TheaterListingsProto_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
       return NowPlaying.internal_static_TheaterListingsProto_fieldAccessorTable;
     }
 
@@ -2453,7 +2462,7 @@ public final class NowPlaying {
         return NowPlaying.internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+      @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
         return NowPlaying.internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable;
       }
 
@@ -2476,7 +2485,7 @@ public final class NowPlaying {
           return NowPlaying.internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+        @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
           return NowPlaying.internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable;
         }
 
@@ -2485,11 +2494,11 @@ public final class NowPlaying {
         private java.lang.String movieIdentifier_ = "";
 
         public boolean hasMovieIdentifier() {
-          return hasMovieIdentifier;
+          return this.hasMovieIdentifier;
         }
 
         public java.lang.String getMovieIdentifier() {
-          return movieIdentifier_;
+          return this.movieIdentifier_;
         }
 
         // required .AllShowtimesProto Showtimes = 2;
@@ -2497,18 +2506,18 @@ public final class NowPlaying {
         private NowPlaying.AllShowtimesProto showtimes_ = NowPlaying.AllShowtimesProto.getDefaultInstance();
 
         public boolean hasShowtimes() {
-          return hasShowtimes;
+          return this.hasShowtimes;
         }
 
         public NowPlaying.AllShowtimesProto getShowtimes() {
-          return showtimes_;
+          return this.showtimes_;
         }
 
-        public final boolean isInitialized() {
-          if (!hasMovieIdentifier) {
+        @Override public final boolean isInitialized() {
+          if (!this.hasMovieIdentifier) {
             return false;
           }
-          if (!hasShowtimes) {
+          if (!this.hasShowtimes) {
             return false;
           }
           if (!getShowtimes().isInitialized()) {
@@ -2517,7 +2526,7 @@ public final class NowPlaying {
           return true;
         }
 
-        public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+        @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
           if (hasMovieIdentifier()) {
             output.writeString(1, getMovieIdentifier());
           }
@@ -2529,8 +2538,8 @@ public final class NowPlaying {
 
         private int memoizedSerializedSize = -1;
 
-        public int getSerializedSize() {
-          int size = memoizedSerializedSize;
+        @Override public int getSerializedSize() {
+          int size = this.memoizedSerializedSize;
           if (size != -1) {
             return size;
           }
@@ -2543,51 +2552,48 @@ public final class NowPlaying {
             size += com.google.protobuf.CodedOutputStream.computeMessageSize(2, getShowtimes());
           }
           size += getUnknownFields().getSerializedSize();
-          memoizedSerializedSize = size;
+          this.memoizedSerializedSize = size;
           return size;
         }
 
         public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+            final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
           return newBuilder().mergeFrom(data).buildParsed();
         }
 
         public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+            final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
           return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
         }
 
-        public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+        public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(final byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
           return newBuilder().mergeFrom(data).buildParsed();
         }
 
-        public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+        public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(final byte[] data,
+            final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
           return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
         }
 
-        public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            java.io.InputStream input) throws java.io.IOException {
+        public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(final java.io.InputStream input)
+        throws java.io.IOException {
           return newBuilder().mergeFrom(input).buildParsed();
         }
 
-        public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+        public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(final java.io.InputStream input,
+            final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
           return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
         }
 
         public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+            final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
           return newBuilder().mergeFrom(input).buildParsed();
         }
 
         public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+            final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
           return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
         }
 
@@ -2599,32 +2605,32 @@ public final class NowPlaying {
           return new Builder();
         }
 
-        public static Builder newBuilder(
-            NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto prototype) {
+        public static Builder newBuilder(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto prototype) {
           return new Builder().mergeFrom(prototype);
         }
 
         public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
-          // Construct using NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.newBuilder()
+          // Construct using
+          // NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.newBuilder()
           private Builder() {
           }
 
           NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto result = new NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto();
 
-          protected NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto internalGetResult() {
-            return result;
+          @Override protected NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto internalGetResult() {
+            return this.result;
           }
 
-          public Builder clear() {
-            result = new NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto();
+          @Override public Builder clear() {
+            this.result = new NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto();
             return this;
           }
 
-          public Builder clone() {
-            return new Builder().mergeFrom(result);
+          @Override public Builder clone() {
+            return new Builder().mergeFrom(this.result);
           }
 
-          public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+          @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
             return NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.getDescriptor();
           }
 
@@ -2634,36 +2640,35 @@ public final class NowPlaying {
 
           public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto build() {
             if (!isInitialized()) {
-              throw new com.google.protobuf.UninitializedMessageException(result);
+              throw new com.google.protobuf.UninitializedMessageException(this.result);
             }
             return buildPartial();
           }
 
-          private NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
+          private NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
             if (!isInitialized()) {
-              throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+              throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
             }
             return buildPartial();
           }
 
           public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto buildPartial() {
-            NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto returnMe = result;
-            result = null;
+            final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto returnMe = this.result;
+            this.result = null;
             return returnMe;
           }
 
-          public Builder mergeFrom(com.google.protobuf.Message other) {
+          @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
             if (other instanceof NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto) {
-              return mergeFrom(
-                  (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto) other);
+              return mergeFrom((NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto) other);
             } else {
               super.mergeFrom(other);
               return this;
             }
           }
 
-          public Builder mergeFrom(
-              NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto other) {
+          public Builder mergeFrom(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto other) {
             if (other == NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.getDefaultInstance()) {
               return this;
             }
@@ -2673,104 +2678,102 @@ public final class NowPlaying {
             if (other.hasShowtimes()) {
               mergeShowtimes(other.getShowtimes());
             }
-            this.mergeUnknownFields(other.getUnknownFields());
+            mergeUnknownFields(other.getUnknownFields());
             return this;
           }
 
-          public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+          @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
             return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
           }
 
-          public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-            com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-                this.getUnknownFields());
+          @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+          throws java.io.IOException {
+            final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
             while (true) {
-              int tag = input.readTag();
+              final int tag = input.readTag();
               switch (tag) {
-                case 0:
-                  this.setUnknownFields(unknownFields.build());
+              case 0:
+                setUnknownFields(unknownFields.build());
+                return this;
+              default: {
+                if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+                  setUnknownFields(unknownFields.build());
                   return this;
-                default: {
-                  if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                    this.setUnknownFields(unknownFields.build());
-                    return this;
-                  }
-                  break;
                 }
-                case 10: {
-                  setMovieIdentifier(input.readString());
-                  break;
+                break;
+              }
+              case 10: {
+                setMovieIdentifier(input.readString());
+                break;
+              }
+              case 18: {
+                final NowPlaying.AllShowtimesProto.Builder subBuilder = NowPlaying.AllShowtimesProto.newBuilder();
+                if (hasShowtimes()) {
+                  subBuilder.mergeFrom(getShowtimes());
                 }
-                case 18: {
-                  NowPlaying.AllShowtimesProto.Builder subBuilder = NowPlaying.AllShowtimesProto.newBuilder();
-                  if (hasShowtimes()) {
-                    subBuilder.mergeFrom(getShowtimes());
-                  }
-                  input.readMessage(subBuilder, extensionRegistry);
-                  setShowtimes(subBuilder.buildPartial());
-                  break;
-                }
+                input.readMessage(subBuilder, extensionRegistry);
+                setShowtimes(subBuilder.buildPartial());
+                break;
+              }
               }
             }
           }
 
           // required string MovieIdentifier = 1;
           public boolean hasMovieIdentifier() {
-            return result.hasMovieIdentifier();
+            return this.result.hasMovieIdentifier();
           }
 
           public java.lang.String getMovieIdentifier() {
-            return result.getMovieIdentifier();
+            return this.result.getMovieIdentifier();
           }
 
-          public Builder setMovieIdentifier(java.lang.String value) {
-            result.hasMovieIdentifier = true;
-            result.movieIdentifier_ = value;
+          public Builder setMovieIdentifier(final java.lang.String value) {
+            this.result.hasMovieIdentifier = true;
+            this.result.movieIdentifier_ = value;
             return this;
           }
 
           public Builder clearMovieIdentifier() {
-            result.hasMovieIdentifier = false;
-            result.movieIdentifier_ = "";
+            this.result.hasMovieIdentifier = false;
+            this.result.movieIdentifier_ = "";
             return this;
           }
 
           // required .AllShowtimesProto Showtimes = 2;
           public boolean hasShowtimes() {
-            return result.hasShowtimes();
+            return this.result.hasShowtimes();
           }
 
           public NowPlaying.AllShowtimesProto getShowtimes() {
-            return result.getShowtimes();
+            return this.result.getShowtimes();
           }
 
-          public Builder setShowtimes(NowPlaying.AllShowtimesProto value) {
-            result.hasShowtimes = true;
-            result.showtimes_ = value;
+          public Builder setShowtimes(final NowPlaying.AllShowtimesProto value) {
+            this.result.hasShowtimes = true;
+            this.result.showtimes_ = value;
             return this;
           }
 
-          public Builder setShowtimes(NowPlaying.AllShowtimesProto.Builder builderForValue) {
-            result.hasShowtimes = true;
-            result.showtimes_ = builderForValue.build();
+          public Builder setShowtimes(final NowPlaying.AllShowtimesProto.Builder builderForValue) {
+            this.result.hasShowtimes = true;
+            this.result.showtimes_ = builderForValue.build();
             return this;
           }
 
-          public Builder mergeShowtimes(NowPlaying.AllShowtimesProto value) {
-            if (result.hasShowtimes() && result.showtimes_ != NowPlaying.AllShowtimesProto.getDefaultInstance()) {
-              result.showtimes_ = NowPlaying.AllShowtimesProto.newBuilder(result.showtimes_).mergeFrom(
-                  value).buildPartial();
+          public Builder mergeShowtimes(final NowPlaying.AllShowtimesProto value) {
+            if (this.result.hasShowtimes() && this.result.showtimes_ != NowPlaying.AllShowtimesProto.getDefaultInstance()) {
+              this.result.showtimes_ = NowPlaying.AllShowtimesProto.newBuilder(this.result.showtimes_).mergeFrom(value).buildPartial();
             } else {
-              result.showtimes_ = value;
+              this.result.showtimes_ = value;
             }
-            result.hasShowtimes = true;
+            this.result.hasShowtimes = true;
             return this;
           }
 
           public Builder clearShowtimes() {
-            result.hasShowtimes = false;
-            result.showtimes_ = NowPlaying.AllShowtimesProto.getDefaultInstance();
+            this.result.hasShowtimes = false;
+            this.result.showtimes_ = NowPlaying.AllShowtimesProto.getDefaultInstance();
             return this;
           }
         }
@@ -2781,34 +2784,36 @@ public final class NowPlaying {
       private NowPlaying.TheaterProto theater_ = NowPlaying.TheaterProto.getDefaultInstance();
 
       public boolean hasTheater() {
-        return hasTheater;
+        return this.hasTheater;
       }
 
       public NowPlaying.TheaterProto getTheater() {
-        return theater_;
+        return this.theater_;
       }
 
-      // repeated .TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto MovieAndShowtimes = 4;
-      private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimes_ = java.util.Collections.emptyList();
+      // repeated
+      // .TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto
+      // MovieAndShowtimes = 4;
+      private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> movieAndShowtimes_ = java.util.Collections
+      .emptyList();
 
       public java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> getMovieAndShowtimesList() {
-        return movieAndShowtimes_;
+        return this.movieAndShowtimes_;
       }
 
       public int getMovieAndShowtimesCount() {
-        return movieAndShowtimes_.size();
+        return this.movieAndShowtimes_.size();
       }
 
-      public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto getMovieAndShowtimes(
-          int index) {
-        return movieAndShowtimes_.get(index);
+      public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto getMovieAndShowtimes(final int index) {
+        return this.movieAndShowtimes_.get(index);
       }
 
-      public final boolean isInitialized() {
-        if (!hasTheater) {
+      @Override public final boolean isInitialized() {
+        if (!this.hasTheater) {
           return false;
         }
-        for (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto element : getMovieAndShowtimesList()) {
+        for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto element : getMovieAndShowtimesList()) {
           if (!element.isInitialized()) {
             return false;
           }
@@ -2816,11 +2821,11 @@ public final class NowPlaying {
         return true;
       }
 
-      public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+      @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
         if (hasTheater()) {
           output.writeMessage(3, getTheater());
         }
-        for (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto element : getMovieAndShowtimesList()) {
+        for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto element : getMovieAndShowtimesList()) {
           output.writeMessage(4, element);
         }
         getUnknownFields().writeTo(output);
@@ -2828,8 +2833,8 @@ public final class NowPlaying {
 
       private int memoizedSerializedSize = -1;
 
-      public int getSerializedSize() {
-        int size = memoizedSerializedSize;
+      @Override public int getSerializedSize() {
+        int size = this.memoizedSerializedSize;
         if (size != -1) {
           return size;
         }
@@ -2838,53 +2843,50 @@ public final class NowPlaying {
         if (hasTheater()) {
           size += com.google.protobuf.CodedOutputStream.computeMessageSize(3, getTheater());
         }
-        for (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto element : getMovieAndShowtimesList()) {
+        for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto element : getMovieAndShowtimesList()) {
           size += com.google.protobuf.CodedOutputStream.computeMessageSize(4, element);
         }
         size += getUnknownFields().getSerializedSize();
-        memoizedSerializedSize = size;
+        this.memoizedSerializedSize = size;
         return size;
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(final com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(final com.google.protobuf.ByteString data,
+          final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(final byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(byte[] data,
-                                                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(final byte[] data,
+          final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
         return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          java.io.InputStream input) throws java.io.IOException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(final java.io.InputStream input) throws java.io.IOException {
         return newBuilder().mergeFrom(input).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(java.io.InputStream input,
-                                                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(final java.io.InputStream input,
+          final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
         return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(final com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
         return newBuilder().mergeFrom(input).buildParsed();
       }
 
-      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+      public static NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto parseFrom(final com.google.protobuf.CodedInputStream input,
+          final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
         return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
       }
 
@@ -2896,31 +2898,32 @@ public final class NowPlaying {
         return new Builder();
       }
 
-      public static Builder newBuilder(NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto prototype) {
+      public static Builder newBuilder(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto prototype) {
         return new Builder().mergeFrom(prototype);
       }
 
       public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder> {
-        // Construct using NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.newBuilder()
+        // Construct using
+        // NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.newBuilder()
         private Builder() {
         }
 
         NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto result = new NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto();
 
-        protected NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto internalGetResult() {
-          return result;
+        @Override protected NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto internalGetResult() {
+          return this.result;
         }
 
-        public Builder clear() {
-          result = new NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto();
+        @Override public Builder clear() {
+          this.result = new NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto();
           return this;
         }
 
-        public Builder clone() {
-          return new Builder().mergeFrom(result);
+        @Override public Builder clone() {
+          return new Builder().mergeFrom(this.result);
         }
 
-        public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+        @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
           return NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.getDescriptor();
         }
 
@@ -2930,28 +2933,28 @@ public final class NowPlaying {
 
         public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto build() {
           if (!isInitialized()) {
-            throw new com.google.protobuf.UninitializedMessageException(result);
+            throw new com.google.protobuf.UninitializedMessageException(this.result);
           }
           return buildPartial();
         }
 
         private NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
           if (!isInitialized()) {
-            throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+            throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
           }
           return buildPartial();
         }
 
         public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto buildPartial() {
-          if (result.movieAndShowtimes_ != java.util.Collections.EMPTY_LIST) {
-            result.movieAndShowtimes_ = java.util.Collections.unmodifiableList(result.movieAndShowtimes_);
+          if (this.result.movieAndShowtimes_ != java.util.Collections.EMPTY_LIST) {
+            this.result.movieAndShowtimes_ = java.util.Collections.unmodifiableList(this.result.movieAndShowtimes_);
           }
-          NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto returnMe = result;
-          result = null;
+          final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto returnMe = this.result;
+          this.result = null;
           return returnMe;
         }
 
-        public Builder mergeFrom(com.google.protobuf.Message other) {
+        @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
           if (other instanceof NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto) {
             return mergeFrom((NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto) other);
           } else {
@@ -2960,7 +2963,7 @@ public final class NowPlaying {
           }
         }
 
-        public Builder mergeFrom(NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto other) {
+        public Builder mergeFrom(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto other) {
           if (other == NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.getDefaultInstance()) {
             return this;
           }
@@ -2968,147 +2971,146 @@ public final class NowPlaying {
             mergeTheater(other.getTheater());
           }
           if (!other.movieAndShowtimes_.isEmpty()) {
-            if (result.movieAndShowtimes_.isEmpty()) {
-              result.movieAndShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto>();
+            if (this.result.movieAndShowtimes_.isEmpty()) {
+              this.result.movieAndShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto>();
             }
-            result.movieAndShowtimes_.addAll(other.movieAndShowtimes_);
+            this.result.movieAndShowtimes_.addAll(other.movieAndShowtimes_);
           }
-          this.mergeUnknownFields(other.getUnknownFields());
+          mergeUnknownFields(other.getUnknownFields());
           return this;
         }
 
-        public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+        @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
           return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
         }
 
-        public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                                 com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-          com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-              this.getUnknownFields());
+        @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+        throws java.io.IOException {
+          final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
           while (true) {
-            int tag = input.readTag();
+            final int tag = input.readTag();
             switch (tag) {
-              case 0:
-                this.setUnknownFields(unknownFields.build());
+            case 0:
+              setUnknownFields(unknownFields.build());
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+                setUnknownFields(unknownFields.build());
                 return this;
-              default: {
-                if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                  this.setUnknownFields(unknownFields.build());
-                  return this;
-                }
-                break;
               }
-              case 26: {
-                NowPlaying.TheaterProto.Builder subBuilder = NowPlaying.TheaterProto.newBuilder();
-                if (hasTheater()) {
-                  subBuilder.mergeFrom(getTheater());
-                }
-                input.readMessage(subBuilder, extensionRegistry);
-                setTheater(subBuilder.buildPartial());
-                break;
+              break;
+            }
+            case 26: {
+              final NowPlaying.TheaterProto.Builder subBuilder = NowPlaying.TheaterProto.newBuilder();
+              if (hasTheater()) {
+                subBuilder.mergeFrom(getTheater());
               }
-              case 34: {
-                NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder subBuilder = NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.newBuilder();
-                input.readMessage(subBuilder, extensionRegistry);
-                addMovieAndShowtimes(subBuilder.buildPartial());
-                break;
-              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setTheater(subBuilder.buildPartial());
+              break;
+            }
+            case 34: {
+              final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder subBuilder = NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto
+              .newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addMovieAndShowtimes(subBuilder.buildPartial());
+              break;
+            }
             }
           }
         }
 
         // required .TheaterProto Theater = 3;
         public boolean hasTheater() {
-          return result.hasTheater();
+          return this.result.hasTheater();
         }
 
         public NowPlaying.TheaterProto getTheater() {
-          return result.getTheater();
+          return this.result.getTheater();
         }
 
-        public Builder setTheater(NowPlaying.TheaterProto value) {
-          result.hasTheater = true;
-          result.theater_ = value;
+        public Builder setTheater(final NowPlaying.TheaterProto value) {
+          this.result.hasTheater = true;
+          this.result.theater_ = value;
           return this;
         }
 
-        public Builder setTheater(NowPlaying.TheaterProto.Builder builderForValue) {
-          result.hasTheater = true;
-          result.theater_ = builderForValue.build();
+        public Builder setTheater(final NowPlaying.TheaterProto.Builder builderForValue) {
+          this.result.hasTheater = true;
+          this.result.theater_ = builderForValue.build();
           return this;
         }
 
-        public Builder mergeTheater(NowPlaying.TheaterProto value) {
-          if (result.hasTheater() && result.theater_ != NowPlaying.TheaterProto.getDefaultInstance()) {
-            result.theater_ = NowPlaying.TheaterProto.newBuilder(result.theater_).mergeFrom(value).buildPartial();
+        public Builder mergeTheater(final NowPlaying.TheaterProto value) {
+          if (this.result.hasTheater() && this.result.theater_ != NowPlaying.TheaterProto.getDefaultInstance()) {
+            this.result.theater_ = NowPlaying.TheaterProto.newBuilder(this.result.theater_).mergeFrom(value).buildPartial();
           } else {
-            result.theater_ = value;
+            this.result.theater_ = value;
           }
-          result.hasTheater = true;
+          this.result.hasTheater = true;
           return this;
         }
 
         public Builder clearTheater() {
-          result.hasTheater = false;
-          result.theater_ = NowPlaying.TheaterProto.getDefaultInstance();
+          this.result.hasTheater = false;
+          this.result.theater_ = NowPlaying.TheaterProto.getDefaultInstance();
           return this;
         }
 
-        // repeated .TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto MovieAndShowtimes = 4;
+        // repeated
+        // .TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto
+        // MovieAndShowtimes = 4;
         public java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> getMovieAndShowtimesList() {
-          return java.util.Collections.unmodifiableList(result.movieAndShowtimes_);
+          return java.util.Collections.unmodifiableList(this.result.movieAndShowtimes_);
         }
 
         public int getMovieAndShowtimesCount() {
-          return result.getMovieAndShowtimesCount();
+          return this.result.getMovieAndShowtimesCount();
         }
 
-        public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto getMovieAndShowtimes(
-            int index) {
-          return result.getMovieAndShowtimes(index);
+        public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto getMovieAndShowtimes(final int index) {
+          return this.result.getMovieAndShowtimes(index);
         }
 
-        public Builder setMovieAndShowtimes(int index,
-                                            NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto value) {
-          result.movieAndShowtimes_.set(index, value);
+        public Builder setMovieAndShowtimes(final int index, final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto value) {
+          this.result.movieAndShowtimes_.set(index, value);
           return this;
         }
 
-        public Builder setMovieAndShowtimes(int index,
-                                            NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder builderForValue) {
-          result.movieAndShowtimes_.set(index, builderForValue.build());
+        public Builder setMovieAndShowtimes(final int index,
+            final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder builderForValue) {
+          this.result.movieAndShowtimes_.set(index, builderForValue.build());
+          return this;
+        }
+
+        public Builder addMovieAndShowtimes(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto value) {
+          if (this.result.movieAndShowtimes_.isEmpty()) {
+            this.result.movieAndShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto>();
+          }
+          this.result.movieAndShowtimes_.add(value);
           return this;
         }
 
         public Builder addMovieAndShowtimes(
-            NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto value) {
-          if (result.movieAndShowtimes_.isEmpty()) {
-            result.movieAndShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto>();
+            final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder builderForValue) {
+          if (this.result.movieAndShowtimes_.isEmpty()) {
+            this.result.movieAndShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto>();
           }
-          result.movieAndShowtimes_.add(value);
-          return this;
-        }
-
-        public Builder addMovieAndShowtimes(
-            NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder builderForValue) {
-          if (result.movieAndShowtimes_.isEmpty()) {
-            result.movieAndShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto>();
-          }
-          result.movieAndShowtimes_.add(builderForValue.build());
+          this.result.movieAndShowtimes_.add(builderForValue.build());
           return this;
         }
 
         public Builder addAllMovieAndShowtimes(
-            java.lang.Iterable<? extends NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> values) {
-          if (result.movieAndShowtimes_.isEmpty()) {
-            result.movieAndShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto>();
+            final java.lang.Iterable<? extends NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto> values) {
+          if (this.result.movieAndShowtimes_.isEmpty()) {
+            this.result.movieAndShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto>();
           }
-          super.addAll(values, result.movieAndShowtimes_);
+          super.addAll(values, this.result.movieAndShowtimes_);
           return this;
         }
 
         public Builder clearMovieAndShowtimes() {
-          result.movieAndShowtimes_ = java.util.Collections.emptyList();
+          this.result.movieAndShowtimes_ = java.util.Collections.emptyList();
           return this;
         }
       }
@@ -3118,34 +3120,36 @@ public final class NowPlaying {
     private java.util.List<NowPlaying.MovieProto> movies_ = java.util.Collections.emptyList();
 
     public java.util.List<NowPlaying.MovieProto> getMoviesList() {
-      return movies_;
+      return this.movies_;
     }
 
     public int getMoviesCount() {
-      return movies_.size();
+      return this.movies_.size();
     }
 
-    public NowPlaying.MovieProto getMovies(int index) {
-      return movies_.get(index);
+    public NowPlaying.MovieProto getMovies(final int index) {
+      return this.movies_.get(index);
     }
 
-    // repeated .TheaterListingsProto.TheaterAndMovieShowtimesProto TheaterAndMovieShowtimes = 6;
-    private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes_ = java.util.Collections.emptyList();
+    // repeated .TheaterListingsProto.TheaterAndMovieShowtimesProto
+    // TheaterAndMovieShowtimes = 6;
+    private java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> theaterAndMovieShowtimes_ = java.util.Collections
+    .emptyList();
 
     public java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> getTheaterAndMovieShowtimesList() {
-      return theaterAndMovieShowtimes_;
+      return this.theaterAndMovieShowtimes_;
     }
 
     public int getTheaterAndMovieShowtimesCount() {
-      return theaterAndMovieShowtimes_.size();
+      return this.theaterAndMovieShowtimes_.size();
     }
 
-    public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto getTheaterAndMovieShowtimes(int index) {
-      return theaterAndMovieShowtimes_.get(index);
+    public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto getTheaterAndMovieShowtimes(final int index) {
+      return this.theaterAndMovieShowtimes_.get(index);
     }
 
-    public final boolean isInitialized() {
-      for (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto element : getTheaterAndMovieShowtimesList()) {
+    @Override public final boolean isInitialized() {
+      for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto element : getTheaterAndMovieShowtimesList()) {
         if (!element.isInitialized()) {
           return false;
         }
@@ -3153,11 +3157,11 @@ public final class NowPlaying {
       return true;
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
-      for (NowPlaying.MovieProto element : getMoviesList()) {
+    @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+      for (final NowPlaying.MovieProto element : getMoviesList()) {
         output.writeMessage(5, element);
       }
-      for (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto element : getTheaterAndMovieShowtimesList()) {
+      for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto element : getTheaterAndMovieShowtimesList()) {
         output.writeMessage(6, element);
       }
       getUnknownFields().writeTo(output);
@@ -3165,60 +3169,58 @@ public final class NowPlaying {
 
     private int memoizedSerializedSize = -1;
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+    @Override public int getSerializedSize() {
+      int size = this.memoizedSerializedSize;
       if (size != -1) {
         return size;
       }
 
       size = 0;
-      for (NowPlaying.MovieProto element : getMoviesList()) {
+      for (final NowPlaying.MovieProto element : getMoviesList()) {
         size += com.google.protobuf.CodedOutputStream.computeMessageSize(5, element);
       }
-      for (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto element : getTheaterAndMovieShowtimesList()) {
+      for (final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto element : getTheaterAndMovieShowtimesList()) {
         size += com.google.protobuf.CodedOutputStream.computeMessageSize(6, element);
       }
       size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      this.memoizedSerializedSize = size;
       return size;
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterListingsProto parseFrom(final com.google.protobuf.ByteString data)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(com.google.protobuf.ByteString data,
-                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterListingsProto parseFrom(final com.google.protobuf.ByteString data,
+        final com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterListingsProto parseFrom(final byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(byte[] data,
-                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.TheaterListingsProto parseFrom(final byte[] data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(java.io.InputStream input) throws java.io.IOException {
+    public static NowPlaying.TheaterListingsProto parseFrom(final java.io.InputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(java.io.InputStream input,
-                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.TheaterListingsProto parseFrom(final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.TheaterListingsProto parseFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.TheaterListingsProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                            com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.TheaterListingsProto parseFrom(final com.google.protobuf.CodedInputStream input,
+        final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -3230,7 +3232,7 @@ public final class NowPlaying {
       return new Builder();
     }
 
-    public static Builder newBuilder(NowPlaying.TheaterListingsProto prototype) {
+    public static Builder newBuilder(final NowPlaying.TheaterListingsProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
 
@@ -3241,20 +3243,20 @@ public final class NowPlaying {
 
       NowPlaying.TheaterListingsProto result = new NowPlaying.TheaterListingsProto();
 
-      protected NowPlaying.TheaterListingsProto internalGetResult() {
-        return result;
+      @Override protected NowPlaying.TheaterListingsProto internalGetResult() {
+        return this.result;
       }
 
-      public Builder clear() {
-        result = new NowPlaying.TheaterListingsProto();
+      @Override public Builder clear() {
+        this.result = new NowPlaying.TheaterListingsProto();
         return this;
       }
 
-      public Builder clone() {
-        return new Builder().mergeFrom(result);
+      @Override public Builder clone() {
+        return new Builder().mergeFrom(this.result);
       }
 
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return NowPlaying.TheaterListingsProto.getDescriptor();
       }
 
@@ -3264,31 +3266,31 @@ public final class NowPlaying {
 
       public NowPlaying.TheaterListingsProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result);
+          throw new com.google.protobuf.UninitializedMessageException(this.result);
         }
         return buildPartial();
       }
 
       private NowPlaying.TheaterListingsProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
 
       public NowPlaying.TheaterListingsProto buildPartial() {
-        if (result.movies_ != java.util.Collections.EMPTY_LIST) {
-          result.movies_ = java.util.Collections.unmodifiableList(result.movies_);
+        if (this.result.movies_ != java.util.Collections.EMPTY_LIST) {
+          this.result.movies_ = java.util.Collections.unmodifiableList(this.result.movies_);
         }
-        if (result.theaterAndMovieShowtimes_ != java.util.Collections.EMPTY_LIST) {
-          result.theaterAndMovieShowtimes_ = java.util.Collections.unmodifiableList(result.theaterAndMovieShowtimes_);
+        if (this.result.theaterAndMovieShowtimes_ != java.util.Collections.EMPTY_LIST) {
+          this.result.theaterAndMovieShowtimes_ = java.util.Collections.unmodifiableList(this.result.theaterAndMovieShowtimes_);
         }
-        NowPlaying.TheaterListingsProto returnMe = result;
-        result = null;
+        final NowPlaying.TheaterListingsProto returnMe = this.result;
+        this.result = null;
         return returnMe;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
+      @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.TheaterListingsProto) {
           return mergeFrom((NowPlaying.TheaterListingsProto) other);
         } else {
@@ -3297,168 +3299,165 @@ public final class NowPlaying {
         }
       }
 
-      public Builder mergeFrom(NowPlaying.TheaterListingsProto other) {
+      public Builder mergeFrom(final NowPlaying.TheaterListingsProto other) {
         if (other == NowPlaying.TheaterListingsProto.getDefaultInstance()) {
           return this;
         }
         if (!other.movies_.isEmpty()) {
-          if (result.movies_.isEmpty()) {
-            result.movies_ = new java.util.ArrayList<NowPlaying.MovieProto>();
+          if (this.result.movies_.isEmpty()) {
+            this.result.movies_ = new java.util.ArrayList<NowPlaying.MovieProto>();
           }
-          result.movies_.addAll(other.movies_);
+          this.result.movies_.addAll(other.movies_);
         }
         if (!other.theaterAndMovieShowtimes_.isEmpty()) {
-          if (result.theaterAndMovieShowtimes_.isEmpty()) {
-            result.theaterAndMovieShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto>();
+          if (this.result.theaterAndMovieShowtimes_.isEmpty()) {
+            this.result.theaterAndMovieShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto>();
           }
-          result.theaterAndMovieShowtimes_.addAll(other.theaterAndMovieShowtimes_);
+          this.result.theaterAndMovieShowtimes_.addAll(other.theaterAndMovieShowtimes_);
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
         return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                               com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      throws java.io.IOException {
+        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
         while (true) {
-          int tag = input.readTag();
+          final int tag = input.readTag();
           switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
+          case 0:
+            setUnknownFields(unknownFields.build());
+            return this;
+          default: {
+            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+              setUnknownFields(unknownFields.build());
               return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                return this;
-              }
-              break;
             }
-            case 42: {
-              NowPlaying.MovieProto.Builder subBuilder = NowPlaying.MovieProto.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addMovies(subBuilder.buildPartial());
-              break;
-            }
-            case 50: {
-              NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder subBuilder = NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addTheaterAndMovieShowtimes(subBuilder.buildPartial());
-              break;
-            }
+            break;
+          }
+          case 42: {
+            final NowPlaying.MovieProto.Builder subBuilder = NowPlaying.MovieProto.newBuilder();
+            input.readMessage(subBuilder, extensionRegistry);
+            addMovies(subBuilder.buildPartial());
+            break;
+          }
+          case 50: {
+            final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder subBuilder = NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto
+            .newBuilder();
+            input.readMessage(subBuilder, extensionRegistry);
+            addTheaterAndMovieShowtimes(subBuilder.buildPartial());
+            break;
+          }
           }
         }
       }
 
       // repeated .MovieProto Movies = 5;
       public java.util.List<NowPlaying.MovieProto> getMoviesList() {
-        return java.util.Collections.unmodifiableList(result.movies_);
+        return java.util.Collections.unmodifiableList(this.result.movies_);
       }
 
       public int getMoviesCount() {
-        return result.getMoviesCount();
+        return this.result.getMoviesCount();
       }
 
-      public NowPlaying.MovieProto getMovies(int index) {
-        return result.getMovies(index);
+      public NowPlaying.MovieProto getMovies(final int index) {
+        return this.result.getMovies(index);
       }
 
-      public Builder setMovies(int index, NowPlaying.MovieProto value) {
-        result.movies_.set(index, value);
+      public Builder setMovies(final int index, final NowPlaying.MovieProto value) {
+        this.result.movies_.set(index, value);
         return this;
       }
 
-      public Builder setMovies(int index, NowPlaying.MovieProto.Builder builderForValue) {
-        result.movies_.set(index, builderForValue.build());
+      public Builder setMovies(final int index, final NowPlaying.MovieProto.Builder builderForValue) {
+        this.result.movies_.set(index, builderForValue.build());
         return this;
       }
 
-      public Builder addMovies(NowPlaying.MovieProto value) {
-        if (result.movies_.isEmpty()) {
-          result.movies_ = new java.util.ArrayList<NowPlaying.MovieProto>();
+      public Builder addMovies(final NowPlaying.MovieProto value) {
+        if (this.result.movies_.isEmpty()) {
+          this.result.movies_ = new java.util.ArrayList<NowPlaying.MovieProto>();
         }
-        result.movies_.add(value);
+        this.result.movies_.add(value);
         return this;
       }
 
-      public Builder addMovies(NowPlaying.MovieProto.Builder builderForValue) {
-        if (result.movies_.isEmpty()) {
-          result.movies_ = new java.util.ArrayList<NowPlaying.MovieProto>();
+      public Builder addMovies(final NowPlaying.MovieProto.Builder builderForValue) {
+        if (this.result.movies_.isEmpty()) {
+          this.result.movies_ = new java.util.ArrayList<NowPlaying.MovieProto>();
         }
-        result.movies_.add(builderForValue.build());
+        this.result.movies_.add(builderForValue.build());
         return this;
       }
 
-      public Builder addAllMovies(java.lang.Iterable<? extends NowPlaying.MovieProto> values) {
-        if (result.movies_.isEmpty()) {
-          result.movies_ = new java.util.ArrayList<NowPlaying.MovieProto>();
+      public Builder addAllMovies(final java.lang.Iterable<? extends NowPlaying.MovieProto> values) {
+        if (this.result.movies_.isEmpty()) {
+          this.result.movies_ = new java.util.ArrayList<NowPlaying.MovieProto>();
         }
-        super.addAll(values, result.movies_);
+        super.addAll(values, this.result.movies_);
         return this;
       }
 
       public Builder clearMovies() {
-        result.movies_ = java.util.Collections.emptyList();
+        this.result.movies_ = java.util.Collections.emptyList();
         return this;
       }
 
-      // repeated .TheaterListingsProto.TheaterAndMovieShowtimesProto TheaterAndMovieShowtimes = 6;
+      // repeated .TheaterListingsProto.TheaterAndMovieShowtimesProto
+      // TheaterAndMovieShowtimes = 6;
       public java.util.List<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> getTheaterAndMovieShowtimesList() {
-        return java.util.Collections.unmodifiableList(result.theaterAndMovieShowtimes_);
+        return java.util.Collections.unmodifiableList(this.result.theaterAndMovieShowtimes_);
       }
 
       public int getTheaterAndMovieShowtimesCount() {
-        return result.getTheaterAndMovieShowtimesCount();
+        return this.result.getTheaterAndMovieShowtimesCount();
       }
 
-      public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto getTheaterAndMovieShowtimes(int index) {
-        return result.getTheaterAndMovieShowtimes(index);
+      public NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto getTheaterAndMovieShowtimes(final int index) {
+        return this.result.getTheaterAndMovieShowtimes(index);
       }
 
-      public Builder setTheaterAndMovieShowtimes(int index,
-                                                 NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto value) {
-        result.theaterAndMovieShowtimes_.set(index, value);
+      public Builder setTheaterAndMovieShowtimes(final int index, final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto value) {
+        this.result.theaterAndMovieShowtimes_.set(index, value);
         return this;
       }
 
-      public Builder setTheaterAndMovieShowtimes(int index,
-                                                 NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder builderForValue) {
-        result.theaterAndMovieShowtimes_.set(index, builderForValue.build());
+      public Builder setTheaterAndMovieShowtimes(final int index, final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder builderForValue) {
+        this.result.theaterAndMovieShowtimes_.set(index, builderForValue.build());
         return this;
       }
 
-      public Builder addTheaterAndMovieShowtimes(NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto value) {
-        if (result.theaterAndMovieShowtimes_.isEmpty()) {
-          result.theaterAndMovieShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto>();
+      public Builder addTheaterAndMovieShowtimes(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto value) {
+        if (this.result.theaterAndMovieShowtimes_.isEmpty()) {
+          this.result.theaterAndMovieShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto>();
         }
-        result.theaterAndMovieShowtimes_.add(value);
+        this.result.theaterAndMovieShowtimes_.add(value);
         return this;
       }
 
-      public Builder addTheaterAndMovieShowtimes(
-          NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder builderForValue) {
-        if (result.theaterAndMovieShowtimes_.isEmpty()) {
-          result.theaterAndMovieShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto>();
+      public Builder addTheaterAndMovieShowtimes(final NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder builderForValue) {
+        if (this.result.theaterAndMovieShowtimes_.isEmpty()) {
+          this.result.theaterAndMovieShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto>();
         }
-        result.theaterAndMovieShowtimes_.add(builderForValue.build());
+        this.result.theaterAndMovieShowtimes_.add(builderForValue.build());
         return this;
       }
 
-      public Builder addAllTheaterAndMovieShowtimes(
-          java.lang.Iterable<? extends NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> values) {
-        if (result.theaterAndMovieShowtimes_.isEmpty()) {
-          result.theaterAndMovieShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto>();
+      public Builder addAllTheaterAndMovieShowtimes(final java.lang.Iterable<? extends NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto> values) {
+        if (this.result.theaterAndMovieShowtimes_.isEmpty()) {
+          this.result.theaterAndMovieShowtimes_ = new java.util.ArrayList<NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto>();
         }
-        super.addAll(values, result.theaterAndMovieShowtimes_);
+        super.addAll(values, this.result.theaterAndMovieShowtimes_);
         return this;
       }
 
       public Builder clearTheaterAndMovieShowtimes() {
-        result.theaterAndMovieShowtimes_ = java.util.Collections.emptyList();
+        this.result.theaterAndMovieShowtimes_ = java.util.Collections.emptyList();
         return this;
       }
     }
@@ -3483,7 +3482,7 @@ public final class NowPlaying {
       return NowPlaying.internal_static_ReviewProto_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
       return NowPlaying.internal_static_ReviewProto_fieldAccessorTable;
     }
 
@@ -3492,11 +3491,11 @@ public final class NowPlaying {
     private java.lang.String title_ = "";
 
     public boolean hasTitle() {
-      return hasTitle;
+      return this.hasTitle;
     }
 
     public java.lang.String getTitle() {
-      return title_;
+      return this.title_;
     }
 
     // optional string Url = 2;
@@ -3504,11 +3503,11 @@ public final class NowPlaying {
     private java.lang.String url_ = "";
 
     public boolean hasUrl() {
-      return hasUrl;
+      return this.hasUrl;
     }
 
     public java.lang.String getUrl() {
-      return url_;
+      return this.url_;
     }
 
     // optional float Rating = 3;
@@ -3516,11 +3515,11 @@ public final class NowPlaying {
     private float rating_ = 0F;
 
     public boolean hasRating() {
-      return hasRating;
+      return this.hasRating;
     }
 
     public float getRating() {
-      return rating_;
+      return this.rating_;
     }
 
     // optional string Snippet = 4;
@@ -3528,11 +3527,11 @@ public final class NowPlaying {
     private java.lang.String snippet_ = "";
 
     public boolean hasSnippet() {
-      return hasSnippet;
+      return this.hasSnippet;
     }
 
     public java.lang.String getSnippet() {
-      return snippet_;
+      return this.snippet_;
     }
 
     // optional string Content = 5;
@@ -3540,11 +3539,11 @@ public final class NowPlaying {
     private java.lang.String content_ = "";
 
     public boolean hasContent() {
-      return hasContent;
+      return this.hasContent;
     }
 
     public java.lang.String getContent() {
-      return content_;
+      return this.content_;
     }
 
     // optional string Publisher = 6;
@@ -3552,11 +3551,11 @@ public final class NowPlaying {
     private java.lang.String publisher_ = "";
 
     public boolean hasPublisher() {
-      return hasPublisher;
+      return this.hasPublisher;
     }
 
     public java.lang.String getPublisher() {
-      return publisher_;
+      return this.publisher_;
     }
 
     // optional string Author = 7;
@@ -3564,11 +3563,11 @@ public final class NowPlaying {
     private java.lang.String author_ = "";
 
     public boolean hasAuthor() {
-      return hasAuthor;
+      return this.hasAuthor;
     }
 
     public java.lang.String getAuthor() {
-      return author_;
+      return this.author_;
     }
 
     // optional string Date = 8;
@@ -3576,18 +3575,18 @@ public final class NowPlaying {
     private java.lang.String date_ = "";
 
     public boolean hasDate() {
-      return hasDate;
+      return this.hasDate;
     }
 
     public java.lang.String getDate() {
-      return date_;
+      return this.date_;
     }
 
-    public final boolean isInitialized() {
+    @Override public final boolean isInitialized() {
       return true;
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+    @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       if (hasTitle()) {
         output.writeString(1, getTitle());
       }
@@ -3617,8 +3616,8 @@ public final class NowPlaying {
 
     private int memoizedSerializedSize = -1;
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+    @Override public int getSerializedSize() {
+      int size = this.memoizedSerializedSize;
       if (size != -1) {
         return size;
       }
@@ -3649,46 +3648,43 @@ public final class NowPlaying {
         size += com.google.protobuf.CodedOutputStream.computeStringSize(8, getDate());
       }
       size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      this.memoizedSerializedSize = size;
       return size;
     }
 
-    public static NowPlaying.ReviewProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewProto parseFrom(final com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(com.google.protobuf.ByteString data,
-                                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewProto parseFrom(final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewProto parseFrom(final byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(byte[] data,
-                                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewProto parseFrom(final byte[] data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(java.io.InputStream input) throws java.io.IOException {
+    public static NowPlaying.ReviewProto parseFrom(final java.io.InputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(java.io.InputStream input,
-                                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.ReviewProto parseFrom(final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.ReviewProto parseFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.ReviewProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                   com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.ReviewProto parseFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -3700,7 +3696,7 @@ public final class NowPlaying {
       return new Builder();
     }
 
-    public static Builder newBuilder(NowPlaying.ReviewProto prototype) {
+    public static Builder newBuilder(final NowPlaying.ReviewProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
 
@@ -3711,20 +3707,20 @@ public final class NowPlaying {
 
       NowPlaying.ReviewProto result = new NowPlaying.ReviewProto();
 
-      protected NowPlaying.ReviewProto internalGetResult() {
-        return result;
+      @Override protected NowPlaying.ReviewProto internalGetResult() {
+        return this.result;
       }
 
-      public Builder clear() {
-        result = new NowPlaying.ReviewProto();
+      @Override public Builder clear() {
+        this.result = new NowPlaying.ReviewProto();
         return this;
       }
 
-      public Builder clone() {
-        return new Builder().mergeFrom(result);
+      @Override public Builder clone() {
+        return new Builder().mergeFrom(this.result);
       }
 
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return NowPlaying.ReviewProto.getDescriptor();
       }
 
@@ -3734,25 +3730,25 @@ public final class NowPlaying {
 
       public NowPlaying.ReviewProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result);
+          throw new com.google.protobuf.UninitializedMessageException(this.result);
         }
         return buildPartial();
       }
 
       private NowPlaying.ReviewProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
 
       public NowPlaying.ReviewProto buildPartial() {
-        NowPlaying.ReviewProto returnMe = result;
-        result = null;
+        final NowPlaying.ReviewProto returnMe = this.result;
+        this.result = null;
         return returnMe;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
+      @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.ReviewProto) {
           return mergeFrom((NowPlaying.ReviewProto) other);
         } else {
@@ -3761,7 +3757,7 @@ public final class NowPlaying {
         }
       }
 
-      public Builder mergeFrom(NowPlaying.ReviewProto other) {
+      public Builder mergeFrom(final NowPlaying.ReviewProto other) {
         if (other == NowPlaying.ReviewProto.getDefaultInstance()) {
           return this;
         }
@@ -3789,232 +3785,231 @@ public final class NowPlaying {
         if (other.hasDate()) {
           setDate(other.getDate());
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
         return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                               com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      throws java.io.IOException {
+        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
         while (true) {
-          int tag = input.readTag();
+          final int tag = input.readTag();
           switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
+          case 0:
+            setUnknownFields(unknownFields.build());
+            return this;
+          default: {
+            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+              setUnknownFields(unknownFields.build());
               return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                return this;
-              }
-              break;
             }
-            case 10: {
-              setTitle(input.readString());
-              break;
-            }
-            case 18: {
-              setUrl(input.readString());
-              break;
-            }
-            case 29: {
-              setRating(input.readFloat());
-              break;
-            }
-            case 34: {
-              setSnippet(input.readString());
-              break;
-            }
-            case 42: {
-              setContent(input.readString());
-              break;
-            }
-            case 50: {
-              setPublisher(input.readString());
-              break;
-            }
-            case 58: {
-              setAuthor(input.readString());
-              break;
-            }
-            case 66: {
-              setDate(input.readString());
-              break;
-            }
+            break;
+          }
+          case 10: {
+            setTitle(input.readString());
+            break;
+          }
+          case 18: {
+            setUrl(input.readString());
+            break;
+          }
+          case 29: {
+            setRating(input.readFloat());
+            break;
+          }
+          case 34: {
+            setSnippet(input.readString());
+            break;
+          }
+          case 42: {
+            setContent(input.readString());
+            break;
+          }
+          case 50: {
+            setPublisher(input.readString());
+            break;
+          }
+          case 58: {
+            setAuthor(input.readString());
+            break;
+          }
+          case 66: {
+            setDate(input.readString());
+            break;
+          }
           }
         }
       }
 
       // optional string Title = 1;
       public boolean hasTitle() {
-        return result.hasTitle();
+        return this.result.hasTitle();
       }
 
       public java.lang.String getTitle() {
-        return result.getTitle();
+        return this.result.getTitle();
       }
 
-      public Builder setTitle(java.lang.String value) {
-        result.hasTitle = true;
-        result.title_ = value;
+      public Builder setTitle(final java.lang.String value) {
+        this.result.hasTitle = true;
+        this.result.title_ = value;
         return this;
       }
 
       public Builder clearTitle() {
-        result.hasTitle = false;
-        result.title_ = "";
+        this.result.hasTitle = false;
+        this.result.title_ = "";
         return this;
       }
 
       // optional string Url = 2;
       public boolean hasUrl() {
-        return result.hasUrl();
+        return this.result.hasUrl();
       }
 
       public java.lang.String getUrl() {
-        return result.getUrl();
+        return this.result.getUrl();
       }
 
-      public Builder setUrl(java.lang.String value) {
-        result.hasUrl = true;
-        result.url_ = value;
+      public Builder setUrl(final java.lang.String value) {
+        this.result.hasUrl = true;
+        this.result.url_ = value;
         return this;
       }
 
       public Builder clearUrl() {
-        result.hasUrl = false;
-        result.url_ = "";
+        this.result.hasUrl = false;
+        this.result.url_ = "";
         return this;
       }
 
       // optional float Rating = 3;
       public boolean hasRating() {
-        return result.hasRating();
+        return this.result.hasRating();
       }
 
       public float getRating() {
-        return result.getRating();
+        return this.result.getRating();
       }
 
-      public Builder setRating(float value) {
-        result.hasRating = true;
-        result.rating_ = value;
+      public Builder setRating(final float value) {
+        this.result.hasRating = true;
+        this.result.rating_ = value;
         return this;
       }
 
       public Builder clearRating() {
-        result.hasRating = false;
-        result.rating_ = 0F;
+        this.result.hasRating = false;
+        this.result.rating_ = 0F;
         return this;
       }
 
       // optional string Snippet = 4;
       public boolean hasSnippet() {
-        return result.hasSnippet();
+        return this.result.hasSnippet();
       }
 
       public java.lang.String getSnippet() {
-        return result.getSnippet();
+        return this.result.getSnippet();
       }
 
-      public Builder setSnippet(java.lang.String value) {
-        result.hasSnippet = true;
-        result.snippet_ = value;
+      public Builder setSnippet(final java.lang.String value) {
+        this.result.hasSnippet = true;
+        this.result.snippet_ = value;
         return this;
       }
 
       public Builder clearSnippet() {
-        result.hasSnippet = false;
-        result.snippet_ = "";
+        this.result.hasSnippet = false;
+        this.result.snippet_ = "";
         return this;
       }
 
       // optional string Content = 5;
       public boolean hasContent() {
-        return result.hasContent();
+        return this.result.hasContent();
       }
 
       public java.lang.String getContent() {
-        return result.getContent();
+        return this.result.getContent();
       }
 
-      public Builder setContent(java.lang.String value) {
-        result.hasContent = true;
-        result.content_ = value;
+      public Builder setContent(final java.lang.String value) {
+        this.result.hasContent = true;
+        this.result.content_ = value;
         return this;
       }
 
       public Builder clearContent() {
-        result.hasContent = false;
-        result.content_ = "";
+        this.result.hasContent = false;
+        this.result.content_ = "";
         return this;
       }
 
       // optional string Publisher = 6;
       public boolean hasPublisher() {
-        return result.hasPublisher();
+        return this.result.hasPublisher();
       }
 
       public java.lang.String getPublisher() {
-        return result.getPublisher();
+        return this.result.getPublisher();
       }
 
-      public Builder setPublisher(java.lang.String value) {
-        result.hasPublisher = true;
-        result.publisher_ = value;
+      public Builder setPublisher(final java.lang.String value) {
+        this.result.hasPublisher = true;
+        this.result.publisher_ = value;
         return this;
       }
 
       public Builder clearPublisher() {
-        result.hasPublisher = false;
-        result.publisher_ = "";
+        this.result.hasPublisher = false;
+        this.result.publisher_ = "";
         return this;
       }
 
       // optional string Author = 7;
       public boolean hasAuthor() {
-        return result.hasAuthor();
+        return this.result.hasAuthor();
       }
 
       public java.lang.String getAuthor() {
-        return result.getAuthor();
+        return this.result.getAuthor();
       }
 
-      public Builder setAuthor(java.lang.String value) {
-        result.hasAuthor = true;
-        result.author_ = value;
+      public Builder setAuthor(final java.lang.String value) {
+        this.result.hasAuthor = true;
+        this.result.author_ = value;
         return this;
       }
 
       public Builder clearAuthor() {
-        result.hasAuthor = false;
-        result.author_ = "";
+        this.result.hasAuthor = false;
+        this.result.author_ = "";
         return this;
       }
 
       // optional string Date = 8;
       public boolean hasDate() {
-        return result.hasDate();
+        return this.result.hasDate();
       }
 
       public java.lang.String getDate() {
-        return result.getDate();
+        return this.result.getDate();
       }
 
-      public Builder setDate(java.lang.String value) {
-        result.hasDate = true;
-        result.date_ = value;
+      public Builder setDate(final java.lang.String value) {
+        this.result.hasDate = true;
+        this.result.date_ = value;
         return this;
       }
 
       public Builder clearDate() {
-        result.hasDate = false;
-        result.date_ = "";
+        this.result.hasDate = false;
+        this.result.date_ = "";
         return this;
       }
     }
@@ -4039,7 +4034,7 @@ public final class NowPlaying {
       return NowPlaying.internal_static_ReviewsListProto_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
+    @Override protected com.google.protobuf.GeneratedMessage.FieldAccessorTable internalGetFieldAccessorTable() {
       return NowPlaying.internal_static_ReviewsListProto_fieldAccessorTable;
     }
 
@@ -4047,23 +4042,23 @@ public final class NowPlaying {
     private java.util.List<NowPlaying.ReviewProto> reviews_ = java.util.Collections.emptyList();
 
     public java.util.List<NowPlaying.ReviewProto> getReviewsList() {
-      return reviews_;
+      return this.reviews_;
     }
 
     public int getReviewsCount() {
-      return reviews_.size();
+      return this.reviews_.size();
     }
 
-    public NowPlaying.ReviewProto getReviews(int index) {
-      return reviews_.get(index);
+    public NowPlaying.ReviewProto getReviews(final int index) {
+      return this.reviews_.get(index);
     }
 
-    public final boolean isInitialized() {
+    @Override public final boolean isInitialized() {
       return true;
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
-      for (NowPlaying.ReviewProto element : getReviewsList()) {
+    @Override public void writeTo(final com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+      for (final NowPlaying.ReviewProto element : getReviewsList()) {
         output.writeMessage(1, element);
       }
       getUnknownFields().writeTo(output);
@@ -4071,57 +4066,55 @@ public final class NowPlaying {
 
     private int memoizedSerializedSize = -1;
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+    @Override public int getSerializedSize() {
+      int size = this.memoizedSerializedSize;
       if (size != -1) {
         return size;
       }
 
       size = 0;
-      for (NowPlaying.ReviewProto element : getReviewsList()) {
+      for (final NowPlaying.ReviewProto element : getReviewsList()) {
         size += com.google.protobuf.CodedOutputStream.computeMessageSize(1, element);
       }
       size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
+      this.memoizedSerializedSize = size;
       return size;
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(
-        com.google.protobuf.ByteString data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewsListProto parseFrom(final com.google.protobuf.ByteString data)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(com.google.protobuf.ByteString data,
-                                                        com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewsListProto parseFrom(final com.google.protobuf.ByteString data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(
-        byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewsListProto parseFrom(final byte[] data) throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(byte[] data,
-                                                        com.google.protobuf.ExtensionRegistry extensionRegistry) throws com.google.protobuf.InvalidProtocolBufferException {
+    public static NowPlaying.ReviewsListProto parseFrom(final byte[] data, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(java.io.InputStream input) throws java.io.IOException {
+    public static NowPlaying.ReviewsListProto parseFrom(final java.io.InputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(java.io.InputStream input,
-                                                        com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.ReviewsListProto parseFrom(final java.io.InputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+    throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(
-        com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+    public static NowPlaying.ReviewsListProto parseFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
 
-    public static NowPlaying.ReviewsListProto parseFrom(com.google.protobuf.CodedInputStream input,
-                                                        com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
+    public static NowPlaying.ReviewsListProto parseFrom(final com.google.protobuf.CodedInputStream input,
+        final com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry).buildParsed();
     }
 
@@ -4133,7 +4126,7 @@ public final class NowPlaying {
       return new Builder();
     }
 
-    public static Builder newBuilder(NowPlaying.ReviewsListProto prototype) {
+    public static Builder newBuilder(final NowPlaying.ReviewsListProto prototype) {
       return new Builder().mergeFrom(prototype);
     }
 
@@ -4144,20 +4137,20 @@ public final class NowPlaying {
 
       NowPlaying.ReviewsListProto result = new NowPlaying.ReviewsListProto();
 
-      protected NowPlaying.ReviewsListProto internalGetResult() {
-        return result;
+      @Override protected NowPlaying.ReviewsListProto internalGetResult() {
+        return this.result;
       }
 
-      public Builder clear() {
-        result = new NowPlaying.ReviewsListProto();
+      @Override public Builder clear() {
+        this.result = new NowPlaying.ReviewsListProto();
         return this;
       }
 
-      public Builder clone() {
-        return new Builder().mergeFrom(result);
+      @Override public Builder clone() {
+        return new Builder().mergeFrom(this.result);
       }
 
-      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      @Override public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return NowPlaying.ReviewsListProto.getDescriptor();
       }
 
@@ -4167,28 +4160,28 @@ public final class NowPlaying {
 
       public NowPlaying.ReviewsListProto build() {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result);
+          throw new com.google.protobuf.UninitializedMessageException(this.result);
         }
         return buildPartial();
       }
 
       private NowPlaying.ReviewsListProto buildParsed() throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
-          throw new com.google.protobuf.UninitializedMessageException(result).asInvalidProtocolBufferException();
+          throw new com.google.protobuf.UninitializedMessageException(this.result).asInvalidProtocolBufferException();
         }
         return buildPartial();
       }
 
       public NowPlaying.ReviewsListProto buildPartial() {
-        if (result.reviews_ != java.util.Collections.EMPTY_LIST) {
-          result.reviews_ = java.util.Collections.unmodifiableList(result.reviews_);
+        if (this.result.reviews_ != java.util.Collections.EMPTY_LIST) {
+          this.result.reviews_ = java.util.Collections.unmodifiableList(this.result.reviews_);
         }
-        NowPlaying.ReviewsListProto returnMe = result;
-        result = null;
+        final NowPlaying.ReviewsListProto returnMe = this.result;
+        this.result = null;
         return returnMe;
       }
 
-      public Builder mergeFrom(com.google.protobuf.Message other) {
+      @Override public Builder mergeFrom(final com.google.protobuf.Message other) {
         if (other instanceof NowPlaying.ReviewsListProto) {
           return mergeFrom((NowPlaying.ReviewsListProto) other);
         } else {
@@ -4197,155 +4190,147 @@ public final class NowPlaying {
         }
       }
 
-      public Builder mergeFrom(NowPlaying.ReviewsListProto other) {
+      public Builder mergeFrom(final NowPlaying.ReviewsListProto other) {
         if (other == NowPlaying.ReviewsListProto.getDefaultInstance()) {
           return this;
         }
         if (!other.reviews_.isEmpty()) {
-          if (result.reviews_.isEmpty()) {
-            result.reviews_ = new java.util.ArrayList<NowPlaying.ReviewProto>();
+          if (this.result.reviews_.isEmpty()) {
+            this.result.reviews_ = new java.util.ArrayList<NowPlaying.ReviewProto>();
           }
-          result.reviews_.addAll(other.reviews_);
+          this.result.reviews_.addAll(other.reviews_);
         }
-        this.mergeUnknownFields(other.getUnknownFields());
+        mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input) throws java.io.IOException {
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input) throws java.io.IOException {
         return mergeFrom(input, com.google.protobuf.ExtensionRegistry.getEmptyRegistry());
       }
 
-      public Builder mergeFrom(com.google.protobuf.CodedInputStream input,
-                               com.google.protobuf.ExtensionRegistry extensionRegistry) throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
+      @Override public Builder mergeFrom(final com.google.protobuf.CodedInputStream input, final com.google.protobuf.ExtensionRegistry extensionRegistry)
+      throws java.io.IOException {
+        final com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder(getUnknownFields());
         while (true) {
-          int tag = input.readTag();
+          final int tag = input.readTag();
           switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
+          case 0:
+            setUnknownFields(unknownFields.build());
+            return this;
+          default: {
+            if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
+              setUnknownFields(unknownFields.build());
               return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                return this;
-              }
-              break;
             }
-            case 10: {
-              NowPlaying.ReviewProto.Builder subBuilder = NowPlaying.ReviewProto.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addReviews(subBuilder.buildPartial());
-              break;
-            }
+            break;
+          }
+          case 10: {
+            final NowPlaying.ReviewProto.Builder subBuilder = NowPlaying.ReviewProto.newBuilder();
+            input.readMessage(subBuilder, extensionRegistry);
+            addReviews(subBuilder.buildPartial());
+            break;
+          }
           }
         }
       }
 
       // repeated .ReviewProto reviews = 1;
       public java.util.List<NowPlaying.ReviewProto> getReviewsList() {
-        return java.util.Collections.unmodifiableList(result.reviews_);
+        return java.util.Collections.unmodifiableList(this.result.reviews_);
       }
 
       public int getReviewsCount() {
-        return result.getReviewsCount();
+        return this.result.getReviewsCount();
       }
 
-      public NowPlaying.ReviewProto getReviews(int index) {
-        return result.getReviews(index);
+      public NowPlaying.ReviewProto getReviews(final int index) {
+        return this.result.getReviews(index);
       }
 
-      public Builder setReviews(int index, NowPlaying.ReviewProto value) {
-        result.reviews_.set(index, value);
+      public Builder setReviews(final int index, final NowPlaying.ReviewProto value) {
+        this.result.reviews_.set(index, value);
         return this;
       }
 
-      public Builder setReviews(int index, NowPlaying.ReviewProto.Builder builderForValue) {
-        result.reviews_.set(index, builderForValue.build());
+      public Builder setReviews(final int index, final NowPlaying.ReviewProto.Builder builderForValue) {
+        this.result.reviews_.set(index, builderForValue.build());
         return this;
       }
 
-      public Builder addReviews(NowPlaying.ReviewProto value) {
-        if (result.reviews_.isEmpty()) {
-          result.reviews_ = new java.util.ArrayList<NowPlaying.ReviewProto>();
+      public Builder addReviews(final NowPlaying.ReviewProto value) {
+        if (this.result.reviews_.isEmpty()) {
+          this.result.reviews_ = new java.util.ArrayList<NowPlaying.ReviewProto>();
         }
-        result.reviews_.add(value);
+        this.result.reviews_.add(value);
         return this;
       }
 
-      public Builder addReviews(NowPlaying.ReviewProto.Builder builderForValue) {
-        if (result.reviews_.isEmpty()) {
-          result.reviews_ = new java.util.ArrayList<NowPlaying.ReviewProto>();
+      public Builder addReviews(final NowPlaying.ReviewProto.Builder builderForValue) {
+        if (this.result.reviews_.isEmpty()) {
+          this.result.reviews_ = new java.util.ArrayList<NowPlaying.ReviewProto>();
         }
-        result.reviews_.add(builderForValue.build());
+        this.result.reviews_.add(builderForValue.build());
         return this;
       }
 
-      public Builder addAllReviews(java.lang.Iterable<? extends NowPlaying.ReviewProto> values) {
-        if (result.reviews_.isEmpty()) {
-          result.reviews_ = new java.util.ArrayList<NowPlaying.ReviewProto>();
+      public Builder addAllReviews(final java.lang.Iterable<? extends NowPlaying.ReviewProto> values) {
+        if (this.result.reviews_.isEmpty()) {
+          this.result.reviews_ = new java.util.ArrayList<NowPlaying.ReviewProto>();
         }
-        super.addAll(values, result.reviews_);
+        super.addAll(values, this.result.reviews_);
         return this;
       }
 
       public Builder clearReviews() {
-        result.reviews_ = java.util.Collections.emptyList();
+        this.result.reviews_ = java.util.Collections.emptyList();
         return this;
       }
     }
   }
 
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_ShowtimeProto_descriptor = getDescriptor().getMessageTypes().get(
-      0);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_ShowtimeProto_descriptor = getDescriptor().getMessageTypes().get(0);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_ShowtimeProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_ShowtimeProto_descriptor, new java.lang.String[]{"Time", "Url", "Dubbed", "Subtitled",},
-      NowPlaying.ShowtimeProto.class, NowPlaying.ShowtimeProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_AllShowtimesProto_descriptor = getDescriptor().getMessageTypes().get(
-      1);
+      internal_static_ShowtimeProto_descriptor, new java.lang.String[] { "Time", "Url", "Dubbed", "Subtitled", }, NowPlaying.ShowtimeProto.class,
+      NowPlaying.ShowtimeProto.Builder.class);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_AllShowtimesProto_descriptor = getDescriptor().getMessageTypes()
+  .get(1);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_AllShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_AllShowtimesProto_descriptor, new java.lang.String[]{"Showtimes", "Vendor", "Captioning",},
+      internal_static_AllShowtimesProto_descriptor, new java.lang.String[] { "Showtimes", "Vendor", "Captioning", },
       NowPlaying.AllShowtimesProto.class, NowPlaying.AllShowtimesProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_MovieProto_descriptor = getDescriptor().getMessageTypes().get(
-      2);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_MovieProto_descriptor = getDescriptor().getMessageTypes().get(2);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_MovieProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_MovieProto_descriptor,
-      new java.lang.String[]{"Identifier", "Title", "Length", "Language", "Genre", "Description", "RawRating", "Score", "IMDbUrl", "Director", "Cast", "Dubbed", "Subtitled", "ReleaseDate",},
-      NowPlaying.MovieProto.class, NowPlaying.MovieProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterProto_descriptor = getDescriptor().getMessageTypes().get(
-      3);
+      internal_static_MovieProto_descriptor, new java.lang.String[] { "Identifier", "Title", "Length", "Language", "Genre", "Description",
+          "RawRating", "Score", "IMDbUrl", "Director", "Cast", "Dubbed", "Subtitled", "ReleaseDate", }, NowPlaying.MovieProto.class,
+          NowPlaying.MovieProto.Builder.class);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterProto_descriptor = getDescriptor().getMessageTypes().get(3);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_TheaterProto_descriptor,
-      new java.lang.String[]{"Identifier", "Name", "StreetAddress", "City", "State", "PostalCode", "Country", "Phone", "Latitude", "Longitude",},
-      NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_descriptor = getDescriptor().getMessageTypes().get(
-      4);
+      internal_static_TheaterProto_descriptor, new java.lang.String[] { "Identifier", "Name", "StreetAddress", "City", "State", "PostalCode",
+          "Country", "Phone", "Latitude", "Longitude", }, NowPlaying.TheaterProto.class, NowPlaying.TheaterProto.Builder.class);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_descriptor = getDescriptor().getMessageTypes()
+  .get(4);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_TheaterListingsProto_descriptor, new java.lang.String[]{"Movies", "TheaterAndMovieShowtimes",},
+      internal_static_TheaterListingsProto_descriptor, new java.lang.String[] { "Movies", "TheaterAndMovieShowtimes", },
       NowPlaying.TheaterListingsProto.class, NowPlaying.TheaterListingsProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = internal_static_TheaterListingsProto_descriptor.getNestedTypes().get(
-      0);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = internal_static_TheaterListingsProto_descriptor
+  .getNestedTypes().get(0);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor,
-      new java.lang.String[]{"Theater", "MovieAndShowtimes",},
+      internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor, new java.lang.String[] { "Theater", "MovieAndShowtimes", },
       NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.class,
       NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor.getNestedTypes().get(
-      0);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor
+  .getNestedTypes().get(0);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor,
-      new java.lang.String[]{"MovieIdentifier", "Showtimes",},
-      NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.class,
-      NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_ReviewProto_descriptor = getDescriptor().getMessageTypes().get(
-      5);
+      internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor, new java.lang.String[] {
+          "MovieIdentifier", "Showtimes", }, NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.class,
+          NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto.MovieAndShowtimesProto.Builder.class);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_ReviewProto_descriptor = getDescriptor().getMessageTypes().get(5);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_ReviewProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
       internal_static_ReviewProto_descriptor,
-      new java.lang.String[]{"Title", "Url", "Rating", "Snippet", "Content", "Publisher", "Author", "Date",},
-      NowPlaying.ReviewProto.class, NowPlaying.ReviewProto.Builder.class);
-  private static final com.google.protobuf.Descriptors.Descriptor internal_static_ReviewsListProto_descriptor = getDescriptor().getMessageTypes().get(
-      6);
+      new java.lang.String[] { "Title", "Url", "Rating", "Snippet", "Content", "Publisher", "Author", "Date", }, NowPlaying.ReviewProto.class,
+      NowPlaying.ReviewProto.Builder.class);
+  private static final com.google.protobuf.Descriptors.Descriptor internal_static_ReviewsListProto_descriptor = getDescriptor().getMessageTypes()
+  .get(6);
   private static com.google.protobuf.GeneratedMessage.FieldAccessorTable internal_static_ReviewsListProto_fieldAccessorTable = new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-      internal_static_ReviewsListProto_descriptor, new java.lang.String[]{"Reviews",},
-      NowPlaying.ReviewsListProto.class, NowPlaying.ReviewsListProto.Builder.class);
+      internal_static_ReviewsListProto_descriptor, new java.lang.String[] { "Reviews", }, NowPlaying.ReviewsListProto.class,
+      NowPlaying.ReviewsListProto.Builder.class);
 }

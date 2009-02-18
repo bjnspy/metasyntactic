@@ -106,8 +106,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     invalidate();
   }
 
-  @Override
-  public void draw(final Canvas canvas) {
+  @Override public void draw(final Canvas canvas) {
     super.draw(canvas);
     if (!this.mThumbVisible) {
       // No need to draw the rest
@@ -136,7 +135,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       final float descent = paint.descent();
       final RectF rectF = this.mOverlayPos;
       canvas.drawText(this.mSectionText, (int) (rectF.left + rectF.right) / 2,
-                      (int) (rectF.bottom + rectF.top) / 2 + this.mOverlaySize / 6 - descent, paint);
+          (int) (rectF.bottom + rectF.top) / 2 + this.mOverlaySize / 6 - descent, paint);
     } else if (alpha == 0) {
       scrollFade.mStarted = false;
       removeThumb();
@@ -145,8 +144,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     }
   }
 
-  @Override
-  protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
+  @Override protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     if (this.mCurrentThumb != null) {
       this.mCurrentThumb.setBounds(w - this.mThumbW, 0, w, this.mThumbH);
@@ -167,8 +165,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     }
   }
 
-  public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount,
-                       final int totalItemCount) {
+  public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, final int totalItemCount) {
     if (totalItemCount - visibleItemCount > 0 && !this.mDragging) {
       this.mThumbY = (getHeight() - this.mThumbH) * firstVisibleItem / (totalItemCount - visibleItemCount);
       if (this.mChangedBounds) {
@@ -221,8 +218,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     }
   }
 
-  @Override
-  public boolean onInterceptTouchEvent(final MotionEvent ev) {
+  @Override public boolean onInterceptTouchEvent(final MotionEvent ev) {
     if (this.mThumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
       if (ev.getX() > getWidth() - this.mThumbW && ev.getY() >= this.mThumbY && ev.getY() <= this.mThumbY + this.mThumbH) {
         this.mDragging = true;
@@ -314,8 +310,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     cancelFling.recycle();
   }
 
-  @Override
-  public boolean onTouchEvent(final MotionEvent me) {
+  @Override public boolean onTouchEvent(final MotionEvent me) {
     if (me.getAction() == MotionEvent.ACTION_DOWN) {
       if (me.getX() > getWidth() - this.mThumbW && me.getY() >= this.mThumbY && me.getY() <= this.mThumbY + this.mThumbH) {
         this.mDragging = true;

@@ -23,8 +23,7 @@ import java.util.List;
 public class AllReviewsActivity extends ListActivity {
   private List<Review> reviews;
 
-  @Override
-  protected void onCreate(final Bundle savedInstanceState) {
+  @Override protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
@@ -42,8 +41,7 @@ public class AllReviewsActivity extends ListActivity {
     Log.i(getClass().getSimpleName(), "onPause");
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
@@ -58,8 +56,7 @@ public class AllReviewsActivity extends ListActivity {
     return result;
   }
 
-  @Override
-  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
+  @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final String review_url = this.reviews.get(position).getLink();
     final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
     startActivity(intent);
@@ -85,17 +82,14 @@ public class AllReviewsActivity extends ListActivity {
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.reviewview, null);
-      final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score),
-                                                         (TextView) convertView.findViewById(R.id.author),
-                                                         (TextView) convertView.findViewById(R.id.source),
-                                                         (TextView) convertView.findViewById(R.id.desc));
+      final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score), (TextView) convertView
+          .findViewById(R.id.author), (TextView) convertView.findViewById(R.id.source), (TextView) convertView.findViewById(R.id.desc));
       convertView.setTag(holder);
       final Review review = AllReviewsActivity.this.reviews.get(position);
       holder.author.setText(review.getAuthor());
       holder.source.setText(review.getSource());
       holder.description.setText(review.getText());
-      holder.score.setBackgroundDrawable(
-          MovieViewUtilities.formatBasicSquareDrawable(review.getScore(), getResources()));
+      holder.score.setBackgroundDrawable(MovieViewUtilities.formatBasicSquareDrawable(review.getScore(), getResources()));
       return convertView;
     }
 
@@ -105,8 +99,7 @@ public class AllReviewsActivity extends ListActivity {
       private final TextView source;
       private final TextView description;
 
-      private MovieViewHolder(final ImageView score, final TextView author, final TextView source,
-                              final TextView description) {
+      private MovieViewHolder(final ImageView score, final TextView author, final TextView source, final TextView description) {
         this.score = score;
         this.author = author;
         this.source = source;
@@ -119,12 +112,11 @@ public class AllReviewsActivity extends ListActivity {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
         new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 }

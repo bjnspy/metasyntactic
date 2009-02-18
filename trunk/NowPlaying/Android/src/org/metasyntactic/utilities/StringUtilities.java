@@ -46,6 +46,7 @@ public class StringUtilities {
 
   public static String toASCII(final String s) {
     return s;
-    //return Normalizer.normalize(s, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+    // return Normalizer.normalize(s,
+    // Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
   }
 }

@@ -45,8 +45,7 @@ public class TrailerCache extends AbstractCache {
     return Collections.singletonList(NowPlayingApplication.trailersDirectory);
   }
 
-  @SuppressWarnings("unchecked")
-  private static List<List<Movie>> getOrderedMovies(final List<Movie> movies) {
+  @SuppressWarnings("unchecked") private static List<List<Movie>> getOrderedMovies(final List<Movie> movies) {
     final List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
     final List<Movie> moviesWithTrailers = new ArrayList<Movie>();
 
@@ -75,7 +74,7 @@ public class TrailerCache extends AbstractCache {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, this.lock, false/*visible*/);
+    ThreadingUtilities.performOnBackgroundThread("Update Trailers", runnable, this.lock, false/* visible */);
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
@@ -101,7 +100,7 @@ public class TrailerCache extends AbstractCache {
 
     final String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
     if (bestKey == null) {
-      // no trailer for this movie.  record that fact.  we'll try again later
+      // no trailer for this movie. record that fact. we'll try again later
       FileUtilities.writeStringCollection(new ArrayList<String>(), trailerFilePath(movie));
       return;
     }
@@ -114,7 +113,7 @@ public class TrailerCache extends AbstractCache {
     final String trailersString = NetworkUtilities.downloadString(url, false);
 
     if (trailersString == null) {
-      // didn't get any data.  ignore this for now.
+      // didn't get any data. ignore this for now.
       return;
     }
 

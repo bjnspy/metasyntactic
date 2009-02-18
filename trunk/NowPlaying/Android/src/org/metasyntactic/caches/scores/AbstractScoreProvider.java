@@ -310,8 +310,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   }
 
   private void downloadReviews(final Set<Score> scores, final Map<String, Score> scoresMap) {
-    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
-        getModel().getUserAddress());
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(getModel().getUserAddress());
 
     if (location == null) {
       return;
@@ -357,7 +356,9 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
       country = location.getCountry();
     }
 
-    return "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language=" + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    return "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language="
+    + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude="
+    + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
   }
 
   private void downloadReviews(final Score score, final Location location) {
@@ -376,18 +377,17 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
 
       final List<Review> reviews = downloadReviewContents(location, score);
       if (reviews == null) {
-        // didn't download.  just ignore it.
+        // didn't download. just ignore it.
         return;
       }
 
       if (reviews.isEmpty()) {
-        // we got no reviews.  only save that fact if we don't currently have
-        // any reviews.  This way we don't end up checking every single time
+        // we got no reviews. only save that fact if we don't currently have
+        // any reviews. This way we don't end up checking every single time
         // for movies that don't have reviews yet
-        final List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader,
-                                                                               reviewsFile(score.getCanonicalTitle()));
+        final List<Review> existingReviews = FileUtilities.readPersistableList(Review.reader, reviewsFile(score.getCanonicalTitle()));
         if (size(existingReviews) > 0) {
-          // we have reviews already.  don't wipe it out.
+          // we have reviews already. don't wipe it out.
           return;
         }
       }
@@ -435,7 +435,7 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   private void save(final String title, final List<Review> reviews, final String serverHash) {
     FileUtilities.writePersistableCollection(reviews, reviewsFile(title));
 
-    // do this last.  it marks us being complete.
+    // do this last. it marks us being complete.
     FileUtilities.writeString(serverHash, reviewsHashFile(title));
   }
 

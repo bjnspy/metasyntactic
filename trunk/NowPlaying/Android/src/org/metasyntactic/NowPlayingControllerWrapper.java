@@ -22,8 +22,6 @@ import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import static org.metasyntactic.utilities.SetUtilities.any;
-import org.metasyntactic.activities.AllReviewsActivity;
-
 import java.io.File;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -60,8 +58,7 @@ public class NowPlayingControllerWrapper {
     Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity added: " + activity.getClass().getSimpleName());
 
     if (activities.size() == 1) {
-      Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
-            "First activity added: " + activity.getClass().getSimpleName());
+      Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity added: " + activity.getClass().getSimpleName());
 
       if (instance == null) {
         Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity created.  Starting controller");
@@ -76,12 +73,10 @@ public class NowPlayingControllerWrapper {
     checkThread();
     GlobalActivityIndicator.removeActivity(activity);
     activities.remove(activity);
-    Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
-          "Activity destroyed: " + activity.getClass().getSimpleName());
+    Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity destroyed: " + activity.getClass().getSimpleName());
 
     if (activities.isEmpty() && retainedActivityObjects.isEmpty()) {
-      Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
-            "Last activity destroyed: " + activity.getClass().getSimpleName());
+      Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed: " + activity.getClass().getSimpleName());
 
       if (instance != null) {
         Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");

@@ -77,8 +77,7 @@ public class EditDistance {
           cost = 1;
         }
 
-        final int totalCost = Math.min(cost + matrix[i - 1][j - 1],
-                                       Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1));
+        final int totalCost = Math.min(cost + matrix[i - 1][j - 1], Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1));
 
         matrix[i][j] = totalCost;
 

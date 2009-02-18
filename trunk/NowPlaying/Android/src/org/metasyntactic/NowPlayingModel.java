@@ -93,7 +93,7 @@ public class NowPlayingModel {
   }
 
   public void startup() {
-    //update();
+    // update();
   }
 
   public void shutdown() {

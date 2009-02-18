@@ -98,11 +98,9 @@ public class PosterCache extends AbstractCache {
     }
 
     /*
-    data = ImdbPosterDownloader.download(movie);
-    if (data != null) {
-      return data;
-    }
-    */
+     * data = ImdbPosterDownloader.download(movie); if (data != null) { return
+     * data; }
+     */
 
     this.model.getLargePosterCache().downloadFirstPoster(movie);
 
@@ -110,8 +108,7 @@ public class PosterCache extends AbstractCache {
   }
 
   private byte[] downloadPosterFromFandango(final Movie movie) {
-    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(
-        this.model.getUserAddress());
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
 
     final String country = location == null ? "" : location.getCountry();
     String postalCode = location == null ? "10009" : location.getPostalCode();
@@ -123,8 +120,7 @@ public class PosterCache extends AbstractCache {
     return FandangoPosterDownloader.download(movie, postalCode);
   }
 
-  @Override
-  protected List<File> getCacheDirectories() {
+  @Override protected List<File> getCacheDirectories() {
     return Collections.singletonList(NowPlayingApplication.postersDirectory);
   }
 

@@ -37,9 +37,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
     NAME_SHOWTIMES, ADDRESS, PHONE
   }
 
-  @Override
-  protected void onListItemClick(final ListView listView, final View view, final int position,
-      final long id) {
+  @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final Intent intent = this.detailItems.get(position).getIntent();
     if (intent != null) {
       startActivity(intent);
@@ -47,16 +45,14 @@ public class ShowtimesDetailsActivity extends ListActivity {
     super.onListItemClick(listView, view, position, id);
   }
 
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
+  @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.showtimedetails);
     this.movie = getIntent().getExtras().getParcelable("movie");
     this.theater = getIntent().getExtras().getParcelable("theater");
-    this.performances = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(this.movie,
-        this.theater);
+    this.performances = NowPlayingControllerWrapper.getPerformancesForMovieAtTheater(this.movie, this.theater);
     for (final Performance per : this.performances) {
       if (per != null && !StringUtilities.isNullOrEmpty(per.getUrl())) {
         this.showtimes.add(per.getTime());
@@ -79,20 +75,17 @@ public class ShowtimesDetailsActivity extends ListActivity {
     }
   }
 
-  @Override
-  protected void onResume() {
+  @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
   }
 
-  @Override
-  protected void onPause() {
+  @Override protected void onPause() {
     super.onPause();
     Log.i(getClass().getSimpleName(), "onPause");
   }
 
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
@@ -131,14 +124,12 @@ public class ShowtimesDetailsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = this.inflater.inflate(R.layout.showtimes_item, null);
       final Resources res = getResources();
-      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView
-          .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
-          (TextView) convertView.findViewById(R.id.data));
+      final TheaterDetailsViewHolder holder = new TheaterDetailsViewHolder((TextView) convertView.findViewById(R.id.label), (ImageView) convertView
+          .findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data));
       final int theaterIndex = position / TheaterDetailItemType.values().length;
       switch (ShowtimesDetailsActivity.this.detailItems.get(position).getType()) {
       case NAME_SHOWTIMES:
-        holder.label.setText(res.getString(R.string.showtimes_for) + ' '
-            + ShowtimesDetailsActivity.this.movie.getDisplayTitle());
+        holder.label.setText(res.getString(R.string.showtimes_for) + ' ' + ShowtimesDetailsActivity.this.movie.getDisplayTitle());
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_email));
         String performance = "";
         for (final Performance per : ShowtimesDetailsActivity.this.performances) {
@@ -148,8 +139,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
         holder.data.setText(performance);
         final String addr = "user@example.com";
         final Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
-        intent1.putExtra("subject", res.getString(R.string.showtimes_for, movie.getDisplayTitle(),
-            ShowtimesDetailsActivity.this.theater.getName()));
+        intent1.putExtra("subject", res.getString(R.string.showtimes_for, ShowtimesDetailsActivity.this.movie.getDisplayTitle(), ShowtimesDetailsActivity.this.theater.getName()));
         intent1.putExtra("body", performance);
         ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent1);
         break;
@@ -157,18 +147,16 @@ public class ShowtimesDetailsActivity extends ListActivity {
         holder.data.setText(ShowtimesDetailsActivity.this.theater.getPhoneNumber());
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_call));
         holder.label.setText(res.getString(R.string.call));
-        final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
-            + ShowtimesDetailsActivity.this.theater.getPhoneNumber()));
+        final Intent intent2 = new Intent("android.intent.action.DIAL", Uri.parse("tel:" + ShowtimesDetailsActivity.this.theater.getPhoneNumber()));
         ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent2);
         break;
       case ADDRESS:
         final String address = ShowtimesDetailsActivity.this.theater.getAddress() + ", "
-            + ShowtimesDetailsActivity.this.theater.getLocation().getCity();
+        + ShowtimesDetailsActivity.this.theater.getLocation().getCity();
         holder.data.setText(address);
         holder.icon.setImageDrawable(getResources().getDrawable(R.drawable.sym_action_map));
         holder.label.setText(res.getString(R.string.location));
-        final Intent intent3 = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
-            + address));
+        final Intent intent3 = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q=" + address));
         ShowtimesDetailsActivity.this.detailItems.get(position).setIntent(intent3);
       }
       return convertView;
@@ -183,8 +171,7 @@ public class ShowtimesDetailsActivity extends ListActivity {
       private final ImageView icon;
       private final TextView data;
 
-      private TheaterDetailsViewHolder(final TextView label, final ImageView icon,
-          final TextView data) {
+      private TheaterDetailsViewHolder(final TextView label, final ImageView icon, final TextView data) {
         this.label = label;
         this.icon = icon;
         this.data = data;
@@ -229,26 +216,23 @@ public class ShowtimesDetailsActivity extends ListActivity {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
-        R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class));
+  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
+        new Intent(this, NowPlayingActivity.class));
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
+        new Intent(this, SettingsActivity.class));
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override
-  protected Dialog onCreateDialog(final int id) {
+  @Override protected Dialog onCreateDialog(final int id) {
     final String[] criteria = new String[this.showtimes.size()];
     this.showtimes.toArray(criteria);
-    return new AlertDialog.Builder(this).setTitle(R.string.order_tickets).setItems(criteria,
-        new DialogInterface.OnClickListener() {
-          public void onClick(final DialogInterface dialog, final int which) {
-            final String order_url = ShowtimesDetailsActivity.this.showtimes_url.get(which);
-            final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(order_url));
-            startActivity(intent);
-          }
-        }).create();
+    return new AlertDialog.Builder(this).setTitle(R.string.order_tickets).setItems(criteria, new DialogInterface.OnClickListener() {
+      public void onClick(final DialogInterface dialog, final int which) {
+        final String order_url = ShowtimesDetailsActivity.this.showtimes_url.get(which);
+        final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(order_url));
+        startActivity(intent);
+      }
+    }).create();
   }
 }
