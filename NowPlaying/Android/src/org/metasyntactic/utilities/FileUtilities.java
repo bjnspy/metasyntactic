@@ -108,7 +108,7 @@ public class FileUtilities {
 
       writeBytes(byteOut.toByteArray(), file);
     } catch (final IOException e) {
-      throw new RuntimeException(e);
+      ExceptionUtilities.log(FileUtilities.class, "writeObject", e);
     }
   }
 
@@ -133,7 +133,8 @@ public class FileUtilities {
         in.close();
         return result;
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "readStringToDateMap", e);
+        return Collections.emptyMap();
       }
     } else {
       return readObject(file);
@@ -159,7 +160,7 @@ public class FileUtilities {
 
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "writeStringToDateMap", e);
       }
     } else {
       writeObject(map, file);
@@ -187,7 +188,8 @@ public class FileUtilities {
         in.close();
         return result;
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "readStringToStringMap", e);
+        return Collections.emptyMap();
       }
     } else {
       return readObject(file);
@@ -213,7 +215,7 @@ public class FileUtilities {
 
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "writeStringToStringMap", e);
       }
     } else {
       writeObject(map, file);
@@ -243,7 +245,8 @@ public class FileUtilities {
 
         return result;
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "readStringToPersistableMap", e);
+        return Collections.emptyMap();
       }
     } else {
       return readObject(file);
@@ -269,7 +272,7 @@ public class FileUtilities {
 
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "writeStringToPersistableMap", e);
       }
     } else {
       writeObject(map, file);
@@ -289,8 +292,8 @@ public class FileUtilities {
         in.close();
         return result;
       } catch (final IOException e) {
-        ExceptionUtilities.log(FileUtilities.class, "readPersistable", e);
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "readStringList", e);
+        return Collections.emptyList();
       }
     } else {
       return readObject(file);
@@ -311,8 +314,7 @@ public class FileUtilities {
 
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
-        ExceptionUtilities.log(FileUtilities.class, "readPersistable", e);
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "writeStringCollection", e);;
       }
     } else {
       writeObject(collection, file);
@@ -336,7 +338,6 @@ public class FileUtilities {
       writeBytes(s.getBytes("UTF-8"), file);
     } catch (final IOException e) {
       ExceptionUtilities.log(FileUtilities.class, "writeString", e);
-      throw new RuntimeException(e);
     }
   }
 
@@ -374,7 +375,6 @@ public class FileUtilities {
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
         ExceptionUtilities.log(FileUtilities.class, "writePersistable", e);
-        throw new RuntimeException(e);
       }
     } else {
       writeObject(p, file);
@@ -396,7 +396,7 @@ public class FileUtilities {
         return result;
       } catch (final IOException e) {
         ExceptionUtilities.log(FileUtilities.class, "readPersistableList", e);
-        throw new RuntimeException(e);
+        return Collections.emptyList();
       }
     } else {
       return readObject(file);
@@ -421,7 +421,6 @@ public class FileUtilities {
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
         ExceptionUtilities.log(FileUtilities.class, "writePersistableCollection", e);
-        throw new RuntimeException(e);
       }
     } else {
       writeObject(collection, file);
@@ -449,7 +448,8 @@ public class FileUtilities {
         in.close();
         return result;
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "readStringToListOfPersistables", e);
+        return Collections.emptyMap();
       }
     } else {
       return readObject(file);
@@ -476,7 +476,7 @@ public class FileUtilities {
 
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "writeStringToListOfPersistables", e);
       }
     } else {
       writeObject(map, file);
@@ -503,7 +503,8 @@ public class FileUtilities {
         in.close();
         return result;
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "readStringToListOfStrings", e);
+        return Collections.emptyMap();
       }
     } else {
       return readObject(file);
@@ -529,7 +530,7 @@ public class FileUtilities {
 
         writeBytes(byteOut.toByteArray(), file);
       } catch (final IOException e) {
-        throw new RuntimeException(e);
+        ExceptionUtilities.log(FileUtilities.class, "writeStringToListOfStrings", e);
       }
     } else {
       writeObject(map, file);
@@ -556,6 +557,10 @@ public class FileUtilities {
       int start = 0;
       while (true) {
         final int read = in.read(bytes, start, length - start);
+        if (read < 0) {
+          return EMPTY_BYTE_ARRAY;
+        }
+
         if (read + start == length) {
           break;
         }
@@ -597,7 +602,6 @@ public class FileUtilities {
       tempFile.renameTo(file);
     } catch (final IOException e) {
       ExceptionUtilities.log(FileUtilities.class, "writeBytes", e);
-      //throw new RuntimeException(e);
     }
   }
 }

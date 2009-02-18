@@ -36,11 +36,15 @@ public class PersistableInputStream {
 
     while (true) {
       final int read = this.in.read(bytes, position, length - position);
-      if (read + position == length) {
-        break;
+      position += read;
+
+      if (read < 0) {
+        throw new IOException("Couldn't read expected amount of data");
       }
 
-      position += read;
+      if (position >= length) {
+        return;
+      }
     }
   }
 
