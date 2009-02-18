@@ -48,6 +48,45 @@ public class MovieDetailsActivity extends ListActivity {
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.moviedetails);
+    final Bundle extras = getIntent().getExtras();
+    this.movie = extras.getParcelable("movie");
+    NowPlayingControllerWrapper.prioritizeMovie(movie);
+    final Resources res = getResources();
+    final TextView title = (TextView) findViewById(R.id.title);
+    title.setText(this.movie.getDisplayTitle());
+    // Get and set scores text and background image
+    final Button scoreImg = (Button) findViewById(R.id.score);
+    final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
+    final Score score = NowPlayingControllerWrapper.getScore(this.movie);
+    int scoreValue = -1;
+    if (score != null && !StringUtilities.isNullOrEmpty(score.getValue())) {
+      scoreValue = Integer.parseInt(score.getValue());
+    } else {
+    }
+    final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
+    scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
+    if (scoreValue != -1) {
+      scoreLbl.setText(scoreValue + "%");
+    }
+    if (scoreType != ScoreType.RottenTomatoes) {
+      scoreLbl.setTextColor(Color.BLACK);
+    }
+    final TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
+    final CharSequence rating = MovieViewUtilities.formatRatings(this.movie.getRating(), res);
+    final CharSequence length = MovieViewUtilities.formatLength(this.movie.getLength(), res);
+    ratingLengthLabel.setText(rating + ". " + length);
+    populateMovieDetailEntries();
+    final MovieAdapter movieAdapter = new MovieAdapter();
+    setListAdapter(movieAdapter);
+    final Button showtimes = (Button) findViewById(R.id.showtimes);
+    showtimes.setOnClickListener(new OnClickListener() {
+      public void onClick(final View arg0) {
+        final Intent intent = new Intent();
+        intent.setClass(MovieDetailsActivity.this, ShowtimesActivity.class);
+        intent.putExtra("movie", (Parcelable) MovieDetailsActivity.this.movie);
+        startActivity(intent);
+      }
+    });
   }
 
   private void populateMovieDetailEntries() {
@@ -294,45 +333,7 @@ public class MovieDetailsActivity extends ListActivity {
   protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
-    final Bundle extras = getIntent().getExtras();
-    this.movie = extras.getParcelable("movie");
-    NowPlayingControllerWrapper.prioritizeMovie(movie);
-    final Resources res = getResources();
-    final TextView title = (TextView) findViewById(R.id.title);
-    title.setText(this.movie.getDisplayTitle());
-    // Get and set scores text and background image
-    final Button scoreImg = (Button) findViewById(R.id.score);
-    final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
-    final Score score = NowPlayingControllerWrapper.getScore(this.movie);
-    int scoreValue = -1;
-    if (score != null && !StringUtilities.isNullOrEmpty(score.getValue())) {
-      scoreValue = Integer.parseInt(score.getValue());
-    } else {
-    }
-    final ScoreType scoreType = NowPlayingControllerWrapper.getScoreType();
-    scoreImg.setBackgroundDrawable(MovieViewUtilities.formatScoreDrawable(scoreValue, scoreType, res));
-    if (scoreValue != -1) {
-      scoreLbl.setText(scoreValue + "%");
-    }
-    if (scoreType != ScoreType.RottenTomatoes) {
-      scoreLbl.setTextColor(Color.BLACK);
-    }
-    final TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
-    final CharSequence rating = MovieViewUtilities.formatRatings(this.movie.getRating(), res);
-    final CharSequence length = MovieViewUtilities.formatLength(this.movie.getLength(), res);
-    ratingLengthLabel.setText(rating + ". " + length);
-    populateMovieDetailEntries();
-    final MovieAdapter movieAdapter = new MovieAdapter();
-    setListAdapter(movieAdapter);
-    final Button showtimes = (Button) findViewById(R.id.showtimes);
-    showtimes.setOnClickListener(new OnClickListener() {
-      public void onClick(final View arg0) {
-        final Intent intent = new Intent();
-        intent.setClass(MovieDetailsActivity.this, ShowtimesActivity.class);
-        intent.putExtra("movie", (Parcelable) MovieDetailsActivity.this.movie);
-        startActivity(intent);
-      }
-    });
+   
   }
 
   @Override
