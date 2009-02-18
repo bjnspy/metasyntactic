@@ -14,6 +14,7 @@
 package org.metasyntactic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -43,6 +44,10 @@ public class LocationTracker implements LocationListener {
       criteria.setAccuracy(Criteria.ACCURACY_COARSE);
       final String provider = this.locationManager.getBestProvider(criteria, true);
       if (provider != null) {
+        final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+        if (context != null) {
+          context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
+        }
         this.locationManager.requestLocationUpdates(provider, 5 * 60 * 1000, 1000, this);
       }
     }
@@ -82,6 +87,11 @@ public class LocationTracker implements LocationListener {
     if (this.shutdown) {
       return;
     }
+    final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
+    if (context != null) {
+      context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_STOP));
+    }
+
     final String displayString = location.toDisplayString();
     NowPlayingController.reportLocationForAddress(location, displayString);
     this.controller.setUserAddress(displayString);
