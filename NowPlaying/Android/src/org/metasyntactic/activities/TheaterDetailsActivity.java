@@ -51,7 +51,7 @@ public class TheaterDetailsActivity extends ListActivity {
     populateTheaterDetailEntries();
     final TextView titleView = (TextView)findViewById(R.id.theater);
     titleView.setText(theater.getName());
-    
+
     setListAdapter(new TheaterDetailsAdapter());
   }
 
@@ -68,6 +68,20 @@ public class TheaterDetailsActivity extends ListActivity {
   }
 
   @Override
+  protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+    NowPlayingControllerWrapper.removeActivity(this);
+    super.onDestroy();
+  }
+
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
+  }
+
+  @Override
   protected void onListItemClick(final ListView listView, final View view, final int position,
       final long id) {
     final Intent intent = this.theaterDetailEntries.get(position).intent;
@@ -75,19 +89,12 @@ public class TheaterDetailsActivity extends ListActivity {
       startActivity(intent);
     }
     super.onListItemClick(listView, view, position, id);
-    
-  }
 
-  @Override
-  protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
-    NowPlayingControllerWrapper.removeActivity(this);
-    super.onDestroy();
   }
 
   private void populateTheaterDetailEntries() {
     final Resources res = getResources();
-   
+
     {
       // Add map header
       final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.map), null,
@@ -148,11 +155,11 @@ public class TheaterDetailsActivity extends ListActivity {
     }
   }
 
- 
+
 
   private class TheaterDetailsAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
-    
+
     @Override
     public boolean areAllItemsEnabled() {
       return false;
@@ -162,7 +169,7 @@ public class TheaterDetailsActivity extends ListActivity {
     public boolean isEnabled(final int position) {
       return TheaterDetailsActivity.this.theaterDetailEntries.get(position).isSelectable();
     }
-    
+
     private TheaterDetailsAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
       this.inflater = LayoutInflater.from(TheaterDetailsActivity.this);
@@ -177,7 +184,7 @@ public class TheaterDetailsActivity extends ListActivity {
       switch (entry.type) {
      case DATA:
         convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
-        
+
         final TextView movieView = (TextView)convertView.findViewById(R.id.label);
        movieView.setText(entry.data);
        final TextView showtimesView = (TextView)convertView.findViewById(R.id.data);
@@ -202,7 +209,7 @@ public class TheaterDetailsActivity extends ListActivity {
     public int getCount() {
       Log.i("TEST", "Size of list is " + TheaterDetailsActivity.this.theaterDetailEntries.size());
       return TheaterDetailsActivity.this.theaterDetailEntries.size();
-      
+
     }
 
     public long getEntryId(final int position) {
@@ -211,7 +218,7 @@ public class TheaterDetailsActivity extends ListActivity {
 
     public Object getItem(final int position) {
       return TheaterDetailsActivity.this.theaterDetailEntries.get(position);
-      
+
     }
 
     public long getItemId(final int position) {

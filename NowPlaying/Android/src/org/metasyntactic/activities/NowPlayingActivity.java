@@ -90,6 +90,85 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
 
+    @Override
+  public void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    Log.i(getClass().getSimpleName(), "onCreate");
+    // check for sdcard mounted properly
+    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+      // Request the progress bar to be shown in the title
+      requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+      setContentView(R.layout.progressbar_1);
+      this.progressUpdate = (TextView) findViewById(R.id.progress_update);
+      NowPlayingControllerWrapper.addActivity(this);
+      refresh();
+    } else {
+      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
+          android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(final DialogInterface dialog, final int whichButton) {
+              NowPlayingActivity.this.finish();
+            }
+          }).show();
+    }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+    registerReceiver(this.broadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(this.databroadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
+        NowPlayingApplication.SCROLLING_INTENT));
+    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOT_SCROLLING_INTENT));
+    registerReceiver(this.progressbroadcastReceiver, new IntentFilter(
+        NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
+    if (this.isGridSetup) {
+      this.grid.setVisibility(View.VISIBLE);
+    }
+    getUserLocation();
+    if (movies != null && !movies.isEmpty()) {
+      setup();
+      this.isGridSetup = true;
+    }
+    getSearchResults();
+    refresh();
+  }
+
+  @Override
+  protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
+    unregisterReceiver(this.broadcastReceiver);
+    unregisterReceiver(this.databroadcastReceiver);
+    unregisterReceiver(this.scrollStatebroadcastReceiver);
+    unregisterReceiver(this.progressbroadcastReceiver);
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
+    }
+    super.onPause();
+  }
+
+  @Override
+  protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+    NowPlayingControllerWrapper.removeActivity(this);
+    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
+      this.mTask.cancel(true);
+    }
+    clearBitmaps();
+    super.onDestroy();
+  }
+
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
+  }
+
   /**
    * Updates display of the list of movies.
    */
@@ -129,31 +208,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     return this;
   }
 
-  /**
-   * Called when the activity is first created.
-   */
-  @Override
-  public void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
-    // check for sdcard mounted properly
-    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-      // Request the progress bar to be shown in the title
-      requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-      setContentView(R.layout.progressbar_1);
-      this.progressUpdate = (TextView) findViewById(R.id.progress_update);
-      NowPlayingControllerWrapper.addActivity(this);
-      refresh();
-    } else {
-      new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
-          android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(final DialogInterface dialog, final int whichButton) {
-              NowPlayingActivity.this.finish();
-            }
-          }).show();
-    }
-  }
-
   @Override
   protected void onNewIntent(final Intent intent) {
     super.onNewIntent(intent);
@@ -188,30 +242,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override
-  protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
-    NowPlayingControllerWrapper.removeActivity(this);
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
-    }
-    clearBitmaps();
-    super.onDestroy();
-  }
-
-  @Override
-  protected void onPause() {
-    Log.i(getClass().getSimpleName(), "onPause");
-    unregisterReceiver(this.broadcastReceiver);
-    unregisterReceiver(this.databroadcastReceiver);
-    unregisterReceiver(this.scrollStatebroadcastReceiver);
-    unregisterReceiver(this.progressbroadcastReceiver);
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
-    }
-    super.onPause();
-  }
-
   private static void clearBitmaps() {
     for (final SoftReference<Bitmap> reference : postersMap.values()) {
       final Bitmap drawable = reference.get();
@@ -219,32 +249,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         reference.clear();
       }
     }
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
-    registerReceiver(this.broadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-    registerReceiver(this.databroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.SCROLLING_INTENT));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOT_SCROLLING_INTENT));
-    registerReceiver(this.progressbroadcastReceiver, new IntentFilter(
-        NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
-    if (this.isGridSetup) {
-      this.grid.setVisibility(View.VISIBLE);
-    }
-    getUserLocation();
-    if (movies != null && !movies.isEmpty()) {
-      setup();
-      this.isGridSetup = true;
-    }
-    getSearchResults();
-    refresh();
   }
 
   private void getAlphabet(final Context context) {
@@ -286,7 +290,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         setupRotationAnimation(view);
       }
     });
-    
+
     populateAlphaMovieSectionsAndPositions();
     populateScoreMovieSectionsAndPositions();
     this.postersAdapter = new PostersAdapter();

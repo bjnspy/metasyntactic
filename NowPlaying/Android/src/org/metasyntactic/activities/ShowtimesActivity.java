@@ -50,12 +50,35 @@ public class ShowtimesActivity extends ListActivity {
   }
 
   @Override
+  protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+
+    bindView();
+    // populateTheaterDetailItems();
+    final TheaterListAdapter theaterAdapter = new TheaterListAdapter();
+    setListAdapter(theaterAdapter);
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
+  }
+
+  @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
+  }
+
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
   }
 
   private void bindView() {
@@ -81,22 +104,6 @@ public class ShowtimesActivity extends ListActivity {
     final CharSequence length = MovieViewUtilities.formatLength(this.movie.getLength(), res);
     ratingLengthLabel.setText(rating + ". " + length);
     this.theaters = NowPlayingControllerWrapper.getTheatersShowingMovie(this.movie);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
-
-    bindView();
-    // populateTheaterDetailItems();
-    final TheaterListAdapter theaterAdapter = new TheaterListAdapter();
-    setListAdapter(theaterAdapter);
-  }
-
-  @Override protected void onPause() {
-    super.onPause();
-    Log.i(getClass().getSimpleName(), "onPause");
   }
 
   private class TheaterListAdapter extends BaseAdapter {

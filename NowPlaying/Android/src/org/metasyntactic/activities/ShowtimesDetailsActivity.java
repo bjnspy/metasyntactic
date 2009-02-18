@@ -80,10 +80,29 @@ public class ShowtimesDetailsActivity extends ListActivity {
   }
 
   @Override
+  protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
+  }
+
+  @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
+  }
+
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
   }
 
   private void populateTheaterDetailItem() {
@@ -99,18 +118,6 @@ public class ShowtimesDetailsActivity extends ListActivity {
     entry1 = new TheaterDetailItem();
     entry1.setType(TheaterDetailItemType.PHONE);
     this.detailItems.add(entry1);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
-  }
-
-  @Override
-  protected void onPause() {
-    super.onPause();
-    Log.i(getClass().getSimpleName(), "onPause");
   }
 
   private class TheaterAdapter extends BaseAdapter {

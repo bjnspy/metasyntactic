@@ -22,6 +22,7 @@ import org.metasyntactic.data.*;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import static org.metasyntactic.utilities.SetUtilities.any;
+import org.metasyntactic.activities.AllReviewsActivity;
 
 import java.io.File;
 import java.util.Date;
@@ -34,6 +35,7 @@ import java.util.Set;
  */
 public class NowPlayingControllerWrapper {
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
+  private static final Set<Object> retainedActivityObjects = new LinkedHashSet<Object>();
   private static NowPlayingController instance;
   private static LocationTracker locationTracker;
 
@@ -44,9 +46,16 @@ public class NowPlayingControllerWrapper {
   private NowPlayingControllerWrapper() {
   }
 
+  public static void onRetainNonConfigurationInstance(final Activity activity, final Object result) {
+    checkThread();
+    retainedActivityObjects.add(result);
+  }
+
   public static void addActivity(final Activity activity) {
     checkThread();
     activities.add(activity);
+    retainedActivityObjects.remove(activity.getLastNonConfigurationInstance());
+
     GlobalActivityIndicator.addActivity(activity);
     Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity added: " + activity.getClass().getSimpleName());
 
@@ -70,7 +79,7 @@ public class NowPlayingControllerWrapper {
     Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
           "Activity destroyed: " + activity.getClass().getSimpleName());
 
-    if (activities.isEmpty()) {
+    if (activities.isEmpty() && retainedActivityObjects.isEmpty()) {
       Log.i(NowPlayingControllerWrapper.class.getSimpleName(),
             "Last activity destroyed: " + activity.getClass().getSimpleName());
 
@@ -89,7 +98,7 @@ public class NowPlayingControllerWrapper {
       locationTracker.shutdown();
       locationTracker = null;
     }
-    if (!activities.isEmpty()) {
+    if (!(activities.isEmpty() && retainedActivityObjects.isEmpty())) {
       locationTracker = new LocationTracker(instance, getApplicationContext());
     }
   }

@@ -68,6 +68,38 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   @Override
+  protected void onPause() {
+    Log.i(getClass().getSimpleName(), "onPause");
+    unregisterReceiver(this.broadcastReceiver);
+    super.onPause();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+
+    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    this.settingsAdapter = new SettingsAdapter();
+    setListAdapter(this.settingsAdapter);
+  }
+
+  @Override
+  protected void onDestroy() {
+    Log.i(getClass().getSimpleName(), "onDestroy");
+
+    NowPlayingControllerWrapper.removeActivity(this);
+    super.onDestroy();
+  }
+
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
+  }
+
+  @Override
   protected Dialog onCreateDialog(final int id) {
     Dialog dialog = null;
     switch (id) {
@@ -130,14 +162,6 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     super.onListItemClick(listView, v, position, id);
   }
 
-  @Override
-  protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
-
-    NowPlayingControllerWrapper.removeActivity(this);
-    super.onDestroy();
-  }
-
   private void populateSettingsItems() {
     this.detailItems = new ArrayList<SettingsItem>();
     final Resources res = getResources();
@@ -191,16 +215,6 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.REVIEWS_PROVIDER);
     this.detailItems.add(settings);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
-
-    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-    this.settingsAdapter = new SettingsAdapter();
-    setListAdapter(this.settingsAdapter);
   }
 
   private class SettingsAdapter extends BaseAdapter {
@@ -307,12 +321,5 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   public Context getContext() {
     return this;
-  }
-
-  @Override
-  protected void onPause() {
-    Log.i(getClass().getSimpleName(), "onPause");
-    unregisterReceiver(this.broadcastReceiver);
-    super.onPause();
   }
 }

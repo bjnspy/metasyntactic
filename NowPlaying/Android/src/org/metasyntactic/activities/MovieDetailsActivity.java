@@ -55,7 +55,7 @@ public class MovieDetailsActivity extends ListActivity {
     setContentView(R.layout.moviedetails);
     final Bundle extras = getIntent().getExtras();
     this.movie = extras.getParcelable("movie");
-    NowPlayingControllerWrapper.prioritizeMovie(movie);
+    NowPlayingControllerWrapper.prioritizeMovie(this.movie);
     final Resources res = getResources();
     final TextView title = (TextView) findViewById(R.id.title);
     title.setText(this.movie.getDisplayTitle());
@@ -153,14 +153,11 @@ public class MovieDetailsActivity extends ListActivity {
       this.movieDetailEntries.add(entry);
     }
     // Add reviews
-    // doing this as the getReviews() throws NPE instead null return.
-    ArrayList<Review> reviews = new ArrayList<Review>();
-    if (NowPlayingControllerWrapper.getScore(this.movie) != null) {
-      reviews = new ArrayList<Review>(NowPlayingControllerWrapper.getReviews(this.movie));
-    }
+    final List<Review> reviews = NowPlayingControllerWrapper.getReviews(this.movie);
+    final ArrayList<Review> arrayReviews = new ArrayList<Review>(reviews);
     if (!reviews.isEmpty()) {
       final Intent intent = new Intent();
-      intent.putParcelableArrayListExtra("reviews", reviews);
+      intent.putParcelableArrayListExtra("reviews", arrayReviews);
       intent.setClass(this, AllReviewsActivity.class);
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.read_reviews),
           null, MovieDetailItemType.ACTION, intent, true);
@@ -177,11 +174,30 @@ public class MovieDetailsActivity extends ListActivity {
   }
 
   @Override
+  protected void onResume() {
+    super.onResume();
+    Log.i(getClass().getSimpleName(), "onResume");
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    Log.i(getClass().getSimpleName(), "onPause");
+  }
+
+  @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
     super.onDestroy();
+  }
+
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
   }
 
   private class MovieAdapter extends BaseAdapter {
@@ -339,17 +355,5 @@ public class MovieDetailsActivity extends ListActivity {
       startActivity(intent);
     }
     super.onListItemClick(listView, view, position, id);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
-  }
-
-  @Override
-  protected void onPause() {
-    super.onPause();
-    Log.i(getClass().getSimpleName(), "onPause");
   }
 }

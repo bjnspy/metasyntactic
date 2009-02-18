@@ -111,6 +111,13 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
         NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
 
+  @Override public Object onRetainNonConfigurationInstance() {
+    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = new Object();
+    NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
+    return result;
+  }
+
   private void setupView() {
     this.theaters = new ArrayList<Theater>(NowPlayingControllerWrapper.getTheaters());
     setContentView(R.layout.theaterlist);
