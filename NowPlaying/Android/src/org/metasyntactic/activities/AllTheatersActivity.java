@@ -211,10 +211,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(
-          R.string.sort_theaters).setKey(NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT)
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT)
           .setEntries(R.array.entries_theaters_sort_preference).setPositiveButton(
               android.R.string.ok).setNegativeButton(android.R.string.cancel);
+      builder.setTitle(
+          R.string.sort_theaters);
       builder.show();
     }
     if (item.getItemId() == MovieViewUtilities.MENU_MOVIES) {

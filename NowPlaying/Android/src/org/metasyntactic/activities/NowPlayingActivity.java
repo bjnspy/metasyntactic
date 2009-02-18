@@ -112,24 +112,27 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
 
-  
   @Override
   protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
     if (FileUtilities.isSDCardAccessible()) {
-      registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+      registerReceiver(this.broadcastReceiver, new IntentFilter(
+          NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
       registerReceiver(this.databroadcastReceiver, new IntentFilter(
           NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
-      registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
-      registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
+      registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
+          NowPlayingApplication.SCROLLING_INTENT));
+      registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(
+          NowPlayingApplication.NOT_SCROLLING_INTENT));
       registerReceiver(this.progressbroadcastReceiver, new IntentFilter(
           NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
       if (this.isGridSetup) {
         this.grid.setVisibility(View.VISIBLE);
+        this.postersAdapter.refreshMovies();
       }
     }
-    // getSearchResults();
+    
   }
 
   @Override
@@ -151,7 +154,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
     if (FileUtilities.isSDCardAccessible()) {
-       NowPlayingControllerWrapper.removeActivity(this);
+      NowPlayingControllerWrapper.removeActivity(this);
       if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
         this.mTask.cancel(true);
       }
@@ -178,11 +181,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getMovies());
     }
     // sort movies according to the default sort preference.
-    final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
+    final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
+        .getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
     if (this.postersAdapter != null) {
-      // populateAlphaMovieSectionsAndPositions();
-      // populateScoreMovieSectionsAndPositions();
+      populateAlphaMovieSectionsAndPositions();
+      populateScoreMovieSectionsAndPositions();
       FastScrollGridView.getSections();
       this.postersAdapter.refreshMovies();
     }
@@ -260,8 +264,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
       if (matchingMovies.isEmpty()) {
-        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search, Toast.LENGTH_SHORT)
-            .show();
+        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search,
+            Toast.LENGTH_SHORT).show();
       } else {
         movies = matchingMovies;
         // cancel task so that it doesnt try to load the complete set of movies.
@@ -314,7 +318,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     });
     this.grid = (CustomGridView) findViewById(R.id.grid);
     this.grid.setOnItemClickListener(new OnItemClickListener() {
-      public void onItemClick(final AdapterView parent, final View view, final int position, final long id) {
+      public void onItemClick(final AdapterView parent, final View view, final int position,
+          final long id) {
         NowPlayingActivity.this.selectedMovie = movies.get(position);
         setupRotationAnimation(view);
       }
@@ -377,8 +382,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER, Movie.RELEASE_ORDER,
-      Movie.SCORE_ORDER);
+  public final static List<Comparator<Movie>> MOVIE_ORDER = Arrays.asList(Movie.TITLE_ORDER,
+      Movie.RELEASE_ORDER, Movie.SCORE_ORDER);
 
   private class PostersAdapter extends BaseAdapter implements FastScrollGridView.SectionIndexer {
     private final LayoutInflater inflater;
@@ -399,8 +404,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
-        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title), (ImageView) convertView
-            .findViewById(R.id.poster));
+        holder = new ViewHolder((TextView) convertView.findViewById(R.id.title),
+            (ImageView) convertView.findViewById(R.id.poster));
         convertView.setTag(holder);
       } else {
         // Get the ViewHolder back to get fast access to the TextView
@@ -413,7 +418,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loader2));
-      final SoftReference<Bitmap> reference = postersMap.get(movies.get(position).getCanonicalTitle());
+      final SoftReference<Bitmap> reference = postersMap.get(movies.get(position)
+          .getCanonicalTitle());
       Bitmap bitmap = null;
       if (reference != null) {
         bitmap = reference.get();
@@ -421,7 +427,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       if (bitmap != null) {
         holder.poster.setImageBitmap(bitmap);
       }
-      convertView.setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
+      convertView
+          .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       return convertView;
     }
 
@@ -494,24 +501,30 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(android.R.drawable.ic_menu_search);
-    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(R.drawable.ic_menu_switch);
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(R.drawable.ic_menu_allfriends);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming).setIcon(R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(
+        android.R.drawable.ic_menu_search);
+    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(
+        R.drawable.ic_menu_switch);
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(
+        R.drawable.ic_menu_allfriends);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
+        .setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
         android.R.drawable.ic_menu_send);
-    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences)
-        .setIntent(new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+    menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
+        .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
   @Override
   public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
-      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setTitle(R.string.sort_movies)
-          .setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
-              R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(
-              android.R.string.cancel);
+      final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT)
+          .setEntries(R.array.entries_movies_sort_preference)
+          .setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
+      builder.setTitle(
+          R.string.sort_movies);
       builder.show();
       return true;
     }
@@ -552,9 +565,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     body += res.getString(R.string.settings);
     body += '\n' + res.getString(R.string.autoupdate_location) + ": "
         + NowPlayingControllerWrapper.isAutoUpdateEnabled();
-    body += '\n' + res.getString(R.string.location) + ": " + NowPlayingControllerWrapper.getUserLocation();
-    body += '\n' + res.getString(R.string.search_distance) + ": " + NowPlayingControllerWrapper.getSearchDistance();
-    body += '\n' + res.getString(R.string.reviews) + ": " + NowPlayingControllerWrapper.getScoreType();
+    body += '\n' + res.getString(R.string.location) + ": "
+        + NowPlayingControllerWrapper.getUserLocation();
+    body += '\n' + res.getString(R.string.search_distance) + ": "
+        + NowPlayingControllerWrapper.getSearchDistance();
+    body += '\n' + res.getString(R.string.reviews) + ": "
+        + NowPlayingControllerWrapper.getScoreType();
     return body;
   }
 
@@ -568,7 +584,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
-        NowPlayingActivity.this.intent.putExtra("movie", (Parcelable) NowPlayingActivity.this.selectedMovie);
+        NowPlayingActivity.this.intent.putExtra("movie",
+            (Parcelable) NowPlayingActivity.this.selectedMovie);
         startActivity(NowPlayingActivity.this.intent);
       }
 
@@ -586,18 +603,21 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     public Void doInBackground(final Void... params) {
       Bitmap bitmap = null;
       for (final Movie movie : movies) {
-        final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movie.getCanonicalTitle());
+        final SoftReference<Bitmap> reference = NowPlayingActivity.postersMap.get(movie
+            .getCanonicalTitle());
         if (reference != null) {
           bitmap = reference.get();
         }
         if (reference == null || bitmap == null) {
-          final File file = NowPlayingControllerWrapper.getPosterFile_safeToCallFromBackground(movie);
+          final File file = NowPlayingControllerWrapper
+              .getPosterFile_safeToCallFromBackground(movie);
           if (file != null) {
             final byte[] bytes = FileUtilities.readBytes(file);
             if (bytes != null && bytes.length > 0) {
               bitmap = createBitmap(bytes);
               if (bitmap != null) {
-                NowPlayingActivity.postersMap.put(movie.getCanonicalTitle(), new SoftReference<Bitmap>(bitmap));
+                NowPlayingActivity.postersMap.put(movie.getCanonicalTitle(),
+                    new SoftReference<Bitmap>(bitmap));
               }
             }
           }
@@ -629,8 +649,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
      * final int bitmapHeight = options.outHeight; final float scale =
      * Math.min((float) bitmapWidth / (float) width, (float) bitmapHeight /
      * (float) height) 2; options.inJustDecodeBounds = false;
-     * options.inPreferredConfig = Bitmap.Config.ARGB_8888; options.inSampleSize
-     * = (int) scale; final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
+     * options.inPreferredConfig = Bitmap.Config.ARGB_8888; options.inSampleSize =
+     * (int) scale; final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,
      * 0, bytes.length, options); return bitmap;
      */
   }
