@@ -31,6 +31,8 @@ public class NowPlayingApplication extends Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
   public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS = "NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS";
   public final static String NOW_PLAYING_LOCAL_DATA_DOWNLOADED = "NOW_PLAYING_LOCAL_DATA_DOWNLOADED";
+  public final static String NOW_PLAYING_UPDATING_LOCATION_START = "NOW_PLAYING_UPDATING_LOCATION_START";
+  public final static String NOW_PLAYING_UPDATING_LOCATION_STOP = "NOW_PLAYING_UPDATING_LOCATION_STOP";
   public final static String SCROLLING_INTENT = "SCROLLING_INTENT";
   public final static String NOT_SCROLLING_INTENT = "NOT_SCROLLING_INTENT";
   public final static String host =
@@ -81,28 +83,28 @@ public class NowPlayingApplication extends Application {
   }
 
   private final BroadcastReceiver unmountedReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(Context context, Intent intent) {
+    @Override public void onReceive(final Context contextfinal , final Intent intent) {
       FileUtilities.setSDCardAccessible(false);
     }
   };
 
   private final BroadcastReceiver mountedReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(Context context, Intent intent) {
+    @Override public void onReceive(final Context contextfinal , final Intent intent) {
       FileUtilities.setSDCardAccessible(true);
     }
   };
 
   private final BroadcastReceiver ejectReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(Context context, Intent intent) {
+    @Override public void onReceive(final Context contextfinal , final Intent intent) {
       FileUtilities.setSDCardAccessible(true);
     }
   };
 
   @Override public void onCreate() {
     super.onCreate();
-    this.registerReceiver(unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
-    this.registerReceiver(mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
-    this.registerReceiver(ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
+    this.registerReceiver(this.unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
+    this.registerReceiver(this.mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
+    this.registerReceiver(this.ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
   }
 
   public static void initialize() {

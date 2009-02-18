@@ -264,11 +264,6 @@ public class NowPlayingControllerWrapper {
   }
 
   public static File getPosterFile_safeToCallFromBackground(final Movie movie) {
-    final NowPlayingController localInstance = instance;
-    if (localInstance == null) {
-      return null;
-    }
-
     return NowPlayingController.getPosterFile_safeToCallFromBackground(movie);
   }
 
