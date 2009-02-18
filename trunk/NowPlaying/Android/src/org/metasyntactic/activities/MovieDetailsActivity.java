@@ -16,9 +16,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
@@ -140,7 +145,9 @@ public class MovieDetailsActivity extends ListActivity {
     // Add trailer
     final String trailer_url = NowPlayingControllerWrapper.getTrailer(this.movie);
     if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
-      final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trailer_url));
+      final Intent intent = new Intent();
+      intent.setAction("android.intent.action.VIEW");
+      intent.setData(Uri.parse(trailer_url));
       final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.play_trailer),
           null, MovieDetailItemType.ACTION, intent, true);
       this.movieDetailEntries.add(entry);
