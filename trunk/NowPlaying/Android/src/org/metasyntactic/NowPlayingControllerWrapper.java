@@ -98,7 +98,7 @@ public class NowPlayingControllerWrapper {
       locationTracker.shutdown();
       locationTracker = null;
     }
-    if (!(activities.isEmpty() && retainedActivityObjects.isEmpty())) {
+    if (!activities.isEmpty()) {
       locationTracker = new LocationTracker(instance, getApplicationContext());
     }
   }
