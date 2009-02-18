@@ -90,13 +90,14 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     {
       // Add release Date
       final Date releaseDate = this.movie.getReleaseDate();
-      final String releaseDateString = releaseDate == null ? res
-          .getString(R.string.unknown_release_date) : DateFormat.getDateInstance(DateFormat.LONG)
-          .format(releaseDate);
-      final MovieDetailEntry entry = new MovieDetailEntry(res
-          .getString(R.string.release_date_colon), releaseDateString, MovieDetailItemType.DATA,
-          null, false);
-      this.movieDetailEntries.add(entry);
+      if (releaseDate != null) {
+        final String releaseDateString = DateFormat.getDateInstance(DateFormat.LONG).format(
+            releaseDate);
+        final MovieDetailEntry entry = new MovieDetailEntry(res
+            .getString(R.string.release_date_colon), releaseDateString, MovieDetailItemType.DATA,
+            null, false);
+        this.movieDetailEntries.add(entry);
+      }
     }
     {
       // Add cast
@@ -207,7 +208,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
             textViewWidth = 320 - 126 - 5 - 5 - 5;
           }
           final android.text.Layout l = new StaticLayout(synopsis, paint, textViewWidth,
-                                                         Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
+              Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
           // height of poster is 182px
           final int line = l.getLineForVertical(182);
           final int off = l.getLineStart(line + 1);
