@@ -117,7 +117,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     // check for sdcard mounted properly
-    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+    if (FileUtilities.isSDCardAccessible()) {
       // Request the progress bar to be shown in the title
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
       setContentView(R.layout.progressbar_1);
@@ -143,7 +143,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
-    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+    if (FileUtilities.isSDCardAccessible()) {
       registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
       registerReceiver(this.databroadcastReceiver, new IntentFilter(
           NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
@@ -161,7 +161,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
-    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+    if (FileUtilities.isSDCardAccessible()) {
       unregisterReceiver(this.broadcastReceiver);
       unregisterReceiver(this.databroadcastReceiver);
       unregisterReceiver(this.scrollStatebroadcastReceiver);
@@ -176,8 +176,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-      NowPlayingControllerWrapper.removeActivity(this);
+    if (FileUtilities.isSDCardAccessible()) {
+       NowPlayingControllerWrapper.removeActivity(this);
       if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
         this.mTask.cancel(true);
       }
