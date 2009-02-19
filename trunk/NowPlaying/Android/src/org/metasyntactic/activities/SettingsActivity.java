@@ -95,6 +95,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       }
     });
     populateSettingsItems();
+    setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
   }
 
   @Override

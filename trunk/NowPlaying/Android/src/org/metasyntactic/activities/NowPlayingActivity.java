@@ -45,6 +45,7 @@ import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
 import org.metasyntactic.utilities.LogUtilities;
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -231,9 +232,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       NowPlayingControllerWrapper.addActivity(this);
       getUserLocation();
       refresh();
-      if (movies != null && !movies.isEmpty()) {
+      if (!isEmpty(movies)) {
         setup();
-        isGridSetup = true;
       }
     } else {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
@@ -307,6 +307,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   private void setup() {
+    isGridSetup = true;
     getAlphabet(this);
     getScores();
     setContentView(R.layout.moviegrid_anim);
