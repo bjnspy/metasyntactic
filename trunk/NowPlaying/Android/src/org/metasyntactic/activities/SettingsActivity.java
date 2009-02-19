@@ -1,5 +1,6 @@
 package org.metasyntactic.activities;
 
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -12,17 +13,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import org.metasyntactic.NowPlayingApplication;
+
 import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.StringUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
 import java.text.DateFormat;
