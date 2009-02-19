@@ -18,10 +18,17 @@ import android.content.Context;
 import android.util.Log;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.*;
+import org.metasyntactic.collections.IdentityHashSet;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Theater;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import static org.metasyntactic.utilities.SetUtilities.any;
+
 import java.io.File;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -33,7 +40,7 @@ import java.util.Set;
  */
 public class NowPlayingControllerWrapper {
   private static final Set<Activity> activities = new LinkedHashSet<Activity>();
-  private static final Set<Object> retainedActivityObjects = new LinkedHashSet<Object>();
+  private static final Set<Object> retainedActivityObjects = new IdentityHashSet<Object>();
   private static NowPlayingController instance;
   private static LocationTracker locationTracker;
 
@@ -294,7 +301,7 @@ public class NowPlayingControllerWrapper {
   }
 
   public static void onLowMemory() {
-    NowPlayingController instance = NowPlayingControllerWrapper.instance;
+    final NowPlayingController instance = NowPlayingControllerWrapper.instance;
     if (instance != null) {
       instance.onLowMemory();
     }
