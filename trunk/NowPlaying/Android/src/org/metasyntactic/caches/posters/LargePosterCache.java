@@ -126,7 +126,7 @@ public class LargePosterCache extends AbstractCache {
   private void downloadIndices() {
     final int currentYear = getCurrentYear();
     for (int year = currentYear + 1; year >= START_YEAR; year--) {
-      if (this.shutdown) {
+      if (shutdown) {
         return;
       }
       downloadIndex(year, year >= currentYear - 1 || year <= currentYear + 1);
@@ -143,7 +143,7 @@ public class LargePosterCache extends AbstractCache {
       }
 
       if (!isEmpty(index)) {
-        this.yearToMovieMap.put(year, index);
+        yearToMovieMap.put(year, index);
       }
     }
     return index;
@@ -168,7 +168,7 @@ public class LargePosterCache extends AbstractCache {
     return Collections.emptyList();
   }
 
-  private List<String> getPosterUrls(final Movie movie, final int year) {
+  private List<String> getPosterUrlsForYearWorker(final Movie movie, final int year) {
     final List<String> names = getPosterNames(movie, year);
     if (CollectionUtilities.isEmpty(names)) {
       return Collections.emptyList();
@@ -182,27 +182,27 @@ public class LargePosterCache extends AbstractCache {
     return urls;
   }
 
-  private List<String> getPosterUrlsWorker(final Movie movie) {
-    final Date date = movie.getReleaseDate();
-    if (date != null) {
-      final int releaseYear = getYearForDate(date);
-
-      List<String> result;
-      if (size(result = getPosterUrls(movie, releaseYear)) > 0 ||
-        size(result = getPosterUrls(movie, releaseYear - 1)) > 0 ||
-        size(result = getPosterUrls(movie, releaseYear - 2)) > 0 ||
-        size(result = getPosterUrls(movie, releaseYear + 1)) > 0 ||
-        size(result = getPosterUrls(movie, releaseYear + 2)) > 0) {
-        return result;
-      }
+  private List<String> getPosterUrlsForYear(final Movie movie, final int year) {
+    List<String> result;
+    if (size(result = getPosterUrlsForYearWorker(movie, year)) > 0 ||
+        size(result = getPosterUrlsForYearWorker(movie, year - 1)) > 0 ||
+        size(result = getPosterUrlsForYearWorker(movie, year - 2)) > 0 ||
+        size(result = getPosterUrlsForYearWorker(movie, year + 1)) > 0 ||
+        size(result = getPosterUrlsForYearWorker(movie, year + 2)) > 0) {
+      return result;
     }
 
     return Collections.emptyList();
   }
 
   private List<String> getPosterUrls(final Movie movie) {
-    synchronized (this.lock) {
-      return getPosterUrlsWorker(movie);
+    synchronized (lock) {
+      final Date date = movie.getReleaseDate();
+      if (date == null) {
+        return getPosterUrlsForYear(movie, getCurrentYear() - 1);
+      } else {
+        return getPosterUrlsForYear(movie, getYearForDate(date));
+      }
     }
   }
 
