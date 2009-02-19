@@ -6,7 +6,10 @@
         android:icon="@drawable/launcher"
         android:label="@string/application_name"
         android:theme="@android:style/Theme.Black"
-        android:name="org.metasyntactic.NowPlayingApplication">
+        android:name="org.metasyntactic.NowPlayingApplication"
+        android:versionCode="1"
+        android:versionName="1.0">
+        >
         <activity
             android:label="@string/application_name"
             android:name="NowPlayingActivity"
