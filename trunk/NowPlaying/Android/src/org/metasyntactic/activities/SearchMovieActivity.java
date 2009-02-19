@@ -16,7 +16,6 @@ import org.metasyntactic.utilities.StringUtilities;
  * This activity shows a text field to ask the user to enter search terms and
  * then start the ThreadActivity with the correct postData to invoke a search.
  */
-
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
@@ -24,11 +23,11 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   private EditText mSearchText;
   private static String activityName;
 
-  @Override public void onCreate(final Bundle icicle) {
+  @Override
+  public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
-
     setContentView(R.layout.search_bar);
     this.mSearchText = (EditText) findViewById(R.id.search_src_text);
     this.mSearchText.setOnClickListener(this);
@@ -36,24 +35,27 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     activityName = getIntent().getStringExtra("activity");
   }
 
-  @Override protected void onPause() {
+  @Override
+  protected void onPause() {
     super.onPause();
     Log.i(getClass().getSimpleName(), "onPause");
   }
 
-  @Override protected void onResume() {
+  @Override
+  protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     Log.i(getClass().getSimpleName(), "onDestroy");
-
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
-  @Override public Object onRetainNonConfigurationInstance() {
+  @Override
+  public Object onRetainNonConfigurationInstance() {
     Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
@@ -67,10 +69,11 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     }
   }
 
-  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
     super.onCreateOptionsMenu(menu);
-    menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY).setOnMenuItemClickListener(
-        new MenuItem.OnMenuItemClickListener() {
+    menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY)
+        .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
           public boolean onMenuItemClick(final MenuItem item) {
             performSearch();
             return true;
@@ -88,7 +91,8 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     privatePerformSearch(activity, title, null, label);
   }
 
-  private static void privatePerformSearch(final Activity activity, final String title, final String search, final String label) {
+  private static void privatePerformSearch(final Activity activity, final String title,
+      final String search, final String label) {
     if (!StringUtilities.isNullOrEmpty(search) || !StringUtilities.isNullOrEmpty(label)) {
       final Intent intent = new Intent();
       if ("NowPlayingActivity".equals(activityName)) {

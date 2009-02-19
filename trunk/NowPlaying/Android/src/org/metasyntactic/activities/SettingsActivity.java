@@ -45,6 +45,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   private List<Theater> theaters;
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
+  private boolean isFirst;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -71,7 +72,10 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
-    getUserLocation();
+    if (this.getIntent().getStringExtra("from_menu") == null) {
+      getUserLocation();
+      isFirst = true;
+    }
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.settings);
     final Button next = (Button) findViewById(R.id.next);
@@ -113,6 +117,10 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
+    if (!isFirst && this.getIntent().getStringExtra("from_menu") == null) {
+      this.finish();
+    }
+    isFirst = false;
     Log.i(getClass().getSimpleName(), "onResume");
     registerReceiver(broadcastReceiver, new IntentFilter(
         NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));

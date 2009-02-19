@@ -183,7 +183,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
         new Intent(this, AllTheatersActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_theaters).setIcon(R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class));
+        new Intent(this, SettingsActivity.class).putExtra("from_menu","yes"));
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -198,7 +198,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       startActivity(new Intent(this, AllTheatersActivity.class));
     }
     if (item.getItemId() == MovieViewUtilities.MENU_SETTINGS) {
-      startActivity(new Intent(this, SettingsActivity.class));
+      startActivity(new Intent(this, SettingsActivity.class).putExtra("from_menu","yes"));
     }
     return true;
   }
