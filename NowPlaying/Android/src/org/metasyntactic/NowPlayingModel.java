@@ -13,8 +13,17 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import static org.metasyntactic.utilities.CollectionUtilities.size;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 import org.metasyntactic.caches.IMDbCache;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
@@ -23,14 +32,18 @@ import org.metasyntactic.caches.posters.LargePosterCache;
 import org.metasyntactic.caches.posters.PosterCache;
 import org.metasyntactic.caches.scores.ScoreCache;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.*;
+import org.metasyntactic.data.FavoriteTheater;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
-import static org.metasyntactic.utilities.CollectionUtilities.size;
 import org.metasyntactic.utilities.DateUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import java.io.File;
-import java.util.*;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 public class NowPlayingModel {
   private final static String PERSISTANCE_VERSION = "15";
@@ -449,7 +462,7 @@ public class NowPlayingModel {
     return largePosterCache;
   }
 
-  public boolean isUpdatingDataProvider() {
-    return dataProvider.isUpdating();
+  public DataProvider.State getDataProviderState() {
+    return dataProvider.getState();
   }
 }
