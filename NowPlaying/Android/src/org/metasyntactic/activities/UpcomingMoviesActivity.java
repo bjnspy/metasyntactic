@@ -76,7 +76,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
    */
   public void refresh() {
     if (this.search == null) {
-      this.movies = NowPlayingControllerWrapper.getUpcomingMovies();
+      this.movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getUpcomingMovies());
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex());
