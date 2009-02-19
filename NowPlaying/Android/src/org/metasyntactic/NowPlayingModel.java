@@ -33,7 +33,7 @@ import java.io.File;
 import java.util.*;
 
 public class NowPlayingModel {
-  private final static String VERSION = "14";
+  private final static String PERSISTANCE_VERSION = "14";
   private final static String VERSION_KEY = "VERSION";
   private final static String USER_ADDRESS_KEY = "userAddress";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -82,10 +82,10 @@ public class NowPlayingModel {
 
   private void loadData() {
     final String lastVersion = this.preferences.getString(VERSION_KEY, "");
-    if (!lastVersion.equals(VERSION)) {
+    if (!lastVersion.equals(PERSISTANCE_VERSION)) {
       final SharedPreferences.Editor editor = this.preferences.edit();
       editor.clear();
-      editor.putString(VERSION_KEY, VERSION);
+      editor.putString(VERSION_KEY, PERSISTANCE_VERSION);
       editor.commit();
       NowPlayingApplication.reset();
       this.scoreCache.createDirectories();

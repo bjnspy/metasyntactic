@@ -57,7 +57,7 @@ public final class R {
         public static final int view_background=0x7f060006;
     }
     public static final class drawable {
-        public static final int alternate_background=0x7f02003c;
+        public static final int alternate_background=0x7f02003b;
         public static final int arrow_down=0x7f020000;
         public static final int arrow_down_default=0x7f020001;
         public static final int arrow_down_press=0x7f020002;
@@ -94,31 +94,30 @@ public final class R {
         public static final int loader2=0x7f020021;
         public static final int loader3=0x7f020022;
         public static final int loading=0x7f020023;
-        public static final int meg=0x7f020024;
-        public static final int more=0x7f020025;
-        public static final int movie_droid=0x7f020026;
-        public static final int movies=0x7f020027;
-        public static final int opaque_box=0x7f020028;
-        public static final int rating_blue=0x7f020029;
-        public static final int rating_green=0x7f02002a;
-        public static final int rating_red=0x7f02002b;
-        public static final int rating_unknown=0x7f02002c;
-        public static final int rating_yellow=0x7f02002d;
-        public static final int rotten_faded=0x7f02002e;
-        public static final int rotten_full=0x7f02002f;
-        public static final int screen_background_orange=0x7f02003b;
-        public static final int scrollbar_handle_accelerated_anim2=0x7f020030;
-        public static final int shape_1=0x7f020031;
-        public static final int shape_5=0x7f020032;
-        public static final int sym_action_call=0x7f020033;
-        public static final int sym_action_email=0x7f020034;
-        public static final int sym_action_map=0x7f020035;
-        public static final int theatres=0x7f020036;
-        public static final int transparent_background=0x7f02003d;
-        public static final int up=0x7f020037;
-        public static final int up_1=0x7f020038;
-        public static final int upcoming=0x7f020039;
-        public static final int upcoming2=0x7f02003a;
+        public static final int more=0x7f020024;
+        public static final int movie_droid=0x7f020025;
+        public static final int movies=0x7f020026;
+        public static final int opaque_box=0x7f020027;
+        public static final int rating_blue=0x7f020028;
+        public static final int rating_green=0x7f020029;
+        public static final int rating_red=0x7f02002a;
+        public static final int rating_unknown=0x7f02002b;
+        public static final int rating_yellow=0x7f02002c;
+        public static final int rotten_faded=0x7f02002d;
+        public static final int rotten_full=0x7f02002e;
+        public static final int screen_background_orange=0x7f02003a;
+        public static final int scrollbar_handle_accelerated_anim2=0x7f02002f;
+        public static final int shape_1=0x7f020030;
+        public static final int shape_5=0x7f020031;
+        public static final int sym_action_call=0x7f020032;
+        public static final int sym_action_email=0x7f020033;
+        public static final int sym_action_map=0x7f020034;
+        public static final int theatres=0x7f020035;
+        public static final int transparent_background=0x7f02003c;
+        public static final int up=0x7f020036;
+        public static final int up_1=0x7f020037;
+        public static final int upcoming=0x7f020038;
+        public static final int upcoming2=0x7f020039;
     }
     public static final class id {
         public static final int address=0x7f08002f;
@@ -228,7 +227,8 @@ public final class R {
         /** Anime & Animation
          */
         public static final int anime_animation=0x7f07003c;
-        public static final int app_name=0x7f070000;
+        public static final int application_name=0x7f070000;
+        public static final int application_name_and_version=0x7f070001;
         /** At Home
          */
         public static final int at_home=0x7f07003d;
@@ -459,14 +459,14 @@ public final class R {
         /** Map
          */
         public static final int map=0x7f070084;
-        public static final int menu_movies=0x7f070003;
+        public static final int menu_movies=0x7f070004;
         /** mile
          */
         public static final int mile=0x7f0700ef;
         /** miles
          */
         public static final int miles=0x7f0700f0;
-        public static final int more_options=0x7f070005;
+        public static final int more_options=0x7f070006;
         /** Most Popular
          */
         public static final int most_popular=0x7f070085;
@@ -563,11 +563,11 @@ public final class R {
         public static final int number_theaters_outside_search_area=0x7f07002c;
         public static final int number_weeks_ago=0x7f07002d;
         public static final int number_years_ago=0x7f07002e;
-        public static final int off=0x7f070009;
+        public static final int off=0x7f07000a;
         /** OK
          */
         public static final int ok=0x7f07009e;
-        public static final int on=0x7f070008;
+        public static final int on=0x7f070009;
         /** 1 hour
          */
         public static final int one_hour=0x7f07002f;
@@ -589,6 +589,8 @@ public final class R {
         /** Open and Authorize
          */
         public static final int open_and_authorize=0x7f07009f;
+        /**  <string name="showtimes_at">Showtimes at</string>  
+         */
         public static final int order_tickets=0x7f07000c;
         /** Order tickets for %@
          */
@@ -694,7 +696,7 @@ public final class R {
         public static final int screen_rotation=0x7f0700c1;
         /** Search
          */
-        public static final int search=0x7f070006;
+        public static final int search=0x7f070007;
         /** Search Date
          */
         public static final int search_date=0x7f0700c2;
@@ -723,15 +725,14 @@ public final class R {
         /** Show times retrieved on %@.
          */
         public static final int show_times_retrieved_on_string_dot=0x7f0700ca;
-        public static final int showtimes_at=0x7f07000b;
         /** $%@. %@ - Showtimes for Bolt at Century 16.
          */
-        public static final int showtimes_for=0x7f07000a;
+        public static final int showtimes_for=0x7f07000b;
         /** Sign Up for New Account
          */
         public static final int sign_up_for_new_account=0x7f0700cb;
-        public static final int sort_movies=0x7f070001;
-        public static final int sort_theaters=0x7f070002;
+        public static final int sort_movies=0x7f070002;
+        public static final int sort_theaters=0x7f070003;
         /** Special Interest
          */
         public static final int special_interest=0x7f0700cc;
@@ -762,8 +763,8 @@ public final class R {
         /** Success! %@ was granted access to your Netflix account. You can now add movies to your queue, see what's new and what's recommended for you, and much more!
          */
         public static final int success_string_was_granted_access_to_your_netflix=0x7f0700cf;
-        public static final int synopsis=0x7f070004;
-        public static final int tap_here_to_enter_your_search_location=0x7f070007;
+        public static final int synopsis=0x7f070005;
+        public static final int tap_here_to_enter_your_search_location=0x7f070008;
         /** Tap to enter location
          */
         public static final int tap_to_enter_location=0x7f0700d0;

@@ -19,20 +19,19 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
-
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
@@ -514,10 +513,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
     if (item.getItemId() == MovieViewUtilities.MENU_SEND_FEEDBACK) {
       final Resources res = getResources();
-      final String addr = "cyrusn@google.com";
-      final Intent localIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + addr));
+      final String address = "cyrus.najmabadi@gmail.com";
+      final Intent localIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + address));
       localIntent.putExtra("subject", res.getString(R.string.feedback));
-      final String body = getUserSettings(res);
+      final String body = getUserSettings();
       localIntent.putExtra("body", body);
       startActivity(localIntent);
       return true;
@@ -525,13 +524,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     return false;
   }
 
-  private static String getUserSettings(final Resources res) {
+  private String getUserSettings() {
     String body = "\n\n\n\n";
-    body += res.getString(R.string.settings);
-    body += '\n' + res.getString(R.string.autoupdate_location) + ": " + NowPlayingControllerWrapper.isAutoUpdateEnabled();
-    body += '\n' + res.getString(R.string.location) + ": " + NowPlayingControllerWrapper.getUserLocation();
-    body += '\n' + res.getString(R.string.search_distance) + ": " + NowPlayingControllerWrapper.getSearchDistance();
-    body += '\n' + res.getString(R.string.reviews) + ": " + NowPlayingControllerWrapper.getScoreType();
+    body += NowPlayingApplication.getNameAndVersion(getResources());
+    body += "\nAuto-Update Location: " + NowPlayingControllerWrapper.isAutoUpdateEnabled();
+    body += "\nLocation: " + NowPlayingControllerWrapper.getUserLocation();
+    body += "\nSearch Distance: " + NowPlayingControllerWrapper.getSearchDistance();
+    body += "\nReviews: " + NowPlayingControllerWrapper.getScoreType();
     return body;
   }
 
