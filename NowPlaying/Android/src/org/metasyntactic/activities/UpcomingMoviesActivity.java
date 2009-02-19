@@ -261,22 +261,13 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         setupRotationAnimation(view);
       }
     });
-    this.grid.setLayoutAnimationListener(new AnimationListener() {
-      public void onAnimationEnd(final Animation animation) {
-      }
-
-      public void onAnimationRepeat(final Animation animation) {
-      }
-
-      public void onAnimationStart(final Animation arg) {
-      }
-    });
+   
     populateAlphaMovieSectionsAndPositions();
     populateScoreMovieSectionsAndPositions();
     this.postersAdapter = new PostersAdapter();
     this.grid.setAdapter(this.postersAdapter);
     this.intent = new Intent();
-    this.intent.setClass(this, UpcomingMoviesActivity.class);
+    this.intent.setClass(this, UpcomingMovieDetailsActivity.class);
   }
 
   private void populateAlphaMovieSectionsAndPositions() {
