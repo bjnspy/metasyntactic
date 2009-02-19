@@ -80,25 +80,19 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
   private final BroadcastReceiver progressBroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
+    @Override public void onReceive(final Context context, final Intent intent) {
       progressUpdate.setText(intent.getStringExtra("message"));
     }
   };
   private final BroadcastReceiver dataBroadcastReceiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(final Context context, final Intent intent) {
-      if (isEmpty(movies)) {
-        showNoInformationFoundDialog();
-      } else {
-        setupMovieGrid();
-      }
+    @Override public void onReceive(final Context context, final Intent intent) {
+      // the data provider finished downloading.  set up our view accordingly.
+      setupView();
     }
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
@@ -126,6 +120,26 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }).show();
   }
 
+  private void setupView() {
+    // we're currently in 'downloading' mode.  We need to deal with a few
+    // cases.  First, we deal with the case where a user has returned to
+    // this activity, and now there are movies available.  In that case, we
+    // just display them.
+    refresh();
+    if (isEmpty(movies)) {
+      // Ok.  so we have no movies.  THat means one of two things.  Either
+      // we're trying to download the movies, or we tried and failed to
+      // download them.  In the former case just wait.  We'll get a
+      // notification when they're done.  In the latter case, let the user
+      // know.
+      if (!NowPlayingControllerWrapper.isUpdatingDataProvider()) {
+        showNoInformationFoundDialog();
+      }
+    } else {
+      setupMovieGrid();
+    }
+  }
+
   @Override
   protected void onResume() {
     super.onResume();
@@ -140,23 +154,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         grid.setVisibility(View.VISIBLE);
         postersAdapter.refreshMovies();
       } else {
-        // we're currently in 'downloading' mode.  We need to deal with a few
-        // cases.  First, we deal with the case where a user has returned to
-        // this activity, and now there are movies available.  In that case, we
-        // just display them.
-
-        if (isEmpty(movies)) {
-          // Ok.  so we have no movies.  THat means one of two things.  Either
-          // we're trying to download the movies, or we tried and failed to
-          // download them.  In the former case just wait.  We'll get a
-          // notification when they're done.  In the latter case, let the user
-          // know.
-          if (!NowPlayingControllerWrapper.isUpdatingDataProvider()) {
-            showNoInformationFoundDialog();
-          }
-        } else {
-          setupMovieGrid();
-        }
+        setupView();
       }
     }
   }
