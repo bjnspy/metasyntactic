@@ -65,7 +65,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private Movie selectedMovie;
   private PostersAdapter postersAdapter;
   private boolean isGridSetup;
-  private static List<Movie> movies;
+  private List<Movie> movies;
   private int lastPosition;
   private String search;
   private final Map<Integer, Integer> alphaMovieSectionsMap = new HashMap<Integer, Integer>();
@@ -228,7 +228,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     mTask = new LoadPostersTask().execute(null);
   }
 
-  private static List<Movie> getMatchingMoviesList(final String search2) {
+  private List<Movie> getMatchingMoviesList(final String search2) {
     final String localSearch = search2.toLowerCase();
     final List<Movie> matchingMovies = new ArrayList<Movie>();
     for (final Movie movie : movies) {
@@ -343,8 +343,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     final Button allMovies = (Button) findViewById(R.id.all_movies);
     allMovies.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
-        final Intent intent = new Intent();
-        intent.setClass(NowPlayingActivity.this, NowPlayingActivity.class);
+        final Intent intent = new Intent().setClass(NowPlayingActivity.this, NowPlayingActivity.class);
         startActivity(intent);
       }
     });
@@ -360,8 +359,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     populateScoreMovieSectionsAndPositions();
     postersAdapter = new PostersAdapter();
     grid.setAdapter(postersAdapter);
-    intent = new Intent();
-    intent.setClass(this, MovieDetailsActivity.class);
+    intent = new Intent().setClass(this, MovieDetailsActivity.class);
   }
 
   private void populateAlphaMovieSectionsAndPositions() {
@@ -459,8 +457,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       if (bitmap != null) {
         holder.poster.setImageBitmap(bitmap);
       }
-      convertView
-      .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
+      convertView.setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       return convertView;
     }
 
@@ -533,16 +530,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   public boolean onCreateOptionsMenu(final Menu menu) {
-    menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(
-        android.R.drawable.ic_menu_search);
-    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(
-        R.drawable.ic_menu_switch);
-    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(
-        R.drawable.ic_menu_allfriends);
-    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
-    .setIcon(R.drawable.upcoming);
-    menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
-        android.R.drawable.ic_menu_send);
+    menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(android.R.drawable.ic_menu_search);
+    menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(R.drawable.ic_menu_switch);
+    menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(R.drawable.ic_menu_allfriends);
+    menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming).setIcon(R.drawable.upcoming);
+    menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(android.R.drawable.ic_menu_send);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
             new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"))
