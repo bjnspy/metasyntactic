@@ -111,6 +111,14 @@ public class FileUtilities {
     }
   }
 
+  private static PersistableInputStream createInputStream(final File file) throws FileNotFoundException {
+    return new PersistableInputStream(new DataInputStream(new FileInputStream(file)));
+  }
+
+  private static PersistableOutputStream createOutputStream(ByteArrayOutputStream byteOut) {
+    return new PersistableOutputStream(new DataOutputStream(byteOut));
+  }
+
   public static Map<String, Date> readStringToDateMap(final File file) {
     if (!file.exists()) {
       return Collections.emptyMap();
@@ -118,7 +126,7 @@ public class FileUtilities {
 
     if (USE_PERSISTABLE) {
       try {
-        final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+        final PersistableInputStream in = createInputStream(file);
         final Map<String, Date> result = new HashMap<String, Date>();
 
         final int size = in.readInt();
@@ -146,7 +154,7 @@ public class FileUtilities {
     if (USE_PERSISTABLE) {
       try {
         final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
-        final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+        final PersistableOutputStream out = createOutputStream(byteOut);
 
         out.writeInt(map.size());
         for (final Map.Entry<String, Date> e : map.entrySet()) {
@@ -173,7 +181,7 @@ public class FileUtilities {
 
     if (USE_PERSISTABLE) {
       try {
-        final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+        final PersistableInputStream in = createInputStream(file);
         final Map<String, String> result = new HashMap<String, String>();
 
         final int size = in.readInt();
@@ -201,7 +209,7 @@ public class FileUtilities {
     if (USE_PERSISTABLE) {
       try {
         final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
-        final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+        final PersistableOutputStream out = createOutputStream(byteOut);
 
         out.writeInt(map.size());
         for (final Map.Entry<String, String> e : map.entrySet()) {
@@ -228,7 +236,7 @@ public class FileUtilities {
 
     if (USE_PERSISTABLE) {
       try {
-        final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+        final PersistableInputStream in = createInputStream(file);
         final int size = in.readInt();
 
         final Map<String, T> result = new HashMap<String, T>(size);
@@ -257,7 +265,7 @@ public class FileUtilities {
     if (USE_PERSISTABLE) {
       try {
         final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
-        final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+        final PersistableOutputStream out = createOutputStream(byteOut);
 
         out.writeInt(map.size());
         for (final Map.Entry<String, T> e : map.entrySet()) {
@@ -284,7 +292,7 @@ public class FileUtilities {
 
     if (USE_PERSISTABLE) {
       try {
-        final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+        final PersistableInputStream in = createInputStream(file);
         final List<String> result = in.readStringList();
 
         in.close();
@@ -304,7 +312,7 @@ public class FileUtilities {
     if (USE_PERSISTABLE) {
       try {
         final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
-        final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+        final PersistableOutputStream out = createOutputStream(byteOut);
         out.writeStringCollection(collection);
 
         out.flush();
@@ -347,7 +355,7 @@ public class FileUtilities {
 
     if (USE_PERSISTABLE) {
       try {
-        final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+        final PersistableInputStream in = createInputStream(file);
         final T result = in.readPersistable(reader);
 
         in.close();
@@ -365,7 +373,7 @@ public class FileUtilities {
     if (USE_PERSISTABLE) {
       try {
         final ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-        final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+        final PersistableOutputStream out = createOutputStream(byteOut);
         out.writePersistable(p);
 
         out.flush();
@@ -387,7 +395,7 @@ public class FileUtilities {
 
     if (USE_PERSISTABLE) {
       try {
-        final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+        final PersistableInputStream in = createInputStream(file);
         final List<T> result = reader.readList(in);
 
         in.close();
@@ -407,7 +415,7 @@ public class FileUtilities {
     if (USE_PERSISTABLE) {
       try {
         final ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-        final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+        final PersistableOutputStream out = createOutputStream(byteOut);
         out.writeInt(collection.size());
         for (final T t : collection) {
           out.writePersistable(t);
@@ -432,7 +440,7 @@ public class FileUtilities {
 
     if (USE_PERSISTABLE) {
       try {
-        final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+        final PersistableInputStream in = createInputStream(file);
         final int size = in.readInt();
 
         final Map<String, List<T>> result = new HashMap<String, List<T>>(size);
@@ -459,7 +467,7 @@ public class FileUtilities {
     if (USE_PERSISTABLE) {
       try {
         final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
-        final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+        final PersistableOutputStream out = createOutputStream(byteOut);
 
         out.writeInt(map.size());
         for (final Map.Entry<String, List<T>> e : map.entrySet()) {
@@ -486,7 +494,7 @@ public class FileUtilities {
 
     if (USE_PERSISTABLE) {
       try {
-        final PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+        final PersistableInputStream in = createInputStream(file);
         final int size = in.readInt();
 
         final Map<String, List<String>> result = new HashMap<String, List<String>>(size);
@@ -513,7 +521,7 @@ public class FileUtilities {
     if (USE_PERSISTABLE) {
       try {
         final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
-        final PersistableOutputStream out = new PersistableOutputStream(byteOut);
+        final PersistableOutputStream out = createOutputStream(byteOut);
 
         out.writeInt(map.size());
         for (final Map.Entry<String, List<String>> e : map.entrySet()) {

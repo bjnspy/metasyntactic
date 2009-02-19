@@ -13,93 +13,36 @@
 // limitations under the License.
 package org.metasyntactic.io;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.*;
 
 public class PersistableInputStream {
-  private final InputStream in;
+  private final DataInputStream in;
 
-  public PersistableInputStream(final InputStream in) {
+  public PersistableInputStream(final DataInputStream in) {
     this.in = in;
   }
 
   public void close() throws IOException {
-    this.in.close();
+    in.close();
   }
-
-  private byte[] spareBytes = new byte[1 << 11];
-
-  private void readArray(final byte[] bytes, final int length) throws IOException {
-    int position = 0;
-
-    while (true) {
-      final int read = this.in.read(bytes, position, length - position);
-      position += read;
-
-      if (read < 0) {
-        throw new IOException("Couldn't read expected amount of data");
-      }
-
-      if (position >= length) {
-        return;
-      }
-    }
-  }
-
-  private void readEntireArray(final byte[] bytes) throws IOException {
-    readArray(bytes, bytes.length);
-  }
-
-  private final byte[] bytes4 = new byte[4];
-  private final byte[] bytes8 = new byte[8];
-  private final ByteBuffer buffer4 = ByteBuffer.wrap(this.bytes4);
-  private final ByteBuffer buffer8 = ByteBuffer.wrap(this.bytes8);
 
   public int readInt() throws IOException {
-    readEntireArray(this.bytes4);
-    return this.buffer4.getInt(0);
+    return in.readInt();
   }
 
   public long readLong() throws IOException {
-    readEntireArray(this.bytes8);
-    return this.buffer8.getLong(0);
+    return in.readLong();
   }
 
   public double readDouble() throws IOException {
-    readEntireArray(this.bytes8);
-    return this.buffer8.getDouble(0);
+    return in.readDouble();
   }
 
   public String readString() throws IOException {
-    final int byteCount = readInt();
-    if (byteCount == 0) {
-      return "";
-    }
-
-    if (byteCount > this.spareBytes.length) {
-      this.spareBytes = new byte[Math.max(this.spareBytes.length * 2, byteCount)];
-    }
-
-    readArray(this.spareBytes, byteCount);
-
-    return new String(this.spareBytes, 0, byteCount, "UTF-8");
-    /*
-     * final int byteCount = charCount 2;
-     * 
-     * if (byteCount > this.bytes.length) {
-     * initializeBuffers(Math.max(byteCount, this.bytes.length 2)); }
-     * 
-     * this.charBuffer.limit(charCount); this.in.read(this.bytes, 0, byteCount);
-     * 
-     * this.byteBuffer.position(0); this.charBuffer.position(0);
-     * 
-     * return this.charBuffer.toString(); //this.charBuffer.get(this.chars, 0,
-     * charCount);
-     * 
-     * //return new String(this.chars, 0, charCount);
-     */
+    return in.readUTF();
   }
 
   public <T extends Persistable> T readPersistable(final Persistable.Reader<T> reader) throws IOException {
