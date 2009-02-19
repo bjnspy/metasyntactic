@@ -14,11 +14,7 @@
             android:label="@string/application_name"
             android:name="NowPlayingActivity"
             android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category
-                    android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity
             android:theme="@android:style/Theme.NoTitleBar"
@@ -66,6 +62,11 @@
         <activity
             android:label="@string/application_name_and_version"
             android:name="SettingsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
     <uses-permission
