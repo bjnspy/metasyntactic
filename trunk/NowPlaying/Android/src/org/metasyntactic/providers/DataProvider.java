@@ -13,27 +13,9 @@
 //limitations under the License.
 package org.metasyntactic.providers;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-
+import android.content.Context;
+import android.content.Intent;
+import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingApplication;
@@ -50,16 +32,31 @@ import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.time.Hours;
+import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
 import org.metasyntactic.utilities.DateUtilities;
 import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import android.content.Context;
-import android.content.Intent;
-
-import com.google.protobuf.InvalidProtocolBufferException;
+import java.io.File;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 public class DataProvider {
   private final Object lock = new Object();
@@ -69,6 +66,7 @@ public class DataProvider {
   private Map<String, Date> synchronizationData;
   private Map<String, Map<String, List<Performance>>> performances;
   private boolean shutdown;
+  private boolean isUpdating;
 
   public DataProvider(final NowPlayingModel model) {
     this.model = model;
@@ -90,7 +88,7 @@ public class DataProvider {
         updateBackgroundEntryPoint(localMovies, localTheaters);
       }
     };
-    NowPlayingControllerWrapper.setUpdatingDataProvider(true);
+    isUpdating = true;
     ThreadingUtilities.performOnBackgroundThread("Update Provider", runnable, lock, true/* visible */);
   }
 
@@ -115,7 +113,7 @@ public class DataProvider {
     updateBackgroundEntryPointWorker(currentMovies, currentTheaters);
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
-        NowPlayingControllerWrapper.setUpdatingDataProvider(false);
+        isUpdating = false;
         final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
         if (context != null) {
           context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
@@ -615,5 +613,9 @@ public class DataProvider {
 
   public static void markOutOfDate() {
     getLastLookupDateFile().delete();
+  }
+
+  public boolean isUpdating() {
+    return isUpdating;
   }
 }
