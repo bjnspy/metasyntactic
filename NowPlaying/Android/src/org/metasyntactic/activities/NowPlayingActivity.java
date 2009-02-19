@@ -83,12 +83,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   };
   private final BroadcastReceiver progressbroadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
-      NowPlayingActivity.this.progressUpdate.setText(intent.getStringExtra("message"));
+      progressUpdate.setText(intent.getStringExtra("message"));
     }
   };
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
-      if (!NowPlayingActivity.this.isGridSetup) {
+      if (!isGridSetup) {
         setup();
       }
     }
@@ -96,11 +96,11 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
       if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())
-          && NowPlayingActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
-        NowPlayingActivity.this.mTask = NowPlayingActivity.this.new LoadPostersTask().execute(null);
+          && mTask.getStatus() != UserTask.Status.RUNNING) {
+        mTask = new LoadPostersTask().execute(null);
       }
-      if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction()) && NowPlayingActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
-        NowPlayingActivity.this.mTask.cancel(true);
+      if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction()) && mTask.getStatus() == UserTask.Status.RUNNING) {
+        mTask.cancel(true);
       }
     }
   };
@@ -109,14 +109,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
     if (FileUtilities.isSDCardAccessible()) {
-      registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-      registerReceiver(this.databroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
-      registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
-      registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
-      registerReceiver(this.progressbroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
-      if (this.isGridSetup) {
-        this.grid.setVisibility(View.VISIBLE);
-        this.postersAdapter.refreshMovies();
+      registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+      registerReceiver(databroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
+      registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
+      registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
+      registerReceiver(progressbroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
+      if (isGridSetup) {
+        grid.setVisibility(View.VISIBLE);
+        postersAdapter.refreshMovies();
       }
     }
 
@@ -125,12 +125,12 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
     if (FileUtilities.isSDCardAccessible()) {
-      unregisterReceiver(this.broadcastReceiver);
-      unregisterReceiver(this.databroadcastReceiver);
-      unregisterReceiver(this.scrollStatebroadcastReceiver);
-      unregisterReceiver(this.progressbroadcastReceiver);
-      if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-        this.mTask.cancel(true);
+      unregisterReceiver(broadcastReceiver);
+      unregisterReceiver(databroadcastReceiver);
+      unregisterReceiver(scrollStatebroadcastReceiver);
+      unregisterReceiver(progressbroadcastReceiver);
+      if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+        mTask.cancel(true);
       }
     }
     super.onPause();
@@ -140,8 +140,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     Log.i(getClass().getSimpleName(), "onDestroy");
     if (FileUtilities.isSDCardAccessible()) {
       NowPlayingControllerWrapper.removeActivity(this);
-      if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-        this.mTask.cancel(true);
+      if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+        mTask.cancel(true);
       }
       clearBitmaps();
     }
@@ -150,7 +150,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override public Object onRetainNonConfigurationInstance() {
     Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    final Object result = this.search;
+    final Object result = search;
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
   }
@@ -159,25 +159,25 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
    * Updates display of the list of movies.
    */
   public void refresh() {
-    if (this.search == null) {
+    if (search == null) {
     }
-    if (this.search == null) {
+    if (search == null) {
       movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getMovies());
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex());
     Collections.sort(movies, comparator);
-    if (this.postersAdapter != null) {
+    if (postersAdapter != null) {
       populateAlphaMovieSectionsAndPositions();
       populateScoreMovieSectionsAndPositions();
       FastScrollGridView.getSections();
-      this.postersAdapter.refreshMovies();
+      postersAdapter.refreshMovies();
     }
     // cancel task so that it doesnt try to load old set of movies
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
+    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+      mTask.cancel(true);
     }
-    this.mTask = new LoadPostersTask().execute(null);
+    mTask = new LoadPostersTask().execute(null);
   }
 
   private static List<Movie> getMatchingMoviesList(final String search2) {
@@ -198,19 +198,19 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
-    this.search = (String) getLastNonConfigurationInstance();
+    search = (String) getLastNonConfigurationInstance();
     // check for sdcard mounted properly
     if (FileUtilities.isSDCardAccessible()) {
       // Request the progress bar to be shown in the title
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
       setContentView(R.layout.progressbar_1);
-      this.progressUpdate = (TextView) findViewById(R.id.progress_update);
+      progressUpdate = (TextView) findViewById(R.id.progress_update);
       NowPlayingControllerWrapper.addActivity(this);
       getUserLocation();
       refresh();
       if (movies != null && !movies.isEmpty()) {
         setup();
-        this.isGridSetup = true;
+        isGridSetup = true;
       }
     } else {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -223,9 +223,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override protected void onNewIntent(final Intent intent) {
     super.onNewIntent(intent);
-    this.search = intent.getStringExtra("movie");
-    if (this.search != null) {
-      this.bottomBar.setVisibility(View.VISIBLE);
+    search = intent.getStringExtra("movie");
+    if (search != null) {
+      bottomBar.setVisibility(View.VISIBLE);
     }
     getSearchResults();
     refresh();
@@ -241,15 +241,15 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   }
 
   private void getSearchResults() {
-    if (this.search != null) {
-      final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
+    if (search != null) {
+      final List<Movie> matchingMovies = getMatchingMoviesList(search);
       if (matchingMovies.isEmpty()) {
-        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + search, Toast.LENGTH_SHORT).show();
       } else {
         movies = matchingMovies;
         // cancel task so that it doesnt try to load the complete set of movies.
-        if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-          this.mTask.cancel(true);
+        if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+          mTask.cancel(true);
         }
       }
     }
@@ -266,16 +266,16 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   private void getAlphabet(final Context context) {
     final String alphabetString = context.getResources().getString(R.string.alphabet);
-    this.alphabet = new String[alphabetString.length()];
-    for (int i = 0; i < this.alphabet.length; i++) {
-      this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
+    alphabet = new String[alphabetString.length()];
+    for (int i = 0; i < alphabet.length; i++) {
+      alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
 
   private void getScores() {
-    this.score = new String[11];
+    score = new String[11];
     for (int index = 0, i = 100; i >= 0; index++, i -= 10) {
-      this.score[index] = i + "%";
+      score[index] = i + "%";
     }
   }
 
@@ -283,52 +283,52 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     getAlphabet(this);
     getScores();
     setContentView(R.layout.moviegrid_anim);
-    this.bottomBar = (RelativeLayout) findViewById(R.id.bottom_bar);
-    if (this.search == null) {
-      this.bottomBar.setVisibility(View.GONE);
+    bottomBar = (RelativeLayout) findViewById(R.id.bottom_bar);
+    if (search == null) {
+      bottomBar.setVisibility(View.GONE);
     }
     final Button allMovies = (Button) findViewById(R.id.all_movies);
     allMovies.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         final Intent intent = new Intent();
         intent.setClass(NowPlayingActivity.this, NowPlayingActivity.class);
-        NowPlayingActivity.this.startActivity(intent);
+        startActivity(intent);
       }
     });
-    this.grid = (CustomGridView) findViewById(R.id.grid);
-    this.grid.setOnItemClickListener(new OnItemClickListener() {
+    grid = (CustomGridView) findViewById(R.id.grid);
+    grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position, final long id) {
-        NowPlayingActivity.this.selectedMovie = movies.get(position);
+        selectedMovie = movies.get(position);
         setupRotationAnimation(view);
       }
     });
     populateAlphaMovieSectionsAndPositions();
     populateScoreMovieSectionsAndPositions();
-    this.postersAdapter = new PostersAdapter();
-    this.grid.setAdapter(this.postersAdapter);
-    this.intent = new Intent();
-    this.intent.setClass(this, MovieDetailsActivity.class);
+    postersAdapter = new PostersAdapter();
+    grid.setAdapter(postersAdapter);
+    intent = new Intent();
+    intent.setClass(this, MovieDetailsActivity.class);
   }
 
   private void populateAlphaMovieSectionsAndPositions() {
     int i = 0;
     String prevLetter = null;
-    final List<String> alphabets = Arrays.asList(this.alphabet);
+    final List<String> alphabets = Arrays.asList(alphabet);
     for (final Movie movie : movies) {
       final String firstLetter = movie.getDisplayTitle().substring(0, 1);
-      this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
+      alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
       if (!firstLetter.equals(prevLetter)) {
-        this.alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
+        alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
       }
       prevLetter = firstLetter;
       i++;
     }
     for (i = 0; i < alphabets.size(); i++) {
-      if (this.alphaMoviePositionsMap.get(i) == null) {
+      if (alphaMoviePositionsMap.get(i) == null) {
         if (i == 0) {
-          this.alphaMoviePositionsMap.put(i, 0);
+          alphaMoviePositionsMap.put(i, 0);
         } else {
-          this.alphaMoviePositionsMap.put(i, this.alphaMoviePositionsMap.get(i - 1));
+          alphaMoviePositionsMap.put(i, alphaMoviePositionsMap.get(i - 1));
         }
       }
     }
@@ -337,24 +337,24 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private void populateScoreMovieSectionsAndPositions() {
     int i = 0;
     int prevLevel = 0;
-    final List<String> scores = Arrays.asList(this.score);
+    final List<String> scores = Arrays.asList(score);
     for (final Movie movie : movies) {
       final Score localScore = NowPlayingControllerWrapper.getScore(movie);
       final int scoreValue = localScore == null ? 0 : localScore.getScoreValue();
       final int scoreLevel = scoreValue / 10 * 10;
-      this.scoreMovieSectionsMap.put(i, scores.indexOf(scoreLevel + "%"));
+      scoreMovieSectionsMap.put(i, scores.indexOf(scoreLevel + "%"));
       if (scoreLevel != prevLevel) {
-        this.scoreMoviePositionsMap.put(scores.indexOf(scoreLevel + "%"), i);
+        scoreMoviePositionsMap.put(scores.indexOf(scoreLevel + "%"), i);
       }
       prevLevel = scoreLevel;
       i++;
     }
     for (i = 0; i < scores.size(); i++) {
-      if (this.scoreMoviePositionsMap.get(i) == null) {
+      if (scoreMoviePositionsMap.get(i) == null) {
         if (i == 0) {
-          this.scoreMoviePositionsMap.put(i, 0);
+          scoreMoviePositionsMap.put(i, 0);
         } else {
-          this.scoreMoviePositionsMap.put(i, this.scoreMoviePositionsMap.get(i - 1));
+          scoreMoviePositionsMap.put(i, scoreMoviePositionsMap.get(i - 1));
         }
       }
     }
@@ -367,7 +367,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     private PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(NowPlayingActivity.this);
+      inflater = LayoutInflater.from(NowPlayingActivity.this);
     }
 
     public View getView(final int position, View convertView, final ViewGroup parent) {
@@ -378,7 +378,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // convertView
       // supplied by GridView is null.
       if (convertView == null) {
-        convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
+        convertView = inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
         holder = new ViewHolder((TextView) convertView.findViewById(R.id.title), (ImageView) convertView.findViewById(R.id.poster));
@@ -439,23 +439,23 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     public int getPositionForSection(final int section) {
       Integer position = null;
       if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() == 0) {
-        position = NowPlayingActivity.this.alphaMoviePositionsMap.get(section);
+        position = alphaMoviePositionsMap.get(section);
       }
       if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() == 2) {
-        position = NowPlayingActivity.this.scoreMoviePositionsMap.get(section);
+        position = scoreMoviePositionsMap.get(section);
       }
       if (position != null) {
-        NowPlayingActivity.this.lastPosition = position;
+        lastPosition = position;
       }
-      return NowPlayingActivity.this.lastPosition;
+      return lastPosition;
     }
 
     public int getSectionForPosition(final int position) {
       if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() == 0) {
-        return NowPlayingActivity.this.alphaMovieSectionsMap.get(position);
+        return alphaMovieSectionsMap.get(position);
       }
       if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() == 2) {
-        return NowPlayingActivity.this.scoreMovieSectionsMap.get(position);
+        return scoreMovieSectionsMap.get(position);
       }
       return position;
     }
@@ -464,10 +464,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // fast scroll is implemented only for alphabetic & score sort for release
       // 1.
       if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() == 0) {
-        return NowPlayingActivity.this.alphabet;
+        return alphabet;
       }
       if (NowPlayingControllerWrapper.getAllMoviesSelectedSortIndex() == 2) {
-        return NowPlayingActivity.this.score;
+        return score;
       }
       return null;
     }
@@ -544,8 +544,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
-        NowPlayingActivity.this.intent.putExtra("movie", (Parcelable) NowPlayingActivity.this.selectedMovie);
-        startActivity(NowPlayingActivity.this.intent);
+        intent.putExtra("movie", (Parcelable) selectedMovie);
+        startActivity(intent);
       }
 
       public void onAnimationRepeat(final Animation animation) {
@@ -583,8 +583,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
     @Override public void onPostExecute(final Void result) {
       super.onPostExecute(result);
-      if (NowPlayingActivity.this.postersAdapter != null) {
-        NowPlayingActivity.this.postersAdapter.refreshMovies();
+      if (postersAdapter != null) {
+        postersAdapter.refreshMovies();
       }
     }
   }

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -52,10 +53,12 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   private final BroadcastReceiver updateLocationStartReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
       setTitle(R.string.finding_location);
+      setProgressBarIndeterminateVisibility(true);
     }
   };
   private final BroadcastReceiver updateLocationStopReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
+      setProgressBarIndeterminateVisibility(false);
       setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
     }
   };
@@ -64,7 +67,10 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
+
+    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.settings);
+
     final Button next = (Button) findViewById(R.id.next);
     next.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
@@ -84,20 +90,20 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
-    unregisterReceiver(this.broadcastReceiver);
-    unregisterReceiver(this.updateLocationStopReceiver);
-    unregisterReceiver(this.updateLocationStartReceiver);
+    unregisterReceiver(broadcastReceiver);
+    unregisterReceiver(updateLocationStopReceiver);
+    unregisterReceiver(updateLocationStartReceiver);
     super.onPause();
   }
 
   @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
-    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-    registerReceiver(this.updateLocationStartReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
-    registerReceiver(this.updateLocationStopReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_STOP));
-    this.settingsAdapter = new SettingsAdapter();
-    setListAdapter(this.settingsAdapter);
+    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(updateLocationStartReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
+    registerReceiver(updateLocationStopReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_STOP));
+    settingsAdapter = new SettingsAdapter();
+    setListAdapter(settingsAdapter);
   }
 
   @Override protected void onDestroy() {
@@ -122,33 +128,33 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       // The order in which the methods on the NowPlayingPreferenceDialog object
       // are called
       // should not be changed.
-      dialog = new NowPlayingPreferenceDialog(this).setKey(this.detailItems.get(1).getKey()).setTextView(textEntryView)
+      dialog = new NowPlayingPreferenceDialog(this).setKey(detailItems.get(1).getKey()).setTextView(textEntryView)
       .setPositiveButton(R.string.ok).setNegativeButton(android.R.string.cancel);
-      dialog.setTitle(this.detailItems.get(1).getLabel());
+      dialog.setTitle(detailItems.get(1).getLabel());
       break;
     case 2:
       // The order in which the methods on the NowPlayingPreferenceDialog object
       // are called
       // should not be changed.
       final String[] distanceValues = getResources().getStringArray(R.array.entries_search_distance_preference);
-      dialog = new NowPlayingPreferenceDialog(this).setKey(this.detailItems.get(2).getKey()).setItems(distanceValues);
-      dialog.setTitle(this.detailItems.get(2).getLabel());
+      dialog = new NowPlayingPreferenceDialog(this).setKey(detailItems.get(2).getKey()).setItems(distanceValues);
+      dialog.setTitle(detailItems.get(2).getLabel());
       break;
     case 4:
       // The order in which the methods on the NowPlayingPreferenceDialog object
       // are called
       // should not be changed.
-      dialog = new NowPlayingPreferenceDialog(this).setKey(this.detailItems.get(4).getKey()).setEntries(R.array.entries_reviews_provider_preference)
+      dialog = new NowPlayingPreferenceDialog(this).setKey(detailItems.get(4).getKey()).setEntries(R.array.entries_reviews_provider_preference)
       .setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
-      dialog.setTitle(this.detailItems.get(4).getLabel());
+      dialog.setTitle(detailItems.get(4).getLabel());
       break;
     case 0:
       // The order in which the methods on the NowPlayingPreferenceDialog object
       // are called
       // should not be changed.
-      dialog = new NowPlayingPreferenceDialog(this).setKey(this.detailItems.get(0).getKey()).setEntries(R.array.entries_auto_update_preference)
+      dialog = new NowPlayingPreferenceDialog(this).setKey(detailItems.get(0).getKey()).setEntries(R.array.entries_auto_update_preference)
       .setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
-      dialog.setTitle(this.detailItems.get(0).getLabel());
+      dialog.setTitle(detailItems.get(0).getLabel());
     }
     return dialog;
   }
@@ -207,7 +213,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   }
 
   private void populateSettingsItems() {
-    this.detailItems = new ArrayList<SettingsItem>();
+    detailItems = new ArrayList<SettingsItem>();
     final Resources res = getResources();
     // auto update location - 0
     SettingsItem settings = new SettingsItem();
@@ -219,7 +225,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       settings.setData(res.getString(R.string.off));
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.AUTO_UPDATE_LOCATION);
-    this.detailItems.add(settings);
+    detailItems.add(settings);
     // location - 1
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.location));
@@ -230,7 +236,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       settings.setData(location);
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.LOCATION);
-    this.detailItems.add(settings);
+    detailItems.add(settings);
     // search distance - 2
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.search_distance));
@@ -239,7 +245,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     // units is available.
     settings.setData(distance + " " + res.getString(R.string.miles));
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.SEARCH_DISTANCE);
-    this.detailItems.add(settings);
+    detailItems.add(settings);
     // search date - 3
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.search_date));
@@ -249,7 +255,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     if (d1 != null) {
       settings.setData(df.format(d1));
     }
-    this.detailItems.add(settings);
+    detailItems.add(settings);
     // reviews provider - 4
     settings = new SettingsItem();
     settings.setLabel(res.getString(R.string.reviews));
@@ -258,7 +264,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       settings.setData(type.toString());
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.REVIEWS_PROVIDER);
-    this.detailItems.add(settings);
+    detailItems.add(settings);
   }
 
   private class SettingsAdapter extends BaseAdapter {
@@ -266,11 +272,11 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
     private SettingsAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(SettingsActivity.this);
+      inflater = LayoutInflater.from(SettingsActivity.this);
     }
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
-      convertView = this.inflater.inflate(R.layout.settings_item, null);
+      convertView = inflater.inflate(R.layout.settings_item, null);
       final SettingsViewHolder holder = new SettingsViewHolder((TextView) convertView.findViewById(R.id.label), (ImageView) convertView
           .findViewById(R.id.icon), (TextView) convertView.findViewById(R.id.data), (CheckBox) convertView.findViewById(R.id.check));
       if (position == 0) {
@@ -284,14 +290,14 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
           }
         });
       }
-      final SettingsItem settingsItem = SettingsActivity.this.detailItems.get(position);
+      final SettingsItem settingsItem = detailItems.get(position);
       holder.data.setText(settingsItem.getData());
       holder.label.setText(settingsItem.getLabel());
       return convertView;
     }
 
     public int getCount() {
-      return SettingsActivity.this.detailItems.size();
+      return detailItems.size();
     }
 
     private class SettingsViewHolder {
@@ -313,7 +319,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     }
 
     public Object getItem(final int position) {
-      return SettingsActivity.this.theaters.get(position);
+      return theaters.get(position);
     }
 
     public long getItemId(final int position) {
@@ -331,7 +337,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     private NowPlayingPreferenceDialog.PreferenceKeys key;
 
     public NowPlayingPreferenceDialog.PreferenceKeys getKey() {
-      return this.key;
+      return key;
     }
 
     public void setKey(final NowPlayingPreferenceDialog.PreferenceKeys key) {
@@ -339,7 +345,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     }
 
     public String getLabel() {
-      return this.label;
+      return label;
     }
 
     public void setLabel(final String label) {
@@ -347,7 +353,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     }
 
     public String getData() {
-      return this.data;
+      return data;
     }
 
     public void setData(final String data) {
@@ -357,7 +363,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   public void refresh() {
     populateSettingsItems();
-    this.settingsAdapter.refresh();
+    settingsAdapter.refresh();
   }
 
   public Context getContext() {
