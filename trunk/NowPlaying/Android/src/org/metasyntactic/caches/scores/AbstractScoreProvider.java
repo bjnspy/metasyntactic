@@ -452,4 +452,9 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
   @Override protected List<File> getCacheDirectories() {
     return Collections.singletonList(this.reviewsDirectory);
   }
+
+  @Override
+  public void onLowMemory() {
+    movieMap_doNotAccessDirectly = null;
+  }
 }

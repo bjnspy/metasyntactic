@@ -31,7 +31,14 @@ import org.metasyntactic.utilities.difference.EditDistance;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -46,12 +53,21 @@ public class LargePosterCache extends AbstractCache {
 
     ThreadingUtilities.performOnBackgroundThread("Update large poster indices", new Runnable() {
       public void run() {
-        updateIndices();
+        downloadIndices();
       }
     }, null, false);
   }
 
-  @Override protected List<File> getCacheDirectories() {
+  @Override
+  public void onLowMemory() {
+    super.onLowMemory();
+    synchronized (yearToMovieMapLock) {
+      yearToMovieMap.clear();
+    }
+  }
+
+  @Override
+  protected List<File> getCacheDirectories() {
     return Collections.singletonList(NowPlayingApplication.postersLargeDirectory);
   }
 
@@ -59,15 +75,15 @@ public class LargePosterCache extends AbstractCache {
     return new File(NowPlayingApplication.postersLargeDirectory, year + ".index");
   }
 
-  private static Map<String, List<String>> ensureIndexWorker(final int year, final boolean updateIfStale) {
+  private static void downloadIndex(final int year, final boolean updateIfStale) {
     final File file = getIndexFile(year);
     if (file.exists()) {
       if (!updateIfStale) {
-        return null;
+        return;
       }
 
       if (FileUtilities.daysSinceNow(file) < 7) {
-        return null;
+        return;
       }
     }
 
@@ -75,7 +91,7 @@ public class LargePosterCache extends AbstractCache {
     final String result = NetworkUtilities.downloadString(address, false);
 
     if (StringUtilities.isNullOrEmpty(result)) {
-      return null;
+      return;
     }
 
     final Map<String, List<String>> index = new HashMap<String, List<String>>();
@@ -95,21 +111,6 @@ public class LargePosterCache extends AbstractCache {
     if (!index.isEmpty()) {
       FileUtilities.writeStringToListOfStrings(index, file);
     }
-
-    return index;
-  }
-
-  private void ensureIndex(final int year, final boolean updateIfStale) {
-    Map<String, List<String>> index = ensureIndexWorker(year, updateIfStale);
-    if (index == null) {
-      index = FileUtilities.readStringToListOfStrings(getIndexFile(year));
-    }
-
-    if (!isEmpty(index)) {
-      synchronized (this.yearToMovieMapLock) {
-        this.yearToMovieMap.put(year, index);
-      }
-    }
   }
 
   private static int getYearForDate(final Date date) {
@@ -122,21 +123,34 @@ public class LargePosterCache extends AbstractCache {
     return getYearForDate(new Date());
   }
 
-  private void updateIndices() {
+  private void downloadIndices() {
     final int currentYear = getCurrentYear();
     for (int year = currentYear + 1; year >= START_YEAR; year--) {
       if (this.shutdown) {
         return;
       }
-      ensureIndex(year, year >= currentYear - 1 || year <= currentYear + 1);
+      downloadIndex(year, year >= currentYear - 1 || year <= currentYear + 1);
     }
   }
 
-  private List<String> getPosterNames(final Movie movie, final int year) {
-    final Map<String, List<String>> index;
-    synchronized (this.yearToMovieMapLock) {
-      index = this.yearToMovieMap.get(year);
+  private Map<String, List<String>> getIndex(final int year) {
+    Map<String, List<String>> index;
+    synchronized (yearToMovieMapLock) {
+      index = yearToMovieMap.get(year);
+
+      if (index == null) {
+        index = FileUtilities.readStringToListOfStrings(getIndexFile(year));
+      }
+
+      if (!isEmpty(index)) {
+        this.yearToMovieMap.put(year, index);
+      }
     }
+    return index;
+  }
+
+  private List<String> getPosterNames(final Movie movie, final int year) {
+    final Map<String, List<String>> index = getIndex(year);
 
     if (index != null) {
       final List<String> result = index.get(movie.getCanonicalTitle());
@@ -174,17 +188,12 @@ public class LargePosterCache extends AbstractCache {
       final int releaseYear = getYearForDate(date);
 
       List<String> result;
-      if (size(result = getPosterUrls(movie, releaseYear)) > 0 || size(result = getPosterUrls(movie, releaseYear - 1)) > 0
-          || size(result = getPosterUrls(movie, releaseYear - 2)) > 0 || size(result = getPosterUrls(movie, releaseYear + 1)) > 0
-          || size(result = getPosterUrls(movie, releaseYear + 2)) > 0) {
+      if (size(result = getPosterUrls(movie, releaseYear)) > 0 ||
+        size(result = getPosterUrls(movie, releaseYear - 1)) > 0 ||
+        size(result = getPosterUrls(movie, releaseYear - 2)) > 0 ||
+        size(result = getPosterUrls(movie, releaseYear + 1)) > 0 ||
+        size(result = getPosterUrls(movie, releaseYear + 2)) > 0) {
         return result;
-      }
-    } else {
-      for (int year = getCurrentYear() + 1; year >= START_YEAR; year--) {
-        final List<String> result = getPosterUrls(movie, year);
-        if (size(result) > 0) {
-          return result;
-        }
       }
     }
 

@@ -96,6 +96,16 @@ public class NowPlayingModel {
     // update();
   }
 
+  public void onLowMemory() {
+    this.dataProvider.onLowMemory();
+    this.largePosterCache.onLowMemory();
+    this.upcomingCache.onLowMemory();
+    this.trailerCache.onLowMemory();
+    this.posterCache.onLowMemory();
+    this.scoreCache.onLowMemory();
+    this.imdbCache.onLowMemory();
+  }
+
   public void shutdown() {
     this.dataProvider.shutdown();
     this.largePosterCache.shutdown();

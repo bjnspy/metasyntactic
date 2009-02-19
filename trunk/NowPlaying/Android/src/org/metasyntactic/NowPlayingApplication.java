@@ -103,6 +103,12 @@ public class NowPlayingApplication extends Application {
     this.registerReceiver(this.ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
   }
 
+
+  @Override public void onLowMemory() {
+    super.onLowMemory();
+    NowPlayingControllerWrapper.onLowMemory();
+  }
+
   public static void initialize() {
   }
 

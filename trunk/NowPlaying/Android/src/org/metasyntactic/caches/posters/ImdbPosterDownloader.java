@@ -46,4 +46,8 @@ public class ImdbPosterDownloader {
     final Element tryntElement = NetworkUtilities.downloadXml(address, false);
     return text(element(element(tryntElement, "movie-imdb"), "picture-url"));
   }
+
+
+  public static void onLowMemory() {
+  }
 }

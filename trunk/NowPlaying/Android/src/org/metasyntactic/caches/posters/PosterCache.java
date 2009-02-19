@@ -139,4 +139,12 @@ public class PosterCache extends AbstractCache {
 
     this.prioritizedMovies.add(movie);
   }
+
+  @Override
+  public void onLowMemory() {
+    super.onLowMemory();
+    ApplePosterDownloader.onLowMemory();
+    FandangoPosterDownloader.onLowMemory();
+    ImdbPosterDownloader.onLowMemory();
+  }
 }

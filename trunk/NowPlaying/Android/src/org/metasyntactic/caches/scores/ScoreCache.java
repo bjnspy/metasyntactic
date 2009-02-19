@@ -39,10 +39,11 @@ public class ScoreCache extends AbstractCache {
   }
 
   private ScoreProvider[] getProviders() {
-    return new ScoreProvider[] { this.rottenTomatoesScoreProvider, this.metacriticScoreProvider, this.googleScoreProvider, this.noneScoreProvider };
+    return new ScoreProvider[]{this.rottenTomatoesScoreProvider, this.metacriticScoreProvider, this.googleScoreProvider, this.noneScoreProvider};
   }
 
-  @Override public void shutdown() {
+  @Override
+  public void shutdown() {
     super.shutdown();
     for (final ScoreProvider provider : getProviders()) {
       provider.shutdown();
@@ -110,19 +111,30 @@ public class ScoreCache extends AbstractCache {
   }
 
   public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
-    for (final ScoreProvider provider : getProviders()) {
-      provider.prioritizeMovie(movies, movie);
+    ScoreProvider provider = getScoreProvider(this.model.getScoreType());
+    if (provider == this.rottenTomatoesScoreProvider) {
+      provider = this.metacriticScoreProvider;
     }
+    provider.prioritizeMovie(movies, movie);
   }
 
-  @Override public void clearStaleData() {
+  @Override
+  public void clearStaleData() {
     super.clearStaleData();
     for (final ScoreProvider provider : getProviders()) {
       provider.clearStaleData();
     }
   }
 
-  @Override protected List<File> getCacheDirectories() {
+  @Override
+  protected List<File> getCacheDirectories() {
     return Collections.emptyList();
+  }
+
+  @Override
+  public void onLowMemory() {
+    for (ScoreProvider provider : getProviders()) {
+      provider.onLowMemory();
+    }
   }
 }
