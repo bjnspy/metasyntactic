@@ -434,7 +434,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         holder.poster.setImageBitmap(bitmap);
       }
       convertView
-          .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
+      .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       return convertView;
     }
 
@@ -514,7 +514,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(
         R.drawable.ic_menu_allfriends);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
-        .setIcon(R.drawable.upcoming);
+    .setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
         android.R.drawable.ic_menu_send);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
@@ -528,8 +528,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(
           NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
-          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
-          .setNegativeButton(android.R.string.cancel);
+              R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
+              .setNegativeButton(android.R.string.cancel);
       builder.setTitle(R.string.sort_movies);
       builder.show();
       return true;
@@ -555,7 +555,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
     if (item.getItemId() == MovieViewUtilities.MENU_SEND_FEEDBACK) {
       final Resources res = getResources();
-      final String address = "cyrus.najmabadi@gmail.com";
+      final String address = "cyrus.najmabadi@gmail.com, mjoshi@google.com";
       final Intent localIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + address));
       localIntent.putExtra("subject", res.getString(R.string.feedback));
       final String body = getUserSettings();
@@ -611,7 +611,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         }
         if (reference == null || bitmap == null) {
           final File file = NowPlayingControllerWrapper
-              .getPosterFile_safeToCallFromBackground(movie);
+          .getPosterFile_safeToCallFromBackground(movie);
           if (file != null) {
             final byte[] bytes = FileUtilities.readBytes(file);
             if (bytes != null && bytes.length > 0) {
