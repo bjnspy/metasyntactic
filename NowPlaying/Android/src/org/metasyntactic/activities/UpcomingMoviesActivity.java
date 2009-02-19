@@ -116,14 +116,19 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.i(getClass().getSimpleName(), "onCreate");
-    NowPlayingControllerWrapper.addActivity(this);
-
+    
     // check for sdcard mounted properly
     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
       // Request the progress bar to be shown in the title
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
       NowPlayingControllerWrapper.addActivity(this);
+      getUserLocation();
       refresh();
+      if (movies != null && !movies.isEmpty()) {
+        setup();
+        this.isGridSetup = true;
+      }
+      
     } else {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
         public void onClick(final DialogInterface dialog, final int whichButton) {
@@ -142,14 +147,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
     if (this.isGridSetup) {
       this.grid.setVisibility(View.VISIBLE);
+      this.postersAdapter.refreshMovies();
     }
-    getUserLocation();
-    if (this.movies != null && !this.movies.isEmpty()) {
-      setup();
-      this.isGridSetup = true;
-    }
-    getSearchResuts();
-    refresh();
   }
 
   @Override protected void onPause() {
@@ -186,9 +185,9 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     this.search = intent.getStringExtra("movie");
     if (this.search != null) {
       this.bottomBar.setVisibility(View.VISIBLE);
-    } else {
-      this.bottomBar.setVisibility(View.GONE);
     }
+    getSearchResults();
+    refresh();
   }
 
   private void getUserLocation() {
@@ -200,7 +199,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void getSearchResuts() {
+  private void getSearchResults() {
     if (this.search != null) {
       final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
       if (matchingMovies.isEmpty()) {
