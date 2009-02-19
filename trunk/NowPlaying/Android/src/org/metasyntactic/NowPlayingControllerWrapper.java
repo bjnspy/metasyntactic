@@ -46,11 +46,23 @@ public class NowPlayingControllerWrapper {
   private static NowPlayingController instance;
   private static LocationTracker locationTracker;
 
+  private static boolean isUpdatingDataProvider;
+
   static {
     NowPlayingApplication.initialize();
   }
 
   private NowPlayingControllerWrapper() {
+  }
+
+  public static boolean isUpdatingDataProvider() {
+    checkThread();
+    return isUpdatingDataProvider;
+  }
+
+  public static void setUpdatingDataProvider(final boolean isUpdatingDataProvider) {
+    checkThread();
+    NowPlayingControllerWrapper.isUpdatingDataProvider = isUpdatingDataProvider;
   }
 
   public static void onRetainNonConfigurationInstance(final Activity activity, final Object result) {

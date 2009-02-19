@@ -13,31 +13,53 @@
 //limitations under the License.
 package org.metasyntactic.providers;
 
-import android.content.Context;
-import android.content.Intent;
-import com.google.protobuf.InvalidProtocolBufferException;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+
 import org.apache.commons.collections.map.MultiValueMap;
-import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
-import org.metasyntactic.data.*;
+import org.metasyntactic.data.FavoriteTheater;
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
 import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.time.Hours;
-import static org.metasyntactic.utilities.CollectionUtilities.isEmpty;
-import org.metasyntactic.utilities.*;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.ExceptionUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
 
-import java.io.File;
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import android.content.Context;
+import android.content.Intent;
+
+import com.google.protobuf.InvalidProtocolBufferException;
 
 public class DataProvider {
   private final Object lock = new Object();
@@ -50,7 +72,7 @@ public class DataProvider {
 
   public DataProvider(final NowPlayingModel model) {
     this.model = model;
-    this.performances = new HashMap<String, Map<String, List<Performance>>>();
+    performances = new HashMap<String, Map<String, List<Performance>>>();
   }
 
   public void onLowMemory() {
@@ -68,7 +90,8 @@ public class DataProvider {
         updateBackgroundEntryPoint(localMovies, localTheaters);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Provider", runnable, this.lock, true/* visible */);
+    NowPlayingControllerWrapper.setUpdatingDataProvider(true);
+    ThreadingUtilities.performOnBackgroundThread("Update Provider", runnable, lock, true/* visible */);
   }
 
   private static boolean isUpToDate() {
@@ -92,11 +115,12 @@ public class DataProvider {
     updateBackgroundEntryPointWorker(currentMovies, currentTheaters);
     ThreadingUtilities.performOnMainThread(new Runnable() {
       public void run() {
+        NowPlayingControllerWrapper.setUpdatingDataProvider(false);
         final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
         if (context != null) {
           context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
         }
-        DataProvider.this.model.updateSecondaryCaches();
+        model.updateSecondaryCaches();
       }
     });
   }
@@ -118,7 +142,7 @@ public class DataProvider {
     if (isUpToDate()) {
       return;
     }
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
 
@@ -126,7 +150,7 @@ public class DataProvider {
     // Debug.startMethodTracing("downloadUserLocation", 50000000);
     long start = System.currentTimeMillis();
     broadcastUpdate(R.string.finding_location);
-    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(model.getUserAddress());
     LogUtilities.logTime(DataProvider.class, "Get User Location", start);
     // Debug.stopMethodTracing();
     // LogUtilities.i("DEBUG", "Stopped downloadUserLocation trace");
@@ -136,7 +160,7 @@ public class DataProvider {
       return;
     }
     start = System.currentTimeMillis();
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
     final LookupResult result = lookupLocation(location, null);
@@ -145,7 +169,7 @@ public class DataProvider {
       return;
     }
     start = System.currentTimeMillis();
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
     addMissingData(result, location, currentMovies, currentTheaters);
@@ -153,7 +177,7 @@ public class DataProvider {
 
     start = System.currentTimeMillis();
     broadcastUpdate(R.string.finding_favorites);
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
     lookupMissingFavorites(result);
@@ -264,10 +288,10 @@ public class DataProvider {
   }
 
   private void reportResultOnMainThread(final LookupResult result) {
-    this.movies = result.movies;
-    this.theaters = result.theaters;
-    this.synchronizationData = result.synchronizationData;
-    this.performances = result.performances;
+    movies = result.movies;
+    theaters = result.theaters;
+    synchronizationData = result.synchronizationData;
+    performances = result.performances;
     NowPlayingApplication.refresh(true);
   }
 
@@ -276,7 +300,7 @@ public class DataProvider {
       return null;
     }
     final String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
-    int days = Days.daysBetween(DateUtilities.getToday(), this.model.getSearchDate());
+    int days = Days.daysBetween(DateUtilities.getToday(), model.getSearchDate());
     days = min(max(days, 0), 7);
     final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&postalcode="
     + location.getPostalCode() + "&language=" + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude="
@@ -323,7 +347,7 @@ public class DataProvider {
       Date releaseDate = null;
       if (releaseDateString != null && releaseDateString.length() == 10) {
         try {
-          releaseDate = this.formatter.parse(releaseDateString);
+          releaseDate = formatter.parse(releaseDateString);
         } catch (final ParseException e) {
           throw new RuntimeException(e);
         }
@@ -489,10 +513,10 @@ public class DataProvider {
   }
 
   public List<Movie> getMovies() {
-    if (this.movies == null) {
-      this.movies = loadMovies();
+    if (movies == null) {
+      movies = loadMovies();
     }
-    return this.movies;
+    return movies;
   }
 
   private static Map<String, Date> loadSynchronizationData() {
@@ -504,10 +528,10 @@ public class DataProvider {
   }
 
   private Map<String, Date> getSynchronizationData() {
-    if (this.synchronizationData == null) {
-      this.synchronizationData = loadSynchronizationData();
+    if (synchronizationData == null) {
+      synchronizationData = loadSynchronizationData();
     }
-    return this.synchronizationData;
+    return synchronizationData;
   }
 
   private static File getPerformancesFile(final File parentFolder, final String theaterName) {
@@ -547,10 +571,10 @@ public class DataProvider {
   }
 
   private Map<String, List<Performance>> lookupTheaterPerformances(final Theater theater) {
-    Map<String, List<Performance>> theaterPerformances = this.performances.get(theater.getName());
+    Map<String, List<Performance>> theaterPerformances = performances.get(theater.getName());
     if (theaterPerformances == null) {
       theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader, getPerformancesFile(theater.getName()));
-      this.performances.put(theater.getName(), theaterPerformances);
+      performances.put(theater.getName(), theaterPerformances);
     }
     return theaterPerformances;
   }
@@ -575,10 +599,10 @@ public class DataProvider {
   }
 
   public List<Theater> getTheaters() {
-    if (this.theaters == null) {
-      this.theaters = loadTheaters();
+    if (theaters == null) {
+      theaters = loadTheaters();
     }
-    return this.theaters;
+    return theaters;
   }
 
   public Date synchronizationDateForTheater(final String theaterName) {
@@ -586,7 +610,7 @@ public class DataProvider {
   }
 
   public void shutdown() {
-    this.shutdown = true;
+    shutdown = true;
   }
 
   public static void markOutOfDate() {
