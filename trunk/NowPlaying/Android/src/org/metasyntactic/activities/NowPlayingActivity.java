@@ -1,5 +1,6 @@
 package org.metasyntactic.activities;
 
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -14,24 +15,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+
 import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
@@ -39,14 +41,13 @@ import org.metasyntactic.UserTask;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.CustomGridView;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
-import org.metasyntactic.utilities.LogUtilities;
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -93,6 +94,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
+      
       if (isEmpty(movies)) {
         new AlertDialog.Builder(NowPlayingActivity.this).setMessage(R.string.no_information)
             .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -139,6 +141,14 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       if (isGridSetup) {
         grid.setVisibility(View.VISIBLE);
         postersAdapter.refreshMovies();
+      }
+      if (isEmpty(movies) && !NowPlayingControllerWrapper.isUpdatingDataProvider()) {
+        new AlertDialog.Builder(NowPlayingActivity.this).setMessage(R.string.no_information)
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+              public void onClick(final DialogInterface dialog, final int whichButton) {
+                NowPlayingActivity.this.finish();
+              }
+            }).show();
       }
     }
   }
@@ -190,10 +200,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
    */
   public void refresh() {
     if (search == null) {
-    }
-    if (search == null) {
       movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getMovies());
-    }
+    }    
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());

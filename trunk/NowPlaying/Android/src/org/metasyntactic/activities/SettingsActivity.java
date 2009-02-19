@@ -1,5 +1,6 @@
 package org.metasyntactic.activities;
 
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.text.DateFormat;
@@ -17,15 +18,18 @@ import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +71,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
     }
   };
-
+ 
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
