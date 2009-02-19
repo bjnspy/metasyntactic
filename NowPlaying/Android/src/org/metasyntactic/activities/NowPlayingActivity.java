@@ -518,7 +518,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
         android.R.drawable.ic_menu_send);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class))
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu","yes"))
         .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }

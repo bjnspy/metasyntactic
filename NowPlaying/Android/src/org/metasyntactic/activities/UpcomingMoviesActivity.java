@@ -421,7 +421,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(android.R.drawable.ic_menu_search);
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class)).setAlphabeticShortcut('s');
+        new Intent(this, SettingsActivity.class).putExtra("from_menu","yes")).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
