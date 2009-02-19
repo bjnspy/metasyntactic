@@ -5,8 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -29,7 +27,6 @@ import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.views.FastScrollView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -53,7 +50,6 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   private String[] distance;
   private String[] alphabet;
   private Location userLocation;
-  private Address userAddress;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
       refresh();
@@ -67,14 +63,14 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   };
   private final Comparator<Theater> DISTANCE_ORDER = new Comparator<Theater>() {
     public int compare(final Theater m1, final Theater m2) {
-      final Double dist_m1 = AllTheatersActivity.this.userLocation.distanceTo(m1.getLocation());
-      final Double dist_m2 = AllTheatersActivity.this.userLocation.distanceTo(m2.getLocation());
+      final Double dist_m1 = userLocation.distanceTo(m1.getLocation());
+      final Double dist_m2 = userLocation.distanceTo(m2.getLocation());
       return dist_m1.compareTo(dist_m2);
     }
   };
   // The order of items in this array should match the
   // entries_theater_sort_preference array in res/values/arrays.xml
-  @SuppressWarnings("unchecked") private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(this.TITLE_ORDER, this.DISTANCE_ORDER);
+  @SuppressWarnings("unchecked") private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(TITLE_ORDER, DISTANCE_ORDER);
 
   @Override protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -93,14 +89,14 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override protected void onPause() {
     Log.i(getClass().getSimpleName(), "onPause");
-    unregisterReceiver(this.broadcastReceiver);
+    unregisterReceiver(broadcastReceiver);
     super.onPause();
   }
 
   @Override protected void onResume() {
     super.onResume();
     Log.i(getClass().getSimpleName(), "onResume");
-    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
 
   @Override public Object onRetainNonConfigurationInstance() {
@@ -111,78 +107,72 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   }
 
   private void setupView() {
-    this.theaters = new ArrayList<Theater>(NowPlayingControllerWrapper.getTheaters());
+    theaters = new ArrayList<Theater>(NowPlayingControllerWrapper.getTheaters());
     setContentView(R.layout.theaterlist);
     final ListView list = getListView();
-    final String userPostalCode = NowPlayingControllerWrapper.getUserLocation();
-    try {
-      this.userAddress = new Geocoder(this).getFromLocationName(userPostalCode, 1).get(0);
-    } catch (final IOException e) {
-      throw new RuntimeException(e);
-    }
-    this.userLocation = new Location(this.userAddress.getLatitude(), this.userAddress.getLongitude(), null, null, null, null, null);
-    Collections.sort(this.theaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
+    userLocation = NowPlayingControllerWrapper.getLocationForAddress(NowPlayingControllerWrapper.getUserLocation());
+    Collections.sort(theaters, THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     populateAlphaTheaterSectionsAndPositions();
     populateDistanceTheaterSectionsAndPositions();
     // Set up Movies adapter
-    this.adapter = new TheatersAdapter();
-    list.setAdapter(this.adapter);
+    adapter = new TheatersAdapter();
+    list.setAdapter(adapter);
   }
 
   private void populateAlphaTheaterSectionsAndPositions() {
     int i = 0;
     String prevLetter = null;
-    final List<String> alphabets = Arrays.asList(this.alphabet);
-    for (final Theater theater : this.theaters) {
+    final List<String> alphabets = Arrays.asList(alphabet);
+    for (final Theater theater : theaters) {
       final String firstLetter = theater.getName().substring(0, 1);
-      this.alphaTheaterSectionsMap.put(i, alphabets.indexOf(firstLetter));
+      alphaTheaterSectionsMap.put(i, alphabets.indexOf(firstLetter));
       if (prevLetter == null || !firstLetter.equals(prevLetter)) {
-        this.alphaTheaterPositionsMap.put(alphabets.indexOf(firstLetter), i);
+        alphaTheaterPositionsMap.put(alphabets.indexOf(firstLetter), i);
       }
       prevLetter = firstLetter;
       i++;
     }
     for (i = 0; i < alphabets.size(); i++) {
-      if (this.alphaTheaterPositionsMap.get(i) == null) {
+      if (alphaTheaterPositionsMap.get(i) == null) {
         if (i == 0) {
-          this.alphaTheaterPositionsMap.put(i, 0);
+          alphaTheaterPositionsMap.put(i, 0);
         } else {
-          this.alphaTheaterPositionsMap.put(i, this.alphaTheaterPositionsMap.get(i - 1));
+          alphaTheaterPositionsMap.put(i, alphaTheaterPositionsMap.get(i - 1));
         }
       }
     }
   }
 
   private void getDistances() {
-    this.distance = new String[6];
-    this.distance[0] = getResources().getString(R.string.less_than_number_string_away, 2, getResources().getString(R.string.miles));
-    this.distance[1] = getResources().getString(R.string.less_than_number_string_away, 5, getResources().getString(R.string.miles));
-    this.distance[2] = getResources().getString(R.string.less_than_number_string_away, 10, getResources().getString(R.string.miles));
-    this.distance[3] = getResources().getString(R.string.less_than_number_string_away, 25, getResources().getString(R.string.miles));
-    this.distance[4] = getResources().getString(R.string.less_than_number_string_away, 50, getResources().getString(R.string.miles));
-    this.distance[5] = getResources().getString(R.string.less_than_number_string_away, 100, "miles");
+    distance = new String[6];
+    distance[0] = getResources().getString(R.string.less_than_number_string_away, 2, getResources().getString(R.string.miles));
+    distance[1] = getResources().getString(R.string.less_than_number_string_away, 5, getResources().getString(R.string.miles));
+    distance[2] = getResources().getString(R.string.less_than_number_string_away, 10, getResources().getString(R.string.miles));
+    distance[3] = getResources().getString(R.string.less_than_number_string_away, 25, getResources().getString(R.string.miles));
+    distance[4] = getResources().getString(R.string.less_than_number_string_away, 50, getResources().getString(R.string.miles));
+    distance[5] = getResources().getString(R.string.less_than_number_string_away, 100, "miles");
   }
 
   private void populateDistanceTheaterSectionsAndPositions() {
     int i = 0;
     int prevLevel = 0;
-    final List<String> distances = Arrays.asList(this.distance);
-    for (final Theater theater : this.theaters) {
-      final double distance = this.userLocation.distanceTo(theater.getLocation());
+    final List<String> distances = Arrays.asList(distance);
+    for (final Theater theater : theaters) {
+      final double distance = userLocation.distanceTo(theater.getLocation());
       final int distanceLevel = MovieViewUtilities.getDistanceLevel(distance);
-      this.distanceTheaterSectionsMap.put(i, distanceLevel);
+      distanceTheaterSectionsMap.put(i, distanceLevel);
       if (prevLevel == 0 || distanceLevel != prevLevel) {
-        this.distanceTheaterPositionsMap.put(distanceLevel, i);
+        distanceTheaterPositionsMap.put(distanceLevel, i);
       }
       prevLevel = distanceLevel;
       i++;
     }
     for (i = 0; i < distances.size(); i++) {
-      if (this.distanceTheaterPositionsMap.get(i) == null) {
+      if (distanceTheaterPositionsMap.get(i) == null) {
         if (i == 0) {
-          this.distanceTheaterPositionsMap.put(i, 0);
+          distanceTheaterPositionsMap.put(i, 0);
         } else {
-          this.distanceTheaterPositionsMap.put(i, this.distanceTheaterPositionsMap.get(i - 1));
+          distanceTheaterPositionsMap.put(i, distanceTheaterPositionsMap.get(i - 1));
         }
       }
     }
@@ -215,9 +205,9 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   private void getAlphabet(final Context context) {
     final String alphabetString = context.getResources().getString(R.string.alphabet);
-    this.alphabet = new String[alphabetString.length()];
-    for (int i = 0; i < this.alphabet.length; i++) {
-      this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
+    alphabet = new String[alphabetString.length()];
+    for (int i = 0; i < alphabet.length; i++) {
+      alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
 
@@ -226,7 +216,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
     private TheatersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(AllTheatersActivity.this);
+      inflater = LayoutInflater.from(AllTheatersActivity.this);
     }
 
     public Object getItem(final int i) {
@@ -234,21 +224,21 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
-      convertView = this.inflater.inflate(R.layout.theaterview, null);
+      convertView = inflater.inflate(R.layout.theaterview, null);
       // Creates a MovieViewHolder and store references to the
       // children
       // views we want to bind data to.
       final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.address), (TextView) convertView
           .findViewById(R.id.title));
       // Bind the data efficiently with the holder.
-      final Theater theater = AllTheatersActivity.this.theaters.get(position);
+      final Theater theater = theaters.get(position);
       holder.title.setText(theater.getName());
       holder.address.setText(theater.getAddress() + ", " + theater.getLocation().getCity());
       return convertView;
     }
 
     public int getCount() {
-      return AllTheatersActivity.this.theaters.size();
+      return theaters.size();
     }
 
     private class MovieViewHolder {
@@ -262,7 +252,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
 
     public void refreshTheaters(final List<Theater> new_theaters) {
-      AllTheatersActivity.this.theaters = new_theaters;
+      theaters = new_theaters;
       notifyDataSetChanged();
     }
 
@@ -273,37 +263,37 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     public int getPositionForSection(final int section) {
       Integer position = null;
       if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 0) {
-        position = AllTheatersActivity.this.alphaTheaterPositionsMap.get(section);
+        position = alphaTheaterPositionsMap.get(section);
       }
       if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 1) {
-        position = AllTheatersActivity.this.distanceTheaterPositionsMap.get(section);
+        position = distanceTheaterPositionsMap.get(section);
       }
       if (position != null) {
-        AllTheatersActivity.this.lastPosition = position;
+        lastPosition = position;
       }
-      return AllTheatersActivity.this.lastPosition;
+      return lastPosition;
     }
 
     public int getSectionForPosition(final int position) {
       Integer section = null;
       if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 0) {
-        section = AllTheatersActivity.this.alphaTheaterSectionsMap.get(position);
+        section = alphaTheaterSectionsMap.get(position);
       }
       if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 1) {
-        section = AllTheatersActivity.this.distanceTheaterSectionsMap.get(position);
+        section = distanceTheaterSectionsMap.get(position);
       }
       if (section != null) {
-        AllTheatersActivity.this.lastSection = section;
+        lastSection = section;
       }
-      return AllTheatersActivity.this.lastSection;
+      return lastSection;
     }
 
     public Object[] getSections() {
       if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 0) {
-        return AllTheatersActivity.this.alphabet;
+        return alphabet;
       }
       if (NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex() == 1) {
-        return AllTheatersActivity.this.distance;
+        return distance;
       }
       return null;
     }
@@ -324,15 +314,15 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       return;
     }
     final List<Theater> localTheaters = NowPlayingControllerWrapper.getTheaters();
-    Collections.sort(localTheaters, this.THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
+    Collections.sort(localTheaters, THEATER_ORDER.get(NowPlayingControllerWrapper.getAllTheatersSelectedSortIndex()));
     populateAlphaTheaterSectionsAndPositions();
     populateDistanceTheaterSectionsAndPositions();
     FastScrollView.getSections();
-    this.adapter.refreshTheaters(localTheaters);
+    adapter.refreshTheaters(localTheaters);
   }
 
   @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
-    final Theater theater = this.theaters.get(position);
+    final Theater theater = theaters.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, TheaterDetailsActivity.class);
     intent.putExtra("theater", (Parcelable) theater);
