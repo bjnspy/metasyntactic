@@ -589,8 +589,6 @@ public final class R {
         /** Open and Authorize
          */
         public static final int open_and_authorize=0x7f07009f;
-        /**  <string name="showtimes_at">Showtimes at</string>  
-         */
         public static final int order_tickets=0x7f07000c;
         /** Order tickets for %@
          */
