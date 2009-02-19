@@ -45,6 +45,8 @@ import org.metasyntactic.views.CustomGridView;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
+import org.metasyntactic.utilities.LogUtilities;
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -55,8 +57,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.metasyntactic.utilities.LogUtilities;
-import static org.apache.commons.collections.CollectionUtils.isEmpty;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private CustomGridView grid;
@@ -93,7 +93,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      if (!isEmpty(movies)) {
+      if (isEmpty(movies)) {
         new AlertDialog.Builder(NowPlayingActivity.this).setMessage(R.string.no_information)
             .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
               public void onClick(final DialogInterface dialog, final int whichButton) {
