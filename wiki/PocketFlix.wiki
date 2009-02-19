@@ -1,10 +1,10 @@
-==Put the power of Netflix at your fingertips! Download !PocketFlix today from the [http://click.linksynergy.com/fs-bin/stat?id=eOCwggduPKg&offerid=146261&type=3&subid=0&tmpid=1826&RD_PARM1=http%253A%252F%252Fitunes.apple.com%252FWebObjects%252FMZStore.woa%252Fwa%252FviewSoftware%253Fid%253D301386724%2526mt%253D8%2526partnerId%253D30 iPhone App Store].==
+==Put the power of Netflix at your fingertips! Download !PocketFlicks today from the [http://click.linksynergy.com/fs-bin/stat?id=eOCwggduPKg&offerid=146261&type=3&subid=0&tmpid=1826&RD_PARM1=http%253A%252F%252Fitunes.apple.com%252FWebObjects%252FMZStore.woa%252Fwa%252FviewSoftware%253Fid%253D301386724%2526mt%253D8%2526partnerId%253D30 iPhone App Store].==
 
 
-===With iPhone and !PocketFlix you can find movies and manage your Netflix information, all while on the go.  Heard about a great movie from a friend of yours?  Whip out !PocketFlix and add it to your Netflix queue with just a few clicks.  You'll never forget about a movie you want to watch now!===
+===With iPhone and !PocketFlicks you can find movies and manage your Netflix information, all while on the go.  Heard about a great movie from a friend of yours?  Whip out !PocketFlicks and add it to your Netflix queue with just a few clicks.  You'll never forget about a movie you want to watch now!===
 
 
-===With !PocketFlix you can:===
+===With !PocketFlicks you can:===
 
  * Search for movies and add them to your DVD or Instant queue. 
  * View and update your Netflix DVD and Instant queue.
@@ -12,14 +12,15 @@
  * Add or update your ratings.
  * See the most popular movies in Netflix from any genre.
  * See gorgeous high resolution posters for many movies.
- * Visit related movie sites like Wikipedia and IMDb without even leaving !PocketFlix.
+ * Visit related movie sites like Wikipedia and IMDb without even leaving !PocketFlicks.
  * Purchase DVDs directly from Amazon.com
 
 Note: 
-  # A Wi-fi connection is highly recommended the first time you use !PocketFlix.
-  # you cannot watch Netflix's 'Instant Watch' movies from your iPhone.  Of course, you can add them to your 'Instant Queue' to watch from a supported device.
+  # A Wi-fi connection is highly recommended the first time you use !PocketFlicks.
+  # You cannot watch Netflix's 'Instant Watch' movies from your iPhone.  Of course, you can add them to your 'Instant Queue' to watch from a supported device.
+  # A Netflix account is required to use !PocketFlicks
 
-[http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image0.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image0-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image1.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image1-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image3.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image3-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image4.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image4-Small.png]
-[http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlix/Resources/en/Image2-Small.png] 
+[http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image0.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image0-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image1.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image1-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image3.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image3-Small.png] [http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image4.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image4-Small.png]
+[http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image2.png http://metasyntactic.googlecode.com/svn/trunk/PocketFlicks/Resources/en/Image2-Small.png] 
 
 For help/suggestions email me: [mailto:cyrusn@stwing.upenn.edu cyrusn@stwing.upenn.edu]
