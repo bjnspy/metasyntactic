@@ -1,6 +1,32 @@
 package org.metasyntactic.activities;
 
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
+
+import java.io.File;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.UserTask;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.FastScrollGridView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+import org.metasyntactic.views.Rotate3dAnimation;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -15,7 +41,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,31 +58,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-
-import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.UserTask;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.FastScrollGridView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-import org.metasyntactic.views.Rotate3dAnimation;
-
-import java.io.File;
-import java.lang.ref.SoftReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class NowPlayingActivity extends Activity implements INowPlaying {
   private CustomGridView grid;
@@ -85,26 +85,19 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       refresh();
     }
   };
-  private final BroadcastReceiver progressbroadcastReceiver = new BroadcastReceiver() {
+  private final BroadcastReceiver progressBroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
       progressUpdate.setText(intent.getStringExtra("message"));
     }
   };
-  private final BroadcastReceiver databroadcastReceiver = new BroadcastReceiver() {
+  private final BroadcastReceiver dataBroadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-      
       if (isEmpty(movies)) {
-        new AlertDialog.Builder(NowPlayingActivity.this).setMessage(R.string.no_information)
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-              public void onClick(final DialogInterface dialog, final int whichButton) {
-                NowPlayingActivity.this.finish();
-              }
-            }).show();
-      }
-      if (!isGridSetup) {
-        setup();
+        showNoInformationFoundDialog();
+      } else {
+        setupMovieGrid();
       }
     }
   };
@@ -123,32 +116,47 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   };
 
+
+  private void showNoInformationFoundDialog() {
+    new AlertDialog.Builder(NowPlayingActivity.this).setMessage(R.string.no_information)
+    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+      public void onClick(final DialogInterface dialog, final int whichButton) {
+        NowPlayingActivity.this.finish();
+      }
+    }).show();
+  }
+
   @Override
   protected void onResume() {
     super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
     if (FileUtilities.isSDCardAccessible()) {
-      registerReceiver(broadcastReceiver, new IntentFilter(
-          NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-      registerReceiver(databroadcastReceiver, new IntentFilter(
-          NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
-      registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(
-          NowPlayingApplication.SCROLLING_INTENT));
-      registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(
-          NowPlayingApplication.NOT_SCROLLING_INTENT));
-      registerReceiver(progressbroadcastReceiver, new IntentFilter(
-          NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
+      registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+      registerReceiver(dataBroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOADED));
+      registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
+      registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
+      registerReceiver(progressBroadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_LOCAL_DATA_DOWNLOAD_PROGRESS));
       if (isGridSetup) {
         grid.setVisibility(View.VISIBLE);
         postersAdapter.refreshMovies();
-      }
-      if (isEmpty(movies) && !NowPlayingControllerWrapper.isUpdatingDataProvider()) {
-        new AlertDialog.Builder(NowPlayingActivity.this).setMessage(R.string.no_information)
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-              public void onClick(final DialogInterface dialog, final int whichButton) {
-                NowPlayingActivity.this.finish();
-              }
-            }).show();
+      } else {
+        // we're currently in 'downloading' mode.  We need to deal with a few
+        // cases.  First, we deal with the case where a user has returned to
+        // this activity, and now there are movies available.  In that case, we
+        // just display them.
+
+        if (isEmpty(movies)) {
+          // Ok.  so we have no movies.  THat means one of two things.  Either
+          // we're trying to download the movies, or we tried and failed to
+          // download them.  In the former case just wait.  We'll get a
+          // notification when they're done.  In the latter case, let the user
+          // know.
+          if (!NowPlayingControllerWrapper.isUpdatingDataProvider()) {
+            showNoInformationFoundDialog();
+          }
+        } else {
+          setupMovieGrid();
+        }
       }
     }
   }
@@ -158,9 +166,9 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     LogUtilities.i(getClass().getSimpleName(), "onPause");
     if (FileUtilities.isSDCardAccessible()) {
       unregisterReceiver(broadcastReceiver);
-      unregisterReceiver(databroadcastReceiver);
+      unregisterReceiver(dataBroadcastReceiver);
       unregisterReceiver(scrollStatebroadcastReceiver);
-      unregisterReceiver(progressbroadcastReceiver);
+      unregisterReceiver(progressBroadcastReceiver);
       if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
         mTask.cancel(true);
         mTask = null;
@@ -201,7 +209,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   public void refresh() {
     if (search == null) {
       movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getMovies());
-    }    
+    }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper
         .getAllMoviesSelectedSortIndex());
@@ -249,9 +257,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       NowPlayingControllerWrapper.addActivity(this);
       getUserLocation();
       refresh();
-      if (!isEmpty(movies)) {
-        setup();
-      }
     } else {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(
           android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -323,7 +328,10 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     }
   }
 
-  private void setup() {
+  private void setupMovieGrid() {
+    if (isGridSetup) {
+      return;
+    }
     isGridSetup = true;
     getAlphabet(this);
     getScores();
@@ -452,7 +460,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         holder.poster.setImageBitmap(bitmap);
       }
       convertView
-          .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
+      .setBackgroundDrawable(getResources().getDrawable(R.drawable.gallery_background_1));
       return convertView;
     }
 
@@ -532,13 +540,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     menu.add(0, MovieViewUtilities.MENU_THEATER, 0, R.string.theaters).setIcon(
         R.drawable.ic_menu_allfriends);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
-        .setIcon(R.drawable.upcoming);
+    .setIcon(R.drawable.upcoming);
     menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
         android.R.drawable.ic_menu_send);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"))
-        .setAlphabeticShortcut('s');
+            new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"))
+            .setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -547,8 +555,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(
           NowPlayingPreferenceDialog.PreferenceKeys.MOVIES_SORT).setEntries(
-          R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
-          .setNegativeButton(android.R.string.cancel);
+              R.array.entries_movies_sort_preference).setPositiveButton(android.R.string.ok)
+              .setNegativeButton(android.R.string.cancel);
       builder.setTitle(R.string.sort_movies);
       builder.show();
       return true;
@@ -630,7 +638,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         }
         if (reference == null || bitmap == null) {
           final File file = NowPlayingControllerWrapper
-              .getPosterFile_safeToCallFromBackground(movie);
+          .getPosterFile_safeToCallFromBackground(movie);
           if (file != null) {
             final byte[] bytes = FileUtilities.readBytes(file);
             if (bytes != null && bytes.length > 0) {

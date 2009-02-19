@@ -13,21 +13,22 @@
 // limitations under the License.
 package org.metasyntactic;
 
+import java.io.File;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.metasyntactic.activities.R;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
-import org.metasyntactic.activities.R;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-
-import java.io.File;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NowPlayingApplication extends Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
@@ -66,6 +67,7 @@ public class NowPlayingApplication extends Application {
   static {
     if (FileUtilities.isSDCardAccessible()) {
       createDirectories();
+
       final Runnable runnable = new Runnable() {
         public void run() {
           if (NowPlayingControllerWrapper.isRunning()) {
@@ -112,9 +114,9 @@ public class NowPlayingApplication extends Application {
 
   @Override public void onCreate() {
     super.onCreate();
-    this.registerReceiver(this.unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
-    this.registerReceiver(this.mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
-    this.registerReceiver(this.ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
+    this.registerReceiver(unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
+    this.registerReceiver(mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
+    this.registerReceiver(ejectReceiver, new IntentFilter(Intent.ACTION_MEDIA_EJECT));
   }
 
 
@@ -195,6 +197,10 @@ public class NowPlayingApplication extends Application {
       ThreadingUtilities.performOnMainThread(runnable);
       return;
     }
+    if (pulser == null) {
+      return;
+    }
+
     if (force) {
       pulser.forcePulse();
     } else {
