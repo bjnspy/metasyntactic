@@ -4,11 +4,11 @@
     package="org.metasyntactic.activities">
     <application
         android:icon="@drawable/launcher"
-        android:label="@string/application_name_and_version"
+        android:label="@string/application_name"
         android:theme="@android:style/Theme.Black"
         android:name="org.metasyntactic.NowPlayingApplication">
         <activity
-            android:label="@string/application_name_and_version"
+            android:label="@string/application_name"
             android:name="NowPlayingActivity"
             android:launchMode="singleTask">
             <intent-filter>
