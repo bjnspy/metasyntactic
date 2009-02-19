@@ -51,12 +51,12 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   };
   private final BroadcastReceiver updateLocationStartReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
-      SettingsActivity.this.setTitle(R.string.finding_location);
+      setTitle(R.string.finding_location);
     }
   };
   private final BroadcastReceiver updateLocationStopReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
-      SettingsActivity.this.setTitle(R.string.app_name);
+      setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
     }
   };
 

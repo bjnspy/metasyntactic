@@ -14,10 +14,16 @@
 package org.metasyntactic;
 
 import android.app.Application;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Resources;
+import org.metasyntactic.activities.R;
 import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -76,6 +82,14 @@ public class NowPlayingApplication extends Application {
 
   public NowPlayingApplication() {
 
+  }
+
+  public static String getName(final Resources resources) {
+    return resources.getString(R.string.application_name);
+  }
+
+  public static String getNameAndVersion(final Resources resources) {
+    return resources.getString(R.string.application_name_and_version);
   }
 
   private final BroadcastReceiver unmountedReceiver = new BroadcastReceiver() {
