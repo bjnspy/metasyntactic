@@ -1,6 +1,7 @@
 package org.metasyntactic.activities;
 
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -18,6 +19,7 @@ import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.UserTask;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
+import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
@@ -115,7 +117,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
     new AlertDialog.Builder(NowPlayingActivity.this).setMessage(R.string.no_information)
     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
       public void onClick(final DialogInterface dialog, final int whichButton) {
-        NowPlayingActivity.this.finish();
       }
     }).show();
   }
@@ -132,7 +133,8 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
       // download them.  In the former case just wait.  We'll get a
       // notification when they're done.  In the latter case, let the user
       // know.
-      if (!NowPlayingControllerWrapper.isUpdatingDataProvider()) {
+      if (!isNullOrEmpty(NowPlayingControllerWrapper.getUserLocation()) &&
+          NowPlayingControllerWrapper.getDataProviderState() == DataProvider.State.Finished) {
         showNoInformationFoundDialog();
       }
     } else {
