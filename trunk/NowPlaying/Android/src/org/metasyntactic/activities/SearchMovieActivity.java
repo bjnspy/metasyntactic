@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.utilities.LogUtilities;
 
 /**
  * This activity shows a text field to ask the user to enter search terms and
@@ -26,11 +27,11 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   @Override
   public void onCreate(final Bundle icicle) {
     super.onCreate(icicle);
-    Log.i(getClass().getSimpleName(), "onCreate");
+    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.search_bar);
-    this.mSearchText = (EditText) findViewById(R.id.search_src_text);
-    this.mSearchText.setOnClickListener(this);
+    mSearchText = (EditText) findViewById(R.id.search_src_text);
+    mSearchText.setOnClickListener(this);
     findViewById(R.id.search_go_btn).setOnClickListener(this);
     activityName = getIntent().getStringExtra("activity");
   }
@@ -38,25 +39,25 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   @Override
   protected void onPause() {
     super.onPause();
-    Log.i(getClass().getSimpleName(), "onPause");
+    LogUtilities.i(getClass().getSimpleName(), "onPause");
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
+    LogUtilities.i(getClass().getSimpleName(), "onResume");
   }
 
   @Override
   protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
+    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
   public Object onRetainNonConfigurationInstance() {
-    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
@@ -64,7 +65,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
 
   // View.OnClickListener
   public final void onClick(final View v) {
-    if (this.mSearchText.length() != 0) {
+    if (mSearchText.length() != 0) {
       performSearch();
     }
   }
@@ -83,7 +84,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   }
 
   private void performSearch() {
-    final String searchTerm = this.mSearchText.getText().toString();
+    final String searchTerm = mSearchText.getText().toString();
     privatePerformSearch(this, getText(R.string.search) + " : " + searchTerm, searchTerm, null);
   }
 

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +25,7 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.views.FastScrollView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
+import org.metasyntactic.utilities.LogUtilities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,7 +74,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
 
   @Override protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
+    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     getAlphabet(this);
     getDistances();
@@ -82,25 +82,25 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   }
 
   @Override protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
+    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override protected void onPause() {
-    Log.i(getClass().getSimpleName(), "onPause");
+    LogUtilities.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(broadcastReceiver);
     super.onPause();
   }
 
   @Override protected void onResume() {
     super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
+    LogUtilities.i(getClass().getSimpleName(), "onResume");
     registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
 
   @Override public Object onRetainNonConfigurationInstance() {
-    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;

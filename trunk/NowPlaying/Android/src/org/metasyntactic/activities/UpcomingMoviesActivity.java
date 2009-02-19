@@ -1,28 +1,23 @@
 package org.metasyntactic.activities;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.*;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Parcelable;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.*;
-import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.widget.*;
-import android.widget.AdapterView.OnItemClickListener;
-import org.metasyntactic.NowPlayingApplication;
+import java.io.File;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.UserTask;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.CustomGridView;
@@ -30,9 +25,36 @@ import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
 
-import java.io.File;
-import java.lang.ref.SoftReference;
-import java.util.*;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Parcelable;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private CustomGridView grid;
@@ -61,12 +83,12 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
     @Override public void onReceive(final Context context, final Intent intent) {
       if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())
-          && UpcomingMoviesActivity.this.mTask.getStatus() != UserTask.Status.RUNNING) {
-        UpcomingMoviesActivity.this.mTask = UpcomingMoviesActivity.this.new LoadPostersTask().execute(null);
+          && mTask.getStatus() != UserTask.Status.RUNNING) {
+        mTask = UpcomingMoviesActivity.this.new LoadPostersTask().execute(null);
       }
       if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction())
-          && UpcomingMoviesActivity.this.mTask.getStatus() == UserTask.Status.RUNNING) {
-        UpcomingMoviesActivity.this.mTask.cancel(true);
+          && mTask.getStatus() == UserTask.Status.RUNNING) {
+        mTask.cancel(true);
       }
     }
   };
@@ -75,29 +97,29 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
    * Updates display of the list of movies.
    */
   public void refresh() {
-    if (this.search == null) {
-      this.movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getUpcomingMovies());
+    if (search == null) {
+      movies = new ArrayList<Movie>(NowPlayingControllerWrapper.getUpcomingMovies());
     }
     // sort movies according to the default sort preference.
     final Comparator<Movie> comparator = MOVIE_ORDER.get(NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex());
-    Collections.sort(this.movies, comparator);
-    if (this.postersAdapter != null) {
+    Collections.sort(movies, comparator);
+    if (postersAdapter != null) {
       populateAlphaMovieSectionsAndPositions();
       populateScoreMovieSectionsAndPositions();
       FastScrollGridView.getSections();
-      this.postersAdapter.refreshMovies();
+      postersAdapter.refreshMovies();
     }
     // cancel task so that it doesnt try to load old set of movies
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
+    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+      mTask.cancel(true);
     }
-    this.mTask = new LoadPostersTask().execute(null);
+    mTask = new LoadPostersTask().execute(null);
   }
 
   private List<Movie> getMatchingMoviesList(final String search2) {
     final String localSearch = search2.toLowerCase();
     final List<Movie> matchingMovies = new ArrayList<Movie>();
-    for (final Movie movie : this.movies) {
+    for (final Movie movie : movies) {
       if (movie.getDisplayTitle().toLowerCase().contains(localSearch)) {
         matchingMovies.add(movie);
       }
@@ -115,8 +137,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
    */
   @Override public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
-    
+    LogUtilities.i(getClass().getSimpleName(), "onCreate");
+
     // check for sdcard mounted properly
     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
       // Request the progress bar to be shown in the title
@@ -126,9 +148,9 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       refresh();
       if (movies != null && !movies.isEmpty()) {
         setup();
-        this.isGridSetup = true;
+        isGridSetup = true;
       }
-      
+
     } else {
       new AlertDialog.Builder(this).setTitle(R.string.insert_sdcard).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
         public void onClick(final DialogInterface dialog, final int whichButton) {
@@ -140,41 +162,41 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   @Override protected void onResume() {
     super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
+    LogUtilities.i(getClass().getSimpleName(), "onResume");
 
-    registerReceiver(this.broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
-    registerReceiver(this.scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
-    if (this.isGridSetup) {
-      this.grid.setVisibility(View.VISIBLE);
-      this.postersAdapter.refreshMovies();
+    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
+    registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.SCROLLING_INTENT));
+    registerReceiver(scrollStatebroadcastReceiver, new IntentFilter(NowPlayingApplication.NOT_SCROLLING_INTENT));
+    if (isGridSetup) {
+      grid.setVisibility(View.VISIBLE);
+      postersAdapter.refreshMovies();
     }
   }
 
   @Override protected void onPause() {
-    Log.i(getClass().getSimpleName(), "onPause");
+    LogUtilities.i(getClass().getSimpleName(), "onPause");
 
-    unregisterReceiver(this.broadcastReceiver);
-    unregisterReceiver(this.scrollStatebroadcastReceiver);
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
+    unregisterReceiver(broadcastReceiver);
+    unregisterReceiver(scrollStatebroadcastReceiver);
+    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+      mTask.cancel(true);
     }
     super.onPause();
   }
 
   @Override protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
+    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
-    if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-      this.mTask.cancel(true);
+    if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+      mTask.cancel(true);
     }
     clearBitmaps();
     super.onDestroy();
   }
 
   @Override public Object onRetainNonConfigurationInstance() {
-    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
@@ -182,9 +204,9 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   @Override protected void onNewIntent(final Intent intent) {
     super.onNewIntent(intent);
-    this.search = intent.getStringExtra("movie");
-    if (this.search != null) {
-      this.bottomBar.setVisibility(View.VISIBLE);
+    search = intent.getStringExtra("movie");
+    if (search != null) {
+      bottomBar.setVisibility(View.VISIBLE);
     }
     getSearchResults();
     refresh();
@@ -200,15 +222,15 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   }
 
   private void getSearchResults() {
-    if (this.search != null) {
-      final List<Movie> matchingMovies = getMatchingMoviesList(this.search);
+    if (search != null) {
+      final List<Movie> matchingMovies = getMatchingMoviesList(search);
       if (matchingMovies.isEmpty()) {
-        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + this.search, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.no_results_found_for) + search, Toast.LENGTH_SHORT).show();
       } else {
-        this.movies = matchingMovies;
+        movies = matchingMovies;
         // cancel task so that it doesnt try to load the complete set of movies.
-        if (this.mTask != null && this.mTask.getStatus() == UserTask.Status.RUNNING) {
-          this.mTask.cancel(true);
+        if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
+          mTask.cancel(true);
         }
       }
     }
@@ -225,16 +247,16 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
   private void getAlphabet(final Context context) {
     final String alphabetString = context.getResources().getString(R.string.alphabet);
-    this.alphabet = new String[alphabetString.length()];
-    for (int i = 0; i < this.alphabet.length; i++) {
-      this.alphabet[i] = String.valueOf(alphabetString.charAt(i));
+    alphabet = new String[alphabetString.length()];
+    for (int i = 0; i < alphabet.length; i++) {
+      alphabet[i] = String.valueOf(alphabetString.charAt(i));
     }
   }
 
   private void getScores(final Context context) {
-    this.score = new String[11];
+    score = new String[11];
     for (int index = 0, i = 100; i >= 0; index++, i -= 10) {
-      this.score[index] = i + "%";
+      score[index] = i + "%";
     }
   }
 
@@ -242,9 +264,9 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     getAlphabet(this);
     getScores(this);
     setContentView(R.layout.moviegrid_anim);
-    this.bottomBar = (RelativeLayout) findViewById(R.id.bottom_bar);
-    if (this.search == null) {
-      this.bottomBar.setVisibility(View.GONE);
+    bottomBar = (RelativeLayout) findViewById(R.id.bottom_bar);
+    if (search == null) {
+      bottomBar.setVisibility(View.GONE);
     }
     final Button UpcomingMovies = (Button) findViewById(R.id.all_movies);
     UpcomingMovies.setOnClickListener(new OnClickListener() {
@@ -254,31 +276,31 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         UpcomingMoviesActivity.this.startActivity(intent);
       }
     });
-    this.grid = (CustomGridView) findViewById(R.id.grid);
-    this.grid.setOnItemClickListener(new OnItemClickListener() {
+    grid = (CustomGridView) findViewById(R.id.grid);
+    grid.setOnItemClickListener(new OnItemClickListener() {
       public void onItemClick(final AdapterView parent, final View view, final int position, final long id) {
-        UpcomingMoviesActivity.this.selectedMovie = UpcomingMoviesActivity.this.movies.get(position);
+        selectedMovie = movies.get(position);
         setupRotationAnimation(view);
       }
     });
-   
+
     populateAlphaMovieSectionsAndPositions();
     populateScoreMovieSectionsAndPositions();
-    this.postersAdapter = new PostersAdapter();
-    this.grid.setAdapter(this.postersAdapter);
-    this.intent = new Intent();
-    this.intent.setClass(this, UpcomingMovieDetailsActivity.class);
+    postersAdapter = new PostersAdapter();
+    grid.setAdapter(postersAdapter);
+    intent = new Intent();
+    intent.setClass(this, UpcomingMovieDetailsActivity.class);
   }
 
   private void populateAlphaMovieSectionsAndPositions() {
     int i = 0;
     String prevLetter = null;
-    final List<String> alphabets = Arrays.asList(this.alphabet);
-    for (final Movie movie : this.movies) {
+    final List<String> alphabets = Arrays.asList(alphabet);
+    for (final Movie movie : movies) {
       final String firstLetter = movie.getDisplayTitle().substring(0, 1);
-      this.alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
+      alphaMovieSectionsMap.put(i, alphabets.indexOf(firstLetter));
       if (!firstLetter.equals(prevLetter)) {
-        this.alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
+        alphaMoviePositionsMap.put(alphabets.indexOf(firstLetter), i);
       }
       prevLetter = firstLetter;
       i++;
@@ -288,14 +310,14 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private void populateScoreMovieSectionsAndPositions() {
     int i = 0;
     int prevLevel = 0;
-    final List<String> scores = Arrays.asList(this.score);
-    for (final Movie movie : this.movies) {
+    final List<String> scores = Arrays.asList(score);
+    for (final Movie movie : movies) {
       final Score localScore = NowPlayingControllerWrapper.getScore(movie);
       final int scoreValue = localScore == null ? 0 : localScore.getScoreValue();
       final int scoreLevel = scoreValue / 10 * 10;
-      this.scoreMovieSectionsMap.put(i, scores.indexOf(scoreLevel + "%"));
+      scoreMovieSectionsMap.put(i, scores.indexOf(scoreLevel + "%"));
       if (scoreLevel != prevLevel) {
-        this.scoreMoviePositionsMap.put(scores.indexOf(scoreLevel + "%"), i);
+        scoreMoviePositionsMap.put(scores.indexOf(scoreLevel + "%"), i);
       }
       prevLevel = scoreLevel;
       i++;
@@ -309,7 +331,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
     private PostersAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(UpcomingMoviesActivity.this);
+      inflater = LayoutInflater.from(UpcomingMoviesActivity.this);
     }
 
     public View getView(final int position, View convertView, final ViewGroup parent) {
@@ -320,7 +342,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       // convertView
       // supplied by GridView is null.
       if (convertView == null) {
-        convertView = this.inflater.inflate(R.layout.moviegrid_item, null);
+        convertView = inflater.inflate(R.layout.moviegrid_item, null);
         // Creates a ViewHolder and store references to the two children
         // views we want to bind data to.
         holder = new ViewHolder((TextView) convertView.findViewById(R.id.title), (ImageView) convertView.findViewById(R.id.poster));
@@ -330,13 +352,13 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
         // and the ImageView.
         holder = (ViewHolder) convertView.getTag();
       }
-      final Movie movie = UpcomingMoviesActivity.this.movies.get(position % UpcomingMoviesActivity.this.movies.size());
+      final Movie movie = movies.get(position % movies.size());
       NowPlayingControllerWrapper.prioritizeMovie(movie);
       holder.title.setText(movie.getDisplayTitle());
       // optimized bitmap cache and bitmap loading
       holder.title.setEllipsize(TextUtils.TruncateAt.END);
       holder.poster.setImageDrawable(getResources().getDrawable(R.drawable.loader2));
-      final SoftReference<Bitmap> reference = postersMap.get(UpcomingMoviesActivity.this.movies.get(position).getCanonicalTitle());
+      final SoftReference<Bitmap> reference = postersMap.get(movies.get(position).getCanonicalTitle());
       Bitmap bitmap = null;
       if (reference != null) {
         bitmap = reference.get();
@@ -359,15 +381,15 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
 
     public final int getCount() {
-      if (UpcomingMoviesActivity.this.movies != null) {
-        return Math.min(100, UpcomingMoviesActivity.this.movies.size());
+      if (movies != null) {
+        return Math.min(100, movies.size());
       } else {
         return 0;
       }
     }
 
     public final Object getItem(final int position) {
-      return UpcomingMoviesActivity.this.movies.get(position % UpcomingMoviesActivity.this.movies.size());
+      return movies.get(position % movies.size());
     }
 
     public final long getItemId(final int position) {
@@ -381,23 +403,23 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     public int getPositionForSection(final int section) {
       Integer position = null;
       if (NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex() == 0) {
-        position = UpcomingMoviesActivity.this.alphaMoviePositionsMap.get(section);
+        position = alphaMoviePositionsMap.get(section);
       }
       if (NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex() == 2) {
-        position = UpcomingMoviesActivity.this.scoreMoviePositionsMap.get(section);
+        position = scoreMoviePositionsMap.get(section);
       }
       if (position != null) {
-        UpcomingMoviesActivity.this.lastPosition = position;
+        lastPosition = position;
       }
-      return UpcomingMoviesActivity.this.lastPosition;
+      return lastPosition;
     }
 
     public int getSectionForPosition(final int position) {
       if (NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex() == 0) {
-        return UpcomingMoviesActivity.this.alphaMovieSectionsMap.get(position);
+        return alphaMovieSectionsMap.get(position);
       }
       if (NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex() == 2) {
-        return UpcomingMoviesActivity.this.scoreMovieSectionsMap.get(position);
+        return scoreMovieSectionsMap.get(position);
       }
       return position;
     }
@@ -406,10 +428,10 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       // fast scroll is implemented only for alphabetic & score sort for release
       // 1.
       if (NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex() == 0) {
-        return UpcomingMoviesActivity.this.alphabet;
+        return alphabet;
       }
       if (NowPlayingControllerWrapper.getUpcomingMoviesSelectedSortIndex() == 2) {
-        return UpcomingMoviesActivity.this.score;
+        return score;
       }
       return null;
     }
@@ -454,8 +476,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     rotation.setFillAfter(true);
     rotation.setAnimationListener(new AnimationListener() {
       public void onAnimationEnd(final Animation animation) {
-        UpcomingMoviesActivity.this.intent.putExtra("movie", (Parcelable) UpcomingMoviesActivity.this.selectedMovie);
-        startActivity(UpcomingMoviesActivity.this.intent);
+        intent.putExtra("movie", (Parcelable) selectedMovie);
+        startActivity(intent);
       }
 
       public void onAnimationRepeat(final Animation animation) {
@@ -470,7 +492,7 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private class LoadPostersTask extends UserTask<Void, Void, Void> {
     @Override public Void doInBackground(final Void... params) {
       Bitmap bitmap = null;
-      for (final Movie movie : UpcomingMoviesActivity.this.movies) {
+      for (final Movie movie : movies) {
         final SoftReference<Bitmap> reference = UpcomingMoviesActivity.postersMap.get(movie.getCanonicalTitle());
         if (reference != null) {
           bitmap = reference.get();
@@ -493,8 +515,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
 
     @Override public void onPostExecute(final Void result) {
       super.onPostExecute(result);
-      if (UpcomingMoviesActivity.this.postersAdapter != null) {
-        UpcomingMoviesActivity.this.postersAdapter.refreshMovies();
+      if (postersAdapter != null) {
+        postersAdapter.refreshMovies();
       }
     }
   }

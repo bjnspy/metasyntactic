@@ -8,6 +8,10 @@ public class LogUtilities {
   }
 
   public static void logTime(final Class<?> clazz, final String message, final long start) {
-    Log.i(clazz.getName(), message + ": " + (System.currentTimeMillis() - start) / 1000.0 + 's');
+    i(clazz.getName(), message + ": " + (System.currentTimeMillis() - start) / 1000.0 + 's');
+  }
+
+  public static void i(final String tag, final String msg) {
+    Log.i(tag, msg);
   }
 }
