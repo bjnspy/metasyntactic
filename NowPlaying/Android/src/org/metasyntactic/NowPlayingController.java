@@ -223,4 +223,8 @@ public class NowPlayingController {
   public List<Movie> getUpcomingMovies() {
     return this.model.getUpcomingMovies();
   }
+
+  public void onLowMemory() {
+    model.onLowMemory();
+  }
 }

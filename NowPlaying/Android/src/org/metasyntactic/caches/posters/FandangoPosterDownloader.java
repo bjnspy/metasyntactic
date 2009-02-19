@@ -110,4 +110,9 @@ public class FandangoPosterDownloader {
     }
     return buffer.toString();
   }
+
+  public static void onLowMemory() {
+    lastPostalCode = null;
+    movieNameToPosterMap = null;
+  }
 }

@@ -69,4 +69,8 @@ public class ApplePosterDownloader {
 
     movieNameToPosterMap = result;
   }
+
+  public static void onLowMemory() {
+    movieNameToPosterMap = null;
+  }
 }

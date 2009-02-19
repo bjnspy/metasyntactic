@@ -53,6 +53,13 @@ public class DataProvider {
     this.performances = new HashMap<String, Map<String, List<Performance>>>();
   }
 
+  public void onLowMemory() {
+    movies = null;
+    theaters = null;
+    synchronizationData = null;
+    performances = null;
+  }
+
   public void update() {
     final List<Movie> localMovies = getMovies();
     final List<Theater> localTheaters = getTheaters();

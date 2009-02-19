@@ -36,4 +36,6 @@ public interface ScoreProvider {
   void prioritizeMovie(List<Movie> movies, Movie movie);
 
   void clearStaleData();
+
+  void onLowMemory();
 }

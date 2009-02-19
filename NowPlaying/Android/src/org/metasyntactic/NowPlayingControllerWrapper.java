@@ -292,4 +292,11 @@ public class NowPlayingControllerWrapper {
     checkInstance();
     instance.setSearchDate(date);
   }
+
+  public static void onLowMemory() {
+    NowPlayingController instance = NowPlayingControllerWrapper.instance;
+    if (instance != null) {
+      instance.onLowMemory();
+    }
+  }
 }
