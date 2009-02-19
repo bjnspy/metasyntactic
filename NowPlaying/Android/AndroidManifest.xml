@@ -11,7 +11,7 @@
         android:versionName="1.0">
         >
         <activity
-            android:label="@string/application_name"
+            android:label="@string/application_name_and_version"
             android:name="NowPlayingActivity"
             android:launchMode="singleTask">
             
@@ -60,7 +60,7 @@
             android:name="AllReviewsActivity">
         </activity>
         <activity
-            android:label="@string/application_name_and_version"
+            android:label="@string/application_name"
             android:name="SettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

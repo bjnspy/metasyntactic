@@ -1,12 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.util.List;
-
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +13,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+
+import java.util.List;
 
 public class AllReviewsActivity extends ListActivity {
   private List<Review> reviews;
