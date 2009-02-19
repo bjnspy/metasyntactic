@@ -227,4 +227,8 @@ public class NowPlayingController {
   public void onLowMemory() {
     model.onLowMemory();
   }
+
+  public boolean isUpdatingDataProvider() {
+    return model.isUpdatingDataProvider();
+  }
 }

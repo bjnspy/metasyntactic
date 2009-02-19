@@ -13,15 +13,9 @@
 // limitations under the License.
 package org.metasyntactic;
 
+import android.app.Activity;
+import android.content.Context;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
-import static org.metasyntactic.utilities.SetUtilities.any;
-
-import java.io.File;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.collections.IdentityHashSet;
 import org.metasyntactic.data.Location;
@@ -33,9 +27,13 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 import org.metasyntactic.utilities.LogUtilities;
+import static org.metasyntactic.utilities.SetUtilities.any;
 
-import android.app.Activity;
-import android.content.Context;
+import java.io.File;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -46,8 +44,6 @@ public class NowPlayingControllerWrapper {
   private static NowPlayingController instance;
   private static LocationTracker locationTracker;
 
-  private static boolean isUpdatingDataProvider;
-
   static {
     NowPlayingApplication.initialize();
   }
@@ -56,13 +52,8 @@ public class NowPlayingControllerWrapper {
   }
 
   public static boolean isUpdatingDataProvider() {
-    checkThread();
-    return isUpdatingDataProvider;
-  }
-
-  public static void setUpdatingDataProvider(final boolean isUpdatingDataProvider) {
-    checkThread();
-    NowPlayingControllerWrapper.isUpdatingDataProvider = isUpdatingDataProvider;
+    checkInstance();
+    return instance.isUpdatingDataProvider();
   }
 
   public static void onRetainNonConfigurationInstance(final Activity activity, final Object result) {

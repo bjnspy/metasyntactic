@@ -448,4 +448,8 @@ public class NowPlayingModel {
   public LargePosterCache getLargePosterCache() {
     return largePosterCache;
   }
+
+  public boolean isUpdatingDataProvider() {
+    return dataProvider.isUpdating();
+  }
 }
