@@ -13,13 +13,13 @@
 // limitations under the License.
 package org.metasyntactic.caches;
 
-import android.util.Log;
-import org.metasyntactic.Constants;
-import org.metasyntactic.NowPlayingModel;
-
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+
+import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.utilities.LogUtilities;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -57,11 +57,11 @@ public abstract class AbstractCache {
   }
 
   public void shutdown() {
-    Log.i(getClass().getSimpleName(), "Received shutdown notification");
-    this.shutdown = true;
+    LogUtilities.i(getClass().getSimpleName(), "Received shutdown notification");
+    shutdown = true;
   }
 
   public void onLowMemory() {
-    Log.i(getClass().getSimpleName(), "Received onLowMemory notification");
+    LogUtilities.i(getClass().getSimpleName(), "Received onLowMemory notification");
   }
 }

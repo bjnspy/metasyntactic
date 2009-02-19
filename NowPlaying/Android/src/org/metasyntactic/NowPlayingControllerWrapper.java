@@ -13,10 +13,15 @@
 // limitations under the License.
 package org.metasyntactic;
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
+import static org.metasyntactic.utilities.SetUtilities.any;
+
+import java.io.File;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.collections.IdentityHashSet;
 import org.metasyntactic.data.Location;
@@ -27,13 +32,10 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.ui.GlobalActivityIndicator;
-import static org.metasyntactic.utilities.SetUtilities.any;
+import org.metasyntactic.utilities.LogUtilities;
 
-import java.io.File;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import android.app.Activity;
+import android.content.Context;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -62,13 +64,13 @@ public class NowPlayingControllerWrapper {
     retainedActivityObjects.remove(activity.getLastNonConfigurationInstance());
 
     GlobalActivityIndicator.addActivity(activity);
-    Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity added: " + activity.getClass().getSimpleName());
+    LogUtilities.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity added: " + activity.getClass().getSimpleName());
 
     if (activities.size() == 1) {
-      Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity added: " + activity.getClass().getSimpleName());
+      LogUtilities.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity added: " + activity.getClass().getSimpleName());
 
       if (instance == null) {
-        Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity created.  Starting controller");
+        LogUtilities.i(NowPlayingControllerWrapper.class.getSimpleName(), "First activity created.  Starting controller");
         instance = new NowPlayingController(activity.getApplicationContext());
         instance.startup();
         restartLocationTracker();
@@ -80,13 +82,13 @@ public class NowPlayingControllerWrapper {
     checkThread();
     GlobalActivityIndicator.removeActivity(activity);
     activities.remove(activity);
-    Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity destroyed: " + activity.getClass().getSimpleName());
+    LogUtilities.i(NowPlayingControllerWrapper.class.getSimpleName(), "Activity destroyed: " + activity.getClass().getSimpleName());
 
     if (activities.isEmpty() && retainedActivityObjects.isEmpty()) {
-      Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed: " + activity.getClass().getSimpleName());
+      LogUtilities.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed: " + activity.getClass().getSimpleName());
 
       if (instance != null) {
-        Log.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");
+        LogUtilities.i(NowPlayingControllerWrapper.class.getSimpleName(), "Last activity destroyed.  Stopping controller");
         instance.shutdown();
         instance = null;
         restartLocationTracker();

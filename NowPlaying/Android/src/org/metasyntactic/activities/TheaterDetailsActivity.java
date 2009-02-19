@@ -1,5 +1,15 @@
 package org.metasyntactic.activities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Performance;
+import org.metasyntactic.data.Theater;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -7,7 +17,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -16,15 +25,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Performance;
-import org.metasyntactic.data.Theater;
-import org.metasyntactic.utilities.MovieViewUtilities;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TheaterDetailsActivity extends ListActivity {
   /**
@@ -37,40 +37,40 @@ public class TheaterDetailsActivity extends ListActivity {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
+    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.theaterdetails);
-    this.theater = getIntent().getExtras().getParcelable("theater");
-    this.movies = NowPlayingControllerWrapper.getMoviesAtTheater(this.theater);
+    theater = getIntent().getExtras().getParcelable("theater");
+    movies = NowPlayingControllerWrapper.getMoviesAtTheater(theater);
     populateTheaterDetailEntries();
     final TextView titleView = (TextView) findViewById(R.id.theater);
-    titleView.setText(this.theater.getName());
+    titleView.setText(theater.getName());
     setListAdapter(new TheaterDetailsAdapter());
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
+    LogUtilities.i(getClass().getSimpleName(), "onResume");
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    Log.i(getClass().getSimpleName(), "onPause");
+    LogUtilities.i(getClass().getSimpleName(), "onPause");
   }
 
   @Override
   protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
+    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
   @Override
   public Object onRetainNonConfigurationInstance() {
-    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
-    final Object result = this.theaterDetailEntries;
+    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    final Object result = theaterDetailEntries;
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
   }
@@ -78,7 +78,7 @@ public class TheaterDetailsActivity extends ListActivity {
   @Override
   protected void onListItemClick(final ListView listView, final View view, final int position,
       final long id) {
-    final Intent intent = this.theaterDetailEntries.get(position).intent;
+    final Intent intent = theaterDetailEntries.get(position).intent;
     if (intent != null) {
       startActivity(intent);
     }
@@ -94,48 +94,48 @@ public class TheaterDetailsActivity extends ListActivity {
         // Add map header
         final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.map), null,
             TheaterDetailItemType.HEADER, null, null, false);
-        this.theaterDetailEntries.add(entry);
+        theaterDetailEntries.add(entry);
       }
       {
         // Add map
-        final String address = this.theater.getAddress() + ", "
-            + this.theater.getLocation().getCity();
+        final String address = theater.getAddress() + ", "
+        + theater.getLocation().getCity();
         final Intent mapIntent = new Intent("android.intent.action.VIEW", Uri.parse("geo:0,0?q="
             + address));
         final Drawable mapIcon = res.getDrawable(R.drawable.sym_action_map);
         final TheaterDetailEntry entry = new TheaterDetailEntry(address, null,
             TheaterDetailItemType.ACTION, mapIcon, mapIntent, true);
-        this.theaterDetailEntries.add(entry);
+        theaterDetailEntries.add(entry);
       }
       {
         // Add phone header
         final TheaterDetailEntry entry = new TheaterDetailEntry(res.getString(R.string.call), null,
             TheaterDetailItemType.HEADER, null, null, false);
-        this.theaterDetailEntries.add(entry);
+        theaterDetailEntries.add(entry);
       }
       {
         // Add phone
-        final String phone = this.theater.getPhoneNumber();
+        final String phone = theater.getPhoneNumber();
         final Intent phoneIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:"
-            + this.theater.getPhoneNumber()));
+            + theater.getPhoneNumber()));
         final Drawable phoneIcon = res.getDrawable(R.drawable.sym_action_call);
         final TheaterDetailEntry entry = new TheaterDetailEntry(phone, null,
             TheaterDetailItemType.ACTION, phoneIcon, phoneIntent, true);
-        this.theaterDetailEntries.add(entry);
+        theaterDetailEntries.add(entry);
       }
       {
         // Add showtimes header
         final TheaterDetailEntry entry = new TheaterDetailEntry(
             res.getString(R.string.now_showing), null, TheaterDetailItemType.HEADER, null, null,
             false);
-        this.theaterDetailEntries.add(entry);
+        theaterDetailEntries.add(entry);
       }
       {
         // Add movies
-        for (final Movie movie : this.movies) {
+        for (final Movie movie : movies) {
           final String movieTitle = movie.getDisplayTitle();
           final List<Performance> list = NowPlayingControllerWrapper
-              .getPerformancesForMovieAtTheater(movie, TheaterDetailsActivity.this.theater);
+          .getPerformancesForMovieAtTheater(movie, theater);
           String performance = "";
           for (final Performance aList : list) {
             performance += aList.getTime() + ", ";
@@ -146,7 +146,7 @@ public class TheaterDetailsActivity extends ListActivity {
           movieIntent.putExtra("movie", (Parcelable) movie);
           final TheaterDetailEntry entry = new TheaterDetailEntry(movieTitle, performance,
               TheaterDetailItemType.DATA, null, movieIntent, true);
-          this.theaterDetailEntries.add(entry);
+          theaterDetailEntries.add(entry);
         }
       }
     }
@@ -162,12 +162,12 @@ public class TheaterDetailsActivity extends ListActivity {
 
     @Override
     public boolean isEnabled(final int position) {
-      return TheaterDetailsActivity.this.theaterDetailEntries.get(position).isSelectable();
+      return theaterDetailEntries.get(position).isSelectable();
     }
 
     private TheaterDetailsAdapter() {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(TheaterDetailsActivity.this);
+      inflater = LayoutInflater.from(TheaterDetailsActivity.this);
     }
 
     public Object getEntry(final int i) {
@@ -175,23 +175,23 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
-      final TheaterDetailEntry entry = TheaterDetailsActivity.this.theaterDetailEntries
-          .get(position);
+      final TheaterDetailEntry entry = theaterDetailEntries
+      .get(position);
       switch (entry.type) {
       case DATA:
-        convertView = this.inflater.inflate(R.layout.theaterdetails_item, null);
+        convertView = inflater.inflate(R.layout.theaterdetails_item, null);
         final TextView movieView = (TextView) convertView.findViewById(R.id.label);
         movieView.setText(entry.data);
         final TextView showtimesView = (TextView) convertView.findViewById(R.id.data);
         showtimesView.setText(entry.data2);
         break;
       case HEADER:
-        convertView = this.inflater.inflate(R.layout.headerview, null);
+        convertView = inflater.inflate(R.layout.headerview, null);
         final TextView headerView = (TextView) convertView.findViewById(R.id.name);
         headerView.setText(entry.data);
         break;
       case ACTION:
-        convertView = this.inflater.inflate(R.layout.theaterdetails_icon_item, null);
+        convertView = inflater.inflate(R.layout.theaterdetails_icon_item, null);
         final TextView actionView = (TextView) convertView.findViewById(R.id.data);
         actionView.setText(entry.data);
         final ImageView actionIcon = (ImageView) convertView.findViewById(R.id.icon);
@@ -202,8 +202,8 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     public int getCount() {
-      Log.i("TEST", "Size of list is " + TheaterDetailsActivity.this.theaterDetailEntries.size());
-      return TheaterDetailsActivity.this.theaterDetailEntries.size();
+      LogUtilities.i("TEST", "Size of list is " + theaterDetailEntries.size());
+      return theaterDetailEntries.size();
     }
 
     public long getEntryId(final int position) {
@@ -211,7 +211,7 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     public Object getItem(final int position) {
-      return TheaterDetailsActivity.this.theaterDetailEntries.get(position);
+      return theaterDetailEntries.get(position);
     }
 
     public long getItemId(final int position) {
@@ -256,7 +256,7 @@ public class TheaterDetailsActivity extends ListActivity {
     }
 
     public boolean isSelectable() {
-      return this.selectable;
+      return selectable;
     }
   }
 }

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -16,7 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.data.Review;
-import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.LogUtilities;
 
 import java.util.List;
 
@@ -25,24 +24,24 @@ public class AllReviewsActivity extends ListActivity {
 
   @Override protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
+    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
-    this.reviews = getIntent().getParcelableArrayListExtra("reviews");
+    reviews = getIntent().getParcelableArrayListExtra("reviews");
     setListAdapter(new ReviewsAdapter(this));
   }
 
   @Override protected void onResume() {
     super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
+    LogUtilities.i(getClass().getSimpleName(), "onResume");
   }
 
   @Override protected void onPause() {
     super.onPause();
-    Log.i(getClass().getSimpleName(), "onPause");
+    LogUtilities.i(getClass().getSimpleName(), "onPause");
   }
 
   @Override protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
+    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
     MovieViewUtilities.cleanUpDrawables();
@@ -50,14 +49,14 @@ public class AllReviewsActivity extends ListActivity {
   }
 
   @Override public Object onRetainNonConfigurationInstance() {
-    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
   }
 
   @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
-    final String review_url = this.reviews.get(position).getLink();
+    final String review_url = reviews.get(position).getLink();
     final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
     startActivity(intent);
 
@@ -69,7 +68,7 @@ public class AllReviewsActivity extends ListActivity {
 
     private ReviewsAdapter(final Context context) {
       // Cache the LayoutInflate to avoid asking for a new one each time.
-      this.inflater = LayoutInflater.from(context);
+      inflater = LayoutInflater.from(context);
     }
 
     public Object getItem(final int i) {
@@ -81,11 +80,11 @@ public class AllReviewsActivity extends ListActivity {
     }
 
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
-      convertView = this.inflater.inflate(R.layout.reviewview, null);
+      convertView = inflater.inflate(R.layout.reviewview, null);
       final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score), (TextView) convertView
           .findViewById(R.id.author), (TextView) convertView.findViewById(R.id.source), (TextView) convertView.findViewById(R.id.desc));
       convertView.setTag(holder);
-      final Review review = AllReviewsActivity.this.reviews.get(position);
+      final Review review = reviews.get(position);
       holder.author.setText(review.getAuthor());
       holder.source.setText(review.getSource());
       holder.description.setText(review.getText());
@@ -108,7 +107,7 @@ public class AllReviewsActivity extends ListActivity {
     }
 
     public int getCount() {
-      return AllReviewsActivity.this.reviews.size();
+      return reviews.size();
     }
   }
 

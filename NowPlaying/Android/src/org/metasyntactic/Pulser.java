@@ -13,10 +13,11 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import android.os.Handler;
-import android.util.Log;
-
 import java.util.Date;
+
+import org.metasyntactic.utilities.LogUtilities;
+
+import android.os.Handler;
 
 public class Pulser {
   private final Runnable runnable;
@@ -24,45 +25,45 @@ public class Pulser {
   private final int pulseIntervalSeconds;
 
   public Pulser(final Runnable runnable, final int pulseIntervalSeconds) {
-    this.lastPulseTime = new Date(0);
+    lastPulseTime = new Date(0);
     this.runnable = runnable;
     this.pulseIntervalSeconds = pulseIntervalSeconds;
   }
 
   private void tryPulse(final Date date) {
-    // Log.i("tryPulse", "pulse tried");
-    if (date.before(this.lastPulseTime)) {
+    // LogUtilities.i("tryPulse", "pulse tried");
+    if (date.before(lastPulseTime)) {
       // we sent out a pulse after this one. just disregard this pulse
-      // Log.i(Pulser.class.getName(), "Pulse at " + date + " < last pulse at "
+      // LogUtilities.i(Pulser.class.getName(), "Pulse at " + date + " < last pulse at "
       // + lastPulseTime + ". Disregarding");
       return;
     }
     final Date now = new Date();
-    final Date nextViablePulseTime = new Date(this.lastPulseTime.getTime() + 1000 * this.pulseIntervalSeconds);
+    final Date nextViablePulseTime = new Date(lastPulseTime.getTime() + 1000 * pulseIntervalSeconds);
     if (now.before(nextViablePulseTime)) {
       // too soon since the last pulse. wait until later.
-      // Log.i(Pulser.class.getName(), "Pulse at " + date + "too soon since last
+      // LogUtilities.i(Pulser.class.getName(), "Pulse at " + date + "too soon since last
       // pulse at " + lastPulseTime + ". Will perform later.");
       final Runnable tryPulseLater = new Runnable() {
         public void run() {
           tryPulse(date);
         }
       };
-      if (!new Handler().postDelayed(tryPulseLater, this.pulseIntervalSeconds * 1000)) {
+      if (!new Handler().postDelayed(tryPulseLater, pulseIntervalSeconds * 1000)) {
         throw new RuntimeException();
       }
       return;
     }
     // ok, actually pulse.
-    this.lastPulseTime = now;
-    Log.i(Pulser.class.getName(), "Pulse at " + date + " being performed at " + this.lastPulseTime);
-    this.runnable.run();
+    lastPulseTime = now;
+    LogUtilities.i(Pulser.class.getName(), "Pulse at " + date + " being performed at " + lastPulseTime);
+    runnable.run();
   }
 
   public void forcePulse() {
-    this.lastPulseTime = new Date();
-    Log.i(Pulser.class.getName(), "Forced pulse at: " + this.lastPulseTime);
-    this.runnable.run();
+    lastPulseTime = new Date();
+    LogUtilities.i(Pulser.class.getName(), "Forced pulse at: " + lastPulseTime);
+    runnable.run();
   }
 
   public void tryPulse() {

@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +44,7 @@ import org.metasyntactic.views.CustomGridView;
 import org.metasyntactic.views.FastScrollGridView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 import org.metasyntactic.views.Rotate3dAnimation;
+import org.metasyntactic.utilities.LogUtilities;
 
 import java.io.File;
 import java.lang.ref.SoftReference;
@@ -114,7 +114,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   protected void onResume() {
     super.onResume();
-    Log.i(getClass().getSimpleName(), "onResume");
+    LogUtilities.i(getClass().getSimpleName(), "onResume");
     if (FileUtilities.isSDCardAccessible()) {
       registerReceiver(broadcastReceiver, new IntentFilter(
           NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
@@ -135,7 +135,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onPause() {
-    Log.i(getClass().getSimpleName(), "onPause");
+    LogUtilities.i(getClass().getSimpleName(), "onPause");
     if (FileUtilities.isSDCardAccessible()) {
       unregisterReceiver(broadcastReceiver);
       unregisterReceiver(databroadcastReceiver);
@@ -151,7 +151,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   protected void onDestroy() {
-    Log.i(getClass().getSimpleName(), "onDestroy");
+    LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     if (FileUtilities.isSDCardAccessible()) {
       NowPlayingControllerWrapper.removeActivity(this);
       if (mTask != null && mTask.getStatus() == UserTask.Status.RUNNING) {
@@ -169,7 +169,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
 
   @Override
   public Object onRetainNonConfigurationInstance() {
-    Log.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
+    LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = search;
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
@@ -220,7 +220,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.i(getClass().getSimpleName(), "onCreate");
+    LogUtilities.i(getClass().getSimpleName(), "onCreate");
     search = (String) getLastNonConfigurationInstance();
     // check for sdcard mounted properly
     if (FileUtilities.isSDCardAccessible()) {
