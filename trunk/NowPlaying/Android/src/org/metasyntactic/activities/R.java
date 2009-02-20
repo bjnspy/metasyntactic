@@ -57,7 +57,7 @@ public final class R {
         public static final int view_background=0x7f060006;
     }
     public static final class drawable {
-        public static final int alternate_background=0x7f02003c;
+        public static final int alternate_background=0x7f02003b;
         public static final int arrow_down=0x7f020000;
         public static final int arrow_down_default=0x7f020001;
         public static final int arrow_down_press=0x7f020002;
@@ -94,31 +94,30 @@ public final class R {
         public static final int loader2=0x7f020021;
         public static final int loader3=0x7f020022;
         public static final int loading=0x7f020023;
-        public static final int meg=0x7f020024;
-        public static final int more=0x7f020025;
-        public static final int movie_droid=0x7f020026;
-        public static final int movies=0x7f020027;
-        public static final int opaque_box=0x7f020028;
-        public static final int rating_blue=0x7f020029;
-        public static final int rating_green=0x7f02002a;
-        public static final int rating_red=0x7f02002b;
-        public static final int rating_unknown=0x7f02002c;
-        public static final int rating_yellow=0x7f02002d;
-        public static final int rotten_faded=0x7f02002e;
-        public static final int rotten_full=0x7f02002f;
-        public static final int screen_background_orange=0x7f02003b;
-        public static final int scrollbar_handle_accelerated_anim2=0x7f020030;
-        public static final int shape_1=0x7f020031;
-        public static final int shape_5=0x7f020032;
-        public static final int sym_action_call=0x7f020033;
-        public static final int sym_action_email=0x7f020034;
-        public static final int sym_action_map=0x7f020035;
-        public static final int theatres=0x7f020036;
-        public static final int transparent_background=0x7f02003d;
-        public static final int up=0x7f020037;
-        public static final int up_1=0x7f020038;
-        public static final int upcoming=0x7f020039;
-        public static final int upcoming2=0x7f02003a;
+        public static final int more=0x7f020024;
+        public static final int movie_droid=0x7f020025;
+        public static final int movies=0x7f020026;
+        public static final int opaque_box=0x7f020027;
+        public static final int rating_blue=0x7f020028;
+        public static final int rating_green=0x7f020029;
+        public static final int rating_red=0x7f02002a;
+        public static final int rating_unknown=0x7f02002b;
+        public static final int rating_yellow=0x7f02002c;
+        public static final int rotten_faded=0x7f02002d;
+        public static final int rotten_full=0x7f02002e;
+        public static final int screen_background_orange=0x7f02003a;
+        public static final int scrollbar_handle_accelerated_anim2=0x7f02002f;
+        public static final int shape_1=0x7f020030;
+        public static final int shape_5=0x7f020031;
+        public static final int sym_action_call=0x7f020032;
+        public static final int sym_action_email=0x7f020033;
+        public static final int sym_action_map=0x7f020034;
+        public static final int theatres=0x7f020035;
+        public static final int transparent_background=0x7f02003c;
+        public static final int up=0x7f020036;
+        public static final int up_1=0x7f020037;
+        public static final int upcoming=0x7f020038;
+        public static final int upcoming2=0x7f020039;
     }
     public static final class id {
         public static final int address=0x7f080031;

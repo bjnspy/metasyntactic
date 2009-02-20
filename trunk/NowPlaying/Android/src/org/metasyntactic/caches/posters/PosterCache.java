@@ -13,6 +13,14 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
@@ -23,13 +31,6 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class PosterCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
@@ -48,7 +49,7 @@ public class PosterCache extends AbstractCache {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, this.lock, false);
+    ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, lock, false);
   }
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
@@ -60,9 +61,9 @@ public class PosterCache extends AbstractCache {
 
     Movie movie;
     do {
-      movie = this.prioritizedMovies.removeAny(moviesSet);
+      movie = prioritizedMovies.removeAny(moviesSet);
       downloadPoster(movie);
-    } while (movie != null && !this.shutdown);
+    } while (movie != null && !shutdown);
   }
 
   private void downloadPoster(final Movie movie) {
@@ -82,16 +83,19 @@ public class PosterCache extends AbstractCache {
   }
 
   private byte[] downloadPosterWorker(final Movie movie) {
+    //if (shutdown) { return; }
     byte[] data = NetworkUtilities.download(movie.getPoster(), false);
     if (data != null) {
       return data;
     }
 
+    //if (shutdown) { return; }
     data = ApplePosterDownloader.download(movie);
     if (data != null) {
       return data;
     }
 
+    //if (shutdown) { return; }
     data = downloadPosterFromFandango(movie);
     if (data != null) {
       return data;
@@ -102,13 +106,14 @@ public class PosterCache extends AbstractCache {
      * data; }
      */
 
-    this.model.getLargePosterCache().downloadFirstPoster(movie);
+    //if (shutdown) { return; }
+    model.getLargePosterCache().downloadFirstPoster(movie);
 
     return null;
   }
 
   private byte[] downloadPosterFromFandango(final Movie movie) {
-    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(this.model.getUserAddress());
+    final Location location = UserLocationCache.downloadUserAddressLocationBackgroundEntryPoint(model.getUserAddress());
 
     final String country = location == null ? "" : location.getCountry();
     String postalCode = location == null ? "10009" : location.getPostalCode();
@@ -137,7 +142,7 @@ public class PosterCache extends AbstractCache {
       return;
     }
 
-    this.prioritizedMovies.add(movie);
+    prioritizedMovies.add(movie);
   }
 
   @Override

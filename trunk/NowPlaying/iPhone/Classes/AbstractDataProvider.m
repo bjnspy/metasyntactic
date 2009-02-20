@@ -530,6 +530,7 @@
 
 
 - (BOOL) isStale:(Theater*) theater {
+#if 0
     NSDate* globalSyncDate = [self lastLookupDate];
     NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
     if (globalSyncDate == nil || theaterSyncDate == nil) {
@@ -537,6 +538,14 @@
     }
 
     return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
+#else
+    NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
+    if (theaterSyncDate == nil) {
+        return NO;
+    }
+    
+    return ![DateUtilities isToday:theaterSyncDate];    
+#endif
 }
 
 
