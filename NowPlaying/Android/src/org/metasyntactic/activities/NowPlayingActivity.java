@@ -547,12 +547,13 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         R.drawable.ic_menu_allfriends);
     menu.add(0, MovieViewUtilities.MENU_UPCOMING, 0, R.string.upcoming)
         .setIcon(R.drawable.upcoming);
-    menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
-        android.R.drawable.ic_menu_send);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
         android.R.drawable.ic_menu_preferences).setIntent(
         new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"))
         .setAlphabeticShortcut('s');
+    menu.add(0, MovieViewUtilities.MENU_SEND_FEEDBACK, 0, R.string.send_feedback).setIcon(
+        android.R.drawable.ic_menu_send);
+    
     menu.add(0, MovieViewUtilities.MENU_LICENSE, 0, R.string.license).setIcon(
         android.R.drawable.ic_menu_send);
     return super.onCreateOptionsMenu(menu);
