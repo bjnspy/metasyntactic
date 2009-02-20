@@ -271,7 +271,7 @@ public class NowPlayingModel {
     synchronized (preferencesLock) {
       final String value = preferences.getString(SCORE_TYPE_KEY, null);
       if (value == null) {
-        return ScoreType.RottenTomatoes;
+        return ScoreType.Google;
       }
       return ScoreType.valueOf(value);
     }
