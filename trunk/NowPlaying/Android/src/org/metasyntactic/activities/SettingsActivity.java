@@ -71,7 +71,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       setTitle(NowPlayingApplication.getNameAndVersion(getResources()));
     }
   };
- 
+
   @Override
   public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -164,8 +164,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       // are called
       // should not be changed.
       dialog = new NowPlayingPreferenceDialog(this).setKey(detailItems.get(1).getKey())
-      .setTextView(textEntryView).setPositiveButton(R.string.ok).setNegativeButton(
-          android.R.string.cancel);
+          .setTextView(textEntryView).setPositiveButton(R.string.ok).setNegativeButton(
+              android.R.string.cancel);
       dialog.setTitle(detailItems.get(1).getLabel());
       break;
     case 2:
@@ -225,14 +225,14 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       // are called
       // should not be changed.
       ((org.metasyntactic.views.NowPlayingPreferenceDialog) dialog)
-      .setEntries(R.array.entries_reviews_provider_preference);
+          .setEntries(R.array.entries_reviews_provider_preference);
       break;
     case 0:
       // The order in which the methods on the NowPlayingPreferenceDialog object
       // are called
       // should not be changed.
       dialog = ((org.metasyntactic.views.NowPlayingPreferenceDialog) dialog)
-      .setEntries(R.array.entries_auto_update_preference);
+          .setEntries(R.array.entries_auto_update_preference);
     }
   }
 
@@ -265,7 +265,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     final Resources res = getResources();
     // auto update location - 0
     SettingsItem settings = new SettingsItem();
-    settings.setLabel(res.getString(R.string.find_location_automatically));
+    settings.setLabel(res.getString(R.string.autoupdate_location));
     final boolean isAutoUpdate = NowPlayingControllerWrapper.isAutoUpdateEnabled();
     if (isAutoUpdate) {
       settings.setData(res.getString(R.string.on));
@@ -310,6 +310,9 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     final ScoreType type = NowPlayingControllerWrapper.getScoreType();
     if (type != null) {
       settings.setData(type.toString());
+      if (type == ScoreType.RottenTomatoes) {
+        settings.setData2(res.getString(R.string.rotten_tomatoes_text));
+      }
     }
     settings.setKey(NowPlayingPreferenceDialog.PreferenceKeys.REVIEWS_PROVIDER);
     detailItems.add(settings);
@@ -327,8 +330,8 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       convertView = inflater.inflate(R.layout.settings_item, null);
       final SettingsViewHolder holder = new SettingsViewHolder((TextView) convertView
           .findViewById(R.id.label), (ImageView) convertView.findViewById(R.id.icon),
-          (TextView) convertView.findViewById(R.id.data), (CheckBox) convertView
-          .findViewById(R.id.check));
+          (TextView) convertView.findViewById(R.id.data), (TextView) convertView
+              .findViewById(R.id.data2), (CheckBox) convertView.findViewById(R.id.check));
       if (position == 0) {
         holder.check.setVisibility(View.VISIBLE);
         holder.icon.setVisibility(View.GONE);
@@ -342,6 +345,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
       }
       final SettingsItem settingsItem = detailItems.get(position);
       holder.data.setText(settingsItem.getData());
+      holder.data2.setText(settingsItem.getData2());
       holder.label.setText(settingsItem.getLabel());
       return convertView;
     }
@@ -353,15 +357,17 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     private class SettingsViewHolder {
       private final TextView label;
       private final TextView data;
+      private final TextView data2;
       private final CheckBox check;
       private final ImageView icon;
 
       private SettingsViewHolder(final TextView label, final ImageView icon, final TextView data,
-          final CheckBox check) {
+          final TextView data2, final CheckBox check) {
         this.label = label;
         this.data = data;
         this.check = check;
         this.icon = icon;
+        this.data2 = data2;
       }
     }
 
@@ -385,6 +391,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
   private static class SettingsItem {
     private String label;
     private String data;
+    private String data2;
     private NowPlayingPreferenceDialog.PreferenceKeys key;
 
     public NowPlayingPreferenceDialog.PreferenceKeys getKey() {
@@ -409,6 +416,14 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
     public void setData(final String data) {
       this.data = data;
+    }
+
+    public String getData2() {
+      return data2;
+    }
+
+    public void setData2(final String data) {
+      this.data2 = data;
     }
   }
 

@@ -59,6 +59,10 @@
             android:label="Reviews"
             android:name="AllReviewsActivity">
         </activity>
+         <activity
+            android:label="License"
+            android:name="LicenseActivity">
+        </activity>
         <activity
             android:label="@string/application_name"
             android:name="SettingsActivity">
