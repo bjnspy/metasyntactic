@@ -3,6 +3,7 @@ package org.metasyntactic.utilities;
 import android.util.Log;
 
 public class LogUtilities {
+  private final static boolean isLogging = false;
   private LogUtilities() {
 
   }
@@ -12,6 +13,8 @@ public class LogUtilities {
   }
 
   public static void i(final String tag, final String msg) {
-    Log.i(tag, msg);
+    if (isLogging) {
+      Log.i(tag, msg);
+    }
   }
 }
