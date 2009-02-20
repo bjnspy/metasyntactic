@@ -15,6 +15,7 @@ import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
 
@@ -28,9 +29,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -434,5 +438,23 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   public Context getContext() {
     return this;
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
+    menu.add(0, MovieViewUtilities.MENU_LICENSE, 0, R.string.license).setIcon(
+        android.R.drawable.ic_menu_send);
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(final MenuItem item) {
+    if (item.getItemId() == MovieViewUtilities.MENU_LICENSE) {
+      final Intent localIntent = new Intent();
+      localIntent.setClass(this, LicenseActivity.class);
+      startActivity(localIntent);
+      return true;
+    }
+    return false;
   }
 }
