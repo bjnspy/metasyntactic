@@ -41,7 +41,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -182,7 +181,6 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         mTask = null;
       }
     }
-    Debug.stopMethodTracing();
     super.onPause();
   }
 
