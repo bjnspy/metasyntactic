@@ -210,8 +210,13 @@
     NSString* serverHash = [self lookupServerHash];
 
     if (serverHash.length == 0 ||
-        [serverHash isEqual:@"0"] ||
-        [serverHash isEqual:localHash]) {
+        [serverHash isEqual:@"0"]) {
+        return;
+    }
+    
+    if ([serverHash isEqual:localHash]) {
+        // rewrite the hash so we don't this for another day.
+        [FileUtilities writeObject:serverHash toFile:self.hashFile];
         return;
     }
 
