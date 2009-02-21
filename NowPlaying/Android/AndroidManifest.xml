@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.metasyntactic.activities">
+    package="org.metasyntactic.activities"
+    android:versionCode="1"
+    android:versionName="1.0">
     <application
         android:icon="@drawable/launcher"
         android:label="@string/application_name"
         android:theme="@android:style/Theme.Black"
-        android:name="org.metasyntactic.NowPlayingApplication"
-        android:versionCode="1"
-        android:versionName="1.0">
+        android:name="org.metasyntactic.NowPlayingApplication">
         >
         <activity
             android:label="@string/application_name_and_version"
