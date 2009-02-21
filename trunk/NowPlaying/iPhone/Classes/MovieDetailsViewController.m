@@ -1091,12 +1091,12 @@ const NSInteger POSTER_TAG = -1;
     
     if ([formats containsObject:@"instant"]) {
         if (formats.count == 1) {
-            actionSheet.tag == ADD_TO_NETFLIX_INSTANT_QUEUE_TAG;
+            actionSheet.tag = ADD_TO_NETFLIX_INSTANT_QUEUE_TAG;
         } else {
-            actionSheet.tag == ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG;
+            actionSheet.tag = ADD_TO_NETFLIX_DISC_OR_INSTANT_QUEUE_TAG;
         }
     } else {
-        actionSheet.tag == ADD_TO_NETFLIX_DISC_QUEUE_TAG;
+        actionSheet.tag = ADD_TO_NETFLIX_DISC_QUEUE_TAG;
     }
 
     // we always offer the Disc queue unless the movie is instant-only.

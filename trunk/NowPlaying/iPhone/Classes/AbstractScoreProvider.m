@@ -347,8 +347,14 @@
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:address important:NO];
 
     if (serverHash.length == 0 ||
-        [serverHash isEqual:@"0"] ||
-        [serverHash isEqual:localHash]) {
+        [serverHash isEqual:@"0"]) {
+        return;
+    }
+    
+    NSString* title = score.canonicalTitle;
+    if ([serverHash isEqual:localHash]) {
+        // save the hash again so we don't check for 3 more days.
+        [FileUtilities writeObject:serverHash toFile:[self reviewsHashFile:title]];
         return;
     }
 
@@ -358,7 +364,6 @@
         return;
     }
 
-    NSString* title = score.canonicalTitle;
     if (reviews.count == 0) {
         // we got no reviews.  only save that fact if we don't currently have
         // any reviews.  This way we don't end up checking every single time
@@ -406,7 +411,7 @@
     NSMutableArray* scoresWithReviews = [NSMutableArray array];
 
     for (Score* score in scoresMap.allValues) {
-        NSString* file = [self reviewsFile:score.canonicalTitle];
+        NSString* file = [self reviewsHashFile:score.canonicalTitle];
 
         NSDate* lastLookupDate = [FileUtilities modificationDate:file];
 
