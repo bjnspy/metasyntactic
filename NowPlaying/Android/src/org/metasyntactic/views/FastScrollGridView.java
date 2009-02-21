@@ -10,7 +10,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Debug;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.AttributeSet;
@@ -164,16 +163,11 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     mOverlayDrawable.setBounds((int) pos.left, (int) pos.top, (int) pos.right, (int) pos.bottom);
   }
 
-  boolean firstTime = true;
   public void onScrollStateChanged(final AbsListView view, final int scrollState) {
     if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
       context.sendBroadcast(new Intent(NowPlayingApplication.NOT_SCROLLING_INTENT));
     } else {
       context.sendBroadcast(new Intent(NowPlayingApplication.SCROLLING_INTENT));
-      if (firstTime) {
-        firstTime = false;
-        Debug.startMethodTracing("scrolling", 16000000);
-      }
     }
   }
 
