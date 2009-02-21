@@ -106,7 +106,7 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return 9;
+        return 8;
     } else if (section == 2) {
         return 1;
     } else if (section == 3) {
@@ -218,7 +218,7 @@
         }
 
         return [self createSettingCellWithKey:key value:value placeholder:placeholder];
-    } else if (row >= 4 && row <= 8) {
+    } else if (row >= 4 && row <= 7) {
         NSString* text;
         BOOL on;
         SEL selector;
@@ -238,11 +238,12 @@
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
-        } else if (row == 8) {
+        }/* else if (row == 8) {
             text = NSLocalizedString(@"Delay Poster Loading", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.delayPosterLoading;
             selector = @selector(onDelayPosterLoadingChanged:);            
         }
+         */
 
         return [self createToggleCellWithText:text on:on selector:selector];
     }
