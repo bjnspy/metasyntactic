@@ -13,16 +13,16 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
-
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
 
 public class ScoreCache extends AbstractCache {
   private final ScoreProvider rottenTomatoesScoreProvider;
@@ -32,14 +32,14 @@ public class ScoreCache extends AbstractCache {
 
   public ScoreCache(final NowPlayingModel model) {
     super(model);
-    this.rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(model);
-    this.metacriticScoreProvider = new MetacriticScoreProvider(model);
-    this.googleScoreProvider = new GoogleScoreProvider(model);
-    this.noneScoreProvider = new NoneScoreProvider(model);
+    rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(model);
+    metacriticScoreProvider = new MetacriticScoreProvider(model);
+    googleScoreProvider = new GoogleScoreProvider(model);
+    noneScoreProvider = new NoneScoreProvider(model);
   }
 
   private ScoreProvider[] getProviders() {
-    return new ScoreProvider[]{this.rottenTomatoesScoreProvider, this.metacriticScoreProvider, this.googleScoreProvider, this.noneScoreProvider};
+    return new ScoreProvider[]{rottenTomatoesScoreProvider, metacriticScoreProvider, googleScoreProvider, noneScoreProvider};
   }
 
   @Override
@@ -58,20 +58,20 @@ public class ScoreCache extends AbstractCache {
 
   private ScoreProvider getScoreProvider(final ScoreType type) {
     if (type.equals(ScoreType.Google)) {
-      return this.googleScoreProvider;
+      return googleScoreProvider;
     } else if (type.equals(ScoreType.Metacritic)) {
-      return this.metacriticScoreProvider;
+      return metacriticScoreProvider;
     } else if (type.equals(ScoreType.RottenTomatoes)) {
-      return this.rottenTomatoesScoreProvider;
+      return rottenTomatoesScoreProvider;
     } else if (type.equals(ScoreType.None)) {
-      return this.noneScoreProvider;
+      return noneScoreProvider;
     } else {
       throw new RuntimeException();
     }
   }
 
   private ScoreProvider getCurrentScoreProvider() {
-    return getScoreProvider(this.model.getScoreType());
+    return getScoreProvider(model.getScoreType());
   }
 
   public Score getScore(final List<Movie> movies, final Movie movie) {
@@ -79,7 +79,7 @@ public class ScoreCache extends AbstractCache {
   }
 
   public void update() {
-    final ScoreType scoreType = this.model.getScoreType();
+    final ScoreType scoreType = model.getScoreType();
     final Runnable runnable = new Runnable() {
       public void run() {
         if (ScoreCache.this.shutdown) {
@@ -99,21 +99,21 @@ public class ScoreCache extends AbstractCache {
       }
     };
 
-    ThreadingUtilities.performOnBackgroundThread("Update score providers", runnable, this.lock, true);
+    ThreadingUtilities.performOnBackgroundThread("Update score providers", runnable, lock, false);
   }
 
   public List<Review> getReviews(final List<Movie> movies, final Movie movie) {
-    ScoreProvider provider = getScoreProvider(this.model.getScoreType());
-    if (provider == this.rottenTomatoesScoreProvider) {
-      provider = this.metacriticScoreProvider;
+    ScoreProvider provider = getScoreProvider(model.getScoreType());
+    if (provider == rottenTomatoesScoreProvider) {
+      provider = metacriticScoreProvider;
     }
     return provider.getReviews(movies, movie);
   }
 
   public void prioritizeMovie(final List<Movie> movies, final Movie movie) {
-    ScoreProvider provider = getScoreProvider(this.model.getScoreType());
-    if (provider == this.rottenTomatoesScoreProvider) {
-      provider = this.metacriticScoreProvider;
+    ScoreProvider provider = getScoreProvider(model.getScoreType());
+    if (provider == rottenTomatoesScoreProvider) {
+      provider = metacriticScoreProvider;
     }
     provider.prioritizeMovie(movies, movie);
   }
@@ -133,7 +133,7 @@ public class ScoreCache extends AbstractCache {
 
   @Override
   public void onLowMemory() {
-    for (ScoreProvider provider : getProviders()) {
+    for (final ScoreProvider provider : getProviders()) {
       provider.onLowMemory();
     }
   }

@@ -18,8 +18,6 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
@@ -34,9 +32,23 @@ import org.metasyntactic.utilities.NetworkUtilities;
 
 public class PosterCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
+  private final BoundedPrioritySet<Movie> moviesWithoutLinks = new BoundedPrioritySet<Movie>();
+  private final BoundedPrioritySet<Movie> moviesWithLinks = new BoundedPrioritySet<Movie>();
+  private final Object lock = new Object();
 
   public PosterCache(final NowPlayingModel model) {
     super(model);
+
+    final Runnable runnable = new Runnable() {
+      public void run() {
+        try {
+          updateBackgroundEntryPoint();
+        } catch (final InterruptedException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    };
+    ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, null, false);
   }
 
   private static File posterFile(final Movie movie) {
@@ -44,26 +56,34 @@ public class PosterCache extends AbstractCache {
   }
 
   public void update(final List<Movie> movies) {
-    final Runnable runnable = new Runnable() {
-      public void run() {
-        updateBackgroundEntryPoint(movies);
+    synchronized (lock) {
+      for (final Movie movie : movies) {
+        if (isNullOrEmpty(movie.getPoster())) {
+          moviesWithoutLinks.add(movie);
+        } else {
+          moviesWithLinks.add(movie);
+        }
       }
-    };
-    ThreadingUtilities.performOnBackgroundThread("Update Posters", runnable, lock, false);
+
+      lock.notify();
+    }
   }
 
-  private void updateBackgroundEntryPoint(final List<Movie> movies) {
-    downloadPosters(movies);
-  }
+  private void updateBackgroundEntryPoint() throws InterruptedException {
+    while (!shutdown) {
+      Movie movie = null;
+      synchronized (lock) {
+        while (!shutdown &&
+            (movie = prioritizedMovies.removeAny()) == null &&
+            (movie = moviesWithLinks.removeAny()) == null &&
+            (movie = moviesWithoutLinks.removeAny()) == null) {
+          lock.wait();
+        }
+      }
 
-  private void downloadPosters(final List<Movie> movies) {
-    final Set<Movie> moviesSet = new TreeSet<Movie>(movies);
-
-    Movie movie;
-    do {
-      movie = prioritizedMovies.removeAny(moviesSet);
       downloadPoster(movie);
-    } while (movie != null && !shutdown);
+      Thread.sleep(1000);
+    }
   }
 
   private void downloadPoster(final Movie movie) {
@@ -71,31 +91,32 @@ public class PosterCache extends AbstractCache {
       return;
     }
 
-    if (posterFile(movie).exists()) {
+    final File file = posterFile(movie);
+    if (file.exists()) {
       return;
     }
 
     final byte[] data = downloadPosterWorker(movie);
     if (data != null) {
-      FileUtilities.writeBytes(data, posterFile(movie));
+      FileUtilities.writeBytes(data, file);
       NowPlayingApplication.refresh();
     }
   }
 
   private byte[] downloadPosterWorker(final Movie movie) {
-    //if (shutdown) { return; }
+    // if (shutdown) { return; }
     byte[] data = NetworkUtilities.download(movie.getPoster(), false);
     if (data != null) {
       return data;
     }
 
-    //if (shutdown) { return; }
+    // if (shutdown) { return; }
     data = ApplePosterDownloader.download(movie);
     if (data != null) {
       return data;
     }
 
-    //if (shutdown) { return; }
+    // if (shutdown) { return; }
     data = downloadPosterFromFandango(movie);
     if (data != null) {
       return data;
@@ -106,7 +127,7 @@ public class PosterCache extends AbstractCache {
      * data; }
      */
 
-    //if (shutdown) { return; }
+    // if (shutdown) { return; }
     model.getLargePosterCache().downloadFirstPoster(movie);
 
     return null;
@@ -138,15 +159,13 @@ public class PosterCache extends AbstractCache {
   }
 
   public void prioritizeMovie(final Movie movie) {
-    if (posterFile(movie).exists()) {
-      return;
+    synchronized (lock) {
+      prioritizedMovies.add(movie);
+      lock.notify();
     }
-
-    prioritizedMovies.add(movie);
   }
 
-  @Override
-  public void onLowMemory() {
+  @Override public void onLowMemory() {
     super.onLowMemory();
     ApplePosterDownloader.onLowMemory();
     FandangoPosterDownloader.onLowMemory();

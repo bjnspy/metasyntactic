@@ -123,6 +123,7 @@ public class NowPlayingApplication extends Application {
   @Override public void onLowMemory() {
     super.onLowMemory();
     NowPlayingControllerWrapper.onLowMemory();
+    FileUtilities.onLowMemory();
   }
 
   public static void initialize() {
