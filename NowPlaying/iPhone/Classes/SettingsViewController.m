@@ -106,7 +106,7 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return 8;
+        return 9;
     } else if (section == 2) {
         return 1;
     } else if (section == 3) {
@@ -143,6 +143,7 @@
                                      selector:(SEL) selector {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.font = [UIFont boldSystemFontOfSize:16];
 
     UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.accessoryView = picker;
@@ -217,7 +218,7 @@
         }
 
         return [self createSettingCellWithKey:key value:value placeholder:placeholder];
-    } else if (row >= 4 && row <= 7) {
+    } else if (row >= 4 && row <= 8) {
         NSString* text;
         BOOL on;
         SEL selector;
@@ -237,6 +238,10 @@
             text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
             on = self.model.useSmallFonts;
             selector = @selector(onUseSmallFontsChanged:);
+        } else if (row == 8) {
+            text = NSLocalizedString(@"Delay Poster Loading", @"This string has to be small enough to be visible with a picker switch next to it");
+            on = self.model.delayPosterLoading;
+            selector = @selector(onDelayPosterLoadingChanged:);            
         }
 
         return [self createToggleCellWithText:text on:on selector:selector];
@@ -327,6 +332,11 @@
 
 - (void) onAutoUpdateChanged:(id) sender {
     [self.controller setAutoUpdateLocation:!self.model.autoUpdateLocation];
+}
+
+
+- (void) onDelayPosterLoadingChanged:(id) sender {
+    [self.controller setDelayPosterLoading:!self.model.delayPosterLoading];
 }
 
 

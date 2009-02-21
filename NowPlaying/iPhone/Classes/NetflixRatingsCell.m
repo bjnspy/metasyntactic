@@ -47,8 +47,6 @@
 
 
 - (void) setupNetflixRating {
-    //[self clearImages];
-
     CGFloat rating = [[model.netflixCache netflixRatingForMovie:movie] floatValue];
 
     for (NSInteger i = 0; i < 5; i++) {
@@ -90,8 +88,6 @@
 
 
 - (void) setupUserRating:(NSString*) userRating {
-    //[self clearImages];
-
     CGFloat rating = [userRating floatValue];
 
     for (NSInteger i = -1; i < 5; i++) {
