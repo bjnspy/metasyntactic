@@ -13,6 +13,29 @@
 //limitations under the License.
 package org.metasyntactic.utilities;
 
+import static org.metasyntactic.utilities.CollectionUtilities.nonNullCollection;
+import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
+
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.io.Persistable;
 import org.metasyntactic.io.PersistableInputStream;
@@ -20,11 +43,6 @@ import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.time.Days;
 
 import android.os.Environment;
-import static org.metasyntactic.utilities.CollectionUtilities.nonNullCollection;
-import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
-
-import java.io.*;
-import java.util.*;
 
 public class FileUtilities {
   private static final boolean USE_PERSISTABLE = true;
@@ -32,6 +50,8 @@ public class FileUtilities {
   private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
 
   private static boolean sdcardAccessible = true;
+
+  private static final Map<String,String> sanitizedNameMap = new HashMap<String,String>();
 
   static {
     sdcardAccessible = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
@@ -57,7 +77,7 @@ public class FileUtilities {
     return Days.daysBetween(today, releaseDate);
   }
 
-  public static String sanitizeFileName(final String name) {
+  public static String sanitizeFileNameWorker(final String name) {
     final StringBuilder result = new StringBuilder(name.length() * 2);
     for (final char c : name.toCharArray()) {
       if (isLegalCharacter(c)) {
@@ -69,6 +89,23 @@ public class FileUtilities {
       }
     }
     return result.toString();
+  }
+
+  public static String sanitizeFileName(final String name) {
+    synchronized (lock) {
+      String result = sanitizedNameMap.get(name);
+      if (result == null) {
+        result = sanitizeFileNameWorker(name);
+        sanitizedNameMap.put(name, result);
+      }
+      return result;
+    }
+  }
+
+  public static void onLowMemory() {
+    synchronized (lock) {
+      sanitizedNameMap.clear();
+    }
   }
 
   private static boolean isLegalCharacter(final char c) {
@@ -115,7 +152,7 @@ public class FileUtilities {
     return new PersistableInputStream(new DataInputStream(new FileInputStream(file)));
   }
 
-  private static PersistableOutputStream createOutputStream(ByteArrayOutputStream byteOut) {
+  private static PersistableOutputStream createOutputStream(final ByteArrayOutputStream byteOut) {
     return new PersistableOutputStream(new DataOutputStream(byteOut));
   }
 

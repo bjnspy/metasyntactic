@@ -13,23 +13,38 @@
 // limitations under the License.
 package org.metasyntactic.caches;
 
-import org.metasyntactic.NowPlayingApplication;
+import static java.lang.String.valueOf;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+import static org.metasyntactic.utilities.XmlUtilities.children;
+
+import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.*;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-import static org.metasyntactic.utilities.XmlUtilities.children;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.utilities.XmlUtilities;
 import org.w3c.dom.Element;
-
-import java.io.File;
-import static java.lang.String.valueOf;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 public class UpcomingCache extends AbstractCache {
   private static int identifier;
@@ -61,18 +76,18 @@ public class UpcomingCache extends AbstractCache {
   }
 
   private String getHash() {
-    if (this.hash == null) {
-      this.hash = FileUtilities.readString(hashFile());
-      if (this.hash == null) {
-        this.hash = "";
+    if (hash == null) {
+      hash = FileUtilities.readString(hashFile());
+      if (hash == null) {
+        hash = "";
       }
     }
 
-    return this.hash;
+    return hash;
   }
 
   public List<Movie> getMovies() {
-    if (this.movies == null) {
+    if (movies == null) {
       final Date today = new Date();
       List<Movie> list = FileUtilities.readPersistableList(Movie.reader, moviesFile());
       if (list == null) {
@@ -86,36 +101,36 @@ public class UpcomingCache extends AbstractCache {
         }
       }
 
-      this.movies = list;
+      movies = list;
     }
 
-    return Collections.unmodifiableList(this.movies);
+    return Collections.unmodifiableList(movies);
   }
 
   private Map<String, String> getStudioKeys() {
-    if (this.studioKeys == null) {
-      this.studioKeys = FileUtilities.readStringToStringMap(studiosFile());
-      if (this.studioKeys == null) {
-        this.studioKeys = Collections.emptyMap();
+    if (studioKeys == null) {
+      studioKeys = FileUtilities.readStringToStringMap(studiosFile());
+      if (studioKeys == null) {
+        studioKeys = Collections.emptyMap();
       }
     }
 
-    return this.studioKeys;
+    return studioKeys;
   }
 
   private Map<String, String> getTitleKeys() {
-    if (this.titleKeys == null) {
-      this.titleKeys = FileUtilities.readStringToStringMap(titlesFile());
-      if (this.titleKeys == null) {
-        this.titleKeys = Collections.emptyMap();
+    if (titleKeys == null) {
+      titleKeys = FileUtilities.readStringToStringMap(titlesFile());
+      if (titleKeys == null) {
+        titleKeys = Collections.emptyMap();
       }
     }
 
-    return this.titleKeys;
+    return titleKeys;
   }
 
   public void update() {
-    if (isNullOrEmpty(this.model.getUserAddress())) {
+    if (isNullOrEmpty(model.getUserAddress())) {
       return;
     }
 
@@ -132,7 +147,7 @@ public class UpcomingCache extends AbstractCache {
         updateDetailsBackgroundEntryPoint(localMovies, localStudioKeys, localTitleKeys);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, this.lock, false);
+    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, lock, false);
   }
 
   private void updateIndex() {
@@ -141,7 +156,7 @@ public class UpcomingCache extends AbstractCache {
         updateIndexBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, this.lock, true);
+    ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, lock, true);
   }
 
   private void updateIndexBackgroundEntryPoint() {
@@ -179,14 +194,14 @@ public class UpcomingCache extends AbstractCache {
     final Element resultElement = NetworkUtilities.downloadXml(
         "http://" + NowPlayingApplication.host + ".appspot.com/LookupUpcomingListings?q=index", false/* important */);
     LogUtilities.logTime(DataProvider.class, "Update Index - Download Xml", start);
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
 
     start = System.currentTimeMillis();
     processResultElement(resultElement, localMovies, localStudioKeys, localTitleKeys);
     LogUtilities.logTime(DataProvider.class, "Update Index - Process Xml", start);
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
     if (localMovies.isEmpty()) {
@@ -212,7 +227,7 @@ public class UpcomingCache extends AbstractCache {
 
   private void reportResultsOnMainThread(final String serverHash, final List<Movie> movies, final Map<String, String> studioKeys,
       final Map<String, String> titleKeys) {
-    this.hash = serverHash;
+    hash = serverHash;
     this.movies = movies;
     this.studioKeys = studioKeys;
     this.titleKeys = titleKeys;
@@ -232,7 +247,7 @@ public class UpcomingCache extends AbstractCache {
   private void processResultElement(final Element resultElement, final List<Movie> movies, final Map<String, String> studioKeys,
       final Map<String, String> titleKeys) {
     for (final Element movieElement : children(resultElement)) {
-      if (this.shutdown) {
+      if (shutdown) {
         return;
       }
       processMovieElement(movieElement, movies, studioKeys, titleKeys);
@@ -243,7 +258,7 @@ public class UpcomingCache extends AbstractCache {
       final Map<String, String> titleKeys) {
     final Date releaseDate;
     try {
-      releaseDate = this.formatter.parse(movieElement.getAttribute("date"));
+      releaseDate = formatter.parse(movieElement.getAttribute("date"));
     } catch (final ParseException e) {
       throw new RuntimeException(e);
     }
@@ -288,11 +303,11 @@ public class UpcomingCache extends AbstractCache {
     final Set<Movie> moviesSet = new TreeSet<Movie>(movies);
     Movie movie;
     do {
-      movie = this.prioritizedMovies.removeAny(moviesSet);
+      movie = prioritizedMovies.removeAny(moviesSet);
       if (movie != null) {
         updateDetails(movie, studioKeys.get(movie.getCanonicalTitle()), titleKeys.get(movie.getCanonicalTitle()));
       }
-    } while (movie != null && !this.shutdown);
+    } while (movie != null && !shutdown);
   }
 
   private static void updateDetails(final Movie movie, final String studioKey, final String titleKey) {
@@ -447,7 +462,7 @@ public class UpcomingCache extends AbstractCache {
   }
 
   public void prioritizeMovie(final Movie movie) {
-    this.prioritizedMovies.add(movie);
+    prioritizedMovies.add(movie);
   }
 
   @Override protected List<File> getCacheDirectories() {

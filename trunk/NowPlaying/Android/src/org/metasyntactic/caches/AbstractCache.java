@@ -58,7 +58,11 @@ public abstract class AbstractCache {
 
   public void shutdown() {
     LogUtilities.i(getClass().getSimpleName(), "Received shutdown notification");
-    shutdown = true;
+
+    synchronized (lock) {
+      shutdown = true;
+      lock.notify();
+    }
   }
 
   public void onLowMemory() {

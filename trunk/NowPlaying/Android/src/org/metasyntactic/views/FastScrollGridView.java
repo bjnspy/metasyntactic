@@ -1,5 +1,8 @@
 package org.metasyntactic.views;
 
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.activities.R;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -7,16 +10,20 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.OnHierarchyChangeListener;
-import android.widget.*;
+import android.widget.AbsListView;
+import android.widget.Adapter;
+import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.GridView;
+import android.widget.HeaderViewListAdapter;
 import android.widget.AbsListView.OnScrollListener;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.activities.R;
 
 /**
  * FastScrollView is meant for embedding {@link GridView}s that contain a large
@@ -74,10 +81,10 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   }
 
   private void useThumbDrawable(final Drawable drawable) {
-    this.mCurrentThumb = drawable;
-    this.mThumbW = 64; // mCurrentThumb.getIntrinsicWidth();
-    this.mThumbH = 52; // mCurrentThumb.getIntrinsicHeight();
-    this.mChangedBounds = true;
+    mCurrentThumb = drawable;
+    mThumbW = 64; // mCurrentThumb.getIntrinsicWidth();
+    mThumbH = 52; // mCurrentThumb.getIntrinsicHeight();
+    mChangedBounds = true;
   }
 
   private void init(final Context context) {
@@ -85,108 +92,113 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     this.context = context;
     final Resources res = context.getResources();
     useThumbDrawable(res.getDrawable(R.drawable.scrollbar_handle_accelerated_anim2));
-    this.mOverlayDrawable = res.getDrawable(R.drawable.dialog_full_dark);
-    this.mScrollCompleted = true;
+    mOverlayDrawable = res.getDrawable(R.drawable.dialog_full_dark);
+    mScrollCompleted = true;
     setWillNotDraw(false);
     // Need to know when the GridView is added
     setOnHierarchyChangeListener(this);
-    this.mOverlayPos = new RectF();
-    this.mScrollFade = new ScrollFade();
-    this.mPaint = new Paint();
-    this.mPaint.setAntiAlias(true);
-    this.mPaint.setTextAlign(Paint.Align.CENTER);
-    this.mPaint.setTextSize(this.mOverlaySize / 3);
-    this.mPaint.setColor(0xFFFFFFFF);
-    this.mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+    mOverlayPos = new RectF();
+    mScrollFade = new ScrollFade();
+    mPaint = new Paint();
+    mPaint.setAntiAlias(true);
+    mPaint.setTextAlign(Paint.Align.CENTER);
+    mPaint.setTextSize(mOverlaySize / 3);
+    mPaint.setColor(0xFFFFFFFF);
+    mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
   }
 
   private void removeThumb() {
-    this.mThumbVisible = false;
+    mThumbVisible = false;
     // Draw one last time to remove thumb
     invalidate();
   }
 
   @Override public void draw(final Canvas canvas) {
     super.draw(canvas);
-    if (!this.mThumbVisible) {
+    if (!mThumbVisible) {
       // No need to draw the rest
       return;
     }
-    final int y = this.mThumbY;
+    final int y = mThumbY;
     final int viewWidth = getWidth();
-    final FastScrollGridView.ScrollFade scrollFade = this.mScrollFade;
+    final FastScrollGridView.ScrollFade scrollFade = mScrollFade;
     int alpha = -1;
     if (scrollFade.mStarted) {
       alpha = scrollFade.getAlpha();
       if (alpha < ScrollFade.ALPHA_MAX / 2) {
-        this.mCurrentThumb.setAlpha(alpha * 2);
+        mCurrentThumb.setAlpha(alpha * 2);
       }
-      final int left = viewWidth - this.mThumbW * alpha / ScrollFade.ALPHA_MAX;
-      this.mCurrentThumb.setBounds(left, 0, viewWidth, this.mThumbH);
-      this.mChangedBounds = true;
+      final int left = viewWidth - mThumbW * alpha / ScrollFade.ALPHA_MAX;
+      mCurrentThumb.setBounds(left, 0, viewWidth, mThumbH);
+      mChangedBounds = true;
     }
     canvas.translate(0, y);
-    this.mCurrentThumb.draw(canvas);
+    mCurrentThumb.draw(canvas);
     canvas.translate(0, -y);
     // If user is dragging the scroll bar, draw the alphabet overlay
-    if (this.mDragging && this.mDrawOverlay) {
-      this.mOverlayDrawable.draw(canvas);
-      final Paint paint = this.mPaint;
+    if (mDragging && mDrawOverlay) {
+      mOverlayDrawable.draw(canvas);
+      final Paint paint = mPaint;
       final float descent = paint.descent();
-      final RectF rectF = this.mOverlayPos;
-      canvas.drawText(this.mSectionText, (int) (rectF.left + rectF.right) / 2,
-          (int) (rectF.bottom + rectF.top) / 2 + this.mOverlaySize / 6 - descent, paint);
+      final RectF rectF = mOverlayPos;
+      canvas.drawText(mSectionText, (int) (rectF.left + rectF.right) / 2,
+          (int) (rectF.bottom + rectF.top) / 2 + mOverlaySize / 6 - descent, paint);
     } else if (alpha == 0) {
       scrollFade.mStarted = false;
       removeThumb();
     } else {
-      invalidate(viewWidth - this.mThumbW, y, viewWidth, y + this.mThumbH);
+      invalidate(viewWidth - mThumbW, y, viewWidth, y + mThumbH);
     }
   }
 
   @Override protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    if (this.mCurrentThumb != null) {
-      this.mCurrentThumb.setBounds(w - this.mThumbW, 0, w, this.mThumbH);
+    if (mCurrentThumb != null) {
+      mCurrentThumb.setBounds(w - mThumbW, 0, w, mThumbH);
     }
-    final RectF pos = this.mOverlayPos;
-    pos.left = (w - this.mOverlaySize) / 2;
-    pos.right = pos.left + this.mOverlaySize;
+    final RectF pos = mOverlayPos;
+    pos.left = (w - mOverlaySize) / 2;
+    pos.right = pos.left + mOverlaySize;
     pos.top = h / 10; // 10% from top
-    pos.bottom = pos.top + this.mOverlaySize;
-    this.mOverlayDrawable.setBounds((int) pos.left, (int) pos.top, (int) pos.right, (int) pos.bottom);
+    pos.bottom = pos.top + mOverlaySize;
+    mOverlayDrawable.setBounds((int) pos.left, (int) pos.top, (int) pos.right, (int) pos.bottom);
   }
 
+  boolean firstTime = true;
   public void onScrollStateChanged(final AbsListView view, final int scrollState) {
     if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-      this.context.sendBroadcast(new Intent(NowPlayingApplication.NOT_SCROLLING_INTENT));
+      context.sendBroadcast(new Intent(NowPlayingApplication.NOT_SCROLLING_INTENT));
     } else {
-      this.context.sendBroadcast(new Intent(NowPlayingApplication.SCROLLING_INTENT));
+      context.sendBroadcast(new Intent(NowPlayingApplication.SCROLLING_INTENT));
+      if (firstTime) {
+        firstTime = false;
+        Debug.startMethodTracing("scrolling", 16000000);
+      }
     }
   }
 
   public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, final int totalItemCount) {
-    if (totalItemCount - visibleItemCount > 0 && !this.mDragging) {
-      this.mThumbY = (getHeight() - this.mThumbH) * firstVisibleItem / (totalItemCount - visibleItemCount);
-      if (this.mChangedBounds) {
+    if (totalItemCount - visibleItemCount > 0 && !mDragging) {
+      mThumbY = (getHeight() - mThumbH) * firstVisibleItem / (totalItemCount - visibleItemCount);
+      if (mChangedBounds) {
         final int viewWidth = getWidth();
-        this.mCurrentThumb.setBounds(viewWidth - this.mThumbW, 0, viewWidth, this.mThumbH);
-        this.mChangedBounds = false;
+        mCurrentThumb.setBounds(viewWidth - mThumbW, 0, viewWidth, mThumbH);
+        mChangedBounds = false;
       }
     }
-    this.mScrollCompleted = true;
-    if (firstVisibleItem == this.mVisibleItem) {
+    mScrollCompleted = true;
+    if (firstVisibleItem == mVisibleItem) {
       return;
     }
-    this.mVisibleItem = firstVisibleItem;
-    if (!this.mThumbVisible || this.mScrollFade.mStarted) {
-      this.mThumbVisible = true;
-      this.mCurrentThumb.setAlpha(ScrollFade.ALPHA_MAX);
+    mVisibleItem = firstVisibleItem;
+    if (!mThumbVisible || mScrollFade.mStarted) {
+      mThumbVisible = true;
+      mCurrentThumb.setAlpha(ScrollFade.ALPHA_MAX);
     }
-    this.mHandler.removeCallbacks(this.mScrollFade);
-    this.mScrollFade.mStarted = false;
-    if (!this.mDragging) {
-      this.mHandler.postDelayed(this.mScrollFade, 1500);
+    mHandler.removeCallbacks(mScrollFade);
+    mScrollFade.mStarted = false;
+    if (!mDragging) {
+      mHandler.postDelayed(mScrollFade, 1500);
     }
   }
 
@@ -219,9 +231,9 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
   }
 
   @Override public boolean onInterceptTouchEvent(final MotionEvent ev) {
-    if (this.mThumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
-      if (ev.getX() > getWidth() - this.mThumbW && ev.getY() >= this.mThumbY && ev.getY() <= this.mThumbY + this.mThumbH) {
-        this.mDragging = true;
+    if (mThumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
+      if (ev.getX() > getWidth() - mThumbW && ev.getY() >= mThumbY && ev.getY() <= mThumbY + mThumbH) {
+        mDragging = true;
         return true;
       }
     }
@@ -230,7 +242,7 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
 
   private void scrollTo(final float position) {
     final int count = mGrid.getCount();
-    this.mScrollCompleted = false;
+    mScrollCompleted = false;
     final Object[] sections = mSections;
     int sectionIndex;
     if (sections != null && sections.length > 1) {
@@ -296,10 +308,10 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
       sectionIndex = -1;
     }
     if (sectionIndex >= 0) {
-      final String text = this.mSectionText = sections[sectionIndex].toString();
-      this.mDrawOverlay = (text.length() != 1 || text.charAt(0) != ' ') && sectionIndex < sections.length;
+      final String text = mSectionText = sections[sectionIndex].toString();
+      mDrawOverlay = (text.length() != 1 || text.charAt(0) != ' ') && sectionIndex < sections.length;
     } else {
-      this.mDrawOverlay = false;
+      mDrawOverlay = false;
     }
   }
 
@@ -312,8 +324,8 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
 
   @Override public boolean onTouchEvent(final MotionEvent me) {
     if (me.getAction() == MotionEvent.ACTION_DOWN) {
-      if (me.getX() > getWidth() - this.mThumbW && me.getY() >= this.mThumbY && me.getY() <= this.mThumbY + this.mThumbH) {
-        this.mDragging = true;
+      if (me.getX() > getWidth() - mThumbW && me.getY() >= mThumbY && me.getY() <= mThumbY + mThumbH) {
+        mDragging = true;
         if (mGridAdapter == null && mGrid != null) {
           getSections();
         }
@@ -321,25 +333,25 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
         return true;
       }
     } else if (me.getAction() == MotionEvent.ACTION_UP) {
-      if (this.mDragging) {
-        this.mDragging = false;
-        final Handler handler = this.mHandler;
-        handler.removeCallbacks(this.mScrollFade);
-        handler.postDelayed(this.mScrollFade, 1000);
+      if (mDragging) {
+        mDragging = false;
+        final Handler handler = mHandler;
+        handler.removeCallbacks(mScrollFade);
+        handler.postDelayed(mScrollFade, 1000);
         return true;
       }
     } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
-      if (this.mDragging) {
+      if (mDragging) {
         final int viewHeight = getHeight();
-        this.mThumbY = (int) me.getY() - this.mThumbH + 10;
-        if (this.mThumbY < 0) {
-          this.mThumbY = 0;
-        } else if (this.mThumbY + this.mThumbH > viewHeight) {
-          this.mThumbY = viewHeight - this.mThumbH;
+        mThumbY = (int) me.getY() - mThumbH + 10;
+        if (mThumbY < 0) {
+          mThumbY = 0;
+        } else if (mThumbY + mThumbH > viewHeight) {
+          mThumbY = viewHeight - mThumbH;
         }
         // If the previous scrollTo is still pending
-        if (this.mScrollCompleted) {
-          scrollTo((float) this.mThumbY / (viewHeight - this.mThumbH));
+        if (mScrollCompleted) {
+          scrollTo((float) mThumbY / (viewHeight - mThumbH));
         }
         return true;
       }
@@ -355,36 +367,36 @@ public class FastScrollGridView extends FrameLayout implements OnScrollListener,
     static final long FADE_DURATION = 200;
 
     void startFade() {
-      this.mFadeDuration = FADE_DURATION;
-      this.mStartTime = SystemClock.uptimeMillis();
-      this.mStarted = true;
+      mFadeDuration = FADE_DURATION;
+      mStartTime = SystemClock.uptimeMillis();
+      mStarted = true;
     }
 
     int getAlpha() {
-      if (!this.mStarted) {
+      if (!mStarted) {
         return ALPHA_MAX;
       }
       int alpha;
       final long now = SystemClock.uptimeMillis();
-      if (now > this.mStartTime + this.mFadeDuration) {
+      if (now > mStartTime + mFadeDuration) {
         alpha = 0;
       } else {
-        alpha = (int) (ALPHA_MAX - (now - this.mStartTime) * ALPHA_MAX / this.mFadeDuration);
+        alpha = (int) (ALPHA_MAX - (now - mStartTime) * ALPHA_MAX / mFadeDuration);
       }
       return alpha;
     }
 
     public void run() {
-      if (!this.mStarted) {
+      if (!mStarted) {
         startFade();
         invalidate();
       }
       if (getAlpha() > 0) {
-        final int y = FastScrollGridView.this.mThumbY;
+        final int y = mThumbY;
         final int viewWidth = getWidth();
-        invalidate(viewWidth - FastScrollGridView.this.mThumbW, y, viewWidth, y + FastScrollGridView.this.mThumbH);
+        invalidate(viewWidth - mThumbW, y, viewWidth, y + mThumbH);
       } else {
-        this.mStarted = false;
+        mStarted = false;
         removeThumb();
       }
     }

@@ -16,6 +16,7 @@ package org.metasyntactic.collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BoundedPrioritySet<T> {
@@ -27,13 +28,31 @@ public class BoundedPrioritySet<T> {
     this.maxSize = maxSize;
   }
 
+  public BoundedPrioritySet() {
+    this(-1);
+  }
+
   public void add(final T value) {
     synchronized (this.lock) {
-      this.set.remove(value);
-      this.set.add(value);
+      addNoLock(value);
+    }
+  }
 
+  private void addNoLock(final T value) {
+    this.set.remove(value);
+    this.set.add(value);
+
+    if (maxSize > 0) {
       if (this.set.size() > this.maxSize) {
         removeAny();
+      }
+    }
+  }
+
+  public void addAll(final List<T> values) {
+    synchronized (lock) {
+      for (int i = values.size() - 1; i >= 0; i--) {
+        addNoLock(values.get(i));
       }
     }
   }
@@ -66,6 +85,12 @@ public class BoundedPrioritySet<T> {
       }
 
       return value;
+    }
+  }
+
+  public int size() {
+    synchronized (lock) {
+      return set.size();
     }
   }
 }
