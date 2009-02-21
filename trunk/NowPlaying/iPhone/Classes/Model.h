@@ -142,6 +142,9 @@ enum ViewControllerType {
 - (BOOL) prioritizeBookmarks;
 - (void) setPrioritizeBookmarks:(BOOL) value;
 
+- (BOOL) delayPosterLoading;
+- (void) setDelayPosterLoading:(BOOL) value;
+
 - (BOOL) autoUpdateLocation;
 - (void) setAutoUpdateLocation:(BOOL) value;
 

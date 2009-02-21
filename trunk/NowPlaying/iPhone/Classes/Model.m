@@ -120,6 +120,7 @@ static NSString* HAS_SHOWN_WRITE_REVIEW_REQUEST         = @"hasShownWriteReviewR
 static NSString* DVD_BLURAY_DISABLED                    = @"dvdBlurayDisabled";
 static NSString* UPCOMING_DISABLED                      = @"upcomingDisabled";
 static NSString* NETFLIX_THEME                          = @"netflixTheme";
+static NSString* SHOW_POSTERS_IMMEDIATELY               = @"showPostersImmediately";
 
 static NSString** ALL_KEYS[] = {
 &VERSION,
@@ -157,6 +158,8 @@ static NSString** ALL_KEYS[] = {
 &NETFLIX_PREFERRED_FORMATS,
 &DVD_BLURAY_DISABLED,
 &UPCOMING_DISABLED,
+&NETFLIX_THEME,
+&SHOW_POSTERS_IMMEDIATELY,
 };
 
 
@@ -193,6 +196,7 @@ static NSString** BOOLEAN_KEYS_TO_MIGRATE[] = {
 &HAS_SHOWN_WRITE_REVIEW_REQUEST,
 &DVD_BLURAY_DISABLED,
 &UPCOMING_DISABLED,
+&SHOW_POSTERS_IMMEDIATELY,
 };
 
 static NSString** DATE_KEYS_TO_MIGRATE[] = {
@@ -925,6 +929,16 @@ static NSString** MOVIE_ARRAY_KEYS_TO_MIGRATE[] = {
 
 - (void) setAutoUpdateLocation:(BOOL) value {
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:AUTO_UPDATE_LOCATION];
+}
+
+
+- (BOOL) delayPosterLoading {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:SHOW_POSTERS_IMMEDIATELY]; 
+}
+
+
+- (void) setDelayPosterLoading:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:SHOW_POSTERS_IMMEDIATELY];
 }
 
 

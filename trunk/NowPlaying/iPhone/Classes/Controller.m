@@ -249,6 +249,11 @@
 }
 
 
+- (void) setDelayPosterLoading:(BOOL) value {
+    [self.model setDelayPosterLoading:value];
+}
+
+
 - (void) setDvdBlurayEnabled:(BOOL) value {
     [self.model setDvdBlurayEnabled:value];
     [appDelegate.tabBarController resetTabs:YES];
