@@ -149,6 +149,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
         intent.setAction("android.intent.action.VIEW");
         intent.setData(Uri.parse(trailer_url));
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.play_trailer),
+            //null, MovieDetailItemType.TRAILER, null, true);
             null, MovieDetailItemType.ACTION, intent, true);
         movieDetailEntries.add(entry);
       }
@@ -252,11 +253,20 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
         final TextView headerView = (TextView) convertView.findViewById(R.id.name);
         headerView.setText(entry.name);
         break;
-      case ACTION:
+      case ACTION: {
         convertView = inflater.inflate(R.layout.dataview, null);
-        final TextView actionView = (TextView) convertView.findViewById(R.id.name);
-        actionView.setText(entry.name);
+        final TextView view = (TextView) convertView.findViewById(R.id.name);
+        view.setText(entry.name);
         break;
+      }
+      /*
+      case TRAILER: {
+        convertView = inflater.inflate(R.layout.dataview, null);
+        final TextView view = (TextView) convertView.findViewById(R.id.name);
+        view.setText(entry.name);
+        break;
+      }
+       */
       }
       return convertView;
     }
@@ -318,21 +328,46 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(
         R.drawable.ic_menu_home).setIntent(new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(
-        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu","yes"));
+        android.R.drawable.ic_menu_preferences).setIntent(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 
   private enum MovieDetailItemType {
-    POSTER_SYNOPSIS, DATA, ACTION, HEADER
+    POSTER_SYNOPSIS, DATA, ACTION, HEADER, //TRAILER
   }
 
   @Override
   protected void onListItemClick(final ListView listView, final View view, final int position,
       final long id) {
-    final Intent intent = movieDetailEntries.get(position).intent;
+
+    final MovieDetailEntry entry = movieDetailEntries.get(position);
+    final Intent intent = entry.intent;
     if (intent != null) {
       startActivity(intent);
     }
+    /*
+    if (entry.type == MovieDetailItemType.TRAILER) {
+      final String trailer_url = NowPlayingControllerWrapper.getTrailer(movie);
+      if (!isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
+        final MediaPlayer player = new MediaPlayer();
+        try {
+          player.setDataSource(trailer_url);
+          player.prepare();
+          player.start();
+
+          player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(final MediaPlayer mediaPlayer) {
+              mediaPlayer.release();
+            }
+          });
+
+          player.start();
+        } catch (final IOException e) {
+          player.release();
+        }
+      }
+    }
+     */
     super.onListItemClick(listView, view, position, id);
   }
 }

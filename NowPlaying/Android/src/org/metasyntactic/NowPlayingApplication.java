@@ -14,6 +14,7 @@
 package org.metasyntactic;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -153,6 +154,12 @@ public class NowPlayingApplication extends Application {
     final long start = System.currentTimeMillis();
     for (final File file : directories()) {
       file.mkdirs();
+      final File nomediaFile = new File(file, ".nomedia");
+      try {
+        nomediaFile.createNewFile();
+      } catch (final IOException e) {
+        throw new RuntimeException(e);
+      }
     }
     LogUtilities.logTime(NowPlayingApplication.class, "Create Directories", start);
   }
