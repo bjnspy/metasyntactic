@@ -1,5 +1,7 @@
 package org.metasyntactic.activities;
 
+import static org.apache.commons.collections.CollectionUtils.isEmpty;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,7 +29,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -54,8 +55,6 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     final TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
-    final Button scoreImg = (Button) findViewById(R.id.score);
-    final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final TextView ratingLengthLabel = (TextView) findViewById(R.id.ratingLength);
     final CharSequence rating = MovieViewUtilities.formatRatings(movie.getRating(), res);
     final CharSequence length = MovieViewUtilities.formatLength(movie.getLength(), res);
@@ -94,7 +93,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
 
   private void populateMovieDetailEntries() {
     movieDetailEntries = (List<MovieDetailEntry>) getLastNonConfigurationInstance();
-    if (movieDetailEntries == null || movieDetailEntries.isEmpty()) {
+    if (isEmpty(movieDetailEntries)) {
       movieDetailEntries = new ArrayList<MovieDetailEntry>();
       final Resources res = getResources();
       // Add title and synopsis
@@ -145,11 +144,9 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
       // Add trailer
       final String trailer_url = NowPlayingControllerWrapper.getTrailer(movie);
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
-        final Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        intent.setData(Uri.parse(trailer_url));
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse(trailer_url),"video/*");
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.play_trailer),
-            //null, MovieDetailItemType.TRAILER, null, true);
             null, MovieDetailItemType.ACTION, intent, true);
         movieDetailEntries.add(entry);
       }
@@ -259,14 +256,12 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
         view.setText(entry.name);
         break;
       }
-      /*
       case TRAILER: {
         convertView = inflater.inflate(R.layout.dataview, null);
         final TextView view = (TextView) convertView.findViewById(R.id.name);
         view.setText(entry.name);
         break;
       }
-       */
       }
       return convertView;
     }
@@ -333,7 +328,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
   }
 
   private enum MovieDetailItemType {
-    POSTER_SYNOPSIS, DATA, ACTION, HEADER, //TRAILER
+    POSTER_SYNOPSIS, DATA, ACTION, HEADER
   }
 
   @Override
@@ -345,29 +340,7 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
     if (intent != null) {
       startActivity(intent);
     }
-    /*
-    if (entry.type == MovieDetailItemType.TRAILER) {
-      final String trailer_url = NowPlayingControllerWrapper.getTrailer(movie);
-      if (!isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
-        final MediaPlayer player = new MediaPlayer();
-        try {
-          player.setDataSource(trailer_url);
-          player.prepare();
-          player.start();
 
-          player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            public void onCompletion(final MediaPlayer mediaPlayer) {
-              mediaPlayer.release();
-            }
-          });
-
-          player.start();
-        } catch (final IOException e) {
-          player.release();
-        }
-      }
-    }
-     */
     super.onListItemClick(listView, view, position, id);
   }
 }
