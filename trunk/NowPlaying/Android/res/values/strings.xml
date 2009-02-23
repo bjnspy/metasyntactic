@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="application_name">Now Playing</string>
-    <string name="application_name_and_version">Now Playing v1.2</string>
+    <string name="application_name_and_version">Now Playing v1.3</string>
     <string name="sort_movies">Sort Movies</string>
     <string name="sort_theaters">Sort Theaters</string>
     <string name="menu_movies">Home</string>
