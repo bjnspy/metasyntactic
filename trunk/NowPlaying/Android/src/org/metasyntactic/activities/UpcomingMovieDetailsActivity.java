@@ -256,12 +256,6 @@ public class UpcomingMovieDetailsActivity extends ListActivity {
         view.setText(entry.name);
         break;
       }
-      case TRAILER: {
-        convertView = inflater.inflate(R.layout.dataview, null);
-        final TextView view = (TextView) convertView.findViewById(R.id.name);
-        view.setText(entry.name);
-        break;
-      }
       }
       return convertView;
     }
