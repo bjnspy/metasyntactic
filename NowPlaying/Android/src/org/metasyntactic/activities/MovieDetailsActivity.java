@@ -1,5 +1,19 @@
 package org.metasyntactic.activities;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Review;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -22,21 +36,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.metasyntactic.NowPlayingControllerWrapper;
-
-import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Review;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author mjoshi@google.com (Megha Joshi)
@@ -149,9 +148,8 @@ public class MovieDetailsActivity extends ListActivity {
       // Add trailer
       final String trailer_url = NowPlayingControllerWrapper.getTrailer(movie);
       if (!StringUtilities.isNullOrEmpty(trailer_url) && trailer_url.startsWith("http")) {
-        final Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        intent.setData(Uri.parse(trailer_url));
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse(trailer_url),"video/*");
         final MovieDetailEntry entry = new MovieDetailEntry(res.getString(R.string.play_trailer),
             null, MovieDetailItemType.ACTION, intent, true);
         movieDetailEntries.add(entry);
