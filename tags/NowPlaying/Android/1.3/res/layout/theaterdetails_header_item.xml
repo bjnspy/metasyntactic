@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="64dip"
+    android:background="@color/title_background">
+    <TextView
+        android:id="@+id/theater"
+        android:layout_width="wrap_content"
+        android:paddingLeft="5px"
+        android:background="@color/title_background"
+        android:paddingTop="20px"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?android:attr/textColorPrimaryDisableOnly"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:shadowColor="@color/shadow"
+        android:shadowRadius="2"
+        android:singleLine="true"
+        android:ellipsize="end" />
+</LinearLayout>
