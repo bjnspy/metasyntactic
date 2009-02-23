@@ -4,6 +4,7 @@
     package="org.metasyntactic.activities"
     android:versionCode="3"
     android:versionName="1.2">
+    <uses-sdk minSdkVersion="2" />
     <application
         android:icon="@drawable/launcher"
         android:label="@string/application_name"
