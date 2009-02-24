@@ -13,7 +13,7 @@
 // limitations under the License.
 package org.metasyntactic.utilities;
 
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * @author cyrusn@google.com (Cyrus Najmabadi)
@@ -22,7 +22,7 @@ public class SetUtilities {
   private SetUtilities() {
   }
 
-  public static <T> T any(final Set<T> set) {
+  public static <T> T any(final Collection<T> set) {
     if (set.isEmpty()) {
       return null;
     }

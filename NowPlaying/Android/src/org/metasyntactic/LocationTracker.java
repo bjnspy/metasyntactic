@@ -34,28 +34,28 @@ public class LocationTracker implements LocationListener {
 
   public LocationTracker(final NowPlayingController controller, final Context context) {
     this.controller = controller;
-    this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+    locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
     autoUpdateLocation();
   }
 
   private void autoUpdateLocation() {
-    if (this.controller.isAutoUpdateEnabled()) {
+    if (controller.isAutoUpdateEnabled()) {
       final Criteria criteria = new Criteria();
       criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-      final String provider = this.locationManager.getBestProvider(criteria, true);
+      final String provider = locationManager.getBestProvider(criteria, true);
       if (provider != null) {
         final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
         if (context != null) {
           context.sendBroadcast(new Intent(NowPlayingApplication.NOW_PLAYING_UPDATING_LOCATION_START));
         }
-        this.locationManager.requestLocationUpdates(provider, 5 * 60 * 1000, 1000, this);
+        locationManager.requestLocationUpdates(provider, 5 * 60 * 1000, 1000, this);
       }
     }
   }
 
   public void shutdown() {
-    this.shutdown = true;
-    this.locationManager.removeUpdates(this);
+    shutdown = true;
+    locationManager.removeUpdates(this);
   }
 
   public void onLocationChanged(final android.location.Location location) {
@@ -67,7 +67,7 @@ public class LocationTracker implements LocationListener {
         findLocationBackgroundEntryPoint(location.getLatitude(), location.getLongitude());
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Lookup location", runnable, this.lock, true);
+    ThreadingUtilities.performOnBackgroundThread("Lookup location", runnable, lock, true);
   }
 
   private void findLocationBackgroundEntryPoint(final double latitude, final double longitude) {
@@ -84,7 +84,7 @@ public class LocationTracker implements LocationListener {
   }
 
   private void reportFoundLocation(final Location location) {
-    if (this.shutdown) {
+    if (shutdown) {
       return;
     }
     final Context context = NowPlayingControllerWrapper.tryGetApplicationContext();
@@ -94,7 +94,7 @@ public class LocationTracker implements LocationListener {
 
     final String displayString = location.toDisplayString();
     NowPlayingController.reportLocationForAddress(location, displayString);
-    this.controller.setUserAddress(displayString);
+    controller.setUserAddress(displayString);
   }
 
   public void onStatusChanged(final String s, final int i, final Bundle bundle) {

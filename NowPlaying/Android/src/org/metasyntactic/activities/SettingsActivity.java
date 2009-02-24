@@ -17,7 +17,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -30,7 +29,6 @@ import org.metasyntactic.INowPlaying;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.data.Theater;
 import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.utilities.StringUtilities;
@@ -44,10 +42,10 @@ import java.util.Date;
 import java.util.List;
 
 public class SettingsActivity extends ListActivity implements INowPlaying {
-  private List<Theater> theaters;
   private List<SettingsItem> detailItems;
   private SettingsAdapter settingsAdapter;
   private boolean isFirst;
+
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -80,13 +78,13 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     }
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.settings);
-    final Button next = (Button) findViewById(R.id.next);
+    final View next = findViewById(R.id.next);
     next.setOnClickListener(new OnClickListener() {
       public void onClick(final View arg0) {
         final String searchLocation = NowPlayingControllerWrapper.getUserLocation();
         if (StringUtilities.isNullOrEmpty(searchLocation)) {
           Toast.makeText(SettingsActivity.this,
-            SettingsActivity.this.getResources().getString(R.string.please_enter_your_location),
+            getResources().getString(R.string.please_enter_your_location),
             Toast.LENGTH_LONG).show();
         } else {
           final Intent intent = new Intent();
@@ -198,7 +196,6 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
 
   @Override
   protected void onPrepareDialog(final int id, Dialog dialog) {
-    // TODO Auto-generated method stub
     super.onPrepareDialog(id, dialog);
     switch (id) {
       case 1:
@@ -207,7 +204,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         // The order in which the methods on the NowPlayingPreferenceDialog object
         // are called
         // should not be changed.
-        ((org.metasyntactic.views.NowPlayingPreferenceDialog) dialog).setTextView(textEntryView);
+        ((NowPlayingPreferenceDialog) dialog).setTextView(textEntryView);
         break;
       case 2:
         // The order in which the methods on the NowPlayingPreferenceDialog object
@@ -215,20 +212,20 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
         // should not be changed.
         final String[] distanceValues = getResources().getStringArray(
           R.array.entries_search_distance_preference);
-        ((org.metasyntactic.views.NowPlayingPreferenceDialog) dialog).setItems(distanceValues);
+        ((NowPlayingPreferenceDialog) dialog).setItems(distanceValues);
         break;
       case 4:
         // The order in which the methods on the NowPlayingPreferenceDialog object
         // are called
         // should not be changed.
-        ((org.metasyntactic.views.NowPlayingPreferenceDialog) dialog)
+        ((NowPlayingPreferenceDialog) dialog)
           .setEntries(R.array.entries_reviews_provider_preference);
         break;
       case 0:
         // The order in which the methods on the NowPlayingPreferenceDialog object
         // are called
         // should not be changed.
-        dialog = ((org.metasyntactic.views.NowPlayingPreferenceDialog) dialog)
+        dialog = ((NowPlayingPreferenceDialog) dialog)
           .setEntries(R.array.entries_auto_update_preference);
     }
   }
@@ -243,7 +240,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
           final Calendar cal1 = Calendar.getInstance();
           cal1.set(year, monthOfYear, dayOfMonth);
           NowPlayingControllerWrapper.setSearchDate(cal1.getTime());
-          SettingsActivity.this.refresh();
+          refresh();
         }
       };
       final Date searchDate = NowPlayingControllerWrapper.getSearchDate();
@@ -373,7 +370,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     }
 
     public Object getItem(final int position) {
-      return theaters.get(position);
+      return detailItems.get(position);
     }
 
     public long getItemId(final int position) {
@@ -420,7 +417,7 @@ public class SettingsActivity extends ListActivity implements INowPlaying {
     }
 
     public void setData2(final String data) {
-      this.data2 = data;
+      data2 = data;
     }
   }
 

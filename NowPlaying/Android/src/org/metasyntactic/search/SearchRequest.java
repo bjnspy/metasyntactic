@@ -31,34 +31,34 @@ public class SearchRequest {
   public SearchRequest(final int requestId, final String value, final NowPlayingModel model) {
     this.requestId = requestId;
     this.value = value;
-    this.lowercaseValue = toASCII(value).toLowerCase();
+    lowercaseValue = toASCII(value).toLowerCase();
 
-    this.movies = model.getMovies();
-    this.theaters = model.getTheaters();
-    this.upcomingMovies = model.getUpcomingMovies();
+    movies = model.getMovies();
+    theaters = model.getTheaters();
+    upcomingMovies = model.getUpcomingMovies();
   }
 
   public int getRequestId() {
-    return this.requestId;
+    return requestId;
   }
 
   public String getValue() {
-    return this.value;
+    return value;
   }
 
   public String getLowercaseValue() {
-    return this.lowercaseValue;
+    return lowercaseValue;
   }
 
   public List<Movie> getMovies() {
-    return this.movies;
+    return movies;
   }
 
   public List<Theater> getTheaters() {
-    return this.theaters;
+    return theaters;
   }
 
   public List<Movie> getUpcomingMovies() {
-    return this.upcomingMovies;
+    return upcomingMovies;
   }
 }

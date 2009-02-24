@@ -56,7 +56,7 @@ public class IMDbCache extends AbstractCache {
   public void update(final List<Movie> movies) {
     synchronized (lock) {
       normalMovies.addAll(movies);
-      lock.notify();
+      lock.notifyAll();
     }
   }
 

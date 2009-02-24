@@ -13,11 +13,11 @@
 //limitations under the License.
 package org.metasyntactic.utilities;
 
+import org.w3c.dom.CharacterData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -54,7 +54,7 @@ public class XmlUtilities {
     }
   }
 
-  public static Element element(final Element element, final String name) {
+  public static Element element(final Node element, final Object name) {
     if (element == null) {
       return null;
     }
@@ -90,7 +90,7 @@ public class XmlUtilities {
     return (Element) list.item(0);
   }
 
-  public static String text(final Element element) {
+  public static String text(final Node element) {
     if (element == null) {
       return null;
     }
@@ -104,11 +104,11 @@ public class XmlUtilities {
       return null;
     }
 
-    final Text textNode = (Text) child;
+    final CharacterData textNode = (CharacterData) child;
     return textNode.getData();
   }
 
-  public static List<Element> children(final Element element) {
+  public static List<Element> children(final Node element) {
     if (element != null) {
       final NodeList list = element.getChildNodes();
       if (list != null) {

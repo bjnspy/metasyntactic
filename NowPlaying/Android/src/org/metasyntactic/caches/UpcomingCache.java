@@ -33,6 +33,7 @@ import java.io.File;
 import static java.lang.String.valueOf;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -47,7 +48,7 @@ import java.util.TreeSet;
 
 public class UpcomingCache extends AbstractCache {
   private static int identifier;
-  private final SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+  private final DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
   private String hash;
   private List<Movie> movies;
@@ -163,7 +164,7 @@ public class UpcomingCache extends AbstractCache {
     updateIndexBackgroundEntryPointWorker();
     LogUtilities.logTime(UpcomingCache.class, "Update Index", start);
 
-    this.updateDetails();
+    updateDetails();
   }
 
   private void updateIndexBackgroundEntryPointWorker() {
@@ -181,11 +182,11 @@ public class UpcomingCache extends AbstractCache {
     }
 
     final String localHash = getHash();
-    final String serverHash_ = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host
+    final String serverHash1 = NetworkUtilities.downloadString("http://" + NowPlayingApplication.host
       + ".appspot.com/LookupUpcomingListings?q=index&hash=true", false/* important */);
-    final String serverHash = serverHash_ == null ? "0" : serverHash_;
+    final String serverHash2 = serverHash1 == null ? "0" : serverHash1;
 
-    if (localHash.equals(serverHash)) {
+    if (localHash.equals(serverHash2)) {
       return;
     }
 
@@ -207,10 +208,10 @@ public class UpcomingCache extends AbstractCache {
       return;
     }
 
-    reportResults(serverHash, localMovies, localStudioKeys, localTitleKeys);
+    reportResults(serverHash2, localMovies, localStudioKeys, localTitleKeys);
 
     start = System.currentTimeMillis();
-    saveResults(serverHash, localMovies, localStudioKeys, localTitleKeys);
+    saveResults(serverHash2, localMovies, localStudioKeys, localTitleKeys);
     LogUtilities.logTime(DataProvider.class, "Update Index - Save Results", start);
   }
 
@@ -232,7 +233,7 @@ public class UpcomingCache extends AbstractCache {
     this.titleKeys = titleKeys;
   }
 
-  private static void saveResults(final String serverHash, final List<Movie> movies, final Map<String, String> studios,
+  private static void saveResults(final String serverHash, final Collection<Movie> movies, final Map<String, String> studios,
     final Map<String, String> titles) {
     FileUtilities.writePersistableCollection(movies, moviesFile());
     FileUtilities.writeStringToStringMap(studios, studiosFile());
@@ -243,7 +244,7 @@ public class UpcomingCache extends AbstractCache {
     FileUtilities.writeString(serverHash, hashFile());
   }
 
-  private void processResultElement(final Element resultElement, final List<Movie> movies, final Map<String, String> studioKeys,
+  private void processResultElement(final Element resultElement, final Collection<Movie> movies, final Map<String, String> studioKeys,
     final Map<String, String> titleKeys) {
     for (final Element movieElement : children(resultElement)) {
       if (shutdown) {
@@ -253,7 +254,7 @@ public class UpcomingCache extends AbstractCache {
     }
   }
 
-  private void processMovieElement(final Element movieElement, final List<Movie> movies, final Map<String, String> studioKeys,
+  private void processMovieElement(final Element movieElement, final Collection<Movie> movies, final Map<String, String> studioKeys,
     final Map<String, String> titleKeys) {
     final Date releaseDate;
     try {
@@ -390,7 +391,7 @@ public class UpcomingCache extends AbstractCache {
     final Collection<String> cast = new ArrayList<String>(values.length - 1);
     cast.addAll(Arrays.asList(values).subList(1, values.length));
 
-    if (!synopsis.startsWith("No synopsis")) {
+    if (!synopsis.startsWith("No Synopsis")) {
       FileUtilities.writeString(synopsis, file);
       NowPlayingApplication.refresh();
     }

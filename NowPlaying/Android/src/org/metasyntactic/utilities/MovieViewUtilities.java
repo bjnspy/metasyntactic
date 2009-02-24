@@ -25,6 +25,7 @@ import java.lang.ref.SoftReference;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Collection;
 
 public class MovieViewUtilities {
   public static final int MENU_SORT = 1;
@@ -40,11 +41,11 @@ public class MovieViewUtilities {
   public static final int MENU_SEND_FEEDBACK = 11;
   public static final int MENU_LICENSE = 12;
   // Constants for movies sort
-  private final static int MovieTitle = 0;
-  private final static int Release = 1;
+  private static final int MovieTitle = 0;
+  private static final int Release = 1;
   // constants for Theaters sort
-  private final static int TheaterName = 0;
-  private final static int Distance = 1;
+  private static final int TheaterName = 0;
+  private static final int Distance = 1;
   private static String currentHeader;
   private static SoftReference<Drawable> rotten_full_drawable;
   private static SoftReference<Drawable> rating_unknown_drawable;
@@ -101,7 +102,7 @@ public class MovieViewUtilities {
     return res.getString(R.string.string_string, hoursString, minutesString);
   }
 
-  public static String formatListToString(final List<String> list) {
+  public static String formatListToString(final Collection<String> list) {
     if (isEmpty(list)) {
       return "Unknown";
     } else {
@@ -110,7 +111,7 @@ public class MovieViewUtilities {
     }
   }
 
-  public static Drawable formatScoreDrawable(final int score, final ScoreType scoreType, final Resources res) {
+  public static Drawable formatScoreDrawable(final int score, final Object scoreType, final Resources res) {
     if (scoreType == ScoreType.RottenTomatoes) {
       return formatRottenTomatoesDrawable(score, res);
     }
@@ -166,7 +167,7 @@ public class MovieViewUtilities {
     switch (sortIndex) {
       case MovieTitle:
         if (position == 0) {
-          return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
+          return String.valueOf(movies.get(0).getDisplayTitle().charAt(0));
         }
         if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
           return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
@@ -175,7 +176,7 @@ public class MovieViewUtilities {
       case Release:
         final Date d1 = movies.get(position).getReleaseDate();
         final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-        String dateStr;
+        final String dateStr;
         if (d1 != null) {
           dateStr = df.format(d1);
         } else {
@@ -194,7 +195,6 @@ public class MovieViewUtilities {
   }
 
   public static int getDistanceLevel(final double distance) {
-
     // Double dist_m2 = userLocation.distanceTo(m2.getLocation());
     if (distance <= 2 && distance >= 0) {
       return 0;
@@ -213,7 +213,6 @@ public class MovieViewUtilities {
       return 4;
     }
     if (distance <= 100 && distance >= 50) {
-
       return 5;
     }
 

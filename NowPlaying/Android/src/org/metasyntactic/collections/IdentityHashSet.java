@@ -21,10 +21,12 @@ import java.util.Map;
 public class IdentityHashSet<T> extends AbstractSet<T> {
   private final Map<T, T> map = new IdentityHashMap<T, T>();
 
+  @Override
   public Iterator<T> iterator() {
     return map.keySet().iterator();
   }
 
+  @Override
   public int size() {
     return map.size();
   }
@@ -35,20 +37,20 @@ public class IdentityHashSet<T> extends AbstractSet<T> {
   }
 
   @Override
-  public boolean contains(Object o) {
+  public boolean contains(final Object o) {
     return map.containsKey(o);
   }
 
   @Override
-  public boolean add(T t) {
-    int size = size();
+  public boolean add(final T t) {
+    final int size = size();
     map.put(t, t);
     return size != size();
   }
 
   @Override
-  public boolean remove(Object o) {
-    int size = size();
+  public boolean remove(final Object o) {
+    final int size = size();
     map.remove(o);
     return size != size();
   }

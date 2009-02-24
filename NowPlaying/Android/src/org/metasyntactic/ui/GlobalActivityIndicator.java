@@ -18,14 +18,14 @@ import org.metasyntactic.NowPlayingApplication;
 import static org.metasyntactic.threading.ThreadingUtilities.isBackgroundThread;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnMainThread;
 
+import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class GlobalActivityIndicator {
   private static final Object lock = new Object();
   private static int totalBackgroundTaskCount;
   private static int visibleBackgroundTaskCount;
-  private static final Set<Activity> activities = new LinkedHashSet<Activity>();
+  private static final Collection<Activity> activities = new LinkedHashSet<Activity>();
 
   private GlobalActivityIndicator() {
   }

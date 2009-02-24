@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ListAdapter;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
@@ -56,7 +57,7 @@ public class ShowtimesActivity extends ListActivity {
 
     bindView();
     // populateTheaterDetailItems();
-    final TheaterListAdapter theaterAdapter = new TheaterListAdapter();
+    final ListAdapter theaterAdapter = new TheaterListAdapter();
     setListAdapter(theaterAdapter);
   }
 
@@ -87,7 +88,7 @@ public class ShowtimesActivity extends ListActivity {
     final TextView title = (TextView) findViewById(R.id.title);
     title.setText(movie.getDisplayTitle());
     // Get and set scores text and background image
-    final Button scoreImg = (Button) findViewById(R.id.score);
+    final View scoreImg = (Button) findViewById(R.id.score);
     final TextView scoreLbl = (TextView) findViewById(R.id.scorelbl);
     final Resources res = getResources();
     final Score score = NowPlayingControllerWrapper.getScore(movie);

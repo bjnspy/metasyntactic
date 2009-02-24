@@ -15,29 +15,29 @@ package org.metasyntactic.threading;
 
 public class PriorityMutex {
   private final Object lock = new Object();
-  private int highTaskRunningCount;
+  private volatile int highTaskRunningCount;
 
   public void lockHigh() {
-    synchronized (this.lock) {
-      this.highTaskRunningCount++;
+    synchronized (lock) {
+      highTaskRunningCount++;
     }
   }
 
   public void unlockHigh() {
-    synchronized (this.lock) {
-      this.highTaskRunningCount--;
-      if (this.highTaskRunningCount == 0) {
+    synchronized (lock) {
+      highTaskRunningCount--;
+      if (highTaskRunningCount == 0) {
         // wake up all the low pri threads that have been waiting
-        this.lock.notifyAll();
+        lock.notifyAll();
       }
     }
   }
 
   public void lockLow() {
-    synchronized (this.lock) {
-      while (this.highTaskRunningCount > 0) {
+    synchronized (lock) {
+      while (highTaskRunningCount > 0) {
         try {
-          this.lock.wait();
+          lock.wait();
         } catch (final InterruptedException e) {
           throw new RuntimeException(e);
         }

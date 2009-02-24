@@ -25,7 +25,7 @@ public abstract class AbstractPersistable implements Persistable {
    */
   private static final long serialVersionUID = 5436462848902430842L;
 
-  public static abstract class AbstractReader<T extends Persistable> implements Reader<T> {
+  public abstract static class AbstractReader<T extends Persistable> implements Reader<T> {
     public List<T> readList(final PersistableInputStream in) throws IOException {
       final int count = in.readInt();
       final List<T> list = new ArrayList<T>(count);

@@ -3,6 +3,7 @@ package org.metasyntactic.activities;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -88,12 +89,12 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     privatePerformSearch(this, getText(R.string.search) + " : " + searchTerm, searchTerm, null);
   }
 
-  static public void performLabel(final Activity activity, final String label, final String title) {
+  public static void performLabel(final Context activity, final CharSequence label, final String title) {
     privatePerformSearch(activity, title, null, label);
   }
 
-  private static void privatePerformSearch(final Activity activity, final String title,
-    final String search, final String label) {
+  private static void privatePerformSearch(final Context activity, final String title,
+    final String search, final CharSequence label) {
     if (!StringUtilities.isNullOrEmpty(search) || !StringUtilities.isNullOrEmpty(label)) {
       final Intent intent = new Intent();
       if ("NowPlayingActivity".equals(activityName)) {

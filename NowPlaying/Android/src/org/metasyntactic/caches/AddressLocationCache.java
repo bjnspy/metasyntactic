@@ -17,7 +17,6 @@ import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Theater;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,7 +26,7 @@ public class AddressLocationCache {
   private AddressLocationCache() {
   }
 
-  public static Map<Theater, Double> getTheaterDistanceMap(final Location location, final List<Theater> theaters) {
+  public static Map<Theater, Double> getTheaterDistanceMap(final Location location, final Iterable<Theater> theaters) {
     final Map<Theater, Double> map = new HashMap<Theater, Double>();
 
     for (final Theater theater : theaters) {

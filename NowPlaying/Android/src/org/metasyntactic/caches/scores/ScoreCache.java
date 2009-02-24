@@ -56,7 +56,7 @@ public class ScoreCache extends AbstractCache {
     }
   }
 
-  private ScoreProvider getScoreProvider(final ScoreType type) {
+  private ScoreProvider getScoreProvider(final Object type) {
     if (type.equals(ScoreType.Google)) {
       return googleScoreProvider;
     } else if (type.equals(ScoreType.Metacritic)) {
@@ -82,14 +82,14 @@ public class ScoreCache extends AbstractCache {
     final ScoreType scoreType = model.getScoreType();
     final Runnable runnable = new Runnable() {
       public void run() {
-        if (ScoreCache.this.shutdown) {
+        if (shutdown) {
           return;
         }
         final ScoreProvider primaryScoreProvider = getScoreProvider(scoreType);
         primaryScoreProvider.update();
 
         for (final ScoreProvider provider : getProviders()) {
-          if (ScoreCache.this.shutdown) {
+          if (shutdown) {
             return;
           }
           if (provider != primaryScoreProvider) {
@@ -133,6 +133,7 @@ public class ScoreCache extends AbstractCache {
 
   @Override
   public void onLowMemory() {
+    super.onLowMemory();
     for (final ScoreProvider provider : getProviders()) {
       provider.onLowMemory();
     }

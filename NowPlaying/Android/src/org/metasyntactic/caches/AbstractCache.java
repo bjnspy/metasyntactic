@@ -27,7 +27,7 @@ import java.util.List;
 public abstract class AbstractCache {
   protected final Object lock = new Object();
   protected final NowPlayingModel model;
-  protected boolean shutdown;
+  protected volatile boolean shutdown;
 
   protected AbstractCache(final NowPlayingModel model) {
     this.model = model;
@@ -61,7 +61,7 @@ public abstract class AbstractCache {
 
     synchronized (lock) {
       shutdown = true;
-      lock.notify();
+      lock.notifyAll();
     }
   }
 

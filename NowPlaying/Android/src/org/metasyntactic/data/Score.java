@@ -133,7 +133,7 @@ public class Score extends AbstractPersistable implements Parcelable, Comparable
       return false;
     }
 
-    return this.compareTo((Score) object) == 0;
+    return compareTo((Score) object) == 0;
   }
 
   @Override

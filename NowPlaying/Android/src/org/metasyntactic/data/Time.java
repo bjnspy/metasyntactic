@@ -21,33 +21,33 @@ public class Time extends AbstractPersistable implements Parcelable, Comparable<
   }
 
   public int getHour() {
-    return this.hour;
+    return hour;
   }
 
   public int getMinute() {
-    return this.minute;
+    return minute;
   }
 
-  public boolean getAM() {
-    return this.am;
+  public boolean isAM() {
+    return am;
   }
 
   public int compareTo(final Time time) {
-    if (this.am != time.am) {
-      return this.am ? -1 : 1;
+    if (am != time.am) {
+      return am ? -1 : 1;
     }
 
-    if (this.hour != time.hour) {
-      return this.hour - time.hour;
+    if (hour != time.hour) {
+      return hour - time.hour;
     }
 
-    return this.minute - time.minute;
+    return minute - time.minute;
   }
 
   public void persistTo(final PersistableOutputStream out) throws IOException {
-    out.writeInt(this.hour);
-    out.writeInt(this.minute);
-    out.writeInt(this.am ? 1 : 0);
+    out.writeInt(hour);
+    out.writeInt(minute);
+    out.writeInt(am ? 1 : 0);
   }
 
   public static final Reader<Time> reader = new AbstractReader<Time>() {
@@ -65,9 +65,9 @@ public class Time extends AbstractPersistable implements Parcelable, Comparable<
   }
 
   public void writeToParcel(final Parcel parcel, final int i) {
-    parcel.writeInt(this.hour);
-    parcel.writeInt(this.minute);
-    parcel.writeInt(this.am ? 1 : 0);
+    parcel.writeInt(hour);
+    parcel.writeInt(minute);
+    parcel.writeInt(am ? 1 : 0);
   }
 
   public static final Creator<Time> CREATOR = new Creator<Time>() {

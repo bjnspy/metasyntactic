@@ -20,11 +20,11 @@ public class StringUtilities {
   private StringUtilities() {
   }
 
-  public static int length(final String string) {
+  public static int length(final CharSequence string) {
     return string == null ? 0 : string.length();
   }
 
-  public static boolean isNullOrEmpty(final String address) {
+  public static boolean isNullOrEmpty(final CharSequence address) {
     return address == null || address.length() == 0;
   }
 

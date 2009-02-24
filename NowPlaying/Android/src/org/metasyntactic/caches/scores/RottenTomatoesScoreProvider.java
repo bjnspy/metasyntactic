@@ -49,7 +49,7 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
       for (final Element movieElement : children(resultElement)) {
         final String title = movieElement.getAttribute("title");
         final String link = movieElement.getAttribute("link");
-        final String synopsis = movieElement.getAttribute("synopsis");
+        final String synopsis = movieElement.getAttribute("Synopsis");
         final String value = movieElement.getAttribute("score");
         final Score score = new Score(title, synopsis, value, "rottentomatoes", link);
 

@@ -129,24 +129,22 @@ public class TheaterDetailsActivity extends ListActivity {
           false);
         theaterDetailEntries.add(entry);
       }
-      {
-        // Add movies
-        for (final Movie movie : movies) {
-          final String movieTitle = movie.getDisplayTitle();
-          final List<Performance> list = NowPlayingControllerWrapper
-            .getPerformancesForMovieAtTheater(movie, theater);
-          String performance = "";
-          for (final Performance aList : list) {
-            performance += aList.getTime() + ", ";
-          }
-          performance = performance.substring(0, performance.length() - 2);
-          final Intent movieIntent = new Intent();
-          movieIntent.setClass(this, MovieDetailsActivity.class);
-          movieIntent.putExtra("movie", (Parcelable) movie);
-          final TheaterDetailEntry entry = new TheaterDetailEntry(movieTitle, performance,
-            TheaterDetailItemType.DATA, null, movieIntent, true);
-          theaterDetailEntries.add(entry);
+      // Add movies
+      for (final Movie movie : movies) {
+        final String movieTitle = movie.getDisplayTitle();
+        final List<Performance> list = NowPlayingControllerWrapper
+          .getPerformancesForMovieAtTheater(movie, theater);
+        String performance = "";
+        for (final Performance aList : list) {
+          performance += aList.getTime() + ", ";
         }
+        performance = performance.substring(0, performance.length() - 2);
+        final Intent movieIntent = new Intent();
+        movieIntent.setClass(this, MovieDetailsActivity.class);
+        movieIntent.putExtra("movie", (Parcelable) movie);
+        final TheaterDetailEntry entry = new TheaterDetailEntry(movieTitle, performance,
+          TheaterDetailItemType.DATA, null, movieIntent, true);
+        theaterDetailEntries.add(entry);
       }
     }
   }
