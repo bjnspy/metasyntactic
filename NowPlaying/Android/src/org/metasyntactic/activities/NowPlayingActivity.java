@@ -499,7 +499,7 @@ public class NowPlayingActivity extends Activity implements INowPlaying {
         this.movie = movie;
         this.title = title;
         this.poster = poster;
-        this.viewState = ViewState.Blank;
+        viewState = ViewState.Blank;
       }
     }
 
