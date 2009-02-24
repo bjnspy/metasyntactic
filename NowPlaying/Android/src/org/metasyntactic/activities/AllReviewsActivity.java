@@ -23,7 +23,8 @@ import java.util.List;
 public class AllReviewsActivity extends ListActivity {
   private List<Review> reviews;
 
-  @Override protected void onCreate(final Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
@@ -31,17 +32,20 @@ public class AllReviewsActivity extends ListActivity {
     setListAdapter(new ReviewsAdapter(this));
   }
 
-  @Override protected void onResume() {
+  @Override
+  protected void onResume() {
     super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
   }
 
-  @Override protected void onPause() {
+  @Override
+  protected void onPause() {
     super.onPause();
     LogUtilities.i(getClass().getSimpleName(), "onPause");
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
@@ -49,14 +53,16 @@ public class AllReviewsActivity extends ListActivity {
     super.onDestroy();
   }
 
-  @Override public Object onRetainNonConfigurationInstance() {
+  @Override
+  public Object onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
   }
 
-  @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
+  @Override
+  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final String review_url = reviews.get(position).getLink();
     final Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(review_url));
     startActivity(intent);
@@ -83,7 +89,7 @@ public class AllReviewsActivity extends ListActivity {
     public View getView(final int position, View convertView, final ViewGroup viewGroup) {
       convertView = inflater.inflate(R.layout.reviewview, null);
       final MovieViewHolder holder = new MovieViewHolder((ImageView) convertView.findViewById(R.id.score), (TextView) convertView
-          .findViewById(R.id.author), (TextView) convertView.findViewById(R.id.source), (TextView) convertView.findViewById(R.id.desc));
+        .findViewById(R.id.author), (TextView) convertView.findViewById(R.id.source), (TextView) convertView.findViewById(R.id.desc));
       convertView.setTag(holder);
       final Review review = reviews.get(position);
       holder.author.setText(review.getAuthor());
@@ -112,11 +118,12 @@ public class AllReviewsActivity extends ListActivity {
     }
   }
 
-  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
-        new Intent(this, NowPlayingActivity.class));
+      new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class).putExtra("from_menu","yes"));
+      new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 }

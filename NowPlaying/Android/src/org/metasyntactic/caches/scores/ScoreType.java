@@ -45,7 +45,8 @@ public abstract class ScoreType implements Parcelable {
     parcel.writeInt(getIndex());
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return findField().getName();
   }
 

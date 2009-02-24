@@ -8,15 +8,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-
 import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.StringUtilities;
 
 /**
  * This activity shows a text field to ask the user to enter search terms and
  * then start the ThreadActivity with the correct postData to invoke a search.
  */
+
 /**
  * @author mjoshi@google.com (Megha Joshi)
  */
@@ -74,12 +74,12 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   public boolean onCreateOptionsMenu(final Menu menu) {
     super.onCreateOptionsMenu(menu);
     menu.add(0, 0, 0, R.string.search).setAlphabeticShortcut(SearchManager.MENU_KEY)
-        .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-          public boolean onMenuItemClick(final MenuItem item) {
-            performSearch();
-            return true;
-          }
-        });
+      .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        public boolean onMenuItemClick(final MenuItem item) {
+          performSearch();
+          return true;
+        }
+      });
     return true;
   }
 
@@ -93,7 +93,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
   }
 
   private static void privatePerformSearch(final Activity activity, final String title,
-      final String search, final String label) {
+    final String search, final String label) {
     if (!StringUtilities.isNullOrEmpty(search) || !StringUtilities.isNullOrEmpty(label)) {
       final Intent intent = new Intent();
       if ("NowPlayingActivity".equals(activityName)) {

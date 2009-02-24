@@ -23,7 +23,12 @@ import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Theater extends AbstractPersistable implements Parcelable {
   private static final long serialVersionUID = 8020194452818140040L;
@@ -60,7 +65,7 @@ public class Theater extends AbstractPersistable implements Parcelable {
   };
 
   public Theater(final String identifier, final String name, final String address, final String phoneNumber,
-                 final Location location, final Location originatingLocation, final Set<String> movieTitles) {
+    final Location location, final Location originatingLocation, final Set<String> movieTitles) {
     this.identifier = identifier;
     this.name = nonNullString(name);
     this.address = nonNullString(address);
@@ -70,7 +75,8 @@ public class Theater extends AbstractPersistable implements Parcelable {
     this.movieTitles = movieTitles;
   }
 
-  @Override public boolean equals(final Object o) {
+  @Override
+  public boolean equals(final Object o) {
     if (this == o) {
       return true;
     }
@@ -87,7 +93,8 @@ public class Theater extends AbstractPersistable implements Parcelable {
     return true;
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return identifier != null ? identifier.hashCode() : 0;
   }
 
@@ -141,14 +148,14 @@ public class Theater extends AbstractPersistable implements Parcelable {
       final String phoneNumber = source.readString();
 
       final Location location = source.readParcelable(
-          NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
+        NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
       final Location originatingLocation = source.readParcelable(
-          NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
+        NowPlayingControllerWrapper.getApplicationContext().getClassLoader());
       final List<String> movieTitles = new ArrayList<String>();
       source.readStringList(movieTitles);
 
       return new Theater(identifier, name, address, phoneNumber, location, originatingLocation,
-                         new LinkedHashSet<String>(movieTitles));
+        new LinkedHashSet<String>(movieTitles));
     }
 
     public Theater[] newArray(final int size) {

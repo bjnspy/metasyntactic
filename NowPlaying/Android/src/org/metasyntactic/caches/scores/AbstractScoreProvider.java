@@ -13,8 +13,8 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
-import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.Constants;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.caches.UserLocationCache;
@@ -35,7 +35,16 @@ import org.metasyntactic.utilities.difference.EditDistance;
 import org.w3c.dom.Element;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public abstract class AbstractScoreProvider extends AbstractCache implements ScoreProvider {
   private static class MovieAndMap {
@@ -357,8 +366,8 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     }
 
     return "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieReviews2?country=" + country + "&language="
-    + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude="
-    + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+      + Locale.getDefault().getLanguage() + "&id=" + score.getIdentifier() + "&provider=" + score.getProvider() + "&latitude="
+      + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
   }
 
   private void downloadReviews(final Score score, final Location location) {
@@ -449,7 +458,8 @@ public abstract class AbstractScoreProvider extends AbstractCache implements Sco
     return FileUtilities.readPersistableList(Review.reader, reviewsFile(title));
   }
 
-  @Override protected List<File> getCacheDirectories() {
+  @Override
+  protected List<File> getCacheDirectories() {
     return Collections.singletonList(this.reviewsDirectory);
   }
 

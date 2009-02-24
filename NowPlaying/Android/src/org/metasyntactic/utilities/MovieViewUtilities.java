@@ -60,11 +60,9 @@ public class MovieViewUtilities {
    * Formats the movie rating for display. For example if a movie is rated PG
    * 13, the ratings string is "Rated PG-13.". If a movie is unrated then the
    * ratings string is "Unrated."
-   * 
-   * @param rating
-   *          Movie rating.
-   * @param res
-   *          Context resources handle.
+   *
+   * @param rating Movie rating.
+   * @param res    Context resources handle.
    * @return the formatted rating
    */
   public static String formatRatings(final String rating, final Resources res) {
@@ -78,11 +76,9 @@ public class MovieViewUtilities {
   /**
    * Formats the movie length for display. The movie length is displayed as "x
    * hours y minutes".
-   * 
-   * @param length
-   *          Movie length in minutes.
-   * @param res
-   *          Context resources handle.
+   *
+   * @param length Movie length in minutes.
+   * @param res    Context resources handle.
    * @return the formatted length
    */
   public static String formatLength(final int length, final Resources res) {
@@ -168,31 +164,31 @@ public class MovieViewUtilities {
 
   public static String getHeader(final List<Movie> movies, final int position, final int sortIndex) {
     switch (sortIndex) {
-    case MovieTitle:
-      if (position == 0) {
-        return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
-      }
-      if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
-        return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
-      }
-      break;
-    case Release:
-      final Date d1 = movies.get(position).getReleaseDate();
-      final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-      String dateStr;
-      if (d1 != null) {
-        dateStr = df.format(d1);
-      } else {
-        dateStr = null;
-      }
-      if (position == 0) {
-        return dateStr;
-      }
-      final Date d2 = movies.get(position - 1).getReleaseDate();
-      if (d2 != null && d1 != null && !d1.equals(d2)) {
-        return dateStr;
-      }
-      return null;
+      case MovieTitle:
+        if (position == 0) {
+          return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
+        }
+        if (movies.get(position).getDisplayTitle().charAt(0) != movies.get(position - 1).getDisplayTitle().charAt(0)) {
+          return String.valueOf(movies.get(position).getDisplayTitle().charAt(0));
+        }
+        break;
+      case Release:
+        final Date d1 = movies.get(position).getReleaseDate();
+        final DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
+        String dateStr;
+        if (d1 != null) {
+          dateStr = df.format(d1);
+        } else {
+          dateStr = null;
+        }
+        if (position == 0) {
+          return dateStr;
+        }
+        final Date d2 = movies.get(position - 1).getReleaseDate();
+        if (d2 != null && d1 != null && !d1.equals(d2)) {
+          return dateStr;
+        }
+        return null;
     }
     return null;
   }

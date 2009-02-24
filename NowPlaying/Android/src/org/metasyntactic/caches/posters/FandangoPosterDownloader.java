@@ -19,7 +19,9 @@ import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.metasyntactic.utilities.XmlUtilities;
-import static org.metasyntactic.utilities.XmlUtilities.*;
+import static org.metasyntactic.utilities.XmlUtilities.children;
+import static org.metasyntactic.utilities.XmlUtilities.element;
+import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.metasyntactic.utilities.difference.EditDistance;
 import org.w3c.dom.Element;
 
@@ -71,7 +73,7 @@ public class FandangoPosterDownloader {
     calendar.setTime(new Date());
 
     final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings?q=" + trimPostalCode(postalCode) + "&date="
-    + calendar.get(Calendar.YEAR) + '-' + (calendar.get(Calendar.MONTH) + 1) + '-' + calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
+      + calendar.get(Calendar.YEAR) + '-' + (calendar.get(Calendar.MONTH) + 1) + '-' + calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
 
     final Element element = NetworkUtilities.downloadXml(url, false);
     processFandangoElement(element);

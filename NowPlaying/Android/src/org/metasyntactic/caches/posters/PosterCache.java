@@ -13,12 +13,6 @@
 // limitations under the License.
 package org.metasyntactic.caches.posters;
 
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
@@ -29,6 +23,11 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 public class PosterCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
@@ -74,9 +73,9 @@ public class PosterCache extends AbstractCache {
       Movie movie = null;
       synchronized (lock) {
         while (!shutdown &&
-            (movie = prioritizedMovies.removeAny()) == null &&
-            (movie = moviesWithLinks.removeAny()) == null &&
-            (movie = moviesWithoutLinks.removeAny()) == null) {
+          (movie = prioritizedMovies.removeAny()) == null &&
+          (movie = moviesWithLinks.removeAny()) == null &&
+          (movie = moviesWithoutLinks.removeAny()) == null) {
           lock.wait();
         }
       }
@@ -146,7 +145,8 @@ public class PosterCache extends AbstractCache {
     return FandangoPosterDownloader.download(movie, postalCode);
   }
 
-  @Override protected List<File> getCacheDirectories() {
+  @Override
+  protected List<File> getCacheDirectories() {
     return Collections.singletonList(NowPlayingApplication.postersDirectory);
   }
 
@@ -165,7 +165,8 @@ public class PosterCache extends AbstractCache {
     }
   }
 
-  @Override public void onLowMemory() {
+  @Override
+  public void onLowMemory() {
     super.onLowMemory();
     ApplePosterDownloader.onLowMemory();
     FandangoPosterDownloader.onLowMemory();

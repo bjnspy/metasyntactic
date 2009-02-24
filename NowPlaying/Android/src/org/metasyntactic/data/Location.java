@@ -22,7 +22,10 @@ import org.metasyntactic.io.PersistableOutputStream;
 import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 
 import java.io.IOException;
-import static java.lang.Math.*;
+import static java.lang.Math.PI;
+import static java.lang.Math.acos;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 public class Location extends AbstractPersistable implements Parcelable {
   private static final long serialVersionUID = 5329395050075385028L;
@@ -58,7 +61,7 @@ public class Location extends AbstractPersistable implements Parcelable {
   };
 
   public Location(final double latitude, final double longitude, final String address, final String city,
-                  final String state, final String postalCode, final String country) {
+    final String state, final String postalCode, final String country) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.address = nonNullString(address);

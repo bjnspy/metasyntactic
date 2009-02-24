@@ -26,7 +26,7 @@ public class SearchResult {
   private final List<Movie> upcomingMovies;
 
   public SearchResult(final int requestId, final String value, final List<Movie> movies, final List<Theater> theaters,
-      final List<Movie> upcomingMovies) {
+    final List<Movie> upcomingMovies) {
     this.requestId = requestId;
     this.value = value;
     this.movies = movies;

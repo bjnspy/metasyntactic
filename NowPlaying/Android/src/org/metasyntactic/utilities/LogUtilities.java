@@ -4,6 +4,7 @@ import android.util.Log;
 
 public class LogUtilities {
   private final static boolean isLogging = false;
+
   private LogUtilities() {
 
   }

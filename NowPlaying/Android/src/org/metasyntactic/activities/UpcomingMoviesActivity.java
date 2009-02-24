@@ -1,30 +1,5 @@
 package org.metasyntactic.activities;
 
-import java.io.File;
-import java.lang.ref.SoftReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.metasyntactic.INowPlaying;
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.NowPlayingControllerWrapper;
-import org.metasyntactic.UserTask;
-import org.metasyntactic.data.Movie;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-import org.metasyntactic.utilities.MovieViewUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import org.metasyntactic.views.CustomGridView;
-import org.metasyntactic.views.FastScrollGridView;
-import org.metasyntactic.views.NowPlayingPreferenceDialog;
-import org.metasyntactic.views.Rotate3dAnimation;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -42,19 +17,43 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.NowPlayingControllerWrapper;
+import org.metasyntactic.UserTask;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+import org.metasyntactic.utilities.MovieViewUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+import org.metasyntactic.views.CustomGridView;
+import org.metasyntactic.views.FastScrollGridView;
+import org.metasyntactic.views.NowPlayingPreferenceDialog;
+import org.metasyntactic.views.Rotate3dAnimation;
+
+import java.io.File;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   private CustomGridView grid;
@@ -76,18 +75,20 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   /* This task is controlled by the TaskManager based on the scrolling state */
   private UserTask<?, ?, ?> mTask;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context context, final Intent intent) {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
   private final BroadcastReceiver scrollStatebroadcastReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context context, final Intent intent) {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
       if (NowPlayingApplication.NOT_SCROLLING_INTENT.equals(intent.getAction())
-          && mTask.getStatus() != UserTask.Status.RUNNING) {
+        && mTask.getStatus() != UserTask.Status.RUNNING) {
         mTask = UpcomingMoviesActivity.this.new LoadPostersTask().execute(null);
       }
       if (NowPlayingApplication.SCROLLING_INTENT.equals(intent.getAction())
-          && mTask.getStatus() == UserTask.Status.RUNNING) {
+        && mTask.getStatus() == UserTask.Status.RUNNING) {
         mTask.cancel(true);
       }
     }
@@ -135,7 +136,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   /**
    * Called when the activity is first created.
    */
-  @Override public void onCreate(final Bundle savedInstanceState) {
+  @Override
+  public void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
 
@@ -160,7 +162,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override protected void onResume() {
+  @Override
+  protected void onResume() {
     super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
 
@@ -173,7 +176,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override protected void onPause() {
+  @Override
+  protected void onPause() {
     LogUtilities.i(getClass().getSimpleName(), "onPause");
 
     unregisterReceiver(broadcastReceiver);
@@ -184,7 +188,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     super.onPause();
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
 
     NowPlayingControllerWrapper.removeActivity(this);
@@ -195,14 +200,16 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     super.onDestroy();
   }
 
-  @Override public Object onRetainNonConfigurationInstance() {
+  @Override
+  public Object onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
     return result;
   }
 
-  @Override protected void onNewIntent(final Intent intent) {
+  @Override
+  protected void onNewIntent(final Intent intent) {
     super.onNewIntent(intent);
     search = intent.getStringExtra("movie");
     if (search != null) {
@@ -437,21 +444,23 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
     }
   }
 
-  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
-        new Intent(this, NowPlayingActivity.class));
+      new Intent(this, NowPlayingActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SEARCH, 0, R.string.search).setIcon(android.R.drawable.ic_menu_search);
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_movies).setIcon(R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class).putExtra("from_menu","yes")).setAlphabeticShortcut('s');
+      new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes")).setAlphabeticShortcut('s');
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override
+  public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(
-          NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference).setPositiveButton(
-              android.R.string.ok).setNegativeButton(android.R.string.cancel);
+        NowPlayingPreferenceDialog.PreferenceKeys.UPCOMING_MOVIES_SORT).setEntries(R.array.entries_movies_sort_preference).setPositiveButton(
+        android.R.string.ok).setNegativeButton(android.R.string.cancel);
       builder.setTitle(R.string.sort_movies);
       builder.show();
       return true;
@@ -490,7 +499,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
   }
 
   private class LoadPostersTask extends UserTask<Void, Void, Void> {
-    @Override public Void doInBackground(final Void... params) {
+    @Override
+    public Void doInBackground(final Void... params) {
       Bitmap bitmap = null;
       for (final Movie movie : movies) {
         final SoftReference<Bitmap> reference = UpcomingMoviesActivity.postersMap.get(movie.getCanonicalTitle());
@@ -513,7 +523,8 @@ public class UpcomingMoviesActivity extends Activity implements INowPlaying {
       return null;
     }
 
-    @Override public void onPostExecute(final Void result) {
+    @Override
+    public void onPostExecute(final Void result) {
       super.onPostExecute(result);
       if (postersAdapter != null) {
         postersAdapter.refreshMovies();

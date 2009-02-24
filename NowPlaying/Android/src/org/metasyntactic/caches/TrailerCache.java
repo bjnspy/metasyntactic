@@ -13,15 +13,6 @@
 //limitations under the License.
 package org.metasyntactic.caches;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.metasyntactic.Constants;
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
@@ -31,6 +22,15 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.difference.EditDistance;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TrailerCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> prioritizedMovies = new BoundedPrioritySet<Movie>(9);
@@ -60,7 +60,8 @@ public class TrailerCache extends AbstractCache {
     return new File(NowPlayingApplication.trailersDirectory, trailerFileName(movie));
   }
 
-  @Override protected List<File> getCacheDirectories() {
+  @Override
+  protected List<File> getCacheDirectories() {
     return Collections.singletonList(NowPlayingApplication.trailersDirectory);
   }
 
@@ -95,9 +96,10 @@ public class TrailerCache extends AbstractCache {
     }
   }
 
-  private static Map<String,List<String>> index;
-  private static Map<String,List<String>> getIndex() {
-    Map<String,List<String>> result = index;
+  private static Map<String, List<String>> index;
+
+  private static Map<String, List<String>> getIndex() {
+    Map<String, List<String>> result = index;
     if (result == null) {
       final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupTrailerListings?q=index";
       final String indexText = NetworkUtilities.downloadString(url, false);
@@ -116,9 +118,9 @@ public class TrailerCache extends AbstractCache {
       Movie movie = null;
       synchronized (lock) {
         while (!shutdown &&
-            (movie = prioritizedMovies.removeAny()) == null &&
-            (movie = moviesWithoutTrailers.removeAny()) == null &&
-            (movie = moviesWithTrailers.removeAny()) == null) {
+          (movie = prioritizedMovies.removeAny()) == null &&
+          (movie = moviesWithoutTrailers.removeAny()) == null &&
+          (movie = moviesWithTrailers.removeAny()) == null) {
           lock.wait();
         }
       }
@@ -194,7 +196,8 @@ public class TrailerCache extends AbstractCache {
     }
   }
 
-  @Override public void onLowMemory() {
+  @Override
+  public void onLowMemory() {
     super.onLowMemory();
     index = null;
   }

@@ -13,23 +13,22 @@
 // limitations under the License.
 package org.metasyntactic;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.metasyntactic.activities.R;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.LogUtilities;
-
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import org.metasyntactic.activities.R;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LogUtilities;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NowPlayingApplication extends Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NOW_PLAYING_CHANGED_INTENT";
@@ -96,24 +95,28 @@ public class NowPlayingApplication extends Application {
   }
 
   private final BroadcastReceiver unmountedReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context contextfinal, final Intent intent) {
+    @Override
+    public void onReceive(final Context contextfinal, final Intent intent) {
       FileUtilities.setSDCardAccessible(false);
     }
   };
 
   private final BroadcastReceiver mountedReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context contextfinal, final Intent intent) {
+    @Override
+    public void onReceive(final Context contextfinal, final Intent intent) {
       FileUtilities.setSDCardAccessible(true);
     }
   };
 
   private final BroadcastReceiver ejectReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context contextfinal, final Intent intent) {
+    @Override
+    public void onReceive(final Context contextfinal, final Intent intent) {
       FileUtilities.setSDCardAccessible(true);
     }
   };
 
-  @Override public void onCreate() {
+  @Override
+  public void onCreate() {
     super.onCreate();
     this.registerReceiver(unmountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_UNMOUNTED));
     this.registerReceiver(mountedReceiver, new IntentFilter(Intent.ACTION_MEDIA_MOUNTED));
@@ -121,7 +124,8 @@ public class NowPlayingApplication extends Application {
   }
 
 
-  @Override public void onLowMemory() {
+  @Override
+  public void onLowMemory() {
     super.onLowMemory();
     NowPlayingControllerWrapper.onLowMemory();
     FileUtilities.onLowMemory();

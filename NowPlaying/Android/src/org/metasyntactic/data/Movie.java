@@ -21,7 +21,12 @@ import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 public class Movie extends AbstractPersistable implements Parcelable, Comparable<Movie> {
   private static final long serialVersionUID = 4570788252867866289L;
@@ -72,14 +77,14 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
       final List<String> genres = in.readStringList();
 
       return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster,
-                       synopsis, studio, directors, cast, genres);
+        synopsis, studio, directors, cast, genres);
     }
   };
 
   private Movie(final String identifier, final String canonicalTitle, final String displayTitle, final String rating,
-                final int length, final String imdbAddress, final Date releaseDate, final String poster,
-                final String synopsis, final String studio, final List<String> directors, final List<String> cast,
-                final List<String> genres) {
+    final int length, final String imdbAddress, final Date releaseDate, final String poster,
+    final String synopsis, final String studio, final List<String> directors, final List<String> cast,
+    final List<String> genres) {
     this.identifier = identifier;
     this.canonicalTitle = canonicalTitle;
     this.rating = rating;
@@ -96,10 +101,10 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
   }
 
   public Movie(final String identifier, final String title, final String rating, final int length,
-               final String imdbAddress, final Date releaseDate, final String poster, final String synopsis,
-               final String studio, final List<String> directors, final List<String> cast, final List<String> genres) {
+    final String imdbAddress, final Date releaseDate, final String poster, final String synopsis,
+    final String studio, final List<String> directors, final List<String> cast, final List<String> genres) {
     this(identifier, makeCanonical(title), makeDisplay(title), rating, length, imdbAddress, releaseDate, poster,
-         synopsis, studio, directors, cast, genres);
+      synopsis, studio, directors, cast, genres);
   }
 
   public String getIdentifier() {
@@ -154,7 +159,8 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
     return Collections.unmodifiableList(this.genres);
   }
 
-  @Override public boolean equals(final Object o) {
+  @Override
+  public boolean equals(final Object o) {
     if (this == o) {
       return true;
     }
@@ -165,18 +171,20 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
     final Movie movie = (Movie) o;
 
     if (this.canonicalTitle != null ? !this.canonicalTitle.equals(
-        movie.canonicalTitle) : movie.canonicalTitle != null) {
+      movie.canonicalTitle) : movie.canonicalTitle != null) {
       return false;
     }
 
     return true;
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return this.canonicalTitle != null ? this.canonicalTitle.hashCode() : 0;
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return this.canonicalTitle;
   }
 
@@ -261,7 +269,7 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
       source.readStringList(genres);
 
       return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster,
-                       synopsis, studio, directors, cast, genres);
+        synopsis, studio, directors, cast, genres);
     }
 
     public Movie[] newArray(final int size) {
