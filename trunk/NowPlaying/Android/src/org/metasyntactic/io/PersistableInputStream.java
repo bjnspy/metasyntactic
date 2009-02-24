@@ -15,8 +15,11 @@ package org.metasyntactic.io;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class PersistableInputStream {
   private final DataInputStream in;

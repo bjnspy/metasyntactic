@@ -13,6 +13,12 @@
 //limitations under the License.
 package org.metasyntactic.utilities;
 
+import android.os.Environment;
+import org.metasyntactic.NowPlayingApplication;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
+import org.metasyntactic.time.Days;
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullCollection;
 import static org.metasyntactic.utilities.CollectionUtilities.nonNullMap;
 
@@ -36,14 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.metasyntactic.NowPlayingApplication;
-import org.metasyntactic.io.Persistable;
-import org.metasyntactic.io.PersistableInputStream;
-import org.metasyntactic.io.PersistableOutputStream;
-import org.metasyntactic.time.Days;
-
-import android.os.Environment;
-
 public class FileUtilities {
   private static final boolean USE_PERSISTABLE = true;
   private static final Object lock = new Object();
@@ -51,7 +49,7 @@ public class FileUtilities {
 
   private static boolean sdcardAccessible = true;
 
-  private static final Map<String,String> sanitizedNameMap = new HashMap<String,String>();
+  private static final Map<String, String> sanitizedNameMap = new HashMap<String, String>();
 
   static {
     sdcardAccessible = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
@@ -112,7 +110,8 @@ public class FileUtilities {
     return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9' || c == ' ' || c == '-' || c == '.';
   }
 
-  @SuppressWarnings("unchecked") public static <T> T readObject(final File file) {
+  @SuppressWarnings("unchecked")
+  public static <T> T readObject(final File file) {
     try {
       final byte[] bytes = readBytes(file);
       if (bytes.length == 0) {

@@ -15,17 +15,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.INowPlaying;
+import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingControllerWrapper;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.LogUtilities;
 import org.metasyntactic.utilities.MovieViewUtilities;
 import org.metasyntactic.views.FastScrollView;
 import org.metasyntactic.views.NowPlayingPreferenceDialog;
-import org.metasyntactic.utilities.LogUtilities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,7 +50,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   private String[] alphabet;
   private Location userLocation;
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-    @Override public void onReceive(final Context context, final Intent intent) {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
       refresh();
     }
   };
@@ -70,9 +70,11 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
   };
   // The order of items in this array should match the
   // entries_theater_sort_preference array in res/values/arrays.xml
-  @SuppressWarnings("unchecked") private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(TITLE_ORDER, DISTANCE_ORDER);
+  @SuppressWarnings("unchecked")
+  private final List<Comparator<Theater>> THEATER_ORDER = Arrays.asList(TITLE_ORDER, DISTANCE_ORDER);
 
-  @Override protected void onCreate(final Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
@@ -81,25 +83,29 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     setupView();
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     LogUtilities.i(getClass().getSimpleName(), "onDestroy");
     NowPlayingControllerWrapper.removeActivity(this);
     super.onDestroy();
   }
 
-  @Override protected void onPause() {
+  @Override
+  protected void onPause() {
     LogUtilities.i(getClass().getSimpleName(), "onPause");
     unregisterReceiver(broadcastReceiver);
     super.onPause();
   }
 
-  @Override protected void onResume() {
+  @Override
+  protected void onResume() {
     super.onResume();
     LogUtilities.i(getClass().getSimpleName(), "onResume");
     registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingApplication.NOW_PLAYING_CHANGED_INTENT));
   }
 
-  @Override public Object onRetainNonConfigurationInstance() {
+  @Override
+  public Object onRetainNonConfigurationInstance() {
     LogUtilities.i(getClass().getSimpleName(), "onRetainNonConfigurationInstance");
     final Object result = new Object();
     NowPlayingControllerWrapper.onRetainNonConfigurationInstance(this, result);
@@ -178,19 +184,21 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     }
   }
 
-  @Override public boolean onCreateOptionsMenu(final Menu menu) {
+  @Override
+  public boolean onCreateOptionsMenu(final Menu menu) {
     menu.add(0, MovieViewUtilities.MENU_MOVIES, 0, R.string.menu_movies).setIcon(R.drawable.ic_menu_home).setIntent(
-        new Intent(this, AllTheatersActivity.class));
+      new Intent(this, AllTheatersActivity.class));
     menu.add(0, MovieViewUtilities.MENU_SORT, 0, R.string.sort_theaters).setIcon(R.drawable.ic_menu_switch);
     menu.add(0, MovieViewUtilities.MENU_SETTINGS, 0, R.string.settings).setIcon(android.R.drawable.ic_menu_preferences).setIntent(
-        new Intent(this, SettingsActivity.class).putExtra("from_menu","yes"));
+      new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override public boolean onOptionsItemSelected(final MenuItem item) {
+  @Override
+  public boolean onOptionsItemSelected(final MenuItem item) {
     if (item.getItemId() == MovieViewUtilities.MENU_SORT) {
       final NowPlayingPreferenceDialog builder = new NowPlayingPreferenceDialog(this).setKey(NowPlayingPreferenceDialog.PreferenceKeys.THEATERS_SORT)
-      .setEntries(R.array.entries_theaters_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
+        .setEntries(R.array.entries_theaters_sort_preference).setPositiveButton(android.R.string.ok).setNegativeButton(android.R.string.cancel);
       builder.setTitle(R.string.sort_theaters);
       builder.show();
     }
@@ -198,7 +206,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       startActivity(new Intent(this, AllTheatersActivity.class));
     }
     if (item.getItemId() == MovieViewUtilities.MENU_SETTINGS) {
-      startActivity(new Intent(this, SettingsActivity.class).putExtra("from_menu","yes"));
+      startActivity(new Intent(this, SettingsActivity.class).putExtra("from_menu", "yes"));
     }
     return true;
   }
@@ -229,7 +237,7 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
       // children
       // views we want to bind data to.
       final MovieViewHolder holder = new MovieViewHolder((TextView) convertView.findViewById(R.id.address), (TextView) convertView
-          .findViewById(R.id.title));
+        .findViewById(R.id.title));
       // Bind the data efficiently with the holder.
       final Theater theater = theaters.get(position);
       holder.title.setText(theater.getName());
@@ -321,7 +329,8 @@ public class AllTheatersActivity extends ListActivity implements INowPlaying {
     adapter.refreshTheaters(localTheaters);
   }
 
-  @Override protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
+  @Override
+  protected void onListItemClick(final ListView listView, final View view, final int position, final long id) {
     final Theater theater = theaters.get(position);
     final Intent intent = new Intent();
     intent.setClass(this, TheaterDetailsActivity.class);

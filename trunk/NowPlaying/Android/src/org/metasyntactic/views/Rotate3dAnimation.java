@@ -27,19 +27,15 @@ public class Rotate3dAnimation extends Animation {
    * translation on the Z axis (depth) is performed. The length of the
    * translation can be specified, as well as whether the translation should be
    * reversed in time.
-   * 
-   * @param fromDegrees
-   *          the start angle of the 3D rotation
-   * @param toDegrees
-   *          the end angle of the 3D rotation
-   * @param centerX
-   *          the X center of the 3D rotation
-   * @param centerY
-   *          the Y center of the 3D rotation
-   * @param reverse
-   *          true if the translation should be reversed, false otherwise
+   *
+   * @param fromDegrees the start angle of the 3D rotation
+   * @param toDegrees   the end angle of the 3D rotation
+   * @param centerX     the X center of the 3D rotation
+   * @param centerY     the Y center of the 3D rotation
+   * @param reverse     true if the translation should be reversed, false otherwise
    */
-  public Rotate3dAnimation(final float fromDegrees, final float toDegrees, final float centerX, final float centerY, final float depthZ, final boolean reverse) {
+  public Rotate3dAnimation(final float fromDegrees, final float toDegrees, final float centerX, final float centerY, final float depthZ,
+    final boolean reverse) {
     this.mFromDegrees = fromDegrees;
     this.mToDegrees = toDegrees;
     this.mCenterX = centerX;
@@ -48,12 +44,14 @@ public class Rotate3dAnimation extends Animation {
     this.mReverse = reverse;
   }
 
-  @Override public void initialize(final int width, final int height, final int parentWidth, final int parentHeight) {
+  @Override
+  public void initialize(final int width, final int height, final int parentWidth, final int parentHeight) {
     super.initialize(width, height, parentWidth, parentHeight);
     this.mCamera = new Camera();
   }
 
-  @Override protected void applyTransformation(final float interpolatedTime, final Transformation t) {
+  @Override
+  protected void applyTransformation(final float interpolatedTime, final Transformation t) {
     final float fromDegrees = this.mFromDegrees;
     final float degrees = fromDegrees + (this.mToDegrees - fromDegrees) * interpolatedTime;
     final float centerX = this.mCenterX;

@@ -13,16 +13,16 @@
 //limitations under the License.
 package org.metasyntactic.caches.scores;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.caches.AbstractCache;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Review;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 public class ScoreCache extends AbstractCache {
   private final ScoreProvider rottenTomatoesScoreProvider;

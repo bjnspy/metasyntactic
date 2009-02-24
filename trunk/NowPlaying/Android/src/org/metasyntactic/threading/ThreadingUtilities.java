@@ -13,14 +13,13 @@
 //limitations under the License.
 package org.metasyntactic.threading;
 
-import java.util.Date;
-
-import org.metasyntactic.ui.GlobalActivityIndicator;
-import org.metasyntactic.utilities.LogUtilities;
-
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
+import org.metasyntactic.ui.GlobalActivityIndicator;
+import org.metasyntactic.utilities.LogUtilities;
+
+import java.util.Date;
 
 public class ThreadingUtilities {
   private ThreadingUtilities() {
@@ -47,7 +46,8 @@ public class ThreadingUtilities {
     final Object lock2 = lock == null ? new Object() : lock;
 
     final Thread t = new HandlerThread(name) {
-      @Override public void run() {
+      @Override
+      public void run() {
         Looper.prepare();
         synchronized (lock2) {
           try {

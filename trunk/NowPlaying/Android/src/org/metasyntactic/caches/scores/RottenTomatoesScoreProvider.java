@@ -28,18 +28,21 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
     super(model);
   }
 
-  @Override protected String getProviderName() {
+  @Override
+  protected String getProviderName() {
     return "RottenTomatoes";
   }
 
-  @Override protected String lookupServerHash() {
+  @Override
+  protected String lookupServerHash() {
     final String address = "http://" + NowPlayingApplication.host + ".appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
-  @Override protected Map<String, Score> lookupServerScores() {
+  @Override
+  protected Map<String, Score> lookupServerScores() {
     final Element resultElement = NetworkUtilities.downloadXml("http://" + NowPlayingApplication.host
-        + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml", true);
+      + ".appspot.com/LookupMovieRatings?q=rottentomates&format=xml", true);
     if (resultElement != null) {
       final Map<String, Score> ratings = new HashMap<String, Score>();
 

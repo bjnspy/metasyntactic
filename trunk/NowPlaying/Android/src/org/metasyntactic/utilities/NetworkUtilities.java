@@ -17,7 +17,12 @@ import org.metasyntactic.threading.PriorityMutex;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.w3c.dom.Element;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -44,7 +49,7 @@ public class NetworkUtilities {
     }
   }
 
-  private final static String[] charsets = { "UTF-8", "ISO-8859-1", };
+  private final static String[] charsets = {"UTF-8", "ISO-8859-1",};
 
   public static String downloadString(final URL url, final boolean important) {
     final byte[] bytes = download(url, important);

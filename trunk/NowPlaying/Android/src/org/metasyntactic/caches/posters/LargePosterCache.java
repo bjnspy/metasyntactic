@@ -185,10 +185,10 @@ public class LargePosterCache extends AbstractCache {
   private List<String> getPosterUrlsForYear(final Movie movie, final int year) {
     List<String> result;
     if (size(result = getPosterUrlsForYearWorker(movie, year)) > 0 ||
-        size(result = getPosterUrlsForYearWorker(movie, year - 1)) > 0 ||
-        size(result = getPosterUrlsForYearWorker(movie, year - 2)) > 0 ||
-        size(result = getPosterUrlsForYearWorker(movie, year + 1)) > 0 ||
-        size(result = getPosterUrlsForYearWorker(movie, year + 2)) > 0) {
+      size(result = getPosterUrlsForYearWorker(movie, year - 1)) > 0 ||
+      size(result = getPosterUrlsForYearWorker(movie, year - 2)) > 0 ||
+      size(result = getPosterUrlsForYearWorker(movie, year + 1)) > 0 ||
+      size(result = getPosterUrlsForYearWorker(movie, year + 2)) > 0) {
       return result;
     }
 

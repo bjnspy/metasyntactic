@@ -17,7 +17,11 @@ import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.threading.ThreadingUtilities;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnBackgroundThread;
-import org.metasyntactic.utilities.*;
+import org.metasyntactic.utilities.ExceptionUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.LocationUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.StringUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import org.w3c.dom.Element;
 
@@ -136,7 +140,7 @@ public class UserLocationCache {
         final Location resultLocation = LocationUtilities.findLocation(result.getLatitude(), result.getLongitude());
         if (!isNullOrEmpty(resultLocation.getPostalCode())) {
           return new Location(result.getLatitude(), result.getLongitude(), result.getAddress(), result.getCity(), result.getState(), resultLocation
-              .getPostalCode(), result.getCountry());
+            .getPostalCode(), result.getCountry());
         }
       }
     }

@@ -27,7 +27,6 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,7 +38,8 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     super(model);
   }
 
-  @Override protected String getProviderName() {
+  @Override
+  protected String getProviderName() {
     return "Google";
   }
 
@@ -58,11 +58,12 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     days = min(max(days, 0), 7);
 
     return "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language="
-    + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude="
-    + (int) (location.getLongitude() * 1000000);
+      + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude="
+      + (int) (location.getLongitude() * 1000000);
   }
 
-  @Override protected String lookupServerHash() {
+  @Override
+  protected String lookupServerHash() {
     String address = getUrl();
     if (isNullOrEmpty(address)) {
       return address;
@@ -71,7 +72,8 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     return NetworkUtilities.downloadString(address, true);
   }
 
-  @Override protected Map<String, Score> lookupServerScores() {
+  @Override
+  protected Map<String, Score> lookupServerScores() {
     final String address = getUrl();
     if (isNullOrEmpty(address)) {
       return Collections.emptyMap();

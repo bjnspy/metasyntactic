@@ -13,12 +13,9 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
-import java.io.File;
-import java.util.Date;
-import java.util.List;
-
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import org.metasyntactic.activities.R;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
@@ -30,10 +27,11 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
+import java.io.File;
+import java.util.Date;
+import java.util.List;
 
 public class NowPlayingController {
   private final NowPlayingModel model;
@@ -83,10 +81,10 @@ public class NowPlayingController {
       return;
     }
     new AlertDialog.Builder(context).setMessage(R.string.could_not_find_location_dot).setPositiveButton(R.string.ok,
-        new DialogInterface.OnClickListener() {
-      public void onClick(final DialogInterface dialogInterface, final int i) {
-      }
-    }).show();
+      new DialogInterface.OnClickListener() {
+        public void onClick(final DialogInterface dialogInterface, final int i) {
+        }
+      }).show();
   }
 
   public String getUserAddress() {

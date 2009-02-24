@@ -12,8 +12,13 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.OnHierarchyChangeListener;
-import android.widget.*;
+import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.Adapter;
+import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.HeaderViewListAdapter;
+import android.widget.ListView;
 import org.metasyntactic.activities.R;
 
 /**
@@ -103,7 +108,8 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     invalidate();
   }
 
-  @Override public void draw(final Canvas canvas) {
+  @Override
+  public void draw(final Canvas canvas) {
     super.draw(canvas);
     if (!this.mThumbVisible) {
       // No need to draw the rest
@@ -131,7 +137,9 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
       final Paint paint = this.mPaint;
       final float descent = paint.descent();
       final RectF rectF = this.mOverlayPos;
-      canvas.drawText(this.mSectionText, (int) (rectF.left + rectF.right) / 2, (int) (rectF.bottom + rectF.top) / 2 + this.mOverlayHeight / 6 - descent, paint);
+      canvas
+        .drawText(this.mSectionText, (int) (rectF.left + rectF.right) / 2, (int) (rectF.bottom + rectF.top) / 2 + this.mOverlayHeight / 6 - descent,
+          paint);
     } else if (alpha == 0) {
       scrollFade.mStarted = false;
       removeThumb();
@@ -140,7 +148,8 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     }
   }
 
-  @Override protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
+  @Override
+  protected void onSizeChanged(final int w, final int h, final int oldw, final int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     if (this.mCurrentThumb != null) {
       this.mCurrentThumb.setBounds(w - this.mThumbW, 0, w, this.mThumbH);
@@ -209,7 +218,8 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     }
   }
 
-  @Override public boolean onInterceptTouchEvent(final MotionEvent ev) {
+  @Override
+  public boolean onInterceptTouchEvent(final MotionEvent ev) {
     if (this.mThumbVisible && ev.getAction() == MotionEvent.ACTION_DOWN) {
       if (ev.getX() > getWidth() - this.mThumbW && ev.getY() >= this.mThumbY && ev.getY() <= this.mThumbY + this.mThumbH) {
         this.mDragging = true;
@@ -301,7 +311,8 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     cancelFling.recycle();
   }
 
-  @Override public boolean onTouchEvent(final MotionEvent me) {
+  @Override
+  public boolean onTouchEvent(final MotionEvent me) {
     if (me.getAction() == MotionEvent.ACTION_DOWN) {
       if (me.getX() > getWidth() - this.mThumbW && me.getY() >= this.mThumbY && me.getY() <= this.mThumbY + this.mThumbH) {
         this.mDragging = true;

@@ -13,10 +13,6 @@
 //limitations under the License.
 package org.metasyntactic.caches;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-
 import org.metasyntactic.NowPlayingApplication;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.collections.BoundedPrioritySet;
@@ -25,6 +21,10 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 public class IMDbCache extends AbstractCache {
   private final BoundedPrioritySet<Movie> normalMovies = new BoundedPrioritySet<Movie>();
@@ -65,8 +65,8 @@ public class IMDbCache extends AbstractCache {
       Movie movie = null;
       synchronized (lock) {
         while (!shutdown &&
-            (movie = prioritizedMovies.removeAny()) == null &&
-            (movie = normalMovies.removeAny()) == null) {
+          (movie = prioritizedMovies.removeAny()) == null &&
+          (movie = normalMovies.removeAny()) == null) {
           lock.wait();
         }
       }
@@ -99,7 +99,7 @@ public class IMDbCache extends AbstractCache {
     }
 
     final String url = "http://" + NowPlayingApplication.host + ".appspot.com/LookupIMDbListings?q="
-    + StringUtilities.urlEncode(movie.getCanonicalTitle());
+      + StringUtilities.urlEncode(movie.getCanonicalTitle());
 
     final String imdbAddress = NetworkUtilities.downloadString(url, false);
     if (imdbAddress == null) {
@@ -114,7 +114,8 @@ public class IMDbCache extends AbstractCache {
     return FileUtilities.readString(movieFilePath(movie));
   }
 
-  @Override protected List<File> getCacheDirectories() {
+  @Override
+  protected List<File> getCacheDirectories() {
     return Collections.singletonList(NowPlayingApplication.imdbDirectory);
   }
 }

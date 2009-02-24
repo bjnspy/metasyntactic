@@ -13,11 +13,10 @@
 //limitations under the License.
 package org.metasyntactic;
 
-import java.util.Date;
-
+import android.os.Handler;
 import org.metasyntactic.utilities.LogUtilities;
 
-import android.os.Handler;
+import java.util.Date;
 
 public class Pulser {
   private final Runnable runnable;
