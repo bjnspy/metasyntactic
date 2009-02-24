@@ -137,9 +137,8 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
       final Paint paint = this.mPaint;
       final float descent = paint.descent();
       final RectF rectF = this.mOverlayPos;
-      canvas
-        .drawText(this.mSectionText, (int) (rectF.left + rectF.right) / 2, (int) (rectF.bottom + rectF.top) / 2 + this.mOverlayHeight / 6 - descent,
-          paint);
+      canvas.drawText(this.mSectionText, (int)(rectF.left + rectF.right) / 2, (int)(rectF.bottom + rectF.top) / 2 + this.mOverlayHeight / 6 - descent,
+        paint);
     } else if (alpha == 0) {
       scrollFade.mStarted = false;
       removeThumb();
@@ -159,7 +158,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     pos.right = pos.left + this.mOverlayWidth;
     pos.top = h / 10; // 10% from top
     pos.bottom = pos.top + this.mOverlayHeight;
-    this.mOverlayDrawable.setBounds((int) pos.left, (int) pos.top, (int) pos.right, (int) pos.bottom);
+    this.mOverlayDrawable.setBounds((int)pos.left, (int)pos.top, (int)pos.right, (int)pos.bottom);
   }
 
   public void onScrollStateChanged(final AbsListView view, final int scrollState) {
@@ -193,18 +192,18 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
   public static void getSections() {
     Adapter adapter = mList.getAdapter();
     if (adapter instanceof HeaderViewListAdapter) {
-      mListOffset = ((HeaderViewListAdapter) adapter).getHeadersCount();
-      adapter = ((HeaderViewListAdapter) adapter).getWrappedAdapter();
+      mListOffset = ((HeaderViewListAdapter)adapter).getHeadersCount();
+      adapter = ((HeaderViewListAdapter)adapter).getWrappedAdapter();
     }
     if (adapter instanceof SectionIndexer) {
-      mListAdapter = (BaseAdapter) adapter;
-      mSections = ((SectionIndexer) mListAdapter).getSections();
+      mListAdapter = (BaseAdapter)adapter;
+      mSections = ((SectionIndexer)mListAdapter).getSections();
     }
   }
 
   public void onChildViewAdded(final View parent, final View child) {
     if (child instanceof ListView) {
-      mList = (ListView) child;
+      mList = (ListView)child;
       mList.setOnScrollListener(this);
       getSections();
     }
@@ -236,12 +235,12 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     int sectionIndex;
     if (sections != null && sections.length > 1) {
       final int nSections = sections.length;
-      int section = (int) (position * nSections);
+      int section = (int)(position * nSections);
       if (section >= nSections) {
         section = nSections - 1;
       }
       sectionIndex = section;
-      final SectionIndexer baseAdapter = (SectionIndexer) mListAdapter;
+      final SectionIndexer baseAdapter = (SectionIndexer)mListAdapter;
       int index = baseAdapter.getPositionForSection(section);
       // Given the expected section and index, the following code will
       // try to account for missing sections (no names starting with..)
@@ -283,16 +282,16 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
       // Compute the beginning and ending scroll range percentage of the
       // currently visible letter. This could be equal to or greater than
       // (1 / nSections).
-      final float fPrev = (float) prevSection / nSections;
-      final float fNext = (float) nextSection / nSections;
-      index = prevIndex + (int) ((nextIndex - prevIndex) * (position - fPrev) / (fNext - fPrev));
+      final float fPrev = (float)prevSection / nSections;
+      final float fNext = (float)nextSection / nSections;
+      index = prevIndex + (int)((nextIndex - prevIndex) * (position - fPrev) / (fNext - fPrev));
       // Don't overflow
       if (index > count - 1) {
         index = count - 1;
       }
       mList.setSelectionFromTop(index + mListOffset, 0);
     } else {
-      final int index = (int) (position * count);
+      final int index = (int)(position * count);
       mList.setSelectionFromTop(index + mListOffset, 0);
       sectionIndex = -1;
     }
@@ -333,7 +332,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
     } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
       if (this.mDragging) {
         final int viewHeight = getHeight();
-        this.mThumbY = (int) me.getY() - this.mThumbH + 10;
+        this.mThumbY = (int)me.getY() - this.mThumbH + 10;
         if (this.mThumbY < 0) {
           this.mThumbY = 0;
         } else if (this.mThumbY + this.mThumbH > viewHeight) {
@@ -341,7 +340,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
         }
         // If the previous scrollTo is still pending
         if (this.mScrollCompleted) {
-          scrollTo((float) this.mThumbY / (viewHeight - this.mThumbH));
+          scrollTo((float)this.mThumbY / (viewHeight - this.mThumbH));
         }
         return true;
       }
@@ -371,7 +370,7 @@ public class FastScrollView extends FrameLayout implements OnScrollListener, OnH
       if (now > this.mStartTime + this.mFadeDuration) {
         alpha = 0;
       } else {
-        alpha = (int) (ALPHA_MAX - (now - this.mStartTime) * ALPHA_MAX / this.mFadeDuration);
+        alpha = (int)(ALPHA_MAX - (now - this.mStartTime) * ALPHA_MAX / this.mFadeDuration);
       }
       return alpha;
     }

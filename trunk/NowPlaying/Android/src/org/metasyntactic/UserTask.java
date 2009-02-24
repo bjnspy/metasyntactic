@@ -216,7 +216,7 @@ public abstract class UserTask<Params, Progress, Result> {
         } catch (final ExecutionException e) {
           throw new RuntimeException("An error occured while executing doInBackground()", e.getCause());
         } catch (final CancellationException e) {
-          message = sHandler.obtainMessage(MESSAGE_POST_CANCEL, new UserTaskResult<Result>(UserTask.this, (Result[]) null));
+          message = sHandler.obtainMessage(MESSAGE_POST_CANCEL, new UserTaskResult<Result>(UserTask.this, (Result[])null));
           message.sendToTarget();
           return;
         } catch (final Throwable t) {
@@ -411,10 +411,9 @@ public abstract class UserTask<Params, Progress, Result> {
   }
 
   private static class InternalHandler extends Handler {
-    @SuppressWarnings({"unchecked", "RawUseOfParameterizedType"})
-    @Override
+    @SuppressWarnings({"unchecked", "RawUseOfParameterizedType"}) @Override
     public void handleMessage(final Message msg) {
-      final UserTaskResult result = (UserTaskResult) msg.obj;
+      final UserTaskResult result = (UserTaskResult)msg.obj;
       switch (msg.what) {
         case MESSAGE_POST_RESULT:
           // There is only one result

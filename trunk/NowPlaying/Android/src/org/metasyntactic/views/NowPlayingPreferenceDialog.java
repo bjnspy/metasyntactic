@@ -26,7 +26,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   public NowPlayingPreferenceDialog(final Context context) {
     super(context);
     this.builder = new AlertDialog.Builder(context);
-    this.context = (INowPlaying) context;
+    this.context = (INowPlaying)context;
   }
 
   public Dialog create() {
@@ -166,7 +166,7 @@ public class NowPlayingPreferenceDialog extends AlertDialog {
   }
 
   public NowPlayingPreferenceDialog setTextView(final View textEntryView) {
-    this.textView = (TextView) textEntryView.findViewById(R.id.dialogEdit);
+    this.textView = (TextView)textEntryView.findViewById(R.id.dialogEdit);
     this.textView.setText(getStringPreferenceValue());
     this.builder.setView(textEntryView);
     this.positiveButtonListener = new OnClickListener() {

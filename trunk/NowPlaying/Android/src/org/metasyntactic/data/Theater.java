@@ -85,7 +85,7 @@ public class Theater extends AbstractPersistable implements Parcelable {
       return false;
     }
 
-    final Theater theater = (Theater) o;
+    final Theater theater = (Theater)o;
 
     if (name != null ? !name.equals(theater.name) : theater.name != null) {
       return false;

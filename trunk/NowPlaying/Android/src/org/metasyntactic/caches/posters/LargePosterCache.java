@@ -248,21 +248,21 @@ public class LargePosterCache extends AbstractCache {
     final double scale;
     if (height > width) {
       // portrait
-      scale = (double) height / MAX_DIMENSION;
+      scale = (double)height / MAX_DIMENSION;
     } else {
       // landscape
-      scale = (double) width / MAX_DIMENSION;
+      scale = (double)width / MAX_DIMENSION;
     }
 
     final BitmapFactory.Options options2 = new BitmapFactory.Options();
     options2.inPreferredConfig = Bitmap.Config.ARGB_8888;
-    options2.inSampleSize = (int) scale;
+    options2.inSampleSize = (int)scale;
     Bitmap scaledBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options2);
     // This will give us a scaled bitmap, but still not resized to the
     // dimensions
     // that we want.
 
-    scaledBitmap = Bitmap.createScaledBitmap(scaledBitmap, (int) (width / scale), (int) (height / scale), true);
+    scaledBitmap = Bitmap.createScaledBitmap(scaledBitmap, (int)(width / scale), (int)(height / scale), true);
     final ByteArrayOutputStream byteOut = new ByteArrayOutputStream(bytes.length);
     scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteOut);
 

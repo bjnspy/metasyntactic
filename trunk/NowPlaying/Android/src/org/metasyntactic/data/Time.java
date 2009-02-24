@@ -100,7 +100,7 @@ public class Time extends AbstractPersistable implements Parcelable, Comparable<
       return false;
     }
 
-    return object instanceof Time && compareTo((Time) object) == 0;
+    return object instanceof Time && compareTo((Time)object) == 0;
   }
 
   @Override

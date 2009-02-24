@@ -31,7 +31,7 @@ public class SearchMovieActivity extends Activity implements View.OnClickListene
     LogUtilities.i(getClass().getSimpleName(), "onCreate");
     NowPlayingControllerWrapper.addActivity(this);
     setContentView(R.layout.search_bar);
-    mSearchText = (EditText) findViewById(R.id.search_src_text);
+    mSearchText = (EditText)findViewById(R.id.search_src_text);
     mSearchText.setOnClickListener(this);
     findViewById(R.id.search_go_btn).setOnClickListener(this);
     activityName = getIntent().getStringExtra("activity");

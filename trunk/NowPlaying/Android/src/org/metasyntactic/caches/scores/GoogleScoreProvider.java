@@ -58,7 +58,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     days = min(max(days, 0), 7);
 
     return "http://" + NowPlayingApplication.host + ".appspot.com/LookupTheaterListings2?country=" + country + "&language=" + Locale.getDefault()
-      .getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location
+      .getLanguage() + "&day=" + days + "&format=pb" + "&latitude=" + (int)(location.getLatitude() * 1000000) + "&longitude=" + (int)(location
       .getLongitude() * 1000000);
   }
 

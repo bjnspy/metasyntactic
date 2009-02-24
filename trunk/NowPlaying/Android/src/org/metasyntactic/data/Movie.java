@@ -167,7 +167,7 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
       return false;
     }
 
-    final Movie movie = (Movie) o;
+    final Movie movie = (Movie)o;
 
     if (canonicalTitle != null ? !canonicalTitle.equals(movie.canonicalTitle) : movie.canonicalTitle != null) {
       return false;
@@ -255,7 +255,7 @@ public class Movie extends AbstractPersistable implements Parcelable, Comparable
       final String rating = source.readString();
       final int length = source.readInt();
       final String imdbAddress = source.readString();
-      final Date releaseDate = (Date) source.readValue(null);
+      final Date releaseDate = (Date)source.readValue(null);
       final String poster = source.readString();
       final String synopsis = source.readString();
       final String studio = source.readString();

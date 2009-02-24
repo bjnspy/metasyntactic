@@ -137,7 +137,7 @@ public class NowPlayingApplication extends Application {
         if (!field.getType().equals(File.class) || root.equals(field.get(null))) {
           continue;
         }
-        directories.add((File) field.get(null));
+        directories.add((File)field.get(null));
       }
       return directories;
     } catch (final IllegalAccessException e) {

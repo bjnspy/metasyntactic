@@ -63,7 +63,7 @@ public class XmlUtilities {
     for (int i = 0; i < list.getLength(); i++) {
       final Node child = list.item(i);
       if (child.getNodeType() == Node.ELEMENT_NODE) {
-        final Element childElement = (Element) child;
+        final Element childElement = (Element)child;
         if (childElement.getTagName().equals(name)) {
           return childElement;
         }
@@ -87,7 +87,7 @@ public class XmlUtilities {
       return null;
     }
 
-    return (Element) list.item(0);
+    return (Element)list.item(0);
   }
 
   public static String text(final Node element) {
@@ -104,7 +104,7 @@ public class XmlUtilities {
       return null;
     }
 
-    final CharacterData textNode = (CharacterData) child;
+    final CharacterData textNode = (CharacterData)child;
     return textNode.getData();
   }
 
@@ -117,7 +117,7 @@ public class XmlUtilities {
         for (int i = 0; i < list.getLength(); i++) {
           final Node child = list.item(i);
           if (child instanceof Element) {
-            result.add((Element) child);
+            result.add((Element)child);
           }
         }
 
