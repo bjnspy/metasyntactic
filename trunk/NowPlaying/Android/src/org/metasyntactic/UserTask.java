@@ -18,6 +18,7 @@ package org.metasyntactic;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
+import android.util.Log;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
@@ -29,6 +30,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -159,15 +161,15 @@ public abstract class UserTask<Params, Progress, Result> {
     private final AtomicInteger mCount = new AtomicInteger(1);
 
     public Thread newThread(final Runnable r) {
-      return new Thread(r, "UserTask #" + this.mCount.getAndIncrement());
+      return new Thread(r, "UserTask #" + mCount.getAndIncrement());
     }
   };
-  private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE, TimeUnit.SECONDS,
+  private static final Executor sExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE, TimeUnit.SECONDS,
     sWorkQueue, sThreadFactory);
   private static final int MESSAGE_POST_RESULT = 0x1;
   private static final int MESSAGE_POST_PROGRESS = 0x2;
   private static final int MESSAGE_POST_CANCEL = 0x3;
-  private static final InternalHandler sHandler = new InternalHandler();
+  private static final Handler sHandler = new InternalHandler();
   private final WorkerRunnable<Params, Result> mWorker;
   private final FutureTask<Result> mFuture;
   private volatile Status mStatus = Status.PENDING;
@@ -194,24 +196,24 @@ public abstract class UserTask<Params, Progress, Result> {
   /**
    * Creates a new user task. This constructor must be invoked on the UI thread.
    */
-  public UserTask() {
-    this.mWorker = new WorkerRunnable<Params, Result>() {
-      public Result call() throws Exception {
+  protected UserTask() {
+    mWorker = new WorkerRunnable<Params, Result>() {
+      public Result call() {
         Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-        return doInBackground(this.mParams);
+        return doInBackground(mParams);
       }
     };
 
-    this.mFuture = new FutureTask<Result>(this.mWorker) {
+    mFuture = new FutureTask<Result>(mWorker) {
       @Override
       protected void done() {
-        Message message;
+        final Message message;
         Result result = null;
 
         try {
           result = get();
         } catch (final InterruptedException e) {
-          android.util.Log.w(LOG_TAG, e);
+          Log.w(LOG_TAG, e);
         } catch (final ExecutionException e) {
           throw new RuntimeException("An error occured while executing doInBackground()", e.getCause());
         } catch (final CancellationException e) {
@@ -234,7 +236,7 @@ public abstract class UserTask<Params, Progress, Result> {
    * @return The current status.
    */
   public final Status getStatus() {
-    return this.mStatus;
+    return mStatus;
   }
 
   /**
@@ -306,7 +308,7 @@ public abstract class UserTask<Params, Progress, Result> {
    * @see #cancel(boolean)
    */
   public final boolean isCancelled() {
-    return this.mFuture.isCancelled();
+    return mFuture.isCancelled();
   }
 
   /**
@@ -326,7 +328,7 @@ public abstract class UserTask<Params, Progress, Result> {
    * @see #onCancelled()
    */
   public final boolean cancel(final boolean mayInterruptIfRunning) {
-    return this.mFuture.cancel(mayInterruptIfRunning);
+    return mFuture.cancel(mayInterruptIfRunning);
   }
 
   /**
@@ -339,7 +341,7 @@ public abstract class UserTask<Params, Progress, Result> {
    * @throws InterruptedException  If the current thread was interrupted while waiting.
    */
   public final Result get() throws InterruptedException, ExecutionException {
-    return this.mFuture.get();
+    return mFuture.get();
   }
 
   /**
@@ -355,7 +357,7 @@ public abstract class UserTask<Params, Progress, Result> {
    * @throws TimeoutException      If the wait timed out.
    */
   public final Result get(final long timeout, final TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
-    return this.mFuture.get(timeout, unit);
+    return mFuture.get(timeout, unit);
   }
 
   /**
@@ -367,12 +369,12 @@ public abstract class UserTask<Params, Progress, Result> {
    * @param params The parameters of the task.
    * @return This instance of UserTask.
    * @throws IllegalStateException If {@link #getStatus()} returns either
-   *                               {@link UserTask.Status#RUNNING} or
-   *                               {@link UserTask.Status#FINISHED}.
+   *                               {@link Status#RUNNING} or
+   *                               {@link Status#FINISHED}.
    */
   public final UserTask<Params, Progress, Result> execute(final Params... params) {
-    if (this.mStatus != Status.PENDING) {
-      switch (this.mStatus) {
+    if (mStatus != Status.PENDING) {
+      switch (mStatus) {
         case RUNNING:
           throw new IllegalStateException("Cannot execute task:" + " the task is already running.");
         case FINISHED:
@@ -380,12 +382,12 @@ public abstract class UserTask<Params, Progress, Result> {
       }
     }
 
-    this.mStatus = Status.RUNNING;
+    mStatus = Status.RUNNING;
 
     onPreExecute();
 
-    this.mWorker.mParams = params;
-    sExecutor.execute(this.mFuture);
+    mWorker.mParams = params;
+    sExecutor.execute(mFuture);
 
     return this;
   }
@@ -406,7 +408,7 @@ public abstract class UserTask<Params, Progress, Result> {
 
   private void finish(final Result result) {
     onPostExecute(result);
-    this.mStatus = Status.FINISHED;
+    mStatus = Status.FINISHED;
   }
 
   private static class InternalHandler extends Handler {
@@ -429,18 +431,18 @@ public abstract class UserTask<Params, Progress, Result> {
     }
   }
 
-  private static abstract class WorkerRunnable<Params, Result> implements Callable<Result> {
-    Params[] mParams;
+  private abstract static class WorkerRunnable<Params, Result> implements Callable<Result> {
+    protected Params[] mParams;
   }
 
   @SuppressWarnings({"RawUseOfParameterizedType"})
   private static class UserTaskResult<Data> {
-    final UserTask mTask;
-    final Data[] mData;
+    private final UserTask mTask;
+    private final Data[] mData;
 
-    UserTaskResult(final UserTask task, final Data... data) {
-      this.mTask = task;
-      this.mData = data;
+    private UserTaskResult(final UserTask task, final Data... data) {
+      mTask = task;
+      mData = data;
     }
   }
 }
